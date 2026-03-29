@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io/xin-conan.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 30 Mar 2026 14:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 30 Mar 2026 16:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>灵感，明亮地移动我：与 Jem 的对话</title>
+      <link>https://conanxin.github.io/xin-conan.github.io/posts/inspiration-move-me-brightly.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/inspiration-move-me-brightly.html</guid>
+      <pubDate>Sun, 30 Mar 2026 16:00:00 GMT</pubDate>
+      <description><![CDATA[Jem与Brad Frost关于生成式设计、技术艺术和创意流程的AI增强]]></description>
+    </item>
     
     <item>
       <title>你想如何被记住：AI Agent 的记忆革命</title>

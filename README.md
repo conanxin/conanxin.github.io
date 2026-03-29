@@ -8,8 +8,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/xin-conan/xin-conan.github.io.git
-cd xin-conan.github.io
+git clone https://github.com/conanxin/conanxin.github.io.git
+cd conanxin.github.io
 
 # 启动本地预览
 ./scripts/dev-server.sh
@@ -28,7 +28,7 @@ cd xin-conan.github.io
 
 ```bash
 # 1. 在 src/posts/ 创建新文章
-cp src/posts/template.html src/posts/new-post.html
+cp src/posts/local-llm-guide.html src/posts/new-post.html
 
 # 2. 编辑内容
 nano src/posts/new-post.html
@@ -60,7 +60,8 @@ git push origin main
 │   │   └── post.css       # 文章页面样式
 │   └── posts/             # 文章目录
 │       ├── index.html     # 文章列表
-│       └── *.html         # 文章页面
+│       ├── *.html         # 文章页面
+│       └── images/        # 文章图片
 ├── scripts/               # 工具脚本
 │   ├── dev-server.sh      # 本地预览
 │   └── deploy.sh          # 手动部署
@@ -71,12 +72,12 @@ git push origin main
 
 ## 🌐 线上地址
 
-<https://xin-conan.github.io>
+<https://conanxin.github.io>
 
 ## 📮 联系
 
 - Email: hello@xin-conan.me
-- RSS: <https://xin-conan.github.io/feed.xml>
+- RSS: <https://conanxin.github.io/feed.xml>
 
 ## 📜 许可
 

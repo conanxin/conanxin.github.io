@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io/xin-conan.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 30 Mar 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 30 Mar 2026 14:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>你想如何被记住：AI Agent 的记忆革命</title>
+      <link>https://conanxin.github.io/xin-conan.github.io/posts/how-do-you-want-to-remember.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/how-do-you-want-to-remember.html</guid>
+      <pubDate>Sun, 30 Mar 2026 14:00:00 GMT</pubDate>
+      <description><![CDATA[Zak El Fassi 关于 AI Agent 记忆系统的实验——让 Agent 自主设计、评估和优化自己的记忆]]></description>
+    </item>
     
     <item>
       <title>如何在AI时代保持清醒：读 Cedric Chin 有感</title>

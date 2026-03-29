@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io/xin-conan.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 01 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Apr 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>一致性是原始的：当AI成为基础设施</title>
+      <link>https://conanxin.github.io/xin-conan.github.io/posts/consistency-is-primitive.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/consistency-is-primitive.html</guid>
+      <pubDate>Tue, 01 Apr 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[Christopher Butler关于AI时代软件、设计与一致性本质的深刻洞察，从一致性是约束到定制是自由]]></description>
+    </item>
     
     <item>
       <title>AI让写代码更容易，却让工程师更难</title>

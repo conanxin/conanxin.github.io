@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xin Conan | 数字花园</title>
+    <meta name="description" content="探索本地 AI、终端工具与人机交互的数字花园">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Xin Conan">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor blink">_</span>
+            </div>
+            <p class="tagline">// 在 WSL 里种 AI，在终端里写文章</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item active">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="terminal-main">
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./about.txt</span>
+                </div>
+                <div class="section-content">
+                    <p>你好，这里是 Xin Conan 的数字花园。</p>
+                    <p>我在 <span class="highlight">WSL2 Ubuntu</span> 上探索本地大语言模型，研究如何用 AI 增强而非替代人的思考。这个网站记录我的实验、失败和偶尔的成功。</p>
+                    <p>受到 <a href="https://henry.codes/writing/a-website-to-destroy-all-websites/" class="link">Henry</a> 和 <a href="https://www.joanwestenberg.com/communities-are-not-fungible/" class="link">Joan Westenberg</a> 的启发，我相信个人网站是抵抗平台异化的最小可行方案。</p>
+                </div>
+            </section>
+
+            <section class="posts-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls -la ./posts/ | head -10</span>
+                </div>
+                <div class="posts-list">
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-29</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">LOCAL-AI</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">8 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/local-llm-guide.html">本地大模型选择指南：从 4GB 到 24GB VRAM</a>
+                        </h2>
+                        <p class="post-excerpt">基于硬件配置选择最适合的本地 LLM，从 Qwen2.5 到 Llama 3.1 的实践对比...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-28</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">15 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/convivial-web.html">愉悦工具与互联网的灵魂</a>
+                        </h2>
+                        <p class="post-excerpt">重读 Ivan Illich《Tools for Conviviality》，思考如何让技术重新服务于人的自主性...</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="now-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./now.txt</span>
+                </div>
+                <div class="section-content">
+                    <ul class="now-list">
+                        <li><span class="bullet">→</span> 在 i7-6700 + 8GB RAM 上跑本地模型</li>
+                        <li><span class="bullet">→</span> 学习 Hermes Agent 技能系统开发</li>
+                        <li><span class="bullet">→</span> 阅读《Tools for Conviviality》</li>
+                        <li><span class="bullet">→</span> 建设这个数字花园</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                    <span class="separator">|</span>
+                    <span class="label">GITHUB:</span>
+                    <a href="#" class="link">@xin-conan</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 实时更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

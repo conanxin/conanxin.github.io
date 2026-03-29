@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 | Xin Conan</title>
+    <meta name="description" content="关于 Xin Conan 的数字花园">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item active">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="terminal-main">
+            <section class="about-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">whoami</span>
+                </div>
+                <div class="section-content">
+                    <p>我是 Xin Conan，一个在 <span class="highlight">WSL2 Ubuntu</span> 里探索本地 AI 的终端用户。</p>
+                    <p>这个网站是我的<span class="highlight">数字花园</span>——不是精心修剪的展示橱窗，而是持续生长的实验田。</p>
+                </div>
+            </section>
+
+            <section class="stack-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">neofetch</span>
+                </div>
+                <div class="section-content">
+                    <div class="info-block">
+                        <p><span class="label">OS:</span> WSL2 Ubuntu 22.04</p>
+                        <p><span class="label">Host:</span> Windows 10</p>
+                        <p><span class="label">Kernel:</span> 5.15.0</p>
+                        <p><span class="label">Shell:</span> zsh 5.8</p>
+                        <p><span class="label">CPU:</span> Intel i7-6700 (8) @ 3.400GHz</p>
+                        <p><span class="label">Memory:</span> 8GB</p>
+                        <p><span class="label">Terminal:</span> Windows Terminal</p>
+                        <p><span class="label">Editor:</span> VS Code / nano</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="interests-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./interests.txt</span>
+                </div>
+                <div class="section-content">
+                    <ul class="now-list">
+                        <li><span class="bullet">◆</span> <strong>本地 LLM</strong> — 在消费级硬件上运行大模型</li>
+                        <li><span class="bullet">◆</span> <strong>终端工具</strong> — CLI 优先的工作流</li>
+                        <li><span class="bullet">◆</span> <strong>数字花园</strong> — 拥有数据的个人网站</li>
+                        <li><span class="bullet">◆</span> <strong>Hermes Agent</strong> — AI 辅助编程与自动化</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="principles-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./principles.md</span>
+                </div>
+                <div class="section-content">
+                    <p>受到 <a href="https://henry.codes/writing/a-website-to-destroy-all-websites/" class="link">Henry</a> 的启发，我相信：</p>
+                    
+                    <ul>
+                        <li>个人网站是抵抗平台异化的最小可行方案</li>
+                        <li>技术应该增强人的自主性，而非驯化人适应它的逻辑</li>
+                        <li>本地优先、所有权明确、可离线使用</li>
+                    </ul>
+
+                    <p>受到 <a href="https://www.joanwestenberg.com/communities-are-not-fungible/" class="link">Joan Westenberg</a> 的启发，我理解：</p>
+                    
+                    <ul>
+                        <li>社区不是可替代的资源</li>
+                        <li>特定的关系网络无法被重建</li>
+                        <li>积累的社会资本需要时间沉积</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="contact-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./contact.txt</span>
+                </div>
+                <div class="section-content">
+                    <p><span class="label">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></p>
+                    <p><span class="label">GITHUB:</span> <a href="#" class="link">@xin-conan</a> (coming soon)</p>
+                    <p><span class="label">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 返回首页</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <a href="/" class="nav-back">
+                        <span class="arrow">←</span>
+                        <span>cd /home</span>
+                    </a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

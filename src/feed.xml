@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io/xin-conan.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 31 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Apr 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>AI让写代码更容易，却让工程师更难</title>
+      <link>https://conanxin.github.io/xin-conan.github.io/posts/ai-made-coding-easier-engineering-harder.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/ai-made-coding-easier-engineering-harder.html</guid>
+      <pubDate>Tue, 01 Apr 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Ivan Turkovic关于AI时代软件工程师工作paradox的深度分析，从身份危机到监督悖论]]></description>
+    </item>
     
     <item>
       <title>Steven Pressfield：叙事的21条原则</title>

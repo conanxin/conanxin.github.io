@@ -9,19 +9,19 @@
     <atom:link href="https://xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     
     <item>
+      <title>社区不可替代：读 Joan Westenberg 有感</title>
+      <link>https://xin-conan.github.io/posts/communities-are-not-fungible.html</link>
+      <guid isPermaLink="true">https://xin-conan.github.io/posts/communities-are-not-fungible.html</guid>
+      <pubDate>Sat, 29 Mar 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[社区不是可互换的资源，一旦破坏便无法重建——Joan Westenberg 文章的学习笔记]]></description>
+    </item>
+    
+    <item>
       <title>本地大模型选择指南：从 4GB 到 24GB VRAM</title>
       <link>https://xin-conan.github.io/posts/local-llm-guide.html</link>
       <guid isPermaLink="true">https://xin-conan.github.io/posts/local-llm-guide.html</guid>
       <pubDate>Sat, 29 Mar 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[基于硬件配置选择最适合的本地 LLM，从 Qwen2.5 到 Llama 3.1 的实践对比]]></description>
-    </item>
-    
-    <item>
-      <title>愉悦工具与互联网的灵魂</title>
-      <link>https://xin-conan.github.io/posts/convivial-web.html</link>
-      <guid isPermaLink="true">https://xin-conan.github.io/posts/convivial-web.html</guid>
-      <pubDate>Fri, 28 Mar 2026 00:00:00 GMT</pubDate>
-      <description><![CDATA[重读 Ivan Illich《Tools for Conviviality》，思考如何让技术重新服务于人的自主性]]></description>
     </item>
   </channel>
 </rss>

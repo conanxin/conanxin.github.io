@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章 | Xin Conan</title>
-    <meta name="description" content="Xin Conan 的文章列表">
+    <title>文章列表 | Xin Conan</title>
+    <meta name="description" content="探索关于本地 AI、终端工具、人机交互的深度文章和思考">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 </head>
@@ -60,388 +61,509 @@
             </a>
         </nav>
 
-        <!-- Main Content -->
-        <main class="terminal-main">
-            <section class="posts-section">
+        <!-- Content -->
+        <main class="posts-list">
+            <header class="page-header">
                 <div class="section-header">
                     <span class="cmd">$</span>
-                    <span class="cmd-text">ls -la ./posts/</span>
+                    <span class="cmd-text">ls ./posts/</span>
                 </div>
+                <p class="page-description">共 39 篇文章，关于 AI 研究、技术探索和深度思考</p>
+            </header>
+
+            <div class="posts-grid">
                 
-                <div class="posts-list">
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-30</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">FUTURE-VISION</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">35 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/personal-ai-ecosystem-2030-vision.html">2030 年个人 AI 生态系统全景：当技术成熟之后</a>
-                        </h2>
-                        <p class="post-excerpt">想象一下，你的数字生活完全由你掌控——AI 是你的忠实助手，数据是你的私人资产，创作是你的自由表达。这不是科幻，这是技术成熟后的日常...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-31</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/autoresearch-practical-application-guide.html">Autoresearch 理念实战应用指南</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-30</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">DEPIN</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">25 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/depin-ai-ecosystem-research.html">DePIN AI 生态系统深度研究</a>
-                        </h2>
-                        <p class="post-excerpt">深度研究 Fetch.ai、Golem、Bittensor 三大 DePIN AI 项目——去中心化物理基础设施网络如何重塑 AI 产业...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/a2a-agent-collaboration.html">A2A Agent 协议与多 Agent 协作研究</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-30</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">DECENTRALIZED-AI</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">40 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/decentralized-ai-landscape.html">去中心化 AI 全景图：从数据主权到智能生态</a>
-                        </h2>
-                        <p class="post-excerpt">在 AI 时代，权力正从中心化平台向分布式网络转移——这不是技术选择，而是文明进程。本文深度解析 Solid 协议、联邦学习...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/agentscope-hermes-integration.html">AgentScope × Hermes 系统集成分析</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-30</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">INTERNET</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">7 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/tim-berners-lee-battle-soul-web.html">Tim Berners-Lee: "为互联网的灵魂而战"</a>
-                        </h2>
-                        <p class="post-excerpt">万维网发明者 Tim Berners-Lee 认为互联网已偏离初衷——从民主化的自由平台沦为"为恶劣性优化"的商业工具...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/ai-important-ideas-2026.html">AI 最重要的五个思想 (2026年4月)</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">PERMACOMPUTING</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">30 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/brewing-collectives.html">Brewing Collectives: How To Start a Permacomputing Collective</a>
-                        </h2>
-                        <p class="post-excerpt">*"Permacomputing isn't a movement of optimization — it's a practice of attention, care, solidarity a...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/anthropic-harness-vs-hermes-supervisor.html">Anthropic Harness 与 Hermes Supervisor 深度对比分析</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">AI-ETHICS</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">9 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/outsourcing-thinking-erik-johannes.html">Outsourcing Thinking — Erik Johannes Husom</a>
-                        </h2>
-                        <p class="post-excerpt">- 作者: Erik Johannes Husom</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/decentralized-ai-platforms-comparison.html">去中心化 AI 平台深度对比：Ocean Protocol vs SingularityNET vs Solid</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">EDTECH</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">14 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/micah-blachman-edtech-critique.html">Micah Blachman: 教育技术批判——一个七年级学生的视角</a>
-                        </h2>
-                        <p class="post-excerpt">1. "Where Educational Technology Fails" (2025-11-09)</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/depin-ai-projects-comparison.html">DePIN AI 项目深度对比：Fetch.ai、Golem、Bittensor</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">ATTENTION-ECONOMY</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">16 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/books-and-screens.html">Books and Screens: Your Inability to Focus Isn't a Failing, It's a Design Problem</a>
-                        </h2>
-                        <p class="post-excerpt">*"Your inability to focus isn't a failing. It's a design problem, and the answer isn't getting rid o...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/federated-learning-solid-integration.html">联邦学习与 Solid 协议的集成研究</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-24</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">UX-DESIGN</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">13 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/designlab-ai-ux-survey-2026.html">Designlab 2026 AI for UX and Product Design Survey Report</a>
-                        </h2>
-                        <p class="post-excerpt">*如果去年是关于实验，今年的对话聚焦于整合、策划、质量和领导力。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/harness-vs-supervisor-comparison.html">Anthropic Harness vs Hermes Supervisor - 快速对比</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-18</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">1</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">8 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/the-moat-is-money.html">The Only Moat Left Is Money</a>
-                        </h2>
-                        <p class="post-excerpt">*AI 消除了创作门槛后，"努力"不再是过滤器。新的壁垒是资本和触达(reach)。可能已经过了奇点——无资本/先发优势者或被永久锁死。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/nano-banana-pro-prompts-analysis.html">Nano Banana Pro 提示词库深度研究</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-12</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">TOOL-CRITIQUE</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">7 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/tool-shaped-objects.html">Tool Shaped Objects</a>
-                        </h2>
-                        <p class="post-excerpt">*存在一类形状像工具但明显不是工具的物体。你可以握住它，你可以使用它，它在手中的感觉就像一个工具应有的样子。它产生工作的感觉——摩擦、劳动、前进的感觉——但它不产生工作。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/solid-protocol-ai-integration.html">Solid 协议深度研究：与 AI 结合的可能性</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-05</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">WRITING</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">24 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/lee-child-propulsion.html">Lee Child: The Key to Writing is Propulsion</a>
-                        </h2>
-                        <p class="post-excerpt">Lee Child 是 Jack Reacher 系列的作者：</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/three-agent-a2a-setup.html">三 Agent A2A 协作架构设计</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-04</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">MOLTBOOK</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">19 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/moltbook-experiment.html">5 Insights from the Moltbook Experiment</a>
-                        </h2>
-                        <p class="post-excerpt">*"If last week's insanity was any showcase for what 2026 has in store, I'm probably not even bullish...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/ai-makes-coding-easier.html">AI Makes Coding Easier</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-02-04</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">REASONING-MODELS</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">30 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/as-rocks-may-think.html">As Rocks May Think</a>
-                        </h2>
-                        <p class="post-excerpt">*Whenever logical processes of thought are employed — that is, whenever thought for a time runs alon...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/as-rocks-may-think.html">As Rocks May Think</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-01-28</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">TANG-DYNASTY</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">10 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/tang-paper-flowers.html">These 1,000-Year-Old Paper Flowers, Sealed in a Cave, Are a Marvel of Preservation</a>
-                        </h2>
-                        <p class="post-excerpt">在中国敦煌莫高窟（又称千佛洞）的第17窟中，考古学家发现了保存完好的唐代纸花（距今约1,000年）。这些精美的纸质工艺品是考古保存的奇迹，现藏于大英博物馆和伦敦V&A博物馆。</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/books-and-screens.html">Books and Screens: Your Inability to Focus Isn't a Failing, It's a Design Problem</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2025-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">AI-PROGRAMMING</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">7 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/ai-makes-coding-easier.html">AI Makes Coding Easier</a>
-                        </h2>
-                        <p class="post-excerpt">*AI 让写代码更容易，但这并不意味着工程师会更快乐或更有效率。事实上，我们可能正在进入一个前所未有的 burnout 时代。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/brewing-collectives.html">Brewing Collectives: How To Start a Permacomputing Collective</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2025-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">CUSTOM-SOFTWARE</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">6 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/consistency-is-primitive.html">Consistency is Primitive</a>
-                        </h2>
-                        <p class="post-excerpt">*一致性是原始的。当我们把一致性当作最高价值时，我们失去了适应性和情境敏感性。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/community-is-not-replicable.html">Community is Not Replicable</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2024-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">MEANING-MAKING</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">8 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/meaning-making-uncertainty.html">Meaning Making in Uncertainty</a>
-                        </h2>
-                        <p class="post-excerpt">*在商业和投资中，最大的挑战不是数据分析，而是在不确定性中构建意义(meaning making)。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/consistency-is-primitive.html">Consistency is Primitive</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2024-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">COMMUNITY</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">7 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/community-is-not-replicable.html">Community is Not Replicable</a>
-                        </h2>
-                        <p class="post-excerpt">*社区不是可以复制粘贴的功能。社区是关系的有机网络，需要时间、信任和共享经历来培养。这就是为什么社区是最终的、不可复制的护城河。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/decentralized-ai-landscape.html">去中心化 AI 全景图：从数据主权到智能生态</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2024-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">DELIGHTFUL-TOOLS</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">8 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/delightful-tools.html">Delightful Tools</a>
-                        </h2>
-                        <p class="post-excerpt">*工具不只是功能性的。真正伟大的工具是愉悦的——它们让使用者感到快乐、强大、被赋能。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/delightful-tools.html">Delightful Tools</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2009-04-05</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">MCLUHAN</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">24 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/eric-mcluhan-media-renaissance.html">Eric McLuhan: Today's Media Revolution Points to a Renaissance</a>
-                        </h2>
-                        <p class="post-excerpt">*"An immense renaissance calls for the reappearance of Renaissance Man, skilled in reading all liter...</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/depin-ai-ecosystem-research.html">DePIN AI 生态系统深度研究</a>
+                    </h3>
+                </article>
+        
 
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2002-03-29</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">TASTE</span>
-                            <span class="separator">//</span>
-                            <span class="post-read">8 min</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/taste-for-makers.html">Taste for Makers</a>
-                        </h2>
-                        <p class="post-excerpt">*黑客和画家都是创造者。他们需要发展品味来做好工作。代码不仅是写给计算机的，也是写给其他程序员的。丑陋的代码是坏的，就像丑陋的画是坏的一样。*</p>
-                    </article>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/designlab-ai-ux-survey-2026.html">Designlab 2026 AI for UX and Product Design Survey Report</a>
+                    </h3>
+                </article>
+        
 
-                </div>
-            </section>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/eric-mcluhan-media-renaissance.html">Eric McLuhan: Today's Media Revolution Points to a Renaissance</a>
+                    </h3>
+                </article>
+        
 
-            <section class="archive-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">tree ./posts/</span>
-                </div>
-                <div class="section-content">
-                    <pre class="tree-output">
-./posts/
-├── <a href="/posts/brewing-collectives.html" class="link">brewing-collectives.html</a>      # Brewing Collectives: How To St...
-├── <a href="/posts/tim-berners-lee-battle-soul-web.html" class="link">tim-berners-lee-battle-soul-web.html</a>      # Tim Berners-Lee: 为互联网的灵魂而战
-├── <a href="/posts/outsourcing-thinking-erik-johannes.html" class="link">outsourcing-thinking-erik-johannes.html</a>      # Outsourcing Thinking — Erik Jo...
-├── <a href="/posts/micah-blachman-edtech-critique.html" class="link">micah-blachman-edtech-critique.html</a>      # Micah Blachman: 教育技术批判——一个七年级学...
-├── <a href="/posts/books-and-screens.html" class="link">books-and-screens.html</a>      # Books and Screens: Your Inabil...
-├── <a href="/posts/designlab-ai-ux-survey-2026.html" class="link">designlab-ai-ux-survey-2026.html</a>      # Designlab 2026 AI for UX and P...
-├── <a href="/posts/the-moat-is-money.html" class="link">the-moat-is-money.html</a>      # The Only Moat Left Is Money
-├── <a href="/posts/tool-shaped-objects.html" class="link">tool-shaped-objects.html</a>      # Tool Shaped Objects
-├── <a href="/posts/lee-child-propulsion.html" class="link">lee-child-propulsion.html</a>      # Lee Child: The Key to Writing ...
-├── <a href="/posts/moltbook-experiment.html" class="link">moltbook-experiment.html</a>      # 5 Insights from the Moltbook E...
-├── <a href="/posts/as-rocks-may-think.html" class="link">as-rocks-may-think.html</a>      # As Rocks May Think
-├── <a href="/posts/tang-paper-flowers.html" class="link">tang-paper-flowers.html</a>      # These 1,000-Year-Old Paper Flo...
-├── <a href="/posts/ai-makes-coding-easier.html" class="link">ai-makes-coding-easier.html</a>      # AI Makes Coding Easier
-├── <a href="/posts/consistency-is-primitive.html" class="link">consistency-is-primitive.html</a>      # Consistency is Primitive
-├── <a href="/posts/meaning-making-uncertainty.html" class="link">meaning-making-uncertainty.html</a>      # Meaning Making in Uncertainty
-├── <a href="/posts/community-is-not-replicable.html" class="link">community-is-not-replicable.html</a>      # Community is Not Replicable
-├── <a href="/posts/delightful-tools.html" class="link">delightful-tools.html</a>      # Delightful Tools
-├── <a href="/posts/eric-mcluhan-media-renaissance.html" class="link">eric-mcluhan-media-renaissance.html</a>      # Eric McLuhan: Today's Media Re...
-├── <a href="/posts/taste-for-makers.html" class="link">taste-for-makers.html</a>      # Taste for Makers
-└── <a href="/" class="link">../</a>                                   # 返回上级目录
-                    </pre>
-                </div>
-            </section>
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/lee-child-propulsion.html">Lee Child: The Key to Writing is Propulsion</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/meaning-making-uncertainty.html">Meaning Making in Uncertainty</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/moltbook-experiment.html">5 Insights from the Moltbook Experiment</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/nano-banana-pro-prompt-engineering-guide.html">Nano Banana Pro 提示词工程实战指南</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/personal-ai-ecosystem-2030-vision.html">2030 年个人 AI 生态系统全景：当技术成熟之后</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/tang-paper-flowers.html">These 1,000-Year-Old Paper Flowers, Sealed in a Cave, Are a Marvel of Preservation</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/taste-for-makers.html">Taste for Makers</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/the-moat-is-money.html">The Only Moat Left Is Money</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-30</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/tool-shaped-objects.html">Tool Shaped Objects</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-29</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/autoresearch-karpathy-ai-research-agents.html">Autoresearch: Karpathy 的 AI 自主研究代理革命</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-29</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/outsourcing-thinking-erik-johannes.html">Outsourcing Thinking — Erik Johannes Husom</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-03-16</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/bitnet-research-report.html">Microsoft BitNet 深度研究报告</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2026-01-28</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/tim-berners-lee-battle-soul-web.html">Tim Berners-Lee: "为互联网的灵魂而战"</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2025-11-09</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">ESSAY</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/micah-blachman-edtech-critique.html">Micah Blachman: 教育技术批判——一个七年级学生的视角</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2025-04-09</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/agentscope-hermes-integration-study.html">AgentScope 与 Hermes Agent 系统集成研究</a>
+                    </h3>
+                </article>
+        
+
+                <article class="post-item">
+                    <div class="post-meta">
+                        <span class="post-date">2025-04-09</span>
+                        <span class="separator">//</span>
+                        <span class="post-tag">RESEARCH</span>
+                    </div>
+                    <h3 class="post-title">
+                        <a href="/posts/agentscope-multi-agent-framework-study.html">AgentScope 多智能体框架深度研究</a>
+                    </h3>
+                </article>
+        
+            </div>
         </main>
 
         <!-- Footer -->
         <footer class="terminal-footer">
             <div class="footer-line">
-                <span class="comment"># 返回首页</span>
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢访问"</span>
             </div>
-            <div class="footer-content">
-                <p>
-                    <a href="/" class="nav-back">
-                        <span class="arrow">←</span>
-                        <span>cd /home</span>
-                    </a>
-                </p>
-            </div>
-            <div class="footer-bottom">
-                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
-                <span class="separator">|</span>
-                <span>© 2026 Xin Conan</span>
-            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
         </footer>
     </div>
 
     <script>
         function updateTime() {
             const now = new Date();
-            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
             document.getElementById('datetime').textContent = timeStr;
         }
         updateTime();
-        setInterval(updateTime, 1000);
+        setInterval(updateTime, 60000);
     </script>
 </body>
 </html>

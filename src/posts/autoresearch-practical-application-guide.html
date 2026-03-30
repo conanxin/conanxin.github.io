@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoresearch 理念实战应用指南 | Xin Conan</title>
+    <meta name="description" content="Autoresearch 理念实战应用指南  > **如何将 AI 自主研究代理模式应用到你的项目中**   > **从理论到实践的完整落地路径**  ---   1. Autoresearch 核心机制拆解   1.1 本质：约束优化循环  ``` ┌───────────────────────...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Autoresearch 理念实战应用指南</h1>
+                <p class="post-subtitle">Autoresearch 理念实战应用指南  > **如何将 AI 自主研究代理模式应用到你的项目中**   > **从理论到实践的完整落地路径**  ---   1. Autoresearch 核心机制拆解   1.1 本质：约束优化循环  ``` ┌───────────────────────...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Autoresearch 理念实战应用指南</h1>
+
+<blockquote><strong>如何将 AI 自主研究代理模式应用到你的项目中</strong>  </blockquote>
+
+<blockquote><strong>从理论到实践的完整落地路径</strong></blockquote>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>1. Autoresearch 核心机制拆解</h2>
+
+<h3>1.1 本质：约束优化循环</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────┐
+
+<p>│                  Autoresearch 核心循环                       │ ├─────────────────────────────────────────────────────────────┤ │                                                             │ │   人类: 定义目标 + 约束条件                                   │ │      ↓                                                      │ │   AI 代理: 在约束内探索解决方案                               │ │      ↓                                                      │ │   评估: 客观指标衡量结果                                      │ │      ↓                                                      │ │   决策: 保留改进 / 回滚失败                                   │ │      ↓                                                      │ │   循环: 持续迭代优化                                          │ │                                                             │ └─────────────────────────────────────────────────────────────┘</p>
+
+</code></pre>
+
+<h3>1.2 五个核心要素</h3>
+
+<p>| 要素 | 说明 | 示例 | |-----|------|------| | <strong>目标 (Goal)</strong> | 要优化的指标 | "降低验证损失" | | <strong>约束 (Constraint)</strong> | 时间和资源限制 | "5 分钟内完成" | | <strong>搜索空间 (Search Space)</strong> | 可修改的内容 | "train.py 中的任意代码" | | <strong>评估指标 (Metric)</strong> | 客观衡量标准 | "val_bpb" | | <strong>记忆系统 (Memory)</strong> | 历史实验记录 | "Git commit 历史" |</p>
+
+<h3>1.3 可复用的设计模式</h3>
+
+<strong>模式：迭代优化器 (Iterative Optimizer)</strong>
+
+<pre><code class="language-python">class IterativeOptimizer:
+
+<p>    def __init__(self, goal, constraints, evaluator):         self.goal = goal           # 优化目标         self.constraints = constraints  # 约束条件         self.evaluator = evaluator      # 评估函数         self.history = []          # 实验历史</p>
+
+<p>    def optimize(self, initial_state, max_iterations):         current_state = initial_state         best_score = self.evaluator.evaluate(current_state)</p>
+
+<p>        for i in range(max_iterations):             # 1. 提出改进假设             hypothesis = self.generate_hypothesis(current_state)</p>
+
+<p>            # 2. 在约束内执行             new_state = self.execute(hypothesis, self.constraints)</p>
+
+<p>            # 3. 评估结果             score = self.evaluator.evaluate(new_state)</p>
+
+<p>            # 4. 决策：保留或回滚             if score &gt; best_score:                 current_state = new_state                 best_score = score                 self.history.append((hypothesis, score, &quot;保留&quot;))             else:                 self.history.append((hypothesis, score, &quot;回滚&quot;))</p>
+
+<p>        return current_state, best_score</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>2. 应用场景分类</h2>
+
+<h3>2.1 适用场景特征</h3>
+
+<p>✅ <strong>适合应用 autoresearch 理念</strong>:</p>
+
+<ul>
+
+  <li>有明确的量化评估指标</li>
+
+  <li>需要大量试错和迭代</li>
+
+  <li>搜索空间较大但可定义</li>
+
+  <li>有固定的执行时间/成本预算</li>
+
+  <li>可以从历史中学习</li>
+
+</ul>
+
+<p>❌ <strong>不适合应用</strong>:</p>
+
+<ul>
+
+  <li>需要创造性突破（全新架构设计）</li>
+
+  <li>评估指标主观或难以量化</li>
+
+  <li>安全关键系统（医疗、自动驾驶）</li>
+
+  <li>需要深度理论理解的问题</li>
+
+</ul>
+
+<h3>2.2 六大应用场景</h3>
+
+<pre><code class="language-text">                    应用场景谱系
+
+<p>    研究型 ←────────────────────────→ 工程型</p>
+
+<p>    1. ML 模型优化          4. 代码性能调优     2. 超参数搜索           5. 系统配置优化     3. 架构探索             6. UI/UX A/B 测试</p>
+
+<p>    创意型 ←────────────────────────→ 分析型</p>
+
+<p>    7. 提示词优化           10. SQL 查询优化     8. 内容生成             11. 数据分析管道     9. 设计变体             12. 营销策略优化</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>3. 场景一：机器学习模型优化</h2>
+
+<h3>3.1 直接应用 autoresearch</h3>
+
+<strong>如果你的项目</strong>:
+
+<ul>
+
+  <li>是 PyTorch/TensorFlow 训练任务</li>
+
+  <li>有明确的验证指标（准确率、损失、F1 等）</li>
+
+  <li>可以接受 overnight 运行</li>
+
+</ul>
+
+<strong>直接使用 Karpathy 的 autoresearch</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;1. Fork 项目&lt;/h1&gt;
+
+<p>git clone https://github.com/karpathy/autoresearch.git</p>
+
+<p>&lt;h1&gt;2. 替换为你的任务&lt;/h1&gt; &lt;h1&gt;- 修改 prepare.py 加载你的数据&lt;/h1&gt; &lt;h1&gt;- 修改 train.py 为你的模型&lt;/h1&gt; &lt;h1&gt;- 修改 program.md 定义你的目标&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;3. 运行&lt;/h1&gt; python run_agent.py</p>
+
+</code></pre>
+
+<h3>3.2 自定义适配模板</h3>
+
+<strong>文件结构</strong>:
+
+<pre><code class="language-text">my_ml_project/
+
+<p>├── prepare.py          # 数据加载和预处理 ├── train.py            # 模型训练（AI 可修改） ├── program.md          # 研究目标定义 ├── evaluate.py         # 评估脚本 └── config.yaml         # 基础配置</p>
+
+</code></pre>
+
+<strong>train.py 模板</strong>:
+
+<pre><code class="language-python">#!/usr/bin/env python3
+
+<p>&quot;&quot;&quot; 可修改的训练脚本 - AI 代理可以修改此文件的任何部分 约束: 必须在 10 分钟内完成训练 &quot;&quot;&quot;</p>
+
+<p>import torch import torch.nn as nn from torch.utils.data import DataLoader import json import time</p>
+
+<p>&lt;h1&gt;AI 代理可以修改以下任何内容:&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;1. 模型架构&lt;/h1&gt; class MyModel(nn.Module):     def __init__(self, input_dim, hidden_dim, output_dim):         super().__init__()         # AI 可以修改层数、激活函数、归一化方式等         self.layers = nn.Sequential(             nn.Linear(input_dim, hidden_dim),             nn.ReLU(),  # AI 可以改为 GELU, Swish 等             nn.Dropout(0.2),  # AI 可以调整 dropout 率             nn.Linear(hidden_dim, output_dim)         )</p>
+
+<p>    def forward(self, x):         return self.layers(x)</p>
+
+<p>&lt;h1&gt;2. 训练配置&lt;/h1&gt; CONFIG = {     &#x27;learning_rate&#x27;: 0.001,  # AI 可以调整     &#x27;batch_size&#x27;: 32,        # AI 可以调整     &#x27;epochs&#x27;: 5,             # AI 可以调整（但要满足时间约束）     &#x27;optimizer&#x27;: &#x27;Adam&#x27;,     # AI 可以改为 SGD, AdamW 等     &#x27;weight_decay&#x27;: 1e-5,    # AI 可以调整 }</p>
+
+<p>def train():     start_time = time.time()     max_duration = 600  # 10 分钟约束</p>
+
+<p>    # 加载数据（从 prepare.py 准备的数据）     train_loader = torch.load(&#x27;data/train_loader.pt&#x27;)     val_loader = torch.load(&#x27;data/val_loader.pt&#x27;)</p>
+
+<p>    # 初始化模型     model = MyModel(input_dim=784, hidden_dim=256, output_dim=10)</p>
+
+<p>    # 优化器（AI 可以修改）     if CONFIG[&#x27;optimizer&#x27;] == &#x27;Adam&#x27;:         optimizer = torch.optim.Adam(             model.parameters(),             lr=CONFIG[&#x27;learning_rate&#x27;],             weight_decay=CONFIG[&#x27;weight_decay&#x27;]         )     # AI 可以添加其他优化器选项...</p>
+
+<p>    # 损失函数（AI 可以修改）     criterion = nn.CrossEntropyLoss()</p>
+
+<p>    # 学习率调度（AI 可以添加）     # scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=10)</p>
+
+<p>    # 训练循环     best_val_loss = float(&#x27;inf&#x27;)     for epoch in range(CONFIG[&#x27;epochs&#x27;]):         # 检查时间约束         if time.time() - start_time &gt; max_duration:             print(f&quot;时间约束触发，提前结束&quot;)             break</p>
+
+<p>        # 训练...         model.train()         for batch in train_loader:             optimizer.zero_grad()             outputs = model(batch[&#x27;input&#x27;])             loss = criterion(outputs, batch[&#x27;target&#x27;])             loss.backward()             optimizer.step()</p>
+
+<p>        # 验证         model.eval()         val_loss = 0         with torch.no_grad():             for batch in val_loader:                 outputs = model(batch[&#x27;input&#x27;])                 loss = criterion(outputs, batch[&#x27;target&#x27;])                 val_loss += loss.item()</p>
+
+<p>        avg_val_loss = val_loss / len(val_loader)         if avg_val_loss &lt; best_val_loss:             best_val_loss = avg_val_loss</p>
+
+<p>        # scheduler.step()  # 如果 AI 添加了学习率调度</p>
+
+<p>    # 保存结果     results = {         &#x27;val_loss&#x27;: best_val_loss,         &#x27;duration&#x27;: time.time() - start_time,         &#x27;config&#x27;: CONFIG     }</p>
+
+<p>    with open(&#x27;results.json&#x27;, &#x27;w&#x27;) as f:         json.dump(results, f)</p>
+
+<p>    print(f&quot;Final val_loss: {best_val_loss}&quot;)     return best_val_loss</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     train()</p>
+
+</code></pre>
+
+<h3>3.3 评估脚本</h3>
+
+<pre><code class="language-python">&lt;h1&gt;evaluate.py&lt;/h1&gt;
+
+<p>import json import sys</p>
+
+<p>def evaluate_experiment():     &quot;&quot;&quot;评估实验结果，返回是否改进&quot;&quot;&quot;     with open(&#x27;results.json&#x27;, &#x27;r&#x27;) as f:         results = json.load(f)</p>
+
+<p>    current_score = results[&#x27;val_loss&#x27;]</p>
+
+<p>    # 读取 baseline     try:         with open(&#x27;baseline.json&#x27;, &#x27;r&#x27;) as f:             baseline = json.load(f)         best_score = baseline[&#x27;best_val_loss&#x27;]     except FileNotFoundError:         best_score = float(&#x27;inf&#x27;)</p>
+
+<p>    # 判断是否有改进     if current_score &lt; best_score:         # 更新 baseline         baseline = {&#x27;best_val_loss&#x27;: current_score}         with open(&#x27;baseline.json&#x27;, &#x27;w&#x27;) as f:             json.dump(baseline, f)         print(f&quot;改进! {best_score:.4f} -&gt; {current_score:.4f}&quot;)         return True     else:         print(f&quot;无改进: {current_score:.4f} (best: {best_score:.4f})&quot;)         return False</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     improved = evaluate_experiment()     sys.exit(0 if improved else 1)</p>
+
+</code></pre>
+
+<h3>3.4 运行脚本</h3>
+
+<pre><code class="language-bash">#!/bin/bash
+
+<p>&lt;h1&gt;run_agent.sh - 简化版代理运行脚本&lt;/h1&gt;</p>
+
+<p>ITERATIONS=100 BASELINE_FILE=&quot;baseline.json&quot;</p>
+
+<p>&lt;h1&gt;初始化 baseline&lt;/h1&gt; echo &#x27;{&quot;best_val_loss&quot;: 999}&#x27; &gt; $BASELINE_FILE</p>
+
+<p>for i in $(seq 1 $ITERATIONS); do     echo &quot;=== Iteration $i ===&quot;</p>
+
+<p>    # 1. AI 代理修改 train.py（这里简化为随机修改，实际由 LLM 完成）     python agent_generate_modification.py</p>
+
+<p>    # 2. 提交修改     git add train.py     git commit -m &quot;Iteration $i: $(cat modification_summary.txt)&quot;</p>
+
+<p>    # 3. 运行实验     timeout 600 python train.py</p>
+
+<p>    # 4. 评估结果     if python evaluate.py; then         echo &quot;保留改进&quot;         # 可选：记录成功的修改         echo &quot;$(date): Iteration $i improved&quot; &gt;&gt; success_log.txt     else         echo &quot;回滚到上一个版本&quot;         git revert --no-edit HEAD     fi</p>
+
+<p>    # 5. 短暂休息，避免过热     sleep 5 done</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>4. 场景二：提示词优化</h2>
+
+<h3>4.1 应用场景</h3>
+
+<ul>
+
+  <li>优化 LLM 的系统提示词</li>
+
+  <li>改进 RAG 检索提示</li>
+
+  <li>优化多轮对话流程</li>
+
+  <li>调整生成参数（temperature, top_p 等）</li>
+
+</ul>
+
+<h3>4.2 实现方案</h3>
+
+<strong>项目结构</strong>:
+
+<pre><code class="language-text">prompt_optimizer/
+
+<p>├── prompts/ │   └── base_prompt.txt     # 基础提示词（AI 可修改） ├── test_cases.json         # 测试用例 ├── evaluate.py             # 评估脚本 ├── optimizer.py            # 优化循环 └── config.yaml             # 配置</p>
+
+</code></pre>
+
+<strong>优化目标示例</strong>: "提高客服机器人的问题解决率"
+
+<strong>base_prompt.txt 模板</strong>:
+
+<pre><code class="language-text">你是一位专业的客服代表。你的任务是帮助用户解决产品使用问题。
+
+<p>【角色设定】</p>
+
+<ul>
+
+  <li>语气：友好、专业、耐心</li>
+
+  <li>回复长度：{max_length} 字以内</li>
+
+  <li>回复风格：{style}</li>
+
+</ul>
+
+<p>【处理流程】</p>
+
+<ol>
+
+  <li>{step1}</li>
+
+  <li>{step2}</li>
+
+  <li>{step3}</li>
+
+</ol>
+
+<p>【注意事项】</p>
+
+<ul>
+
+  <li>{note1}</li>
+
+  <li>{note2}</li>
+
+</ul>
+
+<p>【示例回复】 用户：{example_user} 客服：{example_response}</p>
+
+</code></pre>
+
+<strong>optimizer.py</strong>:
+
+<pre><code class="language-python">#!/usr/bin/env python3
+
+<p>&quot;&quot;&quot;提示词优化器 - Autoresearch 理念应用&quot;&quot;&quot;</p>
+
+<p>import json import openai from typing import List, Dict, Tuple import copy</p>
+
+<p>class PromptOptimizer:     def __init__(self, config):         self.config = config         self.test_cases = self.load_test_cases()         self.best_prompt = None         self.best_score = 0         self.history = []</p>
+
+<p>    def load_test_cases(self) -&gt; List[Dict]:         &quot;&quot;&quot;加载测试用例&quot;&quot;&quot;         with open(&#x27;test_cases.json&#x27;, &#x27;r&#x27;) as f:             return json.load(f)</p>
+
+<p>    def evaluate_prompt(self, prompt: str) -&gt; float:         &quot;&quot;&quot;评估提示词效果&quot;&quot;&quot;         scores = []</p>
+
+<p>        for test_case in self.test_cases:             # 使用当前提示词生成回复             response = self.generate_response(prompt, test_case[&#x27;input&#x27;])</p>
+
+<p>            # 评估回复质量（可以是人工评分或自动评估）             score = self.assess_quality(response, test_case[&#x27;expected&#x27;])             scores.append(score)</p>
+
+<p>        avg_score = sum(scores) / len(scores)         return avg_score</p>
+
+<p>    def generate_response(self, prompt: str, user_input: str) -&gt; str:         &quot;&quot;&quot;使用 LLM 生成回复&quot;&quot;&quot;         response = openai.ChatCompletion.create(             model=&quot;gpt-4&quot;,             messages=[                 {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: prompt},                 {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: user_input}             ],             temperature=0.7         )         return response.choices[0].message.content</p>
+
+<p>    def assess_quality(self, response: str, expected: str) -&gt; float:         &quot;&quot;&quot;评估回复质量&quot;&quot;&quot;         # 简单版本：使用另一个 LLM 评估         eval_prompt = f&quot;&quot;&quot;         评估以下客服回复的质量（0-10分）：</p>
+
+<p>        用户问题：{expected}         客服回复：{response}</p>
+
+<p>        评分标准：         - 准确性（是否解决用户问题）         - 专业性（语气是否恰当）         - 完整性（信息是否充分）</p>
+
+<p>        只返回数字分数。         &quot;&quot;&quot;</p>
+
+<p>        eval_response = openai.ChatCompletion.create(             model=&quot;gpt-4&quot;,             messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: eval_prompt}],             temperature=0         )</p>
+
+<p>        try:             score = float(eval_response.choices[0].message.content.strip())             return score / 10  # 归一化到 0-1         except:             return 0.5</p>
+
+<p>    def generate_modification(self, current_prompt: str, iteration: int) -&gt; str:         &quot;&quot;&quot;生成提示词的修改版本（由 AI 代理完成）&quot;&quot;&quot;</p>
+
+<p>        # 这里可以调用 LLM 来生成修改         modification_prompt = f&quot;&quot;&quot;         你是一个提示词优化专家。请改进以下客服机器人的系统提示词，         目标是提高问题解决率和用户满意度。</p>
+
+<p>        当前提示词：         {current_prompt}</p>
+
+<p>        历史表现：         {self.format_history()}</p>
+
+<p>        请提出改进版本，修改可以是：         1. 调整角色设定的语气         2. 优化处理流程的步骤         3. 增加或修改注意事项         4. 改进示例回复</p>
+
+<p>        只返回改进后的完整提示词。         &quot;&quot;&quot;</p>
+
+<p>        response = openai.ChatCompletion.create(             model=&quot;gpt-4&quot;,             messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: modification_prompt}],             temperature=0.8         )</p>
+
+<p>        return response.choices[0].message.content</p>
+
+<p>    def format_history(self) -&gt; str:         &quot;&quot;&quot;格式化历史记录供 LLM 参考&quot;&quot;&quot;         if not self.history:             return &quot;暂无历史记录&quot;</p>
+
+<p>        recent = self.history[-5:]  # 最近 5 次         lines = []         for i, (prompt, score, decision) in enumerate(recent):             lines.append(f&quot;迭代 {i+1}: 得分 {score:.3f}, 决策: {decision}&quot;)         return &quot;\n&quot;.join(lines)</p>
+
+<p>    def optimize(self, max_iterations: int = 50):         &quot;&quot;&quot;运行优化循环&quot;&quot;&quot;         # 加载初始提示词         with open(&#x27;prompts/base_prompt.txt&#x27;, &#x27;r&#x27;) as f:             current_prompt = f.read()</p>
+
+<p>        # 评估初始版本         print(&quot;评估初始提示词...&quot;)         current_score = self.evaluate_prompt(current_prompt)         self.best_prompt = current_prompt         self.best_score = current_score         print(f&quot;初始得分: {current_score:.3f}&quot;)</p>
+
+<p>        for i in range(max_iterations):             print(f&quot;\n=== 迭代 {i+1}/{max_iterations} ===&quot;)</p>
+
+<p>            # 1. 生成修改             print(&quot;生成修改...&quot;)             new_prompt = self.generate_modification(current_prompt, i)</p>
+
+<p>            # 2. 评估新提示词             print(&quot;评估新提示词...&quot;)             new_score = self.evaluate_prompt(new_prompt)             print(f&quot;新得分: {new_score:.3f} (当前最佳: {self.best_score:.3f})&quot;)</p>
+
+<p>            # 3. 决策             if new_score &gt; self.best_score:                 print(&quot;✅ 保留改进&quot;)                 self.best_prompt = new_prompt                 self.best_score = new_score                 current_prompt = new_prompt                 self.history.append((new_prompt, new_score, &quot;保留&quot;))</p>
+
+<p>                # 保存最佳提示词                 with open(&#x27;prompts/best_prompt.txt&#x27;, &#x27;w&#x27;) as f:                     f.write(new_prompt)             else:                 print(&quot;❌ 放弃修改&quot;)                 self.history.append((new_prompt, new_score, &quot;放弃&quot;))</p>
+
+<p>            # 4. 保存历史             with open(&#x27;optimization_history.json&#x27;, &#x27;w&#x27;) as f:                 json.dump([{                     &#x27;iteration&#x27;: i,                     &#x27;score&#x27;: score,                     &#x27;decision&#x27;: decision                 } for i, (_, score, decision) in enumerate(self.history)], f, indent=2)</p>
+
+<p>        print(f&quot;\n优化完成！最佳得分: {self.best_score:.3f}&quot;)         return self.best_prompt, self.best_score</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     config = {         &#x27;model&#x27;: &#x27;gpt-4&#x27;,         &#x27;max_iterations&#x27;: 50,         &#x27;temperature&#x27;: 0.7     }</p>
+
+<p>    optimizer = PromptOptimizer(config)     best_prompt, best_score = optimizer.optimize()</p>
+
+<p>    print(&quot;\n最佳提示词:&quot;)     print(best_prompt)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>5. 场景三：代码性能优化</h2>
+
+<h3>5.1 应用场景</h3>
+
+<ul>
+
+  <li>优化算法实现</li>
+
+  <li>改进数据库查询</li>
+
+  <li>调整系统配置</li>
+
+  <li>优化 API 响应时间</li>
+
+</ul>
+
+<h3>5.2 实现方案</h3>
+
+<strong>核心思想</strong>: 自动生成代码变体，在约束条件下测试性能
+
+<pre><code class="language-python">&lt;h1&gt;code_optimizer.py&lt;/h1&gt;
+
+<p>import subprocess import time import json import ast import random from typing import List, Tuple</p>
+
+<p>class CodeOptimizer:     &quot;&quot;&quot;代码性能优化器&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, target_file: str, test_command: str, metric_extractor):         self.target_file = target_file         self.test_command = test_command         self.metric_extractor = metric_extractor         self.best_code = None         self.best_performance = float(&#x27;inf&#x27;)         self.history = []</p>
+
+<p>    def load_code(self) -&gt; str:         &quot;&quot;&quot;加载目标代码&quot;&quot;&quot;         with open(self.target_file, &#x27;r&#x27;) as f:             return f.read()</p>
+
+<p>    def save_code(self, code: str):         &quot;&quot;&quot;保存代码&quot;&quot;&quot;         with open(self.target_file, &#x27;w&#x27;) as f:             f.write(code)</p>
+
+<p>    def run_benchmark(self) -&gt; float:         &quot;&quot;&quot;运行性能测试&quot;&quot;&quot;         start = time.time()         result = subprocess.run(             self.test_command,             shell=True,             capture_output=True,             text=True,             timeout=60  # 时间约束         )         duration = time.time() - start</p>
+
+<p>        # 提取性能指标         metric = self.metric_extractor(result.stdout, result.stderr)         return metric</p>
+
+<p>    def generate_variation(self, code: str) -&gt; str:         &quot;&quot;&quot;生成代码变体（简化版）&quot;&quot;&quot;         # 这里可以集成 LLM 来智能生成变体         # 简化示例：随机应用一些优化模式</p>
+
+<p>        variations = [             self.optimize_loops,             self.optimize_data_structures,             self.add_caching,             self.optimize_imports,         ]</p>
+
+<p>        # 随机选择一个优化策略         strategy = random.choice(variations)         return strategy(code)</p>
+
+<p>    def optimize_loops(self, code: str) -&gt; str:         &quot;&quot;&quot;循环优化示例&quot;&quot;&quot;         # 示例：将列表推导式改为生成器表达式         if &#x27;for &#x27; in code and &#x27;append&#x27; in code:             # 简单的模式替换示例             code = code.replace(                 &#x27;result = []\nfor item in data:\n    result.append(process(item))&#x27;,                 &#x27;result = [process(item) for item in data]&#x27;             )         return code</p>
+
+<p>    def optimize_data_structures(self, code: str) -&gt; str:         &quot;&quot;&quot;数据结构优化&quot;&quot;&quot;         # 示例：列表查找改为集合查找         if &#x27;if item in list&#x27; in code:             code = code.replace(                 &#x27;if item in list:&#x27;,                 &#x27;if item in set(list):&#x27;             )         return code</p>
+
+<p>    def add_caching(self, code: str) -&gt; str:         &quot;&quot;&quot;添加缓存&quot;&quot;&quot;         if &#x27;def &#x27; in code and &#x27;@lru_cache&#x27; not in code:             # 在函数定义前添加缓存装饰器             lines = code.split(&#x27;\n&#x27;)             for i, line in enumerate(lines):                 if line.strip().startswith(&#x27;def &#x27;) and i &gt; 0:                     lines.insert(i, &#x27;@lru_cache(maxsize=128)&#x27;)                     break             code = &#x27;\n&#x27;.join(lines)         return code</p>
+
+<p>    def optimize_imports(self, code: str) -&gt; str:         &quot;&quot;&quot;优化导入&quot;&quot;&quot;         # 确保必要的导入存在         if &#x27;lru_cache&#x27; in code and &#x27;from functools import lru_cache&#x27; not in code:             code = &#x27;from functools import lru_cache\n&#x27; + code         return code</p>
+
+<p>    def optimize(self, max_iterations: int = 30):         &quot;&quot;&quot;运行优化循环&quot;&quot;&quot;         # 加载初始代码         current_code = self.load_code()         self.best_code = current_code</p>
+
+<p>        # 评估初始性能         print(&quot;评估初始性能...&quot;)         current_perf = self.run_benchmark()         self.best_performance = current_perf         print(f&quot;初始性能: {current_perf:.3f}s&quot;)</p>
+
+<p>        for i in range(max_iterations):             print(f&quot;\n=== 迭代 {i+1}/{max_iterations} ===&quot;)</p>
+
+<p>            # 1. 生成变体             print(&quot;生成代码变体...&quot;)             new_code = self.generate_variation(current_code)</p>
+
+<p>            # 2. 保存并测试             self.save_code(new_code)</p>
+
+<p>            try:                 print(&quot;运行性能测试...&quot;)                 new_perf = self.run_benchmark()                 print(f&quot;新性能: {new_perf:.3f}s (最佳: {self.best_performance:.3f}s)&quot;)</p>
+
+<p>                # 3. 决策                 if new_perf &lt; self.best_performance:                     print(&quot;✅ 性能提升，保留修改&quot;)                     self.best_code = new_code                     self.best_performance = new_perf                     current_code = new_code                     self.history.append((new_code, new_perf, &quot;保留&quot;))</p>
+
+<p>                    # 保存最佳版本                     with open(f&#x27;{self.target_file}.best&#x27;, &#x27;w&#x27;) as f:                         f.write(new_code)                 else:                     print(&quot;❌ 无提升，回滚&quot;)                     self.save_code(current_code)  # 恢复                     self.history.append((new_code, new_perf, &quot;回滚&quot;))</p>
+
+<p>            except Exception as e:                 print(f&quot;❌ 测试失败: {e}&quot;)                 self.save_code(current_code)  # 恢复                 self.history.append((new_code, None, &quot;失败&quot;))</p>
+
+<p>            # 4. 保存历史             with open(&#x27;optimization_history.json&#x27;, &#x27;w&#x27;) as f:                 json.dump([{                     &#x27;iteration&#x27;: i,                     &#x27;performance&#x27;: perf if perf else None,                     &#x27;decision&#x27;: decision                 } for i, (_, perf, decision) in enumerate(self.history)], f, indent=2)</p>
+
+<p>        print(f&quot;\n优化完成！最佳性能: {self.best_performance:.3f}s&quot;)         print(f&quot;改进幅度: {(1 - self.best_performance/current_perf)*100:.1f}%&quot;)</p>
+
+<p>        return self.best_code, self.best_performance</p>
+
+<p>&lt;h1&gt;使用示例&lt;/h1&gt; if __name__ == &#x27;__main__&#x27;:     def extract_time(stdout, stderr):         &quot;&quot;&quot;从输出中提取执行时间&quot;&quot;&quot;         # 假设输出包含 &quot;Time: 1.234s&quot;         for line in stdout.split(&#x27;\n&#x27;):             if &#x27;Time:&#x27; in line:                 return float(line.split(&#x27;:&#x27;)[1].strip().replace(&#x27;s&#x27;, &#x27;&#x27;))         return 999.0</p>
+
+<p>    optimizer = CodeOptimizer(         target_file=&#x27;my_algorithm.py&#x27;,         test_command=&#x27;python benchmark.py&#x27;,         metric_extractor=extract_time     )</p>
+
+<p>    best_code, best_perf = optimizer.optimize(max_iterations=30)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>6. 场景四：UI/UX A/B 测试自动化</h2>
+
+<h3>6.1 应用场景</h3>
+
+<ul>
+
+  <li>自动优化 Landing Page</li>
+
+  <li>改进用户注册流程</li>
+
+  <li>优化电商结账流程</li>
+
+  <li>改进推荐算法</li>
+
+</ul>
+
+<h3>6.2 实现方案</h3>
+
+<pre><code class="language-python">&lt;h1&gt;ab_test_automation.py&lt;/h1&gt;
+
+<p>import json import time from typing import Dict, List, Tuple from dataclasses import dataclass</p>
+
+<p>@dataclass class Variant:     &quot;&quot;&quot;测试变体&quot;&quot;&quot;     id: str     config: Dict     traffic_split: float</p>
+
+<p>class ABTestOptimizer:     &quot;&quot;&quot;A/B 测试自动优化器&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, test_config: Dict):         self.test_config = test_config         self.variants = []         self.results = {}         self.best_variant = None         self.best_conversion = 0.0</p>
+
+<p>    def create_initial_variants(self) -&gt; List[Variant]:         &quot;&quot;&quot;创建初始变体&quot;&quot;&quot;         # 基于基线创建几个变体         baseline = self.test_config[&#x27;baseline&#x27;]</p>
+
+<p>        variants = [             Variant(&#x27;baseline&#x27;, baseline, 0.5),             Variant(&#x27;variant_a&#x27;, self.modify_cta(baseline), 0.25),             Variant(&#x27;variant_b&#x27;, self.modify_layout(baseline), 0.25),         ]</p>
+
+<p>        return variants</p>
+
+<p>    def modify_cta(self, config: Dict) -&gt; Dict:         &quot;&quot;&quot;修改 CTA 按钮&quot;&quot;&quot;         new_config = config.copy()         new_config[&#x27;cta_button&#x27;] = {             &#x27;text&#x27;: random.choice([&#x27;立即开始&#x27;, &#x27;免费试用&#x27;, &#x27;了解更多&#x27;]),             &#x27;color&#x27;: random.choice([&#x27;#FF6B6B&#x27;, &#x27;#4ECDC4&#x27;, &#x27;#45B7D1&#x27;]),             &#x27;size&#x27;: random.choice([&#x27;large&#x27;, &#x27;medium&#x27;])         }         return new_config</p>
+
+<p>    def modify_layout(self, config: Dict) -&gt; Dict:         &quot;&quot;&quot;修改布局&quot;&quot;&quot;         new_config = config.copy()         new_config[&#x27;layout&#x27;] = random.choice([             &#x27;hero_center&#x27;,             &#x27;hero_left&#x27;,             &#x27;hero_right&#x27;,             &#x27;split_screen&#x27;         ])         return new_config</p>
+
+<p>    def run_experiment(self, variant: Variant, duration_hours: int = 24) -&gt; float:         &quot;&quot;&quot;运行实验并收集结果&quot;&quot;&quot;         print(f&quot;运行变体 {variant.id}，持续 {duration_hours} 小时...&quot;)</p>
+
+<p>        # 这里应该集成实际的 A/B 测试平台         # 简化示例：模拟数据收集</p>
+
+<p>        # 等待实验完成         time.sleep(2)  # 实际应该是 time.sleep(duration_hours * 3600)</p>
+
+<p>        # 获取结果（模拟）         # 实际应该从分析平台获取         conversion_rate = self.simulate_conversion(variant)</p>
+
+<p>        return conversion_rate</p>
+
+<p>    def simulate_conversion(self, variant: Variant) -&gt; float:         &quot;&quot;&quot;模拟转化率（实际项目中替换为真实数据）&quot;&quot;&quot;         # 基线转化率         base_rate = 0.10</p>
+
+<p>        # 根据变体特性调整         if &#x27;variant&#x27; in variant.id:             # 随机波动模拟不同效果             import random             return base_rate + random.uniform(-0.02, 0.05)</p>
+
+<p>        return base_rate</p>
+
+<p>    def generate_new_variant(self, best_config: Dict) -&gt; Variant:         &quot;&quot;&quot;基于最佳变体生成新变体&quot;&quot;&quot;         # 组合多个优化策略         new_config = best_config.copy()</p>
+
+<p>        # 随机选择优化方向         optimizations = [             self.modify_cta,             self.modify_layout,             self.modify_headline,             self.modify_images         ]</p>
+
+<p>        # 应用 1-2 个优化         num_changes = random.randint(1, 2)         selected = random.sample(optimizations, num_changes)</p>
+
+<p>        for opt in selected:             new_config = opt(new_config)</p>
+
+<p>        variant_id = f&quot;variant_{len(self.variants)}&quot;         return Variant(variant_id, new_config, 0.2)</p>
+
+<p>    def modify_headline(self, config: Dict) -&gt; Dict:         &quot;&quot;&quot;修改标题&quot;&quot;&quot;         new_config = config.copy()         new_config[&#x27;headline&#x27;] = random.choice([             &#x27;提升你的工作效率&#x27;,             &#x27;让工作更简单&#x27;,             &#x27;加入 10,000+ 满意用户&#x27;,             &#x27;免费开始使用&#x27;         ])         return new_config</p>
+
+<p>    def modify_images(self, config: Dict) -&gt; Dict:         &quot;&quot;&quot;修改图片&quot;&quot;&quot;         new_config = config.copy()         new_config[&#x27;hero_image&#x27;] = random.choice([             &#x27;product_screenshot&#x27;,             &#x27;happy_user&#x27;,             &#x27;before_after&#x27;,             &#x27;abstract_illustration&#x27;         ])         return new_config</p>
+
+<p>    def optimize(self, max_iterations: int = 10):         &quot;&quot;&quot;运行优化循环&quot;&quot;&quot;         print(&quot;初始化 A/B 测试优化...&quot;)</p>
+
+<p>        # 创建初始变体         self.variants = self.create_initial_variants()</p>
+
+<p>        for i in range(max_iterations):             print(f&quot;\n=== 优化迭代 {i+1}/{max_iterations} ===&quot;)</p>
+
+<p>            # 运行所有变体             for variant in self.variants:                 if variant.id not in self.results:                     conversion = self.run_experiment(variant)                     self.results[variant.id] = {                         &#x27;conversion_rate&#x27;: conversion,                         &#x27;visitors&#x27;: 1000,  # 模拟数据                         &#x27;conversions&#x27;: int(1000 * conversion)                     }</p>
+
+<p>            # 找出最佳变体             best_id = max(self.results.keys(),                           key=lambda k: self.results[k][&#x27;conversion_rate&#x27;])             best_conversion = self.results[best_id][&#x27;conversion_rate&#x27;]</p>
+
+<p>            print(f&quot;\n当前最佳: {best_id} - 转化率 {best_conversion:.2%}&quot;)</p>
+
+<p>            # 更新最佳记录             if best_conversion &gt; self.best_conversion:                 self.best_conversion = best_conversion                 self.best_variant = next(v for v in self.variants if v.id == best_id)                 print(f&quot;✅ 新的最佳记录！&quot;)</p>
+
+<p>            # 生成新变体             print(&quot;\n生成新变体...&quot;)             new_variant = self.generate_new_variant(self.best_variant.config)             self.variants.append(new_variant)</p>
+
+<p>            # 调整流量分配（给表现好的变体更多流量）             self.adjust_traffic_split()</p>
+
+<p>            # 保存结果             self.save_results()</p>
+
+<p>        print(f&quot;\n优化完成！最佳转化率: {self.best_conversion:.2%}&quot;)         print(f&quot;最佳变体配置:&quot;)         print(json.dumps(self.best_variant.config, indent=2))</p>
+
+<p>        return self.best_variant, self.best_conversion</p>
+
+<p>    def adjust_traffic_split(self):         &quot;&quot;&quot;基于表现调整流量分配&quot;&quot;&quot;         # 给表现好的变体更多流量         total_score = sum(r[&#x27;conversion_rate&#x27;] for r in self.results.values())</p>
+
+<p>        for variant in self.variants:             if variant.id in self.results:                 score = self.results[variant.id][&#x27;conversion_rate&#x27;]                 variant.traffic_split = score / total_score</p>
+
+<p>    def save_results(self):         &quot;&quot;&quot;保存结果&quot;&quot;&quot;         with open(&#x27;ab_test_results.json&#x27;, &#x27;w&#x27;) as f:             json.dump({                 &#x27;best_variant&#x27;: self.best_variant.id if self.best_variant else None,                 &#x27;best_conversion&#x27;: self.best_conversion,                 &#x27;all_results&#x27;: self.results,                 &#x27;variant_configs&#x27;: {v.id: v.config for v in self.variants}             }, f, indent=2)</p>
+
+<p>&lt;h1&gt;使用示例&lt;/h1&gt; if __name__ == &#x27;__main__&#x27;:     test_config = {         &#x27;baseline&#x27;: {             &#x27;headline&#x27;: &#x27;欢迎使用我们的产品&#x27;,             &#x27;cta_button&#x27;: {&#x27;text&#x27;: &#x27;立即开始&#x27;, &#x27;color&#x27;: &#x27;#333&#x27;},             &#x27;layout&#x27;: &#x27;hero_center&#x27;         },         &#x27;target_metric&#x27;: &#x27;conversion_rate&#x27;,         &#x27;min_sample_size&#x27;: 1000     }</p>
+
+<p>    optimizer = ABTestOptimizer(test_config)     best_variant, best_conversion = optimizer.optimize(max_iterations=5)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>7. 通用框架：LiteAutoResearch</h2>
+
+<h3>7.1 框架设计</h3>
+
+<p>为所有场景提供一个通用的轻量级框架：</p>
+
+<pre><code class="language-python">&lt;h1&gt;lite_autoresearch.py&lt;/h1&gt;
+
+<p>&quot;&quot;&quot; LiteAutoResearch - 轻量级自主研究框架 适用于任何可量化优化的场景 &quot;&quot;&quot;</p>
+
+<p>import json import time import hashlib from abc import ABC, abstractmethod from typing import Any, Dict, List, Tuple from dataclasses import dataclass</p>
+
+<p>@dataclass class Experiment:     &quot;&quot;&quot;实验记录&quot;&quot;&quot;     id: str     state: Dict[str, Any]  # 实验状态/配置     score: float          # 评估得分     duration: float       # 执行时间     timestamp: float      # 时间戳     parent_id: str = None # 父实验 ID（用于追踪谱系）</p>
+
+<p>class BaseOptimizer(ABC):     &quot;&quot;&quot;优化器基类&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, config: Dict):         self.config = config         self.experiments: List[Experiment] = []         self.best_experiment: Experiment = None         self.history_file = config.get(&#x27;history_file&#x27;, &#x27;experiments.json&#x27;)</p>
+
+<p>    @abstractmethod     def generate_candidate(self, current_state: Dict) -&gt; Dict:         &quot;&quot;&quot;生成候选状态（由 AI 代理实现）&quot;&quot;&quot;         pass</p>
+
+<p>    @abstractmethod     def evaluate(self, state: Dict) -&gt; Tuple[float, float]:         &quot;&quot;&quot;         评估状态         返回: (得分, 执行时间)         得分越高越好         &quot;&quot;&quot;         pass</p>
+
+<p>    @abstractmethod     def is_better(self, new_score: float, old_score: float) -&gt; bool:         &quot;&quot;&quot;判断新得分是否更好&quot;&quot;&quot;         pass</p>
+
+<p>    def run_experiment(self, state: Dict, parent_id: str = None) -&gt; Experiment:         &quot;&quot;&quot;运行单次实验&quot;&quot;&quot;         # 生成唯一 ID         state_hash = hashlib.md5(             json.dumps(state, sort_keys=True).encode()         ).hexdigest()[:8]</p>
+
+<p>        print(f&quot;  运行实验 {state_hash}...&quot;)</p>
+
+<p>        # 执行并计时         start = time.time()         score, duration = self.evaluate(state)         actual_duration = time.time() - start</p>
+
+<p>        # 创建实验记录         exp = Experiment(             id=state_hash,             state=state,             score=score,             duration=actual_duration,             timestamp=time.time(),             parent_id=parent_id         )</p>
+
+<p>        self.experiments.append(exp)         return exp</p>
+
+<p>    def optimize(self, initial_state: Dict, max_iterations: int = 100) -&gt; Experiment:         &quot;&quot;&quot;运行优化循环&quot;&quot;&quot;         print(f&quot;开始优化: {max_iterations} 次迭代&quot;)         print(f&quot;初始状态: {json.dumps(initial_state, indent=2)}&quot;)</p>
+
+<p>        # 运行初始实验         print(&quot;\n运行基线实验...&quot;)         baseline = self.run_experiment(initial_state)         print(f&quot;  基线得分: {baseline.score:.4f}&quot;)</p>
+
+<p>        current_state = initial_state         current_score = baseline.score         self.best_experiment = baseline</p>
+
+<p>        # 优化循环         for i in range(max_iterations):             print(f&quot;\n{&#x27;=&#x27;*60}&quot;)             print(f&quot;迭代 {i+1}/{max_iterations}&quot;)             print(f&quot;当前最佳: {self.best_experiment.score:.4f}&quot;)             print(f&quot;{&#x27;=&#x27;*60}&quot;)</p>
+
+<p>            # 1. 生成候选             print(&quot;生成候选...&quot;)             candidate_state = self.generate_candidate(current_state)</p>
+
+<p>            # 2. 运行实验             exp = self.run_experiment(candidate_state, parent_id=self.best_experiment.id)             print(f&quot;  得分: {exp.score:.4f} (耗时: {exp.duration:.2f}s)&quot;)</p>
+
+<p>            # 3. 决策             if self.is_better(exp.score, current_score):                 print(f&quot;  ✅ 改进! {current_score:.4f} -&gt; {exp.score:.4f}&quot;)                 current_state = candidate_state                 current_score = exp.score</p>
+
+<p>                if self.is_better(exp.score, self.best_experiment.score):                     self.best_experiment = exp                     print(f&quot;  🏆 新的全局最佳!&quot;)             else:                 print(f&quot;  ❌ 无改进&quot;)</p>
+
+<p>            # 4. 保存进度             self.save_history()</p>
+
+<p>            # 5. 检查约束             if self.check_constraints(exp):                 print(&quot;约束触发，提前结束&quot;)                 break</p>
+
+<p>        print(f&quot;\n{&#x27;=&#x27;*60}&quot;)         print(&quot;优化完成!&quot;)         print(f&quot;最佳得分: {self.best_experiment.score:.4f}&quot;)         print(f&quot;总实验数: {len(self.experiments)}&quot;)         print(f&quot;{&#x27;=&#x27;*60}&quot;)</p>
+
+<p>        return self.best_experiment</p>
+
+<p>    def check_constraints(self, exp: Experiment) -&gt; bool:         &quot;&quot;&quot;检查是否触发约束条件&quot;&quot;&quot;         # 时间约束         max_time = self.config.get(&#x27;max_total_time&#x27;)         if max_time:             total_time = sum(e.duration for e in self.experiments)             if total_time &gt; max_time:                 return True</p>
+
+<p>        # 得分约束（已找到满意解）         target_score = self.config.get(&#x27;target_score&#x27;)         if target_score and exp.score &gt;= target_score:             return True</p>
+
+<p>        return False</p>
+
+<p>    def save_history(self):         &quot;&quot;&quot;保存实验历史&quot;&quot;&quot;         data = {             &#x27;config&#x27;: self.config,             &#x27;best_experiment&#x27;: {                 &#x27;id&#x27;: self.best_experiment.id,                 &#x27;score&#x27;: self.best_experiment.score,                 &#x27;state&#x27;: self.best_experiment.state             },             &#x27;experiments&#x27;: [                 {                     &#x27;id&#x27;: e.id,                     &#x27;score&#x27;: e.score,                     &#x27;duration&#x27;: e.duration,                     &#x27;parent_id&#x27;: e.parent_id                 }                 for e in self.experiments             ]         }</p>
+
+<p>        with open(self.history_file, &#x27;w&#x27;) as f:             json.dump(data, f, indent=2)</p>
+
+<p>&lt;h1&gt;使用示例：提示词优化&lt;/h1&gt; class PromptOptimizer(BaseOptimizer):     &quot;&quot;&quot;提示词优化器示例&quot;&quot;&quot;</p>
+
+<p>    def generate_candidate(self, current_state: Dict) -&gt; Dict:         &quot;&quot;&quot;生成候选提示词&quot;&quot;&quot;         import random</p>
+
+<p>        templates = [             &quot;你是一个专业的{role}。{task}。请注意：{note}&quot;,             &quot;作为一位经验丰富的{role}，你的任务是{task}。重要提示：{note}&quot;,             &quot;角色：{role}。任务：{task}。约束：{note}&quot;         ]</p>
+
+<p>        roles = [&quot;助手&quot;, &quot;专家&quot;, &quot;顾问&quot;, &quot;分析师&quot;]         notes = [             &quot;回答要简洁明了&quot;,             &quot;提供详细的解释&quot;,             &quot;使用专业术语&quot;,             &quot;举例说明&quot;         ]</p>
+
+<p>        template = random.choice(templates)         new_prompt = template.format(             role=random.choice(roles),             task=current_state.get(&#x27;task&#x27;, &#x27;帮助用户&#x27;),             note=random.choice(notes)         )</p>
+
+<p>        return {&#x27;prompt&#x27;: new_prompt}</p>
+
+<p>    def evaluate(self, state: Dict) -&gt; Tuple[float, float]:         &quot;&quot;&quot;评估提示词效果（模拟）&quot;&quot;&quot;         import random</p>
+
+<p>        # 模拟评估（实际应该使用 LLM 和测试集）         time.sleep(0.1)  # 模拟执行时间</p>
+
+<p>        # 随机得分（0-1）         score = random.uniform(0.6, 0.95)</p>
+
+<p>        return score, 0.1</p>
+
+<p>    def is_better(self, new_score: float, old_score: float) -&gt; bool:         return new_score &gt; old_score</p>
+
+<p>&lt;h1&gt;运行示例&lt;/h1&gt; if __name__ == &#x27;__main__&#x27;:     config = {         &#x27;max_iterations&#x27;: 10,         &#x27;max_total_time&#x27;: 300,  # 5 分钟总时间         &#x27;target_score&#x27;: 0.90     }</p>
+
+<p>    optimizer = PromptOptimizer(config)     initial_state = {&#x27;task&#x27;: &#x27;回答用户问题&#x27;}</p>
+
+<p>    best = optimizer.optimize(initial_state, max_iterations=10)     print(f&quot;\n最佳提示词: {best.state}&quot;)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>8. 最佳实践与注意事项</h2>
+
+<h3>8.1 设计原则</h3>
+
+<h4>原则 1: 约束带来聚焦</h4>
+
+<strong>好的约束</strong>:
+
+<ul>
+
+  <li>✅ 时间限制（如 5 分钟）</li>
+
+  <li>✅ 资源限制（如内存上限）</li>
+
+  <li>✅ 可修改范围限制（如只能改 train.py）</li>
+
+</ul>
+
+<strong>避免的约束</strong>:
+
+<ul>
+
+  <li>❌ 过于严格导致无法探索</li>
+
+  <li>❌ 模糊不清难以执行</li>
+
+  <li>❌ 与目标无关的限制</li>
+
+</ul>
+
+<h4>原则 2: 评估指标必须客观</h4>
+
+<pre><code class="language-python">&lt;h1&gt;好的指标&lt;/h1&gt;
+
+<p>val_accuracy = correct / total  # 客观、可量化 execution_time = end - start    # 明确、无争议</p>
+
+<p>&lt;h1&gt;差的指标&lt;/h1&gt; &quot;看起来不错&quot;                    # 主观 &quot;用户可能会喜欢&quot;                # 难以测量</p>
+
+</code></pre>
+
+<h4>原则 3: 保留完整的实验历史</h4>
+
+<pre><code class="language-python">&lt;h1&gt;每个实验记录应该包含：&lt;/h1&gt;
+
+<p>{     &quot;id&quot;: &quot;唯一标识&quot;,     &quot;state&quot;: &quot;完整状态/配置&quot;,     &quot;score&quot;: &quot;评估得分&quot;,     &quot;duration&quot;: &quot;执行时间&quot;,     &quot;timestamp&quot;: &quot;时间戳&quot;,     &quot;parent_id&quot;: &quot;父实验（用于追踪谱系）&quot;,     &quot;diff&quot;: &quot;与父实验的差异&quot; }</p>
+
+</code></pre>
+
+<h3>8.2 常见问题与解决</h3>
+
+<h4>问题 1: 陷入局部最优</h4>
+
+<strong>症状</strong>: 代理反复尝试相似的修改，没有突破
+
+<strong>解决</strong>:
+
+<ul>
+
+  <li>增加随机探索的概率</li>
+
+  <li>定期重置基线</li>
+
+  <li>引入多样化的初始状态</li>
+
+</ul>
+
+<h4>问题 2: 评估噪声大</h4>
+
+<strong>症状</strong>: 相同配置得分波动很大
+
+<strong>解决</strong>:
+
+<ul>
+
+  <li>多次运行取平均</li>
+
+  <li>增加评估样本量</li>
+
+  <li>使用更稳定的评估方法</li>
+
+</ul>
+
+<h4>问题 3: 实验时间过长</h4>
+
+<strong>症状</strong>: 无法在合理时间内完成迭代
+
+<strong>解决</strong>:
+
+<ul>
+
+  <li>减少单次实验的数据量</li>
+
+  <li>使用更小的模型/数据集</li>
+
+  <li>并行运行多个实验</li>
+
+</ul>
+
+<h3>8.3 安全与伦理</h3>
+
+<h4>安全考虑</h4>
+
+<ul>
+
+  <li><strong>沙箱环境</strong>: 在隔离环境中运行代理生成的代码</li>
+
+  <li><strong>资源限制</strong>: 防止代理耗尽系统资源</li>
+
+  <li><strong>人工审查</strong>: 关键修改需要人工确认</li>
+
+</ul>
+
+<h4>伦理考虑</h4>
+
+<ul>
+
+  <li><strong>透明度</strong>: 明确告知用户哪些内容是 AI 生成的</li>
+
+  <li><strong>可控性</strong>: 保留人类的最终决策权</li>
+
+  <li><strong>公平性</strong>: 确保优化不会带来偏见或歧视</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>9. 总结：从理念到实践</h2>
+
+<h3>核心要点</h3>
+
+<ol>
+
+  <li><strong>Autoresearch 不是特定工具，而是一种思维模式</strong></li>
+
+</ol>
+
+<p>   - 定义清晰的目标和约束    - 让 AI 在约束内自主探索    - 基于客观指标迭代优化</p>
+
+<ol>
+
+  <li><strong>适用于任何可量化优化的场景</strong></li>
+
+</ol>
+
+<p>   - ML 模型优化    - 提示词优化    - 代码性能优化    - UI/UX A/B 测试</p>
+
+<ol>
+
+  <li><strong>关键在于设计</strong></li>
+
+</ol>
+
+<p>   - 好的评估指标    - 合理的约束条件    - 完整的实验历史</p>
+
+<h3>快速启动清单</h3>
+
+<ul>
+
+  <li>[ ] 定义清晰的优化目标</li>
+
+  <li>[ ] 设计客观评估指标</li>
+
+  <li>[ ] 设定合理的约束条件</li>
+
+  <li>[ ] 实现候选生成函数</li>
+
+  <li>[ ] 搭建实验执行环境</li>
+
+  <li>[ ] 运行优化循环</li>
+
+  <li>[ ] 分析结果并迭代</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-10.md</span>
+                </div>
+            
+<h2>10. 参考资源</h2>
+
+<ul>
+
+  <li><strong>Karpathy 的 autoresearch</strong>: https://github.com/karpathy/autoresearch</li>
+
+  <li><strong>本指南的实现代码</strong>: 见上文各场景的代码示例</li>
+
+  <li><strong>相关研究</strong>:</li>
+
+</ul>
+
+<p>  - [[autoresearch-karpathy-ai-research-agents]] — Autoresearch 深度分析   - [[decentralized-ai-landscape]] — 去中心化 AI 生态   - [[personal-ai-ecosystem-2030-vision]] — 未来愿景</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-11.md</span>
+                </div>
+            
+<h2>标签</h2>
+
+<p>#autoresearch #practical-guide #implementation #ai-agents #optimization #machine-learning #automation #best-practices</p>
+
+<hr>
+
+<strong>最后更新</strong>: 2026-03-31  
+
+<strong>适用版本</strong>: 任何可量化优化的场景
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# 数字花园 - GitHub Pages 配置
+title: 数字花园
+description: 一个持续演进的思维空间，记录 AI 研究、技术探索和思考过程
+author: Xin Conan
+email: conanxin@gmail.com
+
+# GitHub Pages 主题
+theme: jekyll-theme-minimal
+# 或者使用其他主题：minimal, cayman, slate, hacker, midnight, merlot, tactile, architect
+
+# 网站配置
+baseurl: "/digital-garden"
+url: "https://conanxin.github.io"
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 排除文件
+exclude:
+  - README.md
+  - SESSION-*.md
+  - "*.py"
+  - "__pycache__"
+  - "*.pyc"
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+
+# 导航
+nav:
+  - title: 首页
+    url: /
+  - title: 研究
+    url: /research/
+  - title: 文章
+    url: /articles/
+  - title: 工具
+    url: /tools/
+  - title: 关于
+    url: /about/
+
+# 社交链接
+social:
+  github: conanxin
+  # twitter: your_twitter
+  # linkedin: your_linkedin
+
+# 版权
+license: "CC BY-SA 4.0"
+license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+
+# 搜索引擎验证（可选）
+# google_site_verification: your_verification_code

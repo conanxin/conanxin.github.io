@@ -15,6 +15,53 @@
 
 ## 最新更新
 
+### 2026-03-31 | 轻量级 AI Agent 工具研究
+
+**研究主题：** PicoClaw、Agent Reach、Collaborator 三个创新项目
+
+**核心发现：**
+- **PicoClaw**: $10 硬件 + <10MB 内存运行 AI Agent，Go 语言实现
+- **Agent Reach**: 让 AI Agent 具备互联网全平台访问能力
+- **Collaborator**: 无限画布式多 Agent 协作环境
+
+**趋势洞察：** AI 正在从云服务转向边缘设备，从昂贵能力变成随处可用的基础设施
+
+[阅读全文 →](research/picoclaw-analysis.md)
+[Agent Reach 分析 →](research/agent-reach-analysis.md)
+[Collaborator 分析 →](research/collaborator-analysis.md)
+
+---
+
+### 2026-03-31 | TimesFM 时间序列预测模型
+
+**研究主题：** Google Research 的开源时间序列基础模型
+
+**核心发现：**
+- 200M 参数，单 CPU 5 秒完成预测
+- 零样本学习，无需针对特定任务训练
+- 在多个基准测试中超越传统统计方法和大型模型
+
+**应用场景：** 能源预测、交通流量、金融市场、库存管理
+
+[阅读全文 →](research/timesfm-analysis-report.md)
+
+---
+
+### 2026-03-31 | ChatDev 深度分析
+
+**研究主题：** AI 驱动的虚拟软件公司
+
+**核心发现：**
+- 多 Agent 协作系统（CEO、CTO、程序员、测试员等）
+- 完整的软件开发流程自动化
+- Agent 间的通信协议和记忆机制设计
+
+**对 Hermes 的启示：** 多角色协作、任务分解、代码生成优化
+
+[阅读全文 →](research/chatdev-deep-dive.md)
+
+---
+
 ### 2026-03-30 | A2A 多 Agent 协作研究
 
 **研究主题：** Google A2A 协议与多 Agent 系统
@@ -47,29 +94,17 @@
 
 ---
 
-### 2026-03-30 | Evaluator vs Supervisor 对比分析
-
-**研究主题：** Anthropic 的 Evaluator 模式与 Hermes Supervisor 模式的对比
-
-**核心洞察：**
-- **Evaluator** (开发阶段)：质检反馈 → Agent 重做，关注"做得好不好"
-- **Supervisor** (运维阶段)：诊断 → ACK 或升级人类，关注"跑不跑得稳"
-- 两者可以互补：Evaluator 提升质量，Supervisor 保障稳定性
-
-**已构建：** Hermes Supervisor 完整实现
-
-[阅读全文 →](research/anthropic-harness-vs-hermes-supervisor.md)
-
----
-
 ## 研究主题
 
 ### 🤖 AI Agent 系统
 
 | 主题 | 描述 | 链接 |
 |------|------|------|
+| PicoClaw 分析 | 边缘 AI Agent 极致轻量方案 | [→](research/picoclaw-analysis.md) |
+| Agent Reach 研究 | AI Agent 互联网访问能力 | [→](research/agent-reach-analysis.md) |
+| Collaborator 分析 | 无限画布多 Agent 协作 | [→](research/collaborator-analysis.md) |
+| ChatDev 深度分析 | AI 虚拟软件公司 | [→](research/chatdev-deep-dive.md) |
 | AgentScope 研究 | 多 Agent 框架深度分析 | [→](research/agentscope-multi-agent-framework-study.md) |
-| AgentScope-Hermes 集成 | 完整集成方案 | [→](research/agentscope-hermes-integration-study.md) |
 | A2A 协议 | Google Agent2Agent 协议研究 | [→](research/a2a-agent-collaboration.md) |
 | 三 Agent 演示 | 天气+计算器+协调器演示 | [→](research/three-agent-a2a-setup.md) |
 | Hermes Supervisor | Agent 监控与分诊系统 | [→](research/anthropic-harness-vs-hermes-supervisor.md) |
@@ -78,10 +113,19 @@
 
 | 主题 | 描述 | 链接 |
 |------|------|------|
+| TimesFM 分析 | Google 时间序列预测模型 | [→](research/timesfm-analysis-report.md) |
+| 陶哲轩 AI 数学论文 | 形式化数学证明的 AI 应用 | [→](research/tao-ai-mathematics-paper.md) |
 | Autoresearch | Karpathy 的自动研究项目分析 | [→](research/autoresearch-karpathy-ai-research-agents.md) |
-| Autoresearch 实践 | 在 Hermes 中的应用指南 | [→](research/autoresearch-practical-application-guide.md) |
 | AI 重要思想 2026 | Daniel Miessler 的五个核心思想 | [→](research/ai-important-ideas-2026.md) |
-| Nano Banana Pro | 提示词工程分析 | [→](research/nano-banana-pro-prompts-analysis.md) |
+
+### 🛠️ 工具与集成
+
+| 主题 | 描述 | 链接 |
+|------|------|------|
+| Agent Reach 集成 | Hermes × Agent Reach 完整方案 | [→](research/hermes-agent-reach-integration.md) |
+| TrendRadar 集成 | Hermes 趋势雷达系统 | [→](research/hermes-trendradar-integration.md) |
+| Vibing 语音输入 | AI 编程工作流语音交互 | [→](research/vibing-voice-input-analysis.md) |
+| Observation 系统修复 | 观测系统问题解决报告 | [→](research/observation-system-fix-report.md) |
 
 ### 🌐 去中心化 AI
 
@@ -109,19 +153,18 @@
 - [AI Makes Coding Easier](articles/ai-makes-coding-easier.md) - AI 辅助编程的思考
 - [Delightful Tools](articles/delightful-tools.md) - 令人愉悦的工具设计
 - [DesignLab AI UX Survey 2026](articles/designlab-ai-ux-survey-2026.md) - AI 产品 UX 调查
-- [Eric McLuhan Media Renaissance](articles/eric-mcluhan-media-renaissance.md) - 麦克卢汉的媒体理论
 
 ### 学习与教育
 
 - [Lee Child Propulsion](articles/lee-child-propulsion.md) - 写作的动力
 - [Moltbook Experiment](articles/moltbook-experiment.md) - 可塑书籍实验
 - [Meaning Making Uncertainty](articles/meaning-making-uncertainty.md) - 意义建构与不确定性
-- [Micah Blachman EdTech Critique](articles/micah-blachman-edtech-critique.md) - 教育科技批判
 
 ---
 
 ## 工具与资源
 
+- [Agent Reach 工具](tools/agent-reach/) - 互联网全平台访问工具
 - [提示词生成器](tools/prompt-generator/) - 专业提示词设计工具
 - [Agent 演示](projects/a2a-demo/) - A2A 多 Agent 协作示例
 - [研究模板](resources/templates/) - 标准化研究文档模板
@@ -134,10 +177,10 @@
 
 - [#ai](tags/ai.md) - 人工智能
 - [#multi-agent](tags/multi-agent.md) - 多智能体系统
+- [#edge-ai](tags/edge-ai.md) - 边缘 AI
 - [#research](tags/research.md) - 研究方法论
 - [#philosophy](tags/philosophy.md) - 哲学思考
 - [#design](tags/design.md) - 设计思维
-- [#education](tags/education.md) - 教育与学习
 
 ### 知识图谱
 
@@ -161,6 +204,6 @@
 
 ---
 
-*最后更新：2026-03-30*
+*最后更新：2026-03-31*
 
 *使用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) 许可*

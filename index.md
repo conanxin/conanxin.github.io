@@ -15,6 +15,32 @@
 
 ## 最新更新
 
+### 2026-03-31 | UniPat Echo: 通用 AI 预测智能系统
+
+**研究主题：** Echo - 全栈预测智能系统深度分析
+
+**核心发现：**
+- **Train-on-Future 范式**: 首个端到端基于未来事件训练的 LLM
+- **多点对齐 Elo 框架**: 解决预测评估中的时间不对称性问题
+- **Map-Reduce Agent 架构**: 动态问题合成 + 行为导向评估
+- **20 维度结构化标准**: 细粒度预测轨迹评估
+
+**关键洞察：**
+- 预测难度随时间变化（时间不对称性）
+- 结果导向评估具有误导性（幸存者偏见）
+- 行为导向评估优于结果导向
+- 动态合成优于静态数据集
+
+**与 Hermes/MiroShark 的关联：**
+- 推理轨迹 ↔ Reasoning Path
+- Map-Reduce ↔ Delegate Task
+- 多源数据 ↔ Skill Knowledge Graph
+- 20 维度标准 ↔ ReasoningStep 评估扩展
+
+[阅读全文 →](research/unipat-echo-analysis.md)
+
+---
+
 ### 2026-03-31 | 轻量级 AI Agent 工具研究
 
 **研究主题：** PicoClaw、Agent Reach、Collaborator 三个创新项目

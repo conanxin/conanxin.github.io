@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborator 深度分析报告 | Xin Conan</title>
+    <meta name="description" content="Collaborator 深度分析报告  **GitHub**: https://github.com/collaborator-ai/collab-public   **Stars**: 2,016 ⭐ (截至 2026-03-31)   **版本**: v0.6.0   **语言**: Type...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Collaborator 深度分析报告</h1>
+                <p class="post-subtitle">Collaborator 深度分析报告  **GitHub**: https://github.com/collaborator-ai/collab-public   **Stars**: 2,016 ⭐ (截至 2026-03-31)   **版本**: v0.6.0   **语言**: Type...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Collaborator 深度分析报告</h1>
+
+<strong>GitHub</strong>: https://github.com/collaborator-ai/collab-public  
+
+<strong>Stars</strong>: 2,016 ⭐ (截至 2026-03-31)  
+
+<strong>版本</strong>: v0.6.0  
+
+<strong>语言</strong>: TypeScript / Electron  
+
+<strong>创建时间</strong>: 2026-03-15 (半个月)  
+
+<strong>许可证</strong>: 自定义开源许可
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>1. 项目概述</h2>
+
+<h3>1.1 核心定位</h3>
+
+<strong>Collaborator</strong> 是一个<strong>面向 AI Agent 的无限画布式开发环境</strong>。
+
+<p>它不是传统 IDE 的替代品，而是一个<strong>为与 AI Agent 协作而重新设计的全新工作空间</strong>。核心概念：</p>
+
+<blockquote>"A place to build with agents" —— 一个与 Agent 一起创造的地方</blockquote>
+
+<h3>1.2 核心特性</h3>
+
+<p>| 特性 | 说明 | |------|------| | <strong>无限画布</strong> | 类似 Figma/Miro 的无限平移缩放画布，所有内容以"卡片"形式排列 | | <strong>多终端管理</strong> | 每个终端是画布上的一个独立卡片，可同时运行多个 Agent | | <strong>文件即卡片</strong> | 文件从侧边栏拖到画布上成为可编辑卡片 | | <strong>实时持久化</strong> | 所有状态自动保存到 <code>~/.collaborator/</code> | | <strong>本地优先</strong> | 无需账号，所有数据本地存储 | | <strong>Agent 原生</strong> | 专为 Claude Code、Codex CLI 等 Agent 设计 |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>2. 技术架构</h2>
+
+<h3>2.1 技术栈</h3>
+
+<p>| 层级 | 技术 | 用途 | |------|------|------| | <strong>桌面壳</strong> | Electron 40 | 跨平台桌面应用，多 WebView 架构 | | <strong>UI 框架</strong> | React 19 | 组件化界面 | | <strong>样式</strong> | Tailwind CSS 4 | 原子化 CSS | | <strong>构建工具</strong> | electron-vite | 热重载开发 | | <strong>终端</strong> | xterm.js + node-pty | 终端模拟，持久化 PTY sidecar | | <strong>代码编辑</strong> | Monaco Editor | VS Code 同款编辑器 | | <strong>富文本</strong> | BlockNote / TipTap | Markdown 富文本编辑 | | <strong>可视化</strong> | D3 | 力导向图可视化 | | <strong>图像处理</strong> | sharp | 图片处理 | | <strong>数学渲染</strong> | KaTeX | Markdown 数学公式 |</p>
+
+<h3>2.2 架构亮点</h3>
+
+<strong>多 WebView 架构</strong>:
+
+<pre><code class="language-text">Electron Main Process
+
+<p>    ├── WebView 1: Terminal 1 (Claude Code)     ├── WebView 2: Terminal 2 (Codex CLI)     ├── WebView 3: Monaco Editor (file A)     ├── WebView 4: Monaco Editor (file B)     ├── WebView 5: BlockNote (README.md)     └── Canvas Controller (React)</p>
+
+</code></pre>
+
+<strong>每个终端独立 Session</strong>:
+
+<ul>
+
+  <li>每个终端卡片有自己的 node-pty 会话</li>
+
+  <li>会话生命周期独立于卡片（关闭卡片不会终止 session）</li>
+
+  <li>支持持久化终端状态</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>3. 核心概念：Tile（卡片）</h2>
+
+<h3>3.1 Tile 类型</h3>
+
+<p>| 类型 | 创建方式 | 用途 | |------|---------|------| | <strong>Terminal</strong> | 双击画布空白处 | 运行 AI Agent (Claude Code, Codex CLI) | | <strong>Note</strong> | 拖拽 <code>.md</code> 文件 | Markdown 富文本编辑 | | <strong>Code</strong> | 拖拽代码文件 | 语法高亮代码编辑 | | <strong>Image</strong> | 拖拽图片文件 | 图片查看 |</p>
+
+<h3>3.2 Tile 属性</h3>
+
+<p>每个 Tile 包含：</p>
+
+<ul>
+
+  <li><strong>位置</strong> (x, y) - 画布坐标</li>
+
+  <li><strong>尺寸</strong> (width, height) - 支持8个方向拖拽调整</li>
+
+  <li><strong>z-index</strong> - 层级，点击置顶</li>
+
+  <li><strong>文件绑定</strong> - Note/Code/Image 绑定到磁盘文件路径</li>
+
+  <li><strong>Session 绑定</strong> - Terminal 绑定到 PTY session</li>
+
+</ul>
+
+<h3>3.3 Tile 交互</h3>
+
+<pre><code class="language-text">双击空白处 → 创建 Terminal
+
+<p>拖拽文件 → 创建对应类型 Tile 点击 Tile → 置顶 (z-index++) 拖拽标题栏 → 移动位置 拖拽边角 → 调整大小 Cmd+点击 → 多选 Shift+滚动 → 穿透到画布</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>4. 与 AI Agent 的集成</h2>
+
+<h3>4.1 支持的 Agent</h3>
+
+<p>根据 Topics 和架构推测支持：</p>
+
+<ul>
+
+  <li><strong>Claude Code</strong> (Anthropic)</li>
+
+  <li><strong>Codex CLI</strong> (OpenAI)</li>
+
+  <li><strong>其他终端 Agent</strong> (通过 Terminal Tile 运行)</li>
+
+</ul>
+
+<h3>4.2 Agent 工作流</h3>
+
+<pre><code class="language-text">1. 双击画布 → 创建 Terminal Tile
+
+<ol>
+
+  <li>在 Terminal 中启动 Claude Code / Codex CLI</li>
+
+  <li>Agent 开始工作，输出显示在 Terminal</li>
+
+  <li>拖拽相关文件到画布 → 创建 Code/Note Tiles</li>
+
+  <li>Agent 可以引用这些文件（通过路径）</li>
+
+  <li>多 Agent 可同时运行在不同 Terminal Tiles</li>
+
+</ol>
+
+</code></pre>
+
+<h3>4.3 多 Agent 协作场景</h3>
+
+<p>| 场景 | Tile 布局 | |------|----------| | <strong>前端开发</strong> | Terminal (Claude) + Code (HTML) + Code (CSS) + Note (设计文档) | | <strong>后端开发</strong> | Terminal (Codex) + Code (API) + Terminal (DB) + Note (API 文档) | | <strong>全栈开发</strong> | Terminal (Claude) + Code (前端) + Code (后端) + Terminal (测试) | | <strong>代码审查</strong> | Terminal (Agent) + Code (原始) + Code (修改) + Note (审查意见) |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>5. 竞品对比</h2>
+
+<h3>5.1 与 Cursor / Windsurf 对比</h3>
+
+<p>| 维度 | Cursor / Windsurf | <strong>Collaborator</strong> | |------|-------------------|------------------| | <strong>交互模式</strong> | 单文件编辑 + 侧边栏 Chat | 无限画布 + 多 Tile | | <strong>Agent 数量</strong> | 通常 1 个 | 可同时运行多个 | | <strong>上下文管理</strong> | 通过 Chat 历史 | 通过 Tile 布局（可视化） | | <strong>文件组织</strong> | 传统文件树 | 画布空间组织 | | <strong>终端</strong> | 内置终端面板 | 终端即卡片，可多个 | | <strong>定位</strong> | AI 增强 IDE | Agent 协作画布 |</p>
+
+<h3>5.2 与 OpenClaw / PicoClaw 对比</h3>
+
+<p>| 维度 | OpenClaw / PicoClaw | <strong>Collaborator</strong> | |------|---------------------|------------------| | <strong>形态</strong> | CLI / TUI | GUI 桌面应用 | | <strong>交互</strong> | 终端对话 | 可视化画布 | | <strong>文件编辑</strong> | 外部编辑器 | 内置 Monaco | | <strong>适用场景</strong> | 轻量快速任务 | 复杂多文件项目 | | <strong>资源占用</strong> | 极低 (PicoClaw <10MB) | 较高 (Electron) |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>6. 快速增长分析</h2>
+
+<h3>6.1 增长数据</h3>
+
+<p>| 时间 | Stars | 里程碑 | |------|-------|--------| | 2026-03-15 | 0 | 项目创建 | | 2026-03-20 | ~500 | 初期关注 | | 2026-03-25 | ~1000 | 社区传播 | | 2026-03-31 | 2,016 | 半个月破 2k |</p>
+
+<strong>增长速度</strong>: ~130 stars/天，健康增长
+
+<h3>6.2 增长驱动因素</h3>
+
+<ol>
+
+  <li><strong>时机精准</strong>: AI Agent 工具爆发期</li>
+
+  <li><strong>概念新颖</strong>: 无限画布 + Agent 的创新组合</li>
+
+  <li><strong>解决痛点</strong>: 解决了"多 Agent 协作上下文管理"问题</li>
+
+  <li><strong>开源策略</strong>: 完全开源，社区可参与</li>
+
+  <li><strong>团队背景</strong>: yiliush (主要贡献者) 可能有行业影响力</li>
+
+</ol>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>7. 核心创新点</h2>
+
+<h3>7.1 空间化上下文管理</h3>
+
+<strong>传统方式</strong>:
+
+<pre><code class="language-text">Agent: &quot;请修改 src/utils/helper.js&quot;
+
+<p>用户: 在文件树中找到文件 → 打开 → 查看 Agent: &quot;再修改 src/components/Button.jsx&quot; 用户: 再次查找 → 切换标签页 → 容易迷失</p>
+
+</code></pre>
+
+<strong>Collaborator 方式</strong>:
+
+<pre><code class="language-text">画布上同时显示:
+
+<p>┌─────────────┐  ┌─────────────┐  ┌─────────────┐ │ Terminal    │  │ helper.js   │  │ Button.jsx  │ │ (Claude)    │  │ (Code Tile) │  │ (Code Tile) │ └─────────────┘  └─────────────┘  └─────────────┘</p>
+
+<p>Agent 说 &quot;修改 helper.js&quot; → 用户直接看旁边的 Tile Agent 引用 &quot;像 Button 那样&quot; → 用户同时看到两个文件</p>
+
+</code></pre>
+
+<h3>7.2 多 Agent 可视化</h3>
+
+<p>可以同时运行：</p>
+
+<ul>
+
+  <li>Claude Code (前端)</li>
+
+  <li>Codex CLI (后端)</li>
+
+  <li>自定义 Agent (测试)</li>
+
+</ul>
+
+<p>每个 Agent 的输出在独立的 Terminal Tile，不会互相覆盖。</p>
+
+<h3>7.3 持久化工作空间</h3>
+
+<p>画布状态自动保存，重启后恢复：</p>
+
+<ul>
+
+  <li>Tile 位置和大小</li>
+
+  <li>打开的文件</li>
+
+  <li>终端 Session (如果支持)</li>
+
+  <li>视口位置和缩放</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>8. 局限性与挑战</h2>
+
+<h3>8.1 当前局限</h3>
+
+<p>| 问题 | 说明 | |------|------| | <strong>Electron 资源占用</strong> | 相比纯 CLI 工具，内存占用较高 | | <strong>早期版本不稳定</strong> | v0.6.0 仍在快速迭代，API 可能变化 | | <strong>Agent 集成深度</strong> | 目前只是提供终端，没有深度 API 集成 | | <strong>协作功能缺失</strong> | 多人实时协作尚未实现 | | <strong>移动端不支持</strong> | 纯桌面应用 |</p>
+
+<h3>8.2 潜在风险</h3>
+
+<ul>
+
+  <li><strong>许可问题</strong>: "Other" 许可证，非标准开源许可 (CLA.md 存在)</li>
+
+  <li><strong>单点维护</strong>: 主要贡献者 yiliush 贡献了大量代码</li>
+
+  <li><strong>竞品追赶</strong>: Cursor 等可能快速复制画布功能</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>9. 对我项目的启示</h2>
+
+<h3>9.1 Hermes Agent 可借鉴点</h3>
+
+<p>| Collaborator 特性 | Hermes 借鉴建议 | |-------------------|----------------| | <strong>无限画布</strong> | Web UI 考虑画布式布局 | | <strong>Tile 系统</strong> | 会话/任务以卡片形式展示 | | <strong>多终端管理</strong> | 支持同时运行多个 Agent 实例 | | <strong>空间化上下文</strong> | 用可视化方式管理长会话历史 | | <strong>本地优先</strong> | 强化本地数据存储能力 |</p>
+
+<h3>9.2 集成可能性</h3>
+
+<strong>Collaborator 作为 Hermes 的 GUI 前端</strong>:
+
+<pre><code class="language-text">Hermes Gateway (后端)
+
+<p>    ↕ Collaborator (GUI 前端)     - 多个 Terminal Tiles 连接到 Hermes     - File Tiles 编辑本地文件     - Canvas 管理多任务上下文</p>
+
+</code></pre>
+
+<h3>9.3 竞争或互补</h3>
+
+<ul>
+
+  <li><strong>短期</strong>: 互补关系，Collaborator 专注桌面 GUI，Hermes 专注后端能力</li>
+
+  <li><strong>长期</strong>: Hermes Web UI 可能发展出类似画布功能</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-10.md</span>
+                </div>
+            
+<h2>10. 结论</h2>
+
+<h3>10.1 项目评价</h3>
+
+<strong>优点</strong>:
+
+<ul>
+
+  <li>✅ 创新的无限画布 + Agent 组合</li>
+
+  <li>✅ 优雅解决多 Agent 上下文管理问题</li>
+
+  <li>✅ 开源，社区友好</li>
+
+  <li>✅ 开发速度快 (半个月到 v0.6.0)</li>
+
+</ul>
+
+<strong>缺点</strong>:
+
+<ul>
+
+  <li>⚠️ Electron 资源占用高</li>
+
+  <li>⚠️ 早期版本，稳定性待验证</li>
+
+  <li>⚠️ Agent 集成深度有限</li>
+
+</ul>
+
+<h3>10.2 趋势意义</h3>
+
+<p>Collaborator 代表了一个新方向：<strong>从"AI 增强 IDE"到"Agent 协作空间"</strong>。</p>
+
+<p>不只是让 AI 帮我们写代码，而是：</p>
+
+<ul>
+
+  <li>与多个 AI 一起工作</li>
+
+  <li>在空间中组织工作和上下文</li>
+
+  <li>可视化管理和追踪 Agent 任务</li>
+
+</ul>
+
+<p>这是 <strong>AI-Native IDE</strong> 的早期探索。</p>
+
+<h3>10.3 建议行动</h3>
+
+<strong>立即</strong>:
+
+<ul>
+
+  <li>[ ] 下载试用 Collaborator，理解其交互模式</li>
+
+  <li>[ ] 评估与 Hermes 的集成可能性</li>
+
+</ul>
+
+<strong>短期</strong>:
+
+<ul>
+
+  <li>[ ] Hermes Web UI 参考其 Tile/画布概念</li>
+
+  <li>[ ] 研究多 Agent 会话管理方案</li>
+
+</ul>
+
+<strong>长期</strong>:
+
+<ul>
+
+  <li>[ ] 关注项目发展，考虑社区合作</li>
+
+  <li>[ ] 探索更轻量级的类似实现 (非 Electron)</li>
+
+</ul>
+
+<hr>
+
+<strong>分析日期</strong>: 2026-03-31  
+
+<strong>分析者</strong>: Hermes Agent  
+
+<strong>版本</strong>: v1.0
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent × Agent Reach 集成方案 | Xin Conan</title>
+    <meta name="description" content="Hermes Agent × Agent Reach 集成方案  **版本**: 1.0   **日期**: 2026-03-31   **状态**: 设计方案，待实施  ---   1. 集成目标   1.1 现状分析  **Hermes 当前能力**: - ✅ Web 搜索 (DuckDuckG...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Hermes Agent × Agent Reach 集成方案</h1>
+                <p class="post-subtitle">Hermes Agent × Agent Reach 集成方案  **版本**: 1.0   **日期**: 2026-03-31   **状态**: 设计方案，待实施  ---   1. 集成目标   1.1 现状分析  **Hermes 当前能力**: - ✅ Web 搜索 (DuckDuckG...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Hermes Agent × Agent Reach 集成方案</h1>
+
+<strong>版本</strong>: 1.0  
+
+<strong>日期</strong>: 2026-03-31  
+
+<strong>状态</strong>: 设计方案，待实施
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>1. 集成目标</h2>
+
+<h3>1.1 现状分析</h3>
+
+<strong>Hermes 当前能力</strong>:
+
+<ul>
+
+  <li>✅ Web 搜索 (DuckDuckGo/Firecrawl)</li>
+
+  <li>✅ Web 提取 (Jina Reader/Firecrawl)</li>
+
+  <li>✅ GitHub 操作 (gh CLI)</li>
+
+  <li>✅ 代码执行、终端操作</li>
+
+  <li>❌ 社交媒体 (Twitter/X, Reddit)</li>
+
+  <li>❌ 视频平台 (YouTube, Bilibili)</li>
+
+  <li>❌ 国内平台 (小红书, 微博, 抖音)</li>
+
+  <li>❌ 诊断系统</li>
+
+</ul>
+
+<strong>Agent Reach 补充</strong>:
+
+<ul>
+
+  <li>✅ Twitter/X 读取/搜索 (bird CLI)</li>
+
+  <li>✅ Reddit 读取/搜索</li>
+
+  <li>✅ YouTube 字幕提取</li>
+
+  <li>✅ Bilibili 字幕</li>
+
+  <li>✅ 小红书读取/搜索</li>
+
+  <li>✅ 微博/V2EX/雪球</li>
+
+  <li>✅ 统一诊断系统</li>
+
+</ul>
+
+<h3>1.2 集成价值</h3>
+
+<p>| 场景 | 当前方案 | Agent Reach 方案 | 收益 | |------|---------|------------------|------| | 分析竞品口碑 | 无法直接获取 | 小红书 + 微博搜索 | 新增能力 | | 技术调研 | 仅能搜网页 | YouTube 教程字幕 | 视频内容 | | 社媒监控 | 不支持 | Twitter/Reddit 搜索 | 新增能力 | | 故障排查 | 手动检查 | <code>doctor</code> 自动诊断 | 效率提升 |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>2. 架构设计</h2>
+
+<h3>2.1 集成模式选择</h3>
+
+<strong>方案 A: 直接调用 Agent Reach CLI</strong> (推荐)
+
+<pre><code class="language-text">User Request → Hermes → agent-reach &lt;command&gt; → Result
+
+<p>                ↓          复用现有工具调用机制</p>
+
+</code></pre>
+
+<strong>方案 B: Python 库调用</strong>
+
+<pre><code class="language-text">User Request → Hermes → from agent_reach import ... → Result
+
+<p>                ↓          需要修改 Hermes 代码</p>
+
+</code></pre>
+
+<strong>方案 C: MCP Server 集成</strong>
+
+<pre><code class="language-text">User Request → Hermes → MCP Client → Agent Reach MCP Server → Result
+
+<p>                ↓          需要配置 MCP</p>
+
+</code></pre>
+
+<strong>决策</strong>: 采用 <strong>方案 A (CLI)</strong> + <strong>方案 C (MCP 可选)</strong>
+
+<ul>
+
+  <li>CLI 方案零代码改动，立即可用</li>
+
+  <li>MCP 方案适合未来标准化集成</li>
+
+</ul>
+
+<h3>2.2 集成架构</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────┐
+
+<p>│                    Hermes Agent                             │ ├─────────────────────────────────────────────────────────────┤ │  Skills Layer                                               │ │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │ │  │ web-search  │  │  web-extract│  │  agent-reach-bridge │ │ ← 新增 │  │  (existing) │  │  (existing) │  │     (new skill)     │ │ │  └─────────────┘  └─────────────┘  └─────────────────────┘ │ │                                                              │ │  ┌─────────────────────────────────────────────────────────┐│ │  │           Agent Reach Integration Layer                 ││ │  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐   ││ │  │  │  Twitter │ │ YouTube  │ │  XiaoHong│ │  Doctor  │   ││ │  │  │  Channel │ │  Channel │ │  Channel │ │  Tool    │   ││ │  │  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘   ││ │  └───────┼────────────┼────────────┼────────────┼──────────┘│ └──────────┼────────────┼────────────┼────────────┼───────────┘            │            │            │            │            ▼            ▼            ▼            ▼      ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │  bird    │ │ yt-dlp   │ │ internal │ │ agent-   │      │  CLI     │ │  CLI     │ │ parser   │ │  reach   │      └──────────┘ └──────────┘ └──────────┘ └──────────┘</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>3. 实施计划</h2>
+
+<h3>Phase 1: 基础安装与诊断 (Day 1)</h3>
+
+<strong>目标</strong>: 安装 Agent Reach，验证基础功能
+
+<pre><code class="language-bash">&lt;h1&gt;Step 1: 安装 Agent Reach&lt;/h1&gt;
+
+<p>pip install agent-reach</p>
+
+<p>&lt;h1&gt;Step 2: 运行诊断&lt;/h1&gt; agent-reach doctor</p>
+
+<p>&lt;h1&gt;Step 3: 验证关键平台&lt;/h1&gt; agent-reach channels list</p>
+
+</code></pre>
+
+<strong>预期输出</strong>:
+
+<pre><code class="language-text">✅ Web (Jina Reader)
+
+<p>✅ YouTube (yt-dlp) ⚠️  Twitter (bird) — 未配置认证 ⚠️  Reddit — 需要代理</p>
+
+</code></pre>
+
+<hr>
+
+<h3>Phase 2: Skill 开发 (Day 2-3)</h3>
+
+<h4>2.1 创建 <code>agent-reach-bridge</code> Skill</h4>
+
+<strong>文件</strong>: <code>~/.hermes/skills/agent-reach-bridge/SKILL.md</code>
+
+<pre><code class="language-markdown">&lt;h1&gt;Agent Reach Bridge&lt;/h1&gt;
+
+<p>让 Hermes Agent 具备互联网全平台访问能力。</p>
+
+<p>&lt;h2&gt;可用工具&lt;/h2&gt;</p>
+
+<p>&lt;h3&gt;社交媒体&lt;/h3&gt;</p>
+
+<ul>
+
+  <li><code>ar-twitter-read &lt;url&gt;</code> — 读取推文内容</li>
+
+  <li><code>ar-twitter-search &lt;query&gt;</code> — 搜索推文</li>
+
+  <li><code>ar-reddit-search &lt;query&gt;</code> — 搜索 Reddit</li>
+
+  <li><code>ar-weibo-search &lt;query&gt;</code> — 搜索微博</li>
+
+  <li><code>ar-xhs-search &lt;query&gt;</code> — 搜索小红书</li>
+
+</ul>
+
+<p>&lt;h3&gt;视频平台&lt;/h3&gt;</p>
+
+<ul>
+
+  <li><code>ar-youtube-subs &lt;url&gt;</code> — 提取 YouTube 字幕</li>
+
+  <li><code>ar-bilibili-subs &lt;url&gt;</code> — 提取 Bilibili 字幕</li>
+
+</ul>
+
+<p>&lt;h3&gt;内容平台&lt;/h3&gt;</p>
+
+<ul>
+
+  <li><code>ar-web-read &lt;url&gt;</code> — 读取任意网页 (Jina Reader)</li>
+
+  <li><code>ar-rss &lt;url&gt;</code> — 读取 RSS 订阅</li>
+
+  <li><code>ar-github-repo &lt;owner/repo&gt;</code> — 查看仓库信息</li>
+
+</ul>
+
+<p>&lt;h3&gt;诊断&lt;/h3&gt;</p>
+
+<ul>
+
+  <li><code>ar-doctor</code> — 检查所有平台状态</li>
+
+  <li><code>ar-config &lt;platform&gt;</code> — 配置指定平台</li>
+
+</ul>
+
+<p>&lt;h2&gt;使用示例&lt;/h2&gt;</p>
+
+<p>用户: &quot;帮我看看这个 YouTube 视频讲了什么&quot; → 执行: <code>ar-youtube-subs &quot;https://youtube.com/watch?v=xxx&quot;</code></p>
+
+<p>用户: &quot;小红书上大家怎么评价 iPhone 16&quot; → 执行: <code>ar-xhs-search &quot;iPhone 16 评测&quot;</code></p>
+
+</code></pre>
+
+<h4>2.2 创建工具脚本</h4>
+
+<strong>文件</strong>: <code>~/.hermes/skills/agent-reach-bridge/scripts/ar-bridge.py</code>
+
+<pre><code class="language-python">#!/usr/bin/env python3
+
+<p>&quot;&quot;&quot;Agent Reach Bridge — Unified interface for Hermes Agent.&quot;&quot;&quot;</p>
+
+<p>import argparse import subprocess import json import sys from typing import Optional</p>
+
+<p>def run_command(cmd: list[str], timeout: int = 60) -&gt; tuple[int, str, str]:     &quot;&quot;&quot;Run shell command and return (exit_code, stdout, stderr).&quot;&quot;&quot;     try:         result = subprocess.run(             cmd,             capture_output=True,             text=True,             timeout=timeout,             encoding=&#x27;utf-8&#x27;,             errors=&#x27;replace&#x27;         )         return result.returncode, result.stdout, result.stderr     except subprocess.TimeoutExpired:         return -1, &quot;&quot;, &quot;Command timed out&quot;     except Exception as e:         return -1, &quot;&quot;, str(e)</p>
+
+<p>class AgentReachBridge:     &quot;&quot;&quot;Bridge between Hermes and Agent Reach upstream tools.&quot;&quot;&quot;</p>
+
+<p>    # ========== 社交媒体 ==========</p>
+
+<p>    def twitter_read(self, url: str) -&gt; dict:         &quot;&quot;&quot;读取推文内容。&quot;&quot;&quot;         # 使用 bird CLI         code, out, err = run_command([&#x27;bird&#x27;, &#x27;read&#x27;, url])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err or &quot;Failed to read tweet&quot;}         return {&quot;success&quot;: True, &quot;content&quot;: out}</p>
+
+<p>    def twitter_search(self, query: str, limit: int = 20) -&gt; dict:         &quot;&quot;&quot;搜索推文。&quot;&quot;&quot;         code, out, err = run_command([&#x27;bird&#x27;, &#x27;search&#x27;, query, &#x27;--limit&#x27;, str(limit)])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err or &quot;Search failed&quot;}         return {&quot;success&quot;: True, &quot;results&quot;: out}</p>
+
+<p>    def reddit_search(self, query: str) -&gt; dict:         &quot;&quot;&quot;搜索 Reddit。&quot;&quot;&quot;         # 优先使用 exa，回退到 bird         code, out, err = run_command([&#x27;exa&#x27;, &#x27;search&#x27;, &#x27;--site&#x27;, &#x27;reddit.com&#x27;, query])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err or &quot;Search failed&quot;}         return {&quot;success&quot;: True, &quot;results&quot;: out}</p>
+
+<p>    def weibo_search(self, query: str) -&gt; dict:         &quot;&quot;&quot;搜索微博。&quot;&quot;&quot;         # 使用内置实现或外部工具         # TODO: 需要具体实现         return {&quot;success&quot;: False, &quot;error&quot;: &quot;Not implemented yet&quot;}</p>
+
+<p>    def xhs_search(self, query: str) -&gt; dict:         &quot;&quot;&quot;搜索小红书。&quot;&quot;&quot;         # TODO: 需要具体实现         return {&quot;success&quot;: False, &quot;error&quot;: &quot;Not implemented yet&quot;}</p>
+
+<p>    # ========== 视频平台 ==========</p>
+
+<p>    def youtube_subs(self, url: str, lang: Optional[str] = None) -&gt; dict:         &quot;&quot;&quot;提取 YouTube 字幕。&quot;&quot;&quot;         cmd = [&#x27;yt-dlp&#x27;, &#x27;--skip-download&#x27;, &#x27;--write-subs&#x27;, &#x27;--write-auto-subs&#x27;,                 &#x27;--sub-langs&#x27;, lang or &#x27;zh-CN,zh-TW,en&#x27;, &#x27;--dump-json&#x27;, url]         code, out, err = run_command(cmd, timeout=120)</p>
+
+<p>        if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err or &quot;Failed to extract subtitles&quot;}</p>
+
+<p>        try:             data = json.loads(out.split(&#x27;\n&#x27;)[0])             return {                 &quot;success&quot;: True,                 &quot;title&quot;: data.get(&#x27;title&#x27;),                 &quot;description&quot;: data.get(&#x27;description&#x27;),                 &quot;subtitles&quot;: data.get(&#x27;subtitles&#x27;, {}),                 &quot;automatic_captions&quot;: data.get(&#x27;automatic_captions&#x27;, {})             }         except json.JSONDecodeError:             return {&quot;success&quot;: False, &quot;error&quot;: &quot;Failed to parse video info&quot;}</p>
+
+<p>    def bilibili_subs(self, url: str) -&gt; dict:         &quot;&quot;&quot;提取 Bilibili 字幕。&quot;&quot;&quot;         # yt-dlp 也支持 Bilibili         return self.youtube_subs(url)  # 复用逻辑</p>
+
+<p>    # ========== 内容平台 ==========</p>
+
+<p>    def web_read(self, url: str) -&gt; dict:         &quot;&quot;&quot;读取任意网页。&quot;&quot;&quot;         # 使用 Jina Reader         code, out, err = run_command([&#x27;curl&#x27;, &#x27;-s&#x27;, f&#x27;https://r.jina.ai/{url}&#x27;])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err}         return {&quot;success&quot;: True, &quot;content&quot;: out}</p>
+
+<p>    def rss_read(self, url: str, limit: int = 10) -&gt; dict:         &quot;&quot;&quot;读取 RSS 订阅。&quot;&quot;&quot;         code, out, err = run_command([&#x27;python3&#x27;, &#x27;-c&#x27;,              f&#x27;import feedparser; f = feedparser.parse(&quot;{url}&quot;); &#x27;             f&#x27;print(json.dumps([{{&quot;title&quot;: e.title, &quot;link&quot;: e.link}} &#x27;             f&#x27;for e in f.entries[:{limit}]], ensure_ascii=False))&#x27;])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err}         try:             return {&quot;success&quot;: True, &quot;entries&quot;: json.loads(out)}         except:             return {&quot;success&quot;: False, &quot;error&quot;: &quot;Parse error&quot;}</p>
+
+<p>    def github_repo(self, repo: str) -&gt; dict:         &quot;&quot;&quot;查看 GitHub 仓库信息。&quot;&quot;&quot;         code, out, err = run_command([&#x27;gh&#x27;, &#x27;repo&#x27;, &#x27;view&#x27;, repo, &#x27;--json&#x27;,                                        &#x27;name,description,stargazersCount,primaryLanguage,pushedAt&#x27;])         if code != 0:             return {&quot;success&quot;: False, &quot;error&quot;: err}         try:             return {&quot;success&quot;: True, &quot;data&quot;: json.loads(out)}         except:             return {&quot;success&quot;: False, &quot;error&quot;: &quot;Parse error&quot;}</p>
+
+<p>    # ========== 诊断 ==========</p>
+
+<p>    def doctor(self) -&gt; dict:         &quot;&quot;&quot;运行完整诊断。&quot;&quot;&quot;         code, out, err = run_command([&#x27;agent-reach&#x27;, &#x27;doctor&#x27;])         return {             &quot;success&quot;: code == 0,             &quot;report&quot;: out or err         }</p>
+
+<p>    def config_status(self) -&gt; dict:         &quot;&quot;&quot;获取配置状态。&quot;&quot;&quot;         # 检查各平台配置         platforms = {             &quot;twitter&quot;: self._check_cmd([&#x27;bird&#x27;, &#x27;check&#x27;]),             &quot;youtube&quot;: self._check_cmd([&#x27;yt-dlp&#x27;, &#x27;--version&#x27;]),             &quot;github&quot;: self._check_cmd([&#x27;gh&#x27;, &#x27;--version&#x27;]),         }         return {&quot;success&quot;: True, &quot;platforms&quot;: platforms}</p>
+
+<p>    def _check_cmd(self, cmd: list[str]) -&gt; dict:         &quot;&quot;&quot;检查命令是否可用。&quot;&quot;&quot;         code, _, _ = run_command(cmd, timeout=10)         return {&quot;available&quot;: code == 0}</p>
+
+<p>def main():     parser = argparse.ArgumentParser(description=&#x27;Agent Reach Bridge for Hermes&#x27;)     parser.add_argument(&#x27;action&#x27;, choices=[         &#x27;twitter-read&#x27;, &#x27;twitter-search&#x27;, &#x27;reddit-search&#x27;, &#x27;weibo-search&#x27;, &#x27;xhs-search&#x27;,         &#x27;youtube-subs&#x27;, &#x27;bilibili-subs&#x27;,         &#x27;web-read&#x27;, &#x27;rss-read&#x27;, &#x27;github-repo&#x27;,         &#x27;doctor&#x27;, &#x27;config-status&#x27;     ])     parser.add_argument(&#x27;--url&#x27;, &#x27;-u&#x27;, help=&#x27;URL parameter&#x27;)     parser.add_argument(&#x27;--query&#x27;, &#x27;-q&#x27;, help=&#x27;Search query&#x27;)     parser.add_argument(&#x27;--repo&#x27;, &#x27;-r&#x27;, help=&#x27;Repository (owner/repo)&#x27;)     parser.add_argument(&#x27;--lang&#x27;, &#x27;-l&#x27;, help=&#x27;Language code&#x27;)     parser.add_argument(&#x27;--limit&#x27;, type=int, default=20, help=&#x27;Result limit&#x27;)</p>
+
+<p>    args = parser.parse_args()</p>
+
+<p>    bridge = AgentReachBridge()</p>
+
+<p>    # Route to appropriate method     action_map = {         &#x27;twitter-read&#x27;: lambda: bridge.twitter_read(args.url),         &#x27;twitter-search&#x27;: lambda: bridge.twitter_search(args.query, args.limit),         &#x27;reddit-search&#x27;: lambda: bridge.reddit_search(args.query),         &#x27;weibo-search&#x27;: lambda: bridge.weibo_search(args.query),         &#x27;xhs-search&#x27;: lambda: bridge.xhs_search(args.query),         &#x27;youtube-subs&#x27;: lambda: bridge.youtube_subs(args.url, args.lang),         &#x27;bilibili-subs&#x27;: lambda: bridge.bilibili_subs(args.url),         &#x27;web-read&#x27;: lambda: bridge.web_read(args.url),         &#x27;rss-read&#x27;: lambda: bridge.rss_read(args.url, args.limit),         &#x27;github-repo&#x27;: lambda: bridge.github_repo(args.repo),         &#x27;doctor&#x27;: bridge.doctor,         &#x27;config-status&#x27;: bridge.config_status,     }</p>
+
+<p>    if args.action in action_map:         result = action_map[args.action]()         print(json.dumps(result, ensure_ascii=False, indent=2))         sys.exit(0 if result.get(&#x27;success&#x27;) else 1)     else:         print(json.dumps({&quot;success&quot;: False, &quot;error&quot;: &quot;Unknown action&quot;}))         sys.exit(1)</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     main()</p>
+
+</code></pre>
+
+<h4>2.3 创建便捷别名脚本</h4>
+
+<strong>文件</strong>: <code>~/.hermes/skills/agent-reach-bridge/scripts/ar</code>
+
+<pre><code class="language-bash">#!/bin/bash
+
+<p>&lt;h1&gt;Agent Reach 便捷命令&lt;/h1&gt;</p>
+
+<p>SCRIPT_DIR=&quot;$(cd &quot;$(dirname &quot;${BASH_SOURCE[0]}&quot;)&quot; &amp;&amp; pwd)&quot;</p>
+
+<p>show_help() {     cat &lt;&lt; &#x27;EOF&#x27; Agent Reach for Hermes — 互联网全平台访问</p>
+
+<p>用法: ar &lt;command&gt; [options]</p>
+
+<p>社交媒体:   ar twitter &lt;url&gt;          读取推文   ar twitter-search &lt;query&gt; 搜索推文   ar reddit &lt;query&gt;         搜索 Reddit   ar weibo &lt;query&gt;          搜索微博   ar xhs &lt;query&gt;            搜索小红书</p>
+
+<p>视频:   ar youtube &lt;url&gt;          提取 YouTube 字幕   ar bilibili &lt;url&gt;         提取 Bilibili 字幕</p>
+
+<p>内容:   ar web &lt;url&gt;              读取网页内容   ar rss &lt;url&gt;              读取 RSS   ar github &lt;owner/repo&gt;    查看仓库信息</p>
+
+<p>诊断:   ar doctor                 运行完整诊断   ar status                 查看配置状态   ar help                   显示此帮助</p>
+
+<p>示例:   ar twitter https://x.com/elonmusk/status/...   ar youtube &quot;https://youtube.com/watch?v=xxx&quot;   ar xhs &quot;iPhone 16 评测&quot; EOF }</p>
+
+<p>case &quot;$1&quot; in     twitter)         if [[ &quot;$2&quot; == &lt;em&gt;&quot;search&quot;&lt;/em&gt; ]]; then             python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; twitter-search --query &quot;$3&quot;         else             python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; twitter-read --url &quot;$2&quot;         fi         ;;     twitter-search)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; twitter-search --query &quot;$2&quot;         ;;     reddit)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; reddit-search --query &quot;$2&quot;         ;;     weibo)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; weibo-search --query &quot;$2&quot;         ;;     xhs)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; xhs-search --query &quot;$2&quot;         ;;     youtube)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; youtube-subs --url &quot;$2&quot;         ;;     bilibili)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; bilibili-subs --url &quot;$2&quot;         ;;     web)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; web-read --url &quot;$2&quot;         ;;     rss)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; rss-read --url &quot;$2&quot;         ;;     github)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; github-repo --repo &quot;$2&quot;         ;;     doctor)         agent-reach doctor         ;;     status)         python3 &quot;$SCRIPT_DIR/ar-bridge.py&quot; config-status         ;;     help|--help|-h)         show_help         ;;     *)         echo &quot;未知命令: $1&quot;         echo &quot;运行 &#x27;ar help&#x27; 查看用法&quot;         exit 1         ;; esac</p>
+
+</code></pre>
+
+<hr>
+
+<h3>Phase 3: 诊断系统集成 (Day 4)</h3>
+
+<p>将 Agent Reach 的 <code>doctor</code> 集成到 Hermes 的系统检查中。</p>
+
+<h4>3.1 创建诊断检查点</h4>
+
+<strong>文件</strong>: <code>~/.hermes/skills/agent-reach-bridge/doctor_integration.py</code>
+
+<pre><code class="language-python">&quot;&quot;&quot;Integrate Agent Reach diagnostics into Hermes health checks.&quot;&quot;&quot;
+
+<p>import subprocess import json from typing import Dict, List, Tuple</p>
+
+<p>class AgentReachDiagnostics:     &quot;&quot;&quot;Agent Reach diagnostics for Hermes.&quot;&quot;&quot;</p>
+
+<p>    CHECKS = [         (&quot;Web (Jina)&quot;, &quot;web&quot;, [&#x27;curl&#x27;, &#x27;-s&#x27;, &#x27;https://r.jina.ai/http://example.com&#x27;]),         (&quot;YouTube (yt-dlp)&quot;, &quot;youtube&quot;, [&#x27;yt-dlp&#x27;, &#x27;--version&#x27;]),         (&quot;Twitter (bird)&quot;, &quot;twitter&quot;, [&#x27;bird&#x27;, &#x27;--version&#x27;]),         (&quot;GitHub (gh)&quot;, &quot;github&quot;, [&#x27;gh&#x27;, &#x27;--version&#x27;]),         (&quot;RSS (feedparser)&quot;, &quot;rss&quot;, [&#x27;python3&#x27;, &#x27;-c&#x27;, &#x27;import feedparser&#x27;]),     ]</p>
+
+<p>    def run_checks(self) -&gt; List[Dict]:         &quot;&quot;&quot;Run all diagnostic checks.&quot;&quot;&quot;         results = []</p>
+
+<p>        for name, key, cmd in self.CHECKS:             try:                 result = subprocess.run(                     cmd,                     capture_output=True,                     timeout=10,                     check=False                 )                 results.append({                     &quot;name&quot;: name,                     &quot;key&quot;: key,                     &quot;status&quot;: &quot;ok&quot; if result.returncode == 0 else &quot;error&quot;,                     &quot;available&quot;: result.returncode == 0                 })             except Exception as e:                 results.append({                     &quot;name&quot;: name,                     &quot;key&quot;: key,                     &quot;status&quot;: &quot;error&quot;,                     &quot;available&quot;: False,                     &quot;error&quot;: str(e)                 })</p>
+
+<p>        return results</p>
+
+<p>    def get_summary(self) -&gt; Dict:         &quot;&quot;&quot;Get diagnostic summary.&quot;&quot;&quot;         results = self.run_checks()         available = sum(1 for r in results if r[&quot;available&quot;])</p>
+
+<p>        return {             &quot;total&quot;: len(results),             &quot;available&quot;: available,             &quot;unavailable&quot;: len(results) - available,             &quot;platforms&quot;: results         }</p>
+
+<p>    def format_report(self) -&gt; str:         &quot;&quot;&quot;Format diagnostic report for display.&quot;&quot;&quot;         summary = self.get_summary()</p>
+
+<p>        lines = [             &quot;Agent Reach 诊断报告&quot;,             &quot;=&quot; * 40,             f&quot;平台总数: {summary[&#x27;total&#x27;]}&quot;,             f&quot;可用: {summary[&#x27;available&#x27;]}&quot;,             f&quot;待配置: {summary[&#x27;unavailable&#x27;]}&quot;,             &quot;&quot;,             &quot;详细状态:&quot;,             &quot;-&quot; * 40,         ]</p>
+
+<p>        for platform in summary[&quot;platforms&quot;]:             icon = &quot;✅&quot; if platform[&quot;available&quot;] else &quot;❌&quot;             lines.append(f&quot;{icon} {platform[&#x27;name&#x27;]}&quot;)</p>
+
+<p>        return &quot;\n&quot;.join(lines)</p>
+
+<p>def check_agent_reach() -&gt; Tuple[bool, str]:     &quot;&quot;&quot;Check if Agent Reach is installed and working.&quot;&quot;&quot;     try:         result = subprocess.run(             [&#x27;agent-reach&#x27;, &#x27;--version&#x27;],             capture_output=True,             timeout=5         )         if result.returncode == 0:             version = result.stdout.decode().strip()             return True, f&quot;Agent Reach {version}&quot;         return False, &quot;Agent Reach installed but not responding&quot;     except FileNotFoundError:         return False, &quot;Agent Reach not installed&quot;     except Exception as e:         return False, f&quot;Error checking Agent Reach: {e}&quot;</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     # Run diagnostics     installed, msg = check_agent_reach()     print(f&quot;Agent Reach 状态: {msg}&quot;)</p>
+
+<p>    if installed:         diag = AgentReachDiagnostics()         print(&quot;\n&quot; + diag.format_report())</p>
+
+</code></pre>
+
+<hr>
+
+<h3>Phase 4: 自动化工作流 (Day 5)</h3>
+
+<h4>4.1 创建安装脚本</h4>
+
+<strong>文件</strong>: <code>~/hermes-agent/scripts/install-agent-reach.sh</code>
+
+<pre><code class="language-bash">#!/bin/bash
+
+<p>&lt;h1&gt;自动安装 Agent Reach 及其依赖&lt;/h1&gt;</p>
+
+<p>set -e</p>
+
+<p>echo &quot;🔧 安装 Agent Reach for Hermes...&quot;</p>
+
+<p>&lt;h1&gt;1. 检查 Python 版本&lt;/h1&gt; python3 --version || { echo &quot;❌ Python 3 未安装&quot;; exit 1; }</p>
+
+<p>&lt;h1&gt;2. 安装 Agent Reach&lt;/h1&gt; echo &quot;📦 安装 agent-reach...&quot; pip install --upgrade agent-reach</p>
+
+<p>&lt;h1&gt;3. 安装上游工具&lt;/h1&gt; echo &quot;📦 安装上游工具...&quot;</p>
+
+<p>&lt;h1&gt;yt-dlp (YouTube/Bilibili)&lt;/h1&gt; pip install --upgrade yt-dlp</p>
+
+<p>&lt;h1&gt;bird CLI (Twitter)&lt;/h1&gt; if ! command -v bird &amp;&gt; /dev/null; then     echo &quot;📦 安装 bird CLI (Twitter)...&quot;     npm install -g @steipete/bird || echo &quot;⚠️ npm 不可用，跳过 bird 安装&quot; fi</p>
+
+<p>&lt;h1&gt;gh CLI (GitHub)&lt;/h1&gt; if ! command -v gh &amp;&gt; /dev/null; then     echo &quot;📦 安装 gh CLI (GitHub)...&quot;     # 根据系统安装 gh     if command -v apt-get &amp;&gt; /dev/null; then         curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg         echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main&quot; | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null         sudo apt-get update &amp;&amp; sudo apt-get install -y gh     elif command -v brew &amp;&gt; /dev/null; then         brew install gh     else         echo &quot;⚠️ 无法自动安装 gh CLI，请手动安装&quot;     fi fi</p>
+
+<p>&lt;h1&gt;4. 验证安装&lt;/h1&gt; echo &quot;&quot; echo &quot;✅ 验证安装...&quot; agent-reach --version echo &quot;&quot;</p>
+
+<p>&lt;h1&gt;5. 运行诊断&lt;/h1&gt; echo &quot;🔍 运行初始诊断...&quot; agent-reach doctor || true</p>
+
+<p>echo &quot;&quot; echo &quot;🎉 Agent Reach 安装完成!&quot; echo &quot;&quot; echo &quot;使用方法:&quot; echo &quot;  ar doctor       — 运行诊断&quot; echo &quot;  ar status       — 查看配置状态&quot; echo &quot;  ar help         — 显示帮助&quot;</p>
+
+</code></pre>
+
+<h4>4.2 创建更新脚本</h4>
+
+<strong>文件</strong>: <code>~/hermes-agent/scripts/update-agent-reach.sh</code>
+
+<pre><code class="language-bash">#!/bin/bash
+
+<p>&lt;h1&gt;更新 Agent Reach 及其依赖&lt;/h1&gt;</p>
+
+<p>set -e</p>
+
+<p>echo &quot;🔄 更新 Agent Reach...&quot;</p>
+
+<p>&lt;h1&gt;更新 agent-reach&lt;/h1&gt; pip install --upgrade agent-reach</p>
+
+<p>&lt;h1&gt;更新上游工具&lt;/h1&gt; pip install --upgrade yt-dlp npm update -g @steipete/bird 2&gt;/dev/null || true</p>
+
+<p>echo &quot;✅ 更新完成&quot; agent-reach --version</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>4. 使用示例</h2>
+
+<h3>场景 1: 技术调研</h3>
+
+<pre><code class="language-text">用户: &quot;帮我调研一下 Vibe Coding 在 Twitter 上的讨论&quot;
+
+<p>Hermes → ar twitter-search &quot;vibe coding&quot;</p>
+
+<p>结果: {   &quot;success&quot;: true,   &quot;results&quot;: [     {&quot;author&quot;: &quot;@ptr&quot;&quot;, &quot;text&quot;: &quot;Vibe coding is the future...&quot;, &quot;likes&quot;: 1234},     ...   ] }</p>
+
+</code></pre>
+
+<h3>场景 2: 视频学习</h3>
+
+<pre><code class="language-text">用户: &quot;这个 YouTube 教程讲了什么 https://youtube.com/watch?v=xxx&quot;
+
+<p>Hermes → ar youtube &quot;https://youtube.com/watch?v=xxx&quot;</p>
+
+<p>结果: {   &quot;success&quot;: true,   &quot;title&quot;: &quot;Python Asyncio Deep Dive&quot;,   &quot;subtitles&quot;: {     &quot;en&quot;: &quot;[full transcript...]&quot;   } }</p>
+
+</code></pre>
+
+<h3>场景 3: 竞品调研</h3>
+
+<pre><code class="language-text">用户: &quot;小红书上 iPhone 16 的口碑怎么样&quot;
+
+<p>Hermes → ar xhs &quot;iPhone 16 评测&quot;</p>
+
+<p>结果: {   &quot;success&quot;: true,   &quot;results&quot;: [     {&quot;title&quot;: &quot;iPhone 16 真实体验&quot;, &quot;likes&quot;: 5000, ...},     ...   ] }</p>
+
+</code></pre>
+
+<h3>场景 4: 故障排查</h3>
+
+<pre><code class="language-text">用户: &quot;检查一下我的网络工具配置&quot;
+
+<p>Hermes → ar doctor</p>
+
+<p>结果: ✅ Web (Jina) — 可用 ✅ YouTube — 可用 ⚠️  Twitter — 需要配置认证    → 运行: agent-reach configure twitter-cookies &quot;...&quot;</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>5. 配置指南</h2>
+
+<h3>5.1 Twitter/X 配置</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;方法 1: Cookie 导出 (推荐)&lt;/h1&gt;
+
+<p>&lt;h1&gt;1. 浏览器登录 Twitter&lt;/h1&gt; &lt;h1&gt;2. 安装 Cookie-Editor 插件&lt;/h1&gt; &lt;h1&gt;3. 导出 Cookie 并发送给 Agent&lt;/h1&gt; &lt;h1&gt;4. Agent 执行:&lt;/h1&gt; agent-reach configure twitter-cookies &quot;auth_token=xxx; ct0=yyy&quot;</p>
+
+<p>&lt;h1&gt;方法 2: 环境变量&lt;/h1&gt; export AUTH_TOKEN=&quot;xxx&quot; export CT0=&quot;yyy&quot;</p>
+
+</code></pre>
+
+<h3>5.2 GitHub 配置</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;使用 gh CLI 登录&lt;/h1&gt;
+
+<p>gh auth login</p>
+
+<p>&lt;h1&gt;或配置 Token&lt;/h1&gt; agent-reach configure github-token &quot;ghp_xxx&quot;</p>
+
+</code></pre>
+
+<h3>5.3 代理配置 (服务器部署)</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;配置住宅代理 (用于 Reddit/Bilibili)&lt;/h1&gt;
+
+<p>agent-reach configure proxy &quot;http://user:pass@ip:port&quot;</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>6. 监控与维护</h2>
+
+<h3>6.1 每日健康检查</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;添加到 crontab&lt;/h1&gt;
+
+<p>0 9 &lt;em&gt; &lt;/em&gt; * ~/.hermes/skills/agent-reach-bridge/doctor_integration.py &gt;&gt; /tmp/ar-health.log 2&gt;&amp;1</p>
+
+</code></pre>
+
+<h3>6.2 自动更新</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;每周自动更新&lt;/h1&gt;
+
+<p>0 3 &lt;em&gt; &lt;/em&gt; 1 ~/hermes-agent/scripts/update-agent-reach.sh &gt;&gt; /tmp/ar-update.log 2&gt;&amp;1</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>7. 风险与应对</h2>
+
+<p>| 风险 | 概率 | 影响 | 应对 | |------|------|------|------| | 平台封禁 (Twitter/XHS) | 中 | 高 | 多账号轮换、降低频率 | | 上游工具变更 | 低 | 中 | 定期更新、版本锁定 | | Cookie 过期 | 高 | 中 | 定期检查、自动提醒 | | 代理失效 | 中 | 中 | 备用代理池 |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>8. 下一步行动</h2>
+
+<ol>
+
+  <li><strong>立即执行</strong>: 运行安装脚本</li>
+
+</ol>
+
+   <pre><code class="language-bash">   bash ~/hermes-agent/scripts/install-agent-reach.sh
+
+   </code></pre>
+
+<ol>
+
+  <li><strong>验证</strong>: 运行诊断</li>
+
+</ol>
+
+   <pre><code class="language-bash">   ar doctor
+
+   </code></pre>
+
+<ol>
+
+  <li><strong>配置</strong>: 根据诊断结果配置需要认证的平台</li>
+
+</ol>
+
+<ol>
+
+  <li><strong>测试</strong>: 使用示例场景验证功能</li>
+
+</ol>
+
+<ol>
+
+  <li><strong>文档</strong>: 将使用方法更新到 Hermes 知识库</li>
+
+</ol>
+
+<hr>
+
+<strong>创建日期</strong>: 2026-03-31  
+
+<strong>版本</strong>: 1.0  
+
+<strong>状态</strong>: 待实施
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

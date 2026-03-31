@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes + TrendRadar 快速上手指南 | Xin Conan</title>
+    <meta name="description" content="Hermes + TrendRadar 快速上手指南   5 分钟快速集成   步骤 1: 部署 TrendRadar (2 分钟)  ```bash  1. Fork 项目到你的 GitHub  访问: https://github.com/sansan0/TrendRadar  点击 Fork ...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Hermes + TrendRadar 快速上手指南</h1>
+                <p class="post-subtitle">Hermes + TrendRadar 快速上手指南   5 分钟快速集成   步骤 1: 部署 TrendRadar (2 分钟)  ```bash  1. Fork 项目到你的 GitHub  访问: https://github.com/sansan0/TrendRadar  点击 Fork ...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Hermes + TrendRadar 快速上手指南</h1>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>5 分钟快速集成</h2>
+
+<h3>步骤 1: 部署 TrendRadar (2 分钟)</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;1. Fork 项目到你的 GitHub&lt;/h1&gt;
+
+<p>&lt;h1&gt;访问: https://github.com/sansan0/TrendRadar&lt;/h1&gt; &lt;h1&gt;点击 Fork 按钮&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;2. 启用 GitHub Actions&lt;/h1&gt; &lt;h1&gt;在你的 Fork 中，点击 Actions → 启用 Actions&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;3. 配置密钥&lt;/h1&gt; &lt;h1&gt;Settings → Secrets → New repository secret&lt;/h1&gt; &lt;h1&gt;添加: API_KEY (你的 OpenAI API Key)&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;4. 完成！&lt;/h1&gt; &lt;h1&gt;等待 1-2 分钟，自动运行&lt;/h1&gt; &lt;h1&gt;查看结果: https://yourname.github.io/TrendRadar&lt;/h1&gt;</p>
+
+</code></pre>
+
+<h3>步骤 2: 添加 Hermes Skill (2 分钟)</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;1. 复制 Skill 文件&lt;/h1&gt;
+
+<p>cp ~/research/hermes-trendradar-integration/skills/trendradar_skill.py \    ~/hermes-agent/skills/</p>
+
+<p>&lt;h1&gt;2. 添加到 Hermes 配置&lt;/h1&gt; echo &quot;trendradar&quot; &gt;&gt; ~/hermes-agent/config/enabled_skills.txt</p>
+
+<p>&lt;h1&gt;3. 重启 Hermes&lt;/h1&gt; hermes restart</p>
+
+</code></pre>
+
+<h3>步骤 3: 测试使用 (1 分钟)</h3>
+
+<pre><code class="language-bash">&lt;h1&gt;在 Hermes 中测试&lt;/h1&gt;
+
+<p>hermes</p>
+
+<p>&lt;h1&gt;输入查询&lt;/h1&gt; 👤 You: 查询最近 24 小时关于 AI Agent 的热点新闻</p>
+
+<p>&lt;h1&gt;Hermes 将使用 TrendRadar Skill 返回结果&lt;/h1&gt;</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>常用查询示例</h2>
+
+<h3>基础查询</h3>
+
+<pre><code class="language-text">查询今天知乎热榜前 10
+
+<p>搜索 GitHub 上关于 MCP 的热门项目 查看过去 6 小时 AI 领域的重要新闻</p>
+
+</code></pre>
+
+<h3>高级分析</h3>
+
+<pre><code class="language-text">分析 &quot;ChatDev&quot; 项目的最新动态和发展趋势
+
+<p>监控竞品 &quot;OpenAI&quot; 最近的产品发布和技术突破 生成一份关于 &quot;多智能体系统&quot; 的趋势报告</p>
+
+</code></pre>
+
+<h3>自动监控</h3>
+
+<pre><code class="language-text">每天早 8 点推送 AI 领域的晨间简报
+
+<p>当 &quot;Hermes&quot; 被提及时立即通知我 每周一生成上周的技术趋势总结</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>配置参数速查</h2>
+
+<h3>TrendRadar 配置 (config.yaml)</h3>
+
+<pre><code class="language-yaml">&lt;h1&gt;数据源&lt;/h1&gt;
+
+<p>sources:   zhihu: true        # 知乎热榜   weibo: true        # 微博热搜   github: true       # GitHub Trending   rss:               # RSS 订阅     - &quot;https://example.com/feed.xml&quot;</p>
+
+<p>&lt;h1&gt;AI 设置&lt;/h1&gt; ai:   provider: openai   api_key: &quot;${API_KEY}&quot;   model: gpt-4o-mini   filter_threshold: 0.7  # 筛选阈值 (0-1)</p>
+
+<p>&lt;h1&gt;推送渠道&lt;/h1&gt; notifications:   telegram:     enabled: true     bot_token: &quot;${TG_BOT_TOKEN}&quot;     chat_id: &quot;${TG_CHAT_ID}&quot;</p>
+
+</code></pre>
+
+<h3>Hermes Skill 配置</h3>
+
+<pre><code class="language-python">&lt;h1&gt;~/.hermes/config.yaml&lt;/h1&gt;
+
+<p>skills:   trendradar:     data_source: &quot;github_pages&quot;  # 或 &quot;local&quot;, &quot;api&quot;     github_pages_url: &quot;https://yourname.github.io/TrendRadar&quot;     cache_ttl: 600              # 缓存时间 (秒)     default_limit: 10           # 默认返回数量</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>故障排除</h2>
+
+<h3>问题 1: TrendRadar 数据未更新</h3>
+
+<strong>检查</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;查看 GitHub Actions 运行状态&lt;/h1&gt;
+
+<p>&lt;h1&gt;https://github.com/yourname/TrendRadar/actions&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;检查是否配置了 API_KEY&lt;/h1&gt; &lt;h1&gt;Settings → Secrets → API_KEY&lt;/h1&gt;</p>
+
+</code></pre>
+
+<strong>解决</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;手动触发运行&lt;/h1&gt;
+
+<p>&lt;h1&gt;Actions → TrendRadar Workflow → Run workflow&lt;/h1&gt;</p>
+
+</code></pre>
+
+<h3>问题 2: Hermes 无法读取数据</h3>
+
+<strong>检查</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;检查缓存文件&lt;/h1&gt;
+
+<p>ls -la ~/.hermes/trendradar/</p>
+
+<p>&lt;h1&gt;查看日志&lt;/h1&gt; hermes logs | grep trendradar</p>
+
+</code></pre>
+
+<strong>解决</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;清除缓存重启&lt;/h1&gt;
+
+<p>rm ~/.hermes/trendradar/hot_topics_cache.json hermes restart</p>
+
+</code></pre>
+
+<h3>问题 3: 推送未收到</h3>
+
+<strong>检查</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;验证推送配置&lt;/h1&gt;
+
+<p>&lt;h1&gt;检查 webhook URL 或 bot token 是否正确&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;测试推送&lt;/h1&gt; curl -X POST &quot;YOUR_WEBHOOK_URL&quot; \   -H &quot;Content-Type: application/json&quot; \   -d &#x27;{&quot;text&quot;:&quot;Test message&quot;}&#x27;</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>进阶配置</h2>
+
+<h3>自定义筛选规则</h3>
+
+<pre><code class="language-yaml">&lt;h1&gt;config/ai_filter/custom_rules.yaml&lt;/h1&gt;
+
+<p>rules:   - name: &quot;AI 技术&quot;     keywords: [&quot;AI&quot;, &quot;人工智能&quot;, &quot;LLM&quot;, &quot;大模型&quot;]     min_score: 0.8</p>
+
+<p>  - name: &quot;竞品监控&quot;     keywords: [&quot;OpenAI&quot;, &quot;Anthropic&quot;, &quot;Claude&quot;, &quot;GPT&quot;]     min_score: 0.9     alert_immediately: true</p>
+
+</code></pre>
+
+<h3>定时任务设置</h3>
+
+<pre><code class="language-yaml">&lt;h1&gt;config/timeline.yaml&lt;/h1&gt;
+
+<p>schedule:   - name: &quot;morning_brief&quot;     cron: &quot;0 8 &lt;em&gt; &lt;/em&gt; *&quot;  # 每天 8:00     tasks:       - fetch_hot_news       - ai_analysis       - generate_brief       - push_to_telegram</p>
+
+<p>  - name: &quot;hourly_check&quot;     cron: &quot;0 &lt;em&gt; &lt;/em&gt; &lt;em&gt; &lt;/em&gt;&quot;  # 每小时     tasks:       - fetch_hot_news       - check_urgent</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>资源链接</h2>
+
+<ul>
+
+  <li><strong>TrendRadar GitHub</strong>: https://github.com/sansan0/TrendRadar</li>
+
+  <li><strong>详细集成方案</strong>: ./hermes-trendradar-integration.md</li>
+
+  <li><strong>MCP 文档</strong>: https://modelcontextprotocol.io/</li>
+
+  <li><strong>Docker 镜像</strong>: https://hub.docker.com/r/wantcat/trendradar</li>
+
+</ul>
+
+<hr>
+
+<strong>开始你的智能信息监控之旅！</strong> 🚀
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

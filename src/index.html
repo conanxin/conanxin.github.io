@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xin Conan | 数字花园</title>
+    <meta name="description" content="探索本地 AI、终端工具与人机交互的数字花园">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Xin Conan">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor blink">_</span>
+            </div>
+            <p class="tagline">// 在 WSL 里种 AI，在终端里写文章</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item active">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="terminal-main">
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./about.txt</span>
+                </div>
+                <div class="section-content">
+                    <p>你好，这里是 Xin Conan 的数字花园。</p>
+                    <p>我在 <span class="highlight">WSL2 Ubuntu</span> 上探索本地大语言模型，研究如何用 AI 增强而非替代人的思考。这个网站记录我的实验、失败和偶尔的成功。</p>
+                    <p>受到 <a href="https://henry.codes/writing/a-website-to-destroy-all-websites/" class="link">Henry</a> 和 <a href="https://www.joanwestenberg.com/communities-are-not-fungible/" class="link">Joan Westenberg</a> 的启发，我相信个人网站是抵抗平台异化的最小可行方案。</p>
+                </div>
+            </section>
+
+            <!-- Featured Research -->
+            <section class="featured-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./research/ | grep "2026-03-30"</span>
+                </div>
+                <div class="section-content">
+                    <p class="section-intro">今日新增 17 篇深度研究，探索 Agent 协作与 AI 自我改进</p>
+                    
+                    <div class="featured-grid">
+                        <article class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-date">2026-03-30</span>
+                                <span class="separator">//</span>
+                                <span class="featured-tag">AGENT SYSTEMS</span>
+                            </div>
+                            <h3 class="featured-title">
+                                <a href="/posts/a2a-agent-collaboration.html">A2A 多 Agent 协作研究</a>
+                            </h3>
+                            <p class="featured-excerpt">Google A2A 协议与 MCP 的互补关系，构建三 Agent 演示系统</p>
+                        </article>
+                        
+                        <article class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-date">2026-03-30</span>
+                                <span class="separator">//</span>
+                                <span class="featured-tag">AI RESEARCH</span>
+                            </div>
+                            <h3 class="featured-title">
+                                <a href="/posts/ai-important-ideas-2026.html">AI 最重要的五个思想</a>
+                            </h3>
+                            <p class="featured-excerpt">Daniel Miessler 的核心洞察：自主优化、意图工程、透明性</p>
+                        </article>
+                        
+                        <article class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-date">2026-03-30</span>
+                                <span class="separator">//</span>
+                                <span class="featured-tag">SYSTEM DESIGN</span>
+                            </div>
+                            <h3 class="featured-title">
+                                <a href="/posts/anthropic-harness-vs-hermes-supervisor.html">Hermes Supervisor 系统</a>
+                            </h3>
+                            <p class="featured-excerpt">Evaluator vs Supervisor 模式对比，完整监控与分诊实现</p>
+                        </article>
+                        
+                        <article class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-date">2026-03-30</span>
+                                <span class="separator">//</span>
+                                <span class="featured-tag">AUTONOMOUS AI</span>
+                            </div>
+                            <h3 class="featured-title">
+                                <a href="/posts/autoresearch-karpathy-ai-research-agents.html">Autoresearch 自动研究</a>
+                            </h3>
+                            <p class="featured-excerpt">Karpathy 的 AI 自我改进项目分析与 Hermes 实践应用</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="posts-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls -la ./posts/ | head -10</span>
+                </div>
+                <div class="posts-list">
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-30</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">10 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/how-to-make-sense-of-ai.html">如何在AI时代保持清醒：读 Cedric Chin 有感</a>
+                        </h2>
+                        <p class="post-excerpt">不确定性四问法与意义构建——不必预测未来，如果能清楚看到当下</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-04-01</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">FUTURE</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">12 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/consistency-is-primitive.html">一致性是原始的：当AI成为基础设施</a>
+                        </h2>
+                        <p class="post-excerpt">Christopher Butler关于AI时代软件、设计与一致性本质的深刻洞察...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-04-01</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ENGINEERING</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">15 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/ai-made-coding-easier-engineering-harder.html">AI让写代码更容易，却让工程师更难</a>
+                        </h2>
+                        <p class="post-excerpt">Ivan Turkovic关于AI时代软件工程师工作paradox的深度分析...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-31</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">WRITING</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">20 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/steven-pressfield-storytelling.html">Steven Pressfield：叙事的21条原则</a>
+                        </h2>
+                        <p class="post-excerpt">David Perell访谈《The War of Art》作者，分享21条具体实用的叙事原则...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-30</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">12 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/inspiration-move-me-brightly.html">灵感，明亮地移动我：与 Jem 的对话</a>
+                        </h2>
+                        <p class="post-excerpt">Jem与Brad Frost关于生成式设计、技术艺术和创意流程的AI增强...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-30</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">12 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/how-do-you-want-to-remember.html">你想如何被记住：AI Agent 的记忆革命</a>
+                        </h2>
+                        <p class="post-excerpt">Zak El Fassi 关于 AI Agent 记忆系统的实验——让 Agent 自主设计、评估和优化自己的记忆...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-30</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">10 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/how-to-make-sense-of-ai.html">如何在AI时代保持清醒：读 Cedric Chin 有感</a>
+                        </h2>
+                        <p class="post-excerpt">Cedric Chin《How to Make Sense of AI》学习笔记——不确定性四问法与意义构建...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-30</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">15 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/convivial-web.html">愉悦工具与互联网的灵魂</a>
+                        </h2>
+                        <p class="post-excerpt">重读 Henry《A Website to Destroy All Websites》，思考如何让技术重新服务于人的自主性...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-29</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">ESSAY</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">12 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/communities-are-not-fungible.html">社区不可替代：读 Joan Westenberg 有感</a>
+                        </h2>
+                        <p class="post-excerpt">社区不是可互换的资源，一旦破坏便无法重建——Joan Westenberg 文章的学习笔记...</p>
+                    </article>
+
+                    <article class="post-item">
+                        <div class="post-meta">
+                            <span class="post-date">2026-03-29</span>
+                            <span class="separator">//</span>
+                            <span class="post-tag">LOCAL-AI</span>
+                            <span class="separator">//</span>
+                            <span class="post-read">8 min</span>
+                        </div>
+                        <h2 class="post-title">
+                            <a href="/posts/local-llm-guide.html">本地大模型选择指南：从 4GB 到 24GB VRAM</a>
+                        </h2>
+                        <p class="post-excerpt">基于硬件配置选择最适合的本地 LLM，从 Qwen2.5 到 Llama 3.1 的实践对比...</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="now-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./now.txt</span>
+                </div>
+                <div class="section-content">
+                    <ul class="now-list">
+                        <li><span class="bullet">→</span> 在 i7-6700 + 8GB RAM 上跑本地模型</li>
+                        <li><span class="bullet">→</span> 学习 Hermes Agent 技能系统开发</li>
+                        <li><span class="bullet">→</span> 阅读《Tools for Conviviality》</li>
+                        <li><span class="bullet">→</span> 建设这个数字花园</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                    <span class="separator">|</span>
+                    <span class="label">GITHUB:</span>
+                    <a href="#" class="link">@xin-conan</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 实时更新时间
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

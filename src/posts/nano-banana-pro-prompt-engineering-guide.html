@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana Pro 提示词工程实战指南 | Xin Conan</title>
+    <meta name="description" content="Nano Banana Pro 提示词工程实战指南  > **实践指南** | 基于 12,000+ 真实提示词案例分析   > **目标**: 掌握从入门到精通的提示词设计技能  ---   1. 快速入门   1.1 什么是 Nano Banana Pro？  **Nano Banana Pro...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-30</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">ESSAY</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Nano Banana Pro 提示词工程实战指南</h1>
+                <p class="post-subtitle">Nano Banana Pro 提示词工程实战指南  > **实践指南** | 基于 12,000+ 真实提示词案例分析   > **目标**: 掌握从入门到精通的提示词设计技能  ---   1. 快速入门   1.1 什么是 Nano Banana Pro？  **Nano Banana Pro...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Nano Banana Pro 提示词工程实战指南</h1>
+
+<blockquote><strong>实践指南</strong> | 基于 12,000+ 真实提示词案例分析  </blockquote>
+
+<blockquote><strong>目标</strong>: 掌握从入门到精通的提示词设计技能</blockquote>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>1. 快速入门</h2>
+
+<h3>1.1 什么是 Nano Banana Pro？</h3>
+
+<strong>Nano Banana Pro</strong> 是 Google 的多模态 AI 图像生成模型，特点：
+
+<ul>
+
+  <li>⚡ <strong>快速迭代</strong> — 秒级生成</li>
+
+  <li>🎨 <strong>多样风格</strong> — 从像素到油画</li>
+
+  <li>🔧 <strong>精确控制</strong> — 详细构图和光照</li>
+
+  <li>🌈 <strong>多语言支持</strong> — 16 种语言</li>
+
+</ul>
+
+<h3>1.2 基础提示词结构</h3>
+
+<pre><code class="language-text">[主体描述] + [风格/媒介] + [环境/背景] + [光照/氛围] + [技术规格]
+
+<p>示例: &quot;A young woman, portrait, soft natural lighting, photorealistic, 8k&quot;</p>
+
+</code></pre>
+
+<h3>1.3 第一个提示词</h3>
+
+<strong>简单版</strong>:
+
+<pre><code class="language-text">A cute cat sitting on a windowsill, sunlight, watercolor style
+
+</code></pre>
+
+<strong>进阶版</strong>:
+
+<pre><code class="language-text">A fluffy orange tabby cat sitting on a vintage wooden windowsill,
+
+<p>soft morning sunlight streaming through lace curtains, watercolor painting style, warm color palette, peaceful and cozy atmosphere, 4k resolution</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>2. 提示词工程核心技巧</h2>
+
+<h3>2.1 层次化描述法</h3>
+
+<pre><code class="language-text">Level 1: 主体（Who/What）
+
+<p>  → &quot;A young Japanese woman in her 20s&quot;</p>
+
+<p>Level 2: 外貌（Appearance）   → &quot;long black hair with bangs, fair skin, natural makeup&quot;</p>
+
+<p>Level 3: 服装/道具（Outfit/Props）   → &quot;wearing a white summer dress, holding a book&quot;</p>
+
+<p>Level 4: 环境（Environment）   → &quot;standing in a sunflower field at golden hour&quot;</p>
+
+<p>Level 5: 风格（Style）   → &quot;anime style, soft pastel colors, dreamy atmosphere&quot;</p>
+
+<p>Level 6: 技术（Technical）   → &quot;8k resolution, sharp focus, detailed&quot;</p>
+
+</code></pre>
+
+<h3>2.2 权重分配技巧</h3>
+
+<strong>自然强调</strong>（通过重复或详细描述）:
+
+<pre><code class="language-text">&quot;Very beautiful sunset, EXTREMELY detailed clouds, 
+
+<p>beautiful beautiful golden light&quot;</p>
+
+</code></pre>
+
+<strong>结构强调</strong>（使用标点或格式）:
+
+<pre><code class="language-text">&quot;【IMPORTANT】The character must be smiling.【/IMPORTANT】
+
+<p>Background: forest setting&quot;</p>
+
+</code></pre>
+
+<h3>2.3 负面提示词</h3>
+
+<pre><code class="language-text">Style: photorealistic portrait
+
+<p>Positive: &quot;Clear skin, natural lighting, sharp eyes&quot; Negative: &quot;blurry, low quality, distorted face, extra fingers&quot;</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>3. 分类实战：提示词模板</h2>
+
+<h3>3.1 头像/肖像类 (Profile/Avatar)</h3>
+
+<strong>模板</strong>:
+
+<pre><code class="language-text">[人物描述], [年龄/性别], [面部特征],
+
+<p>[表情/姿势], [服装风格], [背景], [艺术风格], [光照], [技术规格]</p>
+
+</code></pre>
+
+<strong>示例</strong>:
+
+<pre><code class="language-text">A professional headshot of a confident businesswoman in her 30s,
+
+<p>short brown hair, subtle smile, wearing a navy blazer, clean white background, corporate photography style, soft studio lighting, high-end retouching, 8k resolution, sharp focus on eyes</p>
+
+</code></pre>
+
+<h3>3.2 产品展示类 (Product)</h3>
+
+<strong>模板</strong>:
+
+<pre><code class="language-text">[产品名称], [材质/质感], [颜色],
+
+<p>[展示角度], [背景风格], [光影效果], [渲染质量]</p>
+
+</code></pre>
+
+<strong>示例</strong>:
+
+<pre><code class="language-text">Premium wireless earbuds, matte white finish with chrome accents,
+
+<p>floating in mid-air, 45-degree angle view, minimalist gradient background from light gray to white, soft product photography lighting with subtle reflections, professional commercial photography, 8k resolution</p>
+
+</code></pre>
+
+<h3>3.3 信息图类 (Infographic)</h3>
+
+<strong>模板</strong>:
+
+<pre><code class="language-text">System instruction: Create [图表类型] for [主题]
+
+<p>1) Data points: [数据点描述] 2) Color scheme: [颜色方案] 3) Layout: [布局说明] 4) Style: [风格定义]</p>
+
+</code></pre>
+
+<strong>示例</strong> (Bento Grid):
+
+<pre><code class="language-text">Create a premium liquid glass Bento grid infographic with 8 modules.
+
+<p>Product: Wireless headphones Category: TECH</p>
+
+<p>1) Color Palette:    - Hero color: #3B82F6 (blue)    - Secondary: #1E40AF (dark blue)    - Accent: #60A5FA (light blue)</p>
+
+<p>2) Layout:    - Card 1 (Hero): Large product image    - Cards 2-8: Feature highlights with icons</p>
+
+<p>3) Style:    - Glass morphism effect    - Soft shadows    - Rounded corners    - Minimalist design</p>
+
+</code></pre>
+
+<h3>3.4 漫画/故事板类 (Comic)</h3>
+
+<strong>模板</strong>:
+
+<pre><code class="language-text">Format: [格式类型]
+
+<p>Setting: [场景描述] Characters: [角色设定]</p>
+
+<p>[Panel 1] Composition: [构图] Action: [动作] Dialogue: [对话]</p>
+
+<p>[Panel 2] ...</p>
+
+</code></pre>
+
+<strong>示例</strong> (四格漫画):
+
+<pre><code class="language-text">Format: Japanese 4-panel manga (yonkoma), vertical layout,
+
+<p>grayscale, seinen manga style, exaggerated expressions</p>
+
+<p>Setting: Office, modern cubicle environment</p>
+
+<p>Characters:</p>
+
+<ul>
+
+  <li>Salaryman: Tired office worker, suit and tie, messy hair</li>
+
+  <li>Boss: Middle-aged manager, stern expression</li>
+
+</ul>
+
+<p>[Panel 1] Composition: Wide shot of office Salaryman typing at computer, looking exhausted Dialogue: &quot;Just... 5 more minutes...&quot;</p>
+
+<p>[Panel 2] Composition: Close-up of computer screen Deadline notification flashing Dialogue: System: &quot;DEADLINE: TODAY 18:00&quot;</p>
+
+<p>[Panel 3] Composition: Boss appears behind salaryman Boss: &quot;How&#x27;s the project going?&quot; Salaryman: (sweating) &quot;Almost... done...&quot;</p>
+
+<p>[Panel 4] Composition: Salaryman&#x27;s desperate face Thought bubble: &quot;I haven&#x27;t even started!&quot; Expression: Panic, exaggerated sweat drops</p>
+
+</code></pre>
+
+<h3>3.5 游戏素材类 (Game Asset)</h3>
+
+<strong>模板</strong>:
+
+<pre><code class="language-text">[资产类型], [风格参考], [详细描述],
+
+<p>[技术规格], [用途说明]</p>
+
+</code></pre>
+
+<strong>示例</strong>:
+
+<pre><code class="language-text">Game character design: Cute forest spirit companion
+
+<p>Style: Studio Ghibli meets Zelda: Breath of the Wild</p>
+
+<p>Appearance:</p>
+
+<ul>
+
+  <li>Small humanoid figure, 30cm tall</li>
+
+  <li>Body made of moss and twigs</li>
+
+  <li>Glowing amber eyes</li>
+
+  <li>Small antlers with tiny flowers</li>
+
+  <li>Translucent wings like dragonflies</li>
+
+</ul>
+
+<p>Clothing:</p>
+
+<ul>
+
+  <li>Leaf cape</li>
+
+  <li>Acorn cap hat</li>
+
+  <li>Vine belt with glowing berries</li>
+
+</ul>
+
+<p>Pose: Floating mid-air, curious expression Background: Clean white for game asset extraction Style: 3D render, toon shader, vibrant colors Technical: 4k resolution, character turnaround sheet</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>4. 高级技巧</h2>
+
+<h3>4.1 Raycast 动态参数</h3>
+
+<strong>语法</strong>:
+
+<pre><code class="language-text">{argument name=&quot;param_name&quot; default=&quot;default_value&quot;}
+
+</code></pre>
+
+<strong>示例</strong>:
+
+<pre><code class="language-text">Create a motivational poster with the quote:
+
+<p>&quot;{argument name=&quot;quote&quot; default=&quot;Dream big, work hard&quot;}&quot;</p>
+
+<p>Author: {argument name=&quot;author&quot; default=&quot;Unknown&quot;}</p>
+
+<p>Style: {argument name=&quot;style&quot; default=&quot;minimalist&quot;} Options: minimalist / vintage / modern / artistic</p>
+
+</code></pre>
+
+<strong>使用场景</strong>:
+
+<ul>
+
+  <li>批量生成系列内容</li>
+
+  <li>A/B 测试不同文案</li>
+
+  <li>客户定制化需求</li>
+
+</ul>
+
+<h3>4.2 JSON 结构化提示词</h3>
+
+<strong>适用场景</strong>: 复杂角色设计、多条件生成
+
+<pre><code class="language-json">{
+
+<p>  &quot;character&quot;: {     &quot;name&quot;: &quot;Luna&quot;,     &quot;age&quot;: &quot;24&quot;,     &quot;gender&quot;: &quot;Female&quot;,     &quot;species&quot;: &quot;Elf&quot;,     &quot;appearance&quot;: {       &quot;hair&quot;: &quot;Silver long hair with braids&quot;,       &quot;eyes&quot;: &quot;Emerald green, glowing&quot;,       &quot;skin&quot;: &quot;Pale with subtle shimmer&quot;,       &quot;features&quot;: &quot;Pointed ears, delicate face&quot;     },     &quot;clothing&quot;: {       &quot;top&quot;: &quot;Forest green tunic with gold embroidery&quot;,       &quot;bottom&quot;: &quot;Leather leggings&quot;,       &quot;accessories&quot;: &quot;Leaf crown, nature staff&quot;     }   },   &quot;setting&quot;: &quot;Ancient forest, rays of sunlight through canopy&quot;,   &quot;pose&quot;: &quot;Standing confidently, holding staff&quot;,   &quot;style&quot;: &quot;Fantasy illustration, detailed, magical atmosphere&quot;,   &quot;technical&quot;: {     &quot;resolution&quot;: &quot;4k&quot;,     &quot;lighting&quot;: &quot;Dramatic side lighting&quot;,     &quot;mood&quot;: &quot;Mysterious yet welcoming&quot;   } }</p>
+
+</code></pre>
+
+<h3>4.3 风格混合技巧</h3>
+
+<strong>公式</strong>:
+
+<pre><code class="language-text">[基础风格] × [融合风格] + [强调元素] = [独特效果]
+
+</code></pre>
+
+<strong>示例</strong>:
+
+<pre><code class="language-text">Style: Studio Ghibli meets Cyberpunk 2077
+
+<p>A cute robot companion in a neon-lit Tokyo street, Ghibli&#x27;s warm color palette + cyberpunk&#x27;s neon aesthetics, Studio Ghibli&#x27;s emotional storytelling + cyberpunk&#x27;s tech elements, Soft rounded shapes mixed with sharp geometric patterns</p>
+
+</code></pre>
+
+<strong>经典组合</strong>:
+
+<p>| 组合 | 效果 | |-----|------| | 吉卜力 + 赛博朋克 | 温暖科技风 | | 水墨 + 像素艺术 | 传统数字融合 | | 油画 + 3D 渲染 | 质感立体 | | 极简 + 巴洛克 | 对比冲击 |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>5. 常见错误与解决方案</h2>
+
+<h3>5.1 错误排行榜</h3>
+
+<p>| 排名 | 错误 | 后果 | 解决方案 | |-----|------|------|---------| | 1 | <strong>过于宽泛</strong> | 结果不可控 | 添加具体形容词 | | 2 | <strong>矛盾描述</strong> | 风格混乱 | 明确优先级 | | 3 | <strong>忽视比例</strong> | 构图失衡 | 指定画幅比例 | | 4 | <strong>缺失光照</strong> | 效果平淡 | 添加光照描述 | | 5 | <strong>版权风险</strong> | 法律问题 | 使用原创/开源 |</p>
+
+<h3>5.2 错误案例分析</h3>
+
+<h4>❌ 错误示例 1: 过于宽泛</h4>
+
+<strong>原提示词</strong>:
+
+<pre><code class="language-text">A beautiful girl
+
+</code></pre>
+
+<strong>问题</strong>:
+
+<ul>
+
+  <li>"Beautiful" 定义不明确</li>
+
+  <li>没有年龄、风格、场景</li>
+
+  <li>AI 会随机生成</li>
+
+</ul>
+
+<strong>改进</strong>:
+
+<pre><code class="language-text">A young woman in her early 20s, East Asian features,
+
+<p>long straight black hair with curtain bangs, wearing a cream-colored knit sweater, soft natural lighting, warm color palette, cozy autumn atmosphere, lifestyle photography style, shallow depth of field, 85mm lens look</p>
+
+</code></pre>
+
+<h4>❌ 错误示例 2: 矛盾描述</h4>
+
+<strong>原提示词</strong>:
+
+<pre><code class="language-text">Photorealistic anime character in watercolor style
+
+</code></pre>
+
+<strong>问题</strong>:
+
+<ul>
+
+  <li>"Photorealistic" 和 "anime" 矛盾</li>
+
+  <li>"Anime" 和 "watercolor" 风格冲突</li>
+
+</ul>
+
+<strong>改进</strong> (三选一):
+
+<pre><code class="language-text">&lt;h1&gt;选项 1: 写实风格&lt;/h1&gt;
+
+<p>Photorealistic portrait of a Japanese woman, inspired by anime aesthetics but realistic rendering</p>
+
+<p>&lt;h1&gt;选项 2: 动漫风格&lt;/h1&gt; Anime-style character illustration, cel-shaded with detailed line work</p>
+
+<p>&lt;h1&gt;选项 3: 水彩风格&lt;/h1&gt; Watercolor painting of an anime-inspired character, soft washes and bleeding colors</p>
+
+</code></pre>
+
+<h4>❌ 错误示例 3: 忽视技术参数</h4>
+
+<strong>原提示词</strong>:
+
+<pre><code class="language-text">A product photo of headphones
+
+</code></pre>
+
+<strong>改进</strong>:
+
+<pre><code class="language-text">Professional product photography of wireless headphones,
+
+<p>floating against a gradient background (#1a1a2e to #16213e), studio lighting with soft shadows, subtle reflection on surface, macro lens perspective, commercial quality, 8k resolution, sharp focus on product details</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>6. 实战练习</h2>
+
+<h3>6.1 练习 1: 头像生成</h3>
+
+<strong>任务</strong>: 为自己创建一个专业头像
+
+<strong>步骤</strong>:
+
+<ol>
+
+  <li>描述你的外貌特征（发型、面部特征、表情）</li>
+
+  <li>选择服装风格（职业/休闲/创意）</li>
+
+  <li>确定背景（纯色/环境/抽象）</li>
+
+  <li>选择艺术风格（写实/插画/3D）</li>
+
+  <li>添加光照和技术参数</li>
+
+</ol>
+
+<strong>模板填空</strong>:
+
+<pre><code class="language-text">A professional headshot of [你的描述],
+
+<p>[年龄] years old, [面部特征], [表情], wearing [服装], [背景描述], [艺术风格], [光照条件], [技术规格]</p>
+
+</code></pre>
+
+<h3>6.2 练习 2: 产品展示</h3>
+
+<strong>任务</strong>: 为一个虚构产品设计主图
+
+<strong>产品</strong>: 智能保温杯
+
+<ul>
+
+  <li>功能: 温度显示、APP 连接</li>
+
+  <li>设计: 极简、金属质感</li>
+
+  <li>目标: 电商平台主图</li>
+
+</ul>
+
+<strong>思考点</strong>:
+
+<ul>
+
+  <li>如何展示功能？</li>
+
+  <li>什么角度最好？</li>
+
+  <li>背景如何衬托产品？</li>
+
+  <li>光线如何体现质感？</li>
+
+</ul>
+
+<h3>6.3 练习 3: 信息图设计</h3>
+
+<strong>任务</strong>: 创建一个技能信息图
+
+<strong>要求</strong>:
+
+<ul>
+
+  <li>6 个技能模块</li>
+
+  <li>Bento Grid 布局</li>
+
+  <li>个人品牌配色</li>
+
+  <li>包含图标和简短描述</li>
+
+</ul>
+
+<strong>参考结构</strong>:
+
+<pre><code class="language-text">Create a personal skills infographic with Bento Grid layout (6 modules).
+
+<p>Skills to include:</p>
+
+<ol>
+
+  <li>Frontend Development (React, Vue)</li>
+
+  <li>UI/UX Design (Figma)</li>
+
+  <li>AI Integration (LLM, RAG)</li>
+
+  <li>Data Analysis (Python, SQL)</li>
+
+  <li>Project Management (Agile)</li>
+
+  <li>Creative Writing (Content)</li>
+
+</ol>
+
+<p>Style:</p>
+
+<ul>
+
+  <li>Glass morphism</li>
+
+  <li>Primary color: [你的主色]</li>
+
+  <li>Modern, clean, professional</li>
+
+</ul>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>7. 工具与资源</h2>
+
+<h3>7.1 推荐工具</h3>
+
+<p>| 工具 | 用途 | 链接 | |-----|------|------| | <strong>YouMind Gallery</strong> | 浏览提示词库 | youmind.com/nano-banana-pro-prompts | | <strong>Raycast</strong> | 动态参数管理 | raycast.com | | <strong>Color Hunt</strong> | 配色方案 | colorhunt.co | | <strong>Lexica</strong> | AI 图像搜索 | lexica.art |</p>
+
+<h3>7.2 学习资源</h3>
+
+<ul>
+
+  <li><strong>官方文档</strong>: <a href="https://youmind.com/blog/nano-banana-pro-10-real-cases" target="_blank">Nano Banana Pro 10 个真实案例</a></li>
+
+  <li><strong>GitHub 库</strong>: <a href="https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts" target="_blank">awesome-nano-banana-pro-prompts</a></li>
+
+  <li><strong>社区讨论</strong>: GitHub Discussions</li>
+
+</ul>
+
+<h3>7.3 术语表</h3>
+
+<p>| 术语 | 解释 | |-----|------| | <strong>Prompt</strong> | 提示词，给 AI 的指令 | | <strong>Negative Prompt</strong> | 负面提示，告诉 AI 避免什么 | | <strong>Aspect Ratio</strong> | 画幅比例 (16:9, 1:1, 9:16) | | <strong>Resolution</strong> | 分辨率 (4k, 8k, 1024x1024) | | <strong>Style</strong> | 艺术风格 (写实、动漫、油画等) | | <strong>Composition</strong> | 构图 (rule of thirds, centered) | | <strong>Lighting</strong> | 光照 (natural, studio, dramatic) |</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>8. 进阶路径</h2>
+
+<h3>阶段 1: 模仿者 (1-2 周)</h3>
+
+<ul>
+
+  <li>复制提示词库中的示例</li>
+
+  <li>理解结构和方法</li>
+
+  <li>记录有效模式</li>
+
+</ul>
+
+<h3>阶段 2: 改编者 (3-4 周)</h3>
+
+<ul>
+
+  <li>修改现有提示词</li>
+
+  <li>尝试不同组合</li>
+
+  <li>建立自己的提示词库</li>
+
+</ul>
+
+<h3>阶段 3: 创造者 (5-8 周)</h3>
+
+<ul>
+
+  <li>编写原创提示词</li>
+
+  <li>开发个人风格</li>
+
+  <li>分享给社区</li>
+
+</ul>
+
+<h3>阶段 4: 专家 (2-3 个月)</h3>
+
+<ul>
+
+  <li>系统化学方法论</li>
+
+  <li>教学和指导</li>
+
+  <li>参与工具开发</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>9. 快速参考卡</h2>
+
+<h3>常用形容词库</h3>
+
+<strong>质量</strong>: masterpiece, best quality, ultra-detailed, 8k, photorealistic
+
+<strong>光照</strong>: soft lighting, dramatic lighting, golden hour, studio lighting, natural light
+
+<strong>风格</strong>: anime style, cinematic, watercolor, oil painting, 3D render, pixel art
+
+<strong>氛围</strong>: cozy, mysterious, cheerful, serene, epic, intimate
+
+<strong>技术</strong>: sharp focus, depth of field, bokeh, HDR, ray tracing
+
+<h3>画幅比例速查</h3>
+
+<p>| 比例 | 用途 | |-----|------| | 1:1 | 头像、Instagram | | 16:9 | 横幅、YouTube 缩略图 | | 9:16 | 手机壁纸、Stories | | 4:3 | 文档、PPT | | 21:9 | 电影感、超宽屏 |</p>
+
+<h3>结构化提示词检查清单</h3>
+
+<ul>
+
+  <li>[ ] 主体描述清晰</li>
+
+  <li>[ ] 外貌/特征详细</li>
+
+  <li>[ ] 服装/道具明确</li>
+
+  <li>[ ] 环境/背景设定</li>
+
+  <li>[ ] 艺术风格指定</li>
+
+  <li>[ ] 光照条件描述</li>
+
+  <li>[ ] 技术参数添加</li>
+
+  <li>[ ] 画幅比例确认</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-10.md</span>
+                </div>
+            
+<h2>10. 结语</h2>
+
+<blockquote><em>"提示词是与 AI 对话的语言——掌握它，就掌握了创造的力量。"</em></blockquote>
+
+<strong>下一步行动</strong>:
+
+<ol>
+
+  <li>访问 <a href="https://youmind.com/en-US/nano-banana-pro-prompts" target="_blank">YouMind Gallery</a> 浏览真实案例</li>
+
+  <li>选择 3 个喜欢的提示词，理解其结构</li>
+
+  <li>使用本指南的模板，创建你的第一个原创提示词</li>
+
+  <li>记录效果，持续迭代优化</li>
+
+</ol>
+
+<hr>
+
+<strong>相关研究</strong>:
+
+<ul>
+
+  <li>[[nano-banana-pro-prompts-analysis]] — 项目深度分析</li>
+
+  <li>[[decentralized-ai-landscape]] — AI 生态全景</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-11.md</span>
+                </div>
+            
+<h2>标签</h2>
+
+<p>#nano-banana-pro #prompt-engineering #ai-image-generation #tutorial #practical-guide #google-gemini #content-creation</p>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

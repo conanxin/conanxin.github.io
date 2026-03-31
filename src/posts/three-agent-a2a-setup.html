@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三 Agent A2A 协作架构设计 | Xin Conan</title>
+    <meta name="description" content="三 Agent A2A 协作架构设计   场景  - **Agent A**: Hermes (Host/协调者) - 本地机器 - **Agent B**: OpenClaw 1 - 本地机器 (与 Hermes 同机) - **Agent C**: OpenClaw 2 - 腾讯云部署  ```...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-30</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">三 Agent A2A 协作架构设计</h1>
+                <p class="post-subtitle">三 Agent A2A 协作架构设计   场景  - **Agent A**: Hermes (Host/协调者) - 本地机器 - **Agent B**: OpenClaw 1 - 本地机器 (与 Hermes 同机) - **Agent C**: OpenClaw 2 - 腾讯云部署  ```...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>三 Agent A2A 协作架构设计</h1>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>场景</h2>
+
+<ul>
+
+  <li><strong>Agent A</strong>: Hermes (Host/协调者) - 本地机器</li>
+
+  <li><strong>Agent B</strong>: OpenClaw #1 - 本地机器 (与 Hermes 同机)</li>
+
+  <li><strong>Agent C</strong>: OpenClaw #2 - 腾讯云部署</li>
+
+</ul>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────────────┐
+
+<p>│                         本地机器 (Local)                             │ │  ┌─────────────────────┐      ┌─────────────────────┐              │ │  │   Hermes Agent      │◄────►│  OpenClaw #1        │              │ │  │   (Host Agent)      │ A2A  │  (Remote Agent)     │              │ │  │   Port: 8080        │      │  Port: 9999         │              │ │  └──────────┬──────────┘      └─────────────────────┘              │ │             │                                                       │ │             │ HTTP / A2A Protocol                                   │ │             │ (通过互联网或内网穿透)                                   │ │             ▼                                                       │ └─────────────────────────────────────────────────────────────────────┘                               │                               ▼ ┌─────────────────────────────────────────────────────────────────────┐ │                      腾讯云 (Cloud)                                  │ │              ┌─────────────────────┐                                │ │              │   OpenClaw #2       │                                │ │              │   (Remote Agent)    │                                │ │              │   Port: 8080        │                                │ │              │   URL: http://1.2.3.4:8080                          │ │              └─────────────────────┘                                │ └─────────────────────────────────────────────────────────────────────┘</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>架构选择</h2>
+
+<h3>方案 1: Hermes 作为中心协调者 (推荐)</h3>
+
+<p>Hermes 作为 <strong>A2A Client</strong>，两个 OpenClaw 作为 <strong>A2A Server</strong>。</p>
+
+<strong>优势</strong>:
+
+<ul>
+
+  <li>统一入口，用户只与 Hermes 交互</li>
+
+  <li>Hermes 负责任务路由和结果整合</li>
+
+  <li>两个 OpenClaw 可以独立开发/部署</li>
+
+</ul>
+
+<strong>劣势</strong>:
+
+<ul>
+
+  <li>单点故障 (Hermes 宕机则整个系统不可用)</li>
+
+  <li>所有流量经过 Hermes</li>
+
+</ul>
+
+<h3>方案 2: P2P 网状架构</h3>
+
+<p>三个 Agent 互为 Client/Server，直接通信。</p>
+
+<strong>优势</strong>:
+
+<ul>
+
+  <li>去中心化，更灵活</li>
+
+  <li>延迟更低 (Agent 间直连)</li>
+
+</ul>
+
+<strong>劣势</strong>:
+
+<ul>
+
+  <li>复杂度更高</li>
+
+  <li>需要处理权限和认证</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>方案 1 详细实现</h2>
+
+<h3>Step 1: 腾讯云 OpenClaw 部署 (OpenClaw #2)</h3>
+
+<pre><code class="language-python">&lt;h1&gt;cloud_agent.py - 在腾讯云运行&lt;/h1&gt;
+
+<p>import uvicorn from a2a.server.apps import A2AStarletteApplication from a2a.server.request_handlers import DefaultRequestHandler from a2a.server.tasks import InMemoryTaskStore from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill from a2a.server.agent_execution import AgentExecutor, RequestContext from a2a.server.events import EventQueue from a2a.types.a2a_pb2 import (     TaskArtifactUpdateEvent, TaskState, TaskStatus, TaskStatusUpdateEvent, ) from a2a.utils.artifact import new_text_artifact from a2a.utils.message import new_agent_text_message</p>
+
+<p>&lt;h1&gt;导入你的 OpenClaw Agent&lt;/h1&gt; from openclaw import OpenClawAgent</p>
+
+<p>class OpenClawA2AExecutor(AgentExecutor):     &quot;&quot;&quot;将 OpenClaw 包装为 A2A Server&quot;&quot;&quot;</p>
+
+<p>    def __init__(self):         # 初始化你的 OpenClaw Agent         self.openclaw = OpenClawAgent(             skills_dir=&quot;./skills&quot;,             config_path=&quot;./config.yaml&quot;         )</p>
+
+<p>    async def execute(self, context: RequestContext, event_queue: EventQueue) -&gt; None:         &quot;&quot;&quot;处理 A2A 任务&quot;&quot;&quot;         from a2a.utils.task import new_task</p>
+
+<p>        task = context.current_task or new_task(context.message)         await event_queue.enqueue_event(task)</p>
+
+<p>        # 更新状态         await event_queue.enqueue_event(             TaskStatusUpdateEvent(                 task_id=context.task_id,                 status=TaskStatus(                     state=TaskState.TASK_STATE_WORKING,                     message=new_agent_text_message(&#x27;OpenClaw Cloud 处理中...&#x27;),                 ),             )         )</p>
+
+<p>        # 提取用户输入         user_input = self._extract_text(context.message)</p>
+
+<p>        # 调用 OpenClaw         try:             result = await self.openclaw.run(user_input)</p>
+
+<p>            # 发送结果             await event_queue.enqueue_event(                 TaskArtifactUpdateEvent(                     task_id=context.task_id,                     artifact=new_text_artifact(name=&#x27;result&#x27;, text=result),                 )             )</p>
+
+<p>            await event_queue.enqueue_event(                 TaskStatusUpdateEvent(                     task_id=context.task_id,                     status=TaskStatus(state=TaskState.TASK_STATE_COMPLETED),                 )             )         except Exception as e:             await event_queue.enqueue_event(                 TaskStatusUpdateEvent(                     task_id=context.task_id,                     status=TaskStatus(                         state=TaskState.TASK_STATE_FAILED,                         message=new_agent_text_message(f&#x27;错误: {str(e)}&#x27;),                     ),                 )             )</p>
+
+<p>    def _extract_text(self, message) -&gt; str:         &quot;&quot;&quot;从 A2A 消息中提取文本&quot;&quot;&quot;         parts = message.get(&#x27;parts&#x27;, [])         texts = [p.get(&#x27;text&#x27;, &#x27;&#x27;) for p in parts if p.get(&#x27;type&#x27;) == &#x27;text&#x27;]         return &#x27;\n&#x27;.join(texts)</p>
+
+<p>&lt;h1&gt;创建 Agent Card&lt;/h1&gt; agent_card = AgentCard(     name=&#x27;OpenClaw Cloud Agent&#x27;,     description=&#x27;部署在腾讯云的 OpenClaw Agent，擅长云端任务处理&#x27;,     version=&#x27;1.0.0&#x27;,     default_input_modes=[&#x27;text&#x27;],     default_output_modes=[&#x27;text&#x27;],     capabilities=AgentCapabilities(         streaming=True,         extended_agent_card=True,     ),     supported_interfaces=[         AgentInterface(             protocol_binding=&#x27;JSONRPC&#x27;,             url=&#x27;http://YOUR_CLOUD_IP:8080&#x27;,  # 腾讯云公网IP         )     ],     skills=[         AgentSkill(             id=&#x27;cloud_computing&#x27;,             name=&#x27;云端计算&#x27;,             description=&#x27;执行需要云端资源的任务&#x27;,             tags=[&#x27;cloud&#x27;, &#x27;compute&#x27;, &#x27;heavy&#x27;],             examples=[&#x27;分析大数据&#x27;, &#x27;运行复杂模型&#x27;],         ),         AgentSkill(             id=&#x27;api_integration&#x27;,             name=&#x27;API 集成&#x27;,             description=&#x27;调用云端 API 服务&#x27;,             tags=[&#x27;api&#x27;, &#x27;integration&#x27;],             examples=[&#x27;查询数据库&#x27;, &#x27;调用第三方 API&#x27;],         ),     ], )</p>
+
+<p>&lt;h1&gt;创建 Server&lt;/h1&gt; request_handler = DefaultRequestHandler(     agent_executor=OpenClawA2AExecutor(),     task_store=InMemoryTaskStore(), )</p>
+
+<p>server = A2AStarletteApplication(     agent_card=agent_card,     http_handler=request_handler, )</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     # 绑定到 0.0.0.0 允许外部访问     uvicorn.run(server.build(), host=&#x27;0.0.0.0&#x27;, port=8080)</p>
+
+</code></pre>
+
+<strong>腾讯云部署配置</strong>:
+
+<pre><code class="language-bash">&lt;h1&gt;1. 安全组配置 - 开放 8080 端口&lt;/h1&gt;
+
+<p>&lt;h1&gt;腾讯云控制台 -&gt; 安全组 -&gt; 入站规则 -&gt; 添加 8080 端口&lt;/h1&gt;</p>
+
+<p>&lt;h1&gt;2. 使用 systemd 守护进程&lt;/h1&gt; &lt;h1&gt;/etc/systemd/system/openclaw-a2a.service&lt;/h1&gt;</p>
+
+</code></pre>
+
+<pre><code class="language-ini">[Unit]
+
+<p>Description=OpenClaw A2A Agent After=network.target</p>
+
+<p>[Service] Type=simple User=ubuntu WorkingDirectory=/home/ubuntu/openclaw Environment=PYTHONPATH=/home/ubuntu/openclaw Environment=OPENCLAW_CONFIG=/home/ubuntu/openclaw/config.yaml ExecStart=/home/ubuntu/.local/bin/uvicorn cloud_agent:app --host 0.0.0.0 --port 8080 Restart=always RestartSec=5</p>
+
+<p>[Install] WantedBy=multi-user.target</p>
+
+</code></pre>
+
+<pre><code class="language-bash">&lt;h1&gt;启动服务&lt;/h1&gt;
+
+<p>sudo systemctl daemon-reload sudo systemctl enable openclaw-a2a sudo systemctl start openclaw-a2a</p>
+
+<p>&lt;h1&gt;查看日志&lt;/h1&gt; sudo journalctl -u openclaw-a2a -f</p>
+
+</code></pre>
+
+<hr>
+
+<h3>Step 2: 本地 OpenClaw 部署 (OpenClaw #1)</h3>
+
+<pre><code class="language-python">&lt;h1&gt;local_agent.py - 在本地机器运行&lt;/h1&gt;
+
+<p>import uvicorn from a2a.server.apps import A2AStarletteApplication from a2a.server.request_handlers import DefaultRequestHandler from a2a.server.tasks import InMemoryTaskStore from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill</p>
+
+<p>&lt;h1&gt;复用上面的 OpenClawA2AExecutor&lt;/h1&gt; from openclaw_executor import OpenClawA2AExecutor</p>
+
+<p>agent_card = AgentCard(     name=&#x27;OpenClaw Local Agent&#x27;,     description=&#x27;本地 OpenClaw Agent，擅长本地文件和系统操作&#x27;,     version=&#x27;1.0.0&#x27;,     default_input_modes=[&#x27;text&#x27;],     default_output_modes=[&#x27;text&#x27;],     capabilities=AgentCapabilities(streaming=True),     supported_interfaces=[         AgentInterface(             protocol_binding=&#x27;JSONRPC&#x27;,             url=&#x27;http://localhost:9999&#x27;,  # 本地地址         )     ],     skills=[         AgentSkill(             id=&#x27;local_files&#x27;,             name=&#x27;本地文件操作&#x27;,             description=&#x27;读取、写入、分析本地文件&#x27;,             tags=[&#x27;file&#x27;, &#x27;local&#x27;, &#x27;filesystem&#x27;],             examples=[&#x27;分析本地日志文件&#x27;, &#x27;批量重命名文件&#x27;],         ),         AgentSkill(             id=&#x27;system_ops&#x27;,             name=&#x27;系统操作&#x27;,             description=&#x27;执行本地系统命令和脚本&#x27;,             tags=[&#x27;system&#x27;, &#x27;shell&#x27;, &#x27;local&#x27;],             examples=[&#x27;运行 Python 脚本&#x27;, &#x27;执行系统命令&#x27;],         ),     ], )</p>
+
+<p>request_handler = DefaultRequestHandler(     agent_executor=OpenClawA2AExecutor(),     task_store=InMemoryTaskStore(), )</p>
+
+<p>server = A2AStarletteApplication(     agent_card=agent_card,     http_handler=request_handler, )</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     uvicorn.run(server.build(), host=&#x27;127.0.0.1&#x27;, port=9999)</p>
+
+</code></pre>
+
+<hr>
+
+<h3>Step 3: Hermes 作为 Host Agent (协调者)</h3>
+
+<pre><code class="language-python">&lt;h1&gt;hermes_orchestrator.py - 集成到 Hermes&lt;/h1&gt;
+
+<p>import asyncio import httpx from typing import Dict, List, Optional from a2a.client import A2AClient, A2ACardResolver from a2a.types import AgentCard, SendMessageRequest, Task</p>
+
+<p>class MultiAgentOrchestrator:     &quot;&quot;&quot;Hermes 多 Agent 协调器&quot;&quot;&quot;</p>
+
+<p>    def __init__(self):         self.remote_agents: Dict[str, A2AClient] = {}         self.agent_cards: Dict[str, AgentCard] = {}         self.http_client = httpx.AsyncClient(timeout=60)</p>
+
+<p>    async def register_agent(self, name: str, url: str) -&gt; bool:         &quot;&quot;&quot;注册远程 Agent&quot;&quot;&quot;         try:             # 发现 Agent Card             resolver = A2ACardResolver(self.http_client, url)             card = await resolver.get_agent_card()</p>
+
+<p>            # 创建客户端             client = A2AClient(self.http_client, card, url=url)</p>
+
+<p>            self.remote_agents[name] = client             self.agent_cards[name] = card</p>
+
+<p>            print(f&quot;✓ 已注册 Agent: {name} @ {url}&quot;)             print(f&quot;  技能: {[s.name for s in card.skills]}&quot;)             return True         except Exception as e:             print(f&quot;✗ 注册失败 {name}: {e}&quot;)             return False</p>
+
+<p>    async def route_task(self, user_input: str) -&gt; str:         &quot;&quot;&quot;智能路由任务到合适的 Agent&quot;&quot;&quot;</p>
+
+<p>        # 简单路由逻辑 (可替换为 LLM 决策)         agent_name = self._select_agent(user_input)</p>
+
+<p>        if not agent_name:             return &quot;没有合适的 Agent 可以处理这个任务&quot;</p>
+
+<p>        # 调用选中的 Agent         return await self.call_agent(agent_name, user_input)</p>
+
+<p>    def _select_agent(self, user_input: str) -&gt; Optional[str]:         &quot;&quot;&quot;根据输入选择最合适的 Agent&quot;&quot;&quot;         user_lower = user_input.lower()</p>
+
+<p>        # 关键词匹配 (简单版)         cloud_keywords = [&#x27;云&#x27;, &#x27;cloud&#x27;, &#x27;大数据&#x27;, &#x27;api&#x27;, &#x27;数据库&#x27;, &#x27;远程&#x27;]         local_keywords = [&#x27;本地&#x27;, &#x27;文件&#x27;, &#x27;local&#x27;, &#x27;目录&#x27;, &#x27;系统&#x27;, &#x27;脚本&#x27;]</p>
+
+<p>        cloud_score = sum(1 for kw in cloud_keywords if kw in user_lower)         local_score = sum(1 for kw in local_keywords if kw in user_lower)</p>
+
+<p>        if cloud_score &gt; local_score and &#x27;openclaw_cloud&#x27; in self.remote_agents:             return &#x27;openclaw_cloud&#x27;         elif local_score &gt; 0 and &#x27;openclaw_local&#x27; in self.remote_agents:             return &#x27;openclaw_local&#x27;</p>
+
+<p>        # 默认选择本地         return &#x27;openclaw_local&#x27; if &#x27;openclaw_local&#x27; in self.remote_agents else None</p>
+
+<p>    async def call_agent(self, agent_name: str, task: str) -&gt; str:         &quot;&quot;&quot;调用特定 Agent&quot;&quot;&quot;         if agent_name not in self.remote_agents:             return f&quot;Agent {agent_name} 未注册&quot;</p>
+
+<p>        client = self.remote_agents[agent_name]</p>
+
+<p>        try:             response = await client.send_message(                 SendMessageRequest(                     message={                         &quot;role&quot;: &quot;user&quot;,                         &quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: task}]                     }                 )             )</p>
+
+<p>            # 提取结果             if hasattr(response, &#x27;result&#x27;) and response.result:                 artifacts = response.result.artifacts                 if artifacts:                     return artifacts[0].parts[0].text</p>
+
+<p>            return &quot;Agent 返回空结果&quot;</p>
+
+<p>        except Exception as e:             return f&quot;调用失败: {str(e)}&quot;</p>
+
+<p>    async def broadcast(self, task: str) -&gt; Dict[str, str]:         &quot;&quot;&quot;广播任务到所有 Agent&quot;&quot;&quot;         results = {}</p>
+
+<p>        for name, client in self.remote_agents.items():             try:                 response = await client.send_message(                     SendMessageRequest(                         message={                             &quot;role&quot;: &quot;user&quot;,                             &quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: task}]                         }                     )                 )                 results[name] = &quot;成功&quot;             except Exception as e:                 results[name] = f&quot;失败: {str(e)}&quot;</p>
+
+<p>        return results</p>
+
+<p>    async def close(self):         await self.http_client.aclose()</p>
+
+<p>&lt;h1&gt;集成到 Hermes 使用示例&lt;/h1&gt; async def main():     orchestrator = MultiAgentOrchestrator()</p>
+
+<p>    # 注册 Agents     await orchestrator.register_agent(         &#x27;openclaw_local&#x27;,          &#x27;http://localhost:9999&#x27;     )     await orchestrator.register_agent(         &#x27;openclaw_cloud&#x27;,          &#x27;http://YOUR_CLOUD_IP:8080&#x27;  # 腾讯云地址     )</p>
+
+<p>    # 使用     result = await orchestrator.route_task(&quot;分析本地日志文件&quot;)     print(result)</p>
+
+<p>    result = await orchestrator.route_task(&quot;查询云端数据库&quot;)     print(result)</p>
+
+<p>    await orchestrator.close()</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     asyncio.run(main())</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>网络配置方案</h2>
+
+<h3>方案 A: 公网直连 (最简单)</h3>
+
+<p>腾讯云服务器需要有公网 IP，Hermes 直接访问。</p>
+
+<pre><code class="language-python">&lt;h1&gt;Hermes 配置&lt;/h1&gt;
+
+<p>CLOUD_AGENT_URL = &quot;http://1.2.3.4:8080&quot;  # 腾讯云公网IP</p>
+
+</code></pre>
+
+<strong>安全建议</strong>:
+
+<pre><code class="language-python">&lt;h1&gt;添加 API Key 验证&lt;/h1&gt;
+
+<p>from fastapi import FastAPI, Header, HTTPException</p>
+
+<p>app = FastAPI()</p>
+
+<p>API_KEY = &quot;your-secret-key&quot;</p>
+
+<p>@app.middleware(&quot;http&quot;) async def verify_api_key(request, call_next):     api_key = request.headers.get(&quot;X-API-Key&quot;)     if api_key != API_KEY:         raise HTTPException(status_code=403, detail=&quot;Invalid API Key&quot;)     return await call_next(request)</p>
+
+</code></pre>
+
+<h3>方案 B: 内网穿透 (frp/ngrok)</h3>
+
+<p>如果腾讯云在内网或不想暴露端口，使用 frp 穿透。</p>
+
+<pre><code class="language-ini">&lt;h1&gt;frpc.ini (腾讯云客户端)&lt;/h1&gt;
+
+<p>[common] server_addr = your_frp_server.com server_port = 7000 token = your_token</p>
+
+<p>[openclaw] type = tcp local_ip = 127.0.0.1 local_port = 8080 remote_port = 8080</p>
+
+</code></pre>
+
+<h3>方案 C: VPN/专线</h3>
+
+<p>所有 Agent 在同一个虚拟内网中，使用内网 IP 通信。</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>Hermes 集成 (实际使用)</h2>
+
+<pre><code class="language-python">&lt;h1&gt;在 Hermes 中添加 A2A 协调工具&lt;/h1&gt;
+
+<p>&lt;h1&gt;hermes_a2a_tool.py&lt;/h1&gt;</p>
+
+<p>class A2AOrchestratorTool:     &quot;&quot;&quot;Hermes 多 Agent 协调工具&quot;&quot;&quot;</p>
+
+<p>    def __init__(self):         self.orchestrator = None         self._initialized = False</p>
+
+<p>    async def initialize(self):         &quot;&quot;&quot;初始化协调器&quot;&quot;&quot;         if self._initialized:             return</p>
+
+<p>        self.orchestrator = MultiAgentOrchestrator()</p>
+
+<p>        # 从配置加载 Agents         await self.orchestrator.register_agent(             &#x27;local_openclaw&#x27;,             &#x27;http://localhost:9999&#x27;         )         await self.orchestrator.register_agent(             &#x27;cloud_openclaw&#x27;,              &#x27;http://your-cloud-ip:8080&#x27;         )</p>
+
+<p>        self._initialized = True</p>
+
+<p>    async def run(self, task: str, agent: str = &quot;auto&quot;) -&gt; str:         &quot;&quot;&quot;         协调 Agent 执行任务</p>
+
+<p>        Args:             task: 任务描述             agent: 指定 Agent (local/cloud/auto)         &quot;&quot;&quot;         await self.initialize()</p>
+
+<p>        if agent == &quot;auto&quot;:             return await self.orchestrator.route_task(task)         else:             return await self.orchestrator.call_agent(agent, task)</p>
+
+<p>    def get_available_agents(self) -&gt; list:         &quot;&quot;&quot;获取可用 Agent 列表&quot;&quot;&quot;         if not self.orchestrator:             return []         return list(self.orchestrator.agent_cards.keys())</p>
+
+<p>&lt;h1&gt;在 Hermes 工具系统中注册&lt;/h1&gt; a2a_tool = A2AOrchestratorTool()</p>
+
+<p>&lt;h1&gt;工具定义&lt;/h1&gt; A2A_ORCHESTRATOR_SCHEMA = {     &quot;name&quot;: &quot;a2a_orchestrate&quot;,     &quot;description&quot;: &quot;&quot;&quot;协调多个 OpenClaw Agent 执行任务。</p>
+
+<p>自动根据任务类型选择本地或云端 Agent:</p>
+
+<ul>
+
+  <li>本地 Agent: 适合文件操作、系统命令、本地脚本</li>
+
+  <li>云端 Agent: 适合 API 调用、大数据处理、云端资源</li>
+
+</ul>
+
+<p>使用示例:</p>
+
+<ul>
+
+  <li>&quot;用本地 Agent 分析这个 CSV 文件&quot;</li>
+
+  <li>&quot;用云端 Agent 查询数据库&quot; </li>
+
+  <li>&quot;auto: 分析数据并生成报告&quot; (自动选择)</li>
+
+</ul>
+
+<p>    &quot;&quot;&quot;,     &quot;parameters&quot;: {         &quot;type&quot;: &quot;object&quot;,         &quot;properties&quot;: {             &quot;task&quot;: {                 &quot;type&quot;: &quot;string&quot;,                 &quot;description&quot;: &quot;要执行的任务描述&quot;             },             &quot;agent&quot;: {                 &quot;type&quot;: &quot;string&quot;,                 &quot;enum&quot;: [&quot;auto&quot;, &quot;local_openclaw&quot;, &quot;cloud_openclaw&quot;],                 &quot;description&quot;: &quot;选择哪个 Agent 执行 (auto=自动选择)&quot;             }         },         &quot;required&quot;: [&quot;task&quot;]     } }</p>
+
+<p>async def a2a_orchestrate_handler(args: dict) -&gt; str:     task = args.get(&quot;task&quot;, &quot;&quot;)     agent = args.get(&quot;agent&quot;, &quot;auto&quot;)     return await a2a_tool.run(task, agent)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>启动流程</h2>
+
+<pre><code class="language-bash">&lt;h1&gt;1. 启动本地 OpenClaw Agent (端口 9999)&lt;/h1&gt;
+
+<p>python local_agent.py</p>
+
+<p>&lt;h1&gt;2. 启动腾讯云 OpenClaw Agent (端口 8080)&lt;/h1&gt; &lt;h1&gt;(在腾讯云服务器上)&lt;/h1&gt; python cloud_agent.py</p>
+
+<p>&lt;h1&gt;3. Hermes 自动发现并协调&lt;/h1&gt; &lt;h1&gt;(在 Hermes 中)&lt;/h1&gt; /hermes&gt; 分析本地文件并用云端数据库对比</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>进阶: 任务分解与并行执行</h2>
+
+<pre><code class="language-python">async def complex_workflow(user_request: str):
+
+<p>    &quot;&quot;&quot;复杂任务并行执行&quot;&quot;&quot;</p>
+
+<p>    # 分解任务     tasks = [         (&quot;local_openclaw&quot;, &quot;提取本地日志关键信息&quot;),         (&quot;cloud_openclaw&quot;, &quot;查询云端数据库对比数据&quot;),     ]</p>
+
+<p>    # 并行执行     results = await asyncio.gather(*[         orchestrator.call_agent(agent, task)         for agent, task in tasks     ])</p>
+
+<p>    # 整合结果 (可以用 LLM)     summary = await synthesize_results(results)     return summary</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>总结</h2>
+
+<strong>架构</strong>: Hermes (Host) ↔ A2A Protocol ↔ OpenClaw Local + OpenClaw Cloud
+
+<strong>关键配置</strong>:
+
+<ol>
+
+  <li>腾讯云开放端口 + 安全组</li>
+
+  <li>每个 OpenClaw 暴露 A2A Server</li>
+
+  <li>Hermes 作为 A2A Client 协调</li>
+
+</ol>
+
+<strong>扩展可能</strong>:
+
+<ul>
+
+  <li>添加更多 Agents (第三台服务器、Docker 容器等)</li>
+
+  <li>使用消息队列 (Redis/RabbitMQ) 替代直连</li>
+
+  <li>添加任务状态持久化</li>
+
+</ul>
+
+<p>需要我详细展开哪个部分？比如：</p>
+
+<ol>
+
+  <li>腾讯云具体部署步骤</li>
+
+  <li>添加身份验证</li>
+
+  <li>故障转移机制</li>
+
+</ol>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

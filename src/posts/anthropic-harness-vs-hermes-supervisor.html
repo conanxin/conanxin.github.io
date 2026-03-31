@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropic Harness 与 Hermes Supervisor 深度对比分析 | Xin Conan</title>
+    <meta name="description" content="Anthropic Harness 与 Hermes Supervisor 深度对比分析   核心洞察  **Anthropic 解决的是"开发阶段"的问题：如何让 Agent 产出质量更高** **Hermes 解决的是"运维阶段"的问题：如何让 Agent 运行更稳定，减少人工值守**  两者不...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-30</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Anthropic Harness 与 Hermes Supervisor 深度对比分析</h1>
+                <p class="post-subtitle">Anthropic Harness 与 Hermes Supervisor 深度对比分析   核心洞察  **Anthropic 解决的是"开发阶段"的问题：如何让 Agent 产出质量更高** **Hermes 解决的是"运维阶段"的问题：如何让 Agent 运行更稳定，减少人工值守**  两者不...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Anthropic Harness 与 Hermes Supervisor 深度对比分析</h1>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>核心洞察</h2>
+
+<strong>Anthropic 解决的是"开发阶段"的问题：如何让 Agent 产出质量更高</strong>
+
+<strong>Hermes 解决的是"运维阶段"的问题：如何让 Agent 运行更稳定，减少人工值守</strong>
+
+<p>两者不是竞争关系，是<strong>先后关系</strong>：先让它干得好，再让它跑得稳。</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>一、Anthropic Harness 的演化路径</h2>
+
+<h3>4 篇博客的演进逻辑</h3>
+
+<pre><code class="language-text">第一篇: 理论框架
+
+<p>    ↓ 第二篇: 实际应用 (Research 功能)     ↓ 第三篇: 解决长任务问题 (Context Anxiety)     ↓ 第四篇: 引入独立 Evaluator (对抗生成)</p>
+
+</code></pre>
+
+<h3>详细分析</h3>
+
+<h4>1. Building Effective Agents (理论框架)</h4>
+
+<strong>核心贡献</strong>: 提出 6 种 workflow pattern
+
+<strong>关键模式</strong>: <code>evaluator-optimizer</code>
+
+<ul>
+
+  <li>一个 agent 生成</li>
+
+  <li>另一个评估并反馈</li>
+
+  <li>两个角色循环迭代</li>
+
+</ul>
+
+<strong>本质</strong>: 质检循环 - 不合格就重做，直到达标
+
+<h4>2. Research 功能实现</h4>
+
+<strong>直接应用</strong>: evaluator-optimizer 落地
+
+<strong>架构</strong>:
+
+<pre><code class="language-text">Lead Agent (协调者)
+
+<p>    ├── Subagent 1 (搜索方向 A)     ├── Subagent 2 (搜索方向 B)     └── Subagent 3 (搜索方向 C)          ↓     Lead Agent 评估结果质量          ↓     不够? → 派新 Subagent 补充</p>
+
+</code></pre>
+
+<strong>关键发现</strong>:
+
+<ul>
+
+  <li>Token 用量解释了 <strong>80%</strong> 的性能差异</li>
+
+  <li>Model choice + tool call 次数 = 剩下的 20%</li>
+
+  <li><strong>Multi-agent 收益本质：花更多 token 做更充分的探索</strong></li>
+
+</ul>
+
+<h4>3. 长任务问题 (Context Anxiety)</h4>
+
+<strong>问题现象</strong>:
+
+<ul>
+
+  <li>Agent 试图 one-shot 完成 4 小时编码任务</li>
+
+  <li>Context 用到一半，东西写了半截</li>
+
+  <li>Context 快满时急着收工</li>
+
+</ul>
+
+<strong>解决方案</strong>: 阶段分离
+
+<pre><code class="language-text">Initializer Agent (第一阶段)
+
+<p>    ├── 搭好项目环境     ├── 列出所有 feature     └── 写入 progress file          ↓ Coding Agent (后续每个 session)     ├── 只挑一个 feature 做     ├── 做完更新 progress file     └── 交给下一个 session</p>
+
+</code></pre>
+
+<h4>4. 独立 Evaluator (对抗生成)</h4>
+
+<strong>核心问题</strong>: Agent 评自己的代码过于宽容
+
+<ul>
+
+  <li>会发现问题</li>
+
+  <li>但说服自己"这不是大事"</li>
+
+</ul>
+
+<strong>解决方案</strong>: GAN-like 架构
+
+<pre><code class="language-text">Planner (需求拆解)
+
+<p>    ↓ Generator (写代码)     ↓ Evaluator (独立评估) ← 关键：完全独立     ↓ 不合格? → 退回 Generator 重做</p>
+
+</code></pre>
+
+<strong>关键洞察</strong>:
+
+<blockquote>"Separating the agent doing the work from the agent judging it proves to be a strong lever."</blockquote>
+
+<p>> </p>
+
+<blockquote>做事的和判断的分开，是一个比自我批评更好使的杠杆。</blockquote>
+
+<strong>验证方式</strong>:
+
+<ul>
+
+  <li>Evaluator 用 Playwright 像真实用户一样操作应用</li>
+
+  <li>不合格就退回重做</li>
+
+</ul>
+
+<strong>Harness 组件的动态性</strong>:
+
+<blockquote>"Every component in a harness encodes an assumption about what the model can't do on its own, and those assumptions are worth stress testing."</blockquote>
+
+<p>></p>
+
+<blockquote>每个 harness 组件背后都有一个"模型做不到这件事"的假设，这些假设要定期回去验证。</blockquote>
+
+<strong>实例</strong>:
+
+<ul>
+
+  <li>Opus 4.5: 需要 sprint 分解</li>
+
+  <li>Opus 4.6: 不需要了，模型自己能保持连贯</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>二、Hermes Supervisor 方案</h2>
+
+<h3>背景</h3>
+
+<strong>作者</strong>: Graeme (@gkisokay)  
+
+<strong>场景</strong>: OpenClaw 已经在生产环境运行
+
+<strong>问题</strong>: 
+
+<ul>
+
+  <li>OpenClaw 每天自动处理 crons、scoring、drafting</li>
+
+  <li>产出质量本身没问题</li>
+
+  <li>但 Graeme 一天到晚还在看 error logs、看输出、看有什么该人工干预的</li>
+
+</ul>
+
+<strong>解决方式</strong>: 
+
+<p>不是给 OpenClaw 加更好的 harness，而是用 <strong>Hermes 作为独立监督者</strong>，专门盯 OpenClaw 的输出。</p>
+
+<h3>架构设计</h3>
+
+<h4>通信协议 (极简设计)</h4>
+
+<strong>通道</strong>: Discord 私有频道
+
+<strong>协议只有 4 个 marker</strong>:
+
+<p>| Marker | 含义 | 用途 | |--------|------|------| | <code>STATUS_REQUEST</code> | "怎么样了" | 主动查询状态 | | <code>REVIEW_REQUEST</code> | "帮我看看这个" | 提交产出待审查 | | <code>ESCALATION_NOTICE</code> | "这个得你来定" | 需要人类决策 | | <code>ACK</code> | "收到，结束" | 终止信号 |</p>
+
+<strong>规则 (硬性约束)</strong>:
+
+<ol>
+
+  <li>每条消息必须带一个 marker 和一个 @mention</li>
+
+  <li><strong>ACK 是终止信号</strong> - 收到不回复</li>
+
+  <li>没有 marker 的消息 = informational，不回复</li>
+
+  <li>每轮一条消息，<strong>最多 3 轮结束</strong></li>
+
+</ol>
+
+<strong>设计哲学</strong>:
+
+<blockquote>这大概是最小可行的 multi-agent 通信协议了。它直接干掉了 multi-agent 最经典的死法：两个 bot 互相回复停不下来。</blockquote>
+
+<h3>交互示例</h3>
+
+<h4>正常流程</h4>
+
+<pre><code class="language-text">Hermes: STATUS_REQUEST @OpenClaw
+
+<p>OpenClaw:    - 6 个 crons 都跑完了   - 提议：把 scoring threshold 从 60 调到 65   - 原因：上周误报率偏高</p>
+
+<p>Hermes:    - 评估提案合理性   - 证据支持变更   - ACK (关闭对话)</p>
+
+</code></pre>
+
+<strong>关键点</strong>: Hermes 不只是说"没问题"，它<strong>评估了提案的合理性</strong>。
+
+<h4>异常流程</h4>
+
+<pre><code class="language-text">OpenClaw: REVIEW_REQUEST @Hermes
+
+<p>  - 早间报告引用了 2 条超过 24 小时的旧信号</p>
+
+<p>Hermes:   - 诊断出具体是哪两条过期了   - 给出两个处置建议：     1. 重新用新数据跑一遍     2. 原样发布 + 加时效说明   - ESCALATION_NOTICE @人类     (带着诊断和建议，让人类做最终决定)</p>
+
+</code></pre>
+
+<strong>关键点</strong>: 
+
+<ul>
+
+  <li>Hermes 做了<strong>分诊</strong>工作</li>
+
+  <li>带着<strong>诊断和建议</strong>升级</li>
+
+  <li>不是简单地把问题扔给人类</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>三、本质区别对比</h2>
+
+<h3>信息流向 (核心差异)</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────┐
+
+<p>│              Anthropic Evaluator (质检员模式)                  │ ├─────────────────────────────────────────────────────────────┤ │                                                             │ │   Generator → 产出 → Evaluator 检查 → 不合格? → 退回重做      │ │        ↑                                      │             │ │        └──────────────────────────────────────┘             │ │                                                             │ │   判断回流给 Agent，驱动新一轮迭代                            │ │   目标：直到达标                                            │ │                                                             │ └─────────────────────────────────────────────────────────────┘</p>
+
+<p>┌─────────────────────────────────────────────────────────────┐ │              Hermes Supervisor (分诊台模式)                    │ ├─────────────────────────────────────────────────────────────┤ │                                                             │ │   OpenClaw → 产出 → Hermes 评估                              │ │                         ↓                                   │ │                    ┌────┴────┐                              │ │               正常? │        │ 异常?                         │ │                    ↓        ↓                               │ │                  ACK    ESCALATION → 人类                    │ │                (关闭)   (带诊断建议)                          │ │                                                             │ │   判断不回传给 Agent                                       │ │   要么关闭，要么升级给人类                                    │ │                                                             │ └─────────────────────────────────────────────────────────────┘</p>
+
+</code></pre>
+
+<h3>详细对比</h3>
+
+<p>| 维度 | Anthropic Evaluator | Hermes Supervisor | |------|---------------------|-------------------| | <strong>核心角色</strong> | 质检员 | 急诊分诊台 | | <strong>判断流向</strong> | 回流给 Generator，驱动重做 | 不回传，ACK 或升级 | | <strong>处理闭环</strong> | 内部闭环 (Agent 内部循环) | 外部闭环 (涉及人类决策) | | <strong>解决阶段</strong> | 开发阶段 (产出质量) | 运维阶段 (运行稳定性) | | <strong>干预对象</strong> | Agent 的产出 | Agent 的运行状态 | | <strong>终止条件</strong> | 质量达标 | ACK 或升级人类 | | <strong>反馈深度</strong> | 具体修改意见 | 诊断 + 处置建议 |</p>
+
+<h3>关键区别详解</h3>
+
+<strong>质检员 vs 分诊台</strong>:
+
+<p>| 场景 | 质检员 (Anthropic) | 分诊台 (Hermes) | |------|-------------------|-----------------| | 代码写得不够好 | 指出问题，退回重写 | 不适用 | | 测试不通过 | 给出失败原因，要求修复 | 不适用 | | Cron 任务失败 | 不适用 | 诊断原因，建议重跑或忽略 | | 配置需要调整 | 不适用 | 评估提案，ACK 批准或升级 | | 产出质量存疑 | 不适用 | 诊断问题，带建议升级人类 |</p>
+
+<strong>核心洞察</strong>:
+
+<ul>
+
+  <li>Anthropic: <strong>如何让 Agent 做对</strong></li>
+
+  <li>Hermes: <strong>如何让 Agent 运行稳定，减少对人类的打扰</strong></li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>四、共享的设计原则</h2>
+
+<p>尽管适用阶段不同，但三个底层原则完全一致：</p>
+
+<h3>1. 角色分离比自我评估可靠</h3>
+
+<strong>Anthropic 验证</strong>:
+
+<ul>
+
+  <li>实验数据：独立 evaluator 比 generator 自我评估更严格</li>
+
+  <li>更容易发现真正的问题</li>
+
+</ul>
+
+<strong>Hermes 验证</strong>:
+
+<ul>
+
+  <li>生产环境实际运行验证</li>
+
+  <li>Graeme 从"自己盯着"到"Hermes 盯着"</li>
+
+</ul>
+
+<strong>共同结论</strong>:
+
+<blockquote>不管是 agent 评自己的代码，还是你自己盯着 agent 的输出，分开给另一个角色做都更靠谱。</blockquote>
+
+<h3>2. 通信协议需要硬终止条件</h3>
+
+<strong>Anthropic 方案</strong>:
+
+<ul>
+
+  <li>Token budget 上限</li>
+
+  <li>Tool call 次数上限</li>
+
+</ul>
+
+<strong>Hermes 方案</strong>:
+
+<ul>
+
+  <li>ACK terminal (明确终止信号)</li>
+
+  <li>3 轮上限</li>
+
+</ul>
+
+<strong>共同结论</strong>:
+
+<blockquote>没有显式终止条件的 multi-agent 系统，最终一定会死于无限循环。</blockquote>
+
+<h3>3. Harness 组件是对模型能力缺口的假设，要定期压力测试</h3>
+
+<strong>Anthropic 案例</strong>:
+
+<ul>
+
+  <li>Opus 4.5 → 4.6: sprint 分解不再需要</li>
+
+  <li>模型变强，harness 组件可以简化</li>
+
+</ul>
+
+<strong>Hermes 推论</strong>:
+
+<ul>
+
+  <li>随着模型变强，supervisor 需要做的判断会越来越少</li>
+
+  <li>未来日常的 ACK 可能完全自动化</li>
+
+  <li>Supervisor 只在真正的异常情况介入</li>
+
+</ul>
+
+<strong>共同结论</strong>:
+
+<blockquote>每个 harness/supervisor 组件背后都有一个"模型做不到这件事"的假设，这些假设要定期回去验证。</blockquote>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>五、实践指南：判断你的瓶颈在哪个阶段</h2>
+
+<h3>决策树</h3>
+
+<pre><code class="language-text">你的 Agent 目前状态如何?
+
+<p>    │     ├── 产出质量还不稳定?     │       ↓     │   瓶颈在【开发阶段】     │       ↓     │   参考 Anthropic 的 4 篇博客     │   从 evaluator-optimizer 开始     │     └── 产出质量 OK，但你在当值班人?             ↓         瓶颈在【运维阶段】             ↓         参考 Hermes 思路         加一个分诊台，没事不打扰你，有事带着诊断来找你</p>
+
+</code></pre>
+
+<h3>阶段特征对比</h3>
+
+<p>| 特征 | 开发阶段 (Anthropic) | 运维阶段 (Hermes) | |------|---------------------|-------------------| | <strong>主要问题</strong> | 产出质量不稳定 | 需要人工值守 | | <strong>典型场景</strong> | 编码、写作、研究 | Cron 任务、监控、报告 | | <strong>干预频率</strong> | 每次产出都检查 | 只在异常时介入 | | <strong>目标</strong> | 质量达标 | 运行稳定 | | <strong>解决方案</strong> | Evaluator + 反馈循环 | Supervisor + 分诊升级 |</p>
+
+<h3>两阶段的关系</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────┐
+
+<p>│                      Agent 生命周期                          │ ├─────────────────────────────────────────────────────────────┤ │                                                             │ │  阶段 1: 开发                                                │ │  ├── 目标: 产出质量达标                                       │ │  ├── 工具: Anthropic Harness                                 │ │  │   ├── Evaluator-optimizer                                 │ │  │   ├── Multi-agent research                                │ │  │   ├── Context anxiety 处理                                │ │  │   └── 独立 Evaluator                                      │ │  └── 产出: 质量稳定的 Agent                                   │ │         ↓                                                   │ │  阶段 2: 部署                                                │ │  ├── 目标: 减少人工值守                                       │ │  ├── 工具: Hermes Supervisor                                 │ │  │   ├── STATUS_REQUEST 监控                                 │ │  │   ├── REVIEW_REQUEST 审查                                 │ │  │   └── ESCALATION_NOTICE 升级                              │ │  └── 产出: 自主运行的 Agent                                   │ │                                                             │ │  注意: 两个阶段不是二选一，是先后                             │ │        先让它干得好，再让它跑得稳                             │ │                                                             │ └─────────────────────────────────────────────────────────────┘</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>六、对 Hermes Agent 系统的启示</h2>
+
+<h3>1. 明确阶段定位</h3>
+
+<p>当前 Hermes 更适合作为 <strong>Supervisor (分诊台)</strong> 角色:</p>
+
+<ul>
+
+  <li>✅ 独立运行</li>
+
+  <li>✅ 监控其他 Agent</li>
+
+  <li>✅ 带诊断升级</li>
+
+</ul>
+
+<h3>2. 可能的架构增强</h3>
+
+<h4>方向 A: 强化 Supervisor 能力</h4>
+
+<pre><code class="language-python">&lt;h1&gt;Hermes 作为 OpenClaw 的 Supervisor&lt;/h1&gt;
+
+<p>class HermesSupervisor:     def monitor(self, target_agent: str):         # STATUS_REQUEST 轮询         # REVIEW_REQUEST 审查         # ESCALATION_NOTICE 升级         pass</p>
+
+<p>    def evaluate_proposal(self, proposal: dict) -&gt; Decision:         # 评估变更提案         # ACK 或 ESCALATION         pass</p>
+
+</code></pre>
+
+<h4>方向 B: 内部 Evaluator (开发阶段)</h4>
+
+<pre><code class="language-python">&lt;h1&gt;Hermes 内部的 Skill 质量评估&lt;/h1&gt;
+
+<p>class SkillEvaluator:     def evaluate_skill_output(self, skill_name: str, output: str) -&gt; Evaluation:         # 类似 Anthropic 的 evaluator         # 生成改进建议         pass</p>
+
+<p>    def auto_improve(self, skill_name: str):         # 自动优化 Skill         pass</p>
+
+</code></pre>
+
+<h3>3. 通信协议设计</h3>
+
+<p>借鉴 Hermes-OpenClaw 的极简协议：</p>
+
+<pre><code class="language-python">class AgentCommunicationProtocol:
+
+<p>    &quot;&quot;&quot;     最小可行 multi-agent 通信协议     &quot;&quot;&quot;</p>
+
+<p>    MARKERS = {         &#x27;STATUS_REQUEST&#x27;: &#x27;查询状态&#x27;,         &#x27;REVIEW_REQUEST&#x27;: &#x27;审查产出&#x27;,         &#x27;ESCALATION_NOTICE&#x27;: &#x27;升级人类&#x27;,         &#x27;ACK&#x27;: &#x27;确认关闭&#x27;,     }</p>
+
+<p>    MAX_ROUNDS = 3</p>
+
+<p>    def send(self, marker: str, content: str, recipient: str):         assert marker in self.MARKERS         # 发送消息         pass</p>
+
+<p>    def should_respond(self, message: dict) -&gt; bool:         # 检查 marker         # ACK = 不回复         # 无 marker = informational，不回复         pass</p>
+
+</code></pre>
+
+<h3>4. 与 Improvement Loop 结合</h3>
+
+<pre><code class="language-text">Hermes Improvement Loop (自主改进)
+
+<p>    ↓ 收集执行数据 → 检测问题 → 生成改进建议     ↓ 如果是 Skill 质量问题 → 内部 Evaluator 优化 (Anthropic 模式) 如果是运行稳定性问题 → Supervisor 介入 (Hermes 模式)     ↓ 闭环改进</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>七、总结</h2>
+
+<h3>核心观点</h3>
+
+<ol>
+
+  <li><strong>问题阶段决定解决方案</strong></li>
+
+</ol>
+
+<p>   - 开发阶段质量问题 → Anthropic Harness    - 运维阶段值守问题 → Hermes Supervisor</p>
+
+<ol>
+
+  <li><strong>本质区别在于信息流向</strong></li>
+
+</ol>
+
+<p>   - Evaluator: 判断回流，驱动重做 (内部闭环)    - Supervisor: 判断不回传，ACK 或升级 (外部闭环)</p>
+
+<ol>
+
+  <li><strong>共享三个底层原则</strong></li>
+
+</ol>
+
+<p>   - 角色分离 > 自我评估    - 硬终止条件必需    - 组件假设需定期验证</p>
+
+<ol>
+
+  <li><strong>先后关系而非二选一</strong></li>
+
+</ol>
+
+<p>   - 先让它干得好 (Harness)    - 再让它跑得稳 (Supervisor)</p>
+
+<h3>对读者的建议</h3>
+
+<strong>如果你正在构建 Agent 系统</strong>:
+
+<ol>
+
+  <li><strong>诊断当前阶段</strong></li>
+
+</ol>
+
+<p>   - 产出质量不稳定? → 先看 Anthropic    - 已经在值守? → 先看 Hermes</p>
+
+<ol>
+
+  <li><strong>不要跳阶段</strong></li>
+
+</ol>
+
+<p>   - 先解决质量，再解决运维    - 质量不稳的 Agent，加 Supervisor 也没用</p>
+
+<ol>
+
+  <li><strong>设计通信协议</strong></li>
+
+</ol>
+
+<p>   - 借鉴 Hermes 的极简设计    - 硬终止条件必须    - 明确 marker 和轮次限制</p>
+
+<ol>
+
+  <li><strong>定期验证假设</strong></li>
+
+</ol>
+
+<p>   - 随着模型变强，简化 harness/supervisor    - 每个组件都要问：模型现在还需要这个吗?</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>参考资源</h2>
+
+<h3>Anthropic 博客</h3>
+
+<ol>
+
+  <li>Building Effective Agents (6 种 workflow pattern)</li>
+
+  <li>Research 功能实现 (evaluator-optimizer 实践)</li>
+
+  <li>长任务处理 (Context Anxiety)</li>
+
+  <li>独立 Evaluator (对抗生成)</li>
+
+</ol>
+
+<h3>Hermes 资源</h3>
+
+<ul>
+
+  <li>Graeme 文章: OpenClaw + Hermes Supervisor 配置</li>
+
+  <li>Hermes 官方: https://github.com/NousResearch/hermes</li>
+
+</ul>
+
+<h3>相关概念</h3>
+
+<ul>
+
+  <li>GAN (Generative Adversarial Networks)</li>
+
+  <li>Evaluator-Optimizer Pattern</li>
+
+  <li>Multi-agent Communication Protocol</li>
+
+</ul>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

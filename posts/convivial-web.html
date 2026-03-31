@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愉悦工具与互联网的灵魂 | Xin Conan</title>
+    <meta name="description" content="重读 Henry《A Website to Destroy All Websites》，思考如何让技术重新服务于人的自主性">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-30</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">ESSAY</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">15 min read</span>
+                </div>
+                <h1 class="post-title">愉悦工具与互联网的灵魂</h1>
+                <p class="post-subtitle">重读 Henry《A Website to Destroy All Websites》，思考如何让技术重新服务于人的自主性</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">curl https://henry.codes/writing/a-website-to-destroy-all-websites/</span>
+                </div>
+
+                <p>Henry 的文章标题像一句宣言：《A Website to Destroy All Websites》。但读完后你会发现，他不是要摧毁网站，而是要<strong>摧毁那种摧毁网站的互联网</strong>——那个被平台垄断、被算法驯化、被商业利益掏空的互联网。</p>
+
+                <p>这篇文章是一篇檄文，也是一份蓝图。它借用 Ivan Illich 的《Tools for Conviviality》，为我们提供了分析互联网异化的理论框架，并指向一个具体的解决方案：个人网站。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./diagnosis.md</span>
+                </div>
+
+                <h2>诊断：互联网为何变得"糟糕"</h2>
+
+                <p>Henry 用诗意的语言描述了 Web 2.0 后的异化：</p>
+
+                <blockquote>
+                    <p>我们被给予了一片广阔、神圣的自我发现与喜悦、哲学与社区的领域；成千上万亩数字景观，可以在上面种植想象力的森林和草原，栽种学习的花园，探索我们制造的洞穴。</p>
+                    <p>但我们不再使用互联网来<strong>创造自己</strong>，而是用来<strong>消耗自己</strong>——在注意力农场 doom-scrolling 脑腐内容，从 feed 里获取糟粕。</p>
+                </blockquote>
+
+                <p>这段话精准地捕捉了现代互联网的病症。Henry 用表格对比了"过去"与"现在"：</p>
+
+                <table class="data-table">
+                    <tr>
+                        <th>过去</th>
+                        <th>现在</th>
+                    </tr>
+                    <tr>
+                        <td>HTTP 草原上自由漫步</td>
+                        <td>在算法内容工厂里劳作</td>
+                    </tr>
+                    <tr>
+                        <td>兴趣驱动的博客/论坛/wiki</td>
+                        <td>被广告淹没的短视频、AI 配音</td>
+                    </tr>
+                    <tr>
+                        <td>手工培育的社交网络</td>
+                        <td>圈养猪仔般注意力的社交媒体</td>
+                    </tr>
+                    <tr>
+                        <td>用代码表达创意与意义</td>
+                        <td>为股东价值写复杂不安全的代码</td>
+                    </tr>
+                </table>
+
+                <p>Henry 强调他不是怀旧——早期互联网慢、人口少、阶层局限，"Web For All"是进步。问题在于我们失去了使用工具的"感觉"。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">./automobile-analogy.sh</span>
+                </div>
+
+                <h2>汽车的寓言</h2>
+
+                <p>Henry 引入汽车作为技术发展的经典案例，为 Illich 的理论做铺垫：</p>
+
+                <h3>第一阶段：解放</h3>
+
+                <p>汽车的到来是"获取和个人自由的启示"。人们可以走得更远，在一天中完成更多事情，将有限的时间更多地用于创造性意志。</p>
+
+                <h3>第二阶段：奴役</h3>
+
+                <p>但随着工业化和普及，边际效用递减：</p>
+
+                <ul>
+                    <li>汽车不再<strong>允许</strong>人们远行，而是<strong>要求</strong>人们远行</li>
+                    <li>汽车要求建设维护基础设施</li>
+                    <li>许多人<strong>必须</strong>使用汽车才能完成日常事务</li>
+                    <li>全社会为基础设施纳税，但只有特定阶层能负担汽车</li>
+                    <li>无力负担者被贬至资金不足的公交系统</li>
+                </ul>
+
+                <blockquote>
+                    <p>不再是服务社会的工具，社会现在开始服务汽车。</p>
+                </blockquote>
+
+                <p>这个寓言与互联网的发展轨迹惊人地相似：从自由的工具，变成必需的基础设施，最终成为支配我们生活的力量。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./illich-framework.txt</span>
+                </div>
+
+                <h2>Illich 的框架：Tools for Conviviality</h2>
+
+                <p>Henry 引入哲学家 Ivan Illich 的《Tools for Conviviality》（愉悦工具）作为分析框架。</p>
+
+                <h3>技术发展的两阶段</h3>
+
+                <p>Illich 识别出两个关键转折点：</p>
+
+                <ol>
+                    <li><strong>乐观抵达期</strong> — 工具增强人类能力，释放时间与能量</li>
+                    <li><strong>工业化窒息期</strong> — 边际效用递减，社会开始为工具服务</li>
+                </ol>
+
+                <h3>激进垄断 (Radical Monopoly)</h3>
+
+                <p>Illich 描述的概念：一种技术工具如此主导，以至于不使用它就会被排斥在社会之外。</p>
+
+                <ul>
+                    <li>我们见过它与汽车</li>
+                    <li>我们见过它与互联网</li>
+                    <li>我们甚至见过它与社交媒体</li>
+                </ul>
+
+                <blockquote>
+                    <p>不再是服务社会的工具，社会改变以适应工具的需求。</p>
+                </blockquote>
+
+                <h3>愉悦工具的特征</h3>
+
+                <p>Illich 提出愉悦工具作为对立面，类似于 E.F. Schumacher《小即是美》中的"中间技术"：</p>
+
+                <ul>
+                    <li>可持续</li>
+                    <li>能源高效（虽然通常劳动密集）</li>
+                    <li>本地优先</li>
+                    <li>设计 primarily 增强用户的自主性和创造力</li>
+                </ul>
+
+                <p>Illich 特别提到手工工具、自行车和电话作为例子。Henry 的洞察是：<strong>互联网是设计愉悦工具的完美工坊</strong>——因为它具有巨大的互操作性和可扩展性。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./web-industrialization.md</span>
+                </div>
+
+                <h2>Web 的工业化</h2>
+
+                <p>Henry 列举了过去 100 年的技术发展模式：</p>
+
+                <table class="data-table">
+                    <tr>
+                        <th>技术</th>
+                        <th>初期收益</th>
+                        <th>工业化代价</th>
+                    </tr>
+                    <tr>
+                        <td>纺织革命</td>
+                        <td>中产阶级崛起</td>
+                        <td>60万工厂工人，不到2%赚取生活工资</td>
+                    </tr>
+                    <tr>
+                        <td>抗生素</td>
+                        <td>击败细菌感染</td>
+                        <td>抗药性蔓延</td>
+                    </tr>
+                    <tr>
+                        <td>太空探索</td>
+                        <td>电信、成像突破</td>
+                        <td>太空碎片威胁天文学</td>
+                    </tr>
+                    <tr>
+                        <td>万维网</td>
+                        <td>信息民主化</td>
+                        <td>网络暴力、虚假信息、成瘾</td>
+                    </tr>
+                </table>
+
+                <p>Web 的工业化和商业化开发了提取用户资本的新模式：新信息表面意味着新广告表面，新媒体格式意味着剥夺所有权的新机制。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./reconstruction-path.md</span>
+                </div>
+
+                <h2>重建路径：愉悦工具的 Web 实践</h2>
+
+                <p>Henry 用 Illich 的框架重新构想了 Web 的三个核心功能：</p>
+
+                <h3>1. 教学与学习</h3>
+
+                <p><strong>现状</strong>：YouTube、TikTok、Medium、Substack 等平台因变现承诺吸引创作者，但缺乏所有权导致问题。平台失败、规则改变、付费墙——创作者和受众被迫选择。</p>
+
+                <p><strong>愉悦方案</strong>：<strong>博客</strong>。HTML 默认免费访问，RSS 工作良好，加上 Webmention，阅读新想法、实验想法、与其他思想家一起发展想法从未如此容易——<strong>同时一直拥有这些内容</strong>。</p>
+
+                <h3>2. 与朋友连接</h3>
+
+                <p><strong>现状</strong>：社交媒体将我们囚禁在内容监狱——为了与朋友连接，我们被迫创造内容或被算法消失，且所有创造的内容归平台所有。</p>
+
+                <p><strong>愉悦方案</strong>：<strong>POSSE</strong>（Publish On your Own Site, Syndicate Elsewhere）+ ActivityPub + 微格式。生成自己的社交网络，与 Bluesky 或 Mastodon 互操作。这个网络设计用于所有权和去中心化，围绕叙事而非参与度，不受古怪科技亿万富翁的任性影响。</p>
+
+                <h3>3. 为 Web 编程</h3>
+
+                <p><strong>现状</strong>：被要求用相同功能集构建 B2B SaaS 网站 n^∞ 次，答案越来越有限。标记被锁进 JavaScript 模板，样式代码沦为部署 border-radius-drop-shadow 组合的机制。</p>
+
+                <p><strong>愉悦方案</strong>：HTML 和 CSS 比以往任何时候都更具生成性。CSS 工作组和浏览器实现者的辛勤工作使得基本 Web 工具可以实现难以置信的创新表达。JavaScript 比以往任何时候都更具渐进增强性，支持快速增长的浏览器 API。</p>
+
+                <blockquote>
+                    <p>2024 是 Web 代码的文艺复兴，它只要求作者的好奇心和实验动力。</p>
+                </blockquote>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">echo "Why am I building this?"</span>
+                </div>
+
+                <h2>我的实践：为什么建这个数字花园</h2>
+
+                <p>Henry 的文章给了我建设的蓝图和道德理由。但归根结底，这是一个<strong>个人选择</strong>——选择用特定方式与互联网相处。</p>
+
+                <h3>WSL2 里的选择</h3>
+
+                <p>我的开发环境透露了选择的本质：</p>
+
+                <ul>
+                    <li><strong>WSL2 Ubuntu</strong> — 不是 macOS，不是 Windows IDE，而是命令行优先的 Linux 环境</li>
+                    <li><strong>8GB RAM + i7-6700</strong> — 不是最新的 M3 MacBook，而是 2016 年的硬件</li>
+                    <li><strong>纯 HTML/CSS</strong> — 不是 React/Vue/Next.js，而是 1990 年代的技术栈</li>
+                </ul>
+
+                <p>这些选择不是能力限制，而是<strong>有意为之的约束</strong>。约束迫使你思考什么是真正重要的。</p>
+
+                <h3>终端美学的意义</h3>
+
+                <p>这个网站的终端风格不是装饰，而是<strong>宣言</strong>：</p>
+
+                <ul>
+                    <li><code>$ cat ./file.txt</code> — 数据是透明的、可读的</li>
+                    <li>绿色提示符 <code>></code> — 等待输入，邀请互动</li>
+                    <li>实时状态栏 — 展示过程而非仅结果</li>
+                    <li>等宽字体 — 代码即文本，文本即代码</li>
+                </ul>
+
+                <h3>与 Westenberg 的呼应</h3>
+
+                <p>写完<a href="/posts/communities-are-not-fungible.html">上一篇文章</a>后，我意识到两篇文章的深层联系：</p>
+
+                <ul>
+                    <li>Westenberg 告诉我们：<strong>社区不可替代</strong></li>
+                    <li>Henry 告诉我们：<strong>个人网站是保留社区的最小可行方案</strong></li>
+                </ul>
+
+                <p>个人网站不是孤立的孤岛，而是<strong>连接的节点</strong>——通过 RSS 订阅、通过 Webmention 对话、通过 POSSE 向外传播。它是自治的（拥有数据），但又是互联的（参与网络）。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./conclusion.txt</span>
+                </div>
+
+                <h2>结论</h2>
+
+                <p>Henry 在文末写道：</p>
+
+                <blockquote>
+                    <p>恢复控制感的路径是将自己从五马分尸的应用中解放出来，夺回互联网作为你可以拥有并为之自豪的工具集——或者对我们大多数人来说，为之深深羞愧。</p>
+                    <p>祝你好运。</p>
+                </blockquote>
+
+                <p>这是一篇令人振奋又令人羞愧的文章。振奋因为它指向可能，羞愧因为我们大多仍在使用那些"五马分尸的应用"。</p>
+
+                <p>但建设已经开始。这个数字花园是第一步，但不是最后一步。正如 Henry 所说：</p>
+
+                <blockquote>
+                    <p><strong>开始小</strong> — 允许自己失败，记录成长，发布失败的想法和成功的想法。<br>
+                    <strong>降低发布摩擦</strong> — 不要被工具困扰，写 HTML 然后上线。<br>
+                    <strong>除非你想，否则不要担心设计</strong> — 从谦逊的土壤中成长出百万个问题。<br>
+                    <strong>使用 IndieWeb</strong> — 通过 brid.gy 同步到外网，通过 Webmention 带回对话。<br>
+                    <strong>加入我们分享你所做的</strong> — 在 personalsit.es。</p>
+                </blockquote>
+
+                <p>这不是怀旧，不是 Luddism，而是<strong>深思熟虑的选择</strong>——选择让技术重新服务于人的自主性，而非相反。</p>
+
+                <p>这个网站是我的选择。你的呢？</p>
+
+                <div class="post-footer">
+                    <div class="post-tags">
+                        <span class="tag-label">TAGS:</span>
+                        <span class="tag">essay</span>
+                        <span class="tag">indie-web</span>
+                        <span class="tag">personal-website</span>
+                        <span class="tag">reading-notes</span>
+                        <span class="tag">tools-for-conviviality</span>
+                    </div>
+                    
+                    <div class="post-nav">
+                        <a href="/posts/" class="nav-back">
+                            <span class="arrow">←</span>
+                            <span>返回文章列表</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                </p>
+            </div>
+            <div class="footer-footer">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

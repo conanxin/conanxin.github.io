@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2A Agent 协议与多 Agent 协作研究 | Xin Conan</title>
+    <meta name="description" content="A2A Agent 协议与多 Agent 协作研究   1. A2A 协议概述  **Agent2Agent (A2A) Protocol** 是由 Google 开发并捐赠给 Linux  Foundation 的开放标准，旨在实现 AI Agent 之间的无缝通信和协作。   核心定位  ```...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">A2A Agent 协议与多 Agent 协作研究</h1>
+                <p class="post-subtitle">A2A Agent 协议与多 Agent 协作研究   1. A2A 协议概述  **Agent2Agent (A2A) Protocol** 是由 Google 开发并捐赠给 Linux  Foundation 的开放标准，旨在实现 AI Agent 之间的无缝通信和协作。   核心定位  ```...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>A2A Agent 协议与多 Agent 协作研究</h1>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>1. A2A 协议概述</h2>
+
+<strong>Agent2Agent (A2A) Protocol</strong> 是由 Google 开发并捐赠给 Linux  Foundation 的开放标准，旨在实现 AI Agent 之间的无缝通信和协作。
+
+<h3>核心定位</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────┐
+
+<p>│                    Agent 技术栈三层架构                       │ ├─────────────────────────────────────────────────────────────┤ │  Layer 3: A2A (Agent-to-Agent)                              │ │           → Agent 之间的协作与通信                            │ ├─────────────────────────────────────────────────────────────┤ │  Layer 2: MCP (Model Context Protocol)                      │ │           → Agent 与工具/资源的连接                           │ ├─────────────────────────────────────────────────────────────┤ │  Layer 1: LLM / Agent Framework                             │ │           → 核心推理能力 (ADK, LangGraph, CrewAI, etc.)      │ └─────────────────────────────────────────────────────────────┘</p>
+
+</code></pre>
+
+<strong>关键原则</strong>: Build with <strong>ADK</strong> (or any framework), equip with <strong>MCP</strong> (or any tool), communicate with <strong>A2A</strong>.
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>2. A2A 核心概念</h2>
+
+<h3>2.1 三个核心角色</h3>
+
+<p>| 角色 | 职责 | 类比 | |------|------|------| | <strong>User</strong> | 发起请求或定义目标的人类或自动化服务 | 客户 | | <strong>A2A Client</strong> | 代表用户发起通信的应用/服务/Agent | 前台/经纪人 | | <strong>A2A Server</strong> | 暴露 HTTP 端点实现 A2A 协议的 Agent | 服务提供者 |</p>
+
+<blockquote>重要: Remote Agent 是 <strong>opaque (黑盒)</strong> 系统，其内部工作、内存或工具不对外暴露。</blockquote>
+
+<h3>2.2 通信元素</h3>
+
+<pre><code class="language-python">&lt;h1&gt;Agent Card - Agent 的&quot;名片&quot;&lt;/h1&gt;
+
+<p>AgentCard(     name=&quot;Hello World Agent&quot;,     description=&quot;Just a hello world agent&quot;,     version=&quot;1.0.0&quot;,     capabilities=AgentCapabilities(         streaming=True,           # 支持流式响应         extended_agent_card=True  # 支持扩展卡片     ),     skills=[         AgentSkill(             id=&quot;hello_world&quot;,             name=&quot;Returns hello world&quot;,             description=&quot;just returns hello world&quot;,             tags=[&quot;hello world&quot;],             examples=[&quot;hi&quot;, &quot;hello world&quot;],         )     ] )</p>
+
+</code></pre>
+
+<p>| 元素 | 描述 | 用途 | |------|------|------| | <strong>Agent Card</strong> | JSON 元数据文档，描述身份、能力、端点、技能 | 客户端发现 Agents | | <strong>Task</strong> | 表示一个工作单元，有生命周期状态 | 跟踪任务执行 | | <strong>Message</strong> | 包含 Parts 的通信单元 | 传递信息 | | <strong>Part</strong> | 内容片段 (text, file, data) | 结构化内容 | | <strong>Artifact</strong> | 任务输出的结构化数据 | 交付成果 |</p>
+
+<h3>2.3 任务生命周期</h3>
+
+<pre><code class="language-text">SUBMITTED → WORKING → (INPUT_REQUIRED → WORKING) → COMPLETED/FAILED/CANCELED
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>3. A2A vs MCP: 互补而非竞争</h2>
+
+<h3>MCP (Model Context Protocol)</h3>
+
+<ul>
+
+  <li><strong>定位</strong>: Agent ↔ Tool/Resource 的连接</li>
+
+  <li><strong>类比</strong>: 函数调用、API 调用</li>
+
+  <li><strong>场景</strong>: 查询数据库、调用外部 API、文件操作</li>
+
+</ul>
+
+<h3>A2A (Agent2Agent Protocol)</h3>
+
+<ul>
+
+  <li><strong>定位</strong>: Agent ↔ Agent 的协作</li>
+
+  <li><strong>类比</strong>: 服务间通信、微服务调用</li>
+
+  <li><strong>场景</strong>: 客服 Agent 委派给计费 Agent、旅行 Agent 协调航班/酒店/活动 Agents</li>
+
+</ul>
+
+<h3>协作示例: 汽车维修店</h3>
+
+<pre><code class="language-text">用户: &quot;我的车需要维修&quot;
+
+<p>    │     ▼ ┌─────────────────┐ │ 接待 Agent       │  ← Host Agent (A2A Client) │ (Receptionist)   │ └────────┬────────┘          │ A2A 协议     ┌────┴────┐     ▼         ▼ ┌───────┐  ┌─────────┐ │诊断 Agent│  │零件查询 Agent│  ← Remote Agents (A2A Server) │(MCP: OBD│  │(MCP: 库存DB)│ │  工具)  │  └─────────┘ └───┬───┘     │ A2A     ▼ ┌─────────┐ │维修 Agent │ │(MCP: 维修│ │  手册)   │ └─────────┘</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>4. Python SDK 实战</h2>
+
+<h3>4.1 安装</h3>
+
+<pre><code class="language-bash">pip install a2a-sdk
+
+<p>&lt;h1&gt;可选功能&lt;/h1&gt; pip install &quot;a2a-sdk[http-server]&quot;  # FastAPI/Starlette 支持 pip install &quot;a2a-sdk[grpc]&quot;         # gRPC 支持 pip install &quot;a2a-sdk[telemetry]&quot;    # OpenTelemetry 追踪</p>
+
+</code></pre>
+
+<h3>4.2 创建 A2A Server (Remote Agent)</h3>
+
+<pre><code class="language-python">&lt;h1&gt;agent_executor.py&lt;/h1&gt;
+
+<p>from a2a.server.agent_execution import AgentExecutor, RequestContext from a2a.server.events import EventQueue from a2a.types.a2a_pb2 import (     TaskArtifactUpdateEvent, TaskState, TaskStatus, TaskStatusUpdateEvent, ) from a2a.utils.artifact import new_text_artifact from a2a.utils.message import new_agent_text_message from a2a.utils.task import new_task</p>
+
+<p>class HelloWorldAgent:     async def invoke(self) -&gt; str:         return &#x27;Hello, World!&#x27;</p>
+
+<p>class HelloWorldAgentExecutor(AgentExecutor):     def __init__(self):         self.agent = HelloWorldAgent()</p>
+
+<p>    async def execute(self, context: RequestContext, event_queue: EventQueue) -&gt; None:         task = context.current_task or new_task(context.message)</p>
+
+<p>        # 发送任务创建事件         await event_queue.enqueue_event(task)</p>
+
+<p>        # 更新状态为 WORKING         await event_queue.enqueue_event(             TaskStatusUpdateEvent(                 task_id=context.task_id,                 status=TaskStatus(                     state=TaskState.TASK_STATE_WORKING,                     message=new_agent_text_message(&#x27;Processing request...&#x27;),                 ),             )         )</p>
+
+<p>        # 执行 Agent 逻辑         result = await self.agent.invoke()</p>
+
+<p>        # 发送结果 Artifact         await event_queue.enqueue_event(             TaskArtifactUpdateEvent(                 task_id=context.task_id,                 artifact=new_text_artifact(name=&#x27;result&#x27;, text=result),             )         )</p>
+
+<p>        # 标记完成         await event_queue.enqueue_event(             TaskStatusUpdateEvent(                 task_id=context.task_id,                 status=TaskStatus(state=TaskState.TASK_STATE_COMPLETED),             )         )</p>
+
+</code></pre>
+
+<pre><code class="language-python">&lt;h1&gt;server.py&lt;/h1&gt;
+
+<p>import uvicorn from a2a.server.apps import A2AStarletteApplication from a2a.server.request_handlers import DefaultRequestHandler from a2a.server.tasks import InMemoryTaskStore from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill</p>
+
+<p>from agent_executor import HelloWorldAgentExecutor</p>
+
+<p>&lt;h1&gt;定义技能&lt;/h1&gt; skill = AgentSkill(     id=&#x27;hello_world&#x27;,     name=&#x27;Returns hello world&#x27;,     description=&#x27;just returns hello world&#x27;,     tags=[&#x27;hello world&#x27;],     examples=[&#x27;hi&#x27;, &#x27;hello world&#x27;], )</p>
+
+<p>&lt;h1&gt;创建 Agent Card&lt;/h1&gt; agent_card = AgentCard(     name=&#x27;Hello World Agent&#x27;,     description=&#x27;Just a hello world agent&#x27;,     version=&#x27;1.0.0&#x27;,     default_input_modes=[&#x27;text&#x27;],     default_output_modes=[&#x27;text&#x27;],     capabilities=AgentCapabilities(streaming=True),     supported_interfaces=[         AgentInterface(protocol_binding=&#x27;JSONRPC&#x27;, url=&#x27;http://localhost:9999&#x27;)     ],     skills=[skill], )</p>
+
+<p>&lt;h1&gt;创建 Server&lt;/h1&gt; request_handler = DefaultRequestHandler(     agent_executor=HelloWorldAgentExecutor(),     task_store=InMemoryTaskStore(), )</p>
+
+<p>server = A2AStarletteApplication(     agent_card=agent_card,     http_handler=request_handler, )</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     uvicorn.run(server.build(), host=&#x27;127.0.0.1&#x27;, port=9999)</p>
+
+</code></pre>
+
+<h3>4.3 创建 A2A Client</h3>
+
+<pre><code class="language-python">import asyncio
+
+<p>import httpx from a2a.client import A2AClient, A2ACardResolver</p>
+
+<p>async def main():     async with httpx.AsyncClient() as client:         # 1. 获取 Agent Card (发现)         card_resolver = A2ACardResolver(client, &quot;http://localhost:9999&quot;)         agent_card = await card_resolver.get_agent_card()         print(f&quot;Found agent: {agent_card.name}&quot;)</p>
+
+<p>        # 2. 创建 A2A Client         a2a_client = A2AClient(client, agent_card)</p>
+
+<p>        # 3. 发送消息         response = await a2a_client.send_message(             message={                 &quot;role&quot;: &quot;user&quot;,                 &quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Hello!&quot;}]             }         )</p>
+
+<p>        print(f&quot;Response: {response}&quot;)</p>
+
+<p>if __name__ == &#x27;__main__&#x27;:     asyncio.run(main())</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>5. 多 Agent 协作模式</h2>
+
+<h3>5.1 架构模式</h3>
+
+<pre><code class="language-text">┌─────────────────────────────────────────────────────────────────┐
+
+<p>│                         User Request                             │ └───────────────────────────┬─────────────────────────────────────┘                             │                             ▼ ┌─────────────────────────────────────────────────────────────────┐ │                     Host Agent (Routing)                         │ │                    ┌──────────────────┐                         │ │                    │ 1. Parse Intent    │                         │ │                    │ 2. Select Agents   │                         │ │                    │ 3. Delegate Tasks  │                         │ │                    │ 4. Synthesize      │                         │ │                    └──────────────────┘                         │ └──────┬────────────────────┬────────────────────┬────────────────┘        │ A2A Protocol       │ A2A Protocol       │ A2A Protocol        ▼                    ▼                    ▼ ┌──────────┐         ┌──────────┐         ┌──────────┐ │Weather   │         │Airbnb    │         │Flight    │ │Agent     │         │Agent     │         │Agent     │ │(MCP:     │         │(MCP:     │         │(MCP:     │ │Weather   │         │Airbnb    │         │Booking   │ │API)      │         │API)      │         │API)      │ └──────────┘         └──────────┘         └──────────┘</p>
+
+</code></pre>
+
+<h3>5.2 Host Agent 实现 (使用 ADK)</h3>
+
+<pre><code class="language-python">&lt;h1&gt;routing_agent.py&lt;/h1&gt;
+
+<p>from a2a.client import A2ACardResolver from a2a.types import AgentCard, SendMessageRequest from google.adk import Agent</p>
+
+<p>class RoutingAgent:     def __init__(self, remote_agent_addresses: list[str]):         self.remote_agent_connections: dict[str, RemoteAgentConnections] = {}         self.cards: dict[str, AgentCard] = {}</p>
+
+<p>        # 初始化远程 Agent 连接         for address in remote_agent_addresses:             card_resolver = A2ACardResolver(client, address)             card = await card_resolver.get_agent_card()             self.remote_agent_connections[card.name] = RemoteAgentConnections(                 agent_card=card, agent_url=address             )             self.cards[card.name] = card</p>
+
+<p>    def create_agent(self) -&gt; Agent:         &quot;&quot;&quot;创建 ADK Agent&quot;&quot;&quot;         return Agent(             model=&#x27;gemini-2.5-flash-lite&#x27;,             name=&#x27;Routing_agent&#x27;,             instruction=self.root_instruction,             tools=[self.send_message],         )</p>
+
+<p>    def root_instruction(self) -&gt; str:         return f&quot;&quot;&quot; 你是路由协调 Agent。你的职责是：</p>
+
+<ol>
+
+  <li>解析用户意图</li>
+
+  <li>选择合适的远程 Agent: {list(self.cards.keys())}</li>
+
+  <li>使用 send_message 工具委派任务</li>
+
+  <li>整合结果返回给用户</li>
+
+</ol>
+
+<p>可用 Agents: {self._format_agent_descriptions()}         &quot;&quot;&quot;</p>
+
+<p>    async def send_message(self, agent_name: str, task: str):         &quot;&quot;&quot;向远程 Agent 发送任务&quot;&quot;&quot;         if agent_name not in self.remote_agent_connections:             raise ValueError(f&#x27;Agent {agent_name} not found&#x27;)</p>
+
+<p>        client = self.remote_agent_connections[agent_name]</p>
+
+<p>        request = SendMessageRequest(             message={                 &quot;role&quot;: &quot;user&quot;,                 &quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: task}]             }         )</p>
+
+<p>        response = await client.send_message(request)         return response</p>
+
+</code></pre>
+
+<h3>5.3 Remote Agent 连接管理</h3>
+
+<pre><code class="language-python">&lt;h1&gt;remote_agent_connection.py&lt;/h1&gt;
+
+<p>import httpx from a2a.client import A2AClient from a2a.types import AgentCard, SendMessageRequest, SendMessageResponse</p>
+
+<p>class RemoteAgentConnections:     &quot;&quot;&quot;管理到远程 Agent 的连接&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, agent_card: AgentCard, agent_url: str):         self._httpx_client = httpx.AsyncClient(timeout=30)         self.agent_client = A2AClient(             self._httpx_client, agent_card, url=agent_url         )         self.card = agent_card</p>
+
+<p>    async def send_message(         self, message_request: SendMessageRequest     ) -&gt; SendMessageResponse:         return await self.agent_client.send_message(message_request)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>6. 与 OpenClaw 协作方案</h2>
+
+<h3>6.1 OpenClaw 作为 A2A Server</h3>
+
+<p>OpenClaw 可以实现 A2A 协议，暴露其 Skills 为 A2A Agent:</p>
+
+<pre><code class="language-python">&lt;h1&gt;openclaw_a2a_server.py&lt;/h1&gt;
+
+<p>from a2a.server.apps import A2AStarletteApplication from a2a.types import AgentSkill, AgentCard from openclaw import OpenClawAgent</p>
+
+<p>class OpenClawA2AExecutor(AgentExecutor):     &quot;&quot;&quot;将 OpenClaw Agent 包装为 A2A Server&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, openclaw_agent: OpenClawAgent):         self.openclaw = openclaw_agent</p>
+
+<p>    async def execute(self, context: RequestContext, event_queue: EventQueue):         # 将 A2A 消息转换为 OpenClaw 格式         user_message = self._extract_text(context.message)</p>
+
+<p>        # 调用 OpenClaw         result = await self.openclaw.run(user_message)</p>
+
+<p>        # 将结果包装为 A2A Artifact         await event_queue.enqueue_event(             TaskArtifactUpdateEvent(                 task_id=context.task_id,                 artifact=new_text_artifact(name=&#x27;result&#x27;, text=result)             )         )</p>
+
+<p>&lt;h1&gt;将 OpenClaw Skills 映射为 A2A Skills&lt;/h1&gt; skills = [     AgentSkill(         id=skill.name,         name=skill.description,         description=skill.prompt,         tags=skill.tags,     )     for skill in openclaw_agent.skills ]</p>
+
+</code></pre>
+
+<h3>6.2 OpenClaw 作为 A2A Client</h3>
+
+<p>OpenClaw 可以调用其他 A2A Agents 作为其工具:</p>
+
+<pre><code class="language-python">&lt;h1&gt;openclaw_a2a_client.py&lt;/h1&gt;
+
+<p>from a2a.client import A2AClient</p>
+
+<p>class A2ATool:     &quot;&quot;&quot;将 A2A Agent 包装为 OpenClaw Tool&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, agent_url: str):         self.agent_url = agent_url         self.card = None         self.client = None</p>
+
+<p>    async def initialize(self):         &quot;&quot;&quot;发现 Agent 能力&quot;&quot;&quot;         async with httpx.AsyncClient() as http_client:             resolver = A2ACardResolver(http_client, self.agent_url)             self.card = await resolver.get_agent_card()             self.client = A2AClient(http_client, self.card)</p>
+
+<p>    async def run(self, query: str) -&gt; str:         &quot;&quot;&quot;调用远程 Agent&quot;&quot;&quot;         response = await self.client.send_message(             message={                 &quot;role&quot;: &quot;user&quot;,                 &quot;parts&quot;: [{&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: query}]             }         )         return self._extract_result(response)</p>
+
+<p>&lt;h1&gt;在 OpenClaw 中注册&lt;/h1&gt; openclaw.register_tool(     name=&quot;weather_agent&quot;,     tool=A2ATool(&quot;http://weather-agent:8080&quot;),     description=&quot;获取天气信息&quot; )</p>
+
+</code></pre>
+
+<h3>6.3 混合架构: OpenClaw + A2A + MCP</h3>
+
+<pre><code class="language-text">                         User Query
+
+<p>                            │                             ▼ ┌──────────────────────────────────────────────────────────────┐ │                    OpenClaw Host Agent                        │ │  ┌────────────────────────────────────────────────────────┐  │ │  │  Skills:                                               │  │ │  │  - code_generation (本地 Skill)                        │  │ │  │  - web_search (MCP Tool)                               │  │ │  │  - file_operations (MCP Tool)                          │  │ │  └────────────────────────────────────────────────────────┘  │ └──────────┬────────────────────────────┬──────────────────────┘            │ A2A                        │ A2A            ▼                            ▼ ┌─────────────────────┐      ┌─────────────────────┐ │ Data Analysis Agent │      │ Content Creation    │ │ (Python + Pandas)   │      │ Agent (LLM)         │ │  ┌───────────────┐  │      │  ┌───────────────┐  │ │  │ MCP: Jupyter  │  │      │  │ MCP: ImageGen │  │ │  └───────────────┘  │      │  └───────────────┘  │ └─────────────────────┘      └─────────────────────┘</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>7. 最佳实践</h2>
+
+<h3>7.1 Agent 设计原则</h3>
+
+<ol>
+
+  <li><strong>单一职责</strong>: 每个 Agent 专注于一个领域</li>
+
+  <li><strong>黑盒原则</strong>: 不暴露内部实现细节</li>
+
+  <li><strong>技能声明</strong>: 通过 Agent Card 清晰描述能力</li>
+
+  <li><strong>优雅降级</strong>: 处理远程 Agent 不可用的情况</li>
+
+</ol>
+
+<h3>7.2 安全考虑</h3>
+
+<pre><code class="language-python">&lt;h1&gt;重要: 将外部 Agent 视为不可信实体&lt;/h1&gt;
+
+<p>async def secure_call(agent_url: str, query: str):     # 1. 验证 Agent Card 签名 (如支持)     card = await resolve_agent_card(agent_url)</p>
+
+<p>    # 2. 输入消毒     sanitized_query = sanitize_input(query)</p>
+
+<p>    # 3. 限制响应大小     response = await call_with_timeout_and_size_limit(         agent_url, sanitized_query,          timeout=30, max_size=10&lt;em&gt;1024&lt;/em&gt;1024     )</p>
+
+<p>    # 4. 输出验证     return validate_output(response)</p>
+
+</code></pre>
+
+<h3>7.3 错误处理</h3>
+
+<pre><code class="language-python">async def resilient_multi_agent_call(query: str):
+
+<p>    results = []     errors = []</p>
+
+<p>    for agent in available_agents:         try:             result = await asyncio.wait_for(                 call_agent(agent, query),                 timeout=30             )             results.append(result)         except Exception as e:             errors.append((agent.name, str(e)))             logger.warning(f&quot;Agent {agent.name} failed: {e}&quot;)</p>
+
+<p>    if not results:         raise AllAgentsFailed(errors)</p>
+
+<p>    return synthesize_results(results)</p>
+
+</code></pre>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>8. 参考资源</h2>
+
+<ul>
+
+  <li><strong>A2A 官网</strong>: https://a2a-protocol.org</li>
+
+  <li><strong>Python SDK</strong>: https://github.com/a2aproject/a2a-python</li>
+
+  <li><strong>示例代码</strong>: https://github.com/a2aproject/a2a-samples</li>
+
+  <li><strong>MCP 协议</strong>: https://modelcontextprotocol.io</li>
+
+  <li><strong>DeepLearning.AI 课程</strong>: https://goo.gle/dlai-a2a</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>9. 总结</h2>
+
+<p>A2A 协议为 Agent 互操作性提供了标准化方案，与 MCP 形成互补的技术栈。在多 Agent 协作场景中：</p>
+
+<ol>
+
+  <li><strong>MCP</strong> 解决 Agent 与工具的连接问题</li>
+
+  <li><strong>A2A</strong> 解决 Agent 与 Agent 的协作问题</li>
+
+  <li><strong>OpenClaw</strong> 可以作为 A2A Server 暴露能力，也可以作为 A2A Client 调用其他 Agents</li>
+
+</ol>
+
+<p>这种分层架构使得复杂的 Agent 系统可以像搭建积木一样组合，每个 Agent 专注于自己的领域，通过标准协议进行协作。</p>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

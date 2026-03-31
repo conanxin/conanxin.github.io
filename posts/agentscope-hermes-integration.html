@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentScope × Hermes 系统集成分析 | Xin Conan</title>
+    <meta name="description" content="AgentScope × Hermes 系统集成分析   一、架构对比  | 维度 | Hermes Agent | AgentScope | |------|-------------|-----------| | **核心架构** | 同步循环 + 工具编排 | Ray-based Actor ...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">AgentScope × Hermes 系统集成分析</h1>
+                <p class="post-subtitle">AgentScope × Hermes 系统集成分析   一、架构对比  | 维度 | Hermes Agent | AgentScope | |------|-------------|-----------| | **核心架构** | 同步循环 + 工具编排 | Ray-based Actor ...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>AgentScope × Hermes 系统集成分析</h1>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>一、架构对比</h2>
+
+<p>| 维度 | Hermes Agent | AgentScope | |------|-------------|-----------| | <strong>核心架构</strong> | 同步循环 + 工具编排 | Ray-based Actor 模型 | | <strong>并发模型</strong> | 单线程（异步工具） | 原生分布式异步 | | <strong>Agent 粒度</strong> | 单一 Agent + 子代理委派 | 多 Agent 协同网络 | | <strong>状态管理</strong> | SQLite + memory 工具 | Actor 状态 + 消息传递 | | <strong>可视化</strong> | CLI 界面 + 平台网关 | Studio 可视化工作流 | | <strong>扩展机制</strong> | Skills + Tools 注册表 | Agents + Services | | <strong>记忆系统</strong> | 持久化 memory + trajectory | 可配置的 Memory 组件 | | <strong>协议支持</strong> | MCP (Model Context Protocol) | A2A (Agent-to-Agent) |</p>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>二、核心结合点</h2>
+
+<h3>1. 工具生态互通</h3>
+
+<pre><code class="language-text">Hermes Tools ←→ AgentScope Services
+
+</code></pre>
+
+<strong>场景</strong>：将 Hermes 的 20+ 工具暴露给 AgentScope 的 Agent 网络
+
+<pre><code class="language-python">&lt;h1&gt;agentscope-service-wrapper.py&lt;/h1&gt;
+
+<p>from agentscope.service import ServiceToolkit import hermes_agent_sdk</p>
+
+<p>&lt;h1&gt;包装 Hermes 工具为 AgentScope Service&lt;/h1&gt; hermes_tools = ServiceToolkit()</p>
+
+<p>for tool_name, tool_schema in hermes_agent_sdk.list_tools():     @hermes_tools.register(tool_name, **tool_schema)     def wrapped_tool(**params):         # 通过 subprocess/MCP 调用 Hermes 工具         return hermes_agent_sdk.execute(tool_name, params)</p>
+
+<p>&lt;h1&gt;AgentScope Agent 可以直接使用&lt;/h1&gt; agent = DialogAgent(     name=&quot;HermesBridge&quot;,     model_config={...},     service_toolkit=hermes_tools )</p>
+
+</code></pre>
+
+<strong>可用工具映射</strong>：
+
+<ul>
+
+  <li><code>terminal</code> → BashService</li>
+
+  <li><code>web_search</code> → WebSearchService</li>
+
+  <li><code>file_read/write</code> → FileService</li>
+
+  <li><code>browser_*</code> → BrowserService</li>
+
+  <li><code>delegate_task</code> → 创建子 Agent</li>
+
+</ul>
+
+<h3>2. 多智能体工作流编排</h3>
+
+<strong>Hermes 当前局限</strong>：单一 Agent + 简单委派
+
+<strong>AgentScope 补充</strong>：复杂多 Agent 协作流程
+
+<pre><code class="language-python">&lt;h1&gt;使用 AgentScope 编排 Hermes 工作流&lt;/h1&gt;
+
+<p>import agentscope from agentscope.agents import UserAgent, DialogAgent from agentscope.pipelines import sequentialpipeline</p>
+
+<p>&lt;h1&gt;初始化多个 Hermes-backed Agent&lt;/h1&gt; planner = DialogAgent(     name=&quot;Planner&quot;,     sys_prompt=&quot;你是一个任务规划专家...&quot;,     model_config=hermes_model_config  # 使用 Hermes 的模型路由 )</p>
+
+<p>coder = DialogAgent(     name=&quot;Coder&quot;,     sys_prompt=&quot;你是一个代码专家...&quot;,     model_config=hermes_model_config )</p>
+
+<p>reviewer = DialogAgent(     name=&quot;Reviewer&quot;,     sys_prompt=&quot;你是一个代码审查专家...&quot;,     model_config=hermes_model_config )</p>
+
+<p>&lt;h1&gt;定义工作流&lt;/h1&gt; with sequentialpipeline() as pipeline:     user_input = UserAgent().input()     plan = planner(user_input)     code = coder(plan)     review = reviewer(code)     UserAgent().display(review)</p>
+
+</code></pre>
+
+<h3>3. 记忆系统互补</h3>
+
+<p>| 层级 | Hermes | AgentScope | 结合方案 | |-----|--------|-----------|---------| | L1 短期记忆 | Context window | DialogueManager | 统一 context 压缩策略 | | L2 会话记忆 | SQLite SessionDB | MemoryBase | 双向同步 | | L3 长期记忆 | <code>memory</code> 工具 | VectorStore | 共享向量存储 | | L4 轨迹记录 | <code>trajectory</code> | Logger | 统一格式导出 |</p>
+
+<pre><code class="language-python">&lt;h1&gt;memory-bridge.py&lt;/h1&gt;
+
+<p>class HermesAgentScopeMemory(MemoryBase):     &quot;&quot;&quot;桥接 Hermes 的 memory 工具到 AgentScope&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, hermes_session_id: str):         self.session_id = hermes_session_id</p>
+
+<p>    def add(self, msg: Message) -&gt; None:         # 写入 Hermes 的 memory 系统         hermes_api.memory_add(             target=&quot;memory&quot;,             content=msg.content,             tags=[&quot;agentscope&quot;, self.session_id]         )</p>
+
+<p>    def get_memory(self, query: str, top_k: int = 5) -&gt; List[Message]:         # 从 Hermes memory 检索         results = hermes_api.memory_search(query, limit=top_k)         return [Message(r[&quot;content&quot;]) for r in results]</p>
+
+</code></pre>
+
+<h3>4. RAG 能力增强</h3>
+
+<strong>AgentScope 优势</strong>：
+
+<ul>
+
+  <li>内置 Knowledge 组件</li>
+
+  <li>支持多种向量数据库（Chroma, FAISS, Pinecone）</li>
+
+  <li>自动文档分块和嵌入</li>
+
+</ul>
+
+<strong>结合方案</strong>：
+
+<pre><code class="language-python">&lt;h1&gt;hermes-rag-agent.py&lt;/h1&gt;
+
+<p>from agentscope.rag import KnowledgeBank from hermes_agent import AIAgent</p>
+
+<p>&lt;h1&gt;AgentScope 负责 RAG&lt;/h1&gt; knowledge = KnowledgeBank(     configs=[{         &quot;knowledge_id&quot;: &quot;hermes_docs&quot;,         &quot;emb_model_config&quot;: &quot;qwen_emb_config&quot;,         &quot;chunk_size&quot;: 500,     }] ) knowledge.add_folder(&quot;path/to/docs&quot;)</p>
+
+<p>&lt;h1&gt;Hermes 负责工具执行和决策&lt;/h1&gt; hermes = AIAgent(model=&quot;claude-sonnet-4&quot;)</p>
+
+<p>class RAGAgent(AgentBase):     def reply(self, x: dict) -&gt; dict:         # 1. AgentScope 检索相关知识         retrieved = knowledge.retrieve(x[&quot;content&quot;], top_k=3)</p>
+
+<p>        # 2. Hermes 生成回答（使用检索内容）         context = &quot;\n&quot;.join([r.text for r in retrieved])         response = hermes.chat(             f&quot;基于以下文档回答问题：\n{context}\n\n问题：{x[&#x27;content&#x27;]}&quot;         )</p>
+
+<p>        return {&quot;content&quot;: response}</p>
+
+</code></pre>
+
+<h3>5. 可视化 Studio 集成</h3>
+
+<strong>AgentScope Studio</strong> 可以可视化监控 Hermes Agent 的执行：
+
+<pre><code class="language-python">&lt;h1&gt;studio-integration.py&lt;/h1&gt;
+
+<p>from agentscope.studio import init_studio</p>
+
+<p>&lt;h1&gt;启动 Studio 服务器&lt;/h1&gt; init_studio(port=8080)</p>
+
+<p>&lt;h1&gt;包装 Hermes Agent 使其可被监控&lt;/h1&gt; @agentscope.monitor() def hermes_workflow(task: str):     agent = AIAgent(save_trajectories=True)</p>
+
+<p>    # 每个步骤都会被记录到 Studio     result = agent.run_conversation(task)</p>
+
+<p>    return result</p>
+
+</code></pre>
+
+<strong>可视化内容</strong>：
+
+<ul>
+
+  <li>工具调用链</li>
+
+  <li>Token 消耗实时图表</li>
+
+  <li>思考过程（reasoning content）</li>
+
+  <li>消息流转图</li>
+
+</ul>
+
+<h3>6. MCP × A2A 协议桥接</h3>
+
+<strong>协议对比</strong>：
+
+<ul>
+
+  <li><strong>MCP</strong> (Hermes): 工具/资源发现 + 调用</li>
+
+  <li><strong>A2A</strong> (AgentScope): Agent 间协作协议</li>
+
+</ul>
+
+<strong>桥接实现</strong>：
+
+<pre><code class="language-python">&lt;h1&gt;protocol-bridge.py&lt;/h1&gt;
+
+<p>class MCP2A2ABridge:     &quot;&quot;&quot;将 Hermes MCP 工具暴露为 A2A Agent&quot;&quot;&quot;</p>
+
+<p>    def __init__(self, hermes_tools: list):         self.tools = hermes_tools</p>
+
+<p>    def to_a2a_agent(self) -&gt; AgentCard:         &quot;&quot;&quot;生成 A2A AgentCard&quot;&quot;&quot;         return AgentCard(             name=&quot;HermesToolAgent&quot;,             skills=[                 Skill(                     name=tool.name,                     description=tool.description                 )                 for tool in self.tools             ]         )</p>
+
+<p>    async def handle_a2a_task(self, task: Task) -&gt; Task:         &quot;&quot;&quot;处理 A2A 任务，转换为 MCP 调用&quot;&quot;&quot;         # 解析 A2A 任务为 MCP 格式         tool_name = task.metadata[&quot;tool&quot;]         params = task.message.parts[0].data</p>
+
+<p>        # 调用 Hermes MCP 工具         result = await self.call_mcp_tool(tool_name, params)</p>
+
+<p>        # 包装为 A2A 响应         return Task(             id=task.id,             status=TaskStatus.COMPLETED,             artifacts=[Artifact(data=result)]         )</p>
+
+</code></pre>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>三、具体集成方案</h2>
+
+<h3>方案 A：轻量级工具桥接（推荐起步）</h3>
+
+<strong>复杂度</strong>：低
+
+<strong>改动范围</strong>：新增适配层
+
+<strong>核心价值</strong>：Hermes 获得 AgentScope 的多 Agent 能力
+
+<pre><code class="language-text">用户输入
+
+<p>   ↓ AgentScope Orchestrator (规划 Agent)    ↓ Hermes Agent (执行 Agent) ← 复用现有工具    ↓ 工具执行结果    ↓ AgentScope 汇总输出</p>
+
+</code></pre>
+
+<strong>实现步骤</strong>：
+
+<ol>
+
+  <li>创建 <code>agentscope_hermes_bridge</code> Python 包</li>
+
+  <li>实现 HermesAgent 类（继承 AgentScope 的 AgentBase）</li>
+
+  <li>包装 Hermes 工具集为 AgentScope Services</li>
+
+  <li>在 AgentScope Studio 中监控</li>
+
+</ol>
+
+<h3>方案 B：双向网关集成</h3>
+
+<strong>复杂度</strong>：中
+
+<strong>改动范围</strong>：修改 Hermes Gateway + 新增 AgentScope 适配器
+
+<strong>核心价值</strong>：用户可以在任何平台（Telegram/Discord/Slack）触发多 Agent 工作流
+
+<pre><code class="language-text">[Telegram用户]
+
+<p>      ↓ Hermes Gateway       ↓ AgentScope RPC API       ↓ Agent Network (多 Agent 协作)       ↓ Hermes Gateway       ↓ [返回用户]</p>
+
+</code></pre>
+
+<strong>关键组件</strong>：
+
+<ol>
+
+  <li><strong>Gateway Plugin</strong>: <code>gateway/plugins/agentscope_plugin.py</code></li>
+
+  <li><strong>RPC Client</strong>: 调用 AgentScope 的分布式 Agent</li>
+
+  <li><strong>状态同步</strong>: 会话状态在两者之间同步</li>
+
+</ol>
+
+<h3>方案 C：统一运行时（长期愿景）</h3>
+
+<strong>复杂度</strong>：高
+
+<strong>改动范围</strong>：架构级重构
+
+<strong>核心价值</strong>：单一代码库，兼具两者优势
+
+<pre><code class="language-python">&lt;h1&gt;统一 Agent 基类&lt;/h1&gt;
+
+<p>class UnifiedAgent:     def __init__(self):         # Hermes 特性         self.tools = ToolRegistry()         self.memory = MemorySystem()         self.platform = PlatformAdapter()</p>
+
+<p>        # AgentScope 特性         self.ray_actor = None         self.pipeline = None         self.studio_monitor = None</p>
+
+<p>    async def run(self, task: Task) -&gt; Result:         # 使用 AgentScope 的分布式能力         if self.pipeline:             return await self.pipeline.run(task)</p>
+
+<p>        # 回退到 Hermes 的单 Agent 模式         return self._hermes_run(task)</p>
+
+</code></pre>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>四、代码示例：最小可行集成</h2>
+
+<pre><code class="language-python">&lt;h1&gt;examples/hello_agentscope_hermes.py&lt;/h1&gt;
+
+<p>&quot;&quot;&quot; 最小集成示例：使用 AgentScope 编排多个 Hermes Agent &quot;&quot;&quot;</p>
+
+<p>import agentscope from agentscope.agents import AgentBase from agentscope.pipelines import sequentialpipeline</p>
+
+<p>&lt;h1&gt;假设已安装 hermes-agent 包&lt;/h1&gt; from hermes_agent import AIAgent from hermes_cli.config import load_config</p>
+
+<p>class HermesAgentWrapper(AgentBase):     &quot;&quot;&quot;包装 Hermes AIAgent 为 AgentScope Agent&quot;&quot;&quot;</p>
+
+<p>    def __init__(         self,         name: str,         system_prompt: str,         model: str = &quot;claude-sonnet-4&quot;,         **kwargs     ):         super().__init__(name=name, sys_prompt=system_prompt)</p>
+
+<p>        # 初始化 Hermes Agent         config = load_config()         self.hermes = AIAgent(             model=model,             platform=&quot;agentscope&quot;,             enabled_toolsets=[&quot;core&quot;, &quot;web&quot;, &quot;file&quot;],             save_trajectories=True         )</p>
+
+<p>    def reply(self, x: dict = None) -&gt; dict:         &quot;&quot;&quot;AgentScope 调用的接口&quot;&quot;&quot;         user_input = x.get(&quot;content&quot;, &quot;&quot;) if x else &quot;&quot;</p>
+
+<p>        # 使用 Hermes 处理         response = self.hermes.chat(user_input)</p>
+
+<p>        return {&quot;content&quot;: response}</p>
+
+<p>&lt;h1&gt;============ 使用示例 ============&lt;/h1&gt;</p>
+
+<p>if __name__ == &quot;__main__&quot;:     # 初始化 AgentScope（自动启动 Studio）     agentscope.init(         model_configs=[...],  # 可选：使用 AgentScope 的模型         use_monitor=True,         studio_port=8080     )</p>
+
+<p>    # 创建多个 Hermes-backed Agent     planner = HermesAgentWrapper(         name=&quot;规划师&quot;,         system_prompt=&quot;你是一个任务规划专家...&quot;,         model=&quot;claude-opus-4.6&quot;     )</p>
+
+<p>    researcher = HermesAgentWrapper(         name=&quot;研究员&quot;,         system_prompt=&quot;你是一个研究专家，擅长搜索和分析...&quot;,         model=&quot;claude-sonnet-4&quot;     )</p>
+
+<p>    writer = HermesAgentWrapper(         name=&quot;写手&quot;,         system_prompt=&quot;你是一个专业写作者...&quot;,         model=&quot;claude-sonnet-4&quot;     )</p>
+
+<p>    # 定义顺序工作流     with sequentialpipeline() as workflow:         task = input(&quot;请输入写作任务：&quot;)</p>
+
+<p>        # Step 1: 规划         plan = planner({&quot;content&quot;: f&quot;请为以下任务制定执行计划：{task}&quot;})         print(f&quot;📋 计划：{plan[&#x27;content&#x27;]}&quot;)</p>
+
+<p>        # Step 2: 研究         research = researcher({             &quot;content&quot;: f&quot;根据计划收集资料：{plan[&#x27;content&#x27;]}&quot;         })         print(f&quot;🔍 研究结果：{research[&#x27;content&#x27;]}&quot;)</p>
+
+<p>        # Step 3: 写作         article = writer({             &quot;content&quot;: f&quot;基于研究资料写作：{research[&#x27;content&#x27;]}&quot;         })         print(f&quot;✍️ 文章：{article[&#x27;content&#x27;]}&quot;)</p>
+
+<p>    print(&quot;\n✅ 工作流完成！访问 http://localhost:8080 查看可视化&quot;)</p>
+
+</code></pre>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>五、迁移路径建议</h2>
+
+<h3>Phase 1: 工具桥接（2-3 天）</h3>
+
+<ul>
+
+  <li>[ ] 创建 <code>hermes-agentscope</code> Python 包</li>
+
+  <li>[ ] 实现 <code>HermesToolService</code> 包装器</li>
+
+  <li>[ ] 验证单个工具调用</li>
+
+</ul>
+
+<h3>Phase 2: Agent 包装（1 周）</h3>
+
+<ul>
+
+  <li>[ ] 实现 <code>HermesAgentWrapper</code> 类</li>
+
+  <li>[ ] 测试简单顺序工作流</li>
+
+  <li>[ ] 集成 Studio 监控</li>
+
+</ul>
+
+<h3>Phase 3: 网关集成（1-2 周）</h3>
+
+<ul>
+
+  <li>[ ] Gateway Plugin 开发</li>
+
+  <li>[ ] 会话状态同步</li>
+
+  <li>[ ] 错误处理和重试</li>
+
+</ul>
+
+<h3>Phase 4: 生产优化（持续）</h3>
+
+<ul>
+
+  <li>[ ] 性能基准测试</li>
+
+  <li>[ ] 缓存策略优化</li>
+
+  <li>[ ] 安全加固</li>
+
+</ul>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>六、潜在挑战与对策</h2>
+
+<p>| 挑战 | 对策 | |-----|------| | <strong>状态一致性</strong> | 使用共享 SQLite 或 Redis 作为状态存储 | | <strong>消息格式差异</strong> | 创建统一的 Message 转换层 | | <strong>错误传播</strong> | 定义统一的错误码和重试策略 | | <strong>模型路由冲突</strong> | Hermes 作为主路由，AgentScope 内部路由透明化 | | <strong>性能开销</strong> | 本地 Ray 集群，避免网络延迟 |</p>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>七、结论</h2>
+
+<p>AgentScope 与 Hermes 的结合不是替代关系，而是<strong>能力互补</strong>：</p>
+
+<ul>
+
+  <li><strong>AgentScope</strong> 提供：分布式架构、Studio 可视化、多 Agent 编排</li>
+
+  <li><strong>Hermes</strong> 提供：丰富的工具生态、多平台 Gateway、成熟的技能系统</li>
+
+</ul>
+
+<strong>推荐起步方案</strong>：工具桥接 + Agent 包装，以最小成本获得最大收益。
+
+<strong>长期愿景</strong>：统一运行时，成为开源 Agent 生态的"Linux 发行版"。
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

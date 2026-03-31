@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes 观测系统与 Kimi Auxiliary 修复摘要 | Xin Conan</title>
+    <meta name="description" content="Hermes 观测系统与 Kimi Auxiliary 修复摘要  日期：2026-03-31   一、问题概览  本次修复覆盖两类问题：  1. 观测系统失效    - 3/23 之后观测看起来“停止”    - `interaction_observations` 大量记录停留在 pending...">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-31</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">5 min</span>
+                </div>
+                <h1 class="post-title">Hermes 观测系统与 Kimi Auxiliary 修复摘要</h1>
+                <p class="post-subtitle">Hermes 观测系统与 Kimi Auxiliary 修复摘要  日期：2026-03-31   一、问题概览  本次修复覆盖两类问题：  1. 观测系统失效    - 3/23 之后观测看起来“停止”    - `interaction_observations` 大量记录停留在 pending...</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <h1>Hermes 观测系统与 Kimi Auxiliary 修复摘要</h1>
+
+<p>日期：2026-03-31</p>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+            
+<h2>一、问题概览</h2>
+
+<p>本次修复覆盖两类问题：</p>
+
+<ol>
+
+  <li>观测系统失效</li>
+
+</ol>
+
+<p>   - 3/23 之后观测看起来“停止”    - <code>interaction_observations</code> 大量记录停留在 pending，后续被批量标记为 timeout    - <code>response_length</code> 长期为 0，无法反映真实响应情况</p>
+
+<ol>
+
+  <li>Kimi auxiliary 噪声</li>
+
+</ol>
+
+<p>   - 日志持续出现 <code>resolve_provider_client: unknown provider 'kimi'</code>    - auxiliary vision / summary 链路伴随 401/403 噪声    - 影响诊断可信度，并污染错误日志</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+            
+<h2>二、根因结论</h2>
+
+<h3>1. 观测系统根因</h3>
+
+<p>核心根因不是数据库本身，而是 live 代码路径与退出路径管理问题叠加：</p>
+
+<h4>根因 A：修错了代码路径</h4>
+
+<p>实际线上运行路径不是：</p>
+
+<ul>
+
+  <li><code>~/hermes-agent</code></li>
+
+</ul>
+
+<p>而是：</p>
+
+<ul>
+
+  <li><code>/mnt/c/WINDOWS/system32/hermes-agent</code></li>
+
+</ul>
+
+<p>因此，前期对 <code>~/hermes-agent</code> 的修复没有进入真实 gateway 运行时。</p>
+
+<h4>根因 B：live <code>run_agent.py</code> 缺少 observation 收口逻辑</h4>
+
+<p>线上 <code>run_conversation()</code> 中：</p>
+
+<ul>
+
+  <li>会进入多种 early return / error / interrupted / partial 路径</li>
+
+  <li>但这些路径没有统一 finalize observation</li>
+
+  <li>导致 observation 记录创建后停在 pending</li>
+
+</ul>
+
+<h4>根因 C：live <code>hermes_state.py</code> 缺少 <code>record_observation()</code></h4>
+
+<p>即使 <code>run_agent.py</code> 尝试记录 observation，线上 <code>SessionDB</code> 实现里也没有对应方法。</p>
+
+<h4>根因 D：更新 observation 时访问了错误属性名</h4>
+
+<p>修复过程中发现，live <code>SessionDB</code> 使用的是：</p>
+
+<ul>
+
+  <li><code>self.db_path</code></li>
+
+</ul>
+
+<p>而不是：</p>
+
+<ul>
+
+  <li><code>self._db_path</code></li>
+
+</ul>
+
+<p>这会导致更新 observation 时静默失败。</p>
+
+<hr>
+
+<h3>2. Kimi auxiliary 根因</h3>
+
+<p><code>~/.hermes/config.yaml</code> 中 auxiliary vision 配置为：</p>
+
+<pre><code class="language-yaml">auxiliary:
+
+<p>  vision:     provider: kimi     model: kimi/kimi-for-coding</p>
+
+</code></pre>
+
+<p>但 live auxiliary router 识别的是：</p>
+
+<ul>
+
+  <li><code>kimi-coding</code></li>
+
+  <li>或 <code>auto</code></li>
+
+</ul>
+
+<p>不识别：</p>
+
+<ul>
+
+  <li><code>kimi</code></li>
+
+</ul>
+
+<p>于是持续触发：</p>
+
+<ul>
+
+  <li><code>resolve_provider_client: unknown provider 'kimi'</code></li>
+
+</ul>
+
+<p>另外，当前环境实际可用 vision backend 为：</p>
+
+<ul>
+
+  <li><code>openai-codex</code></li>
+
+</ul>
+
+<p>因此强行指定 <code>kimi</code> 既不稳定，也不符合 live resolver 的支持范围。</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+            
+<h2>三、实施的修复</h2>
+
+<h3>1. 修复 live 代码路径</h3>
+
+<p>修复文件：</p>
+
+<ul>
+
+  <li><code>/mnt/c/WINDOWS/system32/hermes-agent/run_agent.py</code></li>
+
+  <li><code>/mnt/c/WINDOWS/system32/hermes-agent/hermes_state.py</code></li>
+
+</ul>
+
+<p>并保留备份：</p>
+
+<ul>
+
+  <li><code>/mnt/c/WINDOWS/system32/hermes-agent/run_agent.py.bak.20260330_232029</code></li>
+
+</ul>
+
+<h3>2. 为 live <code>run_agent.py</code> 增加 observation 生命周期管理</h3>
+
+<p>已增加：</p>
+
+<ul>
+
+  <li>turn 开始时写入 pending observation</li>
+
+  <li><code>_last_observation_id</code> 跟踪当前 observation</li>
+
+  <li><code>_update_interaction_observation()</code> 用于统一完成态写回</li>
+
+  <li>多个 early return / error / interrupted / partial 分支统一补 observation finalize</li>
+
+  <li>正常结束路径补 observation update</li>
+
+</ul>
+
+<h3>3. 为 live <code>hermes_state.py</code> 补充 <code>record_observation()</code></h3>
+
+<p>实现内容：</p>
+
+<ul>
+
+  <li>若 <code>interaction_observations</code> 表不存在则自动创建</li>
+
+  <li>写入 pending observation 基础字段</li>
+
+  <li>返回 row id 供后续 finalize 使用</li>
+
+</ul>
+
+<h3>4. 修正 <code>db_path</code> 访问</h3>
+
+<p>将错误的：</p>
+
+<ul>
+
+  <li><code>self._session_db._db_path</code></li>
+
+</ul>
+
+<p>改为正确的：</p>
+
+<ul>
+
+  <li><code>str(self._session_db.db_path)</code></li>
+
+</ul>
+
+<h3>5. 修正 auxiliary vision 配置</h3>
+
+<p>修改前：</p>
+
+<pre><code class="language-yaml">auxiliary:
+
+<p>  vision:     provider: kimi     model: kimi/kimi-for-coding</p>
+
+</code></pre>
+
+<p>修改后：</p>
+
+<pre><code class="language-yaml">auxiliary:
+
+<p>  vision:     provider: auto     model: &#x27;&#x27;</p>
+
+</code></pre>
+
+<p>配置备份：</p>
+
+<ul>
+
+  <li><code>/home/conanxin/.hermes/config.yaml.pre-kimi-fix.20260331_000702</code></li>
+
+</ul>
+
+<p>这样 auxiliary vision 会自动选择当前真实可用 backend，而不是落到 unsupported provider 名称。</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+            
+<h2>四、验证证据</h2>
+
+<h3>1. synthetic 验证</h3>
+
+<p>通过 live 路径直接构造会话，验证 observation 可写入 completed：</p>
+
+<ul>
+
+  <li>synthetic session <code>test_obs_1774885158</code></li>
+
+  <li>observation 成功写入：</li>
+
+</ul>
+
+<p>  - <code>action_type = completed</code>   - <code>response_length = 22</code>   - <code>latency_ms = 9527</code></p>
+
+<h3>2. 真实 Telegram 流量验证</h3>
+
+<p>修复后，真实消息已连续完成 observation 回写：</p>
+
+<h4>id 179</h4>
+
+<ul>
+
+  <li><code>user_message_preview = 继续</code></li>
+
+  <li><code>action_type = completed</code></li>
+
+  <li><code>response_length = 1876</code></li>
+
+  <li><code>latency_ms = 114857</code></li>
+
+</ul>
+
+<h4>id 180</h4>
+
+<ul>
+
+  <li><code>user_message_preview = 你好，观测测试</code></li>
+
+  <li><code>action_type = completed</code></li>
+
+  <li><code>response_length = 1325</code></li>
+
+  <li><code>latency_ms = 69591</code></li>
+
+</ul>
+
+<h4>id 181</h4>
+
+<ul>
+
+  <li><code>user_message_preview = 继续</code></li>
+
+  <li><code>action_type = completed</code></li>
+
+  <li><code>response_length = 702</code></li>
+
+  <li><code>latency_ms = 72491</code></li>
+
+</ul>
+
+<h4>id 182</h4>
+
+<ul>
+
+  <li><code>user_message_preview = 愿意，请继续</code></li>
+
+  <li>后续已完成为 <code>completed</code></li>
+
+  <li><code>response_length = 1201</code></li>
+
+  <li><code>latency_ms = 190902</code></li>
+
+</ul>
+
+<h4>id 183</h4>
+
+<ul>
+
+  <li><code>user_message_preview = 我愿意，做2</code></li>
+
+  <li><code>action_type = completed</code></li>
+
+  <li><code>response_length = 3076</code></li>
+
+</ul>
+
+<p>这说明真实线上 Telegram 流量已经恢复：</p>
+
+<ul>
+
+  <li>pending 创建正常</li>
+
+  <li>completed 回写正常</li>
+
+  <li>response_length / latency_ms 正常</li>
+
+</ul>
+
+<h3>3. Kimi auxiliary 配置验证</h3>
+
+<p>修复后，通过 live resolver 验证：</p>
+
+<ul>
+
+  <li><code>resolved_provider = openai-codex</code></li>
+
+  <li><code>model = gpt-5.2-codex</code></li>
+
+  <li><code>client = true</code></li>
+
+</ul>
+
+<p>并且重启后日志中未再新增：</p>
+
+<ul>
+
+  <li><code>unknown provider 'kimi'</code></li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+            
+<h2>五、历史事故回顾</h2>
+
+<p>timeout 历史分布：</p>
+
+<ul>
+
+  <li>2026-03-21：101 条</li>
+
+  <li>2026-03-22：59 条</li>
+
+  <li>2026-03-23：11 条</li>
+
+  <li>总计：171 条</li>
+
+</ul>
+
+<p>说明“观测系统 finalize 缺失”在 3/21 就已经存在， 并不是 3/23 才开始坏。</p>
+
+<p>3/23 当天确实叠加了 provider/auxiliary 问题：</p>
+
+<ul>
+
+  <li>Kimi quota / 403</li>
+
+  <li>auxiliary 401 <code>User not found</code></li>
+
+  <li>summary 不可用</li>
+
+  <li>多种工具环境噪声</li>
+
+</ul>
+
+<p>这些问题放大了用户体感，但不是 observation 数据失真的唯一根因。</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+            
+<h2>六、清理与整理</h2>
+
+<h3>1. 数据库备份</h3>
+
+<p>已创建：</p>
+
+<ul>
+
+  <li><code>/home/conanxin/.hermes/state.db.pre-cleanup.20260330_235701</code></li>
+
+</ul>
+
+<h3>2. synthetic 测试记录清理</h3>
+
+<p>已删除 <code>test_obs_*</code> synthetic 观测记录 2 条，避免污染统计。</p>
+
+<h3>3. 当前统计（清理后）</h3>
+
+<ul>
+
+  <li><code>timeout = 171</code></li>
+
+  <li><code>completed = 6</code></li>
+
+  <li><code>pending = 1</code>（当时为会话进行中产生，属正常）</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-7.md</span>
+                </div>
+            
+<h2>七、当前状态结论</h2>
+
+<p>当前可判定：</p>
+
+<h3>已修复</h3>
+
+<ul>
+
+  <li>观测系统 live 路径修复完成</li>
+
+  <li>pending 长期积压问题修复完成</li>
+
+  <li>response_length 记录逻辑恢复</li>
+
+  <li>latency_ms 记录逻辑恢复</li>
+
+  <li>auxiliary vision 的 <code>unknown provider 'kimi'</code> 噪声修复完成</li>
+
+</ul>
+
+<h3>仍存在但不阻塞主链路</h3>
+
+<ul>
+
+  <li>历史 timeout 记录仍保留，用于审计</li>
+
+  <li>auxiliary 链路中更早的 401/403 历史日志仍在文件中，但不代表当前持续发生</li>
+
+  <li>Telegram fallback IP 日志仍可能出现，属于网络回退，不是本次主故障</li>
+
+</ul>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-8.md</span>
+                </div>
+            
+<h2>八、建议的后续加固</h2>
+
+<ol>
+
+  <li>给 observation 增加 watchdog</li>
+
+</ol>
+
+<p>   - pending 超过阈值自动转 timeout/interrupted    - 写入明确 <code>error_events</code></p>
+
+<ol>
+
+  <li>在 gateway 启动日志中固定输出：</li>
+
+</ol>
+
+<p>   - live code root    - python executable    - state.db path</p>
+
+<ol>
+
+  <li>对 auxiliary provider 名称做统一 alias 归一化</li>
+
+</ol>
+
+<p>   - 避免 <code>kimi</code> / <code>kimi-coding</code> 在不同模块行为不一致</p>
+
+<ol>
+
+  <li>为 observation finalize 增加回归测试</li>
+
+</ol>
+
+<p>   - 覆盖 completed / error / interrupted / partial / early return 分支</p>
+
+<hr>
+
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-9.md</span>
+                </div>
+            
+<h2>九、最终一句话总结</h2>
+
+<p>本次问题的本质不是“数据库坏了”，而是：</p>
+
+<ul>
+
+  <li>修复最初打在错误代码路径上</li>
+
+  <li>live observation 系统缺少统一 finalize 机制</li>
+
+  <li>同期 auxiliary Kimi 配置不兼容造成额外噪声</li>
+
+</ul>
+
+<p>现已完成 live 修复、真实流量验证、测试脏数据清理，以及 Kimi auxiliary 噪声止血。</p>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

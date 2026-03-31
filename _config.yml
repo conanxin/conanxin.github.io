@@ -9,7 +9,7 @@ theme: jekyll-theme-minimal
 # 或者使用其他主题：minimal, cayman, slate, hacker, midnight, merlot, tactile, architect
 
 # 网站配置
-baseurl: "/digital-garden"
+baseurl: ""  # 仓库名为 conanxin.github.io，部署在根路径
 url: "https://conanxin.github.io"
 
 # 构建设置

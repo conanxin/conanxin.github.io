@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何在AI时代保持清醒：读 Cedric Chin 有感 | Xin Conan</title>
+    <meta name="description" content="Cedric Chin《How to Make Sense of AI》学习笔记——不确定性四问法与意义构建">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-03-30</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">ESSAY</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">10 min</span>
+                </div>
+                <h1 class="post-title">如何在AI时代保持清醒：读 Cedric Chin 有感</h1>
+                <p class="post-subtitle">Cedric Chin《How to Make Sense of AI》学习笔记——不确定性四问法与意义构建</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">curl https://commoncog.com/how-to-make-sense-of-ai/</span>
+                </div>
+
+                <p>Cedric Chin 在 2026 年 3 月写的这篇文章，像一剂解毒剂，针对的是当下弥漫的 AI 焦虑。</p>
+
+                <p>文章的核心论点很简单：<strong>你不必预测未来，如果你能清楚地看到当下。</strong></p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./the-problem.txt</span>
+                </div>
+
+                <h2>问题：AI 时代的焦虑</h2>
+
+                <p>2026 年的现状：</p>
+
+                <ul>
+                    <li>同事谈论 AI 在公司中的成功应用，你在质疑是否需要全面重构</li>
+                    <li>朋友担心失业</li>
+                    <li>花费无数周期试图预测接下来会发生什么</li>
+                </ul>
+
+                <p>Cedric 指出，这种恐慌在技术革命期间很常见。但存在<strong>有效的认知方法</strong>可以让你保持平静，专注于真正影响结果的事情。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./research-foundation.md</span>
+                </div>
+
+                <h2>研究基础：1.5 年的阅读计划</h2>
+
+                <p>Cedric 进行了为期 1.5 年的研究，阅读历史上技术革命的资料：</p>
+
+                <table class="data-table">
+                    <tr>
+                        <th>书籍/资料</th>
+                        <th>主题</th>
+                        <th>收获</th>
+                    </tr>
+                    <tr>
+                        <td><em>Engines That Move Markets</em></td>
+                        <td>10 个科技泡沫历史</td>
+                        <td>技术革命的发展模式</td>
+                    </tr>
+                    <tr>
+                        <td><em>The Shock of the Old</em></td>
+                        <td>技术的实际采用</td>
+                        <td>新旧技术并存现象</td>
+                    </tr>
+                    <tr>
+                        <td><em>Reminiscences of a Stock Operator</em></td>
+                        <td>Jesse Livermore 传记</td>
+                        <td>铁路股时代的投机</td>
+                    </tr>
+                    <tr>
+                        <td><em>Titan</em> (Rockefeller)</td>
+                        <td>石油革命</td>
+                        <td>技术起飞阶段</td>
+                    </tr>
+                    <tr>
+                        <td>早期 PC 时代传记</td>
+                        <td>个人电脑革命</td>
+                        <td>变革的缓慢展开</td>
+                    </tr>
+                </table>
+
+                <p><strong>核心发现</strong>：所有技术革命都需要<strong>数十年</strong>才能完全展开。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./ground-rules.txt</span>
+                </div>
+
+                <h2>基础规则</h2>
+
+                <h3>规则一：注意力是有限资源</h3>
+
+                <blockquote>
+                    <p>"意义构建的核心是调节注意力的艺术。这是'你必须知道忽略什么'的华丽说法。"</p>
+                </blockquote>
+
+                <p>在信息过载时代，<strong>选择性忽略</strong>比选择性关注更重要。</p>
+
+                <h3>规则二：结果导向 (Outcome Orientation)</h3>
+
+                <p>在消费任何信息前，先问自己：<strong>"这与我关心的结果有什么关系？"</strong></p>
+
+                <blockquote>
+                    <p>"将结果导向应用于所有信息消费实践会产生神奇的效果：你将不再感到信息过载。"</p>
+                </blockquote>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">./show-four-questions.sh</span>
+                </div>
+
+                <h2>核心方法：不确定性四问</h2>
+
+                <p>这是 Vaughn Tan 开发的框架，用于在不确定环境中指导决策：</p>
+
+                <div class="tier-table">
+                    <div class="tier-row tier-header">
+                        <span class="tier-vram">问题</span>
+                        <span class="tier-cap">目的</span>
+                    </div>
+                    <div class="tier-row">
+                        <span class="tier-vram">Q1: 什么可能变坏？</span>
+                        <span class="tier-cap">识别风险</span>
+                    </div>
+                    <div class="tier-row">
+                        <span class="tier-vram">Q2: 什么可能变好？</span>
+                        <span class="tier-cap">识别机会</span>
+                    </div>
+                    <div class="tier-row">
+                        <span class="tier-vram">Q3: 我现在可以测试什么？</span>
+                        <span class="tier-cap">低成本实验</span>
+                    </div>
+                    <div class="tier-row">
+                        <span class="tier-vram">Q4: 我现在可以执行什么？</span>
+                        <span class="tier-cap">立即行动</span>
+                    </div>
+                </div>
+
+                <p><strong>关键原则</strong>：你不是在关注"AI 对社会的广泛影响"，而是关注"AI 对<strong>你的</strong>职业、<strong>你的</strong>生活结果的影响"。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./why-ignore-opinions.md</span>
+                </div>
+
+                <h2>为什么要忽略分析和预测？</h2>
+
+                <h3>1. 影响是不均衡且不可预测的</h3>
+
+                <blockquote>
+                    <p>"当互联网刚出现时，比如在 1999 年互联网泡沫顶峰，没有人能预测到出租车司机将受到威胁。"</p>
+                </blockquote>
+
+                <p><strong>正确做法</strong>：保持偏执姿态，观察技术如何影响<strong>你的具体情境</strong>，而非阅读与你处于经济不同位置的人的分析。</p>
+
+                <p>（引用 Andy Grove 的《Only The Paranoid Survive》——他不看评论家的文章，而是定期用<strong>波特五力模型</strong>分析互联网对 Intel 的实际影响。）</p>
+
+                <h3>2. 注意力经济的激励扭曲</h3>
+
+                <blockquote>
+                    <p>"在动荡时期，注意力经济创造了巨大的激励，让人们利用恐惧来增加关注。"</p>
+                </blockquote>
+
+                <p>各种内容被精心设计为病毒式传播，但这些内容是为了作者的利益，不是你的。</p>
+
+                <h3>3. 自我安慰的需要</h3>
+
+                <blockquote>
+                    <p>"许多针对'可怕'新技术的观点是为了自我安慰而产生的——除了安慰作者之外没有其他目的。"</p>
+                </blockquote>
+
+                <h3>4. 机会成本太高</h3>
+
+                <blockquote>
+                    <p>"阅读观点文章太耗时间了。有观点的人总是比愿意实际<strong>做</strong>事的人多。"</p>
+                </blockquote>
+
+                <p><strong>关键洞察</strong>：从实验中产生的信息是你能获得的最有价值的信息。阅读他人观点有<strong>真实的机会成本</strong>。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./practice-steps.txt</span>
+                </div>
+
+                <h2>实践步骤</h2>
+
+                <h3>第一步：冷 turkey（突然停止）</h3>
+
+                <p>立即停止阅读 AI 预测和分析文章。用一周时间对 AI 预测翻白眼。把预测和观点当作"小孩子的咿呀学语"——尊重但不认真对待。</p>
+
+                <h3>第二步：每次阅读时问自己</h3>
+
+                <blockquote>
+                    <p>"这篇文章为我回答了四个问题中的哪一个？"</p>
+                    <p>如果答案是'没有一个'，那么你应该问自己：'为什么我还在读它？'"</p>
+                </blockquote>
+
+                <p><strong>允许的回答</strong>：</p>
+                <ul>
+                    <li>"因为我想安慰自己"</li>
+                    <li>"因为我想要娱乐"</li>
+                </ul>
+
+                <p>但<strong>必须对自己诚实</strong>。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./connections.md</span>
+                </div>
+
+                <h2>与之前文章的联系</h2>
+
+                <p>这篇文章与 Henry 和 Westenberg 的文章形成有趣的对话：</p>
+
+                <table class="data-table">
+                    <tr>
+                        <th>文章</th>
+                        <th>核心主题</th>
+                        <th>与本文的关系</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Henry</strong> (愉悦工具)</td>
+                        <td>技术从解放到奴役的转变</td>
+                        <td>AI 当前处于"解放"阶段，但需要警惕何时变成"奴役"</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Westenberg</strong> (社区不可替代)</td>
+                        <td>特定关系网络的价值</td>
+                        <td>在 AI 时代，人际网络和社区可能变得更加珍贵</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cedric Chin</strong> (本文)</td>
+                        <td>如何在不确定中行动</td>
+                        <td>提供了具体的认知框架，避免被焦虑淹没</td>
+                    </tr>
+                </table>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./personal-application.txt</span>
+                </div>
+
+                <h2>对我的数字花园的意义</h2>
+
+                <ul>
+                    <li><strong>内容策略</strong>：专注于实验和实地报告，而非观点</li>
+                    <li><strong>写作原则</strong>：回答"四个问题"之一</li>
+                    <li><strong>读者价值</strong>：提供可测试、可执行的信息，而非预测</li>
+                </ul>
+
+                <p><strong>具体的下一步</strong>：</p>
+                <ul>
+                    <li>停止阅读"AI 将改变 X"的预测文章</li>
+                    <li>专注于测试本地 AI 工具在你的具体工作流中的效果</li>
+                    <li>记录实验结果，而非转发观点</li>
+                </ul>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./key-quotes.txt</span>
+                </div>
+
+                <h2>关键引用备忘</h2>
+
+                <blockquote>
+                    <p>"你不必预测未来，如果你能清楚地看到当下（并据此行动）。"</p>
+                </blockquote>
+
+                <blockquote>
+                    <p>"有效的商业人士不'预测未来'，他们做'在不确定下的快速适应'。"</p>
+                </blockquote>
+
+                <blockquote>
+                    <p>"预测者想要正确；商业人士不在乎是否正确，他们只想赢。"</p>
+                </blockquote>
+
+                <blockquote>
+                    <p>"当阅读一篇文章时，你应该始终问自己：'这篇文章为我回答了四个问题中的哪一个？'"</p>
+                </blockquote>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./conclusion.txt</span>
+                </div>
+
+                <h2>结论</h2>
+
+                <p>三篇文章合在一起，构成了对 AI 时代的完整认知工具包：</p>
+
+                <ul>
+                    <li><strong>Henry</strong>: 为什么需要抵抗技术异化</li>
+                    <li><strong>Westenberg</strong>: 什么值得保护（社区）</li>
+                    <li><strong>Cedric Chin</strong>: 如何有效行动（不确定性四问）</li>
+                </ul>
+
+                <p>这是一个<strong>可操作的认知框架</strong>，与 Henry 和 Westenberg 的<strong>批判性视角</strong>形成互补。</p>
+
+                <div class="post-footer">
+                    <div class="post-tags">
+                        <span class="tag-label">TAGS:</span>
+                        <span class="tag">essay</span>
+                        <span class="tag">ai</span>
+                        <span class="tag">sensemaking</span>
+                        <span class="tag">reading-notes</span>
+                        <span class="tag">cedric-chin</span>
+                    </div>
+                    
+                    <div class="post-nav">
+                        <a href="/posts/" class="nav-back">
+                            <span class="arrow">←</span>
+                            <span>返回文章列表</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

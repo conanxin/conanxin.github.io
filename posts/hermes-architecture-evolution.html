@@ -1,0 +1,67 @@
+---
+layout: post
+title: "Hermes 核心架构演进: 4阶段研究流程 + LangGraph + RAG + SecondMe"
+date: 2026-04-01
+categories: hermes
+---
+
+# Hermes 核心架构演进
+
+## 从碎片化执行 → 4阶段研究流程
+
+### 旧架构
+```
+用户给任务 → 碎片执行 → 结果返回
+```
+
+### 新架构
+```
+规划 → 执行(RAG) → 验证 → 输出
+           ↓
+    LangGraph编排 (6 Agent节点)
+           ↓
+    SecondMe用户风格学习
+           ↓
+    长篇分章处理 (10+章节)
+```
+
+## 核心组件
+
+### 1. research-pipeline
+4阶段研究流程: 规划→执行→验证→输出
+
+### 2. writing-autoresearch v2.0.0
+LangGraph编排 + RAG + 长篇分章
+
+### 3. content-rag
+三层检索: 记忆+Skills+实时
+
+### 4. second-me-hmm
+HMM层次记忆 + 用户风格学习
+
+## Skills (8)
+
+| Skill | 功能 |
+|-------|------|
+| writing-autoresearch | LangGraph编排+RAG+长篇 |
+| content-rag | RAG知识检索 |
+| second-me-hmm | HMM层次记忆 |
+| skill-synergies | 7条核心调用链 |
+| synergy-manager | 自动检测执行 |
+| research-pipeline | 4阶段研究 |
+| humanized-writing | 7层去AI痕迹 |
+
+## 研究项目 (9)
+
+- MiroFish: 群体智能预测
+- WeWrite: 7层去AI痕迹  
+- Math Academy: 掌握学习
+- SecondMe: HMM+Me-Alignment
+- Accomplish: 本地AI桌面
+- Multica: 可扩展中间件
+- Agentic AI Science: 4阶段研究
+- GoClaw: 企业级Gateway
+- AI-Novel: 长篇创作
+
+---
+🤖 Built with Hermes Agent | 2026-04-01

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConanXin's AI Research Hub</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6; color: #333; background: #f5f5f5;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; padding: 40px 0; text-align: center;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { opacity: 0.9; font-size: 1.1rem; }
+        nav { 
+            background: white; padding: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 30px; }
+        nav a { text-decoration: none; color: #667eea; font-weight: 500; }
+        nav a:hover { color: #764ba2; }
+        .card { 
+            background: white; border-radius: 12px; padding: 25px; margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .card h2 { color: #667eea; margin-bottom: 15px; font-size: 1.4rem; }
+        .tag { 
+            display: inline-block; padding: 4px 12px; border-radius: 20px; 
+            font-size: 0.85rem; margin: 3px; background: #f0f0f0; color: #666;
+        }
+        .tag-ai { background: #e8f5e9; color: #2e7d32; }
+        .tag-research { background: #e3f2fd; color: #1565c0; }
+        .tag-tool { background: #fff3e0; color: #e65100; }
+        .tag-system { background: #f3e5f5; color: #7b1fa2; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        footer { text-align: center; padding: 30px; color: #999; font-size: 0.9rem; }
+        .stats { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
+        .stat { text-align: center; }
+        .stat-num { font-size: 2rem; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🧠 ConanXin's AI Research Hub</h1>
+            <p class="subtitle">AI Agent、自动化工作流、持续进化的数字伙伴</p>
+            <div class="stats">
+                <div class="stat"><div class="stat-num">9</div><div class="stat-label">研究项目</div></div>
+                <div class="stat"><div class="stat-num">8</div><div class="stat-label">Skills</div></div>
+                <div class="stat"><div class="stat-num">4</div><div class="stat-label">自动化</div></div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#projects">研究项目</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#automation">自动化</a></li>
+                <li><a href="#architecture">架构</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section id="projects">
+            <h2 style="margin: 30px 0 20px;">📚 研究项目</h2>
+            <div class="grid">
+                <div class="card">
+                    <h2>🤖 MiroFish</h2>
+                    <p>群体智能预测引擎 - 用AI模拟社会进行预测</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-ai">多Agent</span>
+                        <span class="tag tag-research">预测</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>✍️ WeWrite</h2>
+                    <p>7层去AI痕迹 - 公众号内容创作</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-tool">写作</span>
+                        <span class="tag tag-research">优化</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>📖 Math Academy</h2>
+                    <p>掌握学习 - Bloom 2-Sigma 问题</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-system">学习方法</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>🧠 SecondMe</h2>
+                    <p>HMM层次记忆 + Me-Alignment - 训练"我的AI自我"</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-system">记忆</span>
+                        <span class="tag tag-ai">对齐</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>🖥️ Accomplish</h2>
+                    <p>本地AI桌面Agent - 隐私优先</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-tool">桌面</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>🔌 Multica</h2>
+                    <p>可扩展中间件 - 插件化架构</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-system">架构</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>🔬 Agentic AI Science</h2>
+                    <p>ICLR 2025 - 4阶段研究流程</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-research">研究</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>🚀 GoClaw</h2>
+                    <p>企业级Agent Gateway - 多租户</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-system">Gateway</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>📚 AI-Novel</h2>
+                    <p>长篇小说创作 - LangGraph + RAG</p>
+                    <div style="margin-top:10px">
+                        <span class="tag tag-tool">写作</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 style="margin: 30px 0 20px;">🛠️ Skills</h2>
+            <div class="grid">
+                <div class="card">
+                    <h2>writing-autoresearch</h2>
+                    <p>内容创作自动迭代 - LangGraph编排 + RAG + 长篇</p>
+                </div>
+                <div class="card">
+                    <h2>content-rag</h2>
+                    <p>RAG知识检索 - 记忆+Skills+实时</p>
+                </div>
+                <div class="card">
+                    <h2>second-me-hmm</h2>
+                    <p>HMM层次记忆 - 用户风格学习</p>
+                </div>
+                <div class="card">
+                    <h2>skill-synergies</h2>
+                    <p>技能协同链 - 7条核心调用链</p>
+                </div>
+                <div class="card">
+                    <h2>synergy-manager</h2>
+                    <p>协同管理器 - 自动检测和执行</p>
+                </div>
+                <div class="card">
+                    <h2>research-pipeline</h2>
+                    <p>4阶段研究 - 规划→执行→验证→输出</p>
+                </div>
+                <div class="card">
+                    <h2>humanized-writing</h2>
+                    <p>7层去AI痕迹 + 偏好学习</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="automation">
+            <h2 style="margin: 30px 0 20px;">⚙️ 自动化</h2>
+            <div class="grid">
+                <div class="card">
+                    <h2>☀️ 早间简报</h2>
+                    <p>每天 8:00 - 待办 + 洞察</p>
+                </div>
+                <div class="card">
+                    <h2>📅 周研究轮转</h2>
+                    <p>週一 9:00 - 调研报告</p>
+                </div>
+                <div class="card">
+                    <h2>🔧 Skill运行报告</h2>
+                    <p>週日 10:00 - 改进建议</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="architecture">
+            <h2 style="margin: 30px 0 20px;">🏗️ 核心架构演进</h2>
+            <div class="card">
+                <h2>从碎片化 → 4阶段研究流程</h2>
+                <pre style="background:#f8f8f8;padding:20px;border-radius:8px;margin:15px 0;overflow-x:auto;">
+旧: 用户给任务 → 碎片执行 → 结果返回
+
+新: 规划 → 执行(RAG) → 验证 → 输出
+           ↓
+    LangGraph编排 (6 Agent节点)
+           ↓
+    SecondMe用户风格学习
+           ↓
+    长篇分章处理 (10+章节)
+                </pre>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>🤖 Built with Hermes Agent | Last updated: 2026-04-01</p>
+    </footer>
+</body>
+</html>

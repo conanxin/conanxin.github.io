@@ -2,80 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xin Conan | 数字花园</title>
-    <link>https://conanxin.github.io/xin-conan.github.io</link>
+    <link>https://conanxin.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 01 Apr 2026 12:00:00 GMT</lastBuildDate>
-    <atom:link href="https://conanxin.github.io/xin-conan.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Wed, 02 Apr 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://conanxin.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Acemoglu《知识崩溃》: AI 时代的人类专业危机</title>
+      <link>https://conanxin.github.io/posts/acemoglu-knowledge-collapse-analysis.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/acemoglu-knowledge-collapse-analysis.html</guid>
+      <pubDate>Wed, 02 Apr 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[诺贝尔经济学奖得主Daron Acemoglu关于生成式AI对人类知识积累和专业能力的深远影响——知识崩溃、过度自信与生产力悖论]]></description>
+    </item>
     
     <item>
       <title>一致性是原始的：当AI成为基础设施</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/consistency-is-primitive.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/consistency-is-primitive.html</guid>
+      <link>https://conanxin.github.io/posts/consistency-is-primitive.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/consistency-is-primitive.html</guid>
       <pubDate>Tue, 01 Apr 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[Christopher Butler关于AI时代软件、设计与一致性本质的深刻洞察，从一致性是约束到定制是自由]]></description>
     </item>
     
     <item>
       <title>AI让写代码更容易，却让工程师更难</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/ai-made-coding-easier-engineering-harder.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/ai-made-coding-easier-engineering-harder.html</guid>
+      <link>https://conanxin.github.io/posts/ai-made-coding-easier-engineering-harder.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/ai-made-coding-easier-engineering-harder.html</guid>
       <pubDate>Tue, 01 Apr 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[Ivan Turkovic关于AI时代软件工程师工作paradox的深度分析，从身份危机到监督悖论]]></description>
     </item>
     
     <item>
       <title>Steven Pressfield：叙事的21条原则</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/steven-pressfield-storytelling.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/steven-pressfield-storytelling.html</guid>
+      <link>https://conanxin.github.io/posts/steven-pressfield-storytelling.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/steven-pressfield-storytelling.html</guid>
       <pubDate>Mon, 31 Mar 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[David Perell访谈《The War of Art》作者，分享21条具体实用的叙事原则，从三幕结构到"让它美丽"]]></description>
     </item>
     
     <item>
       <title>灵感，明亮地移动我：与 Jem 的对话</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/inspiration-move-me-brightly.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/inspiration-move-me-brightly.html</guid>
+      <link>https://conanxin.github.io/posts/inspiration-move-me-brightly.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/inspiration-move-me-brightly.html</guid>
       <pubDate>Sun, 30 Mar 2026 16:00:00 GMT</pubDate>
       <description><![CDATA[Jem与Brad Frost关于生成式设计、技术艺术和创意流程的AI增强]]></description>
     </item>
     
     <item>
       <title>你想如何被记住：AI Agent 的记忆革命</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/how-do-you-want-to-remember.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/how-do-you-want-to-remember.html</guid>
+      <link>https://conanxin.github.io/posts/how-do-you-want-to-remember.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/how-do-you-want-to-remember.html</guid>
       <pubDate>Sun, 30 Mar 2026 14:00:00 GMT</pubDate>
       <description><![CDATA[Zak El Fassi 关于 AI Agent 记忆系统的实验——让 Agent 自主设计、评估和优化自己的记忆]]></description>
     </item>
     
     <item>
       <title>如何在AI时代保持清醒：读 Cedric Chin 有感</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/how-to-make-sense-of-ai.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/how-to-make-sense-of-ai.html</guid>
+      <link>https://conanxin.github.io/posts/how-to-make-sense-of-ai.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/how-to-make-sense-of-ai.html</guid>
       <pubDate>Sun, 30 Mar 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[Cedric Chin《How to Make Sense of AI》学习笔记——不确定性四问法与意义构建]]></description>
     </item>
     
     <item>
       <title>愉悦工具与互联网的灵魂</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/convivial-web.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/convivial-web.html</guid>
+      <link>https://conanxin.github.io/posts/convivial-web.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/convivial-web.html</guid>
       <pubDate>Sun, 30 Mar 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[重读 Henry《A Website to Destroy All Websites》，思考如何让技术重新服务于人的自主性]]></description>
     </item>
     
     <item>
       <title>社区不可替代：读 Joan Westenberg 有感</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/communities-are-not-fungible.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/communities-are-not-fungible.html</guid>
+      <link>https://conanxin.github.io/posts/communities-are-not-fungible.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/communities-are-not-fungible.html</guid>
       <pubDate>Sat, 29 Mar 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[社区不是可互换的资源，一旦破坏便无法重建——Joan Westenberg 文章的学习笔记]]></description>
     </item>
     
     <item>
       <title>本地大模型选择指南：从 4GB 到 24GB VRAM</title>
-      <link>https://conanxin.github.io/xin-conan.github.io/posts/local-llm-guide.html</link>
-      <guid isPermaLink="true">https://conanxin.github.io/xin-conan.github.io/posts/local-llm-guide.html</guid>
+      <link>https://conanxin.github.io/posts/local-llm-guide.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/local-llm-guide.html</guid>
       <pubDate>Sat, 29 Mar 2026 00:00:00 GMT</pubDate>
       <description><![CDATA[基于硬件配置选择最适合的本地 LLM，从 Qwen2.5 到 Llama 3.1 的实践对比]]></description>
     </item>

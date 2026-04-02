@@ -15,6 +15,24 @@
 
 ## 最新更新
 
+### 2026-04-02 | Acemoglu《知识崩溃》: AI 时代的人类专业危机
+
+**研究主题：** NBER 工作论文 - 生成式 AI 对人类知识积累和专业能力的深远影响
+
+**核心观点：**
+- **知识崩溃**: AI 普及削弱人类获取知识的内在动力
+- **过度自信效应**: 办公室职员产生虚假专业能力感
+- **生产力悖论**: 短期效率提升 vs 长期专业性侵蚀
+- **机构挑战**: 隐性知识流失、技能极化加剧
+- **治理应对**: 将 AI 定位为"增强工具"而非"替代工具"
+
+**关键洞察**:
+> "While AI tools demonstrably increase short-term productivity metrics, they may simultaneously erode the foundation of long-term professional expertise."
+
+[阅读全文 →](posts/acemoglu-knowledge-collapse-analysis.html)
+
+---
+
 ### 2026-03-31 | 副业到百万生意的反直觉路径
 
 **研究主题：** X帖子深度分析 - 如何在不辞职的情况下打造百万美元生意

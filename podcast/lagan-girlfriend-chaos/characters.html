@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人物设定表 — 会演的人</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --accent: #e2c04d;
+  --accent-dim: #a88a2e;
+  --link: #58a6ff;
+  --heading: #f0f6fc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.site-header a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-header a:hover { text-decoration: underline; }
+
+.site-header .sep { color: var(--border); }
+
+/* Title page */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero .subtitle {
+  font-style: italic;
+  color: var(--accent-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+}
+
+.nav-card .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+.nav-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.nav-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Chapter list */
+.chapter-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.chapter-list a:hover { color: var(--accent); }
+
+.chapter-list .ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* Article content */
+article {
+  padding: 1rem 0;
+}
+
+article h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  color: var(--heading);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+article p {
+  margin-bottom: 1.2rem;
+  text-indent: 2em;
+  font-size: 1.05rem;
+}
+
+article p.no-indent {
+  text-indent: 0;
+}
+
+article em {
+  color: var(--accent-dim);
+}
+
+article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Chapter nav */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.chapter-nav a:hover { text-decoration: underline; }
+
+.chapter-nav .nav-disabled {
+  color: var(--border);
+  pointer-events: none;
+}
+
+/* Character table */
+.char-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.char-table th, .char-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.char-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav-cards { grid-template-columns: 1fr; }
+  .container { padding: 1rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="site-header"><a href="https://conanxin.github.io">conanxin.github.io</a><span class="sep">/</span><a href="./">会演的人</a><span class="sep">/</span><span>人物</span></div>
+<div class="hero"><h1>人物设定表</h1></div>
+<article>
+<h2>主要人物</h2>
+
+</article>
+<article>
+<h2>林晚（叙述者/第一人称）</h2>
+<p>三十二岁，策划公司商务岗。性格外热内冷——社交场合是暖场高手，独处时其实怕麻烦。最大的弱点是不懂拒绝，或者说，拒绝别人会让她产生一种说不清的愧疚感。</p>
+<p>她对人好是认真的，认真到近乎笨拙。不试探、不保留、不铺台阶，上来就把底牌亮了。这是她引以为傲的原则，也是她最大的软肋。</p>
+<p>她管这叫"问心无愧"。别人管这叫"好骗"。</p>
+<p>与苏蔓的关系：工作客户→闺蜜→被消耗→觉醒。整个过程中，她的痛苦不是被骗，而是"我明明一直在认真对待，你却从头到尾在演戏"。</p>
+<p>叙事视角：第一人称回忆体，语调克制、自嘲，偶尔会在关键处突然尖锐。</p>
+<hr>
+</article>
+<article>
+<h2>苏蔓（核心对手/复杂角色）</h2>
+<p>三十一岁，离异，有一个五六岁的孩子。对外自称家境优渥，母亲经商，自己做项目中介。实际上——家庭背景确实不差，但远没有她营造得那么光鲜。</p>
+<p>长得好看。是那种一眼就能让人记住的好看，眉眼带桃花，化了妆上镜，不化妆也好看。但这种好看是有目的的——她知道自己的脸能换来什么。</p>
+<p>她是一个极度需要关注的人。没有男性在场时，她整个人是沉的、淡的，像一杯放了一夜的茶。一旦有男人出现，哪怕是个Gay，她立刻就活了。</p>
+<p>她并不觉得自己在"演"。在她的价值观里，这叫"活得通透"——"短平快，谁还玩真感情"。她经历过婚姻的失败，父母的离异，她用一种近乎偏执的方式告诉自己：我不需要认真。</p>
+<p>但林晚看见过她脆弱的瞬间。散场后独自坐在车里发呆的样子。朋友圈发了又删的那条。说"我其实也想有个靠谱的人"时声音里那一秒的真实。</p>
+<p>苏蔓不是坏人。她是一个用错误方式填补空洞的人。</p>
+<hr>
+</article>
+<article>
+<h2>本地男友</h2>
+<p>苏蔓在本地的暧昧对象。长相不错，有一定社会关系，偶尔在酒吧露面。与苏蔓的关系更像"长期暧昧"而非正式恋爱——他知道苏蔓有别的男人，但选择睁一只眼。</p>
+<p>他出现的次数不多，但每一次都带着一种压抑的怒意。像一个不愿掀桌子的赌徒。</p>
+<hr>
+</article>
+<article>
+<h2>陈先生</h2>
+<p>外地来西安的追求者。做生意的，出手大方，注重仪表——出门喷香水，衣服讲究。但品味有偏差，喝酒喜欢成箱点，送礼物的方式过于用力（后备箱铺满花）。</p>
+<p>他不是不懂，而是太想抓住。五千块的红包、后备箱的花、一打一打地点酒——这些都是他在用自己的方式说"我认真的"。但苏蔓收了他的钱，却不愿意给出他想要的回应。</p>
+<p>陈先生的悲剧在于：他知道自己可能是个凯子，但他选择赌一把。赌输了，他掀桌走人。</p>
+<hr>
+</article>
+<article>
+<h2>小鱼（林晚的小姐妹）</h2>
+<p>林晚妹妹的好朋友，比林晚小几岁。性格直率，看人准。在林晚最尴尬的那个生日局上，她是唯一一个说"要不咱走"的人。</p>
+<p>她对苏蔓的态度从一开始的礼貌变成了厌恶。她说过一句话："姐，你不用这么配合她。"</p>
+<p>小鱼的功能不是"义气姐妹"，而是"清醒的旁观者"。她的存在让林晚意识到：不是所有人都觉得这样做是正常的。</p>
+<hr>
+</article>
+<article>
+<h2>高中回忆线（简化/泛化）</h2>
+
+</article>
+<article>
+<h2>周芷</h2>
+<p>高中时的好友，漂亮、成绩好、社交圈广。她与叙述者之间的纠葛是叙述者人生中第一次体会到"被朋友辜负"的滋味。这段经历在主线故事中不再单独展开，而是作为叙述者性格的成因之一——为什么她对"被辜负"这件事如此敏感。</p>
+</article>
+<article>
+<h2>阿辰 / 小萱</h2>
+<p>高中时的另外两个朋友。他们的故事不再详细叙述，只在楔子中作为"宿命感"的隐喻一笔带过。</p>
+<hr>
+</article>
+
+<div class="site-footer">改编自播客 · 已做去风险处理 · 2026</div>
+</div>
+</body>
+</html>

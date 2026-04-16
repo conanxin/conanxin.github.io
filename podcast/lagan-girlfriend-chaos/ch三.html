@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第三章 — 会演的人</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --accent: #e2c04d;
+  --accent-dim: #a88a2e;
+  --link: #58a6ff;
+  --heading: #f0f6fc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.site-header a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-header a:hover { text-decoration: underline; }
+
+.site-header .sep { color: var(--border); }
+
+/* Title page */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero .subtitle {
+  font-style: italic;
+  color: var(--accent-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+}
+
+.nav-card .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+.nav-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.nav-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Chapter list */
+.chapter-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.chapter-list a:hover { color: var(--accent); }
+
+.chapter-list .ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* Article content */
+article {
+  padding: 1rem 0;
+}
+
+article h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  color: var(--heading);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+article p {
+  margin-bottom: 1.2rem;
+  text-indent: 2em;
+  font-size: 1.05rem;
+}
+
+article p.no-indent {
+  text-indent: 0;
+}
+
+article em {
+  color: var(--accent-dim);
+}
+
+article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Chapter nav */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.chapter-nav a:hover { text-decoration: underline; }
+
+.chapter-nav .nav-disabled {
+  color: var(--border);
+  pointer-events: none;
+}
+
+/* Character table */
+.char-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.char-table th, .char-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.char-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav-cards { grid-template-columns: 1fr; }
+  .container { padding: 1rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="site-header"><a href="https://conanxin.github.io">conanxin.github.io</a><span class="sep">/</span><a href="./">会演的人</a><span class="sep">/</span><span>第三章</span></div>
+<article>
+<h1>第三章</h1>
+<p>从东南亚回来，她请我吃了一顿"接风宴"。选在一家西餐厅，她母亲安排的，包间，有排面。</p>
+<p>我不能空手。在商场专柜转了一圈，买了六百多的香水，又挑了一支限量款口红——能换外壳的那种，导购推荐的。到她孩子面前，小孩一直在看手机上的动画片，我又顺手下单了一个两百多的玩具。</p>
+<p>一顿饭花了一千五。但我不心疼。我觉得——这是商务关系打底的社交成本。人家有排面，我不能跌份。</p>
+<p>她母亲很高兴。饭桌上还有一个男的，小孩叫他"舅舅"，据说是她丈夫的朋友。</p>
+<p>然后话题就拐了弯。</p>
+<p>她母亲、苏蔓、还有那个"舅舅"，三个人轮流控诉她的丈夫——不顾家、不拿钱、不管孩子。学费都是苏蔓出的。</p>
+<p>"那是你兄弟！"她母亲拍着桌子对那个"舅舅"说，"他自己干了什么你不知道？"</p>
+<p>我在旁边默默吃饭。鱼很好吃，酒也不错。</p>
+<p>吃完饭他们要去二场。我没去。前一天才从国外飞回来，时差还没倒过来。</p>
+<p>回去的路上，出租车经过一条河。河面上没有灯，只有水的反光。我想起饭桌上苏蔓控诉她丈夫时的表情——那种愤怒是真实的。不是演的。</p>
+<p>那是我第一次在她身上看到真实的东西。</p>
+<p>可惜后来越来越少见了。</p>
+</article>
+<div class="chapter-nav"><a href="ch二.html">← 第二章</a>
+<a href="chapters.html">目录</a>
+<a href="ch四.html">第四章 →</a></div>
+<div class="site-footer">改编自播客 · 已做去风险处理 · 2026</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第五章 — 会演的人</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --accent: #e2c04d;
+  --accent-dim: #a88a2e;
+  --link: #58a6ff;
+  --heading: #f0f6fc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.site-header a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-header a:hover { text-decoration: underline; }
+
+.site-header .sep { color: var(--border); }
+
+/* Title page */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero .subtitle {
+  font-style: italic;
+  color: var(--accent-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+}
+
+.nav-card .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+.nav-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.nav-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Chapter list */
+.chapter-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.chapter-list a:hover { color: var(--accent); }
+
+.chapter-list .ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* Article content */
+article {
+  padding: 1rem 0;
+}
+
+article h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  color: var(--heading);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+article p {
+  margin-bottom: 1.2rem;
+  text-indent: 2em;
+  font-size: 1.05rem;
+}
+
+article p.no-indent {
+  text-indent: 0;
+}
+
+article em {
+  color: var(--accent-dim);
+}
+
+article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Chapter nav */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.chapter-nav a:hover { text-decoration: underline; }
+
+.chapter-nav .nav-disabled {
+  color: var(--border);
+  pointer-events: none;
+}
+
+/* Character table */
+.char-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.char-table th, .char-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.char-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav-cards { grid-template-columns: 1fr; }
+  .container { padding: 1rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="site-header"><a href="https://conanxin.github.io">conanxin.github.io</a><span class="sep">/</span><a href="./">会演的人</a><span class="sep">/</span><span>第五章</span></div>
+<article>
+<h1>第五章</h1>
+<p>她生日，提前半个月就开始喊了。"我在某酒店订了包间，你一定要来！"</p>
+<p>我一听她的排场，心想来的人非富即贵。我得拿出点诚意。</p>
+<p>给她买了一千多的护肤套盒。给她母亲买了一瓶进口蜂蜜。加起来两千多。</p>
+<p>觉得自己够意思了。</p>
+<p>结果我第一个到。</p>
+<p>七点的局，我七点十分到。她来了之后跟我聊了一会儿，说最近离婚了。然后开始等。</p>
+<p>一直等到快八点。其他人陆陆续续到——迟到半小时对他们来说是准时。</p>
+<p>七八个人，光是花就收了三四束。</p>
+<p>我心里咯噔一下：我是不是给多了？</p>
+<p>更离谱的在后面。</p>
+<p>她约了一个男孩，事业单位的。那男孩只待了二十分钟，说晚上还要加班做报告，但想给她一个惊喜。</p>
+<p>把苏蔓叫到停车场。后车厢一打开——铺满了花，中间一个心形的盒子，装满了零食。</p>
+<p>当着所有人的面亲了一下。然后走了。</p>
+<p>"做完报告尽量赶过来。"他说。</p>
+<p>后来再也没来。</p>
+<p>接着那帮"闺蜜团"到了。一个个妆容精致，挑剔得要命：这道菜不新鲜，那个酒不能喝，沙发太硬了。</p>
+<p>我在旁边活跃气氛，陪笑陪聊，把自己变成一个行走的暖场器。</p>
+<p>后来转场去了KTV。苏蔓喝多了，拉着我的手开始倾诉。</p>
+<p>"我这个婚离得太亏了。孩子爸连抚养费都不愿意给。"</p>
+<p>从一万谈到五千，从五千谈到两千。两千一个月养一个孩子。</p>
+<p>我看着她。她手上戴的戒指是我从没见过的款式，脖子上的项链应该是新买的。</p>
+<p>两千块钱的问题，和这些东西放在一起，有点不搭。</p>
+<p>但我没说什么。</p>
+</article>
+<div class="chapter-nav"><a href="ch四.html">← 第四章</a>
+<a href="chapters.html">目录</a>
+<a href="ch六.html">第六章 →</a></div>
+<div class="site-footer">改编自播客 · 已做去风险处理 · 2026</div>
+</div>
+</body>
+</html>

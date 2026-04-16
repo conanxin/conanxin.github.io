@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第四章 — 会演的人</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --accent: #e2c04d;
+  --accent-dim: #a88a2e;
+  --link: #58a6ff;
+  --heading: #f0f6fc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.site-header a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-header a:hover { text-decoration: underline; }
+
+.site-header .sep { color: var(--border); }
+
+/* Title page */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero .subtitle {
+  font-style: italic;
+  color: var(--accent-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+}
+
+.nav-card .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+.nav-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.nav-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Chapter list */
+.chapter-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.chapter-list a:hover { color: var(--accent); }
+
+.chapter-list .ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* Article content */
+article {
+  padding: 1rem 0;
+}
+
+article h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  color: var(--heading);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+article p {
+  margin-bottom: 1.2rem;
+  text-indent: 2em;
+  font-size: 1.05rem;
+}
+
+article p.no-indent {
+  text-indent: 0;
+}
+
+article em {
+  color: var(--accent-dim);
+}
+
+article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Chapter nav */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.chapter-nav a:hover { text-decoration: underline; }
+
+.chapter-nav .nav-disabled {
+  color: var(--border);
+  pointer-events: none;
+}
+
+/* Character table */
+.char-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.char-table th, .char-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.char-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav-cards { grid-template-columns: 1fr; }
+  .container { padding: 1rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="site-header"><a href="https://conanxin.github.io">conanxin.github.io</a><span class="sep">/</span><a href="./">会演的人</a><span class="sep">/</span><span>第四章</span></div>
+<article>
+<h1>第四章</h1>
+<p>2019年是我们关系最"正常"的一年。</p>
+<p>偶尔吃饭，偶尔聊天，偶尔她来我家里坐坐。说的都是家常——她的婚姻，她的孩子，她的焦虑。小闺蜜之间的吐槽。我觉得很正常。</p>
+<p>但那些正常里，偶尔会冒出来一些不对劲的小念头。</p>
+<p>比如她从来不问我的事。每次见面，话题都是她的。我的工作、我的生活、我的烦心事——她从来不问。偶尔我提起来，她会很快地把话题拽回去。</p>
+<p>比如她总在找人。随时随地需要有人陪着。找不到我，就找别人。找不到人，就去酒吧坐着。好像独处是一件不可忍受的事。</p>
+<p>比如她对男人的态度。只要有男的出现，哪怕只是路过搭个讪，她的音量会提高八度，语速会加快，笑容会变得——怎么说呢——更有目的性。</p>
+<p>这些小念头攒着攒着，到她过生日那天，忽然就串成了线。</p>
+</article>
+<div class="chapter-nav"><a href="ch三.html">← 第三章</a>
+<a href="chapters.html">目录</a>
+<a href="ch五.html">第五章 →</a></div>
+<div class="site-footer">改编自播客 · 已做去风险处理 · 2026</div>
+</div>
+</body>
+</html>

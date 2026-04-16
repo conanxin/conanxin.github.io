@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目说明 — 会演的人</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --accent: #e2c04d;
+  --accent-dim: #a88a2e;
+  --link: #58a6ff;
+  --heading: #f0f6fc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.site-header a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.site-header a:hover { text-decoration: underline; }
+
+.site-header .sep { color: var(--border); }
+
+/* Title page */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero .subtitle {
+  font-style: italic;
+  color: var(--accent-dim);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+}
+
+.nav-card .card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+.nav-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.nav-card .card-desc {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* Chapter list */
+.chapter-list {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.chapter-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.chapter-list a:hover { color: var(--accent); }
+
+.chapter-list .ch-num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-dim);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+/* Article content */
+article {
+  padding: 1rem 0;
+}
+
+article h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  color: var(--heading);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.8rem;
+}
+
+article p {
+  margin-bottom: 1.2rem;
+  text-indent: 2em;
+  font-size: 1.05rem;
+}
+
+article p.no-indent {
+  text-indent: 0;
+}
+
+article em {
+  color: var(--accent-dim);
+}
+
+article hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+article blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Chapter nav */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.chapter-nav a:hover { text-decoration: underline; }
+
+.chapter-nav .nav-disabled {
+  color: var(--border);
+  pointer-events: none;
+}
+
+/* Character table */
+.char-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.char-table th, .char-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.char-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .nav-cards { grid-template-columns: 1fr; }
+  .container { padding: 1rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="site-header"><a href="https://conanxin.github.io">conanxin.github.io</a><span class="sep">/</span><a href="./">会演的人</a><span class="sep">/</span><span>说明</span></div>
+
+<div class="hero"><h1>项目说明</h1></div>
+<article>
+<h2>关于这部作品</h2>
+<p class="no-indent">《会演的人》改编自播客节目「情感收录社」第四期，原集标题为「烂杆闺蜜的混乱情史」。故事以第一人称回忆体讲述了一段被消耗的友谊：一个认真过头的人，遇上了一个善于利用热情的人。</p>
+
+<h2>改编说明</h2>
+<p class="no-indent">本作品在播客原声转写基础上，经历了以下处理流程：</p>
+<p class="no-indent" style="text-indent:0;padding-left:1.5em;">① 播客音频转写（faster-whisper）<br>
+② 文学化改写：口语体转书面语，补充环境描写与心理描写<br>
+③ 去风险处理：所有人名、地名均做脱敏处理，删除可能引发现实联想的细节<br>
+④ 结构重组：从口述流水账重组为八章带章节节奏的叙事结构<br>
+⑤ V2 修订：统一人物称谓，修正时序矛盾，优化情绪节奏</p>
+
+<h2>人物处理原则</h2>
+<p class="no-indent">所有人物均为化名，与播客中提及的任何真实人物无直接对应关系。情节做了戏剧化处理，不代表播客嘉宾或作者对任何真实事件的评价。</p>
+
+<h2>技术栈</h2>
+<p class="no-indent">转写：faster-whisper + 可选 pyannote.audio 说话人分离<br>
+改编：本地 Hermes Agent 文学化流水线<br>
+发布：GitHub Pages + GitHub Actions 自动部署</p>
+</article>
+
+<div class="site-footer">改编自播客 · 已做去风险处理 · 2026</div>
+</div>
+</body>
+</html>

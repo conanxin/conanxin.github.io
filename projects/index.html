@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目 | Xin Conan</title>
+    <meta name="description" content="AI 生态系统设计、知识库、MVP 架构等项目">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor blink">_</span>
+            </div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/projects/" class="nav-item active">
+                <span class="nav-num">03.</span>
+                <span>PROJECTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">05.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+        <main class="terminal-main">
+
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./projects/</span>
+                </div>
+                <div class="section-content">
+                    <p>将想法转化为现实的工程实践。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-content">
+                    <div class="featured-grid">
+
+                        <div class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-tag">MVP</span>
+                                <span class="separator">//</span>
+                                <span style="color:#3fb950;">架构设计中</span>
+                            </div>
+                            <h3 class="featured-title">Aura — 个人 AI 生态系统</h3>
+                            <p class="featured-excerpt">本地优先、AI 增强、逐步去中心化的个人知识管理与创作系统。Next.js + Ollama + Chroma + Solid Pod。</p>
+                        </div>
+
+                        <div class="featured-item">
+                            <div class="featured-meta">
+                                <span class="featured-tag">TOOL</span>
+                                <span class="separator">//</span>
+                                <span style="color:#3fb950;">已完成</span>
+                            </div>
+                            <h3 class="featured-title">Nano Banana Pro 提示词生成器</h3>
+                            <p class="featured-excerpt">Python CLI 工具，5 个专业模板，交互式引导 + 批量变体 + 历史记录。</p>
+                        </div>
+
+                        <a class="featured-item" href="/podcast/lagan-girlfriend-chaos/" style="text-decoration:none;display:block;">
+                            <div class="featured-meta">
+                                <span class="featured-tag">PODCAST NOVEL</span>
+                                <span class="separator">//</span>
+                                <span style="color:#3fb950;">已完成 V2</span>
+                            </div>
+                            <h3 class="featured-title" style="color:#f0f6fc;">会演的人</h3>
+                            <p class="featured-excerpt">改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记</p>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="now-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./README.md</span>
+                </div>
+                <div class="section-content">
+                    <p class="no-indent" style="font-size:0.9rem;color:#8b949e;">
+                        更多项目文档（架构图、开发路线图、技术选型）请参阅
+                        <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects" class="link">GitHub /projects/</a>。
+                    </p>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                    <span class="separator">|</span>
+                    <span class="label">GITHUB:</span>
+                    <a href="https://github.com/conanxin" class="link">@conanxin</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

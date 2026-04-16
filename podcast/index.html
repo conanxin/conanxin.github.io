@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>播客改编 | Xin Conan</title>
+    <meta name="description" content="播客改编小说——从声音到文字到文学的二次创作">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor blink">_</span>
+            </div>
+            <p class="tagline">// 从播客到小说的改编流水线</p>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/projects/" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>PROJECTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">05.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+        <main class="terminal-main">
+
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./podcast/</span>
+                </div>
+                <div class="section-content">
+                    <p>播客改编作品：从播客原声到文学作品的完整流水线产出。</p>
+                    <p>每部作品经历：音频转写 → 文学化改写 → 去风险处理 → 结构重组 → V2 修订</p>
+                    <p style="font-size:0.85rem;color:#8b949e;margin-top:0.5rem;">
+                        <span style="color:#e2c04d;">→</span> 此内容隶属于
+                        <a href="/projects/" style="color:#58a6ff;text-decoration:none;">/projects/</a> 项目体系
+                    </p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-content">
+                    <div class="featured-grid">
+
+                        <a class="featured-item" href="/podcast/lagan-girlfriend-chaos/" style="text-decoration:none;display:block;">
+                            <div class="featured-meta">
+                                <span class="featured-date">2026-04</span>
+                                <span class="separator">//</span>
+                                <span class="featured-tag">PODCAST NOVEL</span>
+                            </div>
+                            <h3 class="featured-title" style="color:#f0f6fc;">会演的人</h3>
+                            <p class="featured-excerpt">改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记</p>
+                        </a>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="now-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./pipeline.txt</span>
+                </div>
+                <div class="section-content">
+                    <ul class="now-list">
+                        <li><span class="bullet">→</span> 转写：faster-whisper + pyannote.audio 说话人分离</li>
+                        <li><span class="bullet">→</span> 文学化：本地 Hermes Agent 流水线</li>
+                        <li><span class="bullet">→</span> 去风险：人名地名脱敏、删除可辨识细节</li>
+                        <li><span class="bullet">→</span> 结构重组：口语体转章节叙事</li>
+                        <li><span class="bullet">→</span> V2 修订：统一称谓、修正时序、优化节奏</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="comment"># 联系与订阅</span>
+            </div>
+            <div class="footer-content">
+                <p>
+                    <span class="label">EMAIL:</span>
+                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
+                </p>
+                <p>
+                    <span class="label">RSS:</span>
+                    <a href="/feed.xml" class="link">/feed.xml</a>
+                    <span class="separator">|</span>
+                    <span class="label">GITHUB:</span>
+                    <a href="https://github.com/conanxin" class="link">@conanxin</a>
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
+                <span class="separator">|</span>
+                <span>© 2026 Xin Conan</span>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

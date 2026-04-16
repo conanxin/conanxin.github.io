@@ -180,7 +180,10 @@
                     <span class="cmd">$</span>
                     <span class="cmd-text">ls ./works/</span>
                 </div>
-                <div class="section-content">
+                <!-- Rendered by JS from works.json -->
+                <div id="works-container"></div>
+                <!-- Noscript fallback -->
+                <noscript>
                     <a class="work-card" href="/podcast/lagan-girlfriend-chaos/">
                         <div class="work-meta">
                             <span style="color:#79c0ff;">情感收录社 EP04</span>
@@ -193,7 +196,7 @@
                         <div class="work-summary">一个认真过头的人遇上了一个善于利用热情的人。第一人称回忆体，八章 + 楔子 + 后记。</div>
                         <div class="work-chapters">14 页 · 楔子 + 8 章 + 后记 + 人物设定 + 章节目录 + 说明</div>
                     </a>
-                </div>
+                </noscript>
             </section>
 
             <!-- Notes -->
@@ -228,6 +231,32 @@
         }
         updateTime();
         setInterval(updateTime, 1000);
+
+        // Render works from works.json
+        fetch('/projects/podcast-novelizer/works.json')
+            .then(r => r.json())
+            .then(works => {
+                const container = document.getElementById('works-container');
+                works.forEach(w => {
+                    const card = document.createElement('a');
+                    card.className = 'work-card';
+                    card.href = w.entry_url;
+                    card.innerHTML = `
+                        <div class="work-meta">
+                            <span style="color:#79c0ff;">${w.source}</span>
+                            <span class="separator">//</span>
+                            <span style="color:${w.status_color};">${w.status}</span>
+                            <span class="separator">//</span>
+                            <span>${w.updated}</span>
+                        </div>
+                        <div class="work-title">${w.title}</div>
+                        <div class="work-summary">${w.summary}</div>
+                        <div class="work-chapters">${w.chapters} 页</div>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(() => { /* noscript fallback covers this */ });
     </script>
 </body>
 </html>

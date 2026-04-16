@@ -218,16 +218,19 @@
                 // Render in order
                 CATEGORY_ORDER.forEach(cat => {
                     if (!groups[cat]) return;
+                    // Filter featured only for index page
+                    const featured = groups[cat].filter(p => p.featured);
+                    if (!featured.length) return;
                     // Category header
                     const header = document.createElement('div');
                     header.className = 'category-header';
                     header.innerHTML = `
                         <span class="category-label">${CATEGORY_LABELS[cat] || cat}</span>
-                        <span class="category-count">${groups[cat].length} project${groups[cat].length > 1 ? 's' : ''}</span>
+                        <span class="category-count">${featured.length} project${featured.length > 1 ? 's' : ''}</span>
                     `;
                     container.appendChild(header);
                     // Cards
-                    groups[cat].forEach(p => {
+                    featured.forEach(p => {
                         const card = document.createElement(p.entry_url ? 'a' : 'div');
                         card.className = 'project-card' + (p.entry_url ? '' : ' project-card-no-link');
                         if (p.entry_url) card.href = p.entry_url;

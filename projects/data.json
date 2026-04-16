@@ -26,6 +26,19 @@
     "featured": true
   },
   {
+    "title": "Podcast Novelizer",
+    "slug": "podcast-novelizer",
+    "category": "creative",
+    "type": "PIPELINE",
+    "status": "运行中",
+    "status_color": "#3fb950",
+    "updated": "2026-04",
+    "summary": "播客改编小说流水线——从播客原声到可发布文学作品的全自动化工作流。已完成 1 部作品。",
+    "entry_url": "/projects/podcast-novelizer/",
+    "source_kind": "pipeline",
+    "featured": true
+  },
+  {
     "title": "会演的人",
     "slug": "lagan-girlfriend-chaos",
     "category": "creative",
@@ -36,6 +49,6 @@
     "summary": "改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记",
     "entry_url": "/podcast/lagan-girlfriend-chaos/",
     "source_kind": "podcast-novel",
-    "featured": true
+    "featured": false
   }
 ]

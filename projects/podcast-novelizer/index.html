@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast Novelizer | Xin Conan</title>
+    <meta name="description" content="从播客原声到文学作品的完整改编流水线">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+    <style>
+        .pipeline-step {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.9rem;
+        }
+        .pipeline-step:last-child { border-bottom: none; }
+        .step-num {
+            color: #7ee787;
+            font-weight: 600;
+            min-width: 1.5rem;
+        }
+        .step-label {
+            color: #79c0ff;
+            font-weight: 600;
+            min-width: 7rem;
+        }
+        .step-desc { color: #8b949e; }
+        .work-card {
+            display: block;
+            padding: 1rem;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .work-card:hover { border-color: #7ee787; }
+        .work-meta {
+            display: flex; align-items: center; gap: 0.375rem;
+            font-size: 0.75rem; color: #6e7681; margin-bottom: 0.375rem;
+        }
+        .work-title {
+            font-size: 1.05rem; font-weight: 600; color: #f0f6fc;
+            margin-bottom: 0.25rem; line-height: 1.4;
+        }
+        .work-summary { font-size: 0.875rem; color: #8b949e; line-height: 1.5; }
+        .work-chapters {
+            font-size: 0.75rem; color: #6e7681; margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor blink">_</span>
+            </div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/projects/" class="nav-item active">
+                <span class="nav-num">03.</span>
+                <span>PROJECTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">05.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+        <main class="terminal-main">
+
+            <!-- Intro -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./podcast-novelizer/README.txt</span>
+                </div>
+                <div class="section-content">
+                    <p>播客改编小说流水线——从播客原声到可发布文学作品的全自动化工作流。音频转写、文学化改写、去风险处理、网页发布，尽量减少人工参与。</p>
+                    <p style="font-size:0.85rem;color:#6e7681;margin-top:0.5rem;">
+                        <a href="/projects/" style="color:#58a6ff;text-decoration:none;">← 返回 /projects/</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Pipeline -->
+            <section class="posts-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./pipeline.txt</span>
+                </div>
+                <div class="section-content" style="padding:0.5rem 0;">
+                    <div class="pipeline-step">
+                        <span class="step-num">01</span>
+                        <span class="step-label">内容获取</span>
+                        <span class="step-desc">xyz-dl / ultrazg/xyz / dl_xiaoyuzhou 抓取小宇宙播客音频</span>
+                    </div>
+                    <div class="pipeline-step">
+                        <span class="step-num">02</span>
+                        <span class="step-label">语音转写</span>
+                        <span class="step-desc">faster-whisper 转写，可选 WhisperX 时间戳精化 + pyannote.audio 说话人分离</span>
+                    </div>
+                    <div class="pipeline-step">
+                        <span class="step-num">03</span>
+                        <span class="step-label">文学化改写</span>
+                        <span class="step-desc">Hermes Agent 流水线：口语体转书面语，补充环境描写与心理描写，重组为章节结构</span>
+                    </div>
+                    <div class="pipeline-step">
+                        <span class="step-num">04</span>
+                        <span class="step-label">去风险处理</span>
+                        <span class="step-desc">人名/地名脱敏，删除可引发现实联想的细节，保留故事张力</span>
+                    </div>
+                    <div class="pipeline-step">
+                        <span class="step-num">05</span>
+                        <span class="step-label">V2 修订</span>
+                        <span class="step-desc">统一称谓、修正时序矛盾、优化情绪节奏</span>
+                    </div>
+                    <div class="pipeline-step">
+                        <span class="step-num">06</span>
+                        <span class="step-label">网页发布</span>
+                        <span class="step-desc">生成静态 HTML，推送到 GitHub Pages，作品可直接在线阅读</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Capability -->
+            <section class="posts-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./capabilities/</span>
+                </div>
+                <div class="section-content" style="font-size:0.9rem;">
+                    <p style="color:#8b949e;margin-bottom:0.5rem;">当前能力：</p>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> 小宇宙播客单集自动下载与转写</li>
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> 口述体到章节小说的文学化改写</li>
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> 人名/地名脱敏与去风险处理</li>
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> 人物设定表自动生成</li>
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> V1→V2 修订流程</li>
+                        <li style="padding:0.3rem 0;color:#8b949e;"><span style="color:#7ee787;">→</span> 静态 HTML 网页生成与 GitHub Pages 发布</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Published Works -->
+            <section class="posts-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./works/</span>
+                </div>
+                <div class="section-content">
+                    <a class="work-card" href="/podcast/lagan-girlfriend-chaos/">
+                        <div class="work-meta">
+                            <span style="color:#79c0ff;">情感收录社 EP04</span>
+                            <span class="separator">//</span>
+                            <span style="color:#3fb950;">已完成 V2</span>
+                            <span class="separator">//</span>
+                            <span>2026-04</span>
+                        </div>
+                        <div class="work-title">会演的人</div>
+                        <div class="work-summary">一个认真过头的人遇上了一个善于利用热情的人。第一人称回忆体，八章 + 楔子 + 后记。</div>
+                        <div class="work-chapters">14 页 · 楔子 + 8 章 + 后记 + 人物设定 + 章节目录 + 说明</div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Notes -->
+            <section class="now-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./NOTES.txt</span>
+                </div>
+                <div class="section-content" style="font-size:0.85rem;color:#6e7681;">
+                    <p>改编说明：所有作品均为化名，与播客中提及的真实人物无直接对应关系。情节做了戏剧化处理，不代表播客嘉宾或作者对任何真实事件的评价。</p>
+                    <p style="margin-top:0.5rem;">发布方式：每部作品生成独立静态 HTML 子站，通过 GitHub Pages 自动部署。</p>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+                <span><span class="label" style="color:#8b949e;">GITHUB:</span> <a href="https://github.com/conanxin" class="link">@conanxin</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> © 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('datetime').textContent =
+                now.toISOString().slice(0, 19).replace('T', ' ');
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Aura — 个人 AI 生态系统",
+    "slug": "aura",
+    "category": "systems",
+    "type": "MVP",
+    "status": "设计中",
+    "status_color": "#ffa657",
+    "updated": "2026-03-30",
+    "summary": "本地优先、AI 增强、逐步去中心化的个人知识管理与创作系统。Next.js + Ollama + Chroma + Solid Pod。",
+    "entry_url": "https://github.com/conanxin/conanxin.github.io/tree/main/projects",
+    "source_kind": "repo-docs",
+    "featured": true
+  },
+  {
+    "title": "Nano Banana Pro 提示词生成器",
+    "slug": "nano-banana",
+    "category": "systems",
+    "type": "TOOL",
+    "status": "已完成",
+    "status_color": "#3fb950",
+    "updated": "2026-03-30",
+    "summary": "Python CLI 工具，5 个专业模板，交互式引导 + 批量变体 + 历史记录。",
+    "entry_url": "https://github.com/conanxin/conanxin.github.io/tree/main/tools/prompt-generator",
+    "source_kind": "repo-docs",
+    "featured": true
+  },
+  {
+    "title": "会演的人",
+    "slug": "lagan-girlfriend-chaos",
+    "category": "creative",
+    "type": "PODCAST NOVEL",
+    "status": "已完成 V2",
+    "status_color": "#3fb950",
+    "updated": "2026-04",
+    "summary": "改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记",
+    "entry_url": "/podcast/lagan-girlfriend-chaos/",
+    "source_kind": "podcast-novel",
+    "featured": true
+  }
+]

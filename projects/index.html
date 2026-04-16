@@ -4,12 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>项目 | Xin Conan</title>
-    <meta name="description" content="AI 生态系统设计、知识库、MVP 架构等项目">
+    <meta name="description" content="AI 生态系统设计、播客改编小说、工具开发等项目">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+    <style>
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #30363d;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .category-label {
+            color: #d2a8ff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .category-count {
+            color: #6e7681;
+            font-size: 0.75rem;
+        }
+        .project-card {
+            display: block;
+            padding: 1rem;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+        .project-card:hover {
+            border-color: #7ee787;
+        }
+        .project-card-no-link {
+            cursor: default;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            margin-bottom: 0.375rem;
+            font-size: 0.75rem;
+            color: #6e7681;
+        }
+        .card-type {
+            color: #79c0ff;
+        }
+        .card-status {
+            font-size: 0.75rem;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: 0.375rem;
+            line-height: 1.4;
+        }
+        .card-summary {
+            font-size: 0.875rem;
+            color: #8b949e;
+            line-height: 1.5;
+        }
+        .card-date {
+            font-size: 0.7rem;
+            color: #6e7681;
+            margin-top: 0.5rem;
+        }
+    </style>
 </head>
 <body>
     <div class="terminal-container">
@@ -63,94 +132,122 @@
                     <span class="cmd-text">ls ./projects/</span>
                 </div>
                 <div class="section-content">
-                    <p>将想法转化为现实的工程实践。</p>
+                    <p>将想法转化为现实的工程实践。分两类：<span style="color:#d2a8ff;">Systems</span>（系统/工具）和 <span style="color:#d2a8ff;">Creative</span>（创意/内容）。</p>
                 </div>
             </section>
 
-            <section class="featured-section">
-                <div class="section-content">
-                    <div class="featured-grid">
+            <!-- Rendered by JS from projects/data.json -->
+            <div id="projects-container"></div>
 
-                        <div class="featured-item">
-                            <div class="featured-meta">
-                                <span class="featured-tag">MVP</span>
-                                <span class="separator">//</span>
-                                <span style="color:#3fb950;">架构设计中</span>
-                            </div>
-                            <h3 class="featured-title">Aura — 个人 AI 生态系统</h3>
-                            <p class="featured-excerpt">本地优先、AI 增强、逐步去中心化的个人知识管理与创作系统。Next.js + Ollama + Chroma + Solid Pod。</p>
-                        </div>
-
-                        <div class="featured-item">
-                            <div class="featured-meta">
-                                <span class="featured-tag">TOOL</span>
-                                <span class="separator">//</span>
-                                <span style="color:#3fb950;">已完成</span>
-                            </div>
-                            <h3 class="featured-title">Nano Banana Pro 提示词生成器</h3>
-                            <p class="featured-excerpt">Python CLI 工具，5 个专业模板，交互式引导 + 批量变体 + 历史记录。</p>
-                        </div>
-
-                        <a class="featured-item" href="/podcast/lagan-girlfriend-chaos/" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">PODCAST NOVEL</span>
-                                <span class="separator">//</span>
-                                <span style="color:#3fb950;">已完成 V2</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">会演的人</h3>
-                            <p class="featured-excerpt">改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记</p>
-                        </a>
-
+            <!-- Noscript fallback -->
+            <noscript>
+                <div class="category-header">
+                    <span class="category-label">Systems / Workflows</span>
+                </div>
+                <a class="project-card" href="https://github.com/conanxin/conanxin.github.io/tree/main/projects">
+                    <div class="card-meta">
+                        <span class="card-type">MVP</span>
+                        <span class="separator">//</span>
+                        <span class="card-status" style="color:#ffa657;">设计中</span>
                     </div>
+                    <div class="card-title">Aura — 个人 AI 生态系统</div>
+                    <div class="card-summary">本地优先、AI 增强、逐步去中心化的个人知识管理与创作系统。</div>
+                </a>
+                <a class="project-card" href="https://github.com/conanxin/conanxin.github.io/tree/main/tools/prompt-generator">
+                    <div class="card-meta">
+                        <span class="card-type">TOOL</span>
+                        <span class="separator">//</span>
+                        <span class="card-status" style="color:#3fb950;">已完成</span>
+                    </div>
+                    <div class="card-title">Nano Banana Pro 提示词生成器</div>
+                    <div class="card-summary">Python CLI 工具，5 个专业模板，交互式引导 + 批量变体 + 历史记录。</div>
+                </a>
+                <div class="category-header">
+                    <span class="category-label">Creative Projects</span>
                 </div>
-            </section>
-
-            <section class="now-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">cat ./README.md</span>
-                </div>
-                <div class="section-content">
-                    <p class="no-indent" style="font-size:0.9rem;color:#8b949e;">
-                        更多项目文档（架构图、开发路线图、技术选型）请参阅
-                        <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects" class="link">GitHub /projects/</a>。
-                    </p>
-                </div>
-            </section>
+                <a class="project-card" href="/podcast/lagan-girlfriend-chaos/">
+                    <div class="card-meta">
+                        <span class="card-type">PODCAST NOVEL</span>
+                        <span class="separator">//</span>
+                        <span class="card-status" style="color:#3fb950;">已完成 V2</span>
+                    </div>
+                    <div class="card-title">会演的人</div>
+                    <div class="card-summary">改编自「情感收录社」EP04 · 楔子 + 八章 + 后记</div>
+                </a>
+            </noscript>
 
         </main>
         <footer class="terminal-footer">
-            <div class="footer-line">
-                <span class="comment"># 联系与订阅</span>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+                <span><span class="label" style="color:#8b949e;">GITHUB:</span> <a href="https://github.com/conanxin" class="link">@conanxin</a></span>
             </div>
-            <div class="footer-content">
-                <p>
-                    <span class="label">EMAIL:</span>
-                    <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a>
-                </p>
-                <p>
-                    <span class="label">RSS:</span>
-                    <a href="/feed.xml" class="link">/feed.xml</a>
-                    <span class="separator">|</span>
-                    <span class="label">GITHUB:</span>
-                    <a href="https://github.com/conanxin" class="link">@conanxin</a>
-                </p>
-            </div>
-            <div class="footer-bottom">
-                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
-                <span class="separator">|</span>
-                <span>© 2026 Xin Conan</span>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> © 2026 Xin Conan
             </div>
         </footer>
     </div>
     <script>
+        // Clock
         function updateTime() {
             const now = new Date();
-            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
-            document.getElementById('datetime').textContent = timeStr;
+            document.getElementById('datetime').textContent =
+                now.toISOString().slice(0, 19).replace('T', ' ');
         }
         updateTime();
         setInterval(updateTime, 1000);
+
+        // Render projects from data.json
+        const CATEGORY_LABELS = {
+            systems: 'Systems / Workflows',
+            creative: 'Creative Projects'
+        };
+        const CATEGORY_ORDER = ['systems', 'creative'];
+
+        fetch('/projects/data.json')
+            .then(r => r.json())
+            .then(projects => {
+                const container = document.getElementById('projects-container');
+                // Group by category
+                const groups = {};
+                projects.forEach(p => {
+                    if (!groups[p.category]) groups[p.category] = [];
+                    groups[p.category].push(p);
+                });
+                // Render in order
+                CATEGORY_ORDER.forEach(cat => {
+                    if (!groups[cat]) return;
+                    // Category header
+                    const header = document.createElement('div');
+                    header.className = 'category-header';
+                    header.innerHTML = `
+                        <span class="category-label">${CATEGORY_LABELS[cat] || cat}</span>
+                        <span class="category-count">${groups[cat].length} project${groups[cat].length > 1 ? 's' : ''}</span>
+                    `;
+                    container.appendChild(header);
+                    // Cards
+                    groups[cat].forEach(p => {
+                        const card = document.createElement(p.entry_url ? 'a' : 'div');
+                        card.className = 'project-card' + (p.entry_url ? '' : ' project-card-no-link');
+                        if (p.entry_url) card.href = p.entry_url;
+                        card.innerHTML = `
+                            <div class="card-meta">
+                                <span class="card-type">${p.type}</span>
+                                <span class="separator">//</span>
+                                <span class="card-status" style="color:${p.status_color}">${p.status}</span>
+                            </div>
+                            <div class="card-title">${p.title}</div>
+                            <div class="card-summary">${p.summary}</div>
+                            <div class="card-date">updated: ${p.updated}</div>
+                        `;
+                        container.appendChild(card);
+                    });
+                });
+            })
+            .catch(() => {
+                // data.json load failed, noscript fallback already visible
+            });
     </script>
 </body>
 </html>

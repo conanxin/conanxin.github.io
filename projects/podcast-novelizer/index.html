@@ -232,12 +232,14 @@
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Render works from works.json
+        // Render works from works.json (sorted by updated desc)
         fetch('/projects/podcast-novelizer/works.json')
             .then(r => r.json())
             .then(works => {
                 const container = document.getElementById('works-container');
-                works.forEach(w => {
+                works
+                    .sort((a, b) => b.updated.localeCompare(a.updated))
+                    .forEach(w => {
                     const card = document.createElement('a');
                     card.className = 'work-card';
                     card.href = w.entry_url;

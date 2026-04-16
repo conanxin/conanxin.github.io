@@ -1,0 +1,13 @@
+{
+  "_template": true,
+  "_说明": "新增作品时复制此条目，填入实际值后追加到 works.json 数组中。删除 _template 和 _说明 字段。",
+  "title": "作品标题（中文）",
+  "slug": "url-safe-slug（小写英文+连字符，如 my-novel-title）",
+  "source": "播客名 EPxx（如：情感收录社 EP04）",
+  "updated": "YYYY-MM（完成或最近更新月份）",
+  "summary": "一句话简介，50-80 字",
+  "entry_url": "/podcast/<slug>/（作品页入口路径）",
+  "status": "已完成 V2 | 已完成 V1 | 进行中",
+  "status_color": "#3fb950（已完成用绿色） | #ffa657（进行中用橙色）",
+  "chapters": 0
+}

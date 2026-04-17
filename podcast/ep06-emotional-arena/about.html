@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>关于 — 情感修罗场</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Serif SC', serif; background: #0d1117; color: #c9d1d9; line-height: 1.8; }
+        .header { background: linear-gradient(135deg, #1a1b2e 0%, #2d1b4e 100%); padding: 2rem; text-align: center; border-bottom: 2px solid #e94560; }
+        .header h1 { color: #e94560; }
+        nav { background: #161b22; padding: 1rem 2rem; display: flex; gap: 1.5rem; justify-content: center; border-bottom: 1px solid #30363d; }
+        nav a { color: #8b949e; text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; }
+        nav a:hover, nav a.active { color: #e94560; background: rgba(233,69,96,0.1); }
+        .content { max-width: 800px; margin: 2rem auto; padding: 0 2rem; }
+        .info-box { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .info-box h3 { color: #e94560; margin-bottom: 0.5rem; }
+        footer { text-align: center; padding: 2rem; color: #484f58; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>关于本作品</h1></div>
+    <nav>
+        <a href="index.html">正文</a>
+        <a href="characters.html">人物设定</a>
+        <a href="about.html" class="active">关于</a>
+        <a href="/projects/podcast-novelizer/">← 返回作品集</a>
+    </nav>
+    <div class="content">
+        <div class="info-box">
+            <h3>源播客</h3>
+            <p>情感收录社 EP06 — "情感修罗场：渣女骗情、空姐出轨、PUA套现、8人多角恋"</p>
+            <p>播客链接：<a href="https://www.xiaoyuzhoufm.com/episode/69bfe5e12d318777c928b95e" style="color:#58a6ff" target="_blank">小宇宙</a></p>
+        </div>
+        <div class="info-box">
+            <h3>改编说明</h3>
+            <p>本作品由 Podcast Novelizer 自动化流水线改编。从播客音频转写到小说化整理，经过 V1 创作和 V2 文学化修订，所有真实信息已做去风险处理。</p>
+        </div>
+        <div class="info-box">
+            <h3>处理流程</h3>
+            <p>1. 音频获取 → 2. faster-whisper 转写（4730 段，37226 字） → 3. 人物提取 → 4. V1 改编（4 章 + 楔子 + 尾声） → 5. V2 文学化修订</p>
+        </div>
+    </div>
+    <footer><p>由 <a href="/projects/podcast-novelizer/" style="color:#58a6ff">Podcast Novelizer</a> 改编</p></footer>
+</body>
+</html>

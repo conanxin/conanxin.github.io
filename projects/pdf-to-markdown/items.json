@@ -1,0 +1,50 @@
+[
+  {
+    "id": "2026-04-18-the-artist-is-dead",
+    "pipeline": "digital",
+    "title": "The Artist Is Dead",
+    "summary_short": "Art criticism essay on one-dimensional civilization as cultural killer",
+    "display_note": "Digital PDF · 14 pages · English · HTML/MD/TXT available",
+    "pages": 14,
+    "entry": "digital/2026-04-18-the-artist-is-dead/index.html",
+    "visibility": "public_candidate",
+    "publish_default": true,
+    "source_label": "papers / The_Artist_Is_Dead.pdf"
+  },
+  {
+    "id": "2026-04-18-art-history",
+    "pipeline": "digital",
+    "title": "Art History: Self-as-End Framework",
+    "summary_short": "Academic paper on art-historical application of the Self-as-End framework",
+    "display_note": "Digital PDF · 30 pages · English · HTML/MD/TXT available",
+    "pages": 30,
+    "entry": "digital/2026-04-18-art-history/index.html",
+    "visibility": "public_candidate",
+    "publish_default": true,
+    "source_label": "papers / art_history.pdf"
+  },
+  {
+    "id": "2026-04-18-artist-is-dead-cn",
+    "pipeline": "digital",
+    "title": "艺术家已死",
+    "summary_short": "中文艺术评论：单向度文明对艺术的消解",
+    "display_note": "Digital PDF · 10 页 · 中文 · HTML/MD/TXT 可用",
+    "pages": 10,
+    "entry": "digital/2026-04-18-artist-is-dead-cn/index.html",
+    "visibility": "public_candidate",
+    "publish_default": true,
+    "source_label": "papers / 艺术家已死_中文.pdf"
+  },
+  {
+    "id": "2026-04-18-rand-russian-military",
+    "pipeline": "digital",
+    "title": "RAND: Russian Military Analysis",
+    "summary_short": "RAND research report on Russian military capabilities and posture",
+    "display_note": "Digital PDF · 20 pages · English · HTML/MD/TXT available",
+    "pages": 20,
+    "entry": "digital/2026-04-18-rand-russian-military/index.html",
+    "visibility": "public_candidate",
+    "publish_default": true,
+    "source_label": "inbound / RAND_RRA4180-1.pdf"
+  }
+]

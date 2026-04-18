@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-04-18-artist-is-dead-cn",
+  "pipeline": "digital",
+  "source_size_bytes": 284100,
+  "source_pages": 10,
+  "classification": "DIGITAL",
+  "timestamp": "2026-04-18T06:19:47Z",
+  "outputs": {
+    "extracted_txt": "extracted.txt",
+    "sample_md": "sample.md",
+    "sample_html": "sample.html"
+  },
+  "tools_used": {
+    "pdftotext": "24.02.0",
+    "pymupdf": "1.27.2.2",
+    "ocrmypdf": null
+  },
+  "source_label": "papers / 艺术家已死_中文.pdf",
+  "visibility": "public_candidate",
+  "publish_default": true,
+  "display_title": "艺术家已死"
+}

@@ -1,0 +1,1152 @@
+                                                                                Research Report
+
+
+
+
+CHRISTOPHER JOSEPH DOSS, ROBERT BOZICK, HEATHER L. SCHWARTZ, LISA CHU, LYDIA R. RAINEY,
+ASHLEY WOO, JUSTIN REICH, JESSE DUKES
+
+
+
+
+AI Use in Schools Is
+Quickly Increasing but
+Guidance Lags Behind
+Findings from the RAND Survey Panels
+
+
+T
+        he rapid proliferation of generative artificial intelligence (AI) has created a fast-moving, real-
+        time social experiment at scale. AI uses for school are numerous, with some students using
+        AI for their homework and some teachers using AI to create lesson plans, receive feedback
+        on their instruction, or complete such administrative tasks as grading and writing recom-
+mendation letters.
+    Surveys have found that the use of AI among students and educators is increasing. During the
+2022–2023 school year, 58 percent of responding teachers indicated that they use AI for school or
+personal reasons, with that number jumping to 70 percent in the 2023–2024 school year (Laird,
+Dwyer, and Woelfel, 2025). Meanwhile, surveyed high school students’ reported use of AI for school
+increased by 13 percentage points between the 2022–2023 and 2023–2024 school years (Laird,
+Dwyer, and Woelfel, 2025).
+    However, school training and policies on AI—as with any new and rapidly proliferating
+technology—are lagging. As of fall 2024, about half of districts reported providing some AI train-
+ing options for teachers (Diliberti, Lake, and Weiner, 2025), virtually all of which were optional for
+teachers.
+    In this report, we provide a first-of-its-kind update on AI in education that triangulates survey
+data from nationally representative samples of five populations: K–12 teachers, school leaders,
+school district leaders, students in middle and high school, and their parents. We augment this
+quantitative data with interviews of school district leaders to provide an overview of the extent to
+which AI is being used in schools; guidance around its use in schools; and perceptions of improper
+use of AI and its potential effects on students.
+   KEY FINDINGS
+    ■ Artififical intelligence (AI) use for schoolwork is rapidly increasing. In 2025, 54 percent of students
+      and 53 percent of English language arts, math, and science teachers indicated that they used AI for school.
+      These are increases of more than 15 percentage points compared with surveys in the past one to two years.
+
+    ■ More parents and more students expressed concern that using AI harms critical-thinking skills
+      compared to school district leaders. Sixty-one percent of parents, 48 of middle schoolers, and 55 of
+      high schoolers but only 22 of district leaders agreed with the statement that greater use of AI will harm
+      critical-thinking skills.
+
+    ■ Half of students reported being worried that they will be falsely accused of using AI to cheat in
+      school. Greater proportions of high school students compared with middle school students reported hav-
+      ing such a worry.
+
+    ■ Training for students on the use of AI for schoolwork is scarce. Thirty-five percent of district leaders
+      reported that they provided students with any training on AI. Over 80 percent of students reported that
+      teachers have not explicitly taught them how to use AI for schoolwork.
+
+    ■ Fewer than half of principals reported having an AI use policy. Forty-five percent of principals
+      reported school or district policies or guidance on the use of AI in schools, and 34 percent of teachers
+      reported school or district policies on the use of AI related to academic integrity.
+
+
+
+
+Data Sources and Methods                                         • 232 school district leaders surveyed March–
+                                                                   May 2025 as part of the ASDP.
+This report draws on survey data that RAND col-
+lected from the following eight nationally representa-            Throughout this report, we provide tabulations
+tive samples:1                                               of survey responses. In some cases, we combine
+                                                             response options (e.g., “strongly agree” and “agree”)
+    • 1,261 middle school and high school students
+                                                             for simplicity. We weighted all the tabulations so that
+      surveyed in January–February 2025 as part of
+                                                             results are nationally representative of the population
+      the American Youth Panel (AYP)
+                                                             of interest based on known national distributions of
+    • 852 middle school and high school2 students
+                                                             key demographic variables.3 We additionally provide
+      surveyed in February–March 2025 as part of
+                                                             results by school grade level (i.e., elementary school,
+      the AYP
+                                                             middle school) for the AYP, ATP, and ASLP surveys.
+    • 984 parents of 12–17-year-olds surveyed in
+                                                             AYP and ASLP respondents were categorized based
+      February–March 2025 as part of the American
+                                                             on self-reported grade enrollment, and we catego-
+      Parent Panel (APP)
+                                                             rized ATP respondents by connecting their school
+    • 967 K–12 public school teachers of all sub-
+                                                             to the Common Core of Data (National Center for
+      jects surveyed in October 2024 as part of the
+                                                             Education Statistics, undated). Charts in this report
+      American Teacher Panel (ATP)
+                                                             include 95 percent confidence intervals to help
+    • 8,601 K–12 public school English language
+                                                             identify the precision of our estimates and aid com-
+      arts (ELA), math, and science teachers sur-
+                                                             parison across panels and subgroups of respondents
+      veyed in April–June 2025 as part of the ATP
+                                                             within panels. Confidence intervals for stacked bar
+    • 3,668 principals surveyed in March–April
+                                                             charts can be found in the appendix.
+      2025 as part of the American School Leader
+                                                                  We complement the survey results with findings
+      Panel (ASLP)
+                                                             from interviews conducted in spring 2025 with ten
+    • 289 school district leaders surveyed in
+                                                             school district leaders throughout the country. Nine
+      October–November 2024 as part of the
+                                                             of these leaders lead rural districts, which range in
+      American School District Panel (ASDP)
+
+
+
+                                                         2
+size from fewer than 200 students to just more than                                Although our surveys cover a large swath of
+1,500 students. One leads a large suburban district                           education stakeholders, there are important limita-
+serving more than 150,000 students. The interviews                            tions to our analyses and considerations to take into
+covered a variety of topics related to student AI usage                       account when interpreting the results. See the “Limi-
+in K–12 school districts, including district-provided                         tations” section at the end of this report for more
+training for students, visions for student AI literacy,                       details.
+hopes and concerns about AI’s role in education,
+and the supports and barriers shaping student use.
+These interviews lasted between 20 minutes and                                More Than Half of Students
+40 minutes and were audio-recorded and transcribed.                           and Teachers Used AI in 2025,
+Researchers coded the data using deductive themes                             Implying Rapid Growth in AI Use
+based on the interview protocol and employed an
+                                                                              Figure 1 shows that, in winter 2025, 54 percent of
+analytic matrix to track patterns across respondents.
+                                                                              middle school and high school students said that
+Because of the small sample size of school district
+                                                                              they use AI to some extent for their schoolwork, and
+leader interviews, the qualitative results are unrep-
+                                                                              21 percent indicated that they use it at least once
+resentative of school district leaders as a whole and
+                                                                              per week or more. AI use increased with grade level:
+of district leaders of rural and suburban districts,
+                                                                              41 percent of middle school students and 61 percent
+and urban districts as they are not represented in the
+                                                                              of high school students said that they use AI to any
+interviews. These interview data help provide context
+                                                                              extent for their schoolwork.
+to the interpretation of the survey results.
+                                                                                   These estimates are much higher than those from
+                                                                              prior years. As a point of comparison, approximately
+
+FIGURE 1
+Student-Reported Frequency with Which They Use AI for Schoolwork
+                               Once per week or more                  At least once per month                 Less than once a month
+
+                         100
+
+
+
+                         80
+Percentage of students
+
+
+
+
+                                                                                                                         61
+                         60           54
+
+                                                                                            41                           25
+                                      21
+                         40
+                                                                                            13
+                                      12                                                                                 13
+                                                                                            10
+                         20
+
+                                      21                                                    18                           23
+
+                          0
+                                  All students                                        Middle school                 High school
+
+                                                                                                  By grade level
+
+SOURCE: Authors’ analysis of data from AYP samples.
+NOTE: This figure depicts responses to the following survey question: “How often do you use AI to help with your schoolwork?” The response
+options were as follows: (1) never, (2) less than once a month, (3) at least once per month, (4) at least once per week, and (5) daily. The response
+“never” is not shown, and the options “at least once per week” and “daily” are combined in the figure and represented by the “once per week or
+more” category shown above. N (all) = 921; n (middle school) = 321; n (high school) = 531.
+
+
+
+
+                                                                          3
+37 percent of students ages 13 to 24 indicated in                           were the least likely to use AI (42 percent), followed
+summer 2024 that they use AI for school and school-                         by middle school teachers (64 percent), and high
+work (Flanagan et al., 2025), implying an increase of                       school teachers (69 percent).
+more than 15 percentage points in usage in one year.4                           Teachers’ reported use of AI in spring 2025
+     District leaders’ estimates of student AI use are                      increased by over 25 percentage points from the year
+approximately in line with student-reported AI use,                         before, when only 25 percent of ELA, math, and sci-
+suggesting that leaders have an accurate understand-                        ence teachers reported that they use AI for instruc-
+ing of the amount of AI used in their district. When                        tional planning or teaching during the school year
+we asked them in spring 2025 to estimate the percent-                       (Kaufman et al., 2025).5
+age of students in their district who use generative AI
+to help them with their schoolwork, district leaders’
+average estimate was 46 percent of their students,                          Parents and Students Were
+which falls in the range of middle schoolers’ estimates                     Much More Pessimistic About
+(42 percent) and high schoolers’ estimates (61 percent).                    the Effects of AI Compared with
+     Figure 2 shows that in spring 2025, 53 percent of                      District Leaders
+ELA, math, and science teachers reported using AI
+to any extent for instructional planning or teaching,                       Although students and educators are increasingly
+with about 13 percent of teachers using it at least once                    using AI in schools and for schoolwork, little is
+a week. As with students, teachers’ use of AI also                          known about their perceptions of the effects of that
+increased with the grade level; elementary teachers                         use. Figure 3 presents the percentage of students, par-
+
+
+FIGURE 2
+Teacher-Reported Frequency with Which They Use AI for Instructional Planning and
+Teaching
+                               Once per week or more               2–3 times per month                     Once a month or less
+
+                         100
+
+
+
+                         80
+Percentage of teachers
+
+
+
+
+                                                                                                                             69
+                                                                                                   64
+                         60                                                                                                  16
+                                   53                                                              17
+
+                                   13                                      42
+                                                                                                                             19
+                         40
+                                                                           10                      21
+                                   14
+                                                                           10
+                         20
+                                                                                                                             34
+                                   26                                                              26
+                                                                           22
+
+                          0
+                               All teachers                      Elementary school           Middle school             High school
+
+                                                                                           By grade level
+
+SOURCE: Authors’ analysis of data from ATP samples.
+NOTE: This figure depicts responses to the following survey question: “How frequently have you used AI tools or products as part of your
+[ELA/mathematics/science] instructional planning or teaching this school year (2024–2025)?” The response options were as follows: (1) never,
+(2) once a month or less frequently, (3) 2–3 times per month, (4) 1–2 times per week, and (5) 3 times a week or more. The response option
+“never” is not shown, and options “1–2 times per work” and “3 times a week or more” are combined in the figure. N (all) = 8,601; n (elementary
+school) = 4,830; n (middle school) = 1,804; n (high school) = 1,967.
+
+
+
+
+                                                                       4
+FIGURE 3
+Percentage of Students, Parents, and School District Leaders Who Agreed That AI Use
+Harms Student Critical-Thinking Skills
+                            80
+Percentage of respondents
+
+
+
+
+                            60
+
+
+
+                            40
+
+
+
+                            20
+
+
+                                      48              55                                  61                                       22
+                             0
+                                 Middle school    High school                         Parents of                            School district
+                                                                                      school-age                               leaders
+                                                                                       children
+                                           Students
+
+SOURCE: Authors’ analysis of data from AYP, APP, and ASDP samples.
+NOTE: This figure depicts responses to the following survey question: “How much do you agree with the following statement? The more
+students use AI (such as ChatGPT) for their schoolwork, the more it will harm their critical-thinking skills.” The response options were as follows:
+(1) strongly disagree, (2) disagree, (3) neither agree nor disagree, (4) agree, (5) strongly agree, and (6) I don’t know. Response option 6 was
+provided to only school district leaders. The figure presents the percentage of respondents who chose response options 4 and 5.
+n (middle school students) = 317; n (high school students) = 532; n (parents) = 983; n (school district leaders) = 289.
+
+
+
+
+ents, and school district leaders who responded either
+“agree” or “strongly agree” with the following state-
+ment: “The more students use AI for schoolwork, the                           The ambiguity around
+more it will harm their critical-thinking skills.”
+     Figure 3 shows a disconnect between the                                  which AI use cases are
+perceptions of students and parents on the one
+hand, with the perceptions of school district leaders                         considered cheating
+on the other. More than half of students were
+concerned that using AI more would harm their
+                                                                              is compounded by
+critical-thinking skills, and a greater percentage of
+high school students (55 percent) expressed that view
+                                                                              students’ uncertainty
+compared with middle school students (48 percent),
+which also corresponds to greater AI use. An even
+                                                                              as to whether student
+greater percentage of parents of school-age children                          use of AI for schoolwork
+(61 percent) expressed the concern the higher uses
+of AI could harm students’ critical-thinking skills.                          is being monitored by
+In contrast, only 22 percent of school district leaders
+agreed with that statement.                                                   their teachers.
+     School district leader interviews indicate that
+leaders may be focusing on the positive effects of AI
+in their districts. For example, some leaders saw AI as
+a tool that could enhance students’ creativity, stream-
+line workflows, and improve instruction. One leader
+
+
+
+                                                                          5
+noted that his district is focused on helping students                         cheating (17 percent). The ambiguity around which
+see AI as a tool to “be more effective in learning and                         AI use cases are considered cheating is compounded
+just making things more efficient overall.” Addition-                          by students’ uncertainty as to whether student use
+ally, many leaders underscored the importance of                               of AI for schoolwork is being monitored by their
+helping students learn how to prompt, iterate, and                             teachers. Figure 4 shows that 26 percent of students
+think critically with AI tools. District leaders were                          reported that teachers in their school definitely used
+forward-thinking in connecting AI proficiency                                  tools to see to check whether students are using AI
+with success in higher education and the workforce.                            to help with homework and projects. More students
+“People that have AI skills get hired and picked up                            (40 percent) were unsure, and the rest indicated that,
+almost immediately,” one leader explained. “So we’re                           as far as they know, teachers do not use such tools.
+trying to make sure that our students have those                                    Part of this ambiguity might stem from the lack
+experiences and how they can use AI in workflows                               of clear policies or guidance related to AI and aca-
+like you would in a business.”                                                 demic integrity. Figure 5 shows that less than half of
+                                                                               principals, 45 percent, reported that their school or
+                                                                               district has provided any policy or guidance to prin-
+The Rules on Cheating with AI                                                  cipals, students, or teachers on using AI products and
+Are Ambiguous                                                                  tools, with few differences across grade levels.
+                                                                                    Policies and guidance related to AI and aca-
+Students are operating in an environment in which
+                                                                               demic integrity were less common. As of fall 2024,
+educators and parents have not yet clearly defined
+                                                                               only 34 percent of teachers nationally said that
+which AI use cases are considered cheating. When
+                                                                               their school or district had put such policies in
+we asked parents whether using AI for schoolwork
+                                                                               place. Adoption of these policies was nearly twice as
+is cheating, the vast majority (77 percent) indicated
+                                                                               common in high schools (49 percent) compared with
+that it depends (not shown in figures). Relatively few
+                                                                               elementary schools (22 percent). The vast majority
+parents said that they felt using AI for schoolwork
+                                                                               of these teachers said that these policies were limited
+was never cheating (7 percent), but almost one in
+                                                                               rather than clear and comprehensive.
+five parents said using AI for schoolwork was always
+
+FIGURE 4
+Student-Reported Awareness of Teachers Using Tools to Detect AI Use in Schoolwork
+                                Not that I know of                   I think so, but I'm not sure                    Yes, they definitely do
+
+
+        All students       35                                            40                                          26
+
+
+
+
+      Middle school        47                                            37                                          16
+
+
+        High school        29                                            41                                          30
+
+                       0          20         40          60          0         20        40         60           0         20         40        60
+
+                                                                      Percentage of students
+
+ SOURCE: Authors’ analysis of data from AYP samples.
+ NOTE: This figure depicts responses to the following survey question: “Do teachers in your school use tools to check whether students are using
+ AI to help with homework and projects? The response options were as follows: (1) Not that I know of, (2) I think so, but I’m not sure, and (3) Yes,
+ they definitely do. N (all) = 1,333; n (middle school) = 463; n (high school) = 798.
+
+
+
+
+                                                                          6
+FIGURE 5
+Percentage of Principals and Teachers Who Reported School or District Policies and
+Guidance on AI
+                                                                                                                         Teacher reports of school or district policies
+                                 Principal reports of school or district policies                                             or guidance about the use of AI
+                                            or guidance on using AI                                                             related to academic integrity
+
+                           100                                                                                    100
+
+
+                                                                                                                               Clear, comprehensive policies
+                            80                                                                                     80          Unclear, confusing policies
+Percentage of principals
+
+
+
+
+                                                                                         Percentage of teachers
+                                                                                                                               Limited policies
+
+                            60                                                                                     60
+                                                                                                                                                                        49
+
+                                                                                                                                                                        8
+                            40                                                                                     40     34                                32          9
+                                                                                                                           6                                 4
+                                                                                                                                                  22
+                                                                                                                           6                                 6
+                            20      45                   46        45          47                                  20                             5
+                                                                                                                                                  3                     32
+                                                                                                                          22                                21
+                                                                                                                                                  14
+                             0                                                                                      0
+                                     All            Elementary Middle        High                                          All             Elementary Middle        High
+                                 principals           school   school       school                                      teachers             school   school       school
+
+
+                                                              By grade level                                                                           By grade level
+
+  SOURCE: Authors’ analysis of data from ASLP sample and ATP sample.
+  NOTE: This figure depicts responses to two survey questions. The first question was as follows: “This school year (2024–2025), has your school or
+  district provided any policy or guidance to principals, students, or teachers on how artificial intelligence (AI) products and tools—including
+  ChatGPT—can be used?” The response options were yes or no. N (all principals) = 3,659; n (elementary school principals) = 1,688;
+  n (middle school principals) = 1,184; n (high school principals) = 787. The second question was as follows: “Has your district or school put in place
+  policies or guidance about the use of generative AI tools related to academic integrity?” The response options were as follows: (1) Yes, they have
+  put in place very clear, comprehensive policies, (2) Yes, they have put limited policies in place, (3) No, they have put in place unclear or confusing
+  policies, (4) No, they have not provided any policy or guidance, and (5) I’m unsure if there are any policies currently in place. N (all teachers) = 960;
+  n (elementary school teachers) = 453; n (middle school teachers) = 175; n (high school teachers) = 310.
+
+
+
+     The absence of clear operating rules about AI                                            Interviews indicate that school district leaders are
+use may be creating anxiety for students. Figure 6                                       aware of these complex issues. Six of the ten leaders
+shows that 51 percent of students overall indicated                                      acknowledged that teachers were concerned with stu-
+that they were worried that they might be accused of                                     dents using AI to cheat on schoolwork and ambiguity
+cheating with AI even if they did not, with 16 percent                                   about which AI uses cases even constitute cheating.
+of students reporting that they were worried either                                      “There are pockets [of teachers] that would say AI
+because they knew someone who had been falsely                                           is not individual students’ work,” one leader noted.
+accused of cheating with AI or they themselves had                                       Another observed that students themselves viewed AI
+been falsely accused of cheating with AI. Percentages                                    as cheating and were hesitant to use it for schoolwork.
+of students who said they were worried increase at                                            This ambiguity is driving a sense of urgency
+higher grades, which corresponds with the increase                                       among district leaders to define acceptable AI use.
+in use of AI with age. This anxiety may heighten as                                      Six district leaders reported developing training
+more students begin using AI regularly in classroom                                      and policies to clarify expectations for both educa-
+contexts in which expectations and guidelines for its                                    tors and students. One district leader reported that
+use remain unclear.                                                                      their district is drafting a policy allowing teachers to
+
+
+
+                                                                                     7
+FIGURE 6
+Percentage of Students Worried of Being Falsely Accused of Cheating With AI
+                               Yes, this has                Yes, this has happened                       Yes, but it has not happened
+                               happened to me               to other people I know                       to me or others I know
+
+                         100
+
+
+
+                          80
+Percentage of students
+
+
+
+
+                          60                                                                                            53
+                                         51                                                                                           4
+                                                    3                                      44
+                                                                                                          1
+                          40             13                                                  7                          15
+
+
+
+                          20
+                                         35                                                36                           34
+
+
+                           0
+                                     All students                                    Middle school                  High school
+
+                                                                                                  By grade level
+
+SOURCE: Authors’ analysis of data from AYP sample.
+NOTE: This figure depicts responses to the following survey question: “Are you worried you might be accused of using AI to cheat, even if you
+didn’t?” The response options were as follows: (1) No, (2) Yes, but it has not happened to me or other people I know, (3) Yes, this has happened to
+other people I know, and (4) Yes, this has happened to me. N (all) = 1,332; n (middle school) = 462; n (high school) = 764.
+
+
+
+define what counts as cheating in their classrooms.                           35 percent of district leaders indicated that they
+Another reported being focused on shifting student                            provided students training on how to use AI for
+mindsets, helping them see AI as a tool rather than                           school or career preparation. Training was most
+a shortcut. As one leader explained, “We can either                           common at the secondary level, but even there, only
+push [AI] away and kids are going to figure out how                           about one in three district leaders indicated that they
+to use it anyway, or we can embrace it and teach them                         provide training to their high school students. Such
+to use it responsibly.” Leaders, however, may be look-                        training was even rarer in middle and elementary
+ing for support in writing these policies. Two leaders                        schools, where just 16 percent and 3 percent,
+expressed the need for clearer guidance from state                            respectively, of school district leaders indicated that
+education agencies, particularly on defining respon-                          they provide training.
+sible AI use. “If the state can, at their level, begin to                          Teachers are not making up for the lack of dis-
+give us some sample standards of incorporating AI,                            trict training to students. Only 19 percent of students
+then that gives us some choice,” a leader said.                               reported that their teachers were providing them
+                                                                              guidance on how to use AI for schoolwork. Smaller
+                                                                              percentages of middle school students (14 percent)
+Training on How to Use AI in                                                  reported that they received guidance compared with
+Schools Is Scarce                                                             high school students (21 percent). In middle school
+                                                                              and high school, guidance is therefore relatively rare.
+Currently, schools are behind in training students
+                                                                              The stark contrast between usage and training implies
+on the proper use of AI for school and schoolwork.
+                                                                              that many students are determining for themselves
+Figure 7 illustrates that, in spring 2025, only
+                                                                              what is considered proper use of AI for schoolwork.
+
+
+
+
+                                                                         8
+   FIGURE 7
+   Reports of Student Training on AI and the Provision of AI Professional Development
+   and Resources to Teachers
+                                 School district leaders reports of AI training provided                                                             Student reports of teacher training provided
+                                    to students on how to use AI for schoolwork                                                                      to students on how to use AI for schoolwork
+Percentage of school districts
+
+
+
+
+                                 100                                                                                                         100
+
+
+
+
+                                                                                                                       Percentage of youth
+                                  80                                                                                                          80
+
+                                  60                                                                                                          60
+
+                                  40                                                                                                          40
+
+                                  20                                                                                                          20
+                                          35                                       3     17             32                                                 19                      14         21
+                                   0                                                                                                             0
+                                         Any           Elementary Middle                                High                                             All                      Middle     High
+                                         K–12            school   school                               school                                         students                    school    school
+                                       students         students students                             students
+
+                                                                                   By grade level                                                                                  By grade level
+
+
+                                                                                           Supports provided to students
+
+
+
+                                                                   Teacher reports of school- or district-provided AI PD or resources
+
+                                                                                 100
+                                                                                                    A lot            Some                              Very little
+                                                        Percentage of teachers
+
+
+
+
+                                                                                  80
+                                                                                                                                                                      65      2
+                                                                                  60      55                                                          51
+                                                                                                  2                   47                                        2
+                                                                                                                                             2                        29
+                                                                                  40      23
+                                                                                                                      16                              24
+
+                                                                                  20                                                                                  34
+                                                                                          30                          29                              25
+                                                                                   0
+                                                                                          All                    Elementary                          Middle           High
+                                                                                       teachers                    school                            school          school
+
+                                                                                                                                              By grade level
+
+
+                                                                                           Supports provided to teachers
+
+   SOURCE: Authors’ analysis of data from ASDP, AYP, and ATP samples.
+   NOTE: This figure depicts responses to three survey questions. The first question was as follows: “Has your district provided training either this
+   school year or last school year to your students about the use of generative AI (like ChatGPT) to help them complete their schoolwork and/or
+   career readiness?” The response options were yes or no. N (school district leaders) = 232. The second question was as follows: “Have any of
+   your teachers taught you how to use AI for schoolwork?” The response options were yes or no. N (all students) = 1,332; n (middle school
+   students) = 463; n (high school students) = 797. The third question was as follows: “How much professional development or other resources
+   has your school or district offered to help you adapt your teaching to the arrival of generative AI tools?” The response options were as follows:
+   (1) They’ve offered a lot of professional development and/or resources, (2) They’ve offered some professional development and/or resources,
+   (3) They've offered very little professional development and/or resources, and (4) They have not offered professional development and/or
+   resources. N (all teachers) = 959; n (elementary school teachers) = 453; n (middle school teachers) = 175; n (high school teachers) = 309.
+
+
+
+
+                                                                                                                 9
+     One of the possible reasons that teachers are not          Summary and
+providing training to children is that most have not            Recommendations
+received training in the form of professional develop-
+ment (PD) themselves. In fall 2024, only 55 percent             Since the widescale availability and adoption of AI
+of teachers nationally reported that their school or            in fall 2022, AI use in education has been increas-
+district had provided PD or resources to help them              ing rapidly. Our findings show that 54 percent of
+adapt their teaching to the arrival of generative AI,           students in winter 2025 reported using AI for school-
+although this PD was more common for high school                work to any extent, an increase of more than 15 per-
+teachers (65 percent) than elementary school teach-             centage points compared with a survey of youth con-
+ers (47 percent). Even among these teachers who have            ducted one year earlier (Flanagan et al., 2025).
+received training around how to adapt their teaching                 Despite the rapid increase in students’ AI use,
+to the arrival of AI, relatively few teachers (35 per-          districts are rarely providing them with training
+cent) reported that they found this training some-              on how to use AI. Only 35 percent of district lead-
+what or very helpful.                                           ers reported training their students on AI, and only
+     School district leader interviews corroborate              19 percent of students reported that their teachers
+findings that students are generally not being trained          gave them guidance on how to use AI for school-
+on AI, with eight of the ten district leaders report-           work. This disconnect between AI use and student
+ing that they have yet to train students on how to              guidance is particularly stark in high schools where
+use AI in school. Instead, leaders reported that they           61 percent of students reported using AI, but student
+are prioritizing training teachers to learn about and           and district leader survey responses indicated that
+feel comfortable with AI before training students to            about one-third of high school teachers are providing
+use AI tools to support their learning or complete              guidance to students on how to use AI. Teacher train-
+homework—an approach also reported by school dis-               ing is also scarce—only about half of teachers said
+trict leaders in the 2023–2024 school year (Diliberti,          that they received PD or training on how to adapt
+Lake, and Weiner, 2025).                                        their teaching to AI.
+     District leaders reported being in different places             The lack of robust guidance and policies is
+with training their teachers, with some still in the            understandable given the rapid changes in AI; how-
+early stages of developing AI policies and planning             ever, the ambiguity around the proper use of AI may
+professional learning, with training rollouts antici-           be contributing to concern and anxiety among stu-
+pated in the coming school year, and others reported            dents. Parent responses indicate that there is a great
+that teacher training efforts were already underway,            amount of ambiguity as to which AI use cases should
+ranging from introductory AI 101 sessions focused               be considered cheating, reflecting a lack of common
+on awareness and basic use to more in-depth train-              agreement as to which AI use supports learning and
+ing to help teachers explore how AI can be integrated           which circumvents it.
+into instruction. Importantly, our teacher survey data               With no clear operating rules and a general lack
+suggest that AI policies are likely more helpful when           of awareness of whether teachers are using tools to
+they are combined with training. Among teachers                 monitor students’ use of AI for assignments, half of
+who had access to AI training, 37 percent said that             students reported being worried that they will be
+they felt their AI policies were helpful. However,              falsely accused of cheating with AI. Even more con-
+among teachers who did not have access to AI train-             cerning, over half of students reported believing that
+ing, only 13 percent found their AI policies helpful;           using AI will degrade their critical-thinking skills.
+instead, over half (53 percent) found their policies            Strikingly, the concern about the deleterious effects
+unhelpful. This suggests a path forward for school              of AI increases with grade level, which correlates to
+district leaders seeking to roll out AI-related teacher         the higher use of AI in those grades. Also striking
+supports.                                                       is the relative optimism of district leaders compared
+                                                                with students and parents about the effect of AI use
+                                                                on critical-thinking skills.
+
+
+
+                                                           10
+     Interviews with school district leaders indicate
+that they are aware of the complex issues surround-
+ing AI, the need for more policies and training, and         District leaders reported
+the urgency to establish policies. The leaders them-
+selves may need more support in crafting that guid-          being in different
+ance and training. District leaders are at different
+stages of crafting policies. Currently, their general        places with training
+approach is to first train teachers on AI use before
+training students. Their more optimistic perceptions         their teachers, with
+of the effect of AI use on critical thinking may be
+explained by their view that AI will be essential for
+                                                             some still in the early
+the future or work and that AI can complement, not
+supplant, learning. However, this view of AI does
+                                                             stages of developing AI
+not appear to have been adequately communicated              policies and planning
+to students and parents, an issue that is potentially
+linked to the need for more training in schools.             professional learning.
+     In light of these findings, we recommend the
+following:
+                                                                by using AI tools to mechanically solve prob-
+    • Trusted sources, such as states, should pro-              lems and complete assignments at the detri-
+      vide guidance on what effective AI policies               ment of learning the underlying theory and
+      and training look like. Interviews with school            skills needed to complete the assignments in
+      district leaders indicate that there may be a             the absence of these tools. The guidance and
+      shared urgency to create a coherent policy on             training created by district and school leaders
+      AI use and train teachers and students on how             should explicitly distinguish between the two
+      to use AI in productive ways; however, school             use cases and explain how to avoid the former
+      district leaders themselves may need sup-                 while encouraging the latter.
+      port from their state or networks of states in          • In the short term, teachers and students
+      crafting those policies and trainings. Efforts            need clarity on what constitutes cheating
+      are underway, with 26 states providing AI                 with AI. It takes time to write nuanced poli-
+      guidance for K–12 schools (AI for Education,              cies and guidance and to then train teachers
+      undated). Although the depth and breadth                  and students on them. However, in the mean-
+      of that guidance vary, many states address                time, the prevalence of AI now means that
+      definitions of AI, ethical and safety consid-             schools need to communicate guidance about
+      erations, and implementation recommenda-                  cheating in particular. Currently, our data
+      tions. As more states develop these guidelines            suggest that these policies related to academic
+      and others continue to refine them as the field           integrity are relatively rare and often limited.
+      advances, states must effectively communicate             Describing clear examples of acceptable and
+      them to educators and provide support in                  unacceptable use could help bridge the gap.
+      enacting them.                                          • Elementary schools should not be over-
+    • Training and guidance need to explain how                 looked when providing students guidance
+      to use AI to complement, not supplant,                    on AI use. When surveying school district
+      learning. There is a real concern among stu-              leaders, we found that high school is the most
+      dents and parents that widespread use of AI               common grade level where they currently
+      can come at the detriment of critical-thinking            train students on AI use (32 percent), followed
+      skills. This concern may reflect the view that            by middle school (17 percent). Only 3 percent
+      AI will be used to supplant learning, perhaps             of responding district leaders said that their
+
+
+
+                                                        11
+       district provides elementary school children            public has had access to generative AI tools since
+       with training. We found a similar pattern               fall 2022; however, AI has a long history of power-
+       for teachers; elementary teachers were half             ing educational products (e.g., personalized learning
+       as likely as high school teachers to receive            platforms) and popular home products (e.g., virtual
+       AI-related PD or resources. District leaders            assistants on phones) (MIT Open Learning, 2024).
+       should not overlook elementary schools in the           Although it is possible that respondents conflated
+       short term, given that (1) elementary school is         these traditional AI tools with generative AI tools
+       a time to teach foundational skills and when            when answering the survey questions, a majority
+       students form foundational habits and (2)               of adults are unaware that AI tools power popular
+       almost half of elementary school teachers are           everyday products (Maese, 2025). Furthermore,
+       at least experimenting with AI tools. If educa-         our questions specifically reference the application of
+       tors provide elementary school students with            AI to aid school and schoolwork, which may further
+       a coherent foundation for thinking about and            mitigate the possibility that respondents include the
+       using AI, students and schools may experience           use of AI-powered everyday products, such as virtual
+       fewer issues around AI as students get older            assistants, in responding to the questions.
+       and as AI capabilities advance.                              Third, we caution readers when interpreting
+                                                               results from the ASDP because the number of district
+                                                               leaders in the panel represent a very small share of
+Limitations                                                    the roughly 13,000 school districts in the United
+This report provides an overview of the state of AI            States. We weighted our sample of districts to make
+policy, training, and guidance in schools and exam-            it representative of school districts across the country
+ples of potential effects of the current lack of robust        on observable characteristics, such as enrollment
+policies by connecting results of eight nationally             size, region, locale, and free or reduced-price lunch
+representative surveys and interviews with a select            eligibility. Nevertheless, our weighted survey samples
+number of school district leaders. As with any study,          might not be entirely representative of districts
+this analysis has important limitations that should be         nationally. It is highly likely that the public school
+considered when interpreting the results.                      districts that enroll in the ASDP and take our surveys
+     First, all responses (both survey and interview)          differ from those who do not in meaningful ways that
+are self-reports from students, parents, school lead-          are impossible to measure. Nevertheless, we present
+ers, and district leaders. Self-reported responses are         the results to provide as complete a picture as possible.
+subject to social desirability bias where respondents               Fourth, as stated previously, interviews were
+respond in ways that they think the interviewer                conducted with a small number of district leaders
+or survey provider wants instead of their true                 that constitute a convenience sample. Although the
+perspectives.                                                  results of interviews can provide important clues that
+     Second, respondents were generally given mini-            contextualize the survey results, they are unrepresen-
+mal definitions of AI and there could be important             tative of district leaders as a whole or rural and sub-
+differences in how students, parents, teachers, school         urban district leaders generally and do not include
+leaders, and district leaders conceptualize AI gen-            the views of urban district leaders.
+erally and specifically in education. Generally, the                Fifth, we make comparisons to other surveys,
+meaning of the term AI has evolved over time, and              some fielded previously by RAND researchers and
+there is no universally agreed on definition of AI,            some fielded by other researchers, to provide a gen-
+even among experts (Kaplan, 2016). We include the              eral picture of the potential growth in AI use over
+exact question and response options in the figure              time. When presenting our results, we highlight
+notes to aid the interpretation of the responses. In           how the sample and question wording has differed
+only one set of questions do we specifically mention           between sources. These differences hinder exact esti-
+an example of generative AI, ChatGPT. The general              mates of the growth of AI use over time. However,
+                                                               given the lack of longitudinal surveys that ask ques-
+
+
+
+                                                          12
+tions of the same population consistently over time,                               research needs to be done to cover the breadth of
+we think these comparisons are instructive in pro-                                 these topics and determine the extent of divergence
+viding a general sense of the rate of AI adoption and                              of perspectives among education stakeholders.
+how that has changed in a relatively short period.
+    Lastly, the survey questions and interviews ask
+                                                                                   APPENDIX
+about the state of broad policies and guidance (i.e.,
+training) and perceptions of issues surrounding AI                                 Confidence Intervals
+use (i.e., cheating and effects on critical thinking).                             Tables A.1 through A.5 provide confidence intervals
+Although these are important issues in a broad sense,                              for the stacked bar charts presented in Figures 1, 2, 5,
+they are not comprehensive of the types of policies                                6, and 7 in the main report.
+that district leaders may need to create nor are they
+comprehensive of the effects of AI on students. More
+
+TABLE A.1
+Student-Reported Frequency with Which They Use AI for Schoolwork
+                                                   Percentage of               Lower 95%                   Upper 95%
+Survey Response Option                             Respondents              Confidence Interval         Confidence Interval                    n
+
+All students                                                                                                                                  852
+
+     Less than once a month                              21%                         18%                         24%
+
+      At least once per month                            12%                         10%                         15%
+
+     Once per week or more                               21%                         18%                         25%
+
+Middle school students                                                                                                                        321
+
+     Less than once a month                              18%                         14%                         23%
+
+     At least once per month                             10%                          7%                         13%
+
+     Once per week or more                               13%                         10%                         18%
+
+High school students                                                                                                                          531
+
+     Less than once a month                              23%                         19%                         27%
+
+     At least once per month                             13%                         10%                         17%
+
+     Once per week or more                               25%                         21%                         30%
+SOURCE: Authors’ analysis of data from AYP sample.
+NOTE: This table depicts responses to the following survey question: “How often do you use AI to help with your schoolwork?” The response options
+were as follows: (1) never; (2) less than once a month; (3) at least once per month; (4) at least once per week; and (5) daily. The option “never” is not
+shown, and the options “at least once per week” and “daily” are combined as “once per week or more.”
+
+
+
+
+                                                                             13
+TABLE A.2
+Teacher-Reported Frequency with Which They Use AI for Instructional Planning and
+Teaching
+                                              Percentage of               Lower 95%                   Upper 95%
+Survey Response Option                        Respondents              Confidence Interval         Confidence Interval                     n
+
+All teachers                                                                                                                            8,601
+
+     Once a month or less                           26%                         24%                          27%
+
+     2–3 times per month                            14%                         13%                          15%
+
+     Once per week or more                          13%                         12%                          14%
+
+Elementary school teachers                                                                                                              4,830
+
+     Once a month or less                           22%                         20%                          24%
+
+     2–3 times per month                            10%                          9%                          12%
+
+     Once per week or more                          10%                          9%                          12%
+
+Middle school teachers                                                                                                                  1,804
+
+     Once a month or less                           26%                         23%                          30%
+
+     2–3 times per month                            21%                         17%                          24%
+
+     Once per week or more                          17%                         14%                          20%
+
+High school teachers                                                                                                                     1,967
+
+     Once a month or less                           34%                         31%                          37%
+
+     2–3 times per month                            19%                         17%                          22%
+
+     Once per week or more                          16%                         14%                          19%
+SOURCE: Authors’ analysis of data from ATP sample.
+NOTE: This table depicts responses to the following survey question: “How frequently have you used AI tools or products as part of your [ELA/math-
+ematics/science] instructional planning or teaching this school year (2024–2025)?” The response options were as follows: (1) never; (2) once a month or
+less frequently; (3) 2–3 times per month; (4) 1–2 times per week; and (5) 3 times a week or more. The response “never” is not shown, and the options
+“1–2 times per work” and “3 times a week or more” are combined as “once per week or more.”
+
+
+
+
+                                                                           14
+TABLE A.3
+Percentage of Teachers Who Reported School or District Policies and Guidance on AI
+                                                     Percentage of               Lower 95%                   Upper 95%
+Survey Response Option                               Respondents              Confidence Interval         Confidence Interval                      n
+
+All teachers                                                                                                                                     960
+
+      Limited policies                                     22%                         19%                          25%
+
+      Clear, comprehensive policies                         6%                          4%                           7%
+
+      Unclear, confusing policies                           6%                          5%                           8%
+
+Elementary school teachers                                                                                                                       453
+
+      Limited policies                                     14%                          11%                         18%
+
+      Clear, comprehensive policies                         3%                          2%                           5%
+
+      Unclear, confusing policies                           5%                          3%                           7%
+
+Middle school teachers                                                                                                                           175
+
+      Limited policies                                     21%                          15%                         27%
+
+      Clear, comprehensive policies                         6%                          2%                          10%
+
+      Unclear, confusing policies                           4%                          2%                           7%
+
+High school teachers                                                                                                                             310
+
+      Limited policies                                     32%                         26%                          37%
+
+      Clear, comprehensive policies                         9%                          6%                          12%
+
+      Unclear, confusing policies                           8%                          5%                          11%
+SOURCE: Authors’ analysis of data from ATP sample.
+NOTE: This table depicts responses to the following survey question: “Has your district or school put in place policies or guidance about the use of
+generative AI tools related to academic integrity?” The response options were as follows: (1) Yes, they have put in place very clear, comprehensive poli-
+cies; (2) Yes, they have put limited policies in place; (3) No, they have put in place unclear or confusing policies; (4) No, they have not provided any policy
+or guidance; and (5) I’m unsure if there are any policies currently in place. The last two reponse options are not shown.
+
+
+
+
+                                                                               15
+TABLE A.4
+Percentage of Students Worried of Being Falsely Accused of Cheating with AI
+                                                   Percentage of              Lower 95%                  Upper 95%
+Survey Response Option                             Respondents             Confidence Interval        Confidence Interval                    n
+
+All students                                                                                                                              1,261
+
+     Yes, but this has not happened                     35%                         32%                        38%
+     to me or other people I know
+
+     Yes, this has happened to                           13%                        10%                        15%
+     other people I know
+
+     Yes this has happened to me                         3%                          2%                         4%
+
+Middle school students                                                                                                                     463
+
+     Yes, but this has not happened                     36%                         32%                         41%
+     to me or other people I know
+
+     Yes, this has happened to                           7%                          5%                        10%
+     other people I know
+
+     Yes this has happened to me                         1%                          0%                         2%
+
+High school students                                                                                                                       798
+
+     Yes, but this has not happened                     34%                         30%                        38%
+     to me or other people I know
+
+     Yes, this has happened to                           15%                        12%                        19%
+     other people I know
+
+     Yes this has happened to me                         4%                          3%                         5%
+SOURCE: Authors’ analysis of data from AYP survey.
+NOTE: This table depicts responses to the following survey question: “Are you worried you might be accused of using AI to cheat, even if you didn’t?”
+The response options were as follows: (1) No; (2) Yes, but it has not happened to me or other people I know; (3) Yes, this has happened to other people I
+know; and (4) Yes, this has happened to me.
+
+
+
+
+                                                                            16
+TABLE A.5
+Teacher Reports of School- or District-Provided AI PD or Resources
+                                                   Percentage of               Lower 95%                   Upper 95%
+Survey Response Option                             Respondents              Confidence Interval         Confidence Interval                    n
+
+All teachers                                                                                                                                  959
+
+      Very little                                        30%                           27%                       33%
+
+      Some                                               23%                           20%                       25%
+
+      A lot                                               2%                           1%                         3%
+
+Elementary school teachers                                                                                                                    453
+
+      Very little                                        29%                           25%                       34%
+
+      Some                                               16%                           13%                       20%
+
+      A lot                                               2%                           1%                         4%
+
+Middle school teachers                                                                                                                        175
+
+      Very little                                        25%                           18%                       32%
+
+      Some                                               24%                           18%                       31%
+
+      A lot                                               2%                           0%                         4%
+
+High school teachers                                                                                                                          309
+
+      Very little                                        34%                           29%                       40%
+
+      Some                                               29%                           24%                       35%
+
+      A lot                                               2%                           0%                         3%
+SOURCE: Authors’ analysis of data from ATP survey.
+NOTE: This table depicts responses to the following survey question: “How much professional development or other resources has your school or
+district offered to help you adapt your teaching to the arrival of generative AI tools?” The response options were as follows: (1) They’ve offered a lot of
+professional development and/or resources; (2) They’ve offered some professional development and/or resources; (3) They’ve offered very little profes-
+sional development and/or resources; and (4) They have not offered professional development and/or resources.
+
+
+
+
+                                                                                   4 Whereas the AYP asked students how often they used AI for
+Notes
+                                                                                   schoolwork, Flanagan et al. (2025) asked respondents to indicate
+1 All figures in this report, unless otherwise indicated, feature
+                                                                                   whether they used AI for various purposes or in various settings.
+information drawn from this list of eight samples on the dates                     Thirty-seven percent of respondents indicated that they use it for
+shown.                                                                             school and studying. However, direct measure of AI growth was
+2                                                                                  hindered because survey samples consisted of slightly different
+   Specifically, we surveyed a nationally representative sample
+                                                                                   age ranges of students and survey questions were asked in
+of youth ages 12 to 21 enrolled in K–12 schools. The vast major-
+                                                                                   different ways.
+ity of youth who received these questions were between the ages
+of 12 and 17. A small portion of students who were 12 years old                    5  Kaufman et al. (2025) surveyed the same population of teach-
+reported being in grade 5, and a small portion of high school                      ers as those represented in this report, although they asked about
+students were older than 17.                                                       AI use in a different way. Whereas we asked teachers to indicate
+3                                                                                  the extent to which they use AI for their instructional planning
+   Specific variables depend on each panel and the population
+                                                                                   or teaching, Kaufman et al. (2025) asked teachers to indicate (1)
+of interest. Generally, such variables as school urbanicity,
+                                                                                   whether they had ever heard about AI tools and products; (2)
+percentage of students eligible for free or reduced-priced lunch,
+                                                                                   their use of AI tools and products outside the job (but not for
+enrollment, school size, grade level, and where applicable
+                                                                                   instructional planning and teaching); and (3) their use of AI
+personal characteristics (e.g., gender, race/ethnicity, and years
+                                                                                   tools or products for instructional planning and teaching. Dif-
+of experience) are included. Technical documentation for these
+                                                                                   ferences in the wording in surveys hinder a direct measure of
+most recent panels are forthcoming.
+                                                                                   growth in usage over time.
+
+
+
+
+                                                                              17
+References                                                                  About the Authors
+AI for Education, “State AI Guidance for K12 Schools,” webpage,
+undated. As of September 1, 2025:
+                                                                            Christopher Joseph Doss is a senior economist at
+https://www.aiforeducation.io/ai-resources/state-ai-guidance                RAND and professor of public policy at the RAND
+Diliberti, Melissa Kay, Robin J. Lake, and Steven R. Weiner, More           School of Public Policy.
+Districts Are Training Teachers on Artificial Intelligence: Findings
+from the American School District Panel, RAND Corporation,
+RR-A956-31, 2025. As of August 26, 2025:                                    Robert Bozick is a senior research scientist at RAND.
+https://www.rand.org/pubs/research_reports/RRA956-31.html
+Flanagan, Sean, Sophia Seifert, Jennifer Herard-Tsiagbey,                   Heather L. Schwartz is the vice president and
+Nikhil M. Tiwari, Liz Glaser, Tara Strelevitz, and Alexander
+D. Harris, State of Young People: Youth Perspectives on Social
+                                                                            director of RAND Education and Labor.
+Divisiveness, Civics, Artificial Intelligence, and Mental Health in
+2024, America’s Promise Alliance, February 2025.
+                                                                            Lisa Chu is a research analyst at the Center on
+Kaplan, Jerry, Artificial Intelligence: What Everyone Needs to              Reinventing Public Education.
+Know, Oxford University Press, 2016.
+Kaufman, Julia H., Ashley Woo, Joshua Eagan, Sabrina Lee, and
+Emma B. Kassan, Uneven Adoption of Artificial Intelligence Tools            Lydia R. Rainey is a research principal at the Center
+Among U.S. Teachers and Principals in the 2023–2024 School                  on Reinventing Public Education.
+Year, RAND Corporation, RR-A134-25, 2025. As of August 26,
+2025:
+https://www.rand.org/pubs/research_reports/RRA134-25.html                   Ashley Woo is an associate policy researcher at
+Laird, Elizabeth, Maddy Dwyer, and Kristin Woelfel, Out of Step:            RAND.
+Students, Teachers in Stride with EdTech Threats While Parents
+Are Left Behind, Center for Democracy and Technology, 2025.
+                                                                            Justin Reich is an associate professor of comparative
+Maese, Ellyse, “Americans Use AI in Everyday Products Without
+Realizing It,” Gallup, January 14, 2025.                                    media studies at MIT and director of the Teaching
+MIT Open Learning, “Exploring the Shift from Traditional to
+                                                                            Systems Lab.
+Generative AI,” MIT xPro blog, October 22, 2024. As of August 9,
+2025:
+https://curve.mit.edu/exploring-shift-traditional-generative-ai
+                                                                            Jesse Dukes is an audio producer and editor cur-
+                                                                            rently collaborating with the Teaching System’s Lab.
+National Center for Education Statistics, “2022–23 Common
+Core of Data (CCD) Universe Files,” dataset, U.S. Department of
+Education, undated.
+
+
+
+
+                                                                       18
+Research Partners
+This research was conducted in partnership with the Center on
+Reinventing Public Education and the MIT Teaching Systems Lab.
+
+
+
+
+                              19
+                                                                                       RAND is a research organization that
+                                                                                       develops solutions to public policy
+About This Report                                                                      challenges to help make communities
+                                                                                       throughout the world safer and more
+This report is part of a series of short reports intended to provide brief, descrip-   secure, healthier and more prosperous.
+                                                                                       RAND is nonprofit, nonpartisan, and
+tive analyses of survey results of immediate interest to education policymakers,       committed to the public interest.
+practitioners, and researchers. In the 2024–2025 school year, we administered
+                                                                                       Research Integrity
+surveys to school district leaders as part of RAND’s American School District
+                                                                                       Our mission to help improve policy and
+Panel (ASDP), to teachers as part of the American Teacher Panel (ATP), to par-         decisionmaking through research and
+ents as part of the American Parent Panel (APP), and to students as part of the        analysis is enabled through our core
+                                                                                       values of quality and objectivity and our
+American Youth Panel (AYP). All of these panels are designed and maintained            unwavering commitment to the highest
+by RAND Survey Panels, a data collection service at RAND dedicated to collect-         level of integrity and ethical behavior. To
+                                                                                       help ensure our research and analysis
+ing and disseminating state-of-the-art, population-representative survey data to
+                                                                                       are rigorous, objective, and nonpartisan,
+support research that addresses the most pressing public policy challenges. For        we subject our research publications to
+more information on RAND Survey Panels and the specific panels featured in             a robust and exacting quality-assurance
+                                                                                       process; avoid both the appearance and
+this report, visit https://www.rand.org/surveypanels.                                  reality of financial and other conflicts of
+                                                                                       interest through staff training, project
+                                                                                       screening, and a policy of mandatory
+RAND Education and Labor                                                               disclosure; and pursue transparency
+                                                                                       in our research engagements
+This study was conducted within RAND Education and Labor, a division of                through our commitment to the open
+RAND that conducts research on early childhood through postsecondary                   publication of our research findings and
+                                                                                       recommendations, disclosure of the
+education programs, workforce development, and programs and policies                   source of funding of published research,
+affecting workers, entrepreneurship, and financial literacy and decisionmaking.        and policies to ensure intellectual
+                                                                                       independence. For more information, visit
+For more information, visit www.rand.org/education-and-labor or email
+                                                                                       www.rand.org/about/research-integrity.
+educationandlabor@rand.org.
+                                                                                       RAND’s publications do not necessarily
+                                                                                       reflect the opinions of its research clients
+Funding                                                                                and sponsors.              is a registered
+                                                                                       trademark.
+Funding for this research was provided by gifts from RAND supporters and
+income from operations.                                                                Limited Print and Electronic
+                                                                                       Distribution Rights
+                                                                                       This publication and trademark(s)
+Acknowledgments                                                                        contained herein are protected by law.
+                                                                                       This representation of RAND intellectual
+We are extremely grateful to the educators, students, and parents who agreed           property is provided for noncommercial
+to participate in the panels. Their time and willingness to share their experi-        use only. Unauthorized posting of this
+                                                                                       publication online is prohibited; linking
+ences were invaluable for this effort and for helping us understand how to better      directly to its webpage on rand.org is
+support their hard work in schools. We thank Melissa Kay Diliberti for her             encouraged. Permission is required from
+                                                                                       RAND to reproduce, or reuse in another
+assistance organizing and presenting the data. We thank Casey Hunter, Daniel           form, any of its research products for
+Ibarrola, Brian Kim, and Sarah Ohls for helping manage the surveys and the             commercial purposes. For information
+                                                                                       on reprint and reuse permissions, please
+data. We thank Tim Colvin, Roberto Guevara, and Julie Newell for program-
+                                                                                       visit www.rand.org/about/publishing/
+ming the survey. Thanks to Joshua Eagan, Dorothy Seaman, and Claude Messan             permissions.
+Setodji for managing and weighting the sampling for these analyses. We greatly
+                                                                                       For more information on this publication,
+appreciate the administrative support provided by Tina Petrossian and Erin             visit www.rand.org/t/RRA4180-1.
+Levendorf and ASDP management provided by Samantha DiNicola. We also
+                                                                                       © 2025 RAND Corporation
+thank Sy Doan and Laura Hamilton for helpful feedback that greatly improved
+this report. We also thank Maria Vega for her editorial expertise and Monette
+Velasco for overseeing the publication process for this report.                        www.rand.org
+
+
+                                                                                                                               RR-A4180-1
+

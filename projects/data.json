@@ -50,5 +50,18 @@
     "entry_url": "/podcast/lagan-girlfriend-chaos/",
     "source_kind": "podcast-novel",
     "featured": false
+  },
+  {
+    "title": "PDF to Markdown",
+    "slug": "pdf-to-markdown",
+    "category": "tools",
+    "type": "PIPELINE",
+    "status": "首次发布",
+    "status_color": "#3fb950",
+    "updated": "2026-04",
+    "summary": "PDF → Markdown/HTML/Text 处理流水线，4 个 digital PDF 样本公开展示。",
+    "entry_url": "/projects/pdf-to-markdown/",
+    "source_kind": "pipeline",
+    "featured": false
   }
 ]

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF Processing — First Release</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f0; }
+  h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+  .meta { color: #888; font-size: 0.85em; margin-bottom: 24px; }
+  .item { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 16px; margin: 16px 0; }
+  .item h3 { margin: 0 0 6px 0; }
+  .item .desc { color: #555; font-size: 0.9em; margin-bottom: 4px; }
+  .item .note { color: #999; font-size: 0.8em; margin-bottom: 8px; }
+  .item .resources { font-size: 0.85em; }
+  .item .resources a { color: #06c; text-decoration: none; }
+  .item .resources a:hover { text-decoration: underline; }
+  .item .resources .sep { color: #ccc; margin: 0 6px; }
+  .item a { color: #06c; }
+  .tag { display: inline-block; font-size: 0.75em; padding: 2px 8px; border-radius: 3px; margin-right: 8px; background: #e8f4e8; color: #2a7a2a; }
+  .pages { display: inline-block; font-size: 0.75em; color: #888; }
+</style>
+</head>
+<body>
+<h1>PDF Processing</h1>
+<div class="meta" id="meta">Loading...</div>
+<div id="items"></div>
+<script>
+fetch("items.json").then(function(r){return r.json();}).then(function(items){
+  document.getElementById("meta").textContent = items.length + " items | First public release";
+  var c = document.getElementById("items");
+  items.forEach(function(it){
+    var base = it.entry.replace("/index.html","");
+    var d = document.createElement("div");
+    d.className = "item";
+    d.innerHTML = '<span class="tag">digital</span><span class="pages">' + it.pages + ' pages</span>' +
+      '<h3><a href="' + it.entry + '">' + it.title + '</a></h3>' +
+      '<div class="desc">' + it.summary_short + '</div>' +
+      '<div class="note">' + it.display_note + '</div>' +
+      '<div class="resources"><a href="' + it.entry + '">Open HTML</a>' +
+      '<span class="sep">·</span><a href="' + base + '/sample.md">View Markdown</a>' +
+      '<span class="sep">·</span><a href="' + base + '/extracted.txt">View Text</a></div>';
+    c.appendChild(d);
+  });
+});
+</script>
+</body>
+</html>

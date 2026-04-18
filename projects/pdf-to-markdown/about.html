@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — PDF Processing</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f0; }
+  h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+  h2 { color: #444; margin-top: 28px; }
+  .meta { color: #888; font-size: 0.85em; margin-bottom: 24px; }
+  p { color: #444; line-height: 1.7; }
+  ul { color: #444; line-height: 1.7; }
+  .nav { margin-top: 32px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 0.85em; }
+  .nav a { color: #06c; text-decoration: none; margin-right: 16px; }
+  .nav a:hover { text-decoration: underline; }
+  .note { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 0.9em; color: #555; }
+</style>
+</head>
+<body>
+<h1>About This Project</h1>
+<div class="meta">PDF Processing — First public release</div>
+
+<h2>What This Is</h2>
+<p>A project to turn PDF documents into online, copyable, searchable resources. Each item provides three formats:</p>
+<ul>
+  <li><strong>HTML</strong> — single-file, works offline, images embedded as data URIs</li>
+  <li><strong>Markdown</strong> — clean text with structure, suitable for editing or archiving</li>
+  <li><strong>Text</strong> — plain extracted text for quick reference</li>
+</ul>
+
+<h2>Current Scope</h2>
+<p>The first public release includes <strong>4 digital PDFs</strong>. These are documents with embedded text layers — the most reliable path for accurate extraction.</p>
+
+<div class="note">
+  <strong>Scanned documents</strong> are not included in this public release. The scanned PDF pipeline (OCR + image-first HTML) has been validated internally, but output quality — particularly for older Chinese-language scans — is still under review and improvement.
+</div>
+
+<h2>Current Status</h2>
+<ul>
+  <li><strong>v1 — First public release</strong></li>
+  <li>4 digital PDFs processed and published</li>
+  <li>Dual pipeline (digital + scanned) built and tested</li>
+  <li>Published via GitHub Pages</li>
+</ul>
+<p>Future iterations will expand the collection and refine processing methods.</p>
+
+<div class="nav">
+  <a href="index.html">&larr; Back to project index</a>
+  <a href="methodology.html">Methodology</a>
+</div>
+</body>
+</html>

@@ -24,6 +24,11 @@
 <body>
 <h1>PDF Processing</h1>
 <div class="meta" id="meta">Loading...</div>
+<div style="margin-bottom:20px;font-size:0.85em;">
+  <a href="about.html" style="color:#06c;text-decoration:none;">About</a>
+  <span style="color:#ccc;margin:0 8px;">·</span>
+  <a href="methodology.html" style="color:#06c;text-decoration:none;">Methodology</a>
+</div>
 <div id="items"></div>
 <script>
 fetch("items.json").then(function(r){return r.json();}).then(function(items){

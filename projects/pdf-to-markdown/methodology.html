@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology — PDF Processing</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f0; }
+  h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
+  h2 { color: #444; margin-top: 28px; }
+  .meta { color: #888; font-size: 0.85em; margin-bottom: 24px; }
+  p { color: #444; line-height: 1.7; }
+  ul { color: #444; line-height: 1.7; }
+  .nav { margin-top: 32px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 0.85em; }
+  .nav a { color: #06c; text-decoration: none; margin-right: 16px; }
+  .nav a:hover { text-decoration: underline; }
+  .note { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 0.9em; color: #555; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+  th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  th { background: #f0f0ea; color: #555; }
+</style>
+</head>
+<body>
+<h1>Methodology</h1>
+<div class="meta">How PDFs are processed in this project</div>
+
+<h2>Pipeline Overview</h2>
+<p>This project uses two separate routes depending on the nature of the input PDF:</p>
+<table>
+  <tr><th>Route</th><th>Input</th><th>Output</th></tr>
+  <tr><td>Digital PDF</td><td>Documents with embedded text layers</td><td>HTML / Markdown / Text</td></tr>
+  <tr><td>Scanned PDF</td><td>Image-only documents requiring OCR</td><td>Image-first HTML + OCR text</td></tr>
+</table>
+
+<h2>Digital PDF Pipeline</h2>
+<p>Digital PDFs are the most straightforward. The text is already present in the document, so extraction focuses on preserving structure — headings, paragraphs, lists, tables.</p>
+<ul>
+  <li>Text extraction via <code>pdftotext</code> (layout mode) and <code>PyMuPDF</code></li>
+  <li>Table detection via <code>pdfplumber</code></li>
+  <li>Image extraction via <code>PyMuPDF</code></li>
+  <li>Markdown conversion with structure preservation</li>
+  <li>Single-file HTML generation with embedded images</li>
+</ul>
+<p>This route produces high-quality, reliable output.</p>
+
+<h2>Scanned PDF Pipeline</h2>
+<p>Scanned PDFs require OCR because the pages are images, not text.</p>
+<ul>
+  <li>OCR engine: Tesseract + OCRmyPDF</li>
+  <li>Image rendering: <code>pdftoppm</code> for page images</li>
+  <li>Output: image-first HTML (pages displayed as images, OCR text available for search/copy)</li>
+  <li>Font support: Noto CJK fonts installed for CJK rendering</li>
+</ul>
+<p>OCR text is treated as an auxiliary resource — useful for searching and copying, but not the primary presentation layer.</p>
+
+<h2>Current Limitations</h2>
+<ul>
+  <li>Markdown alone is not suitable for fully reproducing the layout of scanned book pages</li>
+  <li>Font optimization improves rendering quality, not OCR recognition accuracy</li>
+  <li>For older scanned Chinese documents, Tesseract's character recognition may produce spacing and accuracy issues</li>
+  <li>Scanned document processing is still under active refinement</li>
+</ul>
+
+<h2>Publishing Principles</h2>
+<ul>
+  <li><strong>Digital outputs first</strong> — reliable quality, ready for public use</li>
+  <li><strong>Scanned outputs are more cautious</strong> — reviewed internally before public release</li>
+  <li><strong>No internal paths leaked</strong> — published content avoids exposing local file paths or work-in-progress details</li>
+  <li><strong>Single-file HTML</strong> — all images embedded as data URIs, no external dependencies</li>
+</ul>
+
+<div class="nav">
+  <a href="index.html">&larr; Back to project index</a>
+  <a href="about.html">About this project</a>
+</div>
+</body>
+</html>

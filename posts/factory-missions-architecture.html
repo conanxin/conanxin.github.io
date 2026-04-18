@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Missions：为什么多智能体系统必须围绕上下文与验证来设计 | Xin Conan</title>
+    <meta name="description" content="Factory.ai 的 Missions 架构给出的核心提醒是，多智能体系统真正的难点不是多开几个 agent，而是如何控制上下文、职责边界与验证回路。">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-04-18</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">RESEARCH</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">9 min</span>
+                </div>
+                <h1 class="post-title">Factory Missions：为什么多智能体系统必须围绕上下文与验证来设计</h1>
+                <p class="post-subtitle">真正的关键不是把一个大任务拆给很多 agent，而是让每个 agent 只看到它此刻该看到的东西，并让验证始终独立于实现。</p>
+                <div class="post-meta-source" style="margin-top: 12px; font-size: 0.85em; color: var(--text-dim);">
+                    <p>原始来源: <a href="https://factory.ai/news/missions-architecture" style="color: var(--accent);">Factory.ai | How Missions Work</a> | 研究日期: 2026-04-18</p>
+                </div>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./factory-missions-architecture.md</span>
+                </div>
+
+                <h1>Factory Missions：为什么多智能体系统必须围绕上下文与验证来设计</h1>
+
+                <p>最近很多人谈多智能体系统，讨论里最常见的想象是这样的：一个 agent 不够，那就多开几个；上下文不够，那就塞更长；任务太复杂，那就让一个更强的 orchestrator 全都记住。Factory.ai 的 Missions 架构给出的恰好是一种反方向的答案：<strong>问题的核心不是 agent 数量，而是上下文污染、职责漂移和验证失真</strong>。</p>
+
+                <p>这也是它最值得研究的地方。Missions 不是在炫耀“我们能并行调度多少个 agent”，而是在回答一个更严肃的问题：<strong>当任务跨度达到多天、多阶段、多工件时，怎样让系统仍然保持可靠，而不是越来越会说、越来越不准？</strong></p>
+
+                <hr>
+
+                <h2>Factory Missions 在解决什么问题</h2>
+
+                <p>Factory 的出发点很直接。单个 agent 在小任务里表现很好，但只要任务跨度足够大，问题就会出现：看的东西越多，注意力越散；记住的细节越多，判断越容易被最近上下文绑架；目标一旦复杂，执行轨迹就会开始偏移。</p>
+
+                <p>换句话说，长上下文并不自动等于高可靠性。很多时候，它只是把更多未整理的信息、未分层的目标和未显式化的假设，一起塞进同一个工作记忆里。结果不是“全局掌控”，而是<strong>认知拥堵</strong>。</p>
+
+                <p>Missions 想解决的，就是这种“单 agent 在复杂任务中逐渐失焦”的系统性问题。它的方法不是让一个 agent 更全能，而是让整个系统围绕以下原则重组：</p>
+
+                <ul>
+                    <li>每个 agent 目标尽量单一</li>
+                    <li>每次执行都尽量从 fresh context 开始</li>
+                    <li>共享状态放到外部工件，而不是塞在对话上下文里</li>
+                    <li>验证必须由独立视角完成，而不是实现者自证</li>
+                </ul>
+
+                <hr>
+
+                <h2>为什么单 agent 长上下文会失效</h2>
+
+                <p>这篇文章最重要的判断之一是：agent 对上下文高度敏感。这个判断听上去简单，但其实决定了后面几乎所有架构选择。</p>
+
+                <p>单 agent 长上下文失效，通常不是因为 token 不够，而是因为上下文里混入了太多彼此拉扯的东西：</p>
+
+                <ul>
+                    <li>既有需求，也有实现细节</li>
+                    <li>既有计划，也有失败残留</li>
+                    <li>既有验收标准，也有对当前实现的自我辩护</li>
+                    <li>既要全局判断，又要局部写代码</li>
+                </ul>
+
+                <p>当这些东西同时存在时，agent 会变得越来越像一个一边写、一边解释、一边替自己辩护的人。系统表面上还在前进，实际上判断质量已经开始下降。</p>
+
+                <p>所以 Missions 的关键洞察不是“上下文越短越好”，而是<strong>上下文必须与角色匹配</strong>。规划者需要的是需求、边界和验收契约；worker 需要的是自己这块 feature 的清晰规格；validator 需要的是黑盒目标，而不是实现细节。把这些都塞给同一个 agent，恰好是在破坏角色纯度。</p>
+
+                <hr>
+
+                <h2>fresh context、workers、validator、shared state、orchestrator 分别在做什么</h2>
+
+                <h3>1. fresh context：切断历史噪声</h3>
+
+                <p>fresh context 的作用不是“重开一个对话”这么表面，它真正解决的是历史污染。每个执行单元从干净上下文起步，意味着它不会无意间继承上一轮的错误假设、临时权宜之计，或者已经偏掉的思路。</p>
+
+                <p>这相当于承认：<strong>上下文是资源，也是污染源</strong>。不是所有历史都该被继承，很多历史应该被压缩成明确工件后再传递，而不是原样灌进下一轮推理。</p>
+
+                <h3>2. workers：把实现变成有边界的局部工作</h3>
+
+                <p>worker 不是“一个负责干活的通用 agent”，而是只拿到某个 feature spec 的局部执行者。它要做的事很有限：理解自己的 feature，先写测试，再完成实现。</p>
+
+                <p>这样做的好处是，它不需要替整个系统负责，也不应该试图重写更高层的目标。worker 的价值在于局部聚焦，而不是全局聪明。</p>
+
+                <h3>3. validator：让验证与实现分离</h3>
+
+                <p>validator 是这个架构里最关键的角色之一。Factory 强调，验证契约应该先于具体实现生成，而且验证应由新鲜 agent 从黑盒角度完成。原因很简单：如果由同一套上下文来定义目标、实现功能、再判断自己是否达标，验证很容易被实现污染。</p>
+
+                <p>独立 validator 的意义，不只是“多一轮检查”，而是强制系统承认：<strong>实现者对自己天然有解释冲动，验证者必须保留怀疑权</strong>。</p>
+
+                <h3>4. shared state：把系统记忆从脑内搬到工件里</h3>
+
+                <p>shared state 包括验证契约、feature list、研究笔记、操作规范、知识库等。它的意义是让系统状态变成可读、可审计、可分发的工件，而不是埋在某个 agent 的长对话里。</p>
+
+                <p>这一步很重要，因为它改变了“系统知道什么”的存放方式。知识不再由某个 agent 暂时记住，而是变成不同角色都可以按需读取的外部对象。</p>
+
+                <h3>5. orchestrator：先定义完成标准，再组织执行</h3>
+
+                <p>orchestrator 并不是一个全能指挥官。它最重要的职责，是在实现开始之前先把任务变成可验证的结构：澄清需求、写验证契约、拆 feature、编 milestone、维护共享边界。</p>
+
+                <p>这里有一个顺序非常关键：<strong>先定义验证契约，再定义实现路径</strong>。如果先想实现，再补验证，验证就很容易被当前实现方案牵着走。Factory 抓住的正是这个顺序问题。</p>
+
+                <hr>
+
+                <h2>这种架构的收益与代价</h2>
+
+                <h3>收益</h3>
+
+                <ul>
+                    <li><strong>可靠性更高</strong>：职责分离后，每个角色更难在同一上下文里自我强化错误。</li>
+                    <li><strong>可扩展性更强</strong>：任务可以拆成边界清晰的 feature 和 milestone，而不是绑在一个超长对话上。</li>
+                    <li><strong>更适合多模型协作</strong>：不同角色可以用不同模型，不必幻想一个模型适合全部工作。</li>
+                    <li><strong>更利于审计和复盘</strong>：共享工件天然提供了行为痕迹和决策依据。</li>
+                    <li><strong>更适合多天任务</strong>：系统状态外置后，不必依赖某个会话持续保持“记忆连续”。</li>
+                </ul>
+
+                <h3>代价</h3>
+
+                <ul>
+                    <li><strong>编排复杂度显著上升</strong>：你得先会写契约、拆任务、维护边界。</li>
+                    <li><strong>共享状态设计不好会变成新负担</strong>：外部工件如果混乱，同样会形成信息噪声。</li>
+                    <li><strong>验证本身有成本</strong>：多一轮 validator，意味着更多时间、算力和流程开销。</li>
+                    <li><strong>不适合所有任务</strong>：如果只是小修小补，这套机制可能比问题本身还重。</li>
+                </ul>
+
+                <p>所以这不是“更先进的默认做法”，而是一种针对复杂任务失控风险的工程化回应。它适合那些跨度大、成本高、失败代价明显的任务，不适合什么都一上来就 orchestration。</p>
+
+                <hr>
+
+                <h2>对本地 OpenClaw 工作流的 6 条可吸收启发</h2>
+
+                <h3>1. 先写验收问题，再写答案</h3>
+                <p>在复杂研究或生成任务里，先列出“什么算完成、什么算可信、什么必须覆盖”，往往比直接开写更重要。把验收问题前置，本身就是在防止输出被自己的第一版思路绑架。</p>
+
+                <h3>2. 关键阶段用 fresh context，而不是无限续写</h3>
+                <p>当任务已经从“探索”进入“判断”或“发布”阶段时，继续在旧上下文里拖着走，常常会让旧噪声混进新结论。关键阶段更适合切换到新上下文，只带必要工件进入下一轮。</p>
+
+                <h3>3. 把共享状态写进文件，而不是留在会话里</h3>
+                <p>研究笔记、候选结论、发布草稿、验证清单，如果都只存在于聊天上下文里，就很难审计，也难复用。把状态外置成明确文件，才是本地工作流真正可持续的基础。</p>
+
+                <h3>4. 让验证和生成分开</h3>
+                <p>哪怕没有完整 validator 角色，也至少应该有“生成一轮”和“挑错一轮”的分离。先产出，再用另一轮视角做黑盒检查，通常比边写边自查更靠谱。</p>
+
+                <h3>5. 大任务按 feature 或阶段拆，而不是按文件拆</h3>
+                <p>很多时候我们会按文件操作，但真正更稳的拆法是按目标单元拆，例如“资料核对”“正文重写”“索引更新”“发布验证”。这样每轮工作的完成标准更清晰。</p>
+
+                <h3>6. 小任务保持轻量，不要把所有事都升级成框架工程</h3>
+                <p>这是最容易被忽略的一点。Factory 的做法适合复杂多阶段任务，但不意味着每一条消息、每一次小修都要变成 contract + worker + validator。局部轻量，本身也是一种系统纪律。</p>
+
+                <hr>
+
+                <h2>现在适合做什么，不适合过度设计什么</h2>
+
+                <p>如果把这套思路直接搬到本地 OpenClaw，最适合现在做的，不是上来造一个完整的 multi-agent framework，而是先吸收其中几个最有收益的原则：</p>
+
+                <ul>
+                    <li>复杂任务先写验收契约</li>
+                    <li>关键阶段切 fresh context</li>
+                    <li>共享状态工件化</li>
+                    <li>生成和验证分轮执行</li>
+                    <li>任务分解按阶段与边界，而非随意续聊</li>
+                </ul>
+
+                <p>而暂时不值得过度设计的，则包括：</p>
+
+                <ul>
+                    <li>完整的长期 orchestrator 框架</li>
+                    <li>过重的状态机系统</li>
+                    <li>对每个小任务都引入多 agent 角色</li>
+                    <li>为了“像工业系统”而增加并不必要的流程复杂度</li>
+                </ul>
+
+                <p>一句话说，Factory Missions 最值得借鉴的，不是它的外观，而是它对系统失效点的判断：<strong>多智能体不是目的，控制上下文、边界和验证才是目的。</strong></p>
+
+                <hr>
+
+                <h2>结语</h2>
+
+                <p>我觉得这篇文章最有价值的地方，不是它给出了一个可以直接照抄的架构，而是它把多智能体系统真正脆弱的地方说清楚了。真正让系统崩掉的，通常不是 agent 不够多，而是上下文太脏、角色太混、验证太近。</p>
+
+                <p>如果把这个判断放回本地工作流，结论其实很朴素：<strong>先让每一步更清楚，再谈把系统做大。</strong> 对多数个人研究和写作场景来说，这往往比“再加一个 agent”有用得多。</p>
+            </div>
+        </article>
+
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

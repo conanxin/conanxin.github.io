@@ -3,26 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — PDF Processing</title>
+<title>About — PDF to Markdown</title>
 <style>
-  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f0; }
-  h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
-  h2 { color: #444; margin-top: 28px; }
-  .meta { color: #888; font-size: 0.85em; margin-bottom: 24px; }
-  p { color: #444; line-height: 1.7; }
-  ul { color: #444; line-height: 1.7; }
-  .nav { margin-top: 32px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 0.85em; }
-  .nav a { color: #06c; text-decoration: none; margin-right: 16px; }
-  .nav a:hover { text-decoration: underline; }
-  .note { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 0.9em; color: #555; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 40px 24px;
+    background: #fafaf8; color: #24292f; line-height: 1.6;
+  }
+  header { margin-bottom: 36px; }
+  header h1 { font-size: 1.6em; font-weight: 600; margin: 0 0 6px 0; color: #1a1a1a; }
+  header .subtitle { color: #656d76; font-size: 0.95em; margin: 0; }
+  nav { margin-bottom: 32px; font-size: 0.88em; }
+  nav a { color: #0969da; text-decoration: none; margin-right: 14px; }
+  nav a:hover { text-decoration: underline; }
+  nav .sep { color: #d0d7de; margin: 0 2px; }
+  h2 { font-size: 1.15em; font-weight: 600; color: #1a1a1a; margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #d8dee4; }
+  p { margin: 0 0 12px 0; color: #57606a; }
+  ul { margin: 0 0 16px 0; padding-left: 24px; color: #57606a; }
+  li { margin-bottom: 6px; }
+  strong { color: #24292f; }
+  .callout {
+    background: #fff; border: 1px solid #d8dee4; border-radius: 8px;
+    padding: 16px 20px; margin: 20px 0; font-size: 0.9em; color: #57606a;
+    border-left: 3px solid #d4a72c;
+  }
+  .callout strong { color: #24292f; }
 </style>
 </head>
 <body>
-<h1>About This Project</h1>
-<div class="meta">PDF Processing — First public release</div>
+<header>
+  <h1>About This Project</h1>
+  <p class="subtitle">PDF to Markdown — turning PDFs into accessible, searchable resources.</p>
+</header>
+<nav>
+  <a href="index.html">&larr; Project index</a>
+  <span class="sep">/</span>
+  <a href="methodology.html">Methodology</a>
+</nav>
 
 <h2>What This Is</h2>
-<p>A project to turn PDF documents into online, copyable, searchable resources. Each item provides three formats:</p>
+<p>A project to turn PDF documents into online, copyable, searchable resources. Each published item provides three formats:</p>
 <ul>
   <li><strong>HTML</strong> — single-file, works offline, images embedded as data URIs</li>
   <li><strong>Markdown</strong> — clean text with structure, suitable for editing or archiving</li>
@@ -30,9 +51,9 @@
 </ul>
 
 <h2>Current Scope</h2>
-<p>The first public release includes <strong>4 digital PDFs</strong>. These are documents with embedded text layers — the most reliable path for accurate extraction.</p>
+<p>The first public release includes <strong>4 digital PDFs</strong> — documents with embedded text layers, the most reliable path for accurate extraction.</p>
 
-<div class="note">
+<div class="callout">
   <strong>Scanned documents</strong> are not included in this public release. The scanned PDF pipeline (OCR + image-first HTML) has been validated internally, but output quality — particularly for older Chinese-language scans — is still under review and improvement.
 </div>
 
@@ -44,10 +65,5 @@
   <li>Published via GitHub Pages</li>
 </ul>
 <p>Future iterations will expand the collection and refine processing methods.</p>
-
-<div class="nav">
-  <a href="index.html">&larr; Back to project index</a>
-  <a href="methodology.html">Methodology</a>
-</div>
 </body>
 </html>

@@ -3,75 +3,106 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PDF Processing — First Release</title>
+<title>PDF to Markdown</title>
 <style>
-  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f0; }
-  h1 { color: #333; border-bottom: 2px solid #ccc; padding-bottom: 8px; }
-  .meta { color: #888; font-size: 0.85em; margin-bottom: 24px; }
-  .item { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 16px; margin: 16px 0; }
-  .item h3 { margin: 0 0 6px 0; }
-  .item .desc { color: #555; font-size: 0.9em; margin-bottom: 4px; }
-  .item .note { color: #999; font-size: 0.8em; margin-bottom: 8px; }
-  .item .resources { font-size: 0.85em; }
-  .item .resources a { color: #06c; text-decoration: none; }
-  .item .resources a:hover { text-decoration: underline; }
-  .item .resources .sep { color: #ccc; margin: 0 6px; }
-  .item a { color: #06c; }
-  .tag { display: inline-block; font-size: 0.75em; padding: 2px 8px; border-radius: 3px; margin-right: 8px; background: #e8f4e8; color: #2a7a2a; }
-  .pages { display: inline-block; font-size: 0.75em; color: #888; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 760px; margin: 0 auto; padding: 40px 24px;
+    background: #fafaf8; color: #24292f; line-height: 1.6;
+  }
+  header { margin-bottom: 36px; }
+  header h1 { font-size: 1.6em; font-weight: 600; margin: 0 0 6px 0; color: #1a1a1a; }
+  header .subtitle { color: #656d76; font-size: 0.95em; margin: 0 0 10px 0; }
+  header .status { display: inline-block; font-size: 0.75em; padding: 3px 10px; border-radius: 12px; background: #ddf4ff; color: #0969da; font-weight: 500; }
+  nav { margin-bottom: 28px; font-size: 0.88em; }
+  nav a { color: #0969da; text-decoration: none; margin-right: 14px; }
+  nav a:hover { text-decoration: underline; }
+  nav .sep { color: #d0d7de; margin: 0 2px; }
+  .items { margin-top: 8px; }
+  .item {
+    background: #fff; border: 1px solid #d8dee4; border-radius: 8px;
+    padding: 20px 24px; margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .item:hover { border-color: #8db5e8; }
+  .item-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .tag { font-size: 0.72em; padding: 2px 8px; border-radius: 10px; background: #dafbe1; color: #1a7f37; font-weight: 500; }
+  .pages { font-size: 0.72em; color: #8b949e; }
+  .item h3 { margin: 0 0 6px 0; font-size: 1.05em; font-weight: 600; }
+  .item h3 a { color: #24292f; text-decoration: none; }
+  .item h3 a:hover { color: #0969da; }
+  .item .desc { color: #57606a; font-size: 0.88em; margin-bottom: 10px; line-height: 1.5; }
+  .resources { display: flex; gap: 6px; flex-wrap: wrap; }
+  .resources a {
+    display: inline-block; font-size: 0.8em; padding: 4px 12px;
+    border: 1px solid #d0d7de; border-radius: 6px; color: #24292f;
+    text-decoration: none; background: #f6f8fa;
+  }
+  .resources a:hover { background: #eef1f5; border-color: #8db5e8; color: #0969da; }
+  footer {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid #d8dee4;
+    font-size: 0.8em; color: #8b949e; line-height: 1.6;
+  }
 </style>
 </head>
 <body>
-<h1>PDF Processing</h1>
-<div class="meta">4 items | First public release | Local preview</div>
-<div style="margin-bottom:20px;font-size:0.85em;">
-  <a href="about.html" style="color:#06c;text-decoration:none;">About</a>
-  <span style="color:#ccc;margin:0 8px;">·</span>
-  <a href="methodology.html" style="color:#06c;text-decoration:none;">Methodology</a>
-</div>
-<div class="item">
-  <span class="tag">digital</span><span class="pages">14 pages</span>
-  <h3><a href="digital/2026-04-18-the-artist-is-dead/index.html">The Artist Is Dead</a></h3>
-  <div class="desc">Art criticism essay on one-dimensional civilization as cultural killer</div>
-  <div class="note">Digital PDF · 14 pages · English · HTML/MD/TXT available</div>
-  <div class="resources">
-    <a href="digital/2026-04-18-the-artist-is-dead/index.html">Open HTML</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-the-artist-is-dead/sample.md">View Markdown</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-the-artist-is-dead/extracted.txt">View Text</a>
+<header>
+  <h1>PDF to Markdown</h1>
+  <p class="subtitle">A small project to turn PDF documents into accessible, searchable online resources — HTML, Markdown, and Text.</p>
+  <span class="status">v1 first public release</span>
+</header>
+<nav>
+  <a href="../">Projects</a>
+  <span class="sep">/</span>
+  <a href="about.html">About</a>
+  <span class="sep">/</span>
+  <a href="methodology.html">Methodology</a>
+</nav>
+<div class="items">
+  <div class="item">
+    <div class="item-top"><span class="tag">digital</span><span class="pages">14 pages</span></div>
+    <h3><a href="digital/2026-04-18-the-artist-is-dead/index.html">The Artist Is Dead</a></h3>
+    <div class="desc">Art criticism essay on one-dimensional civilization as cultural killer</div>
+    <div class="resources">
+      <a href="digital/2026-04-18-the-artist-is-dead/index.html">HTML</a>
+      <a href="digital/2026-04-18-the-artist-is-dead/sample.md">Markdown</a>
+      <a href="digital/2026-04-18-the-artist-is-dead/extracted.txt">Text</a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-top"><span class="tag">digital</span><span class="pages">30 pages</span></div>
+    <h3><a href="digital/2026-04-18-art-history/index.html">Art History: Self-as-End Framework</a></h3>
+    <div class="desc">Academic paper on art-historical application of the Self-as-End framework</div>
+    <div class="resources">
+      <a href="digital/2026-04-18-art-history/index.html">HTML</a>
+      <a href="digital/2026-04-18-art-history/sample.md">Markdown</a>
+      <a href="digital/2026-04-18-art-history/extracted.txt">Text</a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-top"><span class="tag">digital</span><span class="pages">10 pages</span></div>
+    <h3><a href="digital/2026-04-18-artist-is-dead-cn/index.html">艺术家已死</a></h3>
+    <div class="desc">中文艺术评论：单向度文明对艺术的消解</div>
+    <div class="resources">
+      <a href="digital/2026-04-18-artist-is-dead-cn/index.html">HTML</a>
+      <a href="digital/2026-04-18-artist-is-dead-cn/sample.md">Markdown</a>
+      <a href="digital/2026-04-18-artist-is-dead-cn/extracted.txt">Text</a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-top"><span class="tag">digital</span><span class="pages">20 pages</span></div>
+    <h3><a href="digital/2026-04-18-rand-russian-military/index.html">RAND: Russian Military Analysis</a></h3>
+    <div class="desc">RAND research report on Russian military capabilities and posture</div>
+    <div class="resources">
+      <a href="digital/2026-04-18-rand-russian-military/index.html">HTML</a>
+      <a href="digital/2026-04-18-rand-russian-military/sample.md">Markdown</a>
+      <a href="digital/2026-04-18-rand-russian-military/extracted.txt">Text</a>
+    </div>
   </div>
 </div>
-<div class="item">
-  <span class="tag">digital</span><span class="pages">30 pages</span>
-  <h3><a href="digital/2026-04-18-art-history/index.html">Art History: Self-as-End Framework</a></h3>
-  <div class="desc">Academic paper on art-historical application of the Self-as-End framework</div>
-  <div class="note">Digital PDF · 30 pages · English · HTML/MD/TXT available</div>
-  <div class="resources">
-    <a href="digital/2026-04-18-art-history/index.html">Open HTML</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-art-history/sample.md">View Markdown</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-art-history/extracted.txt">View Text</a>
-  </div>
-</div>
-<div class="item">
-  <span class="tag">digital</span><span class="pages">10 pages</span>
-  <h3><a href="digital/2026-04-18-artist-is-dead-cn/index.html">艺术家已死</a></h3>
-  <div class="desc">中文艺术评论：单向度文明对艺术的消解</div>
-  <div class="note">Digital PDF · 10 页 · 中文 · HTML/MD/TXT 可用</div>
-  <div class="resources">
-    <a href="digital/2026-04-18-artist-is-dead-cn/index.html">Open HTML</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-artist-is-dead-cn/sample.md">View Markdown</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-artist-is-dead-cn/extracted.txt">View Text</a>
-  </div>
-</div>
-<div class="item">
-  <span class="tag">digital</span><span class="pages">20 pages</span>
-  <h3><a href="digital/2026-04-18-rand-russian-military/index.html">RAND: Russian Military Analysis</a></h3>
-  <div class="desc">RAND research report on Russian military capabilities and posture</div>
-  <div class="note">Digital PDF · 20 pages · English · HTML/MD/TXT available</div>
-  <div class="resources">
-    <a href="digital/2026-04-18-rand-russian-military/index.html">Open HTML</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-rand-russian-military/sample.md">View Markdown</a><span class="sep">·</span>
-    <a href="digital/2026-04-18-rand-russian-military/extracted.txt">View Text</a>
-  </div>
-</div>
+<footer>
+  Current public collection includes digital documents only. Scanned document pipeline is being refined separately.
+</footer>
 </body>
 </html>

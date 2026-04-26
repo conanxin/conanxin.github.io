@@ -1,0 +1,15 @@
+{
+  "title": "《三十拉警报 / Over Time-オーバー・タイム》（1999）资料型播客",
+  "slug": "overtime-1999",
+  "duration_seconds": 1839.53,
+  "duration_minutes": 30.66,
+  "audio_file": "over_time_1999_full_podcast_v2.mp3",
+  "language": "zh-CN",
+  "format": "mp3",
+  "sample_rate_hz": 24000,
+  "channels": "mono",
+  "bitrate": "48kbps",
+  "source_project": "overtime_1999_podcast_research",
+  "published_target": "conanxin.github.io",
+  "published_at": "2026-04-26"
+}

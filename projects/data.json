@@ -63,5 +63,18 @@
     "entry_url": "/projects/pdf-to-markdown/",
     "source_kind": "pipeline",
     "featured": false
+  },
+  {
+    "title": "桥的那边是什么",
+    "slug": "qiao-de-nabian-shishenme",
+    "category": "creative",
+    "type": "FICTION",
+    "status": "Final Candidate",
+    "status_color": "#3fb950",
+    "updated": "2026-05-05",
+    "summary": "一部12章现实主义中篇小说，讲述一位老人去寻找记忆中的桥，以及女儿在沉默中重新看见父亲。",
+    "entry_url": "/projects/qiao-de-nabian-shishenme/",
+    "source_kind": "fiction",
+    "featured": true
   }
 ]

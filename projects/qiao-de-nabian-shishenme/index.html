@@ -1,43 +1,248 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>桥的那边是什么</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: #fafafa; color: #333; line-height: 1.8; }
-.header { background: #2c3e50; color: #fff; padding: 3rem 1rem; text-align: center; }
-.header h1 { font-size: 2rem; margin-bottom: 0.5rem; font-weight: 600; }
-.header .subtitle { font-size: 1rem; opacity: 0.85; margin-bottom: 1.2rem; }
-.header .meta { font-size: 0.85rem; opacity: 0.7; }
-.downloads { display: flex; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
-.downloads a { display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.15); color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.3); transition: background 0.2s; }
-.downloads a:hover { background: rgba(255,255,255,0.3); }
-.container { max-width: 760px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
-h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; padding-bottom: 0.3rem; border-bottom: 1px solid #e0e0e0; color: #2c3e50; }
-p { margin-bottom: 1rem; text-align: justify; }
-blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 0; color: #666; background: #f9f9f9; }
-.footer { text-align: center; padding: 2rem; color: #999; font-size: 0.8rem; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桥的那边是什么 | Xin Conan</title>
+    <meta name="description" content="一部12章现实主义中篇小说，讲述一位老人去寻找记忆中的桥，以及女儿在沉默中重新看见父亲。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+    <style>
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0.25rem 1rem;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        .meta-key { color: var(--text-muted); }
+        .meta-val { color: var(--text-secondary); }
+        .meta-val.highlight-green { color: var(--accent-green); }
+        .download-list { list-style: none; }
+        .download-list li { margin-bottom: 0.375rem; }
+        .download-list a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .download-list a:hover { border-bottom-color: var(--accent-blue); }
+        .download-list .file-size { color: var(--text-muted); font-size: 0.75rem; }
+        .novel-reader {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        .novel-reader h3 {
+            font-size: 1.1rem;
+            color: var(--accent-orange);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .novel-reader p {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            text-align: justify;
+            line-height: 1.9;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+        }
+        .novel-reader blockquote {
+            border-left: 2px solid var(--accent-purple);
+            padding-left: 1rem;
+            color: var(--text-muted);
+            margin: 0.75rem 0;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2.5rem 0;
+        }
+        .chapter-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .chapter-nav a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .chapter-nav a:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+    </style>
 </head>
 <body>
-<div class="header">
-<h1>桥的那边是什么</h1>
-<div class="subtitle">一部 12 章现实主义中篇小说</div>
-<div class="meta">Final Candidate · 12 Chapters · 约 22,005 CJK 字</div>
-<div class="downloads">
-<a href="qiao-final-candidate.md">阅读 Markdown</a>
-<a href="qiao-final-candidate.txt">下载 TXT</a>
-<a href="qiao-final-candidate.pdf">下载 PDF</a>
-<a href="qiao-final-candidate.epub">下载 EPUB</a>
-<a href="qiao-final-delivery-package.zip">下载完整 ZIP 包</a>
-</div>
-</div>
-<div class="container">
-<h1>桥的那边是什么</h1>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // PROJECT</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>FICTION</span>
+                <span class="separator">|</span>
+                <span>FINAL CANDIDATE</span>
+            </div>
+        </div>
+
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">qiao-de-nabian-shishenme</span>
+                <span class="cursor blink">_</span>
+            </div>
+            <p class="tagline">// 桥的那边是什么 · 12 章现实主义中篇小说</p>
+        </header>
+
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span><span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item">
+                <span class="nav-num">02.</span><span>POSTS</span>
+            </a>
+            <a href="/projects/" class="nav-item active">
+                <span class="nav-num">03.</span><span>PROJECTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">04.</span><span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">05.</span><span>RSS</span>
+            </a>
+        </nav>
+
+        <main class="terminal-main">
+
+            <!-- README -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./README.md</span>
+                </div>
+                <div class="section-content">
+                    <p>《桥的那边是什么》是一部 12 章现实主义中篇小说。它从一个关于"老人去寻找记忆中的桥"的故事出发，写的不是圆梦，也不是大团圆，而是沉默的父女之间，如何在日常里多出一两句可以继续生活下去的话。</p>
+                </div>
+            </section>
+
+            <!-- Meta -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./meta.txt</span>
+                </div>
+                <div class="section-content">
+                    <div class="meta-grid">
+                        <span class="meta-key">title</span><span class="meta-val">桥的那边是什么</span>
+                        <span class="meta-key">type</span><span class="meta-val">Fiction / Novella</span>
+                        <span class="meta-key">status</span><span class="meta-val highlight-green">Final Candidate</span>
+                        <span class="meta-key">chapters</span><span class="meta-val">12</span>
+                        <span class="meta-key">word_count</span><span class="meta-val">~22,005 CJK</span>
+                        <span class="meta-key">formats</span><span class="meta-val">Markdown / TXT / PDF / EPUB / ZIP</span>
+                        <span class="meta-key">date</span><span class="meta-val">2026-05-05</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Downloads -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">ls ./downloads/</span>
+                </div>
+                <div class="section-content">
+                    <ul class="download-list">
+                        <li><a href="qiao-final-candidate.md">qiao-final-candidate.md</a> <span class="file-size">76 KB · Markdown 全文</span></li>
+                        <li><a href="qiao-final-candidate.txt">qiao-final-candidate.txt</a> <span class="file-size">76 KB · TXT 全文</span></li>
+                        <li><a href="qiao-final-candidate.pdf">qiao-final-candidate.pdf</a> <span class="file-size">292 KB · PDF · 31 页</span></li>
+                        <li><a href="qiao-final-candidate.epub">qiao-final-candidate.epub</a> <span class="file-size">48 KB · EPUB</span></li>
+                        <li><a href="qiao-final-delivery-package.zip">qiao-final-delivery-package.zip</a> <span class="file-size">393 KB · 完整交付包</span></li>
+                        <li><a href="DELIVERY_MANIFEST.md">DELIVERY_MANIFEST.md</a> <span class="file-size">交付清单</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- How it was made -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./how-it-was-made.md</span>
+                </div>
+                <div class="section-content">
+                    <p>这部小说不是一次性生成的，而是通过一个受控的创作流程完成的。</p>
+                    <p>最初先建立故事底盘：题材、人物、冲突、12 章结构、禁忌清单和结尾方向。随后每一章都先生成 chapter intent，明确本章视角、场景、外部事件、内心推进、必须出现的细节和不能写成什么。</p>
+                    <p>正文创作采用"草稿 → 审计 → 轻修 → 标记候选稿"的流程。每章完成后都会检查：是否污染、是否越界、是否切错视角、是否煽情、是否解释主题、是否提前写后续内容。</p>
+                    <p>全书完成后，又做了三轮检查：</p>
+                    <p>1. 分阶段审计：第 1-4 章、第 5-8 章、第 9-12 章。<br>
+                    2. 全书 12 章整体审计：检查结构、人物弧线、伏笔回收、风格一致性。<br>
+                    3. 统一轻修与导出校验：处理少量连续性和重复结尾问题，最终导出 Markdown、TXT、PDF、EPUB 和 ZIP。</p>
+                    <p>这个流程更接近"人给方向、Agent 执行、再由人做判断"的协作写作。AI 没有替代最终判断，它承担的是执行、整理、审计和多格式交付。</p>
+                </div>
+            </section>
+
+            <!-- Structure -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./structure.txt</span>
+                </div>
+                <div class="section-content">
+                    <p><span class="highlight">第 1-4 章</span>：出发与发现<br>
+                    <span class="highlight">第 5-8 章</span>：旧地、陌生世界、到达与不确定<br>
+                    <span class="highlight">第 9-12 章</span>：汇合、照片、轻声出口、尾声</p>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- Read Online -->
+            <section class="intro-section">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./read-online.md</span>
+                </div>
+                <div class="section-content">
+                    <p>全文阅读。每章标题已标注，可从下方跳转。</p>
+                </div>
+            </section>
+
+            <!-- Chapter nav -->
+            <section class="intro-section">
+                <div class="chapter-nav">
+                    <a href="#ch1">第1章</a>
+                    <a href="#ch2">第2章</a>
+                    <a href="#ch3">第3章</a>
+                    <a href="#ch4">第4章</a>
+                    <a href="#ch5">第5章</a>
+                    <a href="#ch6">第6章</a>
+                    <a href="#ch7">第7章</a>
+                    <a href="#ch8">第8章</a>
+                    <a href="#ch9">第9章</a>
+                    <a href="#ch10">第10章</a>
+                    <a href="#ch11">第11章</a>
+                    <a href="#ch12">第12章</a>
+                </div>
+            </section>
+
+            <!-- Novel body -->
+            <section class="novel-reader">
 <blockquote><p>final candidate export</p></blockquote>
-<h1>第1章 出发</h1>
 <p>五点半，天刚蒙蒙亮。
 </p>
 <p>老庞醒了。醒得比闹钟早是他几十年的习惯，退休后没了闹钟，生物钟却照旧先醒眼睛，再醒意识。身边老伴的呼吸声一起一伏，比前几个月稳了一些。他没马上起身，在黑暗里又等了一会儿。
@@ -86,7 +291,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>他继续往前骑，路很长，风从东边吹过来，他眯着眼睛，没有停。
 </p>
-<h1>第2章 不在家</h1>
 <p>庞海燕是第二天上午回娘家的。
 </p>
 <p>她骑着电动车从婆家过来，十来分钟的路程。路上买了六个肉包子，两杯豆浆，用塑料袋挂在车把上。进门的时候喊了一声"妈"，没人应。她又喊了一声"爸"，还是没人应。
@@ -191,7 +395,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>只有一张空床，一个空杯子，一个没有带走的手机。
 </p>
-<h1>第3章 沿着路走</h1>
 <p>天亮得比老庞预计的早。
 </p>
 <p>他收拾好床铺，把床单叠成旅店阿姨教的那样，四角对齐，方方正正。阿姨站在门口看着，没说话，只是点了点头。走廊里的煤炉子上坐着铝壶，水还没开。
@@ -298,7 +501,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>明天过黄河。
 </p>
-<h1>第4章 找</h1>
 <p>庞海燕第三次回了娘家。
 </p>
 <p>这次她明白了要找的是爸的东西而不是爸本人。爸不在家，但爸的东西还在，那些东西总该说点什么。她把电动车停在门口，钥匙转动时"咔嗒"一声，这声音让她想起小时候放学回家，爸总是先她一步开门，然后站在门里等她。现在门里没有人。
@@ -351,7 +553,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>快到门口时她停了车，抬了一下手，又放下了。风把路边的麦茬吹得沙沙响，天空灰白灰白的，像要下雨的样子。庞海燕在门口站了一会儿，想着爸走的时候有没有也像她现在这样，在门口站过。她没有进去。她又看了一眼那排房子。
 </p>
-<h1>第5章 开封</h1>
 <p>开封比想象中还远。
 </p>
 <p>老庞骑到第四天中午，才看见城里的楼。灰扑扑的一大片，路边的树叶子落了大半，风裹着土过来，迷眼睛。他停在路边拧开水壶，喝了一口，凉的。
@@ -462,7 +663,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>他回头望了一眼。开封城笼罩在一层灰蒙蒙的雾里，看不真切。
 </p>
-<h1>第6章 路变宽了</h1>
 <p>走出开封城的时候，老庞没回头。
 </p>
 <p>路比昨天宽了。以前是两车道，现在是四车道，中间还隔了一道矮矮的铁栏杆。自行车骑在最边上，离栏杆不远，有时候大车经过，风把他的衣角掀起来，他得握紧车把。
@@ -571,7 +771,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>他没有问人。他推着车，往箭头下面走了。
 </p>
-<h1>第7章 第一座桥</h1>
 <p>路比前一天更宽了。
 </p>
 <p>老庞骑在最边上，身后是六车道，车一辆接一辆，方向一致，速度比他快得多。他骑得很慢，脚蹬子踩下去有点沉，链条好像也松了，发出咯吱咯吱的声音。路两边的楼越来越高，有的十几层，有的二十几层，玻璃外墙在太阳底下反光，他抬头看了一眼，晃眼睛，低下了头。
@@ -668,7 +867,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>他没有回头看。
 </p>
-<h1>第8章 江边</h1>
 <p>骑了没多远，老庞停了下来。
 </p>
 <p>前面的路沿着江走，左边是栏杆，右边是一排矮房子，卖水的、卖烟的、卖烤红薯的，门口摆着塑料凳子。老庞把车停在路边一棵梧桐树下面，锁好，走到栏杆旁边。
@@ -769,7 +967,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>他往东骑了一段，又停下来。路上没有车了，路灯照着他一个人。他看了看自己的影子，影子比他长。他转过头，继续往前骑。
 </p>
-<h1>第9章 回家</h1>
 <p>电话是下午打来的。
 </p>
 <p>庞海燕正在车间里干活，手机在口袋里震了两下，她没理。过了一会儿又震了，她把手上的活交给旁边的人，走到门口掏出手机。屏幕上是一个陌生号码，区号不是本地的。
@@ -892,7 +1089,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>车继续往前开。
 </p>
-<h1>第10章 箱底</h1>
 <p>老庞回来的第三天,庞海燕又回了娘家。
 </p>
 <p>这次她带了一袋子苹果,是镇上超市买的,红彤彤的,个头不大。她把苹果放在堂屋的桌上，妈从厨房探出头来，说“又买这些干什么”，她没接话，去厨房帮忙洗菜。水龙头的水凉得扎手，她搓了搓手指，把菜叶子一片一片地掰开，泡在盆里。
@@ -1005,7 +1201,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>她把这件事放在了心里,继续走。
 </p>
-<h1>第11章 连长那时候</h1>
 <p>庞海燕又回了娘家。
 </p>
 <p>这次是傍晚去的,没带东西。她骑着电动车到门口,院子里的灯已经亮了,爸坐在竹椅上,手里端着茶缸,茶缸里的水冒着一点热气。妈在厨房里炒菜,铲子碰着锅底,咣当咣当响。
@@ -1096,7 +1291,6 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>她继续走。脚步声很轻,踩在土路上,沙沙响。路灯把她的影子拉得很长,投在路面上,跟着她一起动。她走得不快。她没有回头看。
 </p>
-<h1>第12章 多说一两句</h1>
 <p>庞海燕又回了娘家。
 </p>
 <p>这次是下午去的,带了两斤排骨,镇上肉铺买的,老板帮她剁好了,装在塑料袋里,渗了一点血水。她把排骨放在厨房案板上,妈从院子里进来,看了一眼,说"买这么多干什么",她没接话,打开水龙头洗手。水凉得扎手,她搓了搓手指,把排骨倒进盆里,泡上。
@@ -1233,9 +1427,17 @@ blockquote { border-left: 3px solid #bdc3c7; padding: 0.5rem 1rem; margin: 1rem 
 </p>
 <p>妈从厨房出来,说"走啦?"。庞海燕说"嗯"。她把围裙挂好,走到门口,又回头看了一眼院子。灯还亮着,枣树的影子还在地上。她把院门带上,往自己家走了。
 </p>
-</div>
-<div class="footer">
-桥的那边是什么 · Final Candidate · Conan Xin
-</div>
+            </section>
+
+        </main>
+
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">></span>
+                <span class="footer-text">qiao-de-nabian-shishenme · Final Candidate · 2026-05-05</span>
+            </div>
+            <p class="copyright">桥的那边是什么 · Conan Xin</p>
+        </footer>
+    </div>
 </body>
 </html>

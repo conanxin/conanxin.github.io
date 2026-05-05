@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桥的那边是什么｜有声书 | Xin Conan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+    <style>
+        .ch{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.75rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin-bottom:0.375rem;cursor:pointer;transition:border-color 0.2s}
+        .ch:hover{border-color:var(--accent-green)}
+        .ch-num{font-size:0.75rem;color:var(--text-muted);min-width:1.5rem}
+        .ch-title{flex:1;font-size:0.875rem;color:var(--text-primary)}
+        .ch-dur{font-size:0.75rem;color:var(--text-muted)}
+        .ch-start{font-size:0.7rem;color:var(--text-muted);min-width:3rem;text-align:right}
+        audio{width:100%;margin:1rem 0;border-radius:var(--border-radius)}
+        .now{color:var(--accent-green);font-size:0.8rem;margin-bottom:0.75rem;min-height:1.2rem}
+        .downloads{display:flex;gap:0.5rem;flex-wrap:wrap;margin:1rem 0}
+        .downloads a{display:inline-block;padding:0.375rem 0.75rem;background:var(--bg-secondary);color:var(--accent-blue);text-decoration:none;border:1px solid var(--border-color);border-radius:var(--border-radius);font-size:0.8rem;transition:border-color 0.2s}
+        .downloads a:hover{border-color:var(--accent-green)}
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // AUDIOBOOK</span></div>
+            <div class="status-right"><span>XIN_CONAN</span><span class="separator">|</span><span>FICTION</span><span class="separator">|</span><span>AUDIO</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">qiao-de-nabian-shishenme/audiobook</span><span class="cursor blink">_</span></div>
+            <p class="tagline">// 桥的那边是什么 · 有声书</p>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">01.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">03.</span><span>PROJECTS</span></a>
+            <a href="/projects/qiao-de-nabian-shishenme/" class="nav-item"><span class="nav-num">03.1</span><span>NOVEL</span></a>
+            <a href="/projects/qiao-de-nabian-shishenme/audiobook/" class="nav-item active"><span class="nav-num">03.2</span><span>AUDIOBOOK</span></a>
+            <a href="/about.html" class="nav-item"><span class="nav-num">04.</span><span>ABOUT</span></a>
+        </nav>
+        <main class="terminal-main">
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./meta.txt</span></div>
+                <div class="section-content">
+                    <div class="meta-grid">
+                        <span class="meta-key">title</span><span class="meta-val">桥的那边是什么</span>
+                        <span class="meta-key">type</span><span class="meta-val">有声书 / Audiobook</span>
+                        <span class="meta-key">voice</span><span class="meta-val">zh-CN-YunxiNeural</span>
+                        <span class="meta-key">rate</span><span class="meta-val">-10%</span>
+                        <span class="meta-key">chapters</span><span class="meta-val">12</span>
+                        <span class="meta-key">duration</span><span class="meta-val">95:37</span>
+                        <span class="meta-key">format</span><span class="meta-val">MP3</span>
+                    </div>
+                </div>
+            </section>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./downloads/</span></div>
+                <div class="section-content">
+                    <div class="downloads">
+                        <a href="audio/qiao-full-audiobook-yunxi-rate-minus10.mp3">下载全本 MP3</a>
+                        <a href="data/qiao-full-audiobook.cue">下载 CUE</a>
+                        <a href="data/chapter-timestamps.json">下载时间轴 JSON</a>
+                        <a href="../">返回小说正文</a>
+                    </div>
+                </div>
+            </section>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">play ./full_audiobook</span></div>
+                <div class="section-content">
+                    <audio id="player" controls preload="auto">
+                        <source src="audio/qiao-full-audiobook-yunxi-rate-minus10.mp3" type="audio/mpeg">
+                    </audio>
+                    <div class="now" id="now"></div>
+                </div>
+            </section>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./chapters/</span></div>
+                <div class="section-content">
+                <div class="ch" onclick="jump(0.0)"><span class="ch-num">01</span><span class="ch-title">第1章 出发</span><span class="ch-dur">5:37</span><span class="ch-start">0:00</span></div>
+                <div class="ch" onclick="jump(339.5)"><span class="ch-num">02</span><span class="ch-title">第2章 不在家</span><span class="ch-dur">6:18</span><span class="ch-start">5:39</span></div>
+                <div class="ch" onclick="jump(719.6)"><span class="ch-num">03</span><span class="ch-title">第3章 沿着路走</span><span class="ch-dur">8:16</span><span class="ch-start">11:59</span></div>
+                <div class="ch" onclick="jump(1218.1)"><span class="ch-num">04</span><span class="ch-title">第4章 找</span><span class="ch-dur">7:48</span><span class="ch-start">20:18</span></div>
+                <div class="ch" onclick="jump(1688.8)"><span class="ch-num">05</span><span class="ch-title">第5章 开封</span><span class="ch-dur">9:19</span><span class="ch-start">28:08</span></div>
+                <div class="ch" onclick="jump(2250.3)"><span class="ch-num">06</span><span class="ch-title">第6章 路变宽了</span><span class="ch-dur">9:45</span><span class="ch-start">37:30</span></div>
+                <div class="ch" onclick="jump(2838.0)"><span class="ch-num">07</span><span class="ch-title">第7章 第一座桥</span><span class="ch-dur">8:53</span><span class="ch-start">47:18</span></div>
+                <div class="ch" onclick="jump(3373.4)"><span class="ch-num">08</span><span class="ch-title">第8章 江边</span><span class="ch-dur">8:05</span><span class="ch-start">56:13</span></div>
+                <div class="ch" onclick="jump(3860.7)"><span class="ch-num">09</span><span class="ch-title">第9章 回家</span><span class="ch-dur">8:17</span><span class="ch-start">64:20</span></div>
+                <div class="ch" onclick="jump(4359.9)"><span class="ch-num">10</span><span class="ch-title">第10章 箱底</span><span class="ch-dur">8:09</span><span class="ch-start">72:39</span></div>
+                <div class="ch" onclick="jump(4851.4)"><span class="ch-num">11</span><span class="ch-title">第11章 连长那时候</span><span class="ch-dur">7:31</span><span class="ch-start">80:51</span></div>
+                <div class="ch" onclick="jump(5304.8)"><span class="ch-num">12</span><span class="ch-title">第12章 多说一两句</span><span class="ch-dur">7:12</span><span class="ch-start">88:24</span></div>
+
+                </div>
+            </section>
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="prompt">></span><span class="footer-text">qiao-de-nabian-shishenme/audiobook · 2026-05-05</span></div>
+        </footer>
+    </div>
+    <script>
+    const p=document.getElementById("player"),now=document.getElementById("now");
+    function jump(t){p.currentTime=t;p.play()}
+    const ch=[{"s": 0.0, "t": "\u7b2c1\u7ae0 \u51fa\u53d1", "n": 1}, {"s": 339.5, "t": "\u7b2c2\u7ae0 \u4e0d\u5728\u5bb6", "n": 2}, {"s": 719.6, "t": "\u7b2c3\u7ae0 \u6cbf\u7740\u8def\u8d70", "n": 3}, {"s": 1218.1, "t": "\u7b2c4\u7ae0 \u627e", "n": 4}, {"s": 1688.8, "t": "\u7b2c5\u7ae0 \u5f00\u5c01", "n": 5}, {"s": 2250.3, "t": "\u7b2c6\u7ae0 \u8def\u53d8\u5bbd\u4e86", "n": 6}, {"s": 2838.0, "t": "\u7b2c7\u7ae0 \u7b2c\u4e00\u5ea7\u6865", "n": 7}, {"s": 3373.4, "t": "\u7b2c8\u7ae0 \u6c5f\u8fb9", "n": 8}, {"s": 3860.7, "t": "\u7b2c9\u7ae0 \u56de\u5bb6", "n": 9}, {"s": 4359.9, "t": "\u7b2c10\u7ae0 \u7bb1\u5e95", "n": 10}, {"s": 4851.4, "t": "\u7b2c11\u7ae0 \u8fde\u957f\u90a3\u65f6\u5019", "n": 11}, {"s": 5304.8, "t": "\u7b2c12\u7ae0 \u591a\u8bf4\u4e00\u4e24\u53e5", "n": 12}];
+    p.addEventListener("timeupdate",()=>{for(let i=ch.length-1;i>=0;i--)if(p.currentTime>=ch[i].s){now.textContent="▶ 第"+ch[i].n+"章 "+ch[i].t;break}});
+    </script>
+</body>
+</html>

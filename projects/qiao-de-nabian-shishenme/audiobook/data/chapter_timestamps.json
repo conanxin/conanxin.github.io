@@ -1,0 +1,98 @@
+[
+  {
+    "chapter": 1,
+    "title": "第1章 出发",
+    "source": "qiao_chapter_0001_yunxi_rate_minus10.mp3",
+    "start_sec": 0.0,
+    "end_sec": 337.5,
+    "duration_sec": 337.5
+  },
+  {
+    "chapter": 2,
+    "title": "第2章 不在家",
+    "source": "qiao_chapter_0002_yunxi_rate_minus10.mp3",
+    "start_sec": 339.5,
+    "end_sec": 717.6,
+    "duration_sec": 378.0
+  },
+  {
+    "chapter": 3,
+    "title": "第3章 沿着路走",
+    "source": "qiao_chapter_0003_yunxi_rate_minus10.mp3",
+    "start_sec": 719.6,
+    "end_sec": 1216.1,
+    "duration_sec": 496.6
+  },
+  {
+    "chapter": 4,
+    "title": "第4章 找",
+    "source": "qiao_chapter_0004_yunxi_rate_minus10.mp3",
+    "start_sec": 1218.1,
+    "end_sec": 1686.8,
+    "duration_sec": 468.6
+  },
+  {
+    "chapter": 5,
+    "title": "第5章 开封",
+    "source": "qiao_chapter_0005_yunxi_rate_minus10.mp3",
+    "start_sec": 1688.8,
+    "end_sec": 2248.3,
+    "duration_sec": 559.6
+  },
+  {
+    "chapter": 6,
+    "title": "第6章 路变宽了",
+    "source": "qiao_chapter_0006_yunxi_rate_minus10.mp3",
+    "start_sec": 2250.3,
+    "end_sec": 2836.0,
+    "duration_sec": 585.7
+  },
+  {
+    "chapter": 7,
+    "title": "第7章 第一座桥",
+    "source": "qiao_chapter_0007_yunxi_rate_minus10.mp3",
+    "start_sec": 2838.0,
+    "end_sec": 3371.4,
+    "duration_sec": 533.4
+  },
+  {
+    "chapter": 8,
+    "title": "第8章 江边",
+    "source": "qiao_chapter_0008_yunxi_rate_minus10.mp3",
+    "start_sec": 3373.4,
+    "end_sec": 3858.7,
+    "duration_sec": 485.3
+  },
+  {
+    "chapter": 9,
+    "title": "第9章 回家",
+    "source": "qiao_chapter_0009_yunxi_rate_minus10.mp3",
+    "start_sec": 3860.7,
+    "end_sec": 4357.9,
+    "duration_sec": 497.2
+  },
+  {
+    "chapter": 10,
+    "title": "第10章 箱底",
+    "source": "qiao_chapter_0010_yunxi_rate_minus10.mp3",
+    "start_sec": 4359.9,
+    "end_sec": 4849.4,
+    "duration_sec": 489.4
+  },
+  {
+    "chapter": 11,
+    "title": "第11章 连长那时候",
+    "source": "qiao_chapter_0011_yunxi_rate_minus10.mp3",
+    "start_sec": 4851.4,
+    "end_sec": 5302.8,
+    "duration_sec": 451.4
+  },
+  {
+    "chapter": 12,
+    "title": "第12章 多说一两句",
+    "source": "qiao_chapter_0012_yunxi_rate_minus10.mp3",
+    "start_sec": 5304.8,
+    "end_sec": 5737.4,
+    "duration_sec": 432.6
+  }
+]

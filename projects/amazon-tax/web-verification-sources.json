@@ -1,0 +1,158 @@
+{
+  "verification_date": "2026-05-07",
+  "verification_status": "partially_complete",
+  "verification_method": "manual_source_packet_from_user",
+  "tool_constraints": {
+    "web_search": "Brave API key missing",
+    "web_fetch": "SEC/Amazon IR rate-limited or blocked",
+    "note": "All 2026 data in this file provided by user from external web verification; not re-fetched by this agent"
+  },
+  "confirmed_sources": [
+    {
+      "fact_id": "SEC-10K-FY2025",
+      "status": "confirmed",
+      "claim": "Amazon FY2025 10-K filed 2026-02-06",
+      "verified_statement": "File 0001018724-26-000004, Period 2025-12-31, Filing Date 2026-02-06",
+      "caveats": "Index page confirmed by agent; financial contents provided by user",
+      "source_title": "SEC EDGAR - Amazon.com, Inc. 10-K",
+      "source_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001018724&type=10-K",
+      "source_type": "sec",
+      "published_or_accessed_date": "2026-02-06",
+      "extracted_value": "File 0001018724-26-000004, Period 2025-12-31",
+      "confidence": "high",
+      "notes": "Official SEC filing. Segment sales and operating income extracted by user."
+    }
+  ],
+  "verified_sources": [
+    {
+      "fact_id": "02",
+      "status": "VERIFIED",
+      "claim": "Prime annual fee US 2026",
+      "verified_statement": "US Prime $14.99/month or $139/year; Prime Video standalone $8.99/month; Student $7.49/month or $69/year",
+      "caveats": "US pricing only; other regions may differ",
+      "source_title": "Amazon Prime Help Page",
+      "source_url": "https://www.amazon.com/gp/help/customer/display.html?nodeId=G34EUPKVMYFW8N2U",
+      "source_type": "official",
+      "published_or_accessed_date": "2026",
+      "extracted_value": "$139/year",
+      "confidence": "high",
+      "notes": "Amazon official help page."
+    },
+    {
+      "fact_id": "03",
+      "status": "VERIFIED",
+      "claim": "AWS annual revenue FY2025 and Q1 2026",
+      "verified_statement": "FY2025 AWS segment sales $128.725B, operating income $45.606B; Q1 2026 sales $37.6B, YoY +28%, operating income $14.2B",
+      "caveats": "Segment sales include inter-segment adjustments; not identical to standalone AWS revenue",
+      "source_title": "Amazon FY2025 10-K and Q1 2026 Earnings Release",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+      "source_type": "official",
+      "published_or_accessed_date": "2026-02-06",
+      "extracted_value": "$128.725B FY2025; $37.6B Q1 2026",
+      "confidence": "high",
+      "notes": "From Amazon official 10-K and quarterly earnings release."
+    },
+    {
+      "fact_id": "09",
+      "status": "VERIFIED",
+      "claim": "Amazon Supply Chain Services announced 2026-05-04",
+      "verified_statement": "Amazon launched Supply Chain Services opening logistics network to all businesses",
+      "caveats": "Service newly launched; adoption rates TBD",
+      "source_title": "Amazon Supply Chain Services for Business",
+      "source_url": "https://www.aboutamazon.com/news/retail/amazon-supply-chain-services-for-business",
+      "source_type": "official",
+      "published_or_accessed_date": "2026-05-04",
+      "extracted_value": "Supply Chain Services open to all businesses",
+      "confidence": "high",
+      "notes": "Amazon official press release and Business Wire."
+    }
+  ],
+  "verified_qualified_sources": [
+    {
+      "fact_id": "04",
+      "status": "VERIFIED_QUALIFIED",
+      "claim": "Marketplace third-party seller percentage 2026",
+      "verified_statement": "Amazon official: independent sellers account for more than 60% of sales; Marketplace Pulse estimates 60% paid units, ~69% GMV in Q1 2026",
+      "caveats": "Amazon 'sales' undefined; paid units, GMV, and services revenue ($172.162B) are different metrics",
+      "source_title": "Amazon 2025 Small Business Empowerment Report; Marketplace Pulse",
+      "source_url": "https://www.aboutamazon.com/news/small-business/amazon-2025-small-business-empowerment-report",
+      "source_type": "official/industry",
+      "published_or_accessed_date": "2025-2026",
+      "extracted_value": "60%+ sales (official); 60% paid units / ~69% GMV (Marketplace Pulse estimate)",
+      "confidence": "medium-high",
+      "notes": "Mix of official and third-party estimate. Must distinguish metrics."
+    },
+    {
+      "fact_id": "05",
+      "status": "VERIFIED_QUALIFIED",
+      "claim": "Amazon Logistics volume vs UPS/FedEx 2025",
+      "verified_statement": "Amazon 2025 delivered 6.7B packages, exceeding USPS 6.6B, UPS 4.4B, FedEx 3.6B by volume",
+      "caveats": "Volume-based only; UPS/FedEx still lead by revenue; data is ShipMatrix estimate",
+      "source_title": "Pitney Bowes Parcel Shipping Index 2024; ShipMatrix / Supply Chain Dive 2025",
+      "source_url": "https://www.supplychaindive.com/news/amazon-postal-service-delivery-rankings-shipmatrix/814866/",
+      "source_type": "industry",
+      "published_or_accessed_date": "2025",
+      "extracted_value": "6.7B packages (Amazon), 6.6B (USPS), 4.4B (UPS), 3.6B (FedEx)",
+      "confidence": "medium-high",
+      "notes": "ShipMatrix is a recognized supply chain analytics source."
+    },
+    {
+      "fact_id": "08",
+      "status": "VERIFIED_QUALIFIED",
+      "claim": "Amazon e-commerce profit structure FY2025",
+      "verified_statement": "Revenue groups known: Online stores $269.3B, 3P services $172.2B, Ads $68.6B, Subscription $49.6B, AWS $128.7B. Segment operating income: NA $29.6B, International $4.8B, AWS $45.6B",
+      "caveats": "Cannot precisely break down e-commerce profit by membership vs sales vs ads vs 3P from public filings",
+      "source_title": "Amazon FY2025 10-K",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+      "source_type": "official",
+      "published_or_accessed_date": "2026-02-06",
+      "extracted_value": "Revenue groups and segment operating income disclosed",
+      "confidence": "high",
+      "notes": "High confidence on revenue figures; profit allocation across e-commerce sub-components is not disclosed."
+    }
+  ],
+  "partially_verified_sources": [
+    {
+      "fact_id": "01",
+      "status": "PARTIALLY_VERIFIED",
+      "claim": "Prime global membership count 2026",
+      "verified_statement": "Last official global disclosure: 200M+ in 2021. CIRP estimates 201M US shoppers with Prime in Q1 2026",
+      "caveats": "Global official data outdated (2021); CIRP is third-party estimate; 'shoppers' includes multiple household members, not paid accounts",
+      "source_title": "Amazon 2021 Shareholder Letter; CIRP Prime Membership Saturation Report",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465921050346/tm216818d2_ex99-1.htm",
+      "source_type": "official/industry",
+      "published_or_accessed_date": "2021 / 2026-Q1",
+      "extracted_value": "200M+ global (2021 official); 201M US shoppers (2026 CIRP estimate)",
+      "confidence": "medium",
+      "notes": "Significant metric mismatch: global vs US, memberships vs shoppers."
+    },
+    {
+      "fact_id": "06",
+      "status": "PARTIALLY_VERIFIED",
+      "claim": "Echo/Alexa smart speaker market share 2025-2026",
+      "verified_statement": "Mordor Intelligence: Alexa 36.12% smart speaker market 2025. CIRP/GeekWire: Echo ~75% US smart speaker share. Amazon: ~600M Alexa-powered devices globally",
+      "caveats": "Three different metrics not comparable: global smart speaker market share vs US Echo speaker share vs Alexa-powered device installed base (includes third-party hardware)",
+      "source_title": "Mordor Intelligence Smart Speaker Market Report; GeekWire/CIRP; Amazon Official",
+      "source_url": "https://www.mordorintelligence.com/industry-reports/smart-speaker-market",
+      "source_type": "industry/media/official",
+      "published_or_accessed_date": "2025",
+      "extracted_value": "36.12% (Mordor); ~75% US Echo (CIRP); ~600M Alexa devices (Amazon)",
+      "confidence": "medium",
+      "notes": "High risk of conflating three different numbers. Must be clearly separated in any wiki entry."
+    },
+    {
+      "fact_id": "07",
+      "status": "PARTIALLY_VERIFIED",
+      "claim": "FBA penetration among third-party sellers 2025",
+      "verified_statement": "Red Stag estimates ~82% active sellers use FBA; Helium 10 estimates 86% active sellers use FBA, 82% prefer it",
+      "caveats": "Third-party estimates, not Amazon official disclosure; 'active seller' definitions may vary across sources",
+      "source_title": "Red Stag Fulfillment; Helium 10 Blog",
+      "source_url": "https://redstagfulfillment.com/how-many-amazon-sellers-use-fba/",
+      "source_type": "industry",
+      "published_or_accessed_date": "2025",
+      "extracted_value": "82%-86% active sellers use FBA (third-party estimates)",
+      "confidence": "medium",
+      "notes": "Range across two industry sources. Not official."
+    }
+  ]
+}

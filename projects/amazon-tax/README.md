@@ -14,7 +14,23 @@
 
 中文译文与阅读材料基于用户声明已获得原作者授权发布。
 
-## 本目录文件清单
+## HTML 阅读入口（推荐）
+
+以下 Markdown 文件已转换为 HTML 页面，适合直接浏览器阅读：
+
+- [`full-translation.zh.html`](full-translation.zh.html) — 完整中文翻译
+- [`deep-reading.zh.html`](deep-reading.zh.html) — 中文精读版
+- [`detailed-exegesis.zh.html`](detailed-exegesis.zh.html) — 详细释义版
+- [`paragraph-summary.zh.html`](paragraph-summary.zh.html) — 段落级摘要
+- [`wiki-reading-note.html`](wiki-reading-note.html) — Wiki 阅读笔记
+- [`wiki-evidence.html`](wiki-evidence.html) — Evidence 核心论证
+- [`wiki-concept-amazon-tax.html`](wiki-concept-amazon-tax.html) — 概念：亚马逊税
+- [`wiki-concept-aws-primitives.html`](wiki-concept-aws-primitives.html) — 概念：AWS 基础构件
+- [`web-verification-report.html`](web-verification-report.html) — 2026 背景事实核验报告
+
+Markdown 原始文件仍保留，HTML 页面为主要阅读入口。
+
+## Markdown 原始文件
 
 ### 阅读材料
 - `full-translation.zh.md` — 完整中文翻译（逐段翻译，含脚注）

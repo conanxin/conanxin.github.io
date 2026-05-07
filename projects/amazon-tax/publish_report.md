@@ -53,14 +53,15 @@
 
 ## Commit Info
 
-- Commit hash: PENDING（将在 git commit 后填入）
+- Commit hash: **d6e2b6a**
 - Commit subject: Publish Amazon Tax translation and reading package
-- Files added: projects/amazon-tax/
+- Files added: projects/amazon-tax/ (14 files)
 
 ## Push Info
 
-- Push status: PENDING（将在 git push 后填入）
+- Push status: **SUCCESS**
 - Remote: origin https://github.com/conanxin/conanxin.github.io.git
+- Pushed: d6e2b6a main → origin/main
 
 ## Safety Checklist
 

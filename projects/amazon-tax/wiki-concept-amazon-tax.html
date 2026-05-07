@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>概念：亚马逊税</title>
+<style>
+
+:root {
+  --bg: #f7f7f5;
+  --text: #222;
+  --accent: #b43c2e;
+  --muted: #666;
+  --border: #ddd;
+  --card: #fff;
+}
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: var(--bg);
+  color: var(--text);
+}
+h1, h2, h3, h4 {
+  color: var(--accent);
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.1rem; }
+p { margin: 0.6rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+li { margin: 0.2rem 0; }
+blockquote {
+  border-left: 4px solid var(--accent);
+  margin: 0.8rem 0;
+  padding: 0.5rem 1rem;
+  background: var(--card);
+  color: var(--muted);
+}
+code {
+  background: #eee;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9em;
+}
+pre {
+  background: #eee;
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: "Courier New", monospace;
+  font-size: 0.85em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+th {
+  background: #eee;
+  font-weight: 600;
+}
+.meta {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.meta p { margin: 0.3rem 0; font-size: 0.9rem; }
+.back { margin: 1.5rem 0; font-size: 0.9rem; }
+.footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+<div class="back"><a href="index.html">← 返回目录</a></div>
+<h1>概念：亚马逊税</h1>
+<div class="meta"><p><strong>title:</strong> 亚马逊税</p><p><strong>author:</strong> Ben Thompson</p><p><strong>source:</strong> Stratechery</p><p><strong>url:</strong> https://stratechery.com/2016/the-amazon-tax/</p><p><strong>published:</strong> 2016-03-15</p><p><strong>date:</strong> 2026-05-05</p><p><strong>entry_type:</strong> concept</p><p><strong>tags:</strong> </p></div>
+<h1>Amazon Tax / 亚马逊税</h1><h2>这是什么</h2><p>"亚马逊税"是 Ben Thompson 在 2016 年 3 月 15 日发表于 Stratechery 的文章《The Amazon Tax》中提出的核心分析框架与隐喻。</p><p>Thompson 用"税"来比喻亚马逊的商业模式：亚马逊通过规模经济和基础设施化，成为多个行业的默认平台，并从所有参与者（开发者、消费者、商家、物流伙伴）中抽取一层价值。这种抽取不是强制性的，而是因为参与者越依赖亚马逊的基础设施，就越难离开。</p><h2>在本文中的含义</h2><p>在原文中，Thompson 将亚马逊的"税"分解为多个层面：</p><ul><li><strong>AWS</strong> = 对计算经济的税</li><li><strong>Prime</strong> = 对零售消费的税</li><li><strong>FBA + Marketplace</strong> = 对第三方商家的税</li><li><strong>物流网络</strong>（预测）= 下一个 AWS 式的税</li><li><strong>Echo</strong>（预测）= 智能家居的枢纽税</li></ul><p>每个层面的共同特征是：亚马逊先为满足自身需求而建设基础设施，然后将这些基础设施拆分成最小、最基础的"原语（primitives）"对外开放。规模经济让亚马逊能以极低的成本提供服务，而巨大的交易量意味着即使只抽取一小部分价值，也能形成可观的绝对收益。</p><h2>与其他概念的关系</h2><ul><li><strong><a href="../concepts/aggregation-theory.md">聚合理论</a></strong>：亚马逊税是聚合理论在亚马逊案例中的具体应用。聚合者通过控制用户关系将供应商商品化，亚马逊通过 Prime 和 FBA 控制消费者和商家两端。</li><li><strong><a href="../concepts/aws-primitives.md">AWS 基础构件</a></strong>：亚马逊税的技术基础是 AWS 的"原语"设计哲学——把复杂系统拆成最小原子组件，让开发者自由组合。</li><li><strong><a href="../concepts/platform-tax.md">平台税</a></strong>：亚马逊税是"平台税"概念的一个具体实例。平台税指平台通过基础设施优势从参与者中抽取价值的行为。</li><li><strong><a href="../concepts/infrastructureization.md">基础设施化</a></strong>：亚马逊税的形成过程就是"基础设施化"——把内部需求变成通用基础设施，然后向全行业开放。</li></ul><h2>关键引用</h2><blockquote>"AWS is a tax on the compute economy."
+—— Chamath Palihapitiya，被 Thompson 引用</blockquote><blockquote>"Create a bunch of primitives, get out of the way, and take a nice skim off the top."
+—— Thompson 对亚马逊商业模式的概括</blockquote><blockquote>"Amazon is effectively on its way towards collecting a tax on all of retail."
+—— Thompson 对 Prime + Marketplace 的论断</blockquote><h2>来源</h2><ul><li>原文：The Amazon Tax, Ben Thompson, Stratechery, 2016-03-15</li><li>本地材料：<a href="../reading-notes/amazon-tax-2016.md">阅读笔记</a></li></ul><h2>适用范围</h2><p>本概念页面仅记录 Thompson 在 2016 年原文中提出和使用的"亚马逊税"分析框架。关于该框架在 2026 年的适用性、亚马逊最新业务数据、以及向其他公司/行业的迁移判断，属于需要后续验证的延伸内容，不应写入本概念页面。</p>
+<div class="footer">
+<p><strong>授权说明：</strong>中文译文与阅读材料基于用户声明已获得原作者授权发布。</p>
+<p><strong>原文信息：</strong>Original article: The Amazon Tax | Author: Ben Thompson | Source: Stratechery | Published: 2016-03-15 | <a href="https://stratechery.com/2016/the-amazon-tax/">Original URL</a></p>
+<p style="margin-top:1rem; font-size:0.75rem; color:#999;">原文版权归原作者 Ben Thompson 与 Stratechery 所有 · 生成时间 2026-05-07</p>
+</div>
+</body>
+</html>

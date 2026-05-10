@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <!-- ROUTE FILTER + MODE CONTROLS (Phase 4) -->
+    <!-- ROUTE FILTER + MODE CONTROLS (Phase 7) -->
     <div class="hero-controls">
       <div class="route-filter-group">
         <span class="controls-label">主题路线</span>
@@ -154,6 +154,46 @@
     <!-- STATS BAR -->
     <div class="stats-bar" id="statsBar">
       <!-- JS injected -->
+    </div>
+
+    <!-- PHASE 7: SEARCH BAR -->
+    <div class="search-bar" id="searchBar">
+      <input
+        type="search"
+        id="globalSearch"
+        class="search-input"
+        placeholder="搜索作品、艺术家、展区、路线标签……"
+        aria-label="全局搜索展品"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <span class="search-result-count" id="searchResultCount" aria-live="polite"></span>
+    </div>
+
+    <!-- PHASE 7: QUICK TAG CHIPS -->
+    <div class="quick-tags" id="quickTags" aria-label="快速标签筛选">
+      <span class="quick-tags-label">快速筛选：</span>
+      <button class="tag-chip" data-tag="chinese_response">中国当代</button>
+      <button class="tag-chip" data-tag="毕加索">毕加索</button>
+      <button class="tag-chip" data-tag="夏加尔">夏加尔</button>
+      <button class="tag-chip" data-tag="abstraction_zero">抽象</button>
+      <button class="tag-chip" data-tag="dream_surreal">超现实</button>
+      <button class="tag-chip" data-tag="modern_body">身体</button>
+      <button class="tag-chip" data-tag="media_politics">媒体与政治</button>
+      <button class="tag-chip" data-tag="black_area">黑色展区</button>
+      <button class="tag-chip" data-tag="blue_area">蓝色展区</button>
+      <button class="tag-chip" data-tag="speed_view">速看作品</button>
+    </div>
+
+    <!-- PHASE 7: ARTIST INDEX -->
+    <div class="artist-index" id="artistIndex">
+      <div class="artist-index-header">
+        <h3 class="artist-index-title">👤 艺术家索引</h3>
+        <span class="artist-index-count" id="artistCount"></span>
+      </div>
+      <div class="artist-chips" id="artistChips">
+        <!-- JS injected -->
+      </div>
     </div>
 
     <!-- AREA FILTER (in exhibits section too) -->
@@ -278,7 +318,7 @@
       <!-- JS injected -->
     </div>
 
-    <!-- AREA SOUNDSCAPES (Phase 4) -->
+    <!-- AREA SOUNDSCAPES (Phase 7) -->
     <div class="soundscapes-section" id="soundscapesSection">
       <div class="section-header soundscapes-header">
         <span class="section-num">06+</span>
@@ -304,7 +344,7 @@
         <h3>数据来源</h3>
         <div class="source-table">
           <div class="st-row">
-            <span class="st-label">Phase 6.1（当前）</span>
+            <span class="st-label" id="sourceVersionLabel">Phase 7（当前）</span>
             <span class="st-value">✅ 用户现场拍摄导览册（2026-05-10）</span>
             <span class="st-note">86件展品，8个颜色展区，可信度最高</span>
           </div>
@@ -315,7 +355,7 @@
           </div>
         </div>
         <p class="source-note">
-          <strong>Phase 6.1 数据来源：</strong>用户现场拍摄《色彩之巅！法国蓬皮杜中心馆藏艺术大师特展》导览册，
+          <strong id="sourceNoteLabel">Phase 7 数据来源：</strong>用户现场拍摄《色彩之巅！法国蓬皮杜中心馆藏艺术大师特展》导览册，
           含完整8大展区展品清单。<strong>publish_safe = true</strong>，
           verification_status = confirmed_site_guide_photo。
           最终信息以现场展签和主办方公告为准。
@@ -341,7 +381,7 @@
 <footer>
   <div class="container">
     <p class="footer-text">「色彩之巅！法国蓬皮杜中心馆藏艺术大师特展」在线导览页面</p>
-    <p class="footer-meta">北京民生现代美术馆 · 蓬皮杜中心 · 非官方在线导览 · Phase 6.1 · 已发布至 GitHub Pages · 2026-05-10<br>数据来源：用户现场拍摄导览册 · 本页为学习研究用途 · 展品图片均为占位设计，不代表原作</p>
+    <p class="footer-meta" id="footerVersion">北京民生现代美术馆 · 蓬皮杜中心 · 非官方在线导览 · <span id="siteVersionBadge"></span><br>数据来源：用户现场拍摄导览册 · 本页为学习研究用途 · 展品图片均为占位设计，不代表原作</p>
     <p class="footer-build">Built with ❤️ on Cloud Hermes</p>
   </div>
 </footer>

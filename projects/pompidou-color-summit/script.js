@@ -1,3 +1,6 @@
+// ===== SITE VERSION (Phase 7 — single source of truth) =====
+const SITE_VERSION = "Phase 7 · Search & Index · 2026-05-10";
+
 // ===== SVG PLACEHOLDER GENERATOR =====
 function generateSVGPlaceholder(colorRoom, seed) {
   const configs = {
@@ -189,6 +192,9 @@ function renderExhibits(works) {
     const dotColor = COLOR_DOTS[w.color_area] || '#ccc';
     const seed = (parseInt(w.id.replace(/\D/g, ''), 10) || i + 1) * 7;
     const colorName = COLOR_NAMES[w.color_area] || w.color_area;
+    const exhibitNum = String(i + 1).padStart(2, '0');
+    const isSpeedView = window._speedViewIds && window._speedViewIds.has(w.id);
+    const isChineseContemporary = (w.route_tags || []).includes('chinese_response');
 
     // Phase 4 enrichment fields
     const shortIntro = w.short_intro || '';
@@ -199,18 +205,19 @@ function renderExhibits(works) {
     const routeTags = (w.route_tags || []).map(r => ROUTE_NAMES[r] || r).join('');
 
     return `
-    <article class="exhibit-card" data-area="${w.color_area}" data-routes="${(w.route_tags || []).join(',')}">
+    <article class="exhibit-card" id="work-${w.id}" data-area="${w.color_area}" data-routes="${(w.route_tags || []).join(',')}" data-artist="${w.artist}" data-title="${w.title}" data-title-en="${w.title_en || ''}" data-tags="${[(w.route_tags || []).join(','), (w.mood_tags || []).join(','), colorName + '色'].join(',')}">
+      ${isSpeedView ? '<div class="speed-view-badge">⭐ 推荐停留</div>' : ''}
       <div class="exhibit-img-wrap">
         ${generateSVGPlaceholder(w.color_area, seed)}
         <div class="exhibit-color-badge" style="background:${dotColor}" title="${colorName}色空间"></div>
         <div class="placeholder-disclaimer">⚠️ 视觉占位，不代表原作图像</div>
       </div>
       <div class="exhibit-body">
-        <div class="exhibit-source-badge">✅ 导览册确认</div>
+        <div class="exhibit-source-badge">✅ 导览册确认 <span class="exhibit-num">${exhibitNum} / 86</span></div>
         <h3 class="exhibit-title">${w.title}</h3>
-        <div class="exhibit-artist">${w.artist}</div>
+        <div class="exhibit-artist${isChineseContemporary ? ' artist-chinese' : ''}">${w.artist}${isChineseContemporary ? ' 🐉' : ''}</div>
         <div class="exhibit-title-en" style="font-size:0.8em;color:#888">${w.title_en || ''}</div>
-        <div class="exhibit-meta">${w.year || '年代待确认'} · ${w.medium || '材质待确认'} · ${colorName}色</div>
+        <div class="exhibit-meta">${w.year || '年代待确认'} · ${w.medium || '材质待确认'} · <span class="area-name-tag">${colorName}色</span></div>
 
         ${routeTags ? `<div class="exhibit-route-tags">${routeTags}</div>` : ''}
         ${moodTags ? `<div class="exhibit-mood-tags">${moodTags}</div>` : ''}
@@ -258,6 +265,169 @@ function renderExhibits(works) {
 }
 
 // ===== FILTERS =====
+// (Phase 7 helpers below)
+
+// ===== GLOBAL SEARCH (Phase 7) =====
+function setupGlobalSearch() {
+  const input = document.getElementById('globalSearch');
+  const count = document.getElementById('searchResultCount');
+  if (!input) return;
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    const activeArea = document.querySelector('.ex-filter-btn.active')?.dataset.areaFilter || 'all';
+    const speedActive = document.getElementById('speedModeBtn')?.classList.contains('speed-active');
+    const activeRoute = document.querySelector('.route-filter-btn.active')?.dataset.route || 'all';
+
+    const cards = document.querySelectorAll('.exhibit-card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      if (!window._allWorks) return;
+      const work = window._allWorks.find(w => 'work-' + w.id === card.id);
+      if (!work) { card.style.display = 'none'; return; }
+
+      // Area filter
+      let show = activeArea === 'all' || card.dataset.area === activeArea;
+
+      // Speed mode
+      if (show && speedActive) {
+        const firstOfArea = [...document.querySelectorAll('.exhibit-card')].filter(c => c.dataset.area === card.dataset.area)[0];
+        show = card === firstOfArea;
+      }
+
+      // Route filter
+      if (show && activeRoute !== 'all') {
+        const routes = card.dataset.routes ? card.dataset.routes.split(',') : [];
+        show = routes.includes(activeRoute);
+      }
+
+      // Search filter
+      if (show && q) {
+        const searchable = [
+          work.title, work.title_en || '', work.artist, work.artist_en || '',
+          COLOR_NAMES[work.color_area] || '', (work.route_tags || []).join(' '),
+          (work.mood_tags || []).join(' ')
+        ].join(' ').toLowerCase();
+        show = searchable.includes(q);
+      }
+
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (q) {
+      count.textContent = `找到 ${visible} 件作品`;
+    } else {
+      count.textContent = '';
+    }
+
+    // Scroll to exhibits section
+    if (q) {
+      document.getElementById('exhibitsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+}
+
+// ===== QUICK TAG CHIPS (Phase 7) =====
+function setupQuickTagChips() {
+  const chips = document.querySelectorAll('.tag-chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag;
+      const input = document.getElementById('globalSearch');
+
+      // Special cases
+      if (tag === 'speed_view') {
+        // Toggle speed view
+        document.getElementById('speedModeBtn')?.click();
+        return;
+      }
+      if (tag === 'black_area') {
+        // Activate black area filter
+        document.querySelectorAll('.ex-filter-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.querySelector('[data-area-filter="black"]');
+        if (btn) { btn.classList.add('active'); filterExhibitsByArea('black'); }
+        return;
+      }
+      if (tag === 'blue_area') {
+        document.querySelectorAll('.ex-filter-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.querySelector('[data-area-filter="blue"]');
+        if (btn) { btn.classList.add('active'); filterExhibitsByArea('blue'); }
+        return;
+      }
+
+      // Search by tag: use search input
+      if (input) {
+        input.value = tag;
+        input.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+}
+
+// ===== ARTIST INDEX (Phase 7) =====
+function renderArtistIndex(works) {
+  const container = document.getElementById('artistChips');
+  const countEl = document.getElementById('artistCount');
+  if (!container || !works) return;
+
+  // Build artist map
+  const artistMap = {};
+  works.forEach(w => {
+    const key = w.artist;
+    if (!artistMap[key]) {
+      artistMap[key] = {
+        name: key,
+        count: 0,
+        isChineseContemporary: false,
+        firstWork: w
+      };
+      if ((w.route_tags || []).includes('chinese_response')) {
+        artistMap[key].isChineseContemporary = true;
+      }
+    }
+    artistMap[key].count++;
+  });
+
+  const sorted = Object.values(artistMap).sort((a, b) => a.name.localeCompare(b.name, 'zh'));
+  if (countEl) countEl.textContent = `${sorted.length} 位艺术家`;
+
+  container.innerHTML = sorted.map(a => `
+    <button class="artist-chip${a.isChineseContemporary ? ' artist-chip-chinese' : ''}"
+            data-artist="${a.name}"
+            title="${a.name}（${a.count}件）">
+      ${a.name}${a.isChineseContemporary ? ' 🐉' : ''} <span class="artist-chip-count">${a.count}</span>
+    </button>
+  `).join('');
+
+  // Wire artist chip clicks
+  container.querySelectorAll('.artist-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const artist = chip.dataset.artist;
+      const input = document.getElementById('globalSearch');
+      if (input) {
+        input.value = artist;
+        input.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+}
+
+// ===== SPEED VIEW IDS (Phase 7) =====
+function buildSpeedViewIds(works) {
+  // Pick first work per area = representative works
+  const seen = new Set();
+  const ids = new Set();
+  works.forEach(w => {
+    if (!seen.has(w.color_area)) {
+      seen.add(w.color_area);
+      ids.add(w.id);
+    }
+  });
+  window._speedViewIds = ids;
+}
+
 function filterExhibitsByArea(area) {
   const cards = document.querySelectorAll('.exhibit-card');
   const speedActive = document.getElementById('speedModeBtn').classList.contains('speed-active');
@@ -477,12 +647,29 @@ window.addEventListener('DOMContentLoaded', async () => {
     const allWorks = exhibits.confirmed_site_guide_photo || [];
     window._allWorks = allWorks;
 
+    // Phase 7: wire version badge (single source of truth)
+    const badge = document.getElementById('siteVersionBadge');
+    if (badge) badge.textContent = SITE_VERSION;
+    const footerV = document.getElementById('footerVersion');
+    const svl = document.getElementById('sourceVersionLabel');
+    const snl = document.getElementById('sourceNoteLabel');
+    if (svl) svl.textContent = SITE_VERSION.split('·')[0].trim();
+    if (snl) snl.textContent = SITE_VERSION.split('·')[0].trim() + ' 数据来源：';
+
     renderColorAreaPanel(exhibits.color_areas, 'all');
     setupAreaTabs(exhibits.color_areas);
+
+    // Phase 7: build speed-view IDs
+    buildSpeedViewIds(allWorks);
 
     renderExhibits(allWorks);
     setupExhibitsFilter();
     setupRouteFilter(); // Phase 4
+
+    // Phase 7: search, tag chips, artist index
+    setupGlobalSearch();
+    setupQuickTagChips();
+    renderArtistIndex(allWorks);
 
     renderRoutes(exhibits.viewing_routes);
 

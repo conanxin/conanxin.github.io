@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started | leverage-os</title>
+    <meta name="description" content="leverage-os 快速开始 - 当前为占位页，模板和方法论将在后续迭代中开放">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .module-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem; }
+        .module-card { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);text-decoration:none;color:inherit;display:block;transition:all .2s; }
+        .module-card:hover { border-color:var(--accent-green);transform:translateY(-2px); }
+        .module-card .tag { font-size:.75rem;color:var(--accent-blue);margin-bottom:.25rem; }
+        .module-card .title { font-weight:600;margin-bottom:.25rem;color:var(--text-primary); }
+        .module-card .desc { font-size:.875rem;color:var(--text-muted); }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .arch-layer { margin-bottom:1rem;padding:1rem;border-left:3px solid var(--accent-green);background:var(--bg-primary); }
+        .arch-layer.output { border-left-color:var(--accent-orange); }
+        .arch-layer.process { border-left-color:var(--accent-blue); }
+        .arch-layer.knowledge { border-left-color:var(--accent-purple); }
+        .arch-layer .label { color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted); }
+        .privacy-notice { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin-top:2rem;font-size:.875rem;color:var(--text-muted); }
+        .privacy-notice strong { color:var(--accent-green); }
+        .now-list { list-style:none;padding:0; }
+        .now-list li { margin-bottom:.75rem;color:var(--text-secondary); }
+        .bullet { color:var(--accent-green);margin-right:.5rem; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // WIP</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item "><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item active"><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./getting-started.md</span></div>
+                <div class="section-content">
+                    <p> leverage-os 目前处于<strong>公开展示骨架</strong>阶段。完整的模板、配置文件和使用指南将在后续迭代中逐步开放。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./roadmap</span></div>
+                <div class="section-content">
+                    <p><span class="status-badge green">PHASE 1</span> 系统架构与方法论公开 <span style="color:var(--text-muted)">&larr; 当前</span></p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 2</span> Life Log Markdown 模板 + 使用指南</p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 3</span> Agent OS 最小可运行配置包</p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 4</span> 自动化工作流脚本集合</p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 5</span> Newsletter + 社区反馈闭环</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./what-you-can-do-now.txt</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>1. 订阅 RSS</h3>
+                        <p>通过 <a href="/feed.xml" class="link">/feed.xml</a> 订阅本站更新，第一时间获取 leverage-os 的新文章和模板发布。</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>2. 阅读现有文章</h3>
+                        <p>本站已有 70+ 篇关于 AI Agent、本地模型、研究工作流的文章，可作为理解这套系统思想背景的入口。</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>3. 关注架构演进</h3>
+                        <p>每个模块页面（Life Log / Agent OS / Knowledge / Publish）将随项目进展持续更新，记录从骨架到完整系统的演进过程。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="placeholder-box" style="margin-top:2rem;">
+                <p style="margin-bottom:.5rem;">&#128230; 模板与方法论的整理工作正在进行中</p>
+                <p style="font-size:.875rem;">预计 Phase 2 开放 Life Log Markdown 模板 + 周汇总提取规则<br>预计 Phase 3 开放 Agent OS 最小可运行配置</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publishing Stack | leverage-os</title>
+    <meta name="description" content="leverage-os 模块 - 纯静态站点输出层，手写 HTML/CSS 零依赖">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .status-badge.blue { color:var(--accent-blue);border-color:var(--accent-blue); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
+        .component-list { list-style:none;padding:0; }
+        .component-list li { margin-bottom:.75rem;color:var(--text-secondary);padding-left:1.5rem;position:relative; }
+        .component-list li::before { content:"-";position:absolute;left:0;color:var(--accent-green); }
+        .label { color:var(--text-muted); }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./modules/publish/README.md</span></div>
+                <div class="section-content">
+                    <p>Publishing Stack 是系统的<strong>输出层</strong>。它把私人洞察转化为可公开的数字资产——不依赖任何构建工具，纯手写 HTML/CSS，确保 10 年后仍能正常访问。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./stack</span></div>
+                <div class="section-content">
+                    <ul class="component-list">
+                        <li><strong>GitHub Pages</strong> — 纯静态托管，零服务器成本</li>
+                        <li><strong>Hand-written HTML/CSS</strong> — 无构建工具、无框架依赖、无 node_modules</li>
+                        <li><strong>Terminal-inspired Design</strong> — 暗色终端主题，JetBrains Mono + Inter 字体</li>
+                        <li><strong>RSS Feed</strong> — Atom 格式，支持全文订阅</li>
+                        <li><strong>70+ Articles</strong> — 研究分析、技术实践、创意写作</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./philosophy.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>为什么不用 Jekyll / Hugo / Next.js</h3>
+                        <p>构建工具会过期。依赖会腐烂。主题会不再维护。纯 HTML/CSS 不会。</p>
+                        <p>这套站点的设计原则是：<strong>在 WSL2 终端里用 nano 就能维护</strong>。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="placeholder-box">
+                <p>&#128230; 站点模板与发布工作流将在 Phase 4 开放</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

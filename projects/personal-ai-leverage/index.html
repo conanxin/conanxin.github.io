@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leverage-os | leverage-os</title>
+    <meta name="description" content="本地杠杆心智系统 - 完全本地化运行的 AI 增强型个人操作系统">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .module-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem; }
+        .module-card { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);text-decoration:none;color:inherit;display:block;transition:all .2s; }
+        .module-card:hover { border-color:var(--accent-green);transform:translateY(-2px); }
+        .module-card .tag { font-size:.75rem;color:var(--accent-blue);margin-bottom:.25rem; }
+        .module-card .title { font-weight:600;margin-bottom:.25rem;color:var(--text-primary); }
+        .module-card .desc { font-size:.875rem;color:var(--text-muted); }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .arch-layer { margin-bottom:1rem;padding:1rem;border-left:3px solid var(--accent-green);background:var(--bg-primary); }
+        .arch-layer.output { border-left-color:var(--accent-orange); }
+        .arch-layer.process { border-left-color:var(--accent-blue); }
+        .arch-layer.knowledge { border-left-color:var(--accent-purple); }
+        .arch-layer .label { color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted); }
+        .privacy-notice { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin-top:2rem;font-size:.875rem;color:var(--text-muted); }
+        .privacy-notice strong { color:var(--accent-green); }
+        .now-list { list-style:none;padding:0; }
+        .now-list li { margin-bottom:.75rem;color:var(--text-secondary); }
+        .bullet { color:var(--accent-green);margin-right:.5rem; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./manifesto.txt</span></div>
+                <div class="section-content">
+                    <p>一个完全本地化运行的 <span class="highlight">AI 增强型个人操作系统</span>——用 Agent 自动化记录、用知识库沉淀思考、用结构化工作流放大输出，最终把私人洞察转化为可公开的数字资产。</p>
+                    <p>它不是又一个笔记 App，也不是聊天机器人套壳。它是 <span class="highlight">把 AI Agent 作为基础设施层</span>，在个人设备上搭建的一套「输入→处理→输出」闭环。</p>
+                </div>
+            </section>
+
+            <section style="margin-top:2rem;">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./manifesto.txt</span></div>
+                <div class="section-content">
+                    <p>为什么现代人会陷入数字失忆？为什么 AI 不应该只是聊天工具？为什么 Agent 应该成为长期存在的个人基础设施？</p>
+                    <p><a href="manifesto.html" class="link">阅读 leverage-os 宣言 &rarr;</a></p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">tree ./architecture</span></div>
+                <div class="arch-diagram">
+                    <div class="arch-layer">
+                        <div class="label">Input Layer // 输入层</div>
+                        <div>Telegram / CLI &rarr; quick_record &rarr; daily log</div>
+                        <div>/life 阅读 URL &rarr; url_ingest &rarr; web-clips archive</div>
+                        <div>Web articles &rarr; wiki_ingest &rarr; knowledge sources</div>
+                    </div>
+                    <div class="arch-layer process">
+                        <div class="label">Processing Layer // 处理层</div>
+                        <div>Hermes Agent &rarr; 100+ skills &rarr; cron scheduling</div>
+                        <div>Memory system &rarr; FTS5 search &rarr; user modeling</div>
+                    </div>
+                    <div class="arch-layer knowledge">
+                        <div class="label">Knowledge Layer // 知识层</div>
+                        <div>Wiki Navigator &rarr; Schema + Sources + Research</div>
+                        <div>Weekly summary &rarr; pattern extraction &rarr; story fragments</div>
+                    </div>
+                    <div class="arch-layer output">
+                        <div class="label">Output Layer // 输出层</div>
+                        <div>GitHub Pages &rarr; 70+ articles &rarr; RSS feed</div>
+                        <div>Newsletter &rarr; structured reports &rarr; public insights</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./modules</span></div>
+                <div class="module-grid">
+                    <a class="module-card" href="modules/life-log.html">
+                        <div class="tag">MODULE // 01</div>
+                        <div class="title">Life Log Engine</div>
+                        <div class="desc">每日记录、周汇总、素材归档、状态检查。规则型处理，零 LLM 调用。</div>
+                    </a>
+                    <a class="module-card" href="modules/agent-os.html">
+                        <div class="tag">MODULE // 02</div>
+                        <div class="title">Agent OS</div>
+                        <div class="desc">多平台网关、技能按需加载、跨会话记忆、定时任务调度。</div>
+                    </a>
+                    <a class="module-card" href="modules/knowledge.html">
+                        <div class="tag">MODULE // 03</div>
+                        <div class="title">Knowledge Base</div>
+                        <div class="desc">Wiki 三层架构、研究归档、痕迹追踪、自维护 Schema。</div>
+                    </a>
+                    <a class="module-card" href="modules/publish.html">
+                        <div class="tag">MODULE // 04</div>
+                        <div class="title">Publishing Stack</div>
+                        <div class="desc">纯静态站点、手写 HTML/CSS、RSS、零构建工具依赖。</div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./showcase</span></div>
+                <div class="module-grid">
+                    <a class="module-card" href="showcase/url-quality.html">
+                        <div class="tag">SHOWCASE // 01</div>
+                        <div class="title">URL 阅读质量评估</div>
+                        <div class="desc">方法论：READ_STATUS / content_quality / quality_notes 三维评估框架。</div>
+                    </a>
+                    <a class="module-card" href="showcase/weekly-pipeline.html">
+                        <div class="tag">SHOWCASE // 02</div>
+                        <div class="title">周汇总自动化流水线</div>
+                        <div class="desc">从 daily Markdown 自动提取关键事件、金句、可延展故事线。</div>
+                    </a>
+                    <a class="module-card" href="showcase/skill-governance.html">
+                        <div class="tag">SHOWCASE // 03</div>
+                        <div class="title">Skill 全生命周期治理</div>
+                        <div class="desc">从 0 到 100+ 技能的分类、归档、索引、审计与自动化维护。</div>
+                    </a>
+                    <a class="module-card" href="showcase/ocr-benchmark.html">
+                        <div class="tag">SHOWCASE // 04</div>
+                        <div class="title">中文 OCR 生产评估基准</div>
+                        <div class="desc">7 本书 / 1548 页 / 0 故障的 PaddleOCR CJK 优化验证。</div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="privacy-notice">
+                <p><strong>⚗ 隐私边界说明</strong></p>
+                <p>本页面仅展示系统架构与方法论。所有私人日记、聊天记录、阅读内容、关系线索均存储于本地设备，不上传任何云端服务。公开展示的案例已做完全脱敏处理，仅保留流程、规则与评估框架。</p>
+                <p style="margin-top:.5rem;"><span class="status-badge green">LOCAL-FIRST</span> <span class="status-badge">NO-CLOUD-UPLOAD</span> <span class="status-badge">PRIVACY-BY-DESIGN</span></p>
+            </section>
+
+            <section style="margin-top:2rem;">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./status.txt</span></div>
+                <div class="section-content">
+                    <p>当前状态：<span class="status-badge orange">PUBLIC SHOWCASE SKELETON</span></p>
+                    <p>本页为项目公开展示骨架，模块详情与案例内容将逐步填充。欢迎通过 RSS 订阅更新。</p>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Pipeline | leverage-os</title>
+    <meta name="description" content="leverage-os 案例 - 零 LLM 的周汇总自动化流水线与 STALE 检测">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .framework-table { width:100%;border-collapse:collapse;font-size:.875rem;margin:1rem 0; }
+        .framework-table th { text-align:left;padding:.5rem;color:var(--accent-blue);border-bottom:1px solid var(--border-color);font-weight:600; }
+        .framework-table td { padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--text-secondary); }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./showcases/weekly-pipeline/README.md</span></div>
+                <div class="section-content">
+                    <p>从每日 Markdown 档案自动提取本周关键信息，生成结构化周汇总——<strong>零 LLM 调用</strong>，纯规则型处理。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./pipeline.sh</span></div>
+                <div class="arch-diagram">
+                    <div>daily/*.md &rarr; frontmatter 解析 &rarr; 情绪/标签/来源统计</div>
+                    <div>daily/*.md &rarr; "## 今日事件" 提取 &rarr; 按时间排序关键事件</div>
+                    <div>daily/*.md &rarr; "## 今日一句话" 提取 &rarr; 金句汇总</div>
+                    <div>daily/*.md &rarr; "## 可延展故事线" 提取 &rarr; 故事片段归档</div>
+                    <div style="margin-top:.5rem;color:var(--accent-orange);">&darr;</div>
+                    <div style="color:var(--accent-orange);">weekly/YYYY-WNN.md（概览 + 清单 + 标签 + 关键事件 + 金句 + 故事线）</div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./stale-detection.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>STALE 检测机制</h3>
+                        <p>比较 weekly summary 与最近 daily 的修改时间。如果 daily 晚于 summary，则标记为 STALE，触发重新生成提醒。</p>
+                        <p>健康检查脚本只读扫描，零副作用，可作为 cron 定时任务运行。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./output-format.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>输出结构</h3>
+                        <p>1. 本周概览（天数 / 关键事件数 / 金句数 / 故事线数）</p>
+                        <p>2. 记录清单（日期 + 情绪）</p>
+                        <p>3. 标签云</p>
+                        <p>4. 关键事件（按日期分组，时间排序）</p>
+                        <p>5. 金句汇总</p>
+                        <p>6. 可延展故事线</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="placeholder-box">
+                <p>&#128230; 提取脚本与模板将在 Phase 2 开放</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

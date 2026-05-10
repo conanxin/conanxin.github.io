@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Log Engine | leverage-os</title>
+    <meta name="description" content="leverage-os 模块 - 每日记录、周汇总、素材归档的本地引擎">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .status-badge.blue { color:var(--accent-blue);border-color:var(--accent-blue); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
+        .component-list { list-style:none;padding:0; }
+        .component-list li { margin-bottom:.75rem;color:var(--text-secondary);padding-left:1.5rem;position:relative; }
+        .component-list li::before { content:"-";position:absolute;left:0;color:var(--accent-green); }
+        .label { color:var(--text-muted); }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./modules/life-log/README.md</span></div>
+                <div class="section-content">
+                    <p>Life Log Engine 是整个系统的<strong>数据入口</strong>。它负责把每天产生的信息碎片——事件、情绪、阅读、素材——归档成结构化的 Markdown 档案。</p>
+                    <p>核心原则：<span class="highlight">规则型处理，零 LLM 调用</span>。所有提取、分类、汇总都通过正则和脚本完成，确保隐私内容不经过任何外部模型。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./components</span></div>
+                <div class="section-content">
+                    <ul class="component-list">
+                        <li><strong>daily template</strong> — 8 栏目的 Markdown 模板（晨间/今日事件/情绪与身体/关系线索/阅读/素材链接/今日一句话/可延展故事线），含 YAML frontmatter</li>
+                        <li><strong>quick_record.py</strong> — 一键追加到今日 daily，支持指定栏目或自动推断</li>
+                        <li><strong>append_daily_note.py</strong> — 带备份的栏目追加，每次写入前自动创建 .bak</li>
+                        <li><strong>generate_summary.py</strong> — 周/月汇总生成，自动提取关键事件、金句、故事线</li>
+                        <li><strong>life_status.py</strong> — 只读健康检查，扫描 daily/summary/backup/URL 日志/脚本完整性</li>
+                        <li><strong>url_ingest.py</strong> — URL 阅读质量评估与 web-clips 自动归档</li>
+                        <li><strong>telegram_life_handler.py</strong> — Telegram /life 命令本地处理器，纯本地、无 API、无 daemon</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./data-model.md</span></div>
+                <div class="arch-diagram">
+                    <div style="margin-bottom:.5rem;color:var(--text-muted);font-size:.75rem;">DAILY SCHEMA</div>
+                    <div style="color:var(--accent-blue);">---</div>
+                    <div>date: "YYYY-MM-DD"</div>
+                    <div>source: manual | telegram | ingest</div>
+                    <div>mood: neutral | positive | negative | mixed</div>
+                    <div>privacy_level: private | sensitive | shareable</div>
+                    <div>tags: [daily, personal-life-log]</div>
+                    <div style="color:var(--accent-blue);">---</div>
+                    <div style="margin-top:.5rem;color:var(--text-muted);">## 晨间 / 今日事件 / 情绪与身体 / 关系线索</div>
+                    <div style="color:var(--text-muted);">## 阅读 / 素材链接 / 今日一句话 / 可延展故事线</div>
+                </div>
+            </section>
+
+            <section class="placeholder-box">
+                <p>&#128230; 详细实现与配置模板将在 Phase 2 开放</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

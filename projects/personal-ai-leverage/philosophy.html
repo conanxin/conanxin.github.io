@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy | leverage-os</title>
+    <meta name="description" content="leverage-os 设计哲学 - 本地优先、Agent 作为基础设施、人工判断为核心">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .module-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem; }
+        .module-card { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);text-decoration:none;color:inherit;display:block;transition:all .2s; }
+        .module-card:hover { border-color:var(--accent-green);transform:translateY(-2px); }
+        .module-card .tag { font-size:.75rem;color:var(--accent-blue);margin-bottom:.25rem; }
+        .module-card .title { font-weight:600;margin-bottom:.25rem;color:var(--text-primary); }
+        .module-card .desc { font-size:.875rem;color:var(--text-muted); }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .arch-layer { margin-bottom:1rem;padding:1rem;border-left:3px solid var(--accent-green);background:var(--bg-primary); }
+        .arch-layer.output { border-left-color:var(--accent-orange); }
+        .arch-layer.process { border-left-color:var(--accent-blue); }
+        .arch-layer.knowledge { border-left-color:var(--accent-purple); }
+        .arch-layer .label { color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted); }
+        .privacy-notice { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin-top:2rem;font-size:.875rem;color:var(--text-muted); }
+        .privacy-notice strong { color:var(--accent-green); }
+        .now-list { list-style:none;padding:0; }
+        .now-list li { margin-bottom:.75rem;color:var(--text-secondary); }
+        .bullet { color:var(--accent-green);margin-right:.5rem; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item "><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item active"><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./philosophy.md</span></div>
+                <div class="section-content">
+                    <p>这套系统不是从「我要用一个 AI 工具」开始的，而是从「我该如何处理每天产生的信息碎片」开始的。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">grep -A 5 "infrastructure" ./axioms</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>AI 应该成为个人基础设施，不是又一个 App</h3>
+                        <p>ChatGPT、Claude、Perplexity 都是优秀的工具，但它们是<strong>用完即走</strong>的。你打开、提问、获得答案、关闭——对话产生的洞察散落在各个平台的聊天历史里，无法沉淀、无法关联、无法复用。</p>
+                        <p>真正的杠杆来自<strong>把 AI 当作操作系统</strong>来用：常驻后台、接入个人数据、按规则自动化执行、产出可积累的资产。</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>本地优先是唯一的长期解</h3>
+                        <p>云服务的商业模式是锁定。你的笔记、日记、聊天记录、阅读历史——这些最私人的数据——被存放在你无法控制的远程服务器上，随时可能面临政策变更、服务关停、或定价突袭。</p>
+                        <p>本地优先意味着：数据在你自己的设备上、用开放格式存储（Markdown/YAML/SQLite）、随时可迁移、无需网络也能工作。</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>Agent 是 OS 的进程，不是对话框</h3>
+                        <p>大多数人把 Agent 理解为「一个能对话的 AI」。但在这套系统里，Agent 是<strong>后台进程</strong>：它通过 cron 定时执行任务、通过技能系统按需加载能力、通过记忆系统维护跨会话状态。</p>
+                        <p>你不需要每次都打开一个聊天窗口。你需要的时候它在，你不需要的时候它在后台工作。</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>人工判断仍是核心</h3>
+                        <p>AI 可以帮你提取、分类、汇总、格式化，但<strong>价值判断</strong>必须留给人。什么值得记录、什么值得深挖、什么值得公开——这些决策不能外包。</p>
+                        <p>这套系统的设计原则是：AI 负责<strong>执行层</strong>（extract / archive / format），人负责<strong>决策层</strong>（judge / curate / publish）。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section style="margin-top:2rem;">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./principles/boundaries.md</span></div>
+                <div class="section-content">
+                    <ul class="now-list">
+                        <li><span class="bullet">&#9670;</span> <strong>数据所有权</strong> &mdash; 所有个人数据以开放格式存储在本地，可随时导出迁移</li>
+                        <li><span class="bullet">&#9670;</span> <strong>零 LLM 处理隐私内容</strong> &mdash; 日记、情绪记录、关系线索不做 LLM 输入</li>
+                        <li><span class="bullet">&#9670;</span> <strong>规则型优先</strong> &mdash; 能用正则/脚本解决的问题，不调用 LLM</li>
+                        <li><span class="bullet">&#9670;</span> <strong>公开内容脱敏</strong> &mdash; 所有对外展示的案例仅保留方法论和框架</li>
+                        <li><span class="bullet">&#9670;</span> <strong>可回滚</strong> &mdash; 所有写入操作有带时间戳的备份，可一键恢复</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

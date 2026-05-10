@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Quality Assessment | leverage-os</title>
+    <meta name="description" content="leverage-os 案例 - URL 阅读质量三维评估框架与降级规则">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .framework-table { width:100%;border-collapse:collapse;font-size:.875rem;margin:1rem 0; }
+        .framework-table th { text-align:left;padding:.5rem;color:var(--accent-blue);border-bottom:1px solid var(--border-color);font-weight:600; }
+        .framework-table td { padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--text-secondary); }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./showcases/url-quality/README.md</span></div>
+                <div class="section-content">
+                    <p>每天通过 Agent 阅读大量 URL，但不同网站的反爬策略、内容结构差异极大。如何评估一次 URL 抓取是否「成功」？</p>
+                    <p>这套三维评估框架把质量判断从「黑盒」变成「可观测、可记录、可迭代」。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./framework.md</span></div>
+                <div class="section-content">
+                    <table class="framework-table">
+                        <tr><th>维度</th><th>取值</th><th>说明</th></tr>
+                        <tr><td>READ_STATUS</td><td>FULL_READ / PARTIAL_READ / METADATA_ONLY / ERROR / BLOCKED</td><td>正文抓取程度</td></tr>
+                        <tr><td>content_quality</td><td>ok / suspicious / poor</td><td>内容质量评估</td></tr>
+                        <tr><td>quality_notes</td><td>自由文本</td><td>异常原因记录</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./downgrade-rules.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>自动降级规则</h3>
+                        <p>FULL_READ + suspicious &rarr; PARTIAL_READ</p>
+                        <p>FULL_READ/PARTIAL_READ + poor &rarr; METADATA_ONLY</p>
+                        <p style="margin-top:.5rem;color:var(--text-muted);">降级触发后，系统在 daily log 中保留 URL 和 metadata，正文标记为待人工补读。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./observation-method.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>先观察，后修改</h3>
+                        <p>不基于单个案例调整全局规则。所有 URL 抓取结果进入观察日志，积累足够样本后才考虑阈值调优。</p>
+                        <p>基线样本覆盖：个人博客、新闻站、杂志、目录页——确保评估框架在不同场景下的稳健性。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="placeholder-box">
+                <p>&#128230; 完整的评估代码与观察日志模板将在 Phase 3 开放</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Governance | leverage-os</title>
+    <meta name="description" content="leverage-os 案例 - 100+ Skill 全生命周期治理框架">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
+        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
+        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
+        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .framework-table { width:100%;border-collapse:collapse;font-size:.875rem;margin:1rem 0; }
+        .framework-table th { text-align:left;padding:.5rem;color:var(--accent-blue);border-bottom:1px solid var(--border-color);font-weight:600; }
+        .framework-table td { padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--text-secondary); }
+        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
+        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .label { color:var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item active"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item "><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item "><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./showcases/skill-governance/README.md</span></div>
+                <div class="section-content">
+                    <p>从 0 到 100+ 技能的演进过程中，如何防止技能库腐烂？这套治理框架把 skill 管理变成可审计、可自动化、可回滚的流程。</p>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./lifecycle.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>Skill 生命周期</h3>
+                        <p><span class="status-badge green">CREATE</span> &rarr; <span class="status-badge">OBSERVE</span> &rarr; <span class="status-badge">DIAGNOSE</span> &rarr; <span class="status-badge">PATCH</span> &rarr; <span class="status-badge">INDEX</span></p>
+                        <p style="margin-top:.5rem;color:var(--text-muted);">创建 &rarr; 运行观测 &rarr; 诊断问题 &rarr; 补丁修复 &rarr; 索引更新</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./governance-rules.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>元数据标记体系</h3>
+                        <p><span class="status-badge">archived</span> — 从可用索引隐藏，但保留文件</p>
+                        <p><span class="status-badge">experimental</span> — 标记实验性，仍可见但带风险提示</p>
+                        <p><span class="status-badge">mode_of</span> — 明确为某主 skill 的子模式</p>
+                    </div>
+                    <div class="principle-block">
+                        <h3>自动化审计</h3>
+                        <p>每周 dry-run 扫描所有 skill，检测：结构完整性、元数据一致性、索引同步状态、红牌风险（危险命令/权限/依赖）。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./categories.txt</span></div>
+                <div class="section-content">
+                    <p><span class="status-badge green">content-creation</span> <span class="status-badge blue">research</span> <span class="status-badge">devops</span> <span class="status-badge">mlops</span></p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">github</span> <span class="status-badge">note-taking</span> <span class="status-badge">creative</span> <span class="status-badge">autonomous-agents</span></p>
+                    <p style="margin-top:.5rem;"><span class="status-badge">media</span> <span class="status-badge">productivity</span> <span class="status-badge">gaming</span> <span class="status-badge">leisure</span></p>
+                </div>
+            </section>
+
+            <section class="placeholder-box">
+                <p>&#128230; 治理脚本与审计模板将在 Phase 3 开放</p>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

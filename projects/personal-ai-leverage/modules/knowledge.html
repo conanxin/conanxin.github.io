@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Base | leverage-os</title>
-    <meta name="description" content="leverage-os 模块 - Wiki Navigator 三层架构知识库系统">
+    <title>Knowledge Base / 长期知识层 | leverage-os</title>
+    <meta name="description" content="信息、阅读、想法和 AI 对话如果没有结构，会很快变成不可回收的数字噪音">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,15 +17,16 @@
         .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
         .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
         .status-badge.blue { color:var(--accent-blue);border-color:var(--accent-blue); }
-        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block { margin-bottom:2.5rem;padding-left:1rem;border-left:2px solid var(--border-color); }
         .principle-block:hover { border-left-color:var(--accent-green); }
-        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
-        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
-        .component-list { list-style:none;padding:0; }
-        .component-list li { margin-bottom:.75rem;color:var(--text-secondary);padding-left:1.5rem;position:relative; }
-        .component-list li::before { content:"-";position:absolute;left:0;color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.75rem;font-size:1rem; }
+        .principle-block p { color:var(--text-secondary);line-height:1.8;margin-bottom:.75rem; }
+        .archive-note { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin:2rem 0;font-size:.875rem;color:var(--text-muted); }
+        .archive-note strong { color:var(--accent-green); }
+        .tier-list { list-style:none;padding:0;margin:1rem 0; }
+        .tier-list li { margin-bottom:1rem;padding-left:1.5rem;position:relative;color:var(--text-secondary);line-height:1.7; }
+        .tier-list li::before { content:"—";position:absolute;left:0;color:var(--text-muted); }
         .label { color:var(--text-muted); }
-        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
     </style>
 </head>
 <body>
@@ -47,49 +48,112 @@
         </nav>
         <main class="terminal-main">
 
-            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <a class="back-link" href="../index.html">← cd ..</a>
+
             <section class="intro-section">
                 <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./modules/knowledge/README.md</span></div>
                 <div class="section-content">
-                    <p>Knowledge Base 是系统的<strong>沉淀层</strong>。它用 Wiki 三层架构替代传统 RAG，让知识由 Agent 自主维护、由 Schema 约束结构、由 Sources 保证溯源。</p>
+                    <p>你读了很多东西。网页、论文、书籍、博客、对话记录。它们以不同的格式散落在不同的位置。</p>
+                    <p>三个月后，当你需要引用其中某一条观点时，你可能已经忘了它来自哪里、原始上下文是什么、以及你是否曾经对它做过判断。</p>
+                    <p>这不是记忆力的问题。这是<strong>知识缺乏结构</strong>的问题——信息没有被转化为可追溯、可关联、可复用的资产。</p>
                 </div>
             </section>
 
             <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">tree ./wiki</span></div>
-                <div class="arch-diagram">
-                    <div style="margin-bottom:.5rem;color:var(--text-muted);font-size:.75rem;">WIKI NAVIGATOR ARCHITECTURE</div>
-                    <div style="margin-bottom:.5rem;padding:.5rem;border-left:2px solid var(--accent-blue);background:var(--bg-primary);">
-                        <span style="color:var(--accent-blue);">Schema Layer</span> &mdash; schema.md / runbooks / infrastructure definitions
-                    </div>
-                    <div style="margin-bottom:.5rem;padding:.5rem;border-left:2px solid var(--accent-purple);background:var(--bg-primary);">
-                        <span style="color:var(--accent-purple);">Wiki Layer</span> &mdash; *.md knowledge articles maintained by Agent
-                    </div>
-                    <div style="padding:.5rem;border-left:2px solid var(--text-muted);background:var(--bg-primary);">
-                        <span style="color:var(--text-muted);">Sources Layer</span> &mdash; Immutable raw materials (articles / papers / logs)
-                    </div>
-                </div>
-            </section>
-
-            <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./categories.txt</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./position.md</span></div>
                 <div class="section-content">
-                    <ul class="component-list">
-                        <li><strong>Infrastructure</strong> — 研究助手工作流、会议助手、轨迹记录、优化器</li>
-                        <li><strong>System Patterns</strong> — 双模式交互框架、设计模式、运营规范</li>
-                        <li><strong>Research</strong> — arXiv AI Agents、LLM Systems、Hacker News 精选</li>
-                        <li><strong>Trace &amp; Trajectory</strong> — 对话痕迹记录与压缩，用于训练数据生成</li>
-                    </ul>
+                    <div class="principle-block">
+                        <h3>不是收藏夹，是知识层</h3>
+                        <p>Knowledge Base 的定位不是"一个更好的书签系统"。它的定位是<strong>把输入转化为知识资产的沉淀层</strong>。</p>
+                        <p>收藏夹保存的是链接。知识库保存的是经过处理的、结构化的、可追溯的信息。链接指向外部，知识留在本地。链接依赖原始网页的存在，知识不依赖。</p>
+                        <p>这意味着：即使原始网页下线了，你的知识条目仍然完整。即使原始来源改变了观点，你的记录仍然保留了当时的判断和上下文。</p>
+                    </div>
                 </div>
             </section>
 
-            <section class="placeholder-box">
-                <p>&#128230; Wiki 模板与 ingest 流水线将在 Phase 3 开放</p>
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./structure.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>三层结构：来源、知识、判断</h3>
+                        <p>知识库的组织遵循三层分离原则：</p>
+                        <p><strong>来源层</strong> — 不可变的原始材料。网页存档、扫描文档、对话记录、阅读摘录。它们是证据，不是结论。一旦被收录，就不被修改。</p>
+                        <p><strong>知识层</strong> — 由来源提炼出的结构化条目。概念定义、研究发现、系统模式、操作方法。这些条目可以被更新、被关联、被重组。</p>
+                        <p><strong>判断层</strong> — 你对知识的评估和立场。哪些观点你认同？哪些你存疑？哪些已经被后续证据推翻？判断与知识分离，让知识保持客观，让判断保持个人。</p>
+                    </div>
+                </div>
             </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./process.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>从信息到知识</h3>
+                        <p>信息进入知识库时，经过几个处理阶段：</p>
+                        <ul class="tier-list">
+                            <li><strong>归档</strong> — 来源被保存为不可变记录，保留原始格式和上下文。</li>
+                            <li><strong>提取</strong> — 关键概念、论点、证据被提取出来，形成条目化的笔记。</li>
+                            <li><strong>关联</strong> — 新条目与已有条目建立链接。相同的概念在不同来源中出现时，被关联到同一个主题下。</li>
+                            <li><strong>复查</strong> — 定期回顾已有条目，更新判断，标记过时内容，去重。</li>
+                        </ul>
+                        <p>这个流程不是一次性的。知识库是一个<strong>持续维护的系统</strong>，不是一次性填充的仓库。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./judgment.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>AI 可以整理，但不能替你判断</h3>
+                        <p>AI 可以帮助提取概念、生成摘要、建立关联、检测重复。但它不能替你决定一个观点是否可信。</p>
+                        <p>可信度的判断需要你的领域知识、你的批判性思维、你对信息来源的了解。AI 没有这些。它有的只是训练数据中的统计模式。</p>
+                        <p>因此，知识库的设计把<strong>证据</strong>和<strong>判断</strong>分开存放。证据是客观的，可以被 AI 处理。判断是主观的，必须由人来做。当你回顾一个条目时，你能清楚地看到：这是来源说的，这是知识层总结的，这是我自己的判断。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./reuse.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>知识的复用性</h3>
+                        <p>知识库的最终价值在于<strong>复用</strong>。一个被结构化的概念可以在多个场景中被调用：写作时的引用、研究时的对比、决策时的参考、对话时的支撑。</p>
+                        <p>没有结构的信息只能被使用一次——你读到它，然后忘记它。有结构的知识可以被反复调用——你记录它一次，然后在不同的上下文中不断回归它。</p>
+                        <p>复用的前提是<strong>可追溯性</strong>。当你引用一个知识条目时，你能追溯到它的来源、它的提取过程、你的判断历史。这种可追溯性让知识成为可信的资产，而非孤立的断言。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./showcases.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>输入质量案例</h3>
+                        <p>Knowledge Base 的输入质量直接影响知识资产的可靠性。以下两个流程负责确保输入质量：</p>
+                        <p><a href="../showcase/url-quality.html" class="link">URL Quality →</a> 如何判断一篇网页是否值得进入长期档案</p>
+                        <p><a href="../showcase/ocr-benchmark.html" class="link">OCR Benchmark →</a> 如何让纸质与扫描文本重新进入可检索的长期记忆</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./status.md</span></div>
+                <div class="section-content">
+                    <p>当前状态：<span class="status-badge green">本地运行中</span></p>
+                    <p>知识沉淀实践已在本地形成稳定工作流。本页面为结构与方法论的公开版本，不展示任何私人知识库内容或具体笔记。</p>
+                    <p>所有数据和判断存储于本地设备。</p>
+                </div>
+            </section>
+
+            <div class="archive-note">
+                <p><strong>⚗ 隐私边界</strong></p>
+                <p>本页面仅展示结构与方法论。所有私人笔记、研究摘录、阅读记录、判断历史均存储于本地设备。公开内容已做完全脱敏处理。</p>
+            </div>
 
         </main>
         <footer class="terminal-footer">
-            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-line"><span class="comment"># leverage-os // Knowledge Base</span></div>
             <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
                 <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
                 <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>

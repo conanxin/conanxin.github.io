@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Quality Assessment | leverage-os</title>
-    <meta name="description" content="leverage-os 案例 - URL 阅读质量三维评估框架与降级规则">
+    <title>URL Quality / 阅读质量评估 | leverage-os</title>
+    <meta name="description" content="如何判断一篇网页是否值得进入长期档案">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,14 +16,17 @@
         .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
         .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
         .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
-        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .status-badge.blue { color:var(--accent-blue);border-color:var(--accent-blue); }
+        .principle-block { margin-bottom:2.5rem;padding-left:1rem;border-left:2px solid var(--border-color); }
         .principle-block:hover { border-left-color:var(--accent-green); }
-        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
-        .framework-table { width:100%;border-collapse:collapse;font-size:.875rem;margin:1rem 0; }
-        .framework-table th { text-align:left;padding:.5rem;color:var(--accent-blue);border-bottom:1px solid var(--border-color);font-weight:600; }
-        .framework-table td { padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--text-secondary); }
-        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted);margin-top:1.5rem; }
-        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.75rem;font-size:1rem; }
+        .principle-block p { color:var(--text-secondary);line-height:1.8;margin-bottom:.75rem; }
+        .dim-signal { color:var(--text-muted);font-size:.875rem;font-style:italic; }
+        .archive-note { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin:2rem 0;font-size:.875rem;color:var(--text-muted); }
+        .archive-note strong { color:var(--accent-green); }
+        .tier-list { list-style:none;padding:0;margin:1rem 0; }
+        .tier-list li { margin-bottom:1rem;padding-left:1.5rem;position:relative;color:var(--text-secondary);line-height:1.7; }
+        .tier-list li::before { content:"—";position:absolute;left:0;color:var(--text-muted); }
         .label { color:var(--text-muted); }
     </style>
 </head>
@@ -46,57 +49,107 @@
         </nav>
         <main class="terminal-main">
 
-            <a class="back-link" href="../index.html">&larr; cd ..</a>
+            <a class="back-link" href="../index.html">← cd ..</a>
+
             <section class="intro-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./showcases/url-quality/README.md</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./url-quality/README.md</span></div>
                 <div class="section-content">
-                    <p>每天通过 Agent 阅读大量 URL，但不同网站的反爬策略、内容结构差异极大。如何评估一次 URL 抓取是否「成功」？</p>
-                    <p>这套三维评估框架把质量判断从「黑盒」变成「可观测、可记录、可迭代」。</p>
+                    <p>AI 时代不缺信息。缺的是<strong>判断哪些信息值得沉淀</strong>的能力。</p>
+                    <p>每天有成千上万的网页可以被阅读、收藏、归档。但你的注意力是有限的，你的记忆容量是有限的，你的长期档案不应该变成一个无限膨胀的仓库。</p>
+                    <p>这个问题不是技术性的——它关乎<strong>curation</strong>。</p>
                 </div>
             </section>
 
             <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./framework.md</span></div>
-                <div class="section-content">
-                    <table class="framework-table">
-                        <tr><th>维度</th><th>取值</th><th>说明</th></tr>
-                        <tr><td>READ_STATUS</td><td>FULL_READ / PARTIAL_READ / METADATA_ONLY / ERROR / BLOCKED</td><td>正文抓取程度</td></tr>
-                        <tr><td>content_quality</td><td>ok / suspicious / poor</td><td>内容质量评估</td></tr>
-                        <tr><td>quality_notes</td><td>自由文本</td><td>异常原因记录</td></tr>
-                    </table>
-                </div>
-            </section>
-
-            <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./downgrade-rules.md</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./problem.md</span></div>
                 <div class="section-content">
                     <div class="principle-block">
-                        <h3>自动降级规则</h3>
-                        <p>FULL_READ + suspicious &rarr; PARTIAL_READ</p>
-                        <p>FULL_READ/PARTIAL_READ + poor &rarr; METADATA_ONLY</p>
-                        <p style="margin-top:.5rem;color:var(--text-muted);">降级触发后，系统在 daily log 中保留 URL 和 metadata，正文标记为待人工补读。</p>
+                        <h3>信息泛滥与档案焦虑</h3>
+                        <p>当你看到一个有趣的链接，第一反应是收藏。第二反应是稍后阅读。第三反应是——忘记。</p>
+                        <p>几周后，你的收藏夹里有几百条未读链接。你不知道哪些是真正重要的，哪些是随手点的。你甚至不记得为什么收藏了其中大部分。</p>
+                        <p>更隐蔽的问题是：有些网页在抓取时已经损坏了。反爬机制返回了错误页面，正文被截断了，或者你抓到的只是导航页而非真实内容。如果你不检查，这些损坏的副本会安静地躺在你的档案里，占用空间，污染检索。</p>
+                        <p>你需要的不只是一个抓取工具。你需要一套<strong>质量判断的框架</strong>。</p>
                     </div>
                 </div>
             </section>
 
             <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./observation-method.md</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./design.md</span></div>
                 <div class="section-content">
                     <div class="principle-block">
-                        <h3>先观察，后修改</h3>
-                        <p>不基于单个案例调整全局规则。所有 URL 抓取结果进入观察日志，积累足够样本后才考虑阈值调优。</p>
-                        <p>基线样本覆盖：个人博客、新闻站、杂志、目录页——确保评估框架在不同场景下的稳健性。</p>
+                        <h3>设计目标：筛选，不是抓取</h3>
+                        <p>这个框架不追求"抓取所有链接"。它追求"识别哪些链接值得进入长期档案"。</p>
+                        <p>评估围绕四个维度展开：</p>
+                        <p><strong>可读性</strong> — 正文是否完整提取？格式是否混乱？是否被广告或无关内容淹没？</p>
+                        <p><strong>完整性</strong> — 抓到的内容是否是真实正文，还是目录页、登录墙、错误提示、反爬拦截？</p>
+                        <p><strong>来源质量</strong> — 来源是否可信？是否有明确的作者和日期？是否是原始出处而非转载？</p>
+                        <p><strong>长期价值</strong> — 这篇文章半年后还有阅读价值吗？它提供了可复用的知识，还是只是时效性新闻？</p>
                     </div>
                 </div>
             </section>
 
-            <section class="placeholder-box">
-                <p>&#128230; 完整的评估代码与观察日志模板将在 Phase 3 开放</p>
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./signals.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>质量信号</h3>
+                        <p>系统使用三层信号来判断一篇网页的命运：</p>
+                        <ul class="tier-list">
+                            <li><strong>抓取状态</strong> — 正文是否成功提取？是完整读取、部分读取、仅获取 metadata，还是被拦截/出错？</li>
+                            <li><strong>内容质量</strong> — 提取的正文是否看起来像真实内容？是否存在明显的截断、重复、乱码或模板填充？</li>
+                            <li><strong>质量备注</strong> — 人的观察。这篇网页有什么特殊之处？来源是否罕见？格式是否异常？是否需要后续补读？</li>
+                        </ul>
+                        <p class="dim-signal">这些信号不是评分，而是描述。描述比评分更有价值，因为描述保留了上下文，而评分丢失了细节。</p>
+                    </div>
+                </div>
             </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./outcomes.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>四种归档命运</h3>
+                        <p>根据信号组合，每篇网页有四种可能的命运：</p>
+                        <ul class="tier-list">
+                            <li><span class="status-badge green">完整归档</span> — 正文完整、质量可信、来源明确。直接进入长期知识库。</li>
+                            <li><span class="status-badge blue">部分归档</span> — 正文部分提取成功，但存在缺陷。保留 URL 和 metadata，正文标记为待补读。</li>
+                            <li><span class="status-badge">仅 metadata</span> — 正文提取失败或被拦截。只保留标题、URL、来源信息，作为"曾注意到但未能阅读"的记录。</li>
+                            <li><span class="status-badge orange">失败/跳过</span> — 明确的错误或低质量内容。不进入档案，但保留失败记录用于后续分析。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./judgment.md</span></div>
+                <div class="section-content">
+                    <div class="principle-block">
+                        <h3>脚本做初筛，人做最终决定</h3>
+                        <p>系统可以自动检测抓取状态、标记疑似问题、生成质量信号。但它不能替你决定一篇网页是否值得进入你的长期知识库。</p>
+                        <p>这个决定涉及你的阅读品味、你的研究兴趣、你对信息密度的容忍度——这些是个人的，不是通用的。</p>
+                        <p>因此，流程是：脚本做初筛，把人从重复劳动中解放出来；人做最终判断，决定什么值得记住、什么值得忘记。</p>
+                        <p>忘记和记住一样重要。一个只进不出的档案不是记忆，是囤积。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./status.md</span></div>
+                <div class="section-content">
+                    <p>当前状态：<span class="status-badge green">本地运行中</span></p>
+                    <p>URL 质量评估框架已在本地阅读归档流程中稳定运行。本页面为方法论公开版本，不展示任何私人阅读清单或具体网页内容。</p>
+                    <p>所有评估在本地设备上完成，数据不离开本机。</p>
+                </div>
+            </section>
+
+            <div class="archive-note">
+                <p><strong>⚗ 隐私边界</strong></p>
+                <p>本页面仅展示评估方法论。所有私人阅读记录、URL 清单、阅读笔记均存储于本地设备。公开内容已做完全脱敏处理。</p>
+            </div>
 
         </main>
         <footer class="terminal-footer">
-            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-line"><span class="comment"># leverage-os // URL Quality</span></div>
             <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
                 <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
                 <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>

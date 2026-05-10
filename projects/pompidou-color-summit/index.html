@@ -168,6 +168,20 @@
         spellcheck="false"
       >
       <span class="search-result-count" id="searchResultCount" aria-live="polite"></span>
+      <button class="clear-filters-btn" id="clearFiltersBtn" style="display:none" aria-label="清除所有筛选">清除筛选</button>
+    </div>
+
+    <!-- PHASE 7.1: FILTER STATUS + EMPTY STATE -->
+    <div class="filter-status-bar" id="filterStatusBar">
+      <span class="filter-status-text" id="filterStatus">全部作品 · 86 件</span>
+      <span class="filter-clear-wrap" id="clearBtnWrap" style="display:none">
+        <button class="clear-filters-btn-sm" id="clearFiltersBtn2">清除筛选</button>
+      </span>
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <p class="empty-state-title">没有找到匹配作品</p>
+      <p class="empty-state-hint">可尝试清除筛选或改用艺术家/作品名搜索</p>
+      <button class="clear-filters-btn" id="clearFiltersBtn3">清除筛选</button>
     </div>
 
     <!-- PHASE 7: QUICK TAG CHIPS -->

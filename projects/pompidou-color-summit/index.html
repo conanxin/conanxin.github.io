@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>色彩之巅！法国蓬皮杜中心馆藏艺术大师特展</title>
+  <meta name="description" content="「色彩之巅」法国蓬皮杜中心馆藏艺术大师特展非官方在线导览。8大颜色展区，86件现场导览册确认展品，含蓬皮杜馆藏与中国当代艺术对话。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-colorwheel" aria-hidden="true">
+    <div class="cw-segment" data-color="red"></div>
+    <div class="cw-segment" data-color="yellow"></div>
+    <div class="cw-segment" data-color="blue"></div>
+    <div class="cw-segment" data-color="white"></div>
+    <div class="cw-segment" data-color="green"></div>
+    <div class="cw-segment" data-color="pink"></div>
+    <div class="cw-segment" data-color="black"></div>
+    <div class="cw-center">COLOR</div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">北京民生现代美术馆 · 蓬皮杜中心馆藏</p>
+    <h1 class="hero-title">色彩之巅</h1>
+    <p class="hero-subtitle">法国蓬皮杜中心馆藏艺术大师特展 · 在线观展页面<br><span class="hero-subtitle-en">Pompidou Centre Collection — Masterpieces of Color</span></p>
+    <p class="hero-intro">
+      红色是身体与媒体的暴力，蓝色是精神与记忆的深渊，白色是零度与沉默的邀请，
+      绿色是爱与自然的梦，黄色是光与潜意识的力量——<br>
+      本展以八种颜色空间重组蓬皮杜中心馆藏，
+      携手中国当代艺术大师，展开一场跨越东西的色彩对话。
+    </p>
+
+    <!-- SOURCE BADGE -->
+    <div class="source-badge" role="alert">
+      <span class="badge badge-confirmed">✅ 导览册确认</span>
+      <div>
+        本页面展品数据来源：<strong>用户现场拍摄导览册</strong>（2026-05-10）。
+        可信度高于外部媒体转述；最终以现场展签为准。
+      </div>
+    </div>
+
+    <!-- ROUTE FILTER + MODE CONTROLS (Phase 4) -->
+    <div class="hero-controls">
+      <div class="route-filter-group">
+        <span class="controls-label">主题路线</span>
+        <button class="route-filter-btn active" data-route="all" id="routeFilterAll">全部</button>
+        <button class="route-filter-btn" data-route="color_structure">🎨 色彩结构</button>
+        <button class="route-filter-btn" data-route="dream_surreal">🌙 梦与超现实</button>
+        <button class="route-filter-btn" data-route="modern_body">💪 现代身体</button>
+        <button class="route-filter-btn" data-route="abstraction_zero">⬜ 抽象与零度</button>
+        <button class="route-filter-btn" data-route="media_politics">📺 媒体与政治</button>
+        <button class="route-filter-btn" data-route="chinese_response">🐉 中国当代回应</button>
+        <button class="route-filter-btn" data-route="music_rhythm">🎵 色彩与节奏</button>
+        <button class="route-filter-btn" id="randomRouteBtn" title="随机生成一条跨展区推荐路线">🎲 随机路线</button>
+      </div>
+      <div class="mode-group">
+        <button class="mode-btn" id="speedModeBtn" title="每个展区仅展示1件代表性作品">⚡ 速看模式</button>
+      </div>
+    </div>
+
+    <nav class="hero-nav" aria-label="快速导航">
+      <a href="#intro" class="hero-nav-btn">展览导言</a>
+      <a href="#color-areas" class="hero-nav-btn">8大展区</a>
+      <a href="#exhibits" class="hero-nav-btn">展品名录</a>
+      <a href="#routes" class="hero-nav-btn">重点路线</a>
+      <a href="#guide" class="hero-nav-btn">观展方法</a>
+      <a href="#music" class="hero-nav-btn">推荐音乐</a>
+      <a href="#sources" class="hero-nav-btn">资料来源</a>
+    </nav>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section id="intro">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">展览导言</h2>
+    </div>
+    <div class="intro-grid">
+      <div class="intro-block intro-what">
+        <h3>这是什么展览？</h3>
+        <p>「色彩之巅」是法国蓬皮杜中心与北京民生现代美术馆联合呈现的现代艺术大师特展。展览以<strong>红、黄、蓝、白、绿、粉、黑、彩</strong>八种颜色空间为策展线索，重新解构并重组蓬皮杜中心馆藏的西方现代艺术大师作品，同时加入中国当代艺术家的回应性创作，形成东西对话。</p>
+        <p>这不是一场按时间线组织的展览，而是一场<strong>按色彩感知组织的展览</strong>——颜色不再是作品的附属属性，而是理解20世纪现代艺术的核心钥匙。</p>
+      </div>
+      <div class="intro-block intro-pompidou">
+        <h3>蓬皮杜中心</h3>
+        <p>法国蓬皮杜国家艺术文化中心（Centre Pompidou）建于1977年，是世界最重要的现代与当代艺术收藏机构之一。其馆藏涵盖1905年野兽派至今天的完整西方现代艺术谱系，是本次展览的坚实学术基础。</p>
+      </div>
+      <div class="intro-block intro-color-logic">
+        <h3>为什么用颜色策展？</h3>
+        <p>20世纪现代艺术最重要的革命之一，是艺术家将色彩从「再现世界」的工具，转化为「创造世界」的媒介。</p>
+        <ul>
+          <li><strong>红色</strong> → 身体、暴力、激情、媒体</li>
+          <li><strong>黄色</strong> → 光、能量、节奏、潜意识</li>
+          <li><strong>蓝色</strong> → 精神、虚空、夜、忧郁</li>
+          <li><strong>白色</strong> → 零度、沉默、去叙事</li>
+          <li><strong>绿色</strong> → 爱情、自然、梦、欲望</li>
+          <li><strong>粉色</strong> → 身体、亲密、装饰</li>
+          <li><strong>黑色</strong> → 结构、死亡、重量、光</li>
+          <li><strong>彩色</strong> → 节奏、运动、现代视觉</li>
+        </ul>
+      </div>
+      <div class="intro-block intro-narrative">
+        <h3>颜色的八个维度</h3>
+        <p>从马蒂斯野兽派的红色革命，到克莱因IKB的精神性蓝色，到曼佐尼白色画布的极限实践，到沃霍尔荧光色的媒体批判，到巴斯奎特直面的种族历史——颜色在现代艺术中承担了八大主题：<strong>身体、梦、媒体、政治、自然、精神、死亡、记忆</strong>。</p>
+        <p>中国当代艺术家对这些问题的回应，构成了展览后半部的核心张力：隋建国的彩虹衣钵、岳敏君的大笑人、徐累的文人蓝色、周春芽的绿狗——这是中国当代艺术对西方现代主义色彩传统的独特回应。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLOR AREAS (8 AREAS) ===== -->
+<section id="color-areas">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">8大颜色展区</h2>
+      <p class="section-note">按颜色空间组织，每个展区含策展论述与作品清单。数据来源：用户现场导览册（2026-05-10）。</p>
+    </div>
+
+    <!-- AREA FILTER TABS -->
+    <div class="area-tabs" id="areaTabs" role="tablist" aria-label="按颜色展区筛选">
+      <button class="area-tab active" data-area="all" role="tab" aria-selected="true">全部展区</button>
+      <button class="area-tab" data-area="color" role="tab" aria-selected="false" style="--tab-accent:#9B59B6">彩</button>
+      <button class="area-tab" data-area="pink" role="tab" aria-selected="false" style="--tab-accent:#E8A0BF">粉</button>
+      <button class="area-tab" data-area="blue" role="tab" aria-selected="false" style="--tab-accent:#219EBC">蓝</button>
+      <button class="area-tab" data-area="red" role="tab" aria-selected="false" style="--tab-accent:#E63946">红</button>
+      <button class="area-tab" data-area="green" role="tab" aria-selected="false" style="--tab-accent:#2D6A4F">绿</button>
+      <button class="area-tab" data-area="yellow" role="tab" aria-selected="false" style="--tab-accent:#FFB703">黄</button>
+      <button class="area-tab" data-area="white" role="tab" aria-selected="false" style="--tab-accent:#F1FAEE;color:#1a1a1a">白</button>
+      <button class="area-tab" data-area="black" role="tab" aria-selected="false" style="--tab-accent:#1D3557">黑</button>
+    </div>
+
+    <!-- AREA PANEL -->
+    <div class="area-panel" id="areaPanel" aria-live="polite">
+      <!-- JS injected -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXHIBITS ===== -->
+<section id="exhibits">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">展品名录</h2>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar" id="statsBar">
+      <!-- JS injected -->
+    </div>
+
+    <!-- AREA FILTER (in exhibits section too) -->
+    <div class="exhibits-filter" id="exhibitsFilter" role="tablist" aria-label="按展区筛选">
+      <button class="ex-filter-btn active" data-area-filter="all" role="tab">全部
+        <span class="filter-count" id="count-all">—</span>
+      </button>
+      <button class="ex-filter-btn" data-area-filter="color" role="tab" style="--tab-accent:#9B59B6">彩 <span class="filter-count" id="count-color">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="pink" role="tab" style="--tab-accent:#E8A0BF">粉 <span class="filter-count" id="count-pink">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="blue" role="tab" style="--tab-accent:#219EBC">蓝 <span class="filter-count" id="count-blue">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="red" role="tab" style="--tab-accent:#E63946">红 <span class="filter-count" id="count-red">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="green" role="tab" style="--tab-accent:#2D6A4F">绿 <span class="filter-count" id="count-green">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="yellow" role="tab" style="--tab-accent:#FFB703">黄 <span class="filter-count" id="count-yellow">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="white" role="tab" style="--tab-accent:#F1FAEE;color:#1a1a1a">白 <span class="filter-count" id="count-white">—</span></button>
+      <button class="ex-filter-btn" data-area-filter="black" role="tab" style="--tab-accent:#1D3557">黑 <span class="filter-count" id="count-black">—</span></button>
+    </div>
+
+    <div class="exhibits-grid" id="exhibitsGrid">
+      <!-- JS injected -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROUTES ===== -->
+<section id="routes">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">重点路线</h2>
+      <p class="section-note">五条推荐观看路线，每条路线聚焦一个主题维度，帮助你建立对展览的深度理解。数据来源：用户现场导览册。</p>
+    </div>
+    <div class="routes-list" id="routesList">
+      <!-- JS injected -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== GUIDE ===== -->
+<section id="guide">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">观展方法</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-block">
+        <h3>三遍观展法</h3>
+        <div class="guide-step">
+          <span class="step-num">1</span>
+          <div>
+            <strong>第一遍：只看颜色，不看标签</strong>
+            <p>进入每个色彩空间，先让颜色直接影响你的身体与情绪。不要看艺术家名字或作品标题，只感受颜色带给你的物理反应——心跳加速、放松、不安、或莫名的平静。</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <span class="step-num">2</span>
+          <div>
+            <strong>第二遍：看同一种颜色的不同含义</strong>
+            <p>在红色空间里，体会达利《腐烂的驴》的红、沃霍尔《大电椅》的红、巴斯奎特《奴隶拍卖》的红——三种红色分别指向什么？身体？媒体？历史？</p>
+          </div>
+        </div>
+        <div class="guide-step">
+          <span class="step-num">3</span>
+          <div>
+            <strong>第三遍：比较西方大师与中国当代艺术家</strong>
+            <p>在同一个色彩空间里，西方的颜色表达与中国的颜色表达有什么不同？马蒂斯的红与蔡锦的红，克莱因的蓝与徐累的蓝，周春芽的绿与夏加尔的绿——这是文化之间的对话。</p>
+          </div>
+        </div>
+      </div>
+      <div class="guide-block">
+        <h3>每张作品四步法</h3>
+        <ol class="guide-steps-list">
+          <li><strong>颜色</strong>：这个颜色在说什么？它在描绘什么，还是在创造什么？</li>
+          <li><strong>构图</strong>：色彩如何组织？有没有主次关系？色彩是平静的还是冲突的？</li>
+          <li><strong>时代</strong>：作品创作于何时？那时的世界在发生什么？色彩的选择与时代有何关系？</li>
+          <li><strong>标签</strong>：读完标签后，你的理解发生了什么变化？颜色表达与标签内容是否一致？</li>
+        </ol>
+      </div>
+      <div class="guide-block guide-questions">
+        <h3>观展提问</h3>
+        <div class="question-card">
+          <span class="q-mark">?</span>
+          <p>颜色是在描绘世界，还是创造世界？</p>
+        </div>
+        <div class="question-card">
+          <span class="q-mark">?</span>
+          <p>如果去掉颜色，这件作品还成立吗？</p>
+        </div>
+        <div class="question-card">
+          <span class="q-mark">?</span>
+          <p>颜色和身体、梦、死亡、媒体、政治有什么关系？</p>
+        </div>
+        <div class="question-card">
+          <span class="q-mark">?</span>
+          <p>中国艺术家如何转换这些颜色问题？</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MUSIC ===== -->
+<section id="music">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">推荐音乐</h2>
+      <p class="section-note">边看边听。每首曲目对应一个色彩空间，与对应作品形成听觉与视觉的对话。建议使用耳机，选择与当前色彩空间匹配的曲目。</p>
+    </div>
+    <div class="music-filter" id="musicFilter" role="tablist" aria-label="按色彩筛选音乐">
+      <button class="music-filter-btn active" data-filter="all" role="tab">全部</button>
+      <button class="music-filter-btn" data-filter="red" role="tab" style="--f-color:#E63946">红</button>
+      <button class="music-filter-btn" data-filter="yellow" role="tab" style="--f-color:#FFB703">黄</button>
+      <button class="music-filter-btn" data-filter="blue" role="tab" style="--f-color:#219EBC">蓝</button>
+      <button class="music-filter-btn" data-filter="white" role="tab" style="--f-color:#F1FAEE;color:#1a1a1a">白</button>
+      <button class="music-filter-btn" data-filter="green" role="tab" style="--f-color:#2D6A4F">绿</button>
+      <button class="music-filter-btn" data-filter="pink" role="tab" style="--f-color:#E8A0BF">粉</button>
+      <button class="music-filter-btn" data-filter="black" role="tab" style="--f-color:#1D3557">黑</button>
+      <button class="music-filter-btn" data-filter="color" role="tab" style="--f-color:#9B59B6">彩</button>
+    </div>
+    <div class="music-list" id="musicList">
+      <!-- JS injected -->
+    </div>
+
+    <!-- AREA SOUNDSCAPES (Phase 4) -->
+    <div class="soundscapes-section" id="soundscapesSection">
+      <div class="section-header soundscapes-header">
+        <span class="section-num">06+</span>
+        <h3 class="section-subtitle">每个展区的听法</h3>
+        <p class="section-note">在进入每个颜色空间前，先让这些声音铺垫你的感知——不是配乐，是感知引导。</p>
+      </div>
+      <div class="soundscapes-grid" id="soundscapesGrid">
+        <!-- JS injected -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOURCES ===== -->
+<section id="sources">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">资料来源</h2>
+    </div>
+    <div class="sources-grid">
+      <div class="sources-block">
+        <h3>数据来源</h3>
+        <div class="source-table">
+          <div class="st-row">
+            <span class="st-label">Phase 3（当前）</span>
+            <span class="st-value">✅ 用户现场拍摄导览册（2026-05-10）</span>
+            <span class="st-note">86件展品，8个颜色展区，可信度最高</span>
+          </div>
+          <div class="st-row">
+            <span class="st-label">Phase 2（2026-05-10）</span>
+            <span class="st-value">❌ 外部网络核验失败</span>
+            <span class="st-note">10个来源0个含本展展品信息，已废弃</span>
+          </div>
+        </div>
+        <p class="source-note">
+          <strong>Phase 3 数据来源：</strong>用户现场拍摄《色彩之巅！法国蓬皮杜中心馆藏艺术大师特展》导览册，
+          含完整8大展区展品清单。<strong>publish_safe = true</strong>，
+          verification_status = confirmed_site_guide_photo。
+          最终信息以现场展签和主办方公告为准。
+        </p>
+      </div>
+      <div class="sources-block disclaimer">
+        <h3>免责声明</h3>
+        <div class="disclaimer-box">
+          <p><strong>本页面为非官方在线观览页，非北京民生现代美术馆、法国蓬皮杜中心或任何主办单位的官方发布。</strong></p>
+          <ul>
+            <li>展品信息（作品名、艺术家、创作年份、材质）均来源于用户现场拍摄的导览册，<strong>最终以现场展签为准</strong>。</li>
+            <li>所有作品图片均为<strong>视觉占位图，不代表原作图像</strong>。占位图是抽象色彩块，用于提示该作品所属的色彩空间，非任何真实展品照片。</li>
+            <li>本页面不对因使用本页面信息而造成的任何直接或间接损失负责。</li>
+            <li>如有展品信息需要更正，欢迎提交勘误。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p class="footer-text">「色彩之巅！法国蓬皮杜中心馆藏艺术大师特展」在线导览页面</p>
+    <p class="footer-meta">北京民生现代美术馆 · 蓬皮杜中心 · 非官方在线导览 · Phase 3 (2026-05-10)<br>数据来源：用户现场拍摄导览册 · 本页为学习研究用途 · 展品图片均为占位设计，不代表原作</p>
+    <p class="footer-build">Built with ❤️ on Cloud Hermes</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

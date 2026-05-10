@@ -1,5 +1,18 @@
 [
   {
+    "title": "leverage-os / 本地杠杆心智系统",
+    "slug": "leverage-os",
+    "category": "systems",
+    "type": "SYSTEM",
+    "status": "骨架已上线",
+    "status_color": "#58a6ff",
+    "updated": "2026-05-10",
+    "summary": "一个本地优先、Agent 驱动的个人认知基础设施，用于把输入、记忆、知识与输出组织成长期连续的 AI 杠杆系统。",
+    "entry_url": "/projects/personal-ai-leverage/",
+    "source_kind": "system",
+    "featured": true
+  },
+  {
     "title": "Aura — 个人 AI 生态系统",
     "slug": "aura",
     "category": "systems",

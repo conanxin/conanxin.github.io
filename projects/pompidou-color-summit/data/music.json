@@ -1,0 +1,219 @@
+{
+  "tracks": [
+    {
+      "id": "m01",
+      "title": "Music for 18 Musicians (excerpt)",
+      "artist": "Steve Reich",
+      "year": "1976",
+      "color_area": "color",
+      "route_tag": "color_structure",
+      "why_it_fits": "持续渐变的相位循环与德劳内的光学振动在感受机制上高度同构，能释放观察者的视觉策略。",
+      "best_for_works": ["sg001", "sg005", "sg013"],
+      "listening_note": "闭眼，专注听相位叠加产生的'鬼影'——对应看德劳内圆盘时色彩边界的视觉振动。"
+    },
+    {
+      "id": "m02",
+      "title": "The Great Gig in the Sky",
+      "artist": "Pink Floyd",
+      "year": "1973",
+      "color_area": "red",
+      "route_tag": "media_politics",
+      "why_it_fits": "人声采样从平静走向癫狂，对应沃霍尔电椅从日常图像到暴力符号的转化。",
+      "best_for_works": ["sg032", "sg016", "sg036"],
+      "listening_note": "从人声进入高潮时注意情绪如何从漠然转向恐惧——对应波普图像的冷峻到暴力隐喻。"
+    },
+    {
+      "id": "m03",
+      "title": "Gymnopédie No.1",
+      "artist": "Erik Satie",
+      "year": "1888",
+      "color_area": "pink",
+      "route_tag": "dream_surreal",
+      "why_it_fits": "萨蒂的极简钢琴与超现实的梦境空间同构：简单得几乎不存在，却深深侵入情感。",
+      "best_for_works": ["sg024", "sg040", "sg041", "sg026"],
+      "listening_note": "放慢呼吸，跟随旋律的单性——夏加尔和达利的画面同样需要这种沉静的观看节奏。"
+    },
+    {
+      "id": "m04",
+      "title": "Baba Yaga",
+      "artist": "John Zorn (Malcolm Mooney)",
+      "year": "1996",
+      "color_area": "red",
+      "route_tag": "chinese_response",
+      "why_it_fits": "噪音摇滚的人声与沃霍尔《大电椅》的大众媒体批判形成暴力共振。",
+      "best_for_works": ["sg032", "sg007", "sg008", "sg070"],
+      "listening_note": "注意噪音突然爆发前的沉默——那是图像从'日常'转变为'暴力'的临界点。"
+    },
+    {
+      "id": "m05",
+      "title": "Twin Peaks Theme",
+      "artist": "Angelo Badalamenti",
+      "year": "1990",
+      "color_area": "blue",
+      "route_tag": "dream_surreal",
+      "why_it_fits": "合成器的回旋与马格利特、达利空间中的'不可能逻辑'在情绪结构上完美同构。",
+      "best_for_works": ["sg025", "sg012", "sg044"],
+      "listening_note": "注意旋律每次重现时微妙的变形——这正是超现实主义图像的观看方式。"
+    },
+    {
+      "id": "m06",
+      "title": "Computer Love",
+      "artist": "Kraftwerk",
+      "year": "1977",
+      "color_area": "color",
+      "route_tag": "color_structure",
+      "why_it_fits": "机器节奏与德劳内的光学色彩在'精确秩序中的感性'这一点上相会。",
+      "best_for_works": ["sg001", "sg005", "sg004"],
+      "listening_note": "将合成器视为另一种'色彩乐器'——Kraftwerk的人声质感与德劳内的圆盘同样冷峻。"
+    },
+    {
+      "id": "m07",
+      "title": "Terezin",
+      "artist": "Gidon Kremer",
+      "year": "1994",
+      "color_area": "green",
+      "route_tag": "chinese_response",
+      "why_it_fits": "小提琴的沉思与夏加尔、隋建国的文化厚度在情感结构上相呼应。",
+      "best_for_works": ["sg040", "sg041", "sg009", "sg052"],
+      "listening_note": "让旋律的忧郁渗入——中国文化符号与欧洲现代主义在此共享一种精神性的乡愁。"
+    },
+    {
+      "id": "m08",
+      "title": "Kind of Blue",
+      "artist": "Miles Davis",
+      "year": "1959",
+      "color_area": "red",
+      "route_tag": "modern_body",
+      "why_it_fits": "即兴的蓝调与培根、德库宁笔触中的身体能量共享同一种'从限制中爆发'的逻辑。",
+      "best_for_works": ["sg046", "sg027", "sg033", "sg034"],
+      "listening_note": "听即兴进入时如何'推开'和声边界——培根的笔触同样如此，在秩序的裂缝中爆发。"
+    },
+    {
+      "id": "m09",
+      "title": "Music for Strings, Percussion and Celesta (excerpt)",
+      "artist": "Béla Bartók",
+      "year": "1936",
+      "color_area": "color",
+      "route_tag": "music_rhythm",
+      "why_it_fits": "序列主义的节奏与克利、考尔德对视觉节奏的探索形成跨媒介共振。",
+      "best_for_works": ["sg073", "sg072", "sg003"],
+      "listening_note": "注意弦乐与打击乐的'对话'段落——对应画面中不同色彩区域的并置与张力。"
+    },
+    {
+      "id": "m10",
+      "title": "Spiegel im Spiegel",
+      "artist": "Arvo Pärt",
+      "year": "1978",
+      "color_area": "white",
+      "route_tag": "abstraction_zero",
+      "why_it_fits": "钢琴与提琴的镜像结构与马列维奇、苏拉热、曼佐尼的极简主义共享同一种'减法'的哲学。",
+      "best_for_works": ["sg075", "sg076", "sg063", "sg043", "sg011"],
+      "listening_note": "极慢，极少——皮亚特特的音乐和曼佐尼的白色画布一样，需要完全静止的身体来接近。"
+    },
+    {
+      "id": "m11",
+      "title": "A Love Supreme (Part I)",
+      "artist": "John Coltrane",
+      "year": "1964",
+      "color_area": "black",
+      "route_tag": "media_politics",
+      "why_it_fits": "即兴爵士的集体狂喜与巴斯奎特的涂鸦式历史批判都指向一种'从废墟中升起'的力量。",
+      "best_for_works": ["sg081", "sg057", "sg085"],
+      "listening_note": "听低音如何支撑整体——这与黑色画布承载重量的方式相同。"
+    },
+    {
+      "id": "m12",
+      "title": "Light My Fire",
+      "artist": "The Doors",
+      "year": "1967",
+      "color_area": "color",
+      "route_tag": "color_structure",
+      "why_it_fits": "燃烧的摇滚能量与克莱因IKB蓝的'精神炽热'共享同一种对'无限'的渴望。",
+      "best_for_works": ["sg023", "sg050", "sg077"],
+      "listening_note": "将燃烧的键盘视为IKB蓝的听觉等价物——同样的色彩扩张感，同样的精神热度。"
+    },
+    {
+      "id": "m13",
+      "title": "An Ending (Ascent)",
+      "artist": "Brian Eno",
+      "year": "1983",
+      "color_area": "blue",
+      "route_tag": "abstraction_zero",
+      "why_it_fits": "升起的合成器泛音与克莱因蓝的'无限深度'在情感指向上同构：一种超越性的上升。",
+      "best_for_works": ["sg023", "sg029", "sg051"],
+      "listening_note": "让声音慢慢消散——克莱因蓝的'虚无'同样需要这种缓慢观看才能接近。"
+    },
+    {
+      "id": "m14",
+      "title": "Avril 14th",
+      "artist": "Aphex Twin",
+      "year": "2001",
+      "color_area": "pink",
+      "route_tag": "modern_body",
+      "why_it_fits": "分裂的钢琴旋律与莫塞、贾科梅蒂作品中共存的身体性/极简性形成意外共鸣。",
+      "best_for_works": ["sg011", "sg064", "sg042", "sg048"],
+      "listening_note": "这首曲子同时是极简和神经质的——对应贾科梅蒂雕塑中脆弱与力量的共存。"
+    },
+    {
+      "id": "m15",
+      "title": "Clair de Lune",
+      "artist": "Claude Debussy",
+      "year": "1905",
+      "color_area": "yellow",
+      "route_tag": "chinese_response",
+      "why_it_fits": "德彪西的印象派钢琴与库普卡的色彩序列研究，以及刘丹的植物静物，共享同一种对光影的瞬间捕捉。",
+      "best_for_works": ["sg055", "sg017", "sg086", "sg030"],
+      "listening_note": "月光如水——刘丹的向日葵和库普卡的黄色色列同样需要这种流动的观看。"
+    }
+  ],
+  "area_soundscapes": {
+    "color": {
+      "description": "彩色展区",
+      "direction": "Steve Reich / Kraftwerk 方向",
+      "feel": "节奏、光学、现代性",
+      "recommendation": "m01 (Reich) 或 m06 (Kraftwerk) 开启整个观展旅程，为眼睛的'光学准备'；m09 (Bartók) 作为色彩与节奏关系最紧密的作品使用。"
+    },
+    "pink": {
+      "description": "粉色展区",
+      "direction": "Satie / Badalamenti 方向",
+      "feel": "暧昧、梦、身体",
+      "recommendation": "m03 (Satie) 最适合梦境氛围；m14 (Aphex Twin) 用于身体感更强、更神经质的作品；m05 (Badalamenti) 用于超现实空间。"
+    },
+    "blue": {
+      "description": "蓝色展区",
+      "direction": "Brian Eno / Aphex Twin / Sakamoto 方向",
+      "feel": "虚空、夜、海",
+      "recommendation": "m13 (Eno) 配合克莱因蓝最经典；m05 (Badalamenti) 适合马格利特的'夜'；m03 (Satie) 用于毕加索蓝色时期的忧郁。"
+    },
+    "red": {
+      "description": "红色展区",
+      "direction": "Miles Davis / Komeda 方向",
+      "feel": "焦虑、身体、媒体暴力",
+      "recommendation": "m08 (Miles Davis) 用于培根/德库宁的身体表现力；m02 (Pink Floyd) 用于沃霍尔的大众媒体批判；m04 用于最强的暴力感。"
+    },
+    "green": {
+      "description": "绿色展区",
+      "direction": "Hiroshi Yoshimura / Satie 方向",
+      "feel": "植物、爱情、梦",
+      "recommendation": "m07 (Kremer) 用于夏加尔的爱情与乡愁；m03 (Satie) 用于周春芽的绿色生命力；m15 (Debussy) 用于中国当代艺术的精神性。"
+    },
+    "yellow": {
+      "description": "黄色展区",
+      "direction": "Debussy / Reich 方向",
+      "feel": "光、能量、序列",
+      "recommendation": "m15 (Debussy) 用于光感的印象派作品；m01 (Reich) 用于库普卡序列色彩的理性一面；m09 (Bartók) 用于色彩的节奏性。"
+    },
+    "white": {
+      "description": "白色展区",
+      "direction": "Arvo Pärt / Feldman 方向",
+      "feel": "沉默、零度、极简",
+      "recommendation": "m10 (Pärt) 是白色展区的核心配乐；m14 (Aphex Twin) 带来极简中隐藏的不安；m03 (Satie) 用于夏加尔与贾科梅蒂的亲密。"
+    },
+    "black": {
+      "description": "黑色展区",
+      "direction": "Feldman / Pärt / slow ambient 方向",
+      "feel": "重量、结构、光从黑中出现",
+      "recommendation": "m10 (Pärt) 用于马列维奇的黑色虚无；m11 (Coltrane) 用于巴斯奎特的'从废墟升起'；m13 (Eno) 用于苏拉热的'光从黑中出现'的瞬间。"
+    }
+  }
+}

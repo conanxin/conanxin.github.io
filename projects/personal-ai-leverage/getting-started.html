@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started | leverage-os</title>
-    <meta name="description" content="leverage-os 快速开始 - 当前为占位页，模板和方法论将在后续迭代中开放">
+    <title>Getting Started / 如何开始 | leverage-os</title>
+    <meta name="description" content="leverage-os 不是一个可以直接下载即用的 App，而是一套关于个人 AI 基础设施、长期记忆和人类判断的实践框架">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,37 +13,30 @@
     <style>
         .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
         .back-link:hover { color:var(--accent-green); }
-        .module-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem; }
-        .module-card { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);text-decoration:none;color:inherit;display:block;transition:all .2s; }
-        .module-card:hover { border-color:var(--accent-green);transform:translateY(-2px); }
-        .module-card .tag { font-size:.75rem;color:var(--accent-blue);margin-bottom:.25rem; }
-        .module-card .title { font-weight:600;margin-bottom:.25rem;color:var(--text-primary); }
-        .module-card .desc { font-size:.875rem;color:var(--text-muted); }
-        .arch-diagram { background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);padding:1.5rem;margin:1.5rem 0;font-family:var(--font-mono);font-size:.875rem;line-height:1.8; }
-        .arch-layer { margin-bottom:1rem;padding:1rem;border-left:3px solid var(--accent-green);background:var(--bg-primary); }
-        .arch-layer.output { border-left-color:var(--accent-orange); }
-        .arch-layer.process { border-left-color:var(--accent-blue); }
-        .arch-layer.knowledge { border-left-color:var(--accent-purple); }
-        .arch-layer .label { color:var(--text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
-        .status-badge { display:inline-block;padding:.125rem .5rem;border-radius:4px;font-size:.75rem;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color); }
-        .status-badge.green { color:var(--accent-green);border-color:var(--accent-green); }
-        .status-badge.orange { color:var(--accent-orange);border-color:var(--accent-orange); }
-        .principle-block { margin-bottom:2rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block { margin-bottom:2.5rem;padding-left:1rem;border-left:2px solid var(--border-color); }
         .principle-block:hover { border-left-color:var(--accent-green); }
-        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
-        .placeholder-box { padding:2rem;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:var(--border-radius);color:var(--text-muted); }
-        .privacy-notice { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin-top:2rem;font-size:.875rem;color:var(--text-muted); }
-        .privacy-notice strong { color:var(--accent-green); }
-        .now-list { list-style:none;padding:0; }
-        .now-list li { margin-bottom:.75rem;color:var(--text-secondary); }
-        .bullet { color:var(--accent-green);margin-right:.5rem; }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.75rem;font-size:1rem; }
+        .principle-block p { color:var(--text-secondary);line-height:1.8;margin-bottom:.75rem; }
+        .read-list { list-style:none;padding:0;margin:1rem 0; }
+        .read-list li { margin-bottom:.75rem;padding-left:2rem;position:relative;color:var(--text-secondary);line-height:1.7; }
+        .read-list li .num { position:absolute;left:0;color:var(--accent-blue);font-family:var(--font-mono);font-size:.875rem; }
+        .read-list li a { color:var(--accent-green);text-decoration:none; }
+        .read-list li a:hover { text-decoration:underline; }
+        .mini-list { list-style:none;padding:0;margin:1rem 0; }
+        .mini-list li { margin-bottom:.75rem;padding-left:1.5rem;position:relative;color:var(--text-secondary);line-height:1.7; }
+        .mini-list li::before { content:"—";position:absolute;left:0;color:var(--text-muted); }
+        .audience-block { margin-bottom:1.5rem; }
+        .audience-block h4 { color:var(--text-primary);margin-bottom:.5rem;font-size:.875rem; }
+        .audience-block p { color:var(--text-secondary);line-height:1.7;font-size:.875rem; }
         .label { color:var(--text-muted); }
+        .archive-note { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin:2rem 0;font-size:.875rem;color:var(--text-muted); }
+        .archive-note strong { color:var(--accent-green); }
     </style>
 </head>
 <body>
     <div class="terminal-container">
         <div class="status-bar">
-            <div class="status-left"><span class="status-dot"></span><span>STATUS // WIP</span></div>
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
             <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
         </div>
         <header class="terminal-header">
@@ -59,51 +52,93 @@
         </nav>
         <main class="terminal-main">
 
-            <a class="back-link" href="index.html">&larr; cd ..</a>
+            <a class="back-link" href="index.html">← cd ..</a>
+
             <section class="intro-section">
                 <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./getting-started.md</span></div>
                 <div class="section-content">
-                    <p> leverage-os 目前处于<strong>公开展示骨架</strong>阶段。完整的模板、配置文件和使用指南将在后续迭代中逐步开放。</p>
+                    <p>leverage-os 不是一个可以直接下载即用的 App。</p>
+                    <p>它是一套关于个人 AI 基础设施、长期记忆和人类判断的<strong>实践框架</strong>。它不提供一键安装的脚本，不提供开箱即用的模板，不提供「五分钟上手」的教程。</p>
+                    <p>它提供的是一套已经被验证过的思维方式和工作方法。你可以根据自己的需要，选择其中一部分开始实践，而不必复制整个系统。</p>
                 </div>
             </section>
 
             <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">ls ./roadmap</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./reading-order.md</span></div>
                 <div class="section-content">
-                    <p><span class="status-badge green">PHASE 1</span> 系统架构与方法论公开 <span style="color:var(--text-muted)">&larr; 当前</span></p>
-                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 2</span> Life Log Markdown 模板 + 使用指南</p>
-                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 3</span> Agent OS 最小可运行配置包</p>
-                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 4</span> 自动化工作流脚本集合</p>
-                    <p style="margin-top:.5rem;"><span class="status-badge">PHASE 5</span> Newsletter + 社区反馈闭环</p>
+                    <p>如果你是第一次来，建议按以下顺序阅读：</p>
+                    <ol class="read-list">
+                        <li><span class="num">01.</span> <a href="manifesto.html">Manifesto / 宣言</a> — 理解这套系统的核心假设和长期目标</li>
+                        <li><span class="num">02.</span> <a href="philosophy.html">Design Philosophy / 设计哲学</a> — 理解六项基本原则</li>
+                        <li><span class="num">03.</span> <a href="modules/life-log.html">Life Log Engine / 生活档案引擎</a> — 时间与记忆底座</li>
+                        <li><span class="num">04.</span> <a href="showcase/weekly-pipeline.html">Weekly Pipeline / 周连续性流水线</a> — 从碎片到连续记忆</li>
+                        <li><span class="num">05.</span> <a href="showcase/url-quality.html">URL Quality / 阅读质量评估</a> — 判断什么值得沉淀</li>
+                        <li><span class="num">06.</span> <a href="showcase/ocr-benchmark.html">OCR Benchmark / 文档数字化评估</a> — 纸质、扫描与图片文字如何重新进入可检索的长期记忆系统</li>
+                        <li><span class="num">07.</span> <a href="modules/agent-os.html">Agent OS / 个人 Agent 操作层</a> — 执行与治理</li>
+                        <li><span class="num">08.</span> <a href="showcase/skill-governance.html">Skill Governance / 技能治理</a> — 控制工具膨胀</li>
+                        <li><span class="num">09.</span> <a href="modules/knowledge.html">Knowledge Base / 长期知识层</a> — 可追溯的知识资产</li>
+                        <li><span class="num">10.</span> <a href="modules/publish.html">Publishing Stack / 公共输出层</a> — 从私人到公共</li>
+                    </ol>
                 </div>
             </section>
 
             <section class="featured-section">
-                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./what-you-can-do-now.txt</span></div>
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./expectations.md</span></div>
                 <div class="section-content">
                     <div class="principle-block">
-                        <h3>1. 订阅 RSS</h3>
-                        <p>通过 <a href="/feed.xml" class="link">/feed.xml</a> 订阅本站更新，第一时间获取 leverage-os 的新文章和模板发布。</p>
-                    </div>
-                    <div class="principle-block">
-                        <h3>2. 阅读现有文章</h3>
-                        <p>本站已有 70+ 篇关于 AI Agent、本地模型、研究工作流的文章，可作为理解这套系统思想背景的入口。</p>
-                    </div>
-                    <div class="principle-block">
-                        <h3>3. 关注架构演进</h3>
-                        <p>每个模块页面（Life Log / Agent OS / Knowledge / Publish）将随项目进展持续更新，记录从骨架到完整系统的演进过程。</p>
+                        <h3>你不需要一开始就搭完整系统</h3>
+                        <p>leverage-os 的完整形态包含多个模块、数十个脚本、复杂的自动化流程。但这不是它的起点。</p>
+                        <p>你可以从一个 daily note 开始。或者一个 weekly review。或者一个简单的阅读归档规则。选择一个你最痛点的问题，用最小可行方法解决它，然后再考虑扩展。</p>
+                        <p>系统的价值不在于规模，而在于<strong>持续性</strong>。一个每天使用的简单系统，比一个完美的但从未运行的复杂系统更有价值。</p>
                     </div>
                 </div>
             </section>
 
-            <section class="placeholder-box" style="margin-top:2rem;">
-                <p style="margin-bottom:.5rem;">&#128230; 模板与方法论的整理工作正在进行中</p>
-                <p style="font-size:.875rem;">预计 Phase 2 开放 Life Log Markdown 模板 + 周汇总提取规则<br>预计 Phase 3 开放 Agent OS 最小可运行配置</p>
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./minimum-practice.md</span></div>
+                <div class="section-content">
+                    <p>如果你想尝试 leverage-os 的思路，可以从以下最小实践开始：</p>
+                    <ul class="mini-list">
+                        <li><strong>每天记录 3 条有价值的痕迹</strong> — 不是流水账，而是今天真正值得记住的事、想法或阅读</li>
+                        <li><strong>每周做一次回看</strong> — 回顾本周的记录，提取关键主题和故事线</li>
+                        <li><strong>只保留值得长期记忆的主题</strong> — 不是所有记录都值得归档，学会遗忘和筛选</li>
+                        <li><strong>不把一切都交给 AI</strong> — AI 整理，人判断；AI 生成，人确认</li>
+                        <li><strong>发布前必须人工判断</strong> — 从私人系统进入公共空间，意味着承担责任</li>
+                    </ul>
+                </div>
             </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./audience.md</span></div>
+                <div class="section-content">
+                    <div class="audience-block">
+                        <h4>适合谁</h4>
+                        <p>研究者、创作者、开发者、独立顾问、高信息密度工作者、对本地优先 AI 实践感兴趣的人。如果你每天处理大量信息，希望建立长期可回溯的个人知识系统，这套框架可能对你有用。</p>
+                    </div>
+                    <div class="audience-block">
+                        <h4>不适合谁</h4>
+                        <p>只想要即插即用 SaaS 的人、追求「全自动」而不愿参与判断的人、只想要短期效率提升而不愿做长期维护的人、对技术操作完全没有耐心的人。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./next-step.md</span></div>
+                <div class="section-content">
+                    <p>不要试图复制整个 leverage-os。</p>
+                    <p>从一个很小的个人记录系统开始：每天写几条笔记，每周做一次回看，每月审视一次什么值得保留。当你发现某个环节开始重复、开始消耗时间、开始变得不可维护时，再考虑引入自动化和结构化。</p>
+                    <p>系统是为问题服务的，不是为了系统本身而存在。</p>
+                </div>
+            </section>
+
+            <div class="archive-note">
+                <p><strong>⚗ 关于模板和代码</strong></p>
+                <p>leverage-os 是实践框架而非产品。本站展示的是方法论和架构，具体的实现方式因人而异。你可以参考思路，但不必复制配置。</p>
+            </div>
 
         </main>
         <footer class="terminal-footer">
-            <div class="footer-line"><span class="comment"># leverage-os // Public showcase skeleton</span></div>
+            <div class="footer-line"><span class="comment"># leverage-os // Getting Started</span></div>
             <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
                 <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
                 <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>

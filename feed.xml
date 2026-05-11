@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 11 May 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 12 May 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>硅谷的隐形权力层：华人 AI 工程师的地缘政治微观史</title>
+      <link>https://conanxin.github.io/posts/chinese-ai-silicon-valley-power.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/chinese-ai-silicon-valley-power.html</guid>
+      <pubDate>Mon, 12 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[从 Mark Zuckerberg 的旧居到 NeurIPS 的中文社交圈，观察一个被 AGI 狂热与身份焦虑同时驱动的群体。]]></description>
+    </item>
     
     <item>
       <title>我搭建了一套本地化 AI 个人操作系统</title>

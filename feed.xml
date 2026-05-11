@@ -5,8 +5,16 @@
     <link>https://conanxin.github.io</link>
     <description>探索本地 AI、终端工具与人机交互的数字花园</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 02 Apr 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 11 May 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://conanxin.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>我搭建了一套本地化 AI 个人操作系统</title>
+      <link>https://conanxin.github.io/posts/leverage-os-local-ai-personal-os.html</link>
+      <guid isPermaLink="true">https://conanxin.github.io/posts/leverage-os-local-ai-personal-os.html</guid>
+      <pubDate>Sun, 11 May 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[从数字失忆、长期记忆与本地优先出发，记录 leverage-os v0.1 如何成为一个本地化 AI 个人认知基础设施实验。]]></description>
+    </item>
     
     <item>
       <title>Acemoglu《知识崩溃》: AI 时代的人类专业危机</title>

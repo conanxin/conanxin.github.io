@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我搭建了一套本地化 AI 个人操作系统 | Xin Conan</title>
+    <meta name="description" content="从数字失忆、长期记忆与本地优先出发，记录 leverage-os v0.1 如何成为一个本地化 AI 个人认知基础设施实验。">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-05-11</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">ESSAY</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">15 min</span>
+                </div>
+                <h1 class="post-title">我搭建了一套本地化 AI 个人操作系统</h1>
+                <p class="post-subtitle">这不是一篇产品发布，也不是一份安装指南。这是一次关于"AI 时代人如何保留自己的记忆与判断"的记录。</p>
+            </header>
+
+            <div class="post-content">
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./article.md</span>
+                </div>
+
+                <blockquote>这不是一篇产品发布，也不是一份安装指南。这是一次关于"AI 时代人如何保留自己的记忆与判断"的记录。</blockquote>
+
+                <hr>
+
+                <h2>引言：对话越来越多，留下来的越来越少</h2>
+
+                <p>过去一年，我用 AI 做了很多事。写代码、查资料、改文章、做决策、甚至偶尔聊天。对话窗口越开越多，但几个月后再回看，大部分内容已经找不到了。有些对话明明很重要，却因为平台限制、账号切换或者单纯的界面淹没，变成了数字废墟里的一串 token。</p>
+
+                <p>我开始意识到一个问题：AI 帮我生成了大量内容，却没有帮我建立任何可以长期回溯的东西。每次打开新的对话，都是一次失忆后的重新开始。我没有积累，只有消耗。</p>
+
+                <p>这让我想做一个实验：如果我把 AI 从"聊天工具"的位置移开，把它当成一套底层基础设施来用，会发生什么？</p>
+
+                <p>这就是 leverage-os 的起点。它不是效率工具，也不是全自动系统，而是一套本地优先、Agent 驱动的个人认知基础设施。</p>
+
+                <p>需要明确的是，<a href="https://conanxin.github.io/projects/personal-ai-leverage/">leverage-os</a> v0.1 不是一个完整产品，也不是可以下载即用的操作系统。它是第一版公开空间，用来展示这套框架的结构、方法和已经验证过的案例。你可以把它理解为一次公开的现场实验，而不是一份产品说明书。</p>
+
+                <hr>
+
+                <h2>第一节：数字失忆与碎片化生活</h2>
+
+                <p>现代人的信息生活有一个悖论：我们拥有的工具越来越多，记忆却越来越碎片化。</p>
+
+                <p>手机上三个笔记 App、两个收藏夹、五个聊天窗口、一个邮件客户端，信息分散在不同平台，格式互不兼容，搜索功能各自为政。更麻烦的是，这些内容之间没有连接——今天的想法和三个月前的阅读毫无关联，上周的决策依据已经找不到原始资料。</p>
+
+                <p>AI 的出现加剧了这个问题。因为 AI 让"产生内容"变得太容易了，大量半成品的思考、一次性的分析、临时的总结被不断生成，却很少被整理。对话结束后，这些内容要么留在某个平台的云端，要么彻底消失。</p>
+
+                <p>我称这种状态为"数字失忆"——不是真的忘记了，而是信息还在，但你再也找不到它了。</p>
+
+                <p>这里还有一个更深层的问题：平台依赖。当所有记录都分散在不同公司的服务器上，格式由平台定义，导出功能可有可无，你其实并不真正拥有这些信息。本地优先不是技术洁癖，而是控制权问题。当私人记录、长期知识和生活痕迹保存在自己可控制的位置，并使用开放格式时，它们才不只是平台里的数据，而是可以被长期迁移、审计和保留的个人资产。</p>
+
+                <hr>
+
+                <h2>第二节：为什么 AI 不应该只是聊天工具</h2>
+
+                <p>大多数人把 AI 当成一个更聪明的搜索引擎，或者一个随时待命的助手。这个定位本身没问题，但它有一个根本缺陷：对话是线性的、临时的、不可组合的。</p>
+
+                <p>你向 AI 提问，AI 回答，对话结束。这段交互的价值在回答被阅读的那一刻达到峰值，然后迅速衰减。如果你三个月后需要同一个问题的延伸分析，你很可能需要重新提问、重新解释背景、重新建立上下文。</p>
+
+                <p>真正有价值的东西不是单次对话的输出，而是长期积累的认知结构：你关心什么、你如何判断、你的思考如何随时间变化。这些无法通过一次次独立的聊天来建立。</p>
+
+                <p>所以我换了一个思路：让 Agent 成为基础设施，而不是界面。</p>
+
+                <p>什么意思？Agent 不应该等你开口才工作。它应该在后台持续运行，按照你设定的规则处理信息、记录痕迹、提取模式。当你需要它时，它已经有了完整的上下文；当你不需要它时，它在默默维护你的知识底座。</p>
+
+                <p>这是 leverage-os 的核心假设：<a href="https://conanxin.github.io/projects/personal-ai-leverage/manifesto.html">AI 作为基础设施</a>，而不是对话对象。</p>
+
+                <hr>
+
+                <h2>第三节：leverage-os 的四层结构</h2>
+
+                <p>基于这个思路，我设计了一套四层结构，并在 v0.1 中验证了它的可行性：</p>
+
+                <p><strong>输入层</strong>负责捕获。Telegram 消息、CLI 命令、网页阅读、日常想法，所有有价值的信息都通过统一入口进入系统。规则是：先记录，后判断。不要等想清楚再写，而是先留下痕迹。</p>
+
+                <p><strong>处理层</strong>负责运转。Agent 按照定时任务和触发规则运行：每日归档、每周汇总、URL 质量评估、OCR 文档数字化。这一层的原则是自动化处理流程，但不自动化判断。</p>
+
+                <p><strong>知识层</strong>负责沉淀。不是简单的文件堆叠，而是有结构的知识库：来源可追溯、分类有 schema、研究有归档。关键不是存了多少，而是能否在需要时快速定位。</p>
+
+                <p><strong>输出层</strong>负责公开。从私人知识到公共文章的转换需要人工判断。不是所有内容都值得公开，但公开的过程会反向提升私人记录的质量。</p>
+
+                <p>这四层不是技术架构，而是认知习惯。技术只是让这些习惯可持续运行的支撑。</p>
+
+                <h3>一天中的 leverage-os</h3>
+
+                <p>这四层在一个普通的日子里如何运转？大概是这样的：</p>
+
+                <p>早上通勤时，我用 Telegram 快速记录了一个想法，没有展开，只留下了几个关键词。这是<strong>输入</strong>。</p>
+
+                <p>白天读到一篇关于知识管理的文章，觉得有价值，通过 URL ingest 把它存入了 web-clips 归档。这也是<strong>输入</strong>。</p>
+
+                <p>晚上，Agent 自动把今天的 Telegram 记录归入 daily note，把网页文章标记为待评估状态。这是<strong>处理</strong>。</p>
+
+                <p>周末做 weekly review 时，我发现早上那个想法与三个月前的一篇阅读有潜在关联，同时那篇新文章被评估为值得长期保留。这是<strong>处理</strong>向<strong>知识</strong>的过渡。</p>
+
+                <p>经过判断，我把想法和相关阅读一起整理进知识库的一个主题下。两周后，我发现这个主题足够成熟，可以写成一篇公开文章——也就是你现在正在读的这篇。这是<strong>输出</strong>。</p>
+
+                <p>整个过程里，Agent 做了归档、提醒、关联建议，但所有的判断——什么值得保留、什么有关联、什么适合公开——都是人做的。</p>
+
+                <hr>
+
+                <h2>第四节：四个公开案例</h2>
+
+                <p>v0.1 版本中，我开放了四个案例来说明这套个人认知基础设施如何运转：</p>
+
+                <p><strong>Weekly Pipeline / 周连续性流水线</strong>解决的是"时间碎片化"问题。每天记录几条笔记，Agent 每周自动提取关键事件、金句和可延展的故事线。目的不是生成漂亮的周报，而是建立从日到周的时间连续性。</p>
+
+                <p><strong>URL Quality / 阅读质量评估</strong>解决的是"信息过载"问题。不是所有读过的文章都值得保存。通过 READ_STATUS、content_quality、quality_notes 三个维度评估，筛选出真正值得长期归档的内容。</p>
+
+                <p><strong>Skill Governance / 技能治理</strong>解决的是"工具膨胀"问题。Agent 的技能从 0 增长到 100+ 的过程中，分类、归档、索引和审计变得不可或缺。没有治理的系统，规模本身就是负担。</p>
+
+                <p><strong>OCR Benchmark / 文档数字化评估</strong>解决的是"纸质记忆数字化"问题。7 本书、1548 页、0 故障的验证，不是为了展示技术能力，而是为了回答一个实际问题：如何让纸质阅读重新进入可检索的长期记忆系统。</p>
+
+                <p>这些案例的共同点是：它们都不是"AI 能做什么"的展示，而是"人需要记住什么"的回应。</p>
+
+                <hr>
+
+                <h2>第五节：它不是什么</h2>
+
+                <p>为了避免误解，我需要明确说清 leverage-os 不是什么。</p>
+
+                <p>它不是可以直接下载安装的产品。没有一键配置脚本，没有开箱即用的模板，没有五分钟上手教程。它提供的是一套已经被验证过的思维方式和工作方法。</p>
+
+                <p>它不是全自动系统。AI 负责执行层，人负责决策层。自动化的边界非常清晰：可以自动化整理，不能自动化判断；可以自动化提取，不能自动化归因。</p>
+
+                <p>它不是商业项目。没有路线图时间表，没有功能承诺，没有商业模式。它是我个人使用、持续迭代的基础设施，公开出来是因为这些思路可能对其他人有用。</p>
+
+                <p>它也不包含任何私人内容。所有公开的页面都经过脱敏处理，只保留流程、规则与评估框架。私人记录存储在本地设备，不上传任何云端服务。</p>
+
+                <hr>
+
+                <h2>第六节：我从 v0.1 学到的东西</h2>
+
+                <p>搭建 v0.1 的过程让我确认了几件事：</p>
+
+                <p>第一，系统的价值不在于规模，而在于持续性。一个每天使用的简单系统，比一个完美但从未运行的复杂系统更有价值。</p>
+
+                <p>第二，判断比整理更难。让 AI 帮你分类、归档、提取关键词都不难，难的是判断什么值得保留、什么应该遗忘、什么需要公开。这些判断不能外包。</p>
+
+                <p>第三，本地优先不是技术偏好，而是认知偏好。当数据存储在本地、格式开放、不依赖特定平台时，你才真正拥有它。这种"拥有感"会影响你记录和思考的方式。</p>
+
+                <p>第四，公开是私人系统的质量检验。当你需要把私人笔记转化为公共文章时，你会发现很多自以为清晰的想法其实漏洞百出。公开不是为了表演，而是为了校准。</p>
+
+                <hr>
+
+                <h2>结尾：保留时间、记忆和判断</h2>
+
+                <p>很多人对 AI 的想象是"让它替我做事"。但我越来越觉得，更好的想象是"让它帮我记住"。</p>
+
+                <p>记住我读过什么、想过什么、做过什么、为什么这么做。不是以数据的形式，而是以可回溯、可连接、可延续的方式。</p>
+
+                <p>leverage-os 是我朝这个方向做的一次实验。它还不完整，可能永远也不会"完整"。但 v0.1 已经证明了一件事：AI 不应该让人变得更像机器，而应该帮助人保留那些机器无法替代的东西——时间、记忆和判断。</p>
+
+                <p>如果你对这个方向感兴趣，可以从<a href="https://conanxin.github.io/projects/personal-ai-leverage/getting-started.html">入门页</a>开始，或者直接从<a href="https://conanxin.github.io/projects/personal-ai-leverage/">项目首页</a>了解全貌。</p>
+
+                <p>系统的具体形态因人而异。重要的是找到属于你自己的"输入→处理→输出"闭环，然后让它持续运转下去。</p>
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

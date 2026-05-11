@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Little Archivist — v0.5 Public Demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0",
+      "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Mobile / Performance Notice -->
+  <div id="mobile-notice" class="mobile-notice hidden">
+    <div class="notice-content">
+      <strong>📱 Mobile Detected</strong>
+      <p>For best experience, use <strong>desktop</strong> or <strong>landscape mode</strong>.</p>
+      <button id="btn-dismiss-mobile" class="notice-close">Dismiss</button>
+    </div>
+  </div>
+
+  <div id="ui">
+    <!-- Version Navigation -->
+    <nav class="version-nav">
+      <a href="../index.html">Home</a>
+      <a href="../v0_1/">v0.1</a>
+      <a href="../v0_2/">v0.2</a>
+      <a href="../v0_3/">v0.3</a>
+      <a href="../v0_4/">v0.4</a>
+      <span class="current">v0.5</span>
+    </nav>
+
+    <header>
+      <div class="demo-badge">v0.5 Public Demo</div>
+      <h1>The Little Archivist</h1>
+      <p class="subtitle">A browser-based narrative automata prototype</p>
+      <p class="tagline">Structure, breath, and state.</p>
+      <p class="hint">This is an interpretive digital prototype, not a physical simulation.</p>
+    </header>
+
+    <!-- Quick Start Guide -->
+    <div class="section demo-guide">
+      <h2>🚀 Quick Start</h2>
+      <ol class="guide-steps">
+        <li>Click <strong>Motion</strong> mode</li>
+        <li>Select <strong>Reading</strong> state</li>
+        <li>Turn on <strong>Auto Cycle</strong></li>
+        <li>Use <strong>Side</strong> or <strong>3/4</strong> View</li>
+      </ol>
+      <p class="guide-hint">Or try a preset below ↓</p>
+    </div>
+
+    <!-- Recommended Presets -->
+    <div class="section presets-section">
+      <h2>Recommended Presets</h2>
+      <div class="preset-buttons">
+        <button id="preset-best-look" class="preset-btn primary">Best First Look</button>
+        <button id="preset-mechanism" class="preset-btn">Mechanism Explanation</button>
+        <button id="preset-exploded" class="preset-btn">Structure Exploded</button>
+      </div>
+    </div>
+
+    <!-- State Control -->
+    <div class="section state-section">
+      <h2>Current State</h2>
+      <div id="state-badge" class="state-badge">Idle</div>
+      <div class="control-row">
+        <label for="state-select">Switch State</label>
+        <select id="state-select"></select>
+      </div>
+      <div class="motion-row">
+        <button id="btn-auto-cycle" class="cycle-btn">Auto Cycle: OFF</button>
+        <button id="btn-next-state" class="step-btn">Next State</button>
+      </div>
+    </div>
+
+    <!-- Narrative -->
+    <div class="section narrative-section">
+      <h2>Narrative</h2>
+      <div id="narrative-text" class="narrative-text">The archivist waits.</div>
+      <div id="state-duration" class="state-duration">In this state: 0s</div>
+    </div>
+
+    <!-- Mode Switch -->
+    <div class="section">
+      <h2>View Mode</h2>
+      <div class="mode-buttons">
+        <button id="mode-assembly" class="mode-btn active">Assembly</button>
+        <button id="mode-parts" class="mode-btn">Parts</button>
+        <button id="mode-exploded" class="mode-btn">Exploded</button>
+        <button id="mode-motion" class="mode-btn">Motion</button>
+      </div>
+    </div>
+
+    <!-- View Angles -->
+    <div class="section">
+      <h2>View Angle</h2>
+      <div class="angle-buttons">
+        <button class="angle-btn" data-angle="front">Front</button>
+        <button class="angle-btn" data-angle="side">Side</button>
+        <button class="angle-btn" data-angle="top">Top</button>
+        <button class="angle-btn" data-angle="threequarter">3/4</button>
+        <button class="angle-btn" data-angle="mechanism">Mech</button>
+      </div>
+    </div>
+
+    <!-- Motion Controls -->
+    <div class="section motion-controls" id="motion-section">
+      <h2>Motion Controls</h2>
+      <div class="motion-row">
+        <button id="btn-play" class="play-btn">▶ Play</button>
+        <button id="btn-step" class="step-btn">Step +10°</button>
+      </div>
+      <div class="slider-wrap">
+        <label>Phase</label>
+        <input type="range" id="phase-slider" min="0" max="360" value="0" step="1">
+        <span id="phase-value">0°</span>
+      </div>
+      <div class="slider-wrap">
+        <label>Speed</label>
+        <input type="range" id="speed-slider" min="1" max="5" value="1" step="1">
+        <span id="speed-label">Very Slow</span>
+      </div>
+      <div class="slider-wrap">
+        <label>Amplitude</label>
+        <input type="range" id="amp-slider" min="0.3" max="1.5" value="0.6" step="0.1">
+        <span id="amp-label">Subtle</span>
+      </div>
+      <div class="control-row">
+        <label for="profile-select">Profile</label>
+        <select id="profile-select">
+          <option value="mechanical">A — Mechanical Sine</option>
+          <option value="slow">B — Slow Breathing</option>
+          <option value="tired">C — Tired / Resting</option>
+          <option value="sleeping">D — Sleeping</option>
+          <option value="alert">E — Alert Lift</option>
+        </select>
+      </div>
+      <div class="toggles compact">
+        <label class="toggle">
+          <input type="checkbox" id="chk-motion-path">
+          <span>Motion Path</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="chk-mechanism-only">
+          <span>Mech Only</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Part Visibility -->
+    <div class="section">
+      <h2>Parts</h2>
+      <div id="parts-list" class="parts-list"></div>
+    </div>
+
+    <!-- Explode Slider -->
+    <div class="section disabled" id="explode-section">
+      <h2>Explode</h2>
+      <div class="slider-wrap">
+        <input type="range" id="explode-slider" min="0" max="100" value="0" step="1">
+        <span id="explode-value">0%</span>
+      </div>
+    </div>
+
+    <!-- Toggles -->
+    <div class="section toggles">
+      <label class="toggle">
+        <input type="checkbox" id="chk-labels" checked>
+        <span>Labels</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="chk-auto-rotate" checked>
+        <span>Auto Rotate</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="chk-wireframe">
+        <span>Wireframe</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="chk-dark-bg" checked>
+        <span>Dark BG</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="chk-performance">
+        <span>Performance Mode</span>
+      </label>
+    </div>
+
+    <!-- State Info -->
+    <div class="section info-panel">
+      <h2>State Info</h2>
+      <div id="state-info-content">
+        <div class="info-row">
+          <span class="label">State</span>
+          <span id="si-state" class="value">Idle</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Profile</span>
+          <span id="si-profile" class="value">Sleeping</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Speed</span>
+          <span id="si-speed" class="value">Very Slow</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Amplitude</span>
+          <span id="si-amp" class="value">Subtle</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Body Energy</span>
+          <span id="si-energy" class="value">10%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagnostics Panel -->
+    <div class="section diagnostics-panel">
+      <h2 class="diagnostics-header">
+        <button id="btn-toggle-diagnostics" class="diag-toggle">▼ Diagnostics</button>
+      </h2>
+      <div id="diagnostics-content" class="diagnostics-content collapsed">
+        <div class="info-row">
+          <span class="label">Three.js</span>
+          <span id="diag-threejs" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">states_config</span>
+          <span id="diag-states" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">parts_config</span>
+          <span id="diag-parts" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">STL Loaded</span>
+          <span id="diag-stl" class="value">0/0</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Mode</span>
+          <span id="diag-mode" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">State</span>
+          <span id="diag-state" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Profile</span>
+          <span id="diag-profile" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">WebGL</span>
+          <span id="diag-webgl" class="value">—</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Last Error</span>
+          <span id="diag-error" class="value">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part Info -->
+    <div class="section info-panel" id="info-panel">
+      <h2>Part Info</h2>
+      <div id="info-content">
+        <p class="info-placeholder">Click a part to inspect.</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="section actions">
+      <button id="btn-reset">Reset View</button>
+      <button id="btn-fit">Fit to View</button>
+    </div>
+
+    <footer>
+      <p>Mouse: Left = Rotate · Right = Pan · Scroll = Zoom · Click = Inspect</p>
+      <p>STL source: <code>stl/cam_a_breathing_v0_1/</code></p>
+      <p class="version-footer">v0.5 Public Demo — <a href="../index.html">All versions</a></p>
+    </footer>
+  </div>
+
+  <div id="canvas-container"></div>
+
+  <!-- Loading / Error Overlay -->
+  <div id="loading-overlay">
+    <div class="loading-content">
+      <div class="loading-title">Loading The Little Archivist…</div>
+      <div class="loading-status" id="loading-status">Initializing…</div>
+      <div class="loading-resources" id="loading-resources"></div>
+      <div class="loading-spinner"></div>
+      <div class="loading-error hidden" id="loading-error">
+        <div class="error-title">⚠️ Taking longer than expected</div>
+        <ul class="error-suggestions">
+          <li>Check browser console (F12 → Console) for errors</li>
+          <li>Try refreshing the page</li>
+          <li>Ensure WebGL is enabled in your browser</li>
+          <li>STL files are loaded from this domain — no CDN required</li>
+          <li>If on mobile, try desktop for full experience</li>
+        </ul>
+        <button id="btn-reload" class="reload-btn">↻ Reload Page</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

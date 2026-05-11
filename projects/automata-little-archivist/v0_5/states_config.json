@@ -1,0 +1,99 @@
+{
+  "states": [
+    {
+      "id": "idle",
+      "label": "Idle",
+      "description": "The archivist is present but not actively reading. Minimal motion, low energy. It is waiting, but not for anything specific. The body is still, the breath is shallow. This is the default state when no one is near.",
+      "default_motion_profile": "sleeping",
+      "speed": 1,
+      "amplitude": 0.4,
+      "pause_bias": "long_pauses",
+      "body_energy": 0.1,
+      "visual_note": "Head slightly lowered. Breath barely visible. The archivist seems to be resting its eyes.",
+      "narrative_note": "It is here. It is not doing anything important. Its stillness is not emptiness — it is patience.",
+      "transition_from": ["reading", "observer", "awake"],
+      "typical_duration_seconds": 60,
+      "color": "#6a6864"
+    },
+    {
+      "id": "reading",
+      "label": "Reading",
+      "description": "The archivist is focused on the page. Steady, rhythmic breathing with moderate depth. The body leans forward slightly more than usual. This is the primary active state — the state of absorption.",
+      "default_motion_profile": "slow",
+      "speed": 2,
+      "amplitude": 0.6,
+      "pause_bias": "short_pauses",
+      "body_energy": 0.4,
+      "visual_note": "Head at normal reading angle. Breath visible but calm. The body has a slight forward urgency.",
+      "narrative_note": "It is reading. Not for you. For itself. The page turns occasionally. The breath is the only sound.",
+      "transition_from": ["idle", "observer", "awake"],
+      "typical_duration_seconds": 120,
+      "color": "#c4956a"
+    },
+    {
+      "id": "sleeping",
+      "label": "Sleeping",
+      "description": "The archivist has entered deep rest. Breathing is minimal, almost imperceptible. Long pauses between breaths. The body seems heavier, more grounded. Occasionally a micro-twitch suggests dream-activity.",
+      "default_motion_profile": "sleeping",
+      "speed": 1,
+      "amplitude": 0.25,
+      "pause_bias": "very_long_pauses",
+      "body_energy": 0.05,
+      "visual_note": "Head tilted slightly back from reading position. Body seems to sink into itself. Motion is rare.",
+      "narrative_note": "It sleeps. Not because it is tired, but because night has arrived. Its dreams are not yours to know.",
+      "transition_from": ["idle", "reading"],
+      "typical_duration_seconds": 180,
+      "color": "#4a4a52"
+    },
+    {
+      "id": "observer",
+      "label": "Observer",
+      "description": "The archivist has noticed something. Breathing pauses or becomes very shallow. The head lifts slightly, as if listening or watching. There is a tension in the stillness — the opposite of idle.",
+      "default_motion_profile": "alert",
+      "speed": 1,
+      "amplitude": 0.3,
+      "pause_bias": "single_long_pause",
+      "body_energy": 0.2,
+      "visual_note": "Head lifts 5–10° from reading position. The body does not move. Only the breath pauses, then resumes cautiously.",
+      "narrative_note": "It heard something. Or sensed something. It is not alarmed, but it is attentive. Then it decides: nothing. And returns to reading.",
+      "transition_from": ["reading", "idle", "sleeping"],
+      "typical_duration_seconds": 8,
+      "color": "#8a7055"
+    },
+    {
+      "id": "awake",
+      "label": "Awake",
+      "description": "The archivist transitions from sleep to awareness. Breathing gradually deepens and speeds up. There is a moment of confusion, then recognition. The body re-establishes its reading posture.",
+      "default_motion_profile": "slow",
+      "speed": 2,
+      "amplitude": 0.5,
+      "pause_bias": "short_pauses",
+      "body_energy": 0.3,
+      "visual_note": "Head lifts from sleep position. The first breaths are deep and slightly irregular, then stabilize.",
+      "narrative_note": "Morning has come. It wakes not with a start, but with a slow remembering. First: where am I. Then: the desk. Then: the book. Then: the breath resumes.",
+      "transition_from": ["sleeping"],
+      "typical_duration_seconds": 20,
+      "color": "#d4a57a"
+    }
+  ],
+  "auto_cycle_sequence": [
+    "idle",
+    "reading",
+    "observer",
+    "idle",
+    "sleeping",
+    "awake",
+    "reading",
+    "idle"
+  ],
+  "global": {
+    "state_transition_duration_seconds": 3,
+    "idle_to_reading_trigger": "environmental_activity",
+    "reading_to_idle_trigger": "inactivity_timeout",
+    "reading_to_observer_trigger": "sudden_sound",
+    "observer_to_reading_trigger": "no_threat_detected",
+    "idle_to_sleeping_trigger": "night_time",
+    "sleeping_to_awake_trigger": "morning_light",
+    "awake_to_reading_trigger": "stabilization"
+  }
+}

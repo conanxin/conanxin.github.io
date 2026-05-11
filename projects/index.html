@@ -240,9 +240,10 @@
         // Render projects from data.json
         const CATEGORY_LABELS = {
             systems: 'Systems / Workflows',
-            creative: 'Creative Projects'
+            creative: 'Creative Projects',
+            research: 'Research / Archives'
         };
-        const CATEGORY_ORDER = ['systems', 'creative'];
+        const CATEGORY_ORDER = ['systems', 'creative', 'research'];
 
         fetch('/projects/data.json')
             .then(r => r.json())

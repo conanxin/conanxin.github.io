@@ -2,7 +2,7 @@
 
 ## Overview
 
-v0.6 is a low-risk validation version based on v0.5 Public Demo. The primary change is the introduction of a shared model assets directory (`../assets/models/`) to reduce STL duplication across versions.
+v0.6 is a low-risk validation version copied directly from v0.5 Public Demo. The primary change is the shared model path configuration (`../assets/models/` in `app.js`) to reduce STL duplication across versions.
 
 ## What Changed from v0.5
 

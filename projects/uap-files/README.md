@@ -1,9 +1,83 @@
-# The UAP Files — Web Prototype v0.5
+# The UAP Files — Live Release v0.6.2
 
-> 美国 UFO 档案中的未知、误读与国家安全想象
+**v0.6.2: Project Index Live Fix · Static Card · Version Label**
+- `/projects/` 页现在有静态 UAP Files 入口卡片（不依赖 JS fetch 渲染）
+- `projects/uap-files/index.html` 页脚版本更新为 `Live Release v0.6.2`
+- UAP Files 不再显示"本页面为静态原型，不部署至公网"
+
+**v0.6.1: Project Index Fix · Link Audit · Chinese Content Deepening**
 
 **PURSUE Release 01 · 2026-05-08 · DOW / ODNI / AARO**
-**v0.5: Responsive Visual QA & Mobile Polish — 响应式视觉审计与移动端优化**
+
+---
+
+## v0.6.1 变更日志 (Changelog)
+
+### Project Index Fix · Link Audit · 中文内容深化
+
+**时间：** 2026-05-11
+**目标：** 修复首页入口缺失、失效链接、案例介绍深化
+
+#### A. 项目首页入口修复
+- **问题：** projects/index.html 中 `CATEGORY_ORDER = ['systems', 'creative']` 不含 'research'，导致 data.json 中 category="research" 的 UAP Files 被静默忽略
+- **修复：** 在 `CATEGORY_LABELS` 中新增 `research: 'Research / Archives'`，在 `CATEGORY_ORDER` 中新增 `'research'`；同时将 data.json 中 uap-files 条目的 category 从 "research" 改为 "systems"
+- **结果：** UAP Files 现作为 Research / Archives 类型出现在 Systems / Workflows 区域 ✓
+
+#### B. 链接巡检
+- 创建工具：`tools/link_audit_uap.py`（Python 标准库，HEAD+GET 双协议，超时 15s）
+- 巡检范围：index.html、data.js、README.md 中所有 http/https 链接
+- 巡检结果：
+  - war.gov PURSUE PDF 直链：**403**（UA 屏蔽，非真失效，但不可访问）
+  - defense.gov DoD UAP 视频页：**403**（UA 屏蔽）
+  - NASA Apollo 12 档案页：**404**（已迁移）
+  - NASA Gemini VII 任务页：**404**（已迁移）
+  - AARO FY2023 年报：**DNS/连接不可达**
+  - FBI Vault UAP 档案：**404**（已下线）
+  - NYTimes Tic Tac 报道：**ACCESS_RESTRICTED**（订阅墙）
+  - NARA、NIST、National Archives UK：**200 OK** ✓
+  - NASA UAP 科学网站 (science.nasa.gov/uap/)：**200 OK** ✓
+
+#### C. 失效链接处理
+| 案例 | 原链接 | 处理方式 |
+|------|--------|---------|
+| Gemini VII 1965 | nasa.gov/gemini7.html (404) | 改用 NARA PURSUE textual 目录入口 |
+| Apollo 12 | war.gov PDF 直链 (403) | 改用 NARA PURSUE textual 目录入口，说明需搜索编号 |
+| USS Nimitz Tic Tac | defense.gov (403) | 改用 NASA UAP 科学网站 (science.nasa.gov/uap/) |
+| GOFAST | defense.gov (403) | 改用 NASA UAP 科学网站 |
+| 2023 Orbs | aaro.mil (DNS 不可达) | 改用 NARA PURSUE textual 目录入口 |
+| Pentagon AATIP | defense.gov (403) | 改用 NASA UAP 科学网站 |
+| FBI Louisville | vault.fbi.gov (404) | 改用 NARA Project Blue Book 入口，说明 FBI Vault 已下线 |
+
+#### D. 中文化深化
+- 所有按钮标签、状态徽章、证据强度说明均已中文优先
+- STATUS_FILTERS 标签：`全部来源 / 官方来源 Verified / 二手来源 Secondary / 待核实 Needs Review`
+- Apollo 11 标题改为：`Apollo 11 — 月球闪光 / 宇宙射线光幻视`
+- Apollo 12 标题改为：`Apollo 12 — 月球轨道光点 / 伴星现象`
+
+#### E. 案例内容深化 (deep_dive)
+每个案例新增 5 字段中文解读：
+- `📌 发生了什么`：档案里记录了什么（中文）
+- `💡 为什么有意思`：这个案例的独特价值
+- `📊 证据边界`：数据的局限性
+- `🔎 合理推测`：基于现有信息的可能解释方向
+- `📂 如何继续查`：推荐来源和查询关键词
+
+已深化案例（10/10）：
+1. Gemini VII — 轨道碎片、冰晶与微重力视觉误判
+2. Apollo 11 — 宇宙射线光幻视与宇航员视网膜
+3. Apollo 12 — 月球轨道反光与无大气散射环境
+4. Pan Am 1947 — 商业航班飞行员目击与 Kenneth Arnold 时代
+5. Rendlesham Forest — 冷战盟国联合关注与灯塔解释矛盾
+6. USS Nimitz Tic Tac — 现代最强证据链与气球/无人机可能性
+7. GOFAST — 红外传感器伪影与气球假说
+8. 2023 Orbs — AARO 现代报告与窗户反光解释
+9. FBI Louisville — FBI 内部备忘录与 UFO 调查怀疑态度
+10. Pentagon AATIP — 机密研究与"外星人"媒体叙事偏差
+
+#### F. Pan Am 1947 状态确认
+- **保持 `needs_review / 待核实`**
+- caution_note 和 source_verification_note 均已更新，说明：NARA streaming scan 未命中 'Pan Am' 共现关键词；FBI Vault 原链接已下线（404）
+- 不得因"降低 needs_review 数量"而强行升级
 
 ---
 
@@ -251,7 +325,7 @@ python3 -m http.server 8765
 - NARA UAP Textual & Microfilm：https://www.archives.gov/research/topics/uaps/textual-and-microfilm
 - NARA UAP Bulk Downloads：https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download
 - NASA Apollo 11：https://www.nasa.gov/mission_pages/apollo/apollo11.html
-- NASA Apollo 12：https://www.nasa.gov/mission_pages/apollo/apollo12.html
+- NASA Apollo 12：https://www.nasa.gov/mission/apollo-12/
 
 ### 历史档案参考
 - UK National Archives UFO Reports：https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/
@@ -476,7 +550,7 @@ v0.3.3 probe 运行结果：
   - catalog-export-597821.json：https://s3.amazonaws.com/NARAprodstorage/lz/bulk-downloads/uaps/JSON/catalog-export-597821.json (**85.7 MB — 超出 25 MB 限制，已跳过**)
   - catalog-export-40027753.json：https://s3.amazonaws.com/NARAprodstorage/lz/bulk-downloads/uaps/JSON/catalog-export-40027753.json (24 KB ✓)
 - NASA Apollo 11：https://www.nasa.gov/mission_pages/apollo/apollo11.html
-- NASA Apollo 12：https://www.nasa.gov/mission_pages/apollo/apollo12.html
+- NASA Apollo 12：https://www.nasa.gov/mission/apollo-12/
 
 ### 历史档案参考
 - UK National Archives UFO Reports：https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/
@@ -706,7 +780,7 @@ source_status 分布维持 v0.3：`verified×5 / secondary_only×4 / needs_revie
 - NARA UAP Textual & Microfilm：https://www.archives.gov/research/topics/uaps/textual-and-microfilm
 - NARA UAP Bulk Downloads：https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download
 - NASA Apollo 11：https://www.nasa.gov/mission_pages/apollo/apollo11.html
-- NASA Apollo 12：https://www.nasa.gov/mission_pages/apollo/apollo12.html
+- NASA Apollo 12：https://www.nasa.gov/mission/apollo-12/
 
 ### 历史档案参考
 - UK National Archives UFO Reports：https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/

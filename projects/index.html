@@ -143,6 +143,23 @@
             <!-- Rendered by JS from projects/data.json -->
             <div id="projects-container"></div>
 
+            <!-- Static fallback: visible to crawlers and when JS fails -->
+            <div id="static-creative-fallback">
+                <div class="category-header">
+                    <span class="category-label">Creative Projects</span>
+                </div>
+                <a class="project-card" href="./automata-little-archivist/">
+                    <div class="card-meta">
+                        <span class="card-type">INTERACTIVE ARTIFACT</span>
+                        <span class="separator">//</span>
+                        <span class="card-status" style="color:#58a6ff;">进行中</span>
+                    </div>
+                    <div class="card-title">The Little Archivist / 小档案员</div>
+                    <div class="card-summary">AI × Automata × Narrative Artifact 的浏览器数字原型：结构预览、爆炸视图、呼吸动作模拟与叙事状态机。</div>
+                    <div class="card-date">updated: 2026-05-11</div>
+                </a>
+            </div>
+
             <!-- Noscript fallback -->
             <noscript>
                 <div class="category-header">
@@ -230,6 +247,10 @@
         fetch('/projects/data.json')
             .then(r => r.json())
             .then(projects => {
+                // Hide static fallback since JS rendering succeeded
+                const staticFallback = document.getElementById('static-creative-fallback');
+                if (staticFallback) staticFallback.style.display = 'none';
+
                 const container = document.getElementById('projects-container');
                 // Group by category
                 const groups = {};

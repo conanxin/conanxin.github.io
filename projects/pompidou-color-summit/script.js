@@ -1,5 +1,5 @@
-// ===== SITE VERSION (Phase 7.1 — single source of truth) =====
-const SITE_VERSION = "Phase 7.1 · Filter Fix · 2026-05-10";
+// ===== SITE VERSION (Phase 7.2 — single source of truth) =====
+const SITE_VERSION = "Phase 7.2 · Random Route Fix · 2026-05-10";
 
 // ===== SVG PLACEHOLDER GENERATOR =====
 function generateSVGPlaceholder(colorRoom, seed) {
@@ -282,11 +282,12 @@ function setupGlobalSearch() {
   });
 }
 
-// ===== CLEAR ALL FILTERS (Phase 7.1) =====
+// ===== CLEAR ALL FILTERS (Phase 7.1 + 7.2) =====
 function clearAllFilters() {
   const input = document.getElementById('globalSearch');
   if (input) input.value = '';
   window._activeChipTag = '';
+  window._randomRouteIds = null;
 
   // Reset area filter to 'all'
   document.querySelectorAll('.ex-filter-btn').forEach(b => b.classList.remove('active'));
@@ -307,6 +308,10 @@ function clearAllFilters() {
 
   // Clear active chip
   document.querySelectorAll('.tag-chip').forEach(c => c.classList.remove('active'));
+
+  // Clear searchResultCount
+  const countEl = document.getElementById('searchResultCount');
+  if (countEl) countEl.textContent = '';
 
   applyAllFilters();
 }
@@ -331,6 +336,7 @@ function updateFilterStatus() {
   const searchQ = document.getElementById('globalSearch')?.value.trim() || '';
   const speedActive = document.getElementById('speedModeBtn')?.classList.contains('speed-active');
   const chipTag = window._activeChipTag || '';
+  const randomActive = window._randomRouteIds && window._randomRouteIds.size > 0;
 
   if (speedActive) {
     label = `速看模式 · ${visible} 件`;
@@ -363,17 +369,18 @@ function updateFilterStatus() {
     emptyEl.style.display = visible === 0 ? '' : 'none';
   }
   if (clearBtnWrap) {
-    clearBtnWrap.style.display = visible === 0 || searchQ || speedActive || chipTag || activeArea !== 'all' || activeRoute !== 'all' ? '' : 'none';
+    clearBtnWrap.style.display = visible === 0 || searchQ || speedActive || chipTag || randomActive || activeArea !== 'all' || activeRoute !== 'all' ? '' : 'none';
   }
 }
 
-// ===== APPLY ALL FILTERS (Phase 7.1) =====
+// ===== APPLY ALL FILTERS (Phase 7.1 + 7.2 random route) =====
 function applyAllFilters() {
   const activeArea = document.querySelector('.ex-filter-btn.active')?.dataset.areaFilter || 'all';
   const activeRoute = document.querySelector('.route-filter-btn.active')?.dataset.route || 'all';
   const searchQ = (document.getElementById('globalSearch')?.value || '').trim().toLowerCase();
   const speedActive = document.getElementById('speedModeBtn')?.classList.contains('speed-active');
   const chipTag = window._activeChipTag || '';
+  const randomActive = window._randomRouteIds && window._randomRouteIds.size > 0;
 
   const cards = document.querySelectorAll('.exhibit-card');
   let visible = 0;
@@ -382,6 +389,13 @@ function applyAllFilters() {
     if (!window._allWorks) return;
     const work = window._allWorks.find(w => 'work-' + w.id === card.id);
     if (!work) { card.style.display = 'none'; return; }
+
+    // Random route mode takes full control
+    if (randomActive) {
+      card.style.display = window._randomRouteIds.has(work.id) ? '' : 'none';
+      if (window._randomRouteIds.has(work.id)) visible++;
+      return;
+    }
 
     let show = activeArea === 'all' || card.dataset.area === activeArea;
 
@@ -603,8 +617,11 @@ function setupRouteFilter() {
   document.getElementById('randomRouteBtn').addEventListener('click', () => {
     const works = window._allWorks || [];
     if (!works.length) return;
-    // Pick 8 works, one from each area, prioritizing route diversity
-    const routeKeys = ['color_structure', 'dream_surreal', 'modern_body', 'abstraction_zero', 'media_politics', 'chinese_response', 'music_rhythm'];
+
+    // Step 1: clear all filter state (search, area, route, speed, chips)
+    clearAllFilters();
+
+    // Step 2: pick 5–8 works, one from each area, prioritizing cross-area diversity
     const selected = [];
     const shuffled = [...works].sort(() => Math.random() - 0.5);
     shuffled.forEach(w => {
@@ -613,19 +630,30 @@ function setupRouteFilter() {
         selected.push(w);
       }
     });
-    // Fill remaining slots
-    if (selected.length < 8) {
+    // Fill remaining slots (aim for 5–8)
+    if (selected.length < 5) {
       shuffled.forEach(w => {
         if (selected.length >= 8) return;
         if (!selected.includes(w)) selected.push(w);
       });
     }
-    // Show only selected
-    document.querySelectorAll('.exhibit-card').forEach(card => {
-      const id = card.querySelector('.expand-btn')?.dataset.id;
-      card.style.display = selected.some(s => s.id === id) ? '' : 'none';
-    });
-    alert(`🎲 随机路线已生成！共 ${selected.length} 件作品，跨越 ${[...new Set(selected.map(s => s.color_area))].length} 个颜色展区。`);
+
+    // Step 3: store random route IDs and activate filter
+    window._randomRouteIds = new Set(selected.map(s => s.id));
+    window._activeChipTag = '随机观展路线';
+
+    // Step 4: apply unified filter (will use _randomRouteIds)
+    applyAllFilters();
+
+    // Step 5: show toast-like status instead of alert
+    const areas = [...new Set(selected.map(s => s.color_area))].length;
+    const countEl = document.getElementById('searchResultCount');
+    if (countEl) countEl.textContent = `🎲 随机路线已生成 · ${selected.length} 件作品 · 跨越 ${areas} 个颜色展区`;
+    const statusEl = document.getElementById('filterStatus');
+    if (statusEl) statusEl.textContent = `随机观展路线 · ${selected.length} 件`;
+
+    // Step 6: scroll to exhibit grid
+    document.getElementById('exhibitsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   // Speed mode
@@ -636,11 +664,6 @@ function setupRouteFilter() {
     btn.textContent = active ? '⚡ 速看模式（开启）' : '⚡ 速看模式';
     applyAllFilters();
   });
-}
-
-function applyAllFilters() {
-  const activeArea = document.querySelector('.ex-filter-btn.active')?.dataset.areaFilter || 'all';
-  filterExhibitsByArea(activeArea);
 }
 
 // ===== ROUTES =====

@@ -39,6 +39,19 @@
     "featured": true
   },
   {
+    "title": "The Little Archivist / 小档案员",
+    "slug": "automata-little-archivist",
+    "category": "creative",
+    "type": "INTERACTIVE ARTIFACT",
+    "status": "进行中",
+    "status_color": "#58a6ff",
+    "updated": "2026-05-11",
+    "summary": "AI × Automata × Narrative Artifact 的浏览器数字原型：结构预览、爆炸视图、呼吸动作模拟与叙事状态机。",
+    "entry_url": "./automata-little-archivist/",
+    "source_kind": "interactive",
+    "featured": true
+  },
+  {
     "title": "Podcast Novelizer",
     "slug": "podcast-novelizer",
     "category": "creative",

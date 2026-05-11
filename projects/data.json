@@ -115,5 +115,27 @@
     "source_kind": "static-site",
     "featured": true,
     "title": "色彩之巅！法国蓬皮杜中心馆藏艺术大师特展"
+  },
+  {
+    "title": "The UAP Files — 美国 UFO 档案",
+    "slug": "uap-files",
+    "category": "systems",
+    "type": "RESEARCH ARCHIVE",
+    "status": "已上线",
+    "status_color": "#ff6b6b",
+    "updated": "2026-05-11",
+    "summary": "一个中文线上小展览，用 PURSUE / UAP 档案展示未知现象、证据边界、国家安全想象与公众神话。未解释，不等于外星。",
+    "entry_url": "/projects/uap-files/",
+    "source_kind": "local",
+    "featured": true,
+    "tags": [
+      "UAP",
+      "UFO",
+      "archive",
+      "national security",
+      "NASA",
+      "Project Blue Book",
+      "PURSUE"
+    ]
   }
 ]

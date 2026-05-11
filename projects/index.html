@@ -146,6 +146,19 @@
             <!-- Static fallback: visible to crawlers and when JS fails -->
             <div id="static-creative-fallback">
                 <div class="category-header">
+                    <span class="category-label">Systems / Workflows</span>
+                </div>
+                <a class="project-card" href="./uap-files/">
+                    <div class="card-meta">
+                        <span class="card-type">RESEARCH ARCHIVE</span>
+                        <span class="separator">//</span>
+                        <span class="card-status" style="color:#ff6b6b;">已上线</span>
+                    </div>
+                    <div class="card-title">The UAP Files — 美国 UFO 档案</div>
+                    <div class="card-summary">中文线上小展览：用 PURSUE / UAP 档案展示未知现象、证据边界、国家安全想象与公众神话。未解释，不等于外星。</div>
+                    <div class="card-date">updated: 2026-05-11</div>
+                </a>
+                <div class="category-header">
                     <span class="category-label">Creative Projects</span>
                 </div>
                 <a class="project-card" href="./automata-little-archivist/">
@@ -240,9 +253,10 @@
         // Render projects from data.json
         const CATEGORY_LABELS = {
             systems: 'Systems / Workflows',
-            creative: 'Creative Projects'
+            creative: 'Creative Projects',
+            research: 'Research / Archives'
         };
-        const CATEGORY_ORDER = ['systems', 'creative'];
+        const CATEGORY_ORDER = ['systems', 'creative', 'research'];
 
         fetch('/projects/data.json')
             .then(r => r.json())

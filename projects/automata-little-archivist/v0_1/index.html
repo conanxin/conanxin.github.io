@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Little Archivist — v0.1 STL Preview</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0",
+      "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="ui">
+    <header>
+      <h1>The Little Archivist</h1>
+      <p class="subtitle">v0.1 Unified Body — STL Preview</p>
+      <p class="hint">This is a local engineering preview, not a final render.</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-row">
+        <label for="model-select">Model</label>
+        <select id="model-select"></select>
+      </div>
+
+      <div class="control-row">
+        <button id="btn-reset">Reset View</button>
+        <button id="btn-fit">Fit to View</button>
+      </div>
+
+      <div class="control-row toggles">
+        <label class="toggle">
+          <input type="checkbox" id="chk-auto-rotate" checked>
+          <span>Auto Rotate</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="chk-wireframe">
+          <span>Wireframe</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="chk-dark-bg" checked>
+          <span>Dark BG</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="info-row">
+        <span class="label">Current:</span>
+        <span id="current-model">Loading…</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Category:</span>
+        <span id="current-category">—</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Triangles:</span>
+        <span id="triangle-count">—</span>
+      </div>
+      <div class="info-row description">
+        <span id="model-description">Select a model to view details.</span>
+      </div>
+    </div>
+
+    <footer>
+      <p>Mouse: Left = Rotate · Right = Pan · Scroll = Zoom</p>
+      <p>STL source: <code>stl/cam_a_breathing_v0_1/</code></p>
+    </footer>
+  </div>
+
+  <div id="canvas-container"></div>
+  <div id="loading-overlay">Loading…</div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

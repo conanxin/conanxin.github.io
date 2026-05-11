@@ -100,7 +100,7 @@
     "summary": "基于北京民生现代美术馆现场导览册整理的非官方在线展览导览页，收录 86 件展品、8 个色彩展区，含搜索、艺术家索引、随机路线、速看模式、排序控件与推荐音乐。",
     "entry_url": "/projects/pompidou-color-summit/",
     "source_kind": "static-site",
-    "featured": false,
+    "featured": true,
     "title": "色彩之巅！法国蓬皮杜中心馆藏艺术大师特展"
   }
 ]

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Notes v0.1 | leverage-os</title>
+    <meta name="description" content="leverage-os v0.1-release 版本说明">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗</text></svg>">
+    <style>
+        .back-link { display:inline-flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;margin-bottom:1rem; }
+        .back-link:hover { color:var(--accent-green); }
+        .meta-block { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin:1rem 0;font-size:.875rem;color:var(--text-secondary);font-family:var(--font-mono); }
+        .meta-block .label { color:var(--text-muted); }
+        .release-table { width:100%;border-collapse:collapse;margin:1rem 0;font-size:.875rem; }
+        .release-table th { text-align:left;padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--accent-blue);font-weight:600; }
+        .release-table td { padding:.5rem;border-bottom:1px solid var(--border-color);color:var(--text-secondary); }
+        .release-table tr:last-child td { border-bottom:none; }
+        .principle-block { margin-bottom:1.5rem;padding-left:1rem;border-left:2px solid var(--border-color); }
+        .principle-block:hover { border-left-color:var(--accent-green); }
+        .principle-block h3 { color:var(--accent-blue);margin-bottom:.5rem;font-size:1rem; }
+        .principle-block p { color:var(--text-secondary);line-height:1.7; }
+        .disclaimer { padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--border-radius);margin:1.5rem 0;font-size:.875rem;color:var(--text-muted); }
+        .disclaimer strong { color:var(--accent-green); }
+        ul, ol { padding-left:1.5rem;margin:1rem 0; }
+        li { margin-bottom:.5rem;color:var(--text-secondary);line-height:1.7; }
+        .section-content h2 { color:var(--text-primary);font-size:1.25rem;margin:2rem 0 1rem; }
+        .section-content h3 { color:var(--accent-blue);font-size:1rem;margin:1.5rem 0 .75rem; }
+        .section-content p { color:var(--text-secondary);line-height:1.8;margin-bottom:1rem; }
+        .section-content strong { color:var(--text-primary); }
+        .section-content em { color:var(--text-muted); }
+        .section-content a { color:var(--accent-green);text-decoration:none; }
+        .section-content a:hover { text-decoration:underline; }
+        hr { border:none;border-top:1px solid var(--border-color);margin:2rem 0; }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="status-bar">
+            <div class="status-left"><span class="status-dot"></span><span>STATUS // ONLINE</span></div>
+            <div class="status-right"><span>LEVERAGE-OS</span><span class="separator">|</span><span>v0.1</span><span class="separator">|</span><span id="datetime">--</span></div>
+        </div>
+        <header class="terminal-header">
+            <div class="logo"><span class="prompt">></span><span class="logo-text">leverage-os</span><span class="cursor">_</span></div>
+            <div class="tagline">本地杠杆心智系统 / Personal AI Leverage OS</div>
+        </header>
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item"><span class="nav-num">00.</span><span>HOME</span></a>
+            <a href="/projects/" class="nav-item"><span class="nav-num">01.</span><span>PROJECTS</span></a>
+            <a href="/projects/personal-ai-leverage/" class="nav-item"><span class="nav-num">02.</span><span>OVERVIEW</span></a>
+            <a href="/projects/personal-ai-leverage/philosophy.html" class="nav-item"><span class="nav-num">03.</span><span>PHILOSOPHY</span></a>
+            <a href="/projects/personal-ai-leverage/getting-started.html" class="nav-item"><span class="nav-num">04.</span><span>START</span></a>
+        </nav>
+        <main class="terminal-main">
+
+            <a class="back-link" href="index.html">&larr; cd ..</a>
+
+            <section class="intro-section">
+                <div class="section-header"><span class="cmd">$</span><span class="cmd-text">cat ./RELEASE_NOTES_v0.1.md</span></div>
+                <div class="section-content">
+                    <h2>leverage-os v0.1-release</h2>
+
+                    <div class="meta-block">
+                        <span class="label">Release date:</span> 2026-05-11<br>
+                        <span class="label">Tag:</span> <code>v0.1-release</code><br>
+                        <span class="label">Commit:</span> <code>34011e6a170433fdfdfd52af8f0bb7fdd96e5a87</code>
+                    </div>
+
+                    <div class="disclaimer">
+                        <strong>⚗ 版本档案说明</strong>
+                        <p>此 HTML release notes 是 <code>v0.1-release</code> tag 创建之后补充的版本档案，不改变 tag 指向。tag 仍锁定在 commit <code>34011e6</code>。</p>
+                    </div>
+
+                    <hr>
+
+                    <h2>一句话定位</h2>
+                    <p>leverage-os v0.1 是一套关于个人 AI 基础设施、长期记忆和人类判断的实践框架的第一版公开空间。它不是可直接下载的产品，而是方法论、架构与已验证工作流的在线呈现。</p>
+
+                    <hr>
+
+                    <h2>本版本包含内容</h2>
+
+                    <h3>核心页面</h3>
+                    <ol>
+                        <li><strong>index.html</strong> — 项目首页，系统架构概览与模块入口</li>
+                        <li><strong>manifesto.html</strong> — 宣言，阐述 leverage-os 的核心假设与长期目标</li>
+                        <li><strong>philosophy.html</strong> — 设计哲学，六项基本原则</li>
+                        <li><strong>getting-started.html</strong> — 入门页，建议阅读顺序与最小实践</li>
+                    </ol>
+
+                    <h3>四个核心模块</h3>
+                    <table class="release-table">
+                        <tr><th>模块</th><th>定位</th></tr>
+                        <tr><td>Life Log Engine</td><td>时间与记忆底座，每日记录、周汇总、素材归档</td></tr>
+                        <tr><td>Agent OS</td><td>个人 Agent 操作层，多平台网关、技能按需加载、跨会话记忆</td></tr>
+                        <tr><td>Knowledge Base</td><td>长期知识层，Wiki 三层架构、研究归档、痕迹追踪</td></tr>
+                        <tr><td>Publishing Stack</td><td>公共输出层，纯静态站点、RSS、零构建工具依赖</td></tr>
+                    </table>
+
+                    <h3>四个公开案例</h3>
+                    <table class="release-table">
+                        <tr><th>案例</th><th>定位</th></tr>
+                        <tr><td>Weekly Pipeline</td><td>周连续性流水线，从碎片到连续记忆</td></tr>
+                        <tr><td>URL Quality</td><td>阅读质量评估，判断什么值得沉淀</td></tr>
+                        <tr><td>Skill Governance</td><td>技能全生命周期治理，从 0 到 100+ 技能的分类与审计</td></tr>
+                        <tr><td>OCR Benchmark</td><td>文档数字化评估，纸质与扫描文字如何重新进入长期记忆系统</td></tr>
+                    </table>
+
+                    <h3>项目入口</h3>
+                    <p><code>/projects/</code> 项目列表页已收录 leverage-os，分类 <code>systems</code>，标记 <code>featured</code>。</p>
+
+                    <hr>
+
+                    <h2>v0.1 的核心主题</h2>
+                    <ul>
+                        <li><strong>local-first</strong> — 数据主权优先，私人记录不上传云端</li>
+                        <li><strong>cognitive continuity</strong> — 从碎片到连续，建立可回溯的个人知识时间线</li>
+                        <li><strong>selective memory</strong> — 不是所有记录都值得归档，学会遗忘和筛选</li>
+                        <li><strong>human judgment</strong> — AI 整理，人判断；AI 生成，人确认</li>
+                        <li><strong>quiet infrastructure</strong> — Agent 作为基础设施层，而非聊天工具</li>
+                        <li><strong>public responsibility</strong> — 从私人到公共空间，意味着承担责任</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2>审计结果摘要</h2>
+                    <table class="release-table">
+                        <tr><th>检查项</th><th>结果</th></tr>
+                        <tr><td>Live URL 可访问性</td><td>14/14 PASS</td></tr>
+                        <tr><td>页面完整性（本地+线上）</td><td>12/12 PASS</td></tr>
+                        <tr><td>链接有效性</td><td>0 broken links</td></tr>
+                        <tr><td>安全审计</td><td>CLEAN</td></tr>
+                        <tr><td>占位符状态</td><td>NONE</td></tr>
+                        <tr><td>data.json 配置</td><td>leverage-os / systems / featured=true</td></tr>
+                    </table>
+
+                    <hr>
+
+                    <h2>v0.1 不包含什么</h2>
+                    <ul>
+                        <li>不包含安装教程或一键配置脚本</li>
+                        <li>不包含可直接下载的软件产品</li>
+                        <li>不包含商业化承诺或路线图时间表</li>
+                        <li>不包含任何私人日记、聊天记录或阅读内容</li>
+                        <li>不包含内部 API 配置、provider 凭证或本地系统路径</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2>下一阶段可能方向</h2>
+                    <ul>
+                        <li>首篇公开文章（field notes 形式）</li>
+                        <li>持续的 changelog 记录</li>
+                        <li>v0.2 分支的功能或结构扩展规划</li>
+                        <li>额外的 showcase 或 essays</li>
+                    </ul>
+
+                    <hr>
+
+                    <p><em>leverage-os 是一个持续演化的实践框架。v0.1 是第一版公开空间，后续将以 field notes、showcase 和 essays 的形式继续迭代。</em></p>
+                </div>
+            </section>
+
+        </main>
+        <footer class="terminal-footer">
+            <div class="footer-line"><span class="comment"># leverage-os // v0.1 public version</span></div>
+            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+                <span><span class="label" style="color:#8b949e;">PROJECT:</span> <a href="/projects/personal-ai-leverage/" class="link">leverage-os</a></span>
+                <span><span class="label" style="color:#8b949e;">SITE:</span> <a href="/" class="link">xin-conan.me</a></span>
+                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+            </div>
+            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> &copy; 2026 Xin Conan
+            </div>
+        </footer>
+    </div>
+    <script>
+        function updateTime() { const now=new Date(); document.getElementById("datetime").textContent=now.toISOString().slice(0,19).replace("T"," "); }
+        updateTime(); setInterval(updateTime,1000);
+    </script>
+</body>
+</html>

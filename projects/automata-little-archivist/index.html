@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Little Archivist / 小档案员 — Narrative Automata Web Preview</title>
+  <meta name="description" content="AI × Automata × Narrative Artifact 的浏览器数字原型。结构预览、爆炸视图、呼吸动作模拟与叙事状态机。">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -42,24 +43,76 @@
       background: #c4956a;
       margin: 24px auto;
     }
-    .intro {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 48px;
-      color: #a09888;
-      font-size: 0.95rem;
+
+    /* Status Section */
+    .status-section {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
-    .notice {
+    .status-tag {
+      font-size: 0.75rem;
+      padding: 4px 14px;
+      border-radius: 4px;
+      border: 1px solid;
+      letter-spacing: 0.05em;
+    }
+    .status-tag.prototype {
+      border-color: #887766;
+      color: #887766;
+    }
+    .status-tag.recommended {
+      border-color: #c4956a;
+      color: #c4956a;
+    }
+    .status-tag.tech {
+      border-color: #665;
+      color: #887766;
+    }
+
+    /* Description */
+    .description {
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+    .description .zh {
+      color: #b0a898;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
       text-align: center;
-      max-width: 600px;
+    }
+    .description .en {
+      color: #887766;
+      font-size: 0.85rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Notice */
+    .notice {
+      max-width: 680px;
       margin: 0 auto 48px;
       padding: 16px 20px;
       border: 1px solid #444;
       border-radius: 8px;
       background: #222226;
       color: #887766;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
+    .notice strong {
+      color: #a09888;
+    }
+    .notice ul {
+      margin-top: 8px;
+      margin-left: 1.2em;
+    }
+    .notice li {
+      margin-bottom: 4px;
+    }
+
+    /* Version Grid */
     .versions {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -117,6 +170,40 @@
     .card.recommended h3 {
       color: #c4956a;
     }
+
+    /* Limitations */
+    .limitations {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1e1e22;
+    }
+    .limitations h4 {
+      font-size: 0.8rem;
+      color: #887766;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .limitations ul {
+      list-style: none;
+      font-size: 0.82rem;
+      color: #665;
+    }
+    .limitations li {
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .limitations li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #887766;
+    }
+
     footer {
       text-align: center;
       padding: 32px 24px;
@@ -134,6 +221,7 @@
     @media (max-width: 600px) {
       header h1 { font-size: 1.8rem; }
       .versions { grid-template-columns: 1fr; }
+      .status-section { gap: 8px; }
     }
   </style>
 </head>
@@ -145,16 +233,32 @@
       <div class="divider"></div>
     </header>
 
-    <p class="intro">
-      这是一个 <strong>AI × Automata × Narrative Artifact</strong> 的数字预览页面。
-      小档案员是一个前倾阅读的无面人形，由呼吸凸轮机构驱动，
-      在 5 种叙事状态间切换：Idle、Reading、Sleeping、Observer、Awake。
-      <strong>v0.5 是推荐公开展示版本</strong>，v0.4 是状态机基础版本。
-    </p>
+    <div class="status-section">
+      <span class="status-tag prototype">Digital Prototype</span>
+      <span class="status-tag recommended">v0.5 Recommended</span>
+      <span class="status-tag tech">Three.js / STL / Static HTML</span>
+    </div>
+
+    <div class="description">
+      <p class="zh">
+        小档案员是一个将 automata 机械自动装置、AI agent 想象、叙事状态机与 3D 打印原型结合的数字机械生命体实验。
+        它是一个前倾阅读的无面人形，由呼吸凸轮机构驱动，在 5 种叙事状态间切换：Idle、Reading、Sleeping、Observer、Awake。
+      </p>
+      <p class="en">
+        The Little Archivist is a browser-based narrative automata prototype exploring mechanical presence, breath, and state.
+        A faceless figure leaning forward to read, driven by a breathing cam mechanism, transitioning between 5 narrative states.
+      </p>
+    </div>
 
     <div class="notice">
-      This is a digital prototype preview. Motion is interpretive, not physical simulation.
-      STL models are rendered in-browser via Three.js. No backend required.
+      <strong>v0.5 Public Demo</strong> 是推荐公开展示版本。如果你只想快速了解这个项目，直接打开 v0.5 即可。<br>
+      其余版本保留用于结构理解、动作原理与状态机机制的逐层探索。
+      <ul>
+        <li>Open v0.5 Public Demo — 公开展示优化层，Demo Guide + 诊断面板 + 一键预设</li>
+        <li>Explore Structure v0.2 — 零件显隐 + 爆炸视图 + 零件信息面板</li>
+        <li>Watch Breathing Motion v0.3 — 呼吸动作模拟 + 5 种 motion profile</li>
+        <li>View State Machine v0.4 — 5 种叙事状态 + Auto Cycle + 平滑过渡</li>
+      </ul>
     </div>
 
     <div class="versions">
@@ -187,6 +291,16 @@
         <h3>Basic STL Viewer</h3>
         <p>简洁浏览：单模型 OrbitControls 旋转缩放 + 视角切换 + 线框模式。</p>
       </a>
+    </div>
+
+    <div class="limitations">
+      <h4>Scope & Limitations</h4>
+      <ul>
+        <li>This is a digital prototype, not a physical device.</li>
+        <li>Motion is interpretive and narrative-driven, not physical simulation.</li>
+        <li>STL files are engineering previews for visualization, not final production assets.</li>
+        <li>No backend required — all rendering happens in-browser via Three.js.</li>
+      </ul>
     </div>
   </div>
 

@@ -583,6 +583,291 @@ section { padding: 4rem 0; }
   font-style: italic;
 }
 
+/* ==================== ROUTE SELECTOR ==================== */
+.selector-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.selector-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.selector-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+.selector-badge {
+  display: inline-block;
+  background: var(--vermilion);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+.selector-card h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.selector-card p {
+  font-size: 0.82rem;
+  color: #6a6050;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+.selector-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.smeta {
+  font-size: 0.72rem;
+  background: var(--light);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  color: #6a6050;
+}
+.selector-btn {
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: var(--sans);
+  margin-right: 0.5rem;
+}
+.selector-btn:hover { background: #1e3535; }
+
+/* ==================== ROUTE META HEADER ==================== */
+.route-meta-header {
+  background: linear-gradient(135deg, #f0ebe0, #e8e0d0);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-left: 4px solid var(--teal);
+}
+.route-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  align-items: baseline;
+}
+.route-meta-row:last-of-type { margin-bottom: 0; }
+.rmeta-item {
+  font-size: 0.75rem;
+  color: #5a5040;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  line-height: 1.5;
+}
+.route-meta-note {
+  font-size: 0.72rem;
+  color: #7a6050;
+  margin-top: 0.5rem;
+  font-style: italic;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ==================== ENHANCED DAY CARD ==================== */
+.day-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s;
+}
+.day-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.day-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+.day-n {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  font-weight: bold;
+  background: var(--vermilion);
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+.day-stay {
+  font-size: 0.72rem;
+  color: #7a7060;
+}
+.day-theme {
+  font-size: 0.78rem;
+  color: var(--teal);
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--teal);
+}
+.day-places {
+  font-size: 0.75rem;
+  color: #6a6050;
+  margin-bottom: 0.5rem;
+}
+.day-transport {
+  font-size: 0.75rem;
+  color: #5a7060;
+  background: #f0ede5;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.day-question {
+  font-size: 0.75rem;
+  color: var(--earth);
+  background: #faf5e8;
+  border: 1px solid #e0d0a0;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ==================== THEMATIC CARD ENHANCEMENT ==================== */
+.route-meta-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem; }
+.thematic-season {
+  font-size: 0.75rem;
+  color: #5a7060;
+  margin-bottom: 0.5rem;
+}
+.thematic-note {
+  font-size: 0.72rem;
+  color: var(--earth);
+  background: #faf5e8;
+  border: 1px solid #e0d0a0;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+/* ==================== DUAL CITY PANEL ==================== */
+.dual-city-body { margin-top: 0; }
+.dual-city-intro {
+  background: linear-gradient(135deg, #f0ebe0, #e8e0d0);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-left: 4px solid var(--earth);
+}
+.dual-city-intro p { font-size: 0.85rem; color: #5a5040; line-height: 1.75; margin: 0; }
+.dual-city-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.dual-city-col h4 {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+}
+.dual-city-col ul { list-style: none; padding: 0; margin: 0; }
+.dual-city-col li {
+  font-size: 0.8rem;
+  color: #5a5040;
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  padding-left: 0.75rem;
+  position: relative;
+}
+.dual-city-col li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+.dual-city-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.dual-city-meta .rmeta-item {
+  display: block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 0.3rem 0;
+}
+
+/* ==================== DETAIL CARD SITE TYPE ==================== */
+.detail-site-type {
+  font-size: 0.75rem;
+  color: var(--teal);
+  background: #e8f0f0;
+  border: 1px solid #b0c8c8;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+/* ==================== TRAVEL TIPS ==================== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.tip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: box-shadow 0.2s;
+}
+.tip-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+.tip-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.tip-card h4 {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.tip-card p {
+  font-size: 0.78rem;
+  color: #6a6050;
+  line-height: 1.75;
+  margin: 0;
+}
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 600px) {
   section { padding: 3rem 0; }
@@ -593,6 +878,9 @@ section { padding: 4rem 0; }
   .tl-item { padding-left: 2.75rem; }
   .tl-item::before { left: calc(1rem - 5px); }
   .route-days { grid-template-columns: 1fr; }
+  .selector-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .dual-city-cols { grid-template-columns: 1fr; }
 }
 
 /* ==================== UTILITY ==================== */

@@ -177,6 +177,18 @@
             <circle cx="20" cy="35" r="6" fill="#c8402a"/>
             <text x="35" y="39" fill="#c8b89a" font-size="11" font-family="serif">主要地点</text>
           </g>
+          <g transform="translate(20, 490)">
+            <rect width="250" height="42" fill="#1a1814" stroke="#3a3530" rx="4"/>
+            <text x="10" y="14" fill="#c8b89a" font-size="10" font-family="serif" font-weight="bold">地点类型：</text>
+            <circle cx="12" cy="26" r="4" fill="#5a8a6a"/>
+            <text x="20" y="30" fill="#c8b89a" font-size="9" font-family="serif">成熟景区</text>
+            <circle cx="75" cy="26" r="4" fill="#8b7355"/>
+            <text x="83" y="30" fill="#c8b89a" font-size="9" font-family="serif">文学寻访点</text>
+            <circle cx="155" cy="26" r="4" fill="#3a5a6a"/>
+            <text x="163" y="30" fill="#c8b89a" font-size="9" font-family="serif">历史对应点</text>
+            <circle cx="230" cy="26" r="4" fill="#7a6a5a"/>
+            <text x="238" y="30" fill="#c8b89a" font-size="9" font-family="serif">考证提示</text>
+          </g>
         </svg>
       </div>
       <div class="map-sidebar">
@@ -185,6 +197,63 @@
             <span>点击地图中的节点<br>查看地点详情</span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ROUTE SELECTOR ==================== -->
+<section id="route-selector">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">如何选择你的杜甫诗路？</h2>
+      <p class="section-tip">四条路线，四种走法。选择最适合你的时间和兴趣的那一条。</p>
+    </div>
+    <div class="selector-grid">
+      <div class="selector-card" data-rt="7day">
+        <div class="selector-badge">第一次走，推荐</div>
+        <h3>秦州入蜀 7 天线</h3>
+        <p>适合第一次深度体验这篇文章的人。从天水、成县、广元、剑门到成都，地理连续，山水现场感强，最能体会杜甫从"找不到草堂"到"成都草堂"的转折。</p>
+        <div class="selector-meta">
+          <span class="smeta">⏱ 7天</span>
+          <span class="smeta">📍 秦州→成都</span>
+          <span class="smeta">🎯 文学现场+山水古道</span>
+        </div>
+        <button class="selector-btn" data-rt="7day">查看路线 →</button>
+      </div>
+      <div class="selector-card" data-rt="12day">
+        <div class="selector-badge">想完整理解文章，推荐</div>
+        <h3>长安到成都 12 天线</h3>
+        <p>适合唐诗、历史和安史之乱爱好者。从长安困守、奉先探家、彭衙逃亡、三吏三别，到秦州同谷、入蜀成都，完整重走杜甫成为"杜甫"的路线。</p>
+        <div class="selector-meta">
+          <span class="smeta">⏱ 12天</span>
+          <span class="smeta">📍 长安→成都</span>
+          <span class="smeta">🎯 历史路线复原+诗歌阅读</span>
+        </div>
+        <button class="selector-btn" data-rt="12day">查看路线 →</button>
+      </div>
+      <div class="selector-card" data-rt="thematic">
+        <div class="selector-badge">时间有限，推荐</div>
+        <h3>四条主题短线</h3>
+        <p>适合周末或小长假。可分别选择长安奉先线、安史逃亡线、三吏三别线、秦州入蜀线。每条线 2—7 天，可单独执行也可组合。</p>
+        <div class="selector-meta">
+          <span class="smeta">⏱ 2—7天</span>
+          <span class="smeta">📍 多条短线</span>
+          <span class="smeta">🎯 主题阅读+短途文化</span>
+        </div>
+        <button class="selector-btn" data-rt="thematic">查看路线 →</button>
+      </div>
+      <div class="selector-card" data-rt="dual-city">
+        <div class="selector-badge">只想城市轻旅行，推荐</div>
+        <h3>西安 + 成都双城读诗线</h3>
+        <p>适合不想长距离转场的人。西安看长安、曲江、少陵、杜陵；成都看草堂、浣花溪，以城市空间理解杜甫的前后两端。</p>
+        <div class="selector-meta">
+          <span class="smeta">⏱ 4—6天</span>
+          <span class="smeta">📍 西安+成都</span>
+          <span class="smeta">🎯 城市读诗+杜甫前后对照</span>
+        </div>
+        <button class="selector-btn" data-rt="dual-city">查看路线 →</button>
+        <button class="copy-btn copy-route-full" data-route="dual-city">复制这条路线</button>
       </div>
     </div>
   </div>
@@ -202,6 +271,7 @@
       <button class="tab-btn active" data-rt="7day">7天精华线</button>
       <button class="tab-btn" data-rt="12day">12天完整线</button>
       <button class="tab-btn" data-rt="thematic">主题短线</button>
+      <button class="tab-btn" data-rt="dual-city">双城读诗线</button>
     </div>
 
     <div class="route-panel active" id="rt-7day">
@@ -231,6 +301,48 @@
     <div class="route-panel" id="rt-thematic">
       <div class="thematic-grid" id="thematic-grid"></div>
     </div>
+
+    <div class="route-panel" id="rt-dual-city" style="display:none;">
+      <div class="route-meta">
+        <h3 class="route-name">西安 + 成都双城读诗线</h3>
+        <div class="route-tags"><span class="rtag">城市轻旅行</span><span class="rtag">杜甫前后对照</span><span class="rtag">入门友好</span></div>
+      </div>
+      <div class="dual-city-body">
+        <div class="dual-city-intro">
+          <p>这不是文章中的完整历史路线，而是便于入门的轻量版本。适合不想长途转场、以城市空间理解杜甫前后两端的人。</p>
+        </div>
+        <div class="dual-city-cols">
+          <div class="dual-city-col">
+            <h4>🚄 西安看点</h4>
+            <ul>
+              <li>大雁塔 — 唐代长安的地标，也是杜甫诗歌中常见的意象来源</li>
+              <li>大明宫遗址公园 — 唐朝政治中心，理解杜甫"致君尧舜上"的政治理想</li>
+              <li>回坊（北院门）— 唐代的坊市格局，今日的西安饮食文化区</li>
+              <li>曲江 — 唐代文人游览胜地，杜甫多次出入其间</li>
+              <li>少陵、杜陵 — 杜甫自称"少陵野老"，其家族墓地所在</li>
+            </ul>
+          </div>
+          <div class="dual-city-col">
+            <h4>✈ 成都看点</h4>
+            <ul>
+              <li>杜甫草堂博物馆 — 杜甫营建草堂的实际所在地，核心参观点</li>
+              <li>浣花溪公园 — 草堂周围的自然环境，《春夜喜雨》写作现场</li>
+              <li>武侯祠 — 纪念诸葛亮，杜甫在此写有多首诗</li>
+              <li>锦里古街 — 成都传统街区，适合晚间散步体验蜀地文化</li>
+            </ul>
+          </div>
+        </div>
+        <div class="dual-city-meta">
+          <span class="rmeta-item">⏱ 4—6天</span>
+          <span class="rmeta-item">👥 只想轻旅行、不想长途转场的人；第一次接触杜甫的人</span>
+          <span class="rmeta-item">🌤 全年可行，春秋体验更佳</span>
+          <span class="rmeta-item">🚗 城市公共交通+高铁/飞机连接西安与成都</span>
+          <span class="rmeta-item">📍 难度：低 · 城市读诗+杜甫前后人生对照</span>
+        </div>
+        <div class="route-meta-note">⚠ 出发前请核实开放时间、交通、住宿、景区政策与道路情况。</div>
+        <button class="copy-btn copy-route-full" data-route="dual-city">复制这条路线</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -242,6 +354,48 @@
       <p class="section-desc">点击诗名，高亮地图中对应的地点</p>
     </div>
     <div class="poem-grid" id="poem-grid"></div>
+  </div>
+</section>
+
+<!-- ==================== TRAVEL TIPS ==================== -->
+<section id="travel-tips">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">旅行实用提醒</h2>
+      <p class="section-tip">以下提醒帮助你在规划杜甫诗路时少走弯路。出发前请重新确认最新信息。</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🚗</div>
+        <h4>交通</h4>
+        <p>这条路线跨陕西、河南、甘肃、四川，完整线建议拆段完成；成熟城市节点可用高铁，乡村和古道点位更适合包车或自驾。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🌤</div>
+        <h4>季节</h4>
+        <p>春秋最适合；夏季注意关中、豫西高温；冬季有乱离氛围但山区天气、道路和体力要求更高。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🥾</div>
+        <h4>体力</h4>
+        <p>秦州—同谷—剑门段地形更复杂，适合留出弹性时间。不要把行程排得太满，尤其是包含山区古道的路段。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📖</div>
+        <h4>阅读</h4>
+        <p>建议每到一站只精读一两首诗，不要把旅行变成背诵清单。把诗句和现场叠在一起理解，比记住所有典故更重要。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🏛</div>
+        <h4>现场</h4>
+        <p>很多地点不是标准景区，甚至只剩地名或残存遗迹。真正重要的是把诗句、地形、历史事件叠在一起理解，而非寻找"打卡式"的确切遗址。</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">✅</div>
+        <h4>核实</h4>
+        <p>开放时间、交通班次、住宿、景区政策、道路情况出发前需重新确认。本页面内容为阅读梳理，不构成实际出行承诺。</p>
+      </div>
+    </div>
   </div>
 </section>
 

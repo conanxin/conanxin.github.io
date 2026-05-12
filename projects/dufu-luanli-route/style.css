@@ -584,6 +584,26 @@ section { padding: 4rem 0; }
   color: var(--paper);
 }
 
+/* Stage summary banner */
+.poem-stage-summary {
+  font-size: 0.88rem;
+  color: var(--earth);
+  padding: 0.6rem 0 0.5rem;
+  line-height: 1.6;
+  min-height: 1.6em;
+}
+.poem-stage-summary-title {
+  font-weight: 700;
+  color: var(--ink);
+}
+.poem-stage-summary-count {
+  color: var(--vermilion);
+  font-weight: 600;
+}
+.poem-stage-summary-text {
+  color: var(--earth);
+}
+
 /* Stage badge on poem card */
 .poem-stage-badge {
   display: inline-block;

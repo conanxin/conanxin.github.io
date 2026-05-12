@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 4E-2 / Poem Grid UI Enhancement
+Latest release phase: Phase 4F / Stage Summary Banner
 
 ## Project Status
 
@@ -60,9 +60,19 @@ dufu-luanli-route-page/
 
 ## 更新记录
 
+### Phase 4F — Stage Summary Banner（2026-05-12）
+- **POEM_STAGE_SUMMARIES**：在 app.js 新增 9 个阶段的简介文本映射
+- **renderPoemStageSummary(stage)**：在诗歌网格上方渲染当前阶段 banner，显示阶段名、诗歌数量和阶段说明
+- **banner 插入**：在 initPoemGrid() 中插入 `<div id="poem-stage-summary">`，位于 tabs 上方
+- **自动更新**：filterPoems() 中调用 renderPoemStageSummary()，切换 tab 时自动刷新 banner
+- **初始渲染**：initPoemGrid() 末尾调用 renderPoemStageSummary('all')，初始化默认 banner
+- **"全部"显示 32 总数**：其他阶段显示 count + "首诗"
+- **CSS 新增**：.poem-stage-summary / .poem-stage-summary-title / .poem-stage-summary-count / .poem-stage-summary-text
+- **不影响既有逻辑**：poem card click、setActiveLocation、highlightDayCards、scroll 行为不变
+- **未修改 data 文件**：poems.json / locations.json / routes.json / timeline.json 未动
+
 ### Phase 4E-2 — Poem Grid UI Enhancement（2026-05-12）
 - **poem-filter-tabs**：在诗歌网格前动态插入 9 个阶段筛选按钮（全部/长安奉先/安史逃亡/沦陷长安/凤翔羌村/三吏三别/秦州同谷/陇蜀入蜀/成都草堂）
-- **阶段映射**：基于 poem.locationId 建立 getPoemStage() 映射函数，32 首诗全部分布于 8 个阶段，0 首落入"其他"
 - **poem-stage-badge**：每张诗歌卡片增加右上角阶段标签（暗红色边框标签），视觉轻量
 - **renderPoemGrid()**：抽取渲染逻辑为独立函数，支持过滤器切换后重新渲染
 - **filterPoems(stage)**：点击 tab 切换 currentPoemStage，重新调用 renderPoemGrid()

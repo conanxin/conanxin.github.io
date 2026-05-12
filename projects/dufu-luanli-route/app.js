@@ -1022,6 +1022,18 @@ var POEM_STAGES = [
   { id: '成都草堂',    label: '成都草堂' }
 ];
 
+var POEM_STAGE_SUMMARIES = {
+  'all':        '完整查看杜甫从长安、奉先、羌村、秦州、同谷到成都草堂的诗路阅读清单。',
+  '长安奉先':   '从长安困守到奉先探家，杜甫开始把个人贫困、家庭饥寒与国家危机写入同一首诗。',
+  '安史逃亡':   '安史之乱爆发后，杜甫携家逃难，诗歌进入饥饿、泥泞、恐惧与父亲经验。',
+  '沦陷长安':   '长安陷落后，杜甫在废都中书写国破、宫苑荒凉、战场惨败与亲人离散。',
+  '凤翔羌村':   '从凤翔行在到羌村探家，杜甫短暂进入朝廷，又在家庭重逢中感受乱世余震。',
+  '三吏三别':   '普通百姓成为诗歌中心，征兵、抓丁、新婚别离与无家可归共同构成杜甫的诗史现场。',
+  '秦州同谷':   '从华州失意到秦州求居、同谷困顿，杜甫开始从庙堂理想走向草堂人生。',
+  '陇蜀入蜀':   '在木皮岭、白沙渡、水会渡、五盘、剑门之间，山水不再只是风景，而是逃难与求生之路。',
+  '成都草堂':   '成都草堂带来阶段性安顿，但杜甫的忧国、贫病与广厦之愿仍在继续。'
+};
+
 var currentPoemStage = 'all';
 
 function getPoemStage(item) {
@@ -1074,11 +1086,28 @@ function renderPoemGrid() {
   });
 }
 
+function renderPoemStageSummary(stage) {
+  var banner = document.getElementById('poem-stage-summary');
+  if (!banner) return;
+  var poems = stage === 'all'
+    ? DUFU_DATA.poems
+    : DUFU_DATA.poems.filter(function(item) { return getPoemStage(item) === stage; });
+  var count = poems.length;
+  var totalText = stage === 'all' ? '32' : count + ' 首诗';
+  var stageLabel = stage === 'all' ? '全部' : stage;
+  var summary = POEM_STAGE_SUMMARIES[stage] || '';
+  banner.innerHTML =
+    '<span class="poem-stage-summary-title">' + stageLabel + '</span>' +
+    '<span class="poem-stage-summary-count"> · ' + totalText + '</span>' +
+    '<span class="poem-stage-summary-text"> — ' + summary + '</span>';
+}
+
 function filterPoems(stage) {
   currentPoemStage = stage;
   document.querySelectorAll('.poem-filter-tab').forEach(function(btn) {
     btn.classList.toggle('is-active', btn.dataset.stage === stage);
   });
+  renderPoemStageSummary(stage);
   renderPoemGrid();
 }
 
@@ -1093,8 +1122,12 @@ function initPoemGrid() {
   });
   tabHtml += '</div>';
 
-  // Insert tabs immediately before the poem-grid element
+  // Insert banner and tabs immediately before the poem-grid element
+  grid.insertAdjacentHTML('beforebegin', '<div id="poem-stage-summary" class="poem-stage-summary"></div>');
   grid.insertAdjacentHTML('beforebegin', tabHtml);
+
+  // Render initial summary
+  renderPoemStageSummary(currentPoemStage);
 
   // Attach tab click handlers
   document.querySelectorAll('.poem-filter-tab').forEach(function(btn) {

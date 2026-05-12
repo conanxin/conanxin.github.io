@@ -1010,16 +1010,49 @@ function buildFullRouteText(routeKey) {
 }
 
 // ==================== POEM GRID ====================
-function initPoemGrid() {
+var POEM_STAGES = [
+  { id: 'all',         label: '全部' },
+  { id: '长安奉先',    label: '长安奉先' },
+  { id: '安史逃亡',    label: '安史逃亡' },
+  { id: '沦陷长安',    label: '沦陷长安' },
+  { id: '凤翔羌村',    label: '凤翔羌村' },
+  { id: '三吏三别',    label: '三吏三别' },
+  { id: '秦州同谷',    label: '秦州同谷' },
+  { id: '陇蜀入蜀',    label: '陇蜀入蜀' },
+  { id: '成都草堂',    label: '成都草堂' }
+];
+
+var currentPoemStage = 'all';
+
+function getPoemStage(item) {
+  var pid = item.locationId || '';
+  if (pid === 'fengxian' || pid === 'changan' || pid === 'lianling') return '长安奉先';
+  if (pid === 'baishui' || pid === 'pengxia')                      return '安史逃亡';
+  if (pid === 'lingwu')                                              return '沦陷长安';
+  if (pid === 'fengxiang' || pid === 'qiangcun' || pid === 'fuxian') return '凤翔羌村';
+  if (pid === 'xinan' || pid === 'shihao' || pid === 'tongguan' || pid === 'luoyang') return '三吏三别';
+  if (pid === 'huazhou' || pid === 'qinzhou' || pid === 'dongke' || pid === 'guozhi' || pid === 'tonggu') return '秦州同谷';
+  if (pid === 'guangyuan' || pid === 'jianmenguan')                 return '陇蜀入蜀';
+  if (pid === 'chengdu')                                             return '成都草堂';
+  return '其他';
+}
+
+function renderPoemGrid() {
   var grid = document.getElementById('poem-grid');
   if (!grid) return;
   var html = '';
-  DUFU_DATA.poems.forEach(function(item) {
+  var poems = currentPoemStage === 'all'
+    ? DUFU_DATA.poems
+    : DUFU_DATA.poems.filter(function(item) { return getPoemStage(item) === currentPoemStage; });
+
+  poems.forEach(function(item) {
     var loc = DUFU_DATA.locations.find(function(l) { return l.id === item.locationId; });
     var locName = loc ? loc.name + '（' + loc.modern + '）' : item.locationId;
-    html += '<div class="poem-item" data-loc="' + item.locationId + '">';
+    var stage = getPoemStage(item);
+    html += '<div class="poem-item" data-loc="' + item.locationId + '" data-stage="' + stage + '">';
     html += '<div class="poem-name">' + item.title + '</div>';
     html += '<div class="poem-loc">📍 ' + locName + '</div>';
+    html += '<div class="poem-stage-badge">' + stage + '</div>';
     html += '</div>';
   });
   grid.innerHTML = html;
@@ -1033,13 +1066,44 @@ function initPoemGrid() {
         this.classList.add('active');
         setActiveLocation(locId);
         highlightDayCards(locId);
-        // Scroll to map
         document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         clearDayHighlights();
       }
     });
   });
+}
+
+function filterPoems(stage) {
+  currentPoemStage = stage;
+  document.querySelectorAll('.poem-filter-tab').forEach(function(btn) {
+    btn.classList.toggle('is-active', btn.dataset.stage === stage);
+  });
+  renderPoemGrid();
+}
+
+function initPoemGrid() {
+  var grid = document.getElementById('poem-grid');
+  if (!grid) return;
+
+  // Build and insert stage tabs before the grid
+  var tabHtml = '<div class="poem-filter-tabs" id="poem-filter-tabs">';
+  POEM_STAGES.forEach(function(s) {
+    tabHtml += '<button class="poem-filter-tab' + (s.id === 'all' ? ' is-active' : '') + '" data-stage="' + s.id + '">' + s.label + '</button>';
+  });
+  tabHtml += '</div>';
+
+  // Insert tabs immediately before the poem-grid element
+  grid.insertAdjacentHTML('beforebegin', tabHtml);
+
+  // Attach tab click handlers
+  document.querySelectorAll('.poem-filter-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterPoems(this.dataset.stage);
+    });
+  });
+
+  renderPoemGrid();
 }
 
 function highlightDayCards(locId) {

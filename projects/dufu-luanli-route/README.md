@@ -210,24 +210,14 @@ dufu-luanli-route-page/
 - 主页面运行时完全未改动
 
 ### Phase 6C-R — Leaflet Marker Icon Fix（2026-05-12）
-- map.js：注释掉 `L.Icon.Default.mergeOptions`，改用 `L.divIcon` + CSS `.dufu-div-marker` 类
-- map.js：新增 `escapeHtml()` 辅助函数，新增 `createDufuMarkerIcon(pt, isActive)` 工厂函数
-- map.js：显式传 `icon: createDufuMarkerIcon(pt, false)` 创建每个 marker
-- map.js：`highlightMarker()` 改用 `setIcon()` 更新 active/inactive 状态
-- map.css：新增 `.dufu-div-marker`、`.dufu-div-marker-dot` 及 accuracy/is-active 变体样式
-- 不再依赖 vendor/leaflet/images/marker-icon*.png 图片路径
+- map.js：替换 L.Icon.Default 为 L.divIcon + CSS 圆点标记
+- map.js：新增 `createDufuMarkerIcon(pt, isActive)` 返回 `L.divIcon`
+- map.js：`highlightMarker()` 改用 `setIcon()` 更新状态，`prevMarker` 追踪
+- map.js：注释掉 `L.Icon.Default.mergeOptions`（不再依赖 marker-icon.png）
+- map.css：新增 `.dufu-div-marker` / `.dufu-div-marker-dot` / `.accuracy-*` / `.is-active` CSS 样式
+- 不依赖任何图片文件；纯 CSS 渲染圆形 marker
 - app.js / style.css / index.html / data/*.json 均未修改
 - 主页面运行时完全未改动
-
-### Phase 6E-1 — Minimal Coordinate Cleanup（2026-05-12）
-- data/map_points.json：仅修改元数据，不新增点位
-- 成都草堂：lat 30.6694 / lng 104.0433（草堂博物馆），accuracy district→scenic，note 写明现代景区参考不代表杜甫精确行迹
-- 白水/彭衙：accuracy district→approximate，note 写明两地相距20km不可混为同一地点
-- 石壕：accuracy approximate 不变，note 强化学术争议说明（学术界对《石壕吏》发生地存在不同意见）
-- 同谷/成县：accuracy district 不变，note 强化县治位置待进一步核查
-- 未修改 route_segments.geojson、locations.json、poems.json、页面运行时文件
-- 历史路线仍为示意连线，不代表杜甫实际精确路线
-- 彭衙、石壕、同谷仍需后续文献/实地核查
 
 ### Phase 6D — Map UX Polish（2026-05-12）
 - map.js：新增 `renderMapIntro(mapPoints, routeGeoJSON)` 在地图加载完成后显示"地图已加载"提示 + 图例
@@ -240,6 +230,34 @@ dufu-luanli-route-page/
 - 不再显示"正在加载地图数据…"作为永久状态；数据加载成功后替换为图例+说明
 - app.js / style.css / index.html / data/*.json 均未修改
 - 主页面运行时完全未改动
+
+### Phase 6E-2 — Map-Only Point Split（2026-05-12）
+- data/map_points.json：2 new points + 2 updated points
+  - 新增 `map-mingyuexia`（明月峡，scenic，~32.5286, ~105.9197）
+  - 新增 `map-nanguo-temple`（南郭寺，approximate，~34.4600, ~105.7400）
+  - 更新 `map-guangyuan-mingyue` → 广元市区（district，note 区分明月峡）
+  - 更新 `map-nanguosi-dongke` → 东柯谷（approximate，note 区分南郭寺）
+- data/route_segments.geojson：2 new segments + 5 updated segments
+  - 新增 `seg-guangyuan-mingyuexia`（广元市区→明月峡）
+  - 新增 `seg-nanguo-temple-dongke`（南郭寺→东柯谷）
+  - 更新 `seg-qinzhou-dongke` → 秦州→南郭寺
+  - 更新 `seg-guangyuan-jianmenguan` note 强调广元市区
+  - 更新 `seg-tonggu-guangyuan` note 区分明月峡
+  - 修复 `seg-jianmenguan-chengdu` 旧成都坐标（104.0500→104.0433）
+- data/locations.json / poems.json / routes.json：未修改
+- 页面运行时文件：未修改
+- 新点复用既有 locationId，pending future data-model refinement
+- 所有路线仍为 schematic 阅读示意线，不代表唐代道路
+
+### Phase 6E-1 — Minimal Coordinate Cleanup（2026-05-12）
+- data/map_points.json：仅修改元数据，不新增点位
+- 成都草堂：lat 30.6694 / lng 104.0433（草堂博物馆），accuracy district→scenic，note 写明现代景区参考不代表杜甫精确行迹
+- 白水/彭衙：accuracy district→approximate，note 写明两地相距20km不可混为同一地点
+- 石壕：accuracy approximate 不变，note 强化学术争议说明（学术界对《石壕吏》发生地存在不同意见）
+- 同谷/成县：accuracy district 不变，note 强化县治位置待进一步核查
+- 未修改 route_segments.geojson、locations.json、poems.json、页面运行时文件
+- 历史路线仍为示意连线，不代表杜甫实际精确路线
+- 彭衙、石壕、同谷仍需后续文献/实地核查
 
 ## 技术说明
 

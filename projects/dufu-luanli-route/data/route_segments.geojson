@@ -233,18 +233,37 @@
       "type": "Feature",
       "properties": {
         "id": "seg-qinzhou-dongke",
-        "name": "秦州 → 东柯谷",
+        "name": "秦州 → 南郭寺",
         "stage": "秦州陇蜀",
         "certainty": "schematic",
         "from": "map-qinzhou-tianshui",
-        "to": "map-nanguosi-dongke",
+        "to": "map-nanguo-temple",
         "note": "现代地图阅读示意连线。赞公和尚带杜甫自秦州城寻访东柯谷/西枝村草堂地。"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [105.7200, 34.5800],
-          [105.7000, 34.9833]
+          [105.7400, 34.4600]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "seg-nanguo-temple-dongke",
+        "name": "南郭寺 → 东柯谷",
+        "stage": "秦州陇蜀",
+        "certainty": "schematic",
+        "from": "map-nanguo-temple",
+        "to": "map-nanguosi-dongke",
+        "note": "现代地图阅读示意连线。南郭寺在秦州城区附近，东柯谷在街亭一带，两地相距约60公里，均为杜甫寻置草堂地之行迹。杜甫随赞公自南郭寺出发寻访草堂地，先至东柯谷，再至西枝村。"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [105.7400, 34.4600],
+          [105.7000, 34.9500]
         ]
       }
     },
@@ -295,7 +314,7 @@
         "certainty": "schematic",
         "from": "map-tonggu-chengxian",
         "to": "map-guangyuan-mingyue",
-        "note": "现代地图阅读示意连线。自同谷向西南沿嘉陵江至广元。《木皮岭》《白沙渡》《水会渡》等纪行诗。"
+        "note": "现代地图阅读示意连线。自同谷向西南沿嘉陵江至广元市区。《木皮岭》《白沙渡》《水会渡》《五盘》等纪行诗描述嘉陵江段在明月峡附近，需与广元市区区分。"
       },
       "geometry": {
         "type": "LineString",
@@ -314,13 +333,32 @@
         "certainty": "schematic",
         "from": "map-guangyuan-mingyue",
         "to": "map-jianmenguan",
-        "note": "现代地图阅读示意连线。自广元向西北沿古蜀道至剑门关。《剑门》。"
+        "note": "现代地图阅读示意连线。自广元市区向西北沿古蜀道至剑门关。《剑门》。"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [105.8236, 32.4350],
           [105.5167, 32.3667]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "seg-guangyuan-mingyuexia",
+        "name": "广元 → 明月峡",
+        "stage": "秦州陇蜀",
+        "certainty": "schematic",
+        "from": "map-guangyuan-mingyue",
+        "to": "map-mingyuexia",
+        "note": "现代地图阅读示意连线。自广元市区向东沿嘉陵江至明月峡。杜甫入蜀纪行诗《木皮岭》《白沙渡》《水会渡》《五盘》描述此段嘉陵江河谷，不等于广元市区本身。"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [105.8236, 32.4350],
+          [105.9197, 32.5286]
         ]
       }
     },
@@ -339,7 +377,7 @@
         "type": "LineString",
         "coordinates": [
           [105.5167, 32.3667],
-          [104.0500, 30.6700]
+          [104.0433, 30.6694]
         ]
       }
     },

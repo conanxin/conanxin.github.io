@@ -219,6 +219,18 @@ dufu-luanli-route-page/
 - app.js / style.css / index.html / data/*.json 均未修改
 - 主页面运行时完全未改动
 
+### Phase 6D — Map UX Polish（2026-05-12）
+- map.js：新增 `renderMapIntro(mapPoints, routeGeoJSON)` 在地图加载完成后显示"地图已加载"提示 + 图例
+- map.js：新增 `showStageSummary(stage, points)` 在阶段筛选后（未选 marker）显示阶段摘要
+- map.js：新增 `renderChipCounts(mapPoints)` 统计各阶段点位数量并填入 chip-count span
+- map.js：`buildMap()` 末尾调用 `renderMapIntro` + `renderChipCounts`
+- map.js：`applyFilter()` 非"全部"时调用 `showStageSummary`，"全部"时调用 `clearDetail()`
+- map.html：chip 按钮新增 `<span class="chip-count" id="count-阶段">` 空占位
+- map.css：新增 `.map-detail-empty`（intro/summary 面板样式）、`.map-legend`（图例）、`.legend-dot`（图例圆点，按 accuracy 颜色）、`.chip-count`（chip 数量标签）
+- 不再显示"正在加载地图数据…"作为永久状态；数据加载成功后替换为图例+说明
+- app.js / style.css / index.html / data/*.json 均未修改
+- 主页面运行时完全未改动
+
 ## 技术说明
 
 - 纯静态 HTML/CSS/JS，无外部 CDN 依赖

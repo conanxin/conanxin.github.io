@@ -157,6 +157,68 @@
     detail.innerHTML = '<div class="detail-placeholder"><p>点击地图上的标记点<br>查看地点详情、相关诗歌与历史意义</p></div>';
   }
 
+  // ── Render map intro (shown after data loads, before any marker click) ─
+  function renderMapIntro(mapPoints, routeGeoJSON) {
+    var detail = document.getElementById('map-detail');
+    if (!detail) return;
+
+    var segCount = routeGeoJSON.features ? routeGeoJSON.features.length : 0;
+    var legendHTML = [
+      '<div class="map-legend">',
+      '  <div><span class="legend-dot accuracy-city"></span> 城市级参考点</div>',
+      '  <div><span class="legend-dot accuracy-district"></span> 区县级参考点</div>',
+      '  <div><span class="legend-dot accuracy-scenic"></span> 景区 / 实地景点</div>',
+      '  <div><span class="legend-dot accuracy-approximate"></span> 近似 / 考证提示点</div>',
+      '</div>'
+    ].join('');
+
+    detail.innerHTML = [
+      '<div class="map-detail-empty">',
+      '  <div class="detail-kicker">Map Ready</div>',
+      '  <h2>地图已加载</h2>',
+      '  <p>左侧地图已载入 <strong>' + mapPoints.length + '</strong> 个今日地点参考点和 <strong>' + segCount + '</strong> 条路线示意线。</p>',
+      '  <p>点击任一圆点，可查看对应地点、地点类型、相关诗歌与旅行提示。</p>',
+      legendHTML,
+      '</div>'
+    ].join('');
+  }
+
+  // ── Render stage summary (shown when a stage filter is active but no marker is selected) ─
+  function showStageSummary(stage, points) {
+    var detail = document.getElementById('map-detail');
+    if (!detail) return;
+
+    var stageLabel = {
+      '长安奉先': '长安 · 奉先',
+      '安史逃亡': '安史逃亡',
+      '陷京见证': '陷京 · 见证',
+      '三吏三别': '三吏三别',
+      '秦州陇蜀': '秦州 · 陇蜀',
+      '成都草堂': '成都草堂'
+    }[stage] || stage;
+
+    var count = points.length;
+    if (count === 0) {
+      detail.innerHTML = [
+        '<div class="map-detail-empty">',
+        '  <div class="detail-kicker">' + stageLabel + '</div>',
+        '  <h2>本阶段暂无点位</h2>',
+        '  <p>该阶段暂无记录，请切换其他阶段。</p>',
+        '</div>'
+      ].join('');
+      return;
+    }
+
+    detail.innerHTML = [
+      '<div class="map-detail-empty">',
+      '  <div class="detail-kicker">当前阶段</div>',
+      '  <h2>' + stageLabel + '</h2>',
+      '  <p>本阶段包含 <strong>' + count + '</strong> 个今日地点参考点。</p>',
+      '  <p>点击地图中的圆点查看详情。</p>',
+      '</div>'
+    ].join('');
+  }
+
   // ── Highlight marker ─────────────────────────────────────────
   function highlightMarker(ptId) {
     allMarkers.forEach(function (item) {
@@ -206,7 +268,12 @@
       map.fitBounds(group.getBounds().pad(0.2));
     }
 
-    clearDetail();
+    // Show stage summary if '全部', otherwise show filtered stage summary
+    if (stage === 'all') {
+      clearDetail();
+    } else {
+      showStageSummary(stage, visibleMarkers.map(function (item) { return item.pt; }));
+    }
   }
 
   // ── Setup stage filter chips ──────────────────────────────────
@@ -258,6 +325,21 @@
       var detail = document.getElementById('map-detail');
       if (detail) {
         detail.innerHTML = '<div class="map-error">地图数据加载失败：' + err.message + '</div>';
+      }
+    });
+  }
+
+  // ── Populate stage chip counts (called after data loads) ───────
+  function renderChipCounts(mapPoints) {
+    var stageIds = ['all', '长安奉先', '安史逃亡', '陷京见证', '三吏三别', '秦州陇蜀', '成都草堂'];
+    stageIds.forEach(function (stage) {
+      var el = document.getElementById('count-' + stage);
+      if (!el) return;
+      if (stage === 'all') {
+        el.textContent = mapPoints.length;
+      } else {
+        var pts = mapPoints.filter(function (p) { return p.stage === stage; });
+        el.textContent = pts.length;
       }
     });
   }
@@ -352,6 +434,11 @@
       '[DuFu Map] Initialized: ' + allMarkers.length + ' markers, ' +
       allLines.length + ' route lines'
     );
+
+    // Show intro state with legend after map is ready
+    renderMapIntro(mapPoints, routeGeoJSON);
+    // Populate chip counts
+    renderChipCounts(mapPoints);
   }
 
   // ── Boot ──────────────────────────────────────────────────────

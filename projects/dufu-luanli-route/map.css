@@ -422,6 +422,111 @@ body {
     0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* ── Map Detail Empty State / Intro (Phase 6D) ───────────────── */
+.map-detail-empty {
+  padding: 2rem 1.5rem;
+}
+
+.map-detail-empty .detail-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.map-detail-empty h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  line-height: 1.3;
+}
+
+.map-detail-empty p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 0.75rem;
+}
+
+.map-detail-empty p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── Map Legend ──────────────────────────────────────────────── */
+.map-legend {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.map-legend p.legend-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 0.75rem;
+}
+
+.map-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1.5px solid #f5e6c8;
+  background: #c9934b;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.legend-dot.accuracy-city    { background: #c9934b; }
+.legend-dot.accuracy-district { background: #b98545; }
+.legend-dot.accuracy-scenic   { background: #6fa37b; border-style: dashed; border-color: rgba(245,230,200,0.5); }
+.legend-dot.accuracy-approximate { background: #9f715a; border-style: dashed; border-color: rgba(245,230,200,0.5); }
+
+/* ── Stage Chip Counts ────────────────────────────────────────── */
+.chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  padding: 0 0.3em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  margin-left: 0.25em;
+  vertical-align: middle;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.stage-chip.active .chip-count {
+  background: rgba(var(--accent-rgb, 200,135,74), 0.25);
+  color: var(--accent, #c9934b);
+}
+
+/* Mobile legend wrap */
+@media (max-width: 480px) {
+  .map-legend > div {
+    flex-wrap: wrap;
+  }
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root {

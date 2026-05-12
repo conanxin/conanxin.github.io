@@ -144,6 +144,8 @@ dufu-luanli-route-page/
 - See `docs/DATA_MAINTENANCE.md` before editing locations, routes, poems or timeline.
 - Always run `scripts/validate_dufu_data.py` after data changes.
 - Do not add large content blocks directly to `app.js`.
+- Cross-reference checks are included in `scripts/validate_dufu_data.py`.
+- Warnings should be reviewed before publishing, even when validation passes.
 
 ## 禁止事项（执行边界）
 

@@ -211,6 +211,65 @@ echo "Sync OK"
 
 ---
 
+## Cross-reference rules
+
+### 字段引用约束
+
+| 引用方向 | 规则 | 违反后果 |
+|----------|------|----------|
+| `poem.locationId` → `locations.id` | **必须**能匹配 | FAIL（validation script） |
+| `routes[locs]` → `locations.id` | **必须**能匹配 | FAIL（validation script） |
+| `timeline.poems` → `poems.title` | 展示字段，**建议**匹配但不做强制要求 | WARN（audit script） |
+
+### 关键原则
+
+- `location id` 一旦稳定，**不要随意改名**——所有 `poem.locationId`、`routes.locs` 和 `dualCity.places.loc` 依赖这些 id
+- 如果在 `routes.json` 中新增 `locs` 或 `locationIds` 字段，**必须**使用 `locations.json` 中已有的 id
+- `timeline.poems` 是页面展示用字符串（逗号分隔的诗歌名），不是结构化引用，但新增地点时**建议**检查是否能匹配 `poems.json` 中的代表诗
+
+### siteType 允许值
+
+每个 `siteType` 值可以包含多个子类型（用 `+` 或 `、` 分隔），每个子类型必须在以下列表中：
+
+- `成熟景区`
+- `文学寻访点`
+- `历史对应点`
+- `考证提示点`
+- `古道寻访`
+
+组合示例：`成熟景区+历史对应点`、`文学寻访点+考证提示点` 均有效。
+
+### routeGroup
+
+- 不应为空
+- 建议使用标准组名：`changan`、`fengxian`、`anshi`、`qiangcun`、`sanli`、`qinzhou`、`tonggu`、`longshu`、`chengdu`
+
+### 验证命令
+
+每次修改数据后**必须**运行：
+
+```bash
+cd ~/projects/dufu-luanli-route-page
+
+# 结构验证 + 交叉引用检查（推荐先跑这个）
+python3 scripts/validate_dufu_data.py
+
+# 详细交叉引用审计（含 WARN 级别检查）
+python3 scripts/audit_dufu_crossrefs.py
+
+# JSON 语法检查
+python3 -m json.tool data/locations.json > /tmp/dufu_locs_check.json
+python3 -m json.tool data/routes.json   > /tmp/dufu_routes_check.json
+python3 -m json.tool data/poems.json   > /tmp/dufu_poems_check.json
+python3 -m json.tool data/timeline.json > /tmp/dufu_timeline_check.json
+```
+
+### 已知不一致（已知约束）
+
+`timeline.poems` 字段引用了 28 次诗歌标题，其中《三吏三别》全套 6 首、《梦李白二首》《发华州》《西枝村寻置草堂地》《万丈潭》《凤凰台》《木皮岭》《白沙渡》《水会渡》《五盘》等散篇不在 `poems.json` 中。这是设计选择：`poems.json` 是精选代表诗集（12首），不是完整诗歌库。Validation script 对此发出 WARN，不 FAIL；audit script 列出详细 WARN 清单。
+
+---
+
 ## 不要做什么
 
 - **不要**直接在 `app.js` 中继续堆内容数据（Phase 4B 后内容已迁移至 `data/*.json`）

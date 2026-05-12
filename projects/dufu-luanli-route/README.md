@@ -219,6 +219,16 @@ dufu-luanli-route-page/
 - app.js / style.css / index.html / data/*.json 均未修改
 - 主页面运行时完全未改动
 
+### Phase 6E-1 — Minimal Coordinate Cleanup（2026-05-12）
+- data/map_points.json：仅修改元数据，不新增点位
+- 成都草堂：lat 30.6694 / lng 104.0433（草堂博物馆），accuracy district→scenic，note 写明现代景区参考不代表杜甫精确行迹
+- 白水/彭衙：accuracy district→approximate，note 写明两地相距20km不可混为同一地点
+- 石壕：accuracy approximate 不变，note 强化学术争议说明（学术界对《石壕吏》发生地存在不同意见）
+- 同谷/成县：accuracy district 不变，note 强化县治位置待进一步核查
+- 未修改 route_segments.geojson、locations.json、poems.json、页面运行时文件
+- 历史路线仍为示意连线，不代表杜甫实际精确路线
+- 彭衙、石壕、同谷仍需后续文献/实地核查
+
 ### Phase 6D — Map UX Polish（2026-05-12）
 - map.js：新增 `renderMapIntro(mapPoints, routeGeoJSON)` 在地图加载完成后显示"地图已加载"提示 + 图例
 - map.js：新增 `showStageSummary(stage, points)` 在阶段筛选后（未选 marker）显示阶段摘要

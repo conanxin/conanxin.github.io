@@ -1,8 +1,24 @@
 # 乱离途中，杜甫何以成为"杜甫"？
 
-杜甫流离路线交互原型页面。
+杜甫流离路线交互式阅读与文旅路线页面。
 
 基于《三联生活周刊》2025年第40期封面故事《乱离途中，杜甫何以成为"杜甫"？》整理。
+
+## Version
+
+Current public version: **v1.0**
+Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
+Latest release phase: Phase 3D / v1.0 Closeout
+
+## Project Status
+
+**Stable public version.** Future work should prefer data extraction and reusable structure instead of continuing to add large inline HTML/JS blocks.
+
+## Maintenance Rule
+
+- Do not add new large features directly into `index.html` unless necessary.
+- Prefer extracting route/location/poem data into JSON in the next major phase.
+- Keep source project and GitHub Pages directory synchronized.
 
 ## 内容模块
 
@@ -29,12 +45,17 @@ python3 -m http.server 8080
 
 ```
 dufu-luanli-route-page/
-├── index.html          # 主页面
-├── style.css          # 样式表
-├── app.js             # 应用逻辑
-├── README.md          # 本文件
+├── index.html                  # 主页面
+├── style.css                  # 样式表
+├── app.js                     # 应用逻辑
+├── README.md                  # 本文件
+├── CHANGELOG.md               # 完整变更记录
+├── RELEASE_NOTES_v1.0.md      # v1.0 发行说明
 └── reports/
-    └── dufu_route_page_prototype_report.md  # 验证报告
+    ├── dufu_route_page_prototype_report.md
+    ├── phase3c_travel_planning_enhancement_report.md
+    ├── phase3d_experience_polish_report.md
+    └── phase3e_v1_closeout_report.md
 ```
 
 ## 更新记录
@@ -94,8 +115,9 @@ dufu-luanli-route-page/
 
 ## 禁止事项（执行边界）
 
-- 不修改 ~/conanxin.github.io
-- 不 git commit / git push
+- 不修改根站首页（`index.html` 根目录）
+- 不修改 `projects/data.json`
 - 不安装 apt 包
 - 不重启任何系统服务
 - 不输出任何 secrets / tokens / credentials
+- 不添加外部 CDN 依赖

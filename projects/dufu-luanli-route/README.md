@@ -209,6 +209,16 @@ dufu-luanli-route-page/
 - app.js / map.js / data/*.json 均未修改
 - 主页面运行时完全未改动
 
+### Phase 6C-R — Leaflet Marker Icon Fix（2026-05-12）
+- map.js：注释掉 `L.Icon.Default.mergeOptions`，改用 `L.divIcon` + CSS `.dufu-div-marker` 类
+- map.js：新增 `escapeHtml()` 辅助函数，新增 `createDufuMarkerIcon(pt, isActive)` 工厂函数
+- map.js：显式传 `icon: createDufuMarkerIcon(pt, false)` 创建每个 marker
+- map.js：`highlightMarker()` 改用 `setIcon()` 更新 active/inactive 状态
+- map.css：新增 `.dufu-div-marker`、`.dufu-div-marker-dot` 及 accuracy/is-active 变体样式
+- 不再依赖 vendor/leaflet/images/marker-icon*.png 图片路径
+- app.js / style.css / index.html / data/*.json 均未修改
+- 主页面运行时完全未改动
+
 ## 技术说明
 
 - 纯静态 HTML/CSS/JS，无外部 CDN 依赖

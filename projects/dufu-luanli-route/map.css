@@ -378,6 +378,50 @@ body {
   margin: 1rem 0;
 }
 
+/* ── CSS DivIcon Markers (Phase 6C-R) ────────────────────────── */
+.dufu-div-marker {
+  background: transparent;
+  border: 0;
+}
+
+.dufu-div-marker-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #c9934b;
+  border: 2px solid #f5e6c8;
+  box-shadow:
+    0 0 0 4px rgba(201, 147, 75, 0.22),
+    0 6px 16px rgba(0, 0, 0, 0.42);
+}
+
+.dufu-div-marker.accuracy-city .dufu-div-marker-dot {
+  background: #c9934b;
+}
+
+.dufu-div-marker.accuracy-district .dufu-div-marker-dot {
+  background: #b98545;
+}
+
+.dufu-div-marker.accuracy-scenic .dufu-div-marker-dot {
+  background: #6fa37b;
+}
+
+.dufu-div-marker.accuracy-approximate .dufu-div-marker-dot,
+.dufu-div-marker.accuracy-disputed .dufu-div-marker-dot {
+  background: #9f715a;
+  border-style: dashed;
+}
+
+.dufu-div-marker.is-active .dufu-div-marker-dot {
+  transform: scale(1.25);
+  background: #e0a64c;
+  box-shadow:
+    0 0 0 6px rgba(224, 166, 76, 0.30),
+    0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root {

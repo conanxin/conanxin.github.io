@@ -28,17 +28,44 @@
   let allPoems = [];          // raw poems array
   let activeStage = 'all';
   let activeMarkerId = null;
+  let prevMarker = null;   // previously active marker for icon reset
 
-  // ── Leaflet Default Icon Fix ─────────────────────────────────
-  L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'vendor/leaflet/images/marker-icon-2x.png',
-    iconUrl: 'vendor/leaflet/images/marker-icon.png',
-    shadowUrl: 'vendor/leaflet/images/marker-shadow.png'
-  });
+  // ── Leaflet Default Icon Fix (DEPRECATED — using CSS DivIcon instead) ─
+  // L.Icon.Default.mergeOptions({
+  //   iconRetinaUrl: 'vendor/leaflet/images/marker-icon-2x.png',
+  //   iconUrl: 'vendor/leaflet/images/marker-icon.png',
+  //   shadowUrl: 'vendor/leaflet/images/marker-shadow.png'
+  // });
+
+  // ── Escape HTML ─────────────────────────────────────────────
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
 
   // ── Accuracy → CSS class ─────────────────────────────────────
   function accuracyClass(acc) {
     return 'detail-tag detail-tag--accuracy-' + acc;
+  }
+
+  // ── Create CSS-based DivIcon marker ─────────────────────────
+  function createDufuMarkerIcon(pt, isActive) {
+    var accuracy = pt.accuracy || 'approximate';
+    var cls = [
+      'dufu-div-marker',
+      'accuracy-' + accuracy,
+      isActive ? 'is-active' : ''
+    ].join(' ');
+    return L.divIcon({
+      className: cls,
+      html: '<span class="dufu-div-marker-dot" title="' + escapeHtml(pt.name || '') + '"></span>',
+      iconSize: [22, 22],
+      iconAnchor: [11, 11],
+      popupAnchor: [0, -12]
+    });
   }
 
   // ── Build popup HTML ─────────────────────────────────────────
@@ -133,11 +160,8 @@
   // ── Highlight marker ─────────────────────────────────────────
   function highlightMarker(ptId) {
     allMarkers.forEach(function (item) {
-      if (item.pt.id === ptId) {
-        item.marker.setZIndexOffset(1000);
-      } else {
-        item.marker.setZIndexOffset(0);
-      }
+      var isActive = (item.pt.id === ptId);
+      item.marker.setIcon(createDufuMarkerIcon(item.pt, isActive));
     });
   }
 
@@ -291,6 +315,7 @@
     // ── Render markers ──────────────────────────────────────────
     mapPoints.forEach(function (pt) {
       var marker = L.marker([pt.lat, pt.lng], {
+        icon: createDufuMarkerIcon(pt, false),
         title: pt.name
       });
 

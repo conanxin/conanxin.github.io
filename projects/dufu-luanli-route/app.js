@@ -1014,10 +1014,19 @@ function showCopySuccess(btn) {
   var original = btn.textContent;
   btn.textContent = '已复制 ✓';
   btn.classList.add('copied');
+  showToast('已复制路线');
   setTimeout(function() {
     btn.textContent = original;
     btn.classList.remove('copied');
   }, 2000);
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
 }
 
 function initCopyFallback() {

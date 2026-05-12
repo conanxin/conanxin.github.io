@@ -18,12 +18,16 @@
 
 html { scroll-behavior: smooth; font-size: 16px; }
 
+*, *::before, *::after { box-sizing: border-box; }
 body {
-  background: var(--bg);
+  margin: 0;
+  background: var(--light);
   color: var(--ink);
   font-family: var(--sans);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 ::selection { background: var(--vermilion); color: #fff; }
@@ -80,6 +84,8 @@ section { padding: 4rem 0; }
   line-height: 1.15;
   margin-bottom: 1.25rem;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -331,15 +337,23 @@ section { padding: 4rem 0; }
   .map-layout { grid-template-columns: 1fr; }
 }
 .map-container { background: #1a1814; border-radius: 4px; overflow: hidden; }
+@media (max-width: 800px) {
+  .map-container { overflow-x: auto; }
+}
 #route-map { display: block; width: 100%; height: auto; }
 
-.map-sidebar { position: sticky; top: 2rem; }
+.map-sidebar { position: sticky; top: 3rem; }
+@media (max-width: 800px) {
+  .map-sidebar { position: static; }
+}
 .detail-card {
   background: #221f1a;
   border: 1px solid #3a3530;
   border-radius: 4px;
   padding: 1.25rem;
   min-height: 200px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .detail-placeholder {
   display: flex;
@@ -883,5 +897,92 @@ section { padding: 4rem 0; }
   .dual-city-cols { grid-template-columns: 1fr; }
 }
 
+/* ==================== STICKY NAV ==================== */
+#page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26, 24, 20, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid #3a3530;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-link {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  color: #b8a98a;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+.nav-link:hover { color: #f5f0e8; border-bottom-color: #c8402a; }
+@media (max-width: 600px) {
+  .nav-inner { padding: 0 1rem; gap: 0; }
+  .nav-link { padding: 0.6rem 0.7rem; font-size: 0.8rem; }
+}
+
 /* ==================== UTILITY ==================== */
 .hidden { display: none !important; }
+
+/* ==================== TOAST ==================== */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a2520;
+  color: #f5f0e8;
+  border: 1px solid #c8402a;
+  padding: 0.6rem 1.4rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; }
+
+/* ==================== PRINT ==================== */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; color: #1a1814 !important; font-size: 11pt; }
+  #page-nav, .hero-actions, .route-tabs, .copy-btn, .tab-nav,
+  button, [aria-label="页面导航"], footer { display: none !important; }
+  .hero { padding: 2rem 0 !important; background: #fff !important; }
+  .hero-title { font-size: 1.6rem !important; color: #1a1814 !important; }
+  .hero-subtitle { font-size: 1rem !important; color: #444 !important; }
+  .hero-keywords { display: none !important; }
+  section { padding: 1.5rem 0 !important; border-bottom: 1px solid #ddd; }
+  .section-inner { max-width: 100% !important; }
+  .section-title { font-size: 1.1rem !important; color: #1a1814 !important; }
+  .tab-content { display: block !important; }
+  .tab-nav { display: none !important; }
+  .timeline { padding-left: 0 !important; }
+  .tl-item { break-inside: avoid; padding: 0.5rem 0; border-left: 2px solid #c8402a; }
+  .map-container { overflow: visible !important; }
+  #route-map { max-width: 100% !important; }
+  .detail-card { border: 1px solid #ccc !important; break-inside: avoid; }
+  .day-card { break-inside: avoid; border: 1px solid #ccc !important; margin-bottom: 0.5rem !important; }
+  .selector-card, .thematic-card, .tips-card, .note-card {
+    border: 1px solid #ccc !important; break-inside: avoid; margin-bottom: 0.5rem !important; }
+  .route-meta-tags { display: none !important; }
+  footer { display: none !important; }
+  a[href]::after { content: none !important; }
+}

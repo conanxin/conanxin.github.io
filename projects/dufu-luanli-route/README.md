@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 4A / Data Extraction Dry Run
+Latest release phase: Phase 4B / Data-Driven Rendering
 
 ## Project Status
 
@@ -59,6 +59,20 @@ dufu-luanli-route-page/
 ```
 
 ## 更新记录
+
+### Phase 4B — Data-Driven Rendering（2026-05-12）
+- **数据来源重构**：页面运行时数据从 `app.js` 内联数据切换为 `data/*.json`（fetch）
+- **Fallback 策略**：内联数据包裹为 `FALLBACK_DATA`，fetch 失败时页面仍可正常渲染（`dataSource: 'fallback'`）
+- **加载流程**：DOMContentLoaded 改为 `async`，先 `await loadDufuData()` 再执行各模块 init
+- **渲染函数改造**：所有渲染函数（`initTimeline`/`initRoutes`/`renderRouteDays`/`renderThematicGrid`/`initPoemGrid` 等）改为读取 `DUFU_DATA.*`
+- **字段映射适配**：
+  - `poem.poem` → `poem.title`（JSON 字段名）
+  - `poem.loc` → `poem.locationId`（JSON 字段名）
+  - `timeline.locations` → `timeline.historicalPlace`（JSON 字段名）
+  - `timeline.why` → `timeline.whyImportant`（JSON 字段名）
+- **控制台标记**：`[DuFuRoute] Runtime data source: json|fallback` 便于调试
+- **未改 UI 逻辑**：无新增功能、无视觉变更；内容数据与渲染逻辑已解耦
+- **未来维护**：内容更新只需编辑 `data/*.json`，无需修改 `app.js` 渲染代码
 
 ### Phase 4A — 数据提取 Dry Run（2026-05-12）
 - **新增 data/ 目录**：将 app.js 中的地点、路线、诗歌、时间线数据提取为独立 JSON 文件

@@ -563,8 +563,80 @@ const ROUTE_LINES = [
   ['jianmenguan', 'chengdu']
 ];
 
+// ==================== FALLBACK DATA (inline copy of original constants) ====================
+// Used when JSON fetch fails so the page never renders blank.
+const FALLBACK_DATA = {
+  locations: LOCATIONS,
+  timeline: TIMELINE,
+  routes: ROUTES,
+  routeMeta: ROUTE_META,
+  poems: POEM_MAP.map(function(item) {
+    return {
+      title: item.poem,
+      locationId: item.loc,
+      locationName: (LOCATIONS.find(function(l) { return l.id === item.loc; }) || {}).name || item.loc
+    };
+  })
+};
+
+// ==================== RUNTIME DATA ====================
+let DUFU_DATA = {
+  locations: FALLBACK_DATA.locations,
+  timeline: FALLBACK_DATA.timeline,
+  routes: FALLBACK_DATA.routes,
+  routeMeta: FALLBACK_DATA.routeMeta,
+  poems: FALLBACK_DATA.poems,
+  dataSource: 'fallback'
+};
+
+// ==================== ASYNC DATA LOADER ====================
+async function loadDufuData() {
+  try {
+    const [locationsRes, routesRes, poemsRes, timelineRes] = await Promise.all([
+      fetch('data/locations.json'),
+      fetch('data/routes.json'),
+      fetch('data/poems.json'),
+      fetch('data/timeline.json')
+    ]);
+
+    if (!locationsRes.ok || !routesRes.ok || !poemsRes.ok || !timelineRes.ok) {
+      throw new Error('One or more data files returned non-OK status');
+    }
+
+    const [locations, routesBundle, poems, timeline] = await Promise.all([
+      locationsRes.json(),
+      routesRes.json(),
+      poemsRes.json(),
+      timelineRes.json()
+    ]);
+
+    DUFU_DATA = {
+      locations: locations,
+      timeline: timeline,
+      routes: routesBundle.routes || routesBundle,
+      routeMeta: routesBundle.meta || {},
+      poems: poems,
+      dataSource: 'json'
+    };
+
+    console.info('[DuFuRoute] Data loaded from JSON files.');
+  } catch (error) {
+    console.warn('[DuFuRoute] Failed to load JSON data, using fallback inline data.', error);
+    DUFU_DATA = {
+      locations: FALLBACK_DATA.locations,
+      timeline: FALLBACK_DATA.timeline,
+      routes: FALLBACK_DATA.routes,
+      routeMeta: FALLBACK_DATA.routeMeta,
+      poems: FALLBACK_DATA.poems,
+      dataSource: 'fallback'
+    };
+  }
+}
+
 // ==================== APP INIT ====================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+  await loadDufuData();
+  console.info('[DuFuRoute] Runtime data source:', DUFU_DATA.dataSource);
   initTabs();
   initTimeline();
   initMap();
@@ -607,16 +679,18 @@ function initTimeline() {
   var root = document.getElementById('timeline-root');
   if (!root) return;
   var html = '';
-  TIMELINE.forEach(function(item) {
+  DUFU_DATA.timeline.forEach(function(item) {
     html += '<div class="tl-item">';
     html += '<div class="tl-year">' + item.year + '</div>';
     html += '<div class="tl-title">' + item.title + '</div>';
-    html += '<div class="tl-locations">📍 ' + item.locations + '</div>';
+    html += '<div class="tl-locations">📍 ' + (item.historicalPlace || item.locations || '') + '</div>';
     html += '<div class="tl-event">' + item.event + '</div>';
     if (item.poems) {
       html += '<div class="tl-poems">' + item.poems + '</div>';
     }
-    if (item.why) {
+    if (item.whyImportant) {
+      html += '<div class="tl-why">' + item.whyImportant + '</div>';
+    } else if (item.why) {
       html += '<div class="tl-why">' + item.why + '</div>';
     }
     html += '</div>';
@@ -691,7 +765,7 @@ function setActiveLocation(id) {
   var nodeEl = document.querySelector('.map-node[data-id="' + id + '"]');
   if (nodeEl) nodeEl.classList.add('active');
 
-  var loc = LOCATIONS.find(function(l) { return l.id === id; });
+  var loc = DUFU_DATA.locations.find(function(l) { return l.id === id; });
   var card = document.getElementById('map-detail-card');
   if (!card || !loc) return;
 
@@ -768,7 +842,7 @@ function initRoutes() {
 function renderRouteMetaHeaders() {
   ['7day', '12day'].forEach(function(key) {
     var container = document.getElementById('days-' + key);
-    var meta = ROUTE_META[key];
+    var meta = DUFU_DATA.routeMeta[key];
     if (!container || !meta) return;
     var header = document.createElement('div');
     header.className = 'route-meta-header';
@@ -791,14 +865,14 @@ function renderRouteMetaHeaders() {
 
 function renderRouteDays(routeKey, container) {
   if (!container) return;
-  var days = ROUTES[routeKey];
+  var days = DUFU_DATA.routes[routeKey];
   if (!days) return;
-  var meta = ROUTE_META[routeKey] || {};
+  var meta = DUFU_DATA.routeMeta[routeKey] || {};
   var html = '';
   days.forEach(function(d) {
     var todayTheme = d.theme || '';
     var todayPlaces = d.places || (d.locs ? d.locs.map(function(lid) {
-      var l = LOCATIONS.find(function(x) { return x.id === lid; });
+      var l = DUFU_DATA.locations.find(function(x) { return x.id === lid; });
       return l ? l.name : lid;
     }).join('、') : '');
     var stay = d.stay || '1天';
@@ -828,8 +902,8 @@ function renderThematicGrid() {
   var container = document.getElementById('thematic-grid');
   if (!container) return;
   var html = '';
-  ROUTES.thematic.forEach(function(t) {
-    var meta = ROUTE_META[t.id] || {};
+  DUFU_DATA.routes.thematic.forEach(function(t) {
+    var meta = DUFU_DATA.routeMeta[t.id] || {};
     var days = meta.days || t.days;
     var difficulty = meta.difficulty || '';
     var season = meta.season || '';
@@ -863,7 +937,7 @@ function renderThematicGrid() {
 }
 
 function buildRouteText(routeKey, day) {
-  var days = ROUTES[routeKey];
+  var days = DUFU_DATA.routes[routeKey];
   if (!days) return '';
   var d = days.find(function(x) { return x.day === parseInt(day); });
   if (!d) return '';
@@ -881,31 +955,31 @@ function buildRouteText(routeKey, day) {
 
 function buildFullRouteText(routeKey) {
   if (routeKey === 'thematic-changan') {
-    var t = ROUTES.thematic.find(function(x) { return x.id === 'changan'; });
+    var t = DUFU_DATA.routes.thematic.find(function(x) { return x.id === 'changan'; });
     return '杜甫诗路 · ' + t.title + '（' + t.days + '）\n' +
       t.desc + '\n路线：' + t.route.join(' → ') + '\n' +
       '📜 推荐阅读：' + t.poems + '\n🗺 旅行建议：' + t.tip;
   }
   if (routeKey === 'thematic-anshi') {
-    var t = ROUTES.thematic.find(function(x) { return x.id === 'anshi'; });
+    var t = DUFU_DATA.routes.thematic.find(function(x) { return x.id === 'anshi'; });
     return '杜甫诗路 · ' + t.title + '（' + t.days + '）\n' +
       t.desc + '\n路线：' + t.route.join(' → ') + '\n' +
       '📜 推荐阅读：' + t.poems + '\n🗺 旅行建议：' + t.tip;
   }
   if (routeKey === 'thematic-sanli') {
-    var t = ROUTES.thematic.find(function(x) { return x.id === 'sanli'; });
+    var t = DUFU_DATA.routes.thematic.find(function(x) { return x.id === 'sanli'; });
     return '杜甫诗路 · ' + t.title + '（' + t.days + '）\n' +
       t.desc + '\n路线：' + t.route.join(' → ') + '\n' +
       '📜 推荐阅读：' + t.poems + '\n🗺 旅行建议：' + t.tip;
   }
   if (routeKey === 'thematic-qinzhou') {
-    var t = ROUTES.thematic.find(function(x) { return x.id === 'qinzhou'; });
+    var t = DUFU_DATA.routes.thematic.find(function(x) { return x.id === 'qinzhou'; });
     return '杜甫诗路 · ' + t.title + '（' + t.days + '）\n' +
       t.desc + '\n路线：' + t.route.join(' → ') + '\n' +
       '📜 推荐阅读：' + t.poems + '\n🗺 旅行建议：' + t.tip;
   }
   if (routeKey === 'dual-city') {
-    var meta = ROUTE_META['dual-city'];
+    var meta = DUFU_DATA.routeMeta['dual-city'];
     return '杜甫诗路 · ' + meta.routeName + '\n' +
       '这不是文章中的完整历史路线，而是便于入门的轻量版本。\n' +
       '适合人群：' + meta.crowd + '\n' +
@@ -915,9 +989,9 @@ function buildFullRouteText(routeKey) {
       '成都看点：杜甫草堂博物馆、浣花溪公园、武侯祠、锦里古街\n' +
       '⚠ 出发前请核实开放时间、交通、住宿、景区政策与道路情况。';
   }
-  var days = ROUTES[routeKey];
+  var days = DUFU_DATA.routes[routeKey];
   if (!days) return '';
-  var title = ROUTE_META[routeKey] ? ROUTE_META[routeKey].routeName : (routeKey === '7day' ? '7天精华线：从秦州到成都' : '12天完整线：从长安到成都');
+  var title = DUFU_DATA.routeMeta[routeKey] ? DUFU_DATA.routeMeta[routeKey].routeName : (routeKey === '7day' ? '7天精华线：从秦州到成都' : '12天完整线：从长安到成都');
   var text = '杜甫诗路 · ' + title + '\n\n';
   days.forEach(function(d) {
     var theme = d.theme ? '📌 今日主题：' + d.theme + '\n' : '';
@@ -940,11 +1014,11 @@ function initPoemGrid() {
   var grid = document.getElementById('poem-grid');
   if (!grid) return;
   var html = '';
-  POEM_MAP.forEach(function(item) {
-    var loc = LOCATIONS.find(function(l) { return l.id === item.loc; });
-    var locName = loc ? loc.name + '（' + loc.modern + '）' : item.loc;
-    html += '<div class="poem-item" data-loc="' + item.loc + '">';
-    html += '<div class="poem-name">' + item.poem + '</div>';
+  DUFU_DATA.poems.forEach(function(item) {
+    var loc = DUFU_DATA.locations.find(function(l) { return l.id === item.locationId; });
+    var locName = loc ? loc.name + '（' + loc.modern + '）' : item.locationId;
+    html += '<div class="poem-item" data-loc="' + item.locationId + '">';
+    html += '<div class="poem-name">' + item.title + '</div>';
     html += '<div class="poem-loc">📍 ' + locName + '</div>';
     html += '</div>';
   });

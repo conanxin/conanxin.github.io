@@ -298,3 +298,25 @@ dufu-luanli-route-page/
 - 不重启任何系统服务
 - 不输出任何 secrets / tokens / credentials
 - 不添加外部 CDN 依赖
+
+## Current Status
+
+**Stable public version: v1.1**
+Main page: https://conanxin.github.io/projects/dufu-luanli-route/
+Real map: https://conanxin.github.io/projects/dufu-luanli-route/map.html
+HTML handbook: https://conanxin.github.io/projects/dufu-luanli-route/exports/dufu_route_handbook.html
+PDF handbook: https://conanxin.github.io/projects/dufu-luanli-route/exports/dufu_route_handbook.pdf
+
+Current map data: 21 map points, 21 schematic route segments.
+All coordinates are modern reference points.
+All map points remain needsReview: true.
+
+The project is now a public route package rather than only an interactive essay.
+Future work should prefer data updates, validation and handbook regeneration over adding large features.
+
+## Closeout Note
+
+The dufu-luanli-route project is now v1.1 stable. All phases from 1A through 7B are complete.
+Real Map v1 has been frozen (Phase 6F). Project is in maintenance mode.
+Recommended next step: Phase 7B follow-up only if new issues are reported.
+Do not add large features without separate design review.

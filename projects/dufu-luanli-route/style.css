@@ -543,6 +543,46 @@ section { padding: 4rem 0; }
 #footer { background: var(--ink); color: #5a5045; text-align: center; padding: 2rem 0; }
 #footer p { font-size: 0.8rem; margin-bottom: 0.25rem; }
 
+/* ==================== SOURCE NOTES ==================== */
+#source-notes {
+  background: #1e1c18;
+  border-top: 1px solid #2a2520;
+}
+#source-notes .section-inner { max-width: 900px; }
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.note-card {
+  background: #252320;
+  border: 1px solid #2a2520;
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+.note-card h4 {
+  font-size: 0.95rem;
+  color: #c8402a;
+  margin: 0 0 0.6rem;
+  font-family: serif;
+}
+.note-card p {
+  font-size: 0.82rem;
+  color: #9a9080;
+  line-height: 1.75;
+  margin: 0 0 0.5rem;
+}
+.note-card p:last-child { margin-bottom: 0; }
+
+/* ==================== SECTION TIP ==================== */
+.section-tip {
+  font-size: 0.78rem;
+  color: #7a7060;
+  margin: 0.4rem 0 0;
+  font-style: italic;
+}
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 600px) {
   section { padding: 3rem 0; }

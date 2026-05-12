@@ -190,6 +190,16 @@ dufu-luanli-route-page/
 - 未修改 index.html / app.js / style.css；未新增 Leaflet / 地图瓦片
 - Phase 6B 可接入 Leaflet 地图原型
 
+### Phase 6B — Leaflet Map Prototype（2026-05-12）
+- 新增独立地图原型页面 `map.html` / `map.css` / `map.js`
+- 新增本地 Leaflet 1.9.4 静态文件 `vendor/leaflet/`（CSS / JS / marker icons）
+- Leaflet tile layer 使用 CartoDB dark（无需 API key，无需外部追踪）
+- 地图读取 `data/map_points.json`、`data/route_segments.geojson`、`data/locations.json`、`data/poems.json`
+- 功能：WGS84 marker + popup、路线 polyline、右侧详情面板、阶段筛选 chips、fitBounds
+- 主页面运行时（index.html / app.js / style.css）完全未改动
+- 坐标为现代参考点，路线为阅读示意连线，不代表杜甫实际精确行走轨迹
+- Phase 6C 建议：主页面集成地图入口链接、增加草堂位置标注精度核查
+
 ## 技术说明
 
 - 纯静态 HTML/CSS/JS，无外部 CDN 依赖

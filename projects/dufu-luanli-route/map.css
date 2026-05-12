@@ -1,0 +1,392 @@
+/* ─────────────────────────────────────────────────────────────
+   map.css — Du Fu Route Leaflet Map Prototype
+   Phase 6B — 杜甫诗路真实地图原型
+   风格：深色背景 + 米白文字 + 土黄强调色，与主页面一致
+───────────────────────────────────────────────────────────── */
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg-primary:    #1a1814;   /* 墨黑，深褐底 */
+  --bg-secondary:  #252219;   /* 微深土黄底 */
+  --bg-card:      #2e2b22;   /* 卡片背景 */
+  --text-primary: #f0ead6;   /* 米白 */
+  --text-secondary:#b8ad8c;   /* 暗米黄 */
+  --accent:       #c8874a;   /* 土黄强调 */
+  --accent-dark:  #8a5c30;   /* 深土黄 */
+  --accent-red:   #8b4049;   /* 暗红 */
+  --accent-teal:  #4a6b6b;   /* 深青 */
+  --border:       #3d3829;   /* 边框 */
+  --border-light: #4a4535;   /* 浅边框 */
+  --shadow:       rgba(0,0,0,0.45);
+
+  --font-heading: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --font-body:    "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  --map-height:   640px;
+  --detail-min:   320px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.map-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 1.25rem 1.25rem;
+}
+
+.map-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.map-header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+}
+
+.map-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.map-disclaimer {
+  font-size: 0.8rem;
+  color: var(--accent-red);
+  background: rgba(139,64,73,0.12);
+  border: 1px solid rgba(139,64,73,0.25);
+  border-radius: 6px;
+  padding: 0.55rem 0.85rem;
+  margin-bottom: 0.75rem;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent-dark);
+  border-radius: 5px;
+  padding: 0.3rem 0.85rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.back-link:hover {
+  background: var(--accent-dark);
+  color: var(--text-primary);
+}
+
+/* ── Main ───────────────────────────────────────────────────── */
+.map-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2rem;
+}
+
+/* ── Stage Filters ──────────────────────────────────────────── */
+.map-stage-filters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-light) transparent;
+}
+
+.stage-chip {
+  flex-shrink: 0;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  padding: 0.3rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stage-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.stage-chip.active {
+  background: var(--accent-dark);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* ── Map Layout ─────────────────────────────────────────────── */
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr var(--detail-min);
+  gap: 1rem;
+  align-items: start;
+}
+
+.map-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#dufu-real-map {
+  height: var(--map-height);
+  background: #2a3028; /* 深绿灰底，模拟地形 */
+}
+
+/* ── Detail Panel ──────────────────────────────────────────── */
+.map-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: var(--map-height);
+  overflow-y: auto;
+  max-height: var(--map-height);
+  position: sticky;
+  top: 1rem;
+}
+
+.detail-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 280px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  padding: 2rem 1.25rem;
+}
+
+/* ── Detail Card (injected by JS) ───────────────────────────── */
+.detail-card {
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.detail-card .detail-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.detail-card .detail-modern {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+}
+
+.detail-card .detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.detail-tag {
+  font-size: 0.72rem;
+  border-radius: 4px;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid;
+}
+
+.detail-tag--accuracy-city    { color: var(--accent);       border-color: var(--accent);       background: rgba(200,135,74,0.1); }
+.detail-tag--accuracy-district{ color: var(--accent-teal);  border-color: var(--accent-teal);  background: rgba(74,107,107,0.1); }
+.detail-tag--accuracy-scenic  { color: var(--accent-dark);  border-color: var(--accent-dark);  background: rgba(138,92,48,0.1); }
+.detail-tag--accuracy-approx  { color: #a08060;             border-color: #a08060;             background: rgba(160,128,96,0.1); }
+.detail-tag--accuracy-disputed{ color: var(--accent-red);   border-color: var(--accent-red);   background: rgba(139,64,73,0.1); }
+.detail-tag--stage            { color: var(--text-secondary); border-color: var(--border-light); background: transparent; }
+
+.detail-section {
+  margin-bottom: 1rem;
+}
+
+.detail-section-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.detail-section p,
+.detail-section li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.detail-note {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid var(--border-light);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 0.85rem;
+  line-height: 1.6;
+}
+
+.detail-poems {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.detail-poems li {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.detail-poems li:hover {
+  border-color: var(--accent-dark);
+  background: rgba(200,135,74,0.06);
+}
+
+.detail-empty {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ── Leaflet Popup Override ─────────────────────────────────── */
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px var(--shadow) !important;
+  color: var(--text-primary) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0.85rem 1rem !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  color: var(--text-primary) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-card) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-secondary) !important;
+  font-size: 18px !important;
+  top: 6px !important;
+  right: 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Popup inner content */
+.popup-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: var(--text-primary);
+}
+
+.popup-modern {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.popup-stage-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(200,135,74,0.15);
+  border: 1px solid var(--accent-dark);
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Loading / Error States ────────────────────────────────── */
+.map-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.map-error {
+  background: rgba(139,64,73,0.12);
+  border: 1px solid rgba(139,64,73,0.3);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  color: var(--accent-red);
+  font-size: 0.85rem;
+  margin: 1rem 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --map-height: 520px;
+  }
+
+  .map-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .map-detail {
+    min-height: auto;
+    max-height: none;
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --map-height: 460px;
+  }
+
+  .map-main {
+    padding: 0.75rem 0.75rem 1.5rem;
+  }
+
+  .map-header {
+    padding: 1rem 0.75rem;
+  }
+}

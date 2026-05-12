@@ -138,6 +138,13 @@ dufu-luanli-route-page/
 - 路线复制功能支持 clipboard API，失败时使用 textarea fallback
 - 移动端优先设计，桌面端可左右分栏
 
+## Data Maintenance
+
+- Runtime data now lives in `data/*.json`.
+- See `docs/DATA_MAINTENANCE.md` before editing locations, routes, poems or timeline.
+- Always run `scripts/validate_dufu_data.py` after data changes.
+- Do not add large content blocks directly to `app.js`.
+
 ## 禁止事项（执行边界）
 
 - 不修改根站首页（`index.html` 根目录）

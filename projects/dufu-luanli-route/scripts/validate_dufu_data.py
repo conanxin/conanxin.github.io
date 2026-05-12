@@ -23,6 +23,7 @@ def load_json(filename):
 
 def main():
     errors = []
+    warnings = []
     stats = {}
 
     # Check locations.json
@@ -34,10 +35,15 @@ def main():
         if len(data) < 17:
             errors.append(f"locations.json: expected >= 17 locations, got {len(data)}")
         required_loc_fields = ['id', 'name', 'modern', 'siteType']
+        optional_loc_fields = ['theme', 'event', 'poems', 'quote',
+                               'articleMeaning', 'travelTip', 'routeGroup']
         for i, loc in enumerate(data):
-            for field in required_loc_fields:
-                if field not in loc:
-                    errors.append(f"locations.json[{i}]: missing required field '{field}'")
+            missing_req = [f for f in required_loc_fields if f not in loc]
+            if missing_req:
+                errors.append(f"locations.json[{i}] '{loc.get('id','?')}': missing required field(s): {missing_req}")
+            missing_opt = [f for f in optional_loc_fields if f not in loc]
+            if missing_opt:
+                warnings.append(f"locations.json[{i}] '{loc.get('id','?')}': missing optional field(s): {missing_opt} — these are OK but recommended")
         # Check duplicate ids
         ids = [loc['id'] for loc in data]
         if len(ids) != len(set(ids)):
@@ -60,12 +66,23 @@ def main():
                 stats['7day'] = len(routes['7day'])
                 if len(routes['7day']) != 7:
                     errors.append(f"routes.json: 7day should have 7 days, got {len(routes['7day'])}")
+                for i, day in enumerate(routes['7day']):
+                    for field in ['day', 'title', 'theme', 'places', 'stay', 'transportTip', 'locs']:
+                        if field not in day:
+                            warnings.append(f"routes.json: 7day[{i}] missing '{field}' — recommended for full functionality")
+                    missing_rec = [f for f in ['poems', 'tip', 'liveQuestion'] if f not in day]
+                    if missing_rec:
+                        warnings.append(f"routes.json: 7day[{i}] missing optional: {missing_rec}")
             if '12day' not in routes:
                 errors.append("routes.json: missing 'routes.12day'")
             else:
                 stats['12day'] = len(routes['12day'])
                 if len(routes['12day']) != 12:
                     errors.append(f"routes.json: 12day should have 12 days, got {len(routes['12day'])}")
+                for i, day in enumerate(routes['12day']):
+                    for field in ['day', 'title', 'theme', 'places', 'stay', 'transportTip', 'locs']:
+                        if field not in day:
+                            warnings.append(f"routes.json: 12day[{i}] missing '{field}' — recommended for full functionality")
             if 'thematic' not in routes:
                 errors.append("routes.json: missing 'routes.thematic'")
             else:
@@ -86,10 +103,14 @@ def main():
         if len(data) < 9:
             errors.append(f"poems.json: expected >= 9 poems, got {len(data)}")
         required_poem_fields = ['title', 'locationId']
+        optional_poem_fields = ['locationName', 'period', 'theme', 'quote', 'note']
         for i, poem in enumerate(data):
             for field in required_poem_fields:
                 if field not in poem:
                     errors.append(f"poems.json[{i}]: missing required field '{field}'")
+            missing_opt = [f for f in optional_poem_fields if f not in poem]
+            if missing_opt:
+                warnings.append(f"poems.json[{i}] '{poem.get('title','?')}': missing optional field(s): {missing_opt} — these are OK but recommended")
 
     # Check timeline.json
     data, err = load_json('timeline.json')
@@ -131,6 +152,12 @@ def main():
     print(f"  poems     : {stats.get('poems', 'N/A')} records")
     print(f"  timeline  : {stats.get('timeline', 'N/A')} nodes")
     print("-" * 50)
+
+    if warnings:
+        print("WARN — Recommended fields missing (not fatal):")
+        for w in warnings:
+            print(f"  ? {w}")
+        print("-" * 50)
 
     if errors:
         print("FAIL — Errors found:")

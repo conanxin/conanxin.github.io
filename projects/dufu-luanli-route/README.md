@@ -1,0 +1,50 @@
+# 乱离途中，杜甫何以成为"杜甫"？
+
+杜甫流离路线交互原型页面。
+
+基于《三联生活周刊》2025年第40期封面故事《乱离途中，杜甫何以成为"杜甫"？》整理。
+
+## 内容模块
+
+- **Hero 首屏**：标题、副标题、关键词卡片、三个行动按钮
+- **文章内容梳理**：四标签页（文章讲了什么 / 文章结构 / 核心观点 / 为何乱离中成杜甫）
+- **杜甫流离时间线**：755–759 年纵向时间线，含事件、诗歌、重要性说明
+- **SVG 路线地图**：可点击节点，右侧显示地点详情卡片
+- **文旅路线规划器**：7天精华线 / 12天完整线 / 4条主题短线，支持复制行程
+- **按诗找地点**：点击诗名高亮地图节点
+
+## 预览命令
+
+```bash
+cd ~/projects/dufu-luanli-route-page
+python3 -m http.server 8080
+```
+
+然后在浏览器打开 http://localhost:8080
+
+## 文件列表
+
+```
+dufu-luanli-route-page/
+├── index.html          # 主页面
+├── style.css          # 样式表
+├── app.js             # 应用逻辑
+├── README.md          # 本文件
+└── reports/
+    └── dufu_route_page_prototype_report.md  # 验证报告
+```
+
+## 技术说明
+
+- 纯静态 HTML/CSS/JS，无外部 CDN 依赖
+- SVG 路线地图为示意性地图，非精确地理坐标
+- 路线复制功能支持 clipboard API，失败时使用 textarea fallback
+- 移动端优先设计，桌面端可左右分栏
+
+## 禁止事项（执行边界）
+
+- 不修改 ~/conanxin.github.io
+- 不 git commit / git push
+- 不安装 apt 包
+- 不重启任何系统服务
+- 不输出任何 secrets / tokens / credentials

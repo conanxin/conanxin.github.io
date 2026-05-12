@@ -137,5 +137,25 @@
       "Project Blue Book",
       "PURSUE"
     ]
+  },
+  {
+    "title": "乱离途中，杜甫何以成为\"杜甫\"？",
+    "slug": "dufu-luanli-route",
+    "category": "culture",
+    "type": "INTERACTIVE ESSAY",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-05-12",
+    "summary": "一页交互式杜甫诗路与文旅路线：从长安、奉先、羌村，到秦州、同谷、成都，重建安史之乱中的杜甫生成之路。",
+    "entry_url": "/projects/dufu-luanli-route/",
+    "source_kind": "interactive",
+    "featured": true,
+    "tags": [
+      "杜甫",
+      "唐诗",
+      "安史之乱",
+      "文旅路线",
+      "互动页面"
+    ]
   }
 ]

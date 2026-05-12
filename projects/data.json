@@ -13,6 +13,19 @@
     "featured": true
   },
   {
+    "title": "Hermes LoFi Skill",
+    "slug": "hermes-lofi-skill",
+    "category": "systems",
+    "type": "WRAPPER",
+    "status": "v0.1 冻结",
+    "status_color": "#3fb950",
+    "updated": "2026-05-12",
+    "summary": "本地 Hermes wrapper for LoFi Engine — 通过 WSL2 + wslview 在 Windows 浏览器打开实时生成的 LoFi 氛围音乐。",
+    "entry_url": "/projects/hermes-lofi-skill/",
+    "source_kind": "wrapper",
+    "featured": true
+  },
+  {
     "title": "Aura — 个人 AI 生态系统",
     "slug": "aura",
     "category": "systems",

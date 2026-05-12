@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 4B / Data-Driven Rendering
+Latest release phase: Phase 4E-1 / Standard Poetry Expansion (12 poems → 32 poems)
 
 ## Project Status
 
@@ -59,6 +59,14 @@ dufu-luanli-route-page/
 ```
 
 ## 更新记录
+
+### Phase 4E-1 — Standard Poetry Expansion（2026-05-12）
+- **poems.json 扩展**：12首诗 → 32首诗（+20首）
+- **新增诗歌来源**：全部来自 timeline.nodes[].poems 展示字段中尚未收录的诗
+- **新增分类**：沦陷长安3首（哀江头/悲陈陶/悲青坂）、凤翔2首（喜达行在所/述怀）、羌村1首（北征）、三吏三别5首（新安吏/潼关吏/新婚别/垂老别/无家别）、秦州2首（梦李白二首/发华州）、西枝村1首（西枝村寻置草堂地）、同谷2首（万丈潭/凤凰台）、陇蜀道4首（木皮岭/白沙渡/水会渡/五盘）
+- **timeline WARN 清零**：validate/audit 交叉引用 17 WARN → 0 WARN（28/28 poems 全部匹配）
+- **locationId 不变**：所有新增诗均绑定现有 locationId，无需新增地点记录
+- **UI 不变**：未修改 app.js / index.html / style.css
 
 ### Phase 4B — Data-Driven Rendering（2026-05-12）
 - **数据来源重构**：页面运行时数据从 `app.js` 内联数据切换为 `data/*.json`（fetch）

@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 4F / Stage Summary Banner
+Latest release phase: Phase 5A / Travel Handbook Export
 
 ## Project Status
 
@@ -59,6 +59,16 @@ dufu-luanli-route-page/
 ```
 
 ## 更新记录
+
+### Phase 5A — Travel Handbook Export（2026-05-12）
+- **scripts/build_handbook.py**：新增 Python 构建脚本，从 `data/*.json` 读取数据生成旅行手册
+- **exports/dufu_route_handbook.md**：生成 Markdown 版手册（约 37,128 chars）
+- **exports/dufu_route_handbook.html**：生成独立 HTML 版手册（约 64,279 chars）
+- **exports/dufu_route_handbook.pdf**：生成 PDF 版手册（327,912 bytes）
+- **手册章节**：11 个（手册介绍 / 文章摘要 / 路线总览 / 7天精华线 / 12天完整线 / 主题短线 / 双城读诗线 / 按地点读诗 / 按阶段读诗 / 旅行实用提醒 / 来源与边界说明）
+- **数据来源**：data/poems.json / locations.json / routes.json / timeline.json
+- **页面运行时无变化**：index.html / app.js / style.css / data/*.json 均未修改
+- **PDF 生成依赖**：WeasyPrint 68.1（Phase 5A-R 中安装至 Hermes venv：`/home/ubuntu/.hermes/hermes-agent/venv/bin/python3`）
 
 ### Phase 4F — Stage Summary Banner（2026-05-12）
 - **POEM_STAGE_SUMMARIES**：在 app.js 新增 9 个阶段的简介文本映射

@@ -180,6 +180,16 @@ dufu-luanli-route-page/
 - 新增 CSS 样式：`.section-tip`（小字号斜体灰）、`.notes-grid`、`.note-card`
 - 未新增外部依赖
 
+### Phase 6A — Map Data Preparation（2026-05-12）
+- 新增 `data/map_points.json`：19个 WGS84 候选地图点位，绑定现有 locationId
+- 新增 `data/route_segments.geojson`：19条示意 LineString 路线段
+- 新增 `scripts/validate_map_data.py`：地图数据结构验证脚本
+- 坐标均为今日城市/区县/景区中心坐标，不代表杜甫实际精确行走路线
+- 所有点位 `needsReview: true`，accuracy 含 approximate / disputed 字段，需后续人工核查
+- route_segments 为阅读示意连线，不代表唐代真实道路轨迹
+- 未修改 index.html / app.js / style.css；未新增 Leaflet / 地图瓦片
+- Phase 6B 可接入 Leaflet 地图原型
+
 ## 技术说明
 
 - 纯静态 HTML/CSS/JS，无外部 CDN 依赖

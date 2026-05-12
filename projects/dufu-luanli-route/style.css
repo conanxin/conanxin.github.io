@@ -960,6 +960,67 @@ section { padding: 4rem 0; }
   .dual-city-cols { grid-template-columns: 1fr; }
 }
 
+/* ==================== HANDBOOK LINKS ==================== */
+#handbook {
+  background: #f5f0e8;
+  border-top: 1px solid rgba(180, 150, 80, 0.2);
+  border-bottom: 1px solid rgba(180, 150, 80, 0.2);
+}
+.handbook-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.handbook-text { flex: 1; min-width: 200px; }
+.handbook-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+}
+.handbook-desc {
+  font-size: 0.85rem;
+  color: #6b5a48;
+  margin: 0;
+  line-height: 1.5;
+}
+.handbook-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.handbook-btn {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 2px;
+  text-decoration: none;
+  background: var(--vermilion);
+  color: #fff;
+  border: 1px solid var(--vermilion);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.handbook-btn:hover { background: #a83220; border-color: #a83220; }
+.handbook-btn.secondary {
+  background: transparent;
+  color: #8b5c3e;
+  border-color: #8b5c3e;
+}
+.handbook-btn.secondary:hover {
+  background: #8b5c3e;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .handbook-card { flex-direction: column; align-items: flex-start; }
+  .handbook-actions { width: 100%; }
+  .handbook-btn { flex: 1; text-align: center; }
+}
+
 /* ==================== STICKY NAV ==================== */
 #page-nav {
   position: sticky;

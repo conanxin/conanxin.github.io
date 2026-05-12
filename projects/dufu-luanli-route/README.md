@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 5A / Travel Handbook Export
+Latest release phase: Phase 5B / Handbook Links
 
 ## Project Status
 
@@ -59,6 +59,16 @@ dufu-luanli-route-page/
 ```
 
 ## 更新记录
+
+### Phase 5B — Handbook Links（2026-05-12）
+- **#handbook 入口卡片**：在 Hero 区域下方新增手册入口 section，含标题、说明文字和两个按钮
+- **查看 HTML 手册**：`exports/dufu_route_handbook.html`（新窗口打开）
+- **下载 PDF 手册**：`exports/dufu_route_handbook.pdf`（download 属性）
+- **顶部导航**：在"文章"前新增"手册"快捷链接
+- **CSS 新增**：.handbook-card / .handbook-text / .handbook-actions / .handbook-btn / .handbook-btn.secondary（米白/土黄/暗红配色，与页面风格一致）
+- **移动端适配**：flex-wrap，两按钮在窄屏下垂直堆叠
+- **未修改 data 文件**：poems.json / locations.json / routes.json / timeline.json 未动
+- **未修改 app.js**：运行时逻辑不变
 
 ### Phase 5A — Travel Handbook Export（2026-05-12）
 - **scripts/build_handbook.py**：新增 Python 构建脚本，从 `data/*.json` 读取数据生成旅行手册

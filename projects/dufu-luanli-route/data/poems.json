@@ -1,0 +1,290 @@
+[
+  {
+    "title": "《自京赴奉先县咏怀五百字》",
+    "locationId": "fengxian",
+    "locationName": "奉先/蒲城",
+    "period": "755",
+    "theme": "现实主义转折",
+    "quote": "“朱门酒肉臭，路有冻死骨”",
+    "note": "杜甫现实主义的真正起点"
+  },
+  {
+    "title": "《彭衙行》",
+    "locationId": "baishui",
+    "locationName": "白水/彭衙",
+    "period": "756",
+    "theme": "安史逃亡",
+    "quote": "“痴女饥咬我，啼畏虎狼闻”",
+    "note": "杜甫从士人变成逃难的父亲"
+  },
+  {
+    "title": "《羌村三首》",
+    "locationId": "qiangcun",
+    "locationName": "富县羌村",
+    "period": "757",
+    "theme": "劫后团聚",
+    "quote": "“妻孥怪我在，惊定还拭泪”",
+    "note": "乱离中的家庭重逢"
+  },
+  {
+    "title": "《春望》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756/757",
+    "theme": "战乱见证",
+    "quote": "“国破山河在，城春草木深”",
+    "note": "诗史的第一次真正出现"
+  },
+  {
+    "title": "《月夜》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756/757",
+    "theme": "战乱见证",
+    "quote": "“今夜鄜州月，闺中只独看”",
+    "note": "沦陷长安期间望月思家"
+  },
+  {
+    "title": "《石壕吏》",
+    "locationId": "shihao",
+    "locationName": "石壕",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“暮投石壕村，有吏夜捉人”",
+    "note": "诗史最经典的代表之一"
+  },
+  {
+    "title": "《秦州杂诗二十首》",
+    "locationId": "qinzhou",
+    "locationName": "秦州/天水",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“露从今夜白，月是故乡明”",
+    "note": "创作密度最高的时期之一"
+  },
+  {
+    "title": "《月夜忆舍弟》",
+    "locationId": "qinzhou",
+    "locationName": "秦州/天水",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“露从今夜白，月是故乡明”",
+    "note": "秦州怀人诗代表作"
+  },
+  {
+    "title": "《乾元中寓居同谷县作歌七首》",
+    "locationId": "tonggu",
+    "locationName": "同谷/成县",
+    "period": "759",
+    "theme": "理想居所破灭",
+    "quote": "“奈何迫物累，一岁四行役”",
+    "note": "杜甫一生最困顿的时期之一"
+  },
+  {
+    "title": "《剑门》",
+    "locationId": "jianmenguan",
+    "locationName": "剑门关",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "“惟天有设险，剑门天下壮”",
+    "note": "山水不再是风景而是逃难道路"
+  },
+  {
+    "title": "《成都府》",
+    "locationId": "chengdu",
+    "locationName": "成都草堂",
+    "period": "759/760",
+    "theme": "草堂建成",
+    "quote": "",
+    "note": "抵达成都的第一首诗"
+  },
+  {
+    "title": "《茅屋为秋风所破歌》",
+    "locationId": "chengdu",
+    "locationName": "成都草堂",
+    "period": "761",
+    "theme": "草堂建成",
+    "quote": "“安得广厦千万间，大庇天下寒士俱欢颜”",
+    "note": "从个人困境到天下寒士的终极关怀"
+  },
+  {
+    "title": "《哀江头》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756/757",
+    "theme": "战乱见证",
+    "quote": "“明眸皓齿今何在，血污游魂归不得”",
+    "note": "安史沦陷长安的千古一曲，与《春望》《月夜》并列为沦陷时期代表作"
+  },
+  {
+    "title": "《悲陈陶》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756",
+    "theme": "战乱见证",
+    "quote": "“孟冬十郡良家子，血作陈陶泽中水”",
+    "note": "756年陈陶斜战役官军大败，杜甫痛陈伤亡，是其最直接的战争见证诗"
+  },
+  {
+    "title": "《悲青坂》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756",
+    "theme": "战乱见证",
+    "quote": "“我军青坂在东门，天寒及此投其村”",
+    "note": "与《悲陈陶》姐妹篇，同咏官军陈陶斜败绩"
+  },
+  {
+    "title": "《喜达行在所三首》",
+    "locationId": "fengxiang",
+    "locationName": "凤翔",
+    "period": "757",
+    "theme": "短暂入朝",
+    "quote": "“喜心翻倒极，呜咽泪沾巾”",
+    "note": "杜甫逃至凤翔肃宗行在所后的狂喜与感恩，标志着杜甫正式进入朝廷核心"
+  },
+  {
+    "title": "《述怀》",
+    "locationId": "fengxiang",
+    "locationName": "凤翔",
+    "period": "757",
+    "theme": "短暂入朝",
+    "quote": "“去年潼关破，妻子隔绝久”",
+    "note": "757年杜甫在凤翔向肃宗陈情，表达忠君与家国之痛的复杂心境"
+  },
+  {
+    "title": "《北征》",
+    "locationId": "qiangcun",
+    "locationName": "富县羌村",
+    "period": "757",
+    "theme": "劫后团聚",
+    "quote": "“经年至茅屋，妻子衣百结”",
+    "note": "757年杜甫自凤翔北归鄜州羌村所作，与《羌村三首》同为劫后团聚主题的完整记录"
+  },
+  {
+    "title": "《新安吏》",
+    "locationId": "xinan",
+    "locationName": "新安",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“客行新安道，喧呼闻点兵”",
+    "note": "三吏之一，杜甫在从洛阳往新安途中目睹征兵现场"
+  },
+  {
+    "title": "《潼关吏》",
+    "locationId": "tongguan",
+    "locationName": "潼关",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“请问潼关吏，修关还备胡”",
+    "note": "三吏之一，潼关天险防御纪实"
+  },
+  {
+    "title": "《新婚别》",
+    "locationId": "luoyang",
+    "locationName": "洛阳",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“暮婚晨告别，无乃太匆忙”",
+    "note": "三别之一，新婚夫妻晨别，以女子口吻控诉战争对普通家庭的摧毁"
+  },
+  {
+    "title": "《垂老别》",
+    "locationId": "luoyang",
+    "locationName": "洛阳",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“四郊未宁静，垂老不得安”",
+    "note": "三别之一，老翁被征入伍，与子孙诀别，是杜甫笔下最悲怆的别离诗"
+  },
+  {
+    "title": "《无家别》",
+    "locationId": "luoyang",
+    "locationName": "洛阳",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“家乡既荡尽，远近理亦齐”",
+    "note": "三别之一，败兵归来，家乡已无亲人可别，是诗史中最绝望的一首"
+  },
+  {
+    "title": "《梦李白二首》",
+    "locationId": "qinzhou",
+    "locationName": "秦州/天水",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“落月满屋梁，犹疑照颜色”",
+    "note": "秦州流寓期间杜甫梦李白而作，与《月夜忆舍弟》并列为秦州怀人诗巅峰"
+  },
+  {
+    "title": "《发华州》",
+    "locationId": "huazhou",
+    "locationName": "华州",
+    "period": "759",
+    "theme": "庙堂理想终结",
+    "quote": "“夏时桑瓦枚，春花农亩亩”",
+    "note": "759年杜甫离开华州司功参军任，西行秦州的告别诗，标志着庙堂理想彻底终结"
+  },
+  {
+    "title": "《西枝村寻置草堂地》",
+    "locationId": "guozhi",
+    "locationName": "西枝村",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“明浸透中边，终夜掦挹水”",
+    "note": "赞公和尚带杜甫寻觅草堂地，西枝村是成都草堂的第一次具体规划"
+  },
+  {
+    "title": "《万丈潭》",
+    "locationId": "tonggu",
+    "locationName": "同谷/成县",
+    "period": "759",
+    "theme": "理想居所破灭",
+    "quote": "“神疑竭处多，奇滩迹如刻”",
+    "note": "同谷纪游诗，描写万丈潭自然奇景，是杜甫山水诗的代表作之一"
+  },
+  {
+    "title": "《凤凰台》",
+    "locationId": "tonggu",
+    "locationName": "同谷/成县",
+    "period": "759",
+    "theme": "理想居所破灭",
+    "quote": "“亭亭凤凰台，北对西康州”",
+    "note": "同谷登山纪游，与《万丈潭》并列为杜甫在同谷自然诗的双璧"
+  },
+  {
+    "title": "《木皮岭》",
+    "locationId": "guangyuan",
+    "locationName": "广元/明月峡",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "“始知五岳外，别有他山尊”",
+    "note": "陇蜀道入蜀纪行诗第一首，嘉陵江上游，木皮岭是其第一道险关"
+  },
+  {
+    "title": "《白沙渡》",
+    "locationId": "guangyuan",
+    "locationName": "广元/明月峡",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "“水清石凿凿，潮满舟横横”",
+    "note": "白沙渡为陇蜀道嘉陵江重要渡口，杜甫纪行诗之一"
+  },
+  {
+    "title": "《水会渡》",
+    "locationId": "guangyuan",
+    "locationName": "广元/明月峡",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "“霜严水会急，天色赤如赭”",
+    "note": "水会渡为陇蜀道嘉陵江渡口纪实，山水已不再是风景而是逃难道路"
+  },
+  {
+    "title": "《五盘》",
+    "locationId": "guangyuan",
+    "locationName": "广元/明月峡",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "五盘东指桂林去，步步青山踏遍难",
+    "note": "五盘为陇蜀道节点，五盘岭是入蜀途中重要山岭"
+  }
+]

@@ -198,7 +198,16 @@ dufu-luanli-route-page/
 - 功能：WGS84 marker + popup、路线 polyline、右侧详情面板、阶段筛选 chips、fitBounds
 - 主页面运行时（index.html / app.js / style.css）完全未改动
 - 坐标为现代参考点，路线为阅读示意连线，不代表杜甫实际精确行走轨迹
-- Phase 6C 建议：主页面集成地图入口链接、增加草堂位置标注精度核查
+
+### Phase 6C — Real Map Entry（2026-05-12）
+- 主页面 index.html 导航栏新增"真实地图"链接（指向 map.html，新窗口打开）
+- 主页面 #handbook 区域新增地图入口卡片（深青底色，与手册卡片并列）
+- 主页面 #map 区域提示文字新增真实地图链接
+- map.html 顶部新增 HTML 手册 / PDF 手册互链
+- style.css 新增 `.map-entry-card`、`.map-entry-btn`、`.map-real-link a` 样式
+- map.css 新增 `.map-top-links`、`.map-top-links a` 样式
+- app.js / map.js / data/*.json 均未修改
+- 主页面运行时完全未改动
 
 ## 技术说明
 

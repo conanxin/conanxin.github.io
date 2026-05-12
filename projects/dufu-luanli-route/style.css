@@ -1015,10 +1015,68 @@ section { padding: 4rem 0; }
   background: #8b5c3e;
   color: #fff;
 }
+/* ==================== MAP ENTRY CARD ==================== */
+.map-entry-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background: rgba(200, 135, 74, 0.06);
+  border: 1px solid rgba(200, 135, 74, 0.25);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+}
+.map-entry-text { flex: 1; min-width: 200px; }
+.map-entry-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+}
+.map-entry-desc {
+  font-size: 0.82rem;
+  color: #6b5a48;
+  margin: 0;
+  line-height: 1.5;
+}
+.map-entry-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.map-entry-btn {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 2px;
+  text-decoration: none;
+  background: #4a6b6b;
+  color: #fff;
+  border: 1px solid #4a6b6b;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.map-entry-btn:hover { background: #3a5555; border-color: #3a5555; }
+
+/* Map real link inside SVG map section tip */
+.map-real-link a {
+  color: var(--vermilion);
+  text-decoration: none;
+  font-weight: 500;
+}
+.map-real-link a:hover { text-decoration: underline; }
+
 @media (max-width: 600px) {
   .handbook-card { flex-direction: column; align-items: flex-start; }
   .handbook-actions { width: 100%; }
   .handbook-btn { flex: 1; text-align: center; }
+  .map-entry-card { flex-direction: column; align-items: flex-start; }
+  .map-entry-actions { width: 100%; }
+  .map-entry-btn { flex: 1; text-align: center; }
 }
 
 /* ==================== STICKY NAV ==================== */

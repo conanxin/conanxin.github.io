@@ -93,6 +93,28 @@ body {
   color: var(--text-primary);
 }
 
+.map-top-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.map-top-links a {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.25rem 0.7rem;
+  transition: all 0.2s;
+}
+
+.map-top-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* ── Main ───────────────────────────────────────────────────── */
 .map-main {
   max-width: 1400px;

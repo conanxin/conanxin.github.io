@@ -249,6 +249,21 @@ dufu-luanli-route-page/
 - 新点复用既有 locationId，pending future data-model refinement
 - 所有路线仍为 schematic 阅读示意线，不代表唐代道路
 
+### Phase 6F — Real Map v1 Closeout（2026-05-12）
+- 真实地图 v1 正式冻结归档
+- `map.html` 提供独立 Leaflet 地图原型，Leaflet assets 本地化在 `vendor/leaflet/`
+- 真实地图读取 `data/map_points.json` 和 `data/route_segments.geojson`
+- 当前地图数据含 21 个 map points 和 21 条 schematic route segments
+- 主页面已链接真实地图、HTML 手册、PDF 手册
+- Marker 使用 CSS-based `L.divIcon`，避免默认 marker 图片路径问题
+- 右侧地图详情面板支持已加载、阶段筛选、marker 详情三种状态
+- 坐标为现代参考点，不代表杜甫实际精确行走路线
+- route_segments 为阅读示意线，不代表唐代道路
+- Phase 6E-2 map-only split 暂未拆分 locations.json，新增点复用既有 locationId
+- 未来 full data-model split 应单独设计迁移方案，不建议随意执行
+- `locations.json` / `poems.json` 未因 Phase 6E-2 改动
+- 页面运行时未因 Phase 6E-2 改动
+
 ### Phase 6E-1 — Minimal Coordinate Cleanup（2026-05-12）
 - data/map_points.json：仅修改元数据，不新增点位
 - 成都草堂：lat 30.6694 / lng 104.0433（草堂博物馆），accuracy district→scenic，note 写明现代景区参考不代表杜甫精确行迹

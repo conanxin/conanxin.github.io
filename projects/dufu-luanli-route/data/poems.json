@@ -1,0 +1,110 @@
+[
+  {
+    "title": "《自京赴奉先县咏怀五百字》",
+    "locationId": "fengxian",
+    "locationName": "奉先/蒲城",
+    "period": "755",
+    "theme": "现实主义转折",
+    "quote": "“朱门酒肉臭，路有冻死骨”",
+    "note": "杜甫现实主义的真正起点"
+  },
+  {
+    "title": "《彭衙行》",
+    "locationId": "baishui",
+    "locationName": "白水/彭衙",
+    "period": "756",
+    "theme": "安史逃亡",
+    "quote": "“痴女饥咬我，啼畏虎狼闻”",
+    "note": "杜甫从士人变成逃难的父亲"
+  },
+  {
+    "title": "《羌村三首》",
+    "locationId": "qiangcun",
+    "locationName": "富县羌村",
+    "period": "757",
+    "theme": "劫后团聚",
+    "quote": "“妻孥怪我在，惊定还拭泪”",
+    "note": "乱离中的家庭重逢"
+  },
+  {
+    "title": "《春望》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756/757",
+    "theme": "战乱见证",
+    "quote": "“国破山河在，城春草木深”",
+    "note": "诗史的第一次真正出现"
+  },
+  {
+    "title": "《月夜》",
+    "locationId": "lingwu",
+    "locationName": "沦陷长安",
+    "period": "756/757",
+    "theme": "战乱见证",
+    "quote": "“今夜鄜州月，闺中只独看”",
+    "note": "沦陷长安期间望月思家"
+  },
+  {
+    "title": "《石壕吏》",
+    "locationId": "shihao",
+    "locationName": "石壕",
+    "period": "758/759",
+    "theme": "诗史成型",
+    "quote": "“暮投石壕村，有吏夜捉人”",
+    "note": "诗史最经典的代表之一"
+  },
+  {
+    "title": "《秦州杂诗二十首》",
+    "locationId": "qinzhou",
+    "locationName": "秦州/天水",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“露从今夜白，月是故乡明”",
+    "note": "创作密度最高的时期之一"
+  },
+  {
+    "title": "《月夜忆舍弟》",
+    "locationId": "qinzhou",
+    "locationName": "秦州/天水",
+    "period": "759",
+    "theme": "草堂梦萌发",
+    "quote": "“露从今夜白，月是故乡明”",
+    "note": "秦州怀人诗代表作"
+  },
+  {
+    "title": "《乾元中寓居同谷县作歌七首》",
+    "locationId": "tonggu",
+    "locationName": "同谷/成县",
+    "period": "759",
+    "theme": "理想居所破灭",
+    "quote": "“奈何迫物累，一岁四行役”",
+    "note": "杜甫一生最困顿的时期之一"
+  },
+  {
+    "title": "《剑门》",
+    "locationId": "jianmenguan",
+    "locationName": "剑门关",
+    "period": "759",
+    "theme": "天险入蜀",
+    "quote": "“惟天有设险，剑门天下壮”",
+    "note": "山水不再是风景而是逃难道路"
+  },
+  {
+    "title": "《成都府》",
+    "locationId": "chengdu",
+    "locationName": "成都草堂",
+    "period": "759/760",
+    "theme": "草堂建成",
+    "quote": "",
+    "note": "抵达成都的第一首诗"
+  },
+  {
+    "title": "《茅屋为秋风所破歌》",
+    "locationId": "chengdu",
+    "locationName": "成都草堂",
+    "period": "761",
+    "theme": "草堂建成",
+    "quote": "“安得广厦千万间，大庇天下寒士俱欢颜”",
+    "note": "从个人困境到天下寒士的终极关怀"
+  }
+]

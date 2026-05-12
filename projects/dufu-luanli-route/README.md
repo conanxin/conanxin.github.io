@@ -8,7 +8,7 @@
 
 Current public version: **v1.0**
 Live URL: https://conanxin.github.io/projects/dufu-luanli-route/
-Latest release phase: Phase 3D / v1.0 Closeout
+Latest release phase: Phase 4A / Data Extraction Dry Run
 
 ## Project Status
 
@@ -59,6 +59,17 @@ dufu-luanli-route-page/
 ```
 
 ## 更新记录
+
+### Phase 4A — 数据提取 Dry Run（2026-05-12）
+- **新增 data/ 目录**：将 app.js 中的地点、路线、诗歌、时间线数据提取为独立 JSON 文件
+- **新增 JSON 文件**：
+  - `data/locations.json` — 21条地点记录，含 id/name/modern/theme/event/poems/quote/articleMeaning/travelTip/routeGroup/siteType
+  - `data/routes.json` — 路线数据+ROUTE_META，含7天线（7天）、12天线（12天）、4条主题短线、双城读诗线
+  - `data/poems.json` — 12首诗歌到地点的映射，含 title/locationId/locationName/period/theme/quote/note
+  - `data/timeline.json` — 9个时间线节点，含 year/title/historicalPlace/modernPlace/event/poems/whyImportant
+- **新增 scripts/validate_dufu_data.py**：Python 标准库验证脚本，检查 JSON 语法、数量约束、字段完整性、poem.locationId 交叉引用
+- **未修改 index.html**：页面仍使用 app.js 内联数据；JSON 文件不参与当前渲染
+- **未新增外部依赖**：验证脚本仅使用 Python 标准库
 
 ### Phase 3D — 最终体验验收与轻量打磨（2026-05-12）
 - **新增 sticky 导航**：页面顶部固定导航栏，含7个锚点（文章/时间线/路线图/选路线/行程/诗歌/来源）；桌面端横向排列，移动端横向滚动

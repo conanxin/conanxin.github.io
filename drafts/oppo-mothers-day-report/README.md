@@ -177,3 +177,26 @@ xdg-open index.html  # Linux
 ---
 
 *生成时间：2026-05-13 | 执行环境：VM-0-4-ubuntu | Phase OPPO-0.8*
+---
+
+## Phase 1.5 — Appendix Published (2026-05-13)
+
+**内容：** 非索引附录审稿版已发布至 GitHub Pages
+
+**发布路径：** drafts/oppo-mothers-day-report/extensions/crisis-and-redesign/
+
+**包含：**
+- 更优危机回应方案（7个文件）
+- 活动重设计方案（5个文件）
+- 5张 SVG 海报 mockup + 海报展示页
+- 风险审核表（11项，全部低风险）
+
+**附录目标 URL：** https://conanxin.github.io/drafts/oppo-mothers-day-report/extensions/crisis-and-redesign/
+
+**状态：**
+- 非索引附录审稿版（noindex/nofollow/noarchive）
+- 不是 OPPO 官方方案
+- 不是正式发布版
+- 不加入 projects 索引
+- 发布前仍需人工来源核查、法律审核、用户最终批准
+

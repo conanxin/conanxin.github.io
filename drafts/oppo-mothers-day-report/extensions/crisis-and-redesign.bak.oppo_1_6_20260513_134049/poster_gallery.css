@@ -315,14 +315,3 @@ footer .disclaimer {
     margin-bottom: 24px;
   }
 }
-
-/* ===== Photo Tip (影像任务) ===== */
-.photo-tip {
-  background: rgba(74, 122, 74, 0.08);
-  border-left: 3px solid #4A7A4A;
-  padding: 6px 10px;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: #4A7A4A;
-  border-radius: 0 4px 4px 0;
-}

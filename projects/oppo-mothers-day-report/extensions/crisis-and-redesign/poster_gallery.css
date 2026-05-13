@@ -1,0 +1,328 @@
+/* ===== OPPO Mother's Day Poster Gallery — CSS ===== */
+/* 研究型 mockup 展示页面样式 */
+
+:root {
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F0EDE8;
+  --text-primary: #2C2C2C;
+  --text-secondary: #6B6B6B;
+  --accent-red: #C41E3A;
+  --accent-gold: #8B7355;
+  --border-color: #E0D8D0;
+  --card-bg: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* Header / Warning Banner */
+.disclaimer-banner {
+  background: #2C2C2C;
+  color: #E8D8C0;
+  padding: 14px 24px;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.disclaimer-banner strong {
+  color: #FFD080;
+}
+
+.page-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 48px 24px 36px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: 0;
+}
+
+.page-header .subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header .meta-info {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.page-header .meta-info span {
+  background: var(--card-bg);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Section headers */
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.section-header p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Overview cards */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.overview-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.overview-card h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.overview-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Poster Gallery */
+.poster-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 64px;
+}
+
+.poster-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.poster-preview {
+  width: 100%;
+  background: #E8E4E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.poster-preview img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.poster-info {
+  padding: 20px;
+}
+
+.poster-info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.poster-info .scene {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.poster-info .copy-block {
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--accent-red);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-radius: 0 4px 4px 0;
+}
+
+.poster-info .copy-block .main-copy {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.poster-info .copy-block .sub-copy {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.poster-info .analysis {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.poster-info .analysis strong {
+  color: var(--text-primary);
+}
+
+/* Campaign Strategy Section */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.strategy-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.strategy-item h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.strategy-item h4 .icon {
+  font-size: 1.1rem;
+}
+
+.strategy-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Footer */
+footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+footer .disclaimer {
+  font-size: 0.75rem;
+  color: #A09080;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .poster-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .strategy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .poster-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .disclaimer-banner {
+    background: #333;
+    color: #ccc;
+  }
+
+  .poster-preview {
+    background: white;
+  }
+
+  .poster-item {
+    break-inside: avoid;
+    margin-bottom: 24px;
+  }
+}
+
+/* ===== Photo Tip (影像任务) ===== */
+.photo-tip {
+  background: rgba(74, 122, 74, 0.08);
+  border-left: 3px solid #4A7A4A;
+  padding: 6px 10px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #4A7A4A;
+  border-radius: 0 4px 4px 0;
+}

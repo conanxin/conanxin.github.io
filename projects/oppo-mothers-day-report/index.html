@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <title>从"两个老公"到批评边界：OPPO母亲节文案事件的传播学案例研究（GitHub Pages 公开研究草案）</title>
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --bg-primary: #FAF8F5;
+      --bg-secondary: #F0EDE8;
+      --text-primary: #2C2C2C;
+      --text-secondary: #6B6B6B;
+      --accent-red: #C41E3A;
+      --accent-gold: #8B7355;
+      --accent-dark: #1a1a1a;
+      --border-light: #E8D5C4;
+      --success-green: #4A7C59;
+      --danger-red: #8B0000;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== Base ===== */
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 0;
+      z-index: 100;
+      overflow-x: auto;
+    }
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      white-space: nowrap;
+      justify-content: center;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent-red); }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+    h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); margin-bottom: 16px; }
+    h2 { font-size: clamp(1.3rem, 3vw, 1.75rem); margin: 40px 0 16px; padding-top: 24px; border-top: 1px solid var(--border-light); }
+    h3 { font-size: 1.1rem; margin: 24px 0 12px; }
+    p { margin-bottom: 16px; }
+    blockquote {
+      border-left: 4px solid var(--accent-gold);
+      padding: 12px 20px;
+      background: var(--bg-secondary);
+      margin: 20px 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .caption {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin: 8px 0 20px;
+      font-style: italic;
+    }
+    .content-warning {
+      background: #FFF5F5;
+      border: 1px solid var(--accent-red);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      color: var(--accent-red);
+      margin: 16px 0;
+    }
+
+    /* ===== Section ===== */
+    section { margin-bottom: 48px; }
+    hr { border: none; border-top: 1px solid var(--border-light); margin: 32px 0; }
+
+    /* ===== Cards ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .card h4 {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-red);
+      margin-bottom: 8px;
+    }
+    .card p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; }
+
+    /* ===== Source Badge ===== */
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 2px 8px;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    .source-badge::before { content: "["; }
+    .source-badge::after { content: "]"; }
+    sup .source-badge { font-size: 0.65rem; }
+
+    /* ===== Table ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.875rem;
+    }
+    th, td {
+      border: 1px solid var(--border-light);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th { background: var(--bg-secondary); font-weight: 600; }
+    tr:nth-child(even) td { background: var(--bg-primary); }
+
+    /* ===== SVG Figures ===== */
+    figure {
+      margin: 24px 0;
+      text-align: center;
+    }
+    figure svg {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+    figure figcaption {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ===== Glossary/Tooltip ===== */
+    .glossary-term {
+      border-bottom: 1px dashed var(--accent-gold);
+      cursor: help;
+      position: relative;
+    }
+    .glossary-term:hover::after {
+      content: attr(data-definition);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text-primary);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      max-width: 280px;
+      white-space: normal;
+      z-index: 10;
+      font-family: var(--font-sans);
+    }
+
+    /* ===== Comparison Module ===== */
+    .comparison-table {
+      overflow-x: auto;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      text-align: center;
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .hero h1 { font-size: clamp(1.5rem, 5vw, 2.25rem); }
+    .hero .subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .hero img { max-width: 100%; height: auto; }
+    .key-judgments {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 32px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .key-judgments li {
+      font-size: 0.95rem;
+      padding: 10px 16px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      border-left: 4px solid var(--accent-gold);
+      list-style: none;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 32px 0;
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    footer h3 { font-size: 0.95rem; margin-bottom: 12px; }
+    footer ul { list-style: none; padding: 0; }
+    footer li { margin-bottom: 8px; }
+    footer .source-item { display: flex; gap: 8px; margin-bottom: 10px; }
+    footer .reliability-a { color: var(--success-green); font-weight: 600; }
+    footer .reliability-b { color: var(--accent-gold); }
+    footer .reliability-c { color: var(--text-secondary); }
+    footer .reliability-d { color: var(--danger-red); text-decoration: line-through; }
+
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 600px) {
+      nav ul { gap: 12px; justify-content: flex-start; padding: 0 8px; }
+      nav a { font-size: 0.8rem; }
+      body { padding: 0 12px; }
+      .hero { padding: 24px 0; }
+      h2 { font-size: 1.3rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 8px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .key-judgments li { font-size: 0.875rem; }
+      figure svg { max-width: 100%; }
+    }
+
+    /* ===== Interaction Cards ===== */
+    .model-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .model-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--accent-red);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+    .mismatch-list, .layer-list {
+      display: grid;
+      gap: 10px;
+    }
+    .mismatch-item, .layer-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .mismatch-item .num, .layer-item .num {
+      font-weight: bold;
+      color: var(--accent-red);
+      min-width: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a href="#overview">事件速览</a></li>
+    <li><a href="#timeline">时间线</a></li>
+    <li><a href="#semiotics">符号分析</a></li>
+    <li><a href="#context-collapse">语境坍塌</a></li>
+    <li><a href="#crisis">危机传播</a></li>
+    <li><a href="#responsibility">责任外溢</a></li>
+    <li><a href="#legal">法律边界</a></li>
+    <li><a href="#models">分析模型</a></li>
+    <li><a href="#conclusion">结论</a></li>
+    <li><a href="#sources">来源</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<a class="skip-to-main" href="#overview">跳到主要内容</a>
+
+<header role="banner">
+  <div class="review-banner">
+    <span><strong>⚠️ GitHub Pages 公开研究草案</strong> · 研究型报道原型 · 不是正式发布版 · 不是司法结论 · 不鼓励骚扰、开盒或传播私人信息。</span>
+  </div>
+  <h1>从"两个老公"到批评边界</h1>
+  <p class="subtitle">OPPO母亲节文案事件的传播学案例研究</p>
+  <div class="subtitle" style="font-size:0.85rem; margin-top:-20px; margin-bottom:24px;">
+    一次商业广告如何从"妈妈也有自我"的进步话语，滑向符号误置、危机传播、网络暴力与机构声誉管理的连锁事件
+  </div>
+  <figure>
+    <img src="assets/hero-abstract.svg" alt="抽象主视觉：母亲节、手机影像、舆论波纹" width="800" onerror="this.style.display='none'" aria-label="本图表为严肃学术风格，无任何真实人物照片">
+    <figcaption>图：事件主视觉。设计风格严肃克制，无真实人物照片。</figcaption>
+  </figure>
+  <ul class="key-judgments">
+    <li><strong>这不是</strong> "妈妈能不能追星"的问题。</li>
+    <li><strong>这是</strong> 圈层语言进入公共伦理场景后的语境坍塌。</li>
+    <li><strong>后续警惕：</strong>部分舆论存在从公共批评滑向个体追索的风险。</li>
+  </ul>
+</header>
+
+<main id="main-content">
+
+<!-- Section 0.5: How to Read -->
+<section id="how-to-read" class="reading-guide">
+  <h2>如何阅读本页</h2>
+  <div class="reading-guide-grid">
+    <div class="reading-guide-item">
+      <span class="reading-guide-icon">📌</span>
+      <h4>事实层</h4>
+      <p>基于公开报道、官方声明、行业协会表态和政策文本，每条陈述标注来源与可信度等级。</p>
+    </div>
+    <div class="reading-guide-item">
+      <span class="reading-guide-icon">🔍</span>
+      <h4>分析层</h4>
+      <p>使用传播学、符号学、母职研究和危机传播理论解释事件机制，属于解释性框架，不是事实陈述。</p>
+    </div>
+    <div class="reading-guide-item">
+      <span class="reading-guide-icon">⚠️</span>
+      <h4>风险层</h4>
+      <p>讨论公共批评如何<em>可能</em>滑向个体身份追索，但不对未经核实的具体"开盒"行为作事实认定。</p>
+    </div>
+    <div class="reading-guide-item">
+      <span class="reading-guide-icon">🚫</span>
+      <h4>边界层</h4>
+      <p>本页<strong>不是司法结论</strong>，不鼓励骚扰、开盒、人肉或传播私人信息。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 0.6: Research Questions -->
+<section id="research-questions" class="research-questions">
+  <h2>研究问题</h2>
+  <div class="rq-list">
+    <div class="rq-item">
+      <span class="rq-label">RQ1</span>
+      <p>为什么一个圈层内部可理解的"老公梗"，进入母亲节公共广告后会触发伦理反弹？</p>
+    </div>
+    <div class="rq-item">
+      <span class="rq-label">RQ2</span>
+      <p>品牌在表达"妈妈也有自我"时，为什么可能重新落入以男性关系定义女性的叙事框架？</p>
+    </div>
+    <div class="rq-item">
+      <span class="rq-label">RQ3</span>
+      <p>品牌危机中，组织责任如何在平台舆论中被个人化、身份化和机构化？</p>
+    </div>
+    <div class="rq-item">
+      <span class="rq-label">RQ4</span>
+      <p>企业、学校、行业协会在舆情扩散中的回应各自承担什么公共责任？</p>
+    </div>
+    <div class="rq-item">
+      <span class="rq-label">RQ5</span>
+      <p>公共批评与网络暴力之间的边界如何划定，哪些行为超出合理监督范畴？</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 0.7: Method Note -->
+<section id="method-note" class="method-note">
+  <h2>方法说明</h2>
+  <p>本页采用事件过程追踪、话语分析、符号分析和危机传播框架，不进行司法判断，不进行个人责任认定。理论模型用于解释传播机制，不是事实责任或法律责任结论。</p>
+  <p>所有事实性陈述均标注来源和可信度等级（<span class="reliability-a">[A]</span>=官方/一手，<span class="reliability-b">[B]</span>=主流媒体，<span class="reliability-c">[C]</span>=评论分析/理论，<span class="reliability-d">[D]</span>=网传/背景材料，不作为事实依据）。</p>
+</section>
+
+<!-- Section 1: Event Overview -->
+<section id="overview">
+  <h2>事件速览：5W1H</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>📌 文案争议</h4>
+      <p>OPPO于5月8日通过官方微博、小红书发布母亲节营销文案，包含"我妈有两个'老公'"等表述，引发巨大争议。<a class="source-badge source-b" href="#src_003">观察者网·B</a></p>
+    </div>
+    <div class="card">
+      <h4>📌 品牌道歉</h4>
+      <p>OPPO于5月8日当天发布第一次致歉，表示已下架物料；但有评论认为首次回应"较为简单"，未能平息争议。<a class="source-badge source-b" href="#src_001">OPPO首次道歉·B</a></p>
+    </div>
+    <div class="card">
+      <h4>📌 内部问责</h4>
+      <p>OPPO于5月11日发布第二次道歉和问责通告，中国区业务负责人段要辉职级直降两级，冻结调薪36个月。<a class="source-badge source-b" href="#src_003">观察者网·B</a></p>
+    </div>
+    <div class="card">
+      <h4>📌 学校回应</h4>
+      <p>武汉大学文学院于5月10日发声明，称极不认同该文案内容，并提及涉事团队与余姓校友的关系。<a class="source-badge source-a" href="#src_006">武大文学院·A</a></p>
+    </div>
+    <div class="card">
+      <h4>📌 行业协会</h4>
+      <p>中国广告协会于5月10日公开表态，称广告创意不得突破公序良俗，应摒弃"唯流量论"。<a class="source-badge source-a" href="#src_004">中国广告协会·A</a></p>
+    </div>
+    <div class="card">
+      <h4>📌 网络暴力边界讨论</h4>
+      <p>围绕此类品牌危机事件，有舆论担忧公共讨论可能从批评品牌滑向个体追索，引发对网络暴力边界的关注和讨论。<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a></p>
+    </div>
+  </div>
+  <div class="content-warning">
+    ⚠️ <strong>隐私保护声明：</strong>本页面严格遵守隐私保护原则，不传播、不引导搜索任何个人手机号、私人社交账号、家庭住址等私人信息。本页面仅引用已被主流公开报道广泛引用的、与公共职责相关的信息。
+  </div>
+</section>
+
+<!-- Section 2: Timeline -->
+<section id="timeline">
+  <h2>事件时间线</h2>
+  <figure>
+    <img src="assets/timeline-ribbon.svg" alt="事件时间线" width="800" onerror="this.style.display='none'">
+    <figcaption>图：OPPO母亲节文案事件关键节点（2026年5月8日—5月11日）。来源：观察者网、联合早报、IT之家、武汉大学文学院。</figcaption>
+  </figure>
+  <div class="card-grid">
+    <div class="card">
+      <h4>5月8日 · 文案发布</h4>
+      <p>OPPO发布争议文案，当天下午首次致歉并下架物料。"OPPO文案价值观"话题登上微博热搜。<a class="source-badge source-b" href="#src_003">观察者网·B</a></p>
+    </div>
+    <div class="card">
+      <h4>5月9日 · 舆情持续</h4>
+      <p>首次道歉未能平息争议，舆论持续发酵。具体细节公开资料不足。<a class="source-badge source-c" href="#src_011">第一财经·C</a></p>
+    </div>
+    <div class="card">
+      <h4>5月10日 · 机构回应</h4>
+      <p>中国广告协会发声；武汉大学文学院发声明，称极不认同该文案内容。<a class="source-badge source-a" href="#src_004">中国广告协会·A</a><a class="source-badge source-a" href="#src_006">武大文学院·A</a></p>
+    </div>
+    <div class="card">
+      <h4>5月11日 · 问责升级</h4>
+      <p>OPPO发布第二次道歉和内部问责通告，对相关责任人做出严厉处分。<a class="source-badge source-b" href="#src_002">OPPO二次致歉·B</a><a class="source-badge source-b" href="#src_003">观察者网·B</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Semiotic Matrix -->
+<section id="semiotics">
+  <h2>争议文案的符号分析</h2>
+  <p>广告中的核心符号在从圈层内部语境进入公共话语场时，发生了多层次的语义偏移。以下矩阵展示了"妈妈"、"老公"、"婚纱"、"追星"四个核心符号的语境迁移过程。</p>
+  <figure>
+    <img src="assets/semiotic-matrix.svg" alt="符号矩阵" width="800" onerror="this.style.display='none'">
+    <figcaption>图：符号矩阵分析。符号的意义由解码者决定，而非编码者意图。当圈层符号进入公共话语场，其意义由更广泛的解码社群重新协商。</figcaption>
+  </figure>
+  <div class="model-card">
+    <h4>关键发现："老公"符号的语境错配</h4>
+    <p style="font-size:0.9rem; margin-bottom:12px;">"老公"在饭圈语境中是粉丝对偶像的昵称（圈内玩笑），而在广告的母亲节语境中，"老公"的婚姻伴侣含义被激活，引发了对婚姻伦理的联想。这是本次事件最核心的符号失误。</p>
+    <p style="font-size:0.875rem; color:var(--text-secondary);">相关来源：<a class="source-badge source-b" href="#src_003">观察者网·B</a> <a class="source-badge source-c" href="#src_012">圈层文化·C</a></p>
+  </div>
+</section>
+
+<!-- Section 4: Context Collapse -->
+<section id="context-collapse">
+  <h2>圈层语言与语境坍塌</h2>
+  <p><span class="glossary-term" data-definition="语境坍塌（Context Collapse）：当原本属于特定社群的话语进入更广泛的公共语境时，其原有意义被新语境覆盖，导致误解或冲突。">语境坍塌</span>描述了圈层内部共享的符号进入公共话语场时，编码者意图与解码者理解之间的系统性偏离。</p>
+  <figure>
+    <img src="assets/context-collapse-flow.svg" alt="语境坍塌流程图" width="800" onerror="this.style.display='none'">
+    <figcaption>图：语境转换失败流程。从"圈内玩笑"到"商业广告"到"公共伦理场景"，符号意义随语境扩张而发生根本性偏移。</figcaption>
+  </figure>
+  <blockquote>
+    "符号的意义由解码者决定，而非编码者意图。当圈层符号进入公共话语场，其意义由更广泛的解码社群重新协商，原有的玩笑语境被完全覆盖。"
+  </blockquote>
+  <p>相关来源：<a class="source-badge source-c" href="#src_010">符号学·C</a> <a class="source-badge source-c" href="#src_012">圈层文化·C</a></p>
+</section>
+
+<!-- Section 5: Crisis Response Analysis -->
+<section id="crisis">
+  <h2>危机传播分析：两次回应的差异</h2>
+  <p>OPPO的两次道歉在时间、话术、责任承认程度上存在显著差异，直接影响了舆情走向。</p>
+  <figure>
+    <img src="assets/crisis-response-compare.svg" alt="危机回应对比表" width="800" onerror="this.style.display='none'">
+    <figcaption>图：OPPO两次危机回应对比。第一次回应选择了与危机类型不匹配的策略，导致批评升级；第二次调整后有效降低了舆情压力。</figcaption>
+  </figure>
+  <div class="model-card">
+    <span class="model-card-label">分析框架</span>
+    <h4>情境危机传播理论（SCCT）分析</h4>
+    <p style="font-size:0.875rem;">SCCT（<span class="glossary-term" data-definition="情境危机传播理论（SCCT）：Coombs提出的危机传播理论，认为危机应对策略应与危机类型和责任归因相匹配。">Situational Crisis Communication Theory</span>）认为，危机可预防程度越高，公众对组织责任的要求越高。OPPO事件属于"可预防危机"（组织本应能预见风险），组织应承担更高责任，采用重建策略而非否认策略。第一次道歉被部分媒体评价为"较为简单"，正是因为选择了淡化问题的策略，与危机类型不匹配。<a class="source-badge source-c" href="#src_008">SCCT·C</a></p>
+  </div>
+</section>
+
+<!-- Section 6: Responsibility Overflow -->
+<section id="responsibility">
+  <h2>责任外溢与批评边界</h2>
+  <p>OPPO事件中，责任归因从企业逐渐扩散到个人，再从个人扩散到其关联机构，出现了责任归因的逐级下沉和扩大化。</p>
+  <figure>
+    <img src="assets/responsibility-overflow-map.svg" alt="责任外溢模型" width="800" onerror="this.style.display='none'">
+    <figcaption>图：责任外溢模型。从"文案责任"到"品牌责任"到"组织责任"到"个人责任"再到"机构责任"，批评的边界在逐级扩大。</figcaption>
+  </figure>
+  <div class="content-warning">
+    ⚠️ <strong>边界提示：</strong>批评企业广告内容合理，要求企业问责处理合理，但在这一过程中，传播私人信息、开盒、骚扰当事人及其家属超越了合理批评的边界，可能违反《网络暴力信息治理规定》（<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a>）。
+  </div>
+</section>
+
+<!-- Section 7: Legal Boundary -->
+<section id="legal">
+  <h2>网络暴力与法律边界</h2>
+  <p>围绕OPPO事件这类品牌危机，有舆论关注公共批评与个体围猎之间的边界，引发了对网络暴力法律边界的讨论。以下基于《网络暴力信息治理规定》（<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a>）建立判断标准：</p>
+  <figure>
+    <img src="assets/public-criticism-boundary.svg" alt="合理批评vs网络暴力对照表" width="800" onerror="this.style.display='none'">
+    <figcaption>图：合理批评与网络暴力边界对照表。依据：《网络暴力信息治理规定》（<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a>）</figcaption>
+  </figure>
+  <p><strong>关键法律条款：</strong>《网络暴力信息治理规定》第十条明确："任何组织和个人不得利用网络暴力事件实施蹭炒热度、推广引流等营销炒作行为。"<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a></p>
+</section>
+
+<!-- Section 8: Analysis Models -->
+<section id="models">
+  <h2>综合学术框架</h2>
+
+  <div class="model-card">
+    <span class="model-card-label">分析框架</span>
+    <h4>六重错配模型</h4>
+    <p style="font-size:0.875rem; margin-bottom:16px;">本页面原创提出的分析框架，用于解释为何一次看似无害的母亲节广告会在公众舆论中引发如此强烈的反弹。本模型为解释性工具而非事实陈述，不构成对事实责任的最终判定。</p>
+    <div class="mismatch-list">
+      <div class="mismatch-item"><span class="num">1</span><div><strong>语境错配：</strong>"老公"在饭圈语境中是偶像昵称，在母亲节语境中激活了婚姻伦理联想。</div></div>
+      <div class="mismatch-item"><span class="num">2</span><div><strong>关系错配：</strong>广告将"妈妈也有自我"与"妈妈追偶像"混同，把母亲热爱锚定在男性关系上。</div></div>
+      <div class="mismatch-item"><span class="num">3</span><div><strong>情感错配：</strong>母亲节期待真挚感恩表达，而广告选择了戏谑调侃的话语方式。</div></div>
+      <div class="mismatch-item"><span class="num">4</span><div><strong>主体错配：</strong>女儿在替母亲做叙事决策时，把母亲降格为被观看的对象。</div></div>
+      <div class="mismatch-item"><span class="num">5</span><div><strong>责任错配：</strong>批评从企业下沉到个人，再到机构，出现了归因路径的偏移。</div></div>
+      <div class="mismatch-item"><span class="num">6</span><div><strong>惩罚错配：</strong>从"批评广告"滑向"个体追索"，存在惩罚越位的风险。</div></div>
+    </div>
+  </div>
+
+  <div class="model-card">
+    <span class="model-card-label">分析框架</span>
+    <h4>五层失控模型</h4>
+    <p style="font-size:0.875rem; margin-bottom:16px;">用于分析OPPO事件中从符号生产到制度失败的完整失控链条。本模型为解释性工具而非事实陈述，不构成对OPPO内部制度的实证判定。</p>
+    <div class="layer-list">
+      <div class="layer-item"><span class="num">1</span><div><strong>符号失控：</strong>"老公"符号跨圈层传播时失去玩笑语义，被重新编码为婚姻伦理语境下的贬义联想。</div></div>
+      <div class="layer-item"><span class="num">2</span><div><strong>叙事失控：</strong>广告叙事缺乏对母亲主体性的完整理解，叙事变成了对母亲的调侃而非赋权。</div></div>
+      <div class="layer-item"><span class="num">3</span><div><strong>危机失控：</strong>第一次道歉未能回应公众核心关切，导致批评声量进一步扩大。</div></div>
+      <div class="layer-item"><span class="num">4</span><div><strong>归因失控：</strong>批评从品牌扩展到个人（涉事员工），再扩展到机构（武汉大学）。</div></div>
+      <div class="layer-item"><span class="num">5</span><div><strong>制度失控：</strong>OPPO内部内容审核机制在该文案上未能识别伦理风险，暴露出在特定场景下分层分级审核的风险识别缺口。</div></div>
+    </div>
+  </div>
+
+  <div class="model-card">
+    <span class="model-card-label">分析框架</span>
+    <h4>广告创意四重审核模型</h4>
+    <p style="font-size:0.875rem; margin-bottom:12px;">本页面提出的广告内容审核框架，建议品牌在发布任何营销内容前进行四重审核。</p>
+    <figure>
+      <img src="assets/ad-ethics-review-model.svg" alt="广告伦理四重审核模型" width="800" onerror="this.style.display='none'">
+      <figcaption>图：广告创意四重审核模型。OPPO事件在第一层（事实）无问题，在第二层（法务）可能存在边界争议，但在第三层（舆情）和第四层（伦理）上暴露出了风险识别缺口。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Section 9: Academic Analysis -->
+<section id="academic">
+  <h2>母职与女性主体性分析</h2>
+  <p>OPPO广告文案表面上肯定"妈妈也有自我"（<span class="glossary-term" data-definition="母职主体性（maternal subjectivity）：母亲作为独立个体的欲望、选择和身份认同，而不只是养育者角色。">母职主体性</span>话语），但实际上将母亲的自我实现锚定在"追星"这一<span class="glossary-term" data-definition="性缘化（sexualized）：将他人非性化的角色（如母亲）以异性恋框架下的性/浪漫关系重新定义。">性缘化</span>叙事上，削弱了原本可能具有的赋权意义。</p>
+  <p>相关学术背景：<span class="glossary-term" data-definition="密集母职（Intensive Mothering）：Hays（1996）提出，指现代社会将'好母亲'的理想化标准定义为密集、昂贵且以儿童为中心。">密集母职</span>概念认为，现代社会对母亲的标准被不断抬高，而商业广告对母亲形象的挪用需要极其谨慎。<a class="source-badge source-c" href="#src_009">密集母职·C</a></p>
+  <p><strong>注意：</strong>本分析不是反对母亲追星，而是指出广告将母亲的热爱锚定在男性关系上，因而容易被部分受众理解为削弱母亲主体性，而非真正赋权。</p>
+</section>
+
+<!-- Section 10: Wuhan University Response -->
+<section id="wuhan">
+  <h2>武汉大学回应分析</h2>
+  <p>武汉大学文学院于5月10日发布声明，称"极不认同"该文案内容，并提及余姓同学与涉事团队的关系。<a class="source-badge source-a" href="#src_006">武大文学院·A</a></p>
+  <p>从机构<span class="glossary-term" data-definition="声誉管理（Reputation Management）：组织为维护自身形象和公众认知而采取的系统性策略。">声誉管理</span>角度分析，该声明有几重逻辑：</p>
+  <ol style="margin:16px 0; padding-left:24px;">
+    <li><strong>声誉切割：</strong>学校通过声明与涉事内容划清界限，表明立场——这是机构声誉管理中的常见策略，可理解为在舆论压力下的"切割止损"逻辑。</li>
+    <li><strong>但可能强化连坐：</strong>声明提及个人姓名，将个人行为与机构关联，可能在客观效果上强化了"个人行为-机构连坐"的逻辑。</li>
+    <li><strong>更理想的回应：</strong>从危机传播角度看，机构声明如能同时明确反对低俗营销与反对网暴开盒，可避免被解读为仅做单方面切割。</li>
+  </ol>
+  <p style="font-size:0.875rem; color:#666;">本节为解释性分析，不构成对武汉大学声明本身正当性的最终判断，也不意图为OPPO开脱。学校面临现实舆论压力，其声明动机和效果需要结合更完整背景评估。</p>
+  <p>相关来源：<a class="source-badge source-b" href="#src_005">联合早报·B</a> <a class="source-badge source-a" href="#src_006">武大文学院·A</a></p>
+</section>
+
+<!-- Section 11: Industry Response -->
+<section id="industry">
+  <h2>中国广告协会与行业治理</h2>
+  <p>中国广告协会于5月10日就"个别品牌"母亲节营销文案公开表态，称广告创意不得突破公序良俗底线，不能违背传统家庭伦理，应摒弃"唯流量论"。<a class="source-badge source-a" href="#src_004">中国广告协会·A</a></p>
+  <p>这一表态反映了广告行业面临的系统性挑战：</p>
+  <ul style="margin:16px 0; padding-left:24px;">
+    <li><strong>唯流量论：</strong>品牌在流量压力下，可能选择更具冲击力的内容，而忽略潜在的风险。</li>
+    <li><strong>节日营销伦理：</strong>家庭亲情类节日（母亲节、父亲节等）的营销需要格外谨慎，避免消费情感。</li>
+    <li><strong>内容审核机制：</strong>品牌需要建立更完善的内容审核流程，包括舆情审核和伦理审核。</li>
+  </ul>
+</section>
+
+<!-- Section 12: Conclusion -->
+<section id="conclusion">
+  <h2>结论</h2>
+  <div class="model-card">
+    <h4>综合判断</h4>
+    <p style="font-size:0.9rem; margin-bottom:12px;">OPPO事件不是简单的"妈妈能不能追星"的问题，而是多重因素叠加的传播学案例：</p>
+    <ul style="font-size:0.875rem; padding-left:20px;">
+      <li style="margin-bottom:8px;"><strong>OPPO的核心问题：</strong>广告将"妈妈也有自我"的进步话语锚定在"妈妈有另一个老公"的男性关系符号上，在符号使用上发生了语境错配，触发了伦理敏感领域的负面联想。</li>
+      <li style="margin-bottom:8px;"><strong>舆论风险（需警惕）：</strong>部分讨论存在从"批评品牌"滑向"个体身份追索"的可能性，传播私人信息、骚扰家属超越了合理批评的边界。</li>
+      <li style="margin-bottom:8px;"><strong>武汉大学回应的局限：</strong>显示出机构在平台舆论压力下进行声誉管理的复杂处境；更理想的回应可同时反对低俗营销与反对网络暴力行为。</li>
+      <li style="margin-bottom:8px;"><strong>行业反思：</strong>应坚决摒弃"唯流量论"，重建内容审核与伦理风险评估机制。</li>
+      <li><strong>企业治理建议：</strong>重构内容审核流程，完善分层分级的内容审核机制，恪守主流价值观底线。</li>
+    </ul>
+  </div>
+  <div class="content-warning">
+    ⚠️ <strong>法律提示：</strong>本页面为研究型报道原型，不是司法结论，也不鼓励对任何个人进行骚扰、开盒或身份攻击。传播私人信息、开盒、骚扰可能违反《网络暴力信息治理规定》（<a class="source-badge source-a" href="#src_007">网暴治理规定·A</a>）。
+  </div>
+</section>
+
+<!-- Section 12.5: Appendix -->
+<section id="appendix" class="appendix-section">
+  <h2>附录：危机回应与活动重设计方案</h2>
+  <div class="appendix-card">
+    <p>本专题另附一个<strong>研究型模拟方案包</strong>，讨论两个问题：</p>
+    <ol>
+      <li>如果事件发生后，<strong>企业如何更好回应</strong>公众关切；</li>
+      <li>如果原母亲节活动在<strong>不颠覆原目的</strong>的前提下重新设计，如何避免"两个老公"等圈层梗错位和家庭伦理误读。</li>
+    </ol>
+    <p class="appendix-note">⚠️ <strong>公开研究草案</strong> · 非官方研究与创意复盘 · 不是 OPPO 官方方案 · 不是正式发布版</p>
+    <p><a class="appendix-btn" href="extensions/crisis-and-redesign/">查看附录方案 →</a></p>
+  </div>
+</section>
+
+<!-- Section 13: Sources -->
+<section id="sources">
+  <h2>来源与方法说明</h2>
+  <p>以下为本页面所有信息来源的汇总，按类别分组，每条标注可信度等级：A=官方/行业组织，B=主流媒体，C=评论分析/理论，D=背景材料（不支撑具体事实）。点击来源标签可跳转至对应条目。</p>
+  <h3>一、事实与报道来源</h3>
+  <ul>
+    <li class="source-item" id="src_004"><span class="reliability-a">[A]</span>中国广告协会批个别品牌母亲节低俗营销 <a class="source-badge source-a" href="#src_004">中国广告协会·A</a> <a href="https://finance.sina.com.cn/tech/digi/2026-05-10/doc-inhxmkkc2503281.shtml" target="_blank" rel="noopener noreferrer">↗</a></li>
+    <li class="source-item" id="src_006"><span class="reliability-a">[A]</span>武汉大学文学院关于网络所传母亲节宣传文案的声明 <a class="source-badge source-a" href="#src_006">武大文学院·A</a> <a href="https://weibo.com/u/1651241481" target="_blank" rel="noopener noreferrer">↗</a></li>
+    <li class="source-item" id="src_001"><span class="reliability-b">[B]</span>OPPO官方微博：OPPO官方道歉声明（第一次）<em>（微博账号页，非原始正文）</em> <a class="source-badge source-b" href="#src_001">OPPO首次道歉·B</a> <a href="https://weibo.com/oppo" target="_blank" rel="noopener noreferrer">↗</a></li>
+    <li class="source-item" id="src_002"><span class="reliability-b">[B]</span>观察者网：OPPO第二次道歉声明报道 <em>（媒体报道引述，非官方原文）</em> <a class="source-badge source-b" href="#src_002">OPPO二次致歉·B</a> <a href="https://www.guancha.cn/economy/2026_05_11_816574.shtml" target="_blank" rel="noopener noreferrer">↗</a></li>
+    <li class="source-item" id="src_003"><span class="reliability-b">[B]</span>观察者网：母亲节文案引争议，OPPO中国区负责人被连降两级 <a class="source-badge source-b" href="#src_003">观察者网·B</a> <a href="https://www.guancha.cn/economy/2026_05_11_816574.shtml" target="_blank" rel="noopener noreferrer">↗</a></li>
+    <li class="source-item" id="src_005"><span class="reliability-b">[B]</span>联合早报：因母亲节文案事件OPPO中国区高级副总裁被降两级 <a class="source-badge source-b" href="#src_005">联合早报·B</a> <a href="https://www.zaobao.com.sg/news/china/story20260511-9029796" target="_blank" rel="noopener noreferrer">↗</a></li>
+  </ul>
+  <h3>二、政策与法律来源</h3>
+  <ul>
+    <li class="source-item" id="src_007"><span class="reliability-a">[A]</span>国家互联网信息办公室等：网络暴力信息治理规定 <a class="source-badge source-a" href="#src_007">网暴治理规定·A</a> <a href="https://www.cac.gov.cn/2024-06/14/c_1720043894161555.htm" target="_blank" rel="noopener noreferrer">↗</a></li>
+  </ul>
+  <h3>三、理论与研究来源</h3>
+  <ul>
+    <li class="source-item" id="src_008"><span class="reliability-c">[C]</span>学术：情境危机传播理论（SCCT，Coombs） <a class="source-badge source-c" href="#src_008">SCCT·C</a></li>
+    <li class="source-item" id="src_009"><span class="reliability-c">[C]</span>学术：密集母职理论（Hays, 1996） <a class="source-badge source-c" href="#src_009">密集母职·C</a></li>
+    <li class="source-item" id="src_010"><span class="reliability-c">[C]</span>学术：符号学与广告解码（Barthes/Fiske） <a class="source-badge source-c" href="#src_010">符号学·C</a></li>
+    <li class="source-item" id="src_012"><span class="reliability-c">[C]</span>学术：圈层文化与公共传播 <a class="source-badge source-c" href="#src_012">圈层文化·C</a></li>
+  </ul>
+  <h3>四、背景材料（不支撑具体事实）</h3>
+  <ul>
+    <li class="source-item" id="src_011"><span class="reliability-c">[C]</span>第一财经：OPPO事件舆情复盘 <em>（背景材料，不支撑具体事实）</em> <a class="source-badge source-c" href="#src_011">第一财经·C</a> <a href="https://www.yicai.com" target="_blank" rel="noopener noreferrer">↗</a></li>
+  </ul>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="review-banner" style="margin-bottom:16px;">
+    <span><strong>⚠️ GitHub Pages 非索引审稿副本</strong> · 本页面为非索引审稿发布版，仅供内容审阅与研究讨论，不作为正式最终报道。发布前仍需人工来源核查、法律审核与最终批准。请勿将本文用于骚扰、开盒、人肉或扩散个人信息。</span>
+  </div>
+  <p><strong>生成时间：</strong>2026-05-13 | <strong>版本：</strong>Phase 1.2 | <strong>GitHub Pages 公开研究草案</strong></p>
+  <p>本页面为<strong>研究型报道原型</strong>，不是司法结论，也不鼓励对任何个人进行骚扰、开盒或身份攻击。</p>
+  <p>本页面所有事实性陈述均有来源记录，不把网传内容当成事实，对未核实信息已标注「公开资料不足」。</p>
+</footer>
+
+<!-- Minimal JS for mobile nav and glossary -->
+<script>
+(function() {
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Mobile nav: if too wide, allow horizontal scroll (CSS handles this)
+  var nav = document.querySelector('nav');
+  if (nav) {
+    nav.addEventListener('touchmove', function(e) {
+      // Allow native scroll on mobile
+    }, { passive: true });
+  }
+})();
+</script>
+
+</body>
+</html>

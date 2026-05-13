@@ -1,0 +1,76 @@
+<!-- public-criticism-boundary.svg: 合理批评 vs 网络暴力对照表 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" role="img" aria-label="合理批评与网络暴力边界对照表">
+  <title>合理批评 vs 网络暴力：法律与伦理边界</title>
+  <desc>基于《网络暴力信息治理规定》建立的判断标准，用于区分合法公共批评与越界行为</desc>
+
+  <rect width="800" height="320" fill="#FAF8F5"/>
+
+  <!-- 标题 -->
+  <text x="400" y="28" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="bold" fill="#2C2C2C">合理批评 vs 网络暴力：法律与伦理边界</text>
+  <text x="400" y="46" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#6B6B6B" font-style="italic">依据：《网络暴力信息治理规定》（src_007）、两高一部相关意见</text>
+
+  <!-- 左列：合理批评（绿色） -->
+  <g transform="translate(200, 120)">
+    <rect x="-170" y="-55" width="200" height="180" rx="8" fill="#F0F5E8" stroke="#4A7C59" stroke-width="2"/>
+    <text x="0" y="-35" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#4A7C59">合理批评 ✅</text>
+
+    <!-- 列表项 -->
+    <g transform="translate(-150, -10)">
+      <circle r="4" fill="#4A7C59" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#2C2C2C">批评企业的广告内容或商业决策</text>
+    </g>
+    <g transform="translate(-150, 20)">
+      <circle r="4" fill="#4A7C59" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#2C2C2C">要求企业公开回应公众关切</text>
+    </g>
+    <g transform="translate(-150, 50)">
+      <circle r="4" fill="#4A7C59" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#2C2C2C">要求企业对相关责任人进行问责</text>
+    </g>
+    <g transform="translate(-150, 80)">
+      <circle r="4" fill="#4A7C59" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#2C2C2C">在公共平台表达对事件的观点</text>
+    </g>
+    <g transform="translate(-150, 110)">
+      <circle r="4" fill="#4A7C59" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#2C2C2C">引用已公开的官方声明或媒体报道</text>
+    </g>
+  </g>
+
+  <!-- 中间分隔线 -->
+  <line x1="400" y1="75" x2="400" y2="280" stroke="#E8D5C4" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 右列：越界行为（红色） -->
+  <g transform="translate(600, 120)">
+    <rect x="-170" y="-55" width="200" height="180" rx="8" fill="#FFE4E4" stroke="#8B0000" stroke-width="2"/>
+    <text x="0" y="-35" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8B0000">越界行为 ❌</text>
+
+    <!-- 列表项 -->
+    <g transform="translate(-150, -10)">
+      <circle r="4" fill="#8B0000" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">传播未经授权的个人隐私信息</text>
+    </g>
+    <g transform="translate(-150, 20)">
+      <circle r="4" fill="#8B0000" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">公开散布个人信息以帮助他人骚扰</text>
+    </g>
+    <g transform="translate(-150, 50)">
+      <circle r="4" fill="#8B0000" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">对当事人或其家属进行辱骂攻击</text>
+    </g>
+    <g transform="translate(-150, 80)">
+      <circle r="4" fill="#8B0000" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">传播当事人私人信息（家庭/工作）</text>
+    </g>
+    <g transform="translate(-150, 110)">
+      <circle r="4" fill="#8B0000" cy="0"/>
+      <text x="12" y="4" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">蹭炒热度、实施营销炒作（违法）</text>
+    </g>
+  </g>
+
+  <!-- 底部法律提示 -->
+  <g transform="translate(400, 295)">
+    <rect x="-350" y="-15" width="700" height="30" rx="4" fill="#FFF5F5" stroke="#8B0000" stroke-width="1"/>
+    <text x="0" y="5" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8B0000">⚠️ 法律后果：违反《网络暴力信息治理规定》者，依法承担民事责任；构成违法行为的，给予治安管理处罚；构成犯罪的，依法追究刑事责任。</text>
+  </g>
+</svg>

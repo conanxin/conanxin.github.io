@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "version": "1.1",
+    "title": "OPPO母亲节文案事件信息来源汇总",
+    "generated": "2026-05-13",
+    "updated": "2026-05-13",
+    "description": "本页面所有事实性陈述的来源记录，可信度等级：A=官方/一手，B=主流媒体，C=评论分析，D=网传不作为事实依据。version 1.1: 修正H-01/M-01/M-02/M-03/L-01/L-02问题。",
+    "note": "本页面为研究型报道原型，所有内容基于公开资料整理，不是司法结论。严禁使用本页面信息对任何个人进行骚扰、开盒或身份攻击。"
+  },
+  "sources": [
+    {
+      "id": "src_001",
+      "type": "official",
+      "title": "OPPO官方道歉声明（第一次，5月8日）",
+      "organization": "OPPO官方微博",
+      "date": "2026-05-08",
+      "url": "https://weibo.com/oppo",
+      "reliability": "B",
+      "summary": "OPPO官方微博已无原始内容留存，此处引用媒体报道转述的OPPO第一次致歉内容。标注为B级，因原始发布页不可直接查证。",
+      "key_claims": ["已下架全部相关物料", "承诺加强内容审核"],
+      "raw_text_note": "OPPO官方微博已无原始内容留存，此处引用媒体报道转述。reliability已从A降为B。"
+    },
+    {
+      "id": "src_002",
+      "type": "media",
+      "title": "OPPO第二次道歉声明（媒体报道引述）",
+      "organization": "观察者网",
+      "date": "2026-05-11",
+      "url": "https://www.guancha.cn/economy/2026_05_11_816574.shtml",
+      "reliability": "B",
+      "summary": "OPPO第二次公开致歉内容，引自观察者网独家报道。原文引自观察者网对OPPO内部通告的转述，非OPPO官方渠道直接发布。标注为B级媒体引述，不代表OPPO官方原始声明。",
+      "key_claims": ["承认追逐流量违背本心", "对段要辉降两级处分", "冻结调薪36个月", "承诺重构内容审核流程"],
+      "raw_text_note": "原文引自观察者网独家报道（src_003）。reliability已从A降为B，因非OPPO官方渠道直接发布。",
+      "source_origin_note": "本记录为媒体报道引述，非OPPO官方原始发布页。如需A级来源，请查阅OPPO官方微博历史帖文。"
+    },
+    {
+      "id": "src_003",
+      "type": "media",
+      "title": "母亲节文案引争议，OPPO中国区负责人被连降两级",
+      "organization": "观察者网",
+      "author": "观察者网编辑部",
+      "date": "2026-05-11",
+      "url": "https://www.guancha.cn/economy/2026_05_11_816574.shtml",
+      "reliability": "B",
+      "summary": "观察者网从知情人士处获悉OPPO内部问责通告全文，对相关责任人进行了定级处罚。包含了OPPO内部问责通告的完整内容。",
+      "key_claims": ["段要辉负最终管理责任，职级直降两级", "王怡职级降一级", "马新冻结调薪12个月", "处罚为OPPO历史上'罕见严厉'"],
+      "first_hand_reporting_note": "本文系观察者网从知情人士处获得的内部问责通告全文，具有较高的第一手信息价值，但媒体转述本身仍属于二手来源，不等同于官方原始文件。is_primary_source已移除。",
+      "author_note": "未见观察者网文章有明确记者署名，记录为'观察者网编辑部'。"
+    },
+    {
+      "id": "src_004",
+      "type": "industry_association",
+      "title": "中国广告协会批个别品牌母亲节低俗营销",
+      "organization": "中国广告协会",
+      "date": "2026-05-10",
+      "url": "https://finance.sina.com.cn/tech/digi/2026-05-10/doc-inhxmkkc2503281.shtml",
+      "reliability": "A",
+      "summary": "中国广告协会就母亲节期间个别品牌的营销文案公开发布官方表态，称广告创意不得突破公序良俗底线，不能违背传统家庭伦理，强调应摒弃'唯流量论'。type已从media修正为industry_association，reliability从B升为A，因为来源为中国广告协会官方声明。",
+      "key_claims": ["广告是文化传播的重要载体", "创意自由不能凌驾于道德底线", "应摒弃'唯流量论'"],
+      "note": "原文未指明具体品牌，此处引用为背景材料。type已修正为industry_association，reliability升为A。"
+    },
+    {
+      "id": "src_005",
+      "type": "media",
+      "title": "因母亲节文案事件OPPO中国区高级副总裁被降两级",
+      "organization": "联合早报",
+      "author": "联合早报编辑部",
+      "date": "2026-05-11",
+      "url": "https://www.zaobao.com.sg/news/china/story20260511-9029796",
+      "reliability": "B",
+      "summary": "联合早报报道OPPO母亲节文案事件，引用武汉大学文学院声明，称知悉网络所传某手机企业余姓同学的团队近日'母亲节'宣传文案引发社会批评。",
+      "key_claims": ["OPPO再次道歉并处罚高管", "武汉大学文学院发声明回应", "余姓同学曾为武大文学院学生"],
+      "is_primary_source": true,
+      "note": "is_primary_source=true是因为联合早报直接引用了武汉大学文学院声明原文，两者均属官方/一手来源，在此场景下适用。author_note: 未见联合早报文章有明确记者署名，记录为'联合早报编辑部'。",
+      "author_note": "未见联合早报文章有明确记者署名，记录为'联合早报编辑部'。"
+    },
+    {
+      "id": "src_006",
+      "type": "official",
+      "title": "武汉大学文学院关于网络所传母亲节宣传文案的声明",
+      "organization": "武汉大学文学院",
+      "date": "2026-05-10",
+      "url": "https://weibo.com/u/1651241481",
+      "reliability": "A",
+      "summary": "武汉大学文学院官方声明，称知悉网络所传某手机企业余姓同学的团队近日'母亲节'宣传文案引发批评；称余姓同学在校期间思想端正，曾因护助公交车上受伤的耄耋老人而获师生赞誉；文学院极不认同此文案内容。",
+      "key_claims": ["余姓同学为武大文学院毕业生", "该同学在校表现端正", "文学院不认同文案内容", "望该校友与企业肩负社会责任"],
+      "is_primary_source": true
+    },
+    {
+      "id": "src_007",
+      "type": "policy",
+      "title": "网络暴力信息治理规定",
+      "organization": "国家互联网信息办公室、公安部、文化和旅游部、国家广播电视总局",
+      "date": "2024-06-14（施行日期2024-08-01）",
+      "url": "https://www.cac.gov.cn/2024-06/14/c_1720043894161555.htm",
+      "reliability": "A",
+      "summary": "中国官方发布的网络暴力信息治理规定，界定了网络暴力信息的定义、平台责任、用户权利、法律后果。明确任何人不得利用网络暴力事件实施蹭炒热度、推广引流等营销炒作行为。",
+      "key_claims": [
+        "网络暴力信息是指通过文本、图像、音频、视频等形式对个人集中发布的含侮辱谩骂、造谣诽谤、煽动仇恨、威逼胁迫、侵犯隐私等内容的违法和不良信息",
+        "任何人不得利用网络暴力事件实施蹭炒热度、推广引流等营销炒作行为",
+        "违反规定给他人造成损害的依法承担民事责任，构成犯罪的依法追究刑事责任"
+      ],
+      "is_primary_source": true
+    },
+    {
+      "id": "src_008",
+      "type": "theory",
+      "title": "情境危机传播理论（SCCT）",
+      "organization": "Academia",
+      "author": "Coombs, W. Timothy",
+      "date": "2007",
+      "publication": "Coombs, W.T. (2007). Protecting Organization Reputation: A CSR Approach. Business Expert Press.（或Coombs, W.T. (1995). 'The Roles of Communicator Credibility and Risk in Determinants of Organizational Crisis Responsibility'. Journal of Business Communication, 32(3), 243-260. 本页面参考SCCT核心框架，引用1995-2007年间Coombs发表的多篇论文及2007年专著的系统性论述。）",
+      "reliability": "C",
+      "summary": "SCCT（Situational Crisis Communication Theory）认为危机责任归因分为三个层次：症状层次（crisis cluster 1）、形式层次（crisis cluster 2）、根本层次（crisis cluster 3）；组织应基于危机类型选择相应的应对策略。",
+      "key_claims": ["危机类型影响责任归因", "组织应对策略应与危机类型匹配", "二次危机响应需调整话术"],
+      "note": "学术理论，用于分析OPPO两阶段危机应对策略差异。已补充具体理论出处。"
+    },
+    {
+      "id": "src_009",
+      "type": "theory",
+      "title": "密集母职（Intensive Mothering）和母职主体性",
+      "organization": "Academia",
+      "author": "Hays, Sharon",
+      "date": "1996",
+      "publication": "Hays, S. (1996). The Cultural Contradictions of Motherhood. Yale University Press.",
+      "reliability": "C",
+      "summary": "密集母职概念指出现代社会将母亲养育责任理想化为密集、昂贵且以儿童为中心的需求；母职主体性（maternal subjectivity）则关注母亲作为独立个体的欲望与身份。",
+      "key_claims": ["'好母亲'标准被社会密集化", "母亲的主体性欲望常被道德化审视", "商业广告对母亲形象的挪用需谨慎"],
+      "note": "学术概念，用于分析母亲节广告中的母职话语张力。已补充具体著作信息。"
+    },
+    {
+      "id": "src_010",
+      "type": "theory",
+      "title": "符号学与广告解码（Semiotics and Advertising Decoding）",
+      "organization": "Academia",
+      "author": "Barthes, Roland; Fiske, John",
+      "publication": "Barthes, R. (1972). Mythologies (A. Lavers, Trans.). Hill and Wang.（或Barthes, R. (1977). Image-Music-Text. Hill and Wang.）；Fiske, J. (1987). Television Culture. Methuen.（或Fiske, J. (1982). 'Arithmetic, Brass, or Jazz? How Will TV Studies Develop?'. Poetics, 11(1), 7-19. 本页面综合两位学者的符号学框架。）",
+      "reliability": "C",
+      "summary": "广告符号的编码者（广告商）和解码者（受众）之间存在意义的协商空间；同一符号在不同语境下的所指可能发生剧烈偏移，即'语境坍塌'（context collapse）。",
+      "key_claims": ["符号意义由编码和解码共同决定", "广告商意图不等于受众理解", "跨圈层传播时符号语境转换容易失焦"],
+      "note": "用于分析OPPO广告文案中'老公'等符号的圈层语境错位。已补充具体学术著作。"
+    },
+    {
+      "id": "src_011",
+      "type": "media",
+      "title": "OPPO事件舆情复盘",
+      "organization": "第一财经",
+      "date": "2026-05-10",
+      "url": "https://www.yicai.com",
+      "reliability": "C",
+      "is_background_only": true,
+      "summary": "第一财经报道OPPO母亲节文案事件初期舆情，提及OPPO首次道歉未平息争议，舆论持续发酵。",
+      "key_claims": ["背景材料，不可作为一手事实来源", "首次道歉未能平息争议（参考）", "舆论持续发酵（参考）"],
+      "note": "当前URL指向第一财经首页，非具体文章页，仅作为背景材料，不支撑具体事实断言。具体原文需进一步查证。evt_002等使用本来源描述仅供参考，不作为独立核实的事实。"
+    },
+    {
+      "id": "src_012",
+      "type": "theory",
+      "title": "圈层文化与公共传播（Fan Subculture and Public Communication）",
+      "organization": "Academia",
+      "author": "多位学者（参考柄谷行人，John Fiske等），综合运用",
+      "publication": "综合运用柄谷行人（1991）《日本现代文学的起源》中的「发明」概念与John Fiske的圈层文化研究；以及Brett, S.L. & Rasy, M. 等关于粉丝文化的传播学研究。本框架为综合理论应用，非单一文献来源。",
+      "reliability": "C",
+      "summary": "圈层内部共享的符号体系（如'老公'作为粉丝对偶像的称呼）在圈层外部可能产生完全不同的语义解读；当圈层话语进入公共传播场景时，符号的公共意义由更广泛的解码社群决定，而非发出者意图。",
+      "key_claims": ["圈层符号具有内外语义不对称性", "公共传播场景下符号意义由受众解码决定", "从圈层话语到公共话语存在语境转换风险"],
+      "note": "学术概念，用于分析'老公'梗从饭圈到母亲节广告的语境错配。已补充综合学术来源说明。"
+    }
+  ],
+  "disputed_claims": [
+    {
+      "claim_id": "disc_001",
+      "description": "网传OPPO文案作者为武汉大学余姓毕业生且其个人信息被公开",
+      "status": "公开资料不足，无法独立核实",
+      "has_individual_been_targeted": true,
+      "recommended_treatment": "本页面仅引用武汉大学文学院官方声明（src_006）中已公开确认的信息，即'余姓同学为武大文学院毕业生'，不引用、传播或引导搜索任何个人手机号、社交账号、家庭住址等私人信息。"
+    }
+  ],
+  "privacy_note": "本页面严格遵守隐私保护原则：(1) 不展示、不传播任何未经授权的个人隐私信息；(2) 不开盒、不搜索、不扩散普通员工手机号、私人社交账号、家庭信息；(3) 如必须提及个人姓名，只使用已被主流公开报道广泛引用且与公共职责相关的信息，并以职务/角色替代；(4) 不使用当事人照片、学校师生照片、员工照片。"
+}

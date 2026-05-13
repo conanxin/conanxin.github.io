@@ -448,7 +448,42 @@ a:focus, button:focus, [tabindex]:focus {
   .card { background: #2C2C2C; }
   header[role="banner"] .key-judgments li { background: #2C2C2C; }
   .review-banner { background: var(--review-bg); color: #8BAFEE; }
-}
+
+/* ===== Reading Guide Module ===== */
+.reading-guide { background: var(--bg-secondary); border-radius: 8px; padding: 24px; margin-bottom: 32px; }
+.reading-guide h2 { margin-top: 0; border-bottom: 1px solid rgba(0,0,0,0.08); padding-bottom: 12px; }
+.reading-guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+.reading-guide-item { background: white; border-radius: 6px; padding: 16px; border-left: 3px solid var(--accent-gold); }
+.reading-guide-item h4 { margin: 8px 0 6px; font-size: 0.95rem; }
+.reading-guide-item p { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+.reading-guide-icon { font-size: 1.2rem; }
+
+/* ===== Research Questions Module ===== */
+.research-questions { margin-bottom: 32px; }
+.research-questions h2 { border-bottom: 1px solid rgba(0,0,0,0.08); padding-bottom: 12px; }
+.rq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.rq-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--bg-secondary); border-radius: 6px; border-left: 3px solid var(--accent-red); }
+.rq-label { font-weight: 700; color: var(--accent-red); font-size: 0.85rem; min-width: 36px; padding-top: 2px; }
+.rq-item p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+
+/* ===== Method Note Module ===== */
+.method-note { background: var(--bg-secondary); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; border-left: 3px solid var(--text-secondary); }
+.method-note h2 { margin-top: 0; font-size: 1.1rem; }
+.method-note p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.6; }
+.method-note p:last-child { margin-bottom: 0; }
+
+/* ===== Clickable Source Badges ===== */
+a.source-badge { text-decoration: none; border-bottom: 1px dotted; cursor: pointer; padding: 0 2px; border-radius: 3px; font-size: 0.8rem; }
+a.source-badge:hover { opacity: 0.75; }
+a.source-badge.source-a { color: var(--success-green); border-color: var(--success-green); }
+a.source-badge.source-b { color: var(--accent-gold); border-color: var(--accent-gold); }
+a.source-badge.source-c { color: var(--text-secondary); border-color: var(--text-secondary); }
+a.source-badge.source-d { color: var(--danger-red); border-color: var(--danger-red); text-decoration: line-through; }
+
+/* ===== Source List Improvements ===== */
+.source-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.source-item em { color: var(--text-secondary); font-style: italic; font-size: 0.85rem; }
+
 
 /* ===== Print Styles ===== */
 @media print {

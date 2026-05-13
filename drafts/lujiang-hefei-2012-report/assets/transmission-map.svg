@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <style>
+      .node-text { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #333; }
+      .node-label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #666; }
+      .verified { fill: #e8f5e9; stroke: #2a7; }
+      .reported { fill: #e3f2fd; stroke: #48d; }
+      .unverified { fill: #fff3e0; stroke: #da2; }
+      .blocked { fill: #ffebee; stroke: #c44; }
+      .arrow { fill: none; stroke: #999; stroke-width: 1.5; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#999" />
+    </marker>
+  </defs>
+  <rect width="900" height="700" fill="#faf8f5"/>
+  
+  <!-- Nodes -->
+  <!-- Level 1 -->
+  <rect x="320" y="40" width="260" height="50" rx="6" class="unverified" stroke-width="2"/>
+  <text x="450" y="65" text-anchor="middle" class="node-text" font-weight="bold">不明旧图/照片包</text>
+  <text x="450" y="82" text-anchor="middle" class="node-label">来源不明 · 待核实</text>
+  
+  <!-- Arrow 1 -->
+  <line x1="450" y1="90" x2="450" y2="125" class="arrow"/>
+  
+  <!-- Level 2 -->
+  <rect x="300" y="130" width="300" height="50" rx="6" class="unverified" stroke-width="2"/>
+  <text x="450" y="155" text-anchor="middle" class="node-text" font-weight="bold">游戏群/早期私域流转</text>
+  <text x="450" y="172" text-anchor="middle" class="node-label">社交媒体线索 · 待核实</text>
+  
+  <!-- Arrow 2 -->
+  <line x1="450" y1="180" x2="450" y2="215" class="arrow"/>
+  
+  <!-- Level 3 -->
+  <rect x="280" y="220" width="340" height="50" rx="6" class="reported" stroke-width="2"/>
+  <text x="450" y="245" text-anchor="middle" class="node-text" font-weight="bold">微博早期转发</text>
+  <text x="450" y="262" text-anchor="middle" class="node-label">Aki高小天/潮玩小天 · 媒体转述</text>
+  
+  <!-- Arrow 3 -->
+  <line x1="450" y1="270" x2="450" y2="305" class="arrow"/>
+  
+  <!-- Level 4 -->
+  <rect x="280" y="310" width="340" height="50" rx="6" class="verified" stroke-width="2"/>
+  <text x="450" y="335" text-anchor="middle" class="node-text" font-weight="bold">百度贴吧身份指认</text>
+  <text x="450" y="352" text-anchor="middle" class="node-label">anhui1234567q · 官方通报确认发帖人道歉</text>
+  
+  <!-- Arrow 4 -->
+  <line x1="450" y1="360" x2="450" y2="395" class="arrow"/>
+  
+  <!-- Level 5 -->
+  <rect x="300" y="400" width="300" height="50" rx="6" class="reported" stroke-width="2"/>
+  <text x="450" y="425" text-anchor="middle" class="node-text" font-weight="bold">官员反腐叙事扩散</text>
+  <text x="450" y="442" text-anchor="middle" class="node-label">网络围观 · 媒体转述</text>
+  
+  <!-- Arrow 5 -->
+  <line x1="450" y1="450" x2="450" y2="485" class="arrow"/>
+  
+  <!-- Level 6 -->
+  <rect x="280" y="490" width="340" height="50" rx="6" class="verified" stroke-width="2"/>
+  <text x="450" y="515" text-anchor="middle" class="node-text" font-weight="bold">庐江/合肥官方辟谣</text>
+  <text x="450" y="532" text-anchor="middle" class="node-label">官方通报 · 已证实</text>
+  
+  <!-- Arrow 6 -->
+  <line x1="450" y1="540" x2="450" y2="575" class="arrow"/>
+  
+  <!-- Level 7 -->
+  <rect x="280" y="580" width="340" height="50" rx="6" class="verified" stroke-width="2"/>
+  <text x="450" y="605" text-anchor="middle" class="node-text" font-weight="bold">合肥学院确认其中一对夫妇</text>
+  <text x="450" y="622" text-anchor="middle" class="node-label">财新/新华社 · 已证实</text>
+  
+  <!-- Branch: Unsolved -->
+  <line x1="620" y1="605" x2="750" y2="605" class="arrow" stroke-dasharray="5,3"/>
+  <rect x="760" y="580" width="120" height="50" rx="6" class="blocked" stroke-width="2"/>
+  <text x="820" y="605" text-anchor="middle" class="node-text" font-weight="bold">未解问题</text>
+  <text x="820" y="622" text-anchor="middle" class="node-label">不可继续</text>
+  
+  <!-- Legend -->
+  <rect x="40" y="650" width="820" height="40" rx="4" fill="#fff" stroke="#ddd"/>
+  <text x="60" y="675" class="node-label" font-weight="bold">图例：</text>
+  <rect x="110" y="660" width="16" height="16" rx="3" class="verified" stroke-width="1.5"/>
+  <text x="132" y="673" class="node-label">已证实</text>
+  <rect x="200" y="660" width="16" height="16" rx="3" class="reported" stroke-width="1.5"/>
+  <text x="222" y="673" class="node-label">媒体转述</text>
+  <rect x="310" y="660" width="16" height="16" rx="3" class="unverified" stroke-width="1.5"/>
+  <text x="332" y="673" class="node-label">待核实</text>
+  <rect x="420" y="660" width="16" height="16" rx="3" class="blocked" stroke-width="1.5"/>
+  <text x="442" y="673" class="node-label">不可继续挖掘</text>
+</svg>

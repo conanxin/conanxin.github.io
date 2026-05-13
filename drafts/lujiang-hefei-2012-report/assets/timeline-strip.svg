@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 280" width="1400" height="280">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#999"/>
+    </marker>
+    <style>
+      .label { font-family: system-ui, -apple-system, sans-serif; font-size: 11px; fill: #666; }
+      .title { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: bold; fill: #333; }
+      .desc { font-family: system-ui, -apple-system, sans-serif; font-size: 10px; fill: #888; }
+      .level-A { fill: #2a7; }
+      .level-B { fill: #48d; }
+      .level-C { fill: #da2; }
+      .level-D { fill: #c44; }
+    </style>
+  </defs>
+  <rect width="1400" height="280" fill="#faf8f5"/>
+  <!-- Main timeline line -->
+  <line x1="80" y1="140" x2="1320" y2="140" stroke="#ccc" stroke-width="2"/>
+  <!-- Timeline nodes -->
+  <!-- 2007.05 -->
+  <circle cx="120" cy="140" r="8" class="level-D" opacity="0.8"/>
+  <text x="120" y="120" text-anchor="middle" class="title">2007.05</text>
+  <text x="120" y="175" text-anchor="middle" class="label">活动背景时间</text>
+  <text x="120" y="190" text-anchor="middle" class="desc">证据等级:D</text>
+  <!-- 2010.05 -->
+  <circle cx="260" cy="140" r="8" class="level-A" opacity="0.8"/>
+  <text x="260" y="120" text-anchor="middle" class="title">2010.05</text>
+  <text x="260" y="175" text-anchor="middle" class="label">马尧海案判决</text>
+  <text x="260" y="190" text-anchor="middle" class="desc">证据等级:A</text>
+  <!-- 2012.08.08 -->
+  <circle cx="420" cy="140" r="8" class="level-B" opacity="0.8"/>
+  <text x="420" y="120" text-anchor="middle" class="title">2012.08.08</text>
+  <text x="420" y="175" text-anchor="middle" class="label">旧图进入传播</text>
+  <text x="420" y="190" text-anchor="middle" class="desc">证据等级:B</text>
+  <!-- 2012.08.09 -->
+  <circle cx="580" cy="140" r="10" class="level-A" opacity="0.9"/>
+  <text x="580" y="115" text-anchor="middle" class="title" font-size="13">2012.08.09</text>
+  <text x="580" y="175" text-anchor="middle" class="label">官方辟谣/通报</text>
+  <text x="580" y="190" text-anchor="middle" class="desc">证据等级:A</text>
+  <!-- 2012.08.10 -->
+  <circle cx="760" cy="140" r="10" class="level-A" opacity="0.9"/>
+  <text x="760" y="115" text-anchor="middle" class="title" font-size="13">2012.08.10</text>
+  <text x="760" y="175" text-anchor="middle" class="label">调查与双开决定</text>
+  <text x="760" y="190" text-anchor="middle" class="desc">证据等级:A</text>
+  <!-- 2012.08.11 -->
+  <circle cx="920" cy="140" r="8" class="level-A" opacity="0.8"/>
+  <text x="920" y="120" text-anchor="middle" class="title">2012.08.11</text>
+  <text x="920" y="175" text-anchor="middle" class="label">中层干部会议</text>
+  <text x="920" y="190" text-anchor="middle" class="desc">证据等级:A</text>
+  <!-- 2012.08.13 -->
+  <circle cx="1080" cy="140" r="8" class="level-A" opacity="0.8"/>
+  <text x="1080" y="120" text-anchor="middle" class="title">2012.08.13</text>
+  <text x="1080" y="175" text-anchor="middle" class="label">纪委扩大会议</text>
+  <text x="1080" y="190" text-anchor="middle" class="desc">证据等级:A</text>
+  <!-- 2026 -->
+  <circle cx="1260" cy="140" r="8" class="level-D" opacity="0.8"/>
+  <text x="1260" y="120" text-anchor="middle" class="title">2026</text>
+  <text x="1260" y="175" text-anchor="middle" class="label">旧案回声/采访启动</text>
+  <text x="1260" y="190" text-anchor="middle" class="desc">证据等级:D</text>
+  <!-- Axis label -->
+  <text x="700" y="250" text-anchor="middle" class="label" font-size="12" fill="#999">时间轴 · 2012年庐江/合肥学院不雅照事件关键节点</text>
+</svg>

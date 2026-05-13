@@ -1,0 +1,92 @@
+[
+  {
+    "id": "S1",
+    "title": "合肥官方：艳照男子非庐江县委书记",
+    "outlet": "观察者网",
+    "date": "2012-08-10",
+    "url": "https://www.guancha.cn/indexnews/2012_08_10_90084.shtml",
+    "evidence_level": "B",
+    "used_for": "Aki高小天/潮玩小天早期传播线索；181张照片说法；游戏群来源；微博转发数据；上传地上海线索",
+    "risk_note": "综合报道，包含多方信息，需交叉验证"
+  },
+  {
+    "id": "S2",
+    "title": "合肥学院团委副书记及其妻因不雅照被\"双开\"",
+    "outlet": "财新网",
+    "date": "2012-08-13",
+    "url": "https://china.caixin.com/2012-08-13/100423589.html",
+    "evidence_level": "A",
+    "used_for": "合肥学院调查时间线；汪昱确认；双开决定程序；妻子也被处分",
+    "risk_note": "严肃财经媒体报道，可信度较高"
+  },
+  {
+    "id": "S3",
+    "title": "安徽艳照事件两名涉事夫妇被双开",
+    "outlet": "新浪财经（转载）",
+    "date": "2012-08-14",
+    "url": "https://finance.sina.cn/sa/2012-08-14/detail-ikftssan6727743.d.html",
+    "evidence_level": "B",
+    "used_for": "补充合肥学院处分时间线的公开转载报道；中层干部会议；纪委扩大会议；警示教育；处分送达",
+    "risk_note": "该链接为转载页，不是原始新华社或经济观察网页面；引用时应写作‘公开转载报道称’，不要把转载页当成原始通稿"
+  },
+  {
+    "id": "S4",
+    "title": "\"庐江县委书记不雅照\"发帖人道歉",
+    "outlet": "荆楚网/合肥市外宣办",
+    "date": "2012-08-10",
+    "url": "https://news.cnhubei.com/news/xw/gn/201208/t2182681.shtml",
+    "evidence_level": "A",
+    "used_for": "anhui1234567q道歉；合肥市公安局刑事科学技术研究所检验意见；辟谣通报",
+    "risk_note": "官方通报，但检验意见全文未公开"
+  },
+  {
+    "id": "S5",
+    "title": "星辰在线请\"庐江发布\"修改声明并道歉",
+    "outlet": "新浪湖南/星辰在线",
+    "date": "2012-08-10",
+    "url": "https://hunan.sina.com.cn/news/s/2012-08-10/090211205.html",
+    "evidence_level": "B",
+    "used_for": "庐江发布引用长沙网内容错误；星辰在线要求道歉；辟谣次生灾害",
+    "risk_note": "媒体报道，反映官方辟谣过程中的问题"
+  },
+  {
+    "id": "S6",
+    "title": "庐江辟谣引两地喊冤",
+    "outlet": "新浪新闻",
+    "date": "2012-08-11",
+    "url": "https://news.sina.cn/sa/2012-08-11/detail-ikmyaawa4113793.d.html",
+    "evidence_level": "B",
+    "used_for": "长沙、昆明被牵连；昆明公安新闻办回应；官方辟谣的公共关系问题",
+    "risk_note": "媒体综合报道"
+  },
+  {
+    "id": "S7",
+    "title": "中华人民共和国刑法（第301条）",
+    "outlet": "最高人民检察院",
+    "date": "2018-02-06",
+    "url": "https://www.spp.gov.cn/spp/fl/201802/t20180206_364975.shtml",
+    "evidence_level": "A",
+    "used_for": "聚众淫乱罪法律条文背景",
+    "risk_note": "官方法律文本，只作为背景，不直接套用于本案"
+  },
+  {
+    "id": "S8",
+    "title": "马尧海案",
+    "outlet": "财新网",
+    "date": "2010-05-20",
+    "url": "https://china.caixin.com/2010-05-20/100145781.html",
+    "evidence_level": "A",
+    "used_for": "2010年马尧海案；解释2012年相关圈层面临的刑事风险阴影",
+    "risk_note": "历史案例，用于法律背景对照，不直接套用"
+  },
+  {
+    "id": "S9",
+    "title": "中华人民共和国民法典（隐私权条文）",
+    "outlet": "广州市人大常委会",
+    "date": "2020-12-18",
+    "url": "https://www.gzrd.gov.cn/ztzl/mfdzt/yd/202012/t20201218_77665659.html",
+    "evidence_level": "A",
+    "used_for": "隐私权、私人生活安宁、私密空间、私密活动、私密信息；支持报道伦理说明",
+    "risk_note": "官方法律文本"
+  }
+]

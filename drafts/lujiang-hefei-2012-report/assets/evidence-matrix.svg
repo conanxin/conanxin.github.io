@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500">
+  <defs>
+    <style>
+      .cell-text { font-family: system-ui, -apple-system, sans-serif; font-size: 12px; fill: #333; }
+      .header-text { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: bold; fill: #fff; }
+      .level-A { fill: #2a7; }
+      .level-B { fill: #48d; }
+      .level-C { fill: #da2; }
+      .level-D { fill: #c44; }
+      .level-E { fill: #999; }
+    </style>
+  </defs>
+  <rect width="900" height="500" fill="#faf8f5"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="#333">证据等级矩阵</text>
+  
+  <!-- Matrix grid -->
+  <rect x="50" y="60" width="800" height="400" fill="#fff" stroke="#ddd" stroke-width="1"/>
+  
+  <!-- Column headers -->
+  <rect x="50" y="60" width="160" height="50" fill="#555"/>
+  <text x="130" y="90" text-anchor="middle" class="header-text">等级</text>
+  
+  <rect x="210" y="60" width="320" height="50" fill="#555"/>
+  <text x="370" y="90" text-anchor="middle" class="header-text">定义</text>
+  
+  <rect x="530" y="60" width="160" height="50" fill="#555"/>
+  <text x="610" y="90" text-anchor="middle" class="header-text">颜色</text>
+  
+  <rect x="690" y="60" width="160" height="50" fill="#555"/>
+  <text x="770" y="90" text-anchor="middle" class="header-text">使用策略</text>
+  
+  <!-- Row A -->
+  <rect x="50" y="110" width="800" height="60" fill="#e8f5e9"/>
+  <rect x="50" y="110" width="160" height="60" fill="#2a7" opacity="0.2"/>
+  <text x="130" y="145" text-anchor="middle" class="cell-text" font-weight="bold">A级</text>
+  <text x="370" y="130" text-anchor="middle" class="cell-text">新华社/财新/官方通报/法律条文</text>
+  <text x="370" y="150" text-anchor="middle" class="cell-text">原始文件/官方发布/权威媒体</text>
+  <rect x="580" y="125" width="60" height="30" rx="4" class="level-A"/>
+  <text x="770" y="145" text-anchor="middle" class="cell-text">可直接引用</text>
+  
+  <!-- Row B -->
+  <rect x="50" y="170" width="800" height="60" fill="#e3f2fd"/>
+  <rect x="50" y="170" width="160" height="60" fill="#48d" opacity="0.2"/>
+  <text x="130" y="205" text-anchor="middle" class="cell-text" font-weight="bold">B级</text>
+  <text x="370" y="190" text-anchor="middle" class="cell-text">当年媒体转述、记者采访</text>
+  <text x="370" y="210" text-anchor="middle" class="cell-text">有署名报道，但未看到原始材料</text>
+  <rect x="580" y="185" width="60" height="30" rx="4" class="level-B"/>
+  <text x="770" y="205" text-anchor="middle" class="cell-text">可引用，标注来源</text>
+  
+  <!-- Row C -->
+  <rect x="50" y="230" width="800" height="60" fill="#fff3e0"/>
+  <rect x="50" y="230" width="160" height="60" fill="#da2" opacity="0.2"/>
+  <text x="130" y="265" text-anchor="middle" class="cell-text" font-weight="bold">C级</text>
+  <text x="370" y="250" text-anchor="middle" class="cell-text">外媒/评论/审查线索</text>
+  <text x="370" y="270" text-anchor="middle" class="cell-text">间接信息，需进一步核实</text>
+  <rect x="580" y="245" width="60" height="30" rx="4" class="level-C"/>
+  <text x="770" y="265" text-anchor="middle" class="cell-text">谨慎使用，需标注</text>
+  
+  <!-- Row D -->
+  <rect x="50" y="290" width="800" height="60" fill="#ffebee"/>
+  <rect x="50" y="290" width="160" height="60" fill="#c44" opacity="0.2"/>
+  <text x="130" y="325" text-anchor="middle" class="cell-text" font-weight="bold">D级</text>
+  <text x="370" y="310" text-anchor="middle" class="cell-text">社交媒体回忆、圈层口述</text>
+  <text x="370" y="330" text-anchor="middle" class="cell-text">匿名/未核实/个人记忆</text>
+  <rect x="580" y="305" width="60" height="30" rx="4" class="level-D"/>
+  <text x="770" y="325" text-anchor="middle" class="cell-text">不可作为事实写入</text>
+  
+  <!-- Row E -->
+  <rect x="50" y="350" width="800" height="60" fill="#f5f5f5"/>
+  <rect x="50" y="350" width="160" height="60" fill="#999" opacity="0.2"/>
+  <text x="130" y="385" text-anchor="middle" class="cell-text" font-weight="bold">E级</text>
+  <text x="370" y="370" text-anchor="middle" class="cell-text">未核实名单、照片识别、人肉线索</text>
+  <text x="370" y="390" text-anchor="middle" class="cell-text">完全不可使用</text>
+  <rect x="580" y="365" width="60" height="30" rx="4" class="level-E"/>
+  <text x="770" y="385" text-anchor="middle" class="cell-text">禁止使用</text>
+  
+  <!-- Bottom note -->
+  <text x="450" y="450" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">本报道只使用A级和B级材料作为事实依据；C级和D级仅作为采访线索；E级材料完全不进入报道。</text>
+  <text x="450" y="470" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#888">证据等级标注遵循非虚构报道惯例，不代表对法律证据标准的判定。</text>
+</svg>

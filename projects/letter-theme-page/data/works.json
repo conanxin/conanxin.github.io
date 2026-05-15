@@ -1,0 +1,1201 @@
+[
+  {
+    "id": "letters-to-ama",
+    "title": "《给阿嬷的情书》",
+    "type": "纪录片",
+    "year": 2020,
+    "region": "台湾",
+    "motifs": [
+      "migration",
+      "archive"
+    ],
+    "lead": "侨批是离散华人家庭的情感基础设施，每一笔汇款数字背后都是报喜不报忧的善意谎言。",
+    "relation": "整部影片的核心：侨批同时承载通信、汇款、家庭责任、善意谎言与历史档案五重功能。从这里出发，才能理解为什么「信」从来不只是文字。",
+    "scene": "泰国华侨阿昌每隔数月寄回一封侨批，信中说\"一切平安\"，却附上辛苦攒下的汇款；阿嬷读信时从不追问儿子在外的真实处境。",
+    "visual_keywords": [
+      "侨批",
+      "汇款单",
+      "潮汕老厝",
+      "泰国街景",
+      "老照片"
+    ],
+    "priority": 1,
+    "source_ids": [
+      "source-letters-to-ama",
+      "source-unesco-memory",
+      "source-nara-qiaopi"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "廖克发导演的家族纪录片，追溯从泰国寄往潮汕的侨批。影片将私人家族史与华人离散史并置，展示了侨批作为通信、汇款、家庭责任、善意谎言和历史档案的五重功能。2013 年侨批入选 UNESCO 世界记忆名录，为影片提供了历史纵深。",
+    "why_it_matters": "侨批是所有书信母题的理解起点。在移民家庭中，一封信同时是生活费、是报平安的谎言、是代代相传的记忆——这种「三位一体」的结构，在其他母题中会以不同形式反复出现。",
+    "recommended_entry_point": "建议先看片中阿嬷读信的段落，注意她如何同时读「字面的平安」和「字间的沉默」。",
+    "content_warning": "涉及家庭离散",
+    "image_strategy": "abstract_svg"
+  },
+  {
+    "id": "central-station",
+    "title": "《中央车站》",
+    "type": "电影",
+    "year": 1998,
+    "region": "巴西",
+    "motifs": [
+      "ghostwriting"
+    ],
+    "lead": "里约热内卢中央车站，退休教师朵拉以替文盲代写信件为生，却在替一个孤儿寻找父亲的过程中重新学会了信任。",
+    "relation": "与《给阿嬷的情书》共享「代写」母题——信不是为自己而写，但情感在代笔过程中悄然转移。",
+    "scene": "朵拉在简陋的信摊前替不识字的顾客写信，有人口述给爱人的甜言蜜语，有人口述给债主的谎言；她一边写，一边在心里评判这些陌生人。",
+    "visual_keywords": [
+      "信摊",
+      "里约车站",
+      "泛黄的信纸",
+      "手动打字机"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban",
+      "source-imdb"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "沃尔特·塞勒斯执导（1998），获柏林电影节金熊奖。退休教师朵拉在里约中央车站以替文盲代写信件为生，后帮助孤儿约书亚寻找父亲。影片将巴西底层社会的生存困境与信的情感传递功能结合。",
+    "why_it_matters": "朵拉的信摊是巴西底层社会的缩影。她不识字的人代写信件，有人口述甜言蜜语，有人口述谎言——代笔者的权力在于：她决定哪些信该被投递。这与侨批中「代写家书」的历史现象遥相呼应。",
+    "recommended_entry_point": "注意朵拉最初把信扔进抽屉不寄出的场景——代笔者的权力在于：她决定哪些信该被投递。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "cyrano",
+    "title": "《大鼻子情圣》",
+    "type": "电影",
+    "year": 1990,
+    "region": "法国",
+    "motifs": [
+      "ghostwriting"
+    ],
+    "lead": "诗人西哈诺深爱着罗克珊，却因自卑不敢表白，只能替英俊但愚钝的克里斯蒂安写情书，以他人的名义倾诉自己的灵魂。",
+    "relation": "最经典的代写之信——信的每个字都出自真心，信的署名却是谎言；与侨批中\"代写家书\"的历史现象遥相呼应。",
+    "scene": "西哈诺躲在阳台下，一句一句口述情诗给克里斯蒂安，再由他转述给罗克珊；月光下，真正的写信人躲在阴影里。",
+    "visual_keywords": [
+      "阳台",
+      "月光",
+      "羽毛笔",
+      "阴影"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "诗人西哈诺深爱着罗克珊，却因自卑不敢表白，只能替英俊但愚钝的克里斯蒂安写情书，以他人的名义倾诉自己的灵魂。",
+    "why_it_matters": "西哈诺的每一句情诗都出自真心，信的署名却是谎言。这种「借他人之名倾诉自己灵魂」的悖论，是代写母题最古典、最痛苦的表达。",
+    "recommended_entry_point": "注意阳台场景中西哈诺躲在阴影里口述情诗——真正的写信人隐形，信却以最动人的方式被接收。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "violet-evergarden",
+    "title": "《紫罗兰永恒花园》",
+    "type": "动画",
+    "year": 2018,
+    "region": "日本",
+    "motifs": [
+      "ghostwriting"
+    ],
+    "lead": "自动手记人偶薇尔莉特为他人代写书信，在替陌生人传递情感的过程中，逐渐理解了\"我爱你\"三个字的分量。",
+    "relation": "代写母题的极致表达：代笔者本身是一张白纸，却在书写他人的情感时，第一次拥有了属于自己的感受。",
+    "scene": "薇尔莉特为一对多年未说话的父女写信，她先分别倾听两人的话，再写成一封信，让双方在信纸上重新\"听见\"彼此。",
+    "visual_keywords": [
+      "机械手",
+      "打字机",
+      "金色的发",
+      "信纸纷飞"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-violet-evergarden-official",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "京都动画制作（2018），改编自晓佳奈轻小说。自动手记人偶薇尔莉特为不擅长表达情感的人代写书信。以战后世界为背景，通过代写信件探讨「语言能否传达心意」。",
+    "why_it_matters": "薇尔莉特从「没有感情的战争机器」到「理解『我爱你』的代笔人」，这条成长弧线之所以动人，是因为她替别人写的每一封信，最终都成为了她自己的情感教科书。",
+    "recommended_entry_point": "第10集「爱的人，会一直守护着你」——薇尔莉特为即将离世的母亲写给未来女儿的信，是整个系列的情感顶点。",
+    "content_warning": "涉及战争创伤、死亡",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "dear-frankie",
+    "title": "《亲爱的弗兰基》",
+    "type": "电影",
+    "year": 2004,
+    "region": "英国",
+    "motifs": [
+      "ghostwriting"
+    ],
+    "lead": "母亲为了不让失聪的儿子弗兰基知道父亲离家出走的真相，冒充父亲给他写信，一写就是数年。",
+    "relation": "与侨批共享\"善意谎言\"维度——信中的每一句话都是伪造的，但爱是真的；这是移民家庭中最常见的写信伦理困境。",
+    "scene": "弗兰基坐在海边读\"父亲\"的来信，母亲在远处看着；她请了一个陌生水手冒充父亲见面，谎言的层级越来越深。",
+    "visual_keywords": [
+      "海边",
+      "手语",
+      "母亲背影",
+      "船"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-imdb",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "休娜·奥尔巴赫执导（2004），英国独立电影。失聪男孩弗兰基的母亲为了掩盖父亲离家出走的真相，冒充父亲给他写信数年，最终请陌生水手冒充父亲见面。",
+    "why_it_matters": "与侨批共享「善意谎言」维度——信中的每一句话都是伪造的，但爱是真的。这是移民家庭中最常见的写信伦理困境：报喜不报忧。",
+    "recommended_entry_point": "注意弗兰基「读信」的方式——他用手语和唇语理解世界，信对他而言是声音的替代品。",
+    "content_warning": "涉及家庭破裂、欺骗",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "love-letter",
+    "title": "《情书》",
+    "type": "电影",
+    "year": 1995,
+    "region": "日本",
+    "motifs": [
+      "delayed",
+      "afterlife"
+    ],
+    "lead": "博子在未婚夫三周年忌日寄出一封发往天国的信，却收到同名同姓女孩的回信，两封信在时空中交错。",
+    "relation": "迟到之信的典范：信迟到了数年，收信人已经不在，但信的内容却意外抵达了另一个能理解它的人。",
+    "scene": "博子对着雪山大喊\"你好吗？我很好。\"；与此同时，另一个藤井树在读着博子寄来的信，发现自己与死去的少年共享一个名字和一段从未被告白的暗恋。",
+    "visual_keywords": [
+      "雪",
+      "雪山",
+      "白色信封",
+      "图书馆",
+      "借书卡"
+    ],
+    "priority": 1,
+    "source_ids": [
+      "source-douban",
+      "source-imdb"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "岩井俊二自编自导（1995），中山美穗一人分饰两角。影片以北海道小樽的雪景为背景，通过一封发往天国的信揭开一段从未被告白的青春暗恋。日本纯爱电影的经典之作。",
+    "why_it_matters": "岩井俊二用时间差作为叙事的必要结构。博子寄往天国的信意外抵达了同名少女手中——只有当事人和见证者都改变后，未被告白的情感才能被完整接收。",
+    "recommended_entry_point": "博子在雪山前大喊「你好吗？我很好」——这是整部影片的情感爆破点，也是迟到之信的终极仪式。",
+    "content_warning": "涉及丧亲、死亡主题",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "cape-no7",
+    "title": "《海角七号》",
+    "type": "电影",
+    "year": 2008,
+    "region": "台湾",
+    "motifs": [
+      "delayed",
+      "migration"
+    ],
+    "lead": "七封1945年的信，迟到了六十年才抵达；日本教师与台湾恋人的分离，与当代恒春的乐队故事交织。",
+    "relation": "与侨批共享「跨境离散」主题——信跨越的不仅是时间，还有政权更迭与历史断裂。",
+    "scene": "阿嘉在旧房间里发现一叠泛黄的信件，是战败遣返的日本教师写给台湾恋人的；他试着按地址投递，却发现世界已经变了。",
+    "visual_keywords": [
+      "旧信",
+      "恒春",
+      "海浪",
+      "日文信纸"
+    ],
+    "priority": 1,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "魏德圣执导（2008），创下台湾电影票房纪录。影片交织日据时代与当代台湾两条叙事线：1945 年日本教师写给台湾恋人的七封迟到的信，与当代恒春乐队的故事相互映照。",
+    "why_it_matters": "七封1945年的信迟到了六十年。它们跨越的不仅是时间，还有政权更迭与历史断裂——日本教师与台湾恋人的分离，和潮汕侨批中的离散华人面对的是同一种「回不去」。",
+    "recommended_entry_point": "注意日文信件与中文对白的交错——语言差异本身就是距离的一种形式。",
+    "content_warning": "涉及战争与历史创伤背景",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letters-to-juliet",
+    "title": "《给朱丽叶的信》",
+    "type": "电影",
+    "year": 2010,
+    "region": "美国",
+    "motifs": [
+      "delayed"
+    ],
+    "lead": "维罗纳的\"朱丽叶秘书\"回复世界各地女性寄给朱丽叶的信；一封五十年前的信，促成了一段迟到的寻找。",
+    "relation": "信的迟到不是意外，而是等待被重新发现；与《情书》共享\"时间错位让情感更清晰\"的母题。",
+    "scene": "苏菲在朱丽叶故居的墙缝中发现一封1957年的信，写信的英国女孩克莱尔曾为爱退缩；苏菲回信后，年迈的克莱尔带着孙子来意大利寻找当年的恋人。",
+    "visual_keywords": [
+      "维罗纳",
+      "石墙",
+      "手写信",
+      "向日葵"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "维罗纳的\"朱丽叶秘书\"回复世界各地女性寄给朱丽叶的信；一封五十年前的信，促成了一段迟到的寻找。",
+    "why_it_matters": "五十年前的信在维罗纳墙缝中被重新发现，促成了一段迟到的寻找。信的迟到不是意外，而是等待被重新打开——时间让情感变得更清晰。",
+    "recommended_entry_point": "维罗纳朱丽叶故居的「信墙」是真实存在的文化景观，影片在此取景让「信等待被重新发现」的主题获得了空间上的真实感。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letter-from-unknown-woman",
+    "title": "《一个陌生女人的来信》",
+    "type": "电影",
+    "year": 2004,
+    "region": "中国",
+    "motifs": [
+      "delayed",
+      "unsent"
+    ],
+    "lead": "徐静蕾改编自茨威格小说，一个女人在临死前写下长信，向从未注意过她的作家诉说自己一生的暗恋。",
+    "relation": "这封信是迟到的（写于临终），也是未寄的（直接送到他手中，但已无法回应）——双重母题的叠加。",
+    "scene": "作家在四十岁生日当天收到没有署名的信，信中是一个女人从少女到临终的漫长独白；他读完，却想不起她的脸。",
+    "visual_keywords": [
+      "北京胡同",
+      "白玫瑰",
+      "信纸",
+      "窗户"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "徐静蕾改编自茨威格小说，一个女人在临死前写下长信，向从未注意过她的作家诉说自己一生的暗恋。",
+    "why_it_matters": "一个女人在临终前写下长信，向从未注意过她的作家诉说一生暗恋。这封信既是迟到的（写于临终），也是未寄的（直接送达但已无法回应）——双重母题的叠加。",
+    "recommended_entry_point": "徐静蕾的改编将故事背景移至1930年代的北京，注意白玫瑰的意象——在原著和影片中，它都是女主角自我指涉的符号。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "last-letter-from-lover",
+    "title": "《恋人的最后情书》",
+    "type": "电影",
+    "year": 2021,
+    "region": "英国",
+    "motifs": [
+      "delayed"
+    ],
+    "lead": "2003年，记者发现一封1960年代的神秘情书，由此揭开一段被时间掩埋的婚外情与车祸真相。",
+    "relation": "迟到的信改变了生者对逝者的理解——与侨批被后代重新发现的场景相似。",
+    "scene": "记者在档案馆发现一封没有寄出的信，信中的女人恳求情人离开妻子；数十年后，这段关系的真相通过信纸上的字迹被重新拼凑。",
+    "visual_keywords": [
+      "档案馆",
+      "打字机",
+      "伦敦",
+      "旧报纸"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "2003年，记者发现一封1960年代的神秘情书，由此揭开一段被时间掩埋的婚外情与车祸真相。",
+    "why_it_matters": "记者在档案馆发现一封1960年代的未寄情书，由此揭开一段被时间掩埋的婚外情。迟到的信改变了生者对逝者的理解，这与侨批被后代重新发现的场景相似。",
+    "recommended_entry_point": "影片采用双线叙事：1960年代的婚外情与2003年记者的调查。注意两个时代对「同一封信」的不同理解。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letter-to-momo",
+    "title": "《给桃子的信》",
+    "type": "动画",
+    "year": 2012,
+    "region": "日本",
+    "motifs": [
+      "afterlife"
+    ],
+    "lead": "父亲去世后，桃子在他留下的信中发现只写了三个字：\"给桃子\"。未完成的信成为父亲留在人间最后的锚点。",
+    "relation": "亡者之信的经典形态——信写于生前，收信人已不在；与侨批中\"父亲去世后儿子重读家书\"的场景高度呼应。",
+    "scene": "桃子在新家阁楼上发现父亲遗留的信封，里面只有一张没有写完的信纸，开头写着\"给桃子\"；她对着信纸哭泣，三个妖怪在窗外默默守护。",
+    "visual_keywords": [
+      "海岛",
+      "阁楼",
+      "未完成的信",
+      "妖怪"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "父亲去世后，桃子在他留下的信中发现只写了三个字：\"给桃子\"。未完成的信成为父亲留在人间最后的锚点。",
+    "why_it_matters": "父亲留下的信只写了三个字：「给桃子」。未完成的信成为亡者留在人间最后的锚点——与侨批中「父亲去世后儿子重读家书」的场景高度呼应。",
+    "recommended_entry_point": "未完成的信只有三个字：「给桃子」。注意桃子在发现信之前的愤怒与发现信之后的悲伤之间的转变。",
+    "content_warning": "涉及丧亲（父亲去世）",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "ps-i-love-you",
+    "title": "《附注：我爱你》",
+    "type": "电影",
+    "year": 2007,
+    "region": "美国",
+    "motifs": [
+      "afterlife"
+    ],
+    "lead": "霍莉的丈夫盖瑞因脑瘤去世前，为她写下数封信，指定她在未来不同时间打开，陪她一步步走出悲伤。",
+    "relation": "亡者预先写好的信——不是死后才被发现，而是死后仍按写信人的时间表抵达；是亡者之信的\"主动版\"。",
+    "scene": "霍莉在三十岁生日收到盖瑞生前安排好的信，信里附了一张他录制的歌单和一张去爱尔兰的机票；她哭着笑了。",
+    "visual_keywords": [
+      "信封",
+      "爱尔兰",
+      "生日",
+      "录音带"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "霍莉的丈夫盖瑞因脑瘤去世前，为她写下数封信，指定她在未来不同时间打开，陪她一步步走出悲伤。",
+    "why_it_matters": "霍莉的丈夫在去世前为她写下数封信，指定在未来不同时间打开。这是亡者之信的「主动版」——不是死后才被发现，而是死后仍按写信人的时间表抵达。",
+    "recommended_entry_point": "霍莉收到的每一封信都附有一张「任务卡」——这些任务不是让她忘记丈夫，而是让她学会在没有他的世界里继续生活。",
+    "content_warning": "涉及丧亲（配偶去世）",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "be-with-you",
+    "title": "《现在，很想见你》",
+    "type": "电影",
+    "year": 2004,
+    "region": "日本",
+    "motifs": [
+      "afterlife"
+    ],
+    "lead": "妻子澪在雨季如约归来，却失去了所有记忆；丈夫和儿子通过她生前留下的日记和信，重新拼凑她的存在。",
+    "relation": "亡者的信不是来自过去，而是来自未来——与侨批中\"提前写好、指定日期打开\"的家书有相似的时空结构。",
+    "scene": "澪在日记本最后一页写下给未来丈夫的信，告诉他\"我会在雨季回来\"；数年后，男人和儿子在雨中读信，澪真的出现了。",
+    "visual_keywords": [
+      "雨季",
+      "森林",
+      "日记本",
+      "蓝蝴蝶"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "妻子澪在雨季如约归来，却失去了所有记忆；丈夫和儿子通过她生前留下的日记和信，重新拼凑她的存在。",
+    "why_it_matters": "澪在日记本最后一页写下给未来丈夫的信。亡者的信不是来自过去，而是来自未来——与侨批中「提前写好、指定日期打开」的家书有相似的时空结构。",
+    "recommended_entry_point": "注意雨季作为叙事框架的功能——信在旱季写下，在雨季被重读，季节本身成为时间的隐喻。",
+    "content_warning": "涉及丧亲、记忆丧失",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "wind-rises",
+    "title": "《起风了》",
+    "type": "动画",
+    "year": 2013,
+    "region": "日本",
+    "motifs": [
+      "afterlife",
+      "wartime"
+    ],
+    "lead": "飞机设计师堀越二郎与患肺结核的里子相爱，里子在疗养院写下大量信件，病逝后成为二郎余生反复阅读的回声。",
+    "relation": "亡者之信与战争之信的交汇——信写于战时，寄于生死之间，收信人在和平年代反复重读。",
+    "scene": "里子在信中说\"活下去\"，二郎在设计图纸的间隙读信；她死后，他把信折成纸飞机，从窗口放飞。",
+    "visual_keywords": [
+      "纸飞机",
+      "风",
+      "疗养院",
+      "设计图"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "飞机设计师堀越二郎与患肺结核的里子相爱，里子在疗养院写下大量信件，病逝后成为二郎余生反复阅读的回声。",
+    "why_it_matters": "里子在疗养院写下的「活下去」，成为二郎余生反复阅读的回声。亡者之信与战争之信在此交汇——信写于战时，寄于生死之间，收信人在和平年代反复重读。",
+    "recommended_entry_point": "里子写的信与二郎设计的飞机在影片中形成对照——两者都是「飞向远方」的载体，但一个承载生命，一个承载死亡。",
+    "content_warning": "涉及战争、疾病（肺结核）",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "brooklyn",
+    "title": "《布鲁克林》",
+    "type": "电影",
+    "year": 2015,
+    "region": "爱尔兰/美国",
+    "motifs": [
+      "migration"
+    ],
+    "lead": "1950年代，爱尔兰女孩艾莉丝寄回的家书必须在报喜与报忧之间小心平衡；信纸上的每一件新衣服，都是用思念换来的。",
+    "relation": "与侨批共享「移民家书」的核心结构——经济汇报与情感表达缠绕，报喜不报忧是跨文化的共同伦理。",
+    "scene": "艾莉丝在布鲁克林的杂货店里写信，她写\"这里很好\"，却在信纸背面画了一个小小的爱尔兰海岸；母亲读信时把画面对着光看。",
+    "visual_keywords": [
+      "轮船",
+      "布鲁克林",
+      "爱尔兰海岸",
+      "打字机"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-imdb",
+      "source-britannica"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "约翰·克劳利执导（2015），改编自科尔姆·托宾同名小说。1950 年代爱尔兰女孩艾莉丝独自移居纽约，她寄回的家书必须在报喜与报忧之间小心平衡——信纸上提到的每一件新衣服，都是用对家乡的思念换来的。",
+    "why_it_matters": "艾莉丝寄回的家书必须在报喜与报忧之间小心平衡。信纸上提到的每一件新衣服，都是用对家乡的思念换来的——这种「信中的沉默」是移民家书跨文化的共同伦理。",
+    "recommended_entry_point": "建议先读小说再看电影——托宾对艾莉丝写信时的心理活动的描写，是理解移民之信的关键文本。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letters-from-rivka",
+    "title": "《来自里夫卡的信》",
+    "type": "小说",
+    "year": 1973,
+    "region": "美国",
+    "motifs": [
+      "migration"
+    ],
+    "lead": "12岁犹太女孩里夫卡随家人从俄罗斯移民美国，她以书信体日记记录 Ellis Island 的移民检疫与身份焦虑。",
+    "relation": "移民之信的青少年视角——孩子比成人更敏锐地察觉\"信必须说谎\"的家庭规则。",
+    "scene": "里夫卡在隔离营写信给祖母，她不能写\"我害怕\"，只能写\"这里的苹果很甜\"；她知道祖母会读信纸的折痕，猜出真相。",
+    "visual_keywords": [
+      "Ellis Island",
+      "检疫站",
+      "希伯来文字",
+      "行李箱"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "12岁犹太女孩里夫卡随家人从俄罗斯移民美国，她以书信体日记记录 Ellis Island 的移民检疫与身份焦虑。",
+    "why_it_matters": "12岁的里夫卡比成人更敏锐地察觉「信必须说谎」的家庭规则。她在隔离营写信给祖母，不能写「我害怕」，只能写「这里的苹果很甜」——孩子视角下的移民之信格外锋利。",
+    "recommended_entry_point": "书信体格式让读者直接听到12岁女孩的声音。注意她在信纸折痕中隐藏真实情感的方式——这比文字本身更动人。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "safe-conduct",
+    "title": "《平安批》",
+    "type": "小说",
+    "year": 2021,
+    "region": "中国",
+    "motifs": [
+      "migration",
+      "archive"
+    ],
+    "lead": "陈继明以潮汕侨批为素材的长篇小说，追溯一个家族从清末到改革开放的五代侨批史。",
+    "relation": "与《给阿嬷的情书》最直接呼应——同一文化母体（潮汕侨批），从纪录片到小说的跨媒介延伸。",
+    "scene": "第四代子孙在整理祖父遗物时发现一叠从未拆封的侨批，信中记载的汇款路径勾勒出一个家族的离散地图。",
+    "visual_keywords": [
+      "潮汕",
+      "宗族",
+      "老账本",
+      "红头船"
+    ],
+    "priority": 1,
+    "source_ids": [
+      "source-safe-conduct-book",
+      "source-unesco-memory"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "陈继明著长篇小说，花城出版社 2021 年出版。以潮汕侨批为素材，追溯一个家族从清末到改革开放的五代侨批史。小说将个人命运与华人离散史编织在一起。",
+    "why_it_matters": "从纪录片到小说，同一文化母体（潮汕侨批）在不同媒介中获得了不同的历史纵深。小说中的「平安批」就是侨批的另一种叫法——理解了这个词，就理解了半个潮汕史。",
+    "recommended_entry_point": "建议与纪录片对照阅读——小说中的「平安批」就是侨批的另一种叫法，理解了这个词就理解了半个潮汕史。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "qiaopi-archive",
+    "title": "侨批 / 银信档案",
+    "type": "历史档案",
+    "year": 1800,
+    "region": "中国/东南亚",
+    "motifs": [
+      "migration",
+      "archive"
+    ],
+    "lead": "19世纪至20世纪中叶，海外华人通过民间信局寄回中国的家书与汇款合一的特殊邮政形式，2013年入选 UNESCO 世界记忆名录。",
+    "relation": "《给阿嬷的情书》的历史原型——所有侨批主题文艺作品的共同源头。",
+    "scene": "潮汕老人在家中阁楼打开木箱，里面整齐码放着祖父从暹罗寄回的侨批；汇款金额旁写着\"给母亲买补药\"，但老人知道当时家中最缺的是米。",
+    "visual_keywords": [
+      "木箱",
+      "侨批原件",
+      "印章",
+      "红头船",
+      "老照片"
+    ],
+    "priority": 1,
+    "source_ids": [
+      "source-unesco-memory",
+      "source-nara-qiaopi"
+    ],
+    "verification_status": "verified",
+    "expanded_note": "19 世纪至 20 世纪中叶海外华人通过民间信局寄回中国的家书与汇款合一的特殊邮政形式。2013 年入选 UNESCO 世界记忆名录。潮汕历史文化研究中心、汕头侨批文物馆等机构收藏大量原件。",
+    "why_it_matters": "侨批是离散华人家庭的情感基础设施。水客、批局、汇兑网络——理解这套制度结构，才能理解为什么「信」在华人离散史中具有如此特殊的地位。2013年入选UNESCO世界记忆名录，为所有侨批主题作品提供了历史锚点。",
+    "recommended_entry_point": "如有机会，建议参观汕头侨批文物馆；如无法到场，可搜索「侨批档案 UNESCO」查看公开名录资料。",
+    "content_warning": "",
+    "image_strategy": "public_domain_candidate"
+  },
+  {
+    "id": "letters-from-iwo-jima",
+    "title": "《硫磺岛来信》",
+    "type": "电影",
+    "year": 2006,
+    "region": "美国/日本",
+    "motifs": [
+      "wartime"
+    ],
+    "lead": "克林特·伊斯特伍德从日军视角重述太平洋战争；将军西竹一的信件在战败后被美军发现，写的不是军令，而是对妻子和马的思念。",
+    "relation": "战争之信的核心悖论——信的私人情感与公共战争的撕裂；与侨批中\"汇款数字背后是生离死别\"有相同结构。",
+    "scene": "美军士兵在硫磺岛洞穴中发现一具日军尸体和一封未寄出的信，信中写的是\"请照顾好我的马\"；士兵把信收进了自己的口袋。",
+    "visual_keywords": [
+      "硫磺岛",
+      "洞穴",
+      "军邮",
+      "马",
+      "海浪"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "克林特·伊斯特伍德从日军视角重述太平洋战争；将军西竹一的信件在战败后被美军发现，写的不是军令，而是对妻子和马的思念。",
+    "why_it_matters": "伊斯特伍德从日军视角重述太平洋战争。将军西竹一的信件在战败后被美军发现，写的不是军令，而是对妻子和马的思念——信的私人情感与公共战争在此撕裂。",
+    "recommended_entry_point": "建议与《父辈的旗帜》对照观看——同一战役的两个视角，信在其中的功能截然不同。",
+    "content_warning": "涉及战争、死亡",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "hidden-life",
+    "title": "《隐秘的生活》",
+    "type": "电影",
+    "year": 2019,
+    "region": "美国/德国",
+    "motifs": [
+      "wartime"
+    ],
+    "lead": "泰伦斯·马力克执导，奥地利农民弗兰茨因拒绝为纳粹服役而被处死，他与妻子法尼在狱中的书信成为影片的叙事骨架。",
+    "relation": "战争之信中的\"拒绝参与\"——信成为抵抗的载体；与侨批中\"汇款资助家乡抗战\"的历史现象并置阅读。",
+    "scene": "弗兰茨在监狱里写信给法尼，他说\"我不能背叛自己的良心\"；法尼的回信在审查下只能用隐喻表达思念。",
+    "visual_keywords": [
+      "阿尔卑斯山",
+      "监狱",
+      "田野",
+      "十字架"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "泰伦斯·马力克执导，奥地利农民弗兰茨因拒绝为纳粹服役而被处死，他与妻子法尼在狱中的书信成为影片的叙事骨架。",
+    "why_it_matters": "弗兰茨因拒绝为纳粹服役而被处死，他与妻子在狱中的书信成为抵抗的载体。这与侨批中「汇款资助家乡抗战」的历史现象并置阅读，能看到同一种「以信抗争」的精神。",
+    "recommended_entry_point": "马力克用大量自然光和田野镜头包裹这封信件叙事。注意信的正式文本与影像的诗意之间的张力。",
+    "content_warning": "涉及纳粹/法西斯、死刑",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "testament-of-youth",
+    "title": "《青春誓言》",
+    "type": "电影",
+    "year": 2014,
+    "region": "英国",
+    "motifs": [
+      "wartime"
+    ],
+    "lead": "改编自薇拉·布里顿的回忆录，一战期间她与未婚夫、兄弟在前线后方通过信件维系情感，直到死亡将信中断。",
+    "relation": "战争之信中的\"等待断裂\"——信一旦停止，收信人知道最坏的事情发生了；与侨批中断时的家庭焦虑相似。",
+    "scene": "薇拉在牛津的宿舍里读未婚夫从前线寄来的信，信纸越来越薄，字迹越来越潦草；最后一封信是一个月前写的，从此再无音讯。",
+    "visual_keywords": [
+      "战壕",
+      "牛津",
+      "薄信纸",
+      "医院"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "改编自薇拉·布里顿的回忆录，一战期间她与未婚夫、兄弟在前线后方通过信件维系情感，直到死亡将信中断。",
+    "why_it_matters": "薇拉在牛津宿舍读未婚夫从前线寄来的信，信纸越来越薄，字迹越来越潦草。信一旦停止，收信人知道最坏的事情发生了——这种「等待断裂」与侨批中断时的家庭焦虑相似。",
+    "recommended_entry_point": "薇拉的原著回忆录比电影更详细地记录了「信变薄」的过程——每一次邮递延迟都对应着前线的恶化。",
+    "content_warning": "涉及战争、死亡",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "dear-john",
+    "title": "《分手信》",
+    "type": "电影",
+    "year": 2010,
+    "region": "美国",
+    "motifs": [
+      "wartime",
+      "unsent"
+    ],
+    "lead": "9·11后入伍的约翰与女友莎文娜以信件维系异地恋，但莎文娜最终写了一封分手信；多年后，信的意义被重新理解。",
+    "relation": "战争之信与未寄之信的交汇——信中的\"分手\"不是终点，而是另一种形式的\"我在这里\"。",
+    "scene": "约翰在伊拉克的军营里读莎文娜的信，她说\"我嫁给了别人\"；他把信折好放进胸前的口袋，继续巡逻。",
+    "visual_keywords": [
+      "军营",
+      "沙滩",
+      "硬币",
+      "邮筒"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "9·11后入伍的约翰与女友莎文娜以信件维系异地恋，但莎文娜最终写了一封分手信；多年后，信的意义被重新理解。",
+    "why_it_matters": "莎文娜的分手信在伊拉克军营中被约翰折好放进胸前口袋。战争之信与未寄之信在此交汇——信中的「分手」不是终点，而是另一种形式的「我在这里」。",
+    "recommended_entry_point": "注意约翰把硬币塞进信中的细节——这个来自莎文娜的礼物成为他在战争中最私密的护身符。",
+    "content_warning": "涉及战争、分手",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "postman-mountain",
+    "title": "《那山那人那狗》",
+    "type": "电影",
+    "year": 1999,
+    "region": "中国",
+    "motifs": [
+      "messenger"
+    ],
+    "lead": "湖南乡邮员退休，儿子第一次独自走那条山路；父亲不放心，悄悄跟在身后。信的内容从未被展开，但父子之间未说出口的理解终于抵达。",
+    "relation": "送信者视角的中国表达——与侨批中「信差、水客、批脚」的历史角色直接呼应。",
+    "scene": "儿子走在山路上，狗在前面探路；父亲在远处的山坡上看着，手里握着儿子忘带的草帽；信在邮包里，父子之间的沉默比信更重。",
+    "visual_keywords": [
+      "山路",
+      "狗",
+      "邮包",
+      "雾气",
+      "梯田"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-hu-man-san-ren",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "霍建起执导（1999），潇湘电影制片厂出品。改编自彭见明小说。湖南乡邮员退休，儿子第一次独自走那条山路，父亲不放心悄悄跟在身后。信的内容从未被展开，但父子之间未说出口的理解在送信路上终于抵达。",
+    "why_it_matters": "送信人不仅是传递者，也是情感的见证者和调解者。在这条山路上，信的内容从未被展开，但父子之间未说出口的理解终于抵达——这与侨批中「水客不仅送钱，还带口信」的角色高度呼应。",
+    "recommended_entry_point": "注意父亲在远处山坡上看着儿子背影的镜头——信在邮包里，但真正的「抵达」是父子之间的沉默和解。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "the-postman",
+    "title": "《邮差》",
+    "type": "电影",
+    "year": 1994,
+    "region": "意大利",
+    "motifs": [
+      "messenger"
+    ],
+    "lead": "智利诗人聂鲁达流亡意大利期间，当地邮差马里奥替他送信并与他成为朋友；马里奥从诗人那里学会了用隐喻表达爱情。",
+    "relation": "送信者与写信者的身份互换——邮差从\"传递者\"变成\"创作者\"；与侨批中\"批脚不仅送钱，还口头传递口信\"的现象相似。",
+    "scene": "马里奥骑着自行车在岛上送信，他把聂鲁达的诗念给不认识字的老妇人听；老妇人听不懂，但哭了。",
+    "visual_keywords": [
+      "地中海",
+      "自行车",
+      "悬崖",
+      "聂鲁达"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "智利诗人聂鲁达流亡意大利期间，当地邮差马里奥替他送信并与他成为朋友；马里奥从诗人那里学会了用隐喻表达爱情。",
+    "why_it_matters": "邮差马里奥从「传递者」变成「创作者」，他替聂鲁达送信，却从诗人那里学会了用隐喻表达爱情。这与侨批中「批脚不仅送钱，还口头传递口信」的现象相似。",
+    "recommended_entry_point": "马里奥从诗人那里学到的不是写诗的技巧，而是「用比喻表达无法直接说出的情感」——这正是侨批中「报喜不报忧」的文学原理。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "the-go-between",
+    "title": "《中间人》",
+    "type": "电影",
+    "year": 1971,
+    "region": "英国",
+    "motifs": [
+      "messenger",
+      "unsent"
+    ],
+    "lead": "12岁男孩利奥在1900年的英国乡村，替上流社会的表姐传递秘密情书；他不懂信的内容，却成为成人世界谎言的共犯。",
+    "relation": "送信者视角的童年创伤——与侨批中\"孩子替母亲读信、却不懂信中的经济焦虑\"的场景共鸣。",
+    "scene": "利奥在庄园里奔跑，把信从表姐的房间送到农夫手中；他以为自己是在帮忙，却不知道信中的每一个字都在摧毁一个家庭。",
+    "visual_keywords": [
+      "庄园",
+      "麦田",
+      "马车",
+      "儿童背影"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "12岁男孩利奥在1900年的英国乡村，替上流社会的表姐传递秘密情书；他不懂信的内容，却成为成人世界谎言的共犯。",
+    "why_it_matters": "12岁的利奥不懂信的内容，却成为成人世界谎言的共犯。送信者视角的童年创伤——与侨批中「孩子替母亲读信，却不懂信中经济焦虑」的场景共鸣。",
+    "recommended_entry_point": "利奥在影片结尾的老年独白揭示了这封信对他一生的影响——童年时传递的一封情书，成为成人世界创伤的永久印记。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "the-post-office-tagore",
+    "title": "泰戈尔《邮局》",
+    "type": "戏剧",
+    "year": 1912,
+    "region": "印度",
+    "motifs": [
+      "messenger"
+    ],
+    "lead": "病童阿马尔渴望看到外面的世界，他天天盼着邮差送来国王的信；信最终没有来，但他在等待中找到了超越死亡的自由。",
+    "relation": "送信者母题的形而上版本——信是否存在不重要，等待信的行为本身赋予了生命意义。",
+    "scene": "阿马尔躺在病床上，问邮差\"国王的信什么时候到？\"；邮差说\"明天\"；明天永远不来，但阿马尔笑了。",
+    "visual_keywords": [
+      "病床",
+      "窗户",
+      "邮差制服",
+      "印度庭院"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "病童阿马尔渴望看到外面的世界，他天天盼着邮差送来国王的信；信最终没有来，但他在等待中找到了超越死亡的自由。",
+    "why_it_matters": "病童阿马尔天天盼着邮差送来国王的信。信最终没有来，但等待信的行为本身赋予了生命意义——这是送信者母题的形而上版本。",
+    "recommended_entry_point": "泰戈尔写这部剧时正经历个人丧亲之痛。注意阿马尔等待的「国王的信」是否可以理解为对死亡的接受。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "5cm-per-second",
+    "title": "《秒速五厘米》",
+    "type": "动画",
+    "year": 2007,
+    "region": "日本",
+    "motifs": [
+      "unsent"
+    ],
+    "lead": "贵树在暴风雪中前往与明里约定的车站，随身携带的信在风雪中被吹散；那封没有寄达的信，成为整个青春期最精确的隐喻。",
+    "relation": "未寄之信的终极形态——信写完了、带在身上了，但从未被投递；与侨批中\"写好却未寄出的家书\"构成镜像。",
+    "scene": "贵树在凌晨的雪地里等待明里，他从口袋里掏出信，发现信纸已经被雪水打湿；一阵风吹来，信纸碎片消失在黑暗中。",
+    "visual_keywords": [
+      "雪",
+      "车站",
+      "信纸碎片",
+      "樱花"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "贵树在暴风雪中前往与明里约定的车站，随身携带的信在风雪中被吹散；那封没有寄达的信，成为整个青春期最精确的隐喻。",
+    "why_it_matters": "贵树随身携带的信在暴风雪中被吹散。那封没有寄达的信成为整个青春期最精确的隐喻——写完了、带在身上了，但从未被投递。",
+    "recommended_entry_point": "新海诚用信纸被雪水打湿、被风吹散的镜头，把「未寄」从叙事事件提升为视觉隐喻——没有任何对白能达到这个效果。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "voices-of-distant-star",
+    "title": "《星之声》",
+    "type": "动画",
+    "year": 2002,
+    "region": "日本",
+    "motifs": [
+      "unsent",
+      "delayed"
+    ],
+    "lead": "美加子随宇宙舰队离开地球，她与升之间的短信穿越光年，越晚到达的信息越轻；最后一条短信花了八年才抵达。",
+    "relation": "迟到之信的科幻变体——时间差被物理距离极度放大，与侨批中「南洋家书数月乃至数年才能抵达」的历史现实惊人地平行。",
+    "scene": "升在手机里收到美加子从火星发来的短信\"我在这里\"，但这已经是八年前的她；他回复\"我也在这里\"，不知道她是否还能收到。",
+    "visual_keywords": [
+      "宇宙",
+      "手机",
+      "火星",
+      "樱花树"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-shinkai-official",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "新海诚独立动画短片（2002）。美加子随宇宙舰队离开地球，她与升之间的短信穿越光年，越晚到达的信息越轻——最后一条短信花了八年才抵达。",
+    "why_it_matters": "美加子与升之间的短信穿越光年，最后一条花了八年才抵达。时间差被物理距离极度放大，但情感结构与侨批惊人地平行——南洋家书同样可能数月乃至数年才能到达，收信人读到的永远是「过去的」寄信人。",
+    "recommended_entry_point": "注意片尾升在手机里收到八年前的短信——这个场景和读一封迟到数年的侨批，情感结构完全相同。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "to-all-boys",
+    "title": "《致所有我曾爱过的男孩》",
+    "type": "电影",
+    "year": 2018,
+    "region": "美国",
+    "motifs": [
+      "unsent"
+    ],
+    "lead": "劳拉·珍写过五封从未打算寄出的情书，把它们藏在帽盒里；妹妹恶作剧把信寄出，秘密被公开，生活因此翻转。",
+    "relation": "未寄之信的喜剧版本——\"信被意外寄出\"是未寄母题的常见叙事装置；与侨批中\"家书被第三方误读\"的风险形成对照。",
+    "scene": "劳拉·珍打开帽盒，发现五封信都不见了；她冲进教室，看见每个曾经暗恋过的男孩手里都拿着一封她的信。",
+    "visual_keywords": [
+      "帽盒",
+      "高中",
+      "五封信",
+      "尴尬的微笑"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "劳拉·珍写过五封从未打算寄出的情书，把它们藏在帽盒里；妹妹恶作剧把信寄出，秘密被公开，生活因此翻转。",
+    "why_it_matters": "五封从未打算寄出的情书被意外寄出。这是未寄母题的喜剧变体——信被第三方误读的风险，与侨批中「家书被他人拆阅」的历史隐忧形成对照。",
+    "recommended_entry_point": "注意五封信分别对应五种不同类型的暗恋对象——每封信都是劳拉·珍对自己某一面向的自我书写。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letters-of-note",
+    "title": "Letters of Note",
+    "type": "项目",
+    "year": 2009,
+    "region": "英国",
+    "motifs": [
+      "archive"
+    ],
+    "lead": "Shaun Usher 创建的在线项目，收集并发布\"值得被保存的信件\"——从甘地致希特勒的和平呼吁到某员工的辞职信。",
+    "relation": "信件档案的数字形态——与侨批从私人收藏到博物馆展柜的旅程相同，只是媒介从纸张变成了网页。",
+    "scene": "网站上展示着一封1969年 NASA 主任拒绝女性宇航员的信，旁边是一封梵高的家书；每封信都附有历史背景和来源说明。",
+    "visual_keywords": [
+      "网站截图",
+      "打字机字体",
+      "扫描信件",
+      "档案盒"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-letters-of-note"
+    ],
+    "verification_status": "verified",
+    "expanded_note": "Shaun Usher 于 2009 年创建的在线项目，收集并发布「值得被保存的信件」。从甘地致希特勒的和平呼吁到梵高的家书，从某员工的辞职信到科学家的情书——这些被档案化的通信证明：最私人的书写往往最具公共价值。",
+    "why_it_matters": "信件档案的数字形态。与侨批从私人收藏到博物馆展柜的旅程相同，只是媒介从纸张变成了网页。它提出了一个核心问题：谁有权决定哪些信值得被保存？",
+    "recommended_entry_point": "直接访问 lettersofnote.com，按主题浏览——Letters of Note 是按主题而非时间组织的，非常适合作为本专题的延伸阅读。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "postsecret",
+    "title": "PostSecret",
+    "type": "项目",
+    "year": 2004,
+    "region": "美国",
+    "motifs": [
+      "archive",
+      "unsent"
+    ],
+    "lead": "Frank Warren 发起的匿名明信片项目，人们把从未说出口的秘密写在明信片上寄给他；每周选出部分在博客发布。",
+    "relation": "未寄之信的公共化——信原本是为特定收信人写的，但在这里，收信人是陌生人；与侨批中\"家书被后代公开阅读\"的伦理困境相关。",
+    "scene": "一张手绘明信片上写着\"我偷了妈妈葬礼上的花去送给我的情人\"；这张卡片被扫描后发布在网上，有十万人看到了它。",
+    "visual_keywords": [
+      "明信片",
+      "手写",
+      "拼贴",
+      "秘密"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "Frank Warren 发起的匿名明信片项目，人们把从未说出口的秘密写在明信片上寄给他；每周选出部分在博客发布。",
+    "why_it_matters": "人们把从未说出口的秘密写在明信片上寄给陌生人。收信人从特定的人变成了所有人——这与侨批中「家书被后代公开阅读」的伦理困境遥相呼应。",
+    "recommended_entry_point": "PostSecret 的伦理核心是「匿名」与「公开」的悖论。寄信人选择被看见，但拒绝被识别——这与侨批中「家书上不写真名」的现象形成对照。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "dear-data",
+    "title": "Dear Data",
+    "type": "项目",
+    "year": 2014,
+    "region": "英国",
+    "motifs": [
+      "archive",
+      "unsent"
+    ],
+    "lead": "设计师 Giorgia Lupi 和 Stefanie Posavec 每周互相寄一张手绘数据明信片，用视觉编码记录一周生活中的小事。",
+    "relation": "信件档案的艺术化——信的内容被抽象成数据可视化，但情感依然可读；与侨批中\"汇款数字背后的情感\"共享同一结构。",
+    "scene": "一张明信片上用彩色线条记录了\"本周所有的笑声\"，另一张用点阵记录了\"本周所有的焦虑\"；两张卡片在邮局相遇。",
+    "visual_keywords": [
+      "数据可视化",
+      "彩色线条",
+      "明信片",
+      "手绘"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "设计师 Giorgia Lupi 和 Stefanie Posavec 每周互相寄一张手绘数据明信片，用视觉编码记录一周生活中的小事。",
+    "why_it_matters": "信的内容被抽象成数据可视化，但情感依然可读。两张手绘明信片在邮局相遇的故事，与侨批中「汇款数字背后的情感」共享同一种「数字即情感」的结构。",
+    "recommended_entry_point": "建议搜索 Giorgia Lupi 的 TED 演讲——她对「数据人性化」的阐述，是理解这套明信片项目的最佳入口。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "letters-alive",
+    "title": "《见字如面》",
+    "type": "电视节目",
+    "year": 2016,
+    "region": "中国",
+    "motifs": [
+      "archive",
+      "ghostwriting"
+    ],
+    "lead": "文化节目邀请演员朗读历史名人的私人信件，从林则徐到萧红，从梵高到爱因斯坦；私人通信被公开演绎。",
+    "relation": "信件档案的剧场化——与侨批研究中\"学者公开引用私人侨批\"的学术实践共享同一伦理维度。",
+    "scene": "演员在舞台上朗读萧红写给弟弟的信，信中说\"我是个流浪人\"；台下观众不知道这封信是萧红在临死前写的。",
+    "visual_keywords": [
+      "舞台",
+      "演员",
+      "信纸",
+      "聚光灯"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "文化节目邀请演员朗读历史名人的私人信件，从林则徐到萧红，从梵高到爱因斯坦；私人通信被公开演绎。",
+    "why_it_matters": "演员在舞台上朗读历史名人的私人信件，从林则徐到萧红。私人通信被公开演绎——与侨批研究中「学者公开引用私人侨批」的学术实践共享同一伦理维度。",
+    "recommended_entry_point": "节目选择演员时注重声音特质——同一个演员可能既读林则徐的奏折，也读萧红的家书，声音的跨度本身就是历史跨度。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "last-letter",
+    "title": "《你好，之华》",
+    "type": "电影",
+    "year": 2018,
+    "region": "中国/日本",
+    "motifs": [
+      "delayed",
+      "afterlife"
+    ],
+    "lead": "岩井俊二执导中日合拍片，一封寄错的信串联两代人的情感与遗憾。",
+    "relation": "与《情书》共享岩井俊二的「信错位」叙事——信寄给了错误的人，却意外抵达了正确的理解。",
+    "scene": "之华代替已故姐姐参加同学会，收到一封寄给姐姐的信。她回信后，与写信人——姐姐的高中同学——开始了一段通过文字进行的迟来的理解。",
+    "visual_keywords": [
+      "同学会",
+      "信纸",
+      "雪地",
+      "旧照片"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-last-letter-youth",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "岩井俊二执导中日合拍片（2018）。袁之华代替已故姐姐参加同学会，意外收到一封写给姐姐的信。回信过程中，两代人的情感通过文字逐渐交错。影片延续了岩井俊二对「信的时间错位」母题的迷恋。",
+    "why_it_matters": "岩井俊二在《情书》二十三年后再次拍摄「信」的主题。如果说《情书》是「同名者的信」，那么《你好，之华》是「替身者的信」——之华代替死去的姐姐回信，信的真实性因此更加复杂。",
+    "recommended_entry_point": "注意之华第一次回信时的犹豫——她既想说出真相，又害怕破坏写信人对姐姐的记忆。",
+    "content_warning": "涉及亲人去世",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "miracle-letters",
+    "title": "《解忧杂货店》",
+    "type": "小说",
+    "year": 2012,
+    "region": "日本",
+    "motifs": [
+      "ghostwriting",
+      "delayed"
+    ],
+    "lead": "东野圭吾著，一家深夜杂货店通过信件连接不同时代的人，回信改变彼此命运。",
+    "relation": "与侨批共享「信穿越时空」的母题——杂货店的回信箱让 1980 年代和 2012 年代的人通过信件对话，如同后代阅读祖先的侨批。",
+    "scene": "三个年轻人闯入废弃的杂货店，发现卷帘门上的投信口有信件投入。他们回信后，发现信来自 1980 年代——回信改变了过去，也改变了他们自己的现在。",
+    "visual_keywords": [
+      "杂货店",
+      "卷帘门",
+      "牛奶箱",
+      "旧报纸"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-miracle-letters",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "东野圭吾著长篇小说（2012），角川书店出版。僻静街道旁的杂货店只要写下烦恼投进卷帘门的投信口，第二天就会在店后的牛奶箱里得到回答。三个误入的年轻人发现，信件连接着 1980 年代和 2012 年代。",
+    "why_it_matters": "代写与迟到的完美结合——杂货店店主为陌生人代写回信，而这些回信跨越三十年才产生效果。每一个「答案」都既是写给过去，也是写给未来。",
+    "recommended_entry_point": "建议先读小说再看电影版——小说对信件的时空结构有比电影更清晰的呈现。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "classic-miracles",
+    "title": "《假如爱有天意》",
+    "type": "电影",
+    "year": 2003,
+    "region": "韩国",
+    "motifs": [
+      "delayed",
+      "ghostwriting"
+    ],
+    "lead": "郭在容执导，母女两代人的情书交错，上一代的未寄之信在下一代手中被重新阅读。",
+    "relation": "与《情书》共享「时间错位」结构——母亲的情书被女儿发现，女儿的恋情与母亲的故事形成对照。",
+    "scene": "女儿梓希在整理母亲遗物时发现一个装满情书的盒子。她一边读母亲 1960 年代的情书，一边经历着自己 2003 年的暗恋——两代人的故事在信纸上重合。",
+    "visual_keywords": [
+      "情书盒子",
+      "雨中",
+      "图书馆",
+      "项链"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-miracles-letter",
+      "source-douban"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "郭在容执导韩国电影（2003），原名《클래식》（The Classic）。孙艺珍分饰母女两角。女儿梓希在母亲遗物中发现一盒情书，母亲的初恋故事与女儿自己的暗恋形成跨越时空的对照。",
+    "why_it_matters": "迟到之信的变体——信不是迟到了，而是被「延迟阅读」。母亲的情书从未寄出，却在三十年后被女儿读到，完成了情感传递的闭环。",
+    "recommended_entry_point": "注意女儿读母亲情书时，镜头在两代人之间切换的方式——同一演员分饰两角，让「过去的我」和「现在的我」在信纸上相遇。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "anne-frank",
+    "title": "《安妮日记》",
+    "type": "小说",
+    "year": 1947,
+    "region": "荷兰/德国",
+    "motifs": [
+      "archive",
+      "wartime"
+    ],
+    "lead": "安妮·弗兰克在纳粹占领荷兰期间写的日记，1947 年出版后成为二战最著名的个人文献。",
+    "relation": "信件档案与战争之信的交汇——安妮的日记最初是写给自己的信，死后成为公共记忆，被翻译成 70 多种语言。",
+    "scene": "安妮在密室中写日记：「我希望我能够向你倾诉一切，因为我从来没有向任何人倾诉过，我希望你能成为我的极大安慰。」她把日记当作唯一可以信任的收信人。",
+    "visual_keywords": [
+      "密室",
+      "日记本",
+      "格子窗",
+      "邮票"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-anne-frank-house"
+    ],
+    "verification_status": "verified",
+    "expanded_note": "安妮·弗兰克（Anne Frank）在阿姆斯特丹密室中写的日记，1947 年由父亲奥托·弗兰克整理出版。日记记录了 1942–1944 年间安妮在纳粹占领下的生活。已被翻译成 70 多种语言，是现代史上最广为人知的个人文献。",
+    "why_it_matters": "战争之信与信件档案的终极交汇。安妮的日记是「未打算公开的私人书写」变成「全球公共记忆」的最著名案例。它提出了核心问题：谁有权决定私人日记何时、以何种方式进入公共领域？",
+    "recommended_entry_point": "建议参观阿姆斯特丹安妮·弗兰克之家，或访问 annefrank.org 查看数字化档案。",
+    "content_warning": "涉及大屠杀、种族迫害、死亡",
+    "image_strategy": "public_domain_candidate"
+  },
+  {
+    "id": "84-charing-cross",
+    "title": "《查令十字街84号》",
+    "type": "小说",
+    "year": 1970,
+    "region": "英国/美国",
+    "motifs": [
+      "archive",
+      "delayed"
+    ],
+    "lead": "Helene Hanff 与伦敦书商 Frank Doel 二十余年的通信集，被誉为「爱书人的圣经」。",
+    "relation": "信件档案的经典案例——这些私人通信在作者去世后出版，成为关于书、关于距离、关于友情的公共文本。",
+    "scene": "Hanff 在信中写道：「我喜欢因阅读而被启发的自己。」Doel 回信推荐书籍。两人从未见面，但通过信件建立了持续二十年的友谊。Doel 去世后，书店关闭，Hanff 才第一次踏上伦敦的土地。",
+    "visual_keywords": [
+      "旧书店",
+      "打字机",
+      "伦敦雾",
+      "精装书"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-84-charing-cross"
+    ],
+    "verification_status": "partial",
+    "expanded_note": "Helene Hanff 著，1970 年首版。记录美国作家与伦敦书商 Marks & Co.（查令十字街84号）之间 1949–1969 年的通信。两人从未见面，但通过信件建立了深厚的友谊。书商 Frank Doel 去世后，书店关闭，Hanff 才第一次到访伦敦。",
+    "why_it_matters": "信件档案的典范——这些原本私人的商业通信，在作者去世后成为关于书、关于距离、关于未见面友谊的经典文本。它证明了：信的价值不在于内容有多重要，而在于关系有多真实。",
+    "recommended_entry_point": "可从任何一封信开始读——这本书不需要按顺序阅读，每封信都是独立的文学小品。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "bridges-of-madison",
+    "title": "《廊桥遗梦》",
+    "type": "小说",
+    "year": 1992,
+    "region": "美国",
+    "motifs": [
+      "unsent",
+      "delayed"
+    ],
+    "lead": "Robert James Waller 著，以女主人公留给子女的遗信框架展开，讲述四天恋情与一生选择。",
+    "relation": "未寄之信的文学经典——弗朗西斯卡的遗信在死后才被子女读到，信成为她对自己一生的最终解释。",
+    "scene": "弗朗西斯卡在遗信中告诉子女：「我把我活着的生命给了你们，我把剩下的遗体给罗伯特。」她用信向子女解释了自己为什么没有跟摄影师离开——不是因为不爱，而是因为对家庭责任的承诺。",
+    "visual_keywords": [
+      "廊桥",
+      "遗信",
+      "旧相机",
+      "田野"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-bridge-madison"
+    ],
+    "verification_status": "verified",
+    "expanded_note": "Robert James Waller 著，1992 年出版。以女主人弗朗西斯卡留给子女的遗信为框架，讲述她与《国家地理》摄影师罗伯特·金凯德四天的恋情和一生的选择。小说全球畅销，1995 年改编为电影（克林特·伊斯特伍德执导）。",
+    "why_it_matters": "未寄之信（遗信）的文学经典。弗朗西斯卡的信在死后才被子女读到——这意味着收信人无法回应，写信人也不需要回应。信成为「单方面解释」的终极形式。",
+    "recommended_entry_point": "建议直接读小说的开头——弗朗西斯卡的遗信本身就是一部微型小说。",
+    "content_warning": "涉及婚外情",
+    "image_strategy": "icon_only"
+  },
+  {
+    "id": "remains-of-the-day",
+    "title": "《长日将尽》",
+    "type": "小说",
+    "year": 1989,
+    "region": "英国",
+    "motifs": [
+      "unsent",
+      "delayed"
+    ],
+    "lead": "石黑一雄著，获布克奖。管家史蒂文斯收到前同事肯顿小姐的来信，触发对一生「未说出口」的回忆。",
+    "relation": "未寄之信的文学巅峰——整本书就是一封从未寄出的情书。史蒂文斯通过回忆重构了那些「本应该说」但「终究没说」的时刻。",
+    "scene": "史蒂文斯在旅途中反复阅读肯顿小姐的信：「我已经结婚三年了。」他试图从信的字里行间读出她还想念达林顿府的证据。但信的真正重量在于：它触发了史蒂文斯对自己一生「情感抑制」的全面回顾。",
+    "visual_keywords": [
+      "庄园",
+      "管家制服",
+      "公路",
+      "黄昏"
+    ],
+    "priority": 2,
+    "source_ids": [
+      "source-remains-of-day"
+    ],
+    "verification_status": "verified",
+    "expanded_note": "Kazuo Ishiguro（石黑一雄）著，1989 年出版，获布克奖。管家史蒂文斯收到前同事 Miss Kenton 的来信，触发了他对二战前在达林顿府服务岁月的长篇回忆。整本书是一封从未寄出的情感告白。",
+    "why_it_matters": "未寄之信的文学巅峰——整本书就是一封从未寄出的情书。石黑一雄的伟大之处在于：他没有让史蒂文斯「说出」感情，而是让读者通过沉默读出感情。这是书信母题中最克制、最悲伤的表达。",
+    "recommended_entry_point": "建议读小说而非只看电影——小说对「信的沉默」有更精微的心理描写。",
+    "content_warning": "",
+    "image_strategy": "icon_only"
+  }
+]

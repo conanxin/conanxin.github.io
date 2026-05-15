@@ -1,0 +1,26 @@
+[
+  {
+    "id": "route-ghostwriting",
+    "title": "如果你被「代写」打动",
+    "tagline": "信不是为自己写的，但情感在代笔过程中悄然转移",
+    "motifs": ["ghostwriting"],
+    "works": ["letters-to-ama", "central-station", "cyrano", "violet-evergarden", "dear-frankie"],
+    "description": "从《大鼻子情圣》的经典代笔，到《紫罗兰永恒花园》中自动手记人偶的学习过程，再到《亲爱的弗兰基》里母亲冒充父亲写信的善意谎言——代写之信的核心悖论是：你必须先成为他人，才能学会成为自己。"
+  },
+  {
+    "id": "route-waiting",
+    "title": "如果你被「等待与迟到」打动",
+    "tagline": "最真挚的情感往往需要时间的错位才能被完整接收",
+    "motifs": ["delayed", "afterlife", "unsent"],
+    "works": ["love-letter", "cape-no7", "letter-to-momo", "5cm-per-second", "letter-from-unknown-woman"],
+    "description": "《情书》里发往天国的信意外收到同名女孩的回信；《海角七号》中1945年的七封信迟到了六十年；《秒速五厘米》里那封在风雪中被吹散的信——迟到、亡者与未寄，是时间对情感的三重放大。"
+  },
+  {
+    "id": "route-qiaopi",
+    "title": "如果你被「侨批与迁徙」打动",
+    "tagline": "地理距离被迫转化为文字距离，报喜不报忧是跨文化的共同伦理",
+    "motifs": ["migration", "archive", "messenger"],
+    "works": ["letters-to-ama", "safe-conduct", "qiaopi-archive", "brooklyn", "postman-mountain"],
+    "description": "从《给阿嬷的情书》的家族侨批，到《布鲁克林》的移民家书，再到《平安批》跨越五代的侨批史——移民之信的核心结构从未改变：汇款数字背后无法言说的思念，以及信纸在跨国旅途中逐渐变薄的过程。"
+  }
+]

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://conanxin.github.io/projects/letter-theme-page/">
+  <meta property="og:title" content="信抵达之前 — 从《给阿嬷的情书》到文艺作品中的书信母题">
+  <meta property="og:description" content="一个从电影出发、以书信为母题的交互式知识图谱，收录 40 部作品、8 大主题、27 条来源。探索信作为时间容器与情感化石的文艺表达。">
+  <meta property="og:url" content="https://conanxin.github.io/projects/letter-theme-page/">
+  <meta property="og:image" content="https://conanxin.github.io/projects/letter-theme-page/assets/og/letter-theme-og.svg">
+  <meta name="description" content="一个从电影出发、以书信为母题的交互式知识图谱，收录 40 部作品、8 大主题、27 条来源。探索信作为时间容器与情感化石的文艺表达。">
+  <meta name="twitter:image" content="https://conanxin.github.io/projects/letter-theme-page/assets/og/letter-theme-og.svg">
+  <title>信抵达之前 — 从《给阿嬷的情书》到文艺作品中的书信母题</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">从一部电影出发，走过四十封信的旅程</div>
+        <h1 class="hero-title">信抵达之前</h1>
+        <p class="hero-subtitle">从《给阿嬷的情书》到文艺作品中的书信母题</p>
+        <p class="hero-lead">
+          侨批从暹罗寄往潮汕，走的不是邮政局，是「水客」的竹筐。信纸薄，汇款单更薄，<br>
+          但阿嬷读信时，读的是字里行间的沉默、墨痕的轻重、以及那些说了几十年的「平安」。<br>
+          信从来不只是信息——它是时间的容器，是情感的化石，<br>
+          是代写人借来的声音，是亡者留在人间的最后指纹，<br>
+          是移民把地理距离翻译成文字距离时，不得不说的谎。
+        </p>
+        <div class="hero-scroll" tabindex="0" role="button" aria-label="向下滚动到内容区">
+          <span>向下探索</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 14l-5-5h10z" fill="currentColor"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="intro" id="intro">
+      <div class="container">
+        <h2 class="section-title">为什么从《给阿嬷的情书》开始？</h2>
+        <div class="intro-body">
+          <p>
+            廖克发的这部纪录片讲的不是「写信」这件事本身，而是侨批如何同时承载五重功能：
+            <strong>通信、汇款、家庭责任、善意谎言、历史档案</strong>。
+            一封从泰国寄回潮汕的信，既是儿子对母亲的思念，也是全家一个月的生活费，
+            更是一个时代的离散华人在纸面上留下的唯一痕迹。
+          </p>
+          <p>
+            从这里出发，我们发现「信」在文艺作品中是一个反复出现的母题：
+            有人替别人写情书，有人在战壕里写诀别书，有人把信藏在抽屉里一辈子没有寄出，
+            有人在死后才被读到生前写下的字句。这些信横跨电影、小说、动画、戏剧和真实档案，
+            共同构成一张关于「书写、距离与情感」的隐形网络。
+          </p>
+        </div>
+        <div class="letter-route-diagram" aria-hidden="true">
+          <img src="assets/diagrams/letter-route.svg" alt="从故乡到远方的抽象信件路线：波浪线、虚线与信封" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="journey-section" id="journey">
+      <div class="container">
+        <h2 class="section-title">一封信的旅程</h2>
+        <p class="section-desc">写下、封口、投递、等待、抵达、重读，最后成为档案</p>
+        <div class="journey-timeline" id="journey-timeline" role="list" aria-label="信件旅程的七个阶段">
+          <!-- JS 渲染 -->
+        </div>
+        <div class="journey-hint" id="journey-hint">点击上方阶段，探索相关作品</div>
+      </div>
+    </section>
+
+    <!-- Relationship Graph -->
+    <section class="graph-section" id="graph">
+      <div class="container">
+        <h2 class="section-title">作品—母题关系图谱</h2>
+        <p class="section-desc">以《给阿嬷的情书》为中心，向八个母题辐射</p>
+        <div class="graph-wrapper">
+          <div class="graph-svg-container" id="graph-svg-container" role="img" aria-label="作品与母题的关系网络图">
+            <!-- JS 渲染 SVG -->
+          </div>
+          <div class="graph-legend">
+            <div class="graph-legend-item"><span class="legend-dot" style="background:#B85C50"></span> 核心作品</div>
+            <div class="graph-legend-item"><span class="legend-dot" style="background:#4A6FA5"></span> 母题节点</div>
+            <div class="graph-legend-item"><span class="legend-dot" style="background:#9B9B9B"></span> 代表作品</div>
+          </div>
+        </div>
+        <div class="graph-fallback" id="graph-fallback" style="display:none;">
+          <p>关系图谱列表视图</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motif Filter -->
+    <section class="motif-filter" id="motif-filter">
+      <div class="container">
+        <h2 class="section-title">按母题浏览</h2>
+        <div class="filter-bar" id="filter-bar">
+          <button class="filter-btn active" data-motif="all">全部</button>
+        </div>
+        <div class="filter-hint">点击标签筛选作品，再次点击取消筛选</div>
+      </div>
+    </section>
+
+    <!-- Verification Status Filter -->
+    <section class="status-filter" id="status-filter">
+      <div class="container">
+        <h3 class="filter-subtitle">按核实状态筛选</h3>
+        <div class="filter-bar" id="status-bar">
+          <button class="filter-btn status-btn active" data-status="all">全部</button>
+          <button class="filter-btn status-btn" data-status="verified">已核实</button>
+          <button class="filter-btn status-btn" data-status="partial">部分核实</button>
+          <button class="filter-btn status-btn" data-status="placeholder">待核实</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Grid -->
+    <section class="works-grid-section" id="works">
+      <div class="container">
+        <div class="works-grid" id="works-grid">
+          <!-- JS 渲染 -->
+        </div>
+        <div class="works-empty" id="works-empty" style="display:none;">
+          <p>暂无该母题的作品，请尝试其他标签。</p>
+        </div>
+        <div class="works-error" id="works-error" style="display:none;">
+          <p>数据加载失败，请刷新页面重试。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading Routes -->
+    <section class="reading-routes" id="routes">
+      <div class="container">
+        <h2 class="section-title">阅读路线</h2>
+        <p class="section-desc">如果你被某个母题打动，这三条路线可以带你深入</p>
+        <div class="route-list" id="route-list">
+          <!-- JS 渲染 -->
+        </div>
+        <div class="route-active-info" id="route-active-info" style="display:none;">
+          <button class="route-reset-btn" id="route-reset-btn">← 恢复显示全部作品</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sources & Notes -->
+    <section class="sources-section" id="sources">
+      <div class="container">
+        <h2 class="section-title">资料来源与注释</h2>
+        <div class="sources-intro">
+          <p>这个页面源于一次私人阅读：从廖克发的《给阿嬷的情书》出发，我渐渐发现「信」在世界各地的电影、小说、动画和档案中反复出现。所有信息基于公开资料整理，不声称学术权威，但力求每一处都可追溯。</p>
+          <p>来源按可信度分层：官方网站与出版社优先，其次是博物馆与档案馆，再到权威百科与综合数据库。如需了解完整的来源策略，可查阅 <a href="docs/SOURCE_POLICY.md" target="_blank">SOURCE_POLICY.md</a>。</p>
+        </div>
+        <div class="source-audit-stats" id="source-audit-stats">
+          <!-- JS 渲染 -->
+        </div>
+        <div class="source-audit-gaps" id="source-audit-gaps">
+          <!-- JS 渲染 -->
+        </div>
+        <div class="sources-list" id="sources-list">
+          <!-- JS 渲染 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-note">
+          这是一个还在生长的阅读笔记。图像均为原创 SVG，未使用电影海报。<br>
+          如果你也有关于「信」的作品想推荐，欢迎告诉我。
+        </p>
+        <p class="footer-meta">
+          正式发布版 · 个人阅读与研究型互动专题 · 资料将持续补充
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Work Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="作品详情">
+    <div class="modal-panel" id="modal-panel">
+      <button class="modal-close" id="modal-close" aria-label="关闭详情">&times;</button>
+      <div class="modal-body" id="modal-body">
+        <!-- JS 填充 -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

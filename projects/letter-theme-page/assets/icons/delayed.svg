@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="迟到之信：信封与时钟叠影">
+  <rect x="8" y="14" width="32" height="22" rx="2"/>
+  <path d="M8 18l16 10 16-10"/>
+  <circle cx="34" cy="30" r="7" fill="var(--bg-page, #F7F5F0)" stroke-width="1.5"/>
+  <circle cx="34" cy="30" r="5"/>
+  <path d="M34 27v3l2 2"/>
+</svg>

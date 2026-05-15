@@ -13,6 +13,26 @@
     "featured": true
   },
   {
+    "title": "信抵达之前",
+    "slug": "letter-theme-page",
+    "category": "creative",
+    "type": "INTERACTIVE ESSAY",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-05-16",
+    "summary": "从电影《给阿嬷的情书》出发，探索文艺作品中的书信母题。收录 40 部作品、8 大主题、27 条来源，包含交互式知识图谱、时间线与作品详情。",
+    "entry_url": "/projects/letter-theme-page/",
+    "source_kind": "interactive",
+    "featured": true,
+    "tags": [
+      "书信",
+      "母题",
+      "知识图谱",
+      "交互页面",
+      "文艺作品"
+    ]
+  },
+  {
     "title": "leverage-os / 本地杠杆心智系统",
     "slug": "leverage-os",
     "category": "systems",

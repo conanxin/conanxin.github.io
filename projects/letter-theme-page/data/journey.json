@@ -1,0 +1,65 @@
+[
+  {
+    "id": "write",
+    "title": "写下",
+    "subtitle": "Writing",
+    "description": "信纸上的第一笔墨迹。写字的人是故事的主角：他可能识字不多，可能请人代写，可能字斟句酌地报喜不报忧。动笔的那一刻，情感被翻译成文字，失真与选择同时发生。",
+    "relatedMotifs": ["ghostwriting", "migration", "wartime"],
+    "relatedWorks": ["letters-to-ama", "violet-evergarden", "hidden-life"],
+    "visualCue": "笔尖触碰纸面，墨水晕开"
+  },
+  {
+    "id": "seal",
+    "title": "封口",
+    "subtitle": "Sealing",
+    "description": "折叠、火漆、秘密的开始。封口是一个仪式：它宣告信的完成，也宣告信的内容从此脱离写信人的控制。有些信从未封口，有些信封了又拆开重写。",
+    "relatedMotifs": ["unsent", "afterlife"],
+    "relatedWorks": ["letter-to-momo", "ps-i-love-you", "to-all-boys"],
+    "visualCue": "火漆印封住信封口"
+  },
+  {
+    "id": "send",
+    "title": "投递",
+    "subtitle": "Sending",
+    "description": "进入邮政系统的瞬间。对侨批而言，这意味着\"水客\"或\"批脚\"接手了信和银两；对现代邮件而言，是按下发送键的那一刻。信从此有了独立的命运。",
+    "relatedMotifs": ["messenger", "migration"],
+    "relatedWorks": ["postman-mountain", "the-postman", "qiaopi-archive"],
+    "visualCue": "信投入邮筒或交给信差"
+  },
+  {
+    "id": "wait",
+    "title": "等待",
+    "subtitle": "Waiting",
+    "description": "邮路上的时间与不确定性。南洋侨批可能走数月，电子邮件只需几秒，但等待的心理距离从来不与物理时间成正比。等待是信最核心的情感放大器。",
+    "relatedMotifs": ["delayed", "unsent"],
+    "relatedWorks": ["love-letter", "cape-no7", "voices-of-distant-star"],
+    "visualCue": "时钟指针缓慢移动，海浪起伏"
+  },
+  {
+    "id": "arrive",
+    "title": "抵达",
+    "subtitle": "Arriving",
+    "description": "信被拆开的时刻。收信人可能在灶台边、在田埂上、在深夜的灯下读信。信的内容与收信人的当下心境碰撞，产生无法预料的反应。",
+    "relatedMotifs": ["delayed", "afterlife", "migration"],
+    "relatedWorks": ["brooklyn", "letters-from-rivka", "be-with-you"],
+    "visualCue": "信封被拆开，信纸抽出"
+  },
+  {
+    "id": "reread",
+    "title": "重读",
+    "subtitle": "Re-reading",
+    "description": "多年后再读，语境已变。同一封信在不同人生阶段读出不同的意思。侨批被后代重新发现时，汇款数字变成了家族史的密码。",
+    "relatedMotifs": ["delayed", "afterlife", "archive"],
+    "relatedWorks": ["safe-conduct", "5cm-per-second", "letter-from-unknown-woman"],
+    "visualCue": "旧信在灯光下被重新展开"
+  },
+  {
+    "id": "archive",
+    "title": "档案化",
+    "subtitle": "Archiving",
+    "description": "从私人记忆到公共历史。信进入档案馆、博物馆、或互联网，被编号、被研究、被陌生人阅读。信的语境被重写，意义在公共空间中重新协商。",
+    "relatedMotifs": ["archive", "migration"],
+    "relatedWorks": ["letters-of-note", "postsecret", "dear-data", "letters-alive"],
+    "visualCue": "信件被整齐放入档案盒，贴上编号标签"
+  }
+]

@@ -1,0 +1,202 @@
+# OPPO 母亲节文案事件：传播学案例研究页面
+
+## 项目概述
+
+这是一个面向移动端和桌面端的静态图文报道页面原型，用于客观、专业、学术地呈现 **OPPO 母亲节文案争议事件**。
+
+页面兼具三种属性：
+- 严肃媒体报道
+- 传播学案例研究
+- 公共伦理分析
+
+**当前状态**：GitHub Pages 非索引审稿版（Phase 1.2）
+
+**重要边界**：本页面不煽动网暴，不传播私人信息，不鼓励对任何个人进行骚扰或开盒。
+
+---
+
+## 文件结构
+
+```
+oppo-mothers-day-report-page/
+├── index.html              # 主页面（含内联CSS/JS，无外部CDN依赖）
+├── style.css               # 样式表（独立文件，与index.html内联版本同步）
+├── app.js                  # 交互脚本（独立文件，与index.html内联版本同步）
+├── README.md               # 本文件
+├── data/
+│   ├── sources.json        # 信息来源汇总（12条来源，可信度分级）
+│   ├── claims.json         # 事实性主张记录（21条claim，source_id追踪）
+│   ├── timeline.json       # 事件时间线（5个节点）
+│   └── frameworks.json     # 分析框架（7个框架，含六重错配/五层失控）
+├── assets/
+│   ├── hero-abstract.svg           # 抽象主视觉
+│   ├── timeline-ribbon.svg         # 横向事件时间线
+│   ├── semiotic-matrix.svg         # 符号矩阵分析图
+│   ├── context-collapse-flow.svg    # 语境坍塌流程图
+│   ├── responsibility-overflow-map.svg  # 责任外溢模型
+│   ├── crisis-response-compare.svg  # 危机回应对比表
+│   ├── ad-ethics-review-model.svg   # 广告伦理四重审核模型
+│   └── public-criticism-boundary.svg  # 合理批评vs网络暴力对照表
+└── reports/
+    └── REPORT.md           # 生成报告（结构化摘要）
+```
+
+---
+
+## 内容说明
+
+### 页面结构
+
+1. **Hero 首屏** — 标题、副标题、抽象主视觉、三个核心判断
+2. **事件速览** — 5W1H 卡片（6个维度）
+3. **事件时间线** — 横向时间线（5月8日—5月11日）
+4. **符号矩阵分析** — 4个核心符号的跨语境意义迁移
+5. **圈层语言与语境坍塌** — 符号跨圈层传播的失效路径
+6. **危机传播分析** — OPPO两次回应对比 + SCCT理论
+7. **责任外溢与批评边界** — 从企业到个人的归因扩散
+8. **网络暴力法律边界** — 合理批评vs越界行为对照表
+9. **综合学术框架** — 六重错配模型、五层失控模型、广告伦理四重审核
+10. **母职与女性主体性分析**
+11. **武汉大学回应分析**
+12. **行业治理分析**
+13. **结论**
+14. **来源与方法说明**
+
+### 设计风格
+
+- **配色**：米白 / 深灰 / 暗红 / 蓝灰 / 少量金色强调
+- **字体**：Georgia（标题）+ 系统无衬线字体（正文）
+- **布局**：响应式，适配手机与桌面端
+- **交互**：轻量（锚点导航、术语提示灯），无构建依赖
+
+---
+
+## 隐私保护声明
+
+1. **不展示、不传播任何未经授权的个人隐私信息**
+2. **不开盒、不搜索、不扩散普通员工手机号、私人社交账号、家庭信息**
+3. **如必须提及个人姓名，只使用已被主流公开报道广泛引用且与公共职责相关的信息**
+4. **不使用争议广告原图作为主视觉；用文字摘录方式有限呈现争议文案，并标注"争议文案摘录，仅用于事件分析"**
+5. **不使用当事人照片、学校师生照片、员工照片、网友截图中的头像/ID**
+
+---
+
+## 信息来源
+
+本页面所有事实性内容均有来源记录，可信度分级：
+
+- **A级**：官方/一手来源（OPPO声明、武汉大学声明、网络暴力治理规定）
+- **B级**：主流媒体公开报道（观察者网、联合早报、IT之家）
+- **C级**：评论与二手分析（学术理论）
+- **D级**：网传信息，不作为事实依据
+
+---
+
+## 本地预览
+
+```bash
+# 方式1：Python HTTP服务器
+cd ~/projects/oppo-mothers-day-report-page
+python3 -m http.server 8080
+# 访问 http://localhost:8080
+
+# 方式2：直接打开（部分浏览器需HTTP服务器）
+open index.html   # macOS
+xdg-open index.html  # Linux
+```
+
+---
+
+## 技术说明
+
+- **无外部 CDN 依赖**：静态页面，所有资源为本地文件路径
+- **HTML/CSS/JS 分文件组织**：可独立更新和同步
+- **无构建工具依赖**：纯 HTML + CSS + JS，可直接运行
+- **图片**：使用 SVG（可缩放矢量图形），文件体积小、清晰度高
+- **数据**：JSON 文件驱动，可独立更新
+- **移动端**：CSS 媒体查询支持，导航栏支持横向滚动
+
+---
+
+## 验证清单
+
+- [x] 所有 JSON 文件格式合法
+- [x] index.html 能本地打开（无外部资源依赖）
+- [x] 所有本地资源路径存在
+- [x] 无外部图片热链
+- [x] 不包含个人手机号、住址、私人账号、家庭信息
+- [x] 不鼓励搜索原始争议图片或个人隐私
+- [x] 所有事实判断都有 source_id
+- [x] 页面中对未核实内容使用限定语
+
+---
+
+## 发布状态
+
+> **当前状态**：内部审稿原型（INTERNAL_REVIEW_READY）
+> 不可直接公开发布。正式发布前需完成：人工编辑审稿、法律审核、授权确认。
+
+## 背景来源说明
+
+> 本页面部分背景来源（如 src_011 第一财经）仅用于议题背景，不作为一手事实依据。
+> 具体请参见 data/sources.json 中的 is_background_only 字段。
+
+## 禁止事项
+
+- ❌ 不发布到任何 GitHub Pages 或公开服务器（当前版本仅供内部审稿）
+- ❌ 不进行任何 git commit / push
+- ❌ 不修改 ~/.hermes / ~/.openclaw / cron / systemd / gateway 配置
+- ❌ 不传播私人信息或鼓励开盒行为
+
+---
+
+## 审稿流程建议
+
+推荐按以下顺序审稿：
+
+1. **第一步**：阅读 `OPPO_PHASE_0_6_PUBLICATION_GATE_PACK`（发布闸门包）
+   - 了解当前剩余缺口（来源人工核查、法律审核等）
+2. **第二步**：阅读 `OPPO_INTERNAL_REVIEW_PACK`（内部审稿包）
+   - 了解高风险 claim、section 审稿清单
+3. **第三步**：本地预览页面，逐段审稿
+   ```bash
+   cd ~/projects/oppo-mothers-day-report-page
+   python3 -m http.server 8080
+   # 访问 http://localhost:8080
+   ```
+4. **第四步**：基于审稿结果决定下一步（来源核查 / 法律审核 / 视觉修改）
+
+---
+
+## 当前阶段
+
+- **Phase**: OPPO-0.8 Visual Polish + Local Preview Pack
+- **Readiness**: INTERNAL_REVIEW_READY（visual polish completed）
+- **状态说明**：页面已完成视觉打磨和可访问性优化，事实结构和措辞已稳定。仍不是正式发布版，不可直接公开发布。发布前需人工编辑审稿、法律审核和用户（爸爸）最终批准。
+
+---
+
+*生成时间：2026-05-13 | 执行环境：VM-0-4-ubuntu | Phase OPPO-0.8*
+---
+
+## Phase 1.5 — Appendix Published (2026-05-13)
+
+**内容：** 非索引附录审稿版已发布至 GitHub Pages
+
+**发布路径：** drafts/oppo-mothers-day-report/extensions/crisis-and-redesign/
+
+**包含：**
+- 更优危机回应方案（7个文件）
+- 活动重设计方案（5个文件）
+- 5张 SVG 海报 mockup + 海报展示页
+- 风险审核表（11项，全部低风险）
+
+**附录目标 URL：** https://conanxin.github.io/drafts/oppo-mothers-day-report/extensions/crisis-and-redesign/
+
+**状态：**
+- 非索引附录审稿版（noindex/nofollow/noarchive）
+- 不是 OPPO 官方方案
+- 不是正式发布版
+- 不加入 projects 索引
+- 发布前仍需人工来源核查、法律审核、用户最终批准
+

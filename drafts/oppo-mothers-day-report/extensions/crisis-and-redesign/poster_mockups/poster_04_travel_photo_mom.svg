@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1440" width="1080" height="1440">
+  <title>妈妈，也有自己的热爱 — 旅行摄影的妈妈</title>
+  <desc>OPPO母亲节传播重设计海报第四张：展示妈妈在旅途中记录风景、自己也被记录的时刻</desc>
+
+  <!-- Background: travel landscape -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7BA8C8"/>
+      <stop offset="60%" stop-color="#C8D8E8"/>
+      <stop offset="100%" stop-color="#E8DCC8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1440" fill="url(#skyGrad)"/>
+
+  <!-- Mountains (abstract layers) -->
+  <polygon points="0,900 150,580 300,750 450,520 600,700 750,500 900,680 1080,580 1080,1440 0,1440" fill="#8B9E78" opacity="0.3"/>
+  <polygon points="0,950 200,680 400,820 600,620 800,780 1080,640 1080,1440 0,1440" fill="#9BAF88" opacity="0.35"/>
+  <polygon points="0,1000 180,760 380,880 580,720 780,860 1080,740 1080,1440 0,1440" fill="#A8BAF0" opacity="0.2"/>
+
+  <!-- Distant hills -->
+  <path d="M0,1050 Q150,950 300,1000 Q500,1060 700,990 Q900,920 1080,980 L1080,1440 L0,1440 Z" fill="#B8C8A0" opacity="0.5"/>
+
+  <!-- Path/road -->
+  <path d="M0,1100 Q270,1050 540,1080 Q810,1110 1080,1060" fill="none" stroke="#C8B898" stroke-width="60" opacity="0.4"/>
+  <path d="M0,1100 Q270,1050 540,1080 Q810,1110 1080,1060" fill="none" stroke="#D8C8A8" stroke-width="30" opacity="0.3"/>
+
+  <!-- Abstract trees (side) -->
+  <g opacity="0.2" fill="#6B8B58">
+    <circle cx="60" cy="850" r="40"/>
+    <circle cx="60" cy="820" r="30"/>
+    <rect x="55" y="850" width="10" height="30" fill="#5A4030"/>
+    <circle cx="1020" cy="830" r="45"/>
+    <circle cx="1020" cy="800" r="35"/>
+    <rect x="1015" y="830" width="10" height="35" fill="#5A4030"/>
+  </g>
+
+  <!-- Woman with camera (photographer silhouette) -->
+  <g transform="translate(420, 560)">
+    <!-- Camera bag on shoulder -->
+    <rect x="70" y="80" width="35" height="45" rx="5" fill="#8B7355" opacity="0.5"/>
+
+    <!-- Body -->
+    <path d="M55,120 C30,125 20,160 25,210 L25,380 L85,380 L85,210 C90,160 80,125 55,120 Z" fill="#B8D8C8" opacity="0.8"/>
+
+    <!-- Neck -->
+    <rect x="43" y="95" width="18" height="28" fill="#F5E6D3"/>
+
+    <!-- Head -->
+    <ellipse cx="52" cy="72" rx="34" ry="37" fill="#F5E6D3"/>
+
+    <!-- Hair (short/medium, practical) -->
+    <path d="M18,65 C12,30 52,10 52,10 C52,10 92,30 86,65 C84,72 80,78 78,78 L26,78 C24,78 20,72 18,65 Z" fill="#1A1A1A"/>
+    <!-- Visor/cap (practical travel wear) -->
+    <path d="M18,55 L18,48 Q52,35 86,48 L86,55 Q52,45 18,55 Z" fill="#3A5068" opacity="0.7"/>
+
+    <!-- Face -->
+    <ellipse cx="40" cy="72" rx="2" ry="2" fill="#1A1A1A" opacity="0.3"/>
+    <ellipse cx="64" cy="72" rx="2" ry="2" fill="#1A1A1A" opacity="0.3"/>
+
+    <!-- Arms holding camera up -->
+    <path d="M25,155 C-5,170 -20,200 -10,240" stroke="#F5E6D3" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M85,155 C115,170 130,200 120,240" stroke="#F5E6D3" stroke-width="14" fill="none" stroke-linecap="round"/>
+
+    <!-- Camera (OPPO phone as camera) -->
+    <g transform="translate(30, 230)">
+      <rect width="50" height="35" rx="6" fill="#1C1C1C" opacity="0.3"/>
+      <rect x="4" y="4" width="42" height="27" rx="4" fill="#2C2C2C" opacity="0.2"/>
+      <!-- Lens -->
+      <circle cx="25" cy="17" r="10" fill="#3C3C3C" opacity="0.2"/>
+      <circle cx="25" cy="17" r="6" fill="#1C1C1C" opacity="0.15"/>
+    </g>
+
+    <!-- Legs (standing, walking pose) -->
+    <path d="M35,378 C30,430 20,480 15,530" stroke="#A0B8B0" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M75,378 C80,430 90,480 95,530" stroke="#A0B8B0" stroke-width="22" fill="none" stroke-linecap="round"/>
+
+    <!-- Shoes -->
+    <ellipse cx="15" cy="535" rx="18" ry="8" fill="#3A3A3A" opacity="0.4"/>
+    <ellipse cx="95" cy="535" rx="18" ry="8" fill="#3A3A3A" opacity="0.4"/>
+  </g>
+
+  <!-- Subject being photographed (abstract: a flower or interesting object) -->
+  <g transform="translate(600, 700)">
+    <!-- Flower/plant being photographed -->
+    <circle cx="30" cy="80" r="40" fill="#E8C0A0" opacity="0.25"/>
+    <circle cx="30" cy="60" r="30" fill="#F0D0B0" opacity="0.3"/>
+    <circle cx="30" cy="45" r="18" fill="#FFE0C0" opacity="0.4"/>
+    <rect x="27" y="80" width="6" height="60" fill="#6B8058" opacity="0.4"/>
+    <ellipse cx="20" cy="130" rx="15" ry="8" fill="#6B8058" opacity="0.25"/>
+    <ellipse cx="40" cy="128" rx="12" ry="7" fill="#6B8058" opacity="0.25"/>
+  </g>
+
+  <!-- Sun/warm light -->
+  <circle cx="850" cy="200" r="80" fill="#FFE8A0" opacity="0.2"/>
+  <circle cx="850" cy="200" r="50" fill="#FFF0B0" opacity="0.25"/>
+
+  <!-- Abstract clouds -->
+  <g fill="white" opacity="0.2">
+    <ellipse cx="150" cy="200" rx="80" ry="30"/>
+    <ellipse cx="200" cy="190" rx="60" ry="25"/>
+    <ellipse cx="600" cy="150" rx="100" ry="35"/>
+    <ellipse cx="660" cy="140" rx="70" ry="28"/>
+  </g>
+
+  <!-- Main text area -->
+  <rect x="60" y="1150" width="960" height="220" rx="8" fill="#FAF8F5" opacity="0.92"/>
+
+  <!-- Main headline -->
+  <text x="540" y="1205" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="600" fill="#2C2C2C" letter-spacing="0">
+    这一次，
+  </text>
+  <text x="540" y="1268" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="52" font-weight="600" fill="#2C2C2C" letter-spacing="0">
+    让镜头也看见她。
+  </text>
+
+  <!-- Sub text -->
+  <text x="540" y="1320" text-anchor="middle" font-family="system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" fill="#6B6B6B" letter-spacing="1">
+    她拍过很多人，也值得被认真记录。
+  </text>
+
+  <!-- Brand tag -->
+  <text x="540" y="1380" text-anchor="middle" font-family="system-ui, 'PingFang SC', sans-serif" font-size="18" fill="#A09080" letter-spacing="3">
+    OPPO · 母亲节特别呈现
+  </text>
+
+  <!-- Bottom disclaimer -->
+  <rect x="0" y="1400" width="1080" height="40" fill="#2C2C2C" opacity="0.04"/>
+  <text x="540" y="1425" text-anchor="middle" font-family="system-ui, 'PingFang SC', sans-serif" font-size="13" fill="#8B7355" opacity="0.7" letter-spacing="2">
+    母亲节传播重设计研究稿｜非官方发布物 · 记录她自己的热爱
+  </text>
+</svg>

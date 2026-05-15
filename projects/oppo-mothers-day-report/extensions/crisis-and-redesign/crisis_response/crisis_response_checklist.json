@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "version": "1.0",
+    "title": "OPPO母亲节文案事件危机应对 Checklist",
+    "description": "按时间阶段组织的事件危机应对行动清单，每个行动标注责任方、期限、风险和所需信息。",
+    "note": "本清单为研究型模拟工具，仅供学术研究和案例分析使用，不构成任何商业或法律建议。"
+  },
+  "stages": [
+    {
+      "stage": "0-2小时",
+      "stage_order": 1,
+      "description": "黄金响应窗口：确认问题、下架物料、成立危机小组",
+      "actions": [
+        {
+          "action_id": "A01",
+          "action": "第一时间下架全部争议物料（官方微博、小红书、官网、所有投放渠道）",
+          "owner": "运营团队 + 法务",
+          "deadline": "1小时内",
+          "risk_if_missing": "物料持续扩散，舆情规模扩大",
+          "public_message_needed": true,
+          "public_message_summary": "已下架争议物料，正在复盘",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "A02",
+          "action": "暂停同期相关投放（付费流量、开屏广告、信息流）",
+          "owner": "投放团队",
+          "deadline": "1小时内",
+          "risk_if_missing": "继续扩大负面曝光",
+          "public_message_needed": false,
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "A03",
+          "action": "成立危机应对小组（CEO/GR/法务/HR/品牌/公关）并召开首次碰头会",
+          "owner": "CEO办公室",
+          "deadline": "30分钟内",
+          "risk_if_missing": "应对碎片化，信息不统一",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "A04",
+          "action": "保留完整发布链路和内容审核记录（为后续复盘和自证准备）",
+          "owner": "产品部 + 法务",
+          "deadline": "2小时内",
+          "risk_if_missing": "后续复盘无据可查，无法明确责任链条",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "A05",
+          "action": "起草并发布第一版短声明（确认关注→已下架→正在复盘）",
+          "owner": "品牌 + 公关",
+          "deadline": "2小时内",
+          "risk_if_missing": "舆情发酵期无官方声音，舆论真空被猜测填满",
+          "public_message_needed": true,
+          "public_message_summary": "已下架，正在复盘，感谢反馈",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        }
+      ]
+    },
+    {
+      "stage": "2-6小时",
+      "stage_order": 2,
+      "description": "首次正式回应：承认问题、对内对外同步",
+      "actions": [
+        {
+          "action_id": "B01",
+          "action": "发布第一版正式回应（承认表达失当，不是公众误解；不下架前道歉）",
+          "owner": "品牌 + 公关",
+          "deadline": "4小时内",
+          "risk_if_missing": "舆情定性为\"甩锅\"，失去公信力窗口",
+          "public_message_needed": true,
+          "public_message_summary": "承认内容表达失当，已下架，正在整改",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "B02",
+          "action": "发布员工保护指引（不对外透露个人问责信息；提供法律支持）",
+          "owner": "HR + 法务",
+          "deadline": "4小时内",
+          "risk_if_missing": "员工被开盒，公司陷入被动",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "B03",
+          "action": "对内发布员工统一口径指引（禁止私自接受媒体采访）",
+          "owner": "HR + 公关",
+          "deadline": "4小时内",
+          "risk_if_missing": "员工个人发声与公司口径不一致",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "B04",
+          "action": "联系合作媒体同步处置口径，提供官方声明",
+          "owner": "GR + 公关",
+          "deadline": "6小时内",
+          "risk_if_missing": "合作媒体收到用户投诉但无官方回应",
+          "public_message_needed": false,
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        }
+      ]
+    },
+    {
+      "stage": "6-24小时",
+      "stage_order": 3,
+      "description": "详版道歉、整改框架、FAQ、媒体通稿",
+      "actions": [
+        {
+          "action_id": "C01",
+          "action": "发布详版道歉与整改说明（better_public_apology_draft.md）",
+          "owner": "品牌 + 公关",
+          "deadline": "12小时内",
+          "risk_if_missing": "舆情无法降温，被解读为\"认错不彻底\"",
+          "public_message_needed": true,
+          "public_message_summary": "详版道歉，五项整改承诺，保护员工声明",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "C02",
+          "action": "发布媒体Q&A（media_qa.md，覆盖12个标准问题）",
+          "owner": "公关",
+          "deadline": "18小时内",
+          "risk_if_missing": "媒体无法获得统一口径，自行猜测报道",
+          "public_message_needed": true,
+          "public_message_summary": "12个标准媒体问题及回答",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "C03",
+          "action": "发布反开盒声明（anti_doxxing_boundary_statement.md）",
+          "owner": "公关 + 法务",
+          "deadline": "18小时内",
+          "risk_if_missing": "开盒行为不受约束，员工被网暴",
+          "public_message_needed": true,
+          "public_message_summary": "欢迎批评品牌，反对开盒和个人骚扰",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "C04",
+          "action": "联系平台（微博、小红书）说明情况，请求协助反开盒",
+          "owner": "GR + 法务",
+          "deadline": "24小时内",
+          "risk_if_missing": "平台无法及时处置违规内容",
+          "public_message_needed": false,
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "C05",
+          "action": "制定内容审核机制整改初步方案（框架性）",
+          "owner": "产品 + 法务 + 品牌",
+          "deadline": "24小时内",
+          "risk_if_missing": "整改承诺无具体内容，公众认为只是公关话术",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        }
+      ]
+    },
+    {
+      "stage": "24-72小时",
+      "stage_order": 4,
+      "description": "机制整改承诺、反馈渠道、公众FAQ",
+      "actions": [
+        {
+          "action_id": "D01",
+          "action": "发布内容审核机制整改初步方案",
+          "owner": "产品 + 品牌",
+          "deadline": "48小时内",
+          "risk_if_missing": "整改承诺无实质内容，公众失去耐心",
+          "public_message_needed": true,
+          "public_message_summary": "四项机制整改方向",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "D02",
+          "action": "建立公开反馈渠道（官网/微博评论区/邮箱）",
+          "owner": "运营 + 产品",
+          "deadline": "48小时内",
+          "risk_if_missing": "公众无正常反馈渠道，转向投诉和举报",
+          "public_message_needed": true,
+          "public_message_summary": "提供反馈渠道，请公众监督",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "D03",
+          "action": "明确员工隐私保护承诺（官方声明中明确）",
+          "owner": "HR + 公关",
+          "deadline": "48小时内",
+          "risk_if_missing": "员工继续面临开盒和骚扰风险",
+          "public_message_needed": true,
+          "public_message_summary": "公司承担全部责任，反对开盒",
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "D04",
+          "action": "联系合作方同步处置进展和口径",
+          "owner": "GR",
+          "deadline": "72小时内",
+          "risk_if_missing": "合作方不知情，被媒体分别问询",
+          "public_message_needed": false,
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        }
+      ]
+    },
+    {
+      "stage": "2周内",
+      "stage_order": 5,
+      "description": "系统性复盘、机制建设、外部顾问引入",
+      "actions": [
+        {
+          "action_id": "E01",
+          "action": "发布内部复盘摘要（不对外公开具体个人问责细节）",
+          "owner": "品牌 + 法务",
+          "deadline": "7天内",
+          "risk_if_missing": "内部问责信息泄露，引发二次舆情",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "E02",
+          "action": "建立节日营销伦理审核机制（外部顾问委员会）",
+          "owner": "合规 + 品牌",
+          "deadline": "14天内",
+          "risk_if_missing": "无系统性预防，类似事件再次发生",
+          "public_message_needed": true,
+          "public_message_summary": "建立节日营销伦理审核外部顾问机制",
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "E03",
+          "action": "引入性别研究、传播学、法律外部顾问",
+          "owner": "合规 + GR",
+          "deadline": "14天内",
+          "risk_if_missing": "内部视角单一，无法识别跨圈层风险",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "E04",
+          "action": "发布修订后的品牌表达原则",
+          "owner": "品牌",
+          "deadline": "14天内",
+          "risk_if_missing": "无公开标准，公众无法监督",
+          "public_message_needed": true,
+          "public_message_summary": "修订后的品牌表达原则",
+          "internal_action_needed": false,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        },
+        {
+          "action_id": "E05",
+          "action": "母亲节主题传播暂停，直至完成外部伦理审核",
+          "owner": "品牌",
+          "deadline": "立即执行",
+          "risk_if_missing": "未完成整改即重启，再次引发舆情",
+          "public_message_needed": false,
+          "internal_action_needed": true,
+          "status_placeholder": "☐ 未执行  ☐ 已执行  ☐ 不适用"
+        }
+      ]
+    }
+  ]
+}

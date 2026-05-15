@@ -1309,6 +1309,19 @@ a:focus-visible {
 /* ---- Mobile Graph List View ---- */
 .graph-mobile-list { display: none; }
 
+.graph-mobile-heading {
+  display: none;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .graph-mobile-heading { display: block; }
+}
+
 @media (max-width: 720px) {
   .graph-mobile-list {
     display: block;

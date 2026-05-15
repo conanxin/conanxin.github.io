@@ -174,7 +174,9 @@
     activeJourneyStage = null;
 
     filterBar.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.motif === activeMotif);
+      const isActive = b.dataset.motif === activeMotif;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
     });
 
     routeList.querySelectorAll('.route-item').forEach(r => r.classList.remove('active'));
@@ -195,7 +197,9 @@
   function setActiveStatus(status) {
     activeStatus = status;
     statusBar.querySelectorAll('.status-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.status === activeStatus);
+      const isActive = b.dataset.status === activeStatus;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
     });
     renderWorks();
   }
@@ -350,7 +354,7 @@
     const fallback = document.getElementById('graph-fallback');
     if (!fallback) return;
 
-    let html = '<div class="graph-mobile-list">';
+    let html = '<h3 class="graph-mobile-heading">按母题浏览作品</h3><div class="graph-mobile-list">';
     motifs.forEach(m => {
       const motifWorks = works.filter(w => w.motifs && w.motifs.includes(m.id) && w.id !== 'letters-to-ama');
       if (motifWorks.length === 0) return;
@@ -614,7 +618,7 @@
       <p>${escapeHtml(work.recommended_entry_point)}</p>
     </div>` : '';
 
-    const contentWarning = work.content_warning ? `<div class="modal-content-warning">&#9888; ${escapeHtml(work.content_warning)}</div>` : '';
+    const contentWarning = work.content_warning ? `<div class="modal-content-warning" role="alert" aria-live="polite">&#9888; ${escapeHtml(work.content_warning)}</div>` : '';
 
     modalBody.innerHTML = `
       <div class="modal-header">

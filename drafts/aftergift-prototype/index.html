@@ -8,8 +8,10 @@
   <meta name="description" content="给一件旧礼物，一个体面的下一站。把关系结束后难以处理的礼物，变成可以被讲述、流转、出售、交换或捐出的故事物。">
   <link rel="stylesheet" href="style.css">
   <script>
-    /* ── Phase 2C: 模式检测（必须在其他脚本之前运行）────────────── */
-    window.__AF_MODE = new URLSearchParams(location.search).has('api') ? 'api' : 'static';
+    /* ── Phase 2D: 模式检测（必须在其他脚本之前运行）────────────── */
+    var _afParams = new URLSearchParams(location.search);
+    window.__AF_MODE  = _afParams.has('api') ? 'api' : 'static';
+    window.__AF_ADMIN = _afParams.has('admin') ? true : false;
     window.__AF_API_BASE = 'http://127.0.0.1:8091';
   </script>
 </head>
@@ -440,6 +442,61 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========== DEV AUTH PANEL (only visible in api mode) ========== -->
+  <section class="dev-auth-section" id="devAuthSection" style="display:none" aria-label="开发者身份面板">
+    <div class="container">
+      <div class="dev-auth-card">
+        <div class="dev-auth-header">
+          <svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M10 2a6 6 0 016 6c0 2.2-1 4.1-2.5 5.3L10 17l-3.5-3.7C5 12.1 4 10.2 4 8a6 6 0 016-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="7.5" cy="8" r="1" fill="currentColor"/><circle cx="12.5" cy="8" r="1" fill="currentColor"/></svg>
+          <span>开发者身份模拟</span>
+        </div>
+        <div class="dev-auth-body" id="devAuthBody">
+          <div class="dev-auth-loading" id="devAuthLoading">
+            <span>检测身份中…</span>
+          </div>
+        </div>
+        <div class="dev-auth-actions" id="devAuthActions" style="display:none">
+          <button class="btn btn-secondary btn-sm" id="devCreateIdentity" aria-label="创建匿名身份">
+            <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            创建匿名身份
+          </button>
+          <button class="btn btn-ghost btn-sm" id="devClearIdentity" aria-label="清除本地身份">
+            清除身份
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ADMIN REVIEW PANEL (only visible in admin mode) ========== -->
+  <section class="admin-review-section" id="adminReviewSection" style="display:none" aria-label="管理员审核队列">
+    <div class="container">
+      <div class="admin-review-header">
+        <h2 class="section-title">审核队列</h2>
+        <p class="section-subtitle">审查待发布故事，处理隐私和内容风险</p>
+      </div>
+      <div class="admin-token-area" id="adminTokenArea">
+        <div class="admin-token-card">
+          <label for="adminTokenInput" class="admin-token-label">Admin Token</label>
+          <div class="admin-token-row">
+            <input type="password" id="adminTokenInput" class="admin-token-input" placeholder="输入 Admin Token" autocomplete="off" aria-label="Admin Token 输入框">
+            <button class="btn btn-secondary" id="adminLoadQueue" aria-label="加载审核队列">
+              <svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M4 10c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16 10l2-2m0 0l2 2m-2-2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              加载队列
+            </button>
+          </div>
+          <p class="admin-token-hint">开发期 token：<code id="adminTokenHint">dev-admin-aftergift-001</code></p>
+        </div>
+      </div>
+      <div class="admin-queue" id="adminQueue" style="display:none" aria-live="polite">
+        <!-- Populated by JS -->
+      </div>
+      <div class="admin-queue-empty" id="adminQueueEmpty" style="display:none" role="status">
+        <p>当前没有待审核的故事。</p>
+      </div>
+    </div>
+  </section>
 
   <!-- ========== MODAL ========== -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">

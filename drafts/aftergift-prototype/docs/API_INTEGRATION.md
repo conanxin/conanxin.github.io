@@ -1,13 +1,14 @@
-# API Integration Guide — Aftergift Phase 2C
+# API Integration Guide — Aftergift Phase 2D
 
 ## 概述
 
-Aftergift 前端支持两种运行模式：
+Aftergift 前端支持三种运行模式：
 
 | 模式 | 数据来源 | 触发方式 | 适用场景 |
 |------|---------|---------|---------|
 | **static**（默认） | `data/gifts.json` 本地静态文件 | 无需任何参数 | GitHub Pages 草稿、静态演示 |
 | **api** | FastAPI 后端 `http://127.0.0.1:8091` | URL 带 `?api` 参数 | 本地前后端联调开发 |
+| **admin** | 同 api + 审核面板 | URL 带 `?api&admin` 参数 | 本地管理员审核联调 |
 
 **关键原则：线上 Demo 永不主动调用 localhost API。**
 
@@ -203,21 +204,59 @@ AftergiftAPI.favorite/unfavorite/report() 失败
 
 ---
 
-## 9. 当前限制
+## 9. Phase 2D 新增：匿名认证
 
-| 限制 | 说明 |
-|------|------|
-| **无用户认证** | 当前所有操作使用 `dev-user-001`，无真实用户系统 |
-| **admin token 明文** | `dev-admin-aftergift-001` 仅用于本地开发，Phase 2C 应引入 JWT |
-| **mock 审核** | `/api/review/mock` 使用正则规则，非真实 AI |
-| **收藏无持久化** | API 收藏写入 DB，但刷新页面后 localStorage 状态可能不同步 |
-| **CORS 仅限本地** | 后端 CORS 白名单仅含 `localhost:8080` 和 `127.0.0.1:8080` |
-| **无分页前端** | 前端一次性加载全量列表，未实现滚动加载 |
-| **发布后需刷新** | API 模式发布后，新卡片立即出现，但旧数据重新 fetch 会消失（DB 持久化 vs 前端内存） |
+### 匿名身份流程
+
+1. 用户点击 Dev Auth Panel 的"创建匿名身份"按钮
+2. 前端调用 `POST /api/auth/anonymous`
+3. 后端生成 `user_id` + `access_token`（格式：`af2d_...`）
+4. Token 存入前端 `localStorage['aftergift_token']`
+5. 后续所有用户操作自动在请求头附加 `Authorization: Bearer {token}`
+
+### Auth Token 管理（api-client.js）
+
+```javascript
+AftergiftAPI.createAnonymousUser()  // POST /api/auth/anonymous
+AftergiftAPI.getCurrentUser(token)  // GET /api/auth/me
+AftergiftAPI.getStoredToken()       // localStorage.getItem('aftergift_token')
+AftergiftAPI.storeToken(token)      // localStorage.setItem('aftergift_token', token)
+AftergiftAPI.clearStoredToken()     // localStorage.removeItem('aftergift_token')
+```
+
+### 受保护接口（需 Bearer Token）
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | `/api/gifts` | 发布礼物 |
+| POST | `/api/gifts/{id}/favorite` | 收藏 |
+| DELETE | `/api/gifts/{id}/favorite` | 取消收藏 |
+| POST | `/api/gifts/{id}/report` | 举报 |
+
+### Admin Token（sessionStorage）
+
+- 用途：管理员审核面板
+- 存储：`sessionStorage['aftergift_admin_token']`（会话级）
+- Header：`x-admin-token: {token}`
+- 开发 Token：`dev-admin-aftergift-001`
 
 ---
 
-## 10. 快速验证清单
+## 10. 当前限制
+
+| 限制 | 说明 |
+|------|------|
+| **Phase 2D Token 非 JWT** | 使用 HMAC-SHA256 签名，非标准 JWT，Phase 2E 可升级为 PyJWT |
+| **localStorage 风险** | Token 存 localStorage 可被 XSS 读取，内容审核是主要防护 |
+| **单一固定 admin token** | Phase 2D 无多管理员、无角色分级 |
+| **无 refresh token** | Token 过期后需重新创建匿名身份 |
+| **needs_edit 无通知** | 审核退回后无自动消息通知用户 |
+| **CORS 仅限本地** | 后端 CORS 白名单仅含 `localhost:8080` 和 `127.0.0.1:8080` |
+| **无分页前端** | 前端一次性加载全量列表，未实现滚动加载 |
+
+---
+
+## 11. 快速验证清单
 
 ```bash
 # 1. 启动后端

@@ -1052,4 +1052,261 @@
       .replace(/'/g, '&#39;');
   }
 
+    // ── Phase 2D: Dev Auth Panel ─────────────────────────────────────────────
+
+    function initDevAuthPanel() {
+      var mode = window.__AF_MODE || 'static';
+      if (mode !== 'api') return;
+      var section = document.getElementById('devAuthSection');
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!section || !body || !actions) return;
+      section.style.display = '';
+      var token = (window.AftergiftAPI && window.AftergiftAPI.getStoredToken) ? window.AftergiftAPI.getStoredToken() : null;
+      if (token) {
+        if (window.AftergiftAPI) {
+          window.AftergiftAPI.getCurrentUser(token).then(function(user) {
+            showDevAuthIdentity(user.anonymous_nickname, token);
+          }).catch(function() {
+            if (window.AftergiftAPI && window.AftergiftAPI.clearStoredToken) window.AftergiftAPI.clearStoredToken();
+            showDevAuthNoIdentity();
+          });
+        } else {
+          showDevAuthNoIdentity();
+        }
+      } else {
+        showDevAuthNoIdentity();
+      }
+    }
+
+    function showDevAuthIdentity(nickname) {
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!body || !actions) return;
+      body.innerHTML = '<div class="dev-auth-identity">' +
+        '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+        '<span>当前身份：<strong>' + escHtml(nickname) + '</strong></span>' +
+        '</div>';
+      actions.style.display = '';
+    }
+
+    function showDevAuthNoIdentity() {
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!body || !actions) return;
+      body.innerHTML = '<div class="dev-auth-no-identity">' +
+        '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+        '<span>当前身份：<em>未创建匿名身份</em></span>' +
+        '</div>';
+      actions.style.display = '';
+    }
+
+    function bindDevAuthEvents() {
+      var createBtn = document.getElementById('devCreateIdentity');
+      var clearBtn = document.getElementById('devClearIdentity');
+      if (createBtn) {
+        createBtn.addEventListener('click', function() {
+          if (!window.AftergiftAPI) { showToast('API 客户端未初始化'); return; }
+          createBtn.disabled = true;
+          createBtn.textContent = '创建中…';
+          window.AftergiftAPI.createAnonymousUser().then(function(result) {
+            window.AftergiftAPI.storeToken(result.access_token);
+            showDevAuthIdentity(result.anonymous_nickname);
+            showToast('匿名身份已创建：' + result.anonymous_nickname);
+            createBtn.disabled = false;
+            createBtn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>创建匿名身份';
+          }).catch(function() {
+            showToast('创建匿名身份失败，请检查 API 连接');
+            createBtn.disabled = false;
+            createBtn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>创建匿名身份';
+          });
+        });
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          if (window.AftergiftAPI && window.AftergiftAPI.clearStoredToken) window.AftergiftAPI.clearStoredToken();
+          showDevAuthNoIdentity();
+          showToast('本地身份已清除');
+        });
+      }
+    }
+
+    // ── Phase 2D: Admin Review Panel ──────────────────────────────────────────
+
+    var _adminToken = null;
+
+    function initAdminPanel() {
+      if (!window.__AF_ADMIN) return;
+      var section = document.getElementById('adminReviewSection');
+      if (!section) return;
+      section.style.display = '';
+      var loadBtn = document.getElementById('adminLoadQueue');
+      if (loadBtn) loadBtn.addEventListener('click', loadAdminQueue);
+      try {
+        var stored = sessionStorage.getItem('aftergift_admin_token');
+        if (stored) {
+          var input = document.getElementById('adminTokenInput');
+          if (input) input.value = stored;
+          _adminToken = stored;
+          loadAdminQueue();
+        }
+      } catch (e) {}
+    }
+
+    function loadAdminQueue() {
+      var tokenInput = document.getElementById('adminTokenInput');
+      var token = (tokenInput && tokenInput.value) ? tokenInput.value.trim() : '';
+      if (!token) { showToast('请输入 Admin Token'); return; }
+      _adminToken = token;
+      try { sessionStorage.setItem('aftergift_admin_token', token); } catch (e) {}
+      var queue = document.getElementById('adminQueue');
+      var area = document.getElementById('adminTokenArea');
+      if (queue) { queue.innerHTML = '<div class="admin-queue-loading">加载中…</div>'; queue.style.display = ''; }
+      if (area) area.style.display = 'none';
+      adminFetchGet('/api/admin/reviews?page=1', token).then(function(data) {
+        renderAdminQueue(data);
+      }).catch(function(err) {
+        if (queue) queue.style.display = 'none';
+        if (area) area.style.display = '';
+        showToast('加载失败：' + (err.message || '未知错误'));
+      });
+    }
+
+    function adminFetchGet(path, token) {
+      return fetch('http://127.0.0.1:8091' + path, {
+        headers: { 'X-Admin-Token': token }
+      }).then(function(r) {
+        return r.json().then(function(json) {
+          if (!r.ok) throw new Error((json && json.detail) || 'Request failed (' + r.status + ')');
+          return json.data || json;
+        });
+      });
+    }
+
+    function adminFetchPost(path, token, decision) {
+      return fetch('http://127.0.0.1:8091' + path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': token },
+        body: JSON.stringify({ decision: decision })
+      }).then(function(r) {
+        return r.json().then(function(json) {
+          if (!r.ok) throw new Error((json && json.detail) || 'Request failed (' + r.status + ')');
+          return json.data || json;
+        });
+      });
+    }
+
+    function renderAdminQueue(data) {
+      var queue = document.getElementById('adminQueue');
+      var empty = document.getElementById('adminQueueEmpty');
+      if (!queue) return;
+      var items = (data && data.items) ? data.items : [];
+      var total = (data && data.total) ? data.total : 0;
+      if (items.length === 0) {
+        queue.style.display = 'none';
+        if (empty) { empty.style.display = ''; return; }
+      }
+      if (empty) empty.style.display = 'none';
+      queue.style.display = '';
+      queue.innerHTML = '<div class="admin-queue-count">共 ' + total + ' 条待审</div>';
+      items.forEach(function(item) {
+        var riskLabel = { safe: '安全', caution: '注意', high_risk: '高风险' };
+        var riskClass = { safe: 'risk-safe', caution: 'risk-caution', high_risk: 'risk-high' };
+        var risk = item.risk_level || 'safe';
+        var statusLabel = { pending_review: '待审', needs_edit: '需修改' };
+        var st = item.status || 'pending_review';
+        var suggestions = (item.review_suggestions || []).map(function(s) {
+          var txt = typeof s === 'string' ? s : (s.suggestion || JSON.stringify(s));
+          return '<li>' + escHtml(txt) + '</li>';
+        }).join('');
+        var card = document.createElement('div');
+        card.className = 'admin-review-item';
+        card.setAttribute('data-gift-id', item.gift_id || '');
+        var badges = '<span class="admin-risk-badge ' + escHtml(riskClass[risk] || 'risk-safe') + '">' + escHtml(riskLabel[risk] || risk) + '</span>' +
+          '<span class="admin-status-badge">' + escHtml(statusLabel[st] || st) + '</span>' +
+          '<span class="admin-emotion-badge">' + escHtml(item.emotion || '') + '</span>';
+        var meta = '<div class="admin-review-meta"><span>' + escHtml(item.category || '') + '</span><span>' + escHtml(item.relation_label || item.relation_type || '') + '</span><span>' + escHtml(item.action_type || '') + '</span></div>';
+        var sugBlock = suggestions ? '<div class="admin-review-suggestions"><div class="admin-review-story-label">审核建议</div><ul>' + suggestions + '</ul></div>' : '';
+        var aiNotes = item.ai_review_notes ? '<div class="admin-review-ai-notes">' + escHtml(item.ai_review_notes) + '</div>' : '';
+        var btnId = 'btn-' + (item.gift_id || Math.random());
+        card.innerHTML =
+          '<div class="admin-review-header">' +
+            '<div class="admin-review-title">' + escHtml(item.title || '') + '</div>' +
+            '<div class="admin-review-badges">' + badges + '</div>' +
+          '</div>' +
+          meta +
+          '<div class="admin-review-story-label">一句话故事</div>' +
+          '<div class="admin-review-story-excerpt">' + escHtml(item.short_story || '') + '</div>' +
+          '<div class="admin-review-story-label">完整故事</div>' +
+          '<div class="admin-review-story-full">' + escHtml(item.full_story || '') + '</div>' +
+          sugBlock + aiNotes +
+          '<div class="admin-review-actions">' +
+            '<button class="btn btn-primary btn-sm admin-decision-btn" data-action="approve" data-gift-id="' + escHtml(item.gift_id || '') + '">批准公开</button>' +
+            '<button class="btn btn-secondary btn-sm admin-decision-btn" data-action="needs_edit" data-gift-id="' + escHtml(item.gift_id || '') + '">退回修改</button>' +
+            '<button class="btn btn-ghost btn-sm admin-decision-btn admin-reject-btn" data-action="reject" data-gift-id="' + escHtml(item.gift_id || '') + '">拒绝发布</button>' +
+          '</div>' +
+          '<div class="admin-decision-feedback"></div>';
+        queue.appendChild(card);
+      });
+      queue.querySelectorAll('.admin-decision-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var action = btn.getAttribute('data-action');
+          var giftId = btn.getAttribute('data-gift-id');
+          submitAdminDecision(giftId, action, btn);
+        });
+      });
+    }
+
+    function submitAdminDecision(giftId, decision, btnEl) {
+      var label = { approve: '批准', needs_edit: '退回修改', reject: '拒绝' };
+      if (!confirm('确认要' + (label[decision] || decision) + '这个故事吗？')) return;
+      btnEl.disabled = true;
+      btnEl.textContent = '处理中…';
+      adminFetchPost('/api/admin/reviews/' + encodeURIComponent(giftId) + '/decision', _adminToken, decision).then(function(data) {
+        var feedback = btnEl.parentNode.nextElementSibling;
+        if (feedback && feedback.className === 'admin-decision-feedback') {
+          feedback.innerHTML = '<span class="admin-decision-ok">&#10003; ' + escHtml(label[decision]) + '成功（' + escHtml(data.new_status || '') + '）</span>';
+        }
+        btnEl.textContent = '已处理';
+        btnEl.disabled = true;
+        setTimeout(loadAdminQueue, 1500);
+      }).catch(function(err) {
+        var feedback = btnEl.parentNode.nextElementSibling;
+        if (feedback && feedback.className === 'admin-decision-feedback') {
+          feedback.innerHTML = '<span class="admin-decision-err">&#10007; 失败：' + escHtml(err.message || '未知错误') + '</span>';
+        }
+        btnEl.disabled = false;
+        btnEl.textContent = label[decision] || decision;
+      });
+    }
+
+    // ── Phase 2D: Auth Gates ─────────────────────────────────────────────────
+
+    function _checkAuth() {
+      var mode = window.__AF_MODE || 'static';
+      if (mode !== 'api') return true;
+      if (!window.AftergiftAPI) return true;
+      var token = window.AftergiftAPI.getStoredToken();
+      return !!token;
+    }
+
+    function _getAuthToken() {
+      if (!window.AftergiftAPI) return null;
+      return window.AftergiftAPI.getStoredToken();
+    }
+
+    // ── Phase 2D: Init ────────────────────────────────────────────────────────
+
+    function initPhase2D() {
+      initDevAuthPanel();
+      bindDevAuthEvents();
+      initAdminPanel();
+    }
+
+    // Run Phase 2D init
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPhase2D);
+    } else {
+      initPhase2D();
+    }
 })();

@@ -219,7 +219,6 @@
    */
   function createGift(payload) {
     if (MODE === 'api') {
-      // Map frontend field names to backend GiftCreate schema
       var body = {
         title:             payload.name,
         category:          payload.type,
@@ -233,9 +232,12 @@
         city_blur:         payload.city || '',
         is_anonymous:      !!payload.anonymous,
       };
+      var token = getStoredToken();
+      var headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
       return apiFetch('/api/gifts', {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers:  headers,
         body:    JSON.stringify(body)
       }).then(unwrap);
     }
@@ -270,9 +272,12 @@
 
   function favoriteGift(id) {
     if (MODE === 'api') {
+      var token = getStoredToken();
+      var headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
       return apiFetch('/api/gifts/' + encodeURIComponent(id) + '/favorite', {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers:  headers
       }).then(unwrap);
     }
     return Promise.resolve({ ok: true, mode: 'static' });
@@ -280,8 +285,12 @@
 
   function unfavoriteGift(id) {
     if (MODE === 'api') {
+      var token = getStoredToken();
+      var headers = {};
+      if (token) headers['Authorization'] = 'Bearer ' + token;
       return apiFetch('/api/gifts/' + encodeURIComponent(id) + '/favorite', {
-        method:  'DELETE'
+        method:  'DELETE',
+        headers:  headers
       }).then(unwrap);
     }
     return Promise.resolve({ ok: true, mode: 'static' });
@@ -296,9 +305,12 @@
    */
   function reportGift(id, payload) {
     if (MODE === 'api') {
+      var token = getStoredToken();
+      var headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
       return apiFetch('/api/gifts/' + encodeURIComponent(id) + '/report', {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers:  headers,
         body:    JSON.stringify({
           reason: payload.reason  || 'privacy_risk',
           detail: payload.detail || ''
@@ -317,19 +329,110 @@
     });
   }
 
+  // ── Auth ───────────────────────────────────────────────────────────────────
+
+  /**
+   * Create anonymous user identity.
+   * POST /api/auth/anonymous
+   * @returns {Promise<{user_id, anonymous_nickname, access_token, token_type}>}
+   */
+  function createAnonymousUser() {
+    if (MODE === 'api') {
+      return apiFetch('/api/auth/anonymous', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(unwrap);
+    }
+    // Static mode: return a demo identity
+    return Promise.resolve({
+      user_id: 'demo-user-001',
+      anonymous_nickname: '匿名整理者 0001',
+      access_token: 'demo-token-0001',
+      token_type: 'Bearer'
+    });
+  }
+
+  /**
+   * Get current user info.
+   * GET /api/auth/me
+   * @param {string} token - Bearer token
+   * @returns {Promise<{user_id, anonymous_nickname, status, created_at}>}
+   */
+  function getCurrentUser(token) {
+    if (MODE === 'api') {
+      return apiFetch('/api/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      }).then(unwrap);
+    }
+    return Promise.resolve({
+      user_id: 'demo-user-001',
+      anonymous_nickname: '匿名整理者 0001',
+      status: 'active'
+    });
+  }
+
+  /**
+   * Get stored token from localStorage.
+   */
+  function getStoredToken() {
+    try {
+      return localStorage.getItem('aftergift_token') || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /**
+   * Store token in localStorage.
+   */
+  function storeToken(token) {
+    try {
+      localStorage.setItem('aftergift_token', token);
+    } catch (e) {}
+  }
+
+  /**
+   * Clear stored token.
+   */
+  function clearStoredToken() {
+    try {
+      localStorage.removeItem('aftergift_token');
+    } catch (e) {}
+  }
+
+  /**
+   * Build Authorization header value.
+   */
+  function authHeader(token) {
+    return token ? 'Bearer ' + token : null;
+  }
+
   // ── Export ─────────────────────────────────────────────────────────────────
 
   window.AftergiftAPI = {
     MODE:       MODE,
     API_BASE:   API_BASE,
+    // Auth
+    createAnonymousUser: createAnonymousUser,
+    getCurrentUser:      getCurrentUser,
+    getStoredToken:      getStoredToken,
+    storeToken:          storeToken,
+    clearStoredToken:    clearStoredToken,
+    authHeader:          authHeader,
+    // Gifts
     listGifts:      listGifts,
     getGift:        getGift,
     createGift:     createGift,
+    // Story
     reviewStory:    reviewStory,
+    // Favorites
     favoriteGift:   favoriteGift,
     unfavoriteGift: unfavoriteGift,
+    // Report
     reportGift:     reportGift,
+    // Health
     checkHealth:    checkHealth,
+    // Normalize
     normalizeGift:   normalizeGift,
   };
 

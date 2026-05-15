@@ -45,6 +45,33 @@ python3 -m http.server 8080
 
 ---
 
+## Phase 2D：匿名身份 + 管理员审核 UI（可选）
+
+Phase 2D 在 Phase 2C API 联调基础上，增加了匿名身份认证和管理员审核 UI。
+
+### 1. 匿名身份（Dev Auth Panel）
+
+在 API 模式下，右下角会显示 Dev Auth Panel：
+
+```
+http://localhost:8080/?api
+```
+
+点击「创建匿名身份」按钮 → 调用 `POST /api/auth/anonymous` → 获得 token 并存入 `localStorage['aftergift_token']`。
+之后所有发布/收藏/举报请求自动附加 `Authorization: Bearer {token}`。
+
+### 2. 管理员审核 UI
+
+访问审核面板：
+
+```
+http://localhost:8080/?api&admin=1
+```
+
+输入 admin token（开发环境：`dev-admin-aftergift-001`），加载审核队列，可对礼物执行 approve / needs_edit / reject 操作。
+
+---
+
 ## Phase 2C：本地前后端联调（可选）
 
 原型默认以 **static 模式**运行（读取 `data/gifts.json`），不依赖后端。

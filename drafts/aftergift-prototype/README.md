@@ -43,13 +43,84 @@ python3 -m http.server 8080
 
 或者直接用浏览器打开 `index.html`（但部分浏览器会因 CORS 限制无法加载 JSON 数据）。
 
+---
+
+## Phase 2D：匿名身份 + 管理员审核 UI（可选）
+
+Phase 2D 在 Phase 2C API 联调基础上，增加了匿名身份认证和管理员审核 UI。
+
+### 1. 匿名身份（Dev Auth Panel）
+
+在 API 模式下，右下角会显示 Dev Auth Panel：
+
+```
+http://localhost:8080/?api
+```
+
+点击「创建匿名身份」按钮 → 调用 `POST /api/auth/anonymous` → 获得 token 并存入 `localStorage['aftergift_token']`。
+之后所有发布/收藏/举报请求自动附加 `Authorization: Bearer {token}`。
+
+### 2. 管理员审核 UI
+
+访问审核面板：
+
+```
+http://localhost:8080/?api&admin=1
+```
+
+输入 admin token（开发环境：`dev-admin-aftergift-001`），加载审核队列，可对礼物执行 approve / needs_edit / reject 操作。
+
+---
+
+## Phase 2C：本地前后端联调（可选）
+
+原型默认以 **static 模式**运行（读取 `data/gifts.json`），不依赖后端。
+
+如需启用本地 API 联调：
+
+### 1. 启动后端
+
+```bash
+cd ~/projects/aftergift-backend-mvp/backend
+python scripts/init_db.py          # 首次需初始化数据库
+. .venv/bin/activate               # 激活虚拟环境
+uvicorn app.main:app --host 127.0.0.1 --port 8091
+```
+
+### 2. 启动前端
+
+```bash
+cd ~/projects/aftergift-prototype
+python3 -m http.server 8080
+```
+
+### 3. 进入联调模式
+
+在浏览器访问：
+
+```
+http://127.0.0.1:8080/?api
+```
+
+页面底部应显示：`当前：本地 FastAPI 联调模式`
+
+### 4. 模式说明
+
+| 模式 | 触发方式 | 数据来源 | GitHub Pages 兼容 |
+|------|---------|---------|----------------|
+| **static**（默认） | 无参数 | `data/gifts.json` | ✅ 完全兼容 |
+| **api** | `?api` | FastAPI `127.0.0.1:8091` | ❌ 需本地后端 |
+
+**详细文档：** 请阅读 [`docs/API_INTEGRATION.md`](docs/API_INTEGRATION.md)
+
 ## 文件结构
 
 ```
 aftergift-prototype/
 ├── index.html          # 主页面
 ├── style.css           # 样式表（全自包含，无 CDN）
-├── app.js              # 前端交互逻辑（Phase 1D 增强版：AI 编辑建议 · 收藏 · 阅读更多）
+├── app.js              # 前端交互逻辑（Phase 1D 增强版 + Phase 2C 双模式支持）
+├── api-client.js       # API 适配器（Phase 2C 新增：static/api 双模式）
 ├── data/
 │   └── gifts.json      # 示例礼物数据（14 条）
 ├── docs/               # 产品交接文档（Phase 1E 新增）
@@ -59,7 +130,8 @@ aftergift-prototype/
 │   ├── TECHNICAL_NOTES.md   # 技术架构说明（文件结构/前端架构/数据结构/后端路径）
 │   ├── QA_CHECKLIST.md      # 18 类手动测试清单（含步骤/预期/状态）
 │   ├── ROADMAP.md           # 5 阶段路线图（Phase 2-5 + 长期愿景）
-│   └── CHANGELOG.md         # 完整变更记录（Phase 1A ~ 1E）
+│   ├── CHANGELOG.md         # 完整变更记录（Phase 1A ~ 1E）
+│   └── API_INTEGRATION.md   # Phase 2C API 联调指南（static/api 双模式说明）
 └── README.md           # 本文件
 ```
 

@@ -74,8 +74,16 @@
   window.toggleFavorite = function (id) {
     if (favorites[id]) {
       delete favorites[id];
+      var mode = window.__AF_MODE || 'static';
+      if (mode === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.unfavoriteGift(id).catch(function () {});
+      }
     } else {
       favorites[id] = true;
+      var mode2 = window.__AF_MODE || 'static';
+      if (mode2 === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.favoriteGift(id).catch(function () {});
+      }
     }
     saveFavorites();
     // Update heart icon on current card
@@ -101,15 +109,58 @@
 
   // ── Data ──
   function loadGifts() {
+    // Detect mode from global set by inline <script> in index.html
+    var mode = window.__AF_MODE || 'static';
+
+    if (mode === 'api' && window.AftergiftAPI) {
+      // API mode: call FastAPI backend
+      window.AftergiftAPI.listGifts({}, []).then(function (result) {
+        gifts = result.items;
+        showModeIndicator('api', result.items.length);
+        renderGifts();
+      }).catch(function () {
+        // API unreachable: fall back to static data
+        loadStaticGifts();
+        showModeIndicator('fallback', 0);
+      });
+    } else {
+      // Static mode: read local JSON
+      loadStaticGifts();
+      if (mode !== 'api') {
+        showModeIndicator('static', -1); // -1 = unknown count (loadGifts called before fetch)
+      }
+    }
+  }
+
+  function loadStaticGifts() {
     fetch('./data/gifts.json')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         gifts = data;
+        showModeIndicator('static', data.length);
         renderGifts();
       })
       .catch(function () {
         giftGrid.innerHTML = '<div class="empty-state"><p class="empty-state-line">无法加载礼物数据，请通过本地服务器打开（python3 -m http.server 8080）。</p></div>';
       });
+  }
+
+  // ── Mode indicator (footer) ──
+  function showModeIndicator(mode, count) {
+    var el = document.getElementById('footerModeIndicator');
+    if (!el) return;
+    var labels = {
+      static:   '示例数据模式 · ' + (count >= 0 ? count + ' 件礼物' : ''),
+      api:       '本地 API 联调模式 · ' + count + ' 件礼物',
+      fallback:  'API 连接失败，已回退到示例数据',
+    };
+    var msgs = {
+      static:   '当前：静态示例数据（GitHub Pages 原型）',
+      api:       '当前：本地 FastAPI 联调模式',
+      fallback:  'API 无法连接，已回退到示例数据',
+    };
+    el.textContent = msgs[mode] || '';
+    el.style.display = '';
   }
 
   // ── Render ──
@@ -302,11 +353,23 @@
       toggleFavorite(id || gift.id);
       return;
     }
+    if (action === 'report') {
+      var mode = window.__AF_MODE || 'static';
+      if (mode === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.reportGift(id || gift.id, { reason: 'privacy_risk', detail: '' }).then(function () {
+          showToast('感谢反馈，我们已收到举报，会尽快审核该故事');
+        }).catch(function () {
+          showToast('举报已记录（本地演示）');
+        });
+      } else {
+        showToast('感谢反馈，我们已收到举报，会尽快审核该故事');
+      }
+      return;
+    }
     var messages = {
       take:     '意向已记录：你想带走「' + gift.name + '」（原型阶段，无真实交易）',
       exchange: '交换意向已记录：你想用礼物交换「' + gift.name + '」（原型阶段，请自行约定）',
       claim:    '领取意向已记录：「' + gift.name + '」（原型阶段，请自行联系发布者）',
-      report:   '感谢反馈，我们已收到举报，会尽快审核该故事'
     };
     showToast(messages[action] || '已收到你的操作');
   }
@@ -430,6 +493,71 @@
     var excerpt = (document.getElementById('excerpt') || {}).value || '';
     var fullStory = (document.getElementById('fullStory') || {}).value || '';
     var combined = excerpt + '\n' + fullStory;
+
+    var mode = window.__AF_MODE || 'static';
+
+    // Phase 2C: Try API review first in api mode
+    if (mode === 'api' && window.AftergiftAPI) {
+      window.AftergiftAPI.reviewStory(excerpt, fullStory).then(function (apiResult) {
+        if (apiResult) {
+          renderAPIReview(apiResult, combined);
+        } else {
+          runLocalReview(combined);
+        }
+      }).catch(function () {
+        runLocalReview(combined);
+      });
+    } else {
+      runLocalReview(combined);
+    }
+  }
+
+  function renderAPIReview(apiResult, combined) {
+    // Render results from FastAPI backend review endpoint
+    var level = apiResult.risk_level || 'safe';
+    var issues = apiResult.issues || [];
+    var totalRisks = issues.length;
+    var levelText, levelClass;
+    if (level === 'safe') { levelText = '适合公开'; levelClass = 'level-safe'; }
+    else if (level === 'caution') { levelText = '建议修改后公开'; levelClass = 'level-caution'; }
+    else { levelText = '不建议直接公开'; levelClass = 'level-risk'; }
+
+    var icons = {
+      safe:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      caution: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+      risk:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5M12 15.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+    };
+
+    var html = '<div class="ai-review-header ' + levelClass + '">' +
+      icons[level] + '<span>' + levelText + '</span>' +
+      '<span class="ai-review-count">（' + totalRisks + ' 处风险）</span>' +
+      '</div>';
+
+    if (issues.length > 0) {
+      html += '<div class="ai-review-section">';
+      html += '<div class="ai-review-subject">审核意见</div>';
+      issues.forEach(function (issue) {
+        var issueClass = issue.type === 'identity' ? 'ai-issue-warn' : (issue.type === 'attack' ? 'ai-issue-risk' : 'ai-issue-warn');
+        html += '<div class="ai-review-issue ' + issueClass + '">' + escHtml(issue.msg || issue) + '</div>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="ai-review-section"><div class="ai-review-issue ai-issue-safe">未检测到明显风险内容。</div></div>';
+    }
+
+    if (apiResult.suggestions && apiResult.suggestions.length > 0) {
+      html += '<div class="ai-review-section"><div class="ai-review-subject">修改建议</div>';
+      apiResult.suggestions.forEach(function (s) {
+        html += '<div class="ai-review-issue ai-issue-note">' + escHtml(s) + '</div>';
+      });
+      html += '</div>';
+    }
+
+    aiReviewPanel.innerHTML = html;
+    aiReviewPanel.classList.add('show');
+  }
+
+  function runLocalReview(combined) {
 
     // Gather findings
     var identityFindings = [];
@@ -718,11 +846,58 @@
       tags: [d.type]
     };
 
+    // Phase 2C: API mode publish
+    var mode = window.__AF_MODE || 'static';
+    if (mode === 'api' && window.AftergiftAPI) {
+      window.AftergiftAPI.createGift(d).then(function (result) {
+        // Update temp gift with real ID if returned
+        if (result && result.gift_id) {
+          newGift.id = result.gift_id;
+          if (result.status) {
+            newGift.status = result.status === 'published' ? statusMap[d.action] : '审核中';
+          }
+        }
+        var publishMsg = '礼物已发布';
+        if (result && result.review) {
+          if (result.review.risk_level === 'safe') {
+            publishMsg = '礼物已发布';
+          } else if (result.review.risk_level === 'caution') {
+            publishMsg = '礼物已暂存，建议修改后再提交';
+          } else {
+            publishMsg = '礼物已提交审核';
+          }
+        }
+        gifts.unshift(newGift);
+        displayedCount = INITIAL_DISPLAY;
+        renderGifts();
+        publishForm.reset();
+        resetFormState();
+        scrollToSection('stories');
+        showToast(publishMsg + '，愿你与它好好告别');
+      }).catch(function () {
+        // API error: still show locally
+        gifts.unshift(newGift);
+        displayedCount = INITIAL_DISPLAY;
+        renderGifts();
+        publishForm.reset();
+        resetFormState();
+        scrollToSection('stories');
+        showToast('礼物已发布（本地演示），API 提交失败');
+      });
+      return;
+    }
+
+    // Static mode: local demo
     gifts.unshift(newGift);
     displayedCount = INITIAL_DISPLAY;
     renderGifts();
-
     publishForm.reset();
+    resetFormState();
+    scrollToSection('stories');
+    showToast('礼物已发布，愿你与它好好告别');
+  }
+
+  function resetFormState() {
     emotionBtns.forEach(function (b) {
       b.classList.remove('selected');
       b.setAttribute('aria-pressed', 'false');
@@ -737,9 +912,6 @@
     if (aiReviewPanel) aiReviewPanel.classList.remove('show');
     if (storyQualityHint) storyQualityHint.style.display = 'none';
     if (fullStoryInput) fullStoryInput.style.height = 'auto';
-
-    scrollToSection('stories');
-    showToast('礼物已发布，愿你与它好好告别');
   }
 
   // ── Filter ──
@@ -757,7 +929,20 @@
     });
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
-    renderGifts();
+
+    var mode = window.__AF_MODE || 'static';
+    if (mode === 'api' && window.AftergiftAPI) {
+      // API mode: re-query with new filter
+      var filterParam = (filter === 'all' || filter === 'favorites') ? {} : { action_type: filter };
+      window.AftergiftAPI.listGifts(filterParam, []).then(function (result) {
+        gifts = result.items;
+        renderGifts();
+      }).catch(function () {
+        showToast('无法加载筛选结果，请检查 API 连接');
+      });
+    } else {
+      renderGifts();
+    }
   }
 
   // ── Load More ──
@@ -867,4 +1052,261 @@
       .replace(/'/g, '&#39;');
   }
 
+    // ── Phase 2D: Dev Auth Panel ─────────────────────────────────────────────
+
+    function initDevAuthPanel() {
+      var mode = window.__AF_MODE || 'static';
+      if (mode !== 'api') return;
+      var section = document.getElementById('devAuthSection');
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!section || !body || !actions) return;
+      section.style.display = '';
+      var token = (window.AftergiftAPI && window.AftergiftAPI.getStoredToken) ? window.AftergiftAPI.getStoredToken() : null;
+      if (token) {
+        if (window.AftergiftAPI) {
+          window.AftergiftAPI.getCurrentUser(token).then(function(user) {
+            showDevAuthIdentity(user.anonymous_nickname, token);
+          }).catch(function() {
+            if (window.AftergiftAPI && window.AftergiftAPI.clearStoredToken) window.AftergiftAPI.clearStoredToken();
+            showDevAuthNoIdentity();
+          });
+        } else {
+          showDevAuthNoIdentity();
+        }
+      } else {
+        showDevAuthNoIdentity();
+      }
+    }
+
+    function showDevAuthIdentity(nickname) {
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!body || !actions) return;
+      body.innerHTML = '<div class="dev-auth-identity">' +
+        '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+        '<span>当前身份：<strong>' + escHtml(nickname) + '</strong></span>' +
+        '</div>';
+      actions.style.display = '';
+    }
+
+    function showDevAuthNoIdentity() {
+      var body = document.getElementById('devAuthBody');
+      var actions = document.getElementById('devAuthActions');
+      if (!body || !actions) return;
+      body.innerHTML = '<div class="dev-auth-no-identity">' +
+        '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 18c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>' +
+        '<span>当前身份：<em>未创建匿名身份</em></span>' +
+        '</div>';
+      actions.style.display = '';
+    }
+
+    function bindDevAuthEvents() {
+      var createBtn = document.getElementById('devCreateIdentity');
+      var clearBtn = document.getElementById('devClearIdentity');
+      if (createBtn) {
+        createBtn.addEventListener('click', function() {
+          if (!window.AftergiftAPI) { showToast('API 客户端未初始化'); return; }
+          createBtn.disabled = true;
+          createBtn.textContent = '创建中…';
+          window.AftergiftAPI.createAnonymousUser().then(function(result) {
+            window.AftergiftAPI.storeToken(result.access_token);
+            showDevAuthIdentity(result.anonymous_nickname);
+            showToast('匿名身份已创建：' + result.anonymous_nickname);
+            createBtn.disabled = false;
+            createBtn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>创建匿名身份';
+          }).catch(function() {
+            showToast('创建匿名身份失败，请检查 API 连接');
+            createBtn.disabled = false;
+            createBtn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" width="14" height="14" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>创建匿名身份';
+          });
+        });
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+          if (window.AftergiftAPI && window.AftergiftAPI.clearStoredToken) window.AftergiftAPI.clearStoredToken();
+          showDevAuthNoIdentity();
+          showToast('本地身份已清除');
+        });
+      }
+    }
+
+    // ── Phase 2D: Admin Review Panel ──────────────────────────────────────────
+
+    var _adminToken = null;
+
+    function initAdminPanel() {
+      if (!window.__AF_ADMIN) return;
+      var section = document.getElementById('adminReviewSection');
+      if (!section) return;
+      section.style.display = '';
+      var loadBtn = document.getElementById('adminLoadQueue');
+      if (loadBtn) loadBtn.addEventListener('click', loadAdminQueue);
+      try {
+        var stored = sessionStorage.getItem('aftergift_admin_token');
+        if (stored) {
+          var input = document.getElementById('adminTokenInput');
+          if (input) input.value = stored;
+          _adminToken = stored;
+          loadAdminQueue();
+        }
+      } catch (e) {}
+    }
+
+    function loadAdminQueue() {
+      var tokenInput = document.getElementById('adminTokenInput');
+      var token = (tokenInput && tokenInput.value) ? tokenInput.value.trim() : '';
+      if (!token) { showToast('请输入 Admin Token'); return; }
+      _adminToken = token;
+      try { sessionStorage.setItem('aftergift_admin_token', token); } catch (e) {}
+      var queue = document.getElementById('adminQueue');
+      var area = document.getElementById('adminTokenArea');
+      if (queue) { queue.innerHTML = '<div class="admin-queue-loading">加载中…</div>'; queue.style.display = ''; }
+      if (area) area.style.display = 'none';
+      adminFetchGet('/api/admin/reviews?page=1', token).then(function(data) {
+        renderAdminQueue(data);
+      }).catch(function(err) {
+        if (queue) queue.style.display = 'none';
+        if (area) area.style.display = '';
+        showToast('加载失败：' + (err.message || '未知错误'));
+      });
+    }
+
+    function adminFetchGet(path, token) {
+      return fetch('http://127.0.0.1:8091' + path, {
+        headers: { 'X-Admin-Token': token }
+      }).then(function(r) {
+        return r.json().then(function(json) {
+          if (!r.ok) throw new Error((json && json.detail) || 'Request failed (' + r.status + ')');
+          return json.data || json;
+        });
+      });
+    }
+
+    function adminFetchPost(path, token, decision) {
+      return fetch('http://127.0.0.1:8091' + path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': token },
+        body: JSON.stringify({ decision: decision })
+      }).then(function(r) {
+        return r.json().then(function(json) {
+          if (!r.ok) throw new Error((json && json.detail) || 'Request failed (' + r.status + ')');
+          return json.data || json;
+        });
+      });
+    }
+
+    function renderAdminQueue(data) {
+      var queue = document.getElementById('adminQueue');
+      var empty = document.getElementById('adminQueueEmpty');
+      if (!queue) return;
+      var items = (data && data.items) ? data.items : [];
+      var total = (data && data.total) ? data.total : 0;
+      if (items.length === 0) {
+        queue.style.display = 'none';
+        if (empty) { empty.style.display = ''; return; }
+      }
+      if (empty) empty.style.display = 'none';
+      queue.style.display = '';
+      queue.innerHTML = '<div class="admin-queue-count">共 ' + total + ' 条待审</div>';
+      items.forEach(function(item) {
+        var riskLabel = { safe: '安全', caution: '注意', high_risk: '高风险' };
+        var riskClass = { safe: 'risk-safe', caution: 'risk-caution', high_risk: 'risk-high' };
+        var risk = item.risk_level || 'safe';
+        var statusLabel = { pending_review: '待审', needs_edit: '需修改' };
+        var st = item.status || 'pending_review';
+        var suggestions = (item.review_suggestions || []).map(function(s) {
+          var txt = typeof s === 'string' ? s : (s.suggestion || JSON.stringify(s));
+          return '<li>' + escHtml(txt) + '</li>';
+        }).join('');
+        var card = document.createElement('div');
+        card.className = 'admin-review-item';
+        card.setAttribute('data-gift-id', item.gift_id || '');
+        var badges = '<span class="admin-risk-badge ' + escHtml(riskClass[risk] || 'risk-safe') + '">' + escHtml(riskLabel[risk] || risk) + '</span>' +
+          '<span class="admin-status-badge">' + escHtml(statusLabel[st] || st) + '</span>' +
+          '<span class="admin-emotion-badge">' + escHtml(item.emotion || '') + '</span>';
+        var meta = '<div class="admin-review-meta"><span>' + escHtml(item.category || '') + '</span><span>' + escHtml(item.relation_label || item.relation_type || '') + '</span><span>' + escHtml(item.action_type || '') + '</span></div>';
+        var sugBlock = suggestions ? '<div class="admin-review-suggestions"><div class="admin-review-story-label">审核建议</div><ul>' + suggestions + '</ul></div>' : '';
+        var aiNotes = item.ai_review_notes ? '<div class="admin-review-ai-notes">' + escHtml(item.ai_review_notes) + '</div>' : '';
+        var btnId = 'btn-' + (item.gift_id || Math.random());
+        card.innerHTML =
+          '<div class="admin-review-header">' +
+            '<div class="admin-review-title">' + escHtml(item.title || '') + '</div>' +
+            '<div class="admin-review-badges">' + badges + '</div>' +
+          '</div>' +
+          meta +
+          '<div class="admin-review-story-label">一句话故事</div>' +
+          '<div class="admin-review-story-excerpt">' + escHtml(item.short_story || '') + '</div>' +
+          '<div class="admin-review-story-label">完整故事</div>' +
+          '<div class="admin-review-story-full">' + escHtml(item.full_story || '') + '</div>' +
+          sugBlock + aiNotes +
+          '<div class="admin-review-actions">' +
+            '<button class="btn btn-primary btn-sm admin-decision-btn" data-action="approve" data-gift-id="' + escHtml(item.gift_id || '') + '">批准公开</button>' +
+            '<button class="btn btn-secondary btn-sm admin-decision-btn" data-action="needs_edit" data-gift-id="' + escHtml(item.gift_id || '') + '">退回修改</button>' +
+            '<button class="btn btn-ghost btn-sm admin-decision-btn admin-reject-btn" data-action="reject" data-gift-id="' + escHtml(item.gift_id || '') + '">拒绝发布</button>' +
+          '</div>' +
+          '<div class="admin-decision-feedback"></div>';
+        queue.appendChild(card);
+      });
+      queue.querySelectorAll('.admin-decision-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var action = btn.getAttribute('data-action');
+          var giftId = btn.getAttribute('data-gift-id');
+          submitAdminDecision(giftId, action, btn);
+        });
+      });
+    }
+
+    function submitAdminDecision(giftId, decision, btnEl) {
+      var label = { approve: '批准', needs_edit: '退回修改', reject: '拒绝' };
+      if (!confirm('确认要' + (label[decision] || decision) + '这个故事吗？')) return;
+      btnEl.disabled = true;
+      btnEl.textContent = '处理中…';
+      adminFetchPost('/api/admin/reviews/' + encodeURIComponent(giftId) + '/decision', _adminToken, decision).then(function(data) {
+        var feedback = btnEl.parentNode.nextElementSibling;
+        if (feedback && feedback.className === 'admin-decision-feedback') {
+          feedback.innerHTML = '<span class="admin-decision-ok">&#10003; ' + escHtml(label[decision]) + '成功（' + escHtml(data.new_status || '') + '）</span>';
+        }
+        btnEl.textContent = '已处理';
+        btnEl.disabled = true;
+        setTimeout(loadAdminQueue, 1500);
+      }).catch(function(err) {
+        var feedback = btnEl.parentNode.nextElementSibling;
+        if (feedback && feedback.className === 'admin-decision-feedback') {
+          feedback.innerHTML = '<span class="admin-decision-err">&#10007; 失败：' + escHtml(err.message || '未知错误') + '</span>';
+        }
+        btnEl.disabled = false;
+        btnEl.textContent = label[decision] || decision;
+      });
+    }
+
+    // ── Phase 2D: Auth Gates ─────────────────────────────────────────────────
+
+    function _checkAuth() {
+      var mode = window.__AF_MODE || 'static';
+      if (mode !== 'api') return true;
+      if (!window.AftergiftAPI) return true;
+      var token = window.AftergiftAPI.getStoredToken();
+      return !!token;
+    }
+
+    function _getAuthToken() {
+      if (!window.AftergiftAPI) return null;
+      return window.AftergiftAPI.getStoredToken();
+    }
+
+    // ── Phase 2D: Init ────────────────────────────────────────────────────────
+
+    function initPhase2D() {
+      initDevAuthPanel();
+      bindDevAuthEvents();
+      initAdminPanel();
+    }
+
+    // Run Phase 2D init
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPhase2D);
+    } else {
+      initPhase2D();
+    }
 })();

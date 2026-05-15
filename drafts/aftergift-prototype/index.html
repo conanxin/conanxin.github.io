@@ -2,11 +2,16 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>后来礼物 Aftergift — 故事型旧物流转平台</title>
   <meta name="description" content="给一件旧礼物，一个体面的下一站。把关系结束后难以处理的礼物，变成可以被讲述、流转、出售、交换或捐出的故事物。">
   <link rel="stylesheet" href="style.css">
+  <script>
+    /* ── Phase 2C: 模式检测（必须在其他脚本之前运行）────────────── */
+    window.__AF_MODE = new URLSearchParams(location.search).has('api') ? 'api' : 'static';
+    window.__AF_API_BASE = 'http://127.0.0.1:8091';
+  </script>
 </head>
 <body>
 
@@ -431,6 +436,7 @@
           这是一个静态原型演示，不处理真实交易，不存储用户数据。<br>
           所有礼物故事均为虚构，产品路线图不代表任何承诺。
         </p>
+        <p class="footer-mode-indicator" id="footerModeIndicator" style="display:none"></p>
       </div>
     </div>
   </footer>
@@ -445,6 +451,7 @@
     </div>
   </div>
 
+  <script src="api-client.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

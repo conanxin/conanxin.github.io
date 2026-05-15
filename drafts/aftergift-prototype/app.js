@@ -74,8 +74,16 @@
   window.toggleFavorite = function (id) {
     if (favorites[id]) {
       delete favorites[id];
+      var mode = window.__AF_MODE || 'static';
+      if (mode === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.unfavoriteGift(id).catch(function () {});
+      }
     } else {
       favorites[id] = true;
+      var mode2 = window.__AF_MODE || 'static';
+      if (mode2 === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.favoriteGift(id).catch(function () {});
+      }
     }
     saveFavorites();
     // Update heart icon on current card
@@ -101,15 +109,58 @@
 
   // ── Data ──
   function loadGifts() {
+    // Detect mode from global set by inline <script> in index.html
+    var mode = window.__AF_MODE || 'static';
+
+    if (mode === 'api' && window.AftergiftAPI) {
+      // API mode: call FastAPI backend
+      window.AftergiftAPI.listGifts({}, []).then(function (result) {
+        gifts = result.items;
+        showModeIndicator('api', result.items.length);
+        renderGifts();
+      }).catch(function () {
+        // API unreachable: fall back to static data
+        loadStaticGifts();
+        showModeIndicator('fallback', 0);
+      });
+    } else {
+      // Static mode: read local JSON
+      loadStaticGifts();
+      if (mode !== 'api') {
+        showModeIndicator('static', -1); // -1 = unknown count (loadGifts called before fetch)
+      }
+    }
+  }
+
+  function loadStaticGifts() {
     fetch('./data/gifts.json')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         gifts = data;
+        showModeIndicator('static', data.length);
         renderGifts();
       })
       .catch(function () {
         giftGrid.innerHTML = '<div class="empty-state"><p class="empty-state-line">无法加载礼物数据，请通过本地服务器打开（python3 -m http.server 8080）。</p></div>';
       });
+  }
+
+  // ── Mode indicator (footer) ──
+  function showModeIndicator(mode, count) {
+    var el = document.getElementById('footerModeIndicator');
+    if (!el) return;
+    var labels = {
+      static:   '示例数据模式 · ' + (count >= 0 ? count + ' 件礼物' : ''),
+      api:       '本地 API 联调模式 · ' + count + ' 件礼物',
+      fallback:  'API 连接失败，已回退到示例数据',
+    };
+    var msgs = {
+      static:   '当前：静态示例数据（GitHub Pages 原型）',
+      api:       '当前：本地 FastAPI 联调模式',
+      fallback:  'API 无法连接，已回退到示例数据',
+    };
+    el.textContent = msgs[mode] || '';
+    el.style.display = '';
   }
 
   // ── Render ──
@@ -302,11 +353,23 @@
       toggleFavorite(id || gift.id);
       return;
     }
+    if (action === 'report') {
+      var mode = window.__AF_MODE || 'static';
+      if (mode === 'api' && window.AftergiftAPI) {
+        window.AftergiftAPI.reportGift(id || gift.id, { reason: 'privacy_risk', detail: '' }).then(function () {
+          showToast('感谢反馈，我们已收到举报，会尽快审核该故事');
+        }).catch(function () {
+          showToast('举报已记录（本地演示）');
+        });
+      } else {
+        showToast('感谢反馈，我们已收到举报，会尽快审核该故事');
+      }
+      return;
+    }
     var messages = {
       take:     '意向已记录：你想带走「' + gift.name + '」（原型阶段，无真实交易）',
       exchange: '交换意向已记录：你想用礼物交换「' + gift.name + '」（原型阶段，请自行约定）',
       claim:    '领取意向已记录：「' + gift.name + '」（原型阶段，请自行联系发布者）',
-      report:   '感谢反馈，我们已收到举报，会尽快审核该故事'
     };
     showToast(messages[action] || '已收到你的操作');
   }
@@ -430,6 +493,71 @@
     var excerpt = (document.getElementById('excerpt') || {}).value || '';
     var fullStory = (document.getElementById('fullStory') || {}).value || '';
     var combined = excerpt + '\n' + fullStory;
+
+    var mode = window.__AF_MODE || 'static';
+
+    // Phase 2C: Try API review first in api mode
+    if (mode === 'api' && window.AftergiftAPI) {
+      window.AftergiftAPI.reviewStory(excerpt, fullStory).then(function (apiResult) {
+        if (apiResult) {
+          renderAPIReview(apiResult, combined);
+        } else {
+          runLocalReview(combined);
+        }
+      }).catch(function () {
+        runLocalReview(combined);
+      });
+    } else {
+      runLocalReview(combined);
+    }
+  }
+
+  function renderAPIReview(apiResult, combined) {
+    // Render results from FastAPI backend review endpoint
+    var level = apiResult.risk_level || 'safe';
+    var issues = apiResult.issues || [];
+    var totalRisks = issues.length;
+    var levelText, levelClass;
+    if (level === 'safe') { levelText = '适合公开'; levelClass = 'level-safe'; }
+    else if (level === 'caution') { levelText = '建议修改后公开'; levelClass = 'level-caution'; }
+    else { levelText = '不建议直接公开'; levelClass = 'level-risk'; }
+
+    var icons = {
+      safe:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      caution: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+      risk:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5M12 15.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+    };
+
+    var html = '<div class="ai-review-header ' + levelClass + '">' +
+      icons[level] + '<span>' + levelText + '</span>' +
+      '<span class="ai-review-count">（' + totalRisks + ' 处风险）</span>' +
+      '</div>';
+
+    if (issues.length > 0) {
+      html += '<div class="ai-review-section">';
+      html += '<div class="ai-review-subject">审核意见</div>';
+      issues.forEach(function (issue) {
+        var issueClass = issue.type === 'identity' ? 'ai-issue-warn' : (issue.type === 'attack' ? 'ai-issue-risk' : 'ai-issue-warn');
+        html += '<div class="ai-review-issue ' + issueClass + '">' + escHtml(issue.msg || issue) + '</div>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="ai-review-section"><div class="ai-review-issue ai-issue-safe">未检测到明显风险内容。</div></div>';
+    }
+
+    if (apiResult.suggestions && apiResult.suggestions.length > 0) {
+      html += '<div class="ai-review-section"><div class="ai-review-subject">修改建议</div>';
+      apiResult.suggestions.forEach(function (s) {
+        html += '<div class="ai-review-issue ai-issue-note">' + escHtml(s) + '</div>';
+      });
+      html += '</div>';
+    }
+
+    aiReviewPanel.innerHTML = html;
+    aiReviewPanel.classList.add('show');
+  }
+
+  function runLocalReview(combined) {
 
     // Gather findings
     var identityFindings = [];
@@ -718,11 +846,58 @@
       tags: [d.type]
     };
 
+    // Phase 2C: API mode publish
+    var mode = window.__AF_MODE || 'static';
+    if (mode === 'api' && window.AftergiftAPI) {
+      window.AftergiftAPI.createGift(d).then(function (result) {
+        // Update temp gift with real ID if returned
+        if (result && result.gift_id) {
+          newGift.id = result.gift_id;
+          if (result.status) {
+            newGift.status = result.status === 'published' ? statusMap[d.action] : '审核中';
+          }
+        }
+        var publishMsg = '礼物已发布';
+        if (result && result.review) {
+          if (result.review.risk_level === 'safe') {
+            publishMsg = '礼物已发布';
+          } else if (result.review.risk_level === 'caution') {
+            publishMsg = '礼物已暂存，建议修改后再提交';
+          } else {
+            publishMsg = '礼物已提交审核';
+          }
+        }
+        gifts.unshift(newGift);
+        displayedCount = INITIAL_DISPLAY;
+        renderGifts();
+        publishForm.reset();
+        resetFormState();
+        scrollToSection('stories');
+        showToast(publishMsg + '，愿你与它好好告别');
+      }).catch(function () {
+        // API error: still show locally
+        gifts.unshift(newGift);
+        displayedCount = INITIAL_DISPLAY;
+        renderGifts();
+        publishForm.reset();
+        resetFormState();
+        scrollToSection('stories');
+        showToast('礼物已发布（本地演示），API 提交失败');
+      });
+      return;
+    }
+
+    // Static mode: local demo
     gifts.unshift(newGift);
     displayedCount = INITIAL_DISPLAY;
     renderGifts();
-
     publishForm.reset();
+    resetFormState();
+    scrollToSection('stories');
+    showToast('礼物已发布，愿你与它好好告别');
+  }
+
+  function resetFormState() {
     emotionBtns.forEach(function (b) {
       b.classList.remove('selected');
       b.setAttribute('aria-pressed', 'false');
@@ -737,9 +912,6 @@
     if (aiReviewPanel) aiReviewPanel.classList.remove('show');
     if (storyQualityHint) storyQualityHint.style.display = 'none';
     if (fullStoryInput) fullStoryInput.style.height = 'auto';
-
-    scrollToSection('stories');
-    showToast('礼物已发布，愿你与它好好告别');
   }
 
   // ── Filter ──
@@ -757,7 +929,20 @@
     });
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
-    renderGifts();
+
+    var mode = window.__AF_MODE || 'static';
+    if (mode === 'api' && window.AftergiftAPI) {
+      // API mode: re-query with new filter
+      var filterParam = (filter === 'all' || filter === 'favorites') ? {} : { action_type: filter };
+      window.AftergiftAPI.listGifts(filterParam, []).then(function (result) {
+        gifts = result.items;
+        renderGifts();
+      }).catch(function () {
+        showToast('无法加载筛选结果，请检查 API 连接');
+      });
+    } else {
+      renderGifts();
+    }
   }
 
   // ── Load More ──

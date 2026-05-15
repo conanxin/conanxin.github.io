@@ -1,7 +1,7 @@
 /**
  * Aftergift — app.js
  * 故事型旧物流转平台 · 前端交互逻辑
- * Phase 1C: 故事预检 · 预览 · 模板提示 · 发布确认
+ * Phase 1D: AI 编辑建议 · 自动匿名化 · 故事质量 · 收藏 · 阅读更多
  */
 
 (function () {
@@ -12,6 +12,10 @@
   var currentFilter = 'all';
   var nextTempId = 9000;
   var lastFocusedElement = null;
+  var displayedCount = 8;       // initial visible cards
+  var INITIAL_DISPLAY = 8;
+  var MAX_DISPLAY = 100;
+  var favorites = {};           // { id: true } synced with localStorage
 
   // ── Story Tip Prompts ──
   var STORY_TIPS = [
@@ -22,27 +26,78 @@
   ];
 
   // ── DOM refs ──
-  var giftGrid     = document.getElementById('giftGrid');
-  var emptyState   = document.getElementById('emptyState');
+  var giftGrid      = document.getElementById('giftGrid');
+  var emptyState    = document.getElementById('emptyState');
   var emptyStateLine = document.getElementById('emptyStateLine');
-  var modalOverlay = document.getElementById('modalOverlay');
-  var modal        = document.getElementById('modal');
-  var modalBody    = document.getElementById('modalBody');
-  var modalClose   = document.getElementById('modalClose');
-  var publishForm  = document.getElementById('publishForm');
-  var filterTabs   = document.querySelectorAll('.filter-tab');
-  var emotionBtns  = document.querySelectorAll('.emotion-tag');
-  var excerptInput = document.getElementById('excerpt');
-  var excerptCount = document.getElementById('excerptCount');
-  var precheckBtn  = document.getElementById('precheckBtn');
-  var precheckCard = document.getElementById('precheckCard');
-  var previewBtn   = document.getElementById('previewBtn');
+  var modalOverlay  = document.getElementById('modalOverlay');
+  var modal         = document.getElementById('modal');
+  var modalBody     = document.getElementById('modalBody');
+  var modalClose    = document.getElementById('modalClose');
+  var publishForm   = document.getElementById('publishForm');
+  var filterTabs    = document.querySelectorAll('.filter-tab');
+  var emotionBtns   = document.querySelectorAll('.emotion-tag');
+  var excerptInput  = document.getElementById('excerpt');
+  var excerptCount  = document.getElementById('excerptCount');
+  var fullStoryInput = document.getElementById('fullStory');
+  var fullStoryCount = document.getElementById('fullStoryCount');
+  var precheckBtn   = document.getElementById('precheckBtn');
+  var precheckCard  = document.getElementById('precheckCard');
+  var previewBtn    = document.getElementById('previewBtn');
+  var loadMoreBtn   = document.getElementById('loadMoreBtn');
+  var aiReviewPanel = document.getElementById('aiReviewPanel');
+  var storyQualityHint = document.getElementById('storyQualityHint');
 
   // ── Init ──
   document.addEventListener('DOMContentLoaded', function () {
+    loadFavorites();
     loadGifts();
     bindEvents();
+    initTextareas();
   });
+
+  // ── Favorites (localStorage) ──
+  function loadFavorites() {
+    try {
+      var stored = localStorage.getItem('aftergift_favorites');
+      favorites = stored ? JSON.parse(stored) : {};
+    } catch (e) {
+      favorites = {};
+    }
+  }
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem('aftergift_favorites', JSON.stringify(favorites));
+    } catch (e) {}
+  }
+
+  window.toggleFavorite = function (id) {
+    if (favorites[id]) {
+      delete favorites[id];
+    } else {
+      favorites[id] = true;
+    }
+    saveFavorites();
+    // Update heart icon on current card
+    var cardHeart = document.querySelector('.gift-card[data-id="' + id + '"] .card-favorite-btn');
+    if (cardHeart) updateHeartIcon(cardHeart, !!favorites[id]);
+    // Update modal heart if open
+    var modalHeart = document.getElementById('modalFavoriteBtn');
+    if (modalHeart) updateHeartIcon(modalHeart, !!favorites[id]);
+    showToast(favorites[id] ? '已收藏这个故事' : '已取消收藏');
+  };
+
+  function updateHeartIcon(btn, isFav) {
+    if (isFav) {
+      btn.innerHTML = '<svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>';
+      btn.classList.add('favorited');
+      btn.setAttribute('aria-label', '取消收藏');
+    } else {
+      btn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16" aria-hidden="true"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>';
+      btn.classList.remove('favorited');
+      btn.setAttribute('aria-label', '收藏故事');
+    }
+  }
 
   // ── Data ──
   function loadGifts() {
@@ -53,45 +108,78 @@
         renderGifts();
       })
       .catch(function () {
-        giftGrid.innerHTML = emptyStateHTML('无法加载礼物数据，请通过本地服务器打开（python3 -m http.server 8080）。');
+        giftGrid.innerHTML = '<div class="empty-state"><p class="empty-state-line">无法加载礼物数据，请通过本地服务器打开（python3 -m http.server 8080）。</p></div>';
       });
   }
 
   // ── Render ──
   function renderGifts() {
     var filtered = gifts.filter(function (g) {
-      return currentFilter === 'all' || g.action === currentFilter;
+      if (currentFilter === 'all') return true;
+      if (currentFilter === 'favorites') return !!favorites[g.id];
+      return g.action === currentFilter;
     });
 
     if (filtered.length === 0) {
       giftGrid.innerHTML = '';
       giftGrid.style.display = 'none';
       emptyState.style.display = 'flex';
-      // Dynamic empty state message based on filter
-      var filterMessages = {
-        all:      '这里还没有礼物故事。',
-        sell:     '这一类礼物暂时还没有故事。',
-        exchange: '这一类礼物暂时还没有故事。',
-        giveaway: '这一类礼物暂时还没有故事。',
-        donate:   '这一类礼物暂时还没有故事。',
-        keep:     '这一类礼物暂时还没有故事。'
+      var msgs = {
+        all:       '这里还没有礼物故事。',
+        favorites: '你还没有收藏任何故事。<br>也许有些旧物，会在某个时刻与你相遇。',
+        sell:      '这一类礼物暂时还没有故事。',
+        exchange:  '这一类礼物暂时还没有故事。',
+        giveaway:  '这一类礼物暂时还没有故事。',
+        donate:    '这一类礼物暂时还没有故事。',
+        keep:      '这一类礼物暂时还没有故事。'
       };
-      emptyStateLine.textContent = filterMessages[currentFilter] || '这一类礼物暂时还没有故事。';
+      emptyStateLine.innerHTML = msgs[currentFilter] || '这一类礼物暂时还没有故事。';
+      if (loadMoreBtn) loadMoreBtn.style.display = 'none';
       return;
     }
 
     emptyState.style.display = 'none';
     giftGrid.style.display = '';
-    giftGrid.innerHTML = filtered.map(function (g) { return giftCardHTML(g); }).join('');
+
+    // Paginate
+    var toShow = filtered.slice(0, displayedCount);
+    giftGrid.innerHTML = toShow.map(function (g) { return giftCardHTML(g); }).join('');
+
+    // Load more button
+    if (loadMoreBtn) {
+      if (displayedCount >= filtered.length) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = '';
+        var remaining = filtered.length - displayedCount;
+        loadMoreBtn.textContent = '阅读更多故事（还剩 ' + remaining + ' 件）';
+      }
+    }
 
     bindCardEvents();
+    updateFavoriteHearts();
+  }
+
+  function updateFavoriteHearts() {
+    document.querySelectorAll('.card-favorite-btn').forEach(function (btn) {
+      var id = btn.getAttribute('data-id');
+      if (id) updateHeartIcon(btn, !!favorites[id]);
+    });
   }
 
   function bindCardEvents() {
     giftGrid.querySelectorAll('.gift-card').forEach(function (card) {
-      card.addEventListener('click', function () {
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('.card-favorite-btn')) return;
         var id = card.getAttribute('data-id');
         openModal(id);
+      });
+    });
+    giftGrid.querySelectorAll('.card-favorite-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var id = btn.getAttribute('data-id');
+        if (id) toggleFavorite(id);
       });
     });
   }
@@ -99,7 +187,12 @@
   function giftCardHTML(g) {
     var actionClass = 'action-' + g.action;
     var emotionIcon = emotionIconSVG(g.emotion);
+    var isFav = !!favorites[g.id];
+    var favClass = isFav ? 'favorited' : '';
     return '<article class="gift-card" data-id="' + g.id + '" tabindex="0" role="button" aria-label="查看礼物「' + escHtml(g.name) + '」的完整故事">' +
+      '<button class="card-favorite-btn ' + favClass + '" data-id="' + g.id + '" aria-label="' + (isFav ? '取消收藏' : '收藏故事') + '" tabindex="0">' +
+        '<svg viewBox="0 0 20 20" fill="' + (isFav ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.5" width="16" height="16" aria-hidden="true"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>' +
+      '</button>' +
       '<div class="gift-card-header">' +
         '<h3 class="gift-card-title">' + escHtml(g.name) + '</h3>' +
         '<span class="gift-card-action ' + actionClass + '">' + escHtml(g.actionLabel) + '</span>' +
@@ -127,14 +220,14 @@
 
   function emotionIconSVG(emotion) {
     var icons = {
-      '放下':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
-      '遗憾':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
-      '感谢':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3l1.5 3 3.5.5-2.5 2.5.5 3.5L8 11.5 4.5 13l.5-3.5L3 8.5l3.5-.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>',
-      '释怀':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      '重启':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M13 8A5 5 0 1 1 8 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M11 3h3v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      '纪念':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3v10M5 6l3-3 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      '治愈':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3c-2 2-2 5 0 7s2 5 0 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
-      '平静':   '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M2 10c2-3 4-3 6 0s4 3 6 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+      '放下':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+      '遗憾':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+      '感谢':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3l1.5 3 3.5.5-2.5 2.5.5 3.5L8 11.5 4.5 13l.5-3.5L3 8.5l3.5-.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>',
+      '释怀':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M3 8h10M10 5l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '重启':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M13 8A5 5 0 1 1 8 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M11 3h3v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '纪念':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3v10M5 6l3-3 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      '治愈':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M8 3c-2 2-2 5 0 7s2 5 0 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+      '平静':  '<svg viewBox="0 0 16 16" fill="none" width="12" height="12" aria-hidden="true"><path d="M2 10c2-3 4-3 6 0s4 3 6 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
     };
     return icons[emotion] || '';
   }
@@ -147,7 +240,6 @@
     lastFocusedElement = document.activeElement;
 
     var actionClass = 'action-' + g.action;
-
     var safetyNoteMap = {
       keep:     '这件礼物的主人选择只分享故事，不进行流转。如故事中有可识别信息，欢迎举报。',
       sell:     '出售中 · 平台不参与真实交易，不托管资金。如有交易纠纷请自行承担风险。',
@@ -156,8 +248,8 @@
       donate:   '捐赠物 · 这件礼物由发布者免费捐出，欢迎有需要的人认领。'
     };
     var safetyNote = safetyNoteMap[g.action] || '平台不参与真实交易，如有问题请联系发布者。';
-
     var relationDisplay = (g.anonymous || !g.relationLabel) ? '' : escHtml(g.relationLabel);
+    var isFav = !!favorites[g.id];
 
     modalBody.innerHTML =
       '<div class="modal-gift-header">' +
@@ -182,14 +274,18 @@
         (g.action === 'exchange'  ? '<button class="btn btn-primary" data-action-btn="exchange"><svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M4 10h12M14 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>我想交换</button>' : '') +
         (g.action === 'giveaway'  ? '<button class="btn btn-primary" data-action-btn="claim"><svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M10 3v14M5 12l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>我想领取</button>' : '') +
         (g.action === 'donate'    ? '<button class="btn btn-primary" data-action-btn="claim"><svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 10h14M10 3v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>我想认领</button>' : '') +
-        '<button class="btn btn-secondary" data-action-btn="save"><svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M5 3h10a2 2 0 0 1 2 2v13l-6-3-6 3V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>收藏故事</button>' +
+        '<button class="btn btn-secondary' + (isFav ? ' favorited' : '') + '" id="modalFavoriteBtn" data-action-btn="save" data-id="' + escHtml(g.id) + '">' +
+          '<svg viewBox="0 0 20 20" fill="' + (isFav ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.5" width="16" height="16" aria-hidden="true"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>' +
+          (isFav ? '已收藏' : '收藏故事') +
+        '</button>' +
         '<button class="btn btn-ghost" data-action-btn="report" style="color:var(--accent-2)"><svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M3 10c0-4 3-7 7-7s7 3 7 7-3 7-7 7-7-3-7-7z" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>举报隐私问题</button>' +
       '</div>';
 
     modalBody.querySelectorAll('[data-action-btn]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var action = btn.getAttribute('data-action-btn');
-        handleModalAction(action, g);
+        var id = btn.getAttribute('data-id') || g.id;
+        handleModalAction(action, g, id);
       });
     });
 
@@ -201,12 +297,15 @@
     if (firstBtn) firstBtn.focus();
   }
 
-  function handleModalAction(action, gift) {
+  function handleModalAction(action, gift, id) {
+    if (action === 'save') {
+      toggleFavorite(id || gift.id);
+      return;
+    }
     var messages = {
       take:     '意向已记录：你想带走「' + gift.name + '」（原型阶段，无真实交易）',
       exchange: '交换意向已记录：你想用礼物交换「' + gift.name + '」（原型阶段，请自行约定）',
       claim:    '领取意向已记录：「' + gift.name + '」（原型阶段，请自行联系发布者）',
-      save:     '已收藏「' + gift.name + '」的故事',
       report:   '感谢反馈，我们已收到举报，会尽快审核该故事'
     };
     showToast(messages[action] || '已收到你的操作');
@@ -245,114 +344,245 @@
     }, 2800);
   };
 
-  // ── Story Pre-Check ──
-  var PRECHECK_RULES = {
-    identityRisk: [
-      // Phone numbers (various Chinese formats)
-      { pattern: /1[3-9]\d[\s-]?\d{4}[\s-]?\d{4}/g, msg: '这段文字可能包含手机号码，建议删除。' },
-      // WeChat
-      { pattern: /微[信渠道公众号]|wechat|weixin|wx\.|WX\.|加我微信|微信号/g, msg: '这段文字可能包含微信号信息，建议只写"加 TA 的微信"而不写具体账号。' },
-      // QQ
-      { pattern: /[qqQ]{2}[\s-]?[0-9]{5,}/g, msg: '这段文字可能包含 QQ 号，建议删除。' },
-      // Email
-      { pattern: /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g, msg: '这段文字可能包含邮箱地址，建议删除。' },
-      // ID card style numbers
-      { pattern: /\d{3}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{2}[\s-]?\d{2}[\s-]?\d{3}[\s-]?\d/g, msg: '这段文字可能包含身份证格式的数字，建议删除。' },
-      // Address keywords
-      { pattern: /[小区楼栋单元门牌住址家宅搬家公司宿舍学校医院街道路号弄]/g, msg: '这段文字可能涉及详细地址信息，建议模糊处理。' },
-      // Social media names
-      { pattern: /微博账号|抖音号|小红书号|Instagram|Twitter|X账号|Telegram|电报群/g, msg: '这段文字可能包含社交平台账号信息，建议删除。' },
-      // Specific location
-      { pattern: /[省市县区街路道][a-zA-Z0-9\u4e00-\u9fa5]{2,10}(?:大厦|广场|中心|大楼|花园|公寓|学校|医院|公司)/g, msg: '这段文字可能包含具体场所名称，建议模糊描述。' }
-    ],
-    revengeRisk: [
-      { pattern: /渣男|渣女|报复|曝光|挂人|人肉搜索|人肉|骗子|毁掉/g, msg: '这段文字听起来带有控诉或报复色彩。我们鼓励把感受写出来，但建议避免使用这类词汇，换成你自己的真实描述。' },
-      { pattern: /去死|该死|恨死|恶心死了|想打|想杀|想弄死/g, msg: '听起来你还在愤怒中。也许可以先把这段放一放，等情绪平静一些再写。这个平台希望你带着平静来告别。' },
-      { pattern: /贱|不要脸|无耻|恶心|下头|下头男|下头女/g, msg: '这类表达可能让他人感到被攻击。建议聚焦在礼物和自己的感受上，避免直接评价对方。' }
-    ],
-    identifiableRisk: [
-      { pattern: /(?:他|她|TA|那个人|前任|老公|老婆|男朋友|女朋友|父亲|母亲|爸爸|妈妈|哥哥|姐姐|弟弟|妹妹)\s*叫\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '这段文字可能暴露了对方的名字。建议改成"TA"或"那个人"，只描述你们之间的关系和感受。' },
-      { pattern: /姓名[:：]\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '这段文字可能包含真实姓名，建议删除或改成代称。' },
-      { pattern: /全名\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '这段文字可能包含全名，建议改成代称。' }
-    ]
-  };
+  // ── Story Quality Check ──
+  function checkStoryQuality(fullStory) {
+    var len = (fullStory || '').length;
+    var issues = [];
+    if (len < 50) {
+      issues.push({ type: 'too_short', msg: '这个故事有点短（' + len + ' 字），再写一点点，别人会更理解这件礼物为什么重要。' });
+    }
+    if (!/来|得到|收到|赠|送|买|带|到/.test(fullStory)) {
+      issues.push({ type: 'no_origin', msg: '你已经写到了告别，但也许可以补充一下：这件礼物最初是怎么来到你手上的。' });
+    }
+    if (!/重要|喜欢|陪伴|记得|想起|当时|曾经|意义|珍惜/.test(fullStory)) {
+      issues.push({ type: 'no_meaning', msg: '如果能再写一句它曾经对你意味着什么，这个故事会更完整。' });
+    }
+    if (!/现在|离开|告别|不再|结束|分手|走了|想让|要让|捐|送|换|卖/.test(fullStory)) {
+      issues.push({ type: 'no_departure', msg: '你已经表达了感情，也许可以再写一句：为什么现在想让这件礼物离开。' });
+    }
+    if (!/希望|愿|以后|将来|下一位|新主人|继续|用到|使用/.test(fullStory)) {
+      issues.push({ type: 'no_destination', msg: '如果你愿意，可以再补一句：希望这件礼物去往怎样的下一站。' });
+    }
+    return issues;
+  }
 
-  function runPreCheck() {
-    var excerpt = (document.getElementById('excerpt').value || '');
-    var fullStory = (document.getElementById('fullStory').value || '');
+  // ── Anonymization Suggestions ──
+  var ANONYMIZATION_RULES = [
+    { pattern: /[A-Za-z\u4e00-\u9fa5]{2,4}(?:\s*)(?:叫|name|named)[\s:：]+[A-Za-z\u4e00-\u9fa5]{2,4}/g,
+      type: 'real_name', label: '暴露真实姓名',
+      reason: '真实姓名会让读者识别出当事人',
+      suggest: '那个人 / TA / 我曾在乎的人' },
+    { pattern: /1[3-9]\d[\s\-]?\d{4}[\s\-]?\d{4}/g,
+      type: 'phone', label: '手机号码',
+      reason: '手机号可以直接联系到当事人',
+      suggest: '后来我们不再联系了' },
+    { pattern: /(?:微[信号渠道公众号]|wechat|weixin|wx)[^\s，,。！!]{0,20}/g,
+      type: 'wechat', label: '微信号',
+      reason: '微信号是私密社交账号，不应公开',
+      suggest: '我们后来失去了联系' },
+    { pattern: /[qqQ]{2}[^\u4e00-\u9fa5]{0,5}[0-9]{5,}/g,
+      type: 'qq', label: 'QQ 号',
+      reason: 'QQ 号可以定位到具体个人',
+      suggest: '我们后来失去了联系' },
+    { pattern: /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g,
+      type: 'email', label: '邮箱地址',
+      reason: '邮箱是私人联系方式',
+      suggest: '我们后来失去了联系' },
+    { pattern: /渣男|渣女|报复|曝光|挂人|人肉/g,
+      type: 'revenge', label: '报复性表达',
+      reason: '这类表达可能引发网暴或伤害他人',
+      suggest: '这段关系让我失去了信任 / 让我感到受伤' },
+    { pattern: /去死|该死|恨死|恶心死了|想打|想杀|想弄死/g,
+      type: 'curse', label: '诅咒性表达',
+      reason: '在愤怒时写下的诅咒往往不是真实意愿，但可能引发传播风险',
+      suggest: '把感受写出来，但不要用伤害性的语言' },
+    { pattern: /(?:他|她|TA|那个人)\s*(?:住在|在|工作于|任职于)\s*[^\s，,。]{2,20}(?:公司|大厦|广场|医院|学校|小区|街道|路|街)/g,
+      type: 'location', label: '可识别地点',
+      reason: '具体地点+公司/学校等组合可以定位到具体个人',
+      suggest: '那个人工作的地方 / 我们曾住在同一座城市' },
+    { pattern: /(?:我们|我)住(?:在|于)?([^\s，,。]{2,10})(?:小区|公寓|楼|家|宿舍|房子)/g,
+      type: 'address', label: '住址信息',
+      reason: '小区名称+楼栋单元可以精确定位住址',
+      suggest: '我们曾经住得很近 / 后来搬到了不同的地方' }
+  ];
+
+  function getAnonymizationSuggestions(text) {
+    var suggestions = [];
+    ANONYMIZATION_RULES.forEach(function (rule) {
+      var matches = text.match(rule.pattern);
+      if (matches) {
+        matches.forEach(function (match) {
+          suggestions.push({
+            type: rule.type,
+            label: rule.label,
+            original: match,
+            reason: rule.reason,
+            suggest: rule.suggest
+          });
+        });
+      }
+    });
+    return suggestions;
+  }
+
+  // ── AI Review Panel ──
+  function runAIReview() {
+    var excerpt = (document.getElementById('excerpt') || {}).value || '';
+    var fullStory = (document.getElementById('fullStory') || {}).value || '';
     var combined = excerpt + '\n' + fullStory;
 
-    var findings = [];
-    var riskCount = 0;
+    // Gather findings
+    var identityFindings = [];
+    var revengeFindings = [];
+    var identifiableFindings = [];
 
-    function checkRuleSet(rules, category) {
-      rules.forEach(function (rule) {
-        var matches = combined.match(rule.pattern);
-        if (matches) {
-          riskCount++;
-          findings.push({ type: category, msg: rule.msg, count: matches.length });
-        }
+    var identityPatterns = [
+      { pattern: /1[3-9]\d[\s\-]?\d{4}[\s\-]?\d{4}/g, msg: '检测到手机号码格式' },
+      { pattern: /微[信渠道公众号号]|wechat|weixin|wx\.|WX\.|加我微信|微信号/g, msg: '检测到微信号信息' },
+      { pattern: /[qqQ]{2}[\s\-]?[0-9]{5,}/g, msg: '检测到 QQ 号格式' },
+      { pattern: /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g, msg: '检测到邮箱地址' },
+      { pattern: /\d{3}[\s\-]?\d{4}[\s\-]?\d{4}[\s\-]?\d{2}[\s\-]?\d{2}[\s\-]?\d{3}[\s\-]?\d/g, msg: '检测到身份证格式数字' },
+      { pattern: /[小区楼栋单元门牌住址家宅搬家公司宿舍学校医院街道路号弄]/g, msg: '检测到地址关键词' },
+      { pattern: /微博账号|抖音号|小红书号|Instagram|Twitter|X账号|Telegram|电报群/g, msg: '检测到社交平台账号' },
+      { pattern: /[省市县区街路道][a-zA-Z0-9\u4e00-\u9fa5]{2,10}(?:大厦|广场|中心|大楼|花园|公寓|学校|医院|公司)/g, msg: '检测到具体场所名称' }
+    ];
+
+    var revengePatterns = [
+      { pattern: /渣男|渣女|报复|曝光|挂人|人肉搜索|人肉|骗子|毁掉/g, msg: '检测到报复性或控诉性词汇' },
+      { pattern: /去死|该死|恨死|恶心死了|想打|想杀|想弄死/g, msg: '检测到诅咒类表达' },
+      { pattern: /贱|不要脸|无耻|恶心|下头|下头男|下头女/g, msg: '检测到攻击性词汇' }
+    ];
+
+    var identifiablePatterns = [
+      { pattern: /(?:他|她|TA|那个人|前任|老公|老婆|男朋友|女朋友|父亲|母亲|爸爸|妈妈|哥哥|姐姐|弟弟|妹妹)\s*叫\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '检测到"XXX 叫 XXX"姓名暴露格式' },
+      { pattern: /姓名[:：]\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '检测到"姓名：XXX"格式' },
+      { pattern: /全名\s*[A-Za-z\u4e00-\u9fa5]{2,4}/g, msg: '检测到全名暴露' }
+    ];
+
+    identityPatterns.forEach(function (p) {
+      if (p.pattern.test(combined)) identityFindings.push(p.msg);
+    });
+    revengePatterns.forEach(function (p) {
+      if (p.pattern.test(combined)) revengeFindings.push(p.msg);
+    });
+    identifiablePatterns.forEach(function (p) {
+      if (p.pattern.test(combined)) identifiableFindings.push(p.msg);
+    });
+
+    var qualityIssues = checkStoryQuality(fullStory);
+    var anonSuggestions = getAnonymizationSuggestions(combined);
+
+    var totalRisks = identityFindings.length + revengeFindings.length + identifiableFindings.length;
+    var level, levelText, levelClass;
+    if (totalRisks === 0) {
+      level = 'safe'; levelText = '适合公开'; levelClass = 'level-safe';
+    } else if (totalRisks <= 2) {
+      level = 'caution'; levelText = '建议修改后公开'; levelClass = 'level-caution';
+    } else {
+      level = 'risk'; levelText = '不建议直接公开'; levelClass = 'level-risk';
+    }
+
+    var icons = {
+      safe:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      caution: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+      risk:   '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5M12 15.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+    };
+
+    var html = '<div class="ai-review-header ' + levelClass + '">' +
+      icons[level] + '<span>' + levelText + '</span>' +
+      '<span class="ai-review-count">（' + totalRisks + ' 处风险）</span>' +
+      '</div>';
+
+    // Identity section
+    html += '<div class="ai-review-section">';
+    if (identityFindings.length > 0) {
+      html += '<div class="ai-review-subject">身份信息风险</div>';
+      identityFindings.forEach(function (m) { html += '<div class="ai-review-issue ai-issue-warn">' + escHtml(m) + '</div>'; });
+    }
+    if (revengeFindings.length > 0) {
+      html += '<div class="ai-review-subject">报复 / 攻击性表达</div>';
+      revengeFindings.forEach(function (m) { html += '<div class="ai-review-issue ai-issue-risk">' + escHtml(m) + '</div>'; });
+    }
+    if (identifiableFindings.length > 0) {
+      html += '<div class="ai-review-subject">可识别关系对象</div>';
+      identifiableFindings.forEach(function (m) { html += '<div class="ai-review-issue ai-issue-warn">' + escHtml(m) + '</div>'; });
+    }
+    if (identityFindings.length === 0 && revengeFindings.length === 0 && identifiableFindings.length === 0) {
+      html += '<div class="ai-review-issue ai-issue-safe">未检测到明显的身份信息、报复性表达或可识别个人身份的内容。</div>';
+    }
+    html += '</div>';
+
+    // Anonymization suggestions
+    if (anonSuggestions.length > 0) {
+      html += '<div class="ai-review-section"><div class="ai-review-subject">匿名化建议</div>';
+      anonSuggestions.slice(0, 5).forEach(function (s) {
+        html += '<div class="anon-suggestion">' +
+          '<div class="anon-original"><span class="anon-badge anon-badge-' + escHtml(s.type) + '">' + escHtml(s.label) + '</span> ' + escHtml(s.original) + '</div>' +
+          '<div class="anon-reason">→ ' + escHtml(s.reason) + '</div>' +
+          '<div class="anon-suggest">建议改为：<strong>' + escHtml(s.suggest) + '</strong></div>' +
+          '</div>';
       });
-    }
-
-    checkRuleSet(PRECHECK_RULES.identityRisk, 'identity');
-    checkRuleSet(PRECHECK_RULES.revengeRisk, 'revenge');
-    checkRuleSet(PRECHECK_RULES.identifiableRisk, 'identifiable');
-
-    var c1 = document.getElementById('confirm1').checked;
-    var c2 = document.getElementById('confirm2').checked;
-    var c3 = document.getElementById('confirm3').checked;
-
-    var level, headerText, headerIcon;
-
-    if (riskCount === 0 && c1 && c2 && c3) {
-      level = 'safe';
-      headerText = '适合公开';
-      headerIcon = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    } else if (riskCount > 0) {
-      level = 'risk';
-      headerText = '不建议直接公开';
-      headerIcon = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5M12 15.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-    } else {
-      level = 'caution';
-      headerText = '建议修改后公开';
-      headerIcon = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 14.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-    }
-
-    var html = '<div class="precheck-header">' + headerIcon + '<span>' + headerText + '</span></div>';
-
-    if (findings.length === 0) {
-      html += '<div class="precheck-items"><div class="precheck-item">没有检测到明显的身份信息、报复性表达或可识别个人身份的内容。</div></div>';
-      if (!c1 || !c2 || !c3) {
-        html += '<div class="precheck-items"><div class="precheck-item" style="color:var(--accent)"><strong>请注意：</strong>发布前还需要勾选上方的三项确认。</div></div>';
+      if (anonSuggestions.length > 5) {
+        html += '<div class="ai-review-note">还有 ' + (anonSuggestions.length - 5) + ' 处建议，已在上方高亮提示。</div>';
       }
-    } else {
-      html += '<div class="precheck-items">';
-      findings.forEach(function (f) {
-        html += '<div class="precheck-item">' + escHtml(f.msg) + (f.count > 1 ? '（匹配 ' + f.count + ' 处）' : '') + '</div>';
+      html += '</div>';
+    }
+
+    // Quality suggestions
+    if (qualityIssues.length > 0) {
+      html += '<div class="ai-review-section"><div class="ai-review-subject">故事完整度</div>';
+      qualityIssues.forEach(function (q) {
+        html += '<div class="ai-review-issue ai-issue-note">' + escHtml(q.msg) + '</div>';
       });
       html += '</div>';
-      if (level !== 'safe') {
-        html += '<div class="precheck-items"><div class="precheck-item" style="color:var(--text-2)">你可以保留这段故事，但建议修改后再发布。如果这是你真实想说的，也可以直接发布——平台不会强制拦截。</div></div>';
-      }
+    } else if (fullStory.length >= 50) {
+      html += '<div class="ai-review-section"><div class="ai-review-issue ai-issue-safe">故事结构完整，包含来历、意义和告别理由。</div></div>';
     }
 
-    precheckCard.innerHTML = html;
-    precheckCard.className = 'precheck-card precheck-card-' + level + ' show';
+    // Copy suggestions button
+    if (anonSuggestions.length > 0) {
+      var copyText = anonSuggestions.map(function (s) {
+        return '"' + s.original + '" → ' + s.suggest;
+      }).join('\n');
+      html += '<button class="ai-copy-btn" onclick="copyAIRewriteSuggestions()">复制匿名化建议</button>';
+      window._currentRewriteSuggestions = copyText;
+    }
+
+    aiReviewPanel.innerHTML = html;
+    aiReviewPanel.classList.add('show');
+  }
+
+  window.copyAIRewriteSuggestions = function () {
+    var text = window._currentRewriteSuggestions || '';
+    if (!text) return;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function () {
+        showToast('匿名化建议已复制到剪贴板');
+      }).catch(function () {
+        showToast('复制失败，请手动选择复制');
+      });
+    } else {
+      showToast('复制失败，你的浏览器不支持剪贴板 API');
+    }
+  };
+
+  // ── Story Pre-Check (Phase 1C compatibility) ──
+  function runPreCheck() {
+    runAIReview();
   }
 
   // ── Story Preview ──
   function getFormData() {
-    var name      = document.getElementById('giftName').value.trim();
-    var type      = document.getElementById('giftType').value;
-    var relation  = document.getElementById('relation').value;
-    var action    = document.getElementById('action').value;
-    var emotion   = document.getElementById('emotion').value;
-    var price     = document.getElementById('price').value.trim();
-    var excerpt   = document.getElementById('excerpt').value.trim();
-    var fullStory = document.getElementById('fullStory').value.trim() || excerpt;
-    var anonymous = document.getElementById('anonymous').checked;
-    return { name: name, type: type, relation: relation, action: action, emotion: emotion || '放下', price: price, excerpt: excerpt, fullStory: fullStory, anonymous: anonymous };
+    var name      = (document.getElementById('giftName') || {}).value || '';
+    var type      = (document.getElementById('giftType') || {}).value || '';
+    var relation  = (document.getElementById('relation') || {}).value || '';
+    var action    = (document.getElementById('action') || {}).value || '';
+    var emotion   = (document.getElementById('emotion') || {}).value || '';
+    var price     = (document.getElementById('price') || {}).value || '';
+    var excerpt   = (document.getElementById('excerpt') || {}).value || '';
+    var fullStory = (document.getElementById('fullStory') || {}).value || '';
+    var anonymous = (document.getElementById('anonymous') || {}).checked || false;
+    return { name: name, type: type, relation: relation, action: action, emotion: emotion, price: price, excerpt: excerpt, fullStory: fullStory, anonymous: anonymous };
   }
 
   function openPreviewModal() {
@@ -387,7 +617,7 @@
       '</div>' +
       '<div class="modal-divider"></div>' +
       '<p class="modal-story-label">礼物故事</p>' +
-      '<div class="modal-story">' + escHtml(d.fullStory) + '</div>' +
+      '<div class="modal-story">' + escHtml(d.fullStory || d.excerpt) + '</div>' +
       '<div class="modal-safety-note" role="note">' +
         '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L3 5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5V5L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>' +
         '<span>故事发布后将公开可见，请确认内容适合公开阅读。</span>' +
@@ -408,7 +638,7 @@
   window.insertStoryTip = function (index) {
     var tip = STORY_TIPS[index];
     var ta = document.getElementById('fullStory');
-    var current = ta.value.trim();
+    var current = (ta.value || '').trim();
     var insert = '\n\n— ' + tip + '\n';
     if (current.length === 0) {
       ta.value = tip + '\n\n';
@@ -419,23 +649,42 @@
     showToast('提示已添加，继续书写吧');
   };
 
-  // Story tip keyboard accessibility
-  document.querySelectorAll('.story-tip-item').forEach(function (item) {
-    item.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.click();
+  // ── Textarea auto-resize ──
+  function initTextareas() {
+    var textareas = document.querySelectorAll('textarea');
+    textareas.forEach(function (ta) {
+      function resize() {
+        ta.style.height = 'auto';
+        ta.style.height = ta.scrollHeight + 'px';
       }
+      ta.addEventListener('input', resize);
+      resize();
     });
-  });
+
+    // Full story character count
+    if (fullStoryInput && fullStoryCount) {
+      fullStoryInput.addEventListener('input', function () {
+        var len = fullStoryInput.value.length;
+        fullStoryCount.textContent = len;
+        if (storyQualityHint) {
+          if (len > 0 && len < 50) {
+            storyQualityHint.style.display = '';
+            storyQualityHint.textContent = '再写一点点，别人会更理解这件礼物为什么重要。';
+          } else {
+            storyQualityHint.style.display = 'none';
+          }
+        }
+      });
+    }
+  }
 
   // ── Publish Form ──
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    var c1 = document.getElementById('confirm1').checked;
-    var c2 = document.getElementById('confirm2').checked;
-    var c3 = document.getElementById('confirm3').checked;
+    var c1 = (document.getElementById('confirm1') || {}).checked;
+    var c2 = (document.getElementById('confirm2') || {}).checked;
+    var c3 = (document.getElementById('confirm3') || {}).checked;
 
     if (!c1 || !c2 || !c3) {
       showToast('请先确认这个故事适合被公开阅读');
@@ -460,9 +709,9 @@
       relationLabel: d.anonymous ? '' : (d.relation || ''),
       action: d.action,
       actionLabel: actionLabels[d.action] || d.action,
-      emotion: d.emotion,
+      emotion: d.emotion || '放下',
       excerpt: d.excerpt,
-      fullStory: d.fullStory,
+      fullStory: d.fullStory || d.excerpt,
       price: d.price || (d.action === 'keep' ? '非卖品，只讲故事' : '待定'),
       status: statusMap[d.action] || '待定',
       anonymous: d.anonymous,
@@ -470,26 +719,25 @@
     };
 
     gifts.unshift(newGift);
+    displayedCount = INITIAL_DISPLAY;
     renderGifts();
 
-    // Reset form
     publishForm.reset();
     emotionBtns.forEach(function (b) {
       b.classList.remove('selected');
       b.setAttribute('aria-pressed', 'false');
     });
     document.getElementById('emotion').value = '';
-    excerptCount.textContent = '0';
-
-    // Reset confirm checkboxes
+    if (excerptCount) excerptCount.textContent = '0';
+    if (fullStoryCount) fullStoryCount.textContent = '0';
     document.getElementById('confirm1').checked = false;
     document.getElementById('confirm2').checked = false;
     document.getElementById('confirm3').checked = false;
+    if (precheckCard) precheckCard.classList.remove('show');
+    if (aiReviewPanel) aiReviewPanel.classList.remove('show');
+    if (storyQualityHint) storyQualityHint.style.display = 'none';
+    if (fullStoryInput) fullStoryInput.style.height = 'auto';
 
-    // Hide precheck card
-    precheckCard.classList.remove('show');
-
-    // Scroll to stories
     scrollToSection('stories');
     showToast('礼物已发布，愿你与它好好告别');
   }
@@ -502,6 +750,7 @@
     if (btn.classList.contains('active')) return;
 
     currentFilter = filter;
+    displayedCount = INITIAL_DISPLAY;
     filterTabs.forEach(function (t) {
       t.classList.remove('active');
       t.setAttribute('aria-selected', 'false');
@@ -509,6 +758,13 @@
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
     renderGifts();
+  }
+
+  // ── Load More ──
+  function handleLoadMore() {
+    displayedCount += INITIAL_DISPLAY;
+    renderGifts();
+    if (displayedCount >= MAX_DISPLAY) displayedCount = MAX_DISPLAY;
   }
 
   // ── Emotion Tags ──
@@ -533,7 +789,7 @@
 
   // ── Char Count ──
   function handleExcerptInput() {
-    excerptCount.textContent = excerptInput.value.length;
+    if (excerptCount) excerptCount.textContent = excerptInput.value.length;
   }
 
   // ── Scroll helper ──
@@ -548,50 +804,55 @@
 
   // ── Bind Events ──
   function bindEvents() {
-    // Filter tabs
     filterTabs.forEach(function (tab) {
       tab.addEventListener('click', handleFilterClick);
     });
 
-    // Emotion tags
     emotionBtns.forEach(function (btn) {
       btn.addEventListener('click', handleEmotionClick);
     });
 
-    // Excerpt counter
-    excerptInput.addEventListener('input', handleExcerptInput);
+    if (excerptInput) excerptInput.addEventListener('input', handleExcerptInput);
 
-    // Pre-check button
-    precheckBtn.addEventListener('click', runPreCheck);
+    if (precheckBtn) precheckBtn.addEventListener('click', runAIReview);
+    if (previewBtn) previewBtn.addEventListener('click', openPreviewModal);
+    if (loadMoreBtn) loadMoreBtn.addEventListener('click', handleLoadMore);
+    if (publishForm) publishForm.addEventListener('submit', handleFormSubmit);
 
-    // Preview button
-    previewBtn.addEventListener('click', openPreviewModal);
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+    }
 
-    // Form submit
-    publishForm.addEventListener('submit', handleFormSubmit);
-
-    // Modal close
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', function (e) {
-      if (e.target === modalOverlay) closeModal();
-    });
-
-    // Escape key
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
         closeModal();
       }
     });
 
-    // Card keyboard accessibility (delegated)
-    giftGrid.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        var card = e.target.closest('.gift-card');
-        if (card) {
-          e.preventDefault();
-          card.click();
+    // Card keyboard accessibility
+    if (giftGrid) {
+      giftGrid.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          var card = e.target.closest('.gift-card');
+          if (card && !e.target.closest('.card-favorite-btn')) {
+            e.preventDefault();
+            card.click();
+          }
         }
-      }
+      });
+    }
+
+    // Story tip keyboard
+    document.querySelectorAll('.story-tip-item').forEach(function (item) {
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
     });
   }
 

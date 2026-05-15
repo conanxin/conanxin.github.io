@@ -24,7 +24,7 @@
       <p class="hero-slogan" aria-label="核心口号">给一件旧礼物，一个体面的下一站。</p>
       <p class="hero-desc">
         关系结束了，礼物还在。<br>
-        留着难受，扔掉可惜，转卖缺少语境。<br>
+        留着难受，扔掉可惜，转卖又缺少语境。<br>
         在这里，每件礼物都可以被讲述，然后体面地流转。
       </p>
       <div class="hero-actions">
@@ -106,6 +106,10 @@
       <!-- Filter Tabs -->
       <div class="filter-tabs" role="tablist" aria-label="礼物筛选">
         <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" aria-controls="giftGrid">全部</button>
+        <button class="filter-tab" data-filter="favorites" role="tab" aria-selected="false" aria-controls="giftGrid">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="13" height="13" aria-hidden="true"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/></svg>
+          已收藏
+        </button>
         <button class="filter-tab" data-filter="sell" role="tab" aria-selected="false" aria-controls="giftGrid">出售</button>
         <button class="filter-tab" data-filter="exchange" role="tab" aria-selected="false" aria-controls="giftGrid">交换</button>
         <button class="filter-tab" data-filter="giveaway" role="tab" aria-selected="false" aria-controls="giftGrid">赠送</button>
@@ -116,7 +120,15 @@
       <!-- Gift Grid -->
       <div class="gift-grid" id="giftGrid" aria-live="polite" aria-label="礼物列表"></div>
 
-      <!-- Empty State (shown via JS when filter has no results) -->
+      <!-- Load More Button -->
+      <div class="load-more-wrap">
+        <button class="btn btn-secondary load-more-btn" id="loadMoreBtn" style="display:none" aria-label="阅读更多故事">
+          <svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M10 4v12M4 12l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          阅读更多故事
+        </button>
+      </div>
+
+      <!-- Empty State -->
       <div class="empty-state" id="emptyState" style="display:none" role="status">
         <div class="empty-state-icon" aria-hidden="true"></div>
         <p class="empty-state-line" id="emptyStateLine">这一类礼物暂时还没有故事。</p>
@@ -264,6 +276,10 @@
           <div class="form-group">
             <label for="fullStory">完整故事</label>
             <textarea id="fullStory" name="fullStory" rows="5" placeholder="详细讲讲这件礼物的来历吧……它是怎么到你手上的，那段关系里你印象最深的是什么，为什么现在想和它告别？"></textarea>
+            <div class="full-story-footer">
+              <span class="char-count" aria-live="polite"><span id="fullStoryCount">0</span> 字</span>
+              <span class="story-quality-hint" id="storyQualityHint" style="display:none" role="status" aria-live="polite"></span>
+            </div>
           </div>
 
           <!-- Privacy reminder -->
@@ -279,13 +295,23 @@
             </label>
           </div>
 
-          <!-- Story Pre-Check -->
-          <div class="precheck-section" aria-label="故事预检">
-            <button type="button" class="precheck-btn" id="precheckBtn" aria-label="检查故事是否适合公开">
-              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2L3 5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5V5L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-              检查故事是否适合公开
+          <!-- AI Review Section -->
+          <div class="ai-review-section" aria-label="AI 编辑建议">
+            <div class="ai-review-intro">
+              <div class="ai-review-title">
+                <svg viewBox="0 0 24 24" fill="none" width="18" height="18" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 21h6M10 17v4M14 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                发布前的温柔检查
+              </div>
+              <p class="ai-review-desc">这些建议只在你的浏览器本地生成，不会上传你的故事。它会帮助你减少可识别信息、攻击性表达和过度暴露的细节。</p>
+            </div>
+
+            <button type="button" class="ai-review-btn" id="aiReviewBtn" aria-label="运行 AI 编辑建议检查">
+              <svg viewBox="0 0 20 20" fill="none" width="16" height="16" aria-hidden="true"><path d="M10 2L3 5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5V5L10 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              运行温柔检查
             </button>
-            <div class="precheck-card" id="precheckCard" role="alert" aria-live="polite"></div>
+
+            <!-- AI Review Panel (populated by JS) -->
+            <div class="ai-review-panel" id="aiReviewPanel" role="alert" aria-live="polite"></div>
           </div>
 
           <!-- Preview Button -->

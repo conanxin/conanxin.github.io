@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# Draft backups
+drafts/*.bak*/
+drafts/*/*.bak*/
+drafts/letter-theme-page.bak.*/
+
+# Node
+node_modules/

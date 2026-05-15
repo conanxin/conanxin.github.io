@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="亡者之信：空椅子与飘落信纸">
+  <path d="M12 38h24"/>
+  <path d="M16 38v-12a4 4 0 014-4h8a4 4 0 014 4v12"/>
+  <path d="M20 22v-6a4 4 0 118 0v6"/>
+  <rect x="26" y="8" width="12" height="14" rx="1" transform="rotate(12 32 15)"/>
+  <path d="M28 12l4 2 4-2" transform="rotate(12 32 15)"/>
+</svg>

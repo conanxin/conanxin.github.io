@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="杨福东：香河 / Yang Fudong: Fragrant River — UCCA 尤伦斯当代艺术中心展览非官方学习型线上导览草稿。交互式平面图、16件作品、四个策展章节、时间线与观展笔记。">
+  <title>杨福东：香河 · Yang Fudong: Fragrant River — 线上导览草稿</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-subtitle">UCCA Center for Contemporary Art, Beijing</div>
+    <h1>杨福东：香河</h1>
+    <span class="hero-en">Yang Fudong: Fragrant River</span>
+    <div class="hero-meta" id="hero-meta">
+      <span>UCCA 尤伦斯当代艺术中心，北京</span> · <span>2025.11.22 – 2026.05.31</span><br>
+      <span>策展人 田霏宇 Philip Tinari、刘倩兮 Chelsea Qianxi Liu</span>
+    </div>
+    <div class="hero-keywords" id="hero-keywords">
+      <span class="keyword-chip">家乡</span>
+      <span class="keyword-chip">怀旧</span>
+      <span class="keyword-chip">异质时间</span>
+      <span class="keyword-chip">非线性叙事</span>
+      <span class="keyword-chip">恍若隔世</span>
+      <span class="keyword-chip">形式作为叙事</span>
+      <span class="keyword-chip">想象中的电影</span>
+      <span class="keyword-chip">图书馆电影计划</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#floor-plan" class="btn btn-primary">进入展厅 Enter Exhibition</a>
+      <a href="#sections" class="btn">策展章节 Curatorial Sections</a>
+    </div>
+    <!-- [Internal reference mode UI removed in public candidate] -->
+  </div>
+</section>
+
+<!-- ========== FLOOR PLAN ========== -->
+<section class="section section-alt" id="floor-plan">
+  <div class="container">
+    <h2 class="text-center mb-3">交互式展厅平面图 · Interactive Floor Plan</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      点击作品编号查看详情 / Click a work number for details · 键盘 ← → 切换作品 / ESC 关闭卡片
+    </p>
+
+    <div class="floor-tabs">
+      <button class="btn btn-sm active" id="btn-floor1" onclick="switchFloor(1)">一层 First Floor</button>
+      <button class="btn btn-sm" id="btn-floor2" onclick="switchFloor(2)">二层 Second Floor</button>
+      <button class="btn btn-sm" id="btn-filter" onclick="toggleThemeFilter(null)">主题筛选</button>
+    </div>
+
+    <div class="floor-plan-wrap">
+      <div class="floor-plan-svg" id="floor-plan-svg" aria-label="展厅平面图">
+        <!-- SVG injected by JS -->
+      </div>
+
+      <div class="work-panel empty" id="work-panel">
+        <p>在左侧平面图中点击作品编号，查看详细信息。</p>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:#555">Click a work number on the floor plan.</p>
+      </div>
+    </div>
+
+    <!-- Tour controls -->
+    <div class="mt-3">
+      <div class="tour-controls">
+        <button class="btn btn-sm" id="btn-tour">迷宫游览模式 Maze Tour</button>
+        <button class="btn btn-sm" id="btn-tour-prev">← 上一站</button>
+        <button class="btn btn-sm" id="btn-tour-next">下一站 →</button>
+        <button class="btn btn-sm" id="btn-tour-reset">重置 Reset</button>
+        <span class="tour-progress" id="tour-progress"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ROUTE SELECTOR ========== -->
+<section class="section" id="route-selector">
+  <div class="container">
+    <h2 class="text-center mb-3">选择你的观展路线 · Choose Your Route</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      不同观众有不同需求，像现场一样决定从哪开始 / Different paths for different visitors
+    </p>
+    <div class="route-cards" id="route-cards">
+      <div class="route-card" data-route="first-visit" onclick="activateRoute('first-visit')">
+        <div class="route-num">01</div>
+        <h3>初次进入</h3>
+        <p>从一层新作开始，逐层深入二层核心迷宫。适合第一次看展的观众。</p>
+        <div class="route-works">覆盖 1–16 号全部作品</div>
+      </div>
+      <div class="route-card" data-route="fragrant-river" onclick="activateRoute('fragrant-river')">
+        <div class="route-num">02</div>
+        <h3>只看《香河》</h3>
+        <p>直奔二层核心，围绕15频装置、纪录片、黑白摄影和家具装置深度停留。</p>
+        <div class="route-works">聚焦 8–12, 14–15 号</div>
+      </div>
+      <div class="route-card" data-route="film-maze" onclick="activateRoute('film-maze')">
+        <div class="route-num">03</div>
+        <h3>影像迷宫</h3>
+        <p>聚焦多屏影像、电影感与时间错位。胶片质感与黑白数码的交替体验。</p>
+        <div class="route-works">聚焦 1, 5, 6, 9, 10, 13 号</div>
+      </div>
+      <div class="route-card" data-route="hometown" onclick="activateRoute('hometown')">
+        <div class="route-num">04</div>
+        <h3>家乡与怀旧</h3>
+        <p>跟随母亲、父亲、春节、烟火和旧家具，进入关于香河的个人记忆版图。</p>
+        <div class="route-works">聚焦 5, 8, 9, 11, 14, 15 号</div>
+      </div>
+    </div>
+    <div class="route-active-hint" id="route-active-hint"></div>
+  </div>
+</section>
+
+<!-- ========== FRAGRANT RIVER CORE MODULE ========== -->
+<section class="section section-alt" id="fragrant-river-core">
+  <div class="container">
+    <h2 class="text-center mb-3">《香河》：9个空间 · 15个屏幕</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      展览核心装置的结构可视化 · 点击空间节点探索 / Click a space node to explore
+    </p>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.78rem">
+      注：以下结构图为基于展览信息整理的解释性导览，非官方平面图精确复刻
+    </p>
+    <div class="space-grid" id="space-grid">
+      <!-- Injected by JS -->
+    </div>
+    <div class="space-detail" id="space-detail">
+      <p>点击上方空间节点，查看该区域的屏幕分布与观看感受。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ATMOSPHERE MODE ========== -->
+<section class="section" id="atmosphere" style="padding:1.5rem 0">
+  <div class="container">
+    <div class="atmosphere-bar">
+      <span class="atmosphere-label">展厅氛围 · Atmosphere</span>
+      <button class="btn btn-sm active" data-mode="normal" onclick="setAtmosphere('normal')">正常 Normal</button>
+      <button class="btn btn-sm" data-mode="darkroom" onclick="setAtmosphere('darkroom')">暗房 Darkroom</button>
+      <button class="btn btn-sm" data-mode="booklet" onclick="setAtmosphere('booklet')">手册 Booklet</button>
+      <button class="btn btn-sm" data-mode="projector" onclick="setAtmosphere('projector')">投影 Projector</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CURATORIAL SECTIONS ========== -->
+<section class="section" id="sections">
+  <div class="container">
+    <h2 class="text-center mb-3">策展章节 · Curatorial Sections</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      横向滑动浏览 / Swipe horizontally
+    </p>
+    <div class="sections-scroll" id="sections-scroll">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== TIMELINE ========== -->
+<section class="section section-alt" id="timeline-section">
+  <div class="container">
+    <h2 class="text-center mb-3">展览时间线 · Exhibition Timeline</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      从1997年构想萌芽到2026年展出闭幕 / From 1997 conception to 2026 closing
+    </p>
+    <div class="timeline" id="timeline">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== ONLINE WALKTHROUGH ROUTES ========== -->
+<section class="section section-alt" id="walkthroughs">
+  <div class="container">
+    <h2 class="text-center mb-3">线上观展路线 · Online Walkthroughs</h2>
+    <p class="text-center mb-3" style="color:var(--text-muted);font-size:0.85rem">
+      像现场一样决定从哪开始，每条路线都有推荐顺序和预计时间 / Choose your path like you're at the gallery
+    </p>
+    <div class="walkthrough-cards" id="walkthrough-cards">
+      <div class="walkthrough-card" data-wt="quick" onclick="startWalkthrough('quick')">
+        <div class="wt-time">⏱ 约 30 分钟</div>
+        <h3>30分钟快速看展</h3>
+        <p class="wt-desc">时间有限？用半小时抓住展览最核心的三件作品与整体氛围。</p>
+        <div class="wt-sequence">入口 → 平面图 → #9《香河》→ #1《少年少年》→ #6《在颐和园》→ #15《新年快乐》→ 观展笔记</div>
+        <div class="wt-progress" id="wt-progress-quick"></div>
+        <div class="walkthrough-controls">
+          <button class="btn btn-sm" id="btn-wt-quick-start">开始路线 Start</button>
+          <button class="btn btn-sm" id="btn-wt-quick-next" style="display:none">下一站 Next →</button>
+        </div>
+      </div>
+      <div class="walkthrough-card" data-wt="fragrant-river" onclick="startWalkthrough('fragrant-river')">
+        <div class="wt-time">⏱ 约 60 分钟</div>
+        <h3>只看《香河》深度路线</h3>
+        <p class="wt-desc">直奔二层核心。从9个空间的结构到15频迷宫的沉浸体验，深入展览灵魂。</p>
+        <div class="wt-sequence">Hero → 《香河》9空间模块 → #9《香河》→ #8 黑白摄影 → #10 纪录片 → 四个策展章节</div>
+        <div class="wt-progress" id="wt-progress-fragrant-river"></div>
+        <div class="walkthrough-controls">
+          <button class="btn btn-sm" id="btn-wt-fragrant-river-start">开始路线 Start</button>
+          <button class="btn btn-sm" id="btn-wt-fragrant-river-next" style="display:none">下一站 Next →</button>
+        </div>
+      </div>
+      <div class="walkthrough-card" data-wt="hometown-family" onclick="startWalkthrough('hometown-family')">
+        <div class="wt-time">⏱ 约 45 分钟</div>
+        <h3>家乡、母亲与春节路线</h3>
+        <p class="wt-desc">跟随母亲、父亲、春节、烟火和旧家具，从家庭叙事进入杨福东的个人记忆版图。</p>
+        <div class="wt-sequence">#9《香河》→ #11《哺乳期》→ #14《父亲的烟火》→ #15《新年快乐》→ #5《县长县长》</div>
+        <div class="wt-progress" id="wt-progress-hometown-family"></div>
+        <div class="walkthrough-controls">
+          <button class="btn btn-sm" id="btn-wt-hometown-family-start">开始路线 Start</button>
+          <button class="btn btn-sm" id="btn-wt-hometown-family-next" style="display:none">下一站 Next →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ON-SITE NARRATIVE ========== -->
+<section class="section" id="on-site-narrative">
+  <div class="container" style="max-width:720px">
+    <h2 class="text-center mb-3">我在现场如何观看这个展览</h2>
+    <div class="narrative-section">
+      <p>
+        你站在 UCCA 大展厅的入口处，面前是展览海报——黑白影像中，一位母亲正在准备春节。这不是一张普通的展览海报，而是杨福东为你设下的第一重时间陷阱：你会感觉自己不是在看展，而是在进入一个被记忆重构的村庄。
+        <span class="narrative-link" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">↳ 回到首屏</span>
+      </p>
+      <p>
+        不要被入口处的新作分散太久。直接走向二层——那里才是展览的心脏。《香河》的15个屏幕不均匀分布在9个多层嵌套的空间中，像一座记忆的迷宫。你可能会迷路，这正是策展的意图。在黑暗中穿行时，试着让眼睛适应不同的屏幕亮度：有的屏幕播放着母亲的日常劳作，有的突然切入生老病死的片段，时间在这里不再是线性的，而是像村庄的道路一样分叉、回头、消失。
+        <span class="narrative-link" onclick="document.getElementById('fragrant-river-core').scrollIntoView({behavior:'smooth'})">↳ 探索9空间模块</span>
+      </p>
+      <p>
+        从迷宫出来后，你的时间感已经不同了。这时回到一层，看《少年少年》的5频彩色胶片——那些奔跑在玉米地里的少年，那种"永远不会结束的漫长夏天"，与刚刚经历的黑白迷宫形成强烈的色彩与情感对照。注意16毫米胶片的质感：颗粒、温度、光线的流逝，这是数码影像无法伪造的时间痕迹。
+        <span class="narrative-link" onclick="switchFloor(1);document.getElementById('floor-plan').scrollIntoView({behavior:'smooth'})">↳ 切换到一层平面图</span>
+      </p>
+      <p>
+        接下来，在《哺乳期》的家具装置前停留。老式 CRT 电视播放着2000年代初的家庭录像，家具的镜面反射着你的身影——你成为了展览的一部分。这时再读四个策展章节，你会发现"作为隐喻的香河""恍若隔世的意境感""形式作为叙事""想象中的电影"不再是抽象概念，而是你刚刚用身体经历过的感受。
+        <span class="narrative-link" onclick="document.getElementById('sections').scrollIntoView({behavior:'smooth'})">↳ 阅读策展章节</span>
+      </p>
+      <p>
+        最后，在观展笔记里写下你此刻的感受。不要写"作品分析"，写你此刻的身体记忆：迷宫里哪个转角让你迟疑？哪个屏幕的画面让你想起自己的家乡？黑白与彩色的交替给你怎样的时间错觉？这就是"杨福东：香河"想要留给你的——不是知识，而是一种关于时间、记忆和家乡的，无法被转述的身体经验。
+        <span class="narrative-link" onclick="document.getElementById('notes').scrollIntoView({behavior:'smooth'})">↳ 写观展笔记</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NOTES ========== -->
+<section class="section" id="notes">
+  <div class="container" style="max-width:700px">
+    <h2 class="text-center mb-3">我的观展笔记 · My Exhibition Notes</h2>
+    <p class="text-center mb-2" style="color:var(--text-muted);font-size:0.85rem">
+      记录你在这个线上导览中的感受、联想与问题 / Record your thoughts, associations, and questions
+    </p>
+    <textarea class="notes-area" id="notes-area" placeholder="在这里写下你的观展笔记……你的文字只保存在本地浏览器中，不会上传到任何地方。&#10;&#10;例如：&#10;- 哪件作品让你想起自己的家乡？&#10;- 15频迷宫的空间体验让你联想到什么？&#10;- 黑白与彩色影像的交替给你怎样的时间感？"></textarea>
+    <div class="notes-status" id="notes-status"></div>
+  </div>
+</section>
+
+<!-- ========== SOURCES ========== -->
+<section class="section section-alt" id="sources">
+  <div class="container">
+    <h2 class="text-center mb-3">资料来源 · Sources</h2>
+    <div id="sources-list" style="max-width:800px;margin:0 auto">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="container text-center">
+    <p>本页面为基于公开资料整理的非官方学习型线上导览草稿，仅供个人研究与回顾使用。</p>
+    <p>所有作品版权归杨福东工作室及相关机构所有。展览信息以 <a href="https://ucca.org.cn/en/exhibition/yang-fudong/" target="_blank" rel="noopener noreferrer">UCCA 官方发布</a> 为准。</p>
+    <p style="margin-top:1rem;color:#666;font-size:0.8rem;line-height:1.6">
+      <b>公开安全候选版 · Public-Safe Candidate</b> · drafts/yang-fudong-fragrant-river-public-candidate/ · noindex · <b>非官方学习型草稿 · Unofficial Learning Draft</b> · generated 2026-05-17 · Phase 3B<br>
+      当前仅使用原创占位视觉与公开资料摘要，待补充自摄或授权图片后方可考虑公开发布。
+    </p>
+  </div>
+</footer>
+
+<!-- Audio toggle (placeholder) -->
+<button class="audio-toggle" id="audio-toggle" aria-label="环境声开关" title="环境声（占位）" aria-pressed="false">🔇</button>
+
+<script src="app.js"></script>
+</body>
+</html>

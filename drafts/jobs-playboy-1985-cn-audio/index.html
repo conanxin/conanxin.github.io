@@ -226,6 +226,36 @@
  margin-left: 8px;
  font-weight: 500;
  }
+
+ .search-toolbar {
+ display: grid;
+ grid-template-columns: minmax(0, 1.4fr) 160px 160px auto;
+ gap: 10px;
+ align-items: center;
+ margin: 14px 0 18px;
+ }
+ @media (max-width: 820px) {
+ .search-toolbar { grid-template-columns: 1fr; }
+ }
+ .search-toolbar input, .search-toolbar select {
+ width: 100%;
+ border: 1px solid var(--line);
+ border-radius: 999px;
+ background: #fffaf0;
+ padding: 10px 12px;
+ font: inherit;
+ color: var(--fg);
+ }
+ mark {
+ background: #ffe99a;
+ padding: 0 .15em;
+ border-radius: .25em;
+ }
+ .result-count {
+ color: var(--muted);
+ font-size: 14px;
+ margin: -6px 0 10px;
+ }
  .timeline {
  display: grid;
  gap: 10px;
@@ -347,9 +377,20 @@
  </ul>
  </section>
 
- <section class="card">
- <h2>文稿预览</h2>
- <p class="notice">默认显示前 12 个对话单元。完整版本可在下载区获取 TXT / Markdown / JSON。</p>
+ <section class="card" id="transcriptSection">
+ <h2>文稿预览与检索</h2>
+ <p class="notice">支持关键词搜索、speaker 过滤和 unit id 跳转。完整版本可在下载区获取 TXT / Markdown / JSON。</p>
+ <div class="search-toolbar">
+ <input id="searchInput" type="search" placeholder="搜索关键词，例如 Macintosh、IBM、死亡、亚里士多德">
+ <select id="speakerFilter" aria-label="Speaker filter">
+ <option value="all">全部 speaker</option>
+ <option value="乔布斯">只看乔布斯</option>
+ <option value="Playboy">只看 Playboy</option>
+ </select>
+ <input id="unitJump" type="text" placeholder="跳转 unit，如 u0030">
+ <button id="jumpUnit" class="secondary">跳转</button>
+ </div>
+ <div id="resultCount" class="result-count"></div>
  <div id="transcript"></div>
  <p><button id="loadMore" class="secondary">展开更多</button></p>
  </section>
@@ -507,26 +548,116 @@ async function loadQualityAudit() {
  box.innerHTML = head + repairs;
 }
 
+// PHASE6P_SEARCH_FILTER_PATCH
+let filteredUnits = [];
+
+function escapeHtml(str) {
+ return String(str || '').replace(/[&<>"']/g, ch => ({
+ '&': '&amp;',
+ '<': '&lt;',
+ '>': '&gt;',
+ '"': '&quot;',
+ "'": '&#39;'
+ }[ch]));
+}
+
+function highlight(text, query) {
+ const safe = escapeHtml(text);
+ const q = String(query || '').trim();
+ if (!q) return safe;
+ const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+ return safe.replace(new RegExp(escaped, 'gi'), match => `<mark>${match}</mark>`);
+}
+
+function currentQuery() {
+ const el = document.getElementById('searchInput');
+ return el ? el.value.trim() : '';
+}
+
+function currentSpeaker() {
+ const el = document.getElementById('speakerFilter');
+ return el ? el.value : 'all';
+}
+
+function applyTranscriptFilters(reset = true) {
+ const q = currentQuery().toLowerCase();
+ const speaker = currentSpeaker();
+
+ filteredUnits = transcriptUnits.filter(u => {
+ const speakerOk = speaker === 'all' || u.speaker_cn === speaker;
+ const text = `${u.unit_id || ''} ${u.speaker_cn || ''} ${u.translation_cn || ''}`.toLowerCase();
+ const queryOk = !q || text.includes(q);
+ return speakerOk && queryOk;
+ });
+
+ if (reset) {
+ shown = 0;
+ document.getElementById('transcript').innerHTML = '';
+ }
+
+ const result = document.getElementById('resultCount');
+ if (result) {
+ result.textContent = `当前显示 ${filteredUnits.length} / ${transcriptUnits.length} 个 unit`;
+ }
+
+ renderMore(reset ? 12 : 20);
+}
+
 function renderMore(n = 12) {
  const box = document.getElementById('transcript');
- const next = transcriptUnits.slice(shown, shown + n);
+ const query = currentQuery();
+ const next = filteredUnits.slice(shown, shown + n);
+
  const html = next.map(u => `
- <div class="transcript-unit">
- <div class="speaker">${u.speaker_cn}<span class="unit-id">${u.unit_id}</span></div>
- <div>${u.translation_cn}</div>
+ <div class="transcript-unit" id="unit-${escapeHtml(u.unit_id)}">
+ <div class="speaker">${escapeHtml(u.speaker_cn)}<span class="unit-id">${escapeHtml(u.unit_id)}</span></div>
+ <div>${highlight(u.translation_cn, query)}</div>
  </div>
  `).join('');
+
  box.insertAdjacentHTML('beforeend', html);
  shown += next.length;
- if (shown >= transcriptUnits.length) {
- document.getElementById('loadMore').style.display = 'none';
+
+ const btn = document.getElementById('loadMore');
+ if (btn) {
+ btn.style.display = shown >= filteredUnits.length ? 'none' : 'inline-block';
  }
+}
+
+function jumpToUnit() {
+ const input = document.getElementById('unitJump');
+ const unit = (input?.value || '').trim();
+ if (!unit) return;
+
+ const exists = transcriptUnits.some(u => u.unit_id === unit);
+ if (!exists) {
+ alert(`没有找到 ${unit}`);
+ return;
+ }
+
+ document.getElementById('searchInput').value = unit;
+ document.getElementById('speakerFilter').value = 'all';
+ applyTranscriptFilters(true);
+
+ setTimeout(() => {
+ const el = document.getElementById(`unit-${unit}`);
+ if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+ }, 80);
 }
 
 async function loadTranscript() {
  transcriptUnits = await fetch('assets/data/transcript_preview.json').then(r => r.json());
- renderMore(12);
- document.getElementById('loadMore').addEventListener('click', () => renderMore(20));
+ filteredUnits = transcriptUnits.slice();
+
+ document.getElementById('searchInput')?.addEventListener('input', () => applyTranscriptFilters(true));
+ document.getElementById('speakerFilter')?.addEventListener('change', () => applyTranscriptFilters(true));
+ document.getElementById('loadMore')?.addEventListener('click', () => renderMore(20));
+ document.getElementById('jumpUnit')?.addEventListener('click', jumpToUnit);
+ document.getElementById('unitJump')?.addEventListener('keydown', e => {
+ if (e.key === 'Enter') jumpToUnit();
+ });
+
+ applyTranscriptFilters(true);
 }
 
 loadStats().catch(console.error);
@@ -537,5 +668,6 @@ loadTimeline().catch(console.error);
 loadQualityAudit().catch(console.error);
 loadTranscript().catch(console.error);
 </script>
+<!-- Phase 6P patched at 2026-05-16T05:15:05.904518+00:00 UTC -->
 </body>
 </html>

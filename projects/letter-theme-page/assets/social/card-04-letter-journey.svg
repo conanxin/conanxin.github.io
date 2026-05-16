@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <style>
+      
+  .bg { fill: #f7f4ee; }
+  .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-weight: 700; }
+  .body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+  .url { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+  .accent-red { fill: #c25e5e; }
+  .accent-blue { fill: #4a6fa5; }
+  .accent-green { fill: #4a7c59; }
+  .ink { fill: #2a2520; }
+  .ink-secondary { fill: #5a544d; }
+  .ink-tertiary { fill: #8a837a; }
+
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="1600"/>
+  
+  <!-- Title -->
+  <text x="600" y="220" text-anchor="middle" class="title" font-size="64" fill="#2a2520">一封信的旅程</text>
+  <rect x="500" y="245" width="200" height="3" fill="#4a6fa5" opacity="0.4"/>
+  
+  <!-- Timeline illustration -->
+  <g transform="translate(600, 680)">
+    <!-- Main horizontal line -->
+    <line x1="-400" y1="0" x2="400" y2="0" stroke="#d4cfc7" stroke-width="3"/>
+    
+    <!-- Nodes -->
+    <circle cx="-400" cy="0" r="14" fill="#4a6fa5" opacity="0.8"/>
+    <circle cx="-250" cy="0" r="14" fill="#4a6fa5" opacity="0.8"/>
+    <circle cx="-100" cy="0" r="14" fill="#4a6fa5" opacity="0.8"/>
+    <circle cx="50" cy="0" r="14" fill="#4a6fa5" opacity="0.8"/>
+    <circle cx="200" cy="0" r="14" fill="#c25e5e" opacity="0.8"/>
+    <circle cx="350" cy="0" r="14" fill="#4a7c59" opacity="0.8"/>
+    <circle cx="400" cy="0" r="14" fill="#4a7c59" opacity="0.8"/>
+    
+    <!-- Labels above -->
+    <text x="-400" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">写下</text>
+    <text x="-250" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">封口</text>
+    <text x="-100" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">投递</text>
+    <text x="50" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">等待</text>
+    <text x="200" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">抵达</text>
+    <text x="350" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">重读</text>
+    <text x="400" y="-30" text-anchor="middle" class="body" font-size="20" fill="#2a2520">档案</text>
+    
+    <!-- Connecting arrows below -->
+    <text x="-325" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+    <text x="-175" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+    <text x="-25" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+    <text x="125" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+    <text x="275" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+    <text x="375" y="50" text-anchor="middle" class="body" font-size="24" fill="#8a837a">→</text>
+  </g>
+  
+  <!-- Body text -->
+  <text x="600" y="980" text-anchor="middle" class="body" font-size="32" fill="#5a544d">写下 → 封口 → 投递 → 等待 → 抵达 → 重读 → 档案化。</text>
+  <text x="600" y="1040" text-anchor="middle" class="body" font-size="32" fill="#5a544d">一封信的命运，也是一段关系的命运。</text>
+  
+  <!-- Bottom URL -->
+  <text x="600" y="1480" text-anchor="middle" class="url" font-size="20" fill="#8a837a">conanxin.github.io/projects/letter-theme-page</text>
+  
+  <rect x="100" y="1520" width="1000" height="2" fill="#d4cfc7" opacity="0.4"/>
+</svg>

@@ -1,7 +1,7 @@
 {
   "project": "jobs-playboy-1985-cn-audio",
-  "phase": "6P_search_filter_online_consistency",
-  "generated_at_utc": "2026-05-16T05:15:43.785267+00:00",
+  "phase": "6Q_hard_deploy_consistency_fix",
+  "generated_at_utc": "2026-05-16T05:26:40.990108+00:00",
   "target_rel": "drafts/jobs-playboy-1985-cn-audio",
   "target_dir": "/home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio",
   "url": "https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/",
@@ -9,10 +9,8 @@
   "projects_data_changed": false,
   "tts_regenerated": false,
   "full_audio_modified": false,
-  "rights_wording_revised": true,
-  "search_filter_added": true,
-  "unit_jump_added": true,
-  "file_count": 26,
+  "hard_deploy_marker_added": true,
+  "file_count": 27,
   "files": [
     {
       "path": "README.md",
@@ -29,6 +27,11 @@
       "path": "assets/data/chapters.json",
       "size_bytes": 2581,
       "sha256": "75fea19c9bb70e75fd61b83daeb88273adcadb8f3537df866902b084d41a59cc"
+    },
+    {
+      "path": "assets/data/deploy_version.json",
+      "size_bytes": 475,
+      "sha256": "78f4ec8d5fdb0b06f14e84124683b240515fe2b247d4d018a1bade1da837192f"
     },
     {
       "path": "assets/data/key_quotes.json",
@@ -141,13 +144,13 @@
     },
     {
       "path": "index.html",
-      "size_bytes": 19213,
-      "sha256": "8ebeb8fb47aed413b5ca75b3d2f36a8fced5d2b71ab4420d0343b193fe499e83"
+      "size_bytes": 19534,
+      "sha256": "2714dfcf90f86af0e8c5cf2488572841913383f902db4819ab1211c66a29d26c"
     },
     {
       "path": "publish_manifest.json",
-      "size_bytes": 5087,
-      "sha256": "ccceac13e2e97704baf76396c48edfad833bdda306848121ab67e434b3dda70e"
+      "size_bytes": 5557,
+      "sha256": "f9d096038ddde9110085926793b2b5391e664919b74527133a4d01590cf08427"
     }
   ]
 }

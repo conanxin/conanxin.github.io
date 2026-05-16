@@ -203,5 +203,20 @@
       "文旅路线",
       "互动页面"
     ]
+  },
+  {
+    "title": "后来礼物 Aftergift",
+    "description": "一个关系旧物的温柔流转平台原型：发布礼物、讲述故事、匿名预检、收藏与本地 API 联调。",
+    "url": "/projects/aftergift-prototype/",
+    "category": "systems",
+    "featured": true,
+    "tags": [
+      "product-prototype",
+      "story-platform",
+      "secondhand",
+      "moderation",
+      "fastapi"
+    ],
+    "date": "2026-05-16"
   }
 ]

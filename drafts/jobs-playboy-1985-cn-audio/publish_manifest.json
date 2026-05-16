@@ -1,0 +1,68 @@
+{
+  "project": "jobs-playboy-1985-cn-audio",
+  "phase": "6M_publish_to_github_pages_draft",
+  "generated_at_utc": "2026-05-16T04:34:57.774638+00:00",
+  "target_rel": "drafts/jobs-playboy-1985-cn-audio",
+  "target_dir": "/home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio",
+  "url": "https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/",
+  "noindex": true,
+  "file_count": 11,
+  "files": [
+    {
+      "path": "README.md",
+      "size_bytes": 656,
+      "sha256": "8f340b8bdd016d9e93836f8c2c4afecc207056e6b35c9c9e62a47cee2bc0a2fb"
+    },
+    {
+      "path": "assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3",
+      "size_bytes": 45551181,
+      "sha256": "47317c68d977dcd84d361c413c96c3672454f1502aeeeffc9251e9a7ca460bf0",
+      "duration_seconds": 6141.53
+    },
+    {
+      "path": "assets/manifests/phase6j_u0030_final_transcript_patch_manifest.json",
+      "size_bytes": 1630,
+      "sha256": "f5fe803359fbb8ce3a3fa9617a086cd4bfc0db47af5b471b805cf1253afe8128"
+    },
+    {
+      "path": "assets/manifests/phase6k_u0030_selective_tts_manifest.json",
+      "size_bytes": 1185,
+      "sha256": "f896788f7d1ec3bf06e3408b2c87a3c49b96c2241f6b7ab89787a007ff55c4a3"
+    },
+    {
+      "path": "assets/reports/PHASE6J_U0030_FINAL_TRANSCRIPT_PATCH_REPORT.txt",
+      "size_bytes": 3314,
+      "sha256": "57ecee37eb3be482dc3152b6967f2e072b4e20197954e25c6fdf274d9f4371e1"
+    },
+    {
+      "path": "assets/reports/PHASE6K_U0030_SELECTIVE_TTS_REPORT.txt",
+      "size_bytes": 2600,
+      "sha256": "bb92d8cc8ea13caaebe4d3d3f7c9180d1f586c5ee8c27ed37bd1261d3519c897"
+    },
+    {
+      "path": "assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.json",
+      "size_bytes": 287310,
+      "sha256": "dcaf3786b3dba64ae3ac5eb4e1e158114800d3a7eb7dcbe0926f0f010978517e"
+    },
+    {
+      "path": "assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.md",
+      "size_bytes": 84082,
+      "sha256": "87159b8c2ae0133de78492b1234231ed150cbd46be86184bd03bc4a0f722b669"
+    },
+    {
+      "path": "assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.txt",
+      "size_bytes": 83684,
+      "sha256": "ea358a428e11d6870791ece8e8206e88b42b2da8f0c25cf53fdd277d046a3a40"
+    },
+    {
+      "path": "assets/text/jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt",
+      "size_bytes": 83025,
+      "sha256": "cd274bd1f9c0444cf5ed106a6e24dfff2077d7b4f3d18f34e2d355dbd4f864bf"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 3305,
+      "sha256": "c2941231b9514545594e3f789ad8bc1fa0d99506f77f0286092f36f16364c1c0"
+    }
+  ]
+}

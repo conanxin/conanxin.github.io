@@ -1,19 +1,18 @@
 {
   "project": "jobs-playboy-1985-cn-audio",
-  "phase": "6R_static_fallback_archive_readability",
-  "generated_at_utc": "2026-05-16T05:45:27.749386+00:00",
-  "marker": "PHASE6R_STATIC_FALLBACK_MARKER_2026-05-16T05:45:27.749386+00:00",
-  "static_fallback": {
-    "samples": 4,
-    "chapters": 11,
-    "quotes": 8,
-    "timeline_items": 8,
-    "quality_items": 6,
-    "transcript_units_prerendered": 12
-  },
-  "index_sha256": "5d34958d575e38cd7487fea119eb93ebc4b206d4507642f1d862b614ec6d8c0f",
-  "noindex": true,
-  "old_rights_wording_removed": true,
+  "phase": "6S_mobile_listening_ux",
+  "generated_at_utc": "2026-05-16T06:07:44.635348+00:00",
+  "marker": "PHASE6S_MOBILE_LISTENING_MARKER_2026-05-16T06:07:44.635348+00:00",
+  "features": [
+    "sticky mini player",
+    "resume last listening position",
+    "copy current time link",
+    "hash time jump",
+    "back to top",
+    "collapsible large sections"
+  ],
   "audio_modified": false,
-  "tts_regenerated": false
+  "tts_regenerated": false,
+  "noindex": true,
+  "old_rights_wording_removed": true
 }

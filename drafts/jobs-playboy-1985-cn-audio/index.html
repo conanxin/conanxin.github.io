@@ -292,6 +292,149 @@
  border-top: 1px solid var(--line);
  padding-top: 18px;
  }
+ 
+ /* PHASE6S_MOBILE_UX_PATCH */
+ .mobile-ux-bar {
+ position: fixed;
+ left: 12px;
+ right: 12px;
+ bottom: 12px;
+ z-index: 80;
+ background: rgba(255, 253, 247, .94);
+ border: 1px solid var(--line);
+ box-shadow: 0 14px 40px rgba(0,0,0,.14);
+ border-radius: 18px;
+ padding: 10px 12px;
+ backdrop-filter: blur(12px);
+ display: none;
+ }
+ .mobile-ux-bar.is-visible {
+ display: block;
+ }
+ .mini-row {
+ display: grid;
+ grid-template-columns: auto 1fr auto auto;
+ gap: 10px;
+ align-items: center;
+ }
+ .mini-title {
+ min-width: 0;
+ font-size: 13px;
+ color: var(--muted);
+ overflow: hidden;
+ white-space: nowrap;
+ text-overflow: ellipsis;
+ }
+ .mini-time {
+ font-variant-numeric: tabular-nums;
+ font-size: 12px;
+ color: var(--muted);
+ }
+ .mini-progress {
+ width: 100%;
+ appearance: none;
+ height: 6px;
+ border-radius: 99px;
+ background: var(--soft);
+ outline: none;
+ cursor: pointer;
+ }
+ .mini-progress::-webkit-slider-thumb {
+ appearance: none;
+ width: 16px;
+ height: 16px;
+ border-radius: 99px;
+ background: var(--accent);
+ border: 0;
+ }
+ .mini-progress::-moz-range-thumb {
+ width: 16px;
+ height: 16px;
+ border-radius: 99px;
+ background: var(--accent);
+ border: 0;
+ }
+ .resume-card {
+ display: none;
+ border: 1px solid var(--line);
+ background: #fffaf0;
+ border-radius: 14px;
+ padding: 12px;
+ margin-top: 12px;
+ }
+ .resume-card.is-visible {
+ display: block;
+ }
+ .floating-tools {
+ position: fixed;
+ right: 14px;
+ bottom: 102px;
+ z-index: 79;
+ display: grid;
+ gap: 8px;
+ }
+ .floating-tools button,
+ .mobile-ux-bar button {
+ min-height: 36px;
+ }
+ .toast {
+ position: fixed;
+ left: 50%;
+ bottom: 86px;
+ transform: translateX(-50%);
+ z-index: 90;
+ background: #111;
+ color: white;
+ border-radius: 999px;
+ padding: 8px 12px;
+ font-size: 13px;
+ opacity: 0;
+ pointer-events: none;
+ transition: opacity .18s ease;
+ }
+ .toast.is-visible {
+ opacity: 1;
+ }
+ .section-toggle {
+ display: flex;
+ justify-content: space-between;
+ gap: 12px;
+ align-items: center;
+ cursor: pointer;
+ }
+ .section-toggle::after {
+ content: "收起";
+ font-size: 13px;
+ color: var(--muted);
+ border: 1px solid var(--line);
+ border-radius: 999px;
+ padding: 4px 8px;
+ flex: 0 0 auto;
+ }
+ .collapsible-card.is-collapsed .section-toggle::after {
+ content: "展开";
+ }
+ .collapsible-card.is-collapsed > *:not(.section-toggle) {
+ display: none;
+ }
+ @media (max-width: 760px) {
+ main {
+ padding-bottom: 170px;
+ }
+ .card {
+ padding: 18px;
+ }
+ .floating-tools {
+ bottom: 112px;
+ }
+ .mini-row {
+ grid-template-columns: auto 1fr auto;
+ }
+ #miniCopyLink {
+ display: none;
+ }
+ }
+
  </style>
 </head>
 <body>
@@ -336,10 +479,17 @@
  <audio id="mainAudio" controls preload="metadata" src="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3"></audio>
  <p><a href="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3">下载完整 MP3</a></p>
  <p class="notice">若移动端加载较慢，可先听下面的 90 秒样片或 5 分钟 preview。</p>
+ <div id="resumeCard" class="resume-card">
+ <b>继续收听</b>
+ <p class="notice" id="resumeText">检测到上次收听进度。</p>
+ <button id="resumeButton" class="secondary">继续播放</button>
+ <button id="clearResumeButton" class="secondary">清除进度</button>
+ </div>
+
  </section>
 
- <section class="card">
- <h2>试听样片</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">试听样片</h2>
  <div id="samples">
  <div class="card compact" data-static-fallback="sample">
  <h3>开头 90 秒</h3>
@@ -368,8 +518,8 @@
  </div>
  </section>
 
- <section class="card">
- <h2>章节导航</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">章节导航</h2>
  <p class="notice">章节不会重复存储分段音频，而是跳转到同一个完整音频的对应时间点。</p>
  <div id="chapters">
  <div class="chapter" data-static-fallback="chapter">
@@ -463,8 +613,8 @@
  </div>
  </section>
 
- <section class="card">
- <h2>关键金句 / 主题锚点</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">关键金句 / 主题锚点</h2>
  <p class="notice">时间点为章节级近似定位，用于快速进入相关主题。</p>
  <div id="quotes">
  <div class="quote" data-static-fallback="quote">
@@ -526,8 +676,8 @@
  </div>
  </section>
 
- <section class="card">
- <h2>版本时间线</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">版本时间线</h2>
  <div id="timeline">
  <div class="timeline-item" data-static-fallback="timeline">
  <div class="phase">Phase 3</div>
@@ -588,8 +738,8 @@
  </div>
  </section>
 
- <section class="card">
- <h2>质量审计摘要</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">质量审计摘要</h2>
  <div id="qualityAudit">
  <div class="audit-item" data-static-fallback="quality">
  <h3>最终状态</h3>
@@ -619,8 +769,8 @@
  </div>
  </section>
 
- <section class="card">
- <h2>为什么这个版本值得保留</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">为什么这个版本值得保留</h2>
  <ul class="repair-list">
  <li>修复早期 speaker 归属错位，明确区分 Playboy 提问与乔布斯回答。</li>
  <li>补全 u0054：Lisa 失败原因，包括发货延迟、软件整合、IBM 压力与 150 家经销商策略错误。</li>
@@ -631,8 +781,8 @@
  </ul>
  </section>
 
- <section class="card" id="transcriptSection">
- <h2>文稿预览与检索</h2>
+ <section class="card collapsible-card" id="transcriptSection">
+ <h2 class="section-toggle">文稿预览与检索</h2>
  <p class="notice">支持关键词搜索、speaker 过滤和 unit id 跳转。完整版本可在下载区获取 TXT / Markdown / JSON。</p>
  <div class="search-toolbar">
  <input id="searchInput" type="search" placeholder="搜索关键词，例如 Macintosh、IBM、死亡、亚里士多德">
@@ -698,8 +848,8 @@
  <p><button id="loadMore" class="secondary">展开更多</button></p>
  </section>
 
- <section class="card">
- <h2>下载与审计文件</h2>
+ <section class="card collapsible-card">
+ <h2 class="section-toggle">下载与审计文件</h2>
  <div class="downloads">
  <div class="download">
  <a href="assets/text/jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt">最终音频 transcript TXT</a>
@@ -752,8 +902,35 @@
 </section>
 
 
+ 
+<section class="source-note" id="phase6sMobileUxMarker">
+ <b>移动端增强：</b>
+ <span>PHASE6S_MOBILE_LISTENING_MARKER_2026-05-16T06:07:44.635348+00:00</span>。
+ 本页支持继续上次收听、固定迷你播放器、复制当前时间链接、回到顶部与 URL 时间跳转。
+</section>
+
+<div id="mobileUxBar" class="mobile-ux-bar" aria-label="Mini audio controls">
+ <div class="mini-row">
+ <button id="miniPlayPause" class="secondary">播放</button>
+ <div class="mini-title">
+ Steve Jobs 1985 Playboy Interview 中文音频
+ <input id="miniProgress" class="mini-progress" type="range" min="0" max="1000" value="0" aria-label="播放进度">
+ </div>
+ <div id="miniTime" class="mini-time">00:00 / 00:00</div>
+ <button id="miniCopyLink" class="secondary">复制时间链接</button>
+ </div>
+</div>
+
+<div class="floating-tools">
+ <button id="jumpToPlayer" class="secondary">播放器</button>
+ <button id="backToTop" class="secondary">顶部</button>
+</div>
+
+<div id="toast" class="toast">已复制</div>
+
+
  <footer>
- <p>Generated as Phase 6R static fallback and archive readability patch. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
+ <p>Generated as Phase 6S mobile listening UX patch. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
  </footer>
 </main>
 
@@ -998,6 +1175,157 @@ loadQuotes().catch(console.error);
 loadTimeline().catch(console.error);
 loadQualityAudit().catch(console.error);
 loadTranscript().catch(console.error);
+
+// PHASE6S_MOBILE_UX_SCRIPT
+const PHASE6S_STORAGE_KEY = 'jobs_playboy_1985_cn_audio_position_seconds';
+
+function fmtMini(seconds) {
+ seconds = Math.max(0, Math.floor(seconds || 0));
+ const h = Math.floor(seconds / 3600);
+ const m = Math.floor((seconds % 3600) / 60);
+ const s = seconds % 60;
+ if (h) return `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+ return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function showToast(text = '已复制') {
+ const toast = document.getElementById('toast');
+ if (!toast) return;
+ toast.textContent = text;
+ toast.classList.add('is-visible');
+ setTimeout(() => toast.classList.remove('is-visible'), 1600);
+}
+
+function parseTimeHash() {
+ const hash = window.location.hash || '';
+ const m = hash.match(/t=(\d+)/);
+ return m ? Number(m[1]) : null;
+}
+
+function updateMiniPlayer() {
+ const bar = document.getElementById('mobileUxBar');
+ const miniTime = document.getElementById('miniTime');
+ const miniProgress = document.getElementById('miniProgress');
+ const miniPlayPause = document.getElementById('miniPlayPause');
+ if (!bar || !audio) return;
+
+ if (window.scrollY > 260) bar.classList.add('is-visible');
+ else bar.classList.remove('is-visible');
+
+ const cur = audio.currentTime || 0;
+ const dur = audio.duration || 0;
+
+ if (miniTime) miniTime.textContent = `${fmtMini(cur)} / ${dur ? fmtMini(dur) : '00:00'}`;
+ if (miniProgress && dur) miniProgress.value = String(Math.round((cur / dur) * 1000));
+ if (miniPlayPause) miniPlayPause.textContent = audio.paused ? '播放' : '暂停';
+}
+
+function saveAudioPosition() {
+ if (!audio || audio.currentTime < 5) return;
+ localStorage.setItem(PHASE6S_STORAGE_KEY, String(Math.floor(audio.currentTime)));
+}
+
+function setupResumeCard() {
+ const saved = Number(localStorage.getItem(PHASE6S_STORAGE_KEY) || 0);
+ const card = document.getElementById('resumeCard');
+ const text = document.getElementById('resumeText');
+ const btn = document.getElementById('resumeButton');
+ const clearBtn = document.getElementById('clearResumeButton');
+
+ if (!card || !btn || !text || saved < 10) return;
+
+ card.classList.add('is-visible');
+ text.textContent = `检测到上次收听到 ${fmtMini(saved)}。`;
+
+ btn.addEventListener('click', () => {
+ audio.currentTime = saved;
+ audio.play();
+ showToast(`已跳转到 ${fmtMini(saved)}`);
+ });
+
+ clearBtn?.addEventListener('click', () => {
+ localStorage.removeItem(PHASE6S_STORAGE_KEY);
+ card.classList.remove('is-visible');
+ showToast('已清除进度');
+ });
+}
+
+function setupTimeHash() {
+ const t = parseTimeHash();
+ if (t !== null && audio) {
+ const apply = () => {
+ audio.currentTime = t;
+ document.getElementById('mainAudio')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+ showToast(`已定位到 ${fmtMini(t)}`);
+ };
+ if (audio.readyState >= 1) apply();
+ else audio.addEventListener('loadedmetadata', apply, { once: true });
+ }
+}
+
+async function copyCurrentTimeLink() {
+ const sec = Math.floor(audio?.currentTime || 0);
+ const url = `${location.origin}${location.pathname}#t=${sec}`;
+ try {
+ await navigator.clipboard.writeText(url);
+ showToast(`已复制 ${fmtMini(sec)} 链接`);
+ } catch {
+ prompt('复制当前时间链接：', url);
+ }
+}
+
+function setupMiniControls() {
+ const miniPlayPause = document.getElementById('miniPlayPause');
+ const miniProgress = document.getElementById('miniProgress');
+ const miniCopyLink = document.getElementById('miniCopyLink');
+ const jumpToPlayer = document.getElementById('jumpToPlayer');
+ const backToTop = document.getElementById('backToTop');
+
+ miniPlayPause?.addEventListener('click', () => {
+ if (audio.paused) audio.play();
+ else audio.pause();
+ updateMiniPlayer();
+ });
+
+ miniProgress?.addEventListener('input', () => {
+ const dur = audio.duration || 0;
+ if (!dur) return;
+ audio.currentTime = (Number(miniProgress.value) / 1000) * dur;
+ });
+
+ miniCopyLink?.addEventListener('click', copyCurrentTimeLink);
+
+ jumpToPlayer?.addEventListener('click', () => {
+ document.getElementById('mainAudio')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+ });
+
+ backToTop?.addEventListener('click', () => {
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ });
+
+ audio?.addEventListener('timeupdate', () => {
+ updateMiniPlayer();
+ saveAudioPosition();
+ });
+ audio?.addEventListener('play', updateMiniPlayer);
+ audio?.addEventListener('pause', updateMiniPlayer);
+ audio?.addEventListener('loadedmetadata', updateMiniPlayer);
+ window.addEventListener('scroll', updateMiniPlayer, { passive: true });
+}
+
+function setupCollapsibleSections() {
+ document.querySelectorAll('.collapsible-card > .section-toggle').forEach(h => {
+ h.addEventListener('click', () => {
+ h.parentElement?.classList.toggle('is-collapsed');
+ });
+ });
+}
+
+setupResumeCard();
+setupTimeHash();
+setupMiniControls();
+setupCollapsibleSections();
+
 </script>
 <!-- Phase 6P patched at 2026-05-16T05:15:05.904518+00:00 UTC -->
 <!-- PHASE6Q_HARD_DEPLOY_COMMENT 2026-05-16T05:25:47.260570+00:00 -->

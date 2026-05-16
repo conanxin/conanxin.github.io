@@ -1,5 +1,19 @@
 [
   {
+    "title": "杨福东：香河",
+    "subtitle": "一个关于家乡、时间、影像与怀旧的互动式线上导览",
+    "slug": "yang-fudong-fragrant-river",
+    "category": "creative",
+    "type": "INTERACTIVE EXHIBITION GUIDE",
+    "status": "非官方学习型导览",
+    "status_color": "#f5a623",
+    "updated": "2026-05-17",
+    "summary": "基于公开资料、展览手册与观展整理的非官方学习型线上展览页面，包含互动平面图、作品卡、《香河》9空间导览、线上观展路线与观展笔记。",
+    "entry_url": "/projects/yang-fudong-fragrant-river/",
+    "source_kind": "interactive",
+    "featured": true
+  },
+  {
     "title": "OPPO 母亲节创意争议复盘",
     "slug": "oppo-mothers-day-report",
     "category": "creative",

@@ -1,0 +1,56 @@
+{
+  "sources": [
+    {
+      "id": "ucca-exhibition-page",
+      "title": "UCCA 官方展览页",
+      "title_en": "UCCA Official Exhibition Page",
+      "url": "https://ucca.org.cn/en/exhibition/yang-fudong/",
+      "type": "webpage",
+      "publisher": "UCCA Center for Contemporary Art",
+      "date_accessed": "2026-05-16",
+      "notes": "主要来源。包含展览概述、策展人信息、作品列表、装置照片、视频、公共项目。"
+    },
+    {
+      "id": "ucca-exhibition-guide-pdf",
+      "title": "UCCA 官方电子手册",
+      "title_en": "UCCA Digital Exhibition Guide PDF",
+      "url": "https://ucca.org.cn/en/download/4/0/a/123a5d-3b4c3b-2a49de/yang_fudong_fragrant_river.pdf",
+      "type": "pdf",
+      "publisher": "UCCA Center for Contemporary Art",
+      "date_accessed": "2026-05-16",
+      "notes": "核心来源。16页双语手册，包含：艺术家简介（中英）、展览前言（中英）、一层/二层平面图、全部16件编号作品信息、四个策展章节、公共项目日历。"
+    },
+    {
+      "id": "ucca-works-page",
+      "title": "UCCA 展览作品列表页",
+      "title_en": "UCCA Exhibition Works List",
+      "url": "https://ucca.org.cn/en/exhibition/yang-fudong/works/",
+      "type": "webpage",
+      "publisher": "UCCA Center for Contemporary Art",
+      "date_accessed": "2026-05-16",
+      "notes": "作品缩略图与基本信息列表。"
+    },
+    {
+      "id": "ucca-public-programs",
+      "title": "UCCA 展览同期公共项目",
+      "title_en": "UCCA Public Programs for the Exhibition",
+      "url": "https://ucca.org.cn/en/exhibition/yang-fudong/",
+      "type": "webpage",
+      "publisher": "UCCA Center for Contemporary Art",
+      "date_accessed": "2026-05-16",
+      "notes": "包含策展人导览、开幕对话、胶片工作坊、音游即兴工作坊、学术对话、影像艺术交流系列。"
+    },
+    {
+      "id": "svetlana-boym-future-of-nostalgia",
+      "title": "斯维特兰娜·博伊姆《怀旧的未来》",
+      "title_en": "Svetlana Boym, The Future of Nostalgia",
+      "url": "",
+      "type": "book",
+      "publisher": "Basic Books, 2001",
+      "date_accessed": "",
+      "notes": "展览前言引用著作，讨论怀旧作为对异质时间的渴望而非对地点的怀念。"
+    }
+  ],
+  "image_attribution": "本页面未直接嵌入UCCA官网受版权保护的高清图像。如需观看作品静帧、装置照片及视频，请访问上述UCCA官方来源链接。页面中使用的视觉元素均为基于展览黑白美学风格的CSS生成占位图。",
+  "copyright_disclaimer": "本页面为基于公开资料整理的非官方学习型线上导览草稿，仅供个人研究与回顾使用。所有作品信息、艺术家传记及策展文本均摘录或改写自UCCA官方发布材料，并标注来源。不包含任何完整影片下载或再发布。"
+}

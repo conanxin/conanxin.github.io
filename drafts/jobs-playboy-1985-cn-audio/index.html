@@ -99,6 +99,14 @@
  font-size: 14px;
  color: var(--muted);
  }
+ .source-note {
+ background: #fff7df;
+ border: 1px solid #ead9a5;
+ color: #5c4300;
+ border-radius: 14px;
+ padding: 14px;
+ font-size: 14px;
+ }
  .stats {
  display: grid;
  grid-template-columns: repeat(2, 1fr);
@@ -140,7 +148,7 @@
  @media (max-width: 700px) {
  .downloads { grid-template-columns: 1fr; }
  }
- .download {
+ .download, .quote, .timeline-item, .audit-item {
  border: 1px solid var(--line);
  background: #fffaf0;
  border-radius: 14px;
@@ -218,24 +226,34 @@
  margin-left: 8px;
  font-weight: 500;
  }
- .source-note {
- background: #fff7df;
- border: 1px solid #ead9a5;
- color: #5c4300;
- border-radius: 14px;
- padding: 14px;
- font-size: 14px;
+ .timeline {
+ display: grid;
+ gap: 10px;
+ }
+ .timeline-item {
+ display: grid;
+ grid-template-columns: 110px 1fr;
+ gap: 14px;
+ }
+ @media (max-width: 700px) {
+ .timeline-item { grid-template-columns: 1fr; }
+ }
+ .phase {
+ color: var(--accent-2);
+ font-weight: 800;
+ }
+ .quote blockquote {
+ margin: 0 0 8px;
+ font-size: 17px;
+ line-height: 1.55;
+ }
+ .quote .quote-meta {
+ color: var(--muted);
+ font-size: 13px;
  }
  code, pre {
  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
  font-size: 13px;
- }
- pre {
- white-space: pre-wrap;
- background: var(--soft);
- padding: 14px;
- border-radius: 12px;
- overflow: auto;
  }
  footer {
  color: var(--muted);
@@ -253,8 +271,7 @@
  <div class="meta">Draft archive · noindex · Phase 6J / 6K final</div>
  <h1>Steve Jobs 1985 Playboy Interview｜中文访谈音频档案</h1>
  <p>
- 这是 1985 年《Playboy》对 Steve Jobs 的长访谈中文音频草稿版。
- 当前版本完成了多轮 speaker 归属、缺段、重复段与删节修复，并生成可播放的完整中文对话音频。
+ 这是 1985 年《Playboy》对 Steve Jobs 的长访谈中文音频草稿版。当前版本完成了多轮 speaker 归属、缺段、重复段与删节修复，并生成可播放的完整中文对话音频。
  </p>
  <div class="badge-row">
  <span class="badge">完整音频约 102 分钟</span>
@@ -276,15 +293,19 @@
  </aside>
  </section>
 
+ <section class="source-note">
+ <b>来源与边界说明：</b>
+ 原始访谈为 1985 年《Playboy》对 Steve Jobs 的长访谈，采访者为 David Sheff。
+ 本页为学习研究与内部审阅用途的中文音频草稿；原访谈版权归原权利方所有。
+ 当前页面设置为 <code>noindex,nofollow</code>，暂不作为正式公开出版物发布。
+ 原文参考：<a href="https://allaboutstevejobs.com/verbatim/interviews/playboy_1985" rel="noopener noreferrer">allaboutstevejobs.com/verbatim/interviews/playboy_1985</a>
+ </section>
+
  <section class="card">
  <h2>完整音频</h2>
  <audio id="mainAudio" controls preload="metadata" src="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3"></audio>
- <p>
- <a href="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3">下载完整 MP3</a>
- </p>
- <p class="notice">
- 若移动端加载较慢，可先听下面的 90 秒样片或 5 分钟 preview。
- </p>
+ <p><a href="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3">下载完整 MP3</a></p>
+ <p class="notice">若移动端加载较慢，可先听下面的 90 秒样片或 5 分钟 preview。</p>
  </section>
 
  <section class="card">
@@ -294,10 +315,24 @@
 
  <section class="card">
  <h2>章节导航</h2>
- <p class="notice">
- 章节不会重复存储分段音频，而是跳转到同一个完整音频的对应时间点。
- </p>
+ <p class="notice">章节不会重复存储分段音频，而是跳转到同一个完整音频的对应时间点。</p>
  <div id="chapters" class="chapter-list"></div>
+ </section>
+
+ <section class="card">
+ <h2>关键金句 / 主题锚点</h2>
+ <p class="notice">时间点为章节级近似定位，用于快速进入相关主题。</p>
+ <div id="quotes" class="grid-2"></div>
+ </section>
+
+ <section class="card">
+ <h2>版本时间线</h2>
+ <div id="timeline" class="timeline"></div>
+ </section>
+
+ <section class="card">
+ <h2>质量审计摘要</h2>
+ <div id="qualityAudit" class="grid-2"></div>
  </section>
 
  <section class="card">
@@ -314,13 +349,9 @@
 
  <section class="card">
  <h2>文稿预览</h2>
- <p class="notice">
- 默认显示前 12 个对话单元。完整版本可在下载区获取 TXT / Markdown / JSON。
- </p>
+ <p class="notice">默认显示前 12 个对话单元。完整版本可在下载区获取 TXT / Markdown / JSON。</p>
  <div id="transcript"></div>
- <p>
- <button id="loadMore" class="secondary">展开更多</button>
- </p>
+ <p><button id="loadMore" class="secondary">展开更多</button></p>
  </section>
 
  <section class="card">
@@ -361,14 +392,8 @@
  </div>
  </section>
 
- <section class="source-note">
- <b>说明：</b>
- 本页面为授权整理与内部审阅用途的 draft archive，已设置 <code>noindex,nofollow</code>。
- 当前版本不进入正式项目列表，也不作为最终公开出版物声明。
- </section>
-
  <footer>
- <p>Generated as Phase 6N page optimization. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
+ <p>Generated as Phase 6O narrative and trust patch. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
  </footer>
 </main>
 
@@ -428,6 +453,60 @@ async function loadChapters() {
  });
 }
 
+async function loadQuotes() {
+ const quotes = await fetch('assets/data/key_quotes.json').then(r => r.json());
+ const box = document.getElementById('quotes');
+ box.innerHTML = quotes.map(q => `
+ <div class="quote">
+ <h3>${q.title}</h3>
+ <blockquote>“${q.quote}”</blockquote>
+ <div class="quote-meta">${q.speaker} · ${q.time_hint}</div>
+ <p class="notice">${q.note}</p>
+ <button data-start="${q.start_seconds}">跳转播放</button>
+ </div>
+ `).join('');
+ box.querySelectorAll('button[data-start]').forEach(btn => {
+ btn.addEventListener('click', () => {
+ audio.currentTime = Number(btn.dataset.start);
+ audio.play();
+ window.scrollTo({ top: audio.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+ });
+ });
+}
+
+async function loadTimeline() {
+ const timeline = await fetch('assets/data/version_timeline.json').then(r => r.json());
+ const box = document.getElementById('timeline');
+ box.innerHTML = timeline.map(t => `
+ <div class="timeline-item">
+ <div class="phase">${t.phase}</div>
+ <div>
+ <b>${t.title}</b>
+ <p class="notice">${t.summary}</p>
+ </div>
+ </div>
+ `).join('');
+}
+
+async function loadQualityAudit() {
+ const audit = await fetch('assets/data/quality_audit.json').then(r => r.json());
+ const box = document.getElementById('qualityAudit');
+ const head = `
+ <div class="audit-item">
+ <h3>最终状态</h3>
+ <p>${audit.unit_count} units · ${audit.tts_segments} TTS segments · ${audit.failed_segments} failed</p>
+ <p class="notice">${audit.status}</p>
+ </div>
+ `;
+ const repairs = audit.major_repairs.map(r => `
+ <div class="audit-item">
+ <h3>${r.title}</h3>
+ <p class="notice">${r.summary}</p>
+ </div>
+ `).join('');
+ box.innerHTML = head + repairs;
+}
+
 function renderMore(n = 12) {
  const box = document.getElementById('transcript');
  const next = transcriptUnits.slice(shown, shown + n);
@@ -453,6 +532,9 @@ async function loadTranscript() {
 loadStats().catch(console.error);
 loadSamples().catch(console.error);
 loadChapters().catch(console.error);
+loadQuotes().catch(console.error);
+loadTimeline().catch(console.error);
+loadQualityAudit().catch(console.error);
 loadTranscript().catch(console.error);
 </script>
 </body>

@@ -1,0 +1,42 @@
+[
+ {
+  "phase": "Phase 3",
+  "title": "中文翻译完成",
+  "summary": "完成 266 个官方对话单元的中文翻译合并，形成可进入 audio-ready 改写的基础稿。"
+ },
+ {
+  "phase": "Phase 4",
+  "title": "Audio-ready transcript",
+  "summary": "将中文稿切分为适合 TTS 合成的朗读片段。"
+ },
+ {
+  "phase": "Phase 5",
+  "title": "初版完整 TTS",
+  "summary": "生成初版完整中文音频，并发现后续需要进行 speaker 与结构级修复。"
+ },
+ {
+  "phase": "Phase 6F",
+  "title": "最终结构补丁",
+  "summary": "修复 u0054、u0078–u0083、u0096 后缺失段，补回 IBM / Frito-Lay / Dark Ages 关键论述。"
+ },
+ {
+  "phase": "Phase 6J",
+  "title": "u0030 完整性补丁",
+  "summary": "补全 Macintosh 开发经历段，包括团队多年技术积累、发布现场与团队情绪。"
+ },
+ {
+  "phase": "Phase 6K",
+  "title": "选择性 TTS 重跑",
+  "summary": "仅重跑 u0030 相关片段，复用其余已验证片段，生成最终 Phase 6J 音频。"
+ },
+ {
+  "phase": "Phase 6N",
+  "title": "页面体验增强",
+  "summary": "增加播放器、试听样片、章节跳转、文稿预览与下载区。"
+ },
+ {
+  "phase": "Phase 6O",
+  "title": "来源边界与叙事增强",
+  "summary": "修复版权/来源措辞，增加来源说明、版本时间线、关键金句与质量审计摘要。"
+ }
+]

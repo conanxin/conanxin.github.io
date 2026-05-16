@@ -1,7 +1,7 @@
 {
   "project": "jobs-playboy-1985-cn-audio",
-  "phase": "6N_page_optimization",
-  "generated_at_utc": "2026-05-16T04:53:53.557463+00:00",
+  "phase": "6O_narrative_trust_patch",
+  "generated_at_utc": "2026-05-16T05:03:45.087798+00:00",
   "target_rel": "drafts/jobs-playboy-1985-cn-audio",
   "target_dir": "/home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio",
   "url": "https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/",
@@ -9,12 +9,13 @@
   "projects_data_changed": false,
   "tts_regenerated": false,
   "full_audio_modified": false,
-  "file_count": 20,
+  "rights_wording_revised": true,
+  "file_count": 24,
   "files": [
     {
       "path": "README.md",
-      "size_bytes": 533,
-      "sha256": "26c258f403db1320a3900c2dbd389b0abdc29e16adabdfe77fa5cc391b3d84f4"
+      "size_bytes": 815,
+      "sha256": "502cc6eaea78aabb71c29f16a1836a3b88007b8ac482f084454366cb6dc33211"
     },
     {
       "path": "assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3",
@@ -28,9 +29,19 @@
       "sha256": "75fea19c9bb70e75fd61b83daeb88273adcadb8f3537df866902b084d41a59cc"
     },
     {
+      "path": "assets/data/key_quotes.json",
+      "size_bytes": 2379,
+      "sha256": "a120f03859d187ebd1a1d3a25db2474da90bda9578992cad4c21bd08326f5153"
+    },
+    {
       "path": "assets/data/page_stats.json",
       "size_bytes": 403,
       "sha256": "e1eb3e18b490fb6cc88f0b30c300f43e14e17d3ffe232f6ab4685d97e87fc592"
+    },
+    {
+      "path": "assets/data/quality_audit.json",
+      "size_bytes": 1229,
+      "sha256": "b5391dfa5bf4920d8aa8eba7b3b2418246b6d3f5aab59dc650d8bdecbb687b0a"
     },
     {
       "path": "assets/data/samples.json",
@@ -41,6 +52,11 @@
       "path": "assets/data/transcript_preview.json",
       "size_bytes": 113088,
       "sha256": "f4bd9f3459466eeb300c9a0765d2966f669abaf2ff51b18e99073bfb7d2b2be8"
+    },
+    {
+      "path": "assets/data/version_timeline.json",
+      "size_bytes": 1369,
+      "sha256": "53f4f070a8beb700c5e128aeab9b8cc10ff6f2a8211a31aa9d116a1ad6baea72"
     },
     {
       "path": "assets/manifests/phase6j_u0030_final_transcript_patch_manifest.json",
@@ -61,6 +77,11 @@
       "path": "assets/reports/PHASE6K_U0030_SELECTIVE_TTS_REPORT.txt",
       "size_bytes": 2600,
       "sha256": "bb92d8cc8ea13caaebe4d3d3f7c9180d1f586c5ee8c27ed37bd1261d3519c897"
+    },
+    {
+      "path": "assets/reports/PHASE6N_PAGE_OPTIMIZATION_REPORT.txt",
+      "size_bytes": 4204,
+      "sha256": "ab1aee268fac0c813aa683ad0c97cd8b69973d4c3cc66e68ea052f2fe6c10380"
     },
     {
       "path": "assets/samples/preview_5min_opening.mp3",
@@ -108,13 +129,13 @@
     },
     {
       "path": "index.html",
-      "size_bytes": 12499,
-      "sha256": "6492072d119f4d1f97ff81c726e096d72c42137f8cb1b9eb10741a4a2f0c5272"
+      "size_bytes": 15342,
+      "sha256": "842fb857db35fc917668b160cac80dc1b8e7906877d7bc1c9171240fdc4c8b23"
     },
     {
       "path": "publish_manifest.json",
-      "size_bytes": 2571,
-      "sha256": "336d0c07787baf65432cafd82c313305cde7e87992f274ffeedf53b792aef63f"
+      "size_bytes": 4348,
+      "sha256": "cb3a65f4167d45a9388ea8981a963a76b33f8c17d639e7386f33cace99583994"
     }
   ]
 }

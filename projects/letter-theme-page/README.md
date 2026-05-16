@@ -40,11 +40,12 @@ python3 -m http.server 8080
 │   └── VISUAL_STYLE.md           # Phase 0 视觉风格设计
 ├── data/
 │   ├── motifs.json               # 8 个母题定义
-│   ├── works.json                # 40 个作品条目
+│   ├── works.json                # 53 个作品条目
 │   ├── journey.json              # 7 阶段信件旅程
 │   ├── routes.json               # 3 条阅读路线
-│   ├── sources.json              # 27 条来源记录
-│   └── source_audit.json         # 来源审计统计
+│   ├── sources.json              # 38 条来源记录
+│   ├── source_audit.json         # 来源审计统计
+│   └── qiaopi.json               # 侨批与南洋专题数据（结构拆解、路线、档案阶段）
 ├── assets/
 │   ├── icons/                    # 8 个原创 SVG 母题图标
 │   │   ├── ghostwriting.svg
@@ -124,8 +125,12 @@ python3 -m http.server 8080
 ## 后续计划
 
 - Phase 4A 已完成：移动端优化、打印样式、深色模式、作品锚点、内容提示完善、本地验证
-- Phase 4B（可选）：正式部署到 /projects/、SEO 优化
+- Phase 4B 已完成：正式部署到 /projects/、SEO 优化
+- Phase 5 已完成：项目索引更新、上线后 QA、工作区清理
+- Phase 6A 已完成：内容深化（40→53 作品）、社交传播文案、侨批专题设计
+- Phase 6B 已完成：「侨批与南洋」专题小章实现（结构拆解、南洋路线、家书变档案）
+- Phase 6C（可选）：将更新同步到正式线上页面
 
 ---
 
-*Phase 4A 审阅版 · 本地 drafts 预发布 · 未 push*
+*Phase 6B 开发版 · 本地源目录 · 未同步到线上*

@@ -14,6 +14,7 @@
   let routes = [];
   let sources = [];
   let sourceAudit = null;
+  let qiaopiData = null;
 
   // UI state
   let activeMotif = 'all';
@@ -124,6 +125,19 @@
       renderSourcesSection();
       bindEvents();
       openModalFromHash();
+
+      // Load qiaopi data non-blocking
+      try {
+        const qiaopiRes = await fetch('data/qiaopi.json');
+        if (qiaopiRes.ok) {
+          qiaopiData = await qiaopiRes.json();
+          renderQiaopiSection();
+        }
+      } catch (qErr) {
+        console.warn('qiaopi.json 加载失败:', qErr);
+        const qSection = document.getElementById('qiaopi');
+        if (qSection) qSection.style.display = 'none';
+      }
     } catch (err) {
       console.error('初始化失败:', err);
       showError();
@@ -783,11 +797,140 @@
     });
   }
 
+
+  // ============================================================
+  // Qiaopi Section
+  // ============================================================
+  function renderQiaopiSection() {
+    if (!qiaopiData) return;
+    renderQiaopiStructure();
+    renderQiaopiRoute();
+    renderQiaopiArchive();
+    renderQiaopiRelated();
+  }
+
+  function renderQiaopiStructure() {
+    const grid = document.getElementById('qiaopi-structure-grid');
+    const detail = document.getElementById('qiaopi-structure-detail');
+    if (!grid) return;
+    const items = qiaopiData.structure || [];
+    grid.innerHTML = items.map((item, idx) => `
+      <button class="qiaopi-part-card" data-idx="${idx}" type="button" aria-label="${escapeHtml(item.title)}">
+        <div class="qiaopi-part-number">0${idx + 1}</div>
+        <div class="qiaopi-part-title">${escapeHtml(item.title)}</div>
+        <div class="qiaopi-part-subtitle">${escapeHtml(item.subtitle || '')}</div>
+      </button>
+    `).join('');
+
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.qiaopi-part-card');
+      if (!card) return;
+      const idx = parseInt(card.dataset.idx, 10);
+      const item = items[idx];
+      if (!item) return;
+
+      grid.querySelectorAll('.qiaopi-part-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      detail.style.display = 'block';
+      detail.innerHTML = `
+        <div class="qiaopi-detail-inner">
+          <h4>${escapeHtml(item.title)} <span class="qiaopi-detail-sub">${escapeHtml(item.subtitle || '')}</span></h4>
+          <p>${escapeHtml(item.description)}</p>
+          ${item.relatedWorkIds && item.relatedWorkIds.length ? `
+            <div class="qiaopi-detail-works">
+              <span class="qiaopi-detail-label">关联作品：</span>
+              ${item.relatedWorkIds.map(wid => {
+                const w = getWorkById(wid);
+                return w ? `<button class="qiaopi-detail-work" data-work="${escapeHtml(wid)}" type="button">${escapeHtml(w.title)}</button>` : '';
+              }).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    });
+
+    detail.addEventListener('click', (e) => {
+      const btn = e.target.closest('.qiaopi-detail-work');
+      if (!btn) return;
+      const wid = btn.dataset.work;
+      const w = getWorkById(wid);
+      if (w) openModal(w, null);
+    });
+  }
+
+  function renderQiaopiRoute() {
+    const track = document.getElementById('qiaopi-route-track');
+    const detail = document.getElementById('qiaopi-route-detail');
+    if (!track) return;
+    const nodes = qiaopiData.route || [];
+    track.innerHTML = nodes.map((node, idx) => `
+      <div class="qiaopi-route-node" data-idx="${idx}" tabindex="0" role="button" aria-label="${escapeHtml(node.title)}">
+        <div class="qiaopi-route-dot"></div>
+        <div class="qiaopi-route-label">${escapeHtml(node.title)}</div>
+        ${idx < nodes.length - 1 ? '<div class="qiaopi-route-line" aria-hidden="true"></div>' : ''}
+      </div>
+    `).join('');
+
+    track.addEventListener('click', (e) => {
+      const nodeEl = e.target.closest('.qiaopi-route-node');
+      if (!nodeEl) return;
+      const idx = parseInt(nodeEl.dataset.idx, 10);
+      const node = nodes[idx];
+      if (!node) return;
+
+      track.querySelectorAll('.qiaopi-route-node').forEach(n => n.classList.remove('active'));
+      nodeEl.classList.add('active');
+
+      detail.style.display = 'block';
+      detail.innerHTML = `
+        <div class="qiaopi-detail-inner">
+          <h4>${escapeHtml(node.title)}</h4>
+          <p>${escapeHtml(node.description)}</p>
+        </div>
+      `;
+    });
+  }
+
+  function renderQiaopiArchive() {
+    const container = document.getElementById('qiaopi-archive-stages');
+    if (!container) return;
+    const stages = qiaopiData.archiveStages || [];
+    container.innerHTML = stages.map((stage, idx) => `
+      <div class="qiaopi-archive-card">
+        <div class="qiaopi-archive-num">0${idx + 1}</div>
+        <div class="qiaopi-archive-content">
+          <h4>${escapeHtml(stage.title)}</h4>
+          <p>${escapeHtml(stage.description)}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderQiaopiRelated() {
+    const container = document.getElementById('qiaopi-related-works');
+    if (!container) return;
+    const ids = qiaopiData.relatedWorks || [];
+    container.innerHTML = ids.map(wid => {
+      const w = getWorkById(wid);
+      if (!w) return '';
+      return `
+        <button class="qiaopi-related-work" data-work="${escapeHtml(wid)}" type="button">
+          <span class="qiaopi-related-title">${escapeHtml(w.title)}</span>
+          <span class="qiaopi-related-type">${escapeHtml(w.type)}</span>
+        </button>
+      `;
+    }).join('');
+
+    container.addEventListener('click', (e) => {
+      const btn = e.target.closest('.qiaopi-related-work');
+      if (!btn) return;
+      const wid = btn.dataset.work;
+      const w = getWorkById(wid);
+      if (w) openModal(w, null);
+    });
+  }
+
   // Start
   init();
-
-  // Handle hash changes while page is open
-  window.addEventListener('hashchange', () => {
-    if (window.location.hash.startsWith('#work-')) openModalFromHash();
-  });
 })();

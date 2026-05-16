@@ -1,25 +1,18 @@
 {
-  "generated_at": "2026-05-16T05:39:34.024263",
-  "total_sources": 27,
-  "verified_count": 10,
-  "partial_count": 15,
+  "generated_at": "2026-05-16",
+  "total_sources": 38,
+  "verified_count": 11,
+  "partial_count": 25,
   "placeholder_count": 1,
   "needs_review_count": 1,
   "not_found_count": 0,
-  "works_total": 40,
-  "works_with_sources": 40,
+  "works_total": 53,
+  "works_with_sources": 53,
   "works_without_verified_sources": 0,
-  "works_verified": 5,
-  "works_partial": 35,
+  "works_verified": 8,
+  "works_partial": 45,
   "works_needs_review": 0,
   "works_placeholder": 0,
   "high_priority_gaps": [],
-  "notes": [
-    "当前环境网络可用，部分来源已通过公开资料核实",
-    "豆瓣电影和 IMDb 作为数据库来源标记为 partial，不作为唯一权威来源",
-    "文学经典（泰戈尔、石黑一雄、林觉民、Henry James、安妮·弗兰克）基于文学史公共知识标记为 verified",
-    "UNESCO 侨批名录为已核实的国际权威来源",
-    "Letters of Note、PostSecret、Dear Data 官网已核实",
-    "新增 7 个作品中，4 个标记为 partial，3 个标记为 verified"
-  ]
+  "notes": "Phase 6A 更新：新增 13 个作品与 11 个来源。新增作品中《与妻书》《阿斯彭文稿》《快乐邮差》为 verified，其余为 partial。建议后续重点核实《格里芬与萨宾》《地址不详》《Ella Minnow Pea》的出版信息。"
 }

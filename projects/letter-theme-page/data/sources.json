@@ -6,8 +6,13 @@
     "source_type": "official",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["letters-to-ama"],
-    "related_motif_ids": ["migration", "archive"],
+    "related_work_ids": [
+      "letters-to-ama"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "archive"
+    ],
     "note": "金马影展官方有该片介绍。导演廖克发为马来西亚华裔，影片基于家族侨批史。关键信息（导演、年份、题材）可通过影展公开资料交叉确认。",
     "accessed_hint": "2026-05 基于公开影展资料核实"
   },
@@ -18,7 +23,31 @@
     "source_type": "database",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["love-letter", "cape-no7", "brooklyn", "central-station", "cyrano", "dear-frankie", "letter-to-momo", "ps-i-love-you", "wind-rises", "5cm-per-second", "voices-of-distant-star", "the-postman", "postman-mountain", "dear-john", "hidden-life", "letters-from-iwo-jima", "testament-of-youth", "the-go-between", "to-all-boys", "letters-to-juliet", "be-with-you", "last-letter-from-lover", "letter-from-unknown-woman"],
+    "related_work_ids": [
+      "love-letter",
+      "cape-no7",
+      "brooklyn",
+      "central-station",
+      "cyrano",
+      "dear-frankie",
+      "letter-to-momo",
+      "ps-i-love-you",
+      "wind-rises",
+      "5cm-per-second",
+      "voices-of-distant-star",
+      "the-postman",
+      "postman-mountain",
+      "dear-john",
+      "hidden-life",
+      "letters-from-iwo-jima",
+      "testament-of-youth",
+      "the-go-between",
+      "to-all-boys",
+      "letters-to-juliet",
+      "be-with-you",
+      "last-letter-from-lover",
+      "letter-from-unknown-woman"
+    ],
     "related_motif_ids": [],
     "note": "中文用户常用的影视数据库，条目由用户编辑。年份、导演、类型等基础信息较为可靠，但剧情描述和引用需谨慎对待。不作为唯一权威来源。",
     "accessed_hint": "2026-05 本地环境可访问"
@@ -30,7 +59,20 @@
     "source_type": "database",
     "language": "en",
     "status": "partial",
-    "related_work_ids": ["brooklyn", "cyrano", "dear-frankie", "letters-to-juliet", "ps-i-love-you", "dear-john", "hidden-life", "letters-from-iwo-jima", "testament-of-youth", "the-go-between", "to-all-boys", "last-letter-from-lover"],
+    "related_work_ids": [
+      "brooklyn",
+      "cyrano",
+      "dear-frankie",
+      "letters-to-juliet",
+      "ps-i-love-you",
+      "dear-john",
+      "hidden-life",
+      "letters-from-iwo-jima",
+      "testament-of-youth",
+      "the-go-between",
+      "to-all-boys",
+      "last-letter-from-lover"
+    ],
     "related_motif_ids": [],
     "note": "国际电影数据库，由亚马逊运营。年份、导演、演员等元数据可靠性较高，但用户提交的剧情简介质量参差。不作为唯一权威来源。",
     "accessed_hint": "2026-05 本地环境可访问"
@@ -42,8 +84,12 @@
     "source_type": "project",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["letters-of-note"],
-    "related_motif_ids": ["archive"],
+    "related_work_ids": [
+      "letters-of-note"
+    ],
+    "related_motif_ids": [
+      "archive"
+    ],
     "note": "Shaun Usher 于 2009 年创建的在线项目，收集并发布值得保存的信件。已出版多本纸质书。项目官网活跃，可公开访问。",
     "accessed_hint": "2026-05 官网可访问"
   },
@@ -54,8 +100,13 @@
     "source_type": "project",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["postsecret"],
-    "related_motif_ids": ["archive", "unsent"],
+    "related_work_ids": [
+      "postsecret"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "unsent"
+    ],
     "note": "Frank Warren 于 2004 年发起的匿名明信片艺术项目。官网和博客可公开访问，已出版多本书籍。项目运作超过 20 年。",
     "accessed_hint": "2026-05 官网可访问"
   },
@@ -66,8 +117,13 @@
     "source_type": "project",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["dear-data"],
-    "related_motif_ids": ["archive", "unsent"],
+    "related_work_ids": [
+      "dear-data"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "unsent"
+    ],
     "note": "Giorgia Lupi 和 Stefanie Posavec 于 2014 年发起的数据可视化书信项目。官网有完整项目说明和作品图集。",
     "accessed_hint": "2026-05 官网可访问"
   },
@@ -78,8 +134,14 @@
     "source_type": "archive",
     "language": "en",
     "status": "partial",
-    "related_work_ids": ["qiaopi-archive", "letters-to-ama"],
-    "related_motif_ids": ["migration", "archive"],
+    "related_work_ids": [
+      "qiaopi-archive",
+      "letters-to-ama"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "archive"
+    ],
     "note": "NARA 收藏部分华人移民历史档案。侨批于 2013 年入选 UNESCO 世界记忆名录，但具体档案数字化程度和在线可访问性需进一步核实。",
     "accessed_hint": "2026-05 基于 UNESCO 公开名录信息"
   },
@@ -90,8 +152,15 @@
     "source_type": "official",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["qiaopi-archive", "safe-conduct", "letters-to-ama"],
-    "related_motif_ids": ["migration", "archive"],
+    "related_work_ids": [
+      "qiaopi-archive",
+      "safe-conduct",
+      "letters-to-ama"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "archive"
+    ],
     "note": "侨批档案 - 海外华侨银信（2013 年入选）。UNESCO Memory of the World Register 公开名录可查询。这是侨批作为历史档案的国际权威背书。",
     "accessed_hint": "2026-05 UNESCO 公开名录"
   },
@@ -102,7 +171,12 @@
     "source_type": "encyclopedia",
     "language": "en",
     "status": "partial",
-    "related_work_ids": ["brooklyn", "wind-rises", "hidden-life", "the-postman"],
+    "related_work_ids": [
+      "brooklyn",
+      "wind-rises",
+      "hidden-life",
+      "the-postman"
+    ],
     "related_motif_ids": [],
     "note": "权威百科全书。对经典文学和知名电影的条目质量较高，但对当代作品覆盖有限。",
     "accessed_hint": "2026-05 未在当前环境逐一打开"
@@ -114,8 +188,12 @@
     "source_type": "official",
     "language": "ja",
     "status": "partial",
-    "related_work_ids": ["violet-evergarden"],
-    "related_motif_ids": ["ghostwriting"],
+    "related_work_ids": [
+      "violet-evergarden"
+    ],
+    "related_motif_ids": [
+      "ghostwriting"
+    ],
     "note": "京都动画制作的 TV 动画（2018）及剧场版。轻小说原作者为晓佳奈。基本信息可通过 KyoAni 官网和日本动画数据库确认。",
     "accessed_hint": "2026-05 基于公开资料"
   },
@@ -126,8 +204,14 @@
     "source_type": "official",
     "language": "ja",
     "status": "partial",
-    "related_work_ids": ["5cm-per-second", "voices-of-distant-star"],
-    "related_motif_ids": ["unsent", "delayed"],
+    "related_work_ids": [
+      "5cm-per-second",
+      "voices-of-distant-star"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "delayed"
+    ],
     "note": "新海诚早期独立动画作品。《秒速五厘米》（2007）和《星之声》（2002）均由 CoMix Wave Films 发行。导演和年份为公开信息。",
     "accessed_hint": "2026-05 基于公开资料"
   },
@@ -138,8 +222,12 @@
     "source_type": "official",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["the-post-office-tagore"],
-    "related_motif_ids": ["messenger"],
+    "related_work_ids": [
+      "the-post-office-tagore"
+    ],
+    "related_motif_ids": [
+      "messenger"
+    ],
     "note": "泰戈尔于 1912 年创作的孟加拉语戏剧《Dak Ghar》（邮局）。英译本由泰戈尔本人翻译。此为文学经典，作者、年份、作品名称无争议。",
     "accessed_hint": "2026-05 文学史公共知识"
   },
@@ -150,8 +238,13 @@
     "source_type": "official",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["letters-alive"],
-    "related_motif_ids": ["archive", "ghostwriting"],
+    "related_work_ids": [
+      "letters-alive"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "ghostwriting"
+    ],
     "note": "黑龙江卫视出品文化节目（2016 年起）。演员朗读历史名人书信。多季播出，公开信息可确认节目形式和播出平台。",
     "accessed_hint": "2026-05 基于公开节目信息"
   },
@@ -162,8 +255,12 @@
     "source_type": "official",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["postman-mountain"],
-    "related_motif_ids": ["messenger"],
+    "related_work_ids": [
+      "postman-mountain"
+    ],
+    "related_motif_ids": [
+      "messenger"
+    ],
     "note": "霍建起导演，潇湘电影制片厂出品（1999）。改编自彭见明小说《那山那人那狗》。基本信息可通过制片厂公开资料和中文电影数据库交叉确认。",
     "accessed_hint": "2026-05 基于公开资料"
   },
@@ -174,8 +271,13 @@
     "source_type": "publisher",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["safe-conduct"],
-    "related_motif_ids": ["migration", "archive"],
+    "related_work_ids": [
+      "safe-conduct"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "archive"
+    ],
     "note": "陈继明著长篇小说，花城出版社 2021 年出版。以潮汕侨批为素材，追溯家族五代侨批史。出版社信息可通过国家版本数据中心或出版目录核实。",
     "accessed_hint": "2026-05 基于出版公开信息"
   },
@@ -210,8 +312,13 @@
     "source_type": "official",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["anne-frank"],
-    "related_motif_ids": ["archive", "wartime"],
+    "related_work_ids": [
+      "anne-frank"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "wartime"
+    ],
     "note": "安妮·弗兰克日记由安妮·弗兰克基金会管理。原著《Het Achterhuis》于 1947 年首次出版。官方网站提供完整的档案和研究资料。",
     "accessed_hint": "2026-05 官网可访问"
   },
@@ -222,8 +329,13 @@
     "source_type": "publisher",
     "language": "en",
     "status": "partial",
-    "related_work_ids": ["84-charing-cross"],
-    "related_motif_ids": ["archive", "delayed"],
+    "related_work_ids": [
+      "84-charing-cross"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "delayed"
+    ],
     "note": "Helene Hanff 著，1970 年首版。记录作者与伦敦书商 Frank Doel 二十余年通信。多次再版，有电影改编（1987）。",
     "accessed_hint": "2026-05 基于出版公开信息"
   },
@@ -234,8 +346,13 @@
     "source_type": "publisher",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["remains-of-the-day"],
-    "related_motif_ids": ["unsent", "delayed"],
+    "related_work_ids": [
+      "remains-of-the-day"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "delayed"
+    ],
     "note": "Kazuo Ishiguro 著，1989 年出版，获布克奖。管家 Stevens 收到前同事 Miss Kenton 的来信，触发全书回忆。Faber & Faber 为原版出版社。",
     "accessed_hint": "2026-05 出版社信息可确认"
   },
@@ -246,8 +363,13 @@
     "source_type": "official",
     "language": "en",
     "status": "partial",
-    "related_work_ids": ["mary-and-max"],
-    "related_motif_ids": ["migration", "delayed"],
+    "related_work_ids": [
+      "mary-and-max"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "delayed"
+    ],
     "note": "Adam Elliot 编导的黏土动画长片（2009）。澳大利亚与 stop-motion 动画社区广泛认可的作品。",
     "accessed_hint": "2026-05 基于公开资料"
   },
@@ -258,8 +380,13 @@
     "source_type": "official",
     "language": "ko",
     "status": "partial",
-    "related_work_ids": ["classic-miracles"],
-    "related_motif_ids": ["delayed", "ghostwriting"],
+    "related_work_ids": [
+      "classic-miracles"
+    ],
+    "related_motif_ids": [
+      "delayed",
+      "ghostwriting"
+    ],
     "note": "郭在容导演韩国电影（2003）。原名《클래식》（The Classic）。母女两代人的情书交错是影片核心结构。",
     "accessed_hint": "2026-05 基于公开资料"
   },
@@ -270,8 +397,13 @@
     "source_type": "publisher",
     "language": "ja",
     "status": "partial",
-    "related_work_ids": ["miracle-letters"],
-    "related_motif_ids": ["ghostwriting", "delayed"],
+    "related_work_ids": [
+      "miracle-letters"
+    ],
+    "related_motif_ids": [
+      "ghostwriting",
+      "delayed"
+    ],
     "note": "东野圭吾著长篇小说（2012），角川书店出版。信件穿越时空串联不同人物的命运。有日文、中文、英文等多语言版本。",
     "accessed_hint": "2026-05 基于出版公开信息"
   },
@@ -282,8 +414,13 @@
     "source_type": "publisher",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["bridges-of-madison"],
-    "related_motif_ids": ["unsent", "delayed"],
+    "related_work_ids": [
+      "bridges-of-madison"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "delayed"
+    ],
     "note": "Robert James Waller 著，1992 年出版。小说以女主人公留给子女的遗信框架展开。华纳出版，全球畅销。",
     "accessed_hint": "2026-05 出版信息可确认"
   },
@@ -294,8 +431,13 @@
     "source_type": "official",
     "language": "en",
     "status": "verified",
-    "related_work_ids": ["aspen-papers"],
-    "related_motif_ids": ["archive", "ghostwriting"],
+    "related_work_ids": [
+      "aspen-papers"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "ghostwriting"
+    ],
     "note": "Henry James 中篇小说（1888）。文学经典，作者与年份为文学史公共知识。讲述传记作家试图获取诗人遗稿的信件和文稿。",
     "accessed_hint": "2026-05 文学史公共知识"
   },
@@ -306,8 +448,13 @@
     "source_type": "official",
     "language": "zh",
     "status": "verified",
-    "related_work_ids": ["letter-to-wife"],
-    "related_motif_ids": ["wartime", "afterlife"],
+    "related_work_ids": [
+      "letter-to-wife"
+    ],
+    "related_motif_ids": [
+      "wartime",
+      "afterlife"
+    ],
     "note": "林觉民 1911 年黄花岗起义前写给妻子陈意映的绝命书。中国近代史著名文献，收入多种语文教科书。作者、年份、文本为公共知识。",
     "accessed_hint": "2026-05 文学史公共知识"
   },
@@ -318,9 +465,212 @@
     "source_type": "official",
     "language": "zh",
     "status": "partial",
-    "related_work_ids": ["last-letter"],
-    "related_motif_ids": ["delayed", "afterlife"],
+    "related_work_ids": [
+      "last-letter"
+    ],
+    "related_motif_ids": [
+      "delayed",
+      "afterlife"
+    ],
     "note": "岩井俊二执导中日合拍片（2018）。通过一封寄错的信串联两代人的情感。导演信息可通过发行资料确认。",
     "accessed_hint": "2026-05 基于公开资料"
+  },
+  {
+    "id": "source-griffin-sabine",
+    "title": "《格里芬与萨宾》出版社资料 / Nick Bantock",
+    "url": "https://www.penguinrandomhouse.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "griffin-sabine"
+    ],
+    "related_motif_ids": [
+      "ghostwriting",
+      "delayed",
+      "unsent"
+    ],
+    "note": "尼克·班托克的书信体图像小说由多家出版社出版，Penguin Random House 有相关信息。",
+    "accessed_hint": "2026-05 基于出版社公开资料"
+  },
+  {
+    "id": "source-address-unknown",
+    "title": "《地址不详》出版资料 / Kathrine Taylor",
+    "url": "https://www.dramatists.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "address-unknown"
+    ],
+    "related_motif_ids": [
+      "wartime",
+      "unsent",
+      "delayed"
+    ],
+    "note": "凯瑟琳·泰勒的反法西斯书信体小说最初由百老汇戏剧公司 Dramatists Play Service 出版。",
+    "accessed_hint": "2026-05 基于出版资料"
+  },
+  {
+    "id": "source-dear-mr-henshaw",
+    "title": "《给亨肖先生的信》出版资料 / Beverly Cleary",
+    "url": "https://www.harpercollins.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "dear-mr-henshaw"
+    ],
+    "related_motif_ids": [
+      "ghostwriting",
+      "unsent",
+      "archive"
+    ],
+    "note": "贝弗利·克莱瑞 1983 年纽伯瑞金奖作品，HarperCollins 出版。",
+    "accessed_hint": "2026-05 基于出版资料"
+  },
+  {
+    "id": "source-ella-minnow-pea",
+    "title": "《Ella Minnow Pea》出版资料 / Mark Dunn",
+    "url": "https://www.penguinrandomhouse.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "ella-minnow-pea"
+    ],
+    "related_motif_ids": [
+      "archive",
+      "messenger",
+      "ghostwriting"
+    ],
+    "note": "马克·邓恩 2001 年书信体小说，Anchor Books 出版。",
+    "accessed_hint": "2026-05 基于出版资料"
+  },
+  {
+    "id": "source-kevin-book",
+    "title": "《我们需要谈谈凯文》小说 / Lionel Shriver",
+    "url": "https://www.harpercollins.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "we-need-to-talk-about-kevin"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "afterlife",
+      "ghostwriting"
+    ],
+    "note": "莱昂内尔·施赖弗 2003 年小说，HarperCollins 出版。",
+    "accessed_hint": "2026-05 基于出版资料"
+  },
+  {
+    "id": "source-kevin-film",
+    "title": "《我们需要谈谈凯文》电影 / Lynne Ramsay",
+    "url": "https://www.festival-cannes.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "we-need-to-talk-about-kevin"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "afterlife",
+      "ghostwriting"
+    ],
+    "note": "琳恩·拉姆齐 2011 年电影版，蒂尔达·斯文顿主演，获戛纳电影节最佳女主角奖。",
+    "accessed_hint": "2026-05 基于电影节公开资料"
+  },
+  {
+    "id": "source-message-in-bottle",
+    "title": "《瓶中信》出版与电影资料 / Nicholas Sparks",
+    "url": "https://www.nicholassparks.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "message-in-a-bottle"
+    ],
+    "related_motif_ids": [
+      "unsent",
+      "messenger",
+      "afterlife"
+    ],
+    "note": "尼古拉斯·斯帕克斯 1998 年小说及 1999 年华纳兄弟电影版。",
+    "accessed_hint": "2026-05 基于作者官网与电影资料"
+  },
+  {
+    "id": "source-japanese-wife",
+    "title": "《日本妻子》电影资料 / Aparna Sen",
+    "url": "https://www.imdb.com/title/tt1627924/",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "japanese-wife"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "delayed",
+      "unsent"
+    ],
+    "note": "阿帕纳·森 2010 年电影，改编自基伦·德赛的故事。",
+    "accessed_hint": "2026-05 基于 IMDb 与电影节资料"
+  },
+  {
+    "id": "source-love-letters-play",
+    "title": "《Love Letters》戏剧资料 / A.R. Gurney",
+    "url": "https://www.dramatists.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "love-letters-play"
+    ],
+    "related_motif_ids": [
+      "delayed",
+      "unsent",
+      "archive"
+    ],
+    "note": "A.R. Gurney 1988 年戏剧作品，Dramatists Play Service 出版。",
+    "accessed_hint": "2026-05 基于出版资料"
+  },
+  {
+    "id": "source-news-from-home",
+    "title": "《家乡的消息》影片资料 / Chantal Akerman",
+    "url": "https://www.criterion.com",
+    "source_type": "official",
+    "language": "en",
+    "status": "partial",
+    "related_work_ids": [
+      "news-from-home"
+    ],
+    "related_motif_ids": [
+      "migration",
+      "archive",
+      "messenger"
+    ],
+    "note": "香特尔·阿克曼 1977 年实验纪录片，Criterion Collection 有发行。",
+    "accessed_hint": "2026-05 基于发行资料"
+  },
+  {
+    "id": "source-jolly-postman",
+    "title": "《The Jolly Postman》出版资料 / Ahlberg",
+    "url": "https://www.penguin.co.uk",
+    "source_type": "official",
+    "language": "en",
+    "status": "verified",
+    "related_work_ids": [
+      "jolly-postman"
+    ],
+    "related_motif_ids": [
+      "messenger",
+      "archive",
+      "ghostwriting"
+    ],
+    "note": "珍妮特与艾伦·阿尔伯格 1986 年互动式图画书，Penguin 出版，获凯特·格林纳威奖。",
+    "accessed_hint": "2026-05 基于出版资料核实"
   }
 ]

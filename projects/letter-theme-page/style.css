@@ -1423,3 +1423,358 @@ a:focus-visible {
 .work-card {
   scroll-margin-top: 20px;
 }
+
+/* ============================================================
+   Qiaopi Section
+   ============================================================ */
+
+.qiaopi-section {
+  background: linear-gradient(180deg, var(--bg-page) 0%, #f7f4ee 100%);
+  padding: 64px 0;
+  border-top: 1px solid var(--bg-paper);
+  border-bottom: 1px solid var(--bg-paper);
+}
+
+.qiaopi-lead {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink-secondary);
+  max-width: 680px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.qiaopi-subtitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.qiaopi-hint {
+  font-size: 14px;
+  color: var(--ink-tertiary);
+  margin-bottom: 20px;
+}
+
+/* ---- Structure Grid ---- */
+.qiaopi-structure-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.qiaopi-part-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-paper);
+  border-radius: var(--radius-md);
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+  font-family: inherit;
+}
+
+.qiaopi-part-card:hover,
+.qiaopi-part-card.active {
+  border-color: var(--accent-blue);
+  box-shadow: 0 2px 8px rgba(74, 111, 165, 0.12);
+  transform: translateY(-2px);
+}
+
+.qiaopi-part-card:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.qiaopi-part-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+
+.qiaopi-part-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.qiaopi-part-subtitle {
+  font-size: 12px;
+  color: var(--ink-tertiary);
+}
+
+.qiaopi-structure-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-paper);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-bottom: 48px;
+}
+
+.qiaopi-detail-inner h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.qiaopi-detail-sub {
+  font-size: 14px;
+  color: var(--ink-tertiary);
+  font-weight: 400;
+}
+
+.qiaopi-detail-inner p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+  margin-bottom: 14px;
+}
+
+.qiaopi-detail-label {
+  font-size: 13px;
+  color: var(--ink-tertiary);
+  margin-right: 6px;
+}
+
+.qiaopi-detail-work {
+  font-size: 13px;
+  padding: 4px 10px;
+  border: 1px solid var(--bg-paper);
+  border-radius: 20px;
+  background: var(--bg-page);
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  margin: 2px;
+  font-family: inherit;
+}
+
+.qiaopi-detail-work:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/* ---- Route ---- */
+.qiaopi-route {
+  margin-bottom: 48px;
+}
+
+.qiaopi-route-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  padding: 20px 0;
+}
+
+.qiaopi-route-node {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: var(--transition);
+}
+
+.qiaopi-route-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  border: 2px solid var(--ink-tertiary);
+  margin: 0 auto 8px;
+  transition: var(--transition);
+}
+
+.qiaopi-route-node:hover .qiaopi-route-dot,
+.qiaopi-route-node.active .qiaopi-route-dot {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.qiaopi-route-label {
+  font-size: 13px;
+  color: var(--ink-secondary);
+  font-weight: 500;
+}
+
+.qiaopi-route-line {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--bg-paper);
+  z-index: -1;
+}
+
+.qiaopi-route-detail {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-paper);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-top: 12px;
+}
+
+/* ---- Archive Stages ---- */
+.qiaopi-archive {
+  margin-bottom: 48px;
+}
+
+.qiaopi-archive-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.qiaopi-archive-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-paper);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.qiaopi-archive-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  line-height: 1;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+}
+
+.qiaopi-archive-content h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.qiaopi-archive-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+}
+
+/* ---- Related Works ---- */
+.qiaopi-related-works {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.qiaopi-related-work {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-paper);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  outline: none;
+}
+
+.qiaopi-related-work:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 2px 6px rgba(74, 111, 165, 0.10);
+}
+
+.qiaopi-related-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.qiaopi-related-type {
+  font-size: 12px;
+  color: var(--ink-tertiary);
+  background: var(--bg-page);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* ---- Dark mode ---- */
+@media (prefers-color-scheme: dark) {
+  .qiaopi-section {
+    background: linear-gradient(180deg, var(--bg-page) 0%, #2a2824 100%);
+  }
+
+  .qiaopi-part-card:hover,
+  .qiaopi-part-card.active {
+    box-shadow: 0 2px 8px rgba(74, 111, 165, 0.25);
+  }
+
+  .qiaopi-structure-detail,
+  .qiaopi-route-detail,
+  .qiaopi-archive-card {
+    background: #2e2c28;
+    border-color: #3a3834;
+  }
+
+  .qiaopi-detail-work {
+    background: #2e2c28;
+    border-color: #3a3834;
+  }
+
+  .qiaopi-related-work {
+    background: #2e2c28;
+    border-color: #3a3834;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 720px) {
+  .qiaopi-structure-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .qiaopi-route-track {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .qiaopi-route-node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .qiaopi-route-dot {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .qiaopi-route-line {
+    display: none;
+  }
+
+  .qiaopi-archive-stages {
+    grid-template-columns: 1fr;
+  }
+
+  .qiaopi-section {
+    padding: 40px 0;
+  }
+
+  .qiaopi-lead {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+}

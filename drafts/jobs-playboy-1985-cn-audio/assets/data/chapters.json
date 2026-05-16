@@ -1,0 +1,112 @@
+[
+  {
+    "title": "计算机革命、Macintosh、家庭电脑",
+    "start": 0,
+    "chapter": 1,
+    "start_seconds": 0,
+    "end_seconds": 600,
+    "start_label": "00:00",
+    "end_label": "10:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "Lisa / Apple III / Mac 产品策略",
+    "start": 600,
+    "chapter": 2,
+    "start_seconds": 600,
+    "end_seconds": 1200,
+    "start_label": "10:00",
+    "end_label": "20:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "苹果公司文化、年轻人、Edwin Land",
+    "start": 1200,
+    "chapter": 3,
+    "start_seconds": 1200,
+    "end_seconds": 1800,
+    "start_label": "20:00",
+    "end_label": "30:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "IBM 竞争、Dark Ages、Frito-Lay 类比",
+    "start": 1800,
+    "chapter": 4,
+    "start_seconds": 1800,
+    "end_seconds": 2400,
+    "start_label": "30:00",
+    "end_label": "40:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "硅谷、家庭、沃兹、Apple I",
+    "start": 2400,
+    "chapter": 5,
+    "start_seconds": 2400,
+    "end_seconds": 3000,
+    "start_label": "40:00",
+    "end_label": "50:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "Apple II、市场增长、日本竞争",
+    "start": 3000,
+    "chapter": 6,
+    "start_seconds": 3000,
+    "end_seconds": 3600,
+    "start_label": "50:00",
+    "end_label": "01:00:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "软件、教育、政治与技术",
+    "start": 3600,
+    "chapter": 7,
+    "start_seconds": 3600,
+    "end_seconds": 4200,
+    "start_label": "01:00:00",
+    "end_label": "01:10:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "计算机作为代理人、死亡与创新",
+    "start": 4200,
+    "chapter": 8,
+    "start_seconds": 4200,
+    "end_seconds": 4800,
+    "start_label": "01:10:00",
+    "end_label": "01:20:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "金钱、慈善、责任",
+    "start": 4800,
+    "chapter": 9,
+    "start_seconds": 4800,
+    "end_seconds": 5400,
+    "start_label": "01:20:00",
+    "end_label": "01:30:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "未来、亚里士多德、优雅地过时",
+    "start": 5400,
+    "chapter": 10,
+    "start_seconds": 5400,
+    "end_seconds": 6000,
+    "start_label": "01:30:00",
+    "end_label": "01:40:00",
+    "duration_seconds": 600
+  },
+  {
+    "title": "尾声",
+    "start": 6000,
+    "chapter": 11,
+    "start_seconds": 6000,
+    "end_seconds": 6141.53,
+    "start_label": "01:40:00",
+    "end_label": "01:42:22",
+    "duration_seconds": 141.53
+  }
+]

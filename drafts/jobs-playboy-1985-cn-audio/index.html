@@ -4,115 +4,456 @@
  <meta charset="utf-8">
  <meta name="robots" content="noindex,nofollow">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>Steve Jobs 1985 Playboy Interview｜中文访谈音频草稿</title>
+ <title>Steve Jobs 1985 Playboy Interview｜中文访谈音频档案草稿</title>
+ <meta name="description" content="Steve Jobs 1985 Playboy Interview 中文访谈音频与文稿草稿页。">
  <style>
  :root {
  --bg: #f7f5ef;
  --fg: #171717;
- --muted: #666;
+ --muted: #68645d;
  --card: #fffdf7;
  --line: #e5dfd2;
+ --soft: #f1ede4;
  --accent: #111;
+ --accent-2: #735c2f;
+ --ok: #245c38;
+ --warn: #8a5a00;
+ --radius: 18px;
  }
+ * { box-sizing: border-box; }
  body {
  margin: 0;
- background: var(--bg);
+ background:
+ radial-gradient(circle at top left, rgba(255,255,255,.75), transparent 38rem),
+ linear-gradient(180deg, #f8f5ee, #f1eadc);
  color: var(--fg);
  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", sans-serif;
- line-height: 1.7;
+ line-height: 1.72;
  }
  main {
- max-width: 920px;
+ max-width: 1080px;
  margin: 0 auto;
- padding: 48px 20px 80px;
+ padding: 48px 20px 96px;
+ }
+ .hero {
+ display: grid;
+ grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr);
+ gap: 22px;
+ align-items: stretch;
+ margin-bottom: 24px;
+ }
+ @media (max-width: 820px) {
+ .hero { grid-template-columns: 1fr; }
  }
  h1 {
- font-size: clamp(28px, 5vw, 46px);
- line-height: 1.12;
- margin: 0 0 14px;
- letter-spacing: -0.04em;
+ font-size: clamp(30px, 5vw, 56px);
+ line-height: 1.08;
+ margin: 0 0 16px;
+ letter-spacing: -0.055em;
  }
  h2 {
- margin-top: 36px;
- border-top: 1px solid var(--line);
- padding-top: 24px;
+ font-size: 24px;
+ margin: 0 0 14px;
+ letter-spacing: -.02em;
  }
- .meta {
- color: var(--muted);
- font-size: 15px;
- margin-bottom: 28px;
+ h3 {
+ font-size: 18px;
+ margin: 18px 0 8px;
  }
- .card {
- background: var(--card);
- border: 1px solid var(--line);
- border-radius: 18px;
- padding: 22px;
- margin: 18px 0;
- box-shadow: 0 8px 24px rgba(0,0,0,.04);
- }
- audio {
- width: 100%;
- margin: 12px 0 6px;
- }
+ p { margin: 0 0 12px; }
  a {
  color: var(--accent);
  text-decoration-thickness: 1px;
  text-underline-offset: 3px;
  }
- ul {
- padding-left: 1.25em;
+ .meta {
+ color: var(--muted);
+ font-size: 15px;
+ margin-bottom: 18px;
  }
+ .badge-row {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ margin: 18px 0 0;
+ }
+ .badge {
+ border: 1px solid var(--line);
+ background: rgba(255,255,255,.55);
+ border-radius: 999px;
+ padding: 6px 10px;
+ font-size: 13px;
+ color: var(--muted);
+ }
+ .card {
+ background: rgba(255,253,247,.9);
+ border: 1px solid var(--line);
+ border-radius: var(--radius);
+ padding: 22px;
+ margin: 18px 0;
+ box-shadow: 0 10px 30px rgba(0,0,0,.045);
+ backdrop-filter: blur(6px);
+ }
+ .card.compact { padding: 18px; }
  .notice {
  font-size: 14px;
  color: var(--muted);
+ }
+ .stats {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 10px;
+ margin-top: 10px;
+ }
+ .stat {
+ background: var(--soft);
+ border-radius: 14px;
+ padding: 12px;
+ }
+ .stat b {
+ display: block;
+ font-size: 20px;
+ line-height: 1.2;
+ }
+ .stat span {
+ color: var(--muted);
+ font-size: 13px;
+ }
+ audio {
+ width: 100%;
+ margin: 12px 0 6px;
+ }
+ .grid-2 {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 16px;
+ }
+ @media (max-width: 760px) {
+ .grid-2 { grid-template-columns: 1fr; }
+ .stats { grid-template-columns: 1fr; }
+ }
+ .downloads {
+ display: grid;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+ gap: 10px;
+ }
+ @media (max-width: 700px) {
+ .downloads { grid-template-columns: 1fr; }
+ }
+ .download {
+ border: 1px solid var(--line);
+ background: #fffaf0;
+ border-radius: 14px;
+ padding: 12px;
+ }
+ .download small {
+ display: block;
+ color: var(--muted);
+ margin-top: 4px;
+ }
+ .chapter-list {
+ display: grid;
+ gap: 8px;
+ margin-top: 12px;
+ }
+ .chapter {
+ display: grid;
+ grid-template-columns: 110px 1fr auto;
+ gap: 12px;
+ align-items: center;
+ padding: 12px;
+ border: 1px solid var(--line);
+ border-radius: 14px;
+ background: #fffaf0;
+ }
+ @media (max-width: 700px) {
+ .chapter { grid-template-columns: 1fr; }
+ }
+ .chapter-time {
+ color: var(--accent-2);
+ font-variant-numeric: tabular-nums;
+ font-weight: 650;
+ }
+ button {
+ appearance: none;
+ border: 1px solid var(--accent);
+ background: var(--accent);
+ color: white;
+ border-radius: 999px;
+ padding: 8px 12px;
+ cursor: pointer;
+ font: inherit;
+ font-size: 14px;
+ }
+ button.secondary {
+ background: transparent;
+ color: var(--accent);
+ }
+ .repair-list {
+ display: grid;
+ gap: 10px;
+ margin: 10px 0 0;
+ padding: 0;
+ list-style: none;
+ }
+ .repair-list li {
+ border-left: 4px solid var(--ok);
+ padding: 8px 12px;
+ background: #f4f1e9;
+ border-radius: 10px;
+ }
+ .transcript-unit {
+ border-top: 1px solid var(--line);
+ padding: 14px 0;
+ }
+ .transcript-unit:first-child { border-top: 0; }
+ .speaker {
+ font-weight: 750;
+ color: var(--accent-2);
+ margin-bottom: 6px;
+ }
+ .unit-id {
+ color: var(--muted);
+ font-size: 13px;
+ margin-left: 8px;
+ font-weight: 500;
+ }
+ .source-note {
+ background: #fff7df;
+ border: 1px solid #ead9a5;
+ color: #5c4300;
+ border-radius: 14px;
+ padding: 14px;
+ font-size: 14px;
+ }
+ code, pre {
+ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+ font-size: 13px;
+ }
+ pre {
+ white-space: pre-wrap;
+ background: var(--soft);
+ padding: 14px;
+ border-radius: 12px;
+ overflow: auto;
+ }
+ footer {
+ color: var(--muted);
+ font-size: 13px;
+ margin-top: 36px;
+ border-top: 1px solid var(--line);
+ padding-top: 18px;
  }
  </style>
 </head>
 <body>
 <main>
- <h1>Steve Jobs 1985 Playboy Interview｜中文访谈音频草稿</h1>
- <div class="meta">
- Phase 6J / 6K final draft · 中文对话音频与文稿 · noindex draft
+ <section class="hero">
+ <div class="card">
+ <div class="meta">Draft archive · noindex · Phase 6J / 6K final</div>
+ <h1>Steve Jobs 1985 Playboy Interview｜中文访谈音频档案</h1>
+ <p>
+ 这是 1985 年《Playboy》对 Steve Jobs 的长访谈中文音频草稿版。
+ 当前版本完成了多轮 speaker 归属、缺段、重复段与删节修复，并生成可播放的完整中文对话音频。
+ </p>
+ <div class="badge-row">
+ <span class="badge">完整音频约 102 分钟</span>
+ <span class="badge">272 units</span>
+ <span class="badge">1082 TTS segments</span>
+ <span class="badge">0 failed segments</span>
+ <span class="badge">noindex draft</span>
+ </div>
  </div>
 
- <div class="card">
+ <aside class="card compact">
+ <h2>版本状态</h2>
+ <div class="stats">
+ <div class="stat"><b id="durationStat">—</b><span>音频时长</span></div>
+ <div class="stat"><b id="unitStat">—</b><span>对话单元</span></div>
+ <div class="stat"><b>6J/6K</b><span>最终修复阶段</span></div>
+ <div class="stat"><b>Draft</b><span>未进入正式项目列表</span></div>
+ </div>
+ </aside>
+ </section>
+
+ <section class="card">
  <h2>完整音频</h2>
- <audio controls preload="metadata" src="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3"></audio>
+ <audio id="mainAudio" controls preload="metadata" src="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3"></audio>
  <p>
- <a href="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3">下载完整 MP3</a>（约 43 MB，102 分钟）
+ <a href="assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3">下载完整 MP3</a>
  </p>
  <p class="notice">
- 本页面为授权整理与内部审阅草稿，当前设置为 noindex，不进入正式项目列表。
+ 若移动端加载较慢，可先听下面的 90 秒样片或 5 分钟 preview。
  </p>
- </div>
+ </section>
 
- <div class="card">
- <h2>文稿下载</h2>
- <ul>
- <li><a href="assets/text/jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt">最终音频对应 transcript TXT</a></li>
- <li><a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.txt">Phase 6J 最终中文对话 TXT</a></li>
- <li><a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.md">Phase 6J 最终中文对话 Markdown</a></li>
- <li><a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.json">Phase 6J 最终中文对话 JSON</a></li>
+ <section class="card">
+ <h2>试听样片</h2>
+ <div id="samples" class="grid-2"></div>
+ </section>
+
+ <section class="card">
+ <h2>章节导航</h2>
+ <p class="notice">
+ 章节不会重复存储分段音频，而是跳转到同一个完整音频的对应时间点。
+ </p>
+ <div id="chapters" class="chapter-list"></div>
+ </section>
+
+ <section class="card">
+ <h2>为什么这个版本值得保留</h2>
+ <ul class="repair-list">
+ <li>修复早期 speaker 归属错位，明确区分 Playboy 提问与乔布斯回答。</li>
+ <li>补全 u0054：Lisa 失败原因，包括发货延迟、软件整合、IBM 压力与 150 家经销商策略错误。</li>
+ <li>修复 u0078–u0083：恢复 Edwin Land / Polaroid / Apple 公司使命段，消除重复问答。</li>
+ <li>补回 u0096a–u0096f：IBM、Frito-Lay、computer Dark Ages 关键论述。</li>
+ <li>补全 u0030：Macintosh 开发经历、Mac 团队前排、发布时全场鼓掌与团队落泪。</li>
+ <li>最终音频由 1082 个 TTS segments 拼接，失败数为 0。</li>
  </ul>
- </div>
+ </section>
 
- <div class="card">
- <h2>修复记录</h2>
- <ul>
- <li><a href="assets/reports/PHASE6K_U0030_SELECTIVE_TTS_REPORT.txt">Phase 6K：u0030 选择性 TTS 重跑报告</a></li>
- <li><a href="assets/manifests/phase6k_u0030_selective_tts_manifest.json">Phase 6K manifest</a></li>
- <li><a href="assets/reports/PHASE6J_U0030_FINAL_TRANSCRIPT_PATCH_REPORT.txt">Phase 6J：u0030 文稿修复报告</a></li>
- <li><a href="assets/manifests/phase6j_u0030_final_transcript_patch_manifest.json">Phase 6J manifest</a></li>
- </ul>
- </div>
-
- <div class="card">
- <h2>说明</h2>
+ <section class="card">
+ <h2>文稿预览</h2>
+ <p class="notice">
+ 默认显示前 12 个对话单元。完整版本可在下载区获取 TXT / Markdown / JSON。
+ </p>
+ <div id="transcript"></div>
  <p>
- 本版本在 Phase 6F 结构修复基础上，继续补全 u0030 的 Macintosh 开发经历段落，
- 并在 Phase 6K 中仅重跑 u0030 相关 TTS 片段，复用其他已验证片段后重新拼接完整 MP3。
+ <button id="loadMore" class="secondary">展开更多</button>
  </p>
+ </section>
+
+ <section class="card">
+ <h2>下载与审计文件</h2>
+ <div class="downloads">
+ <div class="download">
+ <a href="assets/text/jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt">最终音频 transcript TXT</a>
+ <small>与最终音频对应的朗读文本</small>
  </div>
+ <div class="download">
+ <a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.md">最终中文对话 Markdown</a>
+ <small>适合阅读与引用</small>
+ </div>
+ <div class="download">
+ <a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.txt">最终中文对话 TXT</a>
+ <small>适合复制、检索与二次处理</small>
+ </div>
+ <div class="download">
+ <a href="assets/text/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.json">最终中文对话 JSON</a>
+ <small>结构化数据</small>
+ </div>
+ <div class="download">
+ <a href="assets/reports/PHASE6K_U0030_SELECTIVE_TTS_REPORT.txt">Phase 6K TTS 报告</a>
+ <small>u0030 选择性重跑与最终拼接报告</small>
+ </div>
+ <div class="download">
+ <a href="assets/manifests/phase6k_u0030_selective_tts_manifest.json">Phase 6K manifest</a>
+ <small>最终音频校验与输出清单</small>
+ </div>
+ <div class="download">
+ <a href="assets/data/page_stats.json">页面统计 JSON</a>
+ <small>音频时长、hash、unit 数等</small>
+ </div>
+ <div class="download">
+ <a href="publish_manifest.json">发布 manifest</a>
+ <small>GitHub Pages 发布文件清单</small>
+ </div>
+ </div>
+ </section>
+
+ <section class="source-note">
+ <b>说明：</b>
+ 本页面为授权整理与内部审阅用途的 draft archive，已设置 <code>noindex,nofollow</code>。
+ 当前版本不进入正式项目列表，也不作为最终公开出版物声明。
+ </section>
+
+ <footer>
+ <p>Generated as Phase 6N page optimization. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
+ </footer>
 </main>
+
+<script>
+const audio = document.getElementById('mainAudio');
+let transcriptUnits = [];
+let shown = 0;
+
+function fmt(seconds) {
+ seconds = Math.round(seconds || 0);
+ const h = Math.floor(seconds / 3600);
+ const m = Math.floor((seconds % 3600) / 60);
+ const s = seconds % 60;
+ if (h) return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+ return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+async function loadStats() {
+ const stats = await fetch('assets/data/page_stats.json').then(r => r.json());
+ document.getElementById('durationStat').textContent = `${stats.audio_duration_minutes} 分钟`;
+ document.getElementById('unitStat').textContent = stats.unit_count;
+}
+
+async function loadSamples() {
+ const samples = await fetch('assets/data/samples.json').then(r => r.json());
+ const box = document.getElementById('samples');
+ box.innerHTML = samples.map(s => `
+ <div class="card compact">
+ <h3>${s.title}</h3>
+ <audio controls preload="metadata" src="${s.path}"></audio>
+ <p class="notice">${fmt(s.start)} 开始 · ${Math.round(s.duration_seconds_actual)} 秒 · ${(s.size_bytes/1024/1024).toFixed(1)} MB</p>
+ <p><a href="${s.path}">下载样片</a></p>
+ </div>
+ `).join('');
+}
+
+async function loadChapters() {
+ const chapters = await fetch('assets/data/chapters.json').then(r => r.json());
+ const box = document.getElementById('chapters');
+ box.innerHTML = chapters.map(c => `
+ <div class="chapter">
+ <div class="chapter-time">${c.start_label}–${c.end_label}</div>
+ <div>
+ <b>${String(c.chapter).padStart(2,'0')} · ${c.title}</b>
+ <div class="notice">${Math.round(c.duration_seconds/60)} 分钟左右</div>
+ </div>
+ <button data-start="${c.start_seconds}">跳转播放</button>
+ </div>
+ `).join('');
+
+ box.querySelectorAll('button[data-start]').forEach(btn => {
+ btn.addEventListener('click', () => {
+ audio.currentTime = Number(btn.dataset.start);
+ audio.play();
+ window.scrollTo({ top: audio.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+ });
+ });
+}
+
+function renderMore(n = 12) {
+ const box = document.getElementById('transcript');
+ const next = transcriptUnits.slice(shown, shown + n);
+ const html = next.map(u => `
+ <div class="transcript-unit">
+ <div class="speaker">${u.speaker_cn}<span class="unit-id">${u.unit_id}</span></div>
+ <div>${u.translation_cn}</div>
+ </div>
+ `).join('');
+ box.insertAdjacentHTML('beforeend', html);
+ shown += next.length;
+ if (shown >= transcriptUnits.length) {
+ document.getElementById('loadMore').style.display = 'none';
+ }
+}
+
+async function loadTranscript() {
+ transcriptUnits = await fetch('assets/data/transcript_preview.json').then(r => r.json());
+ renderMore(12);
+ document.getElementById('loadMore').addEventListener('click', () => renderMore(20));
+}
+
+loadStats().catch(console.error);
+loadSamples().catch(console.error);
+loadChapters().catch(console.error);
+loadTranscript().catch(console.error);
+</script>
 </body>
 </html>

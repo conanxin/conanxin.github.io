@@ -1,7 +1,7 @@
 {
   "project": "jobs-playboy-1985-cn-audio",
-  "phase": "6S_mobile_listening_ux",
-  "generated_at_utc": "2026-05-16T06:08:21.202420+00:00",
+  "phase": "6T_final_qa_closeout",
+  "generated_at_utc": "2026-05-16T06:21:46.985090+00:00",
   "target_rel": "drafts/jobs-playboy-1985-cn-audio",
   "target_dir": "/home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio",
   "url": "https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/",
@@ -9,10 +9,7 @@
   "projects_data_changed": false,
   "tts_regenerated": false,
   "full_audio_modified": false,
-  "mobile_ux_added": true,
-  "phase6s_marker_present": true,
-  "old_rights_wording_removed": true,
-  "file_count": 29,
+  "file_count": 34,
   "files": [
     {
       "path": "README.md",
@@ -111,6 +108,31 @@
       "sha256": "08fa24db3b3d6ed1e6f0f87b8b62cc8e351cd8121f14429cff4591ece4e9d216"
     },
     {
+      "path": "assets/reports/PHASE6S_MOBILE_LISTENING_UX_REPORT.txt",
+      "size_bytes": 1725,
+      "sha256": "e9280adf03257aa43f0a77ed464a5b005bcbb70612f775866cdd6ac58d76629a"
+    },
+    {
+      "path": "assets/reports/PHASE6T_FINAL_QA_CLOSEOUT_REPORT.txt",
+      "size_bytes": 4205,
+      "sha256": "6fa5f27241030c4b7582115428e088c8d65f7dac77b8f145e86e444414a1a1f4"
+    },
+    {
+      "path": "assets/reports/PROJECT_CLOSEOUT_Jobs_Playboy_1985_CN_Audio.md",
+      "size_bytes": 5766,
+      "sha256": "450b4fd7e7c69f47a74d13405d68118c517d555fdc69dc0309ac7bb544c7d1f1"
+    },
+    {
+      "path": "assets/reports/PROJECT_COMMAND_CARD_Jobs_Playboy_1985_CN_Audio.md",
+      "size_bytes": 2602,
+      "sha256": "f677e250afac918757b08a757e6cc8ce9457df078a097f1b0effe680cd727017"
+    },
+    {
+      "path": "assets/reports/PROJECT_RESUME_GUIDE_Jobs_Playboy_1985_CN_Audio.md",
+      "size_bytes": 5029,
+      "sha256": "b594a96cd57957d7c271930b2d67df54fb917acbcff9eee5b5a1814984e33c4a"
+    },
+    {
       "path": "assets/samples/preview_5min_opening.mp3",
       "size_bytes": 3600909,
       "sha256": "2ef8a5bbe78fedd6ce5618f596c14c165530b386d23f5e2d85b72a153cdefed2",
@@ -161,8 +183,8 @@
     },
     {
       "path": "publish_manifest.json",
-      "size_bytes": 5940,
-      "sha256": "7bb3e97a2185fcf10b17e6c3e1187972798a57d4df5694454f9296213ae37494"
+      "size_bytes": 6127,
+      "sha256": "557abc446d1c98769e6a8b169dd709175cae6950c3a9e22da335fcba3685ff16"
     }
   ]
 }

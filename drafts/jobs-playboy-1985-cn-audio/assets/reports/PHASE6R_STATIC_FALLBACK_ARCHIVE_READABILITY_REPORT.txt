@@ -1,0 +1,37 @@
+================================================================================
+PHASE 6R STATIC FALLBACK + ARCHIVE READABILITY REPORT
+================================================================================
+STATUS: PASS_PENDING_GIT_PUSH
+TIME_UTC: 2026-05-16T05:46:00+00:00
+PROJECT_DIR: /home/ubuntu/projects/jobs-playboy-1985-cn-audio
+PAGES_DIR: /home/ubuntu/conanxin.github.io
+TARGET_DIR: /home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio
+
+CHANGES
+- Pre-rendered 4 sample cards into index.html
+- Pre-rendered 11 chapter navigation items into index.html
+- Pre-rendered 8 key quote cards into index.html
+- Pre-rendered version timeline (8 items) into index.html
+- Pre-rendered quality audit summary (6 items) into index.html
+- Pre-rendered first 12 transcript units into index.html
+- Added JS clearStaticFallback() to avoid duplicate content when JS loads
+- Updated stat placeholders with real values (102.36 min, 272 units)
+- Added Phase 6R static fallback deploy marker
+- Updated footer phase text
+- Updated deploy_version.json and publish_manifest.json
+
+LOCAL VALIDATION
+- "授权整理" found: NO
+- PHASE6R_STATIC_FALLBACK_MARKER: YES
+- data-static-fallback counts: samples=4, chapters=11, quotes=8, timeline=8, quality=6, transcript=12
+- index.html size: 37343 bytes (was 19534 in Phase 6Q)
+- All required keywords present
+
+BOUNDARIES
+NO_TTS_REGENERATED:     YES
+FULL_AUDIO_MODIFIED:    NO
+PROJECTS_DATA_CHANGED:  NO
+NOINDEX_KEPT:           YES
+GIT_LFS_USED:           NO
+
+PHASE6R_STATIC_FALLBACK_ARCHIVE_READABILITY_REPORT_END

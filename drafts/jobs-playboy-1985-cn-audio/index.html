@@ -315,8 +315,8 @@
  <aside class="card compact">
  <h2>版本状态</h2>
  <div class="stats">
- <div class="stat"><b id="durationStat">—</b><span>音频时长</span></div>
- <div class="stat"><b id="unitStat">—</b><span>对话单元</span></div>
+ <div class="stat"><b id="durationStat">102.36 分钟</b><span>音频时长</span></div>
+ <div class="stat"><b id="unitStat">272</b><span>对话单元</span></div>
  <div class="stat"><b>6J/6K</b><span>最终修复阶段</span></div>
  <div class="stat"><b>Draft</b><span>未进入正式项目列表</span></div>
  </div>
@@ -340,29 +340,283 @@
 
  <section class="card">
  <h2>试听样片</h2>
- <div id="samples" class="grid-2"></div>
+ <div id="samples">
+ <div class="card compact" data-static-fallback="sample">
+ <h3>开头 90 秒</h3>
+ <audio controls preload="metadata" src="assets/samples/sample_01_opening_90s.mp3"></audio>
+ <p class="notice"></p>
+ <p><a href="assets/samples/sample_01_opening_90s.mp3">下载样片</a></p>
+ </div>
+ <div class="card compact" data-static-fallback="sample">
+ <h3>中段 90 秒</h3>
+ <audio controls preload="metadata" src="assets/samples/sample_02_middle_90s.mp3"></audio>
+ <p class="notice"></p>
+ <p><a href="assets/samples/sample_02_middle_90s.mp3">下载样片</a></p>
+ </div>
+ <div class="card compact" data-static-fallback="sample">
+ <h3>结尾 90 秒</h3>
+ <audio controls preload="metadata" src="assets/samples/sample_03_ending_90s.mp3"></audio>
+ <p class="notice"></p>
+ <p><a href="assets/samples/sample_03_ending_90s.mp3">下载样片</a></p>
+ </div>
+ <div class="card compact" data-static-fallback="sample">
+ <h3>开头 5 分钟 Preview</h3>
+ <audio controls preload="metadata" src="assets/samples/preview_5min_opening.mp3"></audio>
+ <p class="notice"></p>
+ <p><a href="assets/samples/preview_5min_opening.mp3">下载样片</a></p>
+ </div>
+ </div>
  </section>
 
  <section class="card">
  <h2>章节导航</h2>
  <p class="notice">章节不会重复存储分段音频，而是跳转到同一个完整音频的对应时间点。</p>
- <div id="chapters" class="chapter-list"></div>
+ <div id="chapters">
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">00:00–10:00</div>
+ <div>
+ <b>01 · 计算机革命、Macintosh、家庭电脑</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">10:00–20:00</div>
+ <div>
+ <b>02 · Lisa / Apple III / Mac 产品策略</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="600">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">20:00–30:00</div>
+ <div>
+ <b>03 · 苹果公司文化、年轻人、Edwin Land</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="1200">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">30:00–40:00</div>
+ <div>
+ <b>04 · IBM 竞争、Dark Ages、Frito-Lay 类比</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="1800">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">40:00–50:00</div>
+ <div>
+ <b>05 · 硅谷、家庭、沃兹、Apple I</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="2400">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">50:00–01:00:00</div>
+ <div>
+ <b>06 · Apple II、市场增长、日本竞争</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="3000">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">01:00:00–01:10:00</div>
+ <div>
+ <b>07 · 软件、教育、政治与技术</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="3600">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">01:10:00–01:20:00</div>
+ <div>
+ <b>08 · 计算机作为代理人、死亡与创新</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="4200">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">01:20:00–01:30:00</div>
+ <div>
+ <b>09 · 金钱、慈善、责任</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="4800">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">01:30:00–01:40:00</div>
+ <div>
+ <b>10 · 未来、亚里士多德、优雅地过时</b>
+ <div class="notice">10 分钟左右</div>
+ </div>
+ <button data-start="5400">跳转播放</button>
+ </div>
+ <div class="chapter" data-static-fallback="chapter">
+ <div class="chapter-time">01:40:00–01:42:22</div>
+ <div>
+ <b>11 · 尾声</b>
+ <div class="notice">2 分钟左右</div>
+ </div>
+ <button data-start="6000">跳转播放</button>
+ </div>
+ </div>
  </section>
 
  <section class="card">
  <h2>关键金句 / 主题锚点</h2>
  <p class="notice">时间点为章节级近似定位，用于快速进入相关主题。</p>
- <div id="quotes" class="grid-2"></div>
+ <div id="quotes">
+ <div class="quote" data-static-fallback="quote">
+ <h3>信息革命</h3>
+ <blockquote>“这场革命，信息革命，也是一场免费能源的革命，但却是另一种：免费的智力能源。”</blockquote>
+ <div class="quote-meta">乔布斯 · 00:00</div>
+ <p class="notice">乔布斯把个人电脑理解为释放智力能量的工具。</p>
+ <button data-start="">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>Macintosh 是电话</h3>
+ <blockquote>“Macintosh 是我们行业的第一部电话。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 08:00</div>
+ <p class="notice">他用电话对电报的替代来解释图形界面的意义。</p>
+ <button data-start="480">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>做最好的东西</h3>
+ <blockquote>“当你是一个木匠，要做一个漂亮的抽屉柜时，你不会因为背面朝墙、永远没人看见，就在背面用一块胶合板。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 18:00</div>
+ <p class="notice">Mac 团队产品伦理的经典表述。</p>
+ <button data-start="1080">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>在宇宙中留下凹痕</h3>
+ <blockquote>“他们真的想让自己稍微超出能力范围一点，想在宇宙中留下一个小小的凹痕。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 25:00</div>
+ <p class="notice">解释苹果为何吸引不同类型的人。</p>
+ <button data-start="1500">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>IBM 与黑暗时代</h3>
+ <blockquote>“如果由于某种原因，我们犯了巨大的错误而 IBM 赢了，我们会进入某种大约持续 20 年的计算机黑暗时代。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 32:00</div>
+ <p class="notice">这段曾在早期稿中缺失，后续补回。</p>
+ <button data-start="1920">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>死亡与创新</h3>
+ <blockquote>“我认为死亡是生命最奇妙的发明。它把系统中那些已经过时的旧模式清除出去。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 74:00</div>
+ <p class="notice">乔布斯关于组织更新与创新的核心隐喻。</p>
+ <button data-start="4440">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>时间最珍贵</h3>
+ <blockquote>“非常清楚的是，我们所有人拥有的最宝贵资源就是时间。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 86:00</div>
+ <p class="notice">在谈金钱、私人生活和代价时出现。</p>
+ <button data-start="5160">跳转播放</button>
+ </div>
+ <div class="quote" data-static-fallback="quote">
+ <h3>优雅地过时</h3>
+ <blockquote>“这是一个非常有趣的挑战，不是吗？如何优雅地变得过时。”</blockquote>
+ <div class="quote-meta">乔布斯 · 约 100:00</div>
+ <p class="notice">访谈结尾对代际交接和知识探索的总结。</p>
+ <button data-start="6000">跳转播放</button>
+ </div>
+ </div>
  </section>
 
  <section class="card">
  <h2>版本时间线</h2>
- <div id="timeline" class="timeline"></div>
+ <div id="timeline">
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 3</div>
+ <div>
+ <b>中文翻译完成</b>
+ <p class="notice">完成 266 个官方对话单元的中文翻译合并，形成可进入 audio-ready 改写的基础稿。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 4</div>
+ <div>
+ <b>Audio-ready transcript</b>
+ <p class="notice">将中文稿切分为适合 TTS 合成的朗读片段。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 5</div>
+ <div>
+ <b>初版完整 TTS</b>
+ <p class="notice">生成初版完整中文音频，并发现后续需要进行 speaker 与结构级修复。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 6F</div>
+ <div>
+ <b>最终结构补丁</b>
+ <p class="notice">修复 u0054、u0078–u0083、u0096 后缺失段，补回 IBM / Frito-Lay / Dark Ages 关键论述。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 6J</div>
+ <div>
+ <b>u0030 完整性补丁</b>
+ <p class="notice">补全 Macintosh 开发经历段，包括团队多年技术积累、发布现场与团队情绪。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 6K</div>
+ <div>
+ <b>选择性 TTS 重跑</b>
+ <p class="notice">仅重跑 u0030 相关片段，复用其余已验证片段，生成最终 Phase 6J 音频。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 6N</div>
+ <div>
+ <b>页面体验增强</b>
+ <p class="notice">增加播放器、试听样片、章节跳转、文稿预览与下载区。</p>
+ </div>
+ </div>
+ <div class="timeline-item" data-static-fallback="timeline">
+ <div class="phase">Phase 6O</div>
+ <div>
+ <b>来源边界与叙事增强</b>
+ <p class="notice">修复版权/来源措辞，增加来源说明、版本时间线、关键金句与质量审计摘要。</p>
+ </div>
+ </div>
+ </div>
  </section>
 
  <section class="card">
  <h2>质量审计摘要</h2>
- <div id="qualityAudit" class="grid-2"></div>
+ <div id="qualityAudit">
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>最终状态</h3>
+ <p>272 units · 1082 TTS segments ·  failed</p>
+ <p class="notice">final_draft_pass</p>
+ </div>
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>Speaker 归属修复</h3>
+ <p class="notice">修复多处 Playboy / 乔布斯说话人错位。</p>
+ </div>
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>u0054 Lisa 失败原因补全</h3>
+ <p class="notice">补全发货延迟、软件整合失败、IBM 压力、150 家经销商策略错误等内容。</p>
+ </div>
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>u0078–u0083 Edwin Land / Apple 公司使命段修复</h3>
+ <p class="notice">恢复 Edwin Land、Polaroid、Apple 成为伟大公司的连续论述，消除重复问答。</p>
+ </div>
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>u0096 后 IBM / Frito-Lay / Dark Ages 段补回</h3>
+ <p class="notice">插入 u0096a–u0096f，补回 IBM 服务体系、Frito-Lay 类比与计算机黑暗时代论述。</p>
+ </div>
+ <div class="audit-item" data-static-fallback="quality">
+ <h3>u0030 Macintosh 开发经历补全</h3>
+ <p class="notice">补全多年技术积累、发布现场、Mac 团队前排与团队落泪段落。</p>
+ </div>
+ </div>
  </section>
 
  <section class="card">
@@ -390,8 +644,57 @@
  <input id="unitJump" type="text" placeholder="跳转 unit，如 u0030">
  <button id="jumpUnit" class="secondary">跳转</button>
  </div>
- <div id="resultCount" class="result-count"></div>
- <div id="transcript"></div>
+ <div id="resultCount" class="result-count">静态预览显示 12 / 272 个 unit；启用 JavaScript 后可搜索和过滤。</div>
+ <div id="transcript">
+ <div class="transcript-unit" id="unit-u0001" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0001</span></div>
+ <div>我们挺过了1984年，计算机没有占领世界，尽管有些人可能觉得这难以置信。如果说有哪个人可以因为计算机的普及而受到指责或赞扬，那么你，这位29岁的计算机革命之父，就是主要竞争者。它也让你富裕得超乎想象——你的股票一度价值近5亿美元，不是吗？</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0002" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0002</span></div>
+ <div>当股票下跌时，我一年内实际上损失了2.5亿美元。[笑]</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0003" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0003</span></div>
+ <div>你能笑得出来？</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0004" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0004</span></div>
+ <div>我不会让它毁了我的生活。这难道不是有点好笑吗？你知道，我对金钱这件事的主要反应是它很幽默，所有对它的关注，因为它绝不是过去十年里发生在我身上最有洞察力或最有价值的事情。但有时，当我在校园演讲时，它让我觉得自己老了，我发现学生们最敬畏的是我是一个百万富翁的事实。我上学的时候，正好是六十年代之后，在普遍的实用主义浪潮到来之前。现在学生们甚至不再以理想主义的方式思考，或者至少远没有那么多了。他们当然不会让当今的任何哲学问题占据他们太多时间，因为他们正在学习他们的商科专业。然而，六十年代的理想主义之风仍然在我们身后，我认识的大多数同龄人都有这种根深蒂固的东西。</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0005" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0005</span></div>
+ <div>有趣的是，计算机领域造就了百万富翁——</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0006" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0006</span></div>
+ <div>年轻的疯子，我知道。</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0007" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0007</span></div>
+ <div>我们本来想说像你和史蒂夫·沃兹尼亚克这样的人，十年前还在车库里工作。你们俩似乎发起的这场革命到底是什么？</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0008" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0008</span></div>
+ <div>我们生活在100年前石油化工革命的余波中。石油化工革命给了我们免费的能源——在这种情况下是免费的机械能。它在大多数方面改变了社会的结构。这场革命，信息革命，也是一场免费能源的革命，但却是另一种：免费的智力能源。它今天还很粗糙，但我们的Macintosh电脑运行所需的电力比一个100瓦的灯泡还少，它每天可以为你节省数小时。十年、二十年或五十年后，它将能做什么？这场革命将使石油化工革命相形见绌。我们正处于前沿。</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0009" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0009</span></div>
+ <div>也许我们应该暂停一下，听听你对计算机的定义。它们是如何工作的？</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0010" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0010</span></div>
+ <div>计算机实际上相当简单。我们坐在这个咖啡馆的长凳上[采访的这一部分]。假设你只理解最基本的指示，你问如何找到洗手间。我必须用非常具体和精确的指令向你描述。我可能会说：“从长凳上侧身挪开两米。站直。抬起左脚。弯曲左膝直到水平。伸出左脚并向前移动300厘米……”等等。如果你能比这个咖啡馆里的任何其他人快100倍地解释所有这些指令，你就会看起来像个魔术师：你可以跑过去拿一杯奶昔，把它带回来放在桌子上，然后打个响指，我就会认为你让奶昔出现了，因为它相对于我的感知来说太快了。这正是计算机所做的。它接受这些非常非常简单的指令——“去取一个数字，把它加到这个数字上，把结果放在那里，判断它是否大于另一个数字”——但以每秒，比如说，1,000,000次的速度执行它们。以每秒1,000,000次的速度，结果看起来就像魔术。这是一个简单的解释，关键是人们真的不必理解计算机是如何工作的。大多数人对自动变速器的工作原理一无所知，但他们知道如何开车。你不需要学习物理学来理解运动定律才能开车。你不需要理解这些东西就能使用Macintosh——但你问了[笑]。</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0011" data-static-fallback="transcript">
+ <div class="speaker">Playboy<span class="unit-id">u0011</span></div>
+ <div>显然，你相信计算机将改变我们的个人生活，但你会如何说服一个怀疑论者？一个顽固分子？</div>
+ </div>
+ <div class="transcript-unit" id="unit-u0012" data-static-fallback="transcript">
+ <div class="speaker">乔布斯<span class="unit-id">u0012</span></div>
+ <div>计算机是我们见过的最不可思议的工具。它可以通过被赋予新的指令或软件来工作，集写作工具、通信中心、超级计算器、规划器、文件管理器和艺术工具于一身。没有其他工具拥有计算机的强大功能和多功能性。我们不知道它会发展到什么程度。现在，计算机让我们的生活更轻松。它们在几分之一秒内为我们完成需要数小时的工作。它们提高了生活质量，其中一部分是通过自动化繁琐的工作，另一部分是通过拓宽我们的可能性。随着事情的发展，它们将为我们做越来越多的事情。</div>
+ </div>
+ </div>
  <p><button id="loadMore" class="secondary">展开更多</button></p>
  </section>
 
@@ -441,13 +744,28 @@
 </section>
 
 
+ 
+<section class="source-note" id="phase6rStaticFallbackMarker">
+ <b>静态回填：</b>
+ <span>PHASE6R_STATIC_FALLBACK_MARKER_2026-05-16T05:45:27.749386+00:00</span>。
+ 本页已将样片、章节、金句、时间线、质量审计和前 12 个文稿单元预渲染进 HTML，以提升无 JavaScript 环境下的可读性。
+</section>
+
+
  <footer>
- <p>Generated as Phase 6O narrative and trust patch. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
+ <p>Generated as Phase 6R static fallback and archive readability patch. Audio file is reused from Phase 6K; no TTS regenerated in this phase.</p>
  </footer>
 </main>
 
 <script>
 const audio = document.getElementById('mainAudio');
+
+function clearStaticFallback(id) {
+ const box = document.getElementById(id);
+ if (!box) return;
+ box.querySelectorAll('[data-static-fallback]').forEach(el => el.remove());
+}
+
 let transcriptUnits = [];
 let shown = 0;
 
@@ -469,6 +787,7 @@ async function loadStats() {
 async function loadSamples() {
  const samples = await fetch('assets/data/samples.json').then(r => r.json());
  const box = document.getElementById('samples');
+ clearStaticFallback('samples');
  box.innerHTML = samples.map(s => `
  <div class="card compact">
  <h3>${s.title}</h3>
@@ -482,6 +801,7 @@ async function loadSamples() {
 async function loadChapters() {
  const chapters = await fetch('assets/data/chapters.json').then(r => r.json());
  const box = document.getElementById('chapters');
+ clearStaticFallback('chapters');
  box.innerHTML = chapters.map(c => `
  <div class="chapter">
  <div class="chapter-time">${c.start_label}–${c.end_label}</div>
@@ -505,6 +825,7 @@ async function loadChapters() {
 async function loadQuotes() {
  const quotes = await fetch('assets/data/key_quotes.json').then(r => r.json());
  const box = document.getElementById('quotes');
+ clearStaticFallback('quotes');
  box.innerHTML = quotes.map(q => `
  <div class="quote">
  <h3>${q.title}</h3>
@@ -526,6 +847,7 @@ async function loadQuotes() {
 async function loadTimeline() {
  const timeline = await fetch('assets/data/version_timeline.json').then(r => r.json());
  const box = document.getElementById('timeline');
+ clearStaticFallback('timeline');
  box.innerHTML = timeline.map(t => `
  <div class="timeline-item">
  <div class="phase">${t.phase}</div>
@@ -540,6 +862,7 @@ async function loadTimeline() {
 async function loadQualityAudit() {
  const audit = await fetch('assets/data/quality_audit.json').then(r => r.json());
  const box = document.getElementById('qualityAudit');
+ clearStaticFallback('qualityAudit');
  const head = `
  <div class="audit-item">
  <h3>最终状态</h3>
@@ -678,5 +1001,6 @@ loadTranscript().catch(console.error);
 </script>
 <!-- Phase 6P patched at 2026-05-16T05:15:05.904518+00:00 UTC -->
 <!-- PHASE6Q_HARD_DEPLOY_COMMENT 2026-05-16T05:25:47.260570+00:00 -->
+<!-- PHASE6R_STATIC_FALLBACK_COMMENT 2026-05-16T05:45:27.749386+00:00 -->
 </body>
 </html>

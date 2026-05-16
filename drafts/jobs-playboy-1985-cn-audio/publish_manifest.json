@@ -1,7 +1,7 @@
 {
   "project": "jobs-playboy-1985-cn-audio",
-  "phase": "6Q_hard_deploy_consistency_fix",
-  "generated_at_utc": "2026-05-16T05:26:40.990108+00:00",
+  "phase": "6R_static_fallback_archive_readability",
+  "generated_at_utc": "2026-05-16T05:46:04.368610+00:00",
   "target_rel": "drafts/jobs-playboy-1985-cn-audio",
   "target_dir": "/home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio",
   "url": "https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/",
@@ -9,8 +9,10 @@
   "projects_data_changed": false,
   "tts_regenerated": false,
   "full_audio_modified": false,
-  "hard_deploy_marker_added": true,
-  "file_count": 27,
+  "static_fallback_added": true,
+  "phase6r_marker_present": true,
+  "old_rights_wording_removed": true,
+  "file_count": 28,
   "files": [
     {
       "path": "README.md",
@@ -30,8 +32,8 @@
     },
     {
       "path": "assets/data/deploy_version.json",
-      "size_bytes": 475,
-      "sha256": "78f4ec8d5fdb0b06f14e84124683b240515fe2b247d4d018a1bade1da837192f"
+      "size_bytes": 604,
+      "sha256": "037764694be696153f33a148b2308ae3d7ffc2d48fe990ec9d4efd5b113c262d"
     },
     {
       "path": "assets/data/key_quotes.json",
@@ -99,6 +101,11 @@
       "sha256": "cc74d27cb96c89b0131f6537a07b0932d10afe14853021715458a70788f62671"
     },
     {
+      "path": "assets/reports/PHASE6Q_HARD_DEPLOY_CONSISTENCY_REPORT.txt",
+      "size_bytes": 3099,
+      "sha256": "4bdc8506dfcce8dd724d3f9524ec2a3de21ec7c07e4464e585a071edd980448e"
+    },
+    {
       "path": "assets/samples/preview_5min_opening.mp3",
       "size_bytes": 3600909,
       "sha256": "2ef8a5bbe78fedd6ce5618f596c14c165530b386d23f5e2d85b72a153cdefed2",
@@ -144,13 +151,13 @@
     },
     {
       "path": "index.html",
-      "size_bytes": 19534,
-      "sha256": "2714dfcf90f86af0e8c5cf2488572841913383f902db4819ab1211c66a29d26c"
+      "size_bytes": 37343,
+      "sha256": "5d34958d575e38cd7487fea119eb93ebc4b206d4507642f1d862b614ec6d8c0f"
     },
     {
       "path": "publish_manifest.json",
-      "size_bytes": 5557,
-      "sha256": "f9d096038ddde9110085926793b2b5391e664919b74527133a4d01590cf08427"
+      "size_bytes": 5666,
+      "sha256": "30fb8e21e87c737ab63a981e8d28e278861dc7ad7bd4fef858bfae627940dc21"
     }
   ]
 }

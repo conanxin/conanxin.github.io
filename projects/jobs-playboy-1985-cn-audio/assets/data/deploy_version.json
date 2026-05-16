@@ -1,0 +1,18 @@
+{
+  "project": "jobs-playboy-1985-cn-audio",
+  "phase": "6S_mobile_listening_ux",
+  "generated_at_utc": "2026-05-16T06:07:44.635348+00:00",
+  "marker": "PHASE6S_MOBILE_LISTENING_MARKER_2026-05-16T06:07:44.635348+00:00",
+  "features": [
+    "sticky mini player",
+    "resume last listening position",
+    "copy current time link",
+    "hash time jump",
+    "back to top",
+    "collapsible large sections"
+  ],
+  "audio_modified": false,
+  "tts_regenerated": false,
+  "noindex": true,
+  "old_rights_wording_removed": true
+}

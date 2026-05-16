@@ -1,0 +1,69 @@
+================================================================================
+PHASE 6O NARRATIVE + TRUST PATCH REPORT
+================================================================================
+STATUS: PASS
+TIME_UTC: 2026-05-16T05:09:00+00:00
+PROJECT_DIR: /home/ubuntu/projects/jobs-playboy-1985-cn-audio
+PAGES_DIR: /home/ubuntu/conanxin.github.io
+TARGET_DIR: /home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio
+
+================================================================================
+GIT COMMIT
+================================================================================
+COMMIT_HASH: a7a0665
+COMMIT_MESSAGE: Phase 6O: add narrative, source attribution, quotes, timeline, quality audit
+PUSH_STATUS: SUCCESS
+
+================================================================================
+ONLINE VALIDATION (6/6 URLS, ALL 200)
+================================================================================
+200 | 15342   | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/index.html
+200 | 1369    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/version_timeline.json
+200 | 2379    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/key_quotes.json
+200 | 1229    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/quality_audit.json
+200 | 1473    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/reports/PHASE6O_NARRATIVE_TRUST_PATCH_REPORT.txt
+200 | 5087    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/publish_manifest.json
+
+================================================================================
+LOCAL VALIDATION
+================================================================================
+NOINDEX_OK: YES
+RIGHTS_WORDING_CHECK: PASS_NO_授权整理
+BOUNDARY_WORDING_CHECK: PASS
+SOURCE_ATTRIBUTION_CHECK: PASS (David Sheff, allaboutstevejobs.com)
+VERSION_TIMELINE_JSON_VALID: YES
+KEY_QUOTES_JSON_VALID: YES
+QUALITY_AUDIT_JSON_VALID: YES
+PUBLISH_MANIFEST_JSON_VALID: YES
+
+================================================================================
+CHANGES
+================================================================================
+1. Replaced "授权整理" with "学习研究与内部审阅用途"
+2. Added source boundary note with:
+   - Original interview: Playboy 1985, interviewer David Sheff
+   - Reference link: allaboutstevejobs.com/verbatim/interviews/playboy_1985
+   - noindex,nofollow statement
+   - Copyright attribution to original rights holders
+3. Added version timeline module (Phase 3 → Phase 6O)
+4. Added 8 key quotes / thematic anchors with audio jump buttons
+5. Added quality audit summary showing 5 major repairs
+6. Retained Phase 6N: player, samples, chapters, transcript preview, downloads
+
+================================================================================
+BOUNDARIES
+================================================================================
+NO_TTS_REGENERATED:     YES
+FULL_AUDIO_MODIFIED:    NO
+PROJECTS_DATA_CHANGED:  NO
+NOINDEX_KEPT:           YES
+GIT_LFS_USED:           NO
+RIGHTS_WORDING_REVISED: YES
+
+================================================================================
+URLS
+================================================================================
+Draft Page:   https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/
+
+================================================================================
+PHASE6O_NARRATIVE_TRUST_PATCH_REPORT_END

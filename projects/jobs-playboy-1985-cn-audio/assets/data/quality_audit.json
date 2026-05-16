@@ -1,0 +1,39 @@
+{
+ "status": "final_draft_pass",
+ "unit_count": 272,
+ "tts_segments": 1082,
+ "failed_segments": 0,
+ "major_repairs": [
+  {
+   "id": "speaker_alignment",
+   "title": "Speaker 归属修复",
+   "summary": "修复多处 Playboy / 乔布斯说话人错位。"
+  },
+  {
+   "id": "u0054_lisa",
+   "title": "u0054 Lisa 失败原因补全",
+   "summary": "补全发货延迟、软件整合失败、IBM 压力、150 家经销商策略错误等内容。"
+  },
+  {
+   "id": "u0078_u0083_land",
+   "title": "u0078–u0083 Edwin Land / Apple 公司使命段修复",
+   "summary": "恢复 Edwin Land、Polaroid、Apple 成为伟大公司的连续论述，消除重复问答。"
+  },
+  {
+   "id": "u0096_ibm",
+   "title": "u0096 后 IBM / Frito-Lay / Dark Ages 段补回",
+   "summary": "插入 u0096a–u0096f，补回 IBM 服务体系、Frito-Lay 类比与计算机黑暗时代论述。"
+  },
+  {
+   "id": "u0030_macintosh",
+   "title": "u0030 Macintosh 开发经历补全",
+   "summary": "补全多年技术积累、发布现场、Mac 团队前排与团队落泪段落。"
+  }
+ ],
+ "boundaries": [
+  "页面为 noindex,nofollow draft",
+  "未加入正式 projects 列表",
+  "Phase 6O 未修改音频本体",
+  "Phase 6O 未重跑 TTS"
+ ]
+}

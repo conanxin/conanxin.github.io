@@ -1,0 +1,102 @@
+================================================================================
+PHASE 6T FINAL QA / CLOSEOUT REPORT
+================================================================================
+STATUS: PASS
+TIME_UTC: 2026-05-16T06:15:00+00:00
+PROJECT_DIR: /home/ubuntu/projects/jobs-playboy-1985-cn-audio
+PAGES_DIR: /home/ubuntu/conanxin.github.io
+TARGET_DIR: /home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio
+TARGET_URL: https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/
+
+================================================================================
+FILE INVENTORY QA
+================================================================================
+HTML files:        1 (index.html)
+README files:      1 (README.md)
+Audio files:       1 (1 mp3: jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3)
+Sample files:      4 (4 mp3)
+Text files:        4 (txt, md, json)
+JSON data files:   8 (chapters, quotes, timeline, audit, transcript, stats, deploy_version, page_stats)
+Report files:      8 (Phase 6J, 6K, 6N, 6O, 6P, 6Q, 6R, 6S)
+Manifest files:    2 (2 json)
+Publish manifest:  1 (publish_manifest.json)
+TOTAL:            29 files
+
+================================================================================
+AUDIO FILE QA
+================================================================================
+SHA256:   47317c68d977dcd84d361c413c96c3672454f1502aeeeffc9251e9a7ca460bf0
+Size:     45,551,181 bytes (43.4 MB)
+Duration: 6141.53 seconds (102.36 minutes)
+Bitrate:  ~59 kbps MP3
+Sample:   24000 Hz
+Channels: Mono
+Status:   UNCHANGED since Phase 6K
+
+================================================================================
+ONLINE URL QA
+================================================================================
+200 | 46279  | index.html
+200 | 45551181 | jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3
+200 | 1080909  | sample_01_opening_90s.mp3
+200 | 83025    | jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt
+200 | 521      | deploy_version.json
+200 | 6127     | publish_manifest.json
+ALL URLS: 6/6 PASS
+
+================================================================================
+ONLINE CONTENT QA
+================================================================================
+ONLINE_HTML_SIZE: 46279 bytes
+FORBIDDEN_PHRASE (授权整理): NOT FOUND — PASS
+
+REQUIRED KEYWORDS (all present):
+✅ noindex,nofollow
+✅ 学习研究与内部审阅用途
+✅ 来源与边界说明
+✅ 关键金句
+✅ 版本时间线
+✅ 质量审计摘要
+✅ PHASE6S_MOBILE_LISTENING_MARKER
+✅ PHASE6R_STATIC_FALLBACK_MARKER
+✅ PHASE6P_SEARCH_FILTER_PATCH
+✅ mobileUxBar
+✅ resumeCard
+✅ copyCurrentTimeLink
+✅ collapsible-card
+✅ toast
+✅ floating-tools
+
+================================================================================
+CLOSEOUT DOCUMENTS GENERATED
+================================================================================
+PROJECT_CLOSEOUT_Jobs_Playboy_1985_CN_Audio.md
+  — 项目总结、交付物清单、音频校验、修复记录、功能清单、来源边界
+
+PROJECT_RESUME_GUIDE_Jobs_Playboy_1985_CN_Audio.md
+  — 快速导航、核心文件索引、继续场景 (文本修复/TTS/页面增强/正式公开)、
+    关键边界、历史 Phase 参考、已知限制
+
+================================================================================
+BOUNDARIES
+================================================================================
+NO_TTS_REGENERATED:     YES (Phase 6T)
+FULL_AUDIO_MODIFIED:    NO
+PROJECTS_DATA_CHANGED:  NO
+NOINDEX_KEPT:           YES
+GIT_LFS_USED:           NO
+RIGHTS_WORDING_CLEAN:   YES
+
+================================================================================
+FINAL STATUS
+================================================================================
+PROJECT: Jobs Playboy 1985 CN Audio
+PHASE:   6T (Final QA / Closeout)
+STATUS:  COMPLETE
+URL:     https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/
+
+从 Phase 3 (翻译) 到 Phase 6T (关闭)，总计 20+ 阶段迭代。
+从 266 个单元翻译到完整可播放的 102 分钟中文音频档案。
+
+================================================================================
+PHASE6T_FINAL_QA_CLOSEOUT_REPORT_END

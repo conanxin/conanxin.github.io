@@ -1,0 +1,52 @@
+================================================================================
+PHASE 6J U0030 FINAL TRANSCRIPT PATCH REPORT
+================================================================================
+STATUS: PASS
+TIME_UTC: 2026-05-16T03:56:55.406279+00:00
+PROJECT_DIR: /home/ubuntu/projects/jobs-playboy-1985-cn-audio
+PRODUCTION_CONFIG_CHANGED: NO
+TTS_REGENERATED: NO
+AUDIO_GENERATED: NO
+
+================================================================================
+PATCH SUMMARY
+patched_unit: u0030
+old_char_count: 83
+new_char_count: 255
+affected_segment_count: 10
+total_segment_count: 1082
+
+================================================================================
+VALIDATION
+empty_translations: 0
+zero_segment_units: 0
+too_long_segments: 0
+READY_FOR_PHASE6K_SELECTIVE_TTS: YES
+
+================================================================================
+U0030 BEFORE
+单是电脑本身就花了两年多。到最后，我们没有一个人想把它发布出去。等到我们最终在股东大会上展示它时，礼堂里的每个人都站了起来，给了它长达五分钟的掌声。所有人都开始哭了。
+
+================================================================================
+U0030 AFTER
+单是电脑本身就花了两年多。在那之前，我们已经为它背后的技术工作了好几年。我觉得自己从来没有为任何东西这样拼命工作过，但做 Macintosh 是我一生中最美妙的经历。几乎每一个参与过它的人都会这么说。到最后，我们没有一个人想把它发布出去。那感觉就像我们知道，一旦它离开我们手里，它就不再属于我们了。当我们最终在股东大会上展示它时，礼堂里的每个人都站了起来，给了它长达五分钟的掌声。对我来说不可思议的是，我能看到 Mac 团队坐在最前面的几排。那感觉就像我们所有人都不敢相信自己真的把它完成了。所有人都哭了起来。
+
+================================================================================
+OUTPUTS
+working/06_repair/phase6j_u0030_final_transcript_patch.json — exists=True size=1159
+working/06_repair/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.json — exists=True size=287310
+working/06_repair/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.txt — exists=True size=83684
+working/06_repair/03_transcript_cn_literal_REPAIRED_FINAL_PHASE6J.md — exists=True size=84082
+working/06_repair/04_audio_ready_transcript_REPAIRED_PHASE6J.json — exists=True size=799251
+working/06_repair/04_audio_ready_transcript_REPAIRED_PHASE6J.txt — exists=True size=84494
+working/06_repair/04_tts_queue_REPAIRED_PHASE6J.jsonl — exists=True size=385096
+working/06_repair/phase6j_affected_tts_segments.jsonl — exists=True size=3543
+manifests/phase6j_u0030_final_transcript_patch_manifest.json — exists=True size=1630
+reports/PHASE6J_U0030_FINAL_TRANSCRIPT_PATCH_REPORT.txt — exists=False size=0
+
+================================================================================
+NEXT_BEST_STEP
+First inspect Final transcript u0029-u0035. If approved, Phase 6K should selectively regenerate only u0030 segments and rebuild MP3.
+
+================================================================================
+PHASE6J_U0030_FINAL_TRANSCRIPT_PATCH_REPORT_END

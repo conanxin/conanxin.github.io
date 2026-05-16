@@ -1,0 +1,12 @@
+{
+  "audio_duration_seconds": 6141.53,
+  "audio_duration_minutes": 102.36,
+  "audio_size_bytes": 45551181,
+  "audio_sha256": "47317c68d977dcd84d361c413c96c3672454f1502aeeeffc9251e9a7ca460bf0",
+  "unit_count": 272,
+  "source_phase": "6J_u0030_final_transcript_patch",
+  "generated_at_utc": "2026-05-16T04:52:49.994830+00:00",
+  "segments": 1082,
+  "failed_segments": 0,
+  "page_status": "draft_noindex"
+}

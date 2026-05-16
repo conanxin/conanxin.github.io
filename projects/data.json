@@ -223,5 +223,26 @@
       "moderation",
       "fastapi"
     ]
+  },
+  {
+    "title": "Steve Jobs 1985 Playboy Interview 中文音频档案",
+    "slug": "jobs-playboy-1985-cn-audio",
+    "category": "research",
+    "type": "AUDIO ARCHIVE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-05-16",
+    "summary": "将 Steve Jobs 1985 年 Playboy 长访谈整理为中文音频档案：完整 102 分钟中文音频、272 段对话文稿、章节导航、关键金句、试听样片、搜索过滤与移动端听读体验。包含 5 轮文本修复记录。",
+    "entry_url": "/projects/jobs-playboy-1985-cn-audio/",
+    "source_kind": "audio-archive",
+    "featured": true,
+    "tags": [
+      "Steve Jobs",
+      "Interview",
+      "Audio",
+      "TTS",
+      "Archive",
+      "Translation"
+    ]
   }
 ]

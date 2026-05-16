@@ -1,0 +1,67 @@
+================================================================================
+PHASE 6N PAGE OPTIMIZATION REPORT
+================================================================================
+STATUS: PASS
+TIME_UTC: 2026-05-16T05:05:00+00:00
+PROJECT_DIR: /home/ubuntu/projects/jobs-playboy-1985-cn-audio
+PAGES_DIR: /home/ubuntu/conanxin.github.io
+TARGET_DIR: /home/ubuntu/conanxin.github.io/drafts/jobs-playboy-1985-cn-audio
+
+================================================================================
+GIT COMMIT
+================================================================================
+COMMIT_HASH: af061cc
+COMMIT_MESSAGE: Enhance Jobs 1985 Chinese audio draft page: samples, chapters, transcript preview
+PUSH_STATUS: SUCCESS
+
+================================================================================
+ONLINE VALIDATION (12 URLs, ALL 200)
+================================================================================
+200 | 12499   | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/index.html
+200 | 45551181| https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3
+200 | 1080909 | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/samples/sample_01_opening_90s.mp3
+200 | 1080909 | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/samples/sample_02_middle_90s.mp3
+200 | 1080333 | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/samples/sample_03_ending_90s.mp3
+200 | 3600909 | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/samples/preview_5min_opening.mp3
+200 | 1392    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/samples.json
+200 | 2581    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/chapters.json
+200 | 113088  | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/transcript_preview.json
+200 | 403     | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/data/page_stats.json
+200 | 1572    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/reports/PHASE6N_PAGE_OPTIMIZATION_REPORT.txt
+200 | 4348    | https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/publish_manifest.json
+
+================================================================================
+FILES PUBLISHED (20 files)
+================================================================================
+完整音频:        assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3 (44 MB, 102 min)
+试听样片:        assets/samples/sample_01_opening_90s.mp3 (1.0 MB)
+                 assets/samples/sample_02_middle_90s.mp3 (1.0 MB)
+                 assets/samples/sample_03_ending_90s.mp3 (1.0 MB)
+                 assets/samples/preview_5min_opening.mp3 (3.4 MB)
+章节数据:        assets/data/chapters.json
+样片数据:        assets/data/samples.json
+文稿预览:        assets/data/transcript_preview.json (272 units)
+页面统计:        assets/data/page_stats.json
+文稿下载:        assets/text/*.txt / *.md / *.json
+修复报告:        assets/reports/PHASE6J/6K/6N reports
+Manifest:        publish_manifest.json
+
+================================================================================
+BOUNDARIES
+================================================================================
+NO_TTS_REGENERATED:     YES
+FULL_AUDIO_MODIFIED:    NO
+PROJECTS_DATA_CHANGED:  NO
+NOINDEX_KEPT:           YES
+GIT_LFS_USED:           NO
+CHAPTER_MP3_DUPLICATED: NO (使用 currentTime 跳转)
+
+================================================================================
+URLS
+================================================================================
+Draft Page:   https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/
+Audio:        https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/audio/jobs_playboy_1985_cn_full_PHASE6J_FINAL.mp3
+Transcript:   https://conanxin.github.io/drafts/jobs-playboy-1985-cn-audio/assets/text/jobs_playboy_1985_cn_full_PHASE6J_FINAL_transcript.txt
+
+================================================================================
+PHASE6N_PAGE_OPTIMIZATION_REPORT_END

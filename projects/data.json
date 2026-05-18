@@ -1,5 +1,19 @@
 [
   {
+    "title": "How to AI (Almost) Anything 中文学习导览",
+    "subtitle": "MIT MAS.S60 多模态 AI 交互式中文课程页",
+    "slug": "how-to-ai-almost-anything-cn",
+    "category": "research",
+    "type": "COURSE GUIDE",
+    "status": "正式发布",
+    "status_color": "#4CAF50",
+    "updated": "2026-05-18",
+    "summary": "基于 MIT MAS.S60 公开课程资料整理的中文交互课程页，系统导览多模态 AI、多感官智能、大模型、交互式 AI 与研究项目训练。包含 27 个学习节点、32 篇精选论文、七角色论文读法与学习产出系统。",
+    "entry_url": "/projects/how-to-ai-almost-anything-cn/",
+    "source_kind": "research",
+    "featured": true
+  },
+  {
     "title": "杨福东：香河",
     "subtitle": "一个关于家乡、时间、影像与怀旧的互动式线上导览",
     "slug": "yang-fudong-fragrant-river",

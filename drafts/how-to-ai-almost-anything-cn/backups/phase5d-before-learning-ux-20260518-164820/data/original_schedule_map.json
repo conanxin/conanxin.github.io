@@ -1,0 +1,960 @@
+{
+  "sessions": [
+    {
+      "index": 0,
+      "date": "2/4",
+      "week": 1,
+      "type": "lecture",
+      "title": "Introduction",
+      "topics": [
+        "Course syllabus and requirements",
+        "Introduction to AI and AI research"
+      ],
+      "slides_raw": "lec1 - introduction.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1 - introduction.pdf",
+      "video_url": "https://youtu.be/0MYt0u3CW5I",
+      "readings": [
+        {
+          "title": "Foundations and Trends in Multimodal Machine Learning: Principles, Challenges, and Open Questions",
+          "url": "https://arxiv.org/abs/2209.03430",
+          "type": "paper"
+        },
+        {
+          "title": "Multimodal Machine Learning: A Survey and Taxonomy",
+          "url": "https://arxiv.org/abs/1705.09406",
+          "type": "paper"
+        },
+        {
+          "title": "Representation Learning: A Review and New Perspectives",
+          "url": "https://arxiv.org/abs/1206.5538",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 3
+    },
+    {
+      "index": 1,
+      "date": "2/6",
+      "week": 1,
+      "type": "lecture",
+      "title": "Introduction to AI Research",
+      "topics": [
+        "Introduction to AI and AI research",
+        "Generating ideas, reading and writing papers, AI experimentation"
+      ],
+      "slides_raw": "lec1.2 - AI research.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1.2 - AI research.pdf",
+      "video_url": "https://youtu.be/104FX8MYKAM",
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 2,
+      "date": "2/11",
+      "week": 2,
+      "type": "lecture",
+      "title": "Foundation 1: Data, structure, information",
+      "topics": [
+        "Common data modalities",
+        "Data collection strategies",
+        "Training objectives and generalization"
+      ],
+      "slides_raw": "lec2 - data.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec2 - data.pdf",
+      "video_url": "https://youtu.be/fLybbXyfN28",
+      "readings": [
+        {
+          "title": "Machine learning: Trends, Perspectives, and Prospects",
+          "url": "https://www.science.org/doi/abs/10.1126/science.aaa8415",
+          "type": "paper"
+        },
+        {
+          "title": "Representation Learning: A Review and New Perspectives",
+          "url": "https://arxiv.org/abs/1206.5538",
+          "type": "paper"
+        },
+        {
+          "title": "Foundations and Trends in Multimodal Machine Learning",
+          "url": "https://arxiv.org/abs/2209.03430",
+          "type": "paper"
+        },
+        {
+          "title": "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges",
+          "url": "https://arxiv.org/abs/2104.13478",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 4
+    },
+    {
+      "index": 3,
+      "date": "2/14",
+      "week": 2,
+      "type": "lecture",
+      "title": "Foundation 2: Practical AI tools",
+      "topics": [
+        "Getting started with PyTorch",
+        "Huggingface packages",
+        "Debugging machine learning models"
+      ],
+      "slides_raw": "Debugging Tips.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/Debugging Tips.pdf",
+      "video_url": "https://youtu.be/NOSuy0NOe9k",
+      "readings": [
+        {
+          "title": "A Recipe for Training Neural Networks",
+          "url": "https://karpathy.github.io/2019/04/25/recipe/",
+          "type": "blog"
+        },
+        {
+          "title": "Fine-tuning a Code LLM on Custom Code on a single GPU",
+          "url": "https://colab.research.google.com/drive/1EDsjYRrAiujUew0GRJ_hyVoNMsSDnlnx?usp=sharing",
+          "type": "colab"
+        },
+        {
+          "title": "MAS.S60 Pytorch Introduction",
+          "url": "https://colab.research.google.com/drive/1SoTu6gvYcLNDqPwNPTWmsSYF-l-UfHPx?usp=sharing",
+          "type": "colab"
+        }
+      ],
+      "reading_count": 3
+    },
+    {
+      "index": 4,
+      "date": "2/18",
+      "week": 3,
+      "type": "special",
+      "title": "No class, shifted President's day",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 5,
+      "date": "2/20",
+      "week": 3,
+      "type": "project",
+      "title": "Project proposal presentations",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 6,
+      "date": "2/25",
+      "week": 4,
+      "type": "lecture",
+      "title": "Foundation 3: Model architectures",
+      "topics": [
+        "Structure and invariances",
+        "Temporal sequence models",
+        "Spatial convolution models",
+        "Models for sets and graphs"
+      ],
+      "slides_raw": "lec3 - models.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec3 - models.pdf",
+      "video_url": "https://youtu.be/V0gRkmu4mFY",
+      "readings": [
+        {
+          "title": "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges",
+          "url": "https://arxiv.org/abs/2104.13478",
+          "type": "paper"
+        },
+        {
+          "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+          "url": "https://arxiv.org/abs/2010.11929",
+          "type": "paper"
+        },
+        {
+          "title": "Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "paper"
+        },
+        {
+          "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+          "url": "https://arxiv.org/abs/1409.0473",
+          "type": "paper"
+        },
+        {
+          "title": "Deep Sets",
+          "url": "https://arxiv.org/abs/1703.06114",
+          "type": "paper"
+        },
+        {
+          "title": "Graph Attention Networks",
+          "url": "https://arxiv.org/abs/1710.10903",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 6
+    },
+    {
+      "index": 7,
+      "date": "2/25",
+      "week": 4,
+      "type": "discussion",
+      "title": "Discussion 1: Learning and generalization",
+      "topics": [
+        "Learning the Bitter Lesson",
+        "Unifying Grokking and Double Descent",
+        "Generalization in Neural Networks",
+        "Textbooks are all you Need",
+        "A Conceptual Pipeline for Machine Learning"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "Learning the Bitter Lesson",
+          "url": "https://arxiv.org/pdf/2410.09649",
+          "type": "paper"
+        },
+        {
+          "title": "Unifying Grokking and Double Descent",
+          "url": "https://arxiv.org/pdf/2303.06173",
+          "type": "paper"
+        },
+        {
+          "title": "Generalization in Neural Networks",
+          "url": "https://arxiv.org/pdf/2209.01610",
+          "type": "paper"
+        },
+        {
+          "title": "Textbooks are all you Need",
+          "url": "https://arxiv.org/pdf/2306.11644",
+          "type": "paper"
+        },
+        {
+          "title": "A Conceptual Pipeline for Machine Learning",
+          "url": "https://arxiv.org/pdf/2207.07528",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 5
+    },
+    {
+      "index": 8,
+      "date": "3/4",
+      "week": 5,
+      "type": "lecture",
+      "title": "Multimodal 1: Connections and alignment",
+      "topics": [
+        "Heterogeneity, connections, and interactions",
+        "Multimodal technical challenges",
+        "Alignment and transformers"
+      ],
+      "slides_raw": "lec4 - multimodal alignment.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec4 - multimodal alignment.pdf",
+      "video_url": "https://youtu.be/kixc1mh55yY",
+      "readings": [
+        {
+          "title": "Foundations and Trends in Multimodal Machine Learning: Principles, Challenges, and Open Questions",
+          "url": "https://arxiv.org/abs/2209.03430",
+          "type": "paper"
+        },
+        {
+          "title": "What Makes for Good Views for Contrastive Learning?",
+          "url": "https://arxiv.org/abs/2005.10243",
+          "type": "paper"
+        },
+        {
+          "title": "Characterization and classification of semantic image-text relations",
+          "url": "https://link.springer.com/article/10.1007/s13735-019-00187-6",
+          "type": "paper"
+        },
+        {
+          "title": "When and why vision-language models behave like bags-of-words, and what to do about it?",
+          "url": "https://arxiv.org/abs/2210.01936",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 4
+    },
+    {
+      "index": 9,
+      "date": "3/6",
+      "week": 5,
+      "type": "discussion",
+      "title": "Discussion 2: Modern AI architectures",
+      "topics": [
+        "Scaling Laws for Generative Mixed-Modal Models",
+        "Not All Tokens Are What You Need for Pretraining",
+        "PaLI: A Jointly-Scaled Multilingual Language-Image Model",
+        "The Evolution of Multimodal Model Architectures"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "Scaling Laws for Generative Mixed-Modal Models",
+          "url": "https://arxiv.org/abs/2301.03728",
+          "type": "paper"
+        },
+        {
+          "title": "Not All Tokens Are What You Need for Pretraining",
+          "url": "https://arxiv.org/abs/2404.07965",
+          "type": "paper"
+        },
+        {
+          "title": "PaLI: A Jointly-Scaled Multilingual Language-Image Model",
+          "url": "https://arxiv.org/abs/2209.06794",
+          "type": "paper"
+        },
+        {
+          "title": "The Evolution of Multimodal Model Architectures",
+          "url": "https://arxiv.org/abs/2405.17927",
+          "type": "paper"
+        },
+        {
+          "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+          "url": "https://arxiv.org/abs/2010.11929",
+          "type": "paper"
+        },
+        {
+          "title": "A ConvNet for the 2020s",
+          "url": "https://arxiv.org/abs/2201.03545",
+          "type": "paper"
+        },
+        {
+          "title": "Inductive Representation Learning on Large Graphs",
+          "url": "https://arxiv.org/abs/1706.02216",
+          "type": "paper"
+        },
+        {
+          "title": "Janossy Pooling: Learning Deep Permutation-Invariant Functions for Variable-Size Inputs",
+          "url": "https://arxiv.org/abs/1811.01900",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 8
+    },
+    {
+      "index": 10,
+      "date": "3/11",
+      "week": 6,
+      "type": "lecture",
+      "title": "Multimodal 2: Interactions and fusion",
+      "topics": [
+        "Cross-modal interactions",
+        "Multimodal fusion",
+        "Ten Myths of Multimodal Interaction"
+      ],
+      "slides_raw": "lec5 - multimodal fusion.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec5 - multimodal fusion.pdf",
+      "video_url": "https://youtu.be/Hsv1mOIZ1Ag",
+      "readings": [
+        {
+          "title": "Ten Myths of Multimodal Interaction",
+          "url": "https://dl.acm.org/doi/pdf/10.1145/319382.319398",
+          "type": "paper"
+        },
+        {
+          "title": "Multimodal interaction: A review",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0167865513002584",
+          "type": "paper"
+        },
+        {
+          "title": "Quantifying & Modeling Multimodal Interactions: An Information Decomposition Framework",
+          "url": "https://arxiv.org/abs/2302.12247",
+          "type": "paper"
+        },
+        {
+          "title": "Does my multimodal model learn cross-modal interactions? It's harder to tell than you might think!",
+          "url": "https://aclanthology.org/2020.emnlp-main.62/",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 4
+    },
+    {
+      "index": 11,
+      "date": "3/13",
+      "week": 6,
+      "type": "discussion",
+      "title": "Discussion 3: Multimodal alignment",
+      "topics": [
+        "The Platonic Representation Hypothesis",
+        "What Makes for Good Views for Contrastive Learning?",
+        "Understanding the Emergence of Multimodal Representation Alignment",
+        "Does equivariance matter at scale?"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "The Platonic Representation Hypothesis",
+          "url": "https://arxiv.org/pdf/2405.07987",
+          "type": "paper"
+        },
+        {
+          "title": "What Makes for Good Views for Contrastive Learning?",
+          "url": "https://arxiv.org/abs/2005.10243",
+          "type": "paper"
+        },
+        {
+          "title": "Understanding the Emergence of Multimodal Representation Alignment",
+          "url": "https://arxiv.org/pdf/2502.16282",
+          "type": "paper"
+        },
+        {
+          "title": "Does equivariance matter at scale?",
+          "url": "https://arxiv.org/abs/2410.23179",
+          "type": "paper"
+        },
+        {
+          "title": "Learning Transferable Visual Models From Natural Language Supervision?",
+          "url": "https://arxiv.org/pdf/2103.00020",
+          "type": "paper"
+        },
+        {
+          "title": "Emerging Properties in Self-Supervised Vision Transformers",
+          "url": "https://arxiv.org/pdf/2104.14294",
+          "type": "paper"
+        },
+        {
+          "title": "Foundations & trends in multimodal machine learning - Principles, challenges, and open questions",
+          "url": "https://arxiv.org/abs/2209.03430",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 7
+    },
+    {
+      "index": 12,
+      "date": "3/18",
+      "week": 7,
+      "type": "lecture",
+      "title": "Multimodal 3: Cross-modal transfer",
+      "topics": [
+        "Cross-modal learning via fusion",
+        "Cross-modal learning via alignment",
+        "Cross-modal learning via translation"
+      ],
+      "slides_raw": "lec6 - cross-modal transfer.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec6 - cross-modal transfer.pdf",
+      "video_url": "https://youtu.be/k4kywHmr3AA",
+      "readings": [
+        {
+          "title": "LLaVA-Med: Training a Large Language-and-Vision Assistant for Biomedicine in One Day",
+          "url": "https://arxiv.org/abs/2303.00915v3",
+          "type": "paper"
+        },
+        {
+          "title": "DreamLLM: Synergistic Multimodal Comprehension and Creation",
+          "url": "https://arxiv.org/abs/2309.11499",
+          "type": "paper"
+        },
+        {
+          "title": "PaLM-E: An Embodied Multimodal Language Model",
+          "url": "https://arxiv.org/abs/2303.03378",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 3
+    },
+    {
+      "index": 13,
+      "date": "3/20",
+      "week": 7,
+      "type": "discussion",
+      "title": "Discussion 4: Multimodal interactions",
+      "topics": [
+        "Multimodal interaction: A review",
+        "Quantifying & Modeling Multimodal Interactions",
+        "Kosmos-2: Grounding Multimodal Large Language Models to the World",
+        "Chameleon: Mixed-modal early-fusion foundation models"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "Multimodal interaction: A review",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0167865513002584",
+          "type": "paper"
+        },
+        {
+          "title": "Quantifying & Modeling Multimodal Interactions: An Information Decomposition Framework",
+          "url": "https://arxiv.org/abs/2302.12247",
+          "type": "paper"
+        },
+        {
+          "title": "Does my multimodal model learn cross-modal interactions?",
+          "url": "https://aclanthology.org/2020.emnlp-main.62/",
+          "type": "paper"
+        },
+        {
+          "title": "Kosmos-2: Grounding Multimodal Large Language Models to the World",
+          "url": "https://arxiv.org/abs/2306.14824",
+          "type": "paper"
+        },
+        {
+          "title": "Chameleon: Mixed-modal early-fusion foundation models",
+          "url": "https://arxiv.org/abs/2405.09818",
+          "type": "paper"
+        },
+        {
+          "title": "MM1: Methods, Analysis and Insights from Multimodal LLM Pre-training",
+          "url": "https://link.springer.com/chapter/10.1007/978-3-031-73397-0_18",
+          "type": "paper"
+        },
+        {
+          "title": "MoMa: Efficient Early-Fusion Pre-training with Mixture of Modality-Aware Experts",
+          "url": "https://arxiv.org/pdf/2407.21770",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 7
+    },
+    {
+      "index": 14,
+      "date": "3/25",
+      "week": 8,
+      "type": "special",
+      "title": "No class, spring break",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 15,
+      "date": "4/1",
+      "week": 9,
+      "type": "lecture",
+      "title": "Large models 1: Large foundation models",
+      "topics": [
+        "Pre-training data",
+        "Self-supervised learning",
+        "Fine-tuning, instructing, alignment"
+      ],
+      "slides_raw": "lec7 - foundation models.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec7 - foundation models.pdf",
+      "video_url": "https://youtu.be/ZFLRDEUSX68",
+      "readings": [
+        {
+          "title": "Training Compute-Optimal Large Language Models",
+          "url": "https://arxiv.org/abs/2203.15556",
+          "type": "paper"
+        },
+        {
+          "title": "Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ NLP Tasks",
+          "url": "https://arxiv.org/abs/2204.07705",
+          "type": "paper"
+        },
+        {
+          "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "paper"
+        },
+        {
+          "title": "A Visual Guide to Mixture of Experts (MoE)",
+          "url": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts",
+          "type": "blog"
+        },
+        {
+          "title": "A Visual Guide to Quantization",
+          "url": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization",
+          "type": "blog"
+        },
+        {
+          "title": "Improved Baselines with Visual Instruction Tuning",
+          "url": "https://arxiv.org/abs/2310.03744",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 6
+    },
+    {
+      "index": 16,
+      "date": "4/3",
+      "week": 9,
+      "type": "project",
+      "title": "Project midterm presentations",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 17,
+      "date": "4/8",
+      "week": 10,
+      "type": "special",
+      "title": "No class, member's week",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 18,
+      "date": "4/15",
+      "week": 11,
+      "type": "lecture",
+      "title": "Large models 2: Large multimodal models",
+      "topics": [
+        "Multimodal pre-training",
+        "Adapting large language models to multimodal",
+        "Multimodal LLMs with generation"
+      ],
+      "slides_raw": "lec8 - multimodal LLMs.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec8 - multimodal LLMs.pdf",
+      "video_url": "https://youtu.be/p_GGsKgGxSo",
+      "readings": [
+        {
+          "title": "Quantifying & Modeling Multimodal Interactions: An Information Decomposition Framework",
+          "url": "https://arxiv.org/abs/2302.12247",
+          "type": "paper"
+        },
+        {
+          "title": "Multimodal Transformer for Unaligned Multimodal Language Sequences",
+          "url": "https://arxiv.org/abs/1906.00295",
+          "type": "paper"
+        },
+        {
+          "title": "Masked Autoencoders Are Scalable Vision Learners",
+          "url": "https://arxiv.org/abs/2111.06377",
+          "type": "paper"
+        },
+        {
+          "title": "Scaling Laws for Native Multimodal Models",
+          "url": "https://arxiv.org/abs/2504.07951",
+          "type": "paper"
+        },
+        {
+          "title": "Transfer between Modalities with MetaQueries",
+          "url": "https://arxiv.org/abs/2504.06256",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 5
+    },
+    {
+      "index": 19,
+      "date": "4/17",
+      "week": 11,
+      "type": "discussion",
+      "title": "Discussion 5: Large language models",
+      "topics": [
+        "LoRA: Low-Rank Adaptation of Large Language Models",
+        "Gated Linear Attention Transformers with Hardware-Efficient Training",
+        "Unintended Impacts of LLM Alignment on Global Representation",
+        "A Visual Guide to Quantization",
+        "Scaling Instruction-Finetuned Language Models"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "paper"
+        },
+        {
+          "title": "Gated Linear Attention Transformers with Hardware-Efficient Training",
+          "url": "https://arxiv.org/abs/2312.06635",
+          "type": "paper"
+        },
+        {
+          "title": "Unintended Impacts of LLM Alignment on Global Representation",
+          "url": "https://arxiv.org/abs/2402.15018",
+          "type": "paper"
+        },
+        {
+          "title": "A Visual Guide to Quantization",
+          "url": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization",
+          "type": "blog"
+        },
+        {
+          "title": "Scaling Instruction-Finetuned Language Models",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 5
+    },
+    {
+      "index": 20,
+      "date": "4/22",
+      "week": 12,
+      "type": "lecture",
+      "title": "Large models 3: Modern generative models",
+      "topics": [
+        "Diffusion models",
+        "Controllable generation",
+        "Flow Matching"
+      ],
+      "slides_raw": "lec9 - generative models.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec9 - generative models.pdf",
+      "video_url": null,
+      "readings": [
+        {
+          "title": "Scalable Diffusion Models with Transformers",
+          "url": "https://arxiv.org/abs/2212.09748",
+          "type": "paper"
+        },
+        {
+          "title": "Flow Matching in Latent Space",
+          "url": "https://arxiv.org/abs/2307.08698",
+          "type": "paper"
+        },
+        {
+          "title": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis",
+          "url": "https://arxiv.org/abs/2403.03206",
+          "type": "paper"
+        },
+        {
+          "title": "Movie Gen: A Cast of Media Foundation Models",
+          "url": "https://arxiv.org/abs/2410.13720",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 4
+    },
+    {
+      "index": 21,
+      "date": "4/24",
+      "week": 12,
+      "type": "discussion",
+      "title": "Discussion 6: Large multimodal models",
+      "topics": [
+        "LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention",
+        "Cobra: Extending Mamba to Multi-Modal Large Language Model",
+        "ModaVerse: Efficiently Transforming Modalities with LLMs",
+        "Spider: Any-to-Many Multimodal LLM"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention",
+          "url": "https://arxiv.org/pdf/2303.16199",
+          "type": "paper"
+        },
+        {
+          "title": "Cobra: Extending Mamba to Multi-Modal Large Language Model for Efficient Inference",
+          "url": "https://arxiv.org/pdf/2403.14520",
+          "type": "paper"
+        },
+        {
+          "title": "ModaVerse: Efficiently Transforming Modalities with LLMs",
+          "url": "https://arxiv.org/abs/2401.06395",
+          "type": "paper"
+        },
+        {
+          "title": "Spider: Any-to-Many Multimodal LLM",
+          "url": "https://arxiv.org/pdf/2411.09439",
+          "type": "paper"
+        },
+        {
+          "title": "SPHINX-X: Scaling Data and Parameters for a Family of Multi-modal Large Language Models",
+          "url": "https://arxiv.org/pdf/2402.05935",
+          "type": "paper"
+        },
+        {
+          "title": "How Far Are We to GPT-4V? Closing the Gap to Commercial Multimodal Models with Open-Source Suites",
+          "url": "https://arxiv.org/pdf/2404.16821",
+          "type": "paper"
+        },
+        {
+          "title": "NExT-GPT: Any-to-Any Multimodal LLM",
+          "url": "https://arxiv.org/pdf/2309.05519",
+          "type": "paper"
+        },
+        {
+          "title": "Learning to rebalance multi-modal optimization by adaptively masking subnetworks",
+          "url": "https://arxiv.org/pdf/2404.08347",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 8
+    },
+    {
+      "index": 22,
+      "date": "4/29",
+      "week": 13,
+      "type": "special",
+      "title": "No class, CHI week",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 23,
+      "date": "5/1",
+      "week": 13,
+      "type": "discussion",
+      "title": "Discussion 7: Generative AI",
+      "topics": [
+        "Large Language Diffusion Models",
+        "Compositional Generative Modeling",
+        "Flow Matching for Generative Modeling",
+        "Flow Matching Guide and Code",
+        "FlowMotion: Target-Predictive Conditional Flow Matching for Jitter-Reduced Text-to-Motion Generation"
+      ],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [
+        {
+          "title": "Large Language Diffusion Models",
+          "url": "https://arxiv.org/pdf/2502.09992",
+          "type": "paper"
+        },
+        {
+          "title": "Compositional Generative Modeling: A Single Model is Not All You Need",
+          "url": "https://arxiv.org/pdf/2402.01103",
+          "type": "paper"
+        },
+        {
+          "title": "Flow Matching for Generative Modeling",
+          "url": "https://arxiv.org/abs/2210.02747",
+          "type": "paper"
+        },
+        {
+          "title": "Flow Matching Guide and Code",
+          "url": "https://arxiv.org/abs/2412.06264",
+          "type": "paper"
+        },
+        {
+          "title": "FlowMotion: Target-Predictive Conditional Flow Matching for Jitter-Reduced Text-to-Motion Generation",
+          "url": "https://arxiv.org/abs/2504.01338",
+          "type": "paper"
+        },
+        {
+          "title": "MusFlow: Multimodal Music Generation via Conditional Flow Matching",
+          "url": "https://arxiv.org/abs/2504.13535",
+          "type": "paper"
+        },
+        {
+          "title": "Unraveling the Connections Between Flow Matching and Diffusion Probabilistic Models",
+          "url": "https://arxiv.org/abs/2311.07625",
+          "type": "paper"
+        },
+        {
+          "title": "Exploring Diffusion and Flow Matching Under Generator Matching",
+          "url": "https://arxiv.org/abs/2412.11024",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 8
+    },
+    {
+      "index": 24,
+      "date": "5/6",
+      "week": 14,
+      "type": "lecture",
+      "title": "Interaction 1: Interactive agents and reasoning",
+      "topics": [
+        "Reinforcement learning",
+        "Multi-step reasoning",
+        "Deep reinforcement learning from human preferences"
+      ],
+      "slides_raw": "lec10 - agents.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec10 - agents.pdf",
+      "video_url": "https://youtu.be/3SOjOG2oL1w",
+      "readings": [
+        {
+          "title": "Deep reinforcement learning from human preferences",
+          "url": "https://arxiv.org/abs/1706.03741",
+          "type": "paper"
+        },
+        {
+          "title": "Deepseek-r1: Incentivizing reasoning capability in LLMs via reinforcement learning",
+          "url": "https://arxiv.org/abs/2501.12948",
+          "type": "paper"
+        },
+        {
+          "title": "Faulty reward functions in the wild",
+          "url": "https://openai.com/index/faulty-reward-functions/",
+          "type": "blog"
+        },
+        {
+          "title": "Direct preference optimization: Your language model is secretly a reward model",
+          "url": "https://arxiv.org/abs/2305.18290",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 4
+    },
+    {
+      "index": 25,
+      "date": "5/8",
+      "week": 14,
+      "type": "project",
+      "title": "Project final presentations",
+      "topics": [],
+      "slides_raw": null,
+      "slides_url": null,
+      "video_url": null,
+      "readings": [],
+      "reading_count": 0
+    },
+    {
+      "index": 26,
+      "date": "5/13",
+      "week": 15,
+      "type": "lecture",
+      "title": "Interaction 2: Human AI interaction",
+      "topics": [
+        "Interaction mediums",
+        "Human in the loop learning",
+        "Safety and reliability"
+      ],
+      "slides_raw": "lec11 - human-AI interaction.pdf",
+      "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec11 - human-AI interaction.pdf",
+      "video_url": "https://youtu.be/NrmLjmXU66M",
+      "readings": [
+        {
+          "title": "Interactive Sketchpad: A Multimodal Tutoring System for Collaborative, Visual Problem-Solving",
+          "url": "https://arxiv.org/abs/2503.16434",
+          "type": "paper"
+        },
+        {
+          "title": "VideoWebArena: Evaluating Multimodal Agents on Video Understanding Web Tasks",
+          "url": "https://arxiv.org/abs/2410.19100",
+          "type": "paper"
+        },
+        {
+          "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+          "url": "https://arxiv.org/abs/2406.09246",
+          "type": "paper"
+        },
+        {
+          "title": "ArtPrompt: ASCII Art-based Jailbreak Attacks against Aligned LLMs",
+          "url": "https://arxiv.org/abs/2402.11753",
+          "type": "paper"
+        },
+        {
+          "title": "Guidelines for Human-AI Interaction",
+          "url": "https://dl.acm.org/doi/abs/10.1145/3290605.3300233",
+          "type": "paper"
+        }
+      ],
+      "reading_count": 5
+    }
+  ],
+  "total_sessions": 27,
+  "total_readings": 99
+}

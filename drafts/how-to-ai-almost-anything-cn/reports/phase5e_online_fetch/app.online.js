@@ -615,21 +615,10 @@ function highlightMode(mode) {
     clearModeHighlights();
     var card = document.getElementById('mode-' + mode);
     if (card) card.classList.add('mode-selected');
-    // Update .mode-check text
-    document.querySelectorAll('.mode-card').forEach(function(c) {
-        var check = c.querySelector('.mode-check');
-        if (!check) return;
-        if (c.id === 'mode-' + mode) {
-            check.textContent = '\u2713 当前模式';
-        } else {
-            check.textContent = '选择此模式';
-        }
-    });
 }
 
 function clearModeHighlights() {
     document.querySelectorAll('.mode-card').forEach(function(c){ c.classList.remove('mode-selected'); });
-    document.querySelectorAll('.mode-check').forEach(function(el){ el.textContent = '选择此模式'; });
 }
 
 function updateModeStatus() {

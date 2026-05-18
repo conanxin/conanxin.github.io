@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body data-draft-version="phase6-public">
+<body data-public-version="phase6b-polish">
   <!-- ======= HERO ======= -->
   <header class="hero" id="hero">
     <div class="hero-bg">
@@ -565,7 +565,7 @@
           <!-- Academic Researcher -->
           <path d="M300 300 L507.7 420 A240 240 0 0 1 300 540 Z" fill="#1e3f2f" stroke="#34d399" stroke-width="1" opacity="0.85"/>
           <text x="420" y="470" font-size="11" fill="#fff" font-weight="600">Academic</text>
-          <text x="420" y="486" font-size="8" fill="#a0e0c0">学术视角</text>
+          <text x="420" y="486" font-size="8" fill="#a0e0c0">后续研究视角</text>
           <text x="390" y="510" font-size="7" fill="#c0c0e0">新研究问题？</text>
 
           <!-- Industry Practitioner -->
@@ -680,7 +680,7 @@
       <div class="roles-switcher">
         <button class="role-btn active" data-role="Peer Reviewer">👤 评审</button>
         <button class="role-btn" data-role="Archaeologist">🏺 考古</button>
-        <button class="role-btn" data-role="Academic Researcher">🔬 学术</button>
+        <button class="role-btn" data-role="Academic Researcher">🔬 后续研究</button>
         <button class="role-btn" data-role="Industry Practitioner">🏭 工业</button>
         <button class="role-btn" data-role="Hacker">⚡ 快速原型</button>
         <button class="role-btn" data-role="Private Investigator">🔍 作者路径</button>
@@ -703,7 +703,7 @@
         <div class="workbench-tabs" id="workbenchTabs">
           <button class="workbench-tab active" data-role="Peer Reviewer">👤 评审</button>
           <button class="workbench-tab" data-role="Archaeologist">🏺 考古</button>
-          <button class="workbench-tab" data-role="Academic Researcher">🔬 学术</button>
+          <button class="workbench-tab" data-role="Academic Researcher">🔬 后续研究</button>
           <button class="workbench-tab" data-role="Industry Practitioner">🏭 工业</button>
           <button class="workbench-tab" data-role="Hacker">⚡ 快速原型</button>
           <button class="workbench-tab" data-role="Private Investigator">🔍 作者路径</button>
@@ -814,7 +814,7 @@
         <div class="pt-node pt-midterm">
           <div class="pt-marker">📊</div>
           <div class="pt-info">
-            <div class="pt-week">Week 9 · 第 9 周</div>
+            <div class="pt-week">Week 9 · 第 9 周 · 4/1</div>
             <div class="pt-title">中期汇报 Midterm</div>
             <div class="pt-desc">展示初步实验结果，获得进一步反馈，调整研究方向</div>
           </div>
@@ -823,8 +823,8 @@
         <div class="pt-node pt-ablation">
           <div class="pt-marker">🧪</div>
           <div class="pt-info">
-            <div class="pt-week">Week 13–14 · 第 13–14 周</div>
-            <div class="pt-title">消融实验 Ablation</div>
+            <div class="pt-week">Week 13 · 第 13 周</div>
+            <div class="pt-title">错误分析 / 消融实验</div>
             <div class="pt-desc">验证各模块的贡献，进行系统性消融实验，准备最终汇报材料</div>
           </div>
         </div>
@@ -832,9 +832,9 @@
         <div class="pt-node pt-final-presentation">
           <div class="pt-marker">🎓</div>
           <div class="pt-info">
-            <div class="pt-week">课程末期 · Final</div>
+            <div class="pt-week">Week 14 · 第 14 周 · 5/8</div>
             <div class="pt-title">Final Presentation</div>
-            <div class="pt-desc">15 分钟演讲 + 5 分钟 Q&A，展示项目成果与核心发现</div>
+            <div class="pt-desc">展示最终项目结果、关键发现、demo 或实验结果，并接受 Q&A</div>
           </div>
         </div>
         <div class="pt-connector"></div>
@@ -843,7 +843,7 @@
           <div class="pt-info">
             <div class="pt-week">课程末期 · Final</div>
             <div class="pt-title">Final Report</div>
-            <div class="pt-desc">提交完整研究报告或类似 research paper 的最终报告草稿</div>
+            <div class="pt-desc">提交一份类似 research paper 的完整报告，包含研究问题、方法、实验、分析、局限与讨论</div>
           </div>
         </div>
       </div>
@@ -896,7 +896,13 @@
             </div>
           </div>
 
-          <div class="pp-footer">
+          
+          <div class="pp-export-templates">
+            <button class="btn-export-template" onclick="exportProjectProposalTemplate()">📄 导出 Proposal 模板</button>
+            <button class="btn-export-template" onclick="exportFinalReportTemplate()">📝 导出 Final Report 模板</button>
+          </div>
+
+        <div class="pp-footer">
             <div class="pp-progress-bar-wrap"><div class="pp-progress-bar" id="ppProgressBar"></div></div>
             <span class="pp-progress-text" id="ppProgressText">0/10 已完成</span>
           </div>
@@ -999,7 +1005,7 @@
           </ul>
         </div>
         <div class="guide-card">
-          <h3>📁 数据文件说明</h3>
+          <h3>📁 开发者与维护说明</h3>
           <ul>
             <li><code>course.json</code> — 中文课程结构（27 节，含中文摘要）</li>
             <li><code>readings.json</code> — 32 篇精选中文导读</li>
@@ -1029,7 +1035,7 @@
         <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Liang</a>
         <a href="https://www.youtube.com/playlist?list=PLc0Yh0D0XR4Z3wityRaEuu4rfzTHRIIAO" target="_blank" rel="noopener">YouTube</a>
       </div>
-      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 6</strong></p>
+      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 6B Polish</strong></p>
     </div>
   </footer>
 

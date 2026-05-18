@@ -356,31 +356,52 @@ function getAllNotes() {
 }
 
 function exportAllNotes() {
-    const notes = getAllNotes();
-    const completed = Object.keys(getProgress());
-    const readingStatus = getReadingStatus();
-    let md = `# How2AI 中文课程 — 学习笔记导出\n\n**导出时间**: ${new Date().toLocaleString('zh-CN')}\n**课程进度**: ${completed.length}/23 节完成\n\n---\n\n## 📊 学习进度\n\n`;
-    md += `### 课程完成情况\n`;
-    courseData.filter(s => s.session_type !== 'special').forEach(s => {
-        const done = !!getProgress()[s.id];
-        md += `- [${done ? 'x' : ' '}] Week ${s.week}: ${s.zh_title}\n`;
+  var sessionNotes = (typeof getSessionNotes !== 'undefined') ? getSessionNotes() : {};
+  var readingStatus = (typeof getReadingStatus !== 'undefined') ? getReadingStatus() : {};
+  var projectProgress = (typeof getProjectProgress !== 'undefined') ? getProjectProgress() : {};
+  var projectMilestones = (typeof getProjectMilestones !== 'undefined') ? getProjectMilestones() : [];
+  var workbenchNotes = (typeof getWorkbenchNotes !== 'undefined') ? getWorkbenchNotes() : {};
+  var learningMode = localStorage.getItem('how2ai_mode') || '未选择';
+  var lines = [];
+  lines.push('# How2AI 中文课程学习笔记\n\n导出时间：' + new Date().toLocaleString('zh-CN') + '\n当前学习模式：' + learningMode + '\n\n## Session 笔记\n');
+  var hasSessionNotes = false;
+  Object.keys(sessionNotes).forEach(function(sessionId) {
+    var note = (sessionNotes[sessionId] || '').trim();
+    if (!note) return;
+    hasSessionNotes = true;
+    var session = (state.sessions || []).find(function(s) { return s.id === sessionId; });
+    lines.push('### ' + (session ? (session.zh_title || session.original_title || sessionId) : sessionId) + '\n\n' + note + '\n\n');
+  });
+  if (!hasSessionNotes) lines.push('（尚无 session 笔记）\n\n');
+  lines.push('## 阅读状态\n');
+  var hasReadingStatus = false;
+  Object.keys(readingStatus).forEach(function(readingId) {
+    hasReadingStatus = true;
+    var reading = (state.curatedReadings || []).find(function(r) { return r.id === readingId; });
+    lines.push('- ' + (reading ? (reading.zh_title || reading.title || readingId) : readingId) + '：' + readingStatus[readingId] + '\n');
+  });
+  if (!hasReadingStatus) lines.push('（尚无阅读状态记录）\n');
+  lines.push('\n## 项目进度\n');
+  projectMilestones.forEach(function(item) {
+    var done = projectProgress[item.id] ? 'x' : ' ';
+    lines.push('- [' + done + '] ' + item.title + '：' + item.desc + '\n');
+  });
+  lines.push('\n## 七角色论文工作台笔记\n');
+  var hasWorkbench = false;
+  Object.keys(workbenchNotes).forEach(function(paperId) {
+    var paperNotes = workbenchNotes[paperId] || {};
+    var paper = (state.curatedReadings || []).find(function(r) { return r.id === paperId; });
+    lines.push('### ' + (paper ? (paper.zh_title || paper.title || paperId) : paperId) + '\n\n');
+    Object.keys(paperNotes).forEach(function(role) {
+      var note = (paperNotes[role] || '').trim();
+      if (!note) return;
+      hasWorkbench = true;
+      lines.push('#### ' + role + '\n\n' + note + '\n\n');
     });
-    md += `\n### 精选阅读状态\n`;
-    curatedReadings.forEach(r => {
-        const st = readingStatus[r.id] || 'unread';
-        const icons = {unread:'⬜', reading:'🔵', done:'✅', skip:'⏭️'};
-        md += `- ${icons[st] || '⬜'} ${r.zh_title || r.title}\n`;
-    });
-    md += `\n---\n\n## 📝 详细笔记\n\n`;
-    courseData.filter(s => s.session_type !== 'special' && notes[s.id]).forEach(s => {
-        md += `### Week ${s.week} · ${s.zh_title}\n\n${notes[s.id]}\n\n---\n\n`;
-    });
-    const blob = new Blob([md], { type: 'text/markdown' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `how2ai-all-notes-${new Date().toISOString().slice(0,10)}.md`;
-    a.click();
-    showToast('完整笔记已导出 📤');
+  });
+  if (!hasWorkbench) lines.push('（尚无七角色工作台笔记）\n\n');
+  lines.push('## 下一步建议\n\n- [ ] 选择一个学习模式并完成对应路线\n- [ ] 至少完成 3 个课程节点\n- [ ] 至少用七角色工作台读完 1 篇论文\n- [ ] 写出一个 Project Proposal\n- [ ] 准备 Final Presentation 和 Final Report\n');
+  downloadMarkdown('how2ai-full-learning-notes.md', lines.join(''));
 }
 
 function exportNote(sessionId) {
@@ -561,11 +582,12 @@ function setupEventListeners() {
         const nav = document.getElementById('navTabs');
         if (nav) nav.style.boxShadow = window.scrollY > 200 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
         animateProgress();
+    });
+}
 
-
-// ============================================================
+/* ============================================================
 // PHASE 5D: Learning UX Enhancement
-// ============================================================
+// ============================================================ */
 
 let currentLearningMode = localStorage.getItem('how2ai_mode') || null;
 let currentWorkbenchPaper = null;
@@ -740,61 +762,28 @@ function loadWorkbenchNote() {
 }
 
 function exportWorkbenchMarkdown() {
-    if (!currentWorkbenchPaper) { showToast('请先选择一篇论文','warning'); return; }
-    saveWorkbenchNote();
-    var p = currentWorkbenchPaper;
-    var notes = getWorkbenchNotes();
-    var diffEmoji = {beginner:'🟢入门',intermediate:'🟡进阶',advanced:'🔴高级'};
-    var now = new Date().toLocaleString('zh-CN');
-    var allNotes = Object.entries(notes)
-        .filter(function(kv){return kv[0].startsWith(p.id+'_');})
-        .map(function(kv){
-            var role = kv[0].replace(p.id+'_','');
-            return '### ' + role + '
-
-' + (kv[1]||'_（未记录）_');
-        }).join('
-
-');
-    var md = '# 七角色阅读笔记：' + (p.zh_title||p.title) + '
-
-' +
-        '**导出时间：** ' + now + '  
-' +
-        '**论文：** ' + p.title + '  
-' +
-        '**中文标题：** ' + (p.zh_title||'') + '  
-' +
-        '**作者：** ' + p.authors + ' (' + p.year + ')  
-' +
-        '**分类：** ' + p.category + '  
-' +
-        '**难度：** ' + (diffEmoji[p.difficulty]||'') + '  
-' +
-        '**推荐顺序：** #' + p.recommended_order + '  
-' +
-        '**学习路径：** ' + p.reading_path + '  
-' +
-        '**原文链接：** ' + p.url + '
-
----
-
-## 七角色笔记
-
-' +
-        (allNotes||'_（无笔记）_') + '
-
----
-
-## 下一步行动建议
-
-' +
-        '- [ ] 选择下一个角色重新阅读
-- [ ] 将笔记整合到 Literature Review
-- [ ] 思考是否有 follow-up research question
-';
-    downloadMarkdown(md, '七角色笔记_'+p.id+'_'+now.split(' ')[0].replace(/\//g,'-')+'.md');
-    showToast('Markdown 已导出','success');
+  var paperSelect = document.getElementById('workbench-paper-select');
+  var paperId = paperSelect ? paperSelect.value : '';
+  var paper = (state.curatedReadings || []).find(function(r) { return r.id === paperId; });
+  if (!paper) { alert('请先选择一篇论文。'); return; }
+  var roleLabels = {
+    peer: 'Peer Reviewer · 评审',
+    arch: 'Archaeologist · 考古',
+    academic: 'Academic Researcher · 后续研究',
+    industry: 'Industry Practitioner · 工业落地',
+    hacker: 'Hacker · 快速原型',
+    investigator: 'Private Investigator · 作者路径',
+    social: 'Social Impact Assessor · 社会影响'
+  };
+  var notes = getWorkbenchNotes();
+  var paperNotes = notes[paperId] || {};
+  var lines = [];
+  lines.push('# 七角色论文阅读笔记\n\n导出时间：' + new Date().toLocaleString('zh-CN') + '\n\n## 论文信息\n\n- 英文标题：' + (paper.title || '') + '\n- 中文标题：' + (paper.zh_title || '') + '\n- 分类：' + (paper.category || '') + '\n- 难度：' + (paper.difficulty || '') + '\n- 推荐顺序：' + (paper.recommended_order || '') + '\n\n## 七角色笔记\n');
+  Object.keys(roleLabels).forEach(function(roleKey) {
+    lines.push('### ' + roleLabels[roleKey] + '\n\n' + ((paperNotes[roleKey] || '').trim() || '（尚未填写）') + '\n\n');
+  });
+  lines.push('## 下一步行动建议\n\n- [ ] 用一句话总结这篇论文的核心贡献\n- [ ] 补充至少 2 篇前史或后续论文\n- [ ] 思考一个最小可运行 demo\n- [ ] 思考是否有 follow-up research question\n');
+  downloadMarkdown('how2ai-paper-workbench-' + sanitizeFilename(paper.zh_title || paper.title || paperId) + '.md', lines.join(''));
 }
 
 // --- Project Progress System ---
@@ -852,48 +841,16 @@ function updateProjectProgressBar() {
 }
 
 function exportProjectMarkdown() {
-    var state = {};
-    PROJECT_STEPS.forEach(function(step) {
-        var cb = document.getElementById('pp-'+step);
-        if (cb) state[step] = cb.checked;
-    });
-    var stepLabels = {
-        'topic':'选题方向','proposal':'Proposal 草案','lit-review':'Literature Review',
-        'data-task':'数据与任务定义','baseline':'Baseline','midterm':'Midterm Report',
-        'error-analysis':'Error Analysis','ablation':'Ablation Study',
-        'final-presentation':'Final Presentation','final-report':'Final Report'
-    };
-    var now = new Date().toLocaleString('zh-CN');
-    var lines = PROJECT_STEPS.map(function(step) {
-        return (state[step]?'✅':'⬜') + ' **' + stepLabels[step] + '**';
-    });
-    var total = PROJECT_STEPS.length;
-    var done = Object.values(state).filter(Boolean).length;
-    var pct = Math.round((done/total)*100);
-    var undone = Object.entries(state).filter(function(kv){return !kv[1];}).map(function(kv){return kv[0];});
-    var nextSteps = undone.length ? undone.map(function(k){return '- [ ] ' + stepLabels[k];}).join('
-') : '（所有阶段已完成 🎉）';
-    var md = '# How2AI 研究项目进度
-
-' +
-        '**导出时间：** ' + now + '  
-' +
-        '**项目完成度：** ' + done + '/' + total + ' (' + pct + '%)
-
-' +
-        '## 项目检查清单
-
-' + lines.join('
-') + '
-
----
-
-## 下一步行动
-
-' + nextSteps + '
-';
-    downloadMarkdown(md, 'How2AI项目进度_'+now.split(' ')[0].replace(/\//g,'-')+'.md');
-    showToast('项目笔记已导出','success');
+  var progress = getProjectProgress();
+  var milestones = getProjectMilestones();
+  var lines = [];
+  lines.push('# How2AI 研究项目进度\n\n导出时间：' + new Date().toLocaleString('zh-CN') + '\n\n## 项目里程碑\n');
+  milestones.forEach(function(item) {
+    var done = progress[item.id] ? 'x' : ' ';
+    lines.push('- [' + done + '] ' + item.title + '：' + item.desc + '\n');
+  });
+  lines.push('\n## 下一步建议\n\n- [ ] 明确研究问题和模态边界\n- [ ] 整理数据来源与评估指标\n- [ ] 实现 baseline\n- [ ] 规划 error analysis 与 ablation study\n- [ ] 准备 Final Presentation 与 Final Report\n');
+  downloadMarkdown('how2ai-project-progress.md', lines.join(''));
 }
 
 function downloadMarkdown(content, filename) {
@@ -905,85 +862,124 @@ function downloadMarkdown(content, filename) {
 }
 
 // Enhanced exportAllNotes with Phase 5D data
-var _originalExportAllNotes = typeof exportAllNotes !== 'undefined' ? exportAllNotes : null;
 window.exportAllNotes = function() {
     var modeNames = { general: '快速通识模式', paper: '论文精读模式', project: '项目实战模式' };
     var mode = localStorage.getItem('how2ai_mode');
     var modeName = mode ? modeNames[mode] : '未选择';
     var sessionNotes = JSON.parse(localStorage.getItem('how2ai_notes')||'{}');
     var sessionLines = Object.entries(sessionNotes).map(function(kv) {
-        var s = courseData.find(function(c){return c.id===kv[0];});
-        return '### ' + (s?(s.zh_title||s.original_title):kv[0]) + '
-
-' + (kv[1]||'_（未记录）_');
-    }).join('
-
-');
-    var readingStatus = JSON.parse(localStorage.getItem(READING_STATUS_KEY)||'{}');
-    var readingLines = curatedReadings.map(function(r) {
+        var s = (window.courseData||[]).find(function(c){return c.id===kv[0];});
+        return '### ' + (s?(s.zh_title||s.original_title):kv[0]) + '\n\n' + (kv[1]||'_（未记录）_');
+    }).join('\n\n');
+    var readingStatus = JSON.parse(localStorage.getItem(window.READING_STATUS_KEY||'how2ai_reading_status')||'{}');
+    var readingLines = (window.curatedReadings||[]).map(function(r) {
         var done = readingStatus[r.id]==='completed';
         var note = readingStatus[r.id+'_note']||'';
-        return '- [' + (done?'x':' ') + '] **' + (r.zh_title||r.title) + '**' + (note?'
-  '+note:'');
-    }).join('
-');
-    var projState = JSON.parse(localStorage.getItem(PROJECT_PROGRESS_KEY)||'{}');
+        return '- [' + (done?'x':' ') + '] **' + (r.zh_title||r.title) + '**' + (note?'\n  '+note:'');
+    }).join('\n');
+    var projState = JSON.parse(localStorage.getItem(window.PROJECT_PROGRESS_KEY||'how2ai_project_progress')||'{}');
     var stepLabels = {
         'topic':'选题方向','proposal':'Proposal 草案','lit-review':'Literature Review',
         'data-task':'数据与任务定义','baseline':'Baseline','midterm':'Midterm Report',
         'error-analysis':'Error Analysis','ablation':'Ablation Study',
         'final-presentation':'Final Presentation','final-report':'Final Report'
     };
-    var projLines = PROJECT_STEPS.map(function(s) {
+    var projLines = (window.PROJECT_STEPS||[]).map(function(s) {
         return '- [' + (projState[s]?'x':' ') + '] ' + stepLabels[s];
-    }).join('
-');
+    }).join('\n');
     var now = new Date().toLocaleString('zh-CN');
-    var md = '# How2AI 中文课程 — 完整学习笔记
-
-' +
-        '**导出时间：** ' + now + '  
-' +
-        '**学习模式：** ' + modeName + '  
-' +
-        '**页面版本：** Phase 5D Learning UX
-
-' +
-        '---
-
-## 学习模式
-
-' + modeName + '
-
----
-
-## 课程笔记
-
-' +
-        (sessionLines||'_（无课程笔记）_') + '
-
----
-
-## 阅读进度
-
-' +
-        (readingLines||'_（无阅读记录）_') + '
-
----
-
-## 项目进度
-
-' +
-        (projLines||'_（无项目进度）_') + '
-
----
-
-*由 How2AI 中文课程导览页导出 | https://conanxin.github.io/drafts/how-to-ai-almost-anything-cn/*
-';
-    downloadMarkdown(md, 'How2AI完整笔记_'+now.split(' ')[0].replace(/\//g,'-')+'.md');
-    showToast('完整笔记已导出','success');
+    var md = [
+        '# How2AI 中文课程 \u2014 完整学习笔记',
+        '',
+        '**\u5bfc\u51fa\u65f6\u95f4\uff1a** ' + now + '  ',
+        '**\u5b66\u4e60\u6a21\u5f0f\uff1a** ' + modeName + '  ',
+        '**\u9875\u9762\u7248\u672c\uff1a** Phase 6B-R2 Polish',
+        '',
+        '---',
+        '',
+        '## \u5b66\u4e60\u6a21\u5f0f',
+        '',
+        modeName,
+        '',
+        '---',
+        '',
+        '## \u8bfe\u7a0b\u7b14\u8bb0',
+        '',
+        sessionLines||'_(\u65e0\u8bfe\u7a0b\u7b14\u8bb0) _',
+        '',
+        '---',
+        '',
+        '## \u9605\u8bfb\u72b6\u6001',
+        '',
+        readingLines||'_(\u65e0\u9605\u8bfb\u72b6\u6001) _',
+        '',
+        '---',
+        '',
+        '## \u9879\u76ee\u8fdb\u5ea6',
+        '',
+        projLines||'_(\u65e0\u9879\u76ee\u8fdb\u5ea6) _',
+        '',
+        '*\u7531 How2AI \u4e2d\u6587\u8bfe\u7a0b\u5bfc\u89a8\u9875\u5bfc\u51fa | https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/*'
+    ].join('\n');
+    downloadMarkdown(md, 'How2AI\u5b8c\u6574\u7b14\u8bb0_'+now.split(' ')[0].replace(/\//g,'-')+'.md');
+    showToast('\u5b8c\u6574\u7b14\u8bb0\u5df2\u5bfc\u51fa','success');
 };
 
+function exportProjectProposalTemplate() {
+  var md = [
+    '# How2AI Project Proposal',
+    '',
+    '## 1. 研究问题',
+    '',
+    '## 2. 为什么这个模态重要',
+    '',
+    '## 3. 相关工作',
+    '',
+    '## 4. 数据来源',
+    '',
+    '## 5. 模型/架构方案',
+    '',
+    '## 6. 评估指标',
+    '',
+    '## 7. Baseline',
+    '',
+    '## 8. 风险与限制',
+    '',
+    '## 9. Midterm 目标',
+    '',
+    '## 10. Final 目标',
+    ''
+  ].join('\n');
+  downloadMarkdown('how2ai-project-proposal-template.md', md);
+}
 
-    });
+
+function exportFinalReportTemplate() {
+  var md = [
+    '# How2AI Final Report',
+    '',
+    '## Abstract',
+    '',
+    '## 1. Introduction',
+    '',
+    '## 2. Related Work',
+    '',
+    '## 3. Data and Task Definition',
+    '',
+    '## 4. Method',
+    '',
+    '## 5. Experiments',
+    '',
+    '## 6. Error Analysis',
+    '',
+    '## 7. Ablation Study',
+    '',
+    '## 8. Limitations',
+    '',
+    '## 9. Social Impact',
+    '',
+    '## 10. Conclusion',
+    ''
+  ].join('\n');
+  downloadMarkdown('how2ai-final-report-template.md', md);
 }

@@ -1,0 +1,541 @@
+[
+  {
+    "id": "g01",
+    "term_en": "Multimodal AI",
+    "term_zh": "多模态人工智能",
+    "definition_zh": "能够同时处理和理解两种或两种以上数据模态（如文字、图像、音频、触觉等）的人工智能系统。",
+    "related_sessions": [
+      "w05-mul1",
+      "w06-mul2",
+      "w07-mul3",
+      "w11-lmm"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g02",
+    "term_en": "Foundation Model",
+    "term_zh": "基础模型",
+    "definition_zh": "在大规模数据上预训练的大型深度学习模型，可以通过微调适应多种下游任务。BERT、GPT、CLIP、ViT 都是基础模型。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1",
+      "w11-lmm"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g03",
+    "term_en": "Heterogeneity",
+    "term_zh": "异质性",
+    "definition_zh": "不同模态数据在表示粒度、噪声特性、语义抽象层次等方面的本质差异。例如：像素级图像 vs. 词元级文本。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w05-mul1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g04",
+    "term_en": "Alignment",
+    "term_zh": "对齐",
+    "definition_zh": "将不同模态的数据映射到统一的表示空间，使它们可以相互关联和比较。例如 CLIP 通过对比学习对齐图像和文本表示。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w05-mul1",
+      "w06-disc3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g05",
+    "term_en": "Fusion",
+    "term_zh": "融合",
+    "definition_zh": "将多个模态的信息组合在一起产生联合表示的过程。分为早期融合（raw data level）、中期融合（feature level）和晚期融合（decision level）。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w06-mul2",
+      "w07-mul3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g06",
+    "term_en": "Cross-Modal Transfer",
+    "term_zh": "跨模态迁移",
+    "definition_zh": "利用一种模态的知识或表示来增强另一种模态的模型能力。例如使用语言监督学习视觉表示（CLIP）。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w07-mul3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g07",
+    "term_en": "Contrastive Learning",
+    "term_zh": "对比学习",
+    "definition_zh": "一种自监督学习方法，通过拉近相似样本（正样本对）并推远不相似样本（负样本对）来学习有效表示。CLIP、SimCLR 都基于此。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w05-mul1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g08",
+    "term_en": "Transformer",
+    "term_zh": "Transformer 架构",
+    "definition_zh": "一种基于自注意力机制的神经网络架构，是当今几乎所有大型 AI 模型（GPT、ViT、CLIP 等）的基础。核心是 Multi-Head Self-Attention。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w04-f3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g09",
+    "term_en": "Self-Supervised Learning",
+    "term_zh": "自监督学习",
+    "definition_zh": "无需人工标签的学习范式，通过设计「代理任务」（如预测被掩码的部分）从数据本身监督学习。基础模型预训练的主要方式。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w09-lm1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g10",
+    "term_en": "Fine-tuning",
+    "term_zh": "微调",
+    "definition_zh": "在预训练模型的基础上，用特定任务的少量数据进一步训练，使模型适应目标任务。LoRA、RLHF 等都是微调技术。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1",
+      "w11-lmm",
+      "w11-disc5"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g11",
+    "term_en": "Instruction Tuning",
+    "term_zh": "指令微调",
+    "definition_zh": "通过对模型进行指令-响应对的训练，提升模型遵循自然语言指令的能力。是 LLM 获得泛化能力的关键步骤。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g12",
+    "term_en": "RLHF",
+    "term_zh": "基于人类反馈的强化学习",
+    "definition_zh": "Reinforcement Learning from Human Feedback。通过收集人类偏好数据训练奖励模型，再用 RL 优化语言模型使其符合人类意图。ChatGPT 的核心技术之一。",
+    "category": "LLM",
+    "related_sessions": [
+      "w14-int1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g13",
+    "term_en": "LoRA",
+    "term_zh": "低秩适配",
+    "definition_zh": "Low-Rank Adaptation。通过对权重矩阵进行低秩分解，只训练少量参数即可高效微调大型模型。QLoRA 是其量化版本。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1",
+      "w11-disc5"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g14",
+    "term_en": "Diffusion Model",
+    "term_zh": "扩散模型",
+    "definition_zh": "一类生成模型，通过逐步加噪（前向过程）和去噪（反向过程）来生成数据。Stable Diffusion、DALL-E 3、Sora 都基于此。",
+    "category": "Generative",
+    "related_sessions": [
+      "w12-gm3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g15",
+    "term_en": "Flow Matching",
+    "term_zh": "流匹配",
+    "definition_zh": "一种生成式建模方法，将从数据分布到简单分布的变换建模为常微分方程（ODE）的路径，通过学习向量场实现生成。DiT、LCM 等最新生成模型使用此范式。",
+    "category": "Generative",
+    "related_sessions": [
+      "w12-gm3",
+      "w13-disc7"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g16",
+    "term_en": "Multimodal Large Language Model (MLLM)",
+    "term_zh": "多模态大语言模型",
+    "definition_zh": "在大型语言模型基础上增加多模态感知能力的模型。能同时理解和生成多种模态内容，如 LLaVA、MiniGPT-4、GPT-4V、Gemini。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w11-lmm",
+      "w12-disc6"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g17",
+    "term_en": "Vision-Language Model",
+    "term_zh": "视觉-语言模型",
+    "definition_zh": "连接视觉和语言两种模态的模型，能根据图像生成描述（Image Captioning）或根据文本生成/理解图像（Text-to-Image、VQA）。CLIP、LLaVA 是典型代表。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w05-mul1",
+      "w06-mul2",
+      "w11-lmm"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g18",
+    "term_en": "Equivariance",
+    "term_zh": "等变性",
+    "definition_zh": "几何深度学习核心概念。当输入发生某种变换（如旋转）时，输出也以相同方式变换。CNN 的平移等变性是典型案例。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w04-f3",
+      "w06-disc3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g19",
+    "term_en": "Invariance",
+    "term_zh": "不变性",
+    "definition_zh": "对某种变换（如旋转、遮挡）不敏感的特性。例如分类器对图像旋转应该保持同样的分类结果。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w04-f3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g20",
+    "term_en": "Cross-Modal Interaction",
+    "term_zh": "跨模态交互",
+    "definition_zh": "不同模态信息在模型内部相互影响和协同的过程。例如看图说话时，文本注意力会关注图像的相关区域。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w06-mul2",
+      "w07-disc4"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g21",
+    "term_en": "Scaling Laws",
+    "term_zh": "缩放定律",
+    "definition_zh": "描述模型性能与计算量、数据规模、参数量之间关系的经验规律。Chinchilla 定律指出数据和模型应同等缩放。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1",
+      "w10-disc2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g22",
+    "term_en": "Mixture of Experts (MoE)",
+    "term_zh": "专家混合模型",
+    "definition_zh": "一种稀疏激活的模型架构，由多个「专家」子网络组成，每步只激活部分专家。可以在不增加计算量的情况下大幅增加模型参数量。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g23",
+    "term_en": "Quantization",
+    "term_zh": "量化",
+    "definition_zh": "将模型参数从高精度（FP32）转换为低精度（INT8、INT4）以减少存储和计算成本的技术。是部署大型模型到消费级硬件的关键技术。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1",
+      "w11-disc5"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g24",
+    "term_en": "Human-in-the-Loop",
+    "term_zh": "人在回路",
+    "definition_zh": "将人类反馈纳入 AI 训练或推理过程的方法，用于提升模型质量、纠正错误或确保安全性。RLHF 是典型应用。",
+    "category": "HAI",
+    "related_sessions": [
+      "w14-int1",
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g25",
+    "term_en": "Agent",
+    "term_zh": "智能体",
+    "definition_zh": "能够感知环境、做出决策并执行动作的 AI 系统。通常结合 LLM 的推理能力和工具使用能力来实现自主任务完成。",
+    "category": "Agent",
+    "related_sessions": [
+      "w14-int1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g26",
+    "term_en": "Chain-of-Thought (CoT)",
+    "term_zh": "思维链",
+    "definition_zh": "通过要求模型输出中间推理步骤来提升复杂推理能力的技术。DeepSeek-R1 证明纯 RL 可以激励 CoT 的涌现。",
+    "category": "Agent",
+    "related_sessions": [
+      "w14-int1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g27",
+    "term_en": "Embodied AI",
+    "term_zh": "具身人工智能",
+    "definition_zh": "与物理世界交互的 AI，如机器人、自动驾驶。核心挑战是将感知（视觉、触觉）与动作控制统一起来。PaLM-E、OpenVLA 是典型代表。",
+    "category": "Agent",
+    "related_sessions": [
+      "w14-int1",
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g28",
+    "term_en": "SmellNet / Olfactory AI",
+    "term_zh": "嗅觉人工智能",
+    "definition_zh": "将嗅觉（气味）模态引入 AI 的新兴研究方向。MIT Multisensory Intelligence Group 在此方向有开创性工作。",
+    "category": "Emerging",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g29",
+    "term_en": "OpenTouch",
+    "term_zh": "OpenTouch",
+    "definition_zh": "MIT Multisensory Intelligence Group 开源的触觉感知数据集和模型，用于触觉信号的理解和生成。",
+    "category": "Emerging",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g30",
+    "term_en": "Platonic Representation Hypothesis",
+    "term_zh": "柏拉图表示假说",
+    "definition_zh": "NYU/Google DeepMind 提出的假说：随着模型规模增大，不同模态的表示会趋向收敛到世界的共同结构。",
+    "category": "Theory",
+    "related_sessions": [
+      "w06-disc3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g31",
+    "term_en": "PID (Partial Information Decomposition)",
+    "term_zh": "部分信息分解",
+    "definition_zh": "一种信息论工具，将两个源对目标的信息贡献分解为冗余、独特和协同三个分量。MIT 的 Liang et al. 将其引入多模态交互分析。",
+    "category": "Theory",
+    "related_sessions": [
+      "w06-mul2",
+      "w06-disc3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g32",
+    "term_en": "How2AI / How to AI (Almost) Anything",
+    "term_zh": "如何 AI 化（几乎）任何事物",
+    "definition_zh": "MIT MAS.S60 课程名称，教授如何将 AI 能力扩展到新的数据模态和应用领域。是 How to Grow Almost Anything (HTGAA) 和 How to Make Almost Anything (HTMAA) 的 AI 版本。",
+    "category": "Course",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g33",
+    "term_en": "HTGAA / How to Grow Almost Anything",
+    "term_zh": "如何培育（几乎）任何事物",
+    "definition_zh": "MIT Media Lab 的课程，聚焦生物技术和生命科学的 DIY 研究。How2AI 与 HTGAA 有共同的「Almost Anything」精神。",
+    "category": "Course",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g34",
+    "term_en": "HTMAA / How to Make Almost Anything",
+    "term_zh": "如何制造（几乎）任何事物",
+    "definition_zh": "MIT 最早的「Almost Anything」系列课程，由 Neil Gershenfeld 教授开设，聚焦数字制造和物理原型。是一切的开端。",
+    "category": "Course",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g35",
+    "term_en": "Paul Liang",
+    "term_zh": "Paul Liang",
+    "definition_zh": "MIT Media Lab 助理教授，Multisensory Intelligence Group 负责人，MAS.S60 How2AI 课程主讲教师。研究重点：多模态 AI、具身智能、人-AI 交互。",
+    "category": "People",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g36",
+    "term_en": "MIT Multisensory Intelligence Group",
+    "term_zh": "MIT 多感官智能组",
+    "definition_zh": "Paul Liang 领导的 MIT 研究小组，致力于多感官 AI 的基础研究和应用，探索视觉、听觉、触觉、嗅觉等新模态的 AI 化。",
+    "category": "People",
+    "related_sessions": [
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g37",
+    "term_en": "Modality",
+    "term_zh": "模态",
+    "definition_zh": "数据存在的形式或感知通道，如图像（视觉）、文本（语言）、音频（听觉）、触觉、嗅觉等。AI 化一种新模态意味着让 AI 能感知和理解该模态的信息。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w02-f1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g38",
+    "term_en": "Representation Learning",
+    "term_zh": "表示学习",
+    "definition_zh": "学习数据的有效表示（特征）的过程，是深度学习的核心。好的表示应该保留任务相关信息同时滤除噪声。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w02-f1",
+      "w01-intro"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g39",
+    "term_en": "Zero-Shot Learning",
+    "term_zh": "零样本学习",
+    "definition_zh": "模型在没有见过特定类别训练样本的情况下，能够识别该类别的能力。CLIP 通过自然语言监督实现了强大的零样本图像分类。",
+    "category": "Multimodal",
+    "related_sessions": [
+      "w05-mul1",
+      "w07-mul3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g40",
+    "term_en": "Few-Shot Learning",
+    "term_zh": "少样本学习",
+    "definition_zh": "在只有极少量（1-5 个）目标类别样本的情况下，模型能够快速适应新任务的能力。LLM 的 in-context learning 本质上是 few-shot。",
+    "category": "LLM",
+    "related_sessions": [
+      "w09-lm1"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g41",
+    "term_en": "Multimodal Benchmark",
+    "term_zh": "多模态基准测试",
+    "definition_zh": "用于评估多模态 AI 系统能力的标准化测试集，如 VideoWebArena 用于评估视频理解 Web 任务智能体。",
+    "category": "Evaluation",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g42",
+    "term_en": "OpenVLA",
+    "term_zh": "OpenVLA",
+    "definition_zh": "开源的视觉-语言-动作模型，用于机器人控制。结合视觉感知、自然语言理解和动作执行。",
+    "category": "Agent",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g43",
+    "term_en": "ArtPrompt",
+    "term_zh": "ArtPrompt",
+    "definition_zh": "利用 ASCII 艺术图形对对齐 LLM 发起越狱攻击的技术，揭示了 LLM 对视觉表征的盲点。",
+    "category": "Safety",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g44",
+    "term_en": "VideoWebArena",
+    "term_zh": "VideoWebArena",
+    "definition_zh": "用于评估多模态智能体在视频理解和 Web 任务上能力的基准测试。",
+    "category": "Evaluation",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g45",
+    "term_en": "Interactive Sketchpad",
+    "term_zh": "Interactive Sketchpad",
+    "definition_zh": "多模态辅导系统，支持协作式视觉问题解答，结合手绘草图、语音和文本交互。",
+    "category": "HAI",
+    "related_sessions": [
+      "w15-int2"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g46",
+    "term_en": "Geometric Deep Learning",
+    "term_zh": "几何深度学习",
+    "definition_zh": "由 Bronstein et al. 提出 的框架，将卷积、注意力等操作推广到图结构、非规则网格等几何结构上。",
+    "category": "Foundation",
+    "related_sessions": [
+      "w02-f1",
+      "w04-f3"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g47",
+    "term_en": "Direct Preference Optimization (DPO)",
+    "term_zh": "直接偏好优化",
+    "definition_zh": "Direct Preference Optimization。一种无需奖励模型的 RLHF 替代方法，直接用偏好数据优化语言模型。",
+    "category": "LLM",
+    "related_sessions": [
+      "w14-int1"
+    ],
+    "source_refs": []
+  }
+]

@@ -180,7 +180,7 @@
     "project_connection": "正式开启你的 How2AI 项目研究",
     "source_refs": [],
     "session_type": "project",
-    "learning_output": "能理解 项目提案汇报 的核心概念并应用于自己的研究场景。"
+    "learning_output": "能写出一页项目 proposal，包含研究问题、动机、数据、方法和评估指标。"
   },
   {
     "id": "m1-s05",
@@ -586,7 +586,7 @@
     "project_connection": "推进你的 How2AI 项目，进行第一次完整实验",
     "source_refs": [],
     "session_type": "project",
-    "learning_output": "能理解 项目中期汇报 的核心概念并应用于自己的研究场景。"
+    "learning_output": "能展示 baseline、初步结果和下一步实验计划，准备中期汇报。"
   },
   {
     "id": "m3-s10",
@@ -863,7 +863,7 @@
     "project_connection": "提交你的 How2AI 最终项目",
     "source_refs": [],
     "session_type": "project",
-    "learning_output": "能理解 项目最终汇报 的核心概念并应用于自己的研究场景。"
+    "learning_output": "能完成一份类似 research paper 的最终报告草稿，包含相关工作、实验、结论。"
   },
   {
     "id": "m4-s13",
@@ -927,7 +927,7 @@
     "project_connection": "",
     "source_refs": [],
     "session_type": "special",
-    "learning_output": "能理解 放假（总统日） 的核心概念并应用于自己的研究场景。"
+    "learning_output": "用于回顾前序课程内容、补读论文、整理项目笔记，为后续研究阶段做准备。"
   },
   {
     "id": "sp-02",
@@ -948,7 +948,7 @@
     "project_connection": "",
     "source_refs": [],
     "session_type": "special",
-    "learning_output": "能理解 放假（春假） 的核心概念并应用于自己的研究场景。"
+    "learning_output": "利用整块时间推进 literature review 和项目 baseline，整理前期数据。"
   },
   {
     "id": "sp-03",
@@ -969,7 +969,7 @@
     "project_connection": "",
     "source_refs": [],
     "session_type": "special",
-    "learning_output": "能理解 放假（成员周） 的核心概念并应用于自己的研究场景。"
+    "learning_output": "用于深化对多模态 AI 核心问题的理解，初步确定项目方向并撰写提案草案。"
   },
   {
     "id": "sp-04",
@@ -990,6 +990,6 @@
     "project_connection": "",
     "source_refs": [],
     "session_type": "special",
-    "learning_output": "能理解 放假（CHI 会议周） 的核心概念并应用于自己的研究场景。"
+    "learning_output": "了解人机交互最新进展（CHI 2025），拓展项目研究思路，补充相关工作。"
   }
 ]

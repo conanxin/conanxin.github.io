@@ -449,7 +449,7 @@ function exportAllNotes() {
   });
   if (!hasWorkbench) lines.push('（尚无七角色工作台笔记）\n\n');
   lines.push('## 下一步建议\n\n- [ ] 选择一个学习模式并完成对应路线\n- [ ] 至少完成 3 个课程节点\n- [ ] 至少用七角色工作台读完 1 篇论文\n- [ ] 写出一个 Project Proposal\n- [ ] 准备 Final Presentation 和 Final Report\n');
-  downloadMarkdown('how2ai-full-learning-notes.md', lines.join(''));
+  downloadMarkdown(lines.join(''), 'how2ai-full-learning-notes.md');
 }
 
 function exportNote(sessionId) {
@@ -472,13 +472,6 @@ function clearNote(sessionId) {
     showToast('笔记已清空');
 }
 
-function showToast(msg) {
-    const div = document.createElement('div');
-    div.style = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;z-index:9999;animation:fadeIn 0.3s;';
-    div.textContent = msg;
-    document.body.appendChild(div);
-    setTimeout(() => { div.style.opacity = '0'; setTimeout(() => div.remove(), 300); }, 2500);
-}
 
 /* ---- Quiz ---- */
 function openQuiz(sessionId) {
@@ -1208,18 +1201,6 @@ function escHtml(str) {
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
-}
-
-function downloadMarkdown(content, filename) {
-    var blob = new Blob(['\uFEFF' + content], { type: 'text/markdown;charset=utf-8' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
 }
 
 function showToast(msg, type) {

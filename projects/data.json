@@ -258,5 +258,19 @@
       "Archive",
       "Translation"
     ]
+  },
+  {
+    "title": "工程设计方法论",
+    "slug": "engineering-design-methodology",
+    "subtitle": "从任务书澄清到 Agent 工作流的工程设计方法论工具站",
+    "summary": "系统化工程设计方法论：任务书澄清、功能分解、方案评价、成本估算与 Agent 工作流集成。",
+    "category": "research",
+    "featured": true,
+    "status": "published",
+    "status_color": "#10b981",
+    "type": "static-site",
+    "source_kind": "github-pages",
+    "entry_url": "https://conanxin.github.io/Engineering_Design_Methodology_docs/",
+    "updated": "2026-05-18"
   }
 ]

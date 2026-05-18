@@ -272,5 +272,27 @@
     "source_kind": "github-pages",
     "entry_url": "https://conanxin.github.io/Engineering_Design_Methodology_docs/",
     "updated": "2026-05-18"
+  },
+  {
+    "title": "Time Will Tell：早期 GitHub Pages 写作档案",
+    "subtitle": "2013–2014 年 GitHub Pages / Jekyll-Bootstrap 历史 archive",
+    "slug": "time-will-tell-archive",
+    "category": "research",
+    "type": "LEGACY ARCHIVE",
+    "status": "历史档案",
+    "status_color": "#6e7781",
+    "updated": "2026-05-18",
+    "summary": "Conan Xin 2013–2014 年早期英文写作、翻译练习、职业准备与技术兴趣的 GitHub Pages 历史档案。保留早期学习状态，作为个人知识系统起点。",
+    "entry_url": "/projects/time-will-tell-archive/",
+    "source_kind": "archive",
+    "featured": true,
+    "tags": [
+      "GitHub Pages",
+      "Jekyll",
+      "Legacy Archive",
+      "Writing",
+      "Personal Knowledge System"
+    ],
+    "notes": "Phase 6A draft only; not yet published. Category may need manual confirmation in current site."
   }
 ]

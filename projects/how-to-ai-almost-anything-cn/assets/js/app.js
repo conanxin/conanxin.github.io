@@ -1233,7 +1233,7 @@ function exportLectureNotesMarkdown() {
     lines.push('');
     lines.push('**课程名称：** MIT MAS.S60 — How to AI (Almost) Anything 中文导览');
     lines.push('**导出时间：** ' + now);
-    lines.push('**版本：** Phase 7B Full Lecture Notes');
+    lines.push('**版本：** Phase 7C Notes Polish');
     var readCount = lectureNotes.filter(function(n) { return getLectureNoteStatus(n.session_id) === 'read'; }).length;
     lines.push('**讲义总数：** ' + lectureNotes.length + ' | **已读：** ' + readCount + ' | **待读：** ' + (lectureNotes.length - readCount));
     lines.push('');

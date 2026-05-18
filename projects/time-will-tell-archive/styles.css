@@ -1,7 +1,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 2rem;
   background: #f8f9fa;
@@ -25,4 +25,66 @@ h1, h2 {
 }
 a {
   color: #0366d6;
+}
+
+/* New styles for Phase 8A */
+.card-grid, .group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.featured-card, .group-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  background: #fafafa;
+}
+.featured-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+.date {
+  color: #666;
+  font-size: 0.85rem;
+}
+.source-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+.risk-badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #e0e0e0;
+  margin-left: 0.5rem;
+}
+.filter-bar {
+  margin: 1rem 0;
+}
+.filter-bar button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.catalog-list .catalog-item {
+  border-bottom: 1px solid #eee;
+  padding: 0.75rem 0;
+}
+.catalog-item .meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+.catalog-item .title {
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+.note {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 1rem;
 }

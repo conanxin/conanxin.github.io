@@ -185,12 +185,25 @@ def validate_lecture_notes():
     if data is None:
         return False
     errors = []
+    warnings = []
     required = ["session_id", "note_status", "one_sentence", "core_question",
                  "why_it_matters", "concepts", "lecture_guide",
                  "reflection_questions", "mini_assignment"]
     course = load_json("course.json")
     course_ids = {s["id"] for s in course} if course else set()
+    glossary = load_json("glossary.json")
+    glossary_ids = {g["id"] for g in glossary} if glossary else set()
+    glossary_terms = set()
+    if glossary:
+        for g in glossary:
+            if g.get("term_en"):
+                glossary_terms.add(g["term_en"].lower())
+            if g.get("term_zh"):
+                glossary_terms.add(g["term_zh"])
     note_ids = set()
+    # Check count matches course
+    if len(data) != len(course_ids):
+        errors.append(f"  ❌ 讲义数量不匹配: lecture_notes.json 有 {len(data)} 条, course.json 有 {len(course_ids)} 节")
     for n in data:
         nid = n.get("session_id", "?")
         for f in required:
@@ -200,27 +213,53 @@ def validate_lecture_notes():
             errors.append(f"  ❌ 重复 session_id: {nid}")
         note_ids.add(nid)
         if nid not in course_ids:
-            errors.append(f"  ⚠️  LectureNote {nid}: session_id 在 course.json 中未找到")
+            errors.append(f"  ❌ LectureNote {nid}: session_id 在 course.json 中未找到")
         concepts = n.get("concepts", [])
-        if not isinstance(concepts, list) or len(concepts) < 1:
-            errors.append(f"  ❌ LectureNote {nid}: concepts 至少需要 1 个")
+        if not isinstance(concepts, list) or len(concepts) < 3:
+            errors.append(f"  ❌ LectureNote {nid}: concepts 至少需要 3 个, 实际 {len(concepts)}")
         refls = n.get("reflection_questions", [])
-        if not isinstance(refls, list) or len(refls) < 1:
-            errors.append(f"  ❌ LectureNote {nid}: reflection_questions 至少需要 1 个")
+        if not isinstance(refls, list) or len(refls) < 3:
+            errors.append(f"  ❌ LectureNote {nid}: reflection_questions 至少需要 3 个, 实际 {len(refls)}")
         if not n.get("mini_assignment"):
             errors.append(f"  ❌ LectureNote {nid}: mini_assignment 不能为空")
         projects = n.get("project_ideas", [])
-        if not isinstance(projects, list) or len(projects) < 1:
-            errors.append(f"  ❌ LectureNote {nid}: project_ideas 至少需要 1 个")
+        if not isinstance(projects, list) or len(projects) < 2:
+            errors.append(f"  ❌ LectureNote {nid}: project_ideas 至少需要 2 个, 实际 {len(projects)}")
+        # Check related_glossary_terms
+        rel_terms = n.get("related_glossary_terms", [])
+        if rel_terms and isinstance(rel_terms, list):
+            for t in rel_terms:
+                t_lower = t.lower().strip()
+                found = False
+                for gt in glossary_terms:
+                    if t_lower == gt.lower().strip():
+                        found = True
+                        break
+                if not found:
+                    warnings.append(f"  ⚠️  LectureNote {nid}: related_glossary_terms '{t}' 在 glossary.json 中未找到匹配项")
+        # Check for bad patterns
+        note_text = json.dumps(n, ensure_ascii=False)
+        bad_patterns = ["假期核心概念", "放假核心概念", "理解休整核心概念", "Academic 学术视角", "侦探视角", "黑客视角"]
+        for bp in bad_patterns:
+            if bp in note_text:
+                errors.append(f"  ❌ LectureNote {nid}: 包含机械句式 '{bp}'")
+    # Check all course sessions have notes
+    missing = course_ids - note_ids
+    if missing:
+        errors.append(f"  ❌ 以下课程缺少讲义: {sorted(missing)}")
     if not errors:
         pilot = sum(1 for n in data if n.get("note_status") == "pilot")
-        print(f"  ✅ lecture_notes.json 验证通过 ({len(data)} 条讲义, 其中 {pilot} 条 pilot)")
+        complete = sum(1 for n in data if n.get("note_status") == "complete")
+        print(f"  ✅ lecture_notes.json 验证通过 ({len(data)} 条讲义, complete: {complete}, pilot: {pilot})")
+    if warnings and not errors:
+        for w in warnings[:5]:
+            print(f"  {w}")
     return errors
 
 # ─── main ──────────────────────────────────────────────────────
 def main():
     print("=" * 54)
-    print("How2AI 中文课程 — Phase 7A 数据验证")
+    print("How2AI 中文课程 — Phase 7B 数据验证")
     print("=" * 54)
 
     all_ok = True

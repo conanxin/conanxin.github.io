@@ -325,7 +325,7 @@ function renderGlossary(query = '') {
         (g.definition && g.definition.toLowerCase().includes(q))
     ) : glossaryData;
     c.innerHTML = f.map(g => `
-        <div class="glossary-item">
+        <div class="glossary-item" id="glossary-${g.id || ''}">
             <div class="glossary-term">${g.term_en || g.term || ''}</div>
             <div class="glossary-zh">${g.term_zh || g.zh || ''}</div>
             <div class="glossary-def">${g.definition_zh || g.definition || ''}</div>
@@ -429,6 +429,19 @@ function exportAllNotes() {
     lines.push('- ' + (reading ? (reading.zh_title || reading.title || readingId) : readingId) + '：' + readingStatus[readingId] + '\n');
   });
   if (!hasReadingStatus) lines.push('（尚无阅读状态记录）\n');
+  lines.push('\n## 讲义阅读进度\n');
+  if (typeof lectureNotes !== 'undefined' && lectureNotes && lectureNotes.length > 0) {
+    var lnRead = 0;
+    lectureNotes.forEach(function(n) {
+      var st = getLectureNoteStatus(n.session_id);
+      if (st === 'read') lnRead++;
+      var c = (state.sessions || []).find(function(s) { return s.id === n.session_id; });
+      lines.push('- [' + (st === 'read' ? 'x' : ' ') + '] ' + (c ? (c.zh_title || c.original_title || n.session_id) : n.session_id) + '\n');
+    });
+    lines.push('\n**进度：' + lnRead + ' / ' + lectureNotes.length + ' 已读**\n');
+  } else {
+    lines.push('（尚无讲义数据）\n');
+  }
   lines.push('\n## 项目进度\n');
   projectMilestones.forEach(function(item) {
     var done = projectProgress[item.id] ? 'x' : ' ';
@@ -926,9 +939,12 @@ function renderLectureNotes() {
         html += '<span class="lecture-note-title">' + (course.zh_title || note.session_id) + '</span>';
         html += '</div>';
         html += '<span class="lecture-note-toggle" id="ln-toggle-' + note.session_id + '">▶</span>';
+        // Status button
+        var status = getLectureNoteStatus(note.session_id);
+        html += '<button class="lecture-note-status-btn status-' + status + '" id="ln-status-' + note.session_id + '" onclick="event.stopPropagation();toggleLectureNoteRead(\'' + note.session_id + '\')">' + (status === 'read' ? '已读' : '待读') + '</button>';
         html += '</div>';
         // Body
-        html += '<div class="lecture-note-body' + (isFirst ? ' open' : '') + '" id="ln-body-' + note.session_id + '">';
+        html += '<div class="lecture-note-body' + (isFirst ? ' open' : '') + (status === 'read' ? ' read' : '') + '" id="ln-body-' + note.session_id + '">';
 
         // One sentence
         if (note.one_sentence) {
@@ -1065,6 +1081,7 @@ function renderLectureNotes() {
     });
 
     container.innerHTML = html;
+    updateLectureNotesProgress();
 }
 
 function toggleLectureNote(sessionId) {
@@ -1096,6 +1113,111 @@ function collapseAllLectureNotes() {
     document.querySelectorAll('.lecture-note-header').forEach(function(h) { h.classList.remove('expanded'); });
 }
 
+var LECTURE_NOTE_STATUS_KEY = 'how2ai_lecture_note_status';
+
+function getLectureNoteStatus(sessionId) {
+    try {
+        var stored = JSON.parse(localStorage.getItem(LECTURE_NOTE_STATUS_KEY) || '{}');
+        return stored[sessionId] || 'unread';
+    } catch(e) { return 'unread'; }
+}
+
+function setLectureNoteStatus(sessionId, status) {
+    try {
+        var stored = JSON.parse(localStorage.getItem(LECTURE_NOTE_STATUS_KEY) || '{}');
+        stored[sessionId] = status;
+        localStorage.setItem(LECTURE_NOTE_STATUS_KEY, JSON.stringify(stored));
+        updateLectureNotesProgress();
+        var btn = document.getElementById('ln-status-' + sessionId);
+        if (btn) {
+            btn.textContent = status === 'read' ? '已读' : '待读';
+            btn.className = 'lecture-note-status-btn status-' + status;
+        }
+    } catch(e) {}
+}
+
+function toggleLectureNoteRead(sessionId) {
+    var current = getLectureNoteStatus(sessionId);
+    setLectureNoteStatus(sessionId, current === 'read' ? 'unread' : 'read');
+}
+
+function updateLectureNotesProgress() {
+    if (!lectureNotes || lectureNotes.length === 0) return;
+    var readCount = lectureNotes.filter(function(n) { return getLectureNoteStatus(n.session_id) === 'read'; }).length;
+    var total = lectureNotes.length;
+    var el = document.getElementById('lectureNotesProgressText');
+    if (el) el.textContent = '已读 ' + readCount + ' / ' + total;
+    var bar = document.getElementById('lectureNotesProgressBar');
+    if (bar) bar.style.width = Math.round((readCount / total) * 100) + '%';
+}
+
+function markAllLectureNotesRead() {
+    if (!lectureNotes) return;
+    try {
+        var stored = JSON.parse(localStorage.getItem(LECTURE_NOTE_STATUS_KEY) || '{}');
+        lectureNotes.forEach(function(n) { stored[n.session_id] = 'read'; });
+        localStorage.setItem(LECTURE_NOTE_STATUS_KEY, JSON.stringify(stored));
+        document.querySelectorAll('.lecture-note-status-btn').forEach(function(btn) {
+            btn.textContent = '已读';
+            btn.className = 'lecture-note-status-btn status-read';
+        });
+        updateLectureNotesProgress();
+        showToast('所有讲义已标为已读', 'success');
+    } catch(e) {}
+}
+
+function markAllLectureNotesUnread() {
+    if (!lectureNotes) return;
+    try {
+        var stored = JSON.parse(localStorage.getItem(LECTURE_NOTE_STATUS_KEY) || '{}');
+        lectureNotes.forEach(function(n) { stored[n.session_id] = 'unread'; });
+        localStorage.setItem(LECTURE_NOTE_STATUS_KEY, JSON.stringify(stored));
+        document.querySelectorAll('.lecture-note-status-btn').forEach(function(btn) {
+            btn.textContent = '待读';
+            btn.className = 'lecture-note-status-btn status-unread';
+        });
+        updateLectureNotesProgress();
+        showToast('所有讲义已标为待读', 'info');
+    } catch(e) {}
+}
+
+function filterLectureNotesByModule(mod) {
+    if (!lectureNotes) return;
+    var cards = document.querySelectorAll('.lecture-note-card');
+    var activeFilter = mod || 'all';
+    cards.forEach(function(card) {
+        var noteId = card.id.replace('ln-', '');
+        var note = lectureNotes.find(function(n) { return n.session_id === noteId; });
+        if (!note) { card.style.display = 'none'; return; }
+        var moduleMap = {
+            'mod0': 'mod0-intro',
+            'mod1': 'mod1-foundations',
+            'mod2': 'mod2-multimodal',
+            'mod3': 'mod3-llm',
+            'mod4': 'mod4-interactive',
+            'special': 'special'
+        };
+        var targetModule = moduleMap[activeFilter];
+        var noteModule = note.module || '';
+        var noteType = note.lecture_type || '';
+        var show = false;
+        if (activeFilter === 'all') {
+            show = true;
+        } else if (targetModule === 'special') {
+            show = (noteType === 'special' || noteType === 'project');
+        } else {
+            show = (noteModule === targetModule);
+        }
+        card.style.display = show ? '' : 'none';
+    });
+    // Update active filter button
+    document.querySelectorAll('.lecture-module-filter .btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    var activeBtn = document.getElementById('filter-' + activeFilter);
+    if (activeBtn) activeBtn.classList.add('active');
+}
+
 function exportLectureNotesMarkdown() {
     if (!lectureNotes || lectureNotes.length === 0) {
         showToast('无讲义数据可导出', 'error');
@@ -1111,18 +1233,21 @@ function exportLectureNotesMarkdown() {
     lines.push('');
     lines.push('**课程名称：** MIT MAS.S60 — How to AI (Almost) Anything 中文导览');
     lines.push('**导出时间：** ' + now);
-    lines.push('**版本：** Phase 7A Lecture Notes Pilot');
-    lines.push('**试点讲义数：** ' + lectureNotes.length);
+    lines.push('**版本：** Phase 7B Full Lecture Notes');
+    var readCount = lectureNotes.filter(function(n) { return getLectureNoteStatus(n.session_id) === 'read'; }).length;
+    lines.push('**讲义总数：** ' + lectureNotes.length + ' | **已读：** ' + readCount + ' | **待读：** ' + (lectureNotes.length - readCount));
     lines.push('');
     lines.push('---');
     lines.push('');
     lectureNotes.forEach(function(note) {
         var course = courseMap[note.session_id] || {};
-        lines.push('## ' + (course.zh_title || note.session_id));
+        var noteStatus = getLectureNoteStatus(note.session_id);
+        lines.push('## ' + (course.zh_title || note.session_id) + ' [' + noteStatus + ']');
         lines.push('');
         lines.push('**原始标题：** ' + (course.original_title || 'N/A'));
         lines.push('**课程类型：** ' + (note.lecture_type || 'lecture'));
         lines.push('**状态：** ' + (note.note_status || 'unknown'));
+        lines.push('**阅读状态：** ' + (noteStatus === 'read' ? '✅ 已读' : '⏳ 待读'));
         lines.push('');
         if (note.one_sentence) {
             lines.push('### 一句话');

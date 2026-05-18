@@ -800,6 +800,68 @@ a:hover{color:var(--accent-purple)}
     background: #4a90d9;
     color: #fff;
 }
+/* Progress bar */
+.lecture-progress-bar-container {
+    width: 200px;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.lecture-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4a90d9, #667eea);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+/* Lecture note status button */
+.lecture-note-status-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+.lecture-note-status-btn.status-unread {
+    color: #999;
+    border-color: #ddd;
+}
+.lecture-note-status-btn.status-unread:hover {
+    color: #4a90d9;
+    border-color: #4a90d9;
+}
+.lecture-note-status-btn.status-read {
+    color: #27ae60;
+    border-color: #27ae60;
+    background: rgba(39,174,96,0.08);
+}
+.lecture-note-status-btn.status-read:hover {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    background: rgba(231,76,60,0.08);
+}
+/* Read card styling */
+.lecture-note-card.read .lecture-note-header {
+    opacity: 0.75;
+}
+.lecture-note-card.read .lecture-note-title {
+    color: #888;
+}
+/* Module filter buttons */
+.lecture-module-filter .btn-sm {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+.lecture-module-filter .btn.active {
+    background: #4a90d9;
+    color: #fff;
+    border-color: #4a90d9;
+}
 .lecture-note-card {
     background: #fff;
     border: 1px solid #e0e0e0;

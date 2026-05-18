@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body data-public-version="phase7a-r-lecture-notes-review">
+<body data-public-version="phase7b-full-lecture-notes">
   <!-- ======= HERO ======= -->
   <header class="hero" id="hero">
     <div class="hero-bg">
@@ -483,23 +483,37 @@
       </div>
     </section>
 
-    <!-- ======= LECTURE NOTES (Phase 7A Pilot) ======= -->
+    <!-- ======= LECTURE NOTES (Phase 7B Full) ======= -->
     <section class="lecture-notes-section" id="lecture-notes">
       <div class="lecture-notes-header">
         <div>
-          <h2 class="lecture-notes-title">📖 中文讲义试读</h2>
-          <p class="lecture-notes-subtitle">Phase 7A 试点 · Module 0 + Module 1 核心节点 · 共 7 节</p>
-          <p class="lecture-notes-subtitle" style="font-size:12px;color:#999;margin-top:2px;">
+          <h2 class="lecture-notes-title">📖 中文讲义</h2>
+          <p class="lecture-notes-subtitle" id="lectureNotesProgressText">共 27 节 · 加载中...</p>
+          <div class="lecture-progress-bar-container">
+            <div class="lecture-progress-bar" id="lectureNotesProgressBar" style="width:0%"></div>
+          </div>
+          <p class="lecture-notes-subtitle" style="font-size:12px;color:#999;margin-top:4px;">
             本页面为基于 MIT MAS.S60 公开课程资料整理的中文学习导览，不代表 MIT 官方中文版本。
           </p>
         </div>
         <div class="lecture-notes-actions">
           <button class="btn-outline" onclick="expandAllLectureNotes()">▶ 展开全部</button>
           <button class="btn-outline" onclick="collapseAllLectureNotes()">▼ 收起全部</button>
-          <button class="btn-primary-outline" onclick="exportLectureNotesMarkdown()">📤 导出试点讲义 Markdown</button>
+          <button class="btn-outline" style="color:var(--success)" onclick="markAllLectureNotesRead()">✓ 全部标为已读</button>
+          <button class="btn-outline" style="color:var(--text-muted)" onclick="markAllLectureNotesUnread()">✗ 全部标为待读</button>
+          <button class="btn-primary-outline" onclick="exportLectureNotesMarkdown()">📤 导出全部讲义 Markdown</button>
         </div>
       </div>
-      <p class="lecture-nav-hint">点击卡片标题展开讲义内容 · 默认仅第一节展开</p>
+      <div class="lecture-module-filter" style="margin-bottom:12px;">
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('all')" id="filter-all">全部模块</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('mod0')" id="filter-mod0">Module 0 起点</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('mod1')" id="filter-mod1">Module 1 基础</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('mod2')" id="filter-mod2">Module 2 多模态</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('mod3')" id="filter-mod3">Module 3 大模型</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('mod4')" id="filter-mod4">Module 4 交互</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterLectureNotesByModule('special')" id="filter-special">假期/项目</button>
+      </div>
+      <p class="lecture-nav-hint">点击卡片标题展开 · 点击「已读/待读」切换状态 · 刷新后状态自动保存</p>
       <div id="lectureNotesContainer">
         <p style="color:#888;font-size:14px;text-align:center;padding:32px;">讲义数据加载中...</p>
       </div>
@@ -1067,7 +1081,7 @@
         <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Liang</a>
         <a href="https://www.youtube.com/playlist?list=PLc0Yh0D0XR4Z3wityRaEuu4rfzTHRIIAO" target="_blank" rel="noopener">YouTube</a>
       </div>
-      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 7A-R Lecture Notes Review</strong></p>
+      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 7B Full Lecture Notes</strong></p>
     </div>
   </footer>
 

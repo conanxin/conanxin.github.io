@@ -1,10 +1,9 @@
 {
-  "generated_at": "2026-05-18T16:10:35Z",
+  "generated_at": "2026-05-18T16:36:41Z",
   "total_links": 124,
   "summary": {
     "MANUAL_BROWSER_CHECK_RECOMMENDED": 15,
-    "OK": 102,
-    "UNKNOWN": 1,
+    "OK": 103,
     "CLIENT_ERROR_CONFIRMED": 2,
     "PAYWALL_OR_ACCESS_RESTRICTED": 4
   },
@@ -74,10 +73,10 @@
       "link_text": "[video]",
       "link_type": "video",
       "session": "Introduction to AI Research",
-      "state": "UNKNOWN",
-      "http_code": "204",
-      "content_type": "text/html",
-      "note": ""
+      "state": "OK",
+      "http_code": "200",
+      "content_type": "text/html; charset=utf-8",
+      "note": "可正常访问"
     },
     {
       "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec2 - data.pdf",

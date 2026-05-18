@@ -15,7 +15,7 @@
   - [ ] 🚀 开始学习 → 跳转 #sessions
   - [ ] 📚 查看官方阅读清单 → 跳转 #readings + 切换到 official 标签
   - [ ] 📖 七角色论文读法 → 跳转 #seven-roles
-- [ ] Hero 统计数据是否正确（27 节课程 / 5 大模块 / 32 精选导读 / 85+ 官方文献）
+- [ ] Hero 统计数据是否正确（27 个学习节点 / 5 大模块 / 32 精选导读 / 85+ 官方文献）
 - [ ] Hero 进度区是否存在（`heroProgressSessions` / `heroProgressReadings`）
 - [ ] 进度条是否存在（初始状态应为 0%，空白状态）
 - [ ] Module 进度条（5 色段）是否显示

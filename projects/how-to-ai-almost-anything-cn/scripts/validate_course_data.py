@@ -179,21 +179,60 @@ def validate_raw_links():
         print(f"  ✅ raw_schedule_links.json 验证通过 ({len(data)} 个链接: {slides} slides / {videos} videos / {papers} papers)")
     return errors
 
+# ─── lecture_notes.json ─────────────────────────────────────────
+def validate_lecture_notes():
+    data = load_json("lecture_notes.json")
+    if data is None:
+        return False
+    errors = []
+    required = ["session_id", "note_status", "one_sentence", "core_question",
+                 "why_it_matters", "concepts", "lecture_guide",
+                 "reflection_questions", "mini_assignment"]
+    course = load_json("course.json")
+    course_ids = {s["id"] for s in course} if course else set()
+    note_ids = set()
+    for n in data:
+        nid = n.get("session_id", "?")
+        for f in required:
+            if f not in n:
+                errors.append(f"  ❌ LectureNote {nid}: 缺少字段 '{f}'")
+        if nid in note_ids:
+            errors.append(f"  ❌ 重复 session_id: {nid}")
+        note_ids.add(nid)
+        if nid not in course_ids:
+            errors.append(f"  ⚠️  LectureNote {nid}: session_id 在 course.json 中未找到")
+        concepts = n.get("concepts", [])
+        if not isinstance(concepts, list) or len(concepts) < 1:
+            errors.append(f"  ❌ LectureNote {nid}: concepts 至少需要 1 个")
+        refls = n.get("reflection_questions", [])
+        if not isinstance(refls, list) or len(refls) < 1:
+            errors.append(f"  ❌ LectureNote {nid}: reflection_questions 至少需要 1 个")
+        if not n.get("mini_assignment"):
+            errors.append(f"  ❌ LectureNote {nid}: mini_assignment 不能为空")
+        projects = n.get("project_ideas", [])
+        if not isinstance(projects, list) or len(projects) < 1:
+            errors.append(f"  ❌ LectureNote {nid}: project_ideas 至少需要 1 个")
+    if not errors:
+        pilot = sum(1 for n in data if n.get("note_status") == "pilot")
+        print(f"  ✅ lecture_notes.json 验证通过 ({len(data)} 条讲义, 其中 {pilot} 条 pilot)")
+    return errors
+
 # ─── main ──────────────────────────────────────────────────────
 def main():
     print("=" * 54)
-    print("How2AI 中文课程 — Phase 2 数据验证")
+    print("How2AI 中文课程 — Phase 7A 数据验证")
     print("=" * 54)
 
     all_ok = True
 
     checks = [
-        ("[1/7] course.json ...", validate_course),
-        ("[2/7] readings.json ...", validate_readings),
-        ("[3/7] official_reading_map.json ...", validate_official_readings),
-        ("[4/7] glossary.json ...", validate_glossary),
-        ("[5/7] sources.json ...", validate_sources),
-        ("[6/7] raw_schedule_links.json ...", validate_raw_links),
+        ("[1/8] course.json ...", validate_course),
+        ("[2/8] readings.json ...", validate_readings),
+        ("[3/8] official_reading_map.json ...", validate_official_readings),
+        ("[4/8] glossary.json ...", validate_glossary),
+        ("[5/8] sources.json ...", validate_sources),
+        ("[6/8] raw_schedule_links.json ...", validate_raw_links),
+        ("[7/8] lecture_notes.json ...", validate_lecture_notes),
     ]
 
     for label, fn in checks:
@@ -217,10 +256,12 @@ def main():
         g = load_json("glossary.json") or []
         s = load_json("sources.json") or []
         lk = load_json("raw_schedule_links.json") or []
+        ln = load_json("lecture_notes.json") or []
         print(f"✅ 全部验证通过")
         print(f"   Sessions: {len(c)} | Curated readings: {len(r)}")
         print(f"   Official readings: {len(o)} | Glossary: {len(g)}")
         print(f"   Sources: {len(s)} | Raw links: {len(lk)}")
+        print(f"   Lecture notes: {len(ln)} (pilot: {sum(1 for n in ln if n.get('note_status')=='pilot')})")
         return 0
     else:
         print("⛔ 存在验证错误，请修复后重试")

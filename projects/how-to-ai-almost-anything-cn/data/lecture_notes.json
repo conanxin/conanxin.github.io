@@ -1,0 +1,596 @@
+[
+  {
+    "session_id": "m0-s01",
+    "note_status": "pilot",
+    "lecture_type": "lecture",
+    "one_sentence": "本节是整个 How2AI 课程的起点，旨在帮助你理解什么是「AI 化一种新模态」，以及它在 MIT「Almost Anything」课程谱系中的位置。",
+    "core_question": "如何让 AI 系统能够感知、理解并生成我们身边各种形式的数据？",
+    "why_it_matters": "多模态 AI 是当前 AI 发展的重要方向。本课程的核心议题不是训练一个固定的模型，而是建立一套方法论：如何把任意一种新的数据模态接入 AI 系统。这个思路直接来源于 MIT 的 HTMAA（How to Make Almost Anything）和 HTGAA（How to Grow Almost Anything）——从「制造」到「生长」再到「智能化」，构成了一条追求通用智能的探索路径。Paul Pu Liang 所在的 MIT Multisensory Intelligence Group 正是这一方向的核心推动者，研究如何让机器像人类一样同时利用视觉、听觉、触觉、嗅觉等多感官信息理解世界。",
+    "concepts": [
+      {
+        "term": "多模态 AI",
+        "term_en": "Multimodal AI",
+        "explanation": "能够同时处理、理解和生成多种不同数据模态（如文字、图像、声音、触觉、嗅觉等）的 AI 系统。与单一模态 AI（如纯文本语言模型）不同，多模态 AI 需要解决不同模态之间的「异质性」（heterogeneity）问题——不同模态的数据结构、统计特性、语义粒度都不同。",
+        "common_misunderstanding": "常见误区是把多模态 AI 等同于「给大语言模型加一个图像识别模块」。实际上多模态 AI 的核心挑战是跨模态的对齐、融合和迁移，而不是简单拼接两个单模态模型。"
+      },
+      {
+        "term": "基础模型",
+        "term_en": "Foundation Model",
+        "explanation": "大规模预训练模型（如 GPT、CLIP、DALL-E），通过在海量无标注数据上自监督学习，得到通用的表示能力，可通过微调（fine-tuning）适配多种下游任务。基础模型是多模态 AI 时代的基础设施。",
+        "common_misunderstanding": "常见误区是认为基础模型是「通用人工智能」的终极形态。实际上基础模型仍有严重的领域依赖性——在一个领域训练的基础模型未必能泛化到另一个领域，尤其是新模态数据的场景。"
+      },
+      {
+        "term": "MIT「Almost Anything」课程谱系",
+        "term_en": "MIT Almost Anything Course Lineage",
+        "explanation": "MIT 媒体实验室 Neil Gershenfeld 教授开创的 HTMAA（How to Make Almost Anything）最初是关于数字制造（3D 打印、CNC、嵌入式系统）。其延伸课程 HTGAA（How to Grow Almost Anything）聚焦生物技术（合成生物学、细胞培养）。How2AI（How to AI Almost Anything）则延续这一思路，探讨如何将 AI 能力扩展到任意新模态和场景。三门课程共同构成了「让AI 连接物理世界」的探索路径。",
+        "common_misunderstanding": "常有人误以为这三门课是独立课程。实际上它们有共同的方法论精神：动手实践 + 开放分享 + 跨领域连接。HTMAA 的「个人制造」理念，HTGAA 的「生物系统设计」理念，共同塑造了 How2AI 的「多感官 AI 化」理念。"
+      },
+      {
+        "term": "AI 化的五个核心维度",
+        "term_en": "Five Core Dimensions of AI-ization",
+        "explanation": "本课程提出的方法论框架：数据（如何获取和整理新模态数据）→ 表征（如何将原始数据转化为 AI 可处理的向量）→ 架构（如何设计模型结构利用模态特性）→ 训练（如何设计训练目标和策略）→ 评估（如何衡量模型质量）。这是理解任意模态 AI 化的完整 pipeline。",
+        "common_misunderstanding": "初学者常只关注「训练」环节，忽视前面的「数据」和后面的「评估」。实际上，一个模态能否成功 AI 化，关键瓶颈往往在数据获取（传感器造价、数据标注成本）和评估指标设计（如何定义「好」）上。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["阅读课程 syllabus，了解整体结构和评分规则", "访问 MIT Multisensory Intelligence Group 主页，了解研究背景", "浏览 How2AI 官方课程页面，记录任何不理解的术语"],
+      "during_class": ["关注「多感官 AI」这个核心概念——为什么 MIT 媒体实验室要提出这个方向？", "注意课程引用的三篇核心论文：几何深度学习、表示学习、通用人工智能", "思考：你的项目想 AI 化哪种新模态？它面临的核心挑战是什么？"],
+      "after_class": ["画一张「Almost Anything」家族谱系图，标注三门课程的关系", "列出 5 种目前 AI 还难以处理的数据形式，说明为什么它们有挑战", "在 GitHub 或课程论坛发布你的项目方向，获取反馈"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r001",
+        "title": "Geometric Deep Learning (Bronstein et al., 2021)",
+        "why_read": "这是理解「为什么不同的数据模态需要不同的几何结构」的必读论文，也是本课程 Module 1 的理论核心。",
+        "how_to_read": "重点读 Section 1（引言）和 Section 2（五类几何深度学习框架）。不要被数学公式吓退，关键是理解 grid / group / graph / geodesic / gauge 的分类逻辑。",
+        "key_questions": ["不同模态的数据结构为什么不同？", "为什么 CNN 适合图像而 GNN 适合分子结构？", "「对称性」在深度学习中的作用是什么？"]
+      },
+      {
+        "reading_id": "r002",
+        "title": "Representation Learning (Bengio et al., 2013)",
+        "why_read": "表示学习是 AI 的核心问题之一，这篇综述系统梳理了 2013 年之前的研究脉络，对理解现代自监督学习仍有重要价值。",
+        "how_to_read": "跳过实现细节，重点理解「好的表示应该具备哪些特性」：稀疏性、独立性、解耦表示、层次结构。",
+        "key_questions": ["为什么浅层表示和深层表示不同？", "监督学习和无监督学习在表示学习上有什么区别？"]
+      }
+    ],
+    "connection_to_previous": "这是课程起点，无前置课程。建议先通读 syllabus，再按模块顺序学习。",
+    "connection_to_next": "下一节 m0-s02「AI 研究方法导论」将介绍做 AI 研究的方法论——如何读论文、如何产生想法、如何做实验记录。这些方法将直接应用于后续所有模块的学习。",
+    "project_ideas": [
+      {
+        "title": "「Almost Anything」谱系可视化",
+        "difficulty": "beginner",
+        "description": "用 Python + Plotly 或 HTML/CSS 绘制 HTMAA → HTGAA → How2AI 的课程关系图，标注每门课程的核心议题、代表教授和关键成果。",
+        "data_needed": "课程官网资料、Neil Gershenfeld 和 PULiang 的公开演讲视频文字稿",
+        "possible_output": "一张可交互的 SVG 谱系图，含超链接到各课程官网"
+      },
+      {
+        "title": "多感官 AI 文献地图",
+        "difficulty": "intermediate",
+        "description": "用 NLP 方法（主题建模）对 MIT Multisensory Intelligence Group 近 5 年论文进行聚类分析，生成该研究组的核心议题地图，识别研究热点的演变趋势。",
+        "data_needed": "arXiv / Semantic Scholar 上该研究组的论文列表（可用 Semantic Scholar API 免费获取）",
+        "possible_output": "一份带主题聚类的研究地图 PDF + 可视化代码"
+      },
+      {
+        "title": "新模态 AI 化评估框架设计",
+        "difficulty": "advanced",
+        "description": "针对一种目前 AI 处理较少的模态（如「触觉」「嗅觉」「热感图像」），设计一套完整的 AI 化评估框架，包括数据质量评估、模型基准测试和下游任务评估的标准化流程。",
+        "data_needed": "对应模态的公开数据集（如触觉：TouchSense dataset；嗅觉：Smell Dataset 需核实）",
+        "possible_output": "一篇技术报告 + GitHub 评测代码模板"
+      }
+    ],
+    "reflection_questions": [
+      "「AI 化一种新模态」和「训练一个分类模型」有什么本质区别？",
+      "MIT 媒体实验室为什么选择「多感官 AI」作为研究切入点，而不是继续扩展语言模型？",
+      "如果让你选一种目前 AI 还未充分处理的数据模态，你会选什么？它的核心挑战是什么？"
+    ],
+    "mini_assignment": "选择一种你感兴趣但目前 AI 尚未充分处理的数据模态（可参考课程中的触觉、嗅觉、味觉、音乐等方向），写一份 500 字的分析报告，说明：① 该模态的数据特征；② 主要 AI 挑战；③ 可能的解决思路；④ 潜在应用场景。请注明「需进一步核实」的部分。",
+    "source_refs": [
+      "lec1 - introduction.pdf (slides_url: mit-mi.github.io)",
+      "MIT Multisensory Intelligence Group: mit-mi.github.io",
+      "Geometric Deep Learning: arxiv.org/abs/2104.13478",
+      "Representation Learning: arxiv.org/abs/1206.5538"
+    ]
+  },
+  {
+    "session_id": "m0-s02",
+    "note_status": "pilot",
+    "lecture_type": "lecture",
+    "one_sentence": "本节介绍做 AI 研究的方法论——如何产生研究想法、如何高效阅读论文、如何设计实验和记录研究过程。",
+    "core_question": "AI 研究与普通软件开发有什么本质不同？做 AI 研究有哪些具体可操作的方法？",
+    "why_it_matters": "很多理工科背景的学生习惯「解题思维」——给定问题，找到解法。但 AI 研究的起点往往是「发现问题」：现有方法在什么场景下失败？为什么失败？有没有另一种建模思路？这种「问题导向」的思维转变，是从学生到研究者最关键的跃迁。本节的论文阅读策略和研究迭代方法，会直接影响你整个学期的研究效率。",
+    "concepts": [
+      {
+        "term": "研究想法",
+        "term_en": "Research Idea",
+        "explanation": "有价值的研究想法通常来自三类来源：① 观察矛盾（现有方法 A 在场景 X 有效但在 Y 失败）；② 复现失败（尝试复现某篇论文的结果但发现不 work）；③ 跨领域迁移（把 A 领域的方法/理论应用到 B 领域）。好的研究想法不是「灵机一动」，而是系统观察和深度思考的产物。",
+        "common_misunderstanding": "常见误区是认为研究想法必须「完全创新」。实际上，大多数有价值的研究想法是在已有工作的基础上找到新的连接、组合或问题视角。"
+      },
+      {
+        "term": "论文阅读策略",
+        "term_en": "Paper Reading Strategy",
+        "explanation": "不是从头读到尾，而是分层次、带问题读：① 先读标题 + abstract + figures（判断是否值得读）；② 再读 introduction 和结论（理解动机和贡献）；③ 最后根据需要深入方法细节。AI 论文的信息密度很高，逐字阅读效率极低，带着具体问题读才能高效。",
+        "common_misunderstanding": "常见误区是「必须完全读懂论文的数学推导才能算读过」。实际上，能用一句话概括论文的核心贡献、知道它的局限性在哪里，比能推导每一个公式更重要。"
+      },
+      {
+        "term": "ML 实验可复现性",
+        "term_en": "Reproducibility in ML",
+        "explanation": "机器学习实验的可复现性比传统软件更难，因为结果依赖随机种子、硬件差异、库版本等多种因素。好的研究习惯是：① 记录所有超参数和随机种子；② 每次实验都有唯一的实验 ID；③ 保存实验产出的中间 checkpoint；④ 尽早记录 baseline，避免后续「选择性报告」。",
+        "common_misunderstanding": "常见误区是认为「跑出了好结果」就够了。实际上，审稿人和评审最常问的问题就是「能否复现」。没有良好的实验记录，好结果也难以被承认。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["阅读 Andrej Karpathy 的《A Recipe for Training Neural Networks》", "注册一个论文追踪工具（arXiv、Semantic Scholar 或 Papers with Code）", "选择 2-3 篇你感兴趣方向的多模态 AI 论文备用"],
+      "during_class": ["关注「研究想法的产生」部分——课程提到了哪些具体策略？", "Karpathy 的 recipe 有哪些具体步骤？", "思考：你的研究想法目前处于哪个阶段（观察/假设/验证）？"],
+      "after_class": ["用本节的方法，重读一篇你之前「读不懂」的论文，这次只带一个问题去读", "建立你的实验记录模板（实验 ID、日期、目标、超参数、结果、反思）", "开始每周固定时间阅读论文的习惯"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r003",
+        "title": "A Recipe for Training Neural Networks (Karpathy, 2019)",
+        "why_read": "这是做 AI 研究最实用的方法论文章之一，Andrej Karpathy 是斯坦福 CS231n 的明星讲师，他的建议非常具体可操作。",
+        "how_to_read": "逐段读，每个步骤都思考自己的项目是否已经做到。这是实践性文章，不是理论文章，重点是「做了没有」。",
+        "key_questions": ["你的项目目前在哪一步？", "你目前最大的瓶颈是什么（数据/架构/训练策略）？", "你有没有建立 baseline 并记录实验结果？"]
+      }
+    ],
+    "connection_to_previous": "m0-s01 建立了「什么是 AI 化新模态」的概念框架；本节则转向「如何具体开展 AI 研究」。两者结合才能开始真正动手。",
+    "connection_to_next": "m1-s03「数据、结构与信息」将回到具体技术内容，教你从数据角度理解不同模态的特性。本节学到的研究方法将直接用于那节课的论文阅读。",
+    "project_ideas": [
+      {
+        "title": "AI 论文阅读笔记系统",
+        "difficulty": "beginner",
+        "description": "用 Obsidian/Notion 或纯 Markdown 建立一个论文阅读笔记系统：对每篇读过的论文，记录「一句话总结」「核心贡献」「方法」「局限」「与我项目的关联」「下一步问题」。用标签系统管理，按研究方向分类。",
+        "data_needed": "你感兴趣方向的 5-10 篇核心论文",
+        "possible_output": "一份可搜索的论文笔记库（含 10+ 篇论文笔记），支持按标签检索"
+      },
+      {
+        "title": "研究想法追踪看板",
+        "difficulty": "intermediate",
+        "description": "参考课程提到的研究想法来源（矛盾、复现失败、跨领域迁移），建立你自己的「想法看板」：在 Notion/飞书/或纯 Markdown 中记录每个想法的来源、当前状态（待验证/验证中/已放弃/已成型），定期回顾和更新。",
+        "data_needed": "不需要外部数据，只需要你自己的思考记录",
+        "possible_output": "一个含 5-10 个研究想法的想法追踪系统，每个想法都有状态和更新时间"
+      }
+    ],
+    "reflection_questions": [
+      "你在阅读 AI 论文时，最常浪费时间的环节是什么？本节的阅读策略能如何改进？",
+      "「复现失败」是好的研究起点——你有没有过复现某方法但发现结果不符预期的经历？",
+      "如果让你把本节的「研究迭代方法」应用到你的 How2AI 项目，第一步你会做什么？"
+    ],
+    "mini_assignment": "找到一篇多模态 AI 方向的论文（可以从课程推荐的阅读列表中选），用本节介绍的「分层阅读法」阅读，并写一份 300 字的笔记，包含：① 一句话总结；② 核心贡献；③ 最大局限；④ 一个你想追问的问题。",
+    "source_refs": [
+      "lec1.2 - AI research.pdf",
+      "A Recipe for Training Neural Networks: karpathy.github.io/2019/04/25/recipe/",
+      "课程 Colab notebooks: colab.research.google.com"
+    ]
+  },
+  {
+    "session_id": "m1-s03",
+    "note_status": "pilot",
+    "lecture_type": "lecture",
+    "one_sentence": "本节从数据出发，理解不同模态的数据结构如何决定 AI 表征方式和模型选择。",
+    "core_question": "不同数据模态（图像、文字、声音、触觉、嗅觉）的「结构」有什么本质不同？为什么这种结构差异会影响模型架构的选择？",
+    "why_it_matters": "如果你想 AI 化一种新模态，第一步永远是理解它的数据特性。触觉数据是时空稠密的点云，嗅觉数据是高维稀疏的化学向量，视觉数据是规则网格，音乐数据是时序音符序列——它们的结构不同，「好的表征」就不同。几何深度学习提供了一个统一框架，理解它就能理解为什么 CNN 适合图像、GNN 适合分子结构、Transformer 适合文本。",
+    "concepts": [
+      {
+        "term": "模态",
+        "term_en": "Modality",
+        "explanation": "数据存在的感知形式。常见模态：视觉（图像/视频）、听觉（语音/音乐/环境声）、语言（文本/字幕）、触觉（压力/温度/振动）、嗅觉（气体化学成分）、味觉（化学混合物）、传感器数据（IMU/LiDAR/雷达）、医疗数据（CT/MRI/EEG）。模态决定了你用什么传感器获取数据，也决定了数据的结构特性。",
+        "common_misunderstanding": "常有人把所有非文本数据都叫「非结构化数据」。实际上，LiDAR 点云、传感器时序数据、EEG 医疗数据都有其内在结构，只是结构特性与文本不同。"
+      },
+      {
+        "term": "表示学习",
+        "term_en": "Representation Learning",
+        "explanation": "从原始数据中学习有效特征表示的过程。好的表示应该：① 保留任务相关信息；② 对无关变化（噪声、光照、视角）保持不变；③ 维度可控；④ 可解释或至少可分析。例如，CLIP 通过对比学习将图像和文字映射到同一个向量空间，实现了跨模态的对齐。",
+        "common_misunderstanding": "一个常见误区是认为「特征工程（手工提取特征）已经被深度学习彻底取代」。实际上，在某些模态（如医疗信号、传感器数据）上，领域知识驱动的特征工程仍然是重要补充，而非完全被端到端学习替代。"
+      },
+      {
+        "term": "几何深度学习",
+        "term_en": "Geometric Deep Learning (GDL)",
+        "explanation": "Bronstein et al. 提出的统一框架，将深度学习按数据所在的空间结构分类：grid（规则网格，如图像）、group（变换群，如文本/音频的序列）、graph（图结构，如社交网络/分子）、geodesic（流形上的数据，如 3D 形状）、gauge（坐标无关表示，如物理量）。这个框架帮助我们理解不同架构为什么有效。",
+        "common_misunderstanding": "常有人把几何深度学习等同于「图神经网络」。实际上，GNN 是 GDL 框架的一个子集，GDL 还包括 CNN（处理 grid）、RNN（处理 group）等更广泛的架构类别。"
+      },
+      {
+        "term": "训练目标与泛化",
+        "term_en": "Training Objective and Generalization",
+        "explanation": "训练目标（如对比学习、重建、预测下一个 token）决定模型学到的表示特性。对比学习（Contrastive Learning）鼓励相似样本接近、不相似样本远离，适合需要对齐多个模态的场景；重建目标（Reconstruction）鼓励保留完整信息，适合需要生成完整输出的场景。泛化能力取决于训练目标和数据的匹配程度。",
+        "common_misunderstanding": "一个常见误区是「只要 loss 降下来了，模型就一定学到了有用的表示」。实际上，模型可能学到 shortcut（如背景纹理而非物体本身），loss 下降但泛化能力很差。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["阅读 Geometric Deep Learning 论文的引言和框架部分（arXiv:2104.13478）", "回顾 MIT 官方 schedule 中本节课的 topics，尝试用自己的话列出要点"],
+      "during_class": ["关注「不同模态的数据结构如何影响模型选择」", "思考：触觉数据的最优表征是什么？嗅觉数据呢？它们和图像有什么本质区别？", "课程提到了哪些具体的数据获取策略？"],
+      "after_class": ["为你选择的模态画一张「数据→结构→表征」流程图", "分析该模态属于 GDL 五类框架中的哪一类（或哪几类的组合）"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r004",
+        "title": "Geometric Deep Learning (Bronstein et al., 2021)",
+        "why_read": "这是本节课的理论核心。通过理解 GDL 框架，你能建立对不同模态数据的系统认知，知道为什么 CNN/GNN/Transformer 分别适合不同数据结构。",
+        "how_to_read": "重点读 Section 1-2。理解 grid/group/graph/geodesic/gauge 五大类的划分逻辑。跳过数学推导，记住每类的代表架构和应用场景即可。",
+        "key_questions": ["触觉传感器数据属于 GDL 五类中的哪一类？为什么？", "为什么 Transformer 能处理文本（group）又能处理图像（grid）？", "多模态数据的异质性如何在 GDL 框架下理解？"]
+      },
+      {
+        "reading_id": "r005",
+        "title": "Representation Learning (Bengio et al., 2013)",
+        "why_read": "表示学习是 AI 的核心问题。理解「什么是好的表示」是理解多模态对齐、融合、迁移的基础。",
+        "how_to_read": "重点读 Section 3-4（表示学习的目标和准则）。这篇论文较长，不需要一次性读完，可以作为参考书使用。",
+        "key_questions": ["监督学习和无监督学习学到的表示有什么不同？", "「解耦表示」（disentangled representation）是什么意思？为什么重要？"]
+      }
+    ],
+    "connection_to_previous": "m0-s02 的研究方法论为本节论文阅读提供了工具——你将用「分层阅读法」读 Geometric Deep Learning 论文。m0-s01 的「多模态 AI」概念为本节提供了宏观背景。",
+    "connection_to_next": "m1-s04「实用 AI 工具」将从理论走向实践，教你用 PyTorch 和 Hugging Face 实现本节讨论的表示学习方法。本节画的「数据→结构→表征」图将直接成为下一节工具选择的依据。",
+    "project_ideas": [
+      {
+        "title": "「我的模态属于哪一类」分析报告",
+        "difficulty": "beginner",
+        "description": "选择你的项目涉及的核心数据模态，用 GDL 框架分析它的结构特性：属于 grid / group / graph / geodesic / gauge 中的哪一类？它的对称性是什么（平移/旋转/缩放/置换）？现有哪个架构最合适处理它？",
+        "data_needed": "该模态的公开数据集或已有数据样本",
+        "possible_output": "一份 500-800 字的模态分析报告，配结构示意图"
+      },
+      {
+        "title": "多模态数据表征对比实验",
+        "difficulty": "intermediate",
+        "description": "对同一组多模态数据（如图像+文字描述），分别用三种不同训练目标（对比学习/重建/预测）训练表征，比较它们在下游任务（分类/检索/生成）上的效果差异。分析为什么某些训练目标在某些任务上更好。",
+        "data_needed": "一个多模态数据集（如 MSCOCO、LAION-raw，待核实），PyTorch 环境",
+        "possible_output": "实验报告（含 baseline 对比表）+ 可复现代码"
+      },
+      {
+        "title": "新模态数据获取 pipeline 设计",
+        "difficulty": "advanced",
+        "description": "针对一种尚未充分 AI 化的模态（如「餐厅气味」「城市声音景观」），设计完整的数据获取和预处理 pipeline：传感器选型、数据标注策略、数据增强方法、初步表征探索。",
+        "data_needed": "对应模态的传感器和数据采集设备（部分可用智能手机替代，如录音、拍照）",
+        "possible_output": "一份完整的数据 pipeline 设计文档 + 初步数据样本和分析"
+      }
+    ],
+    "reflection_questions": [
+      "为什么触觉数据（时空稠密点云）比视觉数据（规则网格）更难处理？这对表征学习有什么影响？",
+      "「嗅觉 AI」目前面临的核心数据挑战是什么？传感器分辨率、香气分子混合物的高维性是否已有解决方案？",
+      "如果你要 AI 化一种新模态，「数据不足」和「结构不清」哪个是更大的瓶颈？如何判断？"
+    ],
+    "mini_assignment": "选择一个本课程涉及的模态（参考：视觉/听觉/触觉/嗅觉/味觉/音乐/传感器/医疗数据），用 GDL 框架分析其结构特性：① 数据类型（grid/group/graph/geodesic/gauge）；② 主要对称性；③ 适合的主流架构；④ 核心表征挑战。写一份 400 字的简要分析。请标注任何「需进一步核实」的部分。",
+    "source_refs": [
+      "lec2 - data.pdf",
+      "Geometric Deep Learning: arxiv.org/abs/2104.13478",
+      "表示学习: arxiv.org/abs/1206.5538",
+      "多感官 AI: arxiv.org/abs/2209.03430"
+    ]
+  },
+  {
+    "session_id": "m1-s04",
+    "note_status": "pilot",
+    "lecture_type": "lecture",
+    "one_sentence": "本节从理论走向实践，介绍 PyTorch 和 Hugging Face 生态系统的核心用法，以及调试 ML 模型的实用技巧。",
+    "core_question": "如何从零搭建一个可工作的 ML 实验环境？如何诊断和修复 ML 模型训练中的常见问题？",
+    "why_it_matters": "AI 研究最终要在代码里验证想法。如果工具链不熟，再好的研究想法也无法落地。本节不教你深度学习理论，而是教你「如何让模型真正跑起来」——这是从课堂学习到科研实践的关键一步。很多研究项目的瓶颈不是想法不够，而是实验效率太低、调试能力不足。",
+    "concepts": [
+      {
+        "term": "PyTorch 动态图与自动微分",
+        "term_en": "PyTorch Dynamic Computation Graph & Autograd",
+        "explanation": "PyTorch 的核心优势是「动态计算图」——每次前向传播时，图是即时构建的，便于调试和修改。Autograd 系统自动追踪所有运算并计算梯度，你只需要写前向传播，backward 交给框架。理解这一点对调试梯度问题至关重要。",
+        "common_misunderstanding": "初学者常把 torch.Tensor 和 torch.nn.Parameter 混淆。Tensor 是数据容器，Parameter 是可学习参数（自动注册到模型）。不把数据转为 Parameter，模型就无法学习。"
+      },
+      {
+        "term": "Hugging Face 生态系统",
+        "term_en": "Hugging Face Ecosystem",
+        "explanation": "HF 是当前 ML 最重要的开源社区之一，提供：Transformers（预训练模型库）、Datasets（数据处理）、Diffusers（生成模型）、PEFT（参数高效微调）、Gradio（快速部署 demo）。对于多模态 AI 项目，HF 的 pipeline 和 model hub 能大幅加速原型开发。",
+        "common_misunderstanding": "有人认为 HF 只是「调用别人训练好的模型」。实际上 HF 也支持完整的自定义训练流程，包括分布式训练、混合精度、梯度累积等高级功能。"
+      },
+      {
+        "term": "ML 调试的特殊挑战",
+        "term_en": "Debugging Challenges in ML",
+        "explanation": "ML 调试比普通程序调试更难，因为：① 没有「正确输出」可对比（只有 ground truth 和指标）；② 问题可能来自数据（脏数据/分布偏移）也可能来自模型（架构/超参数）；③ 训练过程不可逆（改了参数要从头训练）；④ 随机性（不同种子结果不同）。需要建立系统化的调试方法。",
+        "common_misunderstanding": "初学者最常犯的错误是「同时改太多东西」。正确做法是：一次只改一个变量，记录每次实验的结果，建立 baseline 后再逐步探索。"
+      },
+      {
+        "term": "实验管理与可复现性",
+        "term_en": "Experiment Management & Reproducibility",
+        "explanation": "使用 wandb（Weights & Biases）、tensorboard 或 MLflow 等工具记录每次实验的配置、指标曲线和产出的 checkpoint。良好的实验管理习惯使你能快速对比不同设置的效果，也是论文可复现性的基础。",
+        "common_misunderstanding": "认为 wandb 只是「画图工具」。实际上它的核心价值是超参数搜索、实验对比和团队结果共享，能显著提升研究迭代效率。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["注册 Google Colab 并熟悉界面（课程提供两个 Colab notebook）", "安装 PyTorch（CPU 版即可，先跑通基础操作）", "注册 Hugging Face 账号，了解 Model Hub 的基本用法"],
+      "during_class": ["跟着课程 Colab notebook 一步步操作，不要只是看", "关注 Karpathy 调试 recipe 里的「经验法则」：先让模型记住几个样本、检查 loss 是否下降、检查梯度是否正常", "记录你遇到的具体报错和解决方法"],
+      "after_class": ["完成课程提供的两个 Colab notebook，确保能独立运行", "为你的 How2AI 项目搭建基础实验环境（Python + PyTorch + HF + wandb）", "跑通一个最简单的 baseline 模型"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r006",
+        "title": "A Recipe for Training Neural Networks (Karpathy, 2019)",
+        "why_read": "本节课的核心阅读。Karpathy 提供了 ML 调试的系统化方法，每一步都有具体检查点，是从「调包侠」到「有研究素养的工程师」的关键读物。",
+        "how_to_read": "这是实操性最强的文章。读完后立即应用：选一个你之前训练过的模型，用 recipe 的步骤逐项检查。有问题的模型不要丢，用 recipe 步骤诊断。",
+        "key_questions": ["你的模型目前通过 recipe 的哪一步？卡在哪一步？", "loss 曲线正常吗？梯度正常吗？数据流正常吗？"]
+      },
+      {
+        "reading_id": "r007",
+        "title": "课程 PyTorch Introduction Colab",
+        "why_read": "课程官方 notebook，手把手带你用 PyTorch 实现基础操作，是最贴近课程内容的实践材料。",
+        "how_to_read": "不要只是运行代码，要理解每一行代码的作用：这一行是在做什么？输入输出是什么？为什么这里要用 .to(device)？",
+        "key_questions": ["torch.nn.Module 的 __init__ 和 forward 方法各自负责什么？", "optimizer.zero_grad() 为什么要每次手动调用？"]
+      }
+    ],
+    "connection_to_previous": "m1-s03 从理论层面讲解了数据→表征→架构的 pipeline；本节则将这些理论落地为可运行的代码。你在 m1-s03 画的「数据→结构→表征」图，可以直接作为本节选择工具的参考依据。",
+    "connection_to_next": "m1-s05「模型架构」将深入讲解 CNN/RNN/GNN/Transformer 的内部原理。你在本节搭建的实验环境，将直接用于下一节运行不同架构的对比实验。",
+    "project_ideas": [
+      {
+        "title": "个人 ML 实验环境标准化",
+        "difficulty": "beginner",
+        "description": "为你自己建立一套标准化的 ML 实验环境：统一的 conda/pip 环境、wandb 账号配置、GitHub 仓库初始化、实验记录模板。每开始一个新项目，只需 clone 模板仓库，修改数据路径和超参数即可开始实验。",
+        "data_needed": "你自己的 ML 环境（Python 3.8+，推荐 3.10+）",
+        "possible_output": "一份可复用的实验环境模板（GitHub repo + README 配置说明）"
+      },
+      {
+        "title": "多架构对比实验报告",
+        "difficulty": "intermediate",
+        "description": "针对你的项目模态，对比 CNN / RNN / Transformer 三种架构在该模态数据上的基线效果。记录训练时间、参数量、GPU 显存占用、验证集准确率、收敛稳定性。用 wandb 记录所有实验。",
+        "data_needed": "对应模态的公开数据集（可先用较小规模验证）",
+        "possible_output": "一份多架构对比实验报告（含图表）+ wandb 实验链接"
+      }
+    ],
+    "reflection_questions": [
+      "ML 调试和普通程序调试有什么本质区别？为什么在 ML 中「逐个变量控制」比「一次性改完」更重要？",
+      "你之前训练模型时，遇到最棘手的问题是什么？用 Karpathy 的 recipe 重新分析，是否有不同的诊断结论？",
+      "如果你选择的模态数据量很小（< 1000 样本），应该优先调哪些超参数？哪些架构选择要更慎重？"
+    ],
+    "mini_assignment": "运行课程提供的 PyTorch Introduction Colab notebook，理解每个代码块的作用，并修改其中一处超参数（batch size / learning rate / epochs），观察结果变化。将你的观察记录在 200 字以内的实验笔记中。",
+    "source_refs": [
+      "Debugging Tips.pdf",
+      "A Recipe for Training Neural Networks: karpathy.github.io/2019/04/25/recipe/",
+      "PyTorch Introduction Colab: colab.research.google.com/drive/1EDsjYRrAiujUew0GRJ_hyVoNMsSDnlnx",
+      "Debugging Tips Colab: colab.research.google.com/drive/1SoTu6gvYcLNDqPwNPTWmsSYF-l-UfHPx"
+    ]
+  },
+  {
+    "session_id": "m1-s05",
+    "note_status": "pilot",
+    "lecture_type": "lecture",
+    "one_sentence": "本节系统讲解现代 AI 主流架构（CNN/RNN/Transformer/GNN）的设计哲学——每种架构引入了什么归纳偏置，为什么它适合特定的数据结构。",
+    "core_question": "如何为一种新模态选择合适的架构基础？架构的「归纳偏置」如何影响模型的泛化行为？",
+    "why_it_matters": "在 AI 化一种新模态时，架构选择是最关键的决策之一。选择错误的架构会让你事倍功半。理解每种架构背后的「设计哲学」——它假设了什么对称性/结构性/先验——才能做出明智选择。这也为后续理解多模态对齐和融合打下了基础。",
+    "concepts": [
+      {
+        "term": "归纳偏置",
+        "term_en": "Inductive Bias",
+        "explanation": "模型在训练数据之外对问题结构做的先验假设。CNN 假设平移不变性（图像的局部特征在哪里都同样有效）；RNN 假设时间顺序（当前状态只依赖过去状态）；Transformer 通过注意力机制假设全连接（任意位置可以直接交互）。没有归纳偏置的模型需要更多数据才能学习到这些结构。",
+        "common_misunderstanding": "一个常见误解是「归纳偏置越小越好，这样模型更自由」。实际上，当数据量有限时，没有归纳偏置的模型难以收敛到好的解。设计好的归纳偏置就是人类专家的价值所在。"
+      },
+      {
+        "term": "Transformer 架构",
+        "term_en": "Transformer Architecture",
+        "explanation": "2017 年《Attention is All You Need》提出的架构，通过自注意力（Self-Attention）机制建立任意位置之间的直接依赖关系，消除了 RNN 的顺序计算限制。核心组件：Multi-Head Self-Attention、残差连接（Residual Connection）、Layer Norm、位置编码（Positional Encoding）。",
+        "common_misunderstanding": "初学者常混淆 Self-Attention 和 Cross-Attention。前者是在同一模态内建立全局依赖（文本→文本），后者是跨模态建立依赖（如图像 query 与文本 key 匹配）。多模态模型大量使用 Cross-Attention。"
+      },
+      {
+        "term": "视觉 Transformer",
+        "term_en": "Vision Transformer (ViT)",
+        "explanation": "将图像切分为固定大小的 patch（如 16x16 像素），每个 patch 作为一个「token」，加上位置编码后送入标准 Transformer 编码器。ViT 的假设是：图像块之间的关系可以通过全局注意力学习，不需要 CNN 的局部卷积归纳偏置。",
+        "common_misunderstanding": "ViT 需要大量数据才能发挥优势（和 CNN 相比）。在数据量较小时，CNN 仍是更好的选择。ViT 的「暴力美学」（大数据+大模型）也是 Bitter Lesson 的体现。"
+      },
+      {
+        "term": "图神经网络",
+        "term_en": "Graph Neural Network (GNN)",
+        "explanation": "处理图结构数据的神经网络。核心机制是消息传递（Message Passing）：每个节点从邻居节点聚合信息，逐步更新节点表示。GNN 的假设是：关系是结构的核心（而非欧几里得距离）。适合分子图、社交网络、知识图谱等场景。",
+        "common_misunderstanding": "常有人问：GNN 和 Transformer 有什么区别？本质上 Transformer 是 GNN 的一种特例（全连接图，等权重注意力），但两者在稀疏性、归一化策略、表达能力上有显著差异。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["阅读《Attention is All You Need》摘要和引言（arXiv:1706.03762），重点理解 Self-Attention 的计算方式", "观看课程 videos（如果网络允许）"],
+      "during_class": ["关注「为什么 Transformer 能处理任意长度的序列」", "思考：为什么 NLP 领域 Transformer 彻底取代了 RNN，但在视觉领域 CNN 仍然很重要？", "思考：GNN 和 Transformer 的核心区别是什么？"],
+      "after_class": ["对比 CNN / ViT / GNN 在处理同一类数据时的计算复杂度", "为你选择的模态设计一个初步的架构方案，说明为什么这样选择"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r008",
+        "title": "Attention is All You Need (Vaswani et al., 2017)",
+        "why_read": "Transformers 是现代 AI 的基石。本文是必读原文，不需要完全理解数学推导，但必须理解 Self-Attention 为什么有效以及它解决了 RNN 的什么问题。",
+        "how_to_read": "重点读 Section 3（Model Architecture）。公式 (1) 是 Self-Attention 的核心，理解 Q/K/V 的语义比推导过程更重要。",
+        "key_questions": ["Self-Attention 的计算复杂度是多少？它如何处理长序列？", "为什么需要 Multi-Head Attention 而不是单个 Attention？"]
+      },
+      {
+        "reading_id": "r009",
+        "title": "An Image is Worth 16x16 Words (ViT, Dosovitskiy et al., 2021)",
+        "why_read": "ViT 将 Transformer 引入计算机视觉，是多模态模型（如 CLIP）的重要组成部分。理解 ViT 的设计对于理解现代多模态模型至关重要。",
+        "how_to_read": "重点读 Section 1-2，理解 ViT 的核心设计决策：为什么图像可以切成 patch？patch embedding 是怎么做的？",
+        "key_questions": ["ViT 相比 CNN 的优势在什么场景下最明显？", "ViT 的位置编码和文本的位置编码有什么不同？"]
+      }
+    ],
+    "connection_to_previous": "m1-s03 建立了数据→结构→表征的理论框架，本节将具体化到每种架构；m1-s04 的实验环境为你提供了亲手运行不同架构的工具。本节的架构知识是后续理解多模态模型（如 CLIP、BLIP）内部机制的基础。",
+    "connection_to_next": "m1-disc01「讨论 1：学习与泛化」将深入探讨学习理论：Bitter Lesson、Double Descent、规模效应。本节讨论的架构选择将在那节课的讨论中被追问：「你的架构选择是在引入归纳偏置还是在依赖数据规模？」",
+    "project_ideas": [
+      {
+        "title": "「架构选型分析报告」",
+        "difficulty": "beginner",
+        "description": "针对你的 How2AI 项目：① 列出该模态数据的数据结构特性；② 分析 3 种候选架构对该模态的适合程度；③ 给出最终架构选择建议和理由。用表格对比各架构的优缺点。",
+        "data_needed": "对应模态的公开数据集描述",
+        "possible_output": "一份 600-1000 字的架构选型报告，含对比表格"
+      },
+      {
+        "title": "归纳偏置可视化实验",
+        "difficulty": "intermediate",
+        "description": "设计一个对照实验：对于同一数据集，分别训练有特定归纳偏置的模型（CNN）和无特定归纳偏置的模型（MLP），比较它们在「正常数据」和「数据增强后」（如旋转/噪声）的表现差异，验证归纳偏置的实际作用。",
+        "data_needed": "一个适合图像的数据集（如 CIFAR-10），PyTorch",
+        "possible_output": "实验报告 + 对比可视化图 + 结论分析"
+      },
+      {
+        "title": "多模态架构探索性项目",
+        "difficulty": "advanced",
+        "description": "针对你的项目模态，设计一个多模态架构原型：如何将你的目标模态（Modality X）的表示与语言/视觉表示对齐？选择什么对齐目标（对比学习/masked reconstruction）？用什么融合策略（concatenation / cross-attention / fusion encoder）？给出理论分析和初步代码。",
+        "data_needed": "目标模态数据集 + 预训练语言/视觉模型（可用 HF 模型）",
+        "possible_output": "架构设计文档 + MVP 代码实现"
+      }
+    ],
+    "reflection_questions": [
+      "Transformer 通过注意力机制建立全局依赖，这对处理你的目标模态数据是优势还是劣势？为什么？",
+      "「苦涩教训」（Bitter Lesson）认为应该让模型自己学习而非引入手工归纳偏置。ViT 的成功是支持还是反对这个观点？",
+      "如果你要 AI 化一种全新模态（目前还没有成熟的架构方案），你如何决定引入什么归纳偏置？"
+    ],
+    "mini_assignment": "选择你的 How2AI 项目目标模态，分析其数据结构特性，然后从 CNN / ViT / GNN / Transformer / RNN 中选择最合适的 2-3 种候选架构，写一份 400 字的架构选型分析：每种候选架构的适用理由、不适用理由、以及最终推荐。请注明任何「需进一步核实」的假设。",
+    "source_refs": [
+      "lec3 - models.pdf",
+      "Attention is All You Need: arxiv.org/abs/1706.03762",
+      "ViT: arxiv.org/abs/2010.11929",
+      "BPTT: arxiv.org/abs/1409.0473",
+      "消息传递神经网络: arxiv.org/abs/1703.06114"
+    ]
+  },
+  {
+    "session_id": "m1-disc01",
+    "note_status": "pilot",
+    "lecture_type": "discussion",
+    "one_sentence": "本讨论课深入 AI 的根本学习问题：Bitter Lesson、Double Descent、规模效应，以及它们对研究策略的深刻影响。",
+    "core_question": "深度学习的学习规律与人类学习有什么本质不同？算力、模型规模、数据规模三者谁更重要？手工归纳偏置是否已经过时？",
+    "why_it_matters": "如果你要 AI 化一种新模态，你需要回答一个根本问题：我应该投入多少资源（数据、算力、模型规模）来解决问题？盲目跟随「越大越好」可能浪费资源；过度依赖手工归纳偏置可能错失 scaling 的红利。理解这些学习理论，能帮你做出更明智的研究决策。",
+    "concepts": [
+      {
+        "term": "苦涩教训",
+        "term_en": "Bitter Lesson (Rich Sutton, 2019)",
+        "explanation": "Rich Sutton 2019 年发表的反思性文章指出：AI 历史上最有效的进步来自「基于通用方法」的算力增长，而非领域知识的手工编码。苦涩教训是：让模型从数据中自己学习，而非试图「教」它我们已知的东西。他的结论对研究策略有深刻影响：投资数据和算力比手工调参更值得。",
+        "common_misunderstanding": "有人把 Bitter Lesson 理解为「不要研究架构」。实际上，Sutton 的意思是：基于人类知识的归纳偏置（手工特征）容易被更通用的方法超越，但合理的架构创新（如 Transformer）本身是算力驱动的，仍有价值。"
+      },
+      {
+        "term": "双降曲线",
+        "term_en": "Double Descent",
+        "explanation": "传统统计学习认为模型越大、越复杂，泛化误差先降后升（U 形曲线）。Double Descent 现象发现：当模型规模超过某个临界点后，泛化误差再次下降，而且规模越大效果越好。这与 Bitter Lesson 相互呼应：更大的模型 + 更多数据 = 更好的泛化。",
+        "common_misunderstanding": "Double Descent 不是「越大越好」的无限乐观。实际上，它有一个「critical regime」：在刚好过参数化的区间，泛化最差。而且这种现象在不同的任务、数据分布、训练策略下是否普遍存在，仍是活跃的研究问题。"
+      },
+      {
+        "term": "泛化",
+        "term_en": "Generalization",
+        "explanation": "模型在训练数据之外的未见数据上的表现能力。泛化的核心问题是：为什么神经网络（参数量远大于训练样本数）仍然能泛化？传统统计理论无法解释这个问题。Double Descent、Lottery Ticket Hypothesis 等都是试图回答这个问题的新理论。",
+        "common_misunderstanding": "认为「训练误差低就代表模型好」。实际上，泛化差距（训练误差 - 测试误差）才是关键。如果差距很大，说明模型在记忆训练数据而非学习可泛化的模式。"
+      },
+      {
+        "term": "规模效应",
+        "term_en": "Scaling",
+        "explanation": "模型性能随模型规模（参数量）、数据规模（训练样本数）、算力（FLOPs）增长而提升的规律。GPT 系列、LLaMA、Claude 等大语言模型证明了很多能力只有在规模达到临界点后才会「涌现」（emergence）。理解规模效应，对评估你的项目所需资源至关重要。",
+        "common_misunderstanding": "认为「规模效应是万能的」。实际上，规模效应有天花板：某些任务（如精确数学推理）即使大规模也不能完全解决。而且规模带来的能力涌现是不可预测的。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["阅读 Rich Sutton 的 Bitter Lesson 文章原文", "浏览课程 schedule 中本节讨论涉及的 5 篇文章的标题，建立初步印象", "思考：你的项目目前最大的瓶颈是「数据不足」还是「模型太小」？"],
+      "during_class": ["积极参与讨论：结合你的项目经历，思考 Bitter Lesson 对你的研究策略有什么具体影响", "思考：如果你有有限的算力和数据，你的项目应该优先投资哪个方向？", "思考：规模效应对多模态 AI 意味着什么？新模态数据的 scaling 有什么特殊挑战？"],
+      "after_class": ["写一份讨论反思：这次讨论改变了你的哪些认知？对你的项目有什么具体影响？", "评估你的项目在「手工归纳偏置」和「数据规模」之间的最优平衡点"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r010",
+        "title": "The Bitter Lesson (Rich Sutton, 2019)",
+        "why_read": "这是做 AI 研究必读的方法论文章。Sutton 总结了几十年 AI 历史，得出一个令人不安但真实的结论：太多研究被「人类知识」误导，忽视了算力的通用价值。",
+        "how_to_read": "这是短文（几页），一口气读完。读完后想：你过去做的研究，有哪些是「试图用人类知识解决问题」？有哪些是「利用算力自动学习」？",
+        "key_questions": ["Sutton 说的「通用方法」具体指什么？", "这和今天大语言模型的成功有什么关系？", "作为个体研究者，应该如何调整研究策略？"]
+      },
+      {
+        "reading_id": "r011",
+        "title": "Deep Double Descent (Belkin et al., 2019)",
+        "why_read": "Double Descent 揭示了深度学习泛化理论中最神秘的现象之一，对理解为什么大模型仍然有效至关重要。",
+        "how_to_read": "重点读 Section 1（Introduction）和 Section 2（The Phenomenon）。关注实验结果的可视化图，理解「为什么传统统计理论无法解释深度学习」。",
+        "key_questions": ["Double Descent 的 critical regime 在你的项目里是否存在？", "这对你选择模型规模有什么启示？"]
+      }
+    ],
+    "connection_to_previous": "m1-s05 讲解了不同架构的归纳偏置——本节则进一步追问：这些归纳偏置是否真的必要？规模是否可以替代手工归纳偏置？两者结合才能做出明智的架构和资源决策。",
+    "connection_to_next": "本节讨论的「规模效应」和「手工归纳偏置的取舍」，将直接影响后续 Module 2（多模态 AI）和 Module 3（大语言模型）章节的内容——这些章节会讨论 CLIP、DALL-E 等大规模多模态模型的 scaling 路径。",
+    "project_ideas": [
+      {
+        "title": "「我的项目资源预算分析」",
+        "difficulty": "beginner",
+        "description": "评估你的 How2AI 项目在有限资源（有限的 GPU 时间、有限的数据量）下的最优投入方向：① 估算你的数据规模和可用算力；② 分析在这个资源约束下，规模效应能否发挥作用；③ 给出具体的资源分配建议（数据采集 / 模型选择 / 训练策略）。",
+        "data_needed": "你自己的项目现状评估，不需要外部数据",
+        "possible_output": "一份 500 字的资源预算分析报告"
+      },
+      {
+        "title": "Bitter Lesson vs. 归纳偏置辩论准备",
+        "difficulty": "intermediate",
+        "description": "分别从 Bitter Lesson（算力>手工知识）和归纳偏置（合理的结构假设>盲目扩展）两个视角，为你的项目提出优化建议，形成一份「辩论式」分析：两种策略各能带来什么？最优组合是什么？",
+        "data_needed": "你自己的项目数据和目标",
+        "possible_output": "一份 800-1000 字的辩论式分析报告"
+      }
+    ],
+    "reflection_questions": [
+      "你过去有没有过「手工设计了很多特征，最终被简单的端到端方法超越」的经历？从中你学到了什么？",
+      "对于你的 How2AI 项目，如果规模效应有效（越多数据越好），你会优先投资数据采集还是模型规模？两者如何平衡？",
+      "多模态 AI 的规模效应是否与纯语言模型相同？不同模态之间的数据量差异会不会成为 scaling 的瓶颈？"
+    ],
+    "mini_assignment": "针对你的 How2AI 项目，回答以下三个问题并写成 400 字报告：① 你的项目在数据-算力-模型规模三角中，目前最受限的是哪一边？② 如果你获得 10 倍资源（10 倍数据 / 10 倍算力 / 10 倍模型规模），你会优先投入哪个方向？为什么？③ 你计划用什么策略来弥补资源不足（手工归纳偏置 / 数据增强 / 预训练模型微调）？",
+    "source_refs": [
+      "讨论 1 slides（课程内部资料，待核实）",
+      "The Bitter Lesson: arxiv.org (搜索 Rich Sutton 2019)",
+      "Deep Double Descent: arxiv.org (搜索 Belkin et al. 2019)"
+    ]
+  },
+  {
+    "session_id": "m1-proposal",
+    "note_status": "pilot",
+    "lecture_type": "project",
+    "one_sentence": "本节是项目提案展示环节，你需要向导师和同学清晰阐述你的研究问题、动机和初步方案。",
+    "core_question": "你打算 AI 化哪种新模态或应用？为什么现有的方法不足？你的方法的核心假设和预期贡献是什么？",
+    "why_it_matters": "提案展示是研究训练的第一步。很多研究者终其一生都无法把自己的想法清晰传达给他人。项目提案迫使你在正式动手前把想法「说清楚」——这往往会发现你自己都没想明白的地方。好的提案不需要完美解决方案，但需要清晰的问题定义和合理的验证计划。",
+    "concepts": [
+      {
+        "term": "研究提案结构",
+        "term_en": "Research Proposal Structure",
+        "explanation": "标准研究提案通常包含：① Motivation（为什么这个问题重要）；② Related Work（现有方法有哪些，做到了什么，还缺什么）；③ Approach（你的方法的核心思路）；④ Expected Contribution（预期贡献是什么）；⑤ Evaluation Plan（你如何衡量成功）。清晰的提案结构是有效沟通的基础。",
+        "common_misunderstanding": "常见误区是「提案越详细越好，要把所有实验设计都写出来」。实际上，提案的核心是「清晰的问题定义」而非「完整的解决方案」。太详细的方案反而容易在答辩中被指出漏洞。"
+      },
+      {
+        "term": "研究动机与问题定义",
+        "term_en": "Motivation & Problem Definition",
+        "explanation": "研究动机回答「为什么这个问题值得解决」；问题定义回答「我们具体要解决什么」。好的问题定义是具体的、可测试的、有边界的。「多模态 AI」是一个太大的问题；「如何用语言对齐触觉传感器的时空稠密数据」才是一个可操作的问题定义。",
+        "common_misunderstanding": "初学者常把「问题定义」写成「背景介绍」。实际上，问题定义应该像一句话摘要：用一句话说清楚你的研究要解决什么具体问题。"
+      },
+      {
+        "term": "Ablation Study",
+        "term_en": "Ablation Study",
+        "explanation": "消融实验：通过逐一移除或修改模型的某个组件，验证该组件对整体效果的贡献。例如，如果你的多模态模型使用了 cross-attention 和 fusion encoder 两种融合策略，ablation study 会测试：只用 cross-attention、只用 fusion encoder、两者都不用（concatenation baseline），分别效果如何。",
+        "common_misunderstanding": "有人认为 ablation study 只在论文写作阶段才需要。实际上，应该在实验设计阶段就规划好 ablation 目标，因为系统的 ablation 分析需要大量实验，不是一次性完成的。"
+      }
+    ],
+    "lecture_guide": {
+      "before_class": ["按照课程要求准备 5 分钟提案幻灯片", "明确你的项目方向：目标模态、数据来源、预期方法", "列出 3 个你预计会遇到的挑战和你的初步应对策略"],
+      "during_class": ["清晰陈述：你是谁（项目背景）、你要做什么（研究问题）、为什么重要（动机）", "认真听取其他同学的提案和他的反馈意见", "准备回答关于数据可行性、方法合理性的追问"],
+      "after_class": ["根据收到的反馈，更新你的项目提案文档", "制定正式的项目执行计划（含里程碑：数据获取 / baseline 建立 / 方法迭代 / 评估报告）", "开始第一步：数据获取或 baseline 模型搭建"]
+    },
+    "reading_guide": [
+      {
+        "reading_id": "r012",
+        "title": "课程项目提案模板（内部资源）",
+        "why_read": "课程提供的官方模板是组织提案内容的直接参考，确保涵盖所有必要部分。",
+        "how_to_read": "直接按照模板的章节组织你的提案内容，每一节都要填写，不要跳过任何部分。",
+        "key_questions": ["你的提案 motivation 能用一句话说清楚吗？", "你的 evaluation plan 是否具体可操作？"]
+      }
+    ],
+    "connection_to_previous": "m1-proposal 整合了 Module 0 和 Module 1 的全部学习：你用 m0-s01 的多模态 AI 框架定位问题，用 m0-s02 的研究方法规划路径，用 m1-s03 的数据视角评估可行性，用 m1-s04/05 的工具和架构搭建 baseline。",
+    "connection_to_next": "项目提案完成后，进入实质性的研究阶段：数据采集、baseline 迭代、ablation 分析、中期报告。Module 2（多模态 AI）的内容将直接为你的项目提供方法论支撑。",
+    "project_ideas": [
+      {
+        "title": "项目提案一页纸",
+        "difficulty": "beginner",
+        "description": "按照标准研究提案格式，把你的 How2AI 项目整理成一页纸版本：Motivation（200字）、Related Work（100字）、Approach（200字）、Expected Contribution（100字）、Evaluation Plan（100字）。共约700字。",
+        "data_needed": "你自己对项目的思考，以及相关的 3-5 篇参考文献",
+        "possible_output": "一份一页纸的项目提案 PDF，可用于课程提交"
+      },
+      {
+        "title": "项目里程碑规划",
+        "difficulty": "beginner",
+        "description": "根据课程的项目时间线（Proposal → Midterm → Final Report），为你的项目制定详细的里程碑计划：每周做什么、数据到什么阶段、baseline 模型达到什么指标、中期目标是什么。设置缓冲时间应对不可预见的问题。",
+        "data_needed": "课程项目时间表（参考 syllabus）",
+        "possible_output": "一份带日期的项目 Gantt 图或里程碑表格"
+      },
+      {
+        "title": "Ablation 实验规划",
+        "difficulty": "intermediate",
+        "description": "针对你的项目方法，提前规划 ablation study：你的方法有哪些核心组件？每个组件的消融版本是什么？消融实验需要多少 GPU 时间和数据量？这份规划也是论文「实验设计」章节的初稿。",
+        "data_needed": "你的项目方法的组件分析，不需要实际运行实验",
+        "possible_output": "一份 ablation 实验规划表（含变量定义、对照组设置、评估指标）"
+      }
+    ],
+    "reflection_questions": [
+      "你的项目提案在 30 秒内能被一个非专业人士理解吗？如果不能，哪个部分最模糊？",
+      "你的提案最大的弱点是什么？如果被追问，你会如何回答？",
+      "在提案的 five key papers 里（课程要求），你最不确定的是哪篇的结论？这对项目有什么风险？"
+    ],
+    "mini_assignment": "完成你的项目提案幻灯片（5 分钟演示），包含：① 项目标题（一句话说明你要做什么）；② 研究动机（为什么重要）；③ 核心问题（具体要解决什么）；④ 方法概述（你打算怎么做）；⑤ 评估计划（你怎么知道成功了）；⑥ 时间线（里程碑）。提交前请对着镜子或朋友试讲一遍，确保 5 分钟内能讲完。",
+    "source_refs": [
+      "课程项目提案 slides（内部展示，无公开链接）",
+      "参考：MIT MAS.S60 syllabus 项目评分标准"
+    ]
+  }
+]

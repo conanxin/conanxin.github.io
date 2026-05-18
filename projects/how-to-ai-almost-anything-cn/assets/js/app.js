@@ -1,5 +1,6 @@
-/* How2AI 中文课程 — 交互逻辑 (Phase 2) */
+/* How2AI 中文课程 — 交互逻辑 (Phase 7A) */
 let courseData = [], curatedReadings = [], glossaryData = [], officialReadings = [],
+    lectureNotes = [],
     currentFilter = 'all', currentReadingCat = 'all', currentRole = 'Peer Reviewer',
     currentReadingSource = 'curated', currentOfficialCat = 'all',
     _progress = {}, _notes = {};
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderSessions();
     renderReadings();
     renderGlossary();
+    renderLectureNotes();
     setupEventListeners();
     setupNavTabs();
     setupSevenRoles();
@@ -63,17 +65,19 @@ function getLinkHealthBadge(url) {
 
 async function loadData() {
     try {
-        const [c, r, g, o, lh] = await Promise.all([
+        const [c, r, g, o, lh, ln] = await Promise.all([
             fetch('data/course.json').then(r => r.json()),
             fetch('data/readings.json').then(r => r.json()),
             fetch('data/glossary.json').then(r => r.json()),
             fetch('data/official_reading_map.json').then(r => r.json()).catch(() => []),
-            fetch('data/link_health.json').then(r => r.json()).catch(() => [])
+            fetch('data/link_health.json').then(r => r.json()).catch(() => []),
+            fetch('data/lecture_notes.json').then(r => r.json()).catch(() => [])
         ]);
         courseData = c;
         curatedReadings = r;
         glossaryData = g;
         officialReadings = o;
+        lectureNotes = ln || [];
         // Build link health lookup by URL
         if (Array.isArray(lh)) {
             lh.forEach(function(entry) {
@@ -86,6 +90,7 @@ async function loadData() {
         try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){}
         try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){}
         try { officialReadings = await fetch('data/official_reading_map.json').then(r => r.json()); } catch(e){}
+        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()).catch(() => []); } catch(e){}
     }
 }
 
@@ -891,6 +896,338 @@ function saveProjectProgress() {
         if (cb) state[step] = cb.checked;
     });
     localStorage.setItem(PROJECT_PROGRESS_KEY, JSON.stringify(state));
+}
+
+/* === Phase 7A: Lecture Notes === */
+function renderLectureNotes() {
+    var container = document.getElementById('lectureNotesContainer');
+    if (!container) return;
+    if (!lectureNotes || lectureNotes.length === 0) {
+        container.innerHTML = '<p style="color:#888;font-size:14px;text-align:center;padding:32px;">讲义数据暂不可用</p>';
+        return;
+    }
+    // Course map for session info
+    var courseMap = {};
+    if (courseData) {
+        courseData.forEach(function(s) { courseMap[s.id] = s; });
+    }
+    // Glossary map for terms
+    var glossaryMap = {};
+    if (glossaryData) {
+        glossaryData.forEach(function(g) { glossaryMap[g.id] = g; });
+    }
+    var html = '';
+    lectureNotes.forEach(function(note, idx) {
+        var course = courseMap[note.session_id] || {};
+        var isFirst = idx === 0;
+        var badgeClass = note.lecture_type === 'lecture' ? 'badge-lecture' :
+                         note.lecture_type === 'discussion' ? 'badge-discussion' : 'badge-project';
+        html += '<div class="lecture-note-card" id="ln-' + note.session_id + '">';
+        // Header
+        html += '<div class="lecture-note-header' + (isFirst ? '' : '') + '" onclick="toggleLectureNote(\'' + note.session_id + '\')">';
+        html += '<div class="lecture-note-meta">';
+        html += '<span class="session-badge ' + badgeClass + '">' + (note.lecture_type || 'lecture') + '</span>';
+        if (note.note_status === 'pilot') {
+            html += '<span class="session-badge badge-pilot">试点</span>';
+        }
+        html += '<span class="lecture-note-title">' + (course.zh_title || note.session_id) + '</span>';
+        html += '</div>';
+        html += '<span class="lecture-note-toggle" id="ln-toggle-' + note.session_id + '">▶</span>';
+        html += '</div>';
+        // Body
+        html += '<div class="lecture-note-body' + (isFirst ? ' open' : '') + '" id="ln-body-' + note.session_id + '">';
+
+        // One sentence
+        if (note.one_sentence) {
+            html += '<div class="one-sentence">' + escHtml(note.one_sentence) + '</div>';
+        }
+
+        // Core question
+        if (note.core_question) {
+            html += '<p class="section-label">核心问题</p>';
+            html += '<p class="core-question">' + escHtml(note.core_question) + '</p>';
+        }
+
+        // Why it matters
+        if (note.why_it_matters) {
+            html += '<p class="section-label">为什么重要</p>';
+            html += '<p class="why-matters">' + escHtml(note.why_it_matters) + '</p>';
+        }
+
+        // Concepts - pills
+        if (note.concepts && note.concepts.length > 0) {
+            html += '<p class="section-label">核心概念</p>';
+            html += '<div class="concepts-grid">';
+            note.concepts.forEach(function(c) {
+                var glossaryLink = '';
+                if (glossaryData && glossaryData.length > 0) {
+                    // Try to find matching glossary entry
+                    var match = glossaryData.find(function(g) {
+                        return g.term_en === c.term_en || g.term_zh === c.term;
+                    });
+                    if (match) {
+                        glossaryLink = '<a href="#glossary-' + match.id + '" class="glossary-link">见术语表</a>';
+                    }
+                }
+                html += '<span class="concept-pill">';
+                html += escHtml(c.term);
+                if (c.term_en) html += ' <span class="term-en">(' + escHtml(c.term_en) + ')</span>';
+                if (glossaryLink) html += glossaryLink;
+                html += '</span>';
+            });
+            html += '</div>';
+            // Concept details
+            note.concepts.forEach(function(c) {
+                html += '<div class="concept-detail">';
+                html += '<div class="concept-term">' + escHtml(c.term);
+                if (c.term_en) html += '<span class="concept-term-en">' + escHtml(c.term_en) + '</span>';
+                html += '</div>';
+                if (c.explanation) {
+                    html += '<p class="concept-explanation">' + escHtml(c.explanation) + '</p>';
+                }
+                if (c.common_misunderstanding) {
+                    html += '<div class="concept-misunderstanding">' + escHtml(c.common_misunderstanding) + '</div>';
+                }
+                html += '</div>';
+            });
+        }
+
+        // Reading guide
+        if (note.reading_guide && note.reading_guide.length > 0) {
+            html += '<p class="section-label">必读材料导读</p>';
+            note.reading_guide.forEach(function(rg) {
+                html += '<div class="reading-guide-item">';
+                html += '<div class="reading-title">📄 ' + escHtml(rg.title || '未命名阅读材料') + '</div>';
+                if (rg.why_read) {
+                    html += '<p class="reading-why"><strong>为什么读：</strong>' + escHtml(rg.why_read) + '</p>';
+                }
+                if (rg.how_to_read) {
+                    html += '<p class="reading-how"><strong>怎么读：</strong>' + escHtml(rg.how_to_read) + '</p>';
+                }
+                if (rg.key_questions && rg.key_questions.length > 0) {
+                    html += '<p class="reading-questions"><strong>关键问题：</strong><ul>';
+                    rg.key_questions.forEach(function(q) {
+                        html += '<li>' + escHtml(q) + '</li>';
+                    });
+                    html += '</ul></p>';
+                }
+                html += '</div>';
+            });
+        }
+
+        // Connections
+        if (note.connection_to_previous || note.connection_to_next) {
+            html += '<p class="section-label">前后课程关系</p>';
+            html += '<div class="connection-row">';
+            if (note.connection_to_previous) {
+                html += '<div class="connection-box"><strong>← 前置课程：</strong>' + escHtml(note.connection_to_previous) + '</div>';
+            }
+            if (note.connection_to_next) {
+                html += '<div class="connection-box"><strong>→ 后续课程：</strong>' + escHtml(note.connection_to_next) + '</div>';
+            }
+            html += '</div>';
+        }
+
+        // Project ideas
+        if (note.project_ideas && note.project_ideas.length > 0) {
+            html += '<p class="section-label">项目化方向</p>';
+            note.project_ideas.forEach(function(pi) {
+                var diffClass = pi.difficulty === 'beginner' ? 'diff-beginner' :
+                                pi.difficulty === 'intermediate' ? 'diff-intermediate' : 'diff-advanced';
+                html += '<div class="project-idea-card">';
+                html += '<div class="project-idea-header">';
+                html += '<span class="project-title">' + escHtml(pi.title || '未命名项目') + '</span>';
+                html += '<span class="diff-badge ' + diffClass + '">' + (pi.difficulty || 'intermediate') + '</span>';
+                html += '</div>';
+                if (pi.description) {
+                    html += '<p class="project-desc">' + escHtml(pi.description) + '</p>';
+                }
+                if (pi.data_needed) {
+                    html += '<p class="project-data">📊 数据需求：' + escHtml(pi.data_needed) + '</p>';
+                }
+                if (pi.possible_output) {
+                    html += '<p class="project-output">📤 预期产出：' + escHtml(pi.possible_output) + '</p>';
+                }
+                html += '</div>';
+            });
+        }
+
+        // Reflection questions
+        if (note.reflection_questions && note.reflection_questions.length > 0) {
+            html += '<p class="section-label">思考题</p>';
+            html += '<ul class="reflection-list">';
+            note.reflection_questions.forEach(function(q) {
+                html += '<li>' + escHtml(q) + '</li>';
+            });
+            html += '</ul>';
+        }
+
+        // Mini assignment
+        if (note.mini_assignment) {
+            html += '<div class="mini-assignment">' + escHtml(note.mini_assignment) + '</div>';
+        }
+
+        html += '</div>'; // .lecture-note-body
+        html += '</div>'; // .lecture-note-card
+    });
+
+    container.innerHTML = html;
+}
+
+function toggleLectureNote(sessionId) {
+    var body = document.getElementById('ln-body-' + sessionId);
+    var toggle = document.getElementById('ln-toggle-' + sessionId);
+    var header = document.querySelector('#ln-' + sessionId + ' .lecture-note-header');
+    if (!body) return;
+    var isOpen = body.classList.contains('open');
+    if (isOpen) {
+        body.classList.remove('open');
+        if (toggle) toggle.textContent = '▶';
+        if (header) header.classList.remove('expanded');
+    } else {
+        body.classList.add('open');
+        if (toggle) toggle.textContent = '▼';
+        if (header) header.classList.add('expanded');
+    }
+}
+
+function expandAllLectureNotes() {
+    document.querySelectorAll('.lecture-note-body').forEach(function(b) { b.classList.add('open'); });
+    document.querySelectorAll('.lecture-note-toggle').forEach(function(t) { t.textContent = '▼'; });
+    document.querySelectorAll('.lecture-note-header').forEach(function(h) { h.classList.add('expanded'); });
+}
+
+function collapseAllLectureNotes() {
+    document.querySelectorAll('.lecture-note-body').forEach(function(b) { b.classList.remove('open'); });
+    document.querySelectorAll('.lecture-note-toggle').forEach(function(t) { t.textContent = '▶'; });
+    document.querySelectorAll('.lecture-note-header').forEach(function(h) { h.classList.remove('expanded'); });
+}
+
+function exportLectureNotesMarkdown() {
+    if (!lectureNotes || lectureNotes.length === 0) {
+        showToast('无讲义数据可导出', 'error');
+        return;
+    }
+    var courseMap = {};
+    if (courseData) {
+        courseData.forEach(function(s) { courseMap[s.id] = s; });
+    }
+    var now = new Date().toLocaleString('zh-CN');
+    var lines = [];
+    lines.push('# How2AI 中文课程 — 试点讲义笔记');
+    lines.push('');
+    lines.push('**课程名称：** MIT MAS.S60 — How to AI (Almost) Anything 中文导览');
+    lines.push('**导出时间：** ' + now);
+    lines.push('**版本：** Phase 7A Lecture Notes Pilot');
+    lines.push('**试点讲义数：** ' + lectureNotes.length);
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+    lectureNotes.forEach(function(note) {
+        var course = courseMap[note.session_id] || {};
+        lines.push('## ' + (course.zh_title || note.session_id));
+        lines.push('');
+        lines.push('**原始标题：** ' + (course.original_title || 'N/A'));
+        lines.push('**课程类型：** ' + (note.lecture_type || 'lecture'));
+        lines.push('**状态：** ' + (note.note_status || 'unknown'));
+        lines.push('');
+        if (note.one_sentence) {
+            lines.push('### 一句话');
+            lines.push(note.one_sentence);
+            lines.push('');
+        }
+        if (note.core_question) {
+            lines.push('### 核心问题');
+            lines.push(note.core_question);
+            lines.push('');
+        }
+        if (note.why_it_matters) {
+            lines.push('### 为什么重要');
+            lines.push(note.why_it_matters);
+            lines.push('');
+        }
+        if (note.concepts && note.concepts.length > 0) {
+            lines.push('### 核心概念');
+            note.concepts.forEach(function(c) {
+                lines.push('- **' + c.term + (c.term_en ? ' (' + c.term_en + ')' : '') + '**：' + (c.explanation || ''));
+                if (c.common_misunderstanding) {
+                    lines.push('  - ⚠️ 常见误区：' + c.common_misunderstanding);
+                }
+            });
+            lines.push('');
+        }
+        if (note.reading_guide && note.reading_guide.length > 0) {
+            lines.push('### 必读材料导读');
+            note.reading_guide.forEach(function(rg) {
+                lines.push('**' + (rg.title || '未命名阅读材料') + '**');
+                if (rg.why_read) lines.push('- 为什么读：' + rg.why_read);
+                if (rg.how_to_read) lines.push('- 怎么读：' + rg.how_to_read);
+                if (rg.key_questions && rg.key_questions.length > 0) {
+                    lines.push('- 关键问题：');
+                    rg.key_questions.forEach(function(q) { lines.push('  - ' + q); });
+                }
+                lines.push('');
+            });
+        }
+        if (note.project_ideas && note.project_ideas.length > 0) {
+            lines.push('### 项目化方向');
+            note.project_ideas.forEach(function(pi) {
+                lines.push('- **' + (pi.title || '未命名项目') + '** [' + (pi.difficulty || 'intermediate') + ']');
+                if (pi.description) lines.push('  - ' + pi.description);
+                if (pi.data_needed) lines.push('  - 数据需求：' + pi.data_needed);
+                if (pi.possible_output) lines.push('  - 预期产出：' + pi.possible_output);
+            });
+            lines.push('');
+        }
+        if (note.reflection_questions && note.reflection_questions.length > 0) {
+            lines.push('### 思考题');
+            note.reflection_questions.forEach(function(q) {
+                lines.push('- ' + q);
+            });
+            lines.push('');
+        }
+        if (note.mini_assignment) {
+            lines.push('### Mini Assignment');
+            lines.push(note.mini_assignment);
+            lines.push('');
+        }
+        lines.push('---');
+        lines.push('');
+    });
+    lines.push('*本文件由 How2AI 中文课程导览页 Phase 7A 试点讲义系统导出 | https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/*');
+    var md = lines.join('\n');
+    var filename = 'how2ai-lecture-notes-pilot-' + now.split(' ')[0].replace(/\//g, '-') + '.md';
+    downloadMarkdown(md, filename);
+    showToast('试点讲义已导出为 Markdown', 'success');
+}
+
+function escHtml(str) {
+    if (str == null) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function downloadMarkdown(content, filename) {
+    var blob = new Blob(['\uFEFF' + content], { type: 'text/markdown;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function showToast(msg, type) {
+    var toast = document.createElement('div');
+    toast.textContent = msg;
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;padding:10px 18px;border-radius:6px;font-size:14px;z-index:9999;color:#fff;background:' + (type === 'error' ? '#e74c3c' : '#27ae60') + ';box-shadow:0 2px 8px rgba(0,0,0,0.2)';
+    document.body.appendChild(toast);
+    setTimeout(function() { document.body.removeChild(toast); }, 3000);
 }
 
 function updateProjectProgressBar() {

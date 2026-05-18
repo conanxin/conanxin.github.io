@@ -23,7 +23,7 @@
       "https://arxiv.org/abs/1705.09406",
       "https://arxiv.org/abs/1206.5538"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1%20-%20introduction.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec1%20-%20introduction.pdf",
     "video_url": "https://youtu.be/0MYt0u3CW5I",
     "learning_objectives": [
       "理解 MAS.S60 课程结构和评分体系",
@@ -60,7 +60,7 @@
       "研究迭代：快速原型 → 失败分析 → 改进"
     ],
     "readings": [],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1.2%20-%20AI%20research.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec1.2%20-%20AI%20research.pdf",
     "video_url": "https://youtu.be/104FX8MYKAM",
     "learning_objectives": [
       "掌握「带着问题读论文」的阅读策略",
@@ -101,7 +101,7 @@
       "https://arxiv.org/abs/2209.03430",
       "https://arxiv.org/abs/2104.13478"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec2%20-%20data.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec2%20-%20data.pdf",
     "video_url": "https://youtu.be/fLybbXyfN28",
     "learning_objectives": [
       "理解「数据模态」的分类及其对 AI 系统的挑战",
@@ -141,7 +141,7 @@
       "https://colab.research.google.com/drive/1EDsjYRrAiujUew0GRJ_hyVoNMsSDnlnx",
       "https://colab.research.google.com/drive/1SoTu6gvYcLNDqPwNPTWmsSYF-l-UfHPx"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/Debugging%20Tips.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/Debugging%20Tips.pdf",
     "video_url": "https://youtu.be/NOSuy0NOe9k",
     "learning_objectives": [
       "掌握 PyTorch 和 Hugging Face 的基础用法",
@@ -211,7 +211,7 @@
       "https://arxiv.org/abs/1703.06114",
       "https://arxiv.org/abs/1710.10903"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec3%20-%20models.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec3%20-%20models.pdf",
     "video_url": "https://youtu.be/V0gRkmu4mFY",
     "learning_objectives": [
       "理解不同架构的归纳偏置及其适用场景",
@@ -294,7 +294,7 @@
       "https://link.springer.com/article/10.1007/s13735-019-00187-6",
       "https://arxiv.org/abs/2210.01936"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec4%20-%20multimodal%20alignment.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec4%20-%20multimodal.pdf",
     "video_url": "https://youtu.be/kixc1mh55yY",
     "learning_objectives": [
       "理解多模态 AI 的三大核心挑战",
@@ -379,7 +379,7 @@
       "https://arxiv.org/abs/2302.12247",
       "https://aclanthology.org/2020.emnlp-main.62/"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec5%20-%20multimodal%20fusion.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec5%20-%20fusion.pdf",
     "video_url": "https://youtu.be/Hsv1mOIZ1Ag",
     "learning_objectives": [
       "理解三种融合层次的适用场景",
@@ -461,7 +461,7 @@
       "https://arxiv.org/abs/2309.11499",
       "https://arxiv.org/abs/2303.03378"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec6%20-%20cross-modal%20transfer.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec6%20-%20crossmodal.pdf",
     "video_url": "https://youtu.be/k4kywHmr3AA",
     "learning_objectives": [
       "掌握三种跨模态迁移路径的原理",
@@ -547,7 +547,7 @@
       "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization",
       "https://arxiv.org/abs/2310.03744"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec7%20-%20foundation%20models.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec7%20-%20large%20models.pdf",
     "video_url": "https://youtu.be/ZFLRDEUSX68",
     "learning_objectives": [
       "理解大模型预训练的核心机制",
@@ -615,7 +615,7 @@
       "https://arxiv.org/abs/2504.07951",
       "https://arxiv.org/abs/2504.06256"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec8%20-%20multimodal%20LLMs.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec8%20-%20large%20multimodal%20models.pdf",
     "video_url": "https://youtu.be/p_GGsKgGxSo",
     "learning_objectives": [
       "理解 LLM 适配多模态的主流方法",
@@ -697,7 +697,7 @@
       "https://arxiv.org/abs/2403.03206",
       "https://arxiv.org/abs/2410.13720"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec9%20-%20generative%20models.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec9%20-%20generative%20AI.pdf",
     "video_url": null,
     "learning_objectives": [
       "理解扩散模型的核心原理",
@@ -825,7 +825,7 @@
       "https://openai.com/index/faulty-reward-functions/",
       "https://arxiv.org/abs/2305.18290"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec10%20-%20agents.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec10%20-%20interaction.pdf",
     "video_url": "https://youtu.be/3SOjOG2oL1w",
     "learning_objectives": [
       "理解 RLHF 和 DPO 的原理",
@@ -893,7 +893,7 @@
       "https://arxiv.org/abs/2402.11753",
       "https://dl.acm.org/doi/abs/10.1145/3290605.3300233"
     ],
-    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec11%20-%20human-AI%20interaction.pdf",
+    "slides_url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec11%20-%20human.pdf",
     "video_url": "https://youtu.be/NrmLjmXU66M",
     "learning_objectives": [
       "理解人-AI 交互的核心设计原则",

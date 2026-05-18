@@ -24,21 +24,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     initModuleBadges();
 });
 
+/* Phase 6C: Link health state */
+let linkHealth = {}; // url -> {status, label, fallback_url}
+
+const LINK_STATUS_LABELS = {
+    'OK': '✅ 可访问',
+    'REDIRECT_OK': '✅ 跳转可访问',
+    'TIMEOUT_PROBABLY_OK': '⚠️ 可能可访问',
+    'MANUAL_BROWSER_CHECK_RECOMMENDED': '🌐 浏览器复核',
+    'SCHEDULE_LISTED_BUT_UNREACHABLE': '🔗 官方列出但不可达',
+    'PAYWALL_OR_ACCESS_RESTRICTED': '🔐 需要权限',
+    'SKIPPED_NETWORK_RESTRICTED': '⏭️ 网络受限',
+    'UNKNOWN': '❓ 未检测',
+};
+
+const FALLBACK_SCHEDULE = 'https://mit-mi.github.io/how2ai-course/spring2025/schedule/';
+
+function getLinkHealthBadge(url) {
+    if (!url) return '';
+    var entry = linkHealth[url];
+    if (!entry) return '';
+    var status = entry.status || 'UNKNOWN';
+    var label = LINK_STATUS_LABELS[status] || status;
+    if (status === 'OK' || status === 'REDIRECT_OK' || status === 'TIMEOUT_PROBABLY_OK') {
+        return ' <span class="link-badge link-ok" title="' + label + '">' + label + '</span>';
+    }
+    var fallback = entry.fallback_url || (entry.type === 'slides_pdf' ? FALLBACK_SCHEDULE : '');
+    var tooltip = label;
+    if (fallback && status !== 'OK') {
+        tooltip += ' — 备用：官方 Schedule';
+    }
+    var badge = ' <span class="link-badge link-warn" title="' + tooltip + '">' + label + '</span>';
+    if (fallback && status !== 'OK') {
+        badge += ' <a href="' + fallback + '" target="_blank" rel="noopener" class="link-fallback">📍 官方 Schedule</a>';
+    }
+    return badge;
+}
+
 async function loadData() {
     try {
-        const [c, r, g, o] = await Promise.all([
+        const [c, r, g, o, lh] = await Promise.all([
             fetch('data/course.json').then(r => r.json()),
             fetch('data/readings.json').then(r => r.json()),
             fetch('data/glossary.json').then(r => r.json()),
-            fetch('data/official_reading_map.json').then(r => r.json()).catch(() => [])
+            fetch('data/official_reading_map.json').then(r => r.json()).catch(() => []),
+            fetch('data/link_health.json').then(r => r.json()).catch(() => [])
         ]);
         courseData = c;
         curatedReadings = r;
         glossaryData = g;
         officialReadings = o;
+        // Build link health lookup by URL
+        if (Array.isArray(lh)) {
+            lh.forEach(function(entry) {
+                linkHealth[entry.url] = entry;
+            });
+        }
     } catch (e) {
         console.error('Failed to load data:', e);
-        // Fallback: try individual loads
         try { courseData = await fetch('data/course.json').then(r => r.json()); } catch(e){}
         try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){}
         try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){}
@@ -151,8 +194,8 @@ function renderSessions() {
                 ${s.practice_prompt ? `<div class="session-practice"><div class="session-practice-title">💡 思考与练习</div><p>${s.practice_prompt}</p></div>` : ''}
                 ${s.project_connection ? `<div class="session-project"><div class="session-project-title">🚀 课程项目关联</div><p>${s.project_connection}</p></div>` : ''}
                 <div class="session-links">
-                    ${s.slides_url ? `<a class="session-link" href="${s.slides_url}" target="_blank" rel="noopener">📄 Slides PDF</a>` : ''}
-                    ${s.video_url ? `<a class="session-link" href="${s.video_url}" target="_blank" rel="noopener">🎥 视频</a>` : ''}
+                    ${s.slides_url ? `<a class="session-link" href="${s.slides_url}" target="_blank" rel="noopener">📄 Slides PDF</a>${getLinkHealthBadge(s.slides_url)}` : ''}
+                    ${s.video_url ? `<a class="session-link" href="${s.video_url}" target="_blank" rel="noopener">🎥 视频</a>${getLinkHealthBadge(s.video_url)}` : ''}
                 </div>
                 ${s.practice_prompt ? `<button class="session-quiz-btn" onclick="openQuiz('${s.id}')">🧠 打开思考题</button>` : ''}
                 <button class="session-notes-btn" onclick="openNotes('${s.id}')">📝 学习笔记</button>
@@ -598,6 +641,29 @@ const READING_STATUS_KEY = 'how2ai_reading_status';
 const PROJECT_STEPS = ['topic','proposal','lit-review','data-task','baseline',
                        'midterm','error-analysis','ablation',
                        'final-presentation','final-report'];
+
+// Phase 6C: Milestones with precise week numbers from official MIT schedule
+const PROJECT_MILESTONES = [
+    { id: 'topic',         title: '选题方向',             desc: '确定你的研究方向或应用场景' },
+    { id: 'proposal',      title: 'Proposal 草案',         desc: 'Week 3/2.20 Presentation · Week 4/2.25 Report — 写出研究问题的 Motivation 和 Related Work 概述' },
+    { id: 'lit-review',    title: 'Literature Review',    desc: '梳理相关工作，找到研究空白' },
+    { id: 'data-task',     title: '数据与任务定义',       desc: '明确数据集、评估指标和任务边界' },
+    { id: 'baseline',      title: 'Baseline',             desc: '实现或引用已有方法作为基准' },
+    { id: 'midterm',       title: 'Midterm Report',       desc: 'Week 9/4.3 — 中期报告：方法概述和初步实验结果' },
+    { id: 'error-analysis',title: 'Error Analysis',       desc: '分析错误案例，找到改进方向' },
+    { id: 'ablation',      title: 'Ablation Study',       desc: '消融实验：验证每个组件的贡献' },
+    { id: 'final-presentation', title: 'Final Presentation', desc: 'Week 14/5.8 — 展示最终项目结果、关键发现、demo 或实验结果，并接受 Q&A' },
+    { id: 'final-report',  title: 'Final Report',         desc: 'Week 16/5.20 — 提交一份类似 research paper 的完整报告，包含研究问题、方法、实验、分析、局限与讨论' },
+];
+
+function getProjectProgress() {
+    try { return JSON.parse(localStorage.getItem(PROJECT_PROGRESS_KEY) || '{}'); }
+    catch(e) { return {}; }
+}
+
+function getProjectMilestones() {
+    return PROJECT_MILESTONES;
+}
 
 function setupLearningModes() {
     if (currentLearningMode) {

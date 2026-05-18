@@ -713,3 +713,31 @@ a:hover{color:var(--accent-purple)}
         padding: 16px;
     }
 }
+
+/* === Phase 6C: Link health badges === */
+.link-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+    font-weight: 500;
+}
+.link-ok {
+    background: #d4edda;
+    color: #155724;
+}
+.link-warn {
+    background: #fff3cd;
+    color: #856404;
+}
+.link-fallback {
+    font-size: 12px;
+    color: #0066cc;
+    text-decoration: underline;
+    margin-left: 4px;
+}
+.link-fallback:hover {
+    color: #004499;
+}

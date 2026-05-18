@@ -6,7 +6,7 @@
     "session_title": "Introduction",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1 - introduction.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec1%20-%20introduction.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1%20-%20introduction.pdf",
     "link_type": "slide",
     "raw_href": "lec1 - introduction.pdf"
@@ -66,7 +66,7 @@
     "session_title": "Introduction to AI Research",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1.2 - AI research.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec1.2%20-%20AI%20research.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec1.2%20-%20AI%20research.pdf",
     "link_type": "slide",
     "raw_href": "lec1.2 - AI research.pdf"
@@ -90,7 +90,7 @@
     "session_title": "Foundation 1: Data, structure, information",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec2 - data.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec2%20-%20data.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec2%20-%20data.pdf",
     "link_type": "slide",
     "raw_href": "lec2 - data.pdf"
@@ -162,7 +162,7 @@
     "session_title": "Foundation 2: Practical AI tools",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/Debugging Tips.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/Debugging%20Tips.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/Debugging%20Tips.pdf",
     "link_type": "slide",
     "raw_href": "Debugging Tips.pdf"
@@ -222,7 +222,7 @@
     "session_title": "Foundation 3: Model architectures",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec3 - models.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec3%20-%20models.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec3%20-%20models.pdf",
     "link_type": "slide",
     "raw_href": "lec3 - models.pdf"
@@ -378,7 +378,7 @@
     "session_title": "Multimodal 1: Connections and alignment",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec4 - multimodal alignment.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec4%20-%20multimodal.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec4%20-%20multimodal%20alignment.pdf",
     "link_type": "slide",
     "raw_href": "lec4 - multimodal alignment.pdf"
@@ -546,7 +546,7 @@
     "session_title": "Multimodal 2: Interactions and fusion",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec5 - multimodal fusion.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec5%20-%20fusion.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec5%20-%20multimodal%20fusion.pdf",
     "link_type": "slide",
     "raw_href": "lec5 - multimodal fusion.pdf"
@@ -702,7 +702,7 @@
     "session_title": "Multimodal 3: Cross-modal transfer",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec6 - cross-modal transfer.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec6%20-%20crossmodal.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec6%20-%20cross-modal%20transfer.pdf",
     "link_type": "slide",
     "raw_href": "lec6 - cross-modal transfer.pdf"
@@ -846,7 +846,7 @@
     "session_title": "Large models 1: Large foundation models",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec7 - foundation models.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec7%20-%20large%20models.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec7%20-%20foundation%20models.pdf",
     "link_type": "slide",
     "raw_href": "lec7 - foundation models.pdf"
@@ -942,7 +942,7 @@
     "session_title": "Large models 2: Large multimodal models",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec8 - multimodal LLMs.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec8%20-%20large%20multimodal%20models.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec8%20-%20multimodal%20LLMs.pdf",
     "link_type": "slide",
     "raw_href": "lec8 - multimodal LLMs.pdf"
@@ -1086,7 +1086,7 @@
     "session_title": "Large models 3: Modern generative models",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec9 - generative models.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec9%20-%20generative%20AI.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec9%20-%20generative%20models.pdf",
     "link_type": "slide",
     "raw_href": "lec9 - generative models.pdf"
@@ -1338,7 +1338,7 @@
     "session_title": "Interaction 1: Interactive agents and reasoning",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec10 - agents.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec10%20-%20interaction.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec10%20-%20agents.pdf",
     "link_type": "slide",
     "raw_href": "lec10 - agents.pdf"
@@ -1410,7 +1410,7 @@
     "session_title": "Interaction 2: Human AI interaction",
     "session_type": "lecture",
     "link_text": "[slides]",
-    "url": "https://mit-mi.github.io/how2ai-course/spring2025/lec11 - human-AI interaction.pdf",
+    "url": "https://mit-mi.github.io/how2ai-course/spring2025/schedule/lec11%20-%20human.pdf",
     "encoded_url": "https://mit-mi.github.io/how2ai-course/spring2025/lec11%20-%20human-AI%20interaction.pdf",
     "link_type": "slide",
     "raw_href": "lec11 - human-AI interaction.pdf"

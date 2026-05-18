@@ -31,10 +31,11 @@
 
 ## 汇总
 
-- **✅ 可访问**：103 个
+- **✅ 可访问**：102 个
 - **👀 建议浏览器复核**：15 个
 - **❌ 404/客户端错误**：2 个
 - **🔒 需权限/付费墙**：4 个
+- **❓ 未知**：1 个
 
 ## 详细结果
 
@@ -55,10 +56,6 @@
 - `paper` **Representation Learning: A Review and New Perspectives**  → HTTP 200 | text/html; charset=utf-8
   - 📝 可正常访问
   - 🔗 https://arxiv.org/abs/1206.5538
-
-- `video` **[video]**  → HTTP 200 | text/html; charset=utf-8
-  - 📝 可正常访问
-  - 🔗 https://youtu.be/104FX8MYKAM
 
 - `video` **[video]**  → HTTP 200 | text/html; charset=utf-8
   - 📝 可正常访问
@@ -541,6 +538,11 @@
 - `paper` **Guidelines for Human-AI Interaction**  → HTTP 403 | text/html; charset=UTF-8
   - 📝 学术平台需要机构订阅或付费，请通过图书馆/学校 VPN 访问。
   - 🔗 https://dl.acm.org/doi/abs/10.1145/3290605.3300233
+
+### ❓ 未知
+
+- `video` **[video]**  → HTTP 204 | text/html
+  - 🔗 https://youtu.be/104FX8MYKAM
 
 ## MIT Slides PDF 详情
 

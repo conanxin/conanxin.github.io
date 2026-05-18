@@ -64,7 +64,7 @@
         <a href="#seven-roles" class="btn btn-secondary">📖 七角色论文读法</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">27</span><span class="stat-label">节课程</span></div>
+        <div class="stat"><span class="stat-num">27</span><span class="stat-label">个学习节点</span></div>
         <div class="stat"><span class="stat-num">5</span><span class="stat-label">大模块</span></div>
         <div class="stat"><span class="stat-num">32</span><span class="stat-label">精选导读</span></div>
         <div class="stat"><span class="stat-num">85+</span><span class="stat-label">官方文献</span></div>
@@ -74,7 +74,7 @@
         <div class="hero-progress-row">
           <div class="hero-progress-item">
             <div class="hero-progress-num" id="heroProgressSessions">0/23</div>
-            <div class="hero-progress-label">课程节数</div>
+            <div class="hero-progress-label">可追踪节点</div>
           </div>
           <div class="hero-progress-item">
             <div class="hero-progress-num" id="heroProgressReadings">0/32</div>
@@ -132,7 +132,7 @@
       <h2 class="section-title">
         <span class="section-num">01</span>课程时间线
       </h2>
-      <p class="section-desc">共 15 周，21 节课程，涵盖 AI 基础 → 多模态 → 大模型 → 交互四大模块</p>
+      <p class="section-desc">共 15 周，覆盖 lecture / discussion / project / special 等 27 个学习节点</p>
 
       <div class="timeline" id="timelineContainer">
         <!-- Rendered by JS -->
@@ -487,7 +487,7 @@
           <path d="M300 300 L507.7 420 A240 240 0 0 1 300 540 Z" fill="#1e3f2f" stroke="#34d399" stroke-width="1" opacity="0.85"/>
           <text x="420" y="470" font-size="11" fill="#fff" font-weight="600">Academic</text>
           <text x="420" y="486" font-size="8" fill="#a0e0c0">学术视角</text>
-          <text x="390" y="510" font-size="7" fill="#c0c0e0">我能学什么？</text>
+          <text x="390" y="510" font-size="7" fill="#c0c0e0">新研究问题？</text>
 
           <!-- Industry Practitioner -->
           <path d="M300 300 L300 540 A240 240 0 0 1 92.3 420 Z" fill="#3f1e1e" stroke="#f87171" stroke-width="1" opacity="0.85"/>
@@ -498,14 +498,14 @@
           <!-- Hacker -->
           <path d="M300 300 L92.3 420 A240 240 0 0 1 92.3 180 Z" fill="#2f2f1e" stroke="#fbbf24" stroke-width="1" opacity="0.85"/>
           <text x="100" y="280" font-size="11" fill="#fff" font-weight="600">Hacker</text>
-          <text x="100" y="296" font-size="8" fill="#ffd070">黑客视角</text>
-          <text x="90" y="330" font-size="7" fill="#c0c0e0">能 hack 什么？</text>
+          <text x="100" y="296" font-size="8" fill="#ffd070">快速原型</text>
+          <text x="90" y="330" font-size="7" fill="#c0c0e0">最小 demo？</text>
 
           <!-- Private Investigator -->
           <path d="M300 300 L92.3 180 A240 240 0 0 1 300 60 Z" fill="#3f1e3f" stroke="#e879f9" stroke-width="1" opacity="0.85"/>
           <text x="170" y="130" font-size="11" fill="#fff" font-weight="600">Investigator</text>
-          <text x="170" y="146" font-size="8" fill="#e0b0f0">侦探视角</text>
-          <text x="160" y="170" font-size="7" fill="#c0c0e0">论文没说什么？</text>
+          <text x="170" y="146" font-size="8" fill="#e0b0f0">作者路径</text>
+          <text x="160" y="170" font-size="7" fill="#c0c0e0">作者为什么选这个题？</text>
 
           <!-- Social Impact -->
           <path d="M300 300 L300 60 A240 240 0 0 1 92.3 180 Z" fill="#1e2f3f" stroke="#22d3ee" stroke-width="1" opacity="0.0"/> <!-- Already covered -->
@@ -538,15 +538,15 @@
             <p><strong>适用：</strong>Literature Review、学术史研究</p>
           </div>
           <div class="role-detail" id="roleDetailAcademic Researcher">
-            <h3>🔬 Academic Researcher · 学术视角</h3>
-            <p><strong>核心问题：</strong>我能从这篇论文中学到什么可复现的方法？</p>
+            <h3>🔬 Academic Researcher · 后续研究视角</h3>
+            <p><strong>核心问题：</strong>这篇论文打开了什么新的研究问题？</p>
             <ul>
-              <li>核心算法的数学推导是什么？</li>
-              <li>训练细节（超参、optimizer、schedule）？</li>
-              <li>哪些 Trick 是关键？</li>
-              <li>能否迁移到我的问题？</li>
+              <li>提出一个只有在这篇论文成功后才变得可能的 follow-up project</li>
+              <li>说明新的 research question</li>
+              <li>说明可能的数据、方法、评估</li>
+              <li>说明它和原论文的继承关系</li>
             </ul>
-            <p><strong>适用：</strong>方法学习、复现研究、改进创新</p>
+            <p><strong>适用：</strong>proposal、literature review、论文选题</p>
           </div>
           <div class="role-detail" id="roleDetailIndustry Practitioner">
             <h3>🏭 Industry Practitioner · 工业视角</h3>
@@ -561,28 +561,26 @@
             <p><strong>适用：</strong>产品落地、技术选型、成本评估</p>
           </div>
           <div class="role-detail" id="roleDetailHacker">
-            <h3>💀 Hacker · 黑客视角</h3>
-            <p><strong>核心问题：</strong>这篇系统的攻击面和漏洞在哪里？</p>
+            <h3>⚡ Hacker · 快速原型视角</h3>
+            <p><strong>核心问题：</strong>我能否在一周内做出这篇论文的最小可运行 demo？</p>
             <ul>
-              <li>对抗样本是否有效？</li>
-              <li>隐私数据是否可能泄露？</li>
-              <li>越狱攻击（jailbreak）是否可行？</li>
-              <li>Prompt Injection 的风险？</li>
-              <li>数据污染/后门攻击的可能性？</li>
+              <li>在小数据集或 toy problem 上实现论文的一小部分</li>
+              <li>展示核心算法代码</li>
+              <li>可以使用开源 backbone，但必须说明来源</li>
+              <li>目标不是复现 SOTA，而是验证"这篇论文的关键机制是否能跑起来"</li>
             </ul>
-            <p><strong>适用：</strong>安全研究、红队测试、AI 安全性评估</p>
+            <p><strong>适用：</strong>快速复现、demo、课程展示、原型验证</p>
           </div>
           <div class="role-detail" id="roleDetailPrivate Investigator">
-            <h3>🔍 Private Investigator · 侦探视角</h3>
-            <p><strong>核心问题：</strong>论文隐瞒了什么？哪些信息没有披露？</p>
+            <h3>🔍 Private Investigator · 作者路径视角</h3>
+            <p><strong>核心问题：</strong>作者为什么会想到这个题目？</p>
             <ul>
-              <li>哪些实验设置没有说明？</li>
-              <li>哪些失败案例被隐藏了？</li>
-              <li>消融实验是否完整？</li>
-              <li>是否存在数据泄露（leakage）？</li>
-              <li>作者的潜在利益冲突？</li>
+              <li>调查一位作者的教育、工作经历和研究脉络</li>
+              <li>找出他们之前哪些项目可能导向这篇论文</li>
+              <li>分析作者选择这个问题的动机</li>
+              <li>如需联系作者，必须礼貌、克制、围绕学术问题</li>
             </ul>
-            <p><strong>适用：</strong>批判性阅读、发现论文漏洞、完整评估</p>
+            <p><strong>适用：</strong>研究谱系、选题动机、学术人物研究</p>
           </div>
           <div class="role-detail" id="roleDetailSocial Impact Assessor">
             <h3>🌍 Social Impact Assessor · 社会影响视角</h3>
@@ -605,7 +603,7 @@
         <button class="role-btn" data-role="Archaeologist">🏺 考古</button>
         <button class="role-btn" data-role="Academic Researcher">🔬 学术</button>
         <button class="role-btn" data-role="Industry Practitioner">🏭 工业</button>
-        <button class="role-btn" data-role="Hacker">💀 黑客</button>
+        <button class="role-btn" data-role="Hacker">⚡ 快速原型</button>
         <button class="role-btn" data-role="Private Investigator">🔍 侦探</button>
         <button class="role-btn" data-role="Social Impact Assessor">🌍 社会</button>
       </div>

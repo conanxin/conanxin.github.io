@@ -1,4 +1,4 @@
-/* How2AI 中文课程 — 交互逻辑 (Phase 7A) */
+/* How2AI 中文课程 — 交互逻辑 (Phase 7C) */
 let courseData = [], curatedReadings = [], glossaryData = [], officialReadings = [],
     lectureNotes = [],
     currentFilter = 'all', currentReadingCat = 'all', currentRole = 'Peer Reviewer',
@@ -904,7 +904,7 @@ function saveProjectProgress() {
     localStorage.setItem(PROJECT_PROGRESS_KEY, JSON.stringify(state));
 }
 
-/* === Phase 7A: Lecture Notes === */
+/* === Phase 7B: Lecture Notes === */
 function renderLectureNotes() {
     var container = document.getElementById('lectureNotesContainer');
     if (!container) return;
@@ -1312,9 +1312,9 @@ function exportLectureNotesMarkdown() {
         lines.push('---');
         lines.push('');
     });
-    lines.push('*本文件由 How2AI 中文课程导览页 Phase 7A 试点讲义系统导出 | https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/*');
+    lines.push('*本文件由 How2AI 中文课程导览页 Phase 7C 全课程讲义系统导出 | https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/*');
     var md = lines.join('\n');
-    var filename = 'how2ai-lecture-notes-pilot-' + now.split(' ')[0].replace(/\//g, '-') + '.md';
+    var filename = 'how2ai-lecture-notes-' + now.split(' ')[0].replace(/\//g, '-') + '.md';
     downloadMarkdown(md, filename);
     showToast('试点讲义已导出为 Markdown', 'success');
 }

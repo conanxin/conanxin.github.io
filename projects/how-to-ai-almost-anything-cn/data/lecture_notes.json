@@ -1,7 +1,7 @@
 [
   {
     "session_id": "m0-s01",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "lecture",
     "one_sentence": "本节是整个 How2AI 课程的起点，旨在帮助你理解什么是「AI 化一种新模态」，以及它在 MIT「Almost Anything」课程谱系中的位置。",
     "core_question": "如何让 AI 系统能够感知、理解并生成我们身边各种形式的数据？",
@@ -108,11 +108,12 @@
       "MIT Multisensory Intelligence Group: mit-mi.github.io",
       "Geometric Deep Learning: arxiv.org/abs/2104.13478",
       "Representation Learning: arxiv.org/abs/1206.5538"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m0-s02",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "lecture",
     "one_sentence": "本节介绍做 AI 研究的方法论——如何产生研究想法、如何高效阅读论文、如何设计实验和记录研究过程。",
     "core_question": "AI 研究与普通软件开发有什么本质不同？做 AI 研究有哪些具体可操作的方法？",
@@ -195,11 +196,12 @@
       "lec1.2 - AI research.pdf",
       "A Recipe for Training Neural Networks: karpathy.github.io/2019/04/25/recipe/",
       "课程 Colab notebooks: colab.research.google.com"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m1-s03",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "lecture",
     "one_sentence": "本节从数据出发，理解不同模态的数据结构如何决定 AI 表征方式和模型选择。",
     "core_question": "不同数据模态（图像、文字、声音、触觉、嗅觉）的「结构」有什么本质不同？为什么这种结构差异会影响模型架构的选择？",
@@ -304,11 +306,12 @@
       "Geometric Deep Learning: arxiv.org/abs/2104.13478",
       "表示学习: arxiv.org/abs/1206.5538",
       "多感官 AI: arxiv.org/abs/2209.03430"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m1-s04",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "lecture",
     "one_sentence": "本节从理论走向实践，介绍 PyTorch 和 Hugging Face 生态系统的核心用法，以及调试 ML 模型的实用技巧。",
     "core_question": "如何从零搭建一个可工作的 ML 实验环境？如何诊断和修复 ML 模型训练中的常见问题？",
@@ -407,11 +410,12 @@
       "A Recipe for Training Neural Networks: karpathy.github.io/2019/04/25/recipe/",
       "PyTorch Introduction Colab: colab.research.google.com/drive/1EDsjYRrAiujUew0GRJ_hyVoNMsSDnlnx",
       "Debugging Tips Colab: colab.research.google.com/drive/1SoTu6gvYcLNDqPwNPTWmsSYF-l-UfHPx"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m1-s05",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "lecture",
     "one_sentence": "本节系统讲解现代 AI 主流架构（CNN/RNN/Transformer/GNN）的设计哲学——每种架构引入了什么归纳偏置，为什么它适合特定的数据结构。",
     "core_question": "如何为一种新模态选择合适的架构基础？架构的「归纳偏置」如何影响模型的泛化行为？",
@@ -516,11 +520,12 @@
       "ViT: arxiv.org/abs/2010.11929",
       "BPTT: arxiv.org/abs/1409.0473",
       "消息传递神经网络: arxiv.org/abs/1703.06114"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m1-disc01",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "discussion",
     "one_sentence": "本讨论课深入 AI 的根本学习问题：Bitter Lesson、Double Descent、规模效应，以及它们对研究策略的深刻影响。",
     "core_question": "深度学习的学习规律与人类学习有什么本质不同？算力、模型规模、数据规模三者谁更重要？手工归纳偏置是否已经过时？",
@@ -618,11 +623,12 @@
       "讨论 1 slides（课程内部资料，待核实）",
       "The Bitter Lesson: arxiv.org (搜索 Rich Sutton 2019)",
       "Deep Double Descent: arxiv.org (搜索 Belkin et al. 2019)"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m1-proposal",
-    "note_status": "pilot",
+    "note_status": "complete",
     "lecture_type": "project",
     "one_sentence": "本节是项目提案展示环节，你需要向导师和同学清晰阐述你的研究问题、动机和初步方案。",
     "core_question": "你打算 AI 化哪种新模态或应用？为什么现有的方法不足？你的方法的核心假设和预期贡献是什么？",
@@ -710,7 +716,8 @@
     "source_refs": [
       "课程项目提案 slides（内部展示，无公开链接）",
       "参考：MIT MAS.S60 syllabus 项目评分标准"
-    ]
+    ],
+    "related_glossary_terms": []
   },
   {
     "session_id": "m2-s06",
@@ -1113,12 +1120,12 @@
       "Workshop on Multi-modal Foundation Models (2023). The Evolution of Multimodal Model Architectures. ICCV Tutorial."
     ],
     "related_glossary_terms": [
-      "Scaling Laws 规模化定律",
-      "Joint Scaling 联合规模化",
-      "Token Selection Token选择",
-      "Multi-modal Fusion 多模态融合",
-      "Pretraining 预训练",
-      "ViT (Vision Transformer) 视觉Transformer"
+      "Scaling Laws",
+      "Joint Scaling",
+      "Token Selection",
+      "Fusion",
+      "Pretraining",
+      "Vision Transformer (ViT)"
     ]
   },
   {
@@ -1157,12 +1164,12 @@
       "Zhang, Y. et al. (2024). Understanding the Emergence of Multimodal Representation Alignment. arXiv:2410.12345"
     ],
     "related_glossary_terms": [
-      "Representation Alignment 表示对齐",
-      "Contrastive Learning 对比学习",
-      "Embedding Space 嵌入空间",
-      "Zero-shot Transfer 零样本迁移",
-      "InfoNCE Loss InfoNCE损失",
-      "Cross-modal Retrieval 跨模态检索"
+      "Alignment",
+      "Contrastive Learning",
+      "Representation Learning",
+      "Zero-Shot Learning",
+      "Contrastive Learning",
+      "Cross-Modal Transfer"
     ]
   },
   {
@@ -1202,12 +1209,12 @@
       "Team, C. et al. (2024). Chameleon: Mixed-modal early-fusion foundation models. arXiv:2405.09875"
     ],
     "related_glossary_terms": [
-      "Multi-modal Interaction 多模态交互",
-      "Early Fusion 早期融合",
-      "Late Fusion 晚期融合",
-      "Grounding 接地/锚定",
-      "Mixed-modal Generation 混合模态生成",
-      "LLM (Large Language Model) 大语言模型"
+      "Cross-Modal Interaction",
+      "Fusion",
+      "Fusion",
+      "Grounding",
+      "Unified Multimodal Generation",
+      "Large Language Model (LLM)"
     ]
   },
   {
@@ -1247,14 +1254,14 @@
       "Wei, J. et al. (2022). Finetuned Language Models Are Zero-Shot Learners. ICLR."
     ],
     "related_glossary_terms": [
-      "Pre-training 预训练",
-      "Self-supervised Learning 自监督学习",
-      "Next Token Prediction Next Token预测",
-      "Fine-tuning 微调",
-      "Instruction Tuning 指令微调",
-      "RLHF (Reinforcement Learning from Human Feedback) 人类反馈强化学习",
-      "DPO (Direct Preference Optimization) 直接偏好优化",
-      "Alignment 对齐"
+      "Pretraining",
+      "Self-Supervised Learning",
+      "Next Token Prediction",
+      "Fine-tuning",
+      "Instruction Tuning",
+      "RLHF",
+      "Direct Preference Optimization (DPO)",
+      "Alignment"
     ]
   },
   {
@@ -1365,14 +1372,14 @@
       "Peng, Z. et al. (2023). Kosmos-2: Grounding Multimodal Large Language Models to the World. arXiv:2305.12345"
     ],
     "related_glossary_terms": [
-      "Vision-Language Model 视觉-语言模型",
-      "Multimodal Pre-training 多模态预训练",
-      "Projection Adapter 投影适配器",
-      "Cross-modal Attention 跨模态注意力",
-      "Early Fusion 早期融合",
-      "Late Fusion 晚期融合",
-      "Instruction Tuning 指令微调",
-      "Visual Question Answering (VQA) 视觉问答"
+      "Vision-Language Model",
+      "Foundation Model",
+      "LoRA",
+      "Cross-Modal Interaction",
+      "Fusion",
+      "Fusion",
+      "Instruction Tuning",
+      "Visual Question Answering (VQA)"
     ]
   },
   {
@@ -1507,15 +1514,15 @@
       "Liu, X. et al. (2023). Rectified Flow: A New Approach for Image Generation. arXiv:2309.11495"
     ],
     "related_glossary_terms": [
-      "Diffusion Model 扩散模型",
-      "Score Matching 分数匹配",
-      "Latent Diffusion 潜空间扩散",
-      "Classifier-Free Guidance (CFG) 无分类器引导",
-      "Flow Matching 流匹配",
-      "Reverse Process 反向过程",
-      "Forward Process 前向过程",
-      "DDPM (Denoising Diffusion Probabilistic Model) 去噪扩散概率模型",
-      "U-Net U-Net网络"
+      "Diffusion Model",
+      "Diffusion Model",
+      "Diffusion Model",
+      "Classifier-Free Guidance (CFG)",
+      "Flow Matching",
+      "Diffusion Model",
+      "Diffusion Model",
+      "Diffusion Model",
+      "U-Net"
     ]
   },
   {
@@ -1558,13 +1565,13 @@
       "Xiao, G. et al. (2023). SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models. ICML."
     ],
     "related_glossary_terms": [
-      "LoRA (Low-Rank Adaptation) 低秩适配",
-      "Gated Linear Attention 门控线性注意力",
-      "LLM Alignment LLM对齐",
-      "Quantization 量化",
-      "Parameter-Efficient Fine-Tuning (PEFT) 参数高效微调",
-      "Probing Classifier 探针分类器",
-      "Post-Training Quantization (PTQ) 训练后量化"
+      "LoRA (Low-Rank Adaptation)",
+      "Gated Linear Attention (GLA)",
+      "Alignment",
+      "Quantization",
+      "Fine-tuning",
+      "Probing Classifier",
+      "Quantization"
     ]
   },
   {
@@ -1606,14 +1613,12 @@
       "Chen, Y. et al. (2024). Spider: Any-to-Many Multimodal LLM. arXiv:2406.12345"
     ],
     "related_glossary_terms": [
-      "LLaMA-Adapter LLaMA适配器",
-      "Mamba 曼巴状态空间模型",
-      "State Space Model 状态空间模型",
-      "Multimodal Adapter 多模态适配器",
-      "Zero-initialized Prompt 零初始化提示",
-      "Unified Multimodal Generation 统一多模态生成",
-      "Any-to-Many 任意到多模态",
-      "Parameter-Efficient Fine-Tuning 参数高效微调"
+      "Mamba",
+      "State Space Model (SSM)",
+      "LoRA",
+      "Zero-Initialized Prompt",
+      "Unified Multimodal Generation",
+      "Fine-tuning"
     ]
   },
   {
@@ -1738,14 +1743,14 @@
       "Chen, T. et al. (2022). On the duality between denoising diffusion models and flow-based models. arXiv."
     ],
     "related_glossary_terms": [
-      "Diffusion Model 扩散模型",
-      "Large Language Diffusion Model 大语言扩散模型",
-      "Compositional Generation 组合生成",
-      "Flow Matching 流匹配",
-      "Rectified Flow 矫正流",
-      "Discrete Diffusion 离散扩散",
-      "Non-autoregressive Generation 非自回归生成",
-      "Vector Field 向量场"
+      "Diffusion Model",
+      "Large Language Diffusion Model",
+      "Compositional Generation",
+      "Flow Matching",
+      "Flow Matching",
+      "Diffusion Model",
+      "Non-Autoregressive Generation (NAR)",
+      "Flow Matching"
     ]
   },
   {
@@ -1857,15 +1862,7 @@
       "Brooks, R. (2017). How to Give a Bad Talk. Personal Blog.",
       "Gorrell, G. (2021). How to Present Your Research. Academic Talk Guide."
     ],
-    "related_glossary_terms": [
-      "Pivot 转向/轴心式调整",
-      "Value Proposition 价值主张",
-      "Structured Feedback 结构化反馈",
-      "Midterm Presentation 中期汇报",
-      "Feedback Classification 反馈分类",
-      "Action Plan 行动计划",
-      "Continuous Innovation 持续创新"
-    ]
+    "related_glossary_terms": []
   },
   {
     "session_id": "m4-s12",
@@ -1991,16 +1988,14 @@
       "Rafailov, R. et al. (2023). Direct Preference Optimization: Your Language Model is Secretly a Reward Model. NeurIPS."
     ],
     "related_glossary_terms": [
-      "Reinforcement Learning 强化学习",
-      "Multi-step Reasoning 多步推理",
-      "Chain-of-Thought 思维链",
-      "Human Preference 人类偏好",
-      "RLHF 人类反馈强化学习",
-      "Reward Model 奖励模型",
-      "Policy Gradient 策略梯度",
-      "Q-learning Q学习",
-      "Exploration-Exploitation 探索-利用权衡",
-      "Agent 智能体"
+      "RLHF",
+      "Chain-of-Thought (CoT)",
+      "Chain-of-Thought (CoT)",
+      "RLHF",
+      "RLHF",
+      "RLHF",
+      "RLHF",
+      "Agent"
     ]
   },
   {
@@ -2127,16 +2122,10 @@
       "Christiano, P. et al. (2017). Deep Reinforcement Learning from Human Preferences. NeurIPS."
     ],
     "related_glossary_terms": [
-      "Human-in-the-Loop 人在环",
-      "Interaction Medium 交互媒介",
-      "AI Safety AI安全性",
-      "AI Reliability AI可靠性",
-      "Value Alignment 价值对齐",
-      "Adversarial Robustness 对抗鲁棒性",
-      "Distribution Shift 分布偏移",
-      "Fail-Safe 失效安全",
-      "Active Learning 主动学习",
-      "Trust Management 信任管理"
+      "Human-in-the-Loop",
+      "Agent",
+      "Alignment",
+      "Human-in-the-Loop"
     ]
   },
   {
@@ -2310,9 +2299,9 @@
     "mini_assignment": "假期结束前完成：① 精读 2 篇 Module 2 核心论文并写出详细笔记；② 完成项目数据收集或预处理；③ 写出 midterm 报告初稿（不少于 1000 字）。",
     "source_refs": [],
     "related_glossary_terms": [
-      "Multimodal Alignment",
+      "Alignment",
       "Contrastive Learning",
-      "Cross-modal Transfer"
+      "Cross-Modal Transfer"
     ]
   },
   {
@@ -2400,9 +2389,9 @@
     "mini_assignment": "完成以下任务：① 整理 Module 3 大模型技术体系（附图表）；② 分析你的项目是否需要大模型方法；③ 写出 500 字的反思报告。",
     "source_refs": [],
     "related_glossary_terms": [
-      "Foundation Models",
+      "Foundation Model",
       "LoRA",
-      "Diffusion Models",
+      "Diffusion Model",
       "RLHF"
     ]
   },
@@ -2491,7 +2480,7 @@
     "mini_assignment": "完成以下任务：① 阅读或参加 CHI 会议相关活动；② 写出 500 字的学习心得；③ 制定最终项目的冲刺计划。",
     "source_refs": [],
     "related_glossary_terms": [
-      "Human-in-the-loop",
+      "Human-in-the-Loop",
       "AI Safety",
       "RLHF"
     ]

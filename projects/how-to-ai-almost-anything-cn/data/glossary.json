@@ -537,5 +537,253 @@
       "w14-int1"
     ],
     "source_refs": []
+  },
+  {
+    "id": "g48",
+    "term_en": "Joint Scaling",
+    "term_zh": "联合规模化",
+    "definition_zh": "在多模态大模型训练中，同时对语言模型和视觉模型的参数规模、数据规模进行联合缩放，以实现两者的协同增长和性能优化。代表性工作包括 PaLI 和 PaLM-E 等模型系列。",
+    "related_sessions": [
+      "m2-disc02",
+      "m3-s11"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2209.06794"
+    ]
+  },
+  {
+    "id": "g49",
+    "term_en": "Token Selection",
+    "term_zh": "Token 选择性",
+    "definition_zh": "一种预训练策略，只选择对模型学习最有价值的 token 进行训练，而非均匀采样所有 token。典型工作如 TokenSelection（Cheng et al., 2024）证明并非所有 token 对多模态预训练同等重要。",
+    "related_sessions": [
+      "m2-disc02"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2407.00053"
+    ]
+  },
+  {
+    "id": "g50",
+    "term_en": "Pretraining",
+    "term_zh": "预训练",
+    "definition_zh": "在大规模无标注数据上通过自监督任务（如掩码重建、对比学习、下一token预测等）对模型进行通用能力学习的阶段。预训练赋予模型广泛的世界知识和表征能力，后续通过微调适配具体任务。",
+    "related_sessions": [
+      "m1-s03",
+      "m2-s06",
+      "m3-s09",
+      "m2-disc02"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g51",
+    "term_en": "Vision Transformer (ViT)",
+    "term_zh": "视觉 Transformer",
+    "definition_zh": "一种将 Transformer 架构应用于图像的模型，将图像划分为 patch 序列，通过自注意力机制建模像素块之间的关系，是现代视觉模型和视觉-语言模型的基础架构。",
+    "related_sessions": [
+      "m2-s07",
+      "m3-s10"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2010.11929"
+    ]
+  },
+  {
+    "id": "g52",
+    "term_en": "Large Language Model (LLM)",
+    "term_zh": "大型语言模型",
+    "definition_zh": "基于大规模文本数据训练的超大参数语言模型，具有涌现能力（emergent capabilities），能够进行复杂推理、代码生成、多轮对话等任务。GPT-4、LLaMA、PaLM 是代表性模型。",
+    "related_sessions": [
+      "m3-s09",
+      "m3-s10",
+      "m4-s12"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g53",
+    "term_en": "Next Token Prediction",
+    "term_zh": "下一 Token 预测",
+    "definition_zh": "语言模型的核心自监督训练目标：给定前文序列，预测下一个最可能的 token。扩散模型和自回归模型均依赖此目标。",
+    "related_sessions": [
+      "m3-s09"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g54",
+    "term_en": "Variational Autoencoder (VAE)",
+    "term_zh": "变分自编码器",
+    "definition_zh": "一种基于变分推断的生成模型，通过编码器将输入映射到潜在空间，再通过解码器重建输入。VAE 是扩散模型和流匹配的重要基础。",
+    "related_sessions": [
+      "m3-s11"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/1312.6114"
+    ]
+  },
+  {
+    "id": "g55",
+    "term_en": "Classifier-Free Guidance (CFG)",
+    "term_zh": "无分类器引导",
+    "definition_zh": "一种在不训练额外分类器的情况下引导扩散模型生成方向的技术，通过在有条件和无条件生成之间进行外插实现，常用于文生图模型（如 Stable Diffusion）。",
+    "related_sessions": [
+      "m3-s11"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2207.12598"
+    ]
+  },
+  {
+    "id": "g56",
+    "term_en": "U-Net",
+    "term_zh": "U-Net 网络",
+    "definition_zh": "一种 encoder-decoder 架构，最初用于医学图像分割，因其 skip connection 设计能有效保留细粒度空间信息，也广泛用于扩散模型的噪声预测网络。",
+    "related_sessions": [
+      "m3-s11"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/1505.04597"
+    ]
+  },
+  {
+    "id": "g57",
+    "term_en": "Gated Linear Attention (GLA)",
+    "term_zh": "门控线性注意力",
+    "definition_zh": "一种高效的长程依赖建模方法，通过引入门控机制使线性注意力具备数据依赖性，在保持线性复杂度的情况下接近全注意力的建模能力。",
+    "related_sessions": [
+      "m3-disc05"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2312.06635"
+    ]
+  },
+  {
+    "id": "g58",
+    "term_en": "Probing Classifier",
+    "term_zh": "探针分类器",
+    "definition_zh": "用于探测预训练模型表征能力的简单线性分类器。通过在冻结模型特征上训练线性层，评估模型学到了哪些语义信息，是分析多模态模型表征的常用工具。",
+    "related_sessions": [
+      "m3-disc05"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g59",
+    "term_en": "Mamba",
+    "term_zh": "曼巴状态空间模型",
+    "definition_zh": "一种选择性状态空间模型（Selective State Space Model），通过输入依赖的动态路由实现长序列建模，在语言建模任务上可与 Transformer 竞争，同时具有线性复杂度。",
+    "related_sessions": [
+      "m3-disc06"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2312.00752"
+    ]
+  },
+  {
+    "id": "g60",
+    "term_en": "State Space Model (SSM)",
+    "term_zh": "状态空间模型",
+    "definition_zh": "一类通过隐状态建模序列依赖的模型，最初来源于控制理论。Mamba 等现代 SSM 在序列建模中展现出 Transformer 级别的性能同时保持线性扩展性。",
+    "related_sessions": [
+      "m3-disc06"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g61",
+    "term_en": "Zero-Initialized Prompt",
+    "term_zh": "零初始化提示",
+    "definition_zh": "一种将可学习提示向量初始化为零的策略，避免在训练初期对预训练模型造成干扰。LLaMA-Adapter 等工作证明零初始化能有效稳定多模态 Adapter 的训练。",
+    "related_sessions": [
+      "m3-disc06"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/2304.03490"
+    ]
+  },
+  {
+    "id": "g62",
+    "term_en": "Unified Multimodal Generation",
+    "term_zh": "统一多模态生成",
+    "definition_zh": "指能够同时生成多种模态输出（文本、图像、音频等）的单一模型架构。与专用单模态模型相对，统一生成模型通过共享表征空间和统一目标函数实现多模态能力。",
+    "related_sessions": [
+      "m3-disc06"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g63",
+    "term_en": "Large Language Diffusion Model",
+    "term_zh": "大型语言扩散模型",
+    "definition_zh": "将扩散模型思想应用于语言建模的尝试，通过在离散 token 序列上进行去噪过程生成文本。与自回归模型不同，扩散语言模型可实现非自回归并行生成。",
+    "related_sessions": [
+      "m3-s14"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g64",
+    "term_en": "Compositional Generation",
+    "term_zh": "组合生成",
+    "definition_zh": "指能泛化到训练分布之外的新组合的生成能力。组合性是多模态生成模型的重要挑战，要求模型能灵活组合不同概念而非简单记忆训练样本。",
+    "related_sessions": [
+      "m3-s14"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g65",
+    "term_en": "Non-Autoregressive Generation (NAR)",
+    "term_zh": "非自回归生成",
+    "definition_zh": "一种一次性并行生成整个序列的范式，与自回归（逐 token 生成）相对。NAR 生成速度快但质量通常略低于 AR 模型，ICDM 和 Mask-Predict 是代表性方法。",
+    "related_sessions": [
+      "m3-s14"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g66",
+    "term_en": "Visual Question Answering (VQA)",
+    "term_zh": "视觉问答",
+    "definition_zh": "给定一张图像和一个关于图像的问题，模型需要生成或选择正确答案的任务。VQA 是评估视觉-语言模型理解能力的重要基准。",
+    "related_sessions": [
+      "m3-s10"
+    ],
+    "source_refs": [
+      "https://arxiv.org/abs/1505.00468"
+    ]
+  },
+  {
+    "id": "g67",
+    "term_en": "Grounding",
+    "term_zh": "接地/锚定",
+    "definition_zh": "将语言/概念与具体感知模态（视觉、触觉等）对应的过程，使抽象符号能够在真实世界的感知数据中找到对应实体。是多模态 AI 连接语言和感知的核心能力，也是具身 AI 的关键问题。",
+    "related_sessions": [
+      "m2-disc04"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g68",
+    "term_en": "LoRA (Low-Rank Adaptation)",
+    "term_zh": "低秩适配",
+    "definition_zh": "一种参数高效微调方法，通过在预训练权重旁引入低秩分解矩阵来微调，只训练少量额外参数，显著降低训练成本。",
+    "related_sessions": [
+      "m3-disc05"
+    ],
+    "source_refs": []
+  },
+  {
+    "id": "g69",
+    "term_en": "AI Safety",
+    "term_zh": "AI 安全性",
+    "definition_zh": "确保 AI 系统在各种条件下可靠、可预测且有益的跨学科研究领域。涵盖对抗鲁棒性、分布偏移处理、失效安全机制、价值对齐、人类监督等多个方向，是交互式 AI 系统的核心挑战。",
+    "related_sessions": [
+      "m4-s12",
+      "m4-s13"
+    ],
+    "source_refs": []
   }
 ]

@@ -36,7 +36,8 @@
       "lec1 - introduction.pdf",
       "Week 1 Introduction [slides] [video]"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能解释 How2AI 与 HTMAA/HTGAA 的关系，画出\"Almost Anything\"家族谱系图。"
   },
   {
     "id": "m0-s02",
@@ -71,7 +72,8 @@
     "source_refs": [
       "lec1.2 - AI research.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能说明 AI 研究的五个维度（数据、表征、架构、训练、评估），并为自己的研究找到定位。"
   },
   {
     "id": "m1-s03",
@@ -111,7 +113,8 @@
     "source_refs": [
       "lec2 - data.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能为一种新模态（如触觉/嗅觉/热感）画出完整的数据→结构→信息→表征 pipeline。"
   },
   {
     "id": "m1-s04",
@@ -150,7 +153,8 @@
     "source_refs": [
       "Debugging Tips.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能解释 CNN/RNN/GNN/Transformer 的结构偏置（inductive bias）及其与数据类型的对应关系。"
   },
   {
     "id": "m1-proposal",
@@ -175,7 +179,8 @@
     "practice_prompt": "准备一份 5 分钟的项目提案展示幻灯片。",
     "project_connection": "正式开启你的 How2AI 项目研究",
     "source_refs": [],
-    "session_type": "project"
+    "session_type": "project",
+    "learning_output": "能理解 项目提案汇报 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m1-s05",
@@ -218,7 +223,8 @@
     "source_refs": [
       "lec3 - models.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能解释生成式 AI 与判别式 AI 的本质区别，并列举多模态场景下的生成任务。"
   },
   {
     "id": "m1-disc01",
@@ -259,7 +265,8 @@
     "practice_prompt": "讨论：你认为「算力即一切」还是「归纳偏置仍然重要」？结合具体案例说明。",
     "project_connection": "思考这些学习理论对你设计项目方法的启示",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 1：学习与泛化 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m2-s06",
@@ -299,7 +306,8 @@
     "source_refs": [
       "lec4 - multimodal alignment.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 多模态 1：连接与对齐 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m2-disc02",
@@ -342,7 +350,8 @@
     "practice_prompt": "对比 CLIP（双塔结构）和 Flamingo（早期融合）的设计哲学。如果训练数据稀缺，哪种架构更合适？",
     "project_connection": "为你的项目选择融合架构并说明理由",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 2：现代 AI 架构 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m2-s07",
@@ -382,7 +391,8 @@
     "source_refs": [
       "lec5 - multimodal fusion.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能比较 fusion、co-learning、translation 三种多模态策略的适用场景。"
   },
   {
     "id": "m2-disc03",
@@ -423,7 +433,8 @@
     "practice_prompt": "如果不同模态的表示真的趋同于「世界的共同结构」，这对 AI 的可解释性意味着什么？",
     "project_connection": "你的项目是否涉及多模态对齐？选择哪种对齐方法？",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 3：多模态对齐 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m2-s08",
@@ -462,7 +473,8 @@
     "source_refs": [
       "lec6 - cross-modal transfer.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能解释 CLIP式对比对齐的原理，说明 temperature 参数的作用。"
   },
   {
     "id": "m2-disc04",
@@ -504,7 +516,8 @@
     "practice_prompt": "Chameleon 的统一 token 序列方法有哪些潜在优势和问题？",
     "project_connection": "你的项目是否涉及多模态交互建模？",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 4：多模态交互 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-s09",
@@ -546,7 +559,8 @@
     "source_refs": [
       "lec7 - foundation models.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 大模型 1：大型基础模型 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-midterm",
@@ -571,7 +585,8 @@
     "practice_prompt": "准备一份包含实验结果（哪怕是失败结果）的中期汇报。",
     "project_connection": "推进你的 How2AI 项目，进行第一次完整实验",
     "source_refs": [],
-    "session_type": "project"
+    "session_type": "project",
+    "learning_output": "能理解 项目中期汇报 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-s10",
@@ -612,7 +627,8 @@
     "source_refs": [
       "lec8 - multimodal LLMs.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 大模型 2：大型多模态模型 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-disc05",
@@ -652,7 +668,8 @@
     "practice_prompt": "LoRA 中的秩（rank）如何选择？过高或过低会有什么影响？",
     "project_connection": "你的项目是否涉及 LLM 微调？选择 LoRA 还是全参数微调？",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 5：大语言模型 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-s11",
@@ -692,7 +709,8 @@
     "source_refs": [
       "lec9 - generative models.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 大模型 3：现代生成模型 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-disc06",
@@ -735,7 +753,8 @@
     "practice_prompt": "分析 Spider 和 NExT-GPT 在 Any-to-Any 多模态实现上的差异。",
     "project_connection": "你的项目是否涉及 Any-to-Any 多模态能力？",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 6：大型多模态模型 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m3-disc07",
@@ -777,7 +796,8 @@
     "practice_prompt": "为什么组合性（compositionality）对多模态生成至关重要？现有模型在组合性上有哪些不足？",
     "project_connection": "你的项目涉及哪些生成能力？",
     "source_refs": [],
-    "session_type": "discussion"
+    "session_type": "discussion",
+    "learning_output": "能理解 讨论 7：生成式 AI 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m4-s12",
@@ -817,7 +837,8 @@
     "source_refs": [
       "lec10 - agents.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 交互 1：智能体与推理 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m4-final",
@@ -841,7 +862,8 @@
     "practice_prompt": "完成你的最终项目报告。",
     "project_connection": "提交你的 How2AI 最终项目",
     "source_refs": [],
-    "session_type": "project"
+    "session_type": "project",
+    "learning_output": "能理解 项目最终汇报 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "m4-s13",
@@ -883,7 +905,8 @@
     "source_refs": [
       "lec11 - human-AI interaction.pdf"
     ],
-    "session_type": "lecture"
+    "session_type": "lecture",
+    "learning_output": "能理解 交互 2：人-AI 交互 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "sp-01",
@@ -903,7 +926,8 @@
     "practice_prompt": "",
     "project_connection": "",
     "source_refs": [],
-    "session_type": "special"
+    "session_type": "special",
+    "learning_output": "能理解 放假（总统日） 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "sp-02",
@@ -923,7 +947,8 @@
     "practice_prompt": "",
     "project_connection": "",
     "source_refs": [],
-    "session_type": "special"
+    "session_type": "special",
+    "learning_output": "能理解 放假（春假） 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "sp-03",
@@ -943,7 +968,8 @@
     "practice_prompt": "",
     "project_connection": "",
     "source_refs": [],
-    "session_type": "special"
+    "session_type": "special",
+    "learning_output": "能理解 放假（成员周） 的核心概念并应用于自己的研究场景。"
   },
   {
     "id": "sp-04",
@@ -963,6 +989,7 @@
     "practice_prompt": "",
     "project_connection": "",
     "source_refs": [],
-    "session_type": "special"
+    "session_type": "special",
+    "learning_output": "能理解 放假（CHI 会议周） 的核心概念并应用于自己的研究场景。"
   }
 ]

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
-<body data-public-version="phase6c-link-reliability">
+<body data-public-version="phase6d-micro-polish">
   <!-- ======= HERO ======= -->
   <header class="hero" id="hero">
     <div class="hero-bg">
@@ -799,7 +799,7 @@
       <h2 class="section-title">
         <span class="section-num">12</span>课程研究项目时间线
       </h2>
-      <p class="section-desc">15 周课程中的 4 个关键项目节点</p>
+      <p class="section-desc">15 周课程中的关键项目里程碑</p>
 
       <div class="project-timeline">
         <div class="pt-node pt-proposal">
@@ -1005,14 +1005,16 @@
           </ul>
         </div>
         <div class="guide-card">
-          <h3>📁 开发者与维护说明</h3>
-          <ul>
-            <li><code>course.json</code> — 中文课程结构（27 节，含中文摘要）</li>
-            <li><code>readings.json</code> — 32 篇精选中文导读</li>
-            <li><code>official_reading_map.json</code> — 85 篇官方完整阅读映射</li>
-            <li><code>glossary.json</code> — 47 个中英双语术语</li>
-            <li><code>sources.json</code> — 36 个来源引用</li>
-          </ul>
+          <details>
+            <summary>📁 开发者与维护说明</summary>
+            <ul>
+              <li><code>course.json</code> — 中文课程结构（27 节，含中文摘要）</li>
+              <li><code>readings.json</code> — 32 篇精选中文导读</li>
+              <li><code>official_reading_map.json</code> — 85 篇官方完整阅读映射</li>
+              <li><code>glossary.json</code> — 47 个中英双语术语</li>
+              <li><code>sources.json</code> — 36 个来源引用</li>
+            </ul>
+          </details>
         </div>
       </div>
     </section>
@@ -1043,7 +1045,7 @@
         <a href="https://pliang279.github.io/" target="_blank" rel="noopener">Paul Liang</a>
         <a href="https://www.youtube.com/playlist?list=PLc0Yh0D0XR4Z3wityRaEuu4rfzTHRIIAO" target="_blank" rel="noopener">YouTube</a>
       </div>
-      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 6C Link Reliability</strong></p>
+      <p class="footer-copy">&copy; 2025 · 本页面为独立学习项目，非 MIT 官方出品 · <strong>Public release version: Phase 6D Micro Polish</strong></p>
     </div>
   </footer>
 
@@ -1051,7 +1053,7 @@
   <div class="modal" id="sessionModal" role="dialog" aria-modal="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-content" id="modalContent">
-      <button class="modal-close" id="modalClose">×</button>
+      <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
@@ -1060,7 +1062,7 @@
   <div class="modal" id="notesModal" role="dialog" aria-modal="true">
     <div class="modal-backdrop" id="notesBackdrop"></div>
     <div class="modal-content notes-modal">
-      <button class="modal-close" id="notesClose">×</button>
+      <button class="modal-close" id="notesClose" aria-label="关闭">×</button>
       <div class="modal-body" id="notesBody"></div>
     </div>
   </div>
@@ -1069,7 +1071,7 @@
   <div class="modal" id="quizModal" role="dialog" aria-modal="true">
     <div class="modal-backdrop" id="quizBackdrop"></div>
     <div class="modal-content quiz-modal">
-      <button class="modal-close" id="quizClose">×</button>
+      <button class="modal-close" id="quizClose" aria-label="关闭">×</button>
       <div class="modal-body" id="quizBody"></div>
     </div>
   </div>

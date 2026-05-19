@@ -256,10 +256,60 @@ def validate_lecture_notes():
             print(f"  {w}")
     return errors
 
+
+def validate_thematic_routes():
+    """Validate thematic_routes.json (Phase 8A)."""
+    data = load_json("thematic_routes.json")
+    if data is None:
+        return ["  ❌ thematic_routes.json 不存在或 JSON 无效"]
+    errors = []
+    warnings = []
+    if len(data) < 4:
+        errors.append(f"  ❌ route 数量 {len(data)} < 4")
+    course = load_json("course.json") or []
+    readings = load_json("readings.json") or []
+    glossary = load_json("glossary.json") or []
+    session_ids_in_course = {s.get("id") for s in course}
+    reading_ids_in_readings = {r.get("id") for r in readings}
+    glossary_keys = set()
+    for g in glossary:
+        for key in ("id", "term_en", "term_zh"):
+            val = g.get(key)
+            if val:
+                glossary_keys.add(val)
+    required_fields = ["id", "title", "session_ids", "milestones", "final_output", "project_prompt"]
+    for route in data:
+        rid = route.get("id", "?")
+        for f in required_fields:
+            if f not in route:
+                errors.append(f"  ❌ Route {rid}: 缺少 '{f}'")
+        if not route.get("final_output"):
+            errors.append(f"  ❌ Route {rid}: final_output 为空")
+        if not route.get("project_prompt"):
+            errors.append(f"  ❌ Route {rid}: project_prompt 为空")
+        for sid in route.get("session_ids", []):
+            if sid not in session_ids_in_course:
+                errors.append(f"  ❌ Route {rid}: session '{sid}' 不在 course.json")
+        for rid2 in route.get("reading_ids", []):
+            if rid2 not in reading_ids_in_readings:
+                errors.append(f"  ❌ Route {rid}: reading '{rid2}' 不在 readings.json")
+        for term in route.get("glossary_terms", []):
+            if term not in glossary_keys:
+                warnings.append(f"  ⚠️ Route {rid}: 术语 '{term}' 不在 glossary")
+        if len(route.get("milestones", [])) < 3:
+            errors.append(f"  ❌ Route {rid}: milestones {len(route.get('milestones', []))} < 3")
+    if warnings and not errors:
+        for w in warnings[:10]:
+            print(w)
+    if not errors:
+        print(f"  ✅ thematic_routes.json 验证通过 ({len(data)} 条路线)")
+    return errors
+
+
 # ─── main ──────────────────────────────────────────────────────
 def main():
     print("=" * 54)
-    print("How2AI 中文课程 — Phase 7B 数据验证")
+    print("How2AI 中文课程 — Phase 8A 数据验证")
     print("=" * 54)
 
     all_ok = True
@@ -271,7 +321,8 @@ def main():
         ("[4/8] glossary.json ...", validate_glossary),
         ("[5/8] sources.json ...", validate_sources),
         ("[6/8] raw_schedule_links.json ...", validate_raw_links),
-        ("[7/8] lecture_notes.json ...", validate_lecture_notes),
+        ("[7/9] lecture_notes.json ...", validate_lecture_notes),
+        ("[8/9] thematic_routes.json ...", validate_thematic_routes),
     ]
 
     for label, fn in checks:
@@ -300,7 +351,9 @@ def main():
         print(f"   Sessions: {len(c)} | Curated readings: {len(r)}")
         print(f"   Official readings: {len(o)} | Glossary: {len(g)}")
         print(f"   Sources: {len(s)} | Raw links: {len(lk)}")
+        tr = load_json("thematic_routes.json") or []
         print(f"   Lecture notes: {len(ln)} (pilot: {sum(1 for n in ln if n.get('note_status')=='pilot')})")
+        print(f"   Thematic routes: {len(tr)}")
         return 0
     else:
         print("⛔ 存在验证错误，请修复后重试")

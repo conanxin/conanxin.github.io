@@ -1,6 +1,6 @@
-/* How2AI 中文课程 — 交互逻辑 (Phase 7C) */
+/* How2AI 中文课程 — 交互逻辑 (Phase 8A) */
 let courseData = [], curatedReadings = [], glossaryData = [], officialReadings = [],
-    lectureNotes = [],
+    lectureNotes = [], thematicRoutes = [],
     currentFilter = 'all', currentReadingCat = 'all', currentRole = 'Peer Reviewer',
     currentReadingSource = 'curated', currentOfficialCat = 'all',
     _progress = {}, _notes = {};
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupLearningModes();
     setupWorkbench();
     setupProjectProgress();
+    renderThematicRoutes();
     loadProgress();
     loadNotes();
     animateProgress();
@@ -65,19 +66,21 @@ function getLinkHealthBadge(url) {
 
 async function loadData() {
     try {
-        const [c, r, g, o, lh, ln] = await Promise.all([
+        const [c, r, g, o, lh, ln, tr] = await Promise.all([
             fetch('data/course.json').then(r => r.json()),
             fetch('data/readings.json').then(r => r.json()),
             fetch('data/glossary.json').then(r => r.json()),
             fetch('data/official_reading_map.json').then(r => r.json()).catch(() => []),
             fetch('data/link_health.json').then(r => r.json()).catch(() => []),
-            fetch('data/lecture_notes.json').then(r => r.json()).catch(() => [])
+            fetch('data/lecture_notes.json').then(r => r.json()).catch(() => []),
+            fetch('data/thematic_routes.json').then(r => r.json()).catch(() => [])
         ]);
         courseData = c;
         curatedReadings = r;
         glossaryData = g;
         officialReadings = o;
         lectureNotes = ln || [];
+        thematicRoutes = typeof tr !== 'undefined' ? tr : [];
         // Build link health lookup by URL
         if (Array.isArray(lh)) {
             lh.forEach(function(entry) {
@@ -90,7 +93,8 @@ async function loadData() {
         try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){}
         try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){}
         try { officialReadings = await fetch('data/official_reading_map.json').then(r => r.json()); } catch(e){}
-        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()).catch(() => []); } catch(e){}
+        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()).catch(() => []),
+            fetch('data/thematic_routes.json').then(r => r.json()).catch(() => []); } catch(e){}
     }
 }
 
@@ -461,7 +465,19 @@ function exportAllNotes() {
     });
   });
   if (!hasWorkbench) lines.push('（尚无七角色工作台笔记）\n\n');
-  lines.push('## 下一步建议\n\n- [ ] 选择一个学习模式并完成对应路线\n- [ ] 至少完成 3 个课程节点\n- [ ] 至少用七角色工作台读完 1 篇论文\n- [ ] 写出一个 Project Proposal\n- [ ] 准备 Final Presentation 和 Final Report\n');
+  // Thematic routes progress
+  if (typeof thematicRoutes !== 'undefined' && thematicRoutes && thematicRoutes.length > 0) {
+    lines.push('\n## 专题学习路线进度\n');
+    thematicRoutes.forEach(function(route) {
+      var prog = getRouteProgressData(route.id);
+      lines.push('- **' + route.title + '**：' + prog.done + ' / ' + prog.total + ' 里程碑完成\n');
+      route.milestones.forEach(function(m) {
+        var done = prog.milestones && prog.milestones[m.id] ? 'x' : ' ';
+        lines.push('  - [' + done + '] ' + m.label + '\n');
+      });
+    });
+  }
+  lines.push('\n## 下一步建议\n\n- [ ] 选择一个学习模式并完成对应路线\n- [ ] 至少完成 3 个课程节点\n- [ ] 至少用七角色工作台读完 1 篇论文\n- [ ] 写出一个 Project Proposal\n- [ ] 准备 Final Presentation 和 Final Report\n');
   downloadMarkdown(lines.join(''), 'how2ai-full-learning-notes.md');
 }
 
@@ -975,7 +991,7 @@ function renderLectureNotes() {
                         return g.term_en === c.term_en || g.term_zh === c.term;
                     });
                     if (match) {
-                        glossaryLink = '<a href="#glossary-' + match.id + '" class="glossary-link">见术语表</a>';
+                        glossaryLink = '<a href="#glossary-' + match.id + '" class="glossary-anchor-link">见术语表</a>';
                     }
                 }
                 html += '<span class="concept-pill">';
@@ -1317,6 +1333,266 @@ function exportLectureNotesMarkdown() {
     var filename = 'how2ai-lecture-notes-' + now.split(' ')[0].replace(/\//g, '-') + '.md';
     downloadMarkdown(md, filename);
     showToast('试点讲义已导出为 Markdown', 'success');
+}
+
+/* ========== Thematic Learning Routes ========== */
+
+var _routeProgress = {};
+var ROUTE_PROGRESS_KEY = 'how2ai_route_progress';
+
+function getRouteProgress() {
+    try { return JSON.parse(localStorage.getItem(ROUTE_PROGRESS_KEY) || '{}'); } catch { return {}; }
+}
+function saveRouteProgress(progress) {
+    localStorage.setItem(ROUTE_PROGRESS_KEY, JSON.stringify(progress));
+}
+function setRouteMilestone(routeId, milestoneId, done) {
+    var progress = getRouteProgress();
+    if (!progress[routeId]) progress[routeId] = { milestones: {} };
+    progress[routeId].milestones[milestoneId] = done;
+    saveRouteProgress(progress);
+    updateRouteCardProgress(routeId);
+}
+function toggleRouteMilestone(routeId, milestoneId) {
+    var progress = getRouteProgress();
+    if (!progress[routeId]) progress[routeId] = { milestones: {} };
+    var current = progress[routeId].milestones[milestoneId] || false;
+    progress[routeId].milestones[milestoneId] = !current;
+    saveRouteProgress(progress);
+    updateRouteCardProgress(routeId);
+}
+function updateRouteCardProgress(routeId) {
+    var route = thematicRoutes.find(function(r) { return r.id === routeId; });
+    if (!route) return;
+    var progress = getRouteProgress();
+    var routeProg = progress[routeId] || { milestones: {} };
+    var milestones = route.milestones || [];
+    var done = milestones.filter(function(m) { return routeProg.milestones[m.id]; }).length;
+    var card = document.querySelector('[data-route-id="' + routeId + '"]');
+    if (!card) return;
+    var bar = card.querySelector('.route-progress-bar-fill');
+    var count = card.querySelector('.route-progress-count');
+    if (bar) bar.style.width = (milestones.length > 0 ? (done / milestones.length * 100) : 0) + '%';
+    if (count) count.textContent = done + ' / ' + milestones.length;
+    var badge = card.querySelector('.route-completion-badge');
+    if (badge) {
+        if (done === milestones.length && milestones.length > 0) {
+            badge.textContent = 'done';
+            badge.className = 'route-completion-badge badge-complete';
+        } else {
+            badge.textContent = done + ' / ' + milestones.length;
+            badge.className = 'route-completion-badge';
+        }
+    }
+}
+function getRouteProgressData(routeId) {
+    var route = thematicRoutes.find(function(r) { return r.id === routeId; });
+    if (!route) return { done: 0, total: 0, milestones: {} };
+    var progress = getRouteProgress();
+    var routeProg = progress[routeId] || { milestones: {} };
+    var milestones = route.milestones || [];
+    var done = milestones.filter(function(m) { return routeProg.milestones[m.id]; }).length;
+    return { done: done, total: milestones.length, milestones: routeProg.milestones };
+}
+function renderThematicRoutes() {
+    var container = document.getElementById('thematicRoutesContainer');
+    if (!container) return;
+    if (!thematicRoutes || thematicRoutes.length === 0) {
+        container.innerHTML = '<p class="text-muted">&#x4E13;&#x9898;&#x8DEF;&#x7EBF;&#x6570;&#x636E;&#x6682;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>';
+        return;
+    }
+    var html = '<div class="route-grid">';
+    thematicRoutes.forEach(function(route) {
+        var prog = getRouteProgressData(route.id);
+        var done = prog.done;
+        var total = prog.total;
+        var pct = total > 0 ? (done / total * 100) : 0;
+        var difficultyLabel = { beginner: '&#x5165;&#x95E8;', intermediate: '&#x8FDB;&#x9636;', advanced: '&#x6DF1;&#x5165;' }[route.difficulty] || route.difficulty;
+        var difficultyClass = 'diff-' + route.difficulty;
+        var isComplete = (done === total && total > 0);
+        html += '<div class="route-card' + (isComplete ? ' route-card-complete' : '') + '" data-route-id="' + route.id + '">';
+        html += '<div class="route-card-header" onclick="toggleRouteCard(\'' + route.id + '\')">';
+        html += '<div class="route-title-row">';
+        html += '<h3 class="route-title">' + escHtml(route.title) + '</h3>';
+        html += '<span class="route-completion-badge' + (isComplete ? ' badge-complete' : '') + '">' + (isComplete ? '&#x2713; &#x5B8C;&#x6210;' : (done + ' / ' + total)) + '</span>';
+        html += '</div>';
+        html += '<p class="route-subtitle">' + escHtml(route.subtitle) + '</p>';
+        html += '<div class="route-meta">';
+        html += '<span class="route-difficulty ' + difficultyClass + '">' + difficultyLabel + '</span>';
+        html += '<span class="route-time">' + escHtml(route.estimated_time) + '</span>';
+        html += '<span class="route-type">' + escHtml(route.route_type) + '</span>';
+        html += '</div>';
+        html += '<div class="route-progress">';
+        html += '<div class="route-progress-bar"><div class="route-progress-bar-fill" style="width:' + pct + '%"></div></div>';
+        html += '<span class="route-progress-count">' + done + ' / ' + total + '</span>';
+        html += '</div>';
+        html += '</div>';
+        html += '<div class="route-card-body" id="routeBody-' + route.id + '" style="display:none">';
+        html += '<div class="route-description"><p>' + escHtml(route.description) + '</p></div>';
+
+        // Session list
+        html += '<div class="route-section-label">&#x8BFE;&#x7A0B;&#x8282;&#x70B9;</div>';
+        html += '<ul class="route-session-list">';
+        route.session_ids.forEach(function(sid) {
+            var session = courseData.find(function(s) { return s.id === sid; });
+            if (session) {
+                html += '<li>';
+                html += '<a href="#sessions" class="route-session-link" onclick="scrollToSessionFromRoute(\'' + sid + '\')">';
+                html += '<span class="session-week">Week ' + (session.week || '') + '</span> ';
+                html += '<span class="session-zh-title">' + escHtml(session.zh_title || session.original_title || sid) + '</span>';
+                html += '</a>';
+                html += '</li>';
+            }
+        });
+        html += '</ul>';
+
+        // Readings
+        if (route.reading_ids && route.reading_ids.length > 0) {
+            html += '<div class="route-section-label">&#x63A8;&#x8350;&#x9605;&#x8BFB;</div>';
+            html += '<ul class="route-reading-list">';
+            route.reading_ids.forEach(function(rid) {
+                var reading = curatedReadings.find(function(r) { return r.id === rid; });
+                if (reading) {
+                    html += '<li><a href="#readings" class="route-reading-link" onclick="switchReadingSource(\'curated\'); setTimeout(function(){ openReading(\'' + rid + '\'); }, 100);">';
+                    html += escHtml(reading.title_zh || reading.title || rid) + '</a></li>';
+                }
+            });
+            html += '</ul>';
+        }
+
+        // Glossary terms
+        if (route.glossary_terms && route.glossary_terms.length > 0) {
+            html += '<div class="route-section-label">&#x76F8;&#x5173;&#x672F;&#x8BED;</div>';
+            html += '<div class="route-glossary-list">';
+            route.glossary_terms.forEach(function(term) {
+                var gEntry = glossaryData.find(function(g) { return g.term_en === term || g.term_zh === term; });
+                if (gEntry) {
+                    html += '<a href="#glossary" class="route-glossary-link glossary-anchor-link" onclick="event.preventDefault(); var el=document.getElementById(\'glossary-' + gEntry.id + '\'); if(el){el.scrollIntoView({behavior:\'smooth\'});el.classList.add(\'highlight\');setTimeout(function(){el.classList.remove(\'highlight\');},2000);}">' + escHtml(term) + '</a>';
+                } else {
+                    html += '<span class="route-glossary-chip">' + escHtml(term) + '</span>';
+                }
+            });
+            html += '</div>';
+        }
+
+        // Milestones
+        if (route.milestones && route.milestones.length > 0) {
+            html += '<div class="route-section-label">&#x91CC;&#x7A0B;&#x7891;&#x7387;&#x6807;</div>';
+            html += '<ul class="route-milestones">';
+            var prog2 = getRouteProgressData(route.id);
+            route.milestones.forEach(function(m) {
+                var checked = prog2.milestones && prog2.milestones[m.id] ? 'checked' : '';
+                html += '<li>';
+                html += '<label class="route-milestone-label">';
+                html += '<input type="checkbox" ' + checked + ' onchange="toggleRouteMilestone(\'' + route.id + '\', \'' + m.id + '\')">';
+                html += '<span class="milestone-label-text">' + escHtml(m.label) + '</span>';
+                html += '</label>';
+                html += '<p class="milestone-desc">' + escHtml(m.description) + '</p>';
+                html += '</li>';
+            });
+            html += '</ul>';
+        }
+
+        // Actions
+        html += '<div class="route-actions">';
+        html += '<button class="btn-export-route" onclick="exportRouteMarkdown(\'' + route.id + '\')">&#x1F4E4; &#x5BFC;&#x51FA;&#x8DEF;&#x7EBF; Markdown</button>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+}
+function toggleRouteCard(routeId) {
+    var card = document.querySelector('[data-route-id="' + routeId + '"]');
+    var body = document.getElementById('routeBody-' + routeId);
+    if (!card || !body) return;
+    var isExpanded = card.classList.contains('expanded');
+    if (isExpanded) {
+        card.classList.remove('expanded');
+        body.style.display = 'none';
+    } else {
+        card.classList.add('expanded');
+        body.style.display = 'block';
+    }
+}
+function scrollToSessionFromRoute(sessionId) {
+    switchReadingSource('curated');
+    document.querySelectorAll('.tab-btn').forEach(function(t) { t.classList.remove('active'); });
+    var tabAll = document.querySelector('.tab-btn[data-filter="all"]');
+    if (tabAll) tabAll.classList.add('active');
+    currentFilter = 'all';
+    closeAllSessions();
+    renderSessions();
+    setTimeout(function() { openSession(sessionId); }, 100);
+}
+function exportRouteMarkdown(routeId) {
+    var route = thematicRoutes.find(function(r) { return r.id === routeId; });
+    if (!route) return;
+    var prog = getRouteProgressData(routeId);
+    var lines = [];
+    lines.push('# ' + route.title + '\n\n');
+    lines.push('> ' + route.subtitle + '\n\n');
+    lines.push('**' + '&#x9002;&#x5408;&#x5BF9;&#x8C61;：** ' + route.audience + '\n\n');
+    lines.push('**' + '&#x5B66;&#x4E60;&#x76EE;&#x6807;：** ' + route.goal + '\n\n');
+    lines.push('**' + '&#x96BE;&#x5EA6;：** ' + route.difficulty + ' | **' + '&#x9884;&#x8BA1;&#x65F6;&#x95F4;：** ' + route.estimated_time + '\n\n');
+    lines.push('---\n\n');
+    lines.push('## ' + '&#x8BFE;&#x7A0B;&#x8282;&#x70B9;' + '\n\n');
+    route.session_ids.forEach(function(sid) {
+        var session = courseData.find(function(s) { return s.id === sid; });
+        if (session) {
+            lines.push('- **Week ' + (session.week || '') + '** ' + (session.zh_title || session.original_title || sid) + '\n');
+        }
+    });
+    if (route.reading_ids && route.reading_ids.length > 0) {
+        lines.push('\n## ' + '&#x63A8;&#x8350;&#x9605;&#x8BFB;' + '\n\n');
+        route.reading_ids.forEach(function(rid) {
+            var reading = curatedReadings.find(function(r) { return r.id === rid; });
+            if (reading) {
+                lines.push('- ' + (reading.title_zh || reading.title || rid) + '\n');
+            }
+        });
+    }
+    if (route.glossary_terms && route.glossary_terms.length > 0) {
+        lines.push('\n## ' + '&#x76F8;&#x5173;&#x672F;&#x8BED;' + '\n\n');
+        route.glossary_terms.forEach(function(term) {
+            var gEntry = glossaryData.find(function(g) { return g.term_en === term || g.term_zh === term; });
+            lines.push('- ' + term + (gEntry ? ' (' + gEntry.term_zh + ')' : '') + '\n');
+        });
+    }
+    if (route.milestones && route.milestones.length > 0) {
+        lines.push('\n## ' + '&#x91CC;&#x7A0B;&#x7891;&#x7387;&#x6807;（' + prog.done + ' / ' + prog.total + '）\n\n');
+        route.milestones.forEach(function(m) {
+            var done = prog.milestones && prog.milestones[m.id] ? '[x]' : '[ ]';
+            lines.push('- ' + done + ' **' + m.label + '**\n');
+            lines.push('  ' + m.description + '\n');
+        });
+    }
+    lines.push('\n## ' + '&#x6700;&#x7EC8;&#x4EA7;&#x51FA;' + '\n\n' + route.final_output + '\n\n');
+    lines.push('## ' + '&#x9879;&#x76EE; prompt\n\n' + route.project_prompt + '\n');
+    downloadMarkdown(lines.join(''), route.id + '-learning-route.md');
+    showToast('&#x8DEF;&#x7EBF;&#x5DF2;&#x5BFC;&#x51FA;&#x4E3A; Markdown &#x1F4E4;');
+}
+function exportAllRoutesMarkdown() {
+    var lines = [];
+    lines.push('# How2AI ' + '&#x4E13;&#x9898;&#x5B66;&#x4E60;&#x8DEF;&#x7EBF; ' + '&#x2014; ' + '&#x5168;&#x90E8;&#x5BFC;&#x51FA;' + '\n\n');
+    lines.push('' + '&#x5BFC;&#x51FA;&#x65F6;&#x95F4;：** ' + new Date().toLocaleString('zh-CN') + '\n\n');
+    thematicRoutes.forEach(function(route) {
+        var prog = getRouteProgressData(route.id);
+        lines.push('## ' + route.title + '\n\n');
+        lines.push('> ' + route.subtitle + '\n\n');
+        lines.push('**' + '&#x96BE;&#x5EA6;：** ' + route.difficulty + ' | **' + '&#x9884;&#x8BA1;&#x65F6;&#x95F4;：** ' + route.estimated_time + '\n\n');
+        lines.push('**' + '&#x5B8C;&#x6210;&#x5EA6;：** ' + prog.done + ' / ' + prog.total + ' ' + '&#x91CC;&#x7A0B;&#x7891;&#x7387;&#x6807;' + '\n\n');
+        if (route.milestones && route.milestones.length > 0) {
+            route.milestones.forEach(function(m) {
+                var done = prog.milestones && prog.milestones[m.id] ? '[x]' : '[ ]';
+                lines.push('- ' + done + ' **' + m.label + '**\n');
+            });
+        }
+        lines.push('\n---\n\n');
+    });
+    downloadMarkdown(lines.join(''), 'how2ai-all-routes-progress.md');
+    showToast('&#x6240;&#x6709;&#x8DEF;&#x7EBF;&#x8FC7;&#x5EA6;&#x5DF2;&#x5BFC;&#x51FA; &#x1F4E4;');
 }
 
 function escHtml(str) {

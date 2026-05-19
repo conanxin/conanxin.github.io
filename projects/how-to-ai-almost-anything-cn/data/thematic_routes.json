@@ -1,0 +1,330 @@
+[
+  {
+    "id": "multisensory-ai",
+    "title": "多感官 AI 路线",
+    "subtitle": "从视觉、触觉、嗅觉到真实世界的传感器数据",
+    "description": "本路线带你系统理解如何把任意物理模态接入 AI 系统。涵盖数据采集、表征学习、跨模态对齐、多模态融合，以及在真实物理世界中的泛化与部署。适合对「如何让 AI 闻到气味、触摸表面」这类问题感兴趣的学习者。",
+    "audience": "适合想理解 AI 如何接入物理世界和新感官模态的学习者，零基础可入门，但需要一定好奇心。",
+    "goal": "学完后能设计一个把新模态（视觉、触觉、嗅觉、传感器数据等）接入 AI 系统的研究或原型方案。",
+    "difficulty": "intermediate",
+    "estimated_time": "2–3 周",
+    "route_type": "conceptual",
+    "session_ids": [
+      "m1-s03",
+      "m2-s06",
+      "m2-s07",
+      "m2-s08",
+      "m2-disc02",
+      "m2-disc03",
+      "m2-disc04",
+      "m1-s05",
+      "m3-s11",
+      "m4-s13",
+      "m1-proposal"
+    ],
+    "reading_ids": [
+      "r002",
+      "r003",
+      "r009",
+      "r010",
+      "r011",
+      "r012",
+      "r022"
+    ],
+    "glossary_terms": [
+      "Multimodal AI",
+      "Alignment",
+      "Fusion",
+      "Cross-Modal Transfer",
+      "Representation Learning",
+      "Sensor",
+      "Heterogeneity",
+      "Equivariance",
+      "Invariance",
+      "Embodied AI",
+      "Self-Supervised Learning",
+      "Fine-tuning"
+    ],
+    "milestones": [
+      {
+        "id": "ms-1",
+        "label": "理解「AI 化」的五个维度",
+        "description": "数据 → 表征 → 架构 → 训练 → 评估，能用自己的话解释每一步在做什么。"
+      },
+      {
+        "id": "ms-2",
+        "label": "掌握模态异质性（Heterogeneity）问题",
+        "description": "能说明为什么不同模态不能直接混合输入 transformer，以及有哪些主流对齐策略。"
+      },
+      {
+        "id": "ms-3",
+        "label": "完成跨模态迁移（Cross-Modal Transfer）实验",
+        "description": "能解释如何使用一个模态预训练的表示来增强另一个模态的任务性能。"
+      },
+      {
+        "id": "ms-4",
+        "label": "理解物理世界 AI 部署的泛化挑战",
+        "description": "能说明 sim-to-real 迁移、传感器噪声、分布偏移对多感官 AI 系统的影响。"
+      }
+    ],
+    "final_output": "完成一份「如何 AI 化一种新模态」的提案文档（可选新模态：触觉、嗅觉、化学感受、生物信号等），包含五个维度的初步分析。",
+    "project_prompt": "选择一个你感兴趣但课上未深入讨论的模态（如：触觉阵列、气体传感器、味觉电极、ECoG 脑电、Fiber optic 声传感）。\n\n从以下五个维度分析该模态：\n1. 数据：如何采集？标注成本如何？有哪些公开数据集？\n2. 表征：用什么特征表示原始数据？和已有模态的表示有何不同？\n3. 架构：现有的多模态架构能否直接使用？需要哪些改动？\n4. 训练：如何设计预训练任务？自监督还是监督？\n5. 评估：有哪些基准测试？如何定义「成功」？\n\n最终输出一份 1-2 页的模态 AI 化提案，配有简单的系统架构草图。\n\n参考模板：MIT Multisensory Intelligence Group 的开放研究问题。"
+  },
+  {
+    "id": "multimodal-foundation-models",
+    "title": "多模态大模型路线",
+    "subtitle": "Foundation Models、CLIP、LLaVA、OpenVLA 与多模态生成",
+    "description": "本路线深入当前多模态 AI 的核心：从大规模预训练的 Foundation Model 范式出发，理解 CLIP 的对比学习视觉-语言对齐、LLaVA 的指令微调多模态助手、OpenVLA 的机器人视觉-语言-动作模型，以及统一多模态生成的前沿进展（Chameleon、MM1、Movie Gen）。",
+    "audience": "适合有一定编程基础，想深入理解多模态大模型架构、训练策略和部署挑战的学习者。",
+    "goal": "学完后能解释主流多模态大模型的设计选择，理解不同架构的优劣，并能够为自己的应用场景选型。",
+    "difficulty": "advanced",
+    "estimated_time": "3–4 周",
+    "route_type": "technical",
+    "session_ids": [
+      "m1-s05",
+      "m2-s06",
+      "m2-s07",
+      "m2-disc02",
+      "m3-s09",
+      "m3-s10",
+      "m3-s11",
+      "m3-disc05",
+      "m3-disc06",
+      "m3-disc07",
+      "m4-s12"
+    ],
+    "reading_ids": [
+      "r005",
+      "r006",
+      "r007",
+      "r010",
+      "r013",
+      "r014",
+      "r015",
+      "r016",
+      "r020",
+      "r021",
+      "r022",
+      "r023",
+      "r026",
+      "r029",
+      "r031"
+    ],
+    "glossary_terms": [
+      "Foundation Model",
+      "Contrastive Learning",
+      "Instruction Tuning",
+      "Generative Model",
+      "Large Multimodal Model",
+      "Vision-Language Model",
+      "Scaling Laws",
+      "Token Selection",
+      "Joint Scaling",
+      "Zero-Shot Learning",
+      "Few-Shot Learning",
+      "Diffusion Model",
+      "Flow Matching",
+      "Quantization",
+      "LoRA",
+      "Alignment",
+      "Multimodal AI",
+      "Vision Transformer"
+    ],
+    "milestones": [
+      {
+        "id": "mf-1",
+        "label": "理解 CLIP 的对比学习范式",
+        "description": "能从 InfoNCE 损失、批次负采样、视觉/文本 encoder 架构三个角度解释 CLIP 的设计，并说明其局限性。"
+      },
+      {
+        "id": "mf-2",
+        "label": "对比 LLaVA 和 PaLM-E 的架构差异",
+        "description": "能列出 LLaVA（视觉到语言）和 PaLM-E（具身多模态）的核心差异，以及各自的适用场景。"
+      },
+      {
+        "id": "mf-3",
+        "label": "复现或微调一个开源多模态模型",
+        "description": "在本地环境或 Colab 中完成 LLaVA 或 MiniGPT-4 的推理/微调实验，记录关键参数和效果。"
+      },
+      {
+        "id": "mf-4",
+        "label": "理解多模态生成的技术路线",
+        "description": "能比较 Diffusion Model、Flow Matching 和 Language Model 三种多模态生成范式的优劣。"
+      },
+      {
+        "id": "mf-5",
+        "label": "评估一个大模型在不同模态任务上的表现",
+        "description": "选择一个基准测试（如 MMBench、SEED-Bench），分析模型在不同子维度上的表现差距并给出解释。"
+      }
+    ],
+    "final_output": "完成一篇「多模态 Foundation Model 架构对比分析」的技术报告（1500–2000 字），对比至少 3 种模型架构的设计选择与性能权衡。",
+    "project_prompt": "从以下三个方向中任选一个深入研究：\n\nA. 多模态指令微调（Instruction Tuning）分析\n选择 LLaVA、LLaMA-Adapter 或 MiniGPT-4，分析其指令微调数据构造方法、训练策略、以及在 VQA 任务上的表现差异。\n\nB. 多模态扩散模型（Multimodal Diffusion）\n比较 Chameleon（混合模态早期融合）和 MM1（混合专家策略），从架构、训练稳定性和生成质量三个角度分析。\n\nC. 视觉-语言-动作模型（VLA）\n研究 OpenVLA 的设计：如何将视觉观察和语言指令映射到机器人动作序列？分析其泛化能力和 sim-to-real 迁移策略。\n\n最终输出：技术报告（1000–1500 字）+ 代码实验记录（notebook 或 README）。"
+  },
+  {
+    "id": "interactive-agents",
+    "title": "交互式 Agent 路线",
+    "subtitle": "Interactive AI、Agent、Human-in-the-Loop 与 AI 安全性",
+    "description": "本路线聚焦于如何让 AI 系统与人类和环境动态交互。涵盖交互式 Agent 的推理与规划、Human-in-the-Loop 的强化学习（RLHF/DPO）、VideoWebArena 评估框架、ArtPrompt 越狱攻击与 AI Safety，以及 HCI 设计指南。",
+    "audience": "适合对 AI Agent、AI Safety 和人机交互感兴趣的学习者，需要有基础机器学习知识。",
+    "goal": "学完后能设计一个包含人类反馈环的交互式 AI 系统，理解 RLHF/DPO 的工作原理，并具备基础的安全对齐意识。",
+    "difficulty": "intermediate",
+    "estimated_time": "2–3 周",
+    "route_type": "application",
+    "session_ids": [
+      "m4-s12",
+      "m4-s13",
+      "m3-s11",
+      "m2-disc04",
+      "m3-disc07",
+      "m1-proposal",
+      "m3-midterm",
+      "m4-final"
+    ],
+    "reading_ids": [
+      "r024",
+      "r025",
+      "r026",
+      "r027",
+      "r028"
+    ],
+    "glossary_terms": [
+      "Interactive Agent",
+      "Human-AI Interaction",
+      "Reinforcement Learning",
+      "Human Feedback",
+      "Chain-of-Thought",
+      "AI Safety",
+      "Direct Preference Optimization",
+      "RLHF",
+      "Agent",
+      "Human-in-the-Loop",
+      "Evaluation",
+      "Few-Shot Learning",
+      "Zero-Shot Learning"
+    ],
+    "milestones": [
+      {
+        "id": "ia-1",
+        "label": "理解 Interactive Agent 的核心组件",
+        "description": "能画出 Agent 的「感知→推理→规划→执行」循环，并说明每个模块的现有技术方案。"
+      },
+      {
+        "id": "ia-2",
+        "label": "理解 RLHF 和 DPO 的差异",
+        "description": "能用外行语言解释 RLHF（人类反馈强化学习）和 DPO（直接偏好优化）的工作原理，并比较两者优缺点。"
+      },
+      {
+        "id": "ia-3",
+        "label": "分析 VideoWebArena 评估框架",
+        "description": "能说明视频基准测试在多模态 Agent 评估中的必要性，以及现有文本基准的局限性。"
+      },
+      {
+        "id": "ia-4",
+        "label": "理解 ArtPrompt 越狱攻击机制",
+        "description": "能解释 ASCII art 如何绕过 LLM 的安全过滤，以及有哪些防御策略。"
+      },
+      {
+        "id": "ia-5",
+        "label": "应用 HCI 指南设计一个人机交互流程",
+        "description": "参考 MIT HAI Guidelines，为一个具体场景（如 AI 助教、AI 创作助手）设计人机交互规范。"
+      }
+    ],
+    "final_output": "完成一份「交互式 AI 系统设计提案」（1000–1500 字），包含用户交互流程、反馈机制设计、潜在风险与缓解措施。",
+    "project_prompt": "设计一个交互式 AI Agent，要求：\n\n1. 场景设定（任选其一）：\n   - AI 科研助手：帮助研究者检索论文、设计实验、分析结果\n   - AI 创作搭档：与人协作写作、作曲、绘画\n   - AI 机器人控制界面：人类发出高层指令，机器人执行并反馈\n\n2. 系统设计（必含）：\n   a) Agent 的核心推理循环（CoT / ReAct / Plan-and-Execute）\n   b) 人类反馈的接入方式（RLHF / DPO / 人在回路）\n   c) 安全对齐机制（如何防止恶意指令）\n   d) 评估指标（如何判断 Agent 表现好）\n\n3. 最终输出：\n   - 系统架构图（可用文字/Mermaid/ASCII 绘制）\n   - 核心模块说明（500–800 字）\n   - 潜在风险与缓解方案（300–500 字）"
+  },
+  {
+    "id": "research-project-track",
+    "title": "研究项目路线",
+    "subtitle": "从选题到终稿的完整研究项目指南",
+    "description": "本路线专为计划以多模态 AI 为方向做研究项目的学习者设计。覆盖完整的项目周期：选题与文献综述 → Proposal → Baseline → Error Analysis → Ablation → Final Report。每个阶段都有具体操作指引、推荐阅读和项目检查点。",
+    "audience": "适合计划以本课程主题做毕业设计、发表论文或创业项目的学习者，需要有一定机器学习基础。",
+    "goal": "完成一个完整的多模态 AI 研究项目，包含可运行的 baseline、可视化的 error analysis、有说服力的 ablation study，以及结构清晰的 final report。",
+    "difficulty": "advanced",
+    "estimated_time": "4–6 周",
+    "route_type": "research",
+    "session_ids": [
+      "m0-s01",
+      "m0-s02",
+      "m1-s03",
+      "m1-s04",
+      "m1-s05",
+      "m1-disc01",
+      "m1-proposal",
+      "m2-s06",
+      "m2-s07",
+      "m2-disc02",
+      "m2-disc03",
+      "m3-midterm",
+      "m3-s10",
+      "m3-disc05",
+      "m3-s11",
+      "m3-disc06",
+      "m3-disc07",
+      "m4-s12",
+      "m4-s13",
+      "m4-final"
+    ],
+    "reading_ids": [
+      "r001",
+      "r002",
+      "r003",
+      "r008",
+      "r011",
+      "r017",
+      "r018",
+      "r021",
+      "r025",
+      "r028",
+      "r032"
+    ],
+    "glossary_terms": [
+      "Research Question",
+      "Baseline",
+      "Error Analysis",
+      "Ablation Study",
+      "Evaluation",
+      "Literature Review",
+      "Foundation Model",
+      "Multimodal AI",
+      "Instruction Tuning",
+      "Agent",
+      "AI Safety",
+      "Zero-Shot Learning",
+      "Few-Shot Learning"
+    ],
+    "milestones": [
+      {
+        "id": "rp-1",
+        "label": "完成文献综述（Literature Review）",
+        "description": "围绕研究问题，整理 10–15 篇相关论文（含 5 篇精读），写出「已有工作的不足」和「我的研究动机」。"
+      },
+      {
+        "id": "rp-2",
+        "label": "提交项目提案（Proposal）并完成开题答辩",
+        "description": "包含研究问题、相关工作、初步方法思路和预期贡献（500–800 字 + 参考文献列表）。"
+      },
+      {
+        "id": "rp-3",
+        "label": "搭建 Baseline 并完成初版实验",
+        "description": "选定 1–2 个已有方法作为 baseline，在目标数据集上跑通实验，整理初步结果。"
+      },
+      {
+        "id": "rp-4",
+        "label": "完成 Error Analysis",
+        "description": "分析 baseline 的错误案例，归类错误类型（分布内 / 分布外 / 人类偏误 / 模型局限），提出改进方向。"
+      },
+      {
+        "id": "rp-5",
+        "label": "完成 Ablation Study",
+        "description": "对所提方法的每个核心组件做消融实验，用数据证明每个组件都有正向贡献。"
+      },
+      {
+        "id": "rp-6",
+        "label": "完成 Final Report 并进行最终答辩",
+        "description": "Report 包含：摘要、引言、相关工作、方法、实验、结论、参考文献（8–12 页）。答辩 10–15 分钟。"
+      }
+    ],
+    "final_output": "完成一篇完整的研究报告（8–12 页，含图表和参考文献）和可复现的代码仓库（GitHub），符合顶会投稿格式要求（可选：基于 NeurIPS / CVPR / ACL 模板）。",
+    "project_prompt": "本课程的项目是开放式的，以下列目提供参考方向，可选择其一或自行提出：\n\n参考项目方向：\n1. 新模态 AI 化：选择一个课程未涵盖的模态（触觉 / 嗅觉 / 味觉 / ECoG 等），按「数据→表征→架构→训练→评估」五步设计提案。\n2. 多模态对齐改进：针对现有方法的跨模态对齐失败案例，提出新的对齐损失或融合策略。\n3. 多模态 Agent：设计一个基于多模态大模型的交互式 Agent，在 VideoWebArena 或自定义环境中评估。\n4. AI Safety 专题：研究 ArtPrompt 类越狱攻击或 RLHF/DPO 对齐的意外影响，提出防御或改进方案。\n5. 多模态生成评估：对比 Diffusion 和 Language Model 两种多模态生成范式，设计新的评估指标。\n\n时间线（参考）：\n- 第 1–2 周：选题 + 文献综述\n- 第 3–4 周：Proposal + 开题\n- 第 5–7 周：Baseline + Error Analysis\n- 第 8–10 周：Ablation + 迭代\n- 第 11–12 周：Final Report + 答辩准备\n\n最低要求：完整提案 + 可运行 baseline + Error Analysis。优秀项目目标：达到可投稿 workshop 论文水平。"
+  }
+]

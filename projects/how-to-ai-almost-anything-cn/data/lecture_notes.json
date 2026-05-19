@@ -1094,10 +1094,26 @@
     "core_question": "现代多模态AI模型的核心架构设计如何平衡不同模态之间的信息流动与计算效率？",
     "why_it_matters": "理解现代AI架构的设计原则对于构建更强大、更高效的多模态系统至关重要，这些架构直接决定了模型的能力边界和应用场景。",
     "concepts": [
-      "生成式混合模态模型的规模化定律 (Scaling Laws for Generative Mixed-Modal Models)",
-      "预训练中的Token选择性 (Not All Tokens Are What You Need for Pretraining)",
-      "PaLI联合规模化多语言-视觉模型 (PaLI: Jointly-Scaled Multilingual Language-Image Model)",
-      "多模态模型架构演进 (Evolution of Multimodal Model Architectures)"
+      {
+        "term_en": "Scaling Laws",
+        "term": "Scaling Laws",
+        "explanation": "描述大模型训练中模型规模（参数量）、数据集规模和计算量与模型性能之间关系的经验法则。生成式混合模态模型需同时考虑视觉 token 和语言 token 的规模化策略。"
+      },
+      {
+        "term_en": "Token Selection",
+        "term": "Token 选择性",
+        "explanation": "并非所有 token 对预训练同等重要。Token 选择性（Not All Tokens Are What You Need）指在预训练中根据重要性对 token 进行加权或采样的策略，影响模型效率和最终性能。"
+      },
+      {
+        "term_en": "Joint Scaling",
+        "term": "联合规模化",
+        "explanation": "PaLI 等多语言-视觉联合模型中，对视觉编码器、语言模型和训练数据量进行协同设计和规模化的策略，而非单独优化某一组件。"
+      },
+      {
+        "term_en": "Multimodal Architecture Evolution",
+        "term": "多模态模型架构演进",
+        "explanation": "从早期的浅层融合到 late fusion，再到 modern fusion（跨模态注意力、混合模态 transformer）的演进历程。"
+      }
     ],
     "lecture_guide": "讨论课将首先回顾规模化定律的基本概念，解释为何模型的参数规模、训练数据和计算量之间存在可预测的关系。随后通过PaLI模型案例，展示如何在大规模多语言视觉任务中应用这些定律。重点讨论预训练阶段Token选择的重要性，分析不是所有Token都适合预训练的洞察，以及这如何影响模型效率和性能。最后梳理多模态模型架构从早期融合到模块化设计的历史演进路径。",
     "reading_guide": "阅读重点放在三篇核心论文：Scaling Laws论文帮助理解规模化行为的基础数学框架；Token选择论文提供关于预训练效率的关键洞察；PaLI论文展示工程实践中如何实现联合规模化。建议带着以下问题阅读：(1) 规模化定律在多模态场景下与纯语言模型有何异同？(2) Token选择策略对预训练效率和最终性能的影响机制是什么？",
@@ -1139,9 +1155,21 @@
     "core_question": "不同模态的表示如何在统一的语义空间中实现有效对齐，这种对齐背后的机制是什么？",
     "why_it_matters": "多模态对齐是实现跨模态理解与生成的基础，决定了模型能否准确理解图像描述、回答视觉问题或进行跨模态检索。深入理解对齐机制对于构建更强大的多模态系统至关重要。",
     "concepts": [
-      "柏拉图表示假说 (The Platonic Representation Hypothesis)",
-      "对比学习中良好视图的定义 (What Makes for Good Views for Contrastive Learning?)",
-      "多模态表示对齐的涌现机制 (Understanding the Emergence of Multimodal Representation Alignment)"
+      {
+        "term_en": "Platonic Representation Hypothesis",
+        "term": "柏拉图表示假说",
+        "explanation": "MIT 提出的假说：不同模态的神经网络在训练过程中趋于收敛到相似的表示几何结构，不同传感器最终学习到的是物理世界的共同底层结构。"
+      },
+      {
+        "term_en": "Contrastive Learning",
+        "term": "对比学习",
+        "explanation": "通过拉近相似样本并推远不相似样本来学习表示。对比学习是 CLIP 等视觉-语言模型的核心训练范式。关键问题：什么构成了「好的视图」？"
+      },
+      {
+        "term_en": "Multimodal Representation Alignment",
+        "term": "多模态表示对齐",
+        "explanation": "使不同模态的表示空间对齐到共享语义空间的过程。视觉和语言的表示对齐是 CLIP 的核心，也存在「涌现」现象。"
+      }
     ],
     "lecture_guide": "讨论课从柏拉图表示假说开始，探讨是否存在一个普遍的、理想化的表示空间能够捕获所有模态的本质信息。继而分析对比学习中'好视图'的定义，理解数据增强策略如何影响表示学习的质量。重点讨论多模态对齐如何在预训练过程中涌现，以及不同对齐方法（对比、融合、生成）的各自特点与适用场景。",
     "reading_guide": "三篇核心论文分别从不同角度切入对齐问题：Platonic Representation Hypothesis提供理论视角；Contrastive Learning Views论文提供实践指导；对齐涌现论文解释机制原理。建议思考：(1) 不同模态是否真的能共享一个统一的表示空间？(2) 对比学习中数据增强与对齐质量之间的关系是什么？",
@@ -1183,10 +1211,26 @@
     "core_question": "不同模态之间如何实现深度交互与融合，交互的本质是什么，哪些架构和训练策略最能捕获模态间的协同效应？",
     "why_it_matters": "多模态交互是实现真正多模态智能的核心——从视觉问答到多模态对话，从具身智能到内容生成，理解和建模模态交互机制对于构建下一代AI系统至关重要。",
     "concepts": [
-      "多模态交互综述 (Multimodal interaction: A review)",
-      "多模态交互的量化与建模 (Quantifying & Modeling Multimodal Interactions)",
-      "KOSMOS-2：面向世界的多模态大语言模型 (Kosmos-2: Grounding Multimodal Large Language Models to the World)",
-      "Chameleon：混合模态早期融合基础模型 (Chameleon: Mixed-modal early-fusion foundation models)"
+      {
+        "term_en": "Multimodal Interaction",
+        "term": "多模态交互",
+        "explanation": "来自不同感知通道的信息如何相互作用、互相影响，从而产生新的联合理解。是多感官 AI 的核心科学问题。"
+      },
+      {
+        "term_en": "Multimodal Interactions Quantification",
+        "term": "多模态交互的量化与建模",
+        "explanation": "如何量化不同模态信息之间的交互强度和模式。涉及互信息、偏信息分解（PID）等信息论工具。"
+      },
+      {
+        "term_en": "Kosmos-2",
+        "term": "KOSMOS-2",
+        "explanation": "微软的多模态大语言模型，支持视觉定位（Grounding）——将语言描述锚定到图像中的具体区域。"
+      },
+      {
+        "term_en": "Chameleon",
+        "term": "Chameleon",
+        "explanation": "Meta 的混合模态早期融合（early-fusion）基础模型，在单一 transformer 中同时处理文本和图像 token，无需单独的视觉编码器。"
+      }
     ],
     "lecture_guide": "讨论课首先通过综述论文建立多模态交互的系统性认知框架，理解交互的定义、类型和评估方法。随后深入分析如何量化建模模态间的交互强度与模式。KOSMOS-2案例展示如何将视觉 grounding 能力整合到多模态大模型中，实现更精确的视觉-语言关联。Chameleon案例则展示早期融合策略的优势与挑战，探讨统一生成式多模态模型的可能性。",
     "reading_guide": "四篇核心文献覆盖理论与实践：综述提供系统框架；量化建模论文提供方法论；KOSMOS-2展示 grounding 能力；Chameleon展示早期融合架构。建议关注：(1) 晚期融合与早期融合的根本区别是什么？(2) KOSMOS-2的 grounding 机制与传统的多模态模型有何本质不同？",
@@ -1228,9 +1272,21 @@
     "core_question": "大语言模型如何在海量数据中学习通用能力，如何通过微调和对齐技术使其更好地服务于人类目标？",
     "why_it_matters": "大语言模型已成为当代AI技术的核心基石，理解其预训练机制、自监督学习范式和微调对齐方法对于从事AI研究和应用开发具有不可替代的重要性。这些技术决定了模型的能力边界、安全性和实际可用性。",
     "concepts": [
-      "预训练数据处理 (Pre-training data)",
-      "自监督学习 (Self-supervised learning)",
-      "微调与指令对齐 (Fine-tuning, instructing, alignment)"
+      {
+        "term_en": "Pre-training Data",
+        "term": "预训练数据",
+        "explanation": "大规模自监督学习所使用的数据。预训练数据的质量直接影响 Foundation Model 的能力边界。"
+      },
+      {
+        "term_en": "Self-Supervised Learning",
+        "term": "自监督学习",
+        "explanation": "不依赖人工标签，通过设计「代理任务」（如 masked token 预测、对比学习）从无标注数据中学习表示。"
+      },
+      {
+        "term_en": "Fine-tuning and Alignment",
+        "term": "微调与指令对齐",
+        "explanation": "在预训练模型基础上，通过有监督微调（SFT）和对齐技术（RLHF / DPO）使模型行为符合人类意图。"
+      }
     ],
     "lecture_guide": "课程分为三个主要部分。第一部分讲解预训练数据的采集、清洗与处理流程，包括数据来源多样性、去重策略、质量过滤方法，以及数据配比对模型性能的影响。第二部分深入自监督学习的主要范式，包括GPT系列采用的next token prediction和BERT采用的masked language modeling，分析不同范式的特点与适用场景。第三部分介绍从预训练模型到可用系统的关键步骤：SFT（监督微调）、RLHF（人类反馈强化学习）、DPO（直接偏好优化）等对齐技术，解释为何对齐是大模型实际部署的必要条件。",
     "reading_guide": "建议阅读以下核心文献：GPT-3论文理解自回归预训练的核心机制；LLaMA论文学习高效预训练的实践策略；InstructGPT论文掌握RLHF对齐方法；DPO论文理解新型对齐范式。阅读时思考：(1) 预训练数据质量和数量如何平衡？(2) Next token prediction为何能产生如此强大的通用能力？(3) 对齐过程中的偏好标注如何影响模型行为？",
@@ -1536,10 +1592,26 @@
     "core_question": "如何在大规模语言模型中实现高效的能力适配？LLM的内部表征在预训练和对齐过程中发生了怎样的变化？模型量化如何在保持性能的同时大幅降低部署成本？",
     "why_it_matters": "大语言模型的训练和部署面临巨大挑战：如何高效微调（完整微调成本高昂）、如何设计更高效的架构（Transformer计算复杂度高）、如何理解LLM的内部工作机制（对齐如何改变模型表征）、以及如何在有限资源下部署（模型过大难以运行）。这四个问题代表了当前LLM研究和应用的核心瓶颈，本讨论课通过四篇前沿论文深入剖析这些问题。",
     "concepts": [
-      "LoRA: Low-Rank Adaptation 低秩适配——通过低秩分解实现LLM参数高效微调",
-      "Gated Linear Attention Transformers 门控线性注意力——硬件友好的新型高效注意力机制",
-      "Unintended Impacts of LLM Alignment 对齐的意外影响——RLHF/DPO如何改变LLM的全局表示结构",
-      "A Visual Guide to Quantization 量化可视化指南——从基础到先进的大模型量化技术"
+      {
+        "term_en": "LoRA",
+        "term": "LoRA",
+        "explanation": "低秩适配（Low-Rank Adaptation），通过低秩矩阵分解对大模型进行参数高效微调。是 LLM 微调的主流方法。"
+      },
+      {
+        "term_en": "Gated Linear Attention",
+        "term": "Gated Linear Attention (GLA)",
+        "explanation": "一类新型高效注意力机制，通过门控机制提升 Transformer 的计算效率，同时保持对长序列的建模能力。"
+      },
+      {
+        "term_en": "LLM Alignment Impact",
+        "term": "LLM 对齐的意外影响",
+        "explanation": "RLHF / DPO 等对齐技术在提升模型指令遵循能力的同时，也会对模型的内部表示产生非预期影响。"
+      },
+      {
+        "term_en": "Quantization",
+        "term": "量化",
+        "explanation": "将大模型参数从高精度压缩到低精度（INT8 / INT4）以降低推理成本的技术。"
+      }
     ],
     "lecture_guide": "讨论课将分为四个主要部分。第一部分分析LoRA的低秩适配技术，理解为何冻结预训练权重并训练低秩分解矩阵能有效捕获任务特定知识，以及rank值选择和适配器设计对性能的影响。第二部分探讨门控线性注意力Transformer如何通过硬件感知的实现策略（kernel融合、瓦片化）克服标准注意力的计算和内存瓶颈。第三部分分析LLM对齐（RLHF/DPO）对模型内部表征的影响，理解对齐如何可能导致模型能力的不平衡变化。最后部分系统梳理大模型量化的技术路线，从基础Post-Training Quantization到先进的SmoothQuant和GPTQ，理解不同位宽和校准方法对模型行为的影响。",
     "reading_guide": "阅读重点放在四篇核心论文，每篇承担不同的认知功能：LoRA论文提供参数高效微调的工程方法论；Gated Linear Attention论文展示如何从系统角度优化Transformer；对齐影响论文从表征分析角度理解LLM工作机制；量化指南提供可操作的部署优化知识。建议带着以下问题阅读：(1) 每篇论文的核心insight是什么？(2) 该技术的主要假设和局限在哪里？(3) 该技术如何与你自己的项目或研究相关？",
@@ -1585,10 +1657,26 @@
     "core_question": "如何将语言模型的强大能力高效地扩展到多模态领域？新型状态空间模型（Mamba）能否成为多模态Transformer的有力替代？统一的多模态生成框架应该具备哪些核心能力？",
     "why_it_matters": "多模态LLM代表了当代AI发展的重要前沿。与纯语言模型相比，多模态LLM能够同时处理和生成多种模态内容，在机器人操控、自动驾驶、医疗诊断、内容创作等领域有广泛应用。然而，多模态LLM面临独特的挑战：如何高效地将语言模型适配到多模态输入（Mamba架构、多模态Adapter设计）、如何构建统一的生成框架（ModaVerse）、以及如何实现灵活的模态转换（Spider）。本讨论课通过四篇前沿论文深入这些核心问题。",
     "concepts": [
-      "LLaMA-Adapter——通过零初始化的自适应提示实现高效多模态微调",
-      "Cobra——将状态空间模型Mamba扩展到多模态LLM的新架构探索",
-      "ModaVerse——统一的多模态生成框架，支持文本、图像、视频等多种模态的内容创作",
-      "Spider——任意模态到多种目标模态的灵活转换架构"
+      {
+        "term_en": "LLaMA-Adapter",
+        "term": "LLaMA-Adapter",
+        "explanation": "通过零初始化提示（Zero-Initialized Prompt）机制对 LLaMA 进行高效多模态微调的方案。"
+      },
+      {
+        "term_en": "Cobra",
+        "term": "Cobra",
+        "explanation": "探索将状态空间模型（Mamba）扩展为多模态 LLM 架构的尝试。"
+      },
+      {
+        "term_en": "ModaVerse",
+        "term": "ModaVerse",
+        "explanation": "统一的多模态生成框架，支持文本、图像、视频等多种模态的内容创作。"
+      },
+      {
+        "term_en": "Modality Transfer",
+        "term": "模态迁移",
+        "explanation": "Spider 提出的「任意模态到任意目标模态」灵活转换架构。"
+      }
     ],
     "lecture_guide": "讨论课将围绕四篇论文展开。首先分析LLaMA-Adapter，理解其如何通过零初始化的自适应提示机制，在不显著增加参数量的情况下实现多模态能力的有效注入，与标准全参数微调或LoRA相比的优势和局限。其次深入Cobra论文，探讨Mamba状态空间模型的多模态扩展——Mamba原本在语言建模上展现了在Transformer效率和RNN线性注意力之间的权衡，将其扩展到多模态领域需要解决哪些核心问题。第三部分分析ModaVerse如何设计统一的多模态生成框架，理解'一个框架支持多种模态生成'背后的设计哲学和技术挑战。最后探讨Spider的任意到多模态转换能力，理解如何实现输入模态和输出模态的灵活组合。",
     "reading_guide": "阅读重点放在四篇前沿论文，每篇代表一个重要的技术方向。LLaMA-Adapter论文展示参数高效微调在多模态领域的应用；Cobra论文探索新架构的可能性；ModaVerse论文代表统一多模态生成的方向；Spider论文则聚焦于模态转换的灵活性。建议采用'七角色阅读法'：(1) 一句话总结论文；(2) 核心问题是什么；(3) 主要方法是什么；(4) 关键insight；(5) 实验设计是否合理；(6) 主要局限；(7) 对你自己研究的启发。带着这些角色去读，每篇论文控制在20-30分钟内完成深度阅读。",

@@ -980,13 +980,13 @@ a:hover{color:var(--accent-purple)}
     color: #666;
     font-style: italic;
 }
-.glossary-link {
+.glossary-anchor-link {
     font-size: 10px;
     color: #4a90d9;
     text-decoration: none;
     margin-left: 4px;
 }
-.glossary-link:hover { text-decoration: underline; }
+.glossary-anchor-link:hover { text-decoration: underline; }
 
 .concept-detail {
     background: #f9f9f9;
@@ -1152,4 +1152,218 @@ a:hover{color:var(--accent-purple)}
     .concept-pill { font-size: 12px; padding: 3px 8px; }
     .lecture-notes-header { flex-direction: column; }
     .lecture-notes-actions { width: 100%; }
+}
+
+
+/* ===== THEMATIC LEARNING ROUTES ===== */
+.thematic-routes-section { margin-bottom: 2rem; }
+.route-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 1rem;
+}
+.route-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+.route-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.route-card.route-card-complete { border-color: #22c55e; }
+.route-card-header {
+    padding: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+.route-card-header:hover { background: var(--hover-bg); }
+.route-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+.route-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.3;
+    flex: 1;
+}
+.route-completion-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: var(--bg-tag);
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.route-completion-badge.badge-complete {
+    background: #dcfce7;
+    color: #16a34a;
+}
+.route-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0 0 8px;
+    line-height: 1.4;
+}
+.route-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.route-difficulty {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+.diff-beginner { background: #dbeafe; color: #1d4ed8; }
+.diff-intermediate { background: #fef3c7; color: #92400e; }
+.diff-advanced { background: #fce7f3; color: #9d174d; }
+.route-time { font-size: 0.75rem; color: var(--text-muted); padding: 2px 6px; }
+.route-type { font-size: 0.75rem; color: var(--text-muted); padding: 2px 6px; }
+.route-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.route-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-tag);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.route-progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+.route-progress-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+.route-card-body {
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border-color);
+}
+.route-description {
+    padding: 12px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.route-section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 12px 0 6px;
+}
+.route-session-list, .route-reading-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.route-session-list li, .route-reading-list li {
+    padding: 4px 0;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.route-session-link, .route-reading-link {
+    color: var(--link-color);
+    text-decoration: none;
+}
+.route-session-link:hover, .route-reading-link:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+.session-week {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-right: 4px;
+}
+.route-glossary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+.route-glossary-chip {
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    background: var(--bg-tag);
+    border-radius: 8px;
+    color: var(--text-secondary);
+}
+.route-milestones {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.route-milestones li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.route-milestone-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+}
+.route-milestone-label input[type="checkbox"] {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.milestone-label-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+.milestone-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 4px 0 0 24px;
+    line-height: 1.5;
+}
+.route-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.btn-export-route {
+    background: var(--bg-tag);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-export-route:hover { background: var(--hover-bg); }
+#glossary .glossary-item.highlight {
+    background: #fef9c3;
+    outline: 2px solid #facc15;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .route-grid { grid-template-columns: 1fr; }
+    .route-card-body { padding: 0 12px 12px; }
 }

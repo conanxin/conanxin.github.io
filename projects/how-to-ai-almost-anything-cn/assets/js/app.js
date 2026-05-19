@@ -6,41 +6,54 @@ let courseData = [], curatedReadings = [], glossaryData = [], officialReadings =
     _progress = {}, _notes = {};
 
 // Phase 8C-R3: debug flag — set to false before push to production
-const _DBG = true;
-function _log() { if (_DBG) console.log('[How2AI]', ...arguments); }
-function _err() { if (_DBG) console.error('[How2AI]', ...arguments); }
+var HOW2AI_DEBUG = false;
+function _log() { if (HOW2AI_DEBUG && console && console.log) console.log('[How2AI]', ...arguments); }
+function _err() { if (HOW2AI_DEBUG && console && console.error) console.error('[How2AI]', ...arguments); }
+
+/* ---- Safe list normalizer ---- */
+function normalizeList(value) {
+    if (Array.isArray(value)) return value;
+    if (value === null || value === undefined || value === '') return [];
+    if (typeof value === 'string') return [{ title: value, why_read: '', how_to_read: '', key_questions: [] }];
+    if (typeof value === 'object') {
+        if (Array.isArray(value.items)) return value.items;
+        if (Array.isArray(value.points)) return value.points;
+        return Object.values(value).filter(Boolean).map(String);
+    }
+    return [String(value)];
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-    _log('DOMContentLoaded start');
-    try {
-    await loadData();
-    } catch(e) { _err('loadData FAILED:', e); }
+    try { await loadData(); } catch(e) { _err('loadData FAILED:', e); }
     _log('loadData done. lectureNotes.length =', lectureNotes.length, 'courseData.length =', courseData.length);
     try { renderTimeline(); }   catch(e) { _err('renderTimeline FAILED:', e); }
     try { renderSessions(); }   catch(e) { _err('renderSessions FAILED:', e); }
-    try { renderReadings(); }    catch(e) { _err('renderReadings FAILED:', e); }
-    try { renderGlossary(); }    catch(e) { _err('renderGlossary FAILED:', e); }
+    try { renderReadings(); }   catch(e) { _err('renderReadings FAILED:', e); }
+    try { renderGlossary(); }   catch(e) { _err('renderGlossary FAILED:', e); }
     try { renderLectureNotes(); } catch(e) { _err('renderLectureNotes FAILED:', e); }
     try { setupEventListeners(); } catch(e) { _err('setupEventListeners FAILED:', e); }
-    setupNavTabs();
-    setupSevenRoles();
-    setupReadingSourceToggle();
-    setupLearningModes();
-    setupWorkbench();
-    setupProjectProgress();
-    renderThematicRoutes();
-    buildSessionRouteMap();
-    buildReadingRouteMap();
-    renderSessionRouteBadges();
-    renderReadingRouteBadges();
-    renderGlossaryRouteBadges();
-    handleRouteHash();
-    setupLearningModeRouteRecommend();
-    loadProgress();
-    loadNotes();
-    animateProgress();
-    updateStats();
-    initModuleBadges();
+    try { setupNavTabs(); } catch(e) { _err('setupNavTabs FAILED:', e); }
+    try { setupSevenRoles(); } catch(e) { _err('setupSevenRoles FAILED:', e); }
+    try { setupReadingSourceToggle(); } catch(e) { _err('setupReadingSourceToggle FAILED:', e); }
+    try { setupLearningModes(); } catch(e) { _err('setupLearningModes FAILED:', e); }
+    try { setupWorkbench(); } catch(e) { _err('setupWorkbench FAILED:', e); }
+    try { setupProjectProgress(); } catch(e) { _err('setupProjectProgress FAILED:', e); }
+    try { renderThematicRoutes(); } catch(e) { _err('renderThematicRoutes FAILED:', e); }
+    try { buildSessionRouteMap(); } catch(e) { _err('buildSessionRouteMap FAILED:', e); }
+    try { buildReadingRouteMap(); } catch(e) { _err('buildReadingRouteMap FAILED:', e); }
+    try { renderSessionRouteBadges(); } catch(e) { _err('renderSessionRouteBadges FAILED:', e); }
+    try { renderReadingRouteBadges(); } catch(e) { _err('renderReadingRouteBadges FAILED:', e); }
+    try { renderGlossaryRouteBadges(); } catch(e) { _err('renderGlossaryRouteBadges FAILED:', e); }
+    try { handleRouteHash(); } catch(e) { _err('handleRouteHash FAILED:', e); }
+    // setupLearningModeRouteRecommend: safe guard, noop if missing
+    if (typeof setupLearningModeRouteRecommend === 'function') {
+        try { setupLearningModeRouteRecommend(); } catch(e) { _err('setupLearningModeRouteRecommend FAILED:', e); }
+    }
+    try { loadProgress(); } catch(e) { _err('loadProgress FAILED:', e); }
+    try { loadNotes(); } catch(e) { _err('loadNotes FAILED:', e); }
+    try { animateProgress(); } catch(e) { _err('animateProgress FAILED:', e); }
+    try { updateStats(); } catch(e) { _err('updateStats FAILED:', e); }
+    try { initModuleBadges(); } catch(e) { _err('initModuleBadges FAILED:', e); }
 });
 
 /* Phase 6C: Link health state */
@@ -1043,7 +1056,7 @@ function renderLectureNotes() {
         // Reading guide
         if (note.reading_guide && note.reading_guide.length > 0) {
             html += '<p class="section-label">必读材料导读</p>';
-            note.reading_guide.forEach(function(rg) {
+            normalizeList(note.reading_guide).forEach(function(rg) {
                 html += '<div class="reading-guide-item">';
                 html += '<div class="reading-title">📄 ' + escHtml(rg.title || '未命名阅读材料') + '</div>';
                 if (rg.why_read) {
@@ -1054,7 +1067,7 @@ function renderLectureNotes() {
                 }
                 if (rg.key_questions && rg.key_questions.length > 0) {
                     html += '<p class="reading-questions"><strong>关键问题：</strong><ul>';
-                    rg.key_questions.forEach(function(q) {
+                    normalizeList(rg.key_questions).forEach(function(q) {
                         html += '<li>' + escHtml(q) + '</li>';
                     });
                     html += '</ul></p>';
@@ -1315,20 +1328,20 @@ function exportLectureNotesMarkdown() {
         }
         if (note.reading_guide && note.reading_guide.length > 0) {
             lines.push('### 必读材料导读');
-            note.reading_guide.forEach(function(rg) {
+            normalizeList(note.reading_guide).forEach(function(rg) {
                 lines.push('**' + (rg.title || '未命名阅读材料') + '**');
                 if (rg.why_read) lines.push('- 为什么读：' + rg.why_read);
                 if (rg.how_to_read) lines.push('- 怎么读：' + rg.how_to_read);
                 if (rg.key_questions && rg.key_questions.length > 0) {
                     lines.push('- 关键问题：');
-                    rg.key_questions.forEach(function(q) { lines.push('  - ' + q); });
+                    normalizeList(rg.key_questions).forEach(function(q) { lines.push('  - ' + q); });
                 }
                 lines.push('');
             });
         }
         if (note.project_ideas && note.project_ideas.length > 0) {
             lines.push('### 项目化方向');
-            note.project_ideas.forEach(function(pi) {
+            normalizeList(note.project_ideas).forEach(function(pi) {
                 lines.push('- **' + (pi.title || '未命名项目') + '** [' + (pi.difficulty || 'intermediate') + ']');
                 if (pi.description) lines.push('  - ' + pi.description);
                 if (pi.data_needed) lines.push('  - 数据需求：' + pi.data_needed);
@@ -1338,7 +1351,7 @@ function exportLectureNotesMarkdown() {
         }
         if (note.reflection_questions && note.reflection_questions.length > 0) {
             lines.push('### 思考题');
-            note.reflection_questions.forEach(function(q) {
+            normalizeList(note.reflection_questions).forEach(function(q) {
                 lines.push('- ' + q);
             });
             lines.push('');

@@ -5,14 +5,23 @@ let courseData = [], curatedReadings = [], glossaryData = [], officialReadings =
     currentReadingSource = 'curated', currentOfficialCat = 'all',
     _progress = {}, _notes = {};
 
+// Phase 8C-R3: debug flag — set to false before push to production
+const _DBG = true;
+function _log() { if (_DBG) console.log('[How2AI]', ...arguments); }
+function _err() { if (_DBG) console.error('[How2AI]', ...arguments); }
+
 document.addEventListener('DOMContentLoaded', async () => {
+    _log('DOMContentLoaded start');
+    try {
     await loadData();
-    renderTimeline();
-    renderSessions();
-    renderReadings();
-    renderGlossary();
-    renderLectureNotes();
-    setupEventListeners();
+    } catch(e) { _err('loadData FAILED:', e); }
+    _log('loadData done. lectureNotes.length =', lectureNotes.length, 'courseData.length =', courseData.length);
+    try { renderTimeline(); }   catch(e) { _err('renderTimeline FAILED:', e); }
+    try { renderSessions(); }   catch(e) { _err('renderSessions FAILED:', e); }
+    try { renderReadings(); }    catch(e) { _err('renderReadings FAILED:', e); }
+    try { renderGlossary(); }    catch(e) { _err('renderGlossary FAILED:', e); }
+    try { renderLectureNotes(); } catch(e) { _err('renderLectureNotes FAILED:', e); }
+    try { setupEventListeners(); } catch(e) { _err('setupEventListeners FAILED:', e); }
     setupNavTabs();
     setupSevenRoles();
     setupReadingSourceToggle();
@@ -88,6 +97,7 @@ async function loadData() {
         officialReadings = o;
         lectureNotes = ln || [];
         thematicRoutes = typeof tr !== 'undefined' ? tr : [];
+        _log('loadData success: courseData.length=' + c.length + ', lectureNotes.length=' + (lectureNotes.length || 0) + ', thematicRoutes.length=' + (thematicRoutes.length || 0));
         // Build link health lookup by URL
         if (Array.isArray(lh)) {
             lh.forEach(function(entry) {
@@ -95,12 +105,12 @@ async function loadData() {
             });
         }
     } catch (e) {
-        console.error('Failed to load data:', e);
-        try { courseData = await fetch('data/course.json').then(r => r.json()); } catch(e){}
-        try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){}
-        try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){}
+        _err('loadData outer catch FAILED:', e);
+        try { courseData = await fetch('data/course.json').then(r => r.json()); } catch(e){ _err('courseData fallback failed', e); }
+        try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){ _err('curatedReadings fallback failed', e); }
+        try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){ _err('glossaryData fallback failed', e); }
         try { officialReadings = await fetch('data/official_reading_map.json').then(r => r.json()); } catch(e){}
-        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()); } catch(e){ lectureNotes = []; }
+        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()); } catch(e){ lectureNotes = []; _err('lectureNotes fallback failed, set to []'); }
         try { thematicRoutes = await fetch('data/thematic_routes.json').then(r => r.json()); } catch(e){ thematicRoutes = []; }
     }
 }
@@ -934,8 +944,10 @@ function saveProjectProgress() {
 /* === Phase 7B: Lecture Notes === */
 function renderLectureNotes() {
     var container = document.getElementById('lectureNotesContainer');
+    _log('renderLectureNotes called. container=', container ? 'FOUND' : 'NULL', 'lectureNotes.length=', lectureNotes ? lectureNotes.length : 'N/A');
     if (!container) return;
     if (!lectureNotes || lectureNotes.length === 0) {
+        _err('renderLectureNotes: lectureNotes is empty! lectureNotes=', lectureNotes);
         container.innerHTML = '<p style="color:#888;font-size:14px;text-align:center;padding:32px;">讲义数据暂不可用</p>';
         return;
     }

@@ -100,8 +100,8 @@ async function loadData() {
         try { curatedReadings = await fetch('data/readings.json').then(r => r.json()); } catch(e){}
         try { glossaryData = await fetch('data/glossary.json').then(r => r.json()); } catch(e){}
         try { officialReadings = await fetch('data/official_reading_map.json').then(r => r.json()); } catch(e){}
-        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()).catch(() => []),
-            fetch('data/thematic_routes.json').then(r => r.json()).catch(() => []); } catch(e){}
+        try { lectureNotes = await fetch('data/lecture_notes.json').then(r => r.json()); } catch(e){ lectureNotes = []; }
+        try { thematicRoutes = await fetch('data/thematic_routes.json').then(r => r.json()); } catch(e){ thematicRoutes = []; }
     }
 }
 

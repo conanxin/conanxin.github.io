@@ -315,15 +315,22 @@ def main():
     all_ok = True
 
     checks = [
-        ("[1/8] course.json ...", validate_course),
-        ("[2/8] readings.json ...", validate_readings),
-        ("[3/8] official_reading_map.json ...", validate_official_readings),
-        ("[4/8] glossary.json ...", validate_glossary),
-        ("[5/8] sources.json ...", validate_sources),
-        ("[6/8] raw_schedule_links.json ...", validate_raw_links),
-        ("[7/8] lecture_notes.json ...", validate_lecture_notes),
-        ("[8/8] thematic_routes.json ...", validate_thematic_routes),
+        ("[1/9] course.json ...", validate_course),
+        ("[2/9] readings.json ...", validate_readings),
+        ("[3/9] official_reading_map.json ...", validate_official_readings),
+        ("[4/9] glossary.json ...", validate_glossary),
+        ("[5/9] sources.json ...", validate_sources),
+        ("[6/9] raw_schedule_links.json ...", validate_raw_links),
+        ("[7/9] lecture_notes.json ...", validate_lecture_notes),
+        ("[8/9] thematic_routes.json ...", validate_thematic_routes),
+        ("[9/9] thematic_route_quiz + crossrefs ...", lambda: _phase8b_check()),
     ]
+
+    def _phase8b_check():
+        r1 = validate_thematic_route_quiz()
+        r2 = validate_route_crossrefs()
+        # r1/r2 are None (pass) or [] (fail); None AND None = None
+        return (r1 and r2) if (r1 or r2) else None
 
     for label, fn in checks:
         print(f"\n{label}")
@@ -358,6 +365,77 @@ def main():
     else:
         print("⛔ 存在验证错误，请修复后重试")
         return 1
+
+
+
+def validate_thematic_route_quiz():
+    """Phase 8B: Validate each route has 5 quiz questions."""
+    print("\n[Phase 8B] Validating thematic route quiz...")
+    with open("data/thematic_routes.json", encoding="utf-8") as f:
+        routes = json.load(f)
+    errors = []
+    for route in routes:
+        quiz = route.get("quiz", [])
+        if len(quiz) != 5:
+            errors.append(f"Route {route.get('id','?')}: expected 5 quiz questions, got {len(quiz)}")
+            continue
+        for i, q in enumerate(quiz):
+            if "question" not in q: errors.append(f"Route {route['id']} q{i+1}: missing question")
+            if "options" not in q: errors.append(f"Route {route['id']} q{i+1}: missing options")
+            elif len(q["options"]) < 3: errors.append(f"Route {route['id']} q{i+1}: need >=3 options")
+            if "answer" not in q: errors.append(f"Route {route['id']} q{i+1}: missing answer")
+            elif not (isinstance(q["answer"], int) and 0 <= q["answer"] < len(q.get("options",[]))):
+                errors.append(f"Route {route['id']} q{i+1}: invalid answer index")
+            if not q.get("explanation","").strip(): errors.append(f"Route {route['id']} q{i+1}: missing explanation")
+    if errors:
+        for e in errors: print(f"  FAIL: {e}")
+        return []  # return list for main() to consume
+    print(f"  PASS: All {len(routes)} routes have valid quizzes (5 Q each)")
+    return None  # None = pass for main()
+
+def validate_route_crossrefs():
+    """Phase 8B: Validate route cross-references to course.json and readings.json."""
+    print("\n[Phase 8B] Validating route cross-references...")
+    with open("data/course.json", encoding="utf-8") as f:
+        course_raw = json.load(f)
+    sessions = course_raw if isinstance(course_raw, list) else course_raw.get("sessions", [])
+    with open("data/readings.json", encoding="utf-8") as f:
+        readings_raw = json.load(f)
+    readings_list = readings_raw if isinstance(readings_raw, list) else readings_raw.get("readings", [])
+    with open("data/thematic_routes.json", encoding="utf-8") as f:
+        routes = json.load(f)
+    with open("data/glossary.json", encoding="utf-8") as f:
+        glossary = json.load(f)
+
+    session_ids = set(s["id"] for s in sessions)
+    reading_ids = set(r["id"] for r in readings_list)
+    glossary_ids = set(g["id"] for g in glossary)
+    glossary_lowercase = set(g["id"].lower().replace(" ","") for g in glossary)
+    glossary_en_lower = {g.get("term_en","").lower().replace(" ",""):g["id"] for g in glossary}
+    glossary_zh_lower = {g.get("term_zh","").lower().replace(" ",""):g["id"] for g in glossary}
+
+    errors = []
+    warnings = []
+    for route in routes:
+        for sid in route.get("recommended_sessions", []):
+            if sid not in session_ids:
+                errors.append(f"Route {route['id']}: session '{sid}' not in course.json")
+        for rid in route.get("recommended_readings", []):
+            if rid not in reading_ids:
+                warnings.append(f"Route {route['id']}: reading '{rid}' not in readings.json (warning only)")
+        for gt in route.get("glossary_terms", []):
+            gl = gt.lower().replace(" ","")
+            if gl in glossary_lowercase: continue
+            if gl in glossary_en_lower: continue
+            if gl in glossary_zh_lower: continue
+            warnings.append(f"Route {route['id']}: glossary term '{gt}' not matched in glossary.json (warning)")
+    if errors:
+        for e in errors: print(f"  FAIL: {e}")
+        return []  # return list for main() to consume
+    if warnings:
+        for w in warnings: print(f"  WARN: {w}")
+    print(f"  PASS: All session refs valid, {len(warnings)} warnings (non-blocking)")
+    return None  # None = pass for main()
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupWorkbench();
     setupProjectProgress();
     renderThematicRoutes();
+    buildSessionRouteMap();
+    buildReadingRouteMap();
+    renderSessionRouteBadges();
+    renderReadingRouteBadges();
+    renderGlossaryRouteBadges();
+    handleRouteHash();
+    setupLearningModeRouteRecommend();
     loadProgress();
     loadNotes();
     animateProgress();
@@ -1401,7 +1408,8 @@ function renderThematicRoutes() {
         container.innerHTML = '<p class="text-muted">&#x4E13;&#x9898;&#x8DEF;&#x7EBF;&#x6570;&#x636E;&#x6682;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>';
         return;
     }
-    var html = '<div class="route-grid">';
+    var html = renderRouteTabs();
+    html += '<div class="route-grid">';
     thematicRoutes.forEach(function(route) {
         var prog = getRouteProgressData(route.id);
         var done = prog.done;
@@ -1493,9 +1501,13 @@ function renderThematicRoutes() {
             html += '</ul>';
         }
 
+        // Quiz
+        html += renderQuizForRoute(route.id);
+
         // Actions
         html += '<div class="route-actions">';
         html += '<button class="btn-export-route" onclick="exportRouteMarkdown(\'' + route.id + '\')">&#x1F4E4; &#x5BFC;&#x51FA;&#x8DEF;&#x7EBF; Markdown</button>';
+        html += '<button class="btn-route-report" onclick="exportRouteLearningReport(\'' + route.id + '\')">&#x1F4CA; &#x751F;&#x6210;&#x8DEF;&#x7EBF;&#x5B66;&#x4E60;&#x62A5;&#x544A;</button>';
         html += '</div>';
         html += '</div>';
         html += '</div>';
@@ -1594,6 +1606,298 @@ function exportAllRoutesMarkdown() {
     downloadMarkdown(lines.join(''), 'how2ai-all-routes-progress.md');
     showToast('&#x6240;&#x6709;&#x8DEF;&#x7EBF;&#x8FC7;&#x5EA6;&#x5DF2;&#x5BFC;&#x51FA; &#x1F4E4;');
 }
+
+/* ========== Phase 8B: Route Learning System ========== */
+
+/* ---- Route Landing Tabs + URL Hash ---- */
+var ACTIVE_ROUTE_KEY = 'how2ai_active_route';
+var ROUTE_QUIZ_SCORES_KEY = 'how2ai_route_quiz_scores';
+
+function getActiveRoute() {
+    try {
+        var h = window.location.hash;
+        if (h && h.startsWith('#route-')) return h.slice(7);
+    } catch(e){}
+    try { return localStorage.getItem(ACTIVE_ROUTE_KEY) || 'all'; } catch(e) { return 'all'; }
+}
+function setActiveRoute(routeId) {
+    try {
+        if (routeId === 'all') {
+            window.location.hash = '';
+            localStorage.removeItem(ACTIVE_ROUTE_KEY);
+        } else {
+            window.location.hash = 'route-' + routeId;
+            localStorage.setItem(ACTIVE_ROUTE_KEY, routeId);
+        }
+    } catch(e){}
+}
+function handleRouteHash() {
+    var routeId = getActiveRoute();
+    if (routeId && routeId !== 'all') {
+        var btn = document.querySelector('[data-route-tab="' + routeId + '"]');
+        if (btn) btn.click();
+    }
+}
+
+/* ---- Session <-> Route Reverse Map ---- */
+var _sessionRouteMap = null;
+function buildSessionRouteMap() {
+    if (_sessionRouteMap) return _sessionRouteMap;
+    _sessionRouteMap = {};
+    try {
+        thematicRoutes.forEach(function(route) {
+            (route.session_ids || []).forEach(function(sid) {
+                if (!_sessionRouteMap[sid]) _sessionRouteMap[sid] = [];
+                _sessionRouteMap[sid].push(route);
+            });
+        });
+    } catch(e){}
+    return _sessionRouteMap;
+}
+function getRoutesForSession(sessionId) {
+    try { return buildSessionRouteMap()[sessionId] || []; } catch(e) { return []; }
+}
+function renderSessionRouteBadges(sessionId) {
+    var routes = getRoutesForSession(sessionId);
+    if (!routes.length) return '';
+    var html = '';
+    routes.forEach(function(route) {
+        html += '<span class="session-route-badge" onclick="event.stopPropagation(); setActiveRoute(\'' + route.id + '\'); scrollToThematicRoutes();">' + escHtml(route.title) + '</span>';
+    });
+    return '<div class="session-route-badges">' + html + '</div>';
+}
+function scrollToThematicRoutes() {
+    var el = document.getElementById('thematicRoutesContainer');
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+}
+
+/* ---- Reading <-> Route Reverse Map ---- */
+var _readingRouteMap = null;
+function buildReadingRouteMap() {
+    if (_readingRouteMap) return _readingRouteMap;
+    _readingRouteMap = {};
+    try {
+        thematicRoutes.forEach(function(route) {
+            (route.reading_ids || []).forEach(function(rid) {
+                if (!_readingRouteMap[rid]) _readingRouteMap[rid] = [];
+                _readingRouteMap[rid].push(route);
+            });
+        });
+    } catch(e){}
+    return _readingRouteMap;
+}
+function getRoutesForReading(readingId) {
+    try { return buildReadingRouteMap()[readingId] || []; } catch(e) { return []; }
+}
+function renderReadingRouteBadges(readingId) {
+    var routes = getRoutesForReading(readingId);
+    if (!routes.length) return '';
+    var html = '';
+    routes.forEach(function(route) {
+        html += '<span class="reading-route-badge" onclick="event.stopPropagation(); setActiveRoute(\'' + route.id + '\'); scrollToThematicRoutes();">' + escHtml(route.title) + '</span>';
+    });
+    return '<div class="reading-route-badges">' + html + '</div>';
+}
+
+/* ---- Quiz System ---- */
+function getRouteQuizScores() {
+    try { return JSON.parse(localStorage.getItem(ROUTE_QUIZ_SCORES_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveRouteQuizScore(routeId, score) {
+    try {
+        var scores = getRouteQuizScores();
+        var prev = scores[routeId];
+        scores[routeId] = { score: score, date: new Date().toISOString(), best: prev && prev.best ? Math.max(prev.best, score) : score };
+        localStorage.setItem(ROUTE_QUIZ_SCORES_KEY, JSON.stringify(scores));
+    } catch(e){}
+}
+function getRouteQuizScoreData(routeId) {
+    try { return getRouteQuizScores()[routeId] || null; } catch(e) { return null; }
+}
+
+function renderQuizForRoute(routeId) {
+    var route = thematicRoutes.find(function(r){ return r.id === routeId; });
+    if (!route || !route.quiz || !route.quiz.length) return '';
+    var scoreData = getRouteQuizScoreData(routeId);
+    var html = '<div class="quiz-container" id="quiz-' + routeId + '">';
+    html += '<div class="quiz-header">';
+    html += '<span class="quiz-title">\u2714 Mini Quiz</span>';
+    if (scoreData) {
+        html += '<span class="quiz-score">' + scoreData.score + '/5';
+        if (scoreData.best && scoreData.best > scoreData.score) html += ' (\u6700\u4F73: ' + scoreData.best + '/5)';
+        html += '</span>';
+    }
+    html += '<button class="quiz-retake-btn" onclick="resetQuizForRoute(\'' + routeId + '\')">\u21BA \u91CD\u505A</button>';
+    html += '</div>';
+    html += '<div class="quiz-disclaimer">\u2757 \u672C Quiz \u4E3A\u672C\u4E2D\u6587\u5BFC\u89C8\u81EA\u5236\u7EC3\u4E60\uFF0C\u4EE3\u8868\u4E0D\u4E86 MIT \u5B98\u65B9\u4F5C\u4E1A\u3002</div>';
+    route.quiz.forEach(function(q, idx) {
+        html += '<div class="quiz-question" id="qq-' + routeId + '-' + idx + '">';
+        html += '<p class="quiz-q-text"><strong>Q' + (idx+1) + '.</strong> ' + escHtml(q.question) + '</p>';
+        html += '<div class="quiz-options">';
+        q.options.forEach(function(opt, oi) {
+            html += '<label class="quiz-option-label">';
+            html += '<input type="radio" name="q-' + routeId + '-' + idx + '" value="' + oi + '" onchange="handleQuizAnswer(\'' + routeId + '\', ' + idx + ', ' + oi + ', ' + q.answer + ')">';
+            html += '<span class="quiz-option-text">' + escHtml(opt) + '</span>';
+            html += '</label>';
+        });
+        html += '</div>';
+        html += '<div class="quiz-feedback" id="qf-' + routeId + '-' + idx + '" style="display:none"></div>';
+        html += '</div>';
+    });
+    html += '</div>';
+    return html;
+}
+
+function handleQuizAnswer(routeId, qIdx, selected, correctAnswer) {
+    var feedbackEl = document.getElementById('qf-' + routeId + '-' + qIdx);
+    if (!feedbackEl) return;
+    feedbackEl.style.display = 'block';
+    var isCorrect = selected === correctAnswer;
+    feedbackEl.className = 'quiz-feedback ' + (isCorrect ? 'quiz-correct' : 'quiz-incorrect');
+    var route = thematicRoutes.find(function(r){ return r.id === routeId; });
+    var q = route.quiz[qIdx];
+    var optText = q.options[correctAnswer] || '';
+    feedbackEl.innerHTML = isCorrect
+        ? '\u2714 \u6B63\u786E\uFF01 ' + escHtml(q.explanation)
+        : '\u2718 \u9519\u8BEF\uFF0C\u6B63\u786E\u7B54\u6848\u662F\uFF1A' + escHtml(optText) + '\u3002 ' + escHtml(q.explanation);
+    var inputs = feedbackEl.parentElement.querySelectorAll('input[type="radio"]');
+    inputs.forEach(function(inp){ inp.disabled = true; });
+    var correctCount = 0;
+    for (var i = 0; i <= qIdx; i++) {
+        var checked = document.querySelector('input[name="q-' + routeId + '-' + i + '"]:checked');
+        if (checked) {
+            var q2 = thematicRoutes.find(function(r){ return r.id === routeId; }).quiz[i];
+            if (parseInt(checked.value) === q2.answer) correctCount++;
+        }
+    }
+    saveRouteQuizScore(routeId, correctCount);
+    var scoreEl = document.querySelector('#quiz-' + routeId + ' .quiz-score');
+    if (scoreEl) scoreEl.textContent = correctCount + '/5';
+}
+
+function resetQuizForRoute(routeId) {
+    var quizEl = document.getElementById('quiz-' + routeId);
+    if (!quizEl) return;
+    var newHtml = renderQuizForRoute(routeId);
+    quizEl.outerHTML = newHtml;
+}
+
+/* ---- Route Learning Report Export ---- */
+function exportRouteLearningReport(routeId) {
+    var route = thematicRoutes.find(function(r){ return r.id === routeId; });
+    if (!route) return;
+    var prog = getRouteProgressData(routeId);
+    var quiz = getRouteQuizScoreData(routeId);
+    var completedSessions = [];
+    (route.session_ids || []).forEach(function(sid) {
+        var sess = courseData.find(function(c){ return c.id === sid; });
+        if (sess) completedSessions.push(sess);
+    });
+    var completedReadings = [];
+    (route.reading_ids || []).forEach(function(rid) {
+        var r = curatedReadings.find(function(c){ return c.id === rid; });
+        if (r) completedReadings.push(r);
+    });
+    var lines = [];
+    lines.push('# How2AI \u4E13\u9898\u8DEF\u7EBF\u5B66\u4E60\u62A5\u544A\uFF1A' + route.title + '\n\n');
+    lines.push('\u5BFC\u51FA\u65F6\u95F4\uFF1A' + new Date().toLocaleString('zh-CN') + '\n\n');
+    lines.push('---\n\n## 1. \u8DEF\u7EBF\u76EE\u6807\n\n' + route.goal + '\n\n');
+    lines.push('**\u96BE\u5EA6\uFF1A**' + route.difficulty + ' | **\u9884\u8BA1\u65F6\u95F4\uFF1A**' + route.estimated_time + '\n\n');
+    lines.push('**\u9002\u5408\u5BF9\u8C61\uFF1A**' + route.audience + '\n\n');
+    lines.push('---\n\n## 2. \u5DF2\u5B8C\u6210\u91CC\u7A0B\u7891\u7387\u6807 (' + prog.done + '/' + prog.total + ')\n\n');
+    (route.milestones || []).forEach(function(m) {
+        var done = prog.milestones && prog.milestones[m.id] ? '[x]' : '[ ]';
+        lines.push('- ' + done + ' **' + m.label + '**  ' + m.description + '\n');
+    });
+    lines.push('\n---\n\n## 3. Quiz \u5F97\u5206\n\n');
+    if (quiz) {
+        lines.push('- **\u5F53\u524D\u5F97\u5206\uFF1A**' + quiz.score + '/5\n');
+        lines.push('- **\u6700\u4F73\u5F97\u5206\uFF1A**' + (quiz.best || quiz.score) + '/5\n');
+        lines.push('- **\u6D89\u53CA\u65E5\u671F\uFF1A**' + (quiz.date || '') + '\n');
+    } else {
+        lines.push('\u6682\u65E0\u5B66\u4E60\u8BB0\u5F55\u3002\n');
+    }
+    lines.push('\n---\n\n## 4. \u5DF2\u5B66\u4E60\u8BFE\u7A0B\u8282\u70B9 (' + completedSessions.length + ' \u63A8\u8350/' + (route.session_ids||[]).length + ')\n\n');
+    completedSessions.forEach(function(sess) {
+        lines.push('- **Week ' + (sess.week||'') + '** ' + (sess.zh_title||sess.original_title||'') + '\n');
+    });
+    lines.push('\n---\n\n## 5. \u5DF2\u9605\u8BFB\u8BBA\u6587 (' + completedReadings.length + ' \u63A8\u8350/' + (route.reading_ids||[]).length + ')\n\n');
+    completedReadings.forEach(function(r) {
+        lines.push('- ' + (r.title_zh||r.title||'') + ' ' + (r.authors?'\u2014 '+r.authors:'') + '\n');
+    });
+    lines.push('\n---\n\n## 6. \u6838\u5FC3\u672F\u8BED\n\n');
+    (route.glossary_terms||[]).forEach(function(t) {
+        var g = glossaryData.find(function(g2){ return g2.term_en===t || g2.term_zh===t; });
+        lines.push('- **' + t + '**' + (g && g.term_zh ? ' \u2014 ' + g.term_zh : '') + '\n');
+    });
+    lines.push('\n---\n\n## 7. \u6211\u7684\u7406\u89E3\u603B\u7ED3\n\n');
+    lines.push('_\n\u5728\u6B64\u8F93\u5165\u4F60\u5BF9\u672C\u8DEF\u7EBF\u6838\u5FC3\u6982\u5FF5\u7684\u7406\u89E3\u3002\n_\n\n');
+    lines.push('---\n\n## 8. \u4E0B\u4E00\u6B65\u884C\u52A8\n\n');
+    lines.push('- [ ] \u91CD\u65B0\u56DE\u987E\u91CC\u7A0B\u76EE\u6807\n');
+    lines.push('- [ ] \u5B8C\u6210\u672A\u5B8C\u6210\u7684\u91CC\u7A0B\u7891\u7387\u6807\n');
+    lines.push('- [ ] \u5F00\u59CB\u8BFB\u672A\u5B8C\u9605\u8BFB\u6587\u732E\n');
+    lines.push('- [ ] \u8C03\u6574\u5B66\u4E60\u8BA1\u5212\n\n');
+    lines.push('---\n\n*\u672C\u62A5\u544A\u7531 How2AI \u4E2D\u6587\u5BFC\u89C8\u81EA\u52A8\u751F\u6210\uFF0C\u4EE3\u8868\u4E86\u5B66\u4E60\u8BB0\u5F55\uFF0C\u4E0D\u662F MIT \u5B98\u65B9\u6587\u6863\u3002*\n');
+    downloadMarkdown(lines.join(''), route.id + '-learning-report.md');
+    showToast('\u8DEF\u7EBF\u5B66\u4E60\u62A5\u544A\u5DF2\u5BFC\u51FA', 'success');
+}
+
+/* ---- Learning Mode Route Recommendations ---- */
+var LEARNING_MODE_RECOMMENDATIONS = {
+    overview: ['multisensory-ai', 'multimodal-foundation-models'],
+    deep_dive: ['multimodal-foundation-models', 'interactive-agents'],
+    project: ['research-project-track', 'interactive-agents']
+};
+
+function getRouteRecommendationHTML() {
+    var mode = typeof currentMode !== 'undefined' ? currentMode : null;
+    if (!mode || !LEARNING_MODE_RECOMMENDATIONS[mode]) return '';
+    var recRouteIds = LEARNING_MODE_RECOMMENDATIONS[mode];
+    var html = '<div class="mode-route-recommendation">';
+    html += '<span class="mode-rec-label">\u2705 \u63A8\u8350\u7ED9\u4F60\u7684\u8DEF\u7EBF\uFF1A</span>';
+    recRouteIds.forEach(function(rid) {
+        var route = thematicRoutes.find(function(r){ return r.id === rid; });
+        if (route) {
+            html += '<button class="mode-rec-btn" onclick="setActiveRoute(\'' + route.id + '\'); scrollToThematicRoutes();">';
+            html += escHtml(route.title) + '</button>';
+        }
+    });
+    html += '</div>';
+    return html;
+}
+
+/* ---- Route Tab Rendering ---- */
+function renderRouteTabs() {
+    var html = '<div class="route-tabs">';
+    html += '<button class="route-tab-btn' + (getActiveRoute() === 'all' ? ' active' : '') + '" data-route-tab="all" onclick="switchRouteTab(\'all\')">\u5168\u90E8\u8DEF\u7EBF</button>';
+    thematicRoutes.forEach(function(route) {
+        html += '<button class="route-tab-btn' + (getActiveRoute() === route.id ? ' active' : '') + '" data-route-tab="' + route.id + '" onclick="switchRouteTab(\'' + route.id + '\')">' + escHtml(route.title) + '</button>';
+    });
+    html += '</div>';
+    html += getRouteRecommendationHTML();
+    return html;
+}
+
+function switchRouteTab(routeId) {
+    setActiveRoute(routeId);
+    document.querySelectorAll('.route-tab-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-route-tab') === routeId);
+    });
+    document.querySelectorAll('.route-card').forEach(function(card) {
+        if (routeId === 'all') {
+            card.style.display = '';
+        } else {
+            card.style.display = card.getAttribute('data-route-id') === routeId ? '' : 'none';
+        }
+    });
+    var recEl = document.querySelector('.mode-route-recommendation');
+    if (recEl) {
+        var newRecHtml = getRouteRecommendationHTML();
+        recEl.outerHTML = newRecHtml;
+    }
+}
+
+
 
 function escHtml(str) {
     if (str == null) return '';

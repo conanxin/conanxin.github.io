@@ -1,0 +1,359 @@
+/* 《赤壁以东：东吴演义》阅读器样式 */
+
+:root {
+  --bg-color: #faf8f5;
+  --text-color: #2c2c2c;
+  --title-color: #1a1a1a;
+  --nav-color: #666;
+  --link-color: #4a4a4a;
+  --border-color: #e0ddd8;
+  --muted-color: #888;
+  --accent-bg: #f0ede8;
+  --max-width: 680px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #d0cdc8;
+    --title-color: #e8e5e0;
+    --nav-color: #999;
+    --link-color: #bbb;
+    --border-color: #333;
+    --muted-color: #777;
+    --accent-bg: #252522;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.85;
+  min-height: 100vh;
+}
+
+/* 顶部导航 */
+.topnav {
+  position: sticky;
+  top: 0;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.topnav .book-title {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.topnav .nav-links a {
+  font-size: 0.85rem;
+  color: var(--link-color);
+  text-decoration: none;
+  margin-left: 12px;
+}
+
+.topnav .nav-links a:hover {
+  color: var(--title-color);
+  text-decoration: underline;
+}
+
+/* 主容器 */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+/* 页面标题 */
+.page-header {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.part-label {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  margin-bottom: 6px;
+}
+
+.chapter-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--title-color);
+  margin-bottom: 6px;
+}
+
+.chapter-meta {
+  font-size: 0.8rem;
+  color: var(--muted-color);
+}
+
+/* 状态提示 */
+.rc-banner {
+  background: var(--accent-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: var(--muted-color);
+  margin-bottom: 24px;
+}
+
+/* 正文 */
+.content {
+  text-align: justify;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.content p {
+  margin-bottom: 1.2em;
+  text-indent: 2em;
+}
+
+.content h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--title-color);
+  margin: 1.5em 0 0.8em;
+  border-left: 3px solid var(--border-color);
+  padding-left: 10px;
+}
+
+.content h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--title-color);
+  margin: 1.2em 0 0.6em;
+}
+
+.content hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.5em 0;
+}
+
+/* 阅读进度条 */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--link-color);
+  width: 0%;
+  z-index: 200;
+  transition: width 0.1s;
+}
+
+/* 章节导航 */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.chapter-nav a {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 14px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: var(--link-color);
+}
+
+.chapter-nav a:hover {
+  background: var(--border-color);
+  color: var(--title-color);
+}
+
+.chapter-nav .nav-prev,
+.chapter-nav .nav-next {
+  text-align: center;
+}
+
+.chapter-nav .nav-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted-color);
+  margin-bottom: 2px;
+}
+
+.chapter-nav .nav-title {
+  display: block;
+  font-weight: normal;
+  color: var(--title-color);
+}
+
+/* 目录页样式 */
+.toc-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.toc-book-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.toc-book-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--title-color);
+  margin-bottom: 8px;
+}
+
+.toc-book-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted-color);
+}
+
+.toc-part {
+  margin-bottom: 24px;
+}
+
+.toc-part-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--title-color);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toc-chapter-list {
+  list-style: none;
+}
+
+.toc-chapter-list li {
+  margin-bottom: 2px;
+}
+
+.toc-chapter-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 8px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  border-radius: 3px;
+}
+
+.toc-chapter-list a:hover {
+  background: var(--accent-bg);
+  color: var(--title-color);
+}
+
+.toc-chapter-list .chapter-num {
+  color: var(--muted-color);
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
+
+.toc-chapter-list .chapter-title {
+  flex: 1;
+}
+
+.toc-chapter-list .chapter-year {
+  color: var(--muted-color);
+  font-size: 0.75rem;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  background: var(--accent-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: var(--muted-color);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+}
+
+/* 移动端适配 */
+@media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding: 20px 16px 40px;
+  }
+  
+  .chapter-title {
+    font-size: 1.2rem;
+  }
+  
+  .chapter-nav a {
+    flex: none;
+    width: 100%;
+  }
+  
+  .chapter-nav {
+    flex-direction: column;
+  }
+  
+  .toc-chapter-list a {
+    font-size: 0.85rem;
+  }
+}
+
+/* 目录页响应式 */
+@media (max-width: 600px) {
+  .toc-container {
+    padding: 20px 12px 40px;
+  }
+  
+  .toc-book-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* 无障碍：减小 motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

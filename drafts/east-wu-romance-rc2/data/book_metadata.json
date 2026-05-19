@@ -1,0 +1,74 @@
+{
+  "title": "赤壁以东：东吴演义",
+  "subtitle": "以东吴视角重写《三国演义》",
+  "author_placeholder": "待定",
+  "version": "1.0-rc1",
+  "status": "release_candidate_not_published",
+  "language": "zh-CN",
+  "chapter_count": 68,
+  "formal_chapter_count": 67,
+  "includes_prologue": true,
+  "word_count_estimate": 353600,
+  "created_from_project": "east-wu-romance",
+  "generated_at": "2026-05-19",
+  "publication_note": "本书为草稿校对版（RC1），未经最终校对，不得发布。",
+  "disclaimer": "本书为历史改写小说，以东吴为主视角重构三国叙事。人物、事件参考历史与传统叙事，但具体场景、对白与心理描写均为原创文学处理。本文不是正史研究著作，不作为历史依据。",
+  "structure": {
+    "prologue": "000_opening.md",
+    "parts": [
+      {
+        "id": 1,
+        "name": "血渡",
+        "chapters": "001-009",
+        "count": 9
+      },
+      {
+        "id": 2,
+        "name": "火与江",
+        "chapters": "010-019",
+        "count": 10
+      },
+      {
+        "id": 3,
+        "name": "上游",
+        "chapters": "020-029",
+        "count": 10
+      },
+      {
+        "id": 4,
+        "name": "猇亭",
+        "chapters": "030-039",
+        "count": 10
+      },
+      {
+        "id": 5,
+        "name": "建业",
+        "chapters": "040-048",
+        "count": 9
+      },
+      {
+        "id": 6,
+        "name": "两宫",
+        "chapters": "049-058",
+        "count": 10
+      },
+      {
+        "id": 7,
+        "name": "楼船",
+        "chapters": "059-067",
+        "count": 9
+      }
+    ],
+    "epilogue": "067_dajiang_yijiu.md"
+  },
+  "files": {
+    "combined_full": "east_wu_romance_full_combined.md",
+    "combined_ebook": "east_wu_romance_ebook_source.md",
+    "chapters_json": "data/chapters.json",
+    "metadata_json": "data/book_metadata.json",
+    "chapter_files_dir": "chapters/"
+  },
+  "release_candidate_note": "这是第一个正式候选版本（RC1），用于内部校对。内容包括：68个章节文件、全书合并Markdown、目录JSON、元数据、校对清单。",
+  "not_for_publication": true,
+  "no_index_for_seo": true
+}

@@ -325,6 +325,10 @@ function renderReadings() {
 }
 
 /* ---- Glossary ---- */
+function renderGlossaryRouteBadges() {
+    // Glossary items do not currently carry route associations;
+    // route badges are rendered per session/reading only.
+}
 function renderGlossary(query = '') {
     const c = document.getElementById('glossaryGrid');
     if (!c || !glossaryData.length) return;

@@ -321,8 +321,8 @@ def main():
         ("[4/8] glossary.json ...", validate_glossary),
         ("[5/8] sources.json ...", validate_sources),
         ("[6/8] raw_schedule_links.json ...", validate_raw_links),
-        ("[7/9] lecture_notes.json ...", validate_lecture_notes),
-        ("[8/9] thematic_routes.json ...", validate_thematic_routes),
+        ("[7/8] lecture_notes.json ...", validate_lecture_notes),
+        ("[8/8] thematic_routes.json ...", validate_thematic_routes),
     ]
 
     for label, fn in checks:

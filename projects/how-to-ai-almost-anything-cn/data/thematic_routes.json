@@ -67,7 +67,7 @@
         "description": "能说明 sim-to-real 迁移、传感器噪声、分布偏移对多感官 AI 系统的影响。"
       }
     ],
-    "final_output": "完成一份「如何 AI 化一种新模态」的提案文档（可选新模态：触觉、嗅觉、化学感受、生物信号等），包含五个维度的初步分析。",
+    "final_output": "完成多感官AI化流程图，撰写一份如何将XX感官AI化的提案",
     "project_prompt": "选择一个你感兴趣但课上未深入讨论的模态（如：触觉阵列、气体传感器、味觉电极、ECoG 脑电、Fiber optic 声传感）。\n\n从以下五个维度分析该模态：\n1. 数据：如何采集？标注成本如何？有哪些公开数据集？\n2. 表征：用什么特征表示原始数据？和已有模态的表示有何不同？\n3. 架构：现有的多模态架构能否直接使用？需要哪些改动？\n4. 训练：如何设计预训练任务？自监督还是监督？\n5. 评估：有哪些基准测试？如何定义「成功」？\n\n最终输出一份 1-2 页的模态 AI 化提案，配有简单的系统架构草图。\n\n参考模板：MIT Multisensory Intelligence Group 的开放研究问题。",
     "quiz": [
       {
@@ -130,7 +130,9 @@
         "answer": 0,
         "explanation": "多感官数据（特别是触觉、嗅觉、味觉）缺乏大规模标注数据。自监督学习通过设计借口任务（如对比学习、masked reconstruction）让模型从无标签数据中学习通用表示，大幅降低标注成本。"
       }
-    ]
+    ],
+    "target_learners": "对多感官AI感兴趣的初学者，想了解如何将视觉、听觉、触觉、嗅觉、味觉等模态AI化的学习者",
+    "route_summary": "探索感知和交互的边界——如何让AI拥有视觉、听觉、触觉、嗅觉乃至味觉能力，理解异构数据如何融合为统一表征"
   },
   {
     "id": "multimodal-foundation-models",
@@ -219,7 +221,7 @@
         "description": "选择一个基准测试（如 MMBench、SEED-Bench），分析模型在不同子维度上的表现差距并给出解释。"
       }
     ],
-    "final_output": "完成一篇「多模态 Foundation Model 架构对比分析」的技术报告（1500–2000 字），对比至少 3 种模型架构的设计选择与性能权衡。",
+    "final_output": "完成一篇多模态模型对比分析，或实现一个简单的多模态推理demo",
     "project_prompt": "从以下三个方向中任选一个深入研究：\n\nA. 多模态指令微调（Instruction Tuning）分析\n选择 LLaVA、LLaMA-Adapter 或 MiniGPT-4，分析其指令微调数据构造方法、训练策略、以及在 VQA 任务上的表现差异。\n\nB. 多模态扩散模型（Multimodal Diffusion）\n比较 Chameleon（混合模态早期融合）和 MM1（混合专家策略），从架构、训练稳定性和生成质量三个角度分析。\n\nC. 视觉-语言-动作模型（VLA）\n研究 OpenVLA 的设计：如何将视觉观察和语言指令映射到机器人动作序列？分析其泛化能力和 sim-to-real 迁移策略。\n\n最终输出：技术报告（1000–1500 字）+ 代码实验记录（notebook 或 README）。",
     "quiz": [
       {
@@ -282,7 +284,9 @@
         "answer": 1,
         "explanation": "Scaling Laws 表明：模型性能与参数量、数据集规模、计算量呈幂律关系。对多模态模型而言，关键问题是各模态的 scaling 配比——视觉 token 数量远多于文本，如果直接拼接会导致视觉信息被稀释或计算成本爆炸。MM1 等工作研究了如何联合 scaling 各模态的token数和模型参数。"
       }
-    ]
+    ],
+    "target_learners": "已具备Python基础，想深入理解CLIP、LLaVA、GPT-4V等多模态大模型原理的学习者",
+    "route_summary": "从对比学习到视觉语言模型——掌握多模态表征对齐、融合与推理的核心技术，理解大模型如何看见并理解世界"
   },
   {
     "id": "interactive-agents",
@@ -353,7 +357,7 @@
         "description": "参考 MIT HAI Guidelines，为一个具体场景（如 AI 助教、AI 创作助手）设计人机交互规范。"
       }
     ],
-    "final_output": "完成一份「交互式 AI 系统设计提案」（1000–1500 字），包含用户交互流程、反馈机制设计、潜在风险与缓解措施。",
+    "final_output": "完成一个可交互的AI助手demo，包含工具调用和记忆机制",
     "project_prompt": "设计一个交互式 AI Agent，要求：\n\n1. 场景设定（任选其一）：\n   - AI 科研助手：帮助研究者检索论文、设计实验、分析结果\n   - AI 创作搭档：与人协作写作、作曲、绘画\n   - AI 机器人控制界面：人类发出高层指令，机器人执行并反馈\n\n2. 系统设计（必含）：\n   a) Agent 的核心推理循环（CoT / ReAct / Plan-and-Execute）\n   b) 人类反馈的接入方式（RLHF / DPO / 人在回路）\n   c) 安全对齐机制（如何防止恶意指令）\n   d) 评估指标（如何判断 Agent 表现好）\n\n3. 最终输出：\n   - 系统架构图（可用文字/Mermaid/ASCII 绘制）\n   - 核心模块说明（500–800 字）\n   - 潜在风险与缓解方案（300–500 字）",
     "quiz": [
       {
@@ -416,7 +420,9 @@
         "answer": 1,
         "explanation": "人在回路设计的核心是：AI 系统不应完全自主决策，而应在「规划验证」「敏感操作确认」「输出审核」等关键节点让人类介入。有效的 HCI 设计还需要考虑何时让人类介入（太多干扰体验，太少失去控制）、如何呈现 AI 不确定性、以及如何收集高质量的人类反馈。"
       }
-    ]
+    ],
+    "target_learners": "想构建交互式AI系统（聊天机器人、助手、工具调用Agent）的研究者和开发者",
+    "route_summary": "让AI会学习、会推理、会行动——掌握RLHF、CoT、ReAct、Toolformer等交互式Agent核心范式"
   },
   {
     "id": "research-project-track",
@@ -510,7 +516,7 @@
         "description": "Report 包含：摘要、引言、相关工作、方法、实验、结论、参考文献（8–12 页）。答辩 10–15 分钟。"
       }
     ],
-    "final_output": "完成一篇完整的研究报告（8–12 页，含图表和参考文献）和可复现的代码仓库（GitHub），符合顶会投稿格式要求（可选：基于 NeurIPS / CVPR / ACL 模板）。",
+    "final_output": "提交完整课程项目报告：Proposal到Final Report全流程",
     "project_prompt": "本课程的项目是开放式的，以下列目提供参考方向，可选择其一或自行提出：\n\n参考项目方向：\n1. 新模态 AI 化：选择一个课程未涵盖的模态（触觉 / 嗅觉 / 味觉 / ECoG 等），按「数据→表征→架构→训练→评估」五步设计提案。\n2. 多模态对齐改进：针对现有方法的跨模态对齐失败案例，提出新的对齐损失或融合策略。\n3. 多模态 Agent：设计一个基于多模态大模型的交互式 Agent，在 VideoWebArena 或自定义环境中评估。\n4. AI Safety 专题：研究 ArtPrompt 类越狱攻击或 RLHF/DPO 对齐的意外影响，提出防御或改进方案。\n5. 多模态生成评估：对比 Diffusion 和 Language Model 两种多模态生成范式，设计新的评估指标。\n\n时间线（参考）：\n- 第 1–2 周：选题 + 文献综述\n- 第 3–4 周：Proposal + 开题\n- 第 5–7 周：Baseline + Error Analysis\n- 第 8–10 周：Ablation + 迭代\n- 第 11–12 周：Final Report + 答辩准备\n\n最低要求：完整提案 + 可运行 baseline + Error Analysis。优秀项目目标：达到可投稿 workshop 论文水平。",
     "quiz": [
       {
@@ -573,6 +579,8 @@
         "answer": 1,
         "explanation": "科研诚信要求报告所有实验结果，包括negative findings。差的结果不是失败，而是信息：它告诉你「这个方向有限制，原因是X」。好的做法是：诚实报告 + 深入分析 + 提出假说（为什么差）+ 设计新实验验证假说。很多重要发现（如发现某类方法在特定设置下失效）都来自 negative results。"
       }
-    ]
+    ],
+    "target_learners": "计划基于MIT MAS.S60课程完成一个研究项目的学生或研究者",
+    "route_summary": "从选题到发表——完整经历研究项目全流程：文献综述、问题定义、方法实现、实验评估、论文写作"
   }
 ]

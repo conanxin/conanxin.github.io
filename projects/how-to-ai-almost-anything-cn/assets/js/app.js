@@ -1437,6 +1437,10 @@ function renderThematicRoutes() {
         html += '</div>';
         html += '<div class="route-card-body" id="routeBody-' + route.id + '" style="display:none">';
         html += '<div class="route-description"><p>' + escHtml(route.description) + '</p></div>';
+        if (route.route_summary) html += '<div class="route-rs-summary">' + escHtml(route.route_summary) + '</div>';
+        if (route.target_learners) html += '<div class="route-rs-row"><span class="route-rs-lbl">\u9002\u5408\u4EBA\u7FA4\uFF1A</span><span class="route-rs-val">' + escHtml(route.target_learners) + '</span></div>';
+        if (route.final_output) html += '<div class="route-rs-row"><span class="route-rs-lbl">\u6700\u7EC8\u4EA7\u51FA\uFF1A</span><span class="route-rs-val">' + escHtml(route.final_output) + '</span></div>';
+        html += '<div class="route-copy-row"><button class="route-copy-btn" onclick="copyRouteLink(\'' + route.id + '\')">\u2B07 \u590D\u5236\u8DEF\u7EBF\u94FE\u63A5</button></div>';
 
         // Session list
         html += '<div class="route-section-label">&#x8BFE;&#x7A0B;&#x8282;&#x70B9;</div>';
@@ -1728,6 +1732,7 @@ function renderQuizForRoute(routeId) {
         html += '</span>';
     }
     html += '<button class="quiz-retake-btn" onclick="resetQuizForRoute(\'' + routeId + '\')">\u21BA \u91CD\u505A</button>';
+    html += '<button class="quiz-retry-mistakes-btn" onclick="retryRouteMistakes(\'' + routeId + '\')">\u21BA \u5355\u91CD\u505A\u9519\u9898</button>';
     html += '</div>';
     html += '<div class="quiz-disclaimer">\u2757 \u672C Quiz \u4E3A\u672C\u4E2D\u6587\u5BFC\u89C8\u81EA\u5236\u7EC3\u4E60\uFF0C\u4EE3\u8868\u4E0D\u4E86 MIT \u5B98\u65B9\u4F5C\u4E1A\u3002</div>';
     route.quiz.forEach(function(q, idx) {
@@ -1745,6 +1750,7 @@ function renderQuizForRoute(routeId) {
         html += '</div>';
     });
     html += '</div>';
+    html += '<div class="mistake-review-box" id="mistake-review-' + routeId + '"></div>';
     return html;
 }
 
@@ -1763,24 +1769,82 @@ function handleQuizAnswer(routeId, qIdx, selected, correctAnswer) {
     var inputs = feedbackEl.parentElement.querySelectorAll('input[type="radio"]');
     inputs.forEach(function(inp){ inp.disabled = true; });
     var correctCount = 0;
-    for (var i = 0; i <= qIdx; i++) {
+    var answered = 0;
+    for (var i = 0; i < route.quiz.length; i++) {
         var checked = document.querySelector('input[name="q-' + routeId + '-' + i + '"]:checked');
         if (checked) {
-            var q2 = thematicRoutes.find(function(r){ return r.id === routeId; }).quiz[i];
-            if (parseInt(checked.value) === q2.answer) correctCount++;
+            answered++;
+            if (parseInt(checked.value) === route.quiz[i].answer) correctCount++;
         }
     }
+    saveRouteQuizAnswer(routeId, String(qIdx), selected);
     saveRouteQuizScore(routeId, correctCount);
     var scoreEl = document.querySelector('#quiz-' + routeId + ' .quiz-score');
     if (scoreEl) scoreEl.textContent = correctCount + '/5';
+    if (answered === route.quiz.length) {
+        var mrEl = document.getElementById('mistake-review-' + routeId);
+        if (mrEl) mrEl.innerHTML = renderRouteMistakeReview(route);
+    }
 }
 
 function resetQuizForRoute(routeId) {
     var quizEl = document.getElementById('quiz-' + routeId);
     if (!quizEl) return;
+    var keysToRemove = [];
+    for (var i = 0; i < localStorage.length; i++) { var key = localStorage.key(i); if (key && key.indexOf('how2ai_route_' + routeId) === 0) keysToRemove.push(key); }
+    keysToRemove.forEach(function(k){ localStorage.removeItem(k); });
     var newHtml = renderQuizForRoute(routeId);
     quizEl.outerHTML = newHtml;
 }
+
+
+/* === Phase 8C === */
+function getRouteQuizAnswers(routeId){try{return JSON.parse(getLS('how2ai_route_quiz_answers')||'{}');}catch(e){return {};}}
+function saveRouteQuizAnswer(routeId,questionId,selectedIndex){var a=getRouteQuizAnswers(routeId);a[routeId+'_'+questionId]=parseInt(selectedIndex);setLS('how2ai_route_quiz_answers',JSON.stringify(a));}
+function getRouteQuizMistakes(routeId){
+    var a=getRouteQuizAnswers(routeId);var route=thematicRoutes.find(function(r){return r.id===routeId;});if(!route||!route.quiz)return[];
+    var mistakes=[];route.quiz.forEach(function(q,idx){var sv=a[routeId+'_'+String(idx)];if(sv!==undefined&&sv!==null&&sv!==q.answer)mistakes.push({idx:idx,question:q,userAnswer:sv});});return mistakes;
+}
+function renderRouteMistakeReview(route){
+    var mistakes=getRouteQuizMistakes(route.id);var html='';
+    if(mistakes.length===0){html+='<div class="mr-empty">\u2714 \u5F53\u524D\u6CA1\u6709\u9519\u9898\uFF0C\u5B8C\u70B9\uFF01</div>';}
+    else{html+='<div class="mr-header">\u9519\u9898\u56DE\u987E\uFF08'+mistakes.length+'\u9898\uFF09</div>';
+    mistakes.forEach(function(m){var q=m.question;html+='<div class="mr-item">';
+    html+='<p class="mr-q"><strong>Q'+(m.idx+1)+'.</strong> '+escHtml(q.question)+'</p>';
+    html+='<p class="mr-wrong">\u6211\u7684\u7B54\u6848\uFF1A'+escHtml(q.options[m.userAnswer]||'N/A')+'</p>';
+    html+='<p class="mr-correct">\u6B63\u786E\u7B54\u6848\uFF1A'+escHtml(q.options[q.answer])+'</p>';
+    html+='<p class="mr-exp">\u89E3\u91CA\uFF1A'+escHtml(q.explanation)+'</p>';html+='</div>';});}
+    return html;
+}
+function retryRouteMistakes(routeId){
+    var quizEl=document.getElementById('quiz-'+routeId);if(!quizEl)return;
+    var route=thematicRoutes.find(function(r){return r.id===routeId;});
+    var a=getRouteQuizAnswers(routeId);var na={};
+    for(var k in a){var idx=parseInt(k.split('_').pop());if(a[k]===route.quiz[idx].answer)na[k]=a[k];}
+    setLS('how2ai_route_quiz_answers',JSON.stringify(na));saveRouteQuizScore(routeId,0);
+    quizEl.outerHTML=renderQuizForRoute(routeId);
+}
+function copyRouteLink(routeId){
+    var url=window.location.origin+window.location.pathname+'#'+routeId;
+    var cb=function(){showToast('\u5DF2\u590D\u5236\u8DEF\u7EBF\u94FE\u63A5','success');};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(cb).catch(function(){fallbackCopy(url,cb);});else fallbackCopy(url,cb);
+}
+function fallbackCopy(text,cb){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');cb();}catch(e){}document.body.removeChild(ta);}
+function generateRouteNextWeekPlan(routeId){
+    var route=thematicRoutes.find(function(r){return r.id===routeId;});if(!route)return[];
+    var prog=getRouteProgressData(routeId);var quizSc=getRouteQuizScoreData(routeId);var mistakes=getRouteQuizMistakes(routeId);
+    var rsDone=0;(route.session_ids||[]).forEach(function(sid){var s2=courseData.find(function(c){return c.id===sid;});if(s2)rsDone++;});
+    var rrDone=0;(route.reading_ids||[]).forEach(function(rid){var r2=curatedReadings.find(function(c){return c.id===rid;});if(r2)rrDone++;});
+    var plan=[];var pct=prog.total>0?prog.done/prog.total:0;
+    if(pct<0.3)plan.push('\u5148\u5B8C\u6210\u8DEF\u7EBF\u7684\u524D2\u4E2A\u91CC\u7A0B\u7891\u7387\u6807\uFF0C\u6253\u597D\u57FA\u7840');
+    if(quizSc&&quizSc.score<3)plan.push('\u91CD\u505A\u9519\u9898\uFF0C\u6DF1\u5165\u7406\u89E3\u76F8\u5173\u672F\u8BED');
+    if(rrDone<2){var nrid=(route.reading_ids||[])[rrDone];if(nrid){var r3=curatedReadings.find(function(c){return c.id===nrid;});if(r3)plan.push('\u9605\u8BFB\u63A8\u8350\u8BFB\u6587\uFF1A'+(r3.title_zh||r3.title||nrid));}}
+    if(rsDone<2){var nsid=(route.session_ids||[])[rsDone];if(nsid){var s3=courseData.find(function(c){return c.id===nsid;});if(s3)plan.push('\u5B8C\u6210\u63A8\u8350\u8BFE\u7A0B\u8282\u70B9\uFF1AWeek '+(s3.week||'')+' '+(s3.zh_title||s3.original_title||''));}}
+    if(plan.length===0)plan.push('\u7EC3\u4E60\u5DF2\u5B66\u5185\u5BB9\uFF0C\u5C1D\u8BD5\u5199\u4E00\u4E2A\u9879\u76EE\u63D0\u6848\u6216\u5B9E\u9A8C demo');
+    return plan;
+}
+function setLS(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+
 
 /* ---- Route Learning Report Export ---- */
 function exportRouteLearningReport(routeId) {
@@ -1800,44 +1864,64 @@ function exportRouteLearningReport(routeId) {
     });
     var lines = [];
     lines.push('# How2AI \u4E13\u9898\u8DEF\u7EBF\u5B66\u4E60\u62A5\u544A\uFF1A' + route.title + '\n\n');
-    lines.push('\u5BFC\u51FA\u65F6\u95F4\uFF1A' + new Date().toLocaleString('zh-CN') + '\n\n');
-    lines.push('---\n\n## 1. \u8DEF\u7EBF\u76EE\u6807\n\n' + route.goal + '\n\n');
-    lines.push('**\u96BE\u5EA6\uFF1A**' + route.difficulty + ' | **\u9884\u8BA1\u65F6\u95F4\uFF1A**' + route.estimated_time + '\n\n');
-    lines.push('**\u9002\u5408\u5BF9\u8C61\uFF1A**' + route.audience + '\n\n');
-    lines.push('---\n\n## 2. \u5DF2\u5B8C\u6210\u91CC\u7A0B\u7891\u7387\u6807 (' + prog.done + '/' + prog.total + ')\n\n');
+    var now = new Date().toLocaleString('zh-CN');
+    var curMode = (typeof getCurrentMode === 'function' ? getCurrentMode() : 'overview');
+    var modeNames = { overview: '\u5FEB\u901F\u901A\u5FD7\u6A21\u5F0F', deep_dive: '\u8BBA\u6587\u7CBE\u8BFB\u6A21\u5F0F', project: '\u9879\u76EE\u5B9E\u6218\u6A21\u5F0F' };
+    lines.push('**\u5BFC\u51FA\u65F6\u95F4\uFF1A**' + now + '  |  **\u8DEF\u7EBF\u94FE\u63A5\uFF1A**https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/#' + routeId + '  |  **\u5B66\u4E60\u6A21\u5F0F\uFF1A**' + (modeNames[curMode]||curMode) + '\n\n');
+    lines.push('---\n\n## 1. \u8DEF\u7EBF\u76EE\u6807\n\n' + (route.route_summary || route.goal || '') + '\n\n');
+    lines.push('**\u9002\u5408\u4EBA\u7FA4\uFF1A**' + (route.target_learners || route.audience || '') + '  |  **\u9884\u8BA1\u65F6\u95F4\uFF1A**' + (route.estimated_time || '') + '  |  **\u6700\u7EC8\u4EA7\u51FA\uFF1A**' + (route.final_output || '') + '\n\n');
+    lines.push('---\n\n## 2. \u5F53\u524D\u8FDB\u5EA6\n\n');
+    var quizSc = getRouteQuizScoreData(routeId);
+    var mistakes = getRouteQuizMistakes(routeId);
+    var rsDone = 0; (route.session_ids||[]).forEach(function(sid){var s2=courseData.find(function(c){return c.id===sid;});if(s2)rsDone++;});
+    var rrDone = 0; (route.reading_ids||[]).forEach(function(rid){var r2=curatedReadings.find(function(c){return c.id===rid;});if(r2)rrDone++;});
+    lines.push('- **Milestones:** ' + prog.done + '/' + prog.total + '\n');
+    lines.push('- **Quiz\u5F97\u5206:** ' + (quizSc ? quizSc.score + '/5 (\u6700\u4F73: ' + (quizSc.best||quizSc.score) + '/5, \u9519\u9898: ' + mistakes.length + '\u9898)' : '\u6682\u672A\u5B58\u5728') + '\n');
+    lines.push('- **\u63A8\u8350\u8BFE\u7A0B\u8282\u70B9:** ' + rsDone + '/' + (route.session_ids||[]).length + '\n');
+    lines.push('- **\u63A8\u8350\u8BFB\u6587:** ' + rrDone + '/' + (route.reading_ids||[]).length + '\n\n');
+    lines.push('---\n\n## 3. \u5DF2\u5B8C\u6210\u91CC\u7A0B\u7891\u7387\u6807\n\n');
     (route.milestones || []).forEach(function(m) {
         var done = prog.milestones && prog.milestones[m.id] ? '[x]' : '[ ]';
         lines.push('- ' + done + ' **' + m.label + '**  ' + m.description + '\n');
     });
-    lines.push('\n---\n\n## 3. Quiz \u5F97\u5206\n\n');
-    if (quiz) {
-        lines.push('- **\u5F53\u524D\u5F97\u5206\uFF1A**' + quiz.score + '/5\n');
-        lines.push('- **\u6700\u4F73\u5F97\u5206\uFF1A**' + (quiz.best || quiz.score) + '/5\n');
-        lines.push('- **\u6D89\u53CA\u65E5\u671F\uFF1A**' + (quiz.date || '') + '\n');
+    lines.push('\n---\n\n## 4. Quiz \u7ED3\u679C\u4E0E\u9519\u9898\u56DE\u987E\n\n');
+    if (quizSc) {
+        lines.push('- **\u5F53\u524D\u5F97\u5206:** ' + quizSc.score + '/5  (\u6700\u4F73: ' + (quizSc.best||quizSc.score) + '/5)\n');
+        lines.push('- **\u9519\u9898\u6570:** ' + mistakes.length + '\n\n');
+        if (mistakes.length > 0) {
+            mistakes.forEach(function(m) {
+                lines.push('- **Q'+(m.idx+1)+':** ' + m.question.question + '\n  \u6211\u7684\u7B54\u6848: ' + (m.question.options[m.userAnswer]||'N/A') + '  \u6B63\u786E\u7B54\u6848: ' + m.question.options[m.question.answer] + '\n  \u89E3\u91CA: ' + m.question.explanation + '\n');
+            });
+        } else {
+            lines.push('\u2714 \u5168\u90E8\u6B63\u786E\uFF0C\u5B8C\u70B9\uFF01\n');
+        }
     } else {
         lines.push('\u6682\u65E0\u5B66\u4E60\u8BB0\u5F55\u3002\n');
     }
-    lines.push('\n---\n\n## 4. \u5DF2\u5B66\u4E60\u8BFE\u7A0B\u8282\u70B9 (' + completedSessions.length + ' \u63A8\u8350/' + (route.session_ids||[]).length + ')\n\n');
+    lines.push('\n---\n\n## 5. \u5DF2\u5B66\u4E60\u8BFE\u7A0B\u8282\u70B9 (' + completedSessions.length + ' \u63A8\u8350/' + (route.session_ids||[]).length + ')\n\n');
     completedSessions.forEach(function(sess) {
         lines.push('- **Week ' + (sess.week||'') + '** ' + (sess.zh_title||sess.original_title||'') + '\n');
     });
-    lines.push('\n---\n\n## 5. \u5DF2\u9605\u8BFB\u8BBA\u6587 (' + completedReadings.length + ' \u63A8\u8350/' + (route.reading_ids||[]).length + ')\n\n');
+    lines.push('\n---\n\n## 6. \u5DF2\u9605\u8BFB\u8BBA\u6587 (' + completedReadings.length + ' \u63A8\u8350/' + (route.reading_ids||[]).length + ')\n\n');
     completedReadings.forEach(function(r) {
         lines.push('- ' + (r.title_zh||r.title||'') + ' ' + (r.authors?'\u2014 '+r.authors:'') + '\n');
     });
-    lines.push('\n---\n\n## 6. \u6838\u5FC3\u672F\u8BED\n\n');
+    lines.push('\n---\n\n## 7. \u6838\u5FC3\u672F\u8BED\n\n');
     (route.glossary_terms||[]).forEach(function(t) {
         var g = glossaryData.find(function(g2){ return g2.term_en===t || g2.term_zh===t; });
         lines.push('- **' + t + '**' + (g && g.term_zh ? ' \u2014 ' + g.term_zh : '') + '\n');
     });
-    lines.push('\n---\n\n## 7. \u6211\u7684\u7406\u89E3\u603B\u7ED3\n\n');
+    lines.push('\n---\n\n## 8. \u6211\u7684\u7406\u89E3\u603B\u7ED3\n\n');
     lines.push('_\n\u5728\u6B64\u8F93\u5165\u4F60\u5BF9\u672C\u8DEF\u7EBF\u6838\u5FC3\u6982\u5FF5\u7684\u7406\u89E3\u3002\n_\n\n');
-    lines.push('---\n\n## 8. \u4E0B\u4E00\u6B65\u884C\u52A8\n\n');
-    lines.push('- [ ] \u91CD\u65B0\u56DE\u987E\u91CC\u7A0B\u76EE\u6807\n');
-    lines.push('- [ ] \u5B8C\u6210\u672A\u5B8C\u6210\u7684\u91CC\u7A0B\u7891\u7387\u6807\n');
-    lines.push('- [ ] \u5F00\u59CB\u8BFB\u672A\u5B8C\u9605\u8BFB\u6587\u732E\n');
-    lines.push('- [ ] \u8C03\u6574\u5B66\u4E60\u8BA1\u5212\n\n');
-    lines.push('---\n\n*\u672C\u62A5\u544A\u7531 How2AI \u4E2D\u6587\u5BFC\u89C8\u81EA\u52A8\u751F\u6210\uFF0C\u4EE3\u8868\u4E86\u5B66\u4E60\u8BB0\u5F55\uFF0C\u4E0D\u662F MIT \u5B98\u65B9\u6587\u6863\u3002*\n');
+    lines.push('\n---\n\n## 9. \u4E0B\u4E00\u5468\u5B66\u4E60\u8BA1\u5212\n\n');
+    var nwp = generateRouteNextWeekPlan(routeId);
+    nwp.forEach(function(item){ lines.push('- [ ] ' + item + '\n'); });
+    lines.push('\n---\n\n## 10. \u6211\u7684\u7406\u89E3\u603B\u7ED3\n\n');
+    lines.push('_\u5728\u6B64\u8F93\u5165\u4F60\u5BF9\u672C\u8DEF\u7EBF\u6838\u5FC3\u6982\u5FF5\u7684\u7406\u89E3\u3002_\n\n');
+    lines.push('\u6211\u8BA4\u4E3A\u8FD9\u8DEF\u7EBF\u7684\u6838\u5FC3\u95EE\u9898\u662F\uFF1A\u2014\n\n\n');
+    lines.push('\u6211\u6700\u60F3\u7EE7\u7EED\u6DF1\u5165\u7684\u662F\uFF1A\u2014\n\n\n');
+    lines.push('\u6211\u53EF\u4EE5\u505A\u7684\u4E00\u4E2A demo/proposal \u662F\uFF1A\u2014\n\n\n');
+    lines.push('\n---\n\n*\u672C\u62A5\u544A\u7531 How2AI \u4E2D\u6587\u5BFC\u89C8\u81EA\u52A8\u751F\u6210\uFF0C\u4EE3\u8868\u4E86\u5B66\u4E60\u8BB0\u5F55\uFF0C\u4E0D\u662F MIT \u5B98\u65B9\u6587\u6863\u3002*\n');
     downloadMarkdown(lines.join(''), route.id + '-learning-report.md');
     showToast('\u8DEF\u7EBF\u5B66\u4E60\u62A5\u544A\u5DF2\u5BFC\u51FA', 'success');
 }

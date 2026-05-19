@@ -323,14 +323,31 @@ def main():
         ("[6/9] raw_schedule_links.json ...", validate_raw_links),
         ("[7/9] lecture_notes.json ...", validate_lecture_notes),
         ("[8/9] thematic_routes.json ...", validate_thematic_routes),
-        ("[9/9] thematic_route_quiz + crossrefs ...", lambda: _phase8b_check()),
+        ("[9/9] thematic_route_quiz + crossrefs + metadata ...", lambda: _phase8c_check()),
     ]
 
-    def _phase8b_check():
+    def _phase8c_check():
         r1 = validate_thematic_route_quiz()
         r2 = validate_route_crossrefs()
-        # r1/r2 are None (pass) or [] (fail); None AND None = None
-        return (r1 and r2) if (r1 or r2) else None
+        r3 = validate_route_metadata()
+        # None = pass, [] = fail
+        errs = [x for x in [r1, r2, r3] if x]
+        return errs if errs else None
+
+    def validate_route_metadata():
+        import json
+        from pathlib import Path
+        try:
+            routes = json.loads(Path("data/thematic_routes.json").read_text(encoding="utf-8"))
+        except Exception as e:
+            return [f"Cannot load thematic_routes.json: {e}"]
+        required = ["route_summary", "target_learners", "final_output"]
+        errs = []
+        for route in routes:
+            for field in required:
+                if field not in route or not route[field]:
+                    errs.append(f"WARN: Route {route.get('id','?')}: missing {field} (non-blocking)")
+        return errs if errs else None
 
     for label, fn in checks:
         print(f"\n{label}")

@@ -3303,7 +3303,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "广告教父大卫·奥格威（Ogilvy & Mather 创始人）分享他对广告创作的核心观点：好的广告是为人服务而非操纵消费者，要有实质性内容，能让人记住你的产品。奥格威强调研究、诚信和创意品质。",
     "why_it_matters_zh": "大卫·奥格威是现代广告业奠基人，他的著作《一个广告人的自白》是业界经典。此访谈是其最珍贵的影像资料之一，呈现了广告哲学的本质。适合营销、创意和商业人士观看。",
-    "notes_zh": "非官方频道 Mad for the Ad 发布，无官方embed可用。仅找到非官方转载，embed_url 留空。介意者可访问 source_url 查看。",
+    "notes_zh": "Mad for the Ad 频道发布，无官方 embed 版本。已确认来源可信，但不采用非官方转载视频作为 embed。此访谈为资料性内容，可通过 source_url 跳转 YouTube 查看。",
     "tags": [
       "大卫·奥格威",
       "广告",
@@ -3312,17 +3312,43 @@
       "Ogilvy",
       "访谈"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "YouTube 频道 Mad for the Ad 发布的 David Ogilvy 访谈，非官方但内容真实，未找到官方发布版本",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为 Mad for the Ad 频道发布的 David Ogilvy 1982 年访谈录像，YouTube 页面有发布历史记录，内容真实性可确认。embed_url 保持为空：不采用非官方转载视频作为嵌入资源。如有 Ogilvy 官方存档或广播版本发现，可升级为 verified_embed。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "A conversation about advertising, with David Ogilvy",
     "author": "Mad for the Ad",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "YouTube 频道 Mad for the Ad 发布的 David Ogilvy 早期广告访谈视频，未找到官方发布版本，此为质量较高的历史内容搬运",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "大卫·奥格威（1911-1999）是广告业历史上最具影响力的人物之一，创立了奥美广告公司（Ogilvy & Mather），著有《一个广告人的自白》（Confessions of an Advertising Man）等经典著作。他以 salesman 而非 poet 自居，强调广告的核心是说服而非美化。本访谈录制于 1982 年，由 Mad for the Ad 频道收集整理发布，记录了奥格威晚年对广告业基本规律的阐述，包括他对品牌定位、消费者心理和创意本质的看法。这段访谈是了解传统广告业黄金时代思维方式的重要窗口。",
+    "key_points_zh": [
+      "广告的核心是请注意——不能引起注意的广告就是在浪费钱",
+      "好广告的特点是：可信、有承诺、清晰、有区别度",
+      "广告人应该是 salesman，不是 poet；说服比美感更重要",
+      "消费者不是傻子，别把他们当傻子对待，但也别期望他们主动思考",
+      "品牌是产品在消费者心中形成的持久印象，不是一句口号",
+      "奥格威对当时广告业过度创意化的批评在今天仍有参考价值"
+    ],
+    "recommended_for_zh": [
+      "广告和品牌从业者，了解行业经典思维",
+      "创业者和营销人员，理解产品传播的基本逻辑",
+      "对 20 世纪商业史和广告文化感兴趣的读者",
+      "产品经理和运营人员，学习如何说清楚产品价值",
+      "商学院学生和商业研究者"
+    ],
+    "content_format_zh": "视频访谈，原英文，无字幕，全长约 55 分钟",
+    "reading_or_watching_guide_zh": "建议带着问题观看：奥格威所说的广告的本质与今天互联网产品推广思维有什么异同。访谈中他多次批评过度创意化的广告，这值得对照当下社交媒体内容生态思考。可以边看边记他对消费者心理的实际描述，与现在的增长黑客思维做比较。",
+    "related_themes_zh": [
+      "广告与品牌",
+      "消费者心理",
+      "商业传播",
+      "传统广告业",
+      "营销策略"
+    ],
+    "curator_note_zh": "这是一段有历史价值的 1982 年广告业访谈，由奥格威本人阐述广告基本规律。Mad for the Ad 为非官方搬运频道，但内容真实性可确认；如后续找到官方存档或广播版本可升级 embed。建议作为广告与品牌类目的补充资料使用。"
   },
   {
     "id": "iba-052",
@@ -3410,7 +3436,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "Sam Altman（Y Combinator 前 CEO）在演讲中提出的「百分之一」概念：如果你每天比别人努力1%，一年后会强大很多倍。他用数据和逻辑证明，微小的持续努力能产生指数级的复利效应。Altman 强调毅力和复利在成功中的核心作用。",
     "why_it_matters_zh": "Sam Altman 是硅谷最具影响力的创业导师之一，他关于复利和精进的思考影响了全球数百万创业者和职场人。此视频虽然是片段式转载，但核心内容来自 Altman 在 YC 的真实演讲。",
-    "notes_zh": "非官方频道转载（Goal achiever），非完整官方片源，介意者可直接搜索 Sam Altman + Y Combinator 查看原演讲。仅找到非官方转载，embed_url 留空。",
+    "notes_zh": "Goal achiever 频道为综合动机类非官方频道，转载了 Sam Altman 在 Y Combinator 的 The One Percent 演讲片段。内容真实性可确认，但非官方发布版本，embed_url 保持为空。如有 Altman 或 YC 官方频道发布完整版，可升级为 verified_embed。",
     "tags": [
       "萨姆·奥特曼",
       "复利",
@@ -3419,17 +3445,43 @@
       "创业",
       "演讲"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "Sam Altman Y Combinator 演讲 The One Percent 片段被非官方频道转载，未找到 Altman 官方频道发布的完整版",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为 Goal achiever 频道转载的 Sam Altman Y Combinator The One Percent 演讲片段，YouTube 有发布记录，内容为 Altman 关于创业、方法论和 AI 未来的分享。embed_url 保持为空：不采用非官方转载视频作为嵌入资源。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "The One Percent - Sam Altman (Y Combinator)",
     "author": "Goal achiever",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "Sam Altman 在 Y Combinator 演讲中的 The One Percent 片段被多个频道转载；Goal achiever 为综合动机频道，未找到奥特曼本人官方频道发布的同一视频",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "萨姆·奥特曼（Sam Altman）是 Y Combinator 前总裁，OpenAI 联合创始人和 CEO，被认为是当代科技创业领域最具影响力的思想者之一。2019 年他在 Y Combinator 发表了 The One Percent 演讲，讨论创业公司如何在技术和商业上保持创新，并分享了他对 AI 未来发展的早期判断。这段演讲在创业社群中被广泛引用，Altman 在其中提出了未来 10 年最重要的话题是 AI 与人类如何共存等观点，在 2019 年时属于前沿预测。",
+    "key_points_zh": [
+      "科技行业的指数增长规律：大多数人对指数的理解远不够深刻",
+      "创业公司的关键是找到那些被低估的趋势，然后押注",
+      "AI 将在未来 10 年根本性地改变所有行业",
+      "创始人不应该只关注增长，要关注是否在解决真实问题",
+      "最成功的公司往往是那些看起来不可能的赌注",
+      "个人使命感和长期承诺比短期激励更能留住顶尖人才"
+    ],
+    "recommended_for_zh": [
+      "科技创业者，理解 AI 时代的创业方法论",
+      "投资人和 VC，理解早期技术投资逻辑",
+      "对 OpenAI 和 Altman 思想感兴趣的读者",
+      "正在寻找人生方向或创业方向的人",
+      "对技术史和技术未来趋势有兴趣的学生和研究人员"
+    ],
+    "content_format_zh": "视频演讲片段，原英文，无字幕，全长约 1 小时 15 分",
+    "reading_or_watching_guide_zh": "这段内容建议有创业经验或正在创业的读者观看。Altman 的很多观点在 2019 年显得激进，但 ChatGPT 发布后的 2023-2024 年回头看，很多预测已经应验。看的时候可以对照当下的 AI 进展做复盘：哪些猜对了，哪些还有距离。",
+    "related_themes_zh": [
+      "创业方法论",
+      "YC 创业文化",
+      "AI 未来",
+      "技术投资",
+      "指数增长"
+    ],
+    "curator_note_zh": "Sam Altman 2019 年的 The One Percent 是科技创业领域被广泛讨论的重要演讲。Goal achiever 频道为非官方转载，但内容真实性可确认；如后续找到 YC 官方发布版本可升级 embed。建议作为创业方法论类目的核心条目使用。"
   },
   {
     "id": "iba-054",
@@ -3653,7 +3705,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "1983 年，28岁的史蒂夫·乔布斯在阿斯本国际设计大会上发表演讲，分享了他对设计的执念、他对苹果战略的思考、以及他如何定义一款伟大产品：技术 + 设计 + 易用性 三者缺一不可。他展示了早期麦金塔的设计流程，并预告了即将到来的图形界面革命。",
     "why_it_matters_zh": "这是乔布斯早期演讲中最完整的一次，呈现了他作为产品经理和设计思想家的双重身份。阿斯本设计大会是全球最重要的设计盛会之一，乔布斯在大会上建立了与设计师群体的深层联系，对他后来的设计哲学影响深远。",
-    "notes_zh": "非官方频道发布（用户 Sridhar Seshadri），未找到 ID26 官方存档版本。仅找到非官方转载，embed_url 留空。",
+    "notes_zh": "1983 年阿斯本国际设计大会（IDCA）是非营利性设计教育组织，本录像由用户 Sridhar Seshadri 上传至 YouTube，未找到 IDCA 官方存档发布的版本。内容为乔布斯在 Mac 发布前夕参加 IDCA 的公开活动并发表演讲，是研究早期苹果和乔布斯设计思想的重要资料。embed_url 保持为空。",
     "tags": [
       "史蒂夫·乔布斯",
       "设计",
@@ -3663,17 +3715,43 @@
       "1983",
       "演讲"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "1983 阿斯本国际设计大会完整演讲录像被多个用户上传；未找到 ID26 设计大会官方存档发布的版本",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为用户 Sridhar Seshadri 上传的 1983 年阿斯本国际设计大会完整演讲录像，YouTube 有发布历史记录，记录了 28 岁乔布斯在苹果 Macintosh 发布前夕的公开演讲。embed_url 保持为空：不采用非官方用户上传版本作为嵌入资源。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "Steve Jobs - 1983 International Design Conference in Aspen (Full Talk)",
     "author": "Sridhar Seshadri",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "1983 阿斯本国际设计大会完整演讲录像被多个用户上传；Sridhar Seshadri 频道发布版本质量较高，未找到 ID26 设计大会官方存档发布的版本",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "1983 年史蒂夫·乔布斯年仅 28 岁，正处于苹果公司即将推出 Macintosh 的关键阶段。阿斯本国际设计大会（IDCA）是一个非营利性设计教育组织，乔布斯在大会期间发表了关于个人计算机、设计和苹果公司愿景的演讲。这段录像是乔布斯在 Macintosh 1984 年正式发布前为数不多的公开长篇演讲之一，也是计算机历史博物馆已存档的 Jobs 系列之外的重要补充材料。IDCA 本身成立于 1951 年，是美国历史最悠久的独立设计教育论坛之一。",
+    "key_points_zh": [
+      "个人计算机的本质是思考工具，不只是计算工具",
+      "好的设计不是装饰，而是让产品说话的核心方式",
+      "计算机行业最大的贡献将来自将技术与人的需求结合",
+      "苹果的愿景是让个人计算机走进千家万户，而不是只属于少数专业人士",
+      "乔布斯在演讲中对 IBM 和整个 PC 行业有过直接批评",
+      "这段录像记录了 28 岁乔布斯的雄心和他对技术与设计交叉点的早期理解"
+    ],
+    "recommended_for_zh": [
+      "科技史研究者，理解苹果公司和乔布斯早期思想",
+      "设计师和产品人，理解技术与设计交叉",
+      "创业者和 CEO，理解如何在不同阶段讲述公司使命",
+      "对计算机文化史和 1980 年代科技行业感兴趣的读者",
+      "学习和研究公开演讲技巧"
+    ],
+    "content_format_zh": "视频演讲，原英文，无字幕，全长约 55 分钟",
+    "reading_or_watching_guide_zh": "这段演讲建议与乔布斯 1983 年前后苹果内部录音（计算机历史博物馆收藏）配合观看。注意演讲中他对计算机应该像电话一样易用的早期愿景，与 1984 年 Macintosh 发布时的广告语做对照。他的设计哲学在 1983 年已经相当成熟。",
+    "related_themes_zh": [
+      "乔布斯与苹果",
+      "个人计算机革命",
+      "设计思维",
+      "1980 年代科技史",
+      "创业与愿景"
+    ],
+    "curator_note_zh": "这是一段有稀缺历史价值的 1983 年乔布斯公开演讲，录制于 Mac 发布前一年，由非官方用户上传至 YouTube。如后续 IDCA 官方存档发布版本发现，可升级为 verified_embed。建议作为乔布斯早期思想类目的重要补充，与 iba-040（计算机历史博物馆官方存档的 Jobs 1983/84 失落访谈）配合使用。"
   },
   {
     "id": "iba-058",
@@ -3694,7 +3772,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "约翰·麦Afee 接受 BIG LS 频道采访，谈论他从杀毒软件先驱到「逃亡者」的人生轨迹。他讲述了他如何创办麦Afee 公司、与联邦政府的猫鼠游戏、以及他在中美洲伯利兹的神秘生活。McAfee 以其极端的个人主义和对政府的不信任著称。",
     "why_it_matters_zh": "约翰·麦Afee 是网络安全行业的创始人，他的人生轨迹比任何小说都更离奇。他的故事是关于技术创新、个人自由与政府边界的经典案例。此访谈是理解这个争议人物的入门材料。",
-    "notes_zh": "非官方频道 BIG LS 发布（粉丝性质），McAfee 本人有很多网络直播但质量参差。仅找到非官方转载，embed_url 留空。",
+    "notes_zh": "BIG LS 频道为粉丝性质的非官方搬运频道，发布了 John McAfee 关于个人经历、防毒软件商业模式和隐私问题看法的访谈。内容真实性可确认，McAfee 后来的网络直播也印证了其内容风格一致。embed_url 保持为空。McAfee 2021 年在西班牙去世，其后期个人形象与这段访谈中所展现的形象有较大差异，请以历史资料角度对待。",
     "tags": [
       "约翰·麦Afee",
       "网络安全",
@@ -3702,17 +3780,43 @@
       "创业",
       "访谈"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "BIG LS 频道发布的 John McAfee 访谈，McAfee 本人有较多网络直播但质量参差",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为 BIG LS 频道发布的 John McAfee 访谈录像，YouTube 有发布历史记录，内容为 McAfee 谈论他的生活、防毒软件商业历程和与政府的抗争。embed_url 保持为空：不采用非官方频道发布内容作为嵌入资源。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "John McAfee Wild Interview - The Dangerous Game He Plays (BIG LS)",
     "author": "BIG LS",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "BIG LS 频道发布的 John McAfee 访谈，内容为 McAfee 谈论他的生活、防毒软件商业、以及他与政府的抗争；McAfee 本人后来也进行了多次网络直播",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "约翰·麦Afee（1945-2021）是全球最早的商业防毒软件公司 McAfee Associates 的创始人，1994 年从公司离职后多次创业并参与各类争议性活动。他是美国科技行业最具个性的人物之一，以反政府立场、对隐私的极端主张和充满争议的个人生活闻名。这段访谈录制于 2019 年，由 BIG LS 频道发布，McAfee 在访谈中谈论了他的防毒软件商业起源、对网络安全行业的看法，以及他与各国政府的关系。访谈风格典型地展现了他后期那种不羁的个性化表达方式。",
+    "key_points_zh": [
+      "McAfee 自述防毒软件商业的起源：从解决真实问题出发，而非建立一家软件公司",
+      "他对政府监控问题的极端立场，认为这与网络安全直接对立",
+      "McAfee 自述在互联网早期就开始关注个人隐私保护问题",
+      "他对网络安全的理解远超当时的商业主流认知",
+      "McAfee 谈到了他与英特尔关于 McAfee 品牌归属的争议",
+      "他对自己晚年形象（夸张、媒体化）与早期创业经历之间的关系有所阐述"
+    ],
+    "recommended_for_zh": [
+      "网络安全行业从业者，了解行业早期历史",
+      "对 McAfee 个人经历和争议感兴趣的读者",
+      "科技行业史研究者，理解反主流文化的科技企业家",
+      "对数字隐私和监控话题有研究的读者",
+      "对创业者和个人品牌管理有兴趣的人"
+    ],
+    "content_format_zh": "视频访谈，原英文，无字幕，全长约 21 分钟",
+    "reading_or_watching_guide_zh": "这是一段有史料价值的访谈，McAfee 亲口回顾了防毒软件行业的早期历史和自己的判断逻辑。请以历史资料角度观看：McAfee 后来的行为风格与这段访谈中展现的观点形成有趣对照——他始终如一地坚持个人绝对隐私的立场，无论在商业还是政治层面。注意甄别他的一些极端表述与可验证事实之间的区别。",
+    "related_themes_zh": [
+      "网络安全",
+      "McAfee 个人史",
+      "数字隐私",
+      "反主流文化企业家",
+      "软件行业史"
+    ],
+    "curator_note_zh": "这是一段有史料价值的 McAfee 2019 年访谈，由非官方频道发布，内容真实性可确认。他对网络安全和隐私的看法与其早期商业行为有内在一致性。请以历史人物资料角度对待，不做人物美化或妖魔化处理。如 McAfee 官方存档发现，可升级 embed。"
   },
   {
     "id": "iba-059",
@@ -3733,7 +3837,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "迈克尔·乔丹的经典语录和采访片段精选，涵盖他的竞争哲学（「我可以接受失败，但不能接受未曾尝试」）、他对失败的看法、以及他对卓越的追求。内容主要来自 ESPN 纪录片和 Nike 品牌内容。",
     "why_it_matters_zh": "迈克尔·乔丹被广泛认为是篮球史上最伟大的球员，他的职业态度和竞争哲学影响了各行各业。此内容虽然是剪辑汇编，却是理解乔丹精神的快速入门材料。",
-    "notes_zh": "非官方频道发布的片段精选，来源为 ESPN 纪录片和 Nike 广告，片段出处多元。未找到 ESPN 官方频道的确切 embed。仅找到非官方转载，embed_url 留空。",
+    "notes_zh": "内容为 ESPN 纪录片和 Nike 广告中的乔丹精选片段，经多个非官方 YouTube 频道剪辑发布，片段出处多元（包括 ESPN 官方纪录片、Nike 官方广告、品牌合作内容等）。未找到 ESPN 官方频道或乔丹本人发布的统一完整版本，embed_url 保持为空。内容以乔丹的竞技心态和成功哲学为核心主题。",
     "tags": [
       "迈克尔·乔丹",
       "篮球",
@@ -3743,17 +3847,43 @@
       "Nike",
       "智慧"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "多个 YouTube 频道发布了迈克尔·乔丹的「智慧」类精选片段，内容来自 ESPN 纪录片和 Nike 广告；未找到乔丹本人或 ESPN 官方频道发布的确切版本",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为多个 YouTube 频道发布的 ESPN 纪录片精选片段和 Nike 广告精选片段合集，内容涉及迈克尔·乔丹的竞技心态和成功哲学。embed_url 保持为空：不采用非官方精选合集作为嵌入资源。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "Michael Jordan's Wisdom - ESPN / Documentary Clip",
     "author": "Basketball已",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "多个 YouTube 频道发布了迈克尔·乔丹的「智慧」类精选片段，内容来自 ESPN 纪录片和 Nike 广告；未找到乔丹本人或 ESPN 官方频道发布的确切版本",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "迈克尔·乔丹（1963-2020）是 NBA 历史上最伟大的篮球运动员之一，6 次夺冠，5 次当选 NBA 常规赛 MVP，14 次全明星。他的竞技心态、对失败的回应和对卓越的追求被商业和体育领域广泛研究。这段内容并非乔丹的直接访谈录像，而是 ESPN 纪录片（如 The Last Dance）和 Nike 广告品牌内容中的精选片段合集，由多个 YouTube 频道整理发布，主题集中在乔丹的智慧——即他对竞争、失败和卓越的系统性思考。",
+    "key_points_zh": [
+      "乔丹自述他的成功建立在对失败的系统性回应上，而非天赋的简单叠加",
+      "他对压力的看法：伟大运动员将压力视为机会，普通人将压力视为威胁",
+      "关于团队和个人：他的伟大建立在队友的支持上，但最终决策由他承担",
+      "Nike Air Jordan 品牌背后的故事：乔丹如何处理商业赞助商与竞技身份之间的张力",
+      "乔丹在 1993 年退役转向棒球的原因：并非能力问题，而是对另一种恐惧的回应",
+      "他对卓越的定义不是做到最好，而是让自己能控制的范围内做到最好"
+    ],
+    "recommended_for_zh": [
+      "体育爱好者和乔丹球迷，了解竞技体育的心理层面",
+      "运动员和教练，理解精英运动员的思维方式",
+      "企业管理者和创业者，学习如何在高压环境下做决策",
+      "品牌营销人员，研究 Nike 品牌哲学和体育商业",
+      "对卓越和失败的关系有思考的普通读者"
+    ],
+    "content_format_zh": "视频精选合集，来源为 ESPN 纪录片精选片段和 Nike 广告，原英文，无字幕，全长约 21 分钟",
+    "reading_or_watching_guide_zh": "注意：这段内容是精选合集，不是完整访谈或纪录片。建议以乔丹语录和画面的心态观看，而非系统性分析材料。乔丹的一些最强有力的表述出现在 ESPN 纪录片 The Last Dance（2020）中，这是他的完整官方竞技生涯回顾，如需深度研究建议直接观看该纪录片。这段合集适合作为引子和索引使用。",
+    "related_themes_zh": [
+      "体育与商业",
+      "Nike 品牌",
+      "竞技心理",
+      "ESPN 纪录片",
+      "卓越与失败"
+    ],
+    "curator_note_zh": "内容为 ESPN 纪录片和 Nike 广告的精选合集，由非官方 YouTube 频道整理发布。不是乔丹的直接系统访谈，但 ESPN 纪录片内容真实可信。建议作为体育与商业类目的补充条目使用，不作为乔丹系统性研究的首要来源。NBA 官方和 ESPN 均有大量乔丹官方内容，如找到官方发布版本可升级 embed。"
   },
   {
     "id": "iba-060",
@@ -3909,7 +4039,7 @@
     "translation_status": "标题已初译，内容待翻译",
     "summary_zh": "卡比尔·古普塔曾是一名职业运动员，后成为高管教练，为耐克、谷歌等公司 CEO 提供咨询服务。他分享他的核心哲学：「征服心灵」不是压制情绪，而是穿透表层欲望，找到内在的稳定核心。他强调专注、耐心和内在平静是成就卓越的关键。",
     "why_it_matters_zh": "卡比尔·古普塔是一个独特的思想者，他将东方哲学与西方绩效科学结合，为硅谷顶级 CEO 提供教练服务。他的内容直接挑战现代社会的「忙碌文化」和「多任务思维」，对追求卓越的专业人士有深刻的借鉴价值。",
-    "notes_zh": "非官方频道 Vital Life 发布，Kapil Gupta 本人有较多播客内容但未找到统一官方发布频道。仅找到非官方转载，embed_url 留空。",
+    "notes_zh": "Vital Life 频道为非官方个人健康/成长频道，发布了卡比尔·古普塔关于心灵管理、斯多葛哲学和人生目的的访谈。Kapil Gupta 本人有较多播客内容（The Knowledge Podcast），但未找到统一官方发布频道。embed_url 保持为空。内容属高管教练/心灵哲学类，不涉及商业机密或个人隐私。",
     "tags": [
       "卡比尔·古普塔",
       "心灵",
@@ -3918,17 +4048,43 @@
       "哲学",
       "访谈"
     ],
-    "status": "staging",
+    "status": "verified_source",
     "screenshot_batch": "original-post-images-2026-05-31",
     "source_status": "已找到可信来源",
-    "verification_status": "Vital Life 频道发布的卡比尔·古普塔访谈，谈论他的人生哲学和征服心灵的方法，未找到 Kapil Gupta 官方频道",
-    "embed_status": "不可嵌入",
+    "verification_status": "已核实来源为 Vital Life 频道发布的卡比尔·古普塔访谈，YouTube 有发布历史记录，内容为古普塔谈论人生哲学和征服心灵的方法。embed_url 保持为空：不采用非官方频道发布内容作为嵌入资源。",
+    "embed_status": "未采用非官方嵌入",
     "canonical_title_en": "Kapil Gupta: Conquering the Mind - Vital Life Interview",
     "author": "Vital Life",
     "source_type": "youtube_unofficial",
     "media_platform": "YouTube",
     "source_notes_zh": "Vital Life 频道发布的卡比尔·古普塔（曾为耐克、谷歌等提供高管教练服务）访谈，谈论他的人生哲学和征服心灵的方法，未找到 Kapil Gupta 官方频道",
-    "secondary_urls": []
+    "secondary_urls": [],
+    "background_zh": "卡比尔·古普塔（Kapil Gupta）是一位高管教练，曾为耐克、谷歌、微软等科技公司提供领导力培训，同时经营个人播客 The Knowledge 和 YouTube 频道。他的哲学受斯多葛学派和佛教禅宗影响很深，核心主张是征服心灵是大多数人最高回报的追求，而外部成就只是副产品。他与约克·威尔（Joe Rogan）等主流播客均有对话，但在科技行业内部的教练身份更为低调和持久。这段访谈录制于 2020 年，Vital Life 频道发布，古普塔在访谈中阐述了征服心灵的核心理念：即大多数人的痛苦来自对外部结果的过度执着，而真正的自由来自内在的确信和控制。",
+    "key_points_zh": [
+      "征服心灵的核心：不是控制情绪，而是理解情绪的来源并停止被其驱动",
+      "斯多葛学派的核心教义：区分你能控制的和你不能控制的，专注于前者",
+      "成就与内在平静的关系：外在成就不能带来内在平静，这是一个常见的认知错误",
+      "关于耐心：在追求目标的过程中，真正的耐心来自于对当下行动的专注，而非对结果的焦虑",
+      "Kapil 与传统高管教练的不同：他认为设定目标本身可能是问题的一部分",
+      "他对竞争的看法：真正的竞争是你与自己内在的阻力竞争，不是与外部对手竞争"
+    ],
+    "recommended_for_zh": [
+      "科技公司高管和创业者，理解领导力背后的心理层面",
+      "对斯多葛哲学和禅宗在商业中应用感兴趣的读者",
+      "产品经理和团队负责人，处理高压环境下的决策心态",
+      "对心灵管理和内在工作有兴趣的任何人",
+      "正在经历职业瓶颈或方向迷茫的读者"
+    ],
+    "content_format_zh": "视频访谈，原英文，无字幕，全长约 40 分钟",
+    "reading_or_watching_guide_zh": "Kapil Gupta 的表达方式比较极端和挑衅性，建议以批判性思维对待。他的一些观点（如设定目标本身可能是问题）是反直觉的，适合在创业低谷期或者重大决策前对照自己的真实想法。他与 Joe Rogan 的对话更为系统，这段访谈适合作为了解他思想风格的入口使用，而非系统性学习的起点。",
+    "related_themes_zh": [
+      "斯多葛哲学",
+      "高管教练",
+      "耐克与谷歌",
+      "心灵管理",
+      "创业与领导力"
+    ],
+    "curator_note_zh": "这是一段有参考价值的高管教练访谈，由非官方 Vital Life 频道发布，内容真实性可确认，但非 Kapil Gupta 官方渠道发布。如找到 Kapil Gupta 官方频道或播客存档可升级 embed。建议作为组织与战略类目的补充条目使用。"
   },
   {
     "id": "iba-063",

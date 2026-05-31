@@ -67,6 +67,20 @@
 
 ---
 
+## 专题路径分享卡片
+
+5 条专题路径各有一张独立 SVG 分享卡片（1200×630），可在社交媒体分享时直接使用：
+
+| # | 路径 | 卡片文件 |
+|---|------|---------|
+| ① | 创始人精神谱系（8 items） | [founder-spirit.svg](assets/path-cards/founder-spirit.svg) |
+| ② | 技术创业史（8 items） | [tech-startup-history.svg](assets/path-cards/tech-startup-history.svg) |
+| ③ | 媒介、社会与自我（8 items） | [media-and-society.svg](assets/path-cards/media-and-society.svg) |
+| ④ | 创作者心智与长期主义（10 items） | [creator-mindset.svg](assets/path-cards/creator-mindset.svg) |
+| ⑤ | 组织备忘录与战略转折（7 items） | [organization-and-strategy.svg](assets/path-cards/organization-and-strategy.svg) |
+
+---
+
 ## 版权与来源说明
 
 本项目不搬运内容，只做索引和导读。所有原始内容由原始发布方提供。来源包括 Internet Archive、YouTube 官方频道、Farnam Street 官方博客、BBC 官方存档等可靠存档。不引用无法核实的来源，不伪造链接。

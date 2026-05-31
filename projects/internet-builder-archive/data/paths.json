@@ -31,7 +31,8 @@
       ],
       "audience_zh": "准备创业或正在创业的读者；对科技公司早期历史感兴趣的人",
       "estimated_time_zh": "约 6–8 小时（含纪录片观看）",
-      "page_url": "paths/founder-spirit.html"
+      "page_url": "paths/founder-spirit.html",
+      "share_card_url": "assets/path-cards/founder-spirit.svg"
     },
     {
       "id": "tech-startup-history",
@@ -59,7 +60,8 @@
       ],
       "audience_zh": "对科技史、互联网发展、平台变迁感兴趣的读者；技术创业者与产品人",
       "estimated_time_zh": "约 8–10 小时（含系列纪录片观看）",
-      "page_url": "paths/tech-startup-history.html"
+      "page_url": "paths/tech-startup-history.html",
+      "share_card_url": "assets/path-cards/tech-startup-history.svg"
     },
     {
       "id": "media-and-society",
@@ -88,7 +90,8 @@
       ],
       "audience_zh": "内容创作者、市场与传播从业者；对媒介与社会议题有兴趣的普通读者",
       "estimated_time_zh": "约 7–9 小时（含纪录片观看）",
-      "page_url": "paths/media-and-society.html"
+      "page_url": "paths/media-and-society.html",
+      "share_card_url": "assets/path-cards/media-and-society.svg"
     },
     {
       "id": "creator-mindset",
@@ -119,7 +122,8 @@
       ],
       "audience_zh": "创作者、作家、音乐人、设计师；希望建立个人项目的任何人",
       "estimated_time_zh": "约 5–7 小时（含纪录片观看）",
-      "page_url": "paths/creator-mindset.html"
+      "page_url": "paths/creator-mindset.html",
+      "share_card_url": "assets/path-cards/creator-mindset.svg"
     },
     {
       "id": "organization-and-strategy",
@@ -147,7 +151,8 @@
       ],
       "audience_zh": "产品经理、创业者、管理者；对商业决策和组织文化有兴趣的读者",
       "estimated_time_zh": "约 3–4 小时（主要是文档与公开信，阅读时间较短）",
-      "page_url": "paths/organization-and-strategy.html"
+      "page_url": "paths/organization-and-strategy.html",
+      "share_card_url": "assets/path-cards/organization-and-strategy.svg"
     }
   ]
 }

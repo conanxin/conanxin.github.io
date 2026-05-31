@@ -131,4 +131,25 @@
 
 ---
 
+## 9. 后续新增资料流程
+
+本文档定义了从零创建新条目的录入规范。对于**后续新增条目**，请使用以下 workflow 文档：
+
+| 文档 | 用途 |
+|------|------|
+| [NEW_ITEM_INGESTION_WORKFLOW_ZH.md](workflow/NEW_ITEM_INGESTION_WORKFLOW_ZH.md) | 完整录入工作流（10 阶段） |
+| [SOURCE_VERIFICATION_CHECKLIST_ZH.md](workflow/SOURCE_VERIFICATION_CHECKLIST_ZH.md) | 来源优先级与核实标准 |
+| [EMBED_POLICY_ZH.md](workflow/EMBED_POLICY_ZH.md) | 嵌入政策与版权边界 |
+| [PATHWAY_UPDATE_WORKFLOW_ZH.md](workflow/PATHWAY_UPDATE_WORKFLOW_ZH.md) | 路径加入/移除与派生同步 |
+| [RELEASE_CHECKLIST_ZH.md](workflow/RELEASE_CHECKLIST_ZH.md) | 发布前完整检查清单 |
+
+模板文件：
+
+| 文件 | 用途 |
+|------|------|
+| [new_item.template.json](templates/new_item.template.json) | 新增条目 JSON 模板 |
+| [agent_prompt_new_item_ingestion_zh.md](templates/agent_prompt_new_item_ingestion_zh.md) | Agent 操作提示词模板（可复制给 Hermès） |
+
+---
+
 *最后更新：2026-05-31*

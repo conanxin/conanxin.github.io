@@ -112,4 +112,18 @@ projects/internet-builder-archive/
 
 ---
 
-*最后更新：2026-05-31 | 状态：Phase 2N 完成*
+## Workflow / 后续录入流程
+
+- [完整录入工作流](docs/workflow/NEW_ITEM_INGESTION_WORKFLOW_ZH.md) — 10 阶段新增资料流程
+- [来源核实清单](docs/workflow/SOURCE_VERIFICATION_CHECKLIST_ZH.md) — 来源优先级与核实标准
+- [嵌入政策](docs/workflow/EMBED_POLICY_ZH.md) — 合法嵌入与版权边界
+- [路径更新流程](docs/workflow/PATHWAY_UPDATE_WORKFLOW_ZH.md) — 路径加入/移除与派生同步
+- [发布检查清单](docs/workflow/RELEASE_CHECKLIST_ZH.md) — 发布前完整校验
+
+模板：
+- [新增条目 JSON 模板](docs/templates/new_item.template.json)
+- [Agent 操作提示词模板](docs/templates/agent_prompt_new_item_ingestion_zh.md)
+
+---
+
+*最后更新：2026-05-31 | 状态：Phase 2O 完成*

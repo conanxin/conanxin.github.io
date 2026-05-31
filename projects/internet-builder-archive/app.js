@@ -192,6 +192,46 @@
       linksHtml += '<p class="card-source-notes">' + escapeHtml(item.source_notes_zh) + '</p>';
     }
 
+    // ---- 新增策展字段 ----
+    var curationHtml = '';
+
+    if (item.background_zh) {
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">📖 背景</span><p class="card-curation-text">' + escapeHtml(item.background_zh) + '</p></div>';
+    }
+
+    if (item.key_points_zh && item.key_points_zh.length > 0) {
+      var kpItems = item.key_points_zh.map(function(kp) {
+        return '<li class="card-keypoint">' + escapeHtml(kp) + '</li>';
+      }).join('');
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">🔑 关键看点</span><ul class="card-keypoints">' + kpItems + '</ul></div>';
+    }
+
+    if (item.content_format_zh) {
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">📋</span> <span class="card-format-tag">' + escapeHtml(item.content_format_zh) + '</span></div>';
+    }
+
+    if (item.recommended_for_zh && item.recommended_for_zh.length > 0) {
+      var rfItems = item.recommended_for_zh.map(function(rf) {
+        return '<span class="card-recommended-tag">' + escapeHtml(rf) + '</span>';
+      }).join('');
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">👥 适合人群</span><div class="card-recommended-for">' + rfItems + '</div></div>';
+    }
+
+    if (item.reading_or_watching_guide_zh) {
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">🧭 阅读/观看指南</span><p class="card-curation-text">' + escapeHtml(item.reading_or_watching_guide_zh) + '</p></div>';
+    }
+
+    if (item.curator_note_zh) {
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">💬 策展说明</span><p class="card-curation-text card-curator-note">' + escapeHtml(item.curator_note_zh) + '</p></div>';
+    }
+
+    if (item.related_themes_zh && item.related_themes_zh.length > 0) {
+      var rtItems = item.related_themes_zh.map(function(rt) {
+        return '<span class="tag tag-related">' + escapeHtml(rt) + '</span>';
+      }).join('');
+      curationHtml += '<div class="card-curation-section"><span class="card-curation-label">🏷 相关主题</span><div class="card-tags">' + rtItems + '</div></div>';
+    }
+
     return '<article class="' + cardClass + '">' +
       badge +
       '<div class="card-header">' +
@@ -203,6 +243,7 @@
       (item.summary_zh ? '<p class="card-summary">' + escapeHtml(item.summary_zh) + '</p>' : '') +
       (item.why_it_matters_zh ? '<div class="card-why"><span class="card-why-label">💡 为什么值得看</span>' + escapeHtml(item.why_it_matters_zh) + '</div>' : '') +
       tagsHtml +
+      curationHtml +
       embedHtml +
       '<div class="card-links">' + linksHtml + '</div>' +
     '</article>';

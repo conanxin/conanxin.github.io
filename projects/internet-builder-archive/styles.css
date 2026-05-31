@@ -614,6 +614,389 @@ input[type="text"]:focus {
   background: #e5e7eb;
 }
 
+/* ---- 导览页样式 ---- */
+.guide-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.85rem;
+  padding: 10px 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.guide-nav-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.guide-nav-link:hover {
+  text-decoration: underline;
+}
+
+.guide-nav-sep {
+  color: var(--text-muted);
+}
+
+.guide-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+}
+
+.guide-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+
+.guide-section-intro {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.guide-intro {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.guide-intro p {
+  margin-bottom: 10px;
+}
+
+.guide-intro p:first-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ---- 导览 callout ---- */
+.guide-callout {
+  background: var(--accent-bg);
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: #1e40af;
+  margin-top: 14px;
+}
+
+.guide-callout-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: #92400e;
+}
+
+/* ---- 导览理由卡片 ---- */
+.guide-reason-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.guide-reason-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.guide-reason-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.guide-reason-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ---- 导览入口卡片 ---- */
+.guide-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.guide-entry-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+
+.guide-entry-emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.guide-entry-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.guide-entry-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.guide-btn {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+/* ---- 导览路径卡片 ---- */
+.guide-path-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.guide-path-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.guide-path-card-header {
+  margin-bottom: 8px;
+}
+
+.guide-path-card-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: inline;
+  margin-right: 8px;
+}
+
+.guide-path-subtitle {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.guide-path-desc,
+.guide-path-audience,
+.guide-path-goal,
+.guide-path-start {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+.guide-path-audience strong,
+.guide-path-goal strong,
+.guide-path-start strong {
+  color: var(--text-primary);
+}
+
+.guide-path-start {
+  font-size: 0.82rem;
+  margin-bottom: 10px;
+}
+
+/* ---- 推荐路线卡片 ---- */
+.guide-route-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.guide-route-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.guide-route-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.guide-route-icon {
+  font-size: 1.4rem;
+}
+
+.guide-route-header h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.guide-route-card > p:first-of-type {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.guide-route-list {
+  padding-left: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.guide-route-list li {
+  margin-bottom: 4px;
+}
+
+.guide-route-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+/* ---- 内容状态卡片 ---- */
+.guide-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.guide-status-card {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.guide-status-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.guide-status-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.guide-status-card.verified-embed {
+  border-left: 3px solid #22c55e;
+}
+
+.guide-status-card.verified-source {
+  border-left: 3px solid #3b82f6;
+}
+
+.guide-status-card.staging {
+  border-left: 3px solid #f59e0b;
+}
+
+/* ---- 法律说明 ---- */
+.guide-legal-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.guide-legal-item {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.guide-legal-item h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.guide-legal-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ---- 路线图 ---- */
+.guide-roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.guide-roadmap-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.guide-roadmap-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.guide-roadmap-item h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.guide-roadmap-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ---- header 导航链接 ---- */
+.header-nav {
+  margin-top: 10px;
+}
+
+.header-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+  transition: background 0.15s, color 0.15s;
+}
+
+.header-nav-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
 /* ---- 响应式 ---- */
 @media (max-width: 600px) {
   .site-title { font-size: 1.4rem; }
@@ -621,4 +1004,9 @@ input[type="text"]:focus {
   .filter-group,
   .search-group { width: 100%; min-width: unset; }
   main.container > section { padding: 16px; }
+  .guide-reason-grid,
+  .guide-path-grid { grid-template-columns: 1fr; }
+  .guide-entry-grid { grid-template-columns: 1fr; }
+  .guide-route-grid { grid-template-columns: 1fr; }
+  .guide-status-grid { grid-template-columns: 1fr; }
 }

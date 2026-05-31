@@ -18,8 +18,8 @@
     <!-- 项目说明 -->
     <section class="project-intro">
       <h2>关于本项目</h2>
+      <p>这不是一份单纯的链接清单，而是一组关于旧互联网、创业公司、创作者心智、技术转型与媒介社会的中文化资料索引。你可以按类型浏览，也可以从下面的专题路径进入。</p>
       <p>本页面整理互联网早期建设者的核心资料，所有英文内容均翻译为中文，视频/音频附带中文介绍与嵌入播放器。资料来源见各条目底部标注。</p>
-      <p class="notice">⚠️ 当前条目均为占位示例（placeholder），待用户提供真实资料后替换。</p>
     </section>
 
     <!-- 筛选与搜索 -->
@@ -43,16 +43,19 @@
       </div>
     </section>
 
-    <!-- 推荐路径 -->
-    <section class="recommended-paths">
-      <h2>推荐路径</h2>
-      <div class="path-tags">
-        <button class="path-tag" data-tag="视频与演讲">🎬 视频与演讲</button>
-        <button class="path-tag" data-tag="公司内部备忘录">📄 公司内部备忘录</button>
-        <button class="path-tag" data-tag="口述史">🎙️ 口述史</button>
-        <button class="path-tag" data-tag="投资与风投">💰 投资与风投</button>
+    <!-- 专题路径区 -->
+    <section class="recommended-paths" id="paths-section">
+      <h2>从这里开始</h2>
+      <p class="paths-intro">按照主题进入旧互联网、创业史、创作者心智与媒介社会的资料库。</p>
+      <div id="path-cards" class="path-cards">
+        <!-- 由 app.js 动态渲染 -->
       </div>
     </section>
+
+    <!-- 返回全部条目按钮（专题路径激活时显示） -->
+    <div id="back-to-all" class="back-to-all" style="display:none;">
+      <button id="back-to-all-btn" class="btn-secondary">← 返回全部条目</button>
+    </div>
 
     <!-- 条目卡片区 -->
     <section id="items-grid" class="items-grid">

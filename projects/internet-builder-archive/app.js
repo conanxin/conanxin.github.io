@@ -8,46 +8,105 @@
 
   // ---- 全局状态 ----
   let allItems = [];
+  let allPaths = [];
   let currentCategory = 'all';
   let currentSearch = '';
+  let currentPath = null; // 当前激活的专题路径 id
 
   // ---- DOM 引用 ----
   var itemsGrid = document.getElementById('items-grid');
   var categoryFilter = document.getElementById('category-filter');
   var searchInput = document.getElementById('search-input');
+  var pathCards = document.getElementById('path-cards');
+  var backToAll = document.getElementById('back-to-all');
+  var backToAllBtn = document.getElementById('back-to-all-btn');
 
   // ---- 初始化 ----
   function init() {
     loadData();
-    bindEvents();
   }
 
-  // ---- 加载数据 ----
+  // ---- 加载数据（items + paths）----
   function loadData() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'data/items.json', true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          try {
-            allItems = JSON.parse(xhr.responseText);
-            renderItems();
-          } catch (e) {
-            itemsGrid.innerHTML = '<p class="empty-state">数据加载失败：JSON 格式错误</p>';
-            console.error('JSON parse error:', e);
-          }
-        } else {
-          itemsGrid.innerHTML = '<p class="empty-state">数据文件加载失败</p>';
+    var xhrItems = new XMLHttpRequest();
+    xhrItems.open('GET', 'data/items.json', true);
+    xhrItems.onreadystatechange = function () {
+      if (xhrItems.readyState === 4 && xhrItems.status === 200) {
+        try {
+          allItems = JSON.parse(xhrItems.responseText);
+          loadPaths();
+        } catch (e) {
+          itemsGrid.innerHTML = '<p class="empty-state">数据加载失败：JSON 格式错误</p>';
+          console.error('items.json parse error:', e);
         }
+      } else if (xhrItems.readyState === 4 && xhrItems.status !== 200) {
+        itemsGrid.innerHTML = '<p class="empty-state">数据文件加载失败</p>';
       }
     };
-    xhr.send();
+    xhrItems.send();
+  }
+
+  function loadPaths() {
+    var xhrPaths = new XMLHttpRequest();
+    xhrPaths.open('GET', 'data/paths.json', true);
+    xhrPaths.onreadystatechange = function () {
+      if (xhrPaths.readyState === 4 && xhrPaths.status === 200) {
+        try {
+          var pathsData = JSON.parse(xhrPaths.responseText);
+          allPaths = pathsData.paths || [];
+          renderPathCards();
+          bindEvents();
+          // 检查 URL hash 是否激活专题路径
+          var hash = window.location.hash;
+          if (hash && hash.startsWith('#path-')) {
+            var pathId = hash.replace('#path-', '');
+            activatePath(pathId);
+          }
+        } catch (e) {
+          console.error('paths.json parse error:', e);
+          allPaths = [];
+          bindEvents();
+        }
+      } else if (xhrPaths.readyState === 4 && xhrPaths.status !== 200) {
+        allPaths = [];
+        bindEvents();
+      }
+    };
+    xhrPaths.send();
+  }
+
+  // ---- 渲染专题路径卡片 ----
+  function renderPathCards() {
+    if (!pathCards) return;
+    var html = '';
+    allPaths.forEach(function (path) {
+      var themesHtml = path.themes.map(function (t) {
+        return '<span class="path-theme-tag">' + escapeHtml(t) + '</span>';
+      }).join('');
+      html += '<div class="path-card" data-path-id="' + escapeHtml(path.id) + '">' +
+        '<div class="path-card-header">' +
+          '<h3 class="path-card-title">' + escapeHtml(path.title_zh) + '</h3>' +
+          '<p class="path-card-subtitle">' + escapeHtml(path.subtitle_zh) + '</p>' +
+        '</div>' +
+        '<p class="path-card-desc">' + escapeHtml(path.description_zh) + '</p>' +
+        '<div class="path-card-meta">' +
+          '<span class="path-meta-item">👥 ' + escapeHtml(path.audience_zh) + '</span>' +
+          '<span class="path-meta-item">⏱ ' + escapeHtml(path.estimated_time_zh) + '</span>' +
+        '</div>' +
+        '<div class="path-card-themes">' + themesHtml + '</div>' +
+        '<button class="path-card-btn" data-path-id="' + escapeHtml(path.id) + '">查看路径 (' + path.item_ids.length + ' 条)</button>' +
+      '</div>';
+    });
+    pathCards.innerHTML = html;
   }
 
   // ---- 绑定事件 ----
   function bindEvents() {
     categoryFilter.addEventListener('change', function () {
       currentCategory = this.value;
+      currentPath = null;
+      window.location.hash = '';
+      backToAll.style.display = 'none';
       renderItems();
     });
 
@@ -56,25 +115,84 @@
       renderItems();
     });
 
-    // 推荐路径标签点击
-    var pathTags = document.querySelectorAll('.path-tag');
-    pathTags.forEach(function (tag) {
-      tag.addEventListener('click', function () {
-        var tagValue = tag.getAttribute('data-tag');
-        currentCategory = tagValue;
-        categoryFilter.value = tagValue;
-        renderItems();
-        // 滚动到条目区
-        itemsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+    // 专题路径卡片点击
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.path-card-btn');
+      if (btn) {
+        var pathId = btn.getAttribute('data-path-id');
+        activatePath(pathId);
+        return;
+      }
     });
+
+    // 返回全部条目
+    if (backToAllBtn) {
+      backToAllBtn.addEventListener('click', function () {
+        currentPath = null;
+        currentCategory = 'all';
+        currentSearch = '';
+        categoryFilter.value = 'all';
+        searchInput.value = '';
+        window.location.hash = '';
+        backToAll.style.display = 'none';
+        document.getElementById('paths-section').style.display = '';
+        renderItems();
+      });
+    }
+
+    // 浏览器前进后退（hashchange 事件）
+    window.addEventListener('hashchange', function () {
+      var hash = window.location.hash;
+      if (!hash || hash === '' || hash === '#' || hash === '#items') {
+        if (currentPath) {
+          currentPath = null;
+          backToAll.style.display = 'none';
+          document.getElementById('paths-section').style.display = '';
+          renderItems();
+        }
+      } else if (hash.startsWith('#path-')) {
+        var pathId = hash.replace('#path-', '');
+        if (pathId !== currentPath) {
+          activatePath(pathId);
+        }
+      }
+    });
+  }
+
+  // ---- 激活专题路径 ----
+  function activatePath(pathId) {
+    var path = null;
+    for (var i = 0; i < allPaths.length; i++) {
+      if (allPaths[i].id === pathId) {
+        path = allPaths[i];
+        break;
+      }
+    }
+    if (!path) return;
+
+    currentPath = pathId;
+    window.location.hash = 'path-' + pathId;
+    backToAll.style.display = '';
+    document.getElementById('paths-section').style.display = 'none';
+    renderItems();
   }
 
   // ---- 筛选逻辑 ----
   function filterItems() {
     return allItems.filter(function (item) {
-      // 分类筛选
-      if (currentCategory !== 'all' && item.category !== currentCategory) {
+      // 专题路径优先：只显示路径包含的条目
+      if (currentPath) {
+        var path = null;
+        for (var i = 0; i < allPaths.length; i++) {
+          if (allPaths[i].id === currentPath) break;
+        }
+        var pathObj = allPaths[i];
+        if (pathObj && pathObj.item_ids.indexOf(item.id) === -1) {
+          return false;
+        }
+      }
+      // 分类筛选（专题路径激活时忽略分类筛选）
+      if (!currentPath && currentCategory !== 'all' && item.category !== currentCategory) {
         return false;
       }
       // 关键词搜索
@@ -82,7 +200,7 @@
         var haystack = [
           item.title_zh || '',
           item.title_en || '',
-          item.people || '',
+          (item.people || []).join(' '),
           item.organization || '',
           item.summary_zh || '',
           item.why_it_matters_zh || '',
@@ -137,7 +255,10 @@
     if (item.year) metaItems.push('<span class="meta-item"><span class="meta-label">📅</span> ' + escapeHtml(item.year) + '</span>');
     if (item.type) metaItems.push('<span class="meta-item"><span class="meta-label">📁</span> ' + escapeHtml(item.type) + '</span>');
     if (item.duration) metaItems.push('<span class="meta-item"><span class="meta-label">⏱</span> ' + escapeHtml(item.duration) + '</span>');
-    if (item.people) metaItems.push('<span class="meta-item"><span class="meta-label">👤</span> ' + escapeHtml(item.people) + '</span>');
+    if (item.people && item.people.length > 0) {
+      var peopleStr = Array.isArray(item.people) ? item.people.join(', ') : item.people;
+      metaItems.push('<span class="meta-item"><span class="meta-label">👤</span> ' + escapeHtml(peopleStr) + '</span>');
+    }
     if (item.organization) metaItems.push('<span class="meta-item"><span class="meta-label">🏢</span> ' + escapeHtml(item.organization) + '</span>');
     if (item.media_platform) {
       var platformBadge = item.embed_url
@@ -159,7 +280,6 @@
       if (item.type === '音频' || item.embed_url.indexOf('soundcloud') !== -1 || item.embed_url.indexOf('spotify') !== -1) {
         embedHtml = '<div class="embed-area"><audio controls src="' + escapeHtml(item.embed_url) + '">您的浏览器不支持音频播放</audio></div>';
       } else {
-        // 通用 iframe
         embedHtml = '<div class="embed-area"><iframe src="' + escapeHtml(item.embed_url) + '" loading="lazy" allowfullscreen></iframe></div>';
       }
     }
@@ -179,7 +299,6 @@
       linksHtml += '<span class="btn btn-secondary" style="opacity:0.5;cursor:default;">🔗 待补链接</span>';
     }
 
-    // 备用来源
     if (item.secondary_urls && item.secondary_urls.length > 0) {
       var altLinks = item.secondary_urls.map(function(u) {
         return '<a href="' + escapeHtml(u) + '" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size:0.78rem;">📂 备用来源</a>';
@@ -187,12 +306,11 @@
       linksHtml += '<br><div style="margin-top:6px;">' + altLinks + '</div>';
     }
 
-    // 来源说明
     if (item.source_notes_zh) {
       linksHtml += '<p class="card-source-notes">' + escapeHtml(item.source_notes_zh) + '</p>';
     }
 
-    // ---- 新增策展字段 ----
+    // ---- 策展字段 ----
     var curationHtml = '';
 
     if (item.background_zh) {

@@ -490,6 +490,130 @@ input[type="text"]:focus {
   border: 1px solid #e0f2fe;
 }
 
+/* ---- 专题路径卡片 ---- */
+.path-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.path-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.path-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: #c0c0bc;
+}
+
+.path-card-header {
+  margin-bottom: 8px;
+}
+
+.path-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.path-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.path-card-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.path-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.path-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.path-card-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.path-theme-tag {
+  background: #f0f9ff;
+  color: #0c4a6e;
+  font-size: 0.73rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid #e0f2fe;
+}
+
+.path-card-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 7px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.15s;
+  font-weight: 600;
+}
+
+.path-card-btn:hover {
+  background: var(--accent-hover);
+}
+
+.paths-intro {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* ---- 返回全部条目按钮 ---- */
+.back-to-all {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.back-to-all .btn-secondary {
+  background: #f3f4f6;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 20px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.15s;
+}
+
+.back-to-all .btn-secondary:hover {
+  background: #e5e7eb;
+}
+
 /* ---- 响应式 ---- */
 @media (max-width: 600px) {
   .site-title { font-size: 1.4rem; }

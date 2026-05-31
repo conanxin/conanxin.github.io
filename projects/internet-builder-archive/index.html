@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旧互联网建设者资料库 / Internet Builder Archive</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">旧互联网建设者资料库</h1>
+      <p class="site-subtitle">视频、访谈、创业材料与公司内部备忘录的中文化索引</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 项目说明 -->
+    <section class="project-intro">
+      <h2>关于本项目</h2>
+      <p>本页面整理互联网早期建设者的核心资料，所有英文内容均翻译为中文，视频/音频附带中文介绍与嵌入播放器。资料来源见各条目底部标注。</p>
+      <p class="notice">⚠️ 当前条目均为占位示例（placeholder），待用户提供真实资料后替换。</p>
+    </section>
+
+    <!-- 筛选与搜索 -->
+    <section class="filter-search">
+      <div class="filter-group">
+        <label for="category-filter">分类筛选：</label>
+        <select id="category-filter">
+          <option value="all">全部</option>
+          <option value="视频与演讲">视频与演讲</option>
+          <option value="访谈">访谈</option>
+          <option value="创业材料">创业材料</option>
+          <option value="公司内部备忘录">公司内部备忘录</option>
+          <option value="投资与风投">投资与风投</option>
+          <option value="产品与互联网史">产品与互联网史</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <label for="search-input">关键词搜索：</label>
+        <input type="text" id="search-input" placeholder="搜索标题、作者、关键词、简介...">
+      </div>
+    </section>
+
+    <!-- 推荐路径 -->
+    <section class="recommended-paths">
+      <h2>推荐路径</h2>
+      <div class="path-tags">
+        <button class="path-tag" data-tag="视频与演讲">🎬 视频与演讲</button>
+        <button class="path-tag" data-tag="公司内部备忘录">📄 公司内部备忘录</button>
+        <button class="path-tag" data-tag="口述史">🎙️ 口述史</button>
+        <button class="path-tag" data-tag="投资与风投">💰 投资与风投</button>
+      </div>
+    </section>
+
+    <!-- 条目卡片区 -->
+    <section id="items-grid" class="items-grid">
+      <!-- 由 app.js 动态渲染 -->
+      <p class="loading-text">加载中...</p>
+    </section>
+
+    <!-- 数据来源说明 -->
+    <section class="source-info">
+      <h2>数据来源说明</h2>
+      <p>本资料库条目均整理自公开来源，包括 X 帖子配图、互联网档案馆、公司官方存档等。每条资料均标注原始链接。</p>
+      <p>如有链接失效或内容有误，请通过 Telegram 反馈。</p>
+    </section>
+
+    <!-- 更新说明 -->
+    <section class="update-info">
+      <h2>更新说明</h2>
+      <ul id="changelog">
+        <li><strong>2026-05-31</strong> — 项目骨架创建，待录入真实资料</li>
+      </ul>
+      <button id="add-changelog-btn" class="btn-secondary" type="button" style="display:none;">添加更新记录</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>旧互联网建设者资料库 · Internet Builder Archive</p>
+      <p>本页面为纯静态页面，由 GitHub Pages 托管</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

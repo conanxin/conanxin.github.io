@@ -585,6 +585,31 @@ input[type="text"]:focus {
   background: var(--accent-hover);
 }
 
+.path-card-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.path-card-standalone-btn {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background 0.15s;
+}
+
+.path-card-standalone-btn:hover {
+  background: var(--accent-bg);
+}
+
 .paths-intro {
   font-size: 0.9rem;
   color: var(--text-secondary);
@@ -997,6 +1022,308 @@ input[type="text"]:focus {
   color: #fff;
 }
 
+/* ---- 专题路径页（paths/*.html） ---- */
+.path-page {
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.path-hero {
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 24px 40px;
+}
+
+.path-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.path-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.path-breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.path-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.path-hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.path-hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+
+.path-hero-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.path-theme-tag {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.path-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.path-intro {
+  padding: 40px 24px;
+}
+
+.path-intro-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.path-intro h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: var(--text-primary);
+}
+
+.path-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 24px;
+}
+
+.path-why,
+.path-how-to {
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.path-why h3,
+.path-how-to h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--accent);
+}
+
+.path-why p,
+.path-how-to p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.path-sequence {
+  padding: 0 24px 40px;
+}
+
+.path-sequence-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.path-sequence-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: var(--text-primary);
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.path-sequence-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.path-sequence-item:last-child {
+  border-bottom: none;
+}
+
+.path-step-number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.path-item-content {
+  flex: 1;
+}
+
+.path-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.path-item-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.path-item-badge {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-weight: 500;
+}
+
+.path-item-badge-embed {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.path-item-badge-source {
+  background: var(--placeholder-bg);
+  color: var(--text-muted);
+}
+
+.path-item-en {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  font-style: italic;
+}
+
+.path-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.path-item-tag {
+  background: var(--placeholder-bg);
+  color: var(--text-secondary);
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-size: 0.78rem;
+}
+
+.path-item-summary {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 10px;
+}
+
+.path-item-curator {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  background: var(--bg-color);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0 0 10px;
+  border-left: 2px solid var(--accent);
+}
+
+.path-item-curator strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.path-item-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.path-item-src-link {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.path-item-src-link:hover {
+  text-decoration: underline;
+}
+
+.path-footer-cta {
+  background: var(--bg-color);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.path-footer-cta-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.path-footer-cta h2 {
+  font-size: 1.3rem;
+  margin: 0 0 20px;
+}
+
+.path-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.path-footer-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.path-footer-links a:hover {
+  text-decoration: underline;
+}
+
+.path-footer-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
 /* ---- 响应式 ---- */
 @media (max-width: 600px) {
   .site-title { font-size: 1.4rem; }
@@ -1009,4 +1336,8 @@ input[type="text"]:focus {
   .guide-entry-grid { grid-template-columns: 1fr; }
   .guide-route-grid { grid-template-columns: 1fr; }
   .guide-status-grid { grid-template-columns: 1fr; }
+  .path-hero { padding: 32px 16px 28px; }
+  .path-hero-title { font-size: 1.5rem; }
+  .path-sequence-item { flex-direction: column; gap: 12px; }
+  .path-step-number { width: 30px; height: 30px; font-size: 0.85rem; }
 }

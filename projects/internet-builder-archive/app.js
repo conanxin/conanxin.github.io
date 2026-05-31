@@ -94,7 +94,10 @@
           '<span class="path-meta-item">⏱ ' + escapeHtml(path.estimated_time_zh) + '</span>' +
         '</div>' +
         '<div class="path-card-themes">' + themesHtml + '</div>' +
-        '<button class="path-card-btn" data-path-id="' + escapeHtml(path.id) + '">查看路径 (' + path.item_ids.length + ' 条)</button>' +
+        '<div class="path-card-actions">' +
+          '<a href="paths/' + escapeHtml(path.id) + '.html" class="path-card-standalone-btn">独立页面</a>' +
+          '<button class="path-card-btn" data-path-id="' + escapeHtml(path.id) + '">查看路径 (' + path.item_ids.length + ' 条)</button>' +
+        '</div>' +
       '</div>';
     });
     pathCards.innerHTML = html;

@@ -1,5 +1,30 @@
 [
   {
+    "title": "旧互联网建设者资料库",
+    "subtitle": "Internet Builder Archive",
+    "slug": "internet-builder-archive",
+    "category": "research",
+    "type": "ARCHIVE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-05-31",
+    "summary": "一组关于旧互联网、创业公司、公司备忘录、访谈、纪录片、创作者心智与媒介社会的中文化策展资料库。收录 74 条条目，64 条 verified，5 条专题路径，含中文导览页与搜索筛选。",
+    "entry_url": "/projects/internet-builder-archive/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "资料库",
+      "互联网史",
+      "创业",
+      "访谈",
+      "纪录片",
+      "公司备忘录",
+      "策展",
+      "中文化"
+    ],
+    "guide_url": "/projects/internet-builder-archive/guide.html"
+  },
+  {
     "title": "How to AI (Almost) Anything 中文学习导览",
     "subtitle": "MIT MAS.S60 多模态 AI 交互式中文课程页",
     "slug": "how-to-ai-almost-anything-cn",

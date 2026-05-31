@@ -87,9 +87,17 @@
 
 ---
 
+## 项目复盘
+
+- [完整复盘文章](docs/case-study/INTERNET_BUILDER_ARCHIVE_CASE_STUDY_ZH.md)
+- [复盘摘要](docs/case-study/CASE_STUDY_SUMMARY_ZH.md)
+- [X 帖子串](docs/case-study/CASE_STUDY_X_THREAD_ZH.md)
+
+---
+
 ## 后续计划
 
-- **Phase 2L**（已完成）：路径短发布帖 — 5 条路径各 3 种中文版本 + 短标题 + 英文简介（[docs/launch/PATH_SHORT_POSTS_ZH.md](docs/launch/PATH_SHORT_POSTS_ZH.md)）
-- **Phase 2B**：人工复核 7 条 staging（P0×4 + P2×3） 条目
+- **Phase 2N**（已完成）：项目案例复盘文章 + 摘要 + X 帖子串
+- **Phase 2B**：人工复核 7 条 staging（P0×4 + P2×3）条目
 - **Phase 2G**：Open Graph / 社交分享 meta 标签
 - **Phase 2H**：5 条专题路径独立静态介绍页

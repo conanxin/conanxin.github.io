@@ -104,4 +104,12 @@ projects/internet-builder-archive/
 
 ---
 
-*最后更新：2026-05-31 | 状态：Phase 2K 完成*
+## Case Study / 项目复盘
+
+- [完整复盘文章](docs/case-study/INTERNET_BUILDER_ARCHIVE_CASE_STUDY_ZH.md) — 3000–5000 字，系统复盘项目从截图到上线的全过程
+- [复盘摘要](docs/case-study/CASE_STUDY_SUMMARY_ZH.md) — 800–1200 字，适合公众号 / 朋友圈引用
+- [X 帖子串](docs/case-study/CASE_STUDY_X_THREAD_ZH.md) — 12 条中文 X 帖子，可直接发布
+
+---
+
+*最后更新：2026-05-31 | 状态：Phase 2N 完成*

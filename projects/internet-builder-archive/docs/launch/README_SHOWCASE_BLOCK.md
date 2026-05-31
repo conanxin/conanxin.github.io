@@ -89,6 +89,7 @@
 
 ## 后续计划
 
+- **Phase 2L**（已完成）：路径短发布帖 — 5 条路径各 3 种中文版本 + 短标题 + 英文简介（[docs/launch/PATH_SHORT_POSTS_ZH.md](docs/launch/PATH_SHORT_POSTS_ZH.md)）
 - **Phase 2B**：人工复核 4 条 staging 条目
 - **Phase 2G**：Open Graph / 社交分享 meta 标签
 - **Phase 2H**：5 条专题路径独立静态介绍页

@@ -58,6 +58,7 @@ projects/internet-builder-archive/
 - [中文发布长文](docs/launch/LAUNCH_POST_ZH.md) — 适合发布在博客、微博、 newsletter 等平台
 - [X 帖子串草稿](docs/launch/X_THREAD_ZH.md) — 10 条中文 X 帖子，适合直接发布于 X/Twitter
 - [README 展示段落](docs/launch/README_SHOWCASE_BLOCK.md) — 可直接复制到项目 README 的 Markdown block
+- [专题路径短发布帖](docs/launch/PATH_SHORT_POSTS_ZH.md) — 5 条路径各 3 种中文版本 + 短标题 + 英文简介，适合 X/朋友圈/Telegram
 - [社交分享卡片 SVG](assets/iba-share-card.svg) — 1200×630 社交分享展示卡片，可用于 X/社交平台配图
 
 ---

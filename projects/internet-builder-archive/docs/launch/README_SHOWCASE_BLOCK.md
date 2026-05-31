@@ -13,7 +13,7 @@
 ## 关键功能
 
 - 📂 **74 条条目**，覆盖视频、访谈、纪录片、备忘录、文章等多种类型
-- ✅ **70 条 verified** 条目完成中文策展字段
+- ✅ **67 条 verified** 条目完成中文策展字段
 - 🎬 **31 条可嵌入播放**，配有 YouTube/BBC/TED 官方播放器
 - 🗺 **5 条专题路径**，提供主题阅读顺序和导读
 - 🔍 **分类筛选 + 关键词搜索**，支持中文标题、英文标题、作者、关键词搜索
@@ -90,6 +90,6 @@
 ## 后续计划
 
 - **Phase 2L**（已完成）：路径短发布帖 — 5 条路径各 3 种中文版本 + 短标题 + 英文简介（[docs/launch/PATH_SHORT_POSTS_ZH.md](docs/launch/PATH_SHORT_POSTS_ZH.md)）
-- **Phase 2B**：人工复核 4 条 staging 条目
+- **Phase 2B**：人工复核 7 条 staging（P0×4 + P2×3） 条目
 - **Phase 2G**：Open Graph / 社交分享 meta 标签
 - **Phase 2H**：5 条专题路径独立静态介绍页

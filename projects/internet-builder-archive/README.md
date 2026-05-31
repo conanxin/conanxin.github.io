@@ -65,7 +65,7 @@ projects/internet-builder-archive/
 
 ## 待复核条目 / Staging Items
 
-当前有 4 条 staging 条目处于待人工复核状态，复核完成后可转 verified 或删除。复核指南和机器可读文件：
+当前有 7 条 staging 条目（P0×4 + P2×3）处于待人工复核状态，复核完成后可转 verified 或删除。复核指南和机器可读文件：
 
 - [staging 人工复核清单](docs/STAGING_REVIEW_PACKET_ZH.md) — 逐条复核说明，包含 P0/P1 优先级和建议处理动作（当前 4 条 P0 待复核）
 - [staging_review.json](data/staging_review.json) — 机器可读复核文件，适合程序处理（Phase 2B-B 使用）

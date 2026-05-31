@@ -1,9 +1,10 @@
 # 旧互联网建设者资料库 · staging 条目人工复核清单
 
-> 本文档为 Phase 2B-A 阶段生成的人工复核指南，整理当前 4 条 `status = "staging"` P0 条目，说明每条的复核原因、所需补充信息和推荐处理动作。
+> 本文档为 Phase 2B-A 阶段生成的人工复核指南，整理当前 7 条 `status = "staging"` 条目，说明每条的复核原因、所需补充信息和推荐处理动作。
 >
 > **本清单不修改 data/items.json，不改变任何条目的 status。**
 > P1 条目（共 6 条）已在 Phase 2B-B1 转为 verified_source。
+> 另有 3 条（原 iba-002/iba-020/iba-022）因 source_url 失效降级为 staging（P2），待人工复核。
 > 所有复核结论将在 Phase 2B-B2 阶段根据用户补充信息逐一实施。
 
 ---
@@ -14,11 +15,15 @@
 |--------|------|
 | **P0** | 内容存在误配风险，或无任何可用来源，必须用户提供原始截图确认，否则不得转为 verified |
 | **P1** | 已有可信来源，但嵌入版本为非官方转载，可保留为 verified_source；如用户确认有官方版本可升级为 verified_embed |
-| **P2** | 无（本期 10 条均属 P0 或 P1） |
+| **P2** | 3 条：iba-002、iba-020、iba-022（原 verified_source，source_url 失效降级） |
 
 ---
 
 ## P0 条目（4 条）— 必须用户提供原始截图或明确说明后才能处理
+
+---
+
+## P2 条目（3 条）— source_url 失效，需要人工查找可靠替代来源
 
 ---
 
@@ -267,3 +272,49 @@
 | **合计** | **4** | — | — |
 
 > P1 条目（共 6 条：iba-051/053/057/058/059/062）已在 Phase 2B-B1 转为 verified_source。
+
+---
+
+### [iba-002] 真正的英雄已经死去
+
+- **中文标题**：真正的英雄已经死去
+- **英文原题**：The Real Heroes Are Dead
+- **分类**：文章与人生思考
+- **类型**：article
+- **年份**：2012
+- **source_url 状态**：⚠️ 原 URL `lightningdoor.com` 返回 404，站点可能已下线或域名变更
+- **问题**：原 source_url 失效，本环境无法确认可靠替代来源
+- **secondary_urls**：web.archive.org 存档（网络限制未确认）
+- **优先级**：P2
+- **推荐处理动作**：人工在 Lightning Door 博客或 Internet Archive 中查找当前可访问的存档 URL；如确实无可靠来源，可降级为"来源待确认"状态或移除
+
+---
+
+### [iba-020] 现在就做
+
+- **中文标题**：现在就做
+- **英文原题**：Do It Now
+- **分类**：文章与人生思考
+- **类型**：article
+- **年份**：2005
+- **source_url 状态**：⚠️ 原 URL `stevepavlina.com/blog/2005/09/do-it-now/` 返回 404
+- **问题**：Steve Pavlina 博客原路径已失效，本环境无法确认新路径或存档
+- **secondary_urls**：web.archive.org 存档（网络限制未确认）
+- **优先级**：P2
+- **推荐处理动作**：人工在 stevepavlina.com 博客中搜索"Do It Now"或查找当前有效路径；如确实无可靠来源，可降级为"来源待确认"状态或移除
+
+---
+
+### [iba-022] 为什么我总是迟到
+
+- **中文标题**：为什么我总是迟到
+- **英文原题**：Why am I always late
+- **分类**：文章与人生思考
+- **类型**：article
+- **年份**：2013
+- **source_url 状态**：⚠️ 原 URL `stevepavlina.com/blog/2013/04/why-am-i-always-late/` 返回 404
+- **问题**：Steve Pavlina 博客原路径已失效，本环境无法确认新路径或存档
+- **secondary_urls**：web.archive.org 存档（网络限制未确认）
+- **优先级**：P2
+- **推荐处理动作**：人工在 stevepavlina.com 博客中搜索"Why am I always late"或查找当前有效路径；如确实无可靠来源，可降级为"来源待确认"状态或移除
+

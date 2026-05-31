@@ -56,5 +56,38 @@
     ],
     "recommended_action_zh": "有来源→转verified_source；无来源→删除",
     "current_status": "staging"
+  },
+  {
+    "id": "iba-002",
+    "title_zh": "真正的英雄已经死去",
+    "title_en": "The Real Heroes Are Dead",
+    "category": "文章与人生思考",
+    "source_url_current": "https://www.lightningdoor.com/blog/the-real-heroes-are-dead",
+    "source_url_status": "404 - 原URL失效",
+    "problem": "原 source_url 失效，本环境无法确认可靠替代来源，需要人工复核",
+    "priority": "P2",
+    "notes": "Phase 2M-B 发现并降级"
+  },
+  {
+    "id": "iba-020",
+    "title_zh": "现在就做",
+    "title_en": "Do It Now",
+    "category": "文章与人生思考",
+    "source_url_current": "https://www.stevepavlina.com/blog/2005/09/do-it-now/",
+    "source_url_status": "404 - 原URL失效",
+    "problem": "原 source_url 失效，本环境无法确认可靠替代来源，需要人工复核",
+    "priority": "P2",
+    "notes": "Phase 2M-B 发现并降级"
+  },
+  {
+    "id": "iba-022",
+    "title_zh": "为什么我总是迟到",
+    "title_en": "Why am I always late",
+    "category": "文章与人生思考",
+    "source_url_current": "https://www.stevepavlina.com/blog/2013/04/why-am-i-always-late/",
+    "source_url_status": "404 - 原URL失效",
+    "problem": "原 source_url 失效，本环境无法确认可靠替代来源，需要人工复核",
+    "priority": "P2",
+    "notes": "Phase 2M-B 发现并降级"
   }
 ]

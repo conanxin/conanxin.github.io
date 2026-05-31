@@ -51,4 +51,15 @@ projects/internet-builder-archive/
 
 ---
 
-*最后更新：2026-05-31 | 状态：骨架搭建阶段*
+## Launch Materials / 发布材料
+
+本项目的对外传播材料存放于 `docs/launch/` 目录：
+
+- [中文发布长文](docs/launch/LAUNCH_POST_ZH.md) — 适合发布在博客、微博、 newsletter 等平台
+- [X 帖子串草稿](docs/launch/X_THREAD_ZH.md) — 10 条中文 X 帖子，适合直接发布于 X/Twitter
+- [README 展示段落](docs/launch/README_SHOWCASE_BLOCK.md) — 可直接复制到项目 README 的 Markdown block
+- [社交分享卡片 SVG](assets/iba-share-card.svg) — 1200×630 社交分享展示卡片，可用于 X/社交平台配图
+
+---
+
+*最后更新：2026-05-31 | 状态：Phase 2F 完成*

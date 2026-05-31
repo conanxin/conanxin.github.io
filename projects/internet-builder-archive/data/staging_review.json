@@ -1,0 +1,144 @@
+[
+  {
+    "id": "iba-013",
+    "title_zh": "玩医生的游戏",
+    "title_en": "Playing Doc Game",
+    "category": "文章与人生思考",
+    "type": "article",
+    "review_priority": "P0",
+    "review_reason_zh": "source_status=需要人工复核；verification_status摘要：标题含义不明，未找到匹配的可信来源。主来源未填写，保持 staging。建议用户提供原始截图后重新检索。",
+    "needed_from_user_zh": [
+      "提供原始截图以确认来源和内容",
+      "P0 必填：原始截图或更多上下文信息"
+    ],
+    "recommended_action_zh": "用户截图确认后，改名并重新查源；或删除",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-029",
+    "title_zh": "扼住咽喉（剧情片，非纪录片）",
+    "title_en": "Choke",
+    "category": "纪录片",
+    "type": "documentary",
+    "review_priority": "P0",
+    "review_reason_zh": "source_status=需要人工复核；verification_status摘要：IMDB 收录的 Choke 实为 2008年 Chuck Palahniuk 同名小说改编的剧情片（伊娃·格林/山姆·洛克威尔主演），非纪录片。截图需核实——",
+    "needed_from_user_zh": [
+      "P0 必填：原始截图或更多上下文信息"
+    ],
+    "recommended_action_zh": "用户截图确认后：纪录片→转verified_source；剧情片→删除或重新分类",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-051",
+    "title_zh": "与大卫·奥格威谈广告",
+    "title_en": "A conversation about advertising, with David Ogilvy",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-053",
+    "title_zh": "百分之一",
+    "title_en": "The One Percent",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-057",
+    "title_zh": "1983年的史蒂夫·乔布斯：阿斯本国际设计大会演讲",
+    "title_en": "A 28-year-old Steve Jobs gives a talk at the 1983 International Design Conference in Aspen",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-058",
+    "title_zh": "约翰·麦Afee 的疯狂访谈",
+    "title_en": "John McAfee Wild Interview",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-059",
+    "title_zh": "迈克尔·乔丹的智慧",
+    "title_en": "Michael Jordan's Wisdom",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-062",
+    "title_zh": "卡比尔·古普塔：征服心灵",
+    "title_en": "Kapil Gupta: Conquering the Mind",
+    "category": "访谈",
+    "type": "interview",
+    "review_priority": "P1",
+    "review_reason_zh": "已找到可信来源，但 embed_status=不可嵌入，嵌入版本为非官方转载",
+    "needed_from_user_zh": [
+      "如有官方 embed URL 请补充（可选，P1 条目可直接转 verified_source）"
+    ],
+    "recommended_action_zh": "转 verified_source（已有可信来源）",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-066",
+    "title_zh": "同一条河两次",
+    "title_en": "The Same River Twice - David Quammen",
+    "category": "公司内部备忘录与经典文本",
+    "type": "memo",
+    "review_priority": "P0",
+    "review_reason_zh": "source_status=需要人工复核；verification_status摘要：需要人工复核：无法确认此条是指 David Quammen 的同名书籍还是一篇短文/备忘录。如为书籍，则需更新 source_url 为出版信息；如为短文，则需",
+    "needed_from_user_zh": [
+      "P0 必填：原始截图或更多上下文信息"
+    ],
+    "recommended_action_zh": "用户截图确认后：是备忘录→转verified_source；是书籍章节→更新source_url",
+    "current_status": "staging"
+  },
+  {
+    "id": "iba-073",
+    "title_zh": "我们的工作方式与原因：亨特·哈里森",
+    "title_en": "How we work and why - Hunter Harrison",
+    "category": "公司内部备忘录与经典文本",
+    "type": "memo",
+    "review_priority": "P0",
+    "review_reason_zh": "source_status=未找到可靠来源；verification_status摘要：未找到可靠来源：未能确认存在标题为「How We Work and Why」的 Hunter Harrison 备忘录或文献。该条目待人工复核真实来源。",
+    "needed_from_user_zh": [
+      "提供原始截图以确认来源和内容",
+      "P0 必填：原始截图或更多上下文信息"
+    ],
+    "recommended_action_zh": "有来源→转verified_source；无来源→删除",
+    "current_status": "staging"
+  }
+]

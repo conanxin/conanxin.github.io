@@ -126,4 +126,15 @@ projects/internet-builder-archive/
 
 ---
 
-*最后更新：2026-05-31 | 状态：Phase 2O 完成*
+## Blueprint / 通用资料库模板
+
+- [策展型资料库蓝图](docs/blueprint/CURATED_ARCHIVE_BLUEPRINT_ZH.md) — 通用结构与适用场景
+- [数据模型说明](docs/blueprint/ARCHIVE_DATA_MODEL_ZH.md) — item / path / staging_review 字段与状态机
+- [阶段计划模板](docs/blueprint/PHASE_PLAN_TEMPLATE_ZH.md) — 从 0 到发布的完整阶段模板
+- [Agent 操作规范](docs/blueprint/AGENT_RUNBOOK_ZH.md) — 安全边界、协作模式与执行检查清单
+- [质量审计模板](docs/blueprint/QUALITY_AUDIT_TEMPLATE_ZH.md) — 数据/来源/paths/SEO 审计流程与报告模板
+- [Skill 雏形说明](docs/blueprint/SKILL_DRAFT_CURATED_ARCHIVE_BUILDER_ZH.md) — curated-archive-builder Skill 设计草案
+
+---
+
+*最后更新：2026-05-31 | 状态：Phase 2P 完成*

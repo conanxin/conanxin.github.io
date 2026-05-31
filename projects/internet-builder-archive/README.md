@@ -99,7 +99,7 @@ projects/internet-builder-archive/
 - [founder-spirit.svg](assets/path-cards/founder-spirit.svg) — 创始人精神谱系（8 items）
 - [tech-startup-history.svg](assets/path-cards/tech-startup-history.svg) — 技术创业史（8 items）
 - [media-and-society.svg](assets/path-cards/media-and-society.svg) — 媒介、社会与自我（8 items）
-- [creator-mindset.svg](assets/path-cards/creator-mindset.svg) — 创作者心智与长期主义（10 items）
+- [creator-mindset.svg](assets/path-cards/creator-mindset.svg) — 创作者心智与长期主义（9 items）
 - [organization-and-strategy.svg](assets/path-cards/organization-and-strategy.svg) — 组织备忘录与战略转折（7 items）
 
 ---

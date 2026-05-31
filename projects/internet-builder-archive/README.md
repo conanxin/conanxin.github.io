@@ -64,11 +64,33 @@ projects/internet-builder-archive/
 
 ## 待复核条目 / Staging Items
 
-当前有 10 条 staging 条目处于待人工复核状态，复核完成后可转 verified 或删除。复核指南和机器可读文件：
+当前有 4 条 staging 条目处于待人工复核状态，复核完成后可转 verified 或删除。复核指南和机器可读文件：
 
 - [staging 人工复核清单](docs/STAGING_REVIEW_PACKET_ZH.md) — 逐条复核说明，包含 P0/P1 优先级和建议处理动作（当前 4 条 P0 待复核）
 - [staging_review.json](data/staging_review.json) — 机器可读复核文件，适合程序处理（Phase 2B-B 使用）
 
 ---
 
-*最后更新：2026-05-31 | 状态：Phase 2B-A 完成*
+## 页面截图 / Screenshots
+
+> 以下截图使用 Chromium headless 截取真实页面。视口 1440×1100（桌面端）或 390×1200（移动端）。
+
+### 首页
+
+![首页截图](assets/screenshots/home-desktop.png)
+
+### 导览页
+
+![导览页截图](assets/screenshots/guide-desktop.png)
+
+### 专题路径：创始人精神谱系
+
+![专题路径截图](assets/screenshots/path-founder-spirit-desktop.png)
+
+### 专题路径索引
+
+![路径索引截图](assets/screenshots/path-index-desktop.png)
+
+---
+
+*最后更新：2026-05-31 | 状态：Phase 2I 完成*

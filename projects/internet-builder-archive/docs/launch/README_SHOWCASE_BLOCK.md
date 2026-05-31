@@ -53,6 +53,20 @@
 
 ---
 
+## 页面预览
+
+> 以下截图使用 Chromium headless 截取真实页面（视口 1440×1100）。
+
+**首页**
+
+![首页截图](assets/screenshots/home-desktop.png)
+
+**导览页**
+
+![导览页截图](assets/screenshots/guide-desktop.png)
+
+---
+
 ## 版权与来源说明
 
 本项目不搬运内容，只做索引和导读。所有原始内容由原始发布方提供。来源包括 Internet Archive、YouTube 官方频道、Farnam Street 官方博客、BBC 官方存档等可靠存档。不引用无法核实的来源，不伪造链接。

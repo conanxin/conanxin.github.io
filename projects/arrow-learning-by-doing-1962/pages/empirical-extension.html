@@ -5,83 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实证延伸 — Arrow (1962) 学习导读</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link" href="model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link" href="archive.html">归档</a></li>
-                </ul>
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
 
-    <div class="container-fluid py-4" style="max-width:960px;">
+    <!-- Content -->
+    <div class="page-content">
         <div class="d-flex align-items-center gap-2 mb-4">
-            <span class="badge bg-primary">📊 实证延伸</span>
             <a href="../index.html" class="small text-muted">← 返回首页</a>
         </div>
-        <h1 class="fw-bold mb-3" style="color:var(--accent);">实证文献延伸</h1>
-        <p class="text-muted mb-4">Arrow (1962) 的干中学思想如何在后续实证研究中得到验证和修正</p>
+        <h1 class="page-title">实证文献延伸</h1>
+        <p class="page-desc">Arrow (1962) 的干中学思想如何在后续实证研究中得到验证和修正</p>
 
-        <!-- 导航标签 -->
-        <ul class="nav nav-pills mb-4" id="empTabs">
-            <li class="nav-item"><a class="nav-link active" href="#tab-bl" onclick="showTab('tab-bl')">B&amp;L (1987)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tab-ik" onclick="showTab('tab-ik')">I&amp;K (1994)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tab-jones" onclick="showTab('tab-jones')">Jones (1995)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tab-ai" onclick="showTab('tab-ai')">AI Scaling Laws</a></li>
+        <!-- Tab Navigation -->
+        <ul class="clean-tabs" id="empTabs">
+            <li><a class="tab-link active" href="#" data-tab="tab-bl">Bartel & Lichtenberg (1987)</a></li>
+            <li><a class="tab-link" href="#" data-tab="tab-ik">Irwin & Klenow (1994)</a></li>
+            <li><a class="tab-link" href="#" data-tab="tab-jones">Jones (1995)</a></li>
+            <li><a class="tab-link" href="#" data-tab="tab-ai">AI Scaling Laws</a></li>
         </ul>
 
         <!-- B&L 1987 -->
-        <section class="page-section mb-5" id="tab-bl">
-            <h2 class="mb-3">Bartel & Lichtenberg (1987)：企业年龄与技术水平</h2>
-            <div class="row g-3 mb-3">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">📈 核心发现</h5>
-                            <p class="small">年轻企业生产率高 15–25%（高技术产业）</p>
-                            <p class="small">资本品年龄每降低 1 年 → 生产率 +2–3%</p>
-                        </div>
-                    </div>
+        <section class="content-block" id="tab-bl">
+            <h2 class="section-heading">Bartel & Lichtenberg (1987)：企业年龄与技术水平</h2>
+            <div class="clean-cards-grid">
+                <div class="clean-card">
+                    <h4 class="card-heading">核心发现</h4>
+                    <p>年轻企业生产率高 15–25%（高技术产业）</p>
+                    <p>资本品年龄每降低 1 年 → 生产率 +2–3%</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">📐 Arrow 对应</h5>
-                            <p class="small">体现型技术变迁（p.155）</p>
-                            <p class="small">$y(G) = \alpha$（新资本品产出更高）</p>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">Arrow 对应</h4>
+                    <p>体现型技术变迁（p.155）</p>
+                    <p>$y(G) = \alpha$（新资本品产出更高）</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">📊 统计显著性</h5>
-                            <p class="small">$t &gt; 2.0$（95% 置信度）</p>
-                            <p class="small text-success">✅ 直接支持 Arrow 假设</p>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">统计显著性</h4>
+                    <p>$t &gt; 2.0$（95% 置信度）</p>
+                    <p class="text-ok">直接支持 Arrow 假设</p>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-dark"><tr><th>发现</th><th>量化结果</th><th>Arrow 对应</th></tr></thead>
+                <table class="clean-table">
+                    <thead class="academic-thead">
+                        <tr><th>发现</th><th>量化结果</th><th>Arrow 对应</th></tr>
+                    </thead>
                     <tbody>
                         <tr><td>企业年龄与生产率</td><td>年轻企业生产率高 15–20%</td><td>体现型技术变迁</td></tr>
                         <tr><td>技术水平差异</td><td>高技术：年轻优势 ~25%；低技术：~5%</td><td>干中学与技术变迁速度正相关</td></tr>
@@ -92,37 +78,31 @@
         </section>
 
         <!-- I&K 1994 -->
-        <section class="page-section mb-5" id="tab-ik">
-            <h2 class="mb-3">Irwin & Klenow (1994)：半导体行业的知识溢出量化</h2>
-            <div class="alert alert-primary small mb-3">
+        <section class="content-block" id="tab-ik">
+            <h2 class="section-heading">Irwin & Klenow (1994)：半导体行业的知识溢出量化</h2>
+            <div class="callout-block">
                 <strong>数据：</strong>14 家美国半导体企业，43 种产品，1984–1992 年数据。
                 Irwin & Klenow 直接量化了 Arrow (1962) 的"知识溢出"假设——这是对 Arrow 理论最精确的量化检验之一。
             </div>
-            <div class="row g-3 mb-3">
-                <div class="col-md-6">
-                    <div class="card h-100 border-primary">
-                        <div class="card-body">
-                            <h5 class="card-title">🔬 学习曲线量化</h5>
-                            <p class="small mb-1">学习弹性：$\eta \approx 0.14$–$0.19$</p>
-                            <p class="small">累计产量翻番 → 成本下降 14–19%</p>
-                            <p class="small">与 Arrow (1962) 引用的 Wright (1936) 数据一致</p>
-                        </div>
-                    </div>
+            <div class="clean-cards-grid">
+                <div class="clean-card">
+                    <h4 class="card-heading">学习曲线量化</h4>
+                    <p>学习弹性：$\eta \approx 0.14$–$0.19$</p>
+                    <p>累计产量翻番 → 成本下降 14–19%</p>
+                    <p>与 Arrow (1962) 引用的 Wright (1936) 数据一致</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100 border-warning">
-                        <div class="card-body">
-                            <h5 class="card-title">🔗 知识溢出量化</h5>
-                            <p class="small mb-1">企业内溢出：+50% 学习速度</p>
-                            <p class="small mb-1">企业间溢出：产量 +1% → 其他企业成本 -0.02–0.05%</p>
-                            <p class="small text-danger fw-bold">直接验证 $r(G) &lt; A(G)$</p>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">知识溢出量化</h4>
+                    <p>企业内溢出：+50% 学习速度</p>
+                    <p>企业间溢出：产量 +1% → 其他企业成本 -0.02–0.05%</p>
+                    <p class="text-warn">直接验证 $r(G) &lt; A(G)$</p>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-dark"><tr><th>溢出类型</th><th>量化结果</th><th>Arrow 对应</th></tr></thead>
+                <table class="clean-table">
+                    <thead class="academic-thead">
+                        <tr><th>溢出类型</th><th>量化结果</th><th>Arrow 对应</th></tr>
+                    </thead>
                     <tbody>
                         <tr><td>企业内溢出</td><td>新产品学习速度 +50%（共享企业经验）</td><td>序列号 $G$ 跨资本品共享知识</td></tr>
                         <tr><td>企业间溢出</td><td>某企业产量 +1% → 其他企业成本 -0.02–0.05%</td><td>$r(G) &lt; A(G)$</td></tr>
@@ -133,62 +113,50 @@
         </section>
 
         <!-- Jones 1995 -->
-        <section class="page-section mb-5" id="tab-jones">
-            <h2 class="mb-3">Jones (1995)：对 Arrow 规模效应的修正</h2>
-            <div class="alert alert-warning small mb-3">
+        <section class="content-block" id="tab-jones">
+            <h2 class="section-heading">Jones (1995)：对 Arrow 规模效应的修正</h2>
+            <div class="callout-block">
                 <strong>核心挑战：</strong>Arrow (1962) 预测稳态增长率 $g^* = \alpha/(1-n)$ 没有规模效应——但这与二战后美国数据不符。
                 Jones (1995) 指出：Arrow 的规模效应预测存在问题，需要引入专门的研发部门。
             </div>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">⚠️ Jones 的修正</h5>
-                            <ul class="small mb-0">
-                                <li>Arrow 的规模效应：有（0 &lt; n &lt; 1 时增速不变）</li>
-                                <li>Jones 观察：二战后美国 $g$ 上升，存在规模效应</li>
-                                <li>解决方案：引入专门研发部门（研发，干中学并列为知识生产渠道）</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="clean-cards-grid">
+                <div class="clean-card">
+                    <h4 class="card-heading">Jones 的修正</h4>
+                    <p>Arrow 的规模效应：有（0 &lt; n &lt; 1 时增速不变）</p>
+                    <p>Jones 观察：二战后美国 $g$ 上升，存在规模效应</p>
+                    <p>解决方案：引入专门研发部门（研发，干中学并列为知识生产渠道）</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">🎯 为什么重要</h5>
-                            <ul class="small mb-0">
-                                <li>Jones 的修正是 Romer (1990) 的实证基础</li>
-                                <li>Arrow → Romer 的关键转变：干中学 → 研发部门</li>
-                                <li>对当代 AI Scaling 的意义：固定参数无法解释规模效应</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">为什么重要</h4>
+                    <p>Jones 的修正是 Romer (1990) 的实证基础</p>
+                    <p>Arrow → Romer 的关键转变：干中学 → 研发部门</p>
+                    <p>对当代 AI Scaling 的意义：固定参数无法解释规模效应</p>
                 </div>
             </div>
         </section>
 
         <!-- AI Scaling Laws -->
-        <section class="page-section" id="tab-ai">
-            <h2 class="mb-3" id="ai-section">🤖 AI 时代类比：Scaling Laws 与干中学</h2>
-            <div class="card border-info border-2 mb-3">
-                <div class="card-header bg-info text-white fw-bold">Arrow (1962) × AI Scaling Laws：跨越 60 年的思想呼应</div>
-                <div class="card-body">
-                    <p class="mb-3">Arrow (1962) 的"干中学"与当代 AI 的"Scaling Laws"有深层结构相似性——当规模（计算量、数据量、参数）增大时，模型性能系统性地提高。</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-sm">
-                            <thead class="table-dark"><tr><th>Arrow (1962)</th><th>AI Scaling Laws</th><th>本质联系</th></tr></thead>
-                            <tbody>
-                                <tr><td>$G(t)$：累计总投资</td><td>$N$：模型参数规模</td><td>规模代理变量</td></tr>
-                                <tr><td>$A(G) = bG^n$：学习曲线</td><td>$L \propto N^{-0.076}$：性能曲线</td><td>幂律关系</td></tr>
-                                <tr><td>知识溢出 $r(G) &lt; A(G)$</td><td>预训练开源：私人回报 &lt; 社会回报</td><td>外部性依然存在</td></tr>
-                                <tr><td>$W &lt; \gamma$：AI 投资可能不足</td><td>基础模型市场可能需要产业政策</td><td>市场失灵依然存在</td></tr>
-                                <tr><td>边际学习收益递减（$n &lt; 1$）</td><td>Scaling 回报递减（边际改进减少）</td><td>同样面临递减</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <section class="content-block" id="tab-ai">
+            <h2 class="section-heading">AI 时代类比：Scaling Laws 与干中学</h2>
+            <div class="callout-block">
+                <strong>Arrow (1962) × AI Scaling Laws：跨越 60 年的思想呼应</strong><br>
+                Arrow (1962) 的"干中学"与当代 AI 的"Scaling Laws"有深层结构相似性——当规模（计算量、数据量、参数）增大时，模型性能系统性地提高。
             </div>
-            <div class="alert alert-secondary small mb-0">
+            <div class="table-responsive">
+                <table class="clean-table">
+                    <thead class="academic-thead">
+                        <tr><th>Arrow (1962)</th><th>AI Scaling Laws</th><th>本质联系</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>$G(t)$：累计总投资</td><td>$N$：模型参数规模</td><td>规模代理变量</td></tr>
+                        <tr><td>$A(G) = bG^n$：学习曲线</td><td>$L \propto N^{-0.076}$：性能曲线</td><td>幂律关系</td></tr>
+                        <tr><td>知识溢出 $r(G) &lt; A(G)$</td><td>预训练开源：私人回报 &lt; 社会回报</td><td>外部性依然存在</td></tr>
+                        <tr><td>$W &lt; \gamma$：投资不足</td><td>基础模型市场可能需要产业政策</td><td>市场失灵依然存在</td></tr>
+                        <tr><td>边际学习收益递减（$n &lt; 1$）</td><td>Scaling 回报递减（边际改进减少）</td><td>同样面临递减</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="callout-block mt-3">
                 <strong>Kaplan et al. (2020) Scaling Laws：</strong>$L \propto N^{-0.076}$（损失 ∝ 参数规模的 -0.076 次幂），
                 $L \propto D^{-0.095}$（损失 ∝ 数据规模的 -0.095 次幂）。
                 这与 Wright (1936) 学习曲线的本质相同——规模增大，成本/损失下降，边际收益递减。
@@ -196,26 +164,47 @@
         </section>
     </div>
 
-    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 实证延伸 · 仅供个人学术学习用途 · 2026-06-02</footer>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script>
         function applyTheme(t) {
-            document.documentElement.setAttribute('data-theme', t);
-            localStorage.setItem('a1962-t', t);
-            document.getElementById('themeBtn').textContent = t==='dark'?'☀️':'🌙';
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
         }
-        var saved = localStorage.getItem('a1962-t') || 'light';
+        var saved = localStorage.getItem("a1962-t") || "light";
         applyTheme(saved);
-        document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
-        function showTab(id) {
-            document.querySelectorAll('[id^="tab-"]').forEach(function(el) { el.style.display = ''; });
-            document.getElementById(id).scrollIntoView({behavior:'smooth'});
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        document.getElementById("themeBtn").onclick = function() { applyTheme(saved === "dark" ? "light" : "dark"); };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
+        });
+        // Tab switching
+        document.querySelectorAll(".tab-link").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelectorAll(".tab-link").forEach(function(l) { l.classList.remove("active"); });
+                this.classList.add("active");
+                var tabId = this.getAttribute("data-tab");
+                document.querySelectorAll(".content-block").forEach(function(b) { b.style.display = "none"; });
+                var target = document.getElementById(tabId);
+                if (target) { target.style.display = "block"; target.scrollIntoView({behavior:"smooth"}); }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, { delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], throwOnError:false });
         });
     </script>
 </body>

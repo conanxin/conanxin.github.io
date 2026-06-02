@@ -5,186 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>项目归档 — Arrow (1962) 学习导读</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link" href="model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link" href="empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="archive.html">归档</a></li>
-                </ul>
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
 
-    <div class="container-fluid py-4" style="max-width:960px;">
+    <!-- Content -->
+    <div class="page-content">
         <div class="d-flex align-items-center gap-2 mb-4">
-            <span class="badge bg-primary">📦 项目归档</span>
             <a href="../index.html" class="small text-muted">← 返回首页</a>
         </div>
-        <h1 class="fw-bold mb-3" style="color:var(--accent);">项目归档</h1>
-        <div class="alert alert-success small mb-4">
-            ✅ <strong>项目已于 2026 年 6 月 2 日正式完结</strong> — Phase 1–10 全部完成，Phase 11 交互式网页部署完成。
-        </div>
+        <h1 class="page-title">项目归档</h1>
 
-        <!-- 项目信息 -->
-        <section class="page-section mb-5">
-            <h2 class="mb-3">📋 项目概览</h2>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">📚 论文</h5>
-                            <p class="small mb-1">Kenneth J. Arrow (1962)</p>
-                            <p class="small text-muted mb-0">RES 29(3), pp. 155–173</p>
-                        </div>
-                    </div>
+        <!-- Project Info -->
+        <section class="content-block">
+            <h2 class="section-heading">项目概览</h2>
+            <div class="clean-cards-grid">
+                <div class="clean-card">
+                    <h4 class="card-heading">论文</h4>
+                    <p>Kenneth J. Arrow (1962)</p>
+                    <p class="text-muted">RES 29(3), pp. 155–173</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">📊 规模</h5>
-                            <p class="small mb-1">34 个内容文件</p>
-                            <p class="small text-muted mb-0">~1.7 MB（含 PDF）</p>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">学习包规模</h4>
+                    <p>34 个内容文件</p>
+                    <p class="text-muted">约 1.7 MB（含 PDF）</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">🔢 Phase</h5>
-                            <p class="small mb-1">11 个 Phase（Phase 0–10 + 网页部署）</p>
-                            <p class="small text-muted mb-0">2026-06-02 完结</p>
-                        </div>
-                    </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">完成时间</h4>
+                    <p>2026 年 6 月 2 日</p>
+                    <p class="text-muted">Phase 1–17 全部完成</p>
                 </div>
             </div>
         </section>
 
-        <!-- 文件目录树 -->
-        <section class="page-section mb-5">
-            <h2 class="mb-3">🗂️ 文件目录</h2>
-            <div class="card">
-                <div class="card-body">
-                    <pre class="small mb-0" style="font-size:0.78rem;line-height:1.6;"><code>arrow_learning_by_doing_1962/
+        <!-- File Directory -->
+        <section class="content-block">
+            <h2 class="section-heading">文件目录</h2>
+            <div class="clean-card">
+                <pre class="dir-tree"><code>arrow_learning_by_doing_1962/
 ├── source/                    [原始材料]
 │   └── arrow_1962.pdf         [803 KB, 20页, 原始论文]
 ├── extracted/                 [Phase 1: 文本提取]
-│   ├── 01_raw_text.txt       [44 KB]
-│   ├── 02_cleaned_text.md     [41 KB]
-│   └── 03_page_section_map.md [4 KB]
+│   ├── 01_raw_text.txt
+│   ├── 02_cleaned_text.md
+│   └── 03_page_section_map.md
 ├── final/                     [Phase 3-5: 最终学习指南]
-│   ├── ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.md    [42 KB]
-│   ├── ARROW_1962_MODEL_AND_EQUATION_GUIDE_ZH.md        [13 KB]
-│   ├── ARROW_1962_TERMS_GLOSSARY_ZH.md                  [13 KB]
-│   ├── ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.html  [56 KB]
-│   ├── ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.docx  [35 KB]
-│   └── ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.pdf  [300 KB]
+│   ├── ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.md
+│   ├── ARROW_1962_MODEL_AND_EQUATION_GUIDE_ZH.md
+│   └── ARROW_1962_TERMS_GLOSSARY_ZH.md
 ├── full_version/              [Phase 6: 完整对照版]
-│   ├── ARROW_1962_FULL_ORIGINAL_EN.md    [45 KB, 767行]
-│   ├── ARROW_1962_FULL_ZH_TRANSLATION.md [37 KB, 566行]
-│   ├── ARROW_1962_PARALLEL_EN_ZH.md     [78 KB, 2070行]
-│   └── ARROW_1962_MASTER_INDEX.md       [6.1 KB]
+│   ├── ARROW_1962_FULL_ORIGINAL_EN.md
+│   ├── ARROW_1962_FULL_ZH_TRANSLATION.md
+│   └── ARROW_1962_PARALLEL_EN_ZH.md
 ├── theory_comparison/         [Phase 7: 理论对比]
-│   ├── ARROW_1962_VS_SOLOW_LUCAS_ROMER_COMPARISON_ZH.md [18 KB]
-│   ├── ARROW_1962_MODEL_COMPARISON_TABLE_ZH.md          [10 KB]
-│   └── ARROW_1962_THEORY_COMPARISON_READING_PLAN_ZH.md  [14 KB]
 ├── empirical_extension/       [Phase 8: 实证延伸]
-│   ├── ARROW_1962_EMPIRICAL_EVIDENCE_EXTENSION_ZH.md    [18 KB]
-│   ├── ARROW_1962_EMPIRICAL_TABLES_ZH.md                [8.4 KB]
-│   └── ARROW_1962_EMPIRICAL_READING_PLAN_ZH.md          [13 KB]
 ├── complete_package/          [Phase 9: 完整学习包]
-│   ├── ARROW_1962_ENHANCED_MASTER_INDEX_ZH.md            [14 KB]
-│   ├── ARROW_1962_FULL_PACKAGE_INVENTORY_AND_GUIDE.md   [12 KB]
-│   └── ARROW_1962_LEARNING_PATH_RECOMMENDATION_ZH.md   [9.1 KB]
-├── archive/                  [Phase 10: 最终归档]
-│   ├── ARROW_1962_COMPLETE_PROJECT_FINAL_SUMMARY_ZH.md [8.5 KB]
-│   ├── ARROW_1962_ARCHIVE_MANIFEST.md                  [10 KB]
-│   └── PHASE_10_PROJECT_CLOSURE_REPORT.md              [3.4 KB]
-└── web/                      [Phase 11: 交互式网页]
-    ├── index.html            [25 KB, 首页]
-    ├── assets/css/style.css  [7 KB]
-    ├── assets/js/main.js      [6 KB]
-    └── pages/                [8个子页面]
-        ├── core-ideas.html
-        ├── model-equations.html
-        ├── terms-glossary.html
-        ├── theory-comparison.html
-        ├── empirical-extension.html
-        ├── full-text.html
-        └── archive.html
+├── archive/                   [Phase 10: 最终归档]
+└── web/                       [Phase 11–17: 交互式网页]
+    ├── index.html
+    ├── assets/css/style.css
+    ├── assets/js/main.js
+    └── pages/                 [8 个子页面]
 </code></pre>
-                </div>
             </div>
         </section>
 
-        <!-- MD5 清单 -->
-        <section class="page-section mb-5">
-            <h2 class="mb-3">🔐 MD5 校验和（核心文件）</h2>
+        <!-- Phase Timeline (clean) -->
+        <section class="content-block">
+            <h2 class="section-heading">阶段完成时间轴</h2>
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-dark"><tr><th>文件</th><th>大小</th><th>MD5</th></tr></thead>
+                <table class="clean-table">
+                    <thead class="academic-thead">
+                        <tr><th>阶段</th><th>内容</th><th>说明</th></tr>
+                    </thead>
                     <tbody>
-                        <tr><td>source/arrow_1962.pdf</td><td>803 KB</td><td class="font-monospace small">45e78c904cc8117d819320c664733e83</td></tr>
-                        <tr><td>final/ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.md</td><td>42 KB</td><td class="font-monospace small">84c2eac9f11c48bfefdd59ea33e11461</td></tr>
-                        <tr><td>final/ARROW_1962_LEARNING_BY_DOING_STUDY_GUIDE_ZH.pdf</td><td>300 KB</td><td class="font-monospace small">a6ef775ccc8fec32a0c7aaeed4c08d0c</td></tr>
-                        <tr><td>full_version/ARROW_1962_PARALLEL_EN_ZH.md</td><td>78 KB</td><td class="font-monospace small">f7a5e584c28e7d9b7a5619edca526f09</td></tr>
-                        <tr><td>theory_comparison/ARROW_1962_VS_SOLOW_LUCAS_ROMER_COMPARISON_ZH.md</td><td>18 KB</td><td class="font-monospace small">cb51c337ce8f28da10ea62beadcf1fc5</td></tr>
-                        <tr><td>empirical_extension/ARROW_1962_EMPIRICAL_EVIDENCE_EXTENSION_ZH.md</td><td>18 KB</td><td class="font-monospace small">8cc385c7bd577c37e0d2594e730219c9</td></tr>
+                        <tr><td>Phase 0–5</td><td>环境确认 → PDF 提取 → 翻译 → 导出</td><td>核心学习包生成</td></tr>
+                        <tr><td>Phase 6</td><td>完整对照版（EN/ZH 双语全文）</td><td>2070 行并列对照</td></tr>
+                        <tr><td>Phase 7</td><td>理论对比（Arrow vs Solow / Lucas / Romer）</td><td>五维度对比分析</td></tr>
+                        <tr><td>Phase 8</td><td>实证延伸（B&L、I&K、Jones、AI Scaling）</td><td>四篇文献全覆盖</td></tr>
+                        <tr><td>Phase 9–10</td><td>完整学习包整合 + 最终归档</td><td>MD5 校验 + 清单</td></tr>
+                        <tr><td>Phase 11–14</td><td>交互式网页（赛博学术风）</td><td>134 段落双语全文 + 7 子页面</td></tr>
+                        <tr><td>Phase 15–17</td><td>清爽学术导读风格统一</td><td>全站无霓虹/粒子/emoji</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 版权声明 -->
-        <section class="page-section">
-            <h2 class="mb-3">© 版权与致谢</h2>
-            <div class="card">
-                <div class="card-body">
-                    <p class="mb-2"><strong>版权声明</strong></p>
-                    <p class="small mb-2">本项目中所有生成的翻译、学习笔记、分析内容仅供<strong>个人学术学习目的</strong>使用。</p>
-                    <ul class="small mb-2">
-                        <li>论文原文版权归属原出版方（Oxford University Press）与作者（Kenneth J. Arrow）所有。</li>
-                        <li>生成的翻译为非官方个人学习版本，未经授权不得公开传播或商业使用。</li>
-                        <li>公开页面（GitHub Pages）仅展示学习指南结构与不侵犯版权的内容摘要。</li>
-                    </ul>
-                    <p class="mb-2"><strong>致谢</strong></p>
-                    <p class="small mb-0">原始论文：Kenneth J. Arrow, <em>The Economic Implications of Learning by Doing</em>, <em>The Review of Economic Studies</em>, Vol. 29, No. 3 (June 1962), pp. 155–173. 项目全程在 cloud_hermes (VM-0-4-ubuntu) 云端环境执行，由 Hermes Agent 辅助完成。</p>
-                </div>
+        <!-- Copyright -->
+        <section class="content-block">
+            <h2 class="section-heading">版权与致谢</h2>
+            <div class="clean-card">
+                <h4 class="card-heading">版权声明</h4>
+                <p>本项目中所有生成的翻译、学习笔记、分析内容仅供<strong>个人学术学习目的</strong>使用。</p>
+                <ul>
+                    <li>论文原文版权归属原出版方（Oxford University Press）与作者（Kenneth J. Arrow）所有。</li>
+                    <li>生成的翻译为非官方个人学习版本，未经授权不得公开传播或商业使用。</li>
+                    <li>公开页面（GitHub Pages）仅展示学习指南结构与不侵犯版权的内容摘要。</li>
+                </ul>
+                <h4 class="card-heading mt-3">致谢</h4>
+                <p>原始论文：Kenneth J. Arrow, <em>The Economic Implications of Learning by Doing</em>,
+                    <em>The Review of Economic Studies</em>, Vol. 29, No. 3 (June 1962), pp. 155–173.
+                    项目全程在 cloud_hermes (VM-0-4-ubuntu) 云端环境执行，由 Hermes Agent 辅助完成。</p>
             </div>
         </section>
     </div>
 
-    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 项目归档 · 仅供个人学术学习用途 · 2026-06-02</footer>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script>
         function applyTheme(t) {
-            document.documentElement.setAttribute('data-theme', t);
-            localStorage.setItem('a1962-t', t);
-            document.getElementById('themeBtn').textContent = t==='dark'?'☀️':'🌙';
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
         }
-        var saved = localStorage.getItem('a1962-t') || 'light';
+        var saved = localStorage.getItem("a1962-t") || "light";
         applyTheme(saved);
-        document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
-        document.addEventListener('DOMContentLoaded', function() {
-            renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        document.getElementById("themeBtn").onclick = function() { applyTheme(saved === "dark" ? "light" : "dark"); };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
         });
     </script>
 </body>

@@ -5,144 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模型公式 — Arrow (1962) 学习导读</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link" href="empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link" href="archive.html">归档</a></li>
-                </ul>
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+
+    <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
 
-    <div class="container-fluid py-4" style="max-width:860px;">
+    <!-- Content -->
+    <div class="page-content">
         <div class="d-flex align-items-center gap-2 mb-4">
-            <span class="badge bg-primary">🔢 模型公式</span>
             <a href="../index.html" class="small text-muted">← 返回首页</a>
         </div>
-        <h1 class="fw-bold mb-4" style="color:var(--accent);">模型与公式详解</h1>
+        <h1 class="page-title">模型与公式详解</h1>
+        <p class="page-desc">15 个编号方程速查与核心推导链</p>
 
-        <!-- 核心方程列表 -->
-        <section class="page-section mb-5" id="eq-list">
-            <h2 class="mb-3">📐 核心方程（15个编号方程速查）</h2>
+        <!-- Equation List -->
+        <section class="content-block" id="eq-list">
+            <h2 class="section-heading">核心方程速查</h2>
             <div class="table-responsive">
-                <table class="table table-bordered table-sm">
-                    <thead class="table-dark">
-                        <tr><th>编号</th><th>方程</th><th>页码</th><th>重要度</th></tr>
+                <table class="clean-table">
+                    <thead class="academic-thead">
+                        <tr><th>编号</th><th>方程</th><th>页码</th><th>说明</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>(1')</td><td>$x = r(G) - r(G') = \int_{G'}^G y(s)ds$</td><td>p.156</td><td><span class="badge bg-danger">⭐⭐⭐</span></td></tr>
-                        <tr><td>(2')</td><td>$L = A(G) - A(G')$</td><td>p.156</td><td><span class="badge bg-warning text-dark">⭐⭐</span></td></tr>
-                        <tr><td>(7)</td><td>$y(G) = \alpha$（常数产出能力）</td><td>p.157</td><td><span class="badge bg-warning text-dark">⭐⭐</span></td></tr>
-                        <tr><td>(8)</td><td>$A(G) = bG^n,\quad 0 &lt; n &lt; 1$（**学习曲线核心**）</td><td>p.157</td><td><span class="badge bg-danger">⭐⭐⭐</span></td></tr>
-                        <tr><td>(11)</td><td>$G' = G - x/\alpha$（零利润条件）</td><td>p.164</td><td><span class="badge bg-danger">⭐⭐⭐</span></td></tr>
-                        <tr><td>(13)</td><td>$w = \alpha(G')^{1-n}/b$（工资率）</td><td>p.169</td><td><span class="badge bg-warning text-dark">⭐⭐</span></td></tr>
-                        <tr><td>(26)</td><td>$S = \int_0^T e^{-pt} y[G(v)](1 - W(v)e^{\theta t}) dt$</td><td>p.163</td><td><span class="badge bg-warning text-dark">⭐⭐</span></td></tr>
-                        <tr><td>(35)</td><td>$\theta = \alpha b^{1-n}/(1-n)$（稳态工资增长率）</td><td>p.169</td><td><span class="badge bg-danger">⭐⭐⭐</span></td></tr>
-                        <tr><td>(36)</td><td>$\dot{G}/G = \alpha/(1-n)$（**资本积累增长率**）</td><td>p.169</td><td><span class="badge bg-danger">⭐⭐⭐⭐</span></td></tr>
-                        <tr><td>(54)</td><td>$G(t) = Ce^{\alpha t/(1-n)}$（社会最优路径）</td><td>p.170</td><td><span class="badge bg-warning text-dark">⭐⭐</span></td></tr>
-                        <tr><td class="text-danger fw-bold">(5)</td><td class="text-danger fw-bold">$W &lt; \gamma$（竞争性 &lt; 社会最优）</td><td>p.171</td><td><span class="badge bg-dark">⭐⭐⭐⭐</span></td></tr>
+                        <tr><td>(1')</td><td>$x = r(G) - r(G') = \int_{G'}^G y(s)ds$</td><td>p.156</td><td>总量生产函数</td></tr>
+                        <tr><td>(2')</td><td>$L = A(G) - A(G')$</td><td>p.156</td><td>总劳动需求</td></tr>
+                        <tr><td>(7)</td><td>$y(G) = \alpha$（常数产出能力）</td><td>p.157</td><td>序列号越大，产出能力越高</td></tr>
+                        <tr><td>(8)</td><td>$A(G) = bG^n,\quad 0 &lt; n &lt; 1$</td><td>p.157</td><td>学习曲线核心方程</td></tr>
+                        <tr><td>(11)</td><td>$G' = G - x/\alpha$（零利润条件）</td><td>p.164</td><td>竞争性均衡下资本品使用</td></tr>
+                        <tr><td>(13)</td><td>$w = \alpha(G')^{1-n}/b$</td><td>p.169</td><td>工资率方程</td></tr>
+                        <tr><td>(26)</td><td>$S = \int_0^T e^{-pt} y[G(v)](1 - W(v)e^{\theta t}) dt$</td><td>p.163</td><td>投资净现值</td></tr>
+                        <tr><td>(35)</td><td>$\theta = \alpha b^{1-n}/(1-n)$</td><td>p.169</td><td>稳态工资增长率</td></tr>
+                        <tr><td>(36)</td><td>$\dot{G}/G = \alpha/(1-n)$</td><td>p.169</td><td>资本积累增长率</td></tr>
+                        <tr><td>(54)</td><td>$G(t) = Ce^{\alpha t/(1-n)}$</td><td>p.170</td><td>社会最优路径</td></tr>
+                        <tr class="text-warn"><td>(5)</td><td>$W &lt; \gamma$</td><td>p.171</td><td>竞争性均衡 &lt; 社会最优</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 模型整体结构 -->
-        <section class="page-section mb-5" id="model-structure">
-            <h2 class="mb-3">🏗️ 模型整体结构</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">设定（Section 1, pp. 155–162）</h5>
-                    <ol>
-                        <li class="mb-2"><strong>累计总投资 $G(t)$</strong> 同时作为：（a）资本积累度，（b）经验代理变量</li>
-                        <li class="mb-2"><strong>产出能力函数</strong>：$y(G) = \alpha$（常数）—— 序列号越大的资本品产出能力越高</li>
-                        <li class="mb-2"><strong>劳动需求函数</strong>：$A(G) = bG^n$ —— 学习曲线，边际收益递减（$0 &lt; n &lt; 1$）</li>
-                        <li><strong>知识溢出</strong>：$r(G) &lt; A(G)$ —— 企业只能捕获 $r(G)$，社会获得 $A(G)$</li>
-                    </ol>
+        <!-- Model Structure -->
+        <section class="content-block" id="model-structure">
+            <h2 class="section-heading">模型整体结构</h2>
+            <div class="clean-card">
+                <h4 class="card-heading">设定（Section 1, pp. 155–162）</h4>
+                <ol>
+                    <li class="mb-2"><strong>累计总投资 $G(t)$</strong> 同时作为：（a）资本积累度，（b）经验代理变量</li>
+                    <li class="mb-2"><strong>产出能力函数</strong>：$y(G) = \alpha$（常数）—— 序列号越大的资本品产出能力越高</li>
+                    <li class="mb-2"><strong>劳动需求函数</strong>：$A(G) = bG^n$ —— 学习曲线，边际收益递减（$0 &lt; n &lt; 1$）</li>
+                    <li><strong>知识溢出</strong>：$r(G) &lt; A(G)$ —— 企业只能捕获 $r(G)$，社会获得 $A(G)$</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Derivation Chain -->
+        <section class="content-block" id="derivation">
+            <h2 class="section-heading">核心推导链</h2>
+            <div class="clean-card">
+                <h4 class="card-heading">推导链：从学习曲线到市场失灵</h4>
+                <div class="derivation-steps">
+                    <div class="derivation-step">
+                        <div class="step-label">Step 1</div>
+                        <div class="step-eq">$y(G) = \alpha$</div>
+                        <div class="step-note">常数产出能力</div>
+                    </div>
+                    <div class="derivation-arrow">→</div>
+                    <div class="derivation-step">
+                        <div class="step-label">Step 2</div>
+                        <div class="step-eq">$A(G) = bG^n$</div>
+                        <div class="step-note">学习曲线（核心）</div>
+                    </div>
+                    <div class="derivation-arrow">→</div>
+                    <div class="derivation-step">
+                        <div class="step-label">Step 3</div>
+                        <div class="step-eq">$w = \alpha(G')^{1-n}/b$</div>
+                        <div class="step-note">工资率</div>
+                    </div>
+                    <div class="derivation-arrow">→</div>
+                    <div class="derivation-step">
+                        <div class="step-label">Step 4</div>
+                        <div class="step-eq">$\dot{G}/G = \alpha/(1-n)$</div>
+                        <div class="step-note">稳态增长率</div>
+                    </div>
+                </div>
+                <div class="key-result">
+                    <strong>核心不等式（p.171）</strong>
+                    <div class="key-eq">$W &lt; \gamma$</div>
+                    <p>竞争性均衡投资率 &lt; 社会最优投资率 → 市场失灵 → 产业政策依据</p>
                 </div>
             </div>
         </section>
 
-        <!-- 核心推导链 -->
-        <section class="page-section mb-5" id="derivation">
-            <h2 class="mb-3">🔗 核心推导链</h2>
-            <div class="card border-primary">
-                <div class="card-header bg-primary text-white fw-bold">推导链：从学习曲线到市场失灵</div>
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-md-3 text-center p-3 border rounded-3">
-                            <div class="text-muted small">Step 1</div>
-                            <div class="fs-5 mb-2" id="d1">$y(G) = \alpha$</div>
-                            <div class="small text-muted">常数产出能力</div>
-                        </div>
-                        <div class="col-md-3 text-center p-3 border rounded-3">
-                            <div class="text-muted small">Step 2</div>
-                            <div class="fs-5 mb-2" id="d2">$A(G) = bG^n$</div>
-                            <div class="small text-muted">学习曲线（核心！）</div>
-                        </div>
-                        <div class="col-md-3 text-center p-3 border rounded-3">
-                            <div class="text-muted small">Step 3</div>
-                            <div class="fs-5 mb-2" id="d3">$w = \alpha(G')^{1-n}/b$</div>
-                            <div class="small text-muted">工资率</div>
-                        </div>
-                        <div class="col-md-3 text-center p-3 border rounded-3">
-                            <div class="text-muted small">Step 4</div>
-                            <div class="fs-5 mb-2" id="d4">$\dot{G}/G = \alpha/(1-n)$</div>
-                            <div class="small text-muted">稳态增长率</div>
-                        </div>
-                    </div>
-                    <div class="text-center my-3 fs-3">⬇</div>
-                    <div class="card bg-danger text-white border-0">
-                        <div class="card-body text-center">
-                            <div class="fs-4 fw-bold mb-1">核心不等式（p.171）</div>
-                            <div class="fs-3" id="d5">$W &lt; \gamma$</div>
-                            <div class="small mt-2">竞争性均衡投资率 &lt; 社会最优投资率<br>→ 市场失灵 → 产业政策依据</div>
-                        </div>
-                    </div>
+        <!-- W < γ Detail -->
+        <section class="content-block" id="wlgamma-detail">
+            <h2 class="section-heading">$W &lt; \gamma$ 详解（p.171）</h2>
+            <div class="clean-cards-grid">
+                <div class="clean-card">
+                    <h4 class="card-heading">$W$（竞争性均衡投资率）</h4>
+                    <p>企业根据私人回报率 $r(G)$ 做出投资决策。</p>
+                    <p>企业家的最优投资率：$W = 1 - W(v)e^{\theta t}$（eq. 26 的解）</p>
+                </div>
+                <div class="clean-card">
+                    <h4 class="card-heading">$\gamma$（社会最优投资率）</h4>
+                    <p>社会计划者考虑全部社会回报率 $A(G)$（包括知识溢出）。</p>
+                    <p>社会最优路径：$G(t) = Ce^{\alpha t/(1-n)}$（eq. 54）</p>
                 </div>
             </div>
-        </section>
-
-        <!-- W < γ 详解 -->
-        <section class="page-section mb-5" id="wlgamma-detail">
-            <h2 class="mb-3">🚨 $W &lt; \gamma$ 详解（p.171）</h2>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">$W$（竞争性均衡投资率）</h5>
-                            <p class="small">企业根据私人回报率 $r(G)$ 做出投资决策。</p>
-                            <p class="small">企业家的最优投资率：$W = 1 - W(v)e^{\theta t}$（eq. 26 的解）</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">$\gamma$（社会最优投资率）</h5>
-                            <p class="small">社会计划者考虑全部社会回报率 $A(G)$（包括知识溢出）。</p>
-                            <p class="small">社会最优路径：$G(t) = Ce^{\alpha t/(1-n)}$（eq. 54）</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="alert alert-danger mt-3 mb-0">
+            <div class="callout-block mt-3">
                 <strong>为什么 $W &lt; \gamma$？</strong>企业只能获得私人回报 $r(G)$，但社会同时获得知识溢出 $A(G)$。
                 由于 $r(G) &lt; A(G)$，企业看到较低的回报率，因此投资不足。
                 这就是 Arrow 的"市场失灵"——为产业政策提供了理论基础。
@@ -150,22 +135,35 @@
         </section>
     </div>
 
-    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 模型公式 · 仅供个人学术学习用途 · 2026-06-02</footer>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script>
         function applyTheme(t) {
-            document.documentElement.setAttribute('data-theme', t);
-            localStorage.setItem('a1962-t', t);
-            document.getElementById('themeBtn').textContent = t==='dark'?'☀️':'🌙';
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
         }
-        var saved = localStorage.getItem('a1962-t') || 'light';
+        var saved = localStorage.getItem("a1962-t") || "light";
         applyTheme(saved);
-        document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
-        document.addEventListener('DOMContentLoaded', function() {
-            renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        document.getElementById("themeBtn").onclick = function() { applyTheme(saved === "dark" ? "light" : "dark"); };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, { delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], throwOnError:false });
         });
     </script>
 </body>

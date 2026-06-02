@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="Kenneth J. Arrow《干中学的经济含义》学习导读">
     <meta name="twitter:description" content="Arrow 1962年论文《The Economic Implications of Learning by Doing》完整中文学习导读——干中学如何从外部背景变成模型内生机制，连接经验、技术变迁与内生增长理论。">
     <meta name="twitter:image" content="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/assets/images/og-image.png">
-    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
 
@@ -74,7 +74,7 @@
     </section>
 
     <!-- ── Section 1: The Question ──────────────────────────── -->
-    <section class="content-section" id="core-ideas">
+    <section class="content-section" id="the-question">
         <div class="section-inner">
             <h2 class="section-title">这篇论文在问什么？</h2>
             <div class="prose-block">
@@ -290,6 +290,7 @@
             <p class="footer-label">本文为 Kenneth J. Arrow (1962) 论文的个人学习导读，版权归原作者及出版方所有。</p>
             <nav class="footer-nav">
                 <a href="pages/core-ideas.html">核心思想</a>
+                <a href="pages/full-text.html">原文与译文</a>
                 <a href="pages/theory-comparison.html">理论对比</a>
                 <a href="pages/terms-glossary.html">完整术语表</a>
             </nav>

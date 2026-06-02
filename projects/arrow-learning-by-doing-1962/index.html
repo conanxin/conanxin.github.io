@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenneth J. Arrow《干中学的经济含义》中文学习导读</title>
+  <meta name="description" content="Kenneth J. Arrow 1962年论文《The Economic Implications of Learning by Doing》中文学习导读——干中学、技术变迁与内生增长理论的一个起点。个人学习用途，不是全文译本。">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="canonical" href="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kenneth J. Arrow《干中学的经济含义》中文学习导读">
+  <meta property="og:description" content="干中学、技术变迁与内生增长理论的一个起点。Arrow 1962年论文中文学习导读。">
+  <meta property="og:url" content="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/">
+  <meta property="og:site_name" content="Conan Xin Projects">
+  <meta property="og:locale" content="zh_CN">
+
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --border: #e5e5e3;
+      --text: #1a1a1a;
+      --text-sec: #555550;
+      --text-muted: #888884;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-bg: #eff6ff;
+      --warning-bg: #fffbeb;
+      --warning-border: #fcd34d;
+      --tag-bg: #f0fdf4;
+      --tag-text: #166534;
+      --radius: 8px;
+      --radius-sm: 4px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --max-w: 860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0 24px;
+      margin-bottom: 40px;
+    }
+    .site-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 6px; }
+    .site-subtitle { font-size: 0.95rem; color: var(--text-sec); }
+    .breadcrumb { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Sections */
+    main.container > section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      font-size: 1.15rem; font-weight: 600;
+      margin-bottom: 14px; padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    h3 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+    p { margin-bottom: 12px; color: var(--text); }
+    ul, ol { margin: 8px 0 12px 20px; }
+    li { margin-bottom: 6px; }
+
+    /* Notice box */
+    .notice {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.875rem;
+      color: #92400e;
+      margin-bottom: 16px;
+    }
+    .notice strong { font-weight: 600; }
+
+    /* Info table */
+    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+    .info-table th, .info-table td {
+      text-align: left; padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-table th { font-weight: 600; width: 130px; color: var(--text-sec); font-size: 0.875rem; }
+    .info-table td { font-size: 0.9rem; }
+
+    /* Core concepts */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .concept-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .concept-card .en { font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
+    .concept-card .zh { font-size: 0.95rem; font-weight: 600; margin: 4px 0 6px; color: var(--accent); }
+    .concept-card .desc { font-size: 0.85rem; color: var(--text-sec); line-height: 1.5; }
+
+    /* Chain */
+    .chain { background: var(--accent-bg); border: 1px solid #bfdbfe; border-radius: var(--radius); padding: 20px; margin-top: 14px; }
+    .chain p { margin-bottom: 0; }
+    .chain-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 0.9rem; }
+    .chain-step:last-child { margin-bottom: 0; }
+    .chain-arrow { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* Reading paths */
+    .reading-path { margin-top: 14px; }
+    .reading-path h3 { margin-top: 0; }
+    .reading-path .path-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .reading-path .path-title { font-weight: 600; margin-bottom: 6px; color: var(--accent); }
+    .reading-path .path-desc { font-size: 0.875rem; color: var(--text-sec); }
+    .reading-path .path-time { display: inline-block; background: var(--tag-bg); color: var(--tag-text); font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 99px; margin-bottom: 8px; }
+
+    /* Timeline */
+    .theory-map { margin-top: 14px; }
+    .theory-item {
+      display: flex; gap: 16px; margin-bottom: 14px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--border);
+    }
+    .theory-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .theory-year { font-size: 0.8rem; font-weight: 700; color: var(--accent); width: 48px; flex-shrink: 0; padding-top: 2px; }
+    .theory-content .theory-author { font-weight: 600; margin-bottom: 4px; }
+    .theory-content .theory-desc { font-size: 0.875rem; color: var(--text-sec); }
+
+    /* Agent analogy */
+    .analogy-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .analogy-table th, .analogy-table td {
+      text-align: left; padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    .analogy-table th { font-weight: 600; background: var(--bg); color: var(--text-sec); }
+    .analogy-table td:first-child { font-weight: 600; color: var(--accent); }
+
+    /* Glossary */
+    .glossary { margin-top: 14px; }
+    .glossary-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .glossary-table th, .glossary-table td {
+      text-align: left; padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .glossary-table th { font-weight: 600; color: var(--text-sec); background: var(--bg); }
+    .glossary-table td:first-child { font-family: monospace; font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Further reading */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 99px;
+      text-decoration: none;
+    }
+    .tag:hover { opacity: 0.8; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .concept-grid { grid-template-columns: 1fr; }
+      .theory-item { flex-direction: column; gap: 4px; }
+      .theory-year { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <p class="breadcrumb"><a href="/">首页</a> / <a href="/projects/">项目</a> / 学习导读</p>
+    <h1 class="site-title">Kenneth J. Arrow《干中学的经济含义》</h1>
+    <p class="site-subtitle">干中学、技术变迁与内生增长理论的一个起点</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 顶部声明 -->
+  <section>
+    <div class="notice">
+      <strong>⚠️ 本页性质说明</strong><br>
+      本页为个人学习导读，<strong>不是</strong>论文全文译本。<br>
+      本页<strong>不包含</strong>原文全文、完整中文逐字译文，不提供 PDF/DOCX 下载。<br>
+      如需阅读原论文，请通过 JSTOR 等合法数据库获取。
+    </div>
+    <p>
+      本文基于 Kenneth J. Arrow 发表于 <em>The Review of Economic Studies</em>（Vol. 29, No. 3, June 1962, pp. 155–173）的论文《The Economic Implications of Learning by Doing》，整理为中文学习导读，供个人研究参考。
+    </p>
+  </section>
+
+  <!-- 论文基本信息 -->
+  <section>
+    <h2>论文基本信息</h2>
+    <table class="info-table">
+      <tr><th>Title</th><td><em>The Economic Implications of Learning by Doing</em></td></tr>
+      <tr><th>Author</th><td>Kenneth J. Arrow</td></tr>
+      <tr><th>Journal</th><td>The Review of Economic Studies</td></tr>
+      <tr><th>Year / Date</th><td>1962 年 6 月</td></tr>
+      <tr><th>Volume / No.</th><td>Vol. 29, No. 3</td></tr>
+      <tr><th>Pages</th><td>155–173</td></tr>
+      <tr><th>中文译名建议</th><td>《干中学的经济含义》</td></tr>
+      <tr><th>JSTOR</th><td><a href="https://www.jstor.org/stable/2295952" target="_blank" rel="noopener">jstor.org/stable/2295952</a></td></tr>
+    </table>
+  </section>
+
+  <!-- 一句话概括 -->
+  <section>
+    <h2>一句话概括</h2>
+    <p>
+      这篇论文把"学习"从外部背景变成经济增长模型内部的机制：人在生产和投资中积累经验，经验提高技术水平，而这种学习收益又会外溢到整个经济。
+    </p>
+  </section>
+
+  <!-- 为什么重要 -->
+  <section>
+    <h2>为什么这篇论文重要</h2>
+    <ul>
+      <li><strong>传统增长理论的缺口：</strong>Solow (1956) 将技术进步作为增长的关键驱动力，但它在模型中是外生变量——模型不解释技术进步从哪里来。</li>
+      <li><strong>Arrow 的追问：</strong>如果用"时间"来解释技术进步，那只是把问题遮蔽了，而不是解决了它。</li>
+      <li><strong>核心洞察：</strong>学习不是从天上掉下来的，而是来自经验；经验只能来自活动——生产和投资活动。</li>
+      <li><strong>关键机制：</strong>累计总投资可以成为技术变迁的载体；新资本品嵌入了当时社会的全部最新知识。</li>
+      <li><strong>市场失灵：</strong>由于知识溢出，私人最优投资率低于社会最优——竞争市场会系统性地"投资不足"。</li>
+      <li><strong>思想史地位：</strong>Arrow (1962) 是内生增长理论的零号先驱，为 Lucas (1988) 和 Romer (1990) 奠定了思想基础。</li>
+    </ul>
+  </section>
+
+  <!-- 核心概念 -->
+  <section>
+    <h2>核心概念</h2>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="en">learning by doing</div>
+        <div class="zh">干中学</div>
+        <div class="desc">通过生产活动中的经验积累知识。Arrow 从心理学借用这一概念：学习是经验的产物，经验只能来自活动。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">technological change</div>
+        <div class="zh">技术变迁</div>
+        <div class="desc">随时间变化的知识存量及其在生产中的应用。Arrow 把它从外生变量变成内生变量。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">cumulative gross investment</div>
+        <div class="zh">累计总投资</div>
+        <div class="desc">社会累计的总投资 G(t)，Arrow 用它同时作为资本积累的度量和"经验"的度量。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">embodied technical change</div>
+        <div class="zh">体现型技术变迁</div>
+        <div class="desc">新技术完全嵌入（embodied）在新资本品中，旧资本品一旦造好就无法从后来的学习中受益。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">private returns</div>
+        <div class="zh">私人收益</div>
+        <div class="desc">企业从其投资活动直接获得的利润回报。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">social returns</div>
+        <div class="zh">社会收益</div>
+        <div class="desc">私人收益加上知识溢出给其他企业带来的收益。Arrow 证明社会收益 > 私人收益。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">social optimum</div>
+        <div class="zh">社会最优</div>
+        <div class="desc">社会计划者能够内化全部知识溢出时的最优投资率，高于竞争市场均衡的投资率。</div>
+      </div>
+      <div class="concept-card">
+        <div class="en">endogenous growth</div>
+        <div class="zh">内生增长</div>
+        <div class="desc">增长由模型内部机制（学习、投资、知识积累）解释，而不是依赖外生的技术进步假设。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 论证链条 -->
+  <section>
+    <h2>核心论证链条</h2>
+    <div class="chain">
+      <div class="chain-step">
+        <span class="chain-arrow">①</span>
+        <span>资本积累解释不足 —— Solow 模型中人均收入增长的大部分无法由资本积累解释</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">②</span>
+        <span>技术变迁不能只作为外生变量 —— "从天而降"的技术进步遮蔽了真正的问题</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">③</span>
+        <span>学习来自经验 —— 学习是经验的产物</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">④</span>
+        <span>经验来自生产和投资活动 —— 经验只能来自活动，而不只是读书</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑤</span>
+        <span>累计总投资体现学习 —— G(t) 同时是资本积累和经验的代理变量</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑥</span>
+        <span>新资本品包含更高技术水平 —— 每台新机器嵌入了当时社会的全部最新知识</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑦</span>
+        <span>生产率提升 —— 随时间推移，平均生产率随 G(t) 增加而提高</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑧</span>
+        <span>学习收益外溢 —— 企业无法完全捕获其投资产生的知识溢出</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑨</span>
+        <span>竞争市场投资不足 —— 私人最优投资率低于社会最优（市场失灵）</span>
+      </div>
+      <div class="chain-step">
+        <span class="chain-arrow">⑩</span>
+        <span>内生增长理论的先声 —— 增长可以被经济体系内部的活动解释</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 如何阅读 -->
+  <section>
+    <h2>如何阅读这篇论文</h2>
+    <div class="reading-path">
+      <div class="path-card">
+        <span class="path-time">⏱ 30 分钟</span>
+        <div class="path-title">速读路径</div>
+        <div class="path-desc">读引言（p.155）→ 读 Section 1 前三段（模型设定）→ 读 Section 5 前三段（私人与社会收益分歧）→ 读结论（p.172）。跳过全部数学推导，专注于结论。</div>
+      </div>
+      <div class="path-card">
+        <span class="path-time">⏱ 2 小时</span>
+        <div class="path-title">细读路径</div>
+        <div class="path-desc">通读全文，跳过方程 (1')–(64) 的详细推导过程，重点理解：① 方程 (1')–(3') 的经济含义；② Section 1 中 A(G) 和 y(G) 的含义；③ Section 5 中 A(G) &gt; r(G) 的结论。参考本页面"核心公式"部分。</div>
+      </div>
+      <div class="path-card">
+        <span class="path-time">⏱ 半天深读</span>
+        <div class="path-title">精读路径</div>
+        <div class="path-desc">完整阅读，包括数学推导。重点：Section 1（模型设定与资本品序列）、Section 2（工资方程）、Section 3（投资决策）、Section 4（理性预期）、Section 5（市场失灵的核心证明）、Section 6（模型局限）。</div>
+      </div>
+      <div class="path-card">
+        <span class="path-time">📌 初学建议</span>
+        <div class="path-title">可先跳过的部分</div>
+        <div class="path-desc">Section 3 的方程积分细节（p.162–163）；Section 4 的理性预期假设形式化；Appendix 的方程证明。初学者应优先掌握 Section 1 的模型设定和 Section 5 的核心结论。</div>
+      </div>
+      <div class="path-card">
+        <span class="path-time">🎯 应重点看</span>
+        <div class="path-title">应优先掌握的部分</div>
+        <div class="path-desc">引言（Arrow 的核心问题意识）；Section 1 的 A(G) 和"体现型"假设；Section 5 中 A(G) &gt; r(G) 的市场失灵证明；Section 6 中 Arrow 对模型局限的评论。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 公式要点 -->
+  <section>
+    <h2>核心公式要点</h2>
+    <p>原论文包含约 15 个编号方程（从 (1) 到 (64)），以下为初学者最需要理解的核心结构：</p>
+    <div style="background:#f6f8fa;border:1px solid #e5e5e3;border-radius:8px;padding:16px;font-family:monospace;font-size:0.875rem;overflow-x:auto;margin-top:12px;">
+      <div style="margin-bottom:8px;"><strong>x = r(G) − r(G')</strong> &nbsp;(1') &nbsp;&nbsp;# 总产出 = 最高序列号与最低在用序列号之间的产出能力</div>
+      <div style="margin-bottom:8px;"><strong>y(G) = α</strong> &nbsp;(2') &nbsp;&nbsp;# 产出能力函数（常数）</div>
+      <div style="margin-bottom:8px;"><strong>A(G) = b·Gⁿ</strong> &nbsp;(3') &nbsp;&nbsp;# 劳动需求函数（递减）&nbsp;&nbsp;# n ∈ (0,1) 为学习指数</div>
+      <div style="margin-bottom:8px;"><strong>r(G) = ∫₀ᴳ y(s)ds</strong> &nbsp;(4') &nbsp;&nbsp;# 产出能力积分（私人收益基础）</div>
+      <div style="margin-bottom:8px;"><strong>A(G) = ∫₀ᴳ A(s)ds</strong> &nbsp;(5') &nbsp;&nbsp;# 劳动需求积分（社会收益基础）</div>
+      <div style="color:#555;"># Arrow 证明：A(G) &gt; r(G)，即社会收益 &gt; 私人收益 → 市场失灵</div>
+    </div>
+    <p style="font-size:0.875rem;color:var(--text-sec);margin-top:10px;">
+      核心经济含义：<strong>G(t)</strong>（累计总投资）同时代表"资本积累"和"经验积累"；学习强度由学习指数 <strong>n</strong>（0 &lt; n &lt; 1）控制；由于 <strong>A(G) &gt; r(G)</strong>，竞争市场会系统性投资不足。
+    </p>
+  </section>
+
+  <!-- 与后续理论的关系 -->
+  <section>
+    <h2>与后续理论的关系</h2>
+    <div class="theory-map">
+      <div class="theory-item">
+        <div class="theory-year">1956</div>
+        <div class="theory-content">
+          <div class="theory-author">Solow — 增长模型的基石</div>
+          <div class="theory-desc">技术进步作为外生变量进入索洛模型。成功解释长期增长，但模型本身无法解释技术进步从哪里来。Arrow 认为这是"遮蔽问题"而非解决问题。</div>
+        </div>
+      </div>
+      <div class="theory-item">
+        <div class="theory-year">1962</div>
+        <div class="theory-content">
+          <div class="theory-author">Arrow — 干中学模型</div>
+          <div class="theory-desc">首次将学习机制形式化为内生变量。核心贡献：累计总投资 G(t) 作为经验代理变量；知识溢出导致市场失灵；竞争均衡投资率低于社会最优。</div>
+        </div>
+      </div>
+      <div class="theory-item">
+        <div class="theory-year">1988</div>
+        <div class="theory-content">
+          <div class="theory-author">Lucas — 人力资本与内生增长</div>
+          <div class="theory-desc">将 Arrow 的"干中学"机制扩展到人力资本：人不只通过正规教育积累人力资本，也通过工作积累经验。形成了人力资本内生增长模型。</div>
+        </div>
+      </div>
+      <div class="theory-item">
+        <div class="theory-year">1990</div>
+        <div class="theory-content">
+          <div class="theory-author">Romer — 知识作为非竞争性商品</div>
+          <div class="theory-desc">将 Arrow 的"知识溢出"形式化为知识作为非竞争性商品的思想：单个企业的投资会对整个行业产生正外部性，正式证明了市场失灵需要政府干预。</div>
+        </div>
+      </div>
+      <div class="theory-item">
+        <div class="theory-year">当代</div>
+        <div class="theory-content">
+          <div class="theory-author">产业政策与学习曲线</div>
+          <div class="theory-desc">Arrow 的框架为产业政策提供了理论基础：先发国家通过"干中学"积累技术优势，后发国家需要保护或补贴国内市场以获得足够的"经验积累"；幼稚产业保护理论在 Arrow 模型中找到了微观基础。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Agent 启发 -->
+  <section>
+    <h2>对 AI Agent 工作流的启发</h2>
+    <p>
+      Arrow 的"干中学"框架对 AI agent 的设计和自动化工作流有直接的类比价值：每一次执行如果留下结构化结果，就不只是完成任务，而是在积累组织知识。
+    </p>
+    <table class="analogy-table">
+      <thead>
+        <tr><th>Arrow 框架</th><th>AI Agent 场景</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>G(t) 累计总投资</td><td>agent 执行次数 / 累计日志量 / 经验文档数</td></tr>
+        <tr><td>新资本品</td><td>每个新任务执行后产出的结构化结果（报告、脚本、配置）</td></tr>
+        <tr><td>体现型技术变迁</td><td>新一代 agent workflow 包含此前学习的全部最新经验</td></tr>
+        <tr><td>知识溢出</td><td>agent 输出被其他系统复用（API、工具、prompt library）</td></tr>
+        <tr><td>市场失灵（W &lt; γ）</td><td>agent 只完成任务而不积累经验 → 长期效率损失</td></tr>
+        <tr><td>社会最优</td><td>团队层面上所有 agent 的最佳经验复用水平</td></tr>
+      </tbody>
+    </table>
+    <h3>真正的"干中学"不是多做</h3>
+    <p>
+      Arrow 的核心洞察是：经验来自活动，但经验必须可积累才能产生复利效应。如果 agent 执行后不留任何痕迹，知识就"溢出"了——消失在执行结束后，无法被未来使用。这相当于 Arrow 模型中的市场失灵：私人激励（完成任务）低于社会激励（留下可复用经验）。
+    </p>
+    <p>
+      <strong>实践建议：</strong>每次任务完成后，写一条简短的日志——遇到什么问题、怎么解决的。这些日志变成 runbook 或 context pack，供未来使用。这就是 agent 版本的"累计总投资"：不是多做，而是把做过的事情转化为可复用能力。
+    </p>
+  </section>
+
+  <!-- 术语简表 -->
+  <section>
+    <h2>核心术语简表</h2>
+    <div class="glossary">
+      <table class="glossary-table">
+        <thead>
+          <tr><th>英文</th><th>中文</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>learning by doing</td><td>干中学</td><td>通过生产经验积累知识</td></tr>
+          <tr><td>technological change</td><td>技术变迁</td><td>随时间变化的知识在生产中的应用</td></tr>
+          <tr><td>cumulative gross investment</td><td>累计总投资 G(t)</td><td>经验积累代理变量</td></tr>
+          <tr><td>embodied technical change</td><td>体现型技术变迁</td><td>技术嵌入新资本品</td></tr>
+          <tr><td>private returns</td><td>私人收益</td><td>企业直接获得的利润</td></tr>
+          <tr><td>social returns</td><td>社会收益</td><td>私人收益 + 知识溢出</td></tr>
+          <tr><td>social optimum</td><td>社会最优</td><td>内化全部外部性后的最优投资率</td></tr>
+          <tr><td>spillover</td><td>溢出（效应）</td><td>知识从投资企业扩散到其他企业</td></tr>
+          <tr><td>endogenous growth</td><td>内生增长</td><td>增长由经济体系内部机制解释</td></tr>
+          <tr><td>production function</td><td>生产函数</td><td>投入（K, L, A）与产出之间的技术关系</td></tr>
+          <tr><td>capital-labor ratio</td><td>资本—劳动比</td><td>K/L，人均资本密度</td></tr>
+          <tr><td>exogenous / endogenous</td><td>外生的 / 内生的</td><td>由模型外部/内部决定</td></tr>
+          <tr><td>steady growth</td><td>稳定增长</td><td>所有变量以常数速率增长</td></tr>
+          <tr><td>gross investment</td><td>总投资</td><td>新投资（区别于净投资）</td></tr>
+          <tr><td>r(G) &gt; A(G)</td><td>私人 &lt; 社会收益</td><td>Arrow 核心不等式 → 市场失灵</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 延伸阅读 -->
+  <section>
+    <h2>延伸阅读方向</h2>
+    <p>以下关键词可作为深入学习的路径入口（按难度排序）：</p>
+    <div class="tags">
+      <span class="tag">Solow Growth Model</span>
+      <span class="tag">Learning Curve</span>
+      <span class="tag">Endogenous Growth Theory</span>
+      <span class="tag">Knowledge Spillover</span>
+      <span class="tag">Lucas (1988) Human Capital</span>
+      <span class="tag">Romer (1990) Knowledge as Non-rival Good</span>
+      <span class="tag">Industrial Policy</span>
+      <span class="tag">Organizational Learning</span>
+      <span class="tag">Infant Industry Argument</span>
+      <span class="tag">Learning by Doing: Economics</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>⚠️ 本页仅为个人学习导读，不提供论文全文、完整中文译文或 PDF/DOCX 下载。</p>
+    <p>原论文版权归 <em>The Review of Economic Studies</em> 及相关权利方所有。</p>
+    <p>如需阅读，请通过 <a href="https://www.jstor.org/stable/2295952" target="_blank" rel="noopener">JSTOR</a> 或其他合法数据库获取。</p>
+    <p style="margin-top:8px;">&copy; Conan Xin · 仅供个人学习用途</p>
+  </div>
+</footer>
+
+</body>
+</html>

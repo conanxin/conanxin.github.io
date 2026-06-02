@@ -333,5 +333,28 @@
       "Personal Knowledge System"
     ],
     "notes": "Published legacy archive entry. Catalog migration added in Phase 8A; full text intentionally not migrated."
+  },
+  {
+    "title": "Arrow (1962)《干中学的经济含义》中文学习导读",
+    "subtitle": "Kenneth J. Arrow 1962年论文中文学习导读——干中学、技术变迁与内生增长理论的一个起点",
+    "slug": "arrow-learning-by-doing-1962",
+    "category": "research",
+    "type": "STUDY GUIDE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-02",
+    "summary": "Kenneth J. Arrow 1962年论文《The Economic Implications of Learning by Doing》中文学习导读，包含核心概念、论证链条、阅读路径、公式要点、AI agent 工作流类比与术语简表。个人学习用途，不是全文译本。",
+    "entry_url": "/projects/arrow-learning-by-doing-1962/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "Arrow",
+      "Learning by Doing",
+      "内生增长",
+      "技术变迁",
+      "经济学",
+      "学习导读",
+      "经济学经典"
+    ]
   }
 ]

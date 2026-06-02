@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="理论对比">
     <meta name="twitter:description" content="Arrow (1962) 与Solow (1956)、Lucas (1988)、Romer (1990) 的内生增长理论对比——干中学、研发部门与规模效应在增长理论中的角色演变。">
     <meta name="twitter:image" content="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/assets/images/og-image.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 <body>
         <!-- Nav -->
@@ -31,6 +31,7 @@
                 <li><a href="core-ideas.html">核心思想</a></li>
                 <li><a href="terms-glossary.html">术语表</a></li>
                 <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
             </ul>
             <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
@@ -222,6 +223,7 @@
             <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
             <nav class="footer-nav">
                 <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
                 <a href="terms-glossary.html">完整术语表</a>
             </nav>
         </div>

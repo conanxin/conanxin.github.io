@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="术语简表">
     <meta name="twitter:description" content="Arrow (1962) 论文核心术语中英对照简表：干中学、生产函数、技术变迁、内生的、外生的、资本—劳动比、社会最优等重要概念速查。">
     <meta name="twitter:image" content="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/assets/images/og-image.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 <body>
         <!-- Nav -->
@@ -31,6 +31,7 @@
                 <li><a href="core-ideas.html">核心思想</a></li>
                 <li><a href="terms-glossary.html">术语表</a></li>
                 <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
             </ul>
             <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
@@ -153,6 +154,7 @@
             <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
             <nav class="footer-nav">
                 <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
                 <a href="terms-glossary.html">完整术语表</a>
             </nav>
         </div>

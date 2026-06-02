@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="核心思想">
     <meta name="twitter:description" content="Arrow (1962) 论文核心思想详解：体现型技术变迁、干中学机制、知识溢出与市场失灵——阿罗如何将学习从外部背景内生化为模型核心机制。">
     <meta name="twitter:image" content="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/assets/images/og-image.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 <body>
         <!-- Nav -->
@@ -31,6 +31,7 @@
                 <li><a href="core-ideas.html">核心思想</a></li>
                 <li><a href="terms-glossary.html">术语表</a></li>
                 <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
             </ul>
             <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
@@ -250,6 +251,7 @@
             <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
             <nav class="footer-nav">
                 <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
                 <a href="terms-glossary.html">完整术语表</a>
             </nav>
         </div>

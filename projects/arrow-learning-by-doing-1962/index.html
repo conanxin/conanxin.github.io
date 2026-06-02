@@ -1,383 +1,475 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arrow (1962)《干中学的经济含义》中文学习导读</title>
-    <meta name="description" content="Kenneth J. Arrow 1962年论文《The Economic Implications of Learning by Doing》中文交互式学习导读——干中学、技术变迁与内生增长理论">
+    <title>Arrow (1962)《干中学的经济含义》赛博学术风学习导读</title>
+    <meta name="description" content="Kenneth J. Arrow 1962年论文《The Economic Implications of Learning by Doing》赛博学术风交互式学习导读——干中学、技术变迁与内生增长理论">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Top Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="mainNav">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <span class="text-warning">📐</span> Arrow (1962)
+
+    <!-- Loading Animation -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-ring"></div>
+            <div class="loader-text">INITIALIZING NEURAL LINK</div>
+            <div class="loader-sub">Arrow (1962) Learning System v14.0</div>
+        </div>
+    </div>
+
+    <!-- Canvas Particle Background (hero) -->
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+    <!-- Glassmorphic Navbar -->
+    <nav class="navbar navbar-expand-lg glass-navbar sticky-top" id="mainNav">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand fw-bold neon-glow-text" href="index.html">
+                <span class="neon-cyan">📐</span> <span class="neon-text">Arrow (1962)</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navLinks">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="pages/core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/full-text.html">📄 原文与译文</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/archive.html">项目归档</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/core-ideas.html">💡 核心思想</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/model-equations.html">🔢 模型公式</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/terms-glossary.html">📖 术语表</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/theory-comparison.html">⚖️ 理论对比</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/empirical-extension.html">📊 实证延伸</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link active" href="pages/full-text.html">📄 原文与译文</a></li>
+                    <li class="nav-item"><a class="nav-link glow-link" href="pages/archive.html">📦 项目归档</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-2">
-                    <input class="form-control form-control-sm" id="searchInput" placeholder="搜索… (Ctrl+K)" style="width:180px;">
-                    <button class="btn btn-sm btn-outline-light" id="themeToggle" title="切换暗黑模式">🌙</button>
+                    <input class="form-control form-control-sm cyber-input" id="searchInput" placeholder="⌨ Ctrl+K 搜索…" style="width:160px;background:rgba(255,255,255,0.06);border:1px solid rgba(0,240,255,0.3);color:#e0e0e0;">
+                    <button class="btn btn-sm btn-outline-light glass-btn" id="themeToggle" title="切换暗黑模式">🌙</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Sidebar + Main Content -->
-    <div class="d-flex" style="min-height: calc(100vh - 56px);">
-        <!-- Left Sidebar -->
-        <aside class="bg-light border-end p-3 collapse show" id="sidebar" style="width:240px;min-width:240px;">
-            <h6 class="text-muted mb-2" style="font-size:0.7rem;letter-spacing:0.08em;">页面导航</h6>
-            <nav class="nav flex-column gap-1">
-                <a class="nav-link py-1 px-2 rounded" href="index.html">🏠 首页</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/core-ideas.html">💡 核心思想</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/model-equations.html">🔢 模型公式</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/terms-glossary.html">📖 术语表</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/theory-comparison.html">⚖️ 理论对比</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/empirical-extension.html">📊 实证延伸</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/full-text.html">📄 全文对照</a>
-                <a class="nav-link py-1 px-2 rounded" href="pages/archive.html">📦 项目归档</a>
-            </nav>
-            <hr>
-            <h6 class="text-muted mb-2" style="font-size:0.7rem;letter-spacing:0.08em;">快捷跳转</h6>
-            <nav class="nav flex-column gap-1">
-                <a class="nav-link py-1 px-2 rounded small" href="#paths">学习路径</a>
-                <a class="nav-link py-1 px-2 rounded small" href="#quick-nav">内容导航</a>
-                <a class="nav-link py-1 px-2 rounded small" href="#key-equations">核心公式</a>
-                <a class="nav-link py-1 px-2 rounded small" href="#citation">引用格式</a>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-grow-1 p-4" id="mainContent">
-            <!-- Hero -->
-            <section class="hero-section mb-5 p-4 rounded-4">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <div class="mb-2">
-                            <span class="badge bg-warning text-dark me-1">经济学经典</span>
-                            <span class="badge bg-primary me-1">内生增长理论</span>
-                            <span class="badge bg-success">学习导读</span>
-                        </div>
-                        <h1 class="display-6 fw-bold mb-2">Arrow (1962)</h1>
-                        <h2 class="h4 mb-3" style="color:var(--accent);">《干中学的经济含义》<br><span class="small text-muted">The Economic Implications of Learning by Doing</span></h2>
-                        <p class="lead mb-3">Kenneth J. Arrow · The Review of Economic Studies, Vol. 29, No. 3, June 1962, pp. 155–173</p>
-                        <p class="mb-3">Arrow 在 1962 年证明：技术变迁不是经济增长模型外部给定的"天外飞来"，而是通过生产活动中的"干中学"内生地产生的——企业每进行一次投资，就会积累经验、提高生产率，但企业不能完全捕获其知识溢出带来的社会收益，因此竞争性市场会导致投资不足。</p>
-                        <div class="d-flex flex-wrap gap-2 mt-3">
-                            <a href="pages/core-ideas.html" class="btn btn-warning fw-bold">开始学习 →</a>
-                            <a href="pages/full-text.html" class="btn btn-danger fw-bold">📄 立即阅读完整原文与译文</a>
-                            <a href="pages/archive.html" class="btn btn-outline-light">📦 项目归档</a>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero-cyber" id="hero">
+        <div class="hero-content">
+            <div class="hero-grid-lines" aria-hidden="true"></div>
+            <div class="row align-items-center min-vh-75 py-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge-row mb-3">
+                        <span class="badge cyber-badge cyber-badge-cyan">ECONOMICS CLASSIC</span>
+                        <span class="badge cyber-badge cyber-badge-purple">ENDOGENOUS GROWTH</span>
+                        <span class="badge cyber-badge cyber-badge-green">CYBER ACADEMIA</span>
                     </div>
-                    <div class="col-lg-4 text-center mt-4 mt-lg-0">
-                        <div class="key-formula-card p-3 rounded-3">
-                            <div class="text-muted small mb-1">核心方程</div>
-                            <div class="mb-2" id="hero-formula-1">$A(G) = bG^n$</div>
-                            <div class="text-muted small mb-1">稳态增长率</div>
-                            <div class="mb-2" id="hero-formula-2">$\dot{G}/G = \alpha/(1-n)$</div>
-                            <div class="text-muted small mb-1">核心不等式</div>
-                            <div class="fw-bold text-warning" id="hero-formula-3">$W < \gamma$</div>
-                            <div class="small text-muted mt-2">竞争性均衡投资率 &lt; 社会最优</div>
+                    <h1 class="hero-title mb-2">
+                        <span class="neon-title-line1">Arrow</span>
+                        <span class="neon-title-year">(1962)</span>
+                    </h1>
+                    <h2 class="hero-subtitle mb-3">
+                        <span class="neon-cyan">《干中学的经济含义》</span>
+                        <br>
+                        <span class="small neon-violet">The Economic Implications of Learning by Doing</span>
+                    </h2>
+                    <p class="hero-authors mb-2">
+                        <span class="mono-text">Kenneth J. Arrow</span> · The Review of Economic Studies, Vol. 29, No. 3 · June 1962 · pp. 155–173
+                    </p>
+                    <p class="hero-desc mb-3">
+                        技术变迁不是外生的"天外飞来"，而是通过生产活动中的<span class="neon-cyan fw-bold">干中学</span>内生地产生——企业每进行一次投资，就会积累经验、提高生产率，但不能完全捕获知识溢出带来的社会收益，因此竞争性市场会导致<span class="neon-pink fw-bold">投资不足</span>。
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mt-4 hero-buttons">
+                        <a href="pages/core-ideas.html" class="btn btn-cyber-primary">开始学习 →</a>
+                        <a href="pages/full-text.html" class="btn btn-cyber-secondary">📄 原文与译文（完整版）</a>
+                        <a href="pages/archive.html" class="btn btn-cyber-outline">📦 项目归档</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center mt-5 mt-lg-0">
+                    <div class="formula-glass-card">
+                        <div class="formula-card-header">
+                            <span class="glow-dot"></span>
+                            CORE EQUATIONS — 核心公式速览
+                            <span class="glow-dot"></span>
+                        </div>
+                        <div class="formula-items">
+                            <div class="formula-item">
+                                <div class="formula-label">学习曲线核心</div>
+                                <div class="formula-eq neon-cyan" data-formula="$A(G) = bG^n$">$A(G) = bG^n$</div>
+                            </div>
+                            <div class="formula-divider"></div>
+                            <div class="formula-item">
+                                <div class="formula-label">工资率</div>
+                                <div class="formula-eq neon-violet" data-formula="$w = \alpha(G')^{1-n}/b$">$w = \alpha(G')^{1-n}/b$</div>
+                            </div>
+                            <div class="formula-divider"></div>
+                            <div class="formula-item">
+                                <div class="formula-label">稳态增长率</div>
+                                <div class="formula-eq neon-cyan" data-formula="$\dot{G}/G = \alpha/(1-n)$">$\dot{G}/G = \alpha/(1-n)$</div>
+                            </div>
+                            <div class="formula-divider"></div>
+                            <div class="formula-item">
+                                <div class="formula-label">核心不等式</div>
+                                <div class="formula-eq neon-pink fw-bold" data-formula="$W < \gamma$">$W < \gamma$</div>
+                            </div>
+                            <div class="formula-note mono-text">竞争性均衡 W &lt; 社会最优 γ</div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- Info Cards -->
-            <section class="row g-3 mb-4">
+    <!-- Main Content (no sidebar on homepage) -->
+    <main class="main-content" id="mainContent">
+
+        <!-- Info Cards Row -->
+        <section class="container-fluid px-4 py-4">
+            <div class="row g-3">
                 <div class="col-md-4">
-                    <div class="card h-100">
+                    <div class="glass-card h-100">
+                        <div class="glass-card-header">
+                            <span class="card-icon">📑</span>
+                            <span>论文档案 / Paper Metadata</span>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">📑 论文信息</h5>
-                            <table class="table table-sm small mb-0">
-                                <tr><td class="text-muted">作者</td><td>Kenneth J. Arrow（肯尼斯·阿罗）</td></tr>
-                                <tr><td class="text-muted">发表</td><td>RES 29(3), 1962</td></tr>
-                                <tr><td class="text-muted">页码</td><td>pp. 155–173</td></tr>
-                                <tr><td class="text-muted">领域</td><td>内生增长理论</td></tr>
-                                <tr><td class="text-muted">核心概念</td><td>干中学、技术变迁内生</td></tr>
+                            <table class="table table-sm table-borderless small mono-text mb-0">
+                                <tr><td class="text-muted">作者</td><td class="text-light">Kenneth J. Arrow</td></tr>
+                                <tr><td class="text-muted">发表</td><td class="text-light">RES 29(3), 1962</td></tr>
+                                <tr><td class="text-muted">页码</td><td class="text-light">pp. 155–173</td></tr>
+                                <tr><td class="text-muted">JSTOR</td><td class="text-light">stable/2295952</td></tr>
+                                <tr><td class="text-muted">核心概念</td><td class="neon-cyan">干中学·技术变迁内生</td></tr>
+                                <tr><td class="text-muted">理论地位</td><td class="neon-violet">内生增长理论开山之作</td></tr>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100">
+                    <div class="glass-card h-100">
+                        <div class="glass-card-header">
+                            <span class="card-icon">🔑</span>
+                            <span>三个核心结论 / Key Insights</span>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">🔑 三个核心结论</h5>
                             <ol class="small mb-0">
-                                <li class="mb-2"><strong>技术变迁内生于投资</strong><br>通过"干中学"机制，技术不是外生给定的</li>
-                                <li class="mb-2"><strong>知识溢出导致市场失灵</strong><br>$r(G) < A(G)$：私人回报 &lt; 社会回报</li>
-                                <li><strong>竞争性均衡投资不足</strong><br>$W < \gamma$：$W$ 是竞争性均衡，$\gamma$ 是社会最优</li>
+                                <li class="mb-3">
+                                    <span class="neon-cyan">技术变迁内生于投资</span><br>
+                                    <span class="text-muted small">通过"干中学"机制，技术不是外生给定的</span>
+                                </li>
+                                <li class="mb-3">
+                                    <span class="neon-violet">知识溢出导致市场失灵</span><br>
+                                    <span class="text-muted small">$r(G) &lt; A(G)$：私人回报 &lt; 社会回报</span>
+                                </li>
+                                <li>
+                                    <span class="neon-pink">竞争性均衡投资不足</span><br>
+                                    <span class="text-muted small">$W &lt; \gamma$：竞争性均衡 W &lt; 社会最优 γ</span>
+                                </li>
                             </ol>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card h-100">
+                    <div class="glass-card h-100">
+                        <div class="glass-card-header">
+                            <span class="card-icon">📦</span>
+                            <span>学习包规模 / Package Stats</span>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">📚 学习包规模</h5>
-                            <table class="table table-sm small mb-0">
-                                <tr><td class="text-muted">Phase 数</td><td>11（含网页部署）</td></tr>
-                                <tr><td class="text-muted">文件总数</td><td>34+ 个</td></tr>
-                                <tr><td class="text-muted">总大小</td><td>~1.7 MB</td></tr>
-                                <tr><td class="text-muted">覆盖理论</td><td>Arrow/Solow/Lucas/Romer</td></tr>
-                                <tr><td class="text-muted">覆盖实证</td><td>B&L/Wright/I&K/Jones/AI</td></tr>
+                            <table class="table table-sm table-borderless small mono-text mb-0">
+                                <tr><td class="text-muted">Phase 数</td><td class="text-light">14（含本版本）</td></tr>
+                                <tr><td class="text-muted">文件总数</td><td class="text-light">35+ 个</td></tr>
+                                <tr><td class="text-muted">总大小</td><td class="text-light">~1.8 MB</td></tr>
+                                <tr><td class="text-muted">覆盖理论</td><td class="neon-cyan">Arrow/Solow/Lucas/Romer</td></tr>
+                                <tr><td class="text-muted">覆盖实证</td><td class="neon-violet">B&L/Wright/I&K/Jones/AI</td></tr>
+                                <tr><td class="text-muted">学习路径</td><td class="neon-pink">4 条（A/B/C/D）</td></tr>
                             </table>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 4 Learning Paths -->
-            <section class="mb-5" id="paths">
-                <h2 class="mb-3">🎯 四条学习路径</h2>
-                <p class="text-muted small mb-3">选择最适合你的学习路径，点击即可跳转至对应章节</p>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="card path-card path-a">
-                            <div class="card-body">
-                                <h5 class="card-title">路径 A · 入门级 <span class="badge bg-warning text-dark ms-1">推荐新手</span></h5>
-                                <p class="small text-muted">经济学本科生、跨学科学习者</p>
-                                <ul class="small mb-0">
-                                    <li>核心思想（30 分钟）</li>
-                                    <li>模型要点（20 分钟）</li>
-                                    <li>核心公式 W &lt; γ（15 分钟）</li>
-                                    <li>术语速查（10 分钟）</li>
-                                </ul>
-                                <div class="mt-2"><span class="badge bg-light text-dark">⏱ 90–120 分钟</span></div>
-                                <a href="pages/core-ideas.html" class="stretched-link"></a>
+        <!-- 4 Learning Path Cards -->
+        <section class="container-fluid px-4 py-4" id="paths">
+            <h2 class="section-heading mb-4">
+                <span class="neon-cyan">🎯</span> 四条学习路径
+                <span class="mono-text small text-muted ms-2">// SELECT YOUR PATH</span>
+            </h2>
+            <div class="row g-3">
+                <!-- Path A -->
+                <div class="col-md-6">
+                    <div class="path-card-cyber path-a-cyber">
+                        <div class="path-card-glow" aria-hidden="true"></div>
+                        <div class="path-card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="path-title">路径 A · 入门级 <span class="badge micro-badge">推荐新手</span></h5>
+                                <span class="path-tag mono-text">PATH_A</span>
+                            </div>
+                            <p class="text-muted small mb-3">经济学本科生、跨学科学习者</p>
+                            <ul class="path-steps small mb-0">
+                                <li>核心思想精读（30 分钟）</li>
+                                <li>模型要点图解（20 分钟）</li>
+                                <li>核心公式 W &lt; γ（15 分钟）</li>
+                                <li>术语速查（10 分钟）</li>
+                            </ul>
+                            <div class="path-meta mt-3">
+                                <span class="mono-text">⏱ 90–120 min</span>
+                                <span class="mono-text ms-3">📖 75 paragraphs</span>
                             </div>
                         </div>
+                        <a href="pages/core-ideas.html" class="stretched-link"></a>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card path-card path-b">
-                            <div class="card-body">
-                                <h5 class="card-title">路径 B · 理论深挖</h5>
-                                <p class="small text-muted">经济学研究生、增长理论研究者</p>
-                                <ul class="small mb-0">
-                                    <li>模型公式推导（60 分钟）</li>
-                                    <li>理论对比（60 分钟）</li>
-                                    <li>三张大表（30 分钟）</li>
-                                    <li>原文精读（90 分钟）</li>
-                                </ul>
-                                <div class="mt-2"><span class="badge bg-light text-dark">⏱ 4–5 小时</span></div>
-                                <a href="pages/theory-comparison.html" class="stretched-link"></a>
+                </div>
+                <!-- Path B -->
+                <div class="col-md-6">
+                    <div class="path-card-cyber path-b-cyber">
+                        <div class="path-card-glow" aria-hidden="true"></div>
+                        <div class="path-card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="path-title">路径 B · 理论深挖</h5>
+                                <span class="path-tag mono-text">PATH_B</span>
+                            </div>
+                            <p class="text-muted small mb-3">经济学研究生、增长理论研究者</p>
+                            <ul class="path-steps small mb-0">
+                                <li>模型公式推导（60 分钟）</li>
+                                <li>理论对比分析（60 分钟）</li>
+                                <li>三张大表（30 分钟）</li>
+                                <li>原文精读（90 分钟）</li>
+                            </ul>
+                            <div class="path-meta mt-3">
+                                <span class="mono-text">⏱ 4–5 hours</span>
+                                <span class="mono-text ms-3">📖 134 paragraphs</span>
                             </div>
                         </div>
+                        <a href="pages/theory-comparison.html" class="stretched-link"></a>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card path-card path-c">
-                            <div class="card-body">
-                                <h5 class="card-title">路径 C · 实证应用</h5>
-                                <p class="small text-muted">经济史、政策研究者</p>
-                                <ul class="small mb-0">
-                                    <li>实证文献分析（60 分钟）</li>
-                                    <li>量化结果汇总（30 分钟）</li>
-                                    <li>Jones vs Arrow（30 分钟）</li>
-                                    <li>AI Scaling Laws 类比（20 分钟）</li>
-                                </ul>
-                                <div class="mt-2"><span class="badge bg-light text-dark">⏱ 2–3 小时</span></div>
-                                <a href="pages/empirical-extension.html" class="stretched-link"></a>
+                </div>
+                <!-- Path C -->
+                <div class="col-md-6">
+                    <div class="path-card-cyber path-c-cyber">
+                        <div class="path-card-glow" aria-hidden="true"></div>
+                        <div class="path-card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="path-title">路径 C · 实证应用</h5>
+                                <span class="path-tag mono-text">PATH_C</span>
+                            </div>
+                            <p class="text-muted small mb-3">经济史、政策研究者</p>
+                            <ul class="path-steps small mb-0">
+                                <li>实证文献分析（60 分钟）</li>
+                                <li>量化结果汇总（30 分钟）</li>
+                                <li>Jones vs Arrow（30 分钟）</li>
+                                <li>AI Scaling Laws 类比（20 分钟）</li>
+                            </ul>
+                            <div class="path-meta mt-3">
+                                <span class="mono-text">⏱ 2–3 hours</span>
+                                <span class="mono-text ms-3">📖 4 papers</span>
                             </div>
                         </div>
+                        <a href="pages/empirical-extension.html" class="stretched-link"></a>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card path-card path-d">
-                            <div class="card-body">
-                                <h5 class="card-title">路径 D · AI 研究者专属</h5>
-                                <p class="small text-muted">AI/NLP/ML 研究者</p>
-                                <ul class="small mb-0">
-                                    <li>AI Scaling Laws 类比（40 分钟）</li>
-                                    <li>预训练与知识溢出（20 分钟）</li>
-                                    <li>Romer vs Arrow 对比（30 分钟）</li>
-                                    <li>AI 投资市场失灵（20 分钟）</li>
-                                </ul>
-                                <div class="mt-2"><span class="badge bg-light text-dark">⏱ 90–120 分钟</span></div>
-                                <a href="pages/empirical-extension.html#ai-section" class="stretched-link"></a>
+                </div>
+                <!-- Path D -->
+                <div class="col-md-6">
+                    <div class="path-card-cyber path-d-cyber">
+                        <div class="path-card-glow" aria-hidden="true"></div>
+                        <div class="path-card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="path-title">路径 D · AI 研究者专属</h5>
+                                <span class="path-tag mono-text">PATH_D</span>
                             </div>
+                            <p class="text-muted small mb-3">AI/NLP/ML 研究者</p>
+                            <ul class="path-steps small mb-0">
+                                <li>AI Scaling Laws 类比（40 分钟）</li>
+                                <li>预训练与知识溢出（20 分钟）</li>
+                                <li>Romer vs Arrow 对比（30 分钟）</li>
+                                <li>AI 投资市场失灵（20 分钟）</li>
+                            </ul>
+                            <div class="path-meta mt-3">
+                                <span class="mono-text">⏱ 90–120 min</span>
+                                <span class="mono-text ms-3">📖 4+1 papers</span>
+                            </div>
+                        </div>
+                        <a href="pages/empirical-extension.html#ai-section" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Navigation Grid -->
+        <section class="container-fluid px-4 py-4" id="quick-nav">
+            <h2 class="section-heading mb-4">
+                <span class="neon-violet">🗂️</span> 内容导航
+                <span class="mono-text small text-muted ms-2">// CONTENT MATRIX</span>
+            </h2>
+            <div class="row g-3">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/core-ideas.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">💡</div>
+                        <div class="nav-card-label">核心思想</div>
+                        <div class="nav-card-sub">一句话概括·论证图谱</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/model-equations.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">🔢</div>
+                        <div class="nav-card-label">模型公式</div>
+                        <div class="nav-card-sub">15个方程·逐步推导</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/terms-glossary.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">📖</div>
+                        <div class="nav-card-label">术语表</div>
+                        <div class="nav-card-sub">100+术语·EN/ZH对照</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/theory-comparison.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">⚖️</div>
+                        <div class="nav-card-label">理论对比</div>
+                        <div class="nav-card-sub">Arrow·Solow·Lucas·Romer</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/empirical-extension.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">📊</div>
+                        <div class="nav-card-label">实证延伸</div>
+                        <div class="nav-card-sub">B&L·I&K·Jones·AI</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/full-text.html" class="nav-card-cyber nav-card-highlight">
+                        <div class="nav-card-icon">📄</div>
+                        <div class="nav-card-label">原文与译文</div>
+                        <div class="nav-card-sub">EN/ZH对照·134段落</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="pages/archive.html" class="nav-card-cyber">
+                        <div class="nav-card-icon">📦</div>
+                        <div class="nav-card-label">项目归档</div>
+                        <div class="nav-card-sub">完整清单·MD5校验</div>
+                        <div class="nav-card-arrow">→</div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="source/arrow_1962.pdf" target="_blank" class="nav-card-cyber">
+                        <div class="nav-card-icon">📥</div>
+                        <div class="nav-card-label">原始 PDF</div>
+                        <div class="nav-card-sub">论文原文·下载</div>
+                        <div class="nav-card-arrow">↓</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Milestone Timeline -->
+        <section class="container-fluid px-4 py-4" id="timeline">
+            <h2 class="section-heading mb-4">
+                <span class="neon-pink">⏳</span> 项目里程碑
+                <span class="mono-text small text-muted ms-2">// DEVELOPMENT TIMELINE</span>
+            </h2>
+            <div class="timeline-container">
+                <div class="timeline-track" aria-hidden="true"></div>
+                <div class="row g-3 timeline-row">
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-done"></div>
+                            <div class="timeline-label mono-text">Phase 0–3</div>
+                            <div class="timeline-desc small text-muted">环境确认·PDF提取·初版导出</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-done"></div>
+                            <div class="timeline-label mono-text">Phase 4–6</div>
+                            <div class="timeline-desc small text-muted">术语表·分节翻译·对照阅读</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-done"></div>
+                            <div class="timeline-label mono-text">Phase 7–9</div>
+                            <div class="timeline-desc small text-muted">理论对比·实证延伸·学习包</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-done"></div>
+                            <div class="timeline-label mono-text">Phase 10–12</div>
+                            <div class="timeline-desc small text-muted">项目归档·全文网页·三模式</div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Quick Navigation -->
-            <section class="mb-5" id="quick-nav">
-                <h2 class="mb-3">🗂️ 内容导航</h2>
-                <div class="row g-3">
-                    <div class="col-6 col-md-3">
-                        <a href="pages/core-ideas.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">💡</div>
-                                <div class="fw-bold small">核心思想</div>
-                                <div class="text-muted" style="font-size:0.7rem;">一句话概括·论证图谱</div>
-                            </div>
-                        </a>
+                <div class="row g-3 timeline-row mt-2">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-active"></div>
+                            <div class="timeline-label mono-text text-cyber-primary">Phase 13–14</div>
+                            <div class="timeline-desc small text-muted">全文真正嵌入·科技化升级</div>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/model-equations.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">🔢</div>
-                                <div class="fw-bold small">模型公式</div>
-                                <div class="text-muted" style="font-size:0.7rem;">15个方程·逐步推导</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/terms-glossary.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">📖</div>
-                                <div class="fw-bold small">术语表</div>
-                                <div class="text-muted" style="font-size:0.7rem;">100+术语·EN/ZH对照</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/theory-comparison.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">⚖️</div>
-                                <div class="fw-bold small">理论对比</div>
-                                <div class="text-muted" style="font-size:0.7rem;">Arrow·Solow·Lucas·Romer</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/empirical-extension.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">📊</div>
-                                <div class="fw-bold small">实证延伸</div>
-                                <div class="text-muted" style="font-size:0.7rem;">B&L·I&K·Jones·AI</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/full-text.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">📄</div>
-                                <div class="fw-bold small">原文与译文</div>
-                                <div class="text-muted" style="font-size:0.7rem;">EN/ZH对照·注释版</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="pages/archive.html" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">📦</div>
-                                <div class="fw-bold small">项目归档</div>
-                                <div class="text-muted" style="font-size:0.7rem;">完整清单·MD5校验</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="https://conanxin.github.io/projects/arrow-learning-by-doing-1962/source/arrow_1962.pdf" target="_blank" class="text-decoration-none">
-                            <div class="p-3 border rounded-3 text-center h-100 nav-card">
-                                <div class="mb-2" style="font-size:1.5rem;">📥</div>
-                                <div class="fw-bold small">原始 PDF</div>
-                                <div class="text-muted" style="font-size:0.7rem;">论文原文·下载</div>
-                            </div>
-                        </a>
+                    <div class="col-md-3 col-6">
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-pending"></div>
+                            <div class="timeline-label mono-text">Phase 15</div>
+                            <div class="timeline-desc small text-muted">移动端专项优化</div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Key Equations -->
-            <section class="mb-5" id="key-equations">
-                <h2 class="mb-3">🔢 核心公式速查</h2>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm">
-                        <thead class="table-dark">
-                            <tr><th>方程</th><th>内容</th><th>页码</th><th>重要度</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>eq. (8)</td>
-                                <td>$A(G) = bG^n$ — 学习曲线核心</td>
-                                <td>p.157</td>
-                                <td><span class="badge bg-danger">⭐⭐⭐</span></td>
-                            </tr>
-                            <tr>
-                                <td>eq. (13)</td>
-                                <td>$w = \alpha(G')^{1-n}/b$ — 工资率</td>
-                                <td>p.164</td>
-                                <td><span class="badge bg-warning text-dark">⭐⭐</span></td>
-                            </tr>
-                            <tr>
-                                <td>eq. (35)</td>
-                                <td>$\theta = \alpha b^{1-n}/(1-n)$ — 稳态工资增长率</td>
-                                <td>p.169</td>
-                                <td><span class="badge bg-danger">⭐⭐⭐</span></td>
-                            </tr>
-                            <tr>
-                                <td>eq. (36)</td>
-                                <td>$\dot{G}/G = \alpha/(1-n)$ — 资本积累增长率</td>
-                                <td>p.169</td>
-                                <td><span class="badge bg-danger">⭐⭐⭐</span></td>
-                            </tr>
-                            <tr>
-                                <td>核心不等式</td>
-                                <td class="text-danger fw-bold">$W < \gamma$ — 竞争性 &lt; 社会最优</td>
-                                <td>p.171</td>
-                                <td><span class="badge bg-dark">⭐⭐⭐⭐</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- Citation -->
+        <section class="container-fluid px-4 py-4" id="citation">
+            <div class="glass-card citation-card">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="neon-cyan fw-bold mono-text">📚 推荐引用格式</span>
                 </div>
-            </section>
-
-            <!-- Citation -->
-            <section class="mb-5" id="citation">
-                <h2 class="mb-3">📚 引用格式</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <p class="mb-2"><strong>推荐引用格式：</strong></p>
-                        <div class="bg-light p-3 rounded small font-monospace" id="citationText">
+                <div class="citation-text mono-text" id="citationText">
 Arrow, K. J. (1962). The Economic Implications of Learning by Doing. <em>The Review of Economic Studies</em>, 29(3), 155–173.
-                        </div>
-                        <button class="btn btn-sm btn-primary mt-2" onclick="copyCitation()">📋 复制引用</button>
-                    </div>
                 </div>
-            </section>
-        </main>
-    </div>
+                <button class="btn btn-sm btn-cyber-outline mt-2" onclick="copyCitation()">📋 复制引用</button>
+            </div>
+        </section>
+    </main>
 
     <!-- Floating Toolbar -->
-    <div class="floating-toolbar d-none d-lg-block">
-        <button class="btn btn-sm btn-outline-secondary mb-1" onclick="window.scrollTo({top:0})" title="回到顶部">⬆</button>
-        <button class="btn btn-sm btn-outline-secondary mb-1" id="floatingThemeToggle" title="切换主题">🌙</button>
-        <button class="btn btn-sm btn-outline-secondary mb-1" onclick="copyCitation()" title="复制引用">📋</button>
-        <a href="../source/arrow_1962.pdf" target="_blank" class="btn btn-sm btn-outline-secondary" title="下载原文PDF">📥</a>
+    <div class="floating-toolbar d-none d-lg-block" aria-label="快速工具">
+        <button class="btn btn-sm glass-btn mb-1" onclick="window.scrollTo({top:0})" title="回到顶部">⬆</button>
+        <button class="btn btn-sm glass-btn mb-1" id="floatingThemeToggle" title="切换主题">🌙</button>
+        <button class="btn btn-sm glass-btn" onclick="copyCitation()" title="复制引用">📋</button>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light text-center py-4 mt-auto">
+    <footer class="cyber-footer">
         <div class="container">
-            <p class="mb-1 small">
-                <strong>Arrow (1962)</strong> — Kenneth J. Arrow, <em>The Economic Implications of Learning by Doing</em>, RES 29(3), 1962, pp. 155–173
-            </p>
-            <p class="mb-2 small text-muted">
-                本学习导读仅供个人学术学习用途，版权归原出版方（Oxford University Press）与作者所有。
-                本页面由 Hermes Agent（cloud_hermes）辅助生成 · 2026-06-02
-            </p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="pages/core-ideas.html" class="text-muted small">核心思想</a>
-                <a href="pages/model-equations.html" class="text-muted small">模型公式</a>
-                <a href="pages/theory-comparison.html" class="text-muted small">理论对比</a>
-                <a href="pages/empirical-extension.html" class="text-muted small">实证延伸</a>
-                <a href="pages/archive.html" class="text-muted small">项目归档</a>
+            <div class="row align-items-center">
+                <div class="col-md-6 small">
+                    <p class="mb-1 mono-text">
+                        <strong class="neon-cyan">Arrow (1962)</strong> —
+                        <em>The Economic Implications of Learning by Doing</em>,
+                        RES 29(3), 1962, pp. 155–173
+                    </p>
+                    <p class="text-muted small mb-0">
+                        本学习导读仅供个人学术学习用途，版权归原出版方（Oxford University Press）与作者所有。
+                        由 Hermes Agent（cloud_hermes）辅助生成 · 2026-06-02
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-md-end gap-3 flex-wrap">
+                        <a href="pages/core-ideas.html" class="footer-link">核心思想</a>
+                        <a href="pages/model-equations.html" class="footer-link">模型公式</a>
+                        <a href="pages/theory-comparison.html" class="footer-link">理论对比</a>
+                        <a href="pages/full-text.html" class="footer-link">原文与译文</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -387,20 +479,110 @@ Arrow, K. J. (1962). The Economic Implications of Learning by Doing. <em>The Rev
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // ── Page Loader ─────────────────────────────────────
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('page-loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 600);
+            }, 800);
+        });
+
+        // ── Canvas Neural Network Particles ─────────────────
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+
+        function resizeCanvas() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = document.getElementById('hero').offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * W;
+                this.y = Math.random() * H;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.r = Math.random() * 2.5 + 0.5;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.color = ['#00f0ff', '#a855f7', '#ec4899', '#06b6d4'][Math.floor(Math.random() * 4)];
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > W) this.vx *= -1;
+                if (this.y < 0 || this.y > H) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.alpha;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, W, H);
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 140) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        const alpha = (1 - dist / 140) * 0.15;
+                        ctx.strokeStyle = `rgba(0,240,255,${alpha})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // ── Parallax ────────────────────────────────────────
+        document.addEventListener('mousemove', e => {
+            const hero = document.getElementById('hero');
+            if (!hero) return;
+            const dx = (e.clientX / window.innerWidth - 0.5) * 12;
+            const dy = (e.clientY / window.innerHeight - 0.5) * 8;
+            hero.style.backgroundPosition = `${50 + dx * 0.3}% ${50 + dy * 0.3}%`;
+        });
+
+        // ── Copy Citation ───────────────────────────────────
+        function copyCitation() {
+            navigator.clipboard.writeText(document.getElementById('citationText').innerText).then(() => {
+                const btn = event.target;
+                const orig = btn.textContent;
+                btn.textContent = '✓ 已复制!';
+                btn.classList.add('btn-success');
+                setTimeout(() => { btn.textContent = orig; btn.classList.remove('btn-success'); }, 2000);
+            });
+        }
+        window.copyCitation = copyCitation;
+
+        // ── KaTeX ──────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
             renderMathInElement(document.body, {
                 delimiters: [
-                    {left:"$$", right:"$$", display:true},
-                    {left:"$", right:"$", display:false}
+                    {left:'$$', right:'$$', display: true},
+                    {left:'$', right:'$', display: false}
                 ],
                 throwOnError: false
             });
         });
-        function copyCitation() {
-            navigator.clipboard.writeText(document.getElementById('citationText').innerText).then(()=>{
-                alert('引用已复制！');
-            });
-        }
     </script>
 </body>
 </html>

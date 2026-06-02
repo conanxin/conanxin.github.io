@@ -11,47 +11,31 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" href="core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link" href="model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link" href="theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link" href="empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link" href="archive.html">归档</a></li>
-                </ul>
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+        <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
 
     <div class="d-flex" style="min-height:calc(100vh - 56px);">
-        <aside class="p-3 border-end" style="width:220px;background:var(--sidebar-bg);position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;">
-            <h6 class="text-muted mb-2" style="font-size:0.7rem;">本页目录</h6>
-            <nav class="nav flex-column gap-1">
-                <a class="nav-link py-1 small" href="#overview">论文概览</a>
-                <a class="nav-link py-1 small" href="#one-sentence">一句话概括</a>
-                <a class="nav-link py-1 small" href="#problem">问题意识</a>
-                <a class="nav-link py-1 small" href="#mechanism">核心机制</a>
-                <a class="nav-link py-1 small" href="#three-conclusions">三个结论</a>
-                <a class="nav-link py-1 small" href="#wlgamma">W &lt; γ 市场失灵</a>
-                <a class="nav-link py-1 small" href="#why-important">为何重要</a>
-            </nav>
-        </aside>
+        
 
-        <main class="flex-grow-1 p-4" style="max-width:860px;">
+        <main class="page-content">
             <div class="mb-4">
                 <div class="d-flex align-items-center gap-2 mb-2">
                     <span class="badge bg-primary">💡 核心思想</span>
                     <a href="../index.html" class="small text-muted">← 返回首页</a>
                 </div>
-                <h1 class="fw-bold" style="color:var(--accent);">核心思想</h1>
+                <h1 class="page-title">核心思想</h1>
                 <p class="text-muted">Arrow (1962) 的问题意识、核心机制与理论贡献</p>
             </div>
 
@@ -72,8 +56,8 @@
 
             <!-- 一句话概括 -->
             <section class="page-section mb-5" id="one-sentence">
-                <h2 class="mb-3">🎯 一句话概括</h2>
-                <div class="card border-warning border-2">
+                <h2 class="section-heading"> 一句话概括</h2>
+                <div class="clean-card">
                     <div class="card-body">
                         <p class="mb-0 fw-bold" style="font-size:1.05rem;line-height:1.9;">
                             Arrow 在 1962 年证明：技术变迁不是经济增长模型外部给定的"天外飞来"，而是通过生产活动中的<span class="text-warning">"干中学"</span>内生地产生的——企业每进行一次投资，就会积累经验、提高生产率，但企业不能完全捕获其知识溢出带来的社会收益，因此竞争性市场会导致<span class="text-danger">投资不足</span>。
@@ -84,9 +68,9 @@
 
             <!-- 问题意识 -->
             <section class="page-section mb-5" id="problem">
-                <h2 class="mb-3">❓ 问题意识：为什么技术不能只是"外生给定"？</h2>
+                <h2 class="section-heading"> 问题意识：为什么技术不能只是"外生给定"？</h2>
                 <p>Arrow 之前，经济增长理论的标准框架是新古典增长模型（Solow, 1956）。该模型将产出写成 $Y = F(K, L, A)$，其中 $K$ 是资本，$L$ 是劳动，$A$ 是技术状态。但 $A(t)$ 被设为外生的时间函数——它"从天而降"，模型不解释它从哪里来。</p>
-                <div class="alert alert-secondary small">
+                <div class="callout-block">
                     <strong>Arrow 的批评：</strong>
                     <ol class="mb-0 mt-2">
                         <li><strong>外生性陷阱：</strong>把如此重要的变量设为外生，相当于放弃了理论解释的责任。</li>
@@ -98,7 +82,7 @@
 
             <!-- 核心机制 -->
             <section class="page-section mb-5" id="mechanism">
-                <h2 class="mb-3">⚙️ 核心机制：干中学如何内生化技术变迁？</h2>
+                <h2 class="section-heading"> 核心机制：干中学如何内生化技术变迁？</h2>
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">干中学（Learning by Doing）机制</h5>
@@ -135,10 +119,10 @@
 
             <!-- 三个核心结论 -->
             <section class="page-section mb-5" id="three-conclusions">
-                <h2 class="mb-3">✅ 三个核心结论</h2>
+                <h2 class="section-heading"> 三个核心结论</h2>
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <div class="card h-100 border-primary">
+                        <div class="clean-card">
                             <div class="card-body">
                                 <h5 class="card-title text-primary">结论一</h5>
                                 <p class="small fw-bold">技术变迁内生于投资</p>
@@ -147,7 +131,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-warning">
+                        <div class="clean-card">
                             <div class="card-body">
                                 <h5 class="card-title text-warning">结论二</h5>
                                 <p class="small fw-bold">知识溢出导致市场失灵</p>
@@ -156,7 +140,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 border-danger">
+                        <div class="clean-card">
                             <div class="card-body">
                                 <h5 class="card-title text-danger">结论三</h5>
                                 <p class="small fw-bold">竞争性均衡投资不足</p>
@@ -169,9 +153,8 @@
 
             <!-- W < γ 市场失灵 -->
             <section class="page-section mb-5" id="wlgamma">
-                <h2 class="mb-3">🚨 核心不等式：$W &lt; \gamma$（为什么市场会失灵）</h2>
-                <div class="card border-danger border-2">
-                    <div class="card-header bg-danger text-white fw-bold">核心发现（p.171）</div>
+                <h2 class="section-heading"> 核心不等式：$W &lt; \gamma$（为什么市场会失灵）</h2>
+                <div class="clean-card">
                     <div class="card-body">
                         <p>竞争性均衡路径的投资率 $W$ < <strong>社会最优路径</strong>的投资率 $\gamma$。</p>
                         <div class="text-center my-3 fs-5" id="w-lt-gamma">$W < \gamma$</div>
@@ -195,7 +178,7 @@
 
             <!-- 为何重要 -->
             <section class="page-section mb-5" id="why-important">
-                <h2 class="mb-3">🌟 为什么 Arrow (1962) 重要？</h2>
+                <h2 class="section-heading"> 为什么 Arrow (1962) 重要？</h2>
                 <blockquote>
                     Arrow (1962) 是经济增长理论的分水岭。在它之前，增长理论将技术进步视为外生；在它之后，Lucas (1988) 的人力资本积累模型和 Romer (1990) 的知识溢出模型将增长完全内生化。Arrow 的贡献不仅在于提出了"干中学"机制，更在于证明了市场在这个机制面前是失灵的——竞争性均衡会系统性地导致投资不足。这个"市场失灵"的结论，至今仍是产业政策、科技政策和教育政策的理论依据之一。
                 </blockquote>
@@ -229,10 +212,10 @@
 
             <!-- 页码索引 -->
             <section class="page-section" id="page-index">
-                <h2 class="mb-3">📑 页码快速索引</h2>
+                <h2 class="section-heading"> 页码快速索引</h2>
                 <div class="table-responsive">
                     <table class="table table-sm">
-                        <thead class="table-dark">
+                        <thead class="academic-thead">
                             <tr><th>页码</th><th>章节</th><th>核心内容</th></tr>
                         </thead>
                         <tbody>
@@ -249,32 +232,38 @@
         </main>
     </div>
 
-    <div class="floating-toolbar d-none d-lg-block">
-        <button class="btn btn-sm btn-outline-secondary mb-1" onclick="window.scrollTo({top:0})" title="回到顶部">⬆</button>
-        <button class="btn btn-sm btn-outline-secondary" id="fltThemeBtn">🌙</button>
-    </div>
+    
 
-    <footer class="bg-dark text-center text-muted py-3 small">
-        Arrow (1962) · Kenneth J. Arrow · RES 29(3) · 仅供个人学术学习用途 · 2026-06-02
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+
     <script>
-        // Inline theme + search logic
         function applyTheme(t) {
-            document.documentElement.setAttribute('data-theme', t);
-            localStorage.setItem('a1962-t', t);
-            document.getElementById('themeBtn').textContent = t==='dark'?'☀️':'🌙';
-            document.getElementById('fltThemeBtn').textContent = t==='dark'?'☀️':'🌙';
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
         }
-        var saved = localStorage.getItem('a1962-t') || 'light';
+        var saved = localStorage.getItem("a1962-t") || "light";
         applyTheme(saved);
-        document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
-        document.getElementById('fltThemeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
-        document.addEventListener('DOMContentLoaded', function() {
-            renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        document.getElementById("themeBtn").onclick = function() {
+            applyTheme(saved === "dark" ? "light" : "dark");
+        };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
         });
     </script>
 </body>

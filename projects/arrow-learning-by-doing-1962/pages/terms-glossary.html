@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <div class="d-flex align-items-center gap-2">
-                <input class="form-control form-control-sm" id="searchInput" placeholder="搜索术语…" style="width:150px;">
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+        <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
     <div class="container-fluid py-4" style="max-width:900px;">
@@ -26,7 +31,7 @@
             <a href="../index.html" class="small text-muted">← 返回首页</a>
             <span class="badge bg-secondary ms-auto" id="resultCount"></span>
         </div>
-        <h1 class="fw-bold mb-4" style="color:var(--accent);">核心术语中英对照表</h1>
+        <h1 class="page-title">核心术语中英对照表</h1>
 
         <!-- 搜索框说明 -->
         <div class="alert alert-info small mb-4">
@@ -39,17 +44,17 @@
         <h2 class="mb-3 page-section" id="core-terms">一、核心理论概念</h2>
         <div class="table-responsive mb-4">
             <table class="table table-bordered table-sm">
-                <thead class="table-dark">
+                <thead class="academic-thead">
                     <tr><th>英文</th><th>中文译名</th><th>说明</th><th>出处</th></tr>
                 </thead>
                 <tbody>
-                    <tr class="term-row"><td class="fw-bold">learning by doing</td><td class="text-primary fw-bold">干中学</td><td>通过生产活动中的经验积累获得知识（首次出现注英文）</td><td>引言 p.155</td></tr>
+                    <tr class="term-row"><td class="fw-bold">learning by doing</td><td class="term-zh">干中学</td><td>通过生产活动中的经验积累获得知识（首次出现注英文）</td><td>引言 p.155</td></tr>
                     <tr class="term-row"><td>production function</td><td>生产函数</td><td>投入（K, L, A）与产出之间的技术关系</td><td>引言 p.155</td></tr>
                     <tr class="term-row"><td>technological change</td><td>技术变迁</td><td>随时间变化的知识存量及其在生产中的应用</td><td>引言 p.155</td></tr>
                     <tr class="term-row"><td>knowledge</td><td>知识</td><td>生产所依赖的技术知识存量</td><td>引言 p.155</td></tr>
                     <tr class="term-row"><td>capital-labor ratio</td><td>资本—劳动比</td><td>K/L，人均资本密度</td><td>引言 p.155</td></tr>
-                    <tr class="term-row"><td>exogenous</td><td class="text-danger">外生的</td><td>由模型外部决定的变量（如 Solow 模型中的 A）</td><td>引言 p.155</td></tr>
-                    <tr class="term-row"><td>endogenous</td><td class="text-success">内生的</td><td>由模型内部因素决定的变量（如 Arrow 模型中的学习）</td><td>引言 p.155</td></tr>
+                    <tr class="term-row"><td>exogenous</td><td class="text-warn">外生的</td><td>由模型外部决定的变量（如 Solow 模型中的 A）</td><td>引言 p.155</td></tr>
+                    <tr class="term-row"><td>endogenous</td><td class="text-ok">内生的</td><td>由模型内部因素决定的变量（如 Arrow 模型中的学习）</td><td>引言 p.155</td></tr>
                     <tr class="term-row"><td>embodied technical change</td><td>体现型技术变迁</td><td>技术知识完全嵌入（embodied）在新资本品中</td><td>Section 1 p.156</td></tr>
                     <tr class="term-row"><td>disembodied technical change</td><td>非体现型技术变迁</td><td>技术知识不依附于特定资本品</td><td>Section 1 p.156</td></tr>
                     <tr class="term-row"><td>experience</td><td>经验</td><td>学习的来源，通过生产活动获得</td><td>引言 p.155</td></tr>
@@ -66,7 +71,7 @@
         <h2 class="mb-3 page-section" id="model-vars">二、模型变量符号</h2>
         <div class="table-responsive mb-4">
             <table class="table table-bordered table-sm">
-                <thead class="table-dark">
+                <thead class="academic-thead">
                     <tr><th>符号</th><th>中文名称</th><th>定义</th><th>出处</th></tr>
                 </thead>
                 <tbody>
@@ -94,7 +99,7 @@
         <h2 class="mb-3 page-section" id="equations">三、核心方程速查</h2>
         <div class="table-responsive mb-4">
             <table class="table table-bordered table-sm">
-                <thead class="table-dark">
+                <thead class="academic-thead">
                     <tr><th>方程</th><th>内容</th><th>页码</th><th>重要度</th></tr>
                 </thead>
                 <tbody>
@@ -114,7 +119,7 @@
         <h2 class="mb-3 page-section" id="theory-terms">四、理论脉络术语</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-sm">
-                <thead class="table-dark">
+                <thead class="academic-thead">
                     <tr><th>英文</th><th>中文</th><th>说明</th><th>相关理论</th></tr>
                 </thead>
                 <tbody>
@@ -132,7 +137,17 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 术语表 · 仅供个人学术学习用途 · 2026-06-02</footer>
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -148,20 +163,38 @@
         document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
 
         // Simple search filter
-        document.getElementById('searchInput').addEventListener('input', function() {
-            var q = this.value.trim().toLowerCase();
-            var rows = document.querySelectorAll('.term-row');
-            var count = 0;
-            rows.forEach(function(row) {
-                var text = row.textContent.toLowerCase();
-                row.style.display = (!q || text.includes(q)) ? '' : 'none';
-                if (!q || text.includes(q)) count++;
+        document.getElementById("searchInput").addEventListener("input", function() {
+            var q=this.value.trim().toLowerCase();
+            var rows=document.querySelectorAll(".term-row");
+            var count=0;
+            rows.forEach(function(row){
+                row.style.display=(!q||row.textContent.toLowerCase().includes(q))?'':'none';
+                if(!q||row.textContent.toLowerCase().includes(q)) count++;
             });
+            var badge=document.getElementById("resultCount");
+            if(badge) badge.textContent=count>0?count+' 条结果':'';
+        });
             document.getElementById('resultCount').textContent = count > 0 ? count + ' 条结果' : '';
         });
 
         document.addEventListener('DOMContentLoaded', function() {
             renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        });
+    </script>
+
+    <script>
+        function applyTheme(t) {
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
+        }
+        var saved = localStorage.getItem("a1962-t") || "light";
+        applyTheme(saved);
+        document.getElementById("themeBtn").onclick = function() {
+            applyTheme(saved === "dark" ? "light" : "dark");
+        };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
         });
     </script>
 </body>

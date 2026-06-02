@@ -11,23 +11,18 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="core-ideas.html">核心思想</a></li>
-                    <li class="nav-item"><a class="nav-link" href="model-equations.html">模型公式</a></li>
-                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="theory-comparison.html">理论对比</a></li>
-                    <li class="nav-item"><a class="nav-link" href="empirical-extension.html">实证延伸</a></li>
-                    <li class="nav-item"><a class="nav-link" href="archive.html">归档</a></li>
-                </ul>
-                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
-            </div>
+        <!-- Nav -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">← Arrow (1962)</a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="core-ideas.html">核心思想</a></li>
+                <li><a href="terms-glossary.html">术语表</a></li>
+                <li><a href="theory-comparison.html">理论对比</a></li>
+                <li><a href="full-text.html">原文与译文</a></li>
+            </ul>
+            <button class="nav-theme-btn" id="themeBtn" title="切换暗黑模式">🌙</button>
         </div>
     </nav>
 
@@ -36,7 +31,7 @@
             <span class="badge bg-primary">⚖️ 理论对比</span>
             <a href="../index.html" class="small text-muted">← 返回首页</a>
         </div>
-        <h1 class="fw-bold mb-3" style="color:var(--accent);">Arrow vs. Solow / Lucas / Romer</h1>
+        <h1 class="page-title">Arrow vs. Solow / Lucas / Romer</h1>
         <p class="text-muted mb-4">从四个维度对比 Arrow (1962) 与后续内生增长理论先驱的思想脉络</p>
 
         <!-- 维度选择 -->
@@ -50,10 +45,10 @@
 
         <!-- 表一：生产函数 -->
         <section class="page-section mb-5" id="tab1">
-            <h2 class="mb-3">📊 表一：生产函数与稳态增长对比</h2>
+            <h2 class="section-heading"> 表一：生产函数与稳态增长对比</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm">
-                    <thead class="table-dark">
+                    <thead class="academic-thead">
                         <tr><th>模型</th><th>生产函数</th><th>技术变迁类型</th><th>稳态增长率</th><th>是否内生</th></tr>
                     </thead>
                     <tbody>
@@ -96,10 +91,10 @@
 
         <!-- 表二：增长机制 -->
         <section class="page-section mb-5" id="tab2">
-            <h2 class="mb-3">🔗 表二：知识累积机制与外部性对比</h2>
+            <h2 class="section-heading"> 表二：知识累积机制与外部性对比</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm">
-                    <thead class="table-dark">
+                    <thead class="academic-thead">
                         <tr><th>模型</th><th>知识载体</th><th>累积渠道</th><th>外部性来源</th><th>外部性方向</th></tr>
                     </thead>
                     <tbody>
@@ -108,7 +103,7 @@
                             <td>体现于资本品的知识</td>
                             <td>投资的副产品（干中学）</td>
                             <td>投资的知识溢出</td>
-                            <td class="text-danger fw-bold">$r(G) &lt; A(G)$</td>
+                            <td class="text-warn">$r(G) &lt; A(G)$</td>
                         </tr>
                         <tr>
                             <td class="fw-bold">Solow (1956)</td>
@@ -138,17 +133,17 @@
 
         <!-- 表三：市场失灵 -->
         <section class="page-section mb-5" id="tab3">
-            <h2 class="mb-3">⚠️ 表三：市场失灵与政策含义对比</h2>
+            <h2 class="section-heading"> 表三：市场失灵与政策含义对比</h2>
             <div class="table-responsive">
                 <table class="table table-bordered table-sm">
-                    <thead class="table-dark">
+                    <thead class="academic-thead">
                         <tr><th>模型</th><th>市场失灵类型</th><th>竞争性均衡</th><th>社会最优</th><th>政策含义</th></tr>
                     </thead>
                     <tbody>
                         <tr class="table-primary">
                             <td class="fw-bold">Arrow (1962)</td>
                             <td>投资不足（知识溢出）</td>
-                            <td class="text-danger fw-bold">$W &lt; \gamma$</td>
+                            <td class="text-warn">$W &lt; \gamma$</td>
                             <td>$\gamma$（投资率）</td>
                             <td>补贴 R&amp;D / 产业政策</td>
                         </tr>
@@ -180,23 +175,23 @@
 
         <!-- 思想演进 -->
         <section class="page-section">
-            <h2 class="mb-3">🧭 Arrow → Lucas → Romer：思想演进图</h2>
+            <h2 class="section-heading"> Arrow → Lucas → Romer：思想演进图</h2>
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column gap-3">
                         <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
                             <div>
-                                <span class="badge bg-primary mb-1">Arrow (1962)</span>
+                                <span class="model-label">Arrow (1962)</span>
                                 <p class="mb-0 small">干中学 = 投资驱动知识积累<br>外部性 = $r(G) &lt; A(G)$，$W &lt; \gamma$<br>规模效应 = 有</p>
                             </div>
                             <div class="ms-auto fs-4 text-muted">→</div>
                             <div>
-                                <span class="badge bg-success mb-1">Lucas (1988)</span>
+                                <span class="model-label model-label--green">Lucas (1988)</span>
                                 <p class="mb-0 small">人力资本 = 学校教育 + 干中学（双轨）<br>外部性 = 人力资本溢出<br>规模效应 = 无</p>
                             </div>
                             <div class="ms-auto fs-4 text-muted">→</div>
                             <div>
-                                <span class="badge bg-warning text-dark mb-1">Romer (1990)</span>
+                                <span class="model-label model-label--amber">Romer (1990)</span>
                                 <p class="mb-0 small">知识 = 研发部门专门生产<br>外部性 = 知识非竞争性<br>规模效应 = 正向（无限增长可能）</p>
                             </div>
                         </div>
@@ -211,7 +206,17 @@
         </section>
     </div>
 
-    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 理论对比 · 仅供个人学术学习用途 · 2026-06-02</footer>
+    
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-label">Kenneth J. Arrow (1962) · 仅供个人学术学习用途</p>
+            <nav class="footer-nav">
+                <a href="../index.html">返回首页</a>
+                <a href="full-text.html">原文与译文</a>
+                <a href="terms-glossary.html">完整术语表</a>
+            </nav>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -226,11 +231,29 @@
         applyTheme(saved);
         document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
         function showSection(id) {
-            document.querySelectorAll('[id^="tab"]').forEach(function(el) { el.style.display = ''; });
+            document.querySelectorAll('[id^="tab"]').forEach(function(el){ el.style.display=''; });
+            var t=document.getElementById(id); if(t){ t.style.display='block'; t.scrollIntoView({behavior:'smooth'}); }
+        });
             document.getElementById(id).scrollIntoView({behavior:'smooth'});
         }
         document.addEventListener('DOMContentLoaded', function() {
             renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        });
+    </script>
+
+    <script>
+        function applyTheme(t) {
+            document.documentElement.setAttribute("data-theme", t);
+            localStorage.setItem("a1962-t", t);
+            document.getElementById("themeBtn").textContent = t === "dark" ? "☀️" : "🌙";
+        }
+        var saved = localStorage.getItem("a1962-t") || "light";
+        applyTheme(saved);
+        document.getElementById("themeBtn").onclick = function() {
+            applyTheme(saved === "dark" ? "light" : "dark");
+        };
+        document.getElementById("navToggle")?.addEventListener("click", function() {
+            document.getElementById("navLinks")?.classList.toggle("open");
         });
     </script>
 </body>

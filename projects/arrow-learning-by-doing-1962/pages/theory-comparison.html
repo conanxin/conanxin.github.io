@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理论对比 — Arrow (1962) 学习导读</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#1a365d;">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">📐 Arrow (1962)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="core-ideas.html">核心思想</a></li>
+                    <li class="nav-item"><a class="nav-link" href="model-equations.html">模型公式</a></li>
+                    <li class="nav-item"><a class="nav-link" href="terms-glossary.html">术语表</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="theory-comparison.html">理论对比</a></li>
+                    <li class="nav-item"><a class="nav-link" href="empirical-extension.html">实证延伸</a></li>
+                    <li class="nav-item"><a class="nav-link" href="archive.html">归档</a></li>
+                </ul>
+                <button class="btn btn-sm btn-outline-light" id="themeBtn">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4" style="max-width:960px;">
+        <div class="d-flex align-items-center gap-2 mb-4">
+            <span class="badge bg-primary">⚖️ 理论对比</span>
+            <a href="../index.html" class="small text-muted">← 返回首页</a>
+        </div>
+        <h1 class="fw-bold mb-3" style="color:var(--accent);">Arrow vs. Solow / Lucas / Romer</h1>
+        <p class="text-muted mb-4">从四个维度对比 Arrow (1962) 与后续内生增长理论先驱的思想脉络</p>
+
+        <!-- 维度选择 -->
+        <div class="mb-4">
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-sm btn-primary" onclick="showSection('tab1')">📊 表一：生产函数对比</button>
+                <button class="btn btn-sm btn-outline-primary" onclick="showSection('tab2')">🔗 表二：增长机制对比</button>
+                <button class="btn btn-sm btn-outline-primary" onclick="showSection('tab3')">⚠️ 表三：市场失灵对比</button>
+            </div>
+        </div>
+
+        <!-- 表一：生产函数 -->
+        <section class="page-section mb-5" id="tab1">
+            <h2 class="mb-3">📊 表一：生产函数与稳态增长对比</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-dark">
+                        <tr><th>模型</th><th>生产函数</th><th>技术变迁类型</th><th>稳态增长率</th><th>是否内生</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td class="fw-bold">Arrow (1962)</td>
+                            <td>$x = r(G) - r(G')$</td>
+                            <td>体现型（嵌入资本品）</td>
+                            <td id="eq-g1">$\dot{G}/G = \alpha/(1-n)$</td>
+                            <td><span class="badge bg-success">✅ 完全内生</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Solow (1956/57)</td>
+                            <td>$Y = F(K, AL)$</td>
+                            <td>非体现型（外生 $A(t)$）</td>
+                            <td>$g^* = g$（外生）</td>
+                            <td><span class="badge bg-danger">❌ 完全外生</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Lucas (1988)</td>
+                            <td>$Y = AK^\alpha(hL)^{1-\alpha}$</td>
+                            <td>人力资本体现型</td>
+                            <td>$g^* = (1-\alpha)\mu^{1-\nu}u^{*1-\nu} - \delta$</td>
+                            <td><span class="badge bg-success">✅ 内生</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Romer (1990)</td>
+                            <td>$Y = H_Y^{1-\alpha}\int_0^A(A_iL_i)^\alpha di$</td>
+                            <td>非体现型（研发驱动）</td>
+                            <td>$g^* = \delta H_A/A$</td>
+                            <td><span class="badge bg-success">✅ 内生</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="alert alert-secondary small mt-3">
+                <strong>关键洞察：</strong>Arrow (1962) 是第一个用形式化模型证明"增长完全内生"的先驱。
+                Solow 模型中储蓄率不影响长期增长率（外生 $g$），而 Arrow 模型中 $\dot{G}/G = \alpha/(1-n)$ 完全由内生参数决定。
+            </div>
+        </section>
+
+        <!-- 表二：增长机制 -->
+        <section class="page-section mb-5" id="tab2">
+            <h2 class="mb-3">🔗 表二：知识累积机制与外部性对比</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-dark">
+                        <tr><th>模型</th><th>知识载体</th><th>累积渠道</th><th>外部性来源</th><th>外部性方向</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td class="fw-bold">Arrow (1962)</td>
+                            <td>体现于资本品的知识</td>
+                            <td>投资的副产品（干中学）</td>
+                            <td>投资的知识溢出</td>
+                            <td class="text-danger fw-bold">$r(G) &lt; A(G)$</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Solow (1956)</td>
+                            <td>技术指数 $A(t)$</td>
+                            <td>外生给定（无机制）</td>
+                            <td>无</td>
+                            <td>无</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Lucas (1988)</td>
+                            <td>人力资本（依附于人）</td>
+                            <td>学校教育 + 干中学（双轨）</td>
+                            <td>人力资本溢出</td>
+                            <td>私人 &lt; 社会</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Romer (1990)</td>
+                            <td>知识（想法，非竞争性）</td>
+                            <td>专门研发部门生产</td>
+                            <td>知识非竞争性</td>
+                            <td>私人 &lt; 社会</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 表三：市场失灵 -->
+        <section class="page-section mb-5" id="tab3">
+            <h2 class="mb-3">⚠️ 表三：市场失灵与政策含义对比</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-dark">
+                        <tr><th>模型</th><th>市场失灵类型</th><th>竞争性均衡</th><th>社会最优</th><th>政策含义</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+                            <td class="fw-bold">Arrow (1962)</td>
+                            <td>投资不足（知识溢出）</td>
+                            <td class="text-danger fw-bold">$W &lt; \gamma$</td>
+                            <td>$\gamma$（投资率）</td>
+                            <td>补贴 R&amp;D / 产业政策</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Solow (1956)</td>
+                            <td>无市场失灵</td>
+                            <td>$g^* = g$</td>
+                            <td>$g^* = g$</td>
+                            <td>无（储蓄率不影响增长率）</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Lucas (1988)</td>
+                            <td>人力资本投资不足</td>
+                            <td>$g_c &lt; g^*$</td>
+                            <td>$g^*$</td>
+                            <td>补贴教育 / 干中学激励</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Romer (1990)</td>
+                            <td>研发投入不足</td>
+                            <td>$g_c &lt; g^*$</td>
+                            <td>$g^*$</td>
+                            <td>专利保护 / 补贴研发</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 思想演进 -->
+        <section class="page-section">
+            <h2 class="mb-3">🧭 Arrow → Lucas → Romer：思想演进图</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center gap-3 p-3 border rounded-3">
+                            <div>
+                                <span class="badge bg-primary mb-1">Arrow (1962)</span>
+                                <p class="mb-0 small">干中学 = 投资驱动知识积累<br>外部性 = $r(G) &lt; A(G)$，$W &lt; \gamma$<br>规模效应 = 有</p>
+                            </div>
+                            <div class="ms-auto fs-4 text-muted">→</div>
+                            <div>
+                                <span class="badge bg-success mb-1">Lucas (1988)</span>
+                                <p class="mb-0 small">人力资本 = 学校教育 + 干中学（双轨）<br>外部性 = 人力资本溢出<br>规模效应 = 无</p>
+                            </div>
+                            <div class="ms-auto fs-4 text-muted">→</div>
+                            <div>
+                                <span class="badge bg-warning text-dark mb-1">Romer (1990)</span>
+                                <p class="mb-0 small">知识 = 研发部门专门生产<br>外部性 = 知识非竞争性<br>规模效应 = 正向（无限增长可能）</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning small mt-3 mb-0">
+                        <strong>关键演进：</strong>Arrow 的"干中学"是第一个内生技术变迁机制，但知识溢出是"附带的"（投资的副产品）。
+                        Lucas 将学习渠道显式化（学校+干中学），Romer 则将知识生产完全独立为专门部门。
+                        三者的共同点：都存在外部性导致的市场失灵，都支持产业政策。
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-dark text-center text-muted py-3 small">Arrow (1962) · 理论对比 · 仅供个人学术学习用途 · 2026-06-02</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        function applyTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            localStorage.setItem('a1962-t', t);
+            document.getElementById('themeBtn').textContent = t==='dark'?'☀️':'🌙';
+        }
+        var saved = localStorage.getItem('a1962-t') || 'light';
+        applyTheme(saved);
+        document.getElementById('themeBtn').onclick = function() { applyTheme(saved==='dark'?'light':'dark'); };
+        function showSection(id) {
+            document.querySelectorAll('[id^="tab"]').forEach(function(el) { el.style.display = ''; });
+            document.getElementById(id).scrollIntoView({behavior:'smooth'});
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, { delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}], throwOnError:false });
+        });
+    </script>
+</body>
+</html>

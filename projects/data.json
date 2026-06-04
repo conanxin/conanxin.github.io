@@ -356,5 +356,29 @@
       "学习导读",
       "经济学经典"
     ]
+  },
+  {
+    "title": "庞加莱回归",
+    "subtitle": "Poincaré Recurrence 交互式知识页",
+    "slug": "poincare-recurrence",
+    "category": "creative",
+    "type": "INTERACTIVE ESSAY",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-04",
+    "summary": "一个用有限状态、相空间、熵直觉和时间尺度计算器解释 Poincaré Recurrence 的交互式科普页面。",
+    "entry_url": "/projects/poincare-recurrence/",
+    "source_kind": "interactive-page",
+    "featured": true,
+    "tags": [
+      "物理",
+      "数学",
+      "交互",
+      "科普",
+      "时间",
+      "庞加莱回归",
+      "熵",
+      "热力学"
+    ]
   }
 ]

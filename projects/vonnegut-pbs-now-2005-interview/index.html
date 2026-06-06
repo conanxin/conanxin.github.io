@@ -447,7 +447,7 @@
        <span>📺</span>
         <span>PBS NOW · 2005年10月7日</span>
         <span class="w-1 h-1 bg-saddle/50 rounded-full"></span>
-        <span data-i18n="reair_date">纪念重播：2007年4月11日</span>
+        <span data-i18n="reair_date">2005年10月7日访谈 · 2007年4月纪念重发</span>
       </div>
       
       <!-- Main Title -->
@@ -494,7 +494,7 @@
           接下来的不是一场温和的回顾。冯内古特——德累斯顿轰炸的幸存者、二十世纪最大灾难的见证者——给出了他对二十一世纪的诊断：<em>我们已经杀死了这颗行星</em>。他朗读登山宝训，将其作为对现代基督教政治联盟的批判。他呼吁弹劾。他建议我们组建小帮派。
         </p>
         <p data-i18n="intro_p3">
-          2007年4月11日他去世后，PBS将这段对话作为纪念重播。你正在阅读的是那次采访的文字记录——保存在这里，作为一件文学文物，一份当伟大作家以特有的黑色幽默和人文主义清晰度向权力说真话时的录音记录。
+          2007年4月11日他去世后，PBS将这段对话作为纪念重播。你现在阅读的是2005年10月7日的原始访谈记录——保存在这里，作为一件文学文物，一份当伟大作家以特有的黑色幽默和人文主义清晰度向权力说真话时的录音记录。
         </p>
       </div>
     </div>
@@ -509,7 +509,7 @@
         <span id="transcript-title" data-i18n="transcript_title">采访全文</span>
       </h2>
       <div class="flex items-center gap-3">
-        <button onclick="exportNotes()" class="text-sm text-saddle hover:text-saddle/80 flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-saddle/5 transition-colors" title="Export Notes">
+        <button onclick="exportNotes()" class="text-sm text-saddle hover:text-saddle/80 flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-saddle/5 transition-colors" title="导出个人笔记为 Markdown 文件">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
           </svg>
@@ -546,6 +546,14 @@
         </button>
       </div>
       
+      <!-- Reading Mode -->
+      <div class="flex items-center gap-2" id="reading-mode-selector">
+        <span class="text-xs text-ink/50" data-i18n="reading_mode_label">阅读模式：</span>
+        <button onclick="setReadingMode('interview')" class="reading-mode-btn text-xs px-3 py-1 rounded-full border border-divider text-ink/70 hover:border-saddle hover:text-saddle transition-colors active" data-mode="interview" data-i18n="mode_interview">访谈</button>
+        <button onclick="setReadingMode('annotation')" class="reading-mode-btn text-xs px-3 py-1 rounded-full border border-divider text-ink/70 hover:border-saddle hover:text-saddle transition-colors" data-mode="annotation" data-i18n="mode_annotation">注释</button>
+        <button onclick="setReadingMode('study')" class="reading-mode-btn text-xs px-3 py-1 rounded-full border border-divider text-ink/70 hover:border-saddle hover:text-saddle transition-colors" data-mode="study" data-i18n="mode_study">研究</button>
+      </div>
+      
       <!-- Theme Filters -->
       <div class="theme-filters relative" id="theme-filters">
         <!-- Dynamically populated -->
@@ -560,9 +568,11 @@
     
     <!-- Load More -->
     <div id="load-more-container" class="hidden text-center py-8">
+      <p class="text-xs text-ink/40 mb-3" data-i18n="load_more_hint">采访全文较长，分段加载以提升阅读体验</p>
       <button onclick="loadMoreSegments()" class="px-6 py-2.5 border border-divider rounded-lg text-saddle hover:bg-saddle/5 transition-colors font-medium">
         <span data-i18n="btn_load_more">加载更多</span>
       </button>
+      <p class="text-xs text-ink/30 mt-2" data-i18n="load_more_loading">加载中…</p>
     </div>
     
   </section>
@@ -663,11 +673,11 @@
           </div>
           <div class="timeline-item pb-6 cursor-pointer hover:bg-saddle/5 rounded-lg px-4 -ml-4 transition-colors" onclick="highlightSegment('war_experience')">
             <span class="text-sm font-bold text-saddle">1944</span>
-            <p class="text-ink/90 mt-1">德累斯顿战俘营（2月13-14日）。幸存。</p>
+            <p class="text-ink/90 mt-1">应征入伍，被俘</p>
           </div>
           <div class="timeline-item pb-6 cursor-pointer hover:bg-saddle/5 rounded-lg px-4 -ml-4 transition-colors" onclick="highlightSegment('war_experience')">
             <span class="text-sm font-bold text-saddle">1945</span>
-            <p class="text-ink/90 mt-1">回国，开始写作生涯</p>
+            <p class="text-ink/90 mt-1">德累斯顿轰炸（2月13-14日）。幸存。</p>
           </div>
           <div class="timeline-item pb-6 cursor-pointer hover:bg-saddle/5 rounded-lg px-4 -ml-4 transition-colors" onclick="highlightSegment('uncle_alex_story')">
             <span class="text-sm font-bold text-saddle">1969</span>
@@ -732,14 +742,14 @@
                 <span class="text-saddle">→</span>
                 <div>
                   <p>PBS NOW 原始页面</p>
-                  <a href="https://www.pbs.org/now/transcript/transcriptNOW140_full.html" target="_blank" rel="noopener" class="text-sm text-saddle hover:underline">pbs.org/now</a>
+                  <a href="https://web.archive.org/web/20240601000000*/https://www.pbs.org/now/transcript/transcriptNOW140_full.html" target="_blank" rel="noopener" class="text-sm text-saddle hover:underline">pbs.org/now <span class="text-xs text-ink/40">[Archive]</span></a>
                 </div>
               </li>
               <li class="flex gap-3">
                 <span class="text-saddle">→</span>
                 <div>
                   <p>PBS 纪念特辑 (2007)</p>
-                  <a href="https://www.pbs.org/now/shows/2007-04-13.html" target="_blank" rel="noopener" class="text-sm text-saddle hover:underline">pbs.org/now</a>
+                  <a href="https://web.archive.org/web/2024/https://www.pbs.org/now/shows/2007-04-13.html" target="_blank" rel="noopener" class="text-sm text-saddle hover:underline">pbs.org/now <span class="text-xs text-ink/40">[Archive]</span></a>
                 </div>
               </li>
             </ul>
@@ -793,7 +803,7 @@
             （2005年10月21日存档），最初由PBS发布。
           </p>
           <p class="text-white/60 text-xs">
-            本页面为非商业数字保存项目。所有内容基于合理使用原则，用于教育和文学目的。
+            个人学习与文学阅读的数字整理项目。所有内容仅供研究参考。
           </p>
         </div>
         
@@ -1257,7 +1267,7 @@
       en: {
         tagline: '"If this isn\'t nice, what is?"',
         nav_transcript: 'Transcript', nav_extensions: 'Extensions', nav_resources: 'Resources',
-        reair_date: 'Tribute Re-airing: April 11, 2007',
+        reair_date: 'Oct 7, 2005 Interview \u00b7 Tribute Re-airing Apr 11, 2007',
         hero_title: 'Kurt Vonnegut', hero_subtitle: 'A Conversation with David Brancaccio',
         hero_quote: '"We\'ve killed the planet, the life support system. And it\'s so damaged that there\'s no recovery from that."',
         hero_quote_attr: '— Kurt Vonnegut, 2005',
@@ -1266,6 +1276,12 @@
         intro_p1: 'In October 2005, as the Iraq War dragged on and environmental warnings grew more urgent, PBS\'s NOW sat down with one of America\'s most beloved — and biting — literary voices. Kurt Vonnegut was 82, near the end of a career that had made him a cultural icon.',
         intro_p2: 'What followed was not a soft retrospective. Vonnegut — veteran of the Dresden bombing, survivor of the twentieth century\'s worst — offered his assessment of the twenty-first: we\'ve killed the planet. He read the Beatitudes as a rebuke to modern Christianity\'s political alliances. He called for impeachment. He suggested we form gangs.',
         intro_p3: 'After his death on April 11, 2007, PBS re-aired this conversation as a tribute. What you\'re reading is the transcript of that interview — preserved here as a literary artifact, a record of what it sounds like when a great writer speaks truth to power with characteristic dark humor and humanist clarity.',
+        load_more_hint: 'The full interview is long — loaded in sections for better reading experience',
+        load_more_loading: 'Loading…',
+        reading_mode_label: 'Reading mode:',
+        mode_interview: 'Interview',
+        mode_annotation: 'Annotation',
+        mode_study: 'Study',
         cta_read: 'Read the Transcript',
         transcript_title: 'The Interview Transcript',
         btn_export: 'Export', btn_print: 'Print',
@@ -1277,7 +1293,7 @@
       zh: {
         tagline: '"要不是这么美好，还有什么算是美好的？"',
         nav_transcript: '采访正文', nav_extensions: '扩展材料', nav_resources: '资源',
-        reair_date: '纪念重播：2007年4月11日',
+        reair_date: '2005年10月7日访谈 · 2007年4月纪念重发',
         hero_title: '库尔特·冯内古特', hero_subtitle: '与大卫·布兰卡乔的对话',
         hero_quote: '"我们已经杀死了这颗行星，这个生命维持系统。它已经被破坏得无法修复。"',
         hero_quote_attr: '— 库尔特·冯内古特，2005',
@@ -1286,6 +1302,12 @@
         intro_p1: '2005年10月，正当伊拉克战争持续、环境警告日益紧迫之际，PBS的《NOW》节目与一位美国最受爱戴——也最尖锐——的文学声音坐了下来。库尔特·冯内古特当时82岁，已接近其让他成为文化偶像的职业生涯的终点。',
         intro_p2: '接下来的不是一场温和的回顾。冯内古特——德累斯顿轰炸的幸存者、二十世纪最大灾难的见证者——给出了他对二十一世纪的诊断：我们已经杀死了这颗行星。他朗读登山宝训，将其作为对现代基督教政治联盟的批判。他呼吁弹劾。他建议我们组建小帮派。',
         intro_p3: '2007年4月11日他去世后，PBS将这段对话作为纪念重播。你正在阅读的是那次采访的文字记录——保存在这里，作为一件文学文物，一份当伟大作家以特有的黑色幽默和人文主义清晰度向权力说真话时的录音记录。',
+        load_more_hint: '采访全文较长，分段加载以提升阅读体验',
+        load_more_loading: '加载中…',
+        reading_mode_label: '阅读模式：',
+        mode_interview: '访谈',
+        mode_annotation: '注释',
+        mode_study: '研究',
         cta_read: '阅读采访全文',
         transcript_title: '采访全文',
         btn_export: '导出', btn_print: '打印',
@@ -1547,6 +1569,24 @@
     }
 
     function loadMoreSegments() { renderTranscript(); }
+
+    /* ==========================================
+       READING MODE
+       ========================================== */
+    let currentReadingMode = 'interview';
+    function setReadingMode(mode) {
+      currentReadingMode = mode;
+      document.querySelectorAll('.reading-mode-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+        btn.classList.toggle('border-saddle', btn.dataset.mode === mode);
+        btn.classList.toggle('text-saddle', btn.dataset.mode === mode);
+        btn.classList.toggle('border-divider', btn.dataset.mode !== mode);
+        btn.classList.toggle('text-ink/70', btn.dataset.mode !== mode);
+      });
+      // In annotation mode, hide non-quote/annotation segments initially
+      // In study mode, show all with context
+      renderTranscript();
+    }
 
     /* ==========================================
        SEARCH

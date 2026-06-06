@@ -1532,23 +1532,22 @@
       
       let html = '';
       
-      // Bilingual mode
+      // Bilingual mode: show speaker badge first, then side-by-side content
       if (currentLanguage === 'bilingual' && segment.zh_content) {
-        html += `<div class="bilingual-container mb-4">`;
+        html += `<div class="mb-3"><span class="${speakerClass}">${speakerLabel}</span></div>`;
+        html += `<div class="bilingual-container">`;
         html += `<div class="bilingual-en"><div class="lang-label">English</div><p class="text-ink/90 leading-relaxed">${segment.content.replace(/\n/g, '<br>')}</p></div>`;
         html += `<div class="bilingual-zh"><div class="lang-label">中文</div><p class="text-ink/90 leading-relaxed">${segment.zh_content.replace(/\n/g, '<br>')}</p></div>`;
         html += `</div>`;
       } else {
+        // Normal/EN/ZH mode: speaker ALWAYS first, then content
         html += `<div class="mb-3"><span class="${speakerClass}">${speakerLabel}</span></div>`;
-        html += `<p class="text-ink/90 leading-relaxed ${segment.type === 'quote' ? 'italic' : ''}">${content}</p>`;
-      }
-      
-      // Pull quote styling
-      if (segment.pullquote && currentLanguage !== 'bilingual') {
-        div.classList.add('relative');
-        const quoteContent = currentLanguage === 'zh' ? (segment.zh_content || '') : segment.content;
-        html = `<div class="pullquote"><p class="text-lg text-ink">${quoteContent.replace(/\n/g, '<br>')}</p></div>`;
-        html += `<div class="mb-3 mt-4"><span class="${speakerClass}">${speakerLabel}</span></div>`;
+        if (segment.pullquote) {
+          div.classList.add('relative');
+          html += `<div class="pullquote"><p class="text-lg text-ink">${content}</p></div>`;
+        } else {
+          html += `<p class="text-ink/90 leading-relaxed ${segment.type === 'quote' ? 'italic' : ''}">${content}</p>`;
+        }
       }
       
       // Annotation button

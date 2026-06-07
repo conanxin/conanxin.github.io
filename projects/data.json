@@ -403,5 +403,27 @@
       "programming as theory building",
       "中文译文"
     ]
+  },
+  {
+    "title": "If This Isn't Nice",
+    "subtitle": "Kurt Vonnegut PBS NOW 2005 Interview",
+    "slug": "vonnegut-pbs-now-2005-interview",
+    "category": "creative",
+    "type": "INTERACTIVE LITERARY PAGE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-07",
+    "summary": "库尔特·冯内古特 2005 年 PBS NOW 访谈的双语文学生态网页，含英文/中文/双语三种阅读模式、主题导航、交互注释、引用卡片、个人笔记与键盘快捷键。",
+    "entry_url": "/projects/vonnegut-pbs-now-2005-interview/",
+    "source_kind": "interactive",
+    "featured": true,
+    "tags": [
+      "Kurt Vonnegut",
+      "literature",
+      "interview",
+      "PBS",
+      "bilingual",
+      "vonnegut"
+    ]
   }
 ]

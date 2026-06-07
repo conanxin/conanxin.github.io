@@ -169,43 +169,54 @@
     /* ===== TRANSCRIPT TURN SYSTEM — Literary Interview Flow ===== */
     .turn {
       max-width: 820px;
-      margin: 0 auto 1.1rem;
-      padding: 0.9rem 1.1rem 1rem;
-      border-radius: 12px;
+      margin: 0 auto;
+      padding: 0.85rem 1.1rem 0.95rem;
+      border-radius: 14px;
       border: 1px solid rgba(80, 60, 30, 0.07);
-      transition: background-color 0.2s ease;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
     }
     .turn:hover { background-color: rgba(255, 252, 246, 0.72); }
     .turn.highlighted { background-color: rgba(255, 235, 205, 0.85) !important; }
     
-    /* Question — lighter, journalist */
+    /* Question — lighter, journalist, narrow, left-aligned */
     .turn-question {
-      background: rgba(248, 250, 246, 0.78);
-      border-left: 3px solid rgba(60, 100, 90, 0.35);
+      max-width: 74%;
+      margin-left: 0;
+      margin-right: auto;
+      margin-bottom: 0.6rem;
+      background: rgba(246, 250, 247, 0.95);
+      border: 1px solid rgba(53, 95, 84, 0.14);
+      box-shadow: 0 2px 10px rgba(53, 95, 84, 0.03);
     }
-    .turn-question .turn-meta { margin-bottom: 0.6rem; }
+    .turn-question .turn-meta { margin-bottom: 0.55rem; }
     .turn-question .turn-content {
-      font-size: 1.02rem;
-      line-height: 1.82;
+      font-size: 1.01rem;
+      line-height: 1.78;
       color: #344a5a;
     }
+    .turn-question .turn-content p { margin: 0; }
     .turn-question .speaker-badge {
-      background: rgba(60, 100, 90, 0.12);
+      background: rgba(53, 95, 84, 0.12);
       color: #355f54;
     }
     
-    /* Answer — heavier, Vonnegut */
+    /* Answer — heavier, Vonnegut, wider, slightly indented */
     .turn-answer {
-      background: rgba(255, 251, 244, 0.88);
-      border-left: 3px solid rgba(139, 69, 19, 0.3);
+      max-width: 88%;
+      margin-left: 38px;
+      margin-right: auto;
+      margin-bottom: 1.05rem;
+      background: rgba(255, 251, 244, 0.98);
+      border: 1px solid rgba(139, 69, 19, 0.12);
+      box-shadow: 0 4px 16px rgba(139, 69, 19, 0.04);
     }
-    .turn-answer .turn-meta { margin-bottom: 0.75rem; }
+    .turn-answer .turn-meta { margin-bottom: 0.7rem; }
     .turn-answer .turn-content {
       font-size: 1.1rem;
       line-height: 1.96;
       color: #273142;
     }
-    .turn-answer .turn-content p { margin: 0 0 0.85rem; }
+    .turn-answer .turn-content p { margin: 0 0 0.8rem; }
     .turn-answer .turn-content p:last-child { margin-bottom: 0; }
     .turn-answer .speaker-badge {
       background: rgba(139, 69, 19, 0.12);
@@ -232,7 +243,7 @@
     
     /* Subtle turn-tools footer */
     .turn-tools {
-      margin-top: 0.75rem;
+      margin-top: 0.7rem;
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
@@ -245,6 +256,43 @@
       border-radius: 7px;
       background: rgba(0,0,0,0.04);
       color: rgba(39, 49, 66, 0.55);
+    }
+    .turn-tool-btn {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 7px;
+      color: rgba(139, 69, 19, 0.65);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .turn-tool-btn:hover {
+      background: rgba(139, 69, 19, 0.08);
+      color: #8b4513;
+      opacity: 1;
+    }
+    
+    /* ===== MOBILE: collapse offset, keep colour + size diff only ===== */
+    @media (max-width: 768px) {
+      .turn-question,
+      .turn-answer {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0.85rem;
+      }
+      .turn-question .turn-content {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+      .turn-answer .turn-content {
+        font-size: 1.05rem;
+        line-height: 1.88;
+      }
     }
     .turn-tool-btn {
       font-size: 0.72rem;

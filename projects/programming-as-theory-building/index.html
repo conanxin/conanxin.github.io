@@ -36,61 +36,98 @@ button.btn-outline:hover{background:rgba(255,255,255,0.15)}
 .setting-bar label{cursor:pointer;margin-right:16px}
 .setting-bar input[type=checkbox]{accent-color:#3d5a4c;margin-right:4px}
 .sec{border-bottom:1px solid #e8e4dc;padding:30px 0}
+
+/* ── Section mode controls ── */
+.mode-bar{display:flex;gap:3px;margin-bottom:14px}
+.mode-btn{padding:4px 11px;font-size:11px;background:#f4f1ec;border:1px solid #ddd;color:#777;border-radius:4px}
+.mode-btn.active,.mode-btn.active:hover{background:#3d5a4c;color:#fff;border-color:#3d5a4c}
+.mode-btn:hover:not(.active){background:#e8e4dc}
+.toggle-btn{font-size:11px;padding:3px 9px;background:transparent;border:1px solid #ddd;color:#888}
+.toggle-btn:hover{background:#e0ddd5}
+
+/* ── Guide & Analysis ── */
+.t-guide,.t-analysis{margin-bottom:14px;border-radius:6px;padding:14px 16px;display:none!important}
+.t-guide.open,.t-analysis.open{display:block!important}
+.t-guide{background:#f0f7f4;border:1px solid #c8ddd2}
+.t-analysis{background:#f5f0f7;border:1px solid #d8c8e0}
+.t-guide-hdr{font-size:11px;font-weight:700;color:#3d5a4c;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.t-analysis-hdr{font-size:11px;font-weight:700;color:#7a5a8c;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.t-guide p,.t-analysis p{font-size:13px;color:#444;line-height:1.75;margin-bottom:6px}
+.t-guide ul,.t-analysis ul{margin:6px 0 6px 18px}
+.t-guide li,.t-analysis li{font-size:13px;color:#444;line-height:1.7}
+.t-guide strong,.t-analysis strong{font-weight:600}
+.t-guide strong{color:#3d5a4c}
+.t-analysis strong{color:#7a5a8c}
+
+/* ── Paragraphs ── */
+.para{position:relative;margin-bottom:12px;padding:9px 12px;border-radius:5px;line-height:1.85;font-size:15px;color:#2a2a2a;transition:background .12s}
+.para:hover{background:#f4f1ec}
+/* PID: completely removed from text flow, hidden by default */
+.para .pid{
+  position:absolute;left:-1px;top:50%;transform:translateY(-50%);
+  font-size:10px;font-family:monospace;color:#ccc;
+  opacity:0;z-index:0;pointer-events:none;
+  background:none;border:none;padding:0;
+  /* No display:xxx here - use opacity for invisible-but-not-display:none */
+}
+/* Show PID on paragraph hover (only then it becomes visible) */
+.para:hover .pid{opacity:1;color:#aaa}
+.para .p-text{display:block}
+/* Copy button: invisible until para hover */
+.para .p-copy{
+  position:absolute;right:8px;top:8px;
+  opacity:0;font-size:10px;padding:2px 7px;
+  background:#ddd;color:#666;border:none;border-radius:3px;
+  transition:opacity .12s;
+}
+.para:hover .p-copy{opacity:1}
+
+/* ── Section header ── */
 .sec-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .sec-title{font-size:1.2em;color:#3d5a4c;font-family:Georgia,serif;margin:0}
 .sec-title .en{font-size:11px;color:#aaa;font-weight:normal;margin-left:7px;font-family:inherit}
 .sec-num{font-size:11px;color:#bbb;margin-right:8px}
-.toggle-btn{font-size:11px;padding:3px 9px;background:transparent;border:1px solid #ddd;color:#888}
-.toggle-btn:hover{background:#e0ddd5}
-.mode-bar{display:flex;gap:3px;margin-bottom:14px}
-.mode-btn{padding:4px 11px;font-size:11px;background:#f4f1ec;border:1px solid #ddd;color:#777;border-radius:4px}
-.mode-btn.active{background:#3d5a4c;color:#fff;border-color:#3d5a4c}
-.mode-btn:hover:not(.active){background:#e8e4dc}
-.t-guide{background:#f0f7f4;border:1px solid #c8ddd2;border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none}
-.t-guide.open{display:block}
-.t-guide-hdr{font-size:11px;font-weight:700;color:#3d5a4c;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.t-guide p{font-size:13px;color:#444;line-height:1.75;margin-bottom:6px}
-.t-guide ul{margin:6px 0 6px 18px}
-.t-guide li{font-size:13px;color:#444;line-height:1.7}
-.t-guide strong{color:#3d5a4c}
-.t-analysis{background:#f5f0f7;border:1px solid #d8c8e0;border-radius:6px;padding:14px 16px;margin-bottom:14px;display:none}
-.t-analysis.open{display:block}
-.t-analysis-hdr{font-size:11px;font-weight:700;color:#7a5a8c;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.t-analysis p{font-size:13px;color:#444;line-height:1.75;margin-bottom:6px}
-.t-analysis ul{margin:6px 0 6px 18px}
-.t-analysis li{font-size:13px;color:#444;line-height:1.7}
-.t-analysis strong{color:#7a5a8c}
-.para{position:relative;margin-bottom:12px;padding:9px 12px;border-radius:5px;line-height:1.85;font-size:15px;color:#2a2a2a;transition:background .12s}
-.para:hover{background:#f4f1ec}
-.para .pid{font-size:10px;font-family:monospace;color:#ccc;margin-right:7px;display:none;cursor:default;user-select:none}
-.para:hover .pid{display:inline;color:#aaa}
-.para .p-copy{position:absolute;right:8px;top:8px;opacity:0;font-size:10px;padding:2px 7px;background:#ddd;color:#666;border:none;border-radius:3px;transition:opacity .12s}
-.para:hover .p-copy{opacity:1}
+
+/* ── Cards / Grid ── */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:18px}
 .card h3{color:#3d5a4c;margin-bottom:7px;font-size:.95em}
 .card p{font-size:13px;color:#555;line-height:1.65}
+.card p a{color:#3d5a4c}
+.card p a:hover{text-decoration:underline}
+
+/* ── Prompt blocks ── */
 .prompt-block{background:#f4f1ec;border:1px solid #e0ddd5;border-radius:6px;padding:15px;margin-bottom:12px;position:relative}
 .prompt-block .pt{font-size:12px;font-weight:600;color:#3d5a4c;margin-bottom:8px}
 .prompt-block pre{white-space:pre-wrap;font-size:12px;line-height:1.65;color:#333}
 .prompt-block .copy-p{position:absolute;top:12px;right:12px;font-size:11px}
+
+/* ── Naur questions ── */
 .naur-q{background:linear-gradient(135deg,#2f453a,#3d5a4c);padding:32px;border-radius:8px;color:#fff;margin:24px 0}
 .naur-q h2{font-size:1.2em;margin-bottom:16px;text-align:center}
 .q-list{display:grid;gap:10px}
 .q-item{background:rgba(255,255,255,0.1);border-radius:6px;padding:16px 20px;font-size:1em}
+
+/* ── Checklist ── */
 .checklist{list-style:none;padding:0}
 .checklist li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:9px;font-size:14px}
 .checklist li:last-child{border-bottom:none}
 input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
+
+/* ── Background grid ── */
 .bg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .bg-card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:20px}
 .bg-card h3{color:#3d5a4c;margin-bottom:9px;font-size:.95em}
 .bg-card p{font-size:13px;color:#444;line-height:1.75}
+
+/* ── Glossary ── */
 .glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
 .glossary-item{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:12px}
 .glossary-item .en{font-size:10px;color:#3d5a4c;font-family:Georgia,serif;margin-bottom:2px}
 .glossary-item .zh{font-size:1em;font-weight:600;margin-bottom:5px}
 .glossary-item .def{font-size:12px;color:#555;line-height:1.6}
+
+/* ── Search ── */
 .search-wrap{position:relative;max-width:360px;margin:0 auto 14px}
 .search-input{width:100%;padding:8px 13px 8px 35px;border:1.5px solid #e0ddd5;border-radius:6px;font-size:14px;background:#fff;color:#333}
 .search-input:focus{outline:none;border-color:#3d5a4c}
@@ -100,27 +137,52 @@ input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
 .sr-item{padding:9px 13px;border-bottom:1px solid #eee;cursor:pointer;font-size:13px;color:#444}
 .sr-item:last-child{border-bottom:none}
 .sr-item:hover{background:#f4f1ec}
+
+/* ── Footer ── */
 .footer{background:#2f453a;color:rgba(255,255,255,0.7);padding:30px 0;margin-top:40px}
 .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px}
 .footer h4{color:#fff;margin-bottom:9px;font-size:12px;text-transform:uppercase;letter-spacing:1px}
 .footer p,.footer a{font-size:13px;line-height:1.7;color:rgba(255,255,255,0.65)}
 .footer a:hover{color:#fff}
 .footer-bottom{text-align:center;padding-top:18px;margin-top:18px;border-top:1px solid rgba(255,255,255,0.12);font-size:11px}
+
+/* ── Fixed UI ── */
 .back-to-top{position:fixed;bottom:24px;right:24px;width:38px;height:38px;background:#3d5a4c;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 3px 12px rgba(0,0,0,0.12);opacity:0;transition:opacity .25s;cursor:pointer;border:none}
 .back-to-top.visible{opacity:1}
 .theme-btn{position:fixed;top:16px;right:16px;background:#fff;border:1px solid #e0ddd5;border-radius:50%;width:35px;height:35px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;z-index:100}
 #progressBar{position:fixed;top:0;left:0;height:3px;background:#c9a227;z-index:200;width:0;transition:width .08s}
-@media(max-width:768px){.layout{flex-direction:column}.sidenav{width:100%;height:auto;position:static;border-right:none;border-bottom:1px solid #e0ddd5}.hero h1{font-size:1.7em}.main{padding:0 12px}.overview-grid,.card-grid,.bg-grid,.glossary-grid{grid-template-columns:1fr}}
+
+/* ── Paper section ── */
+.paper-section{margin-bottom:8px}
+
+/* ── References ── */
+.ref-card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:14px 16px}
+.ref-card p{font-size:13px;color:#444;line-height:1.65}
+.ref-card p a{color:#3d5a4c}
+.ref-card p a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+.layout{flex-direction:column}
+.sidenav{width:100%;height:auto;position:static;border-right:none;border-bottom:1px solid #e0ddd5}
+.hero h1{font-size:1.7em}
+.main{padding:0 12px}
+.overview-grid,.card-grid,.bg-grid,.glossary-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div id="progressBar"></div>
 <button class="theme-btn" onclick="toggleTheme()">☀</button>
+
+<!-- Hero -->
 <div class="hero">
 <div class="wrapper">
 <h1>编程作为理论建构</h1>
 <p class="sub">Peter Naur《Programming as Theory Building》完整中文译文与交互式导读</p>
-<div class="tags"><span class="tag">1985</span><span class="tag">软件工程</span><span class="tag">理论建构</span><span class="tag">AI编程</span><span class="tag">项目理论</span></div>
+<div class="tags">
+<span class="tag">1985</span><span class="tag">软件工程</span><span class="tag">理论建构</span>
+<span class="tag">AI编程</span><span class="tag">项目理论</span>
+</div>
 <div class="btn-row">
 <button class="btn-primary" onclick="document.getElementById('sec-introduction').scrollIntoView({behavior:'smooth'})">开始阅读</button>
 <button class="btn-secondary" onclick="document.querySelector('.naur-q').scrollIntoView({behavior:'smooth'})">核心观点</button>
@@ -128,6 +190,8 @@ input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
 </div>
 </div>
 </div>
+
+<!-- Overview -->
 <div class="wrapper">
 <div class="overview-grid">
 <div class="ov-card"><h3>作者</h3><p>Peter Naur<br>丹麦计算机科学家<br>2005年 ACM Turing Award</p></div>
@@ -136,110 +200,142 @@ input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
 <div class="ov-card"><h3>对 AI 编程</h3><p>AI agent 编程必须以人持有理论为前提；每个修改必须形成设计理由。</p></div>
 </div>
 </div>
+
+<!-- Reading settings bar -->
 <div class="setting-bar">
 <div class="wrapper">
-<label><input type="checkbox" id="pidToggle" onchange="updatePIDVisibility(this.checked)">显示段落编号（如 PTB-XXX-PXX）</label>
-<small style="color:#aaa">段落编号用于引用和复制，默认隐藏；可在阅读设置中打开。</small>
+<label>
+<input type="checkbox" id="pidToggle" onchange="updatePIDVisibility(this.checked)">
+显示段落编号（如 PTB-XXX-PXX 格式，用于引用和复制）
+</label>
+<small style="color:#aaa">段落编号默认隐藏，hover 段落时短暂显示；打开此开关则永久显示。</small>
 </div>
 </div>
+
+<!-- Search -->
 <div style="text-align:center;padding:14px 20px 0">
-<div class="search-wrap"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜索论文内容..."></div>
+<div class="search-wrap">
+<span class="search-icon">🔍</span>
+<input type="text" class="search-input" placeholder="搜索论文内容...">
+</div>
 <div id="searchResults"></div>
 </div>
+
+<!-- Main content -->
 <div class="wrapper" style="padding:20px 20px 36px">
 <div class="layout">
 <nav class="sidenav"><h2>论文章节</h2><ul><li><a href="#sec-introduction"><span class="n">01</span>引言</a></li><li><a href="#sec-programming_and_programmers_knowledge"><span class="n">02</span>编程与程序员的知识</a></li><li><a href="#sec-ryles_notion_of_theory"><span class="n">03</span>赖尔的理论概念</a></li><li><a href="#sec-theory_to_be_built"><span class="n">04</span>程序员须建构的理论</a></li><li><a href="#sec-problems_and_costs"><span class="n">05</span>程序修改的问题与代价</a></li><li><a href="#sec-program_life_death_revival"><span class="n">06</span>程序生命、死亡与复活</a></li><li><a href="#sec-method_and_theory_building"><span class="n">07</span>方法与理论建构</a></li><li><a href="#sec-programmers_status"><span class="n">08</span>程序员的专业地位与理论建构观</a></li><li><a href="#sec-conclusions"><span class="n">09</span>结论</a></li><li><a href="#sec-appendix"><span class="n">10</span>附录：应用"理论建构"观</a></li></ul></nav>
 <main class="main">
-<section class="paper-section" id="sec-introduction" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">01</span>引言<span class="en">/ Introduction</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节揭示 Naur 的核心立场：编程不是生产程序文本，而是建构理论。引出"生产观"的典型特征，为后文批判奠定基础。</p><p><strong>关键词：</strong>理论建构观、生产观、程序文本、程序员知识</p><p><strong>阅读提示：</strong>注意 Naur 如何从实际观察入手，而非从定义入手。</p></div><div class="para" id="PTB-INTRO-P01" data-pid="PTB-INTRO-P01"><span class="pid">PTB-INTRO-P01</span><span class="p-text">本文的讨论旨在促进对编程本质的理解。它提出，编程应当被恰当地视为一种活动，通过这种活动，程序员形成或获得某种特定的洞见——即关于所处理事务的理论。这一建议与一种更为流行的观念形成对照，那种观念认为编程应当被看作程序文本以及某些其他文本的生产。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P02" data-pid="PTB-INTRO-P02"><span class="pid">PTB-INTRO-P02</span><span class="p-text">本文所呈现观点的某些背景，可以在对程序实际状况以及程序员团队处理这些程序时所发生之事的观察中找到，尤其是在由意外或错误的程序执行或反应所引发的情境中，以及在对程序进行修改时。这些观察难以被纳入编程的生产观框架，这表明生产观具有误导性。理论建构观作为替代方案被提出。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P03" data-pid="PTB-INTRO-P03"><span class="pid">PTB-INTRO-P03</span><span class="p-text">本阐述更为一般的背景在于一种信念：对编程的本质持有恰当的理解至关重要。如果我们的理解不恰当，我们就会误解活动中出现的困难，而我们克服这些困难的尝试将会引发冲突和挫折。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P04" data-pid="PTB-INTRO-P04"><span class="pid">PTB-INTRO-P04</span><span class="p-text">编辑按：本文作者彼得·诺尔（Peter Naur）作为编程语言语法表示法"巴科斯-诺尔范式"（BNF）的作者之一而广为人知。他于1985年撰写了《编程作为理论建构》一文，后收录于其文集《计算：一项人类活动》（Naur 1992）中。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P05" data-pid="PTB-INTRO-P05"><span class="pid">PTB-INTRO-P05</span><span class="p-text">编辑按：在我看来，本文对程序设计和编码过程中实际发生的事情作出了最为准确的描述。我在讨论需要创建多少文档、如何传递隐性知识，以及极限编程（XP）中隐喻设定练习的价值时，都会经常引用它。本文还提供了一种审视方法论经济结构的方法。在下面的文章中，请注意设计程序员的工作质量与他对问题的理论和对解决方案的理论之间的匹配质量有关。请注意后续程序员的工作质量与他们的理论与先前程序员的理论之间的匹配程度有关。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P06" data-pid="PTB-INTRO-P06"><span class="pid">PTB-INTRO-P06</span><span class="p-text">编辑按：运用诺尔的理念，设计师的任务不是传递"设计"本身，而是传递驱动设计的"理论"。后一个目标更为有用，也更为恰当。它还凸显了知识在拥有者那里是隐性的，因此传递理论需要同时传递显性知识和隐性知识。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P07" data-pid="PTB-INTRO-P07"><span class="pid">PTB-INTRO-P07</span><span class="p-text">编辑按：以下就是彼得·诺尔本人的阐述。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-INTRO-P08" data-pid="PTB-INTRO-P08"><span class="pid">PTB-INTRO-P08</span><span class="p-text">在本文的讨论中，首先将概述一些关键的背景经验。随后是对编程本质的理论解释，即理论建构观。接下来的各节将探讨理论建构观的某些后果。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>编程的首要成果是程序员头脑中的理论，程序文本只是理论的外部表现。</p><p><strong>对软件工程的含义：</strong>软件工程不能被还原为"生产活动"；程序员不是流水线工人。</p><p><strong>对 AI 编程的启发：</strong>AI 可以生成程序文本，但无法替代人建构理论。AI agent 的每一次修改，都必须以人持有理论为前提。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-programming_and_programmers_knowledge" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">02</span>编程与程序员的知识<span class="en">/ Programming and the Programmers' Knowledge</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>通过两个真实案例（A组/B组编译器团队、安装和故障诊断程序员）说明：完整文档不足以传递深层设计理论。</p><p><strong>案例1：</strong>B组拿到完整文档仍需要A组的个人咨询。</p><p><strong>案例2：</strong>现场程序员依赖即时知识和注释文本解决问题。</p></div><div class="para" id="PTB-PROG-P01" data-pid="PTB-PROG-P01"><span class="pid">PTB-PROG-P01</span><span class="p-text">我将用"编程"一词来指代设计和实现程序化解方案的整个活动。我所关注的是这样一种活动：将现实世界中某项活动的某个重要部分和方面，与计算机上运行的程序所能进行的形式符号操作相匹配。基于这样的概念，我所讨论的编程活动必须包含随时间发展的过程，即对应于程序执行所匹配的现实世界活动中发生的变化，换言之，程序修改。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P02" data-pid="PTB-PROG-P02"><span class="pid">PTB-PROG-P02</span><span class="p-text">我要阐述的主要观点可以这样表述：在这种意义上的编程，首先必须是程序员建构某种特定知识的活动，这种知识基本上被视为程序员直接拥有的知识，而任何文档只是辅助性的、次要的产品。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P03" data-pid="PTB-PROG-P03"><span class="pid">PTB-PROG-P03</span><span class="p-text">作为下文进一步阐述这一观点的背景，本节剩余部分将描述一些我在思考这些问题时越来越觉得意义重大的、处理大型程序的实际经验。这些经验要么是我本人的，要么是由与所涉活动有直接接触的人传达给我的。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P04" data-pid="PTB-PROG-P04"><span class="pid">PTB-PROG-P04</span><span class="p-text">案例1涉及一个编译器。它由A组为语言L开发，在计算机X上运行良好。现在B组需要为语言L + M（L的扩展版本）在计算机Y上开发编译器。B组认为A组开发的L语言编译器是一个很好的设计起点，于是与A组签订合同，以获取全面的文档支持，包括带有注释的程序文本和大量额外的书面设计讨论，以及个人咨询。这一安排是有效的，B组成功开发出了他们所需的编译器。在本文的语境中，关键问题在于A组在涉及如何将扩展M纳入语言实现的问题上所提供的个人咨询的重要性。在设计阶段，B组就扩展方式提出建议，并提交A组审核。在几个重要案例中，B组提出的方案被A组发现未能利用现有编译器结构中固有的、且在文档中详尽讨论过的设施，而是基于以补丁形式对该结构进行补充，这实际上破坏了其能力和简洁性。A组成员能够立即发现这些问题，并能提出完全在现有结构框架内的简单有效的解决方案。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P05" data-pid="PTB-PROG-P05"><span class="pid">PTB-PROG-P05</span><span class="p-text">这个案例表明，即使对于高度积极的B组而言，完整的程序文本和附加文档也不足以传递更深层的、对设计的洞见——即A组成员即时掌握的理论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P06" data-pid="PTB-PROG-P06"><span class="pid">PTB-PROG-P06</span><span class="p-text">在这些事件发生后的若干年里，B组开发的编译器被同一组织的其他程序员接管，没有A组的指导。A组一位成员在约10年后获得的关于该编译器进一步修改的信息表明，在那一阶段，原始的强大结构仍然可见，但被各种无定形的增补完全削弱了效力。因此，程序文本及其文档再次证明不足以承载某些最重要的设计思想。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P07" data-pid="PTB-PROG-P07"><span class="pid">PTB-PROG-P07</span><span class="p-text">案例2涉及一个大型实时系统的安装和故障诊断，该系统用于监控工业生产活动。该系统的生产商逐次交付系统，每次交付都针对其特定的传感器和显示设备环境进行单独适配。每次安装交付的程序规模约为20万行。与此类系统处理方式相关的经验涉及安装和故障诊断程序员团队的工作角色和方式。事实是：首先，这些程序员从系统设计阶段起就以全职方式密切参与该系统，历时数年。其次，在诊断故障时，这些程序员几乎完全依赖他们对系统的即时知识以及带有注释的程序文本，无法想象任何对他们有用的额外文档。第三，其他负责特定系统安装运营的程序员团队，会从生产商人员那里获得系统文档和全面的使用指导，但经常遇到被追溯到对现有文档理解不足的问题；而这些问题在与生产商的安装和故障诊断程序员咨询后都能轻易解决。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROG-P08" data-pid="PTB-PROG-P08"><span class="pid">PTB-PROG-P08</span><span class="p-text">结论似乎不可避免：至少对于某些类型的大型程序而言，对其进行持续的适配、修改和错误修正，本质上依赖于由与之保持密切持续联系的程序员团队所掌握的某种特定知识。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的知识在三个本质领域超越文档：①现实世界事务映射；② 理由说明；③ 建设性回应修改。</p><p><strong>对软件工程的含义：</strong>知识管理不能只靠文档；团队需要保持密切持续的联系。</p><p><strong>对 AI 编程的启发：</strong>AI agent 需要"知道"什么？仅仅知道代码不够，必须知道为什么这样设计。当前 AI 的局限在于无法传递案例2中那种即时知识。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-ryles_notion_of_theory" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">03</span>赖尔的理论概念<span class="en">/ Ryle's Notion of Theory</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>Naur 借用 Ryle 的"理论"概念——不是命题性知识（knowing-that），而是实践能力（knowing-how）。</p><p><strong>Ryle 的区分：</strong></p><ul><li>knowing-that：知道某个事实，可以写成规则</li><li>knowing-how：知道如何做，体现为行动能力</li></ul><p><strong>理论的三要素：</strong>能做某事 + 能解释 + 能论证</p></div><div class="para" id="PTB-RYLE-P01" data-pid="PTB-RYLE-P01"><span class="pid">PTB-RYLE-P01</span><span class="p-text">如果承认编程必须包含、并且作为核心部分包含程序员知识的建构，那么下一个问题就是要更精确地刻画这种知识。这里将考虑这样一种建议：程序员的知识应当被恰当地视为一种理论，按照赖尔（Ryle）[1949]的意义。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P02" data-pid="PTB-RYLE-P02"><span class="pid">PTB-RYLE-P02</span><span class="p-text">简要地说，一个拥有或掌握理论（在此意义上）的人知道如何做某些事情，此外还能在实际操作的同时提供解释、理由说明和回答相关问题。可以注意到，赖尔的理论概念作为卡尔·波普尔（K. Popper）与埃克尔斯（Eccles, 1977）所说的"非实体化的世界3对象"的一个例子，具有可辩护的哲学地位。在本节中，我们将更详细地描述赖尔的理论概念。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P03" data-pid="PTB-RYLE-P03"><span class="pid">PTB-RYLE-P03</span><span class="p-text">赖尔（1949）将他的理论概念作为智力活动本质分析的一部分来发展，尤其是智力活动与仅仅是智能的活动之间有何不同、以及智力活动如何超越仅仅是智能的活动。在智能行为中，人展现的并非任何特定的关于事实的知识，而是做某些事情的能力，例如制造和欣赏笑话、合乎语法地说话、或者布置家具。更具体地说，智能行为的特点部分在于人按照某些标准把事情做得很好，但更进一步展现的是人能够应用这些标准来检测和纠正失误、从他人的例子中学习，等等。可以注意到，这种智能概念并不依赖于任何关于智能行为取决于遵循规则、规范或方法的观点。相反，遵守规则这一行为本身就可以做得更智能或更不智能；如果智能的运用取决于遵循规则，那么就必须有关于如何遵循规则的规则、关于如何遵循遵循规则的规则的规则，等等，从而陷入无限倒退，这是荒谬的。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P04" data-pid="PTB-RYLE-P04"><span class="pid">PTB-RYLE-P04</span><span class="p-text">超越仅仅是智能的活动，智力活动的特征在于人建构并持有一种理论，其中理论体现为知道如何做某些事情，并且必须具备为解释、回答关于该活动的质询、就此进行论证等能力。一个拥有理论的人准备好参与此类活动；而在建构理论的过程中，人正在努力获得这种理论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P05" data-pid="PTB-RYLE-P05"><span class="pid">PTB-RYLE-P05</span><span class="p-text">这里使用的理论概念不仅适用于专业研究领域中的复杂构造，同样适用于任何受过教育的人在某些场合会参与的活动。即便是日常生活中相当寻常的活动也可能引发人们的理论化，例如规划如何摆放家具，或如何通过某种交通工具到达某地。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P06" data-pid="PTB-RYLE-P06"><span class="pid">PTB-RYLE-P06</span><span class="p-text">这里所采用的赖尔理论概念，明确不限于所谓的最一般或最抽象层面的洞见。例如，按照这里的理解，拥有牛顿力学理论并不仅仅意味着理解中心定律，例如力等于质量乘以加速度。此外，正如库恩（Kuhn, 1970, p. 187ff）更详细地描述的那样，拥有该理论的人必须理解中心定律以何种方式适用于现实的某些方面，从而能够识别并将该理论应用于其他相似的方面。一个拥有牛顿力学理论的人必须理解它如何应用于钟摆和行星的运动，并且必须能够在世界中识别类似现象，以便恰当地运用该理论的数学规则。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-RYLE-P07" data-pid="PTB-RYLE-P07"><span class="pid">PTB-RYLE-P07</span><span class="p-text">理论依赖于对现实世界中情境与事件之间的某些相似性的把握，这解释了为什么拥有理论的人所持有的知识原则上无法以规则的形式来表达。事实上，所讨论的相似性不能以、也无法以标准来表达，正如人脸、曲调或葡萄酒味道等许多其他类型对象的相似性也无法以标准来表达一样。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的理论本质上是 knowing-how——一种实践性的、不可完全言说的知识。</p><p><strong>对软件工程的含义：</strong>形式化方法无法完全捕获"知道如何做"；编程教育不能只教规则，必须培养判断力。</p><p><strong>对 AI 编程的启发：</strong>AI 最擅长 knowing-that（检索、推理），但最不擅长 knowing-how（实践判断）。这也是当前 AI 编程工具的根本局限。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-theory_to_be_built" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">04</span>程序员须建构的理论<span class="en">/ The Theory To Be Built by the Programmer</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序员必须建构的理论内容：关于现实世界事务如何由程序处理的理论。</p><p><strong>三个超越：</strong></p><ul><li>① 能解释程序如何映射现实世界事务</li><li>② 能说明程序每个部分为什么是这样</li><li>③ 能建设性地回应修改需求</li></ul></div><div class="para" id="PTB-THEORY-P01" data-pid="PTB-THEORY-P01"><span class="pid">PTB-THEORY-P01</span><span class="p-text">按照赖尔的理论概念，程序员必须建构的是一种关于现实世界的某些事务将如何由计算机程序处理或支持的理论。在编程的理论建构观中，程序员建构的理论优先于诸如程序文本、用户文档和附加文档（如规格说明）等其他产品。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-THEORY-P02" data-pid="PTB-THEORY-P02"><span class="pid">PTB-THEORY-P02</span><span class="p-text">在论证理论建构观时，核心问题在于说明程序员凭借拥有理论所掌握的知识，如何必然且本质地超越记录在文档化产品中的知识。对此的回答是，程序员的知识至少在三个本质领域超越了文档所给出的知识：</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-THEORY-P03" data-pid="PTB-THEORY-P03"><span class="pid">PTB-THEORY-P03</span><span class="p-text">1) 拥有程序的理论的程序员能够解释该解决方案如何与它所要处理的现实世界事务相关联。这种解释必须涉及现实世界事务在程序文本以及任何附加文档中映射的方式，即事务在总体特征和细节方面以某种方式被映射进程序文本和附加文档。因此，程序员必须能够解释程序文本的每个部分以及其整体结构特征的每个方面，分别对应着世界的哪个方面或活动。反之，对于现实世界的任何方面或活动，程序员能够说明它被映射进程序文本的方式。当然，世界方面和活动的大部分将超出程序文本的范围，因为在相关语境中它们无关紧要。然而，判断世界的某个部分是否相关，只能由理解整个世界的人做出。这种理解必须由程序员贡献。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-THEORY-P04" data-pid="PTB-THEORY-P04"><span class="pid">PTB-THEORY-P04</span><span class="p-text">2) 拥有程序的理论的程序员能够解释为什么程序的每个部分是其现在的样子，换言之，能够以某种理由说明来支持实际的程序文本。这种理由说明的最终依据必须是、也始终是程序员的直接直觉知识或判断。即使在理由说明运用了推理——可能应用了设计规则、定量估计、与其他替代方案的对比等——时，这一点也依然成立；关键在于原则与规则的选择，以及判断它们与当前情境相关性的决定，归根结底仍然是程序员直接知识的事情。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-THEORY-P05" data-pid="PTB-THEORY-P05"><span class="pid">PTB-THEORY-P05</span><span class="p-text">3) 拥有程序的理论的程序员能够建设性地回应以新方式支持现实世界事务为目的的任何程序修改需求。设计如何将修改最佳地纳入已有程序，取决于对新的需求与程序中已建立的运行设施之间的相似性的感知。必须被感知的这种相似性是世界方面之间的相似性。只有拥有世界知识的人——即程序员——才能理解这种相似性，并且它不能归结为任何有限的标准或规则集合，原因与上述关于程序理由说明不能如此还原的理由类似。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-THEORY-P06" data-pid="PTB-THEORY-P06"><span class="pid">PTB-THEORY-P06</span><span class="p-text">虽然本节讨论为采纳编程的理论建构观提供了一些基本论证，但对该观的评估还应考虑它在多大程度上有助于对编程及其问题形成连贯的理解。此类问题将在以下各节中讨论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的理论优先于所有文档化产品。理论建构是编程活动的核心。</p><p><strong>对软件工程的含义：</strong>评价程序员质量的标准不是代码行数，而是理论的深度和一致性。</p><p><strong>对 AI 编程的启发：</strong>每个 AI agent 修改都应形成"设计理由"——这是项目理论的增量增长。AI 可以辅助建构理论，但不能替代。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-problems_and_costs" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">05</span>程序修改的问题与代价<span class="en">/ Problems and Costs of Program Modifications</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序修改的代价不在于文本变更本身，而在于识别新旧需求与现有理论之间的"相似性"。</p><p><strong>关键洞察：</strong>修改质量取决于是否在延伸现有理论，而不是打补丁。</p><p><strong>两种修改：</strong></p><ul><li><strong>理论延伸：</strong>新修改与现有理论有共同基础，一致性强</li><li><strong>补丁：</strong>新修改与现有理论无关，破坏结构</li></ul></div><div class="para" id="PTB-PROBS-P01" data-pid="PTB-PROBS-P01"><span class="pid">PTB-PROBS-P01</span><span class="p-text">提出编程的理论建构观的一个突出理由，是希望建立一种洞见，以支持对程序修改的正确理解。因此，这个问题将成为首先分析的对象。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P02" data-pid="PTB-PROBS-P02"><span class="pid">PTB-PROBS-P02</span><span class="p-text">有一件事似乎被所有人所认同，那就是软件将被修改。程序一旦投入运行，总是被认为只是手头问题解决方案的一部分。此外，程序本身的使用也会激发对进一步有用服务的想法。因此产生了如何处理修改的需求。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P03" data-pid="PTB-PROBS-P03"><span class="pid">PTB-PROBS-P03</span><span class="p-text">程序修改问题与编程成本问题密切相关。面对需要改变程序运行方式的情况，人们希望通过修改现有程序文本而不是编写全新程序来实现成本节约。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P04" data-pid="PTB-PROBS-P04"><span class="pid">PTB-PROBS-P04</span><span class="p-text">期望以低成本实现程序修改的假设需要进行更仔细的分析。首先应当指出，这种期望无法通过与其他复杂人造构造的修改进行类比来得到支持。对于偶尔进行修改的构造（例如建筑物），众所周知修改成本高昂，而且事实上完全拆除现有建筑后重新建造往往在经济上更为可取。其次，低成本程序修改的可能性期望，或许可以从程序是存储在允许轻松编辑的媒介中的文本这一事实中获得支持。要使这种支持成立，显然必须假设主导成本是文本操作的成本。这与将编程视为文本生产的观念相吻合。在理论建构观中，这整个论证是错误的。这种观点不支持对低成本程序修改的一般期望。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P05" data-pid="PTB-PROBS-P05"><span class="pid">PTB-PROBS-P05</span><span class="p-text">一个密切相关的议题是程序灵活性。在程序中纳入灵活性意味着将某些并非立即需要、但可能被证明有用的运行设施纳入程序。因此，灵活的程序无需修改就能处理某些外部环境变化类别。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P06" data-pid="PTB-PROBS-P06"><span class="pid">PTB-PROBS-P06</span><span class="p-text">人们常说，程序应当设计得包含大量灵活性，以便随时适应变化的环境。就易于实现的灵活性而言，这种建议或许是合理的。然而，灵活性通常只能以相当高的代价来实现。每一项灵活性都必须被设计，包括它必须涵盖哪些情况、以及由哪些参数来控制。然后必须实现、测试和描述它。这种成本是为了实现一个其有用性完全取决于未来事件的程序功能而付出的。显然，内置的程序灵活性并不能满足将程序适配于变化的世界环境的普遍需求。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P07" data-pid="PTB-PROBS-P07"><span class="pid">PTB-PROBS-P07</span><span class="p-text">在程序修改中，现有的程序化解决方案必须被改变，以匹配它必须对应的现实世界活动的变化。修改首先需要将现有解决方案与期望修改所要求的需求进行对照。在这种对照中，必须确定现有解决方案的能力与新需求之间的相似性的程度和种类。这种确定相似性的需求凸显了理论建构观的优点。事实上，正是在确定相似性时，任何忽视核心要求——即拥有恰当知识的人直接参与——的编程观的缺陷才会暴露出来。这里要把握的相似性对拥有程序理论的人而言是可以企及的，但完全超出了规则所能确定的范围，因为甚至判断相似性的标准本身也无法被形式化。从对新需求与程序已满足的需求之间相似性的洞察出发，程序员能够设计出实现该修改所需的程序文本变更。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P08" data-pid="PTB-PROBS-P08"><span class="pid">PTB-PROBS-P08</span><span class="p-text">在某种意义上，不存在理论修改的问题，只存在程序修改的问题。事实上，拥有理论的人必须已经准备好回应可能引发程序修改的各种问题和需求。这一观察引向一个重要结论：程序修改问题源于将编程假设为程序文本生产活动的观念，而不是将编程认识为理论建构活动。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-PROBS-P09" data-pid="PTB-PROBS-P09"><span class="pid">PTB-PROBS-P09</span><span class="p-text">根据理论建构观，由不具备恰当理论把握的程序员对程序文本进行修改所导致的程序文本退化，是可以理解的。事实上，如果仅仅被视为程序文本和程序执行外部行为的改变，一个给定的期望修改通常可以通过多种不同方式实现，所有这些方式都是正确的。同时，如果与程序理论联系起来看，这些方式可能看起来非常不同——其中一些可能符合该理论或以自然方式扩展它，而另一些则可能与其理论完全不一致，带有程序主体上的非整合补丁的特征。这种差异只有拥有程序理论的程序员才能理解。同时，程序文本中所做变更的性质对程序的长期可用性至关重要。要使程序保持其质量，每一项修改都必须牢固地建立在程序的理论基础上。事实上，简洁性和良好结构等质量概念本身只能通过程序理论来理解，因为它们刻画的是实际程序文本与程序员理解中可能存在的、为达到相同执行行为而可能编写的程序文本之间的关系。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>修改决策的本质是判断相似性，这必须由理解世界的人（程序员）做出，不可还原为规则。</p><p><strong>对软件工程的含义：</strong>代码审查应该问"这是理论延伸还是补丁？"，而不是"这符合规范吗？"</p><p><strong>对 AI 编程的启发：</strong>AI agent 的修改判断需要先评估"相似性基础"——这个评估目前只能由人来做。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-program_life_death_revival" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">06</span>程序生命、死亡与复活<span class="en">/ Program Life, Death, and Revival</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序的"生命"取决于程序员对其理论的持续支持。理论消亡→程序死亡。理论重建→程序复活。</p><p><strong>程序死亡的信号：</strong>后续程序员只能打补丁，无法做理论延伸。</p><p><strong>程序复活：</strong>新的程序员通过深入研究，重新建构出能支撑系统的理论。</p></div><div class="para" id="PTB-LIFE-P01" data-pid="PTB-LIFE-P01"><span class="pid">PTB-LIFE-P01</span><span class="p-text">编程理论建构观的一个核心主张是：任何程序的本质部分——即程序的理论——是无法被表达的，并且与人类存在者不可分离地联系在一起。由此可以推知，在描述程序状态时，重要的是指出拥有程序理论的程序员在多大程度上仍在负责它。为了强调这一状况，可以扩展程序建构的概念，引入程序生命、死亡和复活的观念。程序的建构等同于程序员团队建构和掌握其理论。在程序生命中，拥有其理论的程序员团队控制着该程序，特别是控制所有修改。程序的死亡发生在拥有其理论的程序员团队解散时。一个死去的程序可能继续被计算机执行并产生有用的结果。死亡的实际状态在对程序的修改需求无法被智能地回应时才会显现。程序的复活是由新的程序员团队重建其理论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-LIFE-P02" data-pid="PTB-LIFE-P02"><span class="pid">PTB-LIFE-P02</span><span class="p-text">按照这些观念，程序延续的生命取决于新一代程序员接替程序理论。要使新程序员掌握一个现有的程序理论，仅仅有机会熟悉程序文本和其他文档是不够的。需要的是新程序员有机会与已经拥有理论的程序员紧密合作，以便能够熟悉程序在更广泛的相关现实世界情境中的地位，并获取关于程序如何运作以及如何处理异常程序反应和程序修改的知识。在已有程序理论中教育新程序员的问题，与许多其他活动中的教育问题非常相似，在那些活动中如何做某事的知识占据主导地位，而超越知道某些事实的知识，例如写作和演奏乐器。最重要的教育活动是学生在适当监督和指导下进行相关实践。就编程而言，这种活动应当包括讨论程序与相关现实世界方面和活动之间的关系，以及程序所处理现实世界事务的界限。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-LIFE-P03" data-pid="PTB-LIFE-P03"><span class="pid">PTB-LIFE-P03</span><span class="p-text">理论建构观的一个非常重要的后果是：程序复活——即仅仅从文档中重建程序理论——严格来说是不可能的。为了避免这个后果显得不合理，可以指出，为一个完全死去的程序进行复活的需求可能很少出现，因为很难想象复活任务会被分配给对原始团队理论毫无了解的新程序员。即便如此，理论建构观强烈表明，程序复活只应在例外情况下尝试，并且要充分意识到它充其量是昂贵的，而且可能导致一个与原作者所拥有的理论不同的复活理论，因而与程序文本存在差异。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-LIFE-P04" data-pid="PTB-LIFE-P04"><span class="pid">PTB-LIFE-P04</span><span class="p-text">理论建构观建议，与其进行程序复活，不如丢弃现有程序文本，让新组建的程序员团队有机会重新解决给定问题。这样的程序更有可能产生一个可行的程序，而且成本不会更高，甚至可能更低。关键在于，建构一个理论来适配和支持现有程序文本是一项困难、令人沮丧且耗时的工作。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-LIFE-P05" data-pid="PTB-LIFE-P05"><span class="pid">PTB-LIFE-P05</span><span class="p-text">一个需要注意的问题是：在程序被不断发展的程序员团队持续保持存活的情况下，类似的问题也可能出现。这是由于个体程序员的能力差异和背景经验差异所致，尤其是在团队不可避免地替换个别成员的情况下。新程序员很可能感到在忠诚于现有程序文本（无论其包含何种模糊性和弱点）与他或她必须建构的新理论之间左右为难，而后者无论如何很可能与程序文本背后的原始理论有所不同。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序的可持续性取决于理论是否被维护，而不是代码本身的质量。</p><p><strong>对软件工程的含义：</strong>技术债务的真正代价是理论债务——当理论被侵蚀，程序的生命力就终结了。</p><p><strong>对 AI 编程的启发：</strong>AI agent 的持续接入可能导致"理论碎片化"——每次新的对话都是从头开始，不继承前面对系统理论的理解。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-method_and_theory_building" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">07</span>方法与理论建构<span class="en">/ Method and Theory Building</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>方法论作为"程序员必须遵循的规则集合"这一概念，基于无效假设，必须被否定。</p><p><strong>两个反证：</strong></p><ul><li>1. 方法论的有效性从未被科学方法验证</li><li>2. 遵循规则本身也需要判断力（无穷倒退问题）</li></ul><p><strong>Naur 的立场：</strong>方法论可以描述好的实践，但无法替代理论建构。</p></div><div class="para" id="PTB-METHOD-P01" data-pid="PTB-METHOD-P01"><span class="pid">PTB-METHOD-P01</span><span class="p-text">近年来，人们对编程方法产生了很大兴趣。在本节中，将对理论建构观与编程方法背后的观念之间的关系作出一些评论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P02" data-pid="PTB-METHOD-P02"><span class="pid">PTB-METHOD-P02</span><span class="p-text">首先，什么是编程方法？即使推荐某种方法的作者也并不总是说清楚这一点。这里，编程方法将被视为一套程序员工作规则，告诉程序员应该做什么类型的事情、按照什么顺序、在哪些阶段使用哪些记号或语言、以及产生哪些类型的文档。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P03" data-pid="PTB-METHOD-P03"><span class="pid">PTB-METHOD-P03</span><span class="p-text">在将方法的这种概念与编程的理论建构观进行比较时，最重要的问题在于行动或操作及其顺序。方法暗示着这样一种主张：程序开发可以且应当作为一系列特定类型的行动来进行，每个行动产生某种特定的文档化结果。而在建构理论时，不存在特定的行动顺序，因为一个人所持有的理论没有内在的部分划分，也没有内在的顺序。相反，拥有理论的人能够在此基础上产生各种类型的展示，以回应问题或需求。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P04" data-pid="PTB-METHOD-P04"><span class="pid">PTB-METHOD-P04</span><span class="p-text">至于使用特定类型的记号或形式化，这同样只能是次要问题，因为首要的项目——理论——是不能被表达的，因此不存在其表达形式的问题。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P05" data-pid="PTB-METHOD-P05"><span class="pid">PTB-METHOD-P05</span><span class="p-text">由此可以推知，在理论建构观中，对于编程的主要活动而言，不存在正确的方法。这个结论似乎与既成观点相冲突，因此可能被用作反对理论建构观的论据。这里将讨论两个这样的表面矛盾，第一个涉及方法在科学探索中的重要性，第二个涉及方法在软件开发中实际使用的成功。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P06" data-pid="PTB-METHOD-P06"><span class="pid">PTB-METHOD-P06</span><span class="p-text">第一个论点是软件开发应该基于科学方式，因此应该采用类似于科学方法的程序。这一论点的缺陷在于假设存在所谓科学方法这样的东西，并且它对科学家有帮助。这个问题近年来一直是大量讨论的主题，费耶拉本德（Feyerabend, 1978）以物理学史为例、以及梅达沃（Medawar, 1982）以生物学家的身份论证，都认为科学方法作为一套实践科学家指南的观念是错误的。这个结论并不被波利亚（Polya, 1954, 1957）关于问题求解的研究所反驳。该研究以数学领域为例，得出的洞见对编程也高度相关。然而，它不能被声称呈现了一种可以遵循的方法。相反，它是一系列建议的集合，旨在通过指出可以按任何顺序应用的不同工作模式来激发问题求解者的智力活动。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P07" data-pid="PTB-METHOD-P07"><span class="pid">PTB-METHOD-P07</span><span class="p-text">第二个似乎与否定方法相矛盾的论据是，特定方法的使用已被证明是成功的——按照已发表的报告。对此可以回应说，迄今似乎从未对编程方法的效用进行过方法上令人满意的研究。这样的研究必须采用公认的受控实验技术（参见[Brooks, 1980]或[Moher and Schneider, 1982]）。缺乏这样的研究，部分原因在于如果结果要有意义，此类研究无疑会招致高昂成本，部分原因在于以可操作方式确立程序开发领域中所谓方法的概念所涉及的问题。大多数关于此类方法的已发表报告仅仅描述和推荐某些技术和程序，而没有以系统方式确立其有用性或有效性。C. Floyd 及几位合作者[Floyd, 1984]对五种不同方法进行的详尽研究得出结论：方法作为一套在任意情境中机械地导向良好解决方案的规则系统，是一种幻觉。剩下的只是方法在程序员教育中的效果。这个结论与编程的理论建构观完全相容：事实上，按照这种观点，程序员建构的理论质量将在很大程度上取决于程序员对典型问题模型解决方案的熟悉程度、对描述和验证技术的掌握，以及对由许多部分以复杂交互组成的系统的结构原则的了解。因此，方法所关注的许多项目都与理论建构相关。理论建构观与方法论者的分歧在于使用哪些技术以及按什么顺序使用。在理论建构观中，这必须完全由程序员根据实际要解决的问题来决定。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P08" data-pid="PTB-METHOD-P08"><span class="pid">PTB-METHOD-P08</span><span class="p-text">更一般地说，许多关于编程的当前讨论似乎假设编程类似于工业生产，程序员被视为生产过程的一个组成部分，一个必须由程序规则来控制、并且可以被轻易替换的组成部分。另一种相关的观点是人类如果像机器一样遵循规则行动，表现最佳，随之而来的是对形式化表达模式的强调，这使得以形式操作规则的术语来表述某些论证成为可能。这些观点与计算机工作者中似乎普遍流行的一种观念相吻合，即人类心智像计算机一样运作。在工业管理层面，这些观点支持将程序员视为责任相当低、只需短暂教育的工人。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-METHOD-P09" data-pid="PTB-METHOD-P09"><span class="pid">PTB-METHOD-P09</span><span class="p-text">更一般地说，例如，可以考虑奥斯卡森（Oskarsson, 1982）对大型软件系统可修改性的研究。该研究提供了大量关于一个大型商业系统某版本中相当数量修改的详尽信息。描述涵盖了每次修改的背景、实质和实现，特别关注程序变更如何被限制在特定程序模块中。然而，该研究完全没有暗示修改的实现是否取决于参与该项目的500名程序员的背景，例如他们在该项目上工作的时间长短，也没有说明设计决策在这500名程序员之间分配的方式。即便如此，对潜在理论的承认仍然以间接的方式出现在诸如"决策在错误的模块中实现"以及对"AXE理念"的引用等陈述中。然而，通过该研究所采用的方式，这些承认只能保持为孤立的暗示。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>良好实践不是来自方法论规则，而是来自理论建构能力的培养。</p><p><strong>对软件工程的含义：</strong>敏捷方法的有效性不在于"遵循规则"，而在于促进理论建构（XP 的隐喻设定、结对编程等）。</p><p><strong>对 AI 编程的启发：</strong>AI agent 工作流不应被设计成"规则清单"，而应被设计成"理论建构助手"——帮助人形成、表达和维护设计理由。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-programmers_status" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">08</span>程序员的专业地位与理论建构观<span class="en">/ Programmers' Status and the Theory Building View</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>理论建构观要求重新定位程序员的专业地位：不是可替换零件，而是负责任的知识工作者。</p><p><strong>对比：</strong></p><ul><li>生产观 →程序员是可替换的低技能工人</li><li>理论建构观 → 程序员是永久性专业职位，类似于工程师和律师</li></ul></div><div class="para" id="PTB-STATUS-P01" data-pid="PTB-STATUS-P01"><span class="pid">PTB-STATUS-P01</span><span class="p-text">理论建构观的后果与更为流行的当前观点形成最鲜明对比的领域，在于程序员的个人贡献以及程序员应有的地位。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-STATUS-P02" data-pid="PTB-STATUS-P02"><span class="pid">PTB-STATUS-P02</span><span class="p-text">理论建构观与更流行的关于程序员个人贡献的观点之间的对比，在许多关于编程的普遍讨论中显而易见。仅举一例，在计算机工作者中似乎普遍流行一种观念，认为人类心智像计算机一样运作。在工业管理层面，这些观点支持将程序员视为责任相当低、只需短暂教育的工人。在理论建构观中，编程活动的首要成果是程序员所持有的理论。由于这一理论按其本质是每个程序员精神财产的一部分，因此程序员作为程序生产活动中可轻易替换的组成部分的观念必须被抛弃。相反，程序员必须被视为其活动——计算机是该活动的一部分——的负责任的开发者和管理者。为了胜任这一职位，他或她必须被给予一个永久性的职位，其地位类似于工程师和律师等其他专业人士，他们作为企业雇员的积极贡献取决于其智力水平。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-STATUS-P03" data-pid="PTB-STATUS-P03"><span class="pid">PTB-STATUS-P03</span><span class="p-text">理论建构观所建议的提高程序员地位，必须通过对程序员教育的相应重新定位来支持。虽然掌握记号、数据表示和数据处理等技能仍然重要，但主要重点必须转向促进理解和培养理论形成的能力。这种能力在多大程度上可以被教授，必须仍然是一个开放的问题。最有希望的方法是让学生在有指导的积极建构环境中处理具体问题。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的专业地位取决于他们的理论建构能力，而不是完成任务的速度。</p><p><strong>对软件工程的含义：</strong>程序员教育必须强调理论形成能力，而不只是数据处理技能。</p><p><strong>对 AI 编程的启发：</strong>AI 时代，程序员的独特价值在于理论建构——这是 AI 目前无法替代的。懂得如何使用 AI 而不被 AI 替代，是未来程序员的核心能力。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-conclusions" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">09</span>结论<span class="en">/ Conclusions</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节总结 Naur 的五个核心命题，重申理论建构观的核心地位。</p><p><strong>五个命题：</strong></p><ul><li>① 编程的首要目标是建构理论</li><li>② 理论建构是程序员知识的核心</li><li>③ 程序修改必须以理论为基础</li><li>④ 方法论必须服务于理论建构</li><li>⑤程序员是负责任的专业人员</li></ul></div><div class="para" id="PTB-CONCL-P01" data-pid="PTB-CONCL-P01"><span class="pid">PTB-CONCL-P01</span><span class="p-text">承认由变化的外部环境所要求的程序修改是编程的本质部分，可以论证编程的首要目标是让程序员建构一种关于手头事务如何得到程序执行支持的理论。这种观念引出一种程序生命的概念，它取决于程序员对其理论的持续支持。此外，按照这种观点，作为一套程序员必须遵循的程序规则而被理解的编程方法概念，基于无效的假设，因此必须被否定。作为该观点的进一步后果，程序员必须被承认为负责任的、永久性的开发者和其活动——计算机是该活动的一部分——的管理者，而他们的教育必须强调理论建构实践，同时掌握数据处理知识和记号。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>编程的本质是理论建构活动，程序文本只是理论的外部表现。</p><p><strong>对软件工程的含义：</strong>软件工程作为一个学科，需要以"如何培养理论建构能力"为核心来重新设计。</p><p><strong>对 AI 编程的启发：</strong>AI agent 编程必须以人持有理论为前提；每个修改必须形成设计理由；代码+文档+测试共同表达项目理论。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-appendix" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">10</span>附录：应用"理论建构"观<span class="en">/ Applying "Theory Building" View</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节将理论建构观应用于实际软件工程实践：隐喻作为理论载体、隐性知识与文档的关系、共享理论对团队协作的价值。</p><p><strong>隐喻的作用：</strong>好的隐喻让后来者能"准确猜测"系统结构。</p><p><strong>文档的价值：</strong>文档的目的是帮助下一个程序员建构恰当的理论，而不是说明一切。</p></div><div class="para" id="PTB-APPENDIX-META-P01" data-pid="PTB-APPENDIX-META-P01"><span class="pid">PTB-APPENDIX-META-P01</span><span class="p-text">将编程视为理论建构有助于我们理解极限编程（XP）中的"隐喻建构"活动，以及隐性知识和文档在传递设计知识方面的各自角色。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P02" data-pid="PTB-APPENDIX-META-P02"><span class="pid">PTB-APPENDIX-META-P02</span><span class="p-text">肯特·贝克（Kent Beck）建议，设计团队将一个程序的总体设计简化为匹配单一隐喻，这很有用。例子可以是："这个程序看起来真像一条装配线，东西沿着线被添加到底盘上"，或者"这个程序真像一家餐厅，有服务员、菜单、厨师和收银员"。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P03" data-pid="PTB-APPENDIX-META-P03"><span class="pid">PTB-APPENDIX-META-P03</span><span class="p-text">如果隐喻是恰当的，设计师围绕隐喻所创造的许多联想被证明是适合他们的编程情境的。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P04" data-pid="PTB-APPENDIX-META-P04"><span class="pid">PTB-APPENDIX-META-P04</span><span class="p-text">这正是诺尔关于传递设计理论的理念：如果"装配线"是一个恰当的隐喻，那么后来的程序员在考虑他们对装配线所了解的东西时，会对当前软件的结构作出猜测，并发现他们的猜测是"接近的"。这就是仅仅"装配线"两个词所具有的非凡力量。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P05" data-pid="PTB-APPENDIX-META-P05"><span class="pid">PTB-APPENDIX-META-P05</span><span class="p-text">良好隐喻的价值随着设计师数量的增加而增加。每个人的猜测与其他人的猜测越"接近"，最终系统设计的一致性就越大。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P06" data-pid="PTB-APPENDIX-META-P06"><span class="pid">PTB-APPENDIX-META-P06</span><span class="p-text">想象10个程序员以尽可能快的速度并行工作，每个人都在做出设计决策并添加类。每个人都必然在前进过程中发展自己的理论。随着每个人添加代码，将他们的工作结合起来的理论变得越来越不连贯、越来越复杂。不仅维护变得更加困难，而且连他们自己的工作也变得更加困难。设计很容易变成一个"拼凑物"。如果他们拥有一个共同理论，另一方面，他们就能以彼此契合的方式添加代码。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-META-P07" data-pid="PTB-APPENDIX-META-P07"><span class="pid">PTB-APPENDIX-META-P07</span><span class="p-text">一个恰当的、共享的隐喻让一个人能够准确猜测团队中的其他人在哪里添加了代码，以及如何将她的新部分与之契合。 ### 隐性知识与文档 (Tacit Knowledge and Documentation)</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P01" data-pid="PTB-APPENDIX-DOC-P01"><span class="pid">PTB-APPENDIX-DOC-P01</span><span class="p-text">文档几乎肯定落后于程序的当前状态，但人们善于东寻西找。你应该把什么放进文档？</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P02" data-pid="PTB-APPENDIX-DOC-P02"><span class="pid">PTB-APPENDIX-DOC-P02</span><span class="p-text">那些能帮助下一个程序员建构关于程序的恰当理论的东西。这是极其重要的。文档的目的是激发读者的记忆，建立关于经验和隐喻的相关思维路径。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P03" data-pid="PTB-APPENDIX-DOC-P03"><span class="pid">PTB-APPENDIX-DOC-P03</span><span class="p-text">这种文档比仅仅命名系统当前存在的各个部分更能在程序的生命周期中保持稳定。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P04" data-pid="PTB-APPENDIX-DOC-P04"><span class="pid">PTB-APPENDIX-DOC-P04</span><span class="p-text">设计师可以使用必要的任何表达形式来建立那些相关的思维路径。他们甚至可以同时使用多个隐喻，如果他们找不到一个足以涵盖整个程序的隐喻。他们可以说，一个部分实现了分形压缩算法，第二个像一本会计账簿，用户界面遵循模型-观察者设计模式，等等。经验丰富的设计师通常仅从以下三个方面开始他们的文档：隐喻、描述每个主要组件目的的文字、以及主要组件之间主要交互的图示。这三项单独就能让下一个团队走很长的路，以建构一个关于设计的有用理论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P05" data-pid="PTB-APPENDIX-DOC-P05"><span class="pid">PTB-APPENDIX-DOC-P05</span><span class="p-text">源代码本身用于向下一个程序员传递理论。简单、一致的命名约定帮助下一个人建构一个关于系统的连贯理论。当人们谈论"整洁代码"时，他们很大程度上指的是读者建构一个关于系统的连贯理论有多么容易。</span><button class="p-copy" onclick="copyText(this)">复制</button></div>
-<div class="para" id="PTB-APPENDIX-DOC-P06" data-pid="PTB-APPENDIX-DOC-P06"><span class="pid">PTB-APPENDIX-DOC-P06</span><span class="p-text">文档无法——因此也不需要——说明一切。它的目的是帮助下一个程序员建构关于系统的准确理论。</span><button class="p-copy" onclick="copyText(this)">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>隐性知识（理论）无法完全文档化，但可以通过隐喻、结构化描述和图示来激发。</p><p><strong>对软件工程的含义：</strong>好的文档不是"详尽的规格说明"，而是"理论激发器"——帮助读者激活相关的思维路径。</p><p><strong>对 AI 编程的启发：</strong>AI agent 之间的"共享理论"目前只能通过 prompt 来传递，这正是为什么好的 prompt 需要像隐喻一样，提供足够的理论框架。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
-<section class="paper-section" id="sec-references" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">11</span>参考文献 / References</h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="card-grid"><div class="card"><p><strong>Brooks, R. E.</strong> (1980). <em>Comm. ACM</em> 23(4): 207-213.</p></div><div class="card"><p><strong>Feyerabend, P.</strong> (1978). <em>Against Method</em>. London, Verso.</p></div><div class="card"><p><strong>Floyd, C.</strong> (1984). <em>Tagung 1/1984 des German Chapter of the ACM</em>.</p></div><div class="card"><p><strong>Kuhn, T. S.</strong> (1970). <em>The Structure of Scientific Revolutions</em>. Chicago.</p></div><div class="card"><p><strong>Medawar, P.</strong> (1982). <em>Pluto's Republic</em>. Oxford.</p></div><div class="card"><p><strong>Moher &amp; Schneider</strong> (1982). <em>Int. J. Man-Mach. Stud.</em> 16: 65-87.</p></div><div class="card"><p><strong>Oskarsson, O.</strong> (1982). <em>Mechanisms of Modifiability in Large Software Systems</em>.</p></div><div class="card"><p><strong>Polya, G.</strong> (1954). <em>Mathematics and Plausible Reasoning</em>. Princeton.</p></div><div class="card"><p><strong>Polya, G.</strong> (1957). <em>How To Solve It</em>. New York.</p></div><div class="card"><p><strong>Popper &amp; Eccles</strong> (1977). <em>The Self and Its Brain</em>. London.</p></div><div class="card"><p><strong>Ryle, G.</strong> (1949). <em>The Concept of Mind</em>. Harmondsworth.</p></div></div><p style="margin-top:16px;font-size:12px;color:#888">源论文: <a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">https://pages.cs.wisc.edu/~remzi/Naur.pdf</a></p></section>
-<div class="naur-q"><h2>Naur 三问 / Naur's Three Questions</h2><div class="q-list"><div class="q-item">❓ 这个程序处理了现实世界的什么？</div><div class="q-item">❓ 这段代码为什么是这样，而不是其他方式？</div><div class="q-item">❓ 新需求如何建设性地进入旧系统？</div></div></div>
-<section class="paper-section"><h2 class="sec-title" style="margin-bottom:16px">✅ AI 编程检查表</h2><ul class="checklist"><li><input type="checkbox"> 是否形成设计理由？</li><li><input type="checkbox"> 是否记录"为什么这样做，而不只是做了什么"？</li><li><input type="checkbox"> 是否分析了修改影响（相似性/补丁判断）？</li><li><input type="checkbox"> 是否让代码、文档、测试共同服务于项目理论？</li><li><input type="checkbox"> 是否在阶段收口时用人能理解的话复述了系统状态？</li></ul></section>
-<section class="paper-section"><h2 class="sec-title" style="margin-bottom:16px">🤖 把 Naur 变成 agent 工作流</h2><div class="prompt-block"><div class="pt">🤖 模板 A: 阶段启动 prompt</div><pre>当前阶段：[描述]
+<section class="paper-section" id="sec-introduction" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">01</span>引言<span class="en"> / Introduction</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节揭示 Naur 的核心立场：编程不是生产程序文本，而是建构理论。引出"生产观"的典型特征，为后文批判奠定基础。</p><p><strong>关键词：</strong>理论建构观、生产观、程序文本、程序员知识</p><p><strong>阅读提示：</strong>注意 Naur 如何从实际观察入手，而非从定义入手。</p></div><div class="para" id="PTB-INTRO-P01" data-pid="PTB-INTRO-P01"><span class="pid" aria-hidden="true">PTB-INTRO-P01</span><span class="p-text">本文的讨论旨在促进对编程本质的理解。它提出，编程应当被恰当地视为一种活动，通过这种活动，程序员形成或获得某种特定的洞见——即关于所处理事务的理论。这一建议与一种更为流行的观念形成对照，那种观念认为编程应当被看作程序文本以及某些其他文本的生产。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P02" data-pid="PTB-INTRO-P02"><span class="pid" aria-hidden="true">PTB-INTRO-P02</span><span class="p-text">本文所呈现观点的某些背景，可以在对程序实际状况以及程序员团队处理这些程序时所发生之事的观察中找到，尤其是在由意外或错误的程序执行或反应所引发的情境中，以及在对程序进行修改时。这些观察难以被纳入编程的生产观框架，这表明生产观具有误导性。理论建构观作为替代方案被提出。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P03" data-pid="PTB-INTRO-P03"><span class="pid" aria-hidden="true">PTB-INTRO-P03</span><span class="p-text">本阐述更为一般的背景在于一种信念：对编程的本质持有恰当的理解至关重要。如果我们的理解不恰当，我们就会误解活动中出现的困难，而我们克服这些困难的尝试将会引发冲突和挫折。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P04" data-pid="PTB-INTRO-P04"><span class="pid" aria-hidden="true">PTB-INTRO-P04</span><span class="p-text">编辑按：本文作者彼得·诺尔（Peter Naur）作为编程语言语法表示法"巴科斯-诺尔范式"（BNF）的作者之一而广为人知。他于1985年撰写了《编程作为理论建构》一文，后收录于其文集《计算：一项人类活动》（Naur 1992）中。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P05" data-pid="PTB-INTRO-P05"><span class="pid" aria-hidden="true">PTB-INTRO-P05</span><span class="p-text">编辑按：在我看来，本文对程序设计和编码过程中实际发生的事情作出了最为准确的描述。我在讨论需要创建多少文档、如何传递隐性知识，以及极限编程（XP）中隐喻设定练习的价值时，都会经常引用它。本文还提供了一种审视方法论经济结构的方法。在下面的文章中，请注意设计程序员的工作质量与他对问题的理论和对解决方案的理论之间的匹配质量有关。请注意后续程序员的工作质量与他们的理论与先前程序员的理论之间的匹配程度有关。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P06" data-pid="PTB-INTRO-P06"><span class="pid" aria-hidden="true">PTB-INTRO-P06</span><span class="p-text">编辑按：运用诺尔的理念，设计师的任务不是传递"设计"本身，而是传递驱动设计的"理论"。后一个目标更为有用，也更为恰当。它还凸显了知识在拥有者那里是隐性的，因此传递理论需要同时传递显性知识和隐性知识。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P07" data-pid="PTB-INTRO-P07"><span class="pid" aria-hidden="true">PTB-INTRO-P07</span><span class="p-text">编辑按：以下就是彼得·诺尔本人的阐述。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-INTRO-P08" data-pid="PTB-INTRO-P08"><span class="pid" aria-hidden="true">PTB-INTRO-P08</span><span class="p-text">在本文的讨论中，首先将概述一些关键的背景经验。随后是对编程本质的理论解释，即理论建构观。接下来的各节将探讨理论建构观的某些后果。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>编程的首要成果是程序员头脑中的理论，程序文本只是理论的外部表现。</p><p><strong>对软件工程的含义：</strong>软件工程不能被还原为"生产活动"；程序员不是流水线工人。</p><p><strong>对 AI 编程的启发：</strong>AI 可以生成程序文本，但无法替代人建构理论。AI agent 的每一次修改，都必须以人持有理论为前提。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-programming_and_programmers_knowledge" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">02</span>编程与程序员的知识<span class="en"> / Programming and the Programmers' Knowledge</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>通过两个真实案例（A组/B组编译器团队、安装和故障诊断程序员）说明：完整文档不足以传递深层设计理论。</p><p><strong>案例1：</strong>B组拿到完整文档仍需要A组的个人咨询。</p><p><strong>案例2：</strong>现场程序员依赖即时知识和注释文本解决问题。</p></div><div class="para" id="PTB-PROG-P01" data-pid="PTB-PROG-P01"><span class="pid" aria-hidden="true">PTB-PROG-P01</span><span class="p-text">我将用"编程"一词来指代设计和实现程序化解方案的整个活动。我所关注的是这样一种活动：将现实世界中某项活动的某个重要部分和方面，与计算机上运行的程序所能进行的形式符号操作相匹配。基于这样的概念，我所讨论的编程活动必须包含随时间发展的过程，即对应于程序执行所匹配的现实世界活动中发生的变化，换言之，程序修改。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P02" data-pid="PTB-PROG-P02"><span class="pid" aria-hidden="true">PTB-PROG-P02</span><span class="p-text">我要阐述的主要观点可以这样表述：在这种意义上的编程，首先必须是程序员建构某种特定知识的活动，这种知识基本上被视为程序员直接拥有的知识，而任何文档只是辅助性的、次要的产品。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P03" data-pid="PTB-PROG-P03"><span class="pid" aria-hidden="true">PTB-PROG-P03</span><span class="p-text">作为下文进一步阐述这一观点的背景，本节剩余部分将描述一些我在思考这些问题时越来越觉得意义重大的、处理大型程序的实际经验。这些经验要么是我本人的，要么是由与所涉活动有直接接触的人传达给我的。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P04" data-pid="PTB-PROG-P04"><span class="pid" aria-hidden="true">PTB-PROG-P04</span><span class="p-text">案例1涉及一个编译器。它由A组为语言L开发，在计算机X上运行良好。现在B组需要为语言L + M（L的扩展版本）在计算机Y上开发编译器。B组认为A组开发的L语言编译器是一个很好的设计起点，于是与A组签订合同，以获取全面的文档支持，包括带有注释的程序文本和大量额外的书面设计讨论，以及个人咨询。这一安排是有效的，B组成功开发出了他们所需的编译器。在本文的语境中，关键问题在于A组在涉及如何将扩展M纳入语言实现的问题上所提供的个人咨询的重要性。在设计阶段，B组就扩展方式提出建议，并提交A组审核。在几个重要案例中，B组提出的方案被A组发现未能利用现有编译器结构中固有的、且在文档中详尽讨论过的设施，而是基于以补丁形式对该结构进行补充，这实际上破坏了其能力和简洁性。A组成员能够立即发现这些问题，并能提出完全在现有结构框架内的简单有效的解决方案。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P05" data-pid="PTB-PROG-P05"><span class="pid" aria-hidden="true">PTB-PROG-P05</span><span class="p-text">这个案例表明，即使对于高度积极的B组而言，完整的程序文本和附加文档也不足以传递更深层的、对设计的洞见——即A组成员即时掌握的理论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P06" data-pid="PTB-PROG-P06"><span class="pid" aria-hidden="true">PTB-PROG-P06</span><span class="p-text">在这些事件发生后的若干年里，B组开发的编译器被同一组织的其他程序员接管，没有A组的指导。A组一位成员在约10年后获得的关于该编译器进一步修改的信息表明，在那一阶段，原始的强大结构仍然可见，但被各种无定形的增补完全削弱了效力。因此，程序文本及其文档再次证明不足以承载某些最重要的设计思想。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P07" data-pid="PTB-PROG-P07"><span class="pid" aria-hidden="true">PTB-PROG-P07</span><span class="p-text">案例2涉及一个大型实时系统的安装和故障诊断，该系统用于监控工业生产活动。该系统的生产商逐次交付系统，每次交付都针对其特定的传感器和显示设备环境进行单独适配。每次安装交付的程序规模约为20万行。与此类系统处理方式相关的经验涉及安装和故障诊断程序员团队的工作角色和方式。事实是：首先，这些程序员从系统设计阶段起就以全职方式密切参与该系统，历时数年。其次，在诊断故障时，这些程序员几乎完全依赖他们对系统的即时知识以及带有注释的程序文本，无法想象任何对他们有用的额外文档。第三，其他负责特定系统安装运营的程序员团队，会从生产商人员那里获得系统文档和全面的使用指导，但经常遇到被追溯到对现有文档理解不足的问题；而这些问题在与生产商的安装和故障诊断程序员咨询后都能轻易解决。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROG-P08" data-pid="PTB-PROG-P08"><span class="pid" aria-hidden="true">PTB-PROG-P08</span><span class="p-text">结论似乎不可避免：至少对于某些类型的大型程序而言，对其进行持续的适配、修改和错误修正，本质上依赖于由与之保持密切持续联系的程序员团队所掌握的某种特定知识。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的知识在三个本质领域超越文档：①现实世界事务映射；② 理由说明；③ 建设性回应修改。</p><p><strong>对软件工程的含义：</strong>知识管理不能只靠文档；团队需要保持密切持续的联系。</p><p><strong>对 AI 编程的启发：</strong>AI agent 需要"知道"什么？仅仅知道代码不够，必须知道为什么这样设计。当前 AI 的局限在于无法传递案例2中那种即时知识。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-ryles_notion_of_theory" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">03</span>赖尔的理论概念<span class="en"> / Ryle's Notion of Theory</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>Naur 借用 Ryle 的"理论"概念——不是命题性知识（knowing-that），而是实践能力（knowing-how）。</p><p><strong>Ryle 的区分：</strong></p><ul><li>knowing-that：知道某个事实，可以写成规则</li><li>knowing-how：知道如何做，体现为行动能力</li></ul><p><strong>理论的三要素：</strong>能做某事 + 能解释 + 能论证</p></div><div class="para" id="PTB-RYLE-P01" data-pid="PTB-RYLE-P01"><span class="pid" aria-hidden="true">PTB-RYLE-P01</span><span class="p-text">如果承认编程必须包含、并且作为核心部分包含程序员知识的建构，那么下一个问题就是要更精确地刻画这种知识。这里将考虑这样一种建议：程序员的知识应当被恰当地视为一种理论，按照赖尔（Ryle）[1949]的意义。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P02" data-pid="PTB-RYLE-P02"><span class="pid" aria-hidden="true">PTB-RYLE-P02</span><span class="p-text">简要地说，一个拥有或掌握理论（在此意义上）的人知道如何做某些事情，此外还能在实际操作的同时提供解释、理由说明和回答相关问题。可以注意到，赖尔的理论概念作为卡尔·波普尔（K. Popper）与埃克尔斯（Eccles, 1977）所说的"非实体化的世界3对象"的一个例子，具有可辩护的哲学地位。在本节中，我们将更详细地描述赖尔的理论概念。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P03" data-pid="PTB-RYLE-P03"><span class="pid" aria-hidden="true">PTB-RYLE-P03</span><span class="p-text">赖尔（1949）将他的理论概念作为智力活动本质分析的一部分来发展，尤其是智力活动与仅仅是智能的活动之间有何不同、以及智力活动如何超越仅仅是智能的活动。在智能行为中，人展现的并非任何特定的关于事实的知识，而是做某些事情的能力，例如制造和欣赏笑话、合乎语法地说话、或者布置家具。更具体地说，智能行为的特点部分在于人按照某些标准把事情做得很好，但更进一步展现的是人能够应用这些标准来检测和纠正失误、从他人的例子中学习，等等。可以注意到，这种智能概念并不依赖于任何关于智能行为取决于遵循规则、规范或方法的观点。相反，遵守规则这一行为本身就可以做得更智能或更不智能；如果智能的运用取决于遵循规则，那么就必须有关于如何遵循规则的规则、关于如何遵循遵循规则的规则的规则，等等，从而陷入无限倒退，这是荒谬的。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P04" data-pid="PTB-RYLE-P04"><span class="pid" aria-hidden="true">PTB-RYLE-P04</span><span class="p-text">超越仅仅是智能的活动，智力活动的特征在于人建构并持有一种理论，其中理论体现为知道如何做某些事情，并且必须具备为解释、回答关于该活动的质询、就此进行论证等能力。一个拥有理论的人准备好参与此类活动；而在建构理论的过程中，人正在努力获得这种理论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P05" data-pid="PTB-RYLE-P05"><span class="pid" aria-hidden="true">PTB-RYLE-P05</span><span class="p-text">这里使用的理论概念不仅适用于专业研究领域中的复杂构造，同样适用于任何受过教育的人在某些场合会参与的活动。即便是日常生活中相当寻常的活动也可能引发人们的理论化，例如规划如何摆放家具，或如何通过某种交通工具到达某地。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P06" data-pid="PTB-RYLE-P06"><span class="pid" aria-hidden="true">PTB-RYLE-P06</span><span class="p-text">这里所采用的赖尔理论概念，明确不限于所谓的最一般或最抽象层面的洞见。例如，按照这里的理解，拥有牛顿力学理论并不仅仅意味着理解中心定律，例如力等于质量乘以加速度。此外，正如库恩（Kuhn, 1970, p. 187ff）更详细地描述的那样，拥有该理论的人必须理解中心定律以何种方式适用于现实的某些方面，从而能够识别并将该理论应用于其他相似的方面。一个拥有牛顿力学理论的人必须理解它如何应用于钟摆和行星的运动，并且必须能够在世界中识别类似现象，以便恰当地运用该理论的数学规则。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-RYLE-P07" data-pid="PTB-RYLE-P07"><span class="pid" aria-hidden="true">PTB-RYLE-P07</span><span class="p-text">理论依赖于对现实世界中情境与事件之间的某些相似性的把握，这解释了为什么拥有理论的人所持有的知识原则上无法以规则的形式来表达。事实上，所讨论的相似性不能以、也无法以标准来表达，正如人脸、曲调或葡萄酒味道等许多其他类型对象的相似性也无法以标准来表达一样。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的理论本质上是 knowing-how——一种实践性的、不可完全言说的知识。</p><p><strong>对软件工程的含义：</strong>形式化方法无法完全捕获"知道如何做"；编程教育不能只教规则，必须培养判断力。</p><p><strong>对 AI 编程的启发：</strong>AI 最擅长 knowing-that（检索、推理），但最不擅长 knowing-how（实践判断）。这也是当前 AI 编程工具的根本局限。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-theory_to_be_built" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">04</span>程序员须建构的理论<span class="en"> / The Theory To Be Built by the Programmer</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序员必须建构的理论内容：关于现实世界事务如何由程序处理的理论。</p><p><strong>三个超越：</strong></p><ul><li>① 能解释程序如何映射现实世界事务</li><li>② 能说明程序每个部分为什么是这样</li><li>③ 能建设性地回应修改需求</li></ul></div><div class="para" id="PTB-THEORY-P01" data-pid="PTB-THEORY-P01"><span class="pid" aria-hidden="true">PTB-THEORY-P01</span><span class="p-text">按照赖尔的理论概念，程序员必须建构的是一种关于现实世界的某些事务将如何由计算机程序处理或支持的理论。在编程的理论建构观中，程序员建构的理论优先于诸如程序文本、用户文档和附加文档（如规格说明）等其他产品。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-THEORY-P02" data-pid="PTB-THEORY-P02"><span class="pid" aria-hidden="true">PTB-THEORY-P02</span><span class="p-text">在论证理论建构观时，核心问题在于说明程序员凭借拥有理论所掌握的知识，如何必然且本质地超越记录在文档化产品中的知识。对此的回答是，程序员的知识至少在三个本质领域超越了文档所给出的知识：</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-THEORY-P03" data-pid="PTB-THEORY-P03"><span class="pid" aria-hidden="true">PTB-THEORY-P03</span><span class="p-text">1) 拥有程序的理论的程序员能够解释该解决方案如何与它所要处理的现实世界事务相关联。这种解释必须涉及现实世界事务在程序文本以及任何附加文档中映射的方式，即事务在总体特征和细节方面以某种方式被映射进程序文本和附加文档。因此，程序员必须能够解释程序文本的每个部分以及其整体结构特征的每个方面，分别对应着世界的哪个方面或活动。反之，对于现实世界的任何方面或活动，程序员能够说明它被映射进程序文本的方式。当然，世界方面和活动的大部分将超出程序文本的范围，因为在相关语境中它们无关紧要。然而，判断世界的某个部分是否相关，只能由理解整个世界的人做出。这种理解必须由程序员贡献。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-THEORY-P04" data-pid="PTB-THEORY-P04"><span class="pid" aria-hidden="true">PTB-THEORY-P04</span><span class="p-text">2) 拥有程序的理论的程序员能够解释为什么程序的每个部分是其现在的样子，换言之，能够以某种理由说明来支持实际的程序文本。这种理由说明的最终依据必须是、也始终是程序员的直接直觉知识或判断。即使在理由说明运用了推理——可能应用了设计规则、定量估计、与其他替代方案的对比等——时，这一点也依然成立；关键在于原则与规则的选择，以及判断它们与当前情境相关性的决定，归根结底仍然是程序员直接知识的事情。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-THEORY-P05" data-pid="PTB-THEORY-P05"><span class="pid" aria-hidden="true">PTB-THEORY-P05</span><span class="p-text">3) 拥有程序的理论的程序员能够建设性地回应以新方式支持现实世界事务为目的的任何程序修改需求。设计如何将修改最佳地纳入已有程序，取决于对新的需求与程序中已建立的运行设施之间的相似性的感知。必须被感知的这种相似性是世界方面之间的相似性。只有拥有世界知识的人——即程序员——才能理解这种相似性，并且它不能归结为任何有限的标准或规则集合，原因与上述关于程序理由说明不能如此还原的理由类似。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-THEORY-P06" data-pid="PTB-THEORY-P06"><span class="pid" aria-hidden="true">PTB-THEORY-P06</span><span class="p-text">虽然本节讨论为采纳编程的理论建构观提供了一些基本论证，但对该观的评估还应考虑它在多大程度上有助于对编程及其问题形成连贯的理解。此类问题将在以下各节中讨论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的理论优先于所有文档化产品。理论建构是编程活动的核心。</p><p><strong>对软件工程的含义：</strong>评价程序员质量的标准不是代码行数，而是理论的深度和一致性。</p><p><strong>对 AI 编程的启发：</strong>每个 AI agent 修改都应形成"设计理由"——这是项目理论的增量增长。AI 可以辅助建构理论，但不能替代。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-problems_and_costs" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">05</span>程序修改的问题与代价<span class="en"> / Problems and Costs of Program Modifications</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序修改的代价不在于文本变更本身，而在于识别新旧需求与现有理论之间的"相似性"。</p><p><strong>关键洞察：</strong>修改质量取决于是否在延伸现有理论，而不是打补丁。</p><p><strong>两种修改：</strong></p><ul><li><strong>理论延伸：</strong>新修改与现有理论有共同基础，一致性强</li><li><strong>补丁：</strong>新修改与现有理论无关，破坏结构</li></ul></div><div class="para" id="PTB-PROBS-P01" data-pid="PTB-PROBS-P01"><span class="pid" aria-hidden="true">PTB-PROBS-P01</span><span class="p-text">提出编程的理论建构观的一个突出理由，是希望建立一种洞见，以支持对程序修改的正确理解。因此，这个问题将成为首先分析的对象。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P02" data-pid="PTB-PROBS-P02"><span class="pid" aria-hidden="true">PTB-PROBS-P02</span><span class="p-text">有一件事似乎被所有人所认同，那就是软件将被修改。程序一旦投入运行，总是被认为只是手头问题解决方案的一部分。此外，程序本身的使用也会激发对进一步有用服务的想法。因此产生了如何处理修改的需求。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P03" data-pid="PTB-PROBS-P03"><span class="pid" aria-hidden="true">PTB-PROBS-P03</span><span class="p-text">程序修改问题与编程成本问题密切相关。面对需要改变程序运行方式的情况，人们希望通过修改现有程序文本而不是编写全新程序来实现成本节约。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P04" data-pid="PTB-PROBS-P04"><span class="pid" aria-hidden="true">PTB-PROBS-P04</span><span class="p-text">期望以低成本实现程序修改的假设需要进行更仔细的分析。首先应当指出，这种期望无法通过与其他复杂人造构造的修改进行类比来得到支持。对于偶尔进行修改的构造（例如建筑物），众所周知修改成本高昂，而且事实上完全拆除现有建筑后重新建造往往在经济上更为可取。其次，低成本程序修改的可能性期望，或许可以从程序是存储在允许轻松编辑的媒介中的文本这一事实中获得支持。要使这种支持成立，显然必须假设主导成本是文本操作的成本。这与将编程视为文本生产的观念相吻合。在理论建构观中，这整个论证是错误的。这种观点不支持对低成本程序修改的一般期望。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P05" data-pid="PTB-PROBS-P05"><span class="pid" aria-hidden="true">PTB-PROBS-P05</span><span class="p-text">一个密切相关的议题是程序灵活性。在程序中纳入灵活性意味着将某些并非立即需要、但可能被证明有用的运行设施纳入程序。因此，灵活的程序无需修改就能处理某些外部环境变化类别。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P06" data-pid="PTB-PROBS-P06"><span class="pid" aria-hidden="true">PTB-PROBS-P06</span><span class="p-text">人们常说，程序应当设计得包含大量灵活性，以便随时适应变化的环境。就易于实现的灵活性而言，这种建议或许是合理的。然而，灵活性通常只能以相当高的代价来实现。每一项灵活性都必须被设计，包括它必须涵盖哪些情况、以及由哪些参数来控制。然后必须实现、测试和描述它。这种成本是为了实现一个其有用性完全取决于未来事件的程序功能而付出的。显然，内置的程序灵活性并不能满足将程序适配于变化的世界环境的普遍需求。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P07" data-pid="PTB-PROBS-P07"><span class="pid" aria-hidden="true">PTB-PROBS-P07</span><span class="p-text">在程序修改中，现有的程序化解决方案必须被改变，以匹配它必须对应的现实世界活动的变化。修改首先需要将现有解决方案与期望修改所要求的需求进行对照。在这种对照中，必须确定现有解决方案的能力与新需求之间的相似性的程度和种类。这种确定相似性的需求凸显了理论建构观的优点。事实上，正是在确定相似性时，任何忽视核心要求——即拥有恰当知识的人直接参与——的编程观的缺陷才会暴露出来。这里要把握的相似性对拥有程序理论的人而言是可以企及的，但完全超出了规则所能确定的范围，因为甚至判断相似性的标准本身也无法被形式化。从对新需求与程序已满足的需求之间相似性的洞察出发，程序员能够设计出实现该修改所需的程序文本变更。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P08" data-pid="PTB-PROBS-P08"><span class="pid" aria-hidden="true">PTB-PROBS-P08</span><span class="p-text">在某种意义上，不存在理论修改的问题，只存在程序修改的问题。事实上，拥有理论的人必须已经准备好回应可能引发程序修改的各种问题和需求。这一观察引向一个重要结论：程序修改问题源于将编程假设为程序文本生产活动的观念，而不是将编程认识为理论建构活动。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-PROBS-P09" data-pid="PTB-PROBS-P09"><span class="pid" aria-hidden="true">PTB-PROBS-P09</span><span class="p-text">根据理论建构观，由不具备恰当理论把握的程序员对程序文本进行修改所导致的程序文本退化，是可以理解的。事实上，如果仅仅被视为程序文本和程序执行外部行为的改变，一个给定的期望修改通常可以通过多种不同方式实现，所有这些方式都是正确的。同时，如果与程序理论联系起来看，这些方式可能看起来非常不同——其中一些可能符合该理论或以自然方式扩展它，而另一些则可能与其理论完全不一致，带有程序主体上的非整合补丁的特征。这种差异只有拥有程序理论的程序员才能理解。同时，程序文本中所做变更的性质对程序的长期可用性至关重要。要使程序保持其质量，每一项修改都必须牢固地建立在程序的理论基础上。事实上，简洁性和良好结构等质量概念本身只能通过程序理论来理解，因为它们刻画的是实际程序文本与程序员理解中可能存在的、为达到相同执行行为而可能编写的程序文本之间的关系。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>修改决策的本质是判断相似性，这必须由理解世界的人（程序员）做出，不可还原为规则。</p><p><strong>对软件工程的含义：</strong>代码审查应该问"这是理论延伸还是补丁？"，而不是"这符合规范吗？"</p><p><strong>对 AI 编程的启发：</strong>AI agent 的修改判断需要先评估"相似性基础"——这个评估目前只能由人来做。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-program_life_death_revival" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">06</span>程序生命、死亡与复活<span class="en"> / Program Life, Death, and Revival</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>程序的"生命"取决于程序员对其理论的持续支持。理论消亡→程序死亡。理论重建→程序复活。</p><p><strong>程序死亡的信号：</strong>后续程序员只能打补丁，无法做理论延伸。</p><p><strong>程序复活：</strong>新的程序员通过深入研究，重新建构出能支撑系统的理论。</p></div><div class="para" id="PTB-LIFE-P01" data-pid="PTB-LIFE-P01"><span class="pid" aria-hidden="true">PTB-LIFE-P01</span><span class="p-text">编程理论建构观的一个核心主张是：任何程序的本质部分——即程序的理论——是无法被表达的，并且与人类存在者不可分离地联系在一起。由此可以推知，在描述程序状态时，重要的是指出拥有程序理论的程序员在多大程度上仍在负责它。为了强调这一状况，可以扩展程序建构的概念，引入程序生命、死亡和复活的观念。程序的建构等同于程序员团队建构和掌握其理论。在程序生命中，拥有其理论的程序员团队控制着该程序，特别是控制所有修改。程序的死亡发生在拥有其理论的程序员团队解散时。一个死去的程序可能继续被计算机执行并产生有用的结果。死亡的实际状态在对程序的修改需求无法被智能地回应时才会显现。程序的复活是由新的程序员团队重建其理论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-LIFE-P02" data-pid="PTB-LIFE-P02"><span class="pid" aria-hidden="true">PTB-LIFE-P02</span><span class="p-text">按照这些观念，程序延续的生命取决于新一代程序员接替程序理论。要使新程序员掌握一个现有的程序理论，仅仅有机会熟悉程序文本和其他文档是不够的。需要的是新程序员有机会与已经拥有理论的程序员紧密合作，以便能够熟悉程序在更广泛的相关现实世界情境中的地位，并获取关于程序如何运作以及如何处理异常程序反应和程序修改的知识。在已有程序理论中教育新程序员的问题，与许多其他活动中的教育问题非常相似，在那些活动中如何做某事的知识占据主导地位，而超越知道某些事实的知识，例如写作和演奏乐器。最重要的教育活动是学生在适当监督和指导下进行相关实践。就编程而言，这种活动应当包括讨论程序与相关现实世界方面和活动之间的关系，以及程序所处理现实世界事务的界限。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-LIFE-P03" data-pid="PTB-LIFE-P03"><span class="pid" aria-hidden="true">PTB-LIFE-P03</span><span class="p-text">理论建构观的一个非常重要的后果是：程序复活——即仅仅从文档中重建程序理论——严格来说是不可能的。为了避免这个后果显得不合理，可以指出，为一个完全死去的程序进行复活的需求可能很少出现，因为很难想象复活任务会被分配给对原始团队理论毫无了解的新程序员。即便如此，理论建构观强烈表明，程序复活只应在例外情况下尝试，并且要充分意识到它充其量是昂贵的，而且可能导致一个与原作者所拥有的理论不同的复活理论，因而与程序文本存在差异。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-LIFE-P04" data-pid="PTB-LIFE-P04"><span class="pid" aria-hidden="true">PTB-LIFE-P04</span><span class="p-text">理论建构观建议，与其进行程序复活，不如丢弃现有程序文本，让新组建的程序员团队有机会重新解决给定问题。这样的程序更有可能产生一个可行的程序，而且成本不会更高，甚至可能更低。关键在于，建构一个理论来适配和支持现有程序文本是一项困难、令人沮丧且耗时的工作。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-LIFE-P05" data-pid="PTB-LIFE-P05"><span class="pid" aria-hidden="true">PTB-LIFE-P05</span><span class="p-text">一个需要注意的问题是：在程序被不断发展的程序员团队持续保持存活的情况下，类似的问题也可能出现。这是由于个体程序员的能力差异和背景经验差异所致，尤其是在团队不可避免地替换个别成员的情况下。新程序员很可能感到在忠诚于现有程序文本（无论其包含何种模糊性和弱点）与他或她必须建构的新理论之间左右为难，而后者无论如何很可能与程序文本背后的原始理论有所不同。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序的可持续性取决于理论是否被维护，而不是代码本身的质量。</p><p><strong>对软件工程的含义：</strong>技术债务的真正代价是理论债务——当理论被侵蚀，程序的生命力就终结了。</p><p><strong>对 AI 编程的启发：</strong>AI agent 的持续接入可能导致"理论碎片化"——每次新的对话都是从头开始，不继承前面对系统理论的理解。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-method_and_theory_building" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">07</span>方法与理论建构<span class="en"> / Method and Theory Building</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>方法论作为"程序员必须遵循的规则集合"这一概念，基于无效假设，必须被否定。</p><p><strong>两个反证：</strong></p><ul><li>1. 方法论的有效性从未被科学方法验证</li><li>2. 遵循规则本身也需要判断力（无穷倒退问题）</li></ul><p><strong>Naur 的立场：</strong>方法论可以描述好的实践，但无法替代理论建构。</p></div><div class="para" id="PTB-METHOD-P01" data-pid="PTB-METHOD-P01"><span class="pid" aria-hidden="true">PTB-METHOD-P01</span><span class="p-text">近年来，人们对编程方法产生了很大兴趣。在本节中，将对理论建构观与编程方法背后的观念之间的关系作出一些评论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P02" data-pid="PTB-METHOD-P02"><span class="pid" aria-hidden="true">PTB-METHOD-P02</span><span class="p-text">首先，什么是编程方法？即使推荐某种方法的作者也并不总是说清楚这一点。这里，编程方法将被视为一套程序员工作规则，告诉程序员应该做什么类型的事情、按照什么顺序、在哪些阶段使用哪些记号或语言、以及产生哪些类型的文档。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P03" data-pid="PTB-METHOD-P03"><span class="pid" aria-hidden="true">PTB-METHOD-P03</span><span class="p-text">在将方法的这种概念与编程的理论建构观进行比较时，最重要的问题在于行动或操作及其顺序。方法暗示着这样一种主张：程序开发可以且应当作为一系列特定类型的行动来进行，每个行动产生某种特定的文档化结果。而在建构理论时，不存在特定的行动顺序，因为一个人所持有的理论没有内在的部分划分，也没有内在的顺序。相反，拥有理论的人能够在此基础上产生各种类型的展示，以回应问题或需求。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P04" data-pid="PTB-METHOD-P04"><span class="pid" aria-hidden="true">PTB-METHOD-P04</span><span class="p-text">至于使用特定类型的记号或形式化，这同样只能是次要问题，因为首要的项目——理论——是不能被表达的，因此不存在其表达形式的问题。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P05" data-pid="PTB-METHOD-P05"><span class="pid" aria-hidden="true">PTB-METHOD-P05</span><span class="p-text">由此可以推知，在理论建构观中，对于编程的主要活动而言，不存在正确的方法。这个结论似乎与既成观点相冲突，因此可能被用作反对理论建构观的论据。这里将讨论两个这样的表面矛盾，第一个涉及方法在科学探索中的重要性，第二个涉及方法在软件开发中实际使用的成功。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P06" data-pid="PTB-METHOD-P06"><span class="pid" aria-hidden="true">PTB-METHOD-P06</span><span class="p-text">第一个论点是软件开发应该基于科学方式，因此应该采用类似于科学方法的程序。这一论点的缺陷在于假设存在所谓科学方法这样的东西，并且它对科学家有帮助。这个问题近年来一直是大量讨论的主题，费耶拉本德（Feyerabend, 1978）以物理学史为例、以及梅达沃（Medawar, 1982）以生物学家的身份论证，都认为科学方法作为一套实践科学家指南的观念是错误的。这个结论并不被波利亚（Polya, 1954, 1957）关于问题求解的研究所反驳。该研究以数学领域为例，得出的洞见对编程也高度相关。然而，它不能被声称呈现了一种可以遵循的方法。相反，它是一系列建议的集合，旨在通过指出可以按任何顺序应用的不同工作模式来激发问题求解者的智力活动。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P07" data-pid="PTB-METHOD-P07"><span class="pid" aria-hidden="true">PTB-METHOD-P07</span><span class="p-text">第二个似乎与否定方法相矛盾的论据是，特定方法的使用已被证明是成功的——按照已发表的报告。对此可以回应说，迄今似乎从未对编程方法的效用进行过方法上令人满意的研究。这样的研究必须采用公认的受控实验技术（参见[Brooks, 1980]或[Moher and Schneider, 1982]）。缺乏这样的研究，部分原因在于如果结果要有意义，此类研究无疑会招致高昂成本，部分原因在于以可操作方式确立程序开发领域中所谓方法的概念所涉及的问题。大多数关于此类方法的已发表报告仅仅描述和推荐某些技术和程序，而没有以系统方式确立其有用性或有效性。C. Floyd 及几位合作者[Floyd, 1984]对五种不同方法进行的详尽研究得出结论：方法作为一套在任意情境中机械地导向良好解决方案的规则系统，是一种幻觉。剩下的只是方法在程序员教育中的效果。这个结论与编程的理论建构观完全相容：事实上，按照这种观点，程序员建构的理论质量将在很大程度上取决于程序员对典型问题模型解决方案的熟悉程度、对描述和验证技术的掌握，以及对由许多部分以复杂交互组成的系统的结构原则的了解。因此，方法所关注的许多项目都与理论建构相关。理论建构观与方法论者的分歧在于使用哪些技术以及按什么顺序使用。在理论建构观中，这必须完全由程序员根据实际要解决的问题来决定。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P08" data-pid="PTB-METHOD-P08"><span class="pid" aria-hidden="true">PTB-METHOD-P08</span><span class="p-text">更一般地说，许多关于编程的当前讨论似乎假设编程类似于工业生产，程序员被视为生产过程的一个组成部分，一个必须由程序规则来控制、并且可以被轻易替换的组成部分。另一种相关的观点是人类如果像机器一样遵循规则行动，表现最佳，随之而来的是对形式化表达模式的强调，这使得以形式操作规则的术语来表述某些论证成为可能。这些观点与计算机工作者中似乎普遍流行的一种观念相吻合，即人类心智像计算机一样运作。在工业管理层面，这些观点支持将程序员视为责任相当低、只需短暂教育的工人。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-METHOD-P09" data-pid="PTB-METHOD-P09"><span class="pid" aria-hidden="true">PTB-METHOD-P09</span><span class="p-text">更一般地说，例如，可以考虑奥斯卡森（Oskarsson, 1982）对大型软件系统可修改性的研究。该研究提供了大量关于一个大型商业系统某版本中相当数量修改的详尽信息。描述涵盖了每次修改的背景、实质和实现，特别关注程序变更如何被限制在特定程序模块中。然而，该研究完全没有暗示修改的实现是否取决于参与该项目的500名程序员的背景，例如他们在该项目上工作的时间长短，也没有说明设计决策在这500名程序员之间分配的方式。即便如此，对潜在理论的承认仍然以间接的方式出现在诸如"决策在错误的模块中实现"以及对"AXE理念"的引用等陈述中。然而，通过该研究所采用的方式，这些承认只能保持为孤立的暗示。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>良好实践不是来自方法论规则，而是来自理论建构能力的培养。</p><p><strong>对软件工程的含义：</strong>敏捷方法的有效性不在于"遵循规则"，而在于促进理论建构（XP 的隐喻设定、结对编程等）。</p><p><strong>对 AI 编程的启发：</strong>AI agent 工作流不应被设计成"规则清单"，而应被设计成"理论建构助手"——帮助人形成、表达和维护设计理由。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-programmers_status" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">08</span>程序员的专业地位与理论建构观<span class="en"> / Programmers' Status and the Theory Building View</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>理论建构观要求重新定位程序员的专业地位：不是可替换零件，而是负责任的知识工作者。</p><p><strong>对比：</strong></p><ul><li>生产观 → 程序员是可替换的低技能工人</li><li>理论建构观 → 程序员是永久性专业职位，类似于工程师和律师</li></ul></div><div class="para" id="PTB-STATUS-P01" data-pid="PTB-STATUS-P01"><span class="pid" aria-hidden="true">PTB-STATUS-P01</span><span class="p-text">理论建构观的后果与更为流行的当前观点形成最鲜明对比的领域，在于程序员的个人贡献以及程序员应有的地位。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-STATUS-P02" data-pid="PTB-STATUS-P02"><span class="pid" aria-hidden="true">PTB-STATUS-P02</span><span class="p-text">理论建构观与更流行的关于程序员个人贡献的观点之间的对比，在许多关于编程的普遍讨论中显而易见。仅举一例，在计算机工作者中似乎普遍流行一种观念，认为人类心智像计算机一样运作。在工业管理层面，这些观点支持将程序员视为责任相当低、只需短暂教育的工人。在理论建构观中，编程活动的首要成果是程序员所持有的理论。由于这一理论按其本质是每个程序员精神财产的一部分，因此程序员作为程序生产活动中可轻易替换的组成部分的观念必须被抛弃。相反，程序员必须被视为其活动——计算机是该活动的一部分——的负责任的开发者和管理者。为了胜任这一职位，他或她必须被给予一个永久性的职位，其地位类似于工程师和律师等其他专业人士，他们作为企业雇员的积极贡献取决于其智力水平。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-STATUS-P03" data-pid="PTB-STATUS-P03"><span class="pid" aria-hidden="true">PTB-STATUS-P03</span><span class="p-text">理论建构观所建议的提高程序员地位，必须通过对程序员教育的相应重新定位来支持。虽然掌握记号、数据表示和数据处理等技能仍然重要，但主要重点必须转向促进理解和培养理论形成的能力。这种能力在多大程度上可以被教授，必须仍然是一个开放的问题。最有希望的方法是让学生在有指导的积极建构环境中处理具体问题。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>程序员的专业地位取决于他们的理论建构能力，而不是完成任务的速度。</p><p><strong>对软件工程的含义：</strong>程序员教育必须强调理论形成能力，而不只是数据处理技能。</p><p><strong>对 AI 编程的启发：</strong>AI 时代，程序员的独特价值在于理论建构——这是 AI 目前无法替代的。懂得如何使用 AI 而不被 AI 替代，是未来程序员的核心能力。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-conclusions" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">09</span>结论<span class="en"> / Conclusions</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节总结 Naur 的五个核心命题，重申理论建构观的核心地位。</p><p><strong>五个命题：</strong></p><ul><li>① 编程的首要目标是建构理论</li><li>② 理论建构是程序员知识的核心</li><li>③ 程序修改必须以理论为基础</li><li>④ 方法论必须服务于理论建构</li><li>⑤ 程序员是负责任的专业人员</li></ul></div><div class="para" id="PTB-CONCL-P01" data-pid="PTB-CONCL-P01"><span class="pid" aria-hidden="true">PTB-CONCL-P01</span><span class="p-text">承认由变化的外部环境所要求的程序修改是编程的本质部分，可以论证编程的首要目标是让程序员建构一种关于手头事务如何得到程序执行支持的理论。这种观念引出一种程序生命的概念，它取决于程序员对其理论的持续支持。此外，按照这种观点，作为一套程序员必须遵循的程序规则而被理解的编程方法概念，基于无效的假设，因此必须被否定。作为该观点的进一步后果，程序员必须被承认为负责任的、永久性的开发者和其活动——计算机是该活动的一部分——的管理者，而他们的教育必须强调理论建构实践，同时掌握数据处理知识和记号。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>编程的本质是理论建构活动，程序文本只是理论的外部表现。</p><p><strong>对软件工程的含义：</strong>软件工程作为一个学科，需要以"如何培养理论建构能力"为核心来重新设计。</p><p><strong>对 AI 编程的启发：</strong>AI agent 编程必须以人持有理论为前提；每个修改必须形成设计理由；代码+文档+测试共同表达项目理论。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-appendix" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">10</span>附录：应用"理论建构"观<span class="en"> / Applying "Theory Building" View</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="mode-bar"><button class="mode-btn active" data-mode="translation" onclick="setSectionMode(this,'translation')">只看译文</button><button class="mode-btn" data-mode="guide" onclick="setSectionMode(this,'guide')">译文+导读</button><button class="mode-btn" data-mode="analysis" onclick="setSectionMode(this,'analysis')">译文+解读</button></div><div class="t-guide"><div class="t-guide-hdr">本节导读</div><p>本节将理论建构观应用于实际软件工程实践：隐喻作为理论载体、隐性知识与文档的关系、共享理论对团队协作的价值。</p><p><strong>隐喻的作用：</strong>好的隐喻让后来者能"准确猜测"系统结构。</p><p><strong>文档的价值：</strong>文档的目的是帮助下一个程序员建构恰当的理论，而不是说明一切。</p></div><div class="para" id="PTB-APPENDIX-META-P01" data-pid="PTB-APPENDIX-META-P01"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P01</span><span class="p-text">将编程视为理论建构有助于我们理解极限编程（XP）中的"隐喻建构"活动，以及隐性知识和文档在传递设计知识方面的各自角色。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P02" data-pid="PTB-APPENDIX-META-P02"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P02</span><span class="p-text">肯特·贝克（Kent Beck）建议，设计团队将一个程序的总体设计简化为匹配单一隐喻，这很有用。例子可以是："这个程序看起来真像一条装配线，东西沿着线被添加到底盘上"，或者"这个程序真像一家餐厅，有服务员、菜单、厨师和收银员"。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P03" data-pid="PTB-APPENDIX-META-P03"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P03</span><span class="p-text">如果隐喻是恰当的，设计师围绕隐喻所创造的许多联想被证明是适合他们的编程情境的。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P04" data-pid="PTB-APPENDIX-META-P04"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P04</span><span class="p-text">这正是诺尔关于传递设计理论的理念：如果"装配线"是一个恰当的隐喻，那么后来的程序员在考虑他们对装配线所了解的东西时，会对当前软件的结构作出猜测，并发现他们的猜测是"接近的"。这就是仅仅"装配线"两个词所具有的非凡力量。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P05" data-pid="PTB-APPENDIX-META-P05"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P05</span><span class="p-text">良好隐喻的价值随着设计师数量的增加而增加。每个人的猜测与其他人的猜测越"接近"，最终系统设计的一致性就越大。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P06" data-pid="PTB-APPENDIX-META-P06"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P06</span><span class="p-text">想象10个程序员以尽可能快的速度并行工作，每个人都在做出设计决策并添加类。每个人都必然在前进过程中发展自己的理论。随着每个人添加代码，将他们的工作结合起来的理论变得越来越不连贯、越来越复杂。不仅维护变得更加困难，而且连他们自己的工作也变得更加困难。设计很容易变成一个"拼凑物"。如果他们拥有一个共同理论，另一方面，他们就能以彼此契合的方式添加代码。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-META-P07" data-pid="PTB-APPENDIX-META-P07"><span class="pid" aria-hidden="true">PTB-APPENDIX-META-P07</span><span class="p-text">一个恰当的、共享的隐喻让一个人能够准确猜测团队中的其他人在哪里添加了代码，以及如何将她的新部分与之契合。 ### 隐性知识与文档 (Tacit Knowledge and Documentation)</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P01" data-pid="PTB-APPENDIX-DOC-P01"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P01</span><span class="p-text">文档几乎肯定落后于程序的当前状态，但人们善于东寻西找。你应该把什么放进文档？</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P02" data-pid="PTB-APPENDIX-DOC-P02"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P02</span><span class="p-text">那些能帮助下一个程序员建构关于程序的恰当理论的东西。这是极其重要的。文档的目的是激发读者的记忆，建立关于经验和隐喻的相关思维路径。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P03" data-pid="PTB-APPENDIX-DOC-P03"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P03</span><span class="p-text">这种文档比仅仅命名系统当前存在的各个部分更能在程序的生命周期中保持稳定。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P04" data-pid="PTB-APPENDIX-DOC-P04"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P04</span><span class="p-text">设计师可以使用必要的任何表达形式来建立那些相关的思维路径。他们甚至可以同时使用多个隐喻，如果他们找不到一个足以涵盖整个程序的隐喻。他们可以说，一个部分实现了分形压缩算法，第二个像一本会计账簿，用户界面遵循模型-观察者设计模式，等等。经验丰富的设计师通常仅从以下三个方面开始他们的文档：隐喻、描述每个主要组件目的的文字、以及主要组件之间主要交互的图示。这三项单独就能让下一个团队走很长的路，以建构一个关于设计的有用理论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P05" data-pid="PTB-APPENDIX-DOC-P05"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P05</span><span class="p-text">源代码本身用于向下一个程序员传递理论。简单、一致的命名约定帮助下一个人建构一个关于系统的连贯理论。当人们谈论"整洁代码"时，他们很大程度上指的是读者建构一个关于系统的连贯理论有多么容易。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div>
+<div class="para" id="PTB-APPENDIX-DOC-P06" data-pid="PTB-APPENDIX-DOC-P06"><span class="pid" aria-hidden="true">PTB-APPENDIX-DOC-P06</span><span class="p-text">文档无法——因此也不需要——说明一切。它的目的是帮助下一个程序员建构关于系统的准确理论。</span><button class="p-copy" onclick="copyText(this)" title="复制本段">复制</button></div><div class="t-analysis"><div class="t-analysis-hdr">本节解读</div><p><strong>核心观点：</strong>隐性知识（理论）无法完全文档化，但可以通过隐喻、结构化描述和图示来激发。</p><p><strong>对软件工程的含义：</strong>好的文档不是"详尽的规格说明"，而是"理论激发器"——帮助读者激活相关的思维路径。</p><p><strong>对 AI 编程的启发：</strong>AI agent 之间的"共享理论"目前只能通过 prompt 来传递，这正是为什么好的 prompt 需要像隐喻一样，提供足够的理论框架。</p></div><button class="btn-outline" style="margin-top:12px;font-size:11px" onclick="copySection(this)">复制本节译文</button></section>
+<section class="paper-section" id="sec-references" data-mode="translation"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">11</span>参考文献 <span class="en">/ References</span></h2><button class="toggle-btn" onclick="this.closest('.paper-section').classList.toggle('collapsed')">折叠</button></div><div class="card-grid"><div class="ref-card"><p><strong>Brooks, R. E.</strong> (1980) <em>Comm. ACM</em>. 23(4): 207-213.</p></div><div class="ref-card"><p><strong>Feyerabend, P.</strong> (1978) <em>Against Method</em>. London, Verso.</p></div><div class="ref-card"><p><strong>Floyd, C.</strong> (1984) <em>Tagung 1/1984 des German Chapter of the ACM</em>.</p></div><div class="ref-card"><p><strong>Kuhn, T. S.</strong> (1970) <em>The Structure of Scientific Revolutions</em>. Chicago.</p></div><div class="ref-card"><p><strong>Medawar, P.</strong> (1982) <em>Pluto's Republic</em>. Oxford.</p></div><div class="ref-card"><p><strong>Moher & Schneider</strong> (1982) <em>Int. J. Man-Mach. Stud.</em>. 16: 65-87.</p></div><div class="ref-card"><p><strong>Oskarsson, O.</strong> (1982) <em>Mechanisms of Modifiability in Large Software Systems</em>.</p></div><div class="ref-card"><p><strong>Polya, G.</strong> (1954) <em>Mathematics and Plausible Reasoning</em>. Princeton.</p></div><div class="ref-card"><p><strong>Polya, G.</strong> (1957) <em>How To Solve It</em>. New York.</p></div><div class="ref-card"><p><strong>Popper & Eccles</strong> (1977) <em>The Self and Its Brain</em>. London.</p></div><div class="ref-card"><p><strong>Ryle, G.</strong> (1949) <em>The Concept of Mind</em>. Harmondsworth.</p></div></div><p style="margin-top:16px;font-size:12px;color:#888">源论文: <a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">pages.cs.wisc.edu/~remzi/Naur.pdf</a></p></section>
+
+<div class="naur-q"><h2>Naur 三问</h2><div class="q-list"><div class="q-item">❓ 这个程序处理了现实世界的什么？</div><div class="q-item">❓ 这段代码为什么是这样，而不是其他方式？</div><div class="q-item">❓ 新需求如何建设性地进入旧系统？</div></div></div>
+
+<section class="paper-section">
+<h2 class="sec-title" style="margin-bottom:16px">✅ AI 编程检查表</h2>
+<ul class="checklist"><li><input type="checkbox"> 是否形成设计理由？</li><li><input type="checkbox"> 是否记录"为什么这样做，而不只是做了什么"？</li><li><input type="checkbox"> 是否分析了修改影响（相似性/补丁判断）？</li><li><input type="checkbox"> 是否让代码、文档、测试共同服务于项目理论？</li><li><input type="checkbox"> 是否在阶段收口时用人能理解的话复述了系统状态？</li></ul>
+</section>
+
+<section>
+<h2 class="sec-title" style="margin-bottom:16px">🤖 把 Naur 变成 agent 工作流</h2>
+<div class="prompt-block"><div class="pt">🤖 模板 A: 阶段启动</div><pre>当前阶段：[描述]
 目标：[描述]
 请先回答：我理解这个修改的"相似性"基础吗？
-如不确定，先形成设计理由，再动手。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyText(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 B: 修改影响分析</div><pre>1. 这个修改和现有理论的相似性基础是什么？
+如不确定，先形成设计理由，再动手。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyPrompt(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 B: 修改影响分析</div><pre>1. 这个修改和现有理论的相似性基础是什么？
 2. 这个修改是在延伸理论，还是打补丁？
 3. 修改后，代码、测试、文档是否共同反映了同一个理论？
-4. 下一个人能通过代码+文档理解这个设计决策吗？</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyText(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 C: 阶段收口复述</div><pre>用人能理解的话描述：系统现在是什么，它为什么是这样。
-这不是状态报告，是"理论快照"。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyText(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 D: 项目理论维护</div><pre>每个 commit 请回答：这个修改的"为什么"是什么？
-代码说做什么，测试说期望什么，文档说为什么——三者合一才是完整的理论表达。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyText(this)">复制模板</button></div></section>
+4. 下一个人能通过代码+文档理解这个设计决策吗？</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyPrompt(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 C: 阶段收口复述</div><pre>用人能理解的话描述：系统现在是什么，它为什么是这样。
+这不是状态报告，是"理论快照"。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyPrompt(this)">复制模板</button></div><div class="prompt-block"><div class="pt">🤖 模板 D: 项目理论维护</div><pre>每个 commit 请回答：这个修改的"为什么"是什么？
+代码说做什么，测试说期望什么，文档说为什么——三者合一才是完整的理论表达。</pre><button class="btn-outline copy-p" style="font-size:11px" onclick="copyPrompt(this)">复制模板</button></div>
+</section>
+
 <section style="background:#f4f1ec;padding:28px;border-radius:8px;margin:0 -28px">
-<h2 class="sec-title" style="margin-bottom:16px;font-size:1.3em">📖 术语表</h2>
+<h2 class="sec-title" style="margin-bottom:16px">📖 术语表</h2>
 <div class="glossary-grid"><div class="glossary-item"><div class="en">Theory Building</div><div class="zh">理论建构</div><div class="def">Naur 提出的编程观：编程的核心是程序员建构关于"程序如何支持现实世界事务"的理论，程序文本只是理论的外部表现。理论不是形式化的公理，而是实践性的 knowing-how 知识。</div></div><div class="glossary-item"><div class="en">Program Text</div><div class="zh">程序文本</div><div class="def">写在某种媒介上的程序代码和相关文档。Naur 认为程序文本只是程序的一部分，不是程序本身。程序文本是理论的外部表现，没有理论支撑的程序文本如同没有灵魂的躯壳。</div></div><div class="glossary-item"><div class="en">Programmer's Knowledge</div><div class="zh">程序员知识</div><div class="def">程序员头脑中关于程序如何映射到现实世界事务的知识体系。这种知识是整体性的、隐性的，不能被完全文档化或规则化。它是理论建构的核心。</div></div><div class="glossary-item"><div class="en">Modification</div><div class="zh">修改</div><div class="def">对程序文本的变更。Naur 强调，理解程序理论的人做出的修改是"有机延伸"（organic extension），而不理解理论的人做出的修改是"补丁"（patch），补丁会破坏程序结构。</div></div><div class="glossary-item"><div class="en">Program Life</div><div class="zh">程序生命</div><div class="def">一个持有程序理论的团队控制着程序，能够智能地响应修改需求。程序的生命不在于文本是否在运行，而在于是否有人持有其理论。</div></div><div class="glossary-item"><div class="en">Program Death</div><div class="zh">程序死亡</div><div class="def">理论持有者团队解散，程序文本继续运行但无法被智能地修改。面对新需求只能盲目打补丁，或被告知"系统动不了"。程序在运行中死亡，是软件工程中最常见的悲剧。</div></div><div class="glossary-item"><div class="en">Program Revival</div><div class="zh">程序复活</div><div class="def">新团队通过文档和代码重建程序理论。可能但极其昂贵，且重建的理论可能与原始理论不同（因为理论是隐性知识，重建时会有偏差）。</div></div><div class="glossary-item"><div class="en">Ryle</div><div class="zh">赖尔（Gilbert Ryle）</div><div class="def">英国哲学家（1900-1976），牛津大学哲学家。其著作《心的概念》（The Concept of Mind, 1949）中区分了 knowing-that（命题性知识）和 knowing-how（实践性知识），Naur 的"理论"概念直接来源于此。</div></div><div class="glossary-item"><div class="en">BNF</div><div class="zh">巴科斯-诺尔范式</div><div class="def">Backus-Naur Form 的缩写，是一种上下文无关文法的表示法。Naur 在 ALGOL 60 报告的开发中对此做出了重要贡献，使 BNF 成为计算机科学中描述语法结构的标准工具。</div></div><div class="glossary-item"><div class="en">ALGOL 60</div><div class="zh">ALGOL 60</div><div class="def">ALGOrithmic Language 1960，算法语言。Naur 是其报告的主要编辑者，使用了 BNF 来描述其语法。ALGOL 60 对后来的编程语言设计（包括 Pascal、C 等）产生了深远影响。</div></div><div class="glossary-item"><div class="en">Method</div><div class="zh">方法/方法论</div><div class="def">在软件工程中通常指编程的方法或规则序列。Naur 批判将方法论视为可替代理论建构的工具，认为理论无法被表达为固定顺序的动作序列。好的方法论是辅助，坏的方法论是思想枷锁。</div></div><div class="glossary-item"><div class="en">Similarity</div><div class="zh">相似性（判断）</div><div class="def">理论建构的核心操作：面对新情况时，判断它与已知情况之间的相似性。这种判断是整体性的、直觉式的，不能被规则化或完全文档化。它是程序修改的基础，也是理论无法被替代的关键原因。</div></div><div class="glossary-item"><div class="en">Tacit Knowledge</div><div class="zh">隐性知识</div><div class="def">源自波兰尼（Michael Polanyi）的概念，指难以言传、难以形式化的知识。Naur 的理论建构观中大量涉及隐性知识——程序员知道如何做，但无法完全解释自己为什么这样做。这种知识构成了理论的大部分。</div></div><div class="glossary-item"><div class="en">Justification</div><div class="zh">辩护/正当化</div><div class="def">能够为自己的设计选择提供理由的能力。Naur 认为理论的一个重要特征就是使程序员能够为程序的行为和设计决策提供辩护（justification），回答"为什么这样设计"的问题。</div></div><div class="glossary-item"><div class="en">Intuitive Knowledge</div><div class="zh">直觉知识</div><div class="def">不经由逐步推理而直接获得的知识。Naur 的理论包含大量直觉知识——程序员能够一眼看出两个情况的相似性，而不需要逐一列举特征。这种直觉是理论建构的重要组成部分。</div></div><div class="glossary-item"><div class="en">Intelligent Behaviour</div><div class="zh">智能行为</div><div class="def">能够根据情境灵活调整、应对新情况的行为。Naur 认为，持有理论的程序员面对新需求时能够做出智能的修改决策，而没有理论的程序员只能机械地执行规则。</div></div><div class="glossary-item"><div class="en">Production View</div><div class="zh">生产观</div><div class="def">Naur 批判的主流编程观念：认为编程就是生产一套程序文本和相关文档。生产观把程序员视为可替换的生产要素，相信文档可以替代程序员的知识，将方法论视为可执行的规则序列。Naur 用理论建构观颠覆了这种观念。</div></div></div>
 </section>
-<section><h2 class="sec-title" style="margin-bottom:16px">🌍 背景资料</h2><div class="bg-grid"><div class="bg-card"><h3>Peter Naur</h3><p>丹麦计算机科学家（1928-2016），2005年 ACM Turing Award 获得者，BNF 发明者，ALGOL 60 创始团队成员。</p></div><div class="bg-card"><h3>ALGOL 60 与 BNF</h3><p>ALGOL 60（1960）引入块结构、嵌套作用域和递归，影响了 Pascal、C、Java。BNF 由 Naur 发明，成为语言定义标准工具。</p></div><div class="bg-card"><h3>Gilbert Ryle</h3><p>英国哲学家（1900-1976），《心的概念》（1949）提出 knowing-how vs knowing-that 的区分，批评身心二元论。</p></div><div class="bg-card"><h3>1980 年代软件工程</h3><p>结构化编程、瀑布模型、形式化方法主导讨论。Naur 在此背景下提出"编程作为理论建构"，挑战"编程即生产"的观念。</p></div></div></section>
-<section><h2 class="sec-title" style="margin-bottom:14px">📚 参考资料</h2><div class="card-grid"><div class="card"><p><a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">📄 原始论文 PDF (UW-Madison)</a></p></div><div class="card"><p><a href="https://amturing.acm.org/award_winners/naur_1024454.cfm" target="_blank">🏆 ACM Turing Award — Peter Naur</a></p></div><div class="card"><p><a href="https://plato.stanford.edu/entries/ryle/" target="_blank">📖 Stanford Encyclopedia: Gilbert Ryle</a></p></div></div></section>
+
+<section>
+<h2 class="sec-title" style="margin-bottom:16px">🌍 背景资料</h2>
+<div class="bg-grid"><div class="bg-card"><h3>Peter Naur</h3><p>丹麦计算机科学家（1928-2016），2005年 ACM Turing Award 获得者，BNF 发明者，ALGOL 60 创始团队成员。</p></div><div class="bg-card"><h3>ALGOL 60 与 BNF</h3><p>ALGOL 60（1960）引入块结构、嵌套作用域和递归，影响了 Pascal、C、Java。BNF 由 Naur 发明，成为语言定义标准工具。</p></div><div class="bg-card"><h3>Gilbert Ryle</h3><p>英国哲学家（1900-1976），《心的概念》（1949）提出 knowing-how vs knowing-that 的区分，批评身心二元论。</p></div><div class="bg-card"><h3>1980 年代软件工程</h3><p>结构化编程、瀑布模型、形式化方法主导讨论。Naur 在此背景下提出"编程作为理论建构"，挑战"编程即生产"的观念。</p></div></div>
+</section>
+
+<section>
+<h2 class="sec-title" style="margin-bottom:14px">📚 参考资料</h2>
+<div class="card-grid"><div class="card"><p><a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">📄 原始论文 PDF</a></p></div><div class="card"><p><a href="https://amturing.acm.org/award_winners/naur_1024454.cfm" target="_blank">🏆 ACM Turing Award — Peter Naur</a></p></div><div class="card"><p><a href="https://plato.stanford.edu/entries/ryle/" target="_blank">📖 Stanford Encyclopedia: Gilbert Ryle</a></p></div></div>
+</section>
 </main>
 </div>
 </div>
+
+<!-- Footer -->
 <footer class="footer">
 <div class="wrapper">
 <div class="footer-grid">
@@ -247,21 +343,46 @@ input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
 <div><h4>源论文</h4><p><a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">Peter Naur, "Programming as Theory Building", 1985</a></p></div>
 <div><h4>相关阅读</h4><p><a href="https://amturing.acm.org/award_winners/naur_1024454.cfm" target="_blank">ACM Turing Award — Peter Naur</a></p></div>
 </div>
-<div class="footer-bottom"><p>生成日期: 2026-06-07 | 项目理论: 编程作为理论建构学习页面</p></div>
+<div class="footer-bottom">
+<p>生成日期: 2026-06-07 | 项目理论: 编程作为理论建构学习页面</p>
+</div>
 </div>
 </footer>
+
 <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
 // ── Utility ──
 function copyText(b){
+  // Copy ONLY the paragraph text content, NOT the PID
   var p=b.closest('.para');
-  var t=p?(p.getAttribute('data-pid')+' '+p.querySelector('.p-text').textContent.trim()):(b.closest('.prompt-block').querySelector('pre')||{}).textContent||'';
-  navigator.clipboard.writeText(t).then(()=>{var o=b.textContent;b.textContent='已复制';setTimeout(()=>b.textContent=o||'复制',1500)})}
+  if(!p)return;
+  var textEl=p.querySelector('.p-text');
+  if(!textEl)return;
+  var txt=textEl.textContent.trim();
+  navigator.clipboard.writeText(txt).then(function(){
+    var original=b.textContent;
+    b.textContent='已复制';
+    setTimeout(function(){b.textContent=original||'复制'},1500)})}
+
 function copySection(b){
   var s=b.closest('.paper-section');
   var txts=[];
-  s.querySelectorAll('.para').forEach(function(p){var pt=p.querySelector('.p-text');if(pt)txts.push(pt.textContent.trim())});
-  navigator.clipboard.writeText(txts.join('\n\n')).then(function(){var o=b.textContent;b.textContent='已复制';setTimeout(function(){b.textContent='复制本节译文'},1500)})}
+  s.querySelectorAll('.para').forEach(function(p){
+    var pt=p.querySelector('.p-text');
+    if(pt&&pt.textContent.trim())txts.push(pt.textContent.trim())});
+  navigator.clipboard.writeText(txts.join('\n\n')).then(function(){
+    var original=b.textContent;
+    b.textContent='已复制';
+    setTimeout(function(){b.textContent='复制本节译文'},1500)})}
+
+function copyPrompt(b){
+  var pre=b.closest('.prompt-block').querySelector('pre');
+  if(!pre)return;
+  navigator.clipboard.writeText(pre.textContent.trim()).then(function(){
+    var original=b.textContent;
+    b.textContent='已复制';
+    setTimeout(function(){b.textContent=original||'复制模板'},1500)})}
+
 function doSearch(q){
   if(!q.trim()){document.getElementById('searchResults').classList.remove('show');return}
   var r=document.getElementById('searchResults');
@@ -278,13 +399,14 @@ function doSearch(q){
 // ── Section mode switching ──
 function setSectionMode(btn, mode){
   var sec=btn.closest('.paper-section');
+  if(!sec)return;
   sec.setAttribute('data-mode', mode);
   sec.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   var g=sec.querySelector('.t-guide');
   var a=sec.querySelector('.t-analysis');
-  g&&g.classList.toggle('open',mode==='guide'||mode==='analysis');
-  a&&a.classList.toggle('open',mode==='analysis');
+  if(g){g.classList.toggle('open',mode==='guide'||mode==='analysis')}
+  if(a){a.classList.toggle('open',mode==='analysis')}
   localStorage.setItem('ptb-mode-'+sec.id, mode)}
 
 function initSections(){
@@ -293,16 +415,20 @@ function initSections(){
     var initial=saved||'translation';
     sec.setAttribute('data-mode', initial);
     var btn=sec.querySelector('.mode-btn[data-mode="'+initial+'"]');
-    if(btn)btn.classList.add('active');
-    else{var def=sec.querySelector('.mode-btn[data-mode="translation"]');if(def)def.classList.add('active')}
+    if(btn){btn.classList.add('active')}else{
+      var def=sec.querySelector('.mode-btn[data-mode="translation"]');
+      if(def)def.classList.add('active')}
     var g=sec.querySelector('.t-guide');
     var a=sec.querySelector('.t-analysis');
-    if(g)g.classList.toggle('open',initial==='guide'||initial==='analysis');
-    if(a)a.classList.toggle('open',initial==='analysis')})}
+    if(g){g.classList.toggle('open',initial==='guide'||initial==='analysis')}
+    if(a){a.classList.toggle('open',initial==='analysis')})}
 
 // ── PID visibility toggle ──
+// PID is hidden by default (opacity:0 on .para .pid).
+// This toggle makes it always visible (for reference mode).
 function updatePIDVisibility(show){
-  document.querySelectorAll('.para .pid').forEach(function(el){el.style.display=show?'inline':'none'});
+  document.querySelectorAll('.para .pid').forEach(function(el){
+    el.style.opacity=show?'1':'0'});
   localStorage.setItem('ptb-show-pid', show?'1':'0')}
 
 // ── Theme ──
@@ -311,30 +437,50 @@ function toggleTheme(){
   document.documentElement.setAttribute('data-theme',c==='dark'?'light':'dark');
   localStorage.setItem('ptb-theme',c==='dark'?'light':'dark')}
 
-// ── Intersection observer for nav ──
+// ── Intersection observer for sidenav active state ──
 document.addEventListener('DOMContentLoaded',function(){
-  var saved=localStorage.getItem('ptb-theme');
-  if(saved==='dark')document.documentElement.setAttribute('data-theme','dark');
+  // Theme
+  var savedTheme=localStorage.getItem('ptb-theme');
+  if(savedTheme==='dark')document.documentElement.setAttribute('data-theme','dark');
+
+  // PID toggle: default=hidden, read from localStorage
   var showPID=localStorage.getItem('ptb-show-pid')==='1';
   var pidToggle=document.getElementById('pidToggle');
-  if(pidToggle){pidToggle.checked=showPID;updatePIDVisibility(showPID)}
+  if(pidToggle){
+    pidToggle.checked=showPID;
+    updatePIDVisibility(showPID)}
+
+  // Init section modes
   initSections();
+
+  // Progress bar
   window.addEventListener('scroll',function(){
     var t=document.documentElement.scrollHeight-window.innerHeight;
     var p=t>0?(document.documentElement.scrollTop/t*100):0;
-    document.getElementById('progressBar').style.width=Math.min(100,p)+'%'});
+    document.getElementById('progressBar').style.width=Math.min(100,p)+'%'})
+
+  // Sidenav active state via IntersectionObserver
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){
       document.querySelectorAll('.sidenav a').forEach(function(a){a.classList.remove('active')});
       var l=document.querySelector('.sidenav a[href="#'+e.target.id+'"]');
       if(l)l.classList.add('active')}})},{threshold:0.2});
   document.querySelectorAll('.paper-section').forEach(function(s){io.observe(s)});
+
+  // Search
   var si=document.querySelector('.search-input');
-  if(si){si.addEventListener('input',function(e){doSearch(e.target.value)});si.addEventListener('focus',function(e){if(e.target.value.trim())doSearch(e.target.value)})}
+  if(si){
+    si.addEventListener('input',function(e){doSearch(e.target.value)});
+    si.addEventListener('focus',function(e){if(e.target.value.trim())doSearch(e.target.value)})}
+
+  // Back to top
   var btt=document.querySelector('.back-to-top');
   window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>300)});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})});
-function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c==='dark'?'light':'dark');localStorage.setItem('ptb-theme',c==='dark'?'light':'dark')}
+function toggleTheme(){
+  var c=document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme',c==='dark'?'light':'dark');
+  localStorage.setItem('ptb-theme',c==='dark'?'light':'dark')}
 </script>
 </body>
 </html>

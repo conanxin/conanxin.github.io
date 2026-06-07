@@ -63,7 +63,7 @@ button.btn-outline:hover{background:rgba(255,255,255,0.15)}
 .para{position:relative;margin-bottom:12px;padding:9px 12px;border-radius:5px;line-height:1.85;font-size:15px;color:#2a2a2a;transition:background .12s}
 .para:hover{background:#f4f1ec}
 .para .pid{font-size:10px;font-family:monospace;color:#ccc;margin-right:7px;display:none;cursor:default;user-select:none}
-.para:hover .pid{color:#aaa}
+.para:hover .pid{display:inline;color:#aaa}
 .para .p-copy{position:absolute;right:8px;top:8px;opacity:0;font-size:10px;padding:2px 7px;background:#ddd;color:#666;border:none;border-radius:3px;transition:opacity .12s}
 .para:hover .p-copy{opacity:1}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -138,7 +138,7 @@ input[type=checkbox]{width:16px;height:16px;accent-color:#c9a227}
 </div>
 <div class="setting-bar">
 <div class="wrapper">
-<label><input type="checkbox" id="pidToggle" onchange="updatePIDVisibility(this.checked)">显示段落编号（如 PTB-INTRO-P01）</label>
+<label><input type="checkbox" id="pidToggle" onchange="updatePIDVisibility(this.checked)">显示段落编号（如 PTB-XXX-PXX）</label>
 <small style="color:#aaa">段落编号用于引用和复制，默认隐藏；可在阅读设置中打开。</small>
 </div>
 </div>

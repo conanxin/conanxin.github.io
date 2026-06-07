@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>编程作为理论建构 | Programming as Theory Building - Peter Naur</title>
+<meta name="description" content="Peter Naur《Programming as Theory Building》(1985)完整中文译文与交互式导读。探索编程的理论建构观及其对AI编程的启发。">
+<style>
+.wrapper{max-width:1200px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#2f453a 0%,#3d5a4c 60%,#4a7c6a 100%);color:#fff;padding:80px 0 60px;text-align:center}
+.hero h1{font-size:2.6em;font-weight:700;margin-bottom:12px;font-family:Georgia,serif}
+.hero .sub{font-size:1.1em;opacity:0.9;margin-bottom:24px}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:28px}
+.tag{background:rgba(255,255,255,0.15);padding:4px 14px;border-radius:20px;font-size:13px}
+.btn-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:8px}
+button{cursor:pointer;font-family:inherit;border:none;border-radius:6px;padding:8px 18px;font-size:14px;transition:background .2s}
+button.btn-primary{background:#fff;color:#3d5a4c;font-weight:600}
+button.btn-primary:hover{background:#f0f0f0}
+button.btn-secondary{background:#c9a227;color:#2c2c2c}
+button.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.6);color:#fff}
+button.btn-outline:hover{background:rgba(255,255,255,0.15)}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;padding:50px 0}
+.ov-card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:22px}
+.ov-card h3{color:#3d5a4c;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.ov-card p{font-size:14px;color:#555;line-height:1.7}
+.layout{display:flex;min-height:100vh}
+.sidenav{width:240px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid #e0ddd5;padding:24px 0}
+.sidenav h2{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1.5px;padding:0 18px;margin-bottom:14px}
+.sidenav ul{list-style:none}
+.sidenav li{}
+.sidenav a{display:block;padding:9px 18px;color:#333;font-size:14px;border-left:3px solid transparent;text-decoration:none;transition:all .15s}
+.sidenav a:hover{background:#f4f1ec;text-decoration:none}
+.sidenav a.active{border-left-color:#3d5a4c;color:#3d5a4c;background:#f4f1ec}
+.sidenav a .n{color:#999;margin-right:8px;font-size:12px}
+.main{flex:1;min-width:0;padding:0 30px}
+.sec{border-bottom:1px solid #e0ddd5;padding:36px 0}
+.sec:last-of-type{border-bottom:none}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.sec-title{font-size:1.35em;color:#3d5a4c;font-family:Georgia,serif}
+.sec-title .en{font-size:13px;color:#999;font-weight:normal;margin-left:8px;font-family:inherit}
+.sec-num{font-size:12px;color:#bbb;margin-right:10px}
+.toggle-btn{font-size:12px;padding:4px 10px;background:transparent;border:1px solid #e0ddd5;color:#888}
+.toggle-btn:hover{background:#e0ddd5}
+.view-modes{display:flex;gap:4px;margin-bottom:16px}
+.vm-btn{padding:5px 12px;font-size:12px;background:#f4f1ec;border:1px solid #e0ddd5;color:#888;border-radius:4px}
+.vm-btn.active{background:#3d5a4c;color:#fff;border-color:#3d5a4c}
+.para{margin-bottom:14px;padding:10px 14px;border-radius:6px;position:relative;transition:background .15s}
+.para:hover{background:#f4f1ec}
+.para .pid{font-size:11px;color:#bbb;font-family:monospace;margin-right:8px}
+.para .cpy{position:absolute;right:10px;top:10px;opacity:0;font-size:11px;padding:2px 8px;background:#e0ddd5;color:#888;border:none;border-radius:3px}
+.para:hover .cpy{opacity:1}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:20px}
+.card h3{color:#3d5a4c;margin-bottom:8px;font-size:1em}
+.card p{font-size:14px;color:#666;line-height:1.7}
+.prompt-block{background:#f4f1ec;border:1px solid #e0ddd5;border-radius:6px;padding:18px;margin-bottom:14px;position:relative}
+.prompt-block .pt{font-size:13px;font-weight:600;color:#3d5a4c;margin-bottom:10px}
+.prompt-block pre{white-space:pre-wrap;font-size:13px;line-height:1.7;color:#333}
+.prompt-block .copy-p{position:absolute;top:14px;right:14px;font-size:12px}
+.naur-q{background:linear-gradient(135deg,#2f453a,#3d5a4c);padding:36px;border-radius:8px;color:#fff;margin:28px 0}
+.naur-q h2{font-size:1.3em;margin-bottom:20px;text-align:center}
+.q-list{display:grid;gap:12px}
+.q-item{background:rgba(255,255,255,0.1);border-radius:6px;padding:18px 22px;font-size:1.05em}
+.checklist{list-style:none}
+.checklist li{padding:9px 0;border-bottom:1px solid #e0ddd5;display:flex;align-items:center;gap:10px;font-size:15px}
+.checklist li:last-child{border-bottom:none}
+input[type=checkbox]{width:18px;height:18px;accent-color:#3d5a4c}
+.bg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.bg-card{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:24px}
+.bg-card h3{color:#3d5a4c;margin-bottom:10px;font-size:1em}
+.bg-card p{font-size:14px;color:#555;line-height:1.8}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.glossary-item{background:#fff;border:1px solid #e0ddd5;border-radius:6px;padding:14px}
+.glossary-item .en{font-size:11px;color:#3d5a4c;font-family:Georgia,serif;margin-bottom:3px}
+.glossary-item .zh{font-size:1.05em;font-weight:600;margin-bottom:6px}
+.glossary-item .def{font-size:13px;color:#666;line-height:1.6}
+.search-wrap{position:relative;max-width:380px;margin:0 auto 16px}
+.search-input{width:100%;padding:9px 14px 9px 38px;border:1.5px solid #e0ddd5;border-radius:6px;font-size:15px;background:#fff;color:#333}
+.search-input:focus{outline:none;border-color:#3d5a4c}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#999}
+#searchResults{max-height:380px;overflow-y:auto;border:1px solid #e0ddd5;border-radius:6px;display:none;background:#fff}
+#searchResults.show{display:block}
+.sr-item{padding:10px 14px;border-bottom:1px solid #eee;cursor:pointer;font-size:14px;color:#555}
+.sr-item:last-child{border-bottom:none}
+.sr-item:hover{background:#f4f1ec}
+.footer{background:#2f453a;color:rgba(255,255,255,0.75);padding:36px 0;margin-top:50px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px}
+.footer h4{color:#fff;margin-bottom:10px;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.footer p,.footer a{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.7)}
+.footer a:hover{color:#fff}
+.footer-bottom{text-align:center;padding-top:20px;margin-top:20px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px}
+.interp-section{border:1px solid #e0ddd5;border-radius:6px;margin-bottom:12px;overflow:hidden}
+.interp-header{background:#f4f1ec;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15px}
+.interp-header:hover{background:#e0ddd5}
+.interp-body{padding:16px 18px;display:none;font-size:14px;line-height:1.8}
+.interp-body.open{display:block}
+.interp-body p{margin-bottom:10px}
+.interp-body h4{color:#3d5a4c;margin:12px 0 6px;font-size:14px}
+.back-to-top{position:fixed;bottom:28px;right:28px;width:42px;height:42px;background:#3d5a4c;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 16px rgba(0,0,0,0.15);opacity:0;transition:opacity .3s;cursor:pointer;border:none}
+.back-to-top.visible{opacity:1}
+.theme-btn{position:fixed;top:18px;right:18px;background:#fff;border:1px solid #e0ddd5;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:100}
+#progressBar{position:fixed;top:0;left:0;height:3px;background:#c9a227;z-index:200;width:0;transition:width .1s}
+.section-block.collapsed .sec-content{display:none}
+.collapsed .toggle-btn::after{content:' 展开'}
+:not(.collapsed) .toggle-btn::after{content:' 折叠'}
+@media(max-width:768px){
+.layout{flex-direction:column}
+.sidenav{width:100%;height:auto;position:static;border-right:none;border-bottom:1px solid #e0ddd5}
+.hero h1{font-size:1.8em}
+.main{padding:0 14px}
+.overview-grid,.card-grid,.bg-grid,.glossary-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+<button class="theme-btn" onclick="toggleTheme()">☀</button>
+<div class="hero">
+<div class="wrapper">
+<h1>编程作为理论建构</h1>
+<p class="sub">Peter Naur《Programming as Theory Building》完整中文译文与交互式导读</p>
+<div class="tags"><span class="tag">1985</span><span class="tag">软件工程</span><span class="tag">程序员知识</span><span class="tag">AI 编程</span><span class="tag">项目理论</span></div>
+<div class="btn-row">
+<button class="btn-primary" onclick="document.getElementById('sec-introduction').scrollIntoView({behavior:'smooth'})">开始阅读译文</button>
+<button class="btn-secondary" onclick="document.querySelector('.naur-q').scrollIntoView({behavior:'smooth'})">查看核心观点</button>
+<button class="btn-outline" onclick="document.querySelector('.prompt-block').scrollIntoView({behavior:'smooth'})">查看 AI 编程启发</button>
+<button class="btn-outline" onclick="document.querySelector('.prompt-block').scrollIntoView({behavior:'smooth'})">复制 agent 工作流模板</button>
+</div>
+</div>
+</div>
+<div class="wrapper">
+<div class="overview-grid">
+<div class="ov-card"><h3>作者</h3><p>Peter Naur（彼得·诺尔）<br>丹麦计算机科学家<br>2005年 ACM Turing Award 获得者</p></div>
+<div class="ov-card"><h3>发表年份</h3><p>1985 年<br>后收录于《计算：一项人类活动》<br>(Computing: A Human Activity, 1992)</p></div>
+<div class="ov-card"><h3>核心命题</h3><p>编程是程序员建构理论的活动，程序文本只是理论的外部表现，而非程序本身。</p></div>
+<div class="ov-card"><h3>为什么今天仍然重要</h3><p>AI 编程时代，代码生成与理论建构的分离问题比以往更突出。AI 能生成文本，但无法替代人建构理论。</p></div>
+<div class="ov-card"><h3>与 AI 编程的关系</h3><p>AI agent 编程必须以人持有理论为前提；每个修改必须形成设计理由；代码+文档+测试共同表达项目理论。</p></div>
+</div>
+</div>
+<div style="text-align:center;padding:16px 20px 0">
+<div class="search-wrap"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜索论文内容..."></div>
+<div id="searchResults"></div>
+</div>
+<div class="wrapper" style="padding:24px 20px 40px">
+<div class="layout">
+<nav class="sidenav"><h2>论文章节</h2><ul><li><a href="#sec-introduction"><span class="n">00</span>引言</a></li><li><a href="#sec-programming_and_programmers_knowledge"><span class="n">01</span>编程与程序员的知识</a></li><li><a href="#sec-ryles_notion_of_theory"><span class="n">02</span>赖尔的理论概念</a></li><li><a href="#sec-theory_to_be_built"><span class="n">03</span>程序员须建构的理论</a></li><li><a href="#sec-problems_and_costs"><span class="n">04</span>程序修改的问题与代价</a></li><li><a href="#sec-program_life_death_revival"><span class="n">05</span>程序生命、死亡与复活</a></li><li><a href="#sec-method_and_theory_building"><span class="n">06</span>方法与理论建构</a></li><li><a href="#sec-programmers_status"><span class="n">07</span>程序员的专业地位</a></li><li><a href="#sec-conclusions"><span class="n">08</span>结论</a></li></ul></nav>
+<main class="main">
+<div class="sec" id="sec-introduction"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">in</span>引言<span class="en">/ Introduction</span></h2><button class="toggle-btn" onclick="toggleSection(this)">折叠</button></div><div class="sec-content"><div class="view-modes"><button class="vm-btn active" onclick="setViewMode(this)">只看译文</button><button class="vm-btn" onclick="setViewMode(this)">译文+导读</button><button class="vm-btn" onclick="setViewMode(this)">译文+解读</button></div><div class="para" id="PTB-INTRO-P01"><span class="pid">PTB-INTRO-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P02"><span class="pid">PTB-INTRO-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P03"><span class="pid">PTB-INTRO-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P04"><span class="pid">PTB-INTRO-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P05"><span class="pid">PTB-INTRO-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P06"><span class="pid">PTB-INTRO-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P07"><span class="pid">PTB-INTRO-P07</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-INTRO-P08"><span class="pid">PTB-INTRO-P08</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P01"><span class="pid">PTB-PROG-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P02"><span class="pid">PTB-PROG-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P03"><span class="pid">PTB-PROG-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P04"><span class="pid">PTB-PROG-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P05"><span class="pid">PTB-PROG-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P06"><span class="pid">PTB-PROG-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P07"><span class="pid">PTB-PROG-P07</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROG-P08"><span class="pid">PTB-PROG-P08</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P01"><span class="pid">PTB-RYLE-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P02"><span class="pid">PTB-RYLE-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P03"><span class="pid">PTB-RYLE-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P04"><span class="pid">PTB-RYLE-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P05"><span class="pid">PTB-RYLE-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P06"><span class="pid">PTB-RYLE-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-RYLE-P07"><span class="pid">PTB-RYLE-P07</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P01"><span class="pid">PTB-THEORY-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P02"><span class="pid">PTB-THEORY-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P03"><span class="pid">PTB-THEORY-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P04"><span class="pid">PTB-THEORY-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P05"><span class="pid">PTB-THEORY-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-THEORY-P06"><span class="pid">PTB-THEORY-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P01"><span class="pid">PTB-PROBS-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P02"><span class="pid">PTB-PROBS-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P03"><span class="pid">PTB-PROBS-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P04"><span class="pid">PTB-PROBS-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P05"><span class="pid">PTB-PROBS-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P06"><span class="pid">PTB-PROBS-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P07"><span class="pid">PTB-PROBS-P07</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P08"><span class="pid">PTB-PROBS-P08</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-PROBS-P09"><span class="pid">PTB-PROBS-P09</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-LIFE-P01"><span class="pid">PTB-LIFE-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-LIFE-P02"><span class="pid">PTB-LIFE-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-LIFE-P03"><span class="pid">PTB-LIFE-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-LIFE-P04"><span class="pid">PTB-LIFE-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-LIFE-P05"><span class="pid">PTB-LIFE-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P01"><span class="pid">PTB-METHOD-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P02"><span class="pid">PTB-METHOD-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P03"><span class="pid">PTB-METHOD-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P04"><span class="pid">PTB-METHOD-P04</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P05"><span class="pid">PTB-METHOD-P05</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P06"><span class="pid">PTB-METHOD-P06</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P07"><span class="pid">PTB-METHOD-P07</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P08"><span class="pid">PTB-METHOD-P08</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-METHOD-P09"><span class="pid">PTB-METHOD-P09</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-STATUS-P01"><span class="pid">PTB-STATUS-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-STATUS-P02"><span class="pid">PTB-STATUS-P02</span><button class="cpy" onclick="copyText(this)">复制</button></div>
+<div class="para" id="PTB-STATUS-P03"><span class="pid">PTB-STATUS-P03</span><button class="cpy" onclick="copyText(this)">复制</button></div><button class="btn-outline" style="margin-top:12px;font-size:12px" onclick="copySection(this)">复制本节译文</button></div></div><div class="sec" id="sec-conclusions"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">co</span>结论<span class="en">/ Conclusions</span></h2><button class="toggle-btn" onclick="toggleSection(this)">折叠</button></div><div class="sec-content"><div class="view-modes"><button class="vm-btn active" onclick="setViewMode(this)">只看译文</button><button class="vm-btn" onclick="setViewMode(this)">译文+导读</button><button class="vm-btn" onclick="setViewMode(this)">译文+解读</button></div><div class="para" id="PTB-CONCL-P01"><span class="pid">PTB-CONCL-P01</span><button class="cpy" onclick="copyText(this)">复制</button></div><button class="btn-outline" style="margin-top:12px;font-size:12px" onclick="copySection(this)">复制本节译文</button></div></div><div class="sec" id="sec-appendix"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">ap</span>附录：应用"理论建构"观<span class="en">/ Applying "Theory Building" View</span></h2><button class="toggle-btn" onclick="toggleSection(this)">折叠</button></div><div class="sec-content"><div class="view-modes"><button class="vm-btn active" onclick="setViewMode(this)">只看译文</button><button class="vm-btn" onclick="setViewMode(this)">译文+导读</button><button class="vm-btn" onclick="setViewMode(this)">译文+解读</button></div><button class="btn-outline" style="margin-top:12px;font-size:12px" onclick="copySection(this)">复制本节译文</button></div></div><div class="sec" id="sec-references"><div class="sec-hdr"><h2 class="sec-title"><span class="sec-num">09</span>参考文献 / References</h2><button class="toggle-btn" onclick="toggleSection(this)">折叠</button></div><div class="sec-content"><div class="card-grid"><div class="card"><p><strong>Brooks, R. E.</strong> (1980). Studying programmer behaviour experimentally. <em>Comm. ACM</em> 23(4): 207-213.</p></div><div class="card"><p><strong>Feyerabend, P.</strong> (1978). <em>Against Method</em>. London, Verso Editions.</p></div><div class="card"><p><strong>Floyd, C.</strong> (1984). Eine Untersuchung von Software-Entwicklungs-Methoden. <em>Tagung 1/1984 des German Chapter of the ACM</em>, Stuttgart, Teubner Verlag.</p></div><div class="card"><p><strong>Kuhn, T. S.</strong> (1970). <em>The Structure of Scientific Revolutions</em>, 2nd ed. Chicago, University of Chicago Press.</p></div><div class="card"><p><strong>Medawar, P.</strong> (1982). <em>Pluto's Republic</em>. Oxford, Oxford University Press.</p></div><div class="card"><p><strong>Moher & Schneider</strong> (1982). Methodology and experimental research in software engineering. <em>Int. J. Man-Mach. Stud.</em> 16: 65-87.</p></div><div class="card"><p><strong>Oskarsson, O.</strong> (1982). <em>Mechanisms of Modifiability in Large Software Systems</em>. Linköping Studies in Science and Technology.</p></div><div class="card"><p><strong>Polya, G.</strong> (1954). <em>Mathematics and Plausible Reasoning</em>. Princeton University Press.</p></div><div class="card"><p><strong>Polya, G.</strong> (1957). <em>How To Solve It</em>. New York, Doubleday.</p></div><div class="card"><p><strong>Popper & Eccles</strong> (1977). <em>The Self and Its Brain</em>. London, Routledge.</p></div><div class="card"><p><strong>Ryle, G.</strong> (1949). <em>The Concept of Mind</em>. Harmondsworth, Penguin.</p></div></div><p style="margin-top:18px;font-size:13px;color:#888">源论文: <a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">https://pages.cs.wisc.edu/~remzi/Naur.pdf</a></p></div></div>
+<div class="naur-q"><h2>Naur 三问 / Naur's Three Questions</h2><div class="q-list"><div class="q-item">❓ 这个程序处理了现实世界的什么？</div><div class="q-item">❓ 这段代码为什么是这样，而不是其他方式？</div><div class="q-item">❓ 新需求如何建设性地进入旧系统？</div></div></div>
+<div class="sec"><h2 class="sec-title" style="margin-bottom:18px">✅ AI 编程检查表</h2><ul class="checklist"><li><input type="checkbox"> 是否形成设计理由？</li><li><input type="checkbox"> 是否记录"为什么这样做，而不只是做了什么"？</li><li><input type="checkbox"> 是否分析了修改影响（相似性/补丁判断）？</li><li><input type="checkbox"> 是否让代码、文档、测试共同服务于项目理论？</li><li><input type="checkbox"> 是否在阶段收口时用人能理解的话复述了系统状态？</li></ul></div>
+<div class="sec"><h2 class="sec-title" style="margin-bottom:18px">🤖 把 Naur 变成 agent 工作流</h2><div class="prompt-block"><div class="pt">🤖 模板 A: 阶段启动 prompt</div><pre>当前阶段：[描述]
+目标：[描述]
+请先回答：我理解这个修改的"相似性"基础吗？即，这个修改和现有程序处理的事务有什么相似性？
+如不确定，先形成设计理由，再动手。</pre><button class="btn-outline copy-p" style="font-size:12px" onclick="copyText(this)">复制模板</button></div>
+<div class="prompt-block"><div class="pt">🤖 模板 B: 修改影响分析</div><pre>1. 这个修改和现有理论的相似性基础是什么？
+2. 这个修改是在延伸现有理论，还是在打补丁？
+3. 修改后，代码、测试、文档是否共同反映了同一个理论？
+4. 下一个人能通过代码+文档理解这个设计决策吗？</pre><button class="btn-outline copy-p" style="font-size:12px" onclick="copyText(this)">复制模板</button></div>
+<div class="prompt-block"><div class="pt">🤖 模板 C: 阶段收口复述</div><pre>用人能理解的话描述：系统现在是什么，它为什么是这样。
+这不是状态报告，是"理论快照"——告诉后来者这个系统处理事务的方式背后的核心理论。</pre><button class="btn-outline copy-p" style="font-size:12px" onclick="copyText(this)">复制模板</button></div>
+<div class="prompt-block"><div class="pt">🤖 模板 D: 项目理论维护</div><pre>每个 commit 请回答：这个修改的"为什么"是什么？
+代码说做什么，测试说期望什么，文档说为什么——三者合一才是完整的理论表达。</pre><button class="btn-outline copy-p" style="font-size:12px" onclick="copyText(this)">复制模板</button></div></div>
+<div class="sec" style="background:#f4f1ec;padding:32px;border-radius:8px;margin:0 -30px">
+<h2 class="sec-title" style="margin-bottom:20px;font-size:1.5em">📚 论文深度解读</h2>
+<div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>二、论文要反对什么</span><span>▼</span></div><div class="interp-body"><p>Naur 的靶子是当时占主导地位的**"生产观"（Production View）**——即认为编程就是生产一套程序文本和相关文档，就像工厂生产产品一样。</p>
+<p>这种生产观的典型特征：</p>
+<p>- 把程序员当作流水线上的可替换零件</p>
+<p>- 相信只要有足够详细的文档，任何人都能接手程序</p>
+<p>- 认为程序修改主要是文本层面的操作，不需要理解"为什么"</p>
+<p>- 方法论（methodology）被包装成可执行的规则清单，仿佛按步骤做就能保证成功</p>
+<p>Naur 认为这些假设从根本上是错误的。程序不是文本的集合，而是人脑中理论的载体。程序文本只是理论的一种外部化表现，就像乐谱不是音乐本身，图纸不是建筑本身。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>三、Naur 所说的"理论"到底是什么</span><span>▼</span></div><div class="interp-body"><p>Naur 的理论概念直接来自英国哲学家 **Gilbert Ryle** 的著作 *The Concept of Mind*（1949）。</p>
+<p>Ryle 区分了两种知识：</p>
+<p>- **knowing-that**（知道某事）—— 命题性知识，可以写成规则、公式、教科书</p>
+<p>- **knowing-how**（知道如何做）—— 实践性知识，体现在行动中，难以完全言传</p>
+<p>Naur 所说的理论是 **knowing-how**，不是一套形式化的公理或规则。它是：</p>
+<p>- 理解程序如何映射到现实世界事务的能力</p>
+<p>- 能够智能地应对新情况、解释设计选择、为决策辩护的知识</p>
+<p>- 能够回答"为什么这里要这样设计"的能力</p>
+<p>- 一种**隐性的、整体的、不可完全分解**的知识结构</p>
+<p>关键特征：理论不能被写成"如果 A 则 B"的规则序列。它存在于人的整体认知中，通过实践、对话、观察、类比来传递和深化。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>四、程序文本为什么不是程序本身</span><span>▼</span></div><div class="interp-body"><p>Naur 的核心论断之一：**程序文本只是程序的外部化，不是程序本身。**</p>
+<p>类比：</p>
+<p>- 乐谱 ≠ 音乐（演奏者需要理解音乐理论才能演绎乐谱）</p>
+<p>- 建筑图纸 ≠ 建筑（工人需要理解结构原理才能施工）</p>
+<p>- 程序文本 ≠ 程序（程序员需要理解程序理论才能维护和修改）</p>
+<p>程序文本是：</p>
+<p>- 程序理论的一种**外部表现**（externalization）</p>
+<p>- 是理论持有者用来**辅助记忆和沟通**的符号系统</p>
+<p>- 是理论在某种媒介上的**投影**</p>
+<p>没有理论支撑的程序文本：</p>
+<p>- 可以执行（机器不需要理论）</p>
+<p>- 但无法被**智能地修改**（人需要理论才能理解修改的影响）</p>
+<p>- 无法回答"为什么这样设计"的问题</p>
+<p>- 面对新需求时，只能盲目打补丁，逐步破坏结构</p>
+<p>> 程序文本是死的，理论是活的。程序的生命不在于文本是否在运行，而在于是否有人持有它的理论。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>五、程序员知识为什么不可完全文档化</span><span>▼</span></div><div class="interp-body"><p>这是 Naur 对软件工程文档狂热的根本批判。</p>
+<p>核心理由：**理论依赖于相似性判断（similarity recognition），而相似性判断无法被规则化或完全文档化。**</p>
+<p>相似性判断是指：面对一个新情况，程序员能判断它与已知的哪些情况相似、应该应用什么已有解决方案。这种判断基于：</p>
+<p>- 对现实世界事务的深层理解</p>
+<p>- 对程序结构的直觉把握</p>
+<p>- 对历史设计决策的隐性记忆</p>
+<p>- 对业务逻辑的融会贯通</p>
+<p>为什么无法文档化：</p>
+<p>1. **相似性的标准不可穷尽** — 你不能列出"所有两个情况相似的条件"</p>
+<p>2. **相似性判断是整体性的** — 不是逐条检查特征，而是直觉式的整体把握</p>
+<p>3. **新情况总有不可预见的维度** — 任何规则清单都无法覆盖所有可能的未来场景</p>
+<p>4. **隐性知识（Tacit Knowledge）** — 大量知识在程序员头脑中，连持有者自己都无法完全表达</p>
+<p>> 文档可以记录"做了什么"，但无法记录"为什么这样做"的全部深层理由。文档可以辅助理论传递，但永远无法替代理论持有者。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>六、程序修改为什么昂贵</span><span>▼</span></div><div class="interp-body"><p>在传统软件工程中，维护被认为是一个相对低风险的活动。Naur 用理论建构视角揭示了维护成本的真正来源：</p>
+<p>**核心问题：修改程序需要理解其理论，而理论只能被理论持有者掌握。**</p>
+<p>当没有理论的人修改程序时：</p>
+<p>1. 他们只能看到**文本层面的模式**，看不到**设计层面的意图**</p>
+<p>2. 他们做出的修改是**补丁**（patch），不是**有机延伸**（organic extension）</p>
+<p>3. 补丁会逐步破坏程序的整体结构，因为补丁者不理解各部分之间的关联</p>
+<p>4. 每次补丁都让程序的理论更加模糊，进一步提高了后续修改的成本</p>
+<p>**相似性判断是修改的基础：**</p>
+<p>- 新需求到来时，需要判断新需求与现有能力之间的相似性</p>
+<p>- 这种判断需要理论持有者来做</p>
+<p>- 没有理论的人只能做表面匹配，导致错误的修改方向</p>
+<p>> 这就是为什么"老程序改不动"。不是因为代码太老，而是因为理论已经散失，只剩下一堆孤立的文本片段。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>七、程序生命、死亡、复活</span><span>▼</span></div><div class="interp-body"><p>Naur 用生动的隐喻描述了程序的生命周期：</p>
+<p>### 生命（Life）</p>
+<p>- 一个**持有程序理论的团队**在控制程序</p>
+<p>- 团队能够智能地响应修改需求</p>
+<p>- 新需求被视为对现有理论的有机延伸</p>
+<p>- 修改是自信的、有方向的、有理由的</p>
+<p>### 死亡（Death）</p>
+<p>- 理论持有者团队**解散**（离职、调岗、项目交接）</p>
+<p>- 程序文本**继续运行**（机器不在乎理论）</p>
+<p>- 但程序**无法被智能地修改**</p>
+<p>- 面对新需求，只能做盲目的补丁，或者被告知"这个系统动不了"</p>
+<p>> **关键洞察：程序的运行和程序的生命是两回事。** 一个每天运行 24 小时的系统可能已经完全"死亡"——没有理论持有者能维护它。</p>
+<p>### 复活（Revival）</p>
+<p>- 新团队通过文档和代码**重建理论**</p>
+<p>- 可能，但**极其昂贵**</p>
+<p>- 重建的理论**可能与原始理论不同**（因为理论是隐性知识，重建时会有偏差）</p>
+<p>- 复活后的程序可能有不同的行为倾向、不同的设计逻辑</p>
+<p>> 文档在复活中的作用是辅助，而非替代。没有原始理论持有者，文档只能提供部分线索。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>八、方法论的限制</span><span>▼</span></div><div class="interp-body"><p>Naur 对软件工程方法论（methodology）的批判至今仍振聋发聩：</p>
+<p>**他认为所有将编程方法包装为"规则序列"的做法都基于一个错误假设：理论可以被分解为一系列有固定顺序的动作，每个动作有明确可文档化的结果。**</p>
+<p>实际情况：</p>
+<p>- 理论在人的头脑中**没有固有的部分划分**</p>
+<p>- 理论在人的头脑中**没有固有的顺序**</p>
+<p>- 相似性判断**不是规则的应用**，而是整体的直觉</p>
+<p>- 两个程序员对同一个需求可能做出**不同的相似性判断**，都是合理的</p>
+<p>方法论的价值和局限：</p>
+<p>- **价值**：提供共同语言、帮助沟通、建立最低标准</p>
+<p>- **局限**：不能替代理论建构；不能替代相似性判断；不能替代程序员的智能</p>
+<p>- **危险**：当方法论被教条化、变成"必须严格执行的规则"时，它本身就是对理论建构的压制</p>
+<p>> 好的方法论是**辅助工具**，坏的方法论是**思想枷锁**。Naur 反对的不是方法本身，而是"方法论至上"的幻觉。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>九、程序员的专业地位</span><span>▼</span></div><div class="interp-body"><p>理论建构视角对程序员职业身份有深远的启示：</p>
+<p>### 程序员应该被视为**负责任的专业人士**（responsible professionals）</p>
+<p>- 像工程师、医生、律师一样</p>
+<p>- 对自己的判断和决策负责</p>
+<p>- 不能被简单地当作可替换的"生产要素"</p>
+<p>### 为什么不可替代？</p>
+<p>- 因为理论是**个人化的知识结构**</p>
+<p>- 不同的程序员可能对同一个程序有不同的理论理解</p>
+<p>- 理论持有者**离队** = 程序**损失理论**</p>
+<p>- 新的程序员需要时间来**建构自己的理论**，这段时间内程序维护质量会下降</p>
+<p>### 团队管理的启示</p>
+<p>- 团队稳定性比方法论更重要</p>
+<p>- 知识传递需要时间，不是文档交接能解决的</p>
+<p>- 项目应该为理论建构预留足够的时间和资源</p>
+<p>- 程序员的职业发展和理论深化应该被鼓励，而不是被当作成本</p>
+<p>> 如果把程序员当作可替换的"螺丝钉"，你最终得到的不是高效的工厂，而是一个接一个走向"死亡"的程序。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>十、与敏捷、XP、DDD 的关系</span><span>▼</span></div><div class="interp-body"><p>Naur 1985 年的论文，奇妙地预见了后来敏捷运动的许多核心理念：</p>
+<p>### 与极限编程（XP）的关系</p>
+<p>- **XP 的"隐喻"（Metaphor）实践** = 理论建构的共享机制</p>
+<p>  - 隐喻是整个团队对系统理论的一种共同表达</p>
+<p>  - 它帮助团队成员形成相似的相似性判断框架</p>
+<p>- **结对编程** = 理论的实时传递</p>
+<p>  - 通过共同工作，一个程序员的理论被另一个吸收</p>
+<p>- **现场客户** = 理论扎根于现实</p>
+<p>  - 确保程序员对现实世界的理解是直接的、鲜活的</p>
+<p>### 与领域驱动设计（DDD）的关系</p>
+<p>- **DDD 的"通用语言"（Ubiquitous Language）** = 共享理论的语言基础</p>
+<p>  - 团队成员用同一套语言描述世界，促进相似性判断的一致性</p>
+<p>- **领域模型** = 理论在概念层面的表达</p>
+<p>  - 它不是实现，而是对"现实世界如何映射到程序"的理论描述</p>
+<p>### 与敏捷宣言的关系</p>
+<p>- 敏捷强调**个体和交互**胜过流程和工具 → 因为理论建构发生在人脑中，不是在流程文档中</p>
+<p>- 敏捷强调**客户协作**胜过合同谈判 → 因为理论必须扎根于对现实的理解</p>
+<p>- 敏捷强调**响应变化**胜过遵循计划 → 因为变化需要相似性判断，不是计划的执行</p>
+<p>### 关键矛盾：敏捷方法论的悖论</p>
+<p>- 当敏捷被包装成** rigid "方法论"**（必须遵循 Scrum 的 15 分钟站会、必须两周一个 Sprint、必须写用户故事卡片）时</p>
+<p>- 它本身就变成了 Naur 批判的那种"规则序列"</p>
+<p>- **教条化的敏捷，与 Naur 的理论建构观是矛盾的**</p>
+<p>- 敏捷的本质应该是**促进理论建构**的文化和实践，而不是**替代理论建构**的规则清单</p>
+<p>> 好的敏捷 = 理论建构的温床。坏的敏捷 = 另一套生产观。</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>十一、与 AI 编程和 Agent 编程的关系</span><span>▼</span></div><div class="interp-body"><p>这是 Naur 理论在当代最重要的应用。当 AI 生成代码时，我们面临的核心问题：</p>
+<p>### 1. AI 可以生产程序文本，但不能建构理论</p>
+<p>- 当前 AI 可以生成语法正确的代码</p>
+<p>- 可以基于训练数据中的模式做"合理"的推断</p>
+<p>- 但 AI 不能真正"理解"程序如何映射到现实世界事务</p>
+<p>- AI 没有**knowing-how**，只有**模式匹配**（pattern matching，不是 similarity recognition）</p>
+<p>### 2. 没有理论，程序员无法智能地修改或扩展代码</p>
+<p>- AI 生成的代码，如果程序员没有理解其设计理由</p>
+<p>- 修改时就会像面对一个"已死亡的程序"</p>
+<p>- 只能做表面补丁，不能做有机延伸</p>
+<p>- 最终结果是**代码在增长，但理论没有增长** → 程序慢性死亡</p>
+<p>### 3. AI 生成的代码可能语法正确，但缺乏设计理由</p>
+<p>- 好的代码不仅是"能运行"，还要"能解释为什么这样设计"</p>
+<p>- AI 可以解释"这是什么"（what），但解释"为什么不是其他方式"（why not alternatives）时往往是**编造**</p>
+<p>- 设计理由 = 理论的核心。缺乏设计理由 = 缺乏理论</p>
+<p>### 4. "相似性判断"无法被自动化</p>
+<p>- 这是理论建构的核心操作</p>
+<p>- AI 可以做**基于统计的相似度计算**（cosine similarity 等），但这不是 Naur 所说的相似性判断</p>
+<p>- 相似性判断依赖于对现实世界的**理解**、对**设计意图**的把握、对**业务逻辑**的融会贯通</p>
+<p>- 这种判断是**整体性的、直觉式的、不可分解为规则的**</p>
+<p>### 5. AI 结对编程的正确角色</p>
+<p>- **AI 是文本生成器**，提供语法和模式</p>
+<p>- **人类是理论持有者**，负责理解、判断、选择、辩护</p>
+<p>- 人类必须**主动建构理论**，而不是被动接受 AI 的输出</p>
+<p>- 危险：人类对 AI 产生依赖，逐渐放弃理论建构 → 最终成为**没有理论的"操作员"**</p>
+<p>### 6. 项目理论：每个提交都应该携带"为什么"，而不仅仅是"做了什么"</p>
+<p>- Commit message 不应该只写"修复 bug"或"添加功能"</p>
+<p>- 应该写：**为什么这个 bug 会出现？为什么用这种修复方式？考虑过其他方案吗？**</p>
+<p>- 代码评审不应该只检查"是否语法正确"</p>
+<p>- 应该检查：**修改者是否展示了理论理解？设计理由是否清晰？**</p>
+<p>### 7. Agent 工作流应该包含：</p>
+<p>- **设计理由形成**（Design Rationale Formation）：不只是"做什么"，还要记录"为什么这样做"</p>
+<p>- **修改影响分析**（Modification Impact Analysis）：评估修改与现有理论的兼容性</p>
+<p>- **阶段收口**（Phase Closure）：每个阶段结束时，用人类能理解的语言描述"系统现在是什么"——这是**理论快照**</p>
+<p>---</p></div></div><div class="interp-section"><div class="interp-header" onclick="toggleInterp(this)"><span>十二、可执行的 Agent 工作流原则</span><span>▼</span></div><div class="interp-body"><p>基于 Naur 的理论建构观，以下是 AI 辅助编程中可执行的实践原则：</p>
+<p>### 原则 1：每个修改都要形成设计理由</p>
+<p>- **不要只说** "changed X to Y"（做了什么）</p>
+<p>- **要说** "changed X to Y because A was better than B for reason C, compared to alternative D which would have problem E"（为什么这种方式，不是另一种方式）</p>
+<p>- 设计理由的完整性是理论建构的指标</p>
+<p>- 审查标准：一个修改如果没有设计理由，就不应该被合并</p>
+<p>### 原则 2：代码、文档、测试共同服务于项目理论</p>
+<p>- **代码**表达做了什么（what）</p>
+<p>- **测试**表达期望什么行为（expected behavior）</p>
+<p>- **文档**（尤其是 README 和决策记录）表达为什么这样做（why）</p>
+<p>- **三者缺一，理论就不完整**</p>
+<p>- 审查标准：代码修改是否伴随着测试更新和文档更新？</p>
+<p>### 原则 3：修改影响分析</p>
+<p>- **每次修改前，必须问三个问题：**</p>
+<p>  1. 这个修改和现有理论的相似性在哪里？（Similarity recognition）</p>
+<p>  2. 新需求是否可以用现有理论框架自然延伸？（Organic extension）</p>
+<p>  3. 还是需要打破现有理论结构打补丁？（Patch vs. extension）</p>
+<p>- 如果是补丁，需要额外说明：为什么不是理论的自然延伸？补丁是否引入了新的理论方向？</p>
+<p>- 审查标准：重大修改是否包含影响分析文档？</p>
+<p>### 原则 4：阶段收口——复述系统状态</p>
+<p>- **每个阶段结束时**（如一个 Sprint、一个功能模块、一次重构）</p>
+<p>- 用**人类能理解的语言**描述"系统现在是什么"</p>
+<p>- 这不是技术状态报告（CPU 占用、内存使用），而是**理论快照**：</p>
+<p>  - 系统的核心概念是什么？</p>
+<p>  - 这些概念如何映射到现实世界？</p>
+<p>  - 当前的设计理由是什么？</p>
+<p>  - 下一步的理论延伸方向是什么？</p>
+<p>- 这个描述应该成为**新成员的理论入门指南**和**现有成员的理论同步点**</p>
+<p>### 原则 5：保持理论持有者在场</p>
+<p>- **程序员离职带走理论 → 程序死亡**</p>
+<p>- **AI 生成代码，程序员没有形成理论 → 程序慢性死亡**</p>
+<p>- 确保每个 AI 辅助的代码，都有**人能解释"为什么是这样"**</p>
+<p>- 实践：</p>
+<p>  - 定期做"理论交接"（Knowledge Transfer），不是文档交接，而是共同工作</p>
+<p>  - 鼓励程序员在代码中写**为什么**（不是"what"注释，而是"why"注释）</p>
+<p>  - 审查时问"你能解释这个设计理由吗？"，而不是"这能运行吗？"</p>
+<p>  - 警惕"AI 写代码，人类只负责合并"的工作模式——这是理论流失的路径</p>
+<p>---</p>
+<p>## 结语：Naur 的遗产</p>
+<p>40 年后，Naur 的论文依然锋利。它提醒我们：</p>
+<p>- **编程是人类的智力活动**，不是机器的生产过程</p>
+<p>- **代码的生命在于理论**，不在于运行</p>
+<p>- **AI 可以辅助文本生产，但不能替代理论建构**</p>
+<p>- **好的软件工程是培养理论建构能力**，而不是优化文本生产流程</p>
+<p>在 AI 时代，Naur 的警告更加紧迫：**如果我们让 AI 生产代码而人类不再建构理论，我们不是在提高编程效率，而是在加速程序的死亡。**</p>
+<p>理论建构 = 人类的价值。守护理论，就是守护编程的意义。</p></div></div>
+</div>
+<div class="sec"><h2 class="sec-title" style="margin-bottom:20px">📖 术语表</h2><div class="glossary-grid"><div class="glossary-item"><div class="en">Theory Building</div><div class="zh">理论建构</div><div class="def">Naur 提出的编程观：编程的核心是程序员建构关于"程序如何支持现实世界事务"的理论，程序文本只是理论的外部表现。理论不是形式化的公理，而是实践性的 knowing-how 知识。</div></div><div class="glossary-item"><div class="en">Program Text</div><div class="zh">程序文本</div><div class="def">写在某种媒介上的程序代码和相关文档。Naur 认为程序文本只是程序的一部分，不是程序本身。程序文本是理论的外部表现，没有理论支撑的程序文本如同没有灵魂的躯壳。</div></div><div class="glossary-item"><div class="en">Programmer's Knowledge</div><div class="zh">程序员知识</div><div class="def">程序员头脑中关于程序如何映射到现实世界事务的知识体系。这种知识是整体性的、隐性的，不能被完全文档化或规则化。它是理论建构的核心。</div></div><div class="glossary-item"><div class="en">Modification</div><div class="zh">修改</div><div class="def">对程序文本的变更。Naur 强调，理解程序理论的人做出的修改是"有机延伸"（organic extension），而不理解理论的人做出的修改是"补丁"（patch），补丁会破坏程序结构。</div></div><div class="glossary-item"><div class="en">Program Life</div><div class="zh">程序生命</div><div class="def">一个持有程序理论的团队控制着程序，能够智能地响应修改需求。程序的生命不在于文本是否在运行，而在于是否有人持有其理论。</div></div><div class="glossary-item"><div class="en">Program Death</div><div class="zh">程序死亡</div><div class="def">理论持有者团队解散，程序文本继续运行但无法被智能地修改。面对新需求只能盲目打补丁，或被告知"系统动不了"。程序在运行中死亡，是软件工程中最常见的悲剧。</div></div><div class="glossary-item"><div class="en">Program Revival</div><div class="zh">程序复活</div><div class="def">新团队通过文档和代码重建程序理论。可能但极其昂贵，且重建的理论可能与原始理论不同（因为理论是隐性知识，重建时会有偏差）。</div></div><div class="glossary-item"><div class="en">Ryle</div><div class="zh">赖尔（Gilbert Ryle）</div><div class="def">英国哲学家（1900-1976），牛津大学哲学家。其著作《心的概念》（The Concept of Mind, 1949）中区分了 knowing-that（命题性知识）和 knowing-how（实践性知识），Naur 的"理论"概念直接来源于此。</div></div><div class="glossary-item"><div class="en">BNF</div><div class="zh">巴科斯-诺尔范式</div><div class="def">Backus-Naur Form 的缩写，是一种上下文无关文法的表示法。Naur 在 ALGOL 60 报告的开发中对此做出了重要贡献，使 BNF 成为计算机科学中描述语法结构的标准工具。</div></div><div class="glossary-item"><div class="en">ALGOL 60</div><div class="zh">ALGOL 60</div><div class="def">ALGOrithmic Language 1960，算法语言。Naur 是其报告的主要编辑者，使用了 BNF 来描述其语法。ALGOL 60 对后来的编程语言设计（包括 Pascal、C 等）产生了深远影响。</div></div><div class="glossary-item"><div class="en">Method</div><div class="zh">方法/方法论</div><div class="def">在软件工程中通常指编程的方法或规则序列。Naur 批判将方法论视为可替代理论建构的工具，认为理论无法被表达为固定顺序的动作序列。好的方法论是辅助，坏的方法论是思想枷锁。</div></div><div class="glossary-item"><div class="en">Similarity</div><div class="zh">相似性（判断）</div><div class="def">理论建构的核心操作：面对新情况时，判断它与已知情况之间的相似性。这种判断是整体性的、直觉式的，不能被规则化或完全文档化。它是程序修改的基础，也是理论无法被替代的关键原因。</div></div><div class="glossary-item"><div class="en">Tacit Knowledge</div><div class="zh">隐性知识</div><div class="def">源自波兰尼（Michael Polanyi）的概念，指难以言传、难以形式化的知识。Naur 的理论建构观中大量涉及隐性知识——程序员知道如何做，但无法完全解释自己为什么这样做。这种知识构成了理论的大部分。</div></div><div class="glossary-item"><div class="en">Justification</div><div class="zh">辩护/正当化</div><div class="def">能够为自己的设计选择提供理由的能力。Naur 认为理论的一个重要特征就是使程序员能够为程序的行为和设计决策提供辩护（justification），回答"为什么这样设计"的问题。</div></div><div class="glossary-item"><div class="en">Intuitive Knowledge</div><div class="zh">直觉知识</div><div class="def">不经由逐步推理而直接获得的知识。Naur 的理论包含大量直觉知识——程序员能够一眼看出两个情况的相似性，而不需要逐一列举特征。这种直觉是理论建构的重要组成部分。</div></div><div class="glossary-item"><div class="en">Intelligent Behaviour</div><div class="zh">智能行为</div><div class="def">能够根据情境灵活调整、应对新情况的行为。Naur 认为，持有理论的程序员面对新需求时能够做出智能的修改决策，而没有理论的程序员只能机械地执行规则。</div></div><div class="glossary-item"><div class="en">Production View</div><div class="zh">生产观</div><div class="def">Naur 批判的主流编程观念：认为编程就是生产一套程序文本和相关文档。生产观把程序员视为可替换的生产要素，相信文档可以替代程序员的知识，将方法论视为可执行的规则序列。Naur 用理论建构观颠覆了这种观念。</div></div></div></div>
+<div class="sec"><h2 class="sec-title" style="margin-bottom:20px">🌍 背景资料</h2><div class="bg-grid">
+<div class="bg-card"><h3>Peter Naur 简介</h3><p>彼得·诺尔（Peter Naur，1928-2016），丹麦计算机科学家，2005年 ACM Turing Award 获得者。他最为人熟知的贡献是发明了 Backus-Naur Form（BNF），这是一种用于描述编程语言语法的形式表示法。诺尔是 ALGOL 60 语言的创始团队成员之一，该语言对现代编程语言的发展影响深远。</p></div>
+<div class="bg-card"><h3>ALGOL 60 与 BNF</h3><p>ALGOL 60 于 1960 年发布，引入了块结构、嵌套作用域和递归等概念，对后世语言如 Pascal、C、Java 产生了深远影响。BNF 由 Peter Naur 在 ALGOL 58 的描述中首次引入，后来由 John Backus 在 ALGOL 60 中进一步推广，成为语言定义的标准工具。</p></div>
+<div class="bg-card"><h3>Gilbert Ryle 与 knowing-how</h3><p>Gilbert Ryle（1900-1976），英国哲学家，牛津大学哲学教授。他的重要著作《心的概念》（The Concept of Mind，1949）批评了"身心二元论"，提出智能行为是展现"知道如何做"（knowing-how）的能力。Naur 借鉴了这一区分来定义程序员的理论——一种实践性的、不可完全言说的知识。</p></div>
+<div class="bg-card"><h3>1980 年代软件工程背景</h3><p>1980 年代，软件工程作为一个学科正在形成。结构化编程、瀑布模型、形式化方法等概念主导了当时的软件开发讨论。正是在这样的背景下，Naur 提出了"编程作为理论建构"的观点，对当时主流的"编程即生产"的观念提出了根本性的挑战。</p></div>
+</div></div>
+<div class="sec"><h2 class="sec-title" style="margin-bottom:18px">📚 参考资料</h2><div class="card-grid"><div class="card"><p><a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">📄 原始论文 PDF (University of Wisconsin)</a></p></div><div class="card"><p><a href="https://www.naur.com/" target="_blank">🌐 Peter Naur 个人网站</a></p></div><div class="card"><p><a href="https://amturing.acm.org/award_winners/naur_1024454.cfm" target="_blank">🏆 ACM Turing Award Page</a></p></div><div class="card"><p><a href="https://plato.stanford.edu/entries/ryle/" target="_blank">📖 Stanford Encyclopedia: Gilbert Ryle</a></p></div></div></div>
+</main>
+</div>
+</div>
+<footer class="footer">
+<div class="wrapper">
+<div class="footer-grid">
+<div><h4>关于本页面</h4><p>本页面是 Peter Naur《Programming as Theory Building》的中文学习与导读页面，基于论文原文进行完整翻译和深度解读。</p></div>
+<div><h4>源论文</h4><p><a href="https://pages.cs.wisc.edu/~remzi/Naur.pdf" target="_blank">Peter Naur, "Programming as Theory Building", 1985</a></p></div>
+<div><h4>相关阅读</h4><p><a href="https://amturing.acm.org/award_winners/naur_1024454.cfm" target="_blank">ACM Turing Award — Peter Naur</a></p></div>
+</div>
+<div class="footer-bottom"><p>生成日期: 2026-06-07 | 项目理论: 编程作为理论建构学习页面</p></div>
+</div>
+</footer>
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function toggleSection(b){var s=b.closest('.section-block');s.classList.toggle('collapsed')}
+function toggleInterp(h){var b=h.nextElementSibling;b.classList.toggle('open');h.querySelector('span:last-child').textContent=b.classList.contains('open')?'▲':'▼'}
+function copyText(b){var p=b.closest('.paragraph'),t=p?(p.querySelector('.pid').textContent+' '+p.innerText.replace(/复制/g,'').trim().split('\n').slice(1).join('\n').trim()):(b.closest('.prompt-block').querySelector('pre')||{}).textContent||'';navigator.clipboard.writeText(t).then(()=>{var o=b.textContent;b.textContent='已复制';setTimeout(()=>b.textContent=o||'复制',1500)})}
+function copySection(b){var s=b.closest('.section-block'),txts=[];s.querySelectorAll('.paragraph').forEach(p=>{var pid=p.querySelector('.pid');var t=(pid?pid.textContent+' ':'')+p.innerText.replace(/复制/g,'').trim().split('\n').slice(1).join('\n').trim();txts.push(t)});navigator.clipboard.writeText(txts.join('\n\n')).then(()=>{var o=b.textContent;b.textContent='已复制';setTimeout(()=>b.textContent='复制本节译文',1500)})}
+function setViewMode(b){b.parentElement.querySelectorAll('.vm-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+function doSearch(q){if(!q.trim()){document.getElementById('searchResults').classList.remove('show');return}var r=document.getElementById('searchResults');r.innerHTML='';r.classList.add('show');var all=document.querySelector('.main').innerText;var lines=all.split('\n');var matches=lines.filter(l=>l.includes(q)&&l.trim().length>10).slice(0,10);matches.forEach(m=>{var d=document.createElement('div');d.className='sr-item';d.textContent=m.length>130?m.substring(0,130)+'...':m;d.onclick=function(){r.classList.remove('show');document.querySelector('.search-input').value=''};r.appendChild(d)})}
+document.addEventListener('DOMContentLoaded',function(){
+var saved=localStorage.getItem('ptb-theme');if(saved==='dark')document.documentElement.setAttribute('data-theme','dark');
+window.addEventListener('scroll',function(){var t=document.documentElement.scrollHeight-window.innerHeight,p=t>0?(document.documentElement.scrollTop/t*100):0;document.getElementById('progressBar').style.width=Math.min(100,p)+'%'});
+var io=new IntersectionObserver(function(es){es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.sidenav a').forEach(a=>a.classList.remove('active'));var l=document.querySelector('.sidenav a[href="#'+e.target.id+'"]');if(l)l.classList.add('active')}})},{threshold:0.2});
+document.querySelectorAll('.section-block').forEach(s=>io.observe(s));
+var si=document.querySelector('.search-input');if(si){si.addEventListener('input',function(e){doSearch(e.target.value)});si.addEventListener('focus',function(e){if(e.target.value.trim())doSearch(e.target.value)})}
+var btt=document.querySelector('.back-to-top');
+window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>350)});
+btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})});
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c==='dark'?'light':'dark');localStorage.setItem('ptb-theme',c==='dark'?'light':'dark')}
+function setViewMode(b){b.parentElement.querySelectorAll('.vm-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+</script>
+</body>
+</html>

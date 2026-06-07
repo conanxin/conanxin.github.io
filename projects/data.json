@@ -380,5 +380,28 @@
       "熵",
       "热力学"
     ]
+  },
+  {
+    "title": "编程作为理论建构",
+    "subtitle": "Peter Naur《Programming as Theory Building》完整中文译文与交互式导读",
+    "slug": "programming-as-theory-building",
+    "category": "research",
+    "type": "PAPER STUDY",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-07",
+    "summary": "Peter Naur 1985年经典论文《Programming as Theory Building》完整中文译文与交互式导读。包含论文全文翻译、深度解读、Naur三问、AI编程检查表、agent工作流模板、术语表和背景资料。",
+    "entry_url": "/projects/programming-as-theory-building/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "software engineering",
+      "programming",
+      "theory building",
+      "AI coding",
+      "Peter Naur",
+      "programming as theory building",
+      "中文译文"
+    ]
   }
 ]

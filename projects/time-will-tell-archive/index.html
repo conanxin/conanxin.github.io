@@ -19,21 +19,15 @@
       它不是当前主页，不是当前作品集，也不是当前写作水平的代表。
     </div>
 
-    <section id="project-facts">
-      <h2>Project Facts</h2>
-      <ul>
-        <li><strong>Posts</strong>: 37</li>
-        <li><strong>Date Range</strong>: 2013-08-25 ~ 2014-04-27</li>
-        <li><strong>Platform</strong>: GitHub Pages + Jekyll-Bootstrap</li>
-        <li><strong>Original Repository</strong>: <a href="https://github.com/conanxin/conanxin.github.com">conanxin/conanxin.github.com</a></li>
-      </ul>
-    </section>
+    <div class="catalog-summary">
+      <span id="catalog-stats">37 posts · 6 groups · 10 featured entries</span>
+      <p>下方目录收录 37 篇早期文章；当前仅迁移目录、摘要和原始链接，未迁移全文。</p>
+    </div>
 
     <!-- Featured Entries -->
     <section id="featured-entries">
       <h2>Featured Entries</h2>
       <div id="featured-grid" class="card-grid"></div>
-      <p class="note">以下条目为早期高价值内容，点击可查看原始 GitHub 链接。</p>
     </section>
 
     <!-- Content Groups -->
@@ -53,6 +47,7 @@
         <button onclick="filterPosts('personal_reflection')">Personal</button>
         <button onclick="filterPosts('technical_interest')">Technical</button>
       </div>
+      <div id="filter-result-count" style="margin: 0.5rem 0; font-size: 0.9rem; color: #666;"></div>
       <div id="catalog-list"></div>
     </section>
 

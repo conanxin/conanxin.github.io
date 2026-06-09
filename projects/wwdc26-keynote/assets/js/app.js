@@ -9,7 +9,7 @@
   let WWDC_DATA = null;
   async function loadData() {
     try {
-      const r = await fetch('data/wwdc26.json?v=431c20f');
+      const r = await fetch('data/wwdc26.json?v=phase5');
       WWDC_DATA = await r.json();
     } catch(e) {
       console.warn('Failed to load wwdc26.json', e);
@@ -205,11 +205,13 @@
     ];
 
     function openPalette() {
+      palette.hidden = false;
       palette.classList.add('open');
       palette.setAttribute('aria-hidden', 'false');
       input.focus();
     }
     function closePalette() {
+      palette.hidden = true;
       palette.classList.remove('open');
       palette.setAttribute('aria-hidden', 'true');
       input.value = '';
@@ -593,13 +595,27 @@
       const unsupported = device === 'OLD';
       const results_list = [];
 
+      // --- Platform-device compatibility check ---
+      const validPlatformDevice = {
+        IOS:       ['IP16', 'IP15P', 'IPM', 'OLD'],
+        IPADOS:    ['IP16', 'IP15P', 'IPM', 'OLD'],
+        MACOS:     ['MAC', 'OLD'],
+        WATCHOS:   ['WATCH', 'VP', 'OLD'],
+        VISIONOS:  ['VP', 'OLD'],
+        TVOS:      ['IP16', 'IP15P', 'IPM', 'MAC', 'WATCH', 'VP', 'OLD'],
+      };
+      if (!validPlatformDevice[platform] || !validPlatformDevice[platform].includes(device)) {
+        results.innerHTML = '<div class="av-result-item"><div style="font-size:15px;color:var(--text-secondary);padding:8px 0">⚠️ 平台和设备组合不匹配，请重新选择。例如：macOS 请选择 Mac 设备，watchOS 请选择 Apple Watch，visionOS 请选择 Apple Vision Pro。</div></div>';
+        return;
+      }
+
       // --- Apple Intelligence ---
       if (unsupported) {
         results_list.push({ label: 'Apple Intelligence', status: 'unavailable', note: '设备不支持（需要 iPhone 15 Pro 或更新 / iPad M1+ / Mac M1+ 等）' });
       } else if (region === 'CN') {
         results_list.push({ label: 'Apple Intelligence', status: 'unavailable', note: '中国大陆暂不可用（Apple 正在处理监管要求）' });
-      } else if (language !== 'EN' && language !== 'ZH' && language !== 'OTHER') {
-        results_list.push({ label: 'Apple Intelligence', status: 'available', note: '支持 16 种语言，部分功能可能受限' });
+      } else if (language === 'OTHER') {
+        results_list.push({ label: 'Apple Intelligence', status: 'limited', note: '该语言不在 Apple 当前列出的 16 种支持语言中；实际可用性需以 Apple 后续更新为准' });
       } else {
         results_list.push({ label: 'Apple Intelligence', status: 'available', note: '今年秋季随 iOS 27 等系统更新推出' });
       }
@@ -613,7 +629,7 @@
         if (platform === 'IOS' || platform === 'IPADOS') {
           results_list.push({ label: 'Siri AI', status: 'unavailable', note: '欧盟地区 iOS / iPadOS 初期不可用（Apple 正在寻求保护隐私和安全的方式）' });
         } else if (platform === 'WATCHOS') {
-          results_list.push({ label: 'Siri AI', status: 'limited', note: 'watchOS 需配对支持 Apple Intelligence 的 iPhone，欧盟初期可能受限' });
+          results_list.push({ label: 'Siri AI', status: 'unavailable', note: '欧盟地区 watchOS 27 初期不可用，因为 Siri AI on watchOS 需要配对具备 Siri AI 的 iPhone' });
         } else if (platform === 'MACOS' || platform === 'VISIONOS') {
           results_list.push({ label: 'Siri AI', status: 'available', note: '欧盟地区 Mac / Apple Vision Pro 可用 Siri AI' });
         } else {

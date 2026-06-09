@@ -42,7 +42,7 @@
   }
   </script>
   <!-- Stylesheet with versioned cache bust -->
-  <link rel="stylesheet" href="assets/css/style.css?v=431c20f">
+  <link rel="stylesheet" href="assets/css/style.css?v=phase5">
 </head>
 <body data-theme="light">
   <!-- Progress Bar (decorative, aria-hidden) -->
@@ -263,7 +263,7 @@
         <ul>
           <li><strong>英文 Beta 稍晚推出：</strong>Siri AI 将于今年晚些时候推出英文 Beta，其他语言逐步支持 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
           <li><strong>中国大陆暂不可用：</strong>Siri AI 和其他 Apple Intelligence 功能在中国大陆暂不可用（Apple 正在处理监管要求） <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
-          <li><strong>欧盟 iOS/iPadOS 初期不可用：</strong>Mac / Apple Watch / Vision Pro 在欧盟可用 Siri AI <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
+          <li><strong>欧盟 iOS/iPadOS 初期不可用：</strong>watchOS 27 因依赖配对具备 Siri AI 的 iPhone，初期也不可用；macOS 27 和 visionOS 27 可用 Siri AI <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
           <li><strong>独立 Siri App：</strong>用于查看和继续对话，通过 iCloud 私密同步对话历史</li>
         </ul>
       </div>
@@ -458,11 +458,11 @@
           <div class="av-field">
             <label for="avDevice">设备</label>
             <select id="avDevice">
-              <option value="IP16">iPhone 16 系列</option>
-              <option value="IP15P">iPhone 15 Pro</option>
-              <option value="IPM">iPad M1+</option>
-              <option value="MAC">Mac M1+</option>
-              <option value="WATCH">Apple Watch Series 9+</option>
+              <option value="IP16">iPhone 16 / 16 Pro / 16 Pro Max</option>
+              <option value="IP15P">iPhone 15 Pro / 15 Pro Max</option>
+              <option value="IPM">iPad mini A17 Pro / iPad M1+</option>
+              <option value="MAC">MacBook Neo A18 Pro / Mac M1+</option>
+              <option value="WATCH">Apple Watch Series 9 / Ultra 2 / SE 3（需配对支持 Apple Intelligence 的 iPhone）</option>
               <option value="VP">Apple Vision Pro</option>
               <option value="OLD">老设备（不支持）</option>
             </select>
@@ -527,7 +527,7 @@
       <p>WWDC26 中文交互式梳理 · 页面创建于 2026-06-09</p>
       <p>本页面由辛（Xin）基于 Apple 官方公开信息整理 · 仅供参考</p>
       <p class="footer-note">信息来源：Apple Newsroom · Apple Developer · Apple 官方页面<br>本页面非 Apple 官方产品，不代表 Apple 立场</p>
-      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.2 · build 431c20f · QA baseline 5b9047e</p>
+      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.3 · accuracy fix · QA baseline 5b9047e</p>
     </div>
   </footer>
 
@@ -540,6 +540,6 @@
   <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
 
   <!-- JS with versioned cache bust -->
-  <script src="assets/js/app.js?v=431c20f" defer></script>
+  <script src="assets/js/app.js?v=phase5" defer></script>
 </body>
 </html>

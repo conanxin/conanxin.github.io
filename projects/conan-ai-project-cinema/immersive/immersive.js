@@ -869,6 +869,12 @@ import * as THREE from 'three';
 
   // ── Fallback ────────────────────────────────────────────────────
   ImmersiveApp.prototype._showFallback = function () {
+    // CP-4F-Click-Hotfix: Hide entry overlay when showing fallback
+    var entryOverlay = document.getElementById('entryOverlay');
+    if (entryOverlay) {
+      entryOverlay.setAttribute('hidden', '');
+      entryOverlay.style.display = 'none';
+    }
     var el = document.getElementById('immersive-canvas');
     if (el) {
       el.innerHTML = '' +

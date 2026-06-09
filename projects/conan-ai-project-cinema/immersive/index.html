@@ -148,6 +148,12 @@
       });
     }).catch(function (err) {
       console.error('[Immersive] Failed to load immersive.js:', err);
+      // CP-4F-Click-Hotfix: Hide entry overlay when showing fallback
+      var entryOverlay = document.getElementById('entryOverlay');
+      if (entryOverlay) {
+        entryOverlay.setAttribute('hidden', '');
+        entryOverlay.style.display = 'none';
+      }
       document.getElementById('immersive-canvas').innerHTML = '' +
         '<div class="immersive-fallback">' +
           '<div class="ifb-icon">⚠</div>' +

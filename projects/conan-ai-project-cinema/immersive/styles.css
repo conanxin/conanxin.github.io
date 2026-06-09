@@ -2,6 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap');
 
+/* CP-4F-Click-Hotfix: Ensure hidden attribute is respected */
+[hidden] { display: none !important; }
+.entry-overlay[hidden] { display: none !important; pointer-events: none !important; }
+.immersive-fallback[hidden] { display: none !important; pointer-events: none !important; }
+
 :root {
   --bg: #060810;
   --surface: #0a0d18;
@@ -40,7 +45,7 @@ html, body {
 .entry-overlay {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 300;
   background: rgba(6, 8, 16, 0.95);
   display: flex;
   flex-direction: column;

@@ -29,6 +29,17 @@ import * as THREE from 'three';
     // Camera base positions (set by _gotoScene, used in animation loop)
     this.baseCameraPos = null;
     this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
+
+    // CP-4D: Continuous camera path
+    this.continuousCameraEnabled = true;
+    this.scrollProgress = 0;
+    this.scrollSceneIndex = 0;
+    this.scrollSceneT = 0;
+    this.cameraPathPos = new THREE.Vector3();
+    this.cameraPathTarget = new THREE.Vector3();
+    this.needsScrollUpdate = false;
+    this.scrollStoryEl = null;
+
     this.scrollObserver = null;
     this.isScrolling = false;
   };
@@ -54,7 +65,10 @@ import * as THREE from 'three';
     try {
       // Setup renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      // CP-4D Performance Guard: cap pixel ratio by device type
+      var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      var maxPixelRatio = isMobile ? 1.5 : 2;
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.renderer.shadowMap.enabled = true;
       document.getElementById('immersive-canvas').appendChild(this.renderer.domElement);
@@ -443,8 +457,16 @@ import * as THREE from 'three';
     var scrollStory = document.getElementById('scrollStory');
     if (!scrollStory) return;
 
+    // Store reference for animation loop
+    this.scrollStoryEl = scrollStory;
+
     // Show scroll story
     scrollStory.classList.add('visible');
+
+    // CP-4D: Scroll listener for continuous camera (throttled via needsScrollUpdate flag)
+    window.addEventListener('scroll', function () {
+      self.needsScrollUpdate = true;
+    }, { passive: true });
 
     // IntersectionObserver: which scroll scene is in viewport center
     var options = {
@@ -536,6 +558,55 @@ import * as THREE from 'three';
     }
   };
 
+  // ── CP-4D: Continuous Camera Path ──────────────────────────────
+  // Calculate scroll progress (0~1) and derive scene index + local t
+  ImmersiveApp.prototype._updateScrollProgress = function () {
+    if (!this.scrollStoryEl) return;
+
+    var story = this.scrollStoryEl;
+    var total = story.scrollHeight - window.innerHeight;
+    var y = 0;
+
+    if (total > 0) {
+      var rect = story.getBoundingClientRect();
+      // How far the top of the story is from the viewport top
+      y = Math.min(Math.max(-rect.top, 0), total);
+      this.scrollProgress = y / total;
+    } else {
+      this.scrollProgress = 0;
+    }
+
+    // Map progress to scene index and local t
+    var numScenes = this.scenes.length;
+    var scaled = this.scrollProgress * (numScenes - 1);
+    this.scrollSceneIndex = Math.min(Math.floor(scaled), numScenes - 1);
+    this.scrollSceneT = scaled - this.scrollSceneIndex; // 0~1 within current scene
+  };
+
+  // Lerp camera position/target between current and next scene
+  ImmersiveApp.prototype._updateContinuousCamera = function () {
+    var idx = this.scrollSceneIndex;
+    var nextIdx = Math.min(idx + 1, this.scenes.length - 1);
+    var t = this.scrollSceneT;
+
+    var curScene = this.scenes[idx];
+    var nextScene = this.scenes[nextIdx];
+
+    // Lerp position
+    this.cameraPathPos.lerpVectors(
+      new THREE.Vector3(curScene.cameraPosition.x, curScene.cameraPosition.y, curScene.cameraPosition.z),
+      new THREE.Vector3(nextScene.cameraPosition.x, nextScene.cameraPosition.y, nextScene.cameraPosition.z),
+      t
+    );
+
+    // Lerp target
+    this.cameraPathTarget.lerpVectors(
+      new THREE.Vector3(curScene.cameraTarget.x, curScene.cameraTarget.y, curScene.cameraTarget.z),
+      new THREE.Vector3(nextScene.cameraTarget.x, nextScene.cameraTarget.y, nextScene.cameraTarget.z),
+      t
+    );
+  };
+
   ImmersiveApp.prototype._toggleSound = function () {
     // If audio unavailable, do nothing
     if (this.soundUnavailable) return;
@@ -620,17 +691,35 @@ import * as THREE from 'three';
       });
     }
 
-    // Camera: base position + subtle parallax (no hard override)
-    if (this.baseCameraPos) {
+    // CP-4D: Process scroll progress update if needed
+    if (this.needsScrollUpdate && this.scrollStoryEl) {
+      this._updateScrollProgress();
+      this._updateContinuousCamera();
+      this.needsScrollUpdate = false;
+    }
+
+    // Camera: continuous path mode OR fallback to section-based base
+    var useContinuous = this.continuousCameraEnabled && !this.prefersReducedMotion && this.scrollStoryEl;
+    var targetPos, targetLook;
+
+    if (useContinuous) {
+      targetPos = this.cameraPathPos;
+      targetLook = this.cameraPathTarget;
+    } else if (this.baseCameraPos) {
+      targetPos = this.baseCameraPos;
+      targetLook = this.baseCameraTarget;
+    }
+
+    if (targetPos && targetLook) {
       var px = this.prefersReducedMotion ? 0 : this.mouseX * 0.25;
       var py = this.prefersReducedMotion ? 0 : this.mouseY * -0.15;
-      var tx = this.baseCameraPos.x + px;
-      var ty = this.baseCameraPos.y + py;
-      var tz = this.baseCameraPos.z;
+      var tx = targetPos.x + px;
+      var ty = targetPos.y + py;
+      var tz = targetPos.z;
       this.camera.position.x += (tx - this.camera.position.x) * 0.04;
       this.camera.position.y += (ty - this.camera.position.y) * 0.04;
       this.camera.position.z += (tz - this.camera.position.z) * 0.04;
-      this.camera.lookAt(this.baseCameraTarget);
+      this.camera.lookAt(targetLook);
     }
 
     this.renderer.render(this.scene, this.camera);

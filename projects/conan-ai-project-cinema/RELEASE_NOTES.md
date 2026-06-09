@@ -485,3 +485,46 @@ The stable main page gains a clear entry point to the immersive 3D/sound prototy
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4C*
+
+---
+
+## CP-4D: Continuous Camera Path + Performance Guard
+
+**Phase:** CP-4D — 2026-06-09
+
+### Immersive Route Now Has Continuous Camera Path
+
+Upgraded the immersive 3D experience from section-based snap to continuous scroll-driven camera interpolation.
+
+### What's New
+
+- **Continuous Camera Path** — Camera smoothly interpolates between scenes as user scrolls, not snap-to-section
+- **Scroll Progress Tracking** — Calculates overall scroll progress 0~1 and maps to scene index + local t
+- **Vector Lerp Interpolation** — `THREE.Vector3.lerpVectors` between current and next scene camera position/target
+- **Throttled Scroll Listener** — Sets `needsScrollUpdate` flag; animation loop processes it once per frame (no redundant computation)
+- **Performance Guard** — Mobile devices (userAgent match) capped at `devicePixelRatio 1.5`, desktop at `2`
+- **Dual Camera Mode** — Continuous mode active when scrollStory present and `prefersReducedMotion` is false; otherwise falls back to section-based baseCameraPos
+
+### Technical Notes
+
+- Scroll listener is passive, only sets flag → no performance waste in animation loop
+- IntersectionObserver still handles HUD / switcher active / sound mood (section-based)
+- Continuous camera only handles visual interpolation (camera position/target)
+- `cameraPathPos` and `cameraPathTarget` are updated in animation loop when flag is set
+- `lerpVectors` with `t` from 0~1 gives smooth intermediate positions between scenes
+
+### No New Framework
+
+- Pure Three.js + Vanilla JS
+- No build step
+- No changes to main page
+
+### Current Status
+
+- **Immersive route:** CP-4D active
+- **Main page:** CP-4C entry (stable)
+- **Phase:** CP-4D Continuous Camera Path + Performance Guard
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4D*

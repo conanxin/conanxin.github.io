@@ -180,3 +180,38 @@ The stable main page (CP-3E) now has an Immersive Entry Section between Hero and
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4C*
+
+---
+
+## CP-4D: Continuous Camera Path + Performance Guard
+
+**Phase:** CP-4D — 2026-06-09
+
+### Continuous Camera Path
+
+The immersive route now supports scroll-driven continuous camera interpolation.
+
+### How It Works
+
+- **Scroll progress tracking** — calculates `progress 0~1` from scroll position, maps to scene index + local t
+- **Camera path interpolation** — `THREE.Vector3.lerpVectors` between current and next scene camera position/target
+- **Throttled updates** — scroll listener sets `needsScrollUpdate` flag, animation loop processes once per frame
+- **Dual mode** — continuous mode active when scroll story present + reduced motion off; otherwise section-based fallback
+
+### Performance Guard
+
+- Mobile (`/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)`) → max pixel ratio 1.5
+- Desktop → max pixel ratio 2
+
+### Section Sync vs Camera Interpolation
+
+| System | Trigger | Purpose |
+|--------|---------|---------|
+| IntersectionObserver | Section enters viewport center | HUD active / sound mood / switcher |
+| Continuous camera | Scroll progress (0~1) | Visual camera interpolation |
+
+Both run independently; camera interpolation handles visual smoothness, section sync handles UI state.
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4D*

@@ -181,3 +181,45 @@ How2AI / Internet Builder / ClaimLens / HERMES Lofi / UAP Files / WWDC26
 ---
 
 *Release notes maintained by 辛 🔮*
+
+---
+
+## CP-3C Cinematic Depth
+
+**Phase:** CP-3C — 2026-06-09
+
+从 Project Theater（CP-3B）向"深夜个人研究室 × AI 操作系统"空间感的又一次迭代。
+
+### CSS-only Depth Layer
+
+全局固定视觉层（`cinema-depth-layer`），包含3个缓慢漂移的 depth orbs + 淡网格背景。纯 CSS，零 JavaScript，pointer-events: none。
+
+### Active Scene Atmosphere
+
+滚动时 `document.documentElement.dataset.activeScene` 实时更新，当前 scene 顶部有一条淡光条（Cinema top highlight）。非 active scenes 微暗（opacity 0.85）。
+
+### Cinematic Parallax
+
+`initCinematicDepth()` 通过 `requestAnimationFrame` 更新根 CSS 变量 `--cinema-scroll-progress`，驱动 `.signal-grid` 和 `.scene-visual` 的微垂直位移。
+
+### No 3D Dependency
+
+无 Three.js / Spline / React Three Fiber，所有效果通过 CSS + CSS 变量实现。
+
+### Featured / Preview 放映感微增强
+
+- Featured card hover: light sweep 特效（CSS `::after` + keyframe）
+- Preview card hover: screen glow（`box-shadow: inset`）
+- Preview wall wrap: projector-like ambient radial gradient
+
+### Current Status
+
+- **Phase:** CP-3C Cinematic Depth
+- **All prior features:** Active
+- **Depth layer:** Active (desktop)
+- **Parallax:** Active (reduced-motion off)
+- **Active scene highlight:** Active
+
+---
+
+*Release notes maintained by 辛 🔮*

@@ -1823,3 +1823,208 @@ body {
   .preview-card { width: 100%; flex-shrink: 0; }
   .preview-wall { gap: 0.5rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   CP-3C: CINEMATIC DEPTH + CSS PARALLAX
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Global Cinematic Depth Layer ── */
+.cinema-depth-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Ambient depth orbs — large, slow, blurred */
+.depth-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.06;
+  animation: orbDrift 20s ease-in-out infinite alternate;
+}
+.depth-orb--1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #7eb8f7 0%, transparent 70%);
+  top: -150px; left: -100px;
+  animation-duration: 22s;
+}
+.depth-orb--2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #a08cf7 0%, transparent 70%);
+  bottom: -100px; right: -80px;
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+.depth-orb--3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #7af7b8 0%, transparent 70%);
+  top: 40%; left: 60%;
+  animation-duration: 25s;
+  animation-delay: -12s;
+  opacity: 0.04;
+}
+
+/* Subtle grid overlay */
+.depth-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(126, 184, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 184, 247, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 75%);
+}
+
+@keyframes orbDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, 30px) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-orb { animation: none; }
+  .cinema-depth-layer { display: none; }
+}
+
+/* ── Scene depth states via data-active-scene ── */
+.scene {
+  transition: opacity 0.4s ease;
+}
+
+/* Inactive scenes — slightly dimmed when another scene is active */
+[data-active-scene]:not([data-active-scene="hero"]) .scene:not(.visible) {
+  opacity: 0.85;
+}
+
+/* Active scene gets a subtle top highlight */
+[data-active-scene="scene-01"] #scene-01.visible,
+[data-active-scene="scene-02"] #scene-02.visible,
+[data-active-scene="scene-03"] #scene-03.visible,
+[data-active-scene="scene-04"] #scene-04.visible,
+[data-active-scene="scene-05"] #scene-05.visible,
+[data-active-scene="scene-06"] #scene-06.visible {
+  position: relative;
+}
+[data-active-scene="scene-01"] #scene-01.visible::before,
+[data-active-scene="scene-02"] #scene-02.visible::before,
+[data-active-scene="scene-03"] #scene-03.visible::before,
+[data-active-scene="scene-04"] #scene-04.visible::before,
+[data-active-scene="scene-05"] #scene-05.visible::before,
+[data-active-scene="scene-06"] #scene-06.visible::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Hero section — always more prominent */
+#hero { position: relative; z-index: 1; }
+
+/* ── Hero Command Desk — enhanced depth ── */
+.cd-panel {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.command-desk:hover .cd-panel--tl { transform: translate(-3px, -3px); }
+.command-desk:hover .cd-panel--tr { transform: translate(3px, -3px); }
+.command-desk:hover .cd-panel--bl { transform: translate(-3px, 3px); }
+.command-desk:hover .cd-panel--br { transform: translate(3px, 3px); }
+.cd-panel {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
+}
+.command-desk:hover .cd-panel {
+  border-color: rgba(126, 184, 247, 0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(126,184,247,0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cd-panel { transition: none; transform: none; }
+  .command-desk:hover .cd-panel { transform: none; }
+}
+
+/* ── CSS Parallax via --cinema-scroll-progress ── */
+.signal-grid {
+  transform: translateY(calc(var(--cinema-scroll-progress, 0) * 30px));
+  transition: none;
+}
+
+/* ── Featured Card — light sweep on hover ── */
+.featured-card {
+  position: relative;
+  overflow: hidden;
+}
+.featured-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(126,184,247,0.06), transparent);
+  transition: left0.5s ease;
+  pointer-events: none;
+}
+.featured-card:hover::after { left: 150%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-card::after { display: none; }
+}
+
+/* ── Preview Card — faux screen glow on hover ── */
+.preview-card:hover .preview-card__screen {
+  box-shadow: inset 0 0 20px rgba(126,184,247,0.12);
+}
+.preview-card__screen {
+  transition: box-shadow 0.3s ease;
+}
+
+/* ── Preview Wall — projector-like ambient ── */
+.preview-wall-wrap {
+  position: relative;
+}
+.preview-wall-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(126,184,247,0.03) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+/* ── Scroll progress via CSS variable ── */
+:root {
+  --cinema-scroll-progress: 0;
+}
+
+/* ── Scene visual anchors — subtle parallax on scroll ── */
+.scene-visual {
+  transform: translateY(calc((1 - var(--cinema-scroll-progress, 0)) * 8px));
+  transition: opacity 0.4s ease;
+}
+
+/* ── Reduced motion — kill parallax and transitions ── */
+@media (prefers-reduced-motion: reduce) {
+  .scene-visual { transform: none; transition: none; }
+  .signal-grid  { transform: none; transition: none; }
+  .depth-orb    { animation: none; }
+  .featured-card { transition: none; }
+  .featured-card::after { display: none; }
+  .preview-card { transition: none; }
+  .preview-card__screen { transition: none; }
+  .cd-panel { transition: none; }
+  [data-active-scene="scene-01"] #scene-01.visible::before,
+  [data-active-scene="scene-02"] #scene-02.visible::before,
+  [data-active-scene="scene-03"] #scene-03.visible::before,
+  [data-active-scene="scene-04"] #scene-04.visible::before,
+  [data-active-scene="scene-05"] #scene-05.visible::before,
+  [data-active-scene="scene-06"] #scene-06.visible::before {
+    display: none;
+  }
+}
+
+/* ── Mobile depth layer off ── */
+@media (max-width: 768px) {
+  .cinema-depth-layer { display: none; }
+}

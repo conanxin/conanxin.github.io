@@ -444,6 +444,8 @@
           item.classList.add('active');
         }
       });
+      // Also set document-level active scene for CSS selectors
+      document.documentElement.dataset.activeScene = sceneId;
     }
 
     // Click navigation
@@ -485,6 +487,37 @@
     window.addEventListener('scroll', scrollHandler, { passive: true });
     scrollHandler();
   }
+
+  // ══════════════════════════════════════════════════════════════
+  // CINEMATIC DEPTH (CP-3C)
+  // ══════════════════════════════════════════════════════════════
+  function initCinematicDepth() {
+    if (prefersReducedMotion) return;
+    if (!('requestAnimationFrame' in window)) return;
+
+
+    var ticking = false;
+
+    var update = function () {
+      var scrollY = window.scrollY;
+      var docH = document.documentElement.scrollHeight;
+      var wh = window.innerHeight;
+      var progress = docH > wh ? scrollY / (docH - wh) : 0;
+      document.documentElement.style.setProperty('--cinema-scroll-progress', progress.toFixed(4));
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initialize on load
+    update();
+  }
+
 
   // ══════════════════════════════════════════════════════════════
   // FEATURED PROJECT STRIP (CP-3B)
@@ -636,6 +669,7 @@
 
   // Step 0: Scene navigator (scroll-driven side nav)
   safeRun('scene navigator', initSceneNavigator);
+  safeRun('cinematic depth', initCinematicDepth);
 
   // Step 1: Always reveal scenes immediately (fallback)
   safeRun('section reveal', function () {

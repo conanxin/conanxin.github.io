@@ -1,991 +1,765 @@
 /**
- * immersive.js — CP-4A Immersive Mode
+ * immersive.js — CP-4H-3 Immersive Mode
  * Vanilla Three.js. Camera click-switching for 6 scenes.
  * Uses local vendor Three.js (CP-4G: no unpkg dependency).
+ * CP-4H-3: Clean top-level await ES module (no async IIFE).
  */
 
-(async function () {
-  // CP-4H-2: Dynamic import for Safari compatibility
-  // Parse errors in three.module.js now become runtime errors caught by index.html
-  var THREE;
+'use strict';
+
+// ── 1. Load THREE with top-level await ────────────────────────
+let THREE;
+try {
+  THREE = await import('./vendor/three.module.js');
+} catch (e) {
+  console.error('[Immersive] THREE load failed:', e);
+  document.body.innerHTML = (
+    '<div style="color:#fff;padding:2rem;font-family:sans-serif;text-align:center;">' +
+    '<h2 style="color:#f78c7a;">⚠️ Three.js failed to load</h2>' +
+    '<p>Check your network connection and try refreshing the page.</p>' +
+    '<a href="../" style="color:#7eb8f7;">← Back to Project Cinema</a>' +
+    '</div>'
+  );
+  throw e; // Re-throw so the importing page can handle it
+}
+
+// ── 2. ImmersiveApp ────────────────────────────────────────────
+var ImmersiveApp = function () {
+  this.scenes = window.CP_IMMERSIVE_SCENES || [];
+  this.currentIndex = 0;
+  this.renderer = null;
+  this.scene = null;
+  this.camera = null;
+  this.objects = [];
+  this.audio = null;
+  this.soundEnabled = false;
+  this.soundUnavailable = false;
+  this.muted = false;
+  this.mouseX = 0;
+  this.mouseY = 0;
+  this.frameId = null;
+  this.clockTime = 0;
+
+  // Camera base positions
+  this.baseCameraPos = null;
+  this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
+
+  // Continuous camera path
+  this.continuousCameraEnabled = true;
+  this.scrollProgress = 0;
+  this.scrollSceneIndex = 0;
+  this.scrollSceneT = 0;
+  this.cameraPathPos = new THREE.Vector3();
+  this.cameraPathTarget = new THREE.Vector3();
+  this.needsScrollUpdate = false;
+  this.scrollStoryEl = null;
+
+  // Pause/resume
+  this.isPaused = false;
+
+  // Entrance fly-in
+  this.entryFlyInActive = false;
+  this.entryFlyInStart = 0;
+  this.entryFlyInDuration = 1600;
+  this.entryFlyInFrom = null;
+
+  // Scene object focus
+  this.sceneNodeMeshes = {};
+
+  this.scrollObserver = null;
+  this.isScrolling = false;
+};
+
+// ── WebGL check ────────────────────────────────────────────────
+ImmersiveApp.prototype._isWebGLAvailable = function () {
   try {
-    THREE = await import('./vendor/three.module.js');
+    var canvas = document.createElement('canvas');
+    if (!window.WebGLRenderingContext) {
+      return { available: false, reason: 'WebGL not supported in this browser' };
+    }
+    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) {
+      return { available: false, reason: 'WebGL disabled or blocked by browser/privacy settings' };
+    }
+    return { available: true };
   } catch (e) {
-    console.error('[Immersive] THREE load failed:', e);
-    throw e; // Re-throw so index.html catch block can handle it
+    return { available: false, reason: 'WebGL check failed: ' + (e.message || String(e)) };
+  }
+};
+
+// ── Init ──────────────────────────────────────────────────────
+ImmersiveApp.prototype.init = function () {
+  var self = this;
+
+  var webglCheck = this._isWebGLAvailable();
+  if (!webglCheck.available) {
+    this._showFallback('WebGL unavailable', webglCheck.reason);
+    return false;
   }
 
-  'use strict';
+  try {
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
 
-  var ImmersiveApp = function () {
-    this.scenes = window.CP_IMMERSIVE_SCENES || [];
-    this.currentIndex = 0;
-    this.renderer = null;
-    this.scene = null;
-    this.camera = null;
-    this.objects = [];
-    this.audio = null;
-    this.soundEnabled = false; // true if user entered with sound
-    this.soundUnavailable = false;
-    this.muted = false;
-    this.frameId = null;
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.clockTime = 0;
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Camera base positions (set by _gotoScene, used in animation loop)
-    this.baseCameraPos = null;
-    this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
-
-    // CP-4D: Continuous camera path
-    this.continuousCameraEnabled = true;
-    this.scrollProgress = 0;
-    this.scrollSceneIndex = 0;
-    this.scrollSceneT = 0;
-    this.cameraPathPos = new THREE.Vector3();
-    this.cameraPathTarget = new THREE.Vector3();
-    this.needsScrollUpdate = false;
-    this.scrollStoryEl = null;
-
-    // CP-4D: Pause/resume for performance
-    this.isPaused = false;
-
-    // CP-4E: Entrance fly-in
-    this.entryFlyInActive = false;
-    this.entryFlyInStart = 0;
-    this.entryFlyInDuration = 1600;
-    this.entryFlyInFrom = null;
-
-    // CP-4E: Scene object focus
-    this.sceneNodeMeshes = {}; // sceneIndex -> [meshes]
-
-    this.scrollObserver = null;
-    this.isScrolling = false;
-  };
-
-  // ── Init ─────────────────────────────────────────────────────────
-  // CP-4G: Enhanced WebGL detection with specific error reasons
-  ImmersiveApp.prototype._isWebGLAvailable = function () {
-    try {
-      var canvas = document.createElement('canvas');
-      if (!window.WebGLRenderingContext) return { available: false, reason: 'WebGL not supported in this browser' };
-      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (!gl) return { available: false, reason: 'WebGL disabled or blocked by browser/privacy settings' };
-      return { available: true };
-    } catch (e) {
-      return { available: false, reason: 'WebGL check failed: ' + (e.message || String(e)) };
-    }
-  };
-
-  ImmersiveApp.prototype.init = function () {
-    var self = this;
-
-    // CP-4G: Enhanced WebGL check with specific reason
-    var webglCheck = this._isWebGLAvailable();
-    if (!webglCheck.available) {
-      this._showFallback('WebGL unavailable', webglCheck.reason);
-      return false;
-    }
-
-    // Check THREE is available (module loaded successfully)
-    if (typeof THREE === 'undefined') {
-      this._showFallback('Module loading failed', 'Three.js module did not load. Check browser console.');
-      return false;
-    }
-
-    try {
-      // Setup renderer
-      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-      // CP-4D Performance Guard: cap pixel ratio by device type + viewport + hardware
-      var isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-      var isMobileVP = window.innerWidth < 768;
-      var isMobile = isMobileUA || isMobileVP;
-      var hwConcurrency = navigator.hardwareConcurrency || 4;
-      var deviceMemory = navigator.deviceMemory || 8;
-      var isLowPower = hwConcurrency <= 4 || deviceMemory <= 4;
-      var maxPixelRatio = isLowPower ? 1.0 : (isMobile ? 1.5 : 2);
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      this.renderer.shadowMap.enabled = true;
-      document.getElementById('immersive-canvas').appendChild(this.renderer.domElement);
-
-      // Scene + camera
-      this.scene = new THREE.Scene();
-      this.scene.background = new THREE.Color(0x060810);
-      this.scene.fog = new THREE.Fog(0x060810, 20, 60);
-
-      this.camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
-
-      // Build scene objects
-      this._buildScene();
-
-      // HUD events
-      this._bindHUD();
-
-      // Scroll story overlay
-      this._initScrollStory();
-
-      // Mouse parallax
-      window.addEventListener('mousemove', function (e) {
-        self.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        self.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
-
-      // Resize
-      // CP-4D: Throttled resize handler
-      var resizeRaf = null;
-      window.addEventListener('resize', function () {
-        if (resizeRaf) return;
-        resizeRaf = requestAnimationFrame(function () {
-          self.camera.aspect = window.innerWidth / window.innerHeight;
-          self.camera.updateProjectionMatrix();
-          self.renderer.setSize(window.innerWidth, window.innerHeight);
-          resizeRaf = null;
-        });
-      });
-
-      // Page visibility
-      document.addEventListener('visibilitychange', function () {
-        // CP-4D: Pause animation loop when hidden to save resources
-        self.isPaused = document.hidden;
-        if (self.audio) {
-          if (document.hidden) self.audio.suspend();
-          else self.audio.resume();
-        }
-      });
-
-      // Start loop
-      this.clockTime = performance.now();
-      this._animate();
-
-    } catch (err) {
-      console.error('[Immersive] init error:', err);
-      var msg = err && err.message ? err.message.slice(0, 200) : String(err);
-      this._showFallback('WebGL renderer failed', msg);
-      return false;
-    }
-
-    return true;
-  };
-
-  // ── Build 3D Scene Objects ────────────────────────────────────────
-  ImmersiveApp.prototype._buildScene = function () {
-    var self = this;
-
-    // Ambient light
-    var ambient = new THREE.AmbientLight(0x1a2040, 0.8);
-    this.scene.add(ambient);
-
-    // Point lights for each scene accent color
-    this.accentLights = [];
-    this.scenes.forEach(function (s) {
-      var light = new THREE.PointLight(s.accentColor, 0.6, 15);
-      light.position.set(
-        s.cameraPosition.x * 0.3,
-        s.cameraPosition.y * 0.5,
-        s.cameraPosition.z * 0.3
-      );
-      self.scene.add(light);
-      self.accentLights.push(light);
-    });
-
-    // Ground plane (dark desk surface)
-    var groundGeo = new THREE.PlaneGeometry(40, 40);
-    var groundMat = new THREE.MeshStandardMaterial({
-      color: 0x0a0d18,
-      roughness: 0.9,
-      metalness: 0.1,
-    });
-    var ground = new THREE.Mesh(groundGeo, groundMat);
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.5;
-    ground.receiveShadow = true;
-    this.scene.add(ground);
-
-    // Grid overlay
-    var gridHelper = new THREE.GridHelper(30, 30, 0x1a2040, 0x0d1428);
-    gridHelper.position.y = -0.49;
-    this.scene.add(gridHelper);
-
-    // Particles
-    this._buildParticles();
-
-    // Command desk
-    this._buildCommandDesk();
-
-    // Scene nodes (6 spheres)
-    this.sceneNodes = [];
-    this.sceneRings = [];
-    this.scenes.forEach(function (s, i) {
-      var geo = new THREE.SphereGeometry(0.3, 16, 16);
-      var mat = new THREE.MeshStandardMaterial({
-        color: s.accentColor,
-        emissive: s.accentColor,
-        emissiveIntensity: 0.6,
-        roughness: 0.3,
-        metalness: 0.5,
-      });
-      var mesh = new THREE.Mesh(geo, mat);
-      var angle = (i / 6) * Math.PI * 2;
-      var r = 5;
-      mesh.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r);
-      mesh.castShadow = true;
-      self.scene.add(mesh);
-      self.sceneNodes.push(mesh);
-
-      // Ring around node
-      var ringGeo = new THREE.TorusGeometry(0.5, 0.03, 8, 32);
-      var ringMat = new THREE.MeshStandardMaterial({
-        color: s.accentColor,
-        emissive: s.accentColor,
-        emissiveIntensity: 0.3,
-        transparent: true,
-        opacity: 0.5,
-      });
-      var ring = new THREE.Mesh(ringGeo, ringMat);
-      ring.rotation.x = Math.PI / 2;
-      ring.position.copy(mesh.position);
-      self.scene.add(ring);
-      self.sceneRings.push(ring);
-
-      // CP-4E: Index scene nodes by scene index for focus/spotlight
-      if (!self.sceneNodeMeshes[i]) self.sceneNodeMeshes[i] = [];
-      self.sceneNodeMeshes[i].push(mesh, ring);
-    });
-
-    // Floating artifact cards
-    this._buildArtifactCards();
-
-    // Agent workflow line
-    this._buildAgentLine();
-
-    // Initial camera position (set base positions)
-    var firstScene = this.scenes[0];
-    this.baseCameraPos = new THREE.Vector3(
-      firstScene.cameraPosition.x,
-      firstScene.cameraPosition.y,
-      firstScene.cameraPosition.z
+    // Performance Guard
+    var isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    var isMobileVP = window.innerWidth < 768;
+    var isMobile = isMobileUA || isMobileVP;
+    var hwConcurrency = navigator.hardwareConcurrency || 4;
+    var deviceMemory = navigator.deviceMemory || 8;
+    var isLowPower = hwConcurrency <= 4 || deviceMemory <= 4;
+    var maxPixelRatio = isLowPower ? 1.0 : (isMobile ? 1.5 : 2.0);
+    this.renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio, maxPixelRatio)
     );
-    this.baseCameraTarget.set(
-      firstScene.cameraTarget.x,
-      firstScene.cameraTarget.y,
-      firstScene.cameraTarget.z
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.shadowMap.enabled = true;
+    document.getElementById('immersive-canvas').appendChild(this.renderer.domElement);
+
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0x060810);
+    this.scene.fog = new THREE.Fog(0x060810, 20, 60);
+
+    this.camera = new THREE.PerspectiveCamera(
+      65, window.innerWidth / window.innerHeight, 0.1, 100
     );
-    this.camera.position.copy(this.baseCameraPos);
-    this.camera.lookAt(this.baseCameraTarget);
-  };
 
-  ImmersiveApp.prototype._buildParticles = function () {
-    var count = 300;
-    var positions = new Float32Array(count * 3);
-    var colors = new Float32Array(count * 3);
-    for (var i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 1] = Math.random() * 15;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
-      var c = new THREE.Color().setHSL(0.6 + Math.random() * 0.1, 0.5, 0.5);
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
-    }
-    var geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    var mat = new THREE.PointsMaterial({
-      size: 0.06,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
+    this._buildScene();
+    this._bindHUD();
+    this._initScrollStory();
+
+    window.addEventListener('mousemove', function (e) {
+      self.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      self.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     });
-    this.particleSystem = new THREE.Points(geo, mat);
-    this.scene.add(this.particleSystem);
-  };
 
-  ImmersiveApp.prototype._buildCommandDesk = function () {
-    var geo = new THREE.BoxGeometry(4, 0.3, 2.5);
-    var mat = new THREE.MeshStandardMaterial({
-      color: 0x0d1122,
-      emissive: 0x0a1535,
-      emissiveIntensity: 0.2,
-      roughness: 0.7,
-      metalness: 0.3,
-    });
-    var desk = new THREE.Mesh(geo, mat);
-    desk.position.y = -0.15;
-    desk.castShadow = true;
-    desk.receiveShadow = true;
-    this.scene.add(desk);
-
-    var edgeColor = 0x1a3060;
-    var edgeMat = new THREE.MeshStandardMaterial({
-      color: edgeColor,
-      emissive: edgeColor,
-      emissiveIntensity: 1.0,
-    });
-    var edgeGeo = new THREE.BoxGeometry(4.05, 0.05, 0.05);
-    var topEdge = new THREE.Mesh(edgeGeo, edgeMat);
-    topEdge.position.set(0, 0.03, 1.27);
-    this.scene.add(topEdge);
-    var bottomEdge = new THREE.Mesh(edgeGeo, edgeMat);
-    bottomEdge.position.set(0, 0.03, -1.27);
-    this.scene.add(bottomEdge);
-
-    var screenColors = [0x7eb8f7, 0xa08cf7, 0x7af7b8];
-    for (var i = 0; i < 3; i++) {
-      var sGeo = new THREE.PlaneGeometry(0.8, 0.5);
-      var sMat = new THREE.MeshStandardMaterial({
-        color: screenColors[i],
-        emissive: screenColors[i],
-        emissiveIntensity: 0.8,
-        side: THREE.DoubleSide,
+    // Throttled resize
+    var resizeRaf = null;
+    window.addEventListener('resize', function () {
+      if (resizeRaf) return;
+      resizeRaf = requestAnimationFrame(function () {
+        self.camera.aspect = window.innerWidth / window.innerHeight;
+        self.camera.updateProjectionMatrix();
+        self.renderer.setSize(window.innerWidth, window.innerHeight);
+        resizeRaf = null;
       });
-      var screen = new THREE.Mesh(sGeo, sMat);
-      screen.position.set(-1.2 + i * 1.2, 0.26, 0);
-      screen.rotation.x = -0.3;
-      this.scene.add(screen);
-    }
-  };
-
-  ImmersiveApp.prototype._buildArtifactCards = function () {
-    var colors = [0x7eb8f7, 0xa08cf7, 0x7af7b8, 0xf7c87a, 0xf78c7a, 0x7ac8f7];
-    for (var i = 0; i < 18; i++) {
-      var geo = new THREE.PlaneGeometry(0.4, 0.25);
-      var mat = new THREE.MeshStandardMaterial({
-        color: colors[i % 6],
-        emissive: colors[i % 6],
-        emissiveIntensity: 0.4,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.85,
-      });
-      var card = new THREE.Mesh(geo, mat);
-      var angle = Math.random() * Math.PI * 2;
-      var r = 3 + Math.random() * 5;
-      card.position.set(
-        Math.cos(angle) * r,
-        0.1 + Math.random() * 1.5,
-        Math.sin(angle) * r
-      );
-      card.rotation.x = -0.2;
-      card.rotation.y = Math.random() * 0.5;
-      this.scene.add(card);
-    }
-  };
-
-  ImmersiveApp.prototype._buildAgentLine = function () {
-    var points = [
-      new THREE.Vector3(-6, 0.5, 0),
-      new THREE.Vector3(-2, 0.5, 0),
-      new THREE.Vector3(2, 0.5, 0),
-      new THREE.Vector3(6, 0.5, 0),
-    ];
-    var curve = new THREE.CatmullRomCurve3(points);
-    var geo = new THREE.TubeGeometry(curve, 20, 0.04, 8, false);
-    var mat = new THREE.MeshStandardMaterial({
-      color: 0xf7c87a,
-      emissive: 0xf7c87a,
-      emissiveIntensity: 0.8,
-      transparent: true,
-      opacity: 0.7,
-    });
-    var tube = new THREE.Mesh(geo, mat);
-    this.scene.add(tube);
-
-    points.forEach(function (p) {
-      var geo = new THREE.SphereGeometry(0.2, 12, 12);
-      var mat = new THREE.MeshStandardMaterial({
-        color: 0xf7c87a,
-        emissive: 0xf7c87a,
-        emissiveIntensity: 0.9,
-      });
-      var mesh = new THREE.Mesh(geo, mat);
-      mesh.position.copy(p);
-      this.scene.add(mesh);
-    }.bind(this));
-  };
-
-  // ── Scene switching ──────────────────────────────────────────────
-  ImmersiveApp.prototype._gotoScene = function (index, animate) {
-    if (index < 0 || index >= this.scenes.length) return;
-    this.currentIndex = index;
-    var sceneData = this.scenes[index];
-
-    // Update HUD
-    document.getElementById('hud-scene-title').textContent = sceneData.title;
-    document.getElementById('hud-scene-title-zh').textContent = sceneData.titleZh;
-    document.getElementById('hud-scene-desc').textContent = sceneData.description;
-
-    // Update nav active
-    document.querySelectorAll('.hud-scene-btn').forEach(function (btn, i) {
-      btn.classList.toggle('active', i === index);
     });
 
-    // Set base camera positions for this scene
+    // Page visibility
+    document.addEventListener('visibilitychange', function () {
+      self.isPaused = document.hidden;
+      if (self.audio) {
+        if (document.hidden) self.audio.suspend();
+        else self.audio.resume();
+      }
+    });
+
+    this.clockTime = performance.now();
+    this._animate();
+
+  } catch (err) {
+    console.error('[Immersive] init error:', err);
+    var msg = err && err.message ? err.message.slice(0, 200) : String(err);
+    this._showFallback('WebGL renderer failed', msg);
+    return false;
+  }
+
+  return true;
+};
+
+// ── Build 3D Scene ────────────────────────────────────────────
+ImmersiveApp.prototype._buildScene = function () {
+  var self = this;
+
+  // Ambient light
+  var ambient = new THREE.AmbientLight(0x1a2040, 0.8);
+  this.scene.add(ambient);
+
+  // Per-scene accent lights
+  var firstScene = this.scenes[0];
+  if (firstScene) {
+    var light = new THREE.PointLight(firstScene.accentColor, 0.6, 15);
+    light.position.set(0, 5, 5);
+    this.scene.add(light);
+  }
+
+  // Ground
+  var groundGeo = new THREE.PlaneGeometry(40, 40);
+  var groundMat = new THREE.MeshStandardMaterial({
+    color: 0x0a0f1a,
+    roughness: 0.9,
+    metalness: 0.1,
+  });
+  var ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  this.scene.add(ground);
+
+  // Grid helper
+  var gridHelper = new THREE.GridHelper(30, 30, 0x1a2040, 0x0d1428);
+  this.scene.add(gridHelper);
+
+  // Floating particles
+  this._buildParticles();
+
+  // Command desk (scene 1)
+  this._buildCommandDesk();
+
+  // Artifact cards (scene 2)
+  this._buildArtifactCards();
+
+  // Agent line (scene 3)
+  this._buildAgentLine();
+
+  // Camera positions
+  var sceneData = this.scenes[this.currentIndex];
+  if (sceneData) {
     this.baseCameraPos = new THREE.Vector3(
       sceneData.cameraPosition.x,
       sceneData.cameraPosition.y,
       sceneData.cameraPosition.z
     );
-    this.baseCameraTarget.set(
-      sceneData.cameraTarget.x,
-      sceneData.cameraTarget.y,
-      sceneData.cameraTarget.z
-    );
+    this.camera.position.copy(this.baseCameraPos);
+    this.camera.lookAt(this.baseCameraTarget);
+  }
+};
 
-    // Camera movement
-    if (animate && !this.prefersReducedMotion) {
-      this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
-    } else {
-      this.camera.position.copy(this.baseCameraPos);
-      this.camera.lookAt(this.baseCameraTarget);
+// ── Particles ─────────────────────────────────────────────────
+ImmersiveApp.prototype._buildParticles = function () {
+  var count = 200;
+  var positions = new Float32Array(count * 3);
+  var colors = new Float32Array(count * 3);
+
+  for (var i = 0; i < count; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 30;
+    positions[i * 3 + 1] = Math.random() * 10;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+    var c = new THREE.Color().setHSL(0.6 + Math.random() * 0.1, 0.5, 0.5);
+    colors[i * 3] = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
+  }
+
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  var mat = new THREE.PointsMaterial({
+    size: 0.06,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.7,
+    sizeAttenuation: true,
+  });
+
+  this.particleSystem = new THREE.Points(geo, mat);
+  this.scene.add(this.particleSystem);
+};
+
+// ── Command Desk ──────────────────────────────────────────────
+ImmersiveApp.prototype._buildCommandDesk = function () {
+  var geo = new THREE.BoxGeometry(4, 0.3, 2.5);
+  var mat = new THREE.MeshStandardMaterial({ color: 0x101828, roughness: 0.7 });
+  var desk = new THREE.Mesh(geo, mat);
+  desk.position.set(0, 0.15, 0);
+  desk.castShadow = true;
+  desk.receiveShadow = true;
+  this.scene.add(desk);
+
+  var edgeMat = new THREE.MeshStandardMaterial({ color: 0x1e3050, roughness: 0.5 });
+  var edgeGeo = new THREE.BoxGeometry(4.05, 0.05, 0.05);
+  var topEdge = new THREE.Mesh(edgeGeo, edgeMat);
+  topEdge.position.set(0, 0.3, 1.25);
+  this.scene.add(topEdge);
+
+  var bottomEdge = new THREE.Mesh(edgeGeo, edgeMat);
+  bottomEdge.position.set(0, 0.3, -1.25);
+  this.scene.add(bottomEdge);
+
+  // Screens
+  for (var i = 0; i < 3; i++) {
+    var sGeo = new THREE.PlaneGeometry(0.8, 0.5);
+    var sMat = new THREE.MeshStandardMaterial({
+      color: 0x7eb8f7,
+      emissive: 0x7eb8f7,
+      emissiveIntensity: 0.3,
+      side: THREE.DoubleSide,
+    });
+    var screen = new THREE.Mesh(sGeo, sMat);
+    screen.position.set(-1.2 + i * 1.2, 0.5, 1.26);
+    this.scene.add(screen);
+  }
+};
+
+// ── Artifact Cards ────────────────────────────────────────────
+ImmersiveApp.prototype._buildArtifactCards = function () {
+  for (var i = 0; i < 4; i++) {
+    var geo = new THREE.PlaneGeometry(0.4, 0.25);
+    var mat = new THREE.MeshStandardMaterial({
+      color: 0x1a2030,
+      emissive: 0xa08cf7,
+      emissiveIntensity: 0.2,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.85,
+    });
+    var card = new THREE.Mesh(geo, mat);
+    card.position.set(-0.9 + i * 0.6, 0.8 + (i % 2) * 0.3, -2 - (i % 2) * 0.3);
+    card.rotation.y = -0.2 + i * 0.1;
+    this.scene.add(card);
+    var key = 'artifact-' + i;
+    if (!this.sceneNodeMeshes[key]) this.sceneNodeMeshes[key] = [];
+    this.sceneNodeMeshes[key].push(card);
+  }
+};
+
+// ── Agent Line ────────────────────────────────────────────────
+ImmersiveApp.prototype._buildAgentLine = function () {
+  var points = [
+    new THREE.Vector3(-6, 0.5, 0),
+    new THREE.Vector3(-2, 0.5, 0),
+    new THREE.Vector3(2, 0.5, 0),
+    new THREE.Vector3(6, 0.5, 0),
+  ];
+
+  var curve = new THREE.CatmullRomCurve3(points);
+  var geo = new THREE.TubeGeometry(curve, 20, 0.04, 8, false);
+  var mat = new THREE.MeshStandardMaterial({
+    color: 0xf7c87a,
+    emissive: 0xf7c87a,
+    emissiveIntensity: 0.5,
+  });
+  var tube = new THREE.Mesh(geo, mat);
+  this.scene.add(tube);
+
+  for (var i = 0; i < 4; i++) {
+    var geo = new THREE.SphereGeometry(0.2, 12, 12);
+    var mat = new THREE.MeshStandardMaterial({
+      color: 0xf7c87a,
+      emissive: 0xf7c87a,
+      emissiveIntensity: 0.8,
+    });
+    var mesh = new THREE.Mesh(geo, mat);
+    mesh.position.copy(points[i]);
+    this.scene.add(mesh);
+    var key = 'agent-' + i;
+    if (!this.sceneNodeMeshes[key]) this.sceneNodeMeshes[key] = [];
+    this.sceneNodeMeshes[key].push(mesh);
+  }
+};
+
+// ── Scene switch ───────────────────────────────────────────────
+ImmersiveApp.prototype._gotoScene = function (index, animate) {
+  if (index < 0 || index >= this.scenes.length) return;
+  this.currentIndex = index;
+  var sceneData = this.scenes[index];
+
+  this.baseCameraPos = new THREE.Vector3(
+    sceneData.cameraPosition.x,
+    sceneData.cameraPosition.y,
+    sceneData.cameraPosition.z
+  );
+
+  if (animate && !this.prefersReducedMotion) {
+    this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
+  } else {
+    this.camera.position.copy(this.baseCameraPos);
+    this.camera.lookAt(this.baseCameraTarget);
+  }
+
+  if (this.audio && this.soundEnabled && !this.muted) {
+    this.audio.setMood(sceneData.audioMood);
+  }
+
+  this._updateObjectFocus(index);
+  this._triggerSceneCue(index, sceneData);
+};
+
+// ── Camera tween ───────────────────────────────────────────────
+ImmersiveApp.prototype._tweenCamera = function (targetPos, targetLook) {
+  var self = this;
+  var startPos = this.camera.position.clone();
+  var startTarget = this.camera.target ? this.camera.target.clone() : this.baseCameraTarget.clone();
+  var duration = 800;
+  var start = performance.now();
+
+  function tick(now) {
+    var t = Math.min((now - start) / duration, 1);
+    var et = self._easeOutCubic(t);
+    self.camera.position.lerpVectors(startPos, targetPos, et);
+    var look = new THREE.Vector3().lerpVectors(startTarget, targetLook, et);
+    self.camera.lookAt(look);
+    if (t < 1) {
+      requestAnimationFrame(tick);
     }
+  }
 
-    // Accent lights
-    this.accentLights.forEach(function (light) {
-      light.color.set(sceneData.accentColor);
-    });
+  if (!this.camera.target) {
+    this.camera.target = new THREE.Vector3();
+  }
 
-    // Audio mood
-    if (this.audio && this.audio.started) {
-      this.audio.setMood(sceneData.audioMood);
-      // CP-4E: Play scene transition cue
-      if (this.soundEnabled && !this.muted) {
-        this.audio.playSceneCue(sceneData.audioMood);
-      }
-    }
+  requestAnimationFrame(tick);
+};
 
-    // CP-4E: Scene object focus
-    this._updateObjectFocus(index);
+// ── HUD bindings ───────────────────────────────────────────────
+ImmersiveApp.prototype._bindHUD = function () {
+  var self = this;
 
-    // CP-4E: Scene transition visual cue
-    this._triggerSceneCue(index, sceneData);
-  };
+  document.getElementById('hud-scene-title').textContent =
+    this.scenes[this.currentIndex].title;
+  document.getElementById('hud-scene-title-zh').textContent =
+    this.scenes[this.currentIndex].titleZh;
+  document.getElementById('hud-scene-desc').textContent =
+    this.scenes[this.currentIndex].description;
 
-  ImmersiveApp.prototype._tweenCamera = function (targetPos, targetLook) {
-    var self = this;
-    var startPos = this.camera.position.clone();
-    var startLook = new THREE.Vector3();
-    this.camera.getWorldDirection(startLook);
-    startLook.multiplyScalar(5).add(startPos);
-    var t0 = performance.now();
-    var duration = 1200;
-    function step(now) {
-      var t = Math.min((now - t0) / duration, 1);
-      var ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-      self.camera.position.lerpVectors(startPos, targetPos, ease);
-      if (t < 1) {
-        requestAnimationFrame(step);
-      } else {
-        self.camera.position.copy(targetPos);
-        self.camera.lookAt(targetLook);
-        self.baseCameraPos = targetPos.clone();
-        self.baseCameraTarget = targetLook.clone();
-      }
-    }
-    requestAnimationFrame(step);
-  };
+  document.getElementById('hud-sound').addEventListener('click', function () {
+    self._toggleSound();
+  });
+};
 
-  // ── HUD Binding ─────────────────────────────────────────────────
-  ImmersiveApp.prototype._bindHUD = function () {
-    var self = this;
-    var container = document.getElementById('hud-scene-nav');
+// ── Scroll Story ───────────────────────────────────────────────
+ImmersiveApp.prototype._initScrollStory = function () {
+  var self = this;
+  var el = document.getElementById('scroll-story');
+  if (!el) return;
+  this.scrollStoryEl = el;
 
-    this.scenes.forEach(function (s, i) {
-      var btn = document.createElement('button');
-      btn.className = 'hud-scene-btn' + (i === 0 ? ' active' : '');
-      btn.textContent = '0' + (i + 1);
-      btn.setAttribute('title', s.title);
-      btn.addEventListener('click', function () {
-        self._scrollToScene(i);
-      });
-      container.appendChild(btn);
-    });
+  el.addEventListener('click', function (e) {
+    var target = e.target.closest('[data-scene]');
+    if (!target) return;
+    var idx = parseInt(target.dataset.scene, 10);
+    if (!isNaN(idx)) self._scrollToScene(idx);
+  });
 
-    document.getElementById('hud-back').addEventListener('click', function () {
-      window.location.href = '../';
-    });
-
-    document.getElementById('hud-sound').addEventListener('click', function () {
-      self._toggleSound();
-    });
-  };
-
-  // ── Scroll Story ─────────────────────────────────────────────────
-  ImmersiveApp.prototype._initScrollStory = function () {
-    var self = this;
-    var scrollStory = document.getElementById('scrollStory');
-    if (!scrollStory) return;
-
-    // Store reference for animation loop
-    this.scrollStoryEl = scrollStory;
-
-    // Show scroll story
-    scrollStory.classList.add('visible');
-
-    // CP-4D: Scroll listener for continuous camera (throttled via needsScrollUpdate flag)
-    window.addEventListener('scroll', function () {
-      self.needsScrollUpdate = true;
-    }, { passive: true });
-
-    // IntersectionObserver: which scroll scene is in viewport center
-    var options = {
-      root: null,
-      rootMargin: '-30% 0px -30% 0px',
-      threshold: 0,
-    };
-
-    this.scrollObserver = new IntersectionObserver(function (entries) {
+  this.scrollObserver = new IntersectionObserver(
+    function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          var idx = parseInt(entry.target.getAttribute('data-scene-index'), 10);
+          var idx = parseInt(entry.target.dataset.scene, 10);
           if (!isNaN(idx) && idx !== self.currentIndex) {
             self._setSceneFromScroll(idx);
           }
         }
       });
-    }, options);
+    },
+    { rootMargin: '-30% 0px -30% 0px', threshold: 0 }
+  );
 
-    // Observe all scroll scenes
-    var scenes = scrollStory.querySelectorAll('.scroll-scene');
-    scenes.forEach(function (el) {
-      self.scrollObserver.observe(el);
-    });
-  };
+  var sections = el.querySelectorAll('[data-scene]');
+  sections.forEach(function (sec) {
+    self.scrollObserver.observe(sec);
+  });
+};
 
-  ImmersiveApp.prototype._setSceneFromScroll = function (index) {
-    if (index < 0 || index >= this.scenes.length) return;
-    this.currentIndex = index;
-    var sceneData = this.scenes[index];
+ImmersiveApp.prototype._setSceneFromScroll = function (index) {
+  this.currentIndex = index;
+  var sceneData = this.scenes[index];
 
-    // Update scroll story active classes
-    var ssAll = document.querySelectorAll('.scroll-scene');
-    ssAll.forEach(function (el, i) {
-      el.classList.toggle('is-active', i === index);
-    });
-
-    // Update HUD
-    document.getElementById('hud-scene-title').textContent = sceneData.title;
-    document.getElementById('hud-scene-title-zh').textContent = sceneData.titleZh;
-    document.getElementById('hud-scene-desc').textContent = sceneData.description;
-
-    // Update HUD nav active
-    document.querySelectorAll('.hud-scene-btn').forEach(function (btn, i) {
-      btn.classList.toggle('active', i === index);
-    });
-
-    // Update base camera position
+  if (sceneData) {
     this.baseCameraPos = new THREE.Vector3(
       sceneData.cameraPosition.x,
       sceneData.cameraPosition.y,
       sceneData.cameraPosition.z
     );
-    this.baseCameraTarget.set(
-      sceneData.cameraTarget.x,
-      sceneData.cameraTarget.y,
-      sceneData.cameraTarget.z
-    );
-
-    // Camera tween to new position
-    if (!this.prefersReducedMotion) {
-      this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
-    } else {
-      this.camera.position.copy(this.baseCameraPos);
-      this.camera.lookAt(this.baseCameraTarget);
-    }
-
-    // Update accent lights
-    if (this.accentLights) {
-      this.accentLights.forEach(function (light) {
-        light.color.set(sceneData.accentColor);
-      });
-    }
-
-    // Audio mood
-    if (this.audio && this.audio.started) {
-      this.audio.setMood(sceneData.audioMood);
-      // CP-4E: Play scene transition cue
-      if (this.soundEnabled && !this.muted) {
-        this.audio.playSceneCue(sceneData.audioMood);
-      }
-    }
-
-    // CP-4E: Scene object focus
-    this._updateObjectFocus(index);
-
-    // CP-4E: Scene transition visual cue
-    this._triggerSceneCue(index, sceneData);
-  };
-
-  ImmersiveApp.prototype._scrollToScene = function (index) {
-    var ssId = 'ss-scene-' + String(index + 1).padStart(2, '0');
-    var el = document.getElementById(ssId);
-    if (el) {
-      el.scrollIntoView({ behavior: this.prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-    } else {
-      // Fallback: direct gotoScene
-      this._gotoScene(index, true);
-    }
-  };
-
-  // ── CP-4D: Continuous Camera Path ──────────────────────────────
-  // Calculate scroll progress (0~1) and derive scene index + local t
-  ImmersiveApp.prototype._updateScrollProgress = function () {
-    if (!this.scrollStoryEl) return;
-
-    var story = this.scrollStoryEl;
-    var total = story.scrollHeight - window.innerHeight;
-    var y = 0;
-
-    if (total > 0) {
-      var rect = story.getBoundingClientRect();
-      // How far the top of the story is from the viewport top
-      y = Math.min(Math.max(-rect.top, 0), total);
-      this.scrollProgress = y / total;
-    } else {
-      this.scrollProgress = 0;
-    }
-
-    // Map progress to scene index and local t
-    var numScenes = this.scenes.length;
-    var scaled = this.scrollProgress * (numScenes - 1);
-    this.scrollSceneIndex = Math.min(Math.floor(scaled), numScenes - 1);
-    this.scrollSceneT = scaled - this.scrollSceneIndex; // 0~1 within current scene
-  };
-
-  // Lerp camera position/target between current and next scene
-  ImmersiveApp.prototype._updateContinuousCamera = function () {
-    var idx = this.scrollSceneIndex;
-    var nextIdx = Math.min(idx + 1, this.scenes.length - 1);
-    var t = this.scrollSceneT;
-
-    var curScene = this.scenes[idx];
-    var nextScene = this.scenes[nextIdx];
-
-    // Lerp position
-    this.cameraPathPos.lerpVectors(
-      new THREE.Vector3(curScene.cameraPosition.x, curScene.cameraPosition.y, curScene.cameraPosition.z),
-      new THREE.Vector3(nextScene.cameraPosition.x, nextScene.cameraPosition.y, nextScene.cameraPosition.z),
-      t
-    );
-
-    // Lerp target
-    this.cameraPathTarget.lerpVectors(
-      new THREE.Vector3(curScene.cameraTarget.x, curScene.cameraTarget.y, curScene.cameraTarget.z),
-      new THREE.Vector3(nextScene.cameraTarget.x, nextScene.cameraTarget.y, nextScene.cameraTarget.z),
-      t
-    );
-  };
-
-  // CP-4E: Scene object focus — highlight active scene nodes, dim others
-  ImmersiveApp.prototype._updateObjectFocus = function (activeIndex) {
-    var self = this;
-    var allMeshes = [];
-    Object.keys(this.sceneNodeMeshes).forEach(function (key) {
-      allMeshes = allMeshes.concat(self.sceneNodeMeshes[key]);
-    });
-
-    allMeshes.forEach(function (mesh) {
-      var isActive = false;
-      if (self.sceneNodeMeshes[activeIndex]) {
-        isActive = self.sceneNodeMeshes[activeIndex].indexOf(mesh) !== -1;
-      }
-      if (mesh.material) {
-        if (isActive) {
-          mesh.material.emissiveIntensity = 1.0;
-          if (!self.prefersReducedMotion) {
-            mesh.scale.setScalar(1.25);
-          }
-        } else {
-          mesh.material.emissiveIntensity = 0.2;
-          mesh.scale.setScalar(1.0);
-        }
-      }
-    });
-  };
-
-  // CP-4E: Scene transition visual cue — brief label flash on scene change
-  ImmersiveApp.prototype._triggerSceneCue = function (index, sceneData) {
-    var cue = document.getElementById('scene-cue');
-    if (!cue) return;
-    var label = 'Scene ' + String(index + 1).padStart(2, '0') + ' \u00b7 ' + sceneData.title;
-    cue.textContent = label;
-    cue.classList.remove('cue-visible');
-    // Force reflow
-    void cue.offsetWidth;
-    cue.classList.add('cue-visible');
-    // Auto-hide after 1.2s (reduced motion: just update, no animation)
-    if (this.prefersReducedMotion) {
-      setTimeout(function () {
-        cue.classList.remove('cue-visible');
-      }, 200);
-    } else {
-      setTimeout(function () {
-        cue.classList.remove('cue-visible');
-      }, 1200);
-    }
-  };
-
-  ImmersiveApp.prototype._toggleSound = function () {
-    // If audio unavailable, do nothing
-    if (this.soundUnavailable) return;
-
-    if (!this.soundEnabled) {
-      // Try to enable audio now (user clicked "Sound Off" to enable it)
-      try {
-        if (!this.audio) this.audio = new window.CP_ImmersiveAudio();
-        var ok = this.audio.init();
-        if (ok) {
-          this.audio.start();
-          this.audio.setMood(this.scenes[this.currentIndex].audioMood);
-          this.soundEnabled = true;
-          this.muted = false;
-        } else {
-          this.soundUnavailable = true;
-        }
-      } catch (e) {
-        console.error('[Immersive] Audio enable failed:', e);
-        this.soundUnavailable = true;
-      }
-      this._updateSoundIcon();
-      return;
-    }
-
-    // Toggle mute
-    this.muted = !this.muted;
-    if (this.audio) this.audio.toggleMute();
-    this._updateSoundIcon();
-  };
-
-  // CP-4E: Entrance fly-in
-  ImmersiveApp.prototype._startEntryFlyIn = function () {
-    if (this.prefersReducedMotion) return;
-    if (!this.baseCameraPos) return;
-    // Start camera offset behind and above current target
-    this.entryFlyInFrom = this.baseCameraPos.clone();
-    this.entryFlyInFrom.z += 8;
-    this.entryFlyInFrom.y += 3;
-    // Start camera at the from position
-    this.camera.position.copy(this.entryFlyInFrom);
+    this.camera.position.copy(this.baseCameraPos);
     this.camera.lookAt(this.baseCameraTarget);
-    this.entryFlyInActive = true;
-    this.entryFlyInStart = performance.now();
-  };
+  }
 
-  // CP-4E: easeOutCubic for fly-in
-  ImmersiveApp.prototype._easeOutCubic = function (t) {
-    return 1 - Math.pow(1 - t, 3);
-  };
+  document.getElementById('hud-scene-title').textContent = sceneData.title;
+  document.getElementById('hud-scene-title-zh').textContent = sceneData.titleZh;
+  document.getElementById('hud-scene-desc').textContent = sceneData.description;
 
-  ImmersiveApp.prototype._updateSoundIcon = function () {
-    var icon = document.getElementById('sound-icon');
-    var btn = document.getElementById('hud-sound');
-    if (!icon || !btn) return;
+  if (this.audio && this.soundEnabled && !this.muted) {
+    this.audio.setMood(sceneData.audioMood);
+  }
 
-    if (this.soundUnavailable) {
-      icon.textContent = 'Sound unavailable';
-      btn.setAttribute('aria-label', 'Sound unavailable');
-      btn.setAttribute('title', 'Sound unavailable');
-      btn.disabled = true;
-      return;
-    }
+  this._updateObjectFocus(index);
+};
 
-    btn.disabled = false;
+ImmersiveApp.prototype._scrollToScene = function (index) {
+  var el = document.querySelector('[data-scene="' + index + '"]');
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+};
 
-    if (!this.soundEnabled) {
-      // Entered without sound, can still be enabled
-      icon.textContent = 'Sound Off';
-      btn.setAttribute('aria-label', 'Sound off — click to enable');
-      btn.setAttribute('title', 'Sound off — click to enable');
-      return;
-    }
+// ── Continuous camera ──────────────────────────────────────────
+ImmersiveApp.prototype._updateScrollProgress = function () {
+  var el = this.scrollStoryEl;
+  if (!el) return;
+  var rect = el.getBoundingClientRect();
+  var total = rect.height - window.innerHeight;
+  if (total <= 0) return;
+  var scrolled = -rect.top;
+  this.scrollProgress = Math.max(0, Math.min(1, scrolled / total));
+  var sceneCount = this.scenes.length;
+  var rawIndex = this.scrollProgress * sceneCount;
+  this.scrollSceneIndex = Math.floor(rawIndex);
+  this.scrollSceneT = rawIndex - this.scrollSceneIndex;
+  this.scrollSceneIndex = Math.min(this.scrollSceneIndex, sceneCount - 1);
+  this.needsScrollUpdate = true;
+};
 
-    if (this.muted) {
-      icon.textContent = 'Muted';
-      btn.setAttribute('aria-label', 'Sound muted — click to unmute');
-      btn.setAttribute('title', 'Sound muted — click to unmute');
-    } else {
-      icon.textContent = 'Sound On';
-      btn.setAttribute('aria-label', 'Sound on — click to mute');
-      btn.setAttribute('title', 'Sound on — click to mute');
-    }
-  };
+ImmersiveApp.prototype._updateContinuousCamera = function () {
+  if (!this.needsScrollUpdate) return;
+  this.needsScrollUpdate = false;
+  if (!this.continuousCameraEnabled || this.prefersReducedMotion) return;
 
-  // ── Animation Loop ───────────────────────────────────────────────
-  ImmersiveApp.prototype._animate = function () {
-    var self = this;
-    this.frameId = requestAnimationFrame(function (ts) { self._animate(); });
+  var idx = this.scrollSceneIndex;
+  var t = this.scrollSceneT;
+  var nextIdx = Math.min(idx + 1, this.scenes.length - 1);
 
-    // CP-4D: Skip rendering when paused
-    if (this.isPaused) {
-      this.renderer.render(this.scene, this.camera);
-      return;
-    }
+  var curScene = this.scenes[idx];
+  var nextScene = this.scenes[nextIdx];
 
-    var now = ts / 1000;
+  if (!curScene || !nextScene) return;
 
-    // Particle drift
-    if (this.particleSystem) {
-      this.particleSystem.rotation.y += 0.0003;
-    }
+  var curPos = new THREE.Vector3(
+    curScene.cameraPosition.x,
+    curScene.cameraPosition.y,
+    curScene.cameraPosition.z
+  );
+  var nextPos = new THREE.Vector3(
+    nextScene.cameraPosition.x,
+    nextScene.cameraPosition.y,
+    nextScene.cameraPosition.z
+  );
+  var curTarget = new THREE.Vector3(
+    curScene.cameraTarget.x,
+    curScene.cameraTarget.y,
+    curScene.cameraTarget.z
+  );
+  var nextTarget = new THREE.Vector3(
+    nextScene.cameraTarget.x,
+    nextScene.cameraTarget.y,
+    nextScene.cameraTarget.z
+  );
 
-    // Node gentle float
-    if (this.sceneNodes) {
-      this.sceneNodes.forEach(function (node, i) {
-        node.position.y = Math.sin(now * 0.5 + i * 0.8) * 0.1;
-      });
-    }
+  this.cameraPathPos.lerpVectors(curPos, nextPos, t);
+  this.cameraPathTarget.lerpVectors(curTarget, nextTarget, t);
+  this.camera.position.copy(this.cameraPathPos);
+  this.camera.lookAt(this.cameraPathTarget);
+};
 
-    // CP-4D: Process scroll progress update if needed
-    if (this.needsScrollUpdate && this.scrollStoryEl) {
-      this._updateScrollProgress();
-      this._updateContinuousCamera();
-      this.needsScrollUpdate = false;
-    }
-
-    // CP-4E: Entrance fly-in — overrides camera during fly-in period
-    if (this.entryFlyInActive) {
-      var elapsed = performance.now() - this.entryFlyInStart;
-      var t = Math.min(elapsed / this.entryFlyInDuration, 1);
-      var ease = this._easeOutCubic(t);
-
-      if (this.entryFlyInFrom && this.baseCameraPos) {
-        this.camera.position.lerpVectors(this.entryFlyInFrom, this.baseCameraPos, ease);
-        this.camera.lookAt(this.baseCameraTarget);
+// ── Object focus ────────────────────────────────────────────────
+ImmersiveApp.prototype._updateObjectFocus = function (activeIndex) {
+  var self = this;
+  Object.keys(this.sceneNodeMeshes).forEach(function (key) {
+    var inKey = key.split('-');
+    var sceneIdx = parseInt(inKey[1], 10);
+    var meshes = self.sceneNodeMeshes[key];
+    if (!meshes) return;
+    meshes.forEach(function (mesh) {
+      if (sceneIdx === activeIndex) {
+        mesh.scale.setScalar(1.25);
+        mesh.material.emissiveIntensity = 1.0;
+      } else {
+        mesh.scale.setScalar(1.0);
+        mesh.material.emissiveIntensity = 0.2;
       }
+    });
+  });
+};
 
-      if (t >= 1) {
-        this.entryFlyInActive = false;
-      }
+// ── Scene cue ──────────────────────────────────────────────────
+ImmersiveApp.prototype._triggerSceneCue = function (index, sceneData) {
+  var cue = document.getElementById('scene-cue');
+  if (!cue) return;
+  var label = 'Scene ' + String(index + 1).padStart(2, '0') + ' · ' + sceneData.title;
+  cue.textContent = label;
+  cue.classList.remove('cue-visible');
+  void cue.offsetWidth;
+  cue.classList.add('cue-visible');
+  if (this.prefersReducedMotion) {
+    setTimeout(function () { cue.classList.remove('cue-visible'); }, 200);
+  } else {
+    setTimeout(function () { cue.classList.remove('cue-visible'); }, 1200);
+  }
+};
 
-      this.renderer.render(this.scene, this.camera);
-      return; // skip continuous/section camera during fly-in
-    }
+// ── Toggle sound ───────────────────────────────────────────────
+ImmersiveApp.prototype._toggleSound = function () {
+  if (this.soundUnavailable) return;
 
-    // Camera: continuous path mode OR fallback to section-based base
-    var useContinuous = this.continuousCameraEnabled && !this.prefersReducedMotion && this.scrollStoryEl;
-    var targetPos, targetLook;
-
-    if (useContinuous) {
-      targetPos = this.cameraPathPos;
-      targetLook = this.cameraPathTarget;
-    } else if (this.baseCameraPos) {
-      targetPos = this.baseCameraPos;
-      targetLook = this.baseCameraTarget;
-    }
-
-    if (targetPos && targetLook) {
-      var px = this.prefersReducedMotion ? 0 : this.mouseX * 0.25;
-      var py = this.prefersReducedMotion ? 0 : this.mouseY * -0.15;
-      var tx = targetPos.x + px;
-      var ty = targetPos.y + py;
-      var tz = targetPos.z;
-      this.camera.position.x += (tx - this.camera.position.x) * 0.04;
-      this.camera.position.y += (ty - this.camera.position.y) * 0.04;
-      this.camera.position.z += (tz - this.camera.position.z) * 0.04;
-      this.camera.lookAt(targetLook);
-    }
-
-    this.renderer.render(this.scene, this.camera);
-  };
-
-  // ── Fallback ────────────────────────────────────────────────────
-  // CP-4G: Enhanced fallback with specific reason and detail
-  // CP-4H: DOM-based fallback (no innerHTML string concatenation)
-  ImmersiveApp.prototype._showFallback = function (reason, detail) {
-    var entryOverlay = document.getElementById('entryOverlay');
-    if (entryOverlay) {
-      entryOverlay.setAttribute('hidden', '');
-      entryOverlay.style.display = 'none';
-    }
-    var el = document.getElementById('immersive-canvas');
-    if (!el) return;
-
-    // Clear canvas
-    el.innerHTML = '';
-
-    // Build fallback DOM using createElement + textContent (safe, no string concatenation)
-    var container = document.createElement('div');
-    container.className = 'immersive-fallback';
-
-    var icon = document.createElement('div');
-    icon.className = 'ifb-icon';
-    icon.textContent = '⚠';
-    container.appendChild(icon);
-
-    var reasonP = document.createElement('p');
-    var strong = document.createElement('strong');
-    strong.textContent = String(reason || 'Failed to load the immersive 3D mode');
-    reasonP.appendChild(strong);
-    container.appendChild(reasonP);
-
-    if (detail) {
-      var detailSmall = document.createElement('small');
-      detailSmall.style.cssText = 'color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;';
-      detailSmall.textContent = String(detail).slice(0, 200);
-      container.appendChild(detailSmall);
-    }
-
-    var hintP = document.createElement('p');
-    hintP.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
-    hintP.textContent = 'Try: enabling WebGL, disabling privacy blocker, or using a different browser.';
-    container.appendChild(hintP);
-
-    var link = document.createElement('a');
-    link.href = '../';
-    link.className = 'ifb-link';
-    link.textContent = '← Continue with the standard page';
-    container.appendChild(link);
-
-    el.appendChild(container);
-  };
-
-  // ── Start ───────────────────────────────────────────────────────
-  ImmersiveApp.prototype.startWithSound = function () {
-    this.soundEnabled = true;
-    this.muted = false;
-    this.soundUnavailable = false;
-    this.audio = new window.CP_ImmersiveAudio();
+  if (!this.soundEnabled) {
     try {
+      if (!this.audio) this.audio = new window.CP_ImmersiveAudio();
       var ok = this.audio.init();
       if (ok) {
         this.audio.start();
         this.audio.setMood(this.scenes[this.currentIndex].audioMood);
+        this.soundEnabled = true;
+        this.muted = false;
       } else {
-        this.soundEnabled = false;
         this.soundUnavailable = true;
       }
     } catch (e) {
-      console.error('[Immersive] Audio init failed:', e);
-      this.soundEnabled = false;
+      console.error('[Immersive] Audio enable failed:', e);
       this.soundUnavailable = true;
     }
     this._updateSoundIcon();
-    // CP-4E: Trigger entrance fly-in
-    this._startEntryFlyIn();
-  };
+    return;
+  }
 
-  ImmersiveApp.prototype.startWithoutSound = function () {
-    this.soundEnabled = false;
-    this.muted = true;
-    this.soundUnavailable = false;
-    this.audio = new window.CP_ImmersiveAudio();
-    try {
-      this.audio.init();
-    } catch (e) {
-      // silent failure ok
+  this.muted = !this.muted;
+  if (this.audio) this.audio.toggleMute();
+  this._updateSoundIcon();
+};
+
+// ── Entrance fly-in ─────────────────────────────────────────────
+ImmersiveApp.prototype._startEntryFlyIn = function () {
+  if (this.prefersReducedMotion) return;
+  if (!this.baseCameraPos) return;
+  this.entryFlyInFrom = this.baseCameraPos.clone();
+  this.entryFlyInFrom.z += 8;
+  this.entryFlyInFrom.y += 3;
+  this.camera.position.copy(this.entryFlyInFrom);
+  this.camera.lookAt(this.baseCameraTarget);
+  this.entryFlyInActive = true;
+  this.entryFlyInStart = performance.now();
+};
+
+ImmersiveApp.prototype._easeOutCubic = function (t) {
+  return 1 - Math.pow(1 - t, 3);
+};
+
+// ── Sound icon ─────────────────────────────────────────────────
+ImmersiveApp.prototype._updateSoundIcon = function () {
+  var el = document.getElementById('hud-sound');
+  if (!el) return;
+  if (this.soundUnavailable) {
+    el.textContent = '🔇';
+  } else if (!this.soundEnabled || this.muted) {
+    el.textContent = '🔇';
+  } else {
+    el.textContent = '🔊';
+  }
+};
+
+// ── Animation loop ─────────────────────────────────────────────
+ImmersiveApp.prototype._animate = function () {
+  var self = this;
+  this.frameId = requestAnimationFrame(function () { self._animate(); });
+  if (this.isPaused) return;
+
+  this._updateScrollProgress();
+  this._updateContinuousCamera();
+
+  // Mouse parallax
+  if (this.camera) {
+    var targetX = this.camera.position.x + this.mouseX * 0.3;
+    var targetY = this.camera.position.y + this.mouseY * 0.2;
+    this.camera.position.x += (targetX - this.camera.position.x) * 0.05;
+    this.camera.position.y += (targetY - this.camera.position.y) * 0.05;
+  }
+
+  // Particles slow drift
+  if (this.particleSystem) {
+    this.particleSystem.rotation.y += 0.0003;
+  }
+
+  // Entry fly-in
+  if (this.entryFlyInActive) {
+    var elapsed = performance.now() - this.entryFlyInStart;
+    var t = Math.min(elapsed / this.entryFlyInDuration, 1);
+    var et = this._easeOutCubic(t);
+    this.camera.position.lerpVectors(this.entryFlyInFrom, this.baseCameraPos, et);
+    this.camera.lookAt(this.baseCameraTarget);
+    if (t >= 1) this.entryFlyInActive = false;
+  }
+
+  if (this.renderer && this.scene && this.camera) {
+    this.renderer.render(this.scene, this.camera);
+  }
+};
+
+// ── Fallback ───────────────────────────────────────────────────
+ImmersiveApp.prototype._showFallback = function (reason, detail) {
+  var entryOverlay = document.getElementById('entryOverlay');
+  if (entryOverlay) {
+    entryOverlay.setAttribute('hidden', '');
+    entryOverlay.style.display = 'none';
+  }
+  var el = document.getElementById('immersive-canvas');
+  if (!el) return;
+  el.textContent = '';
+
+  var box = document.createElement('div');
+  box.className = 'immersive-fallback';
+
+  var icon = document.createElement('div');
+  icon.className = 'ifb-icon';
+  icon.textContent = '⚠';
+  box.appendChild(icon);
+
+  var titleP = document.createElement('p');
+  var strong = document.createElement('strong');
+  strong.textContent = reason || 'Failed to load the immersive experience';
+  titleP.appendChild(strong);
+  box.appendChild(titleP);
+
+  if (detail) {
+    var msg = document.createElement('small');
+    msg.style.cssText = 'color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;';
+    msg.textContent = String(detail).slice(0, 200);
+    box.appendChild(msg);
+  }
+
+  var hint = document.createElement('p');
+  hint.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
+  hint.textContent = 'Try: enabling WebGL, disabling privacy blockers, or using a different browser.';
+  box.appendChild(hint);
+
+  var link = document.createElement('a');
+  link.href = '../';
+  link.className = 'ifb-link';
+  link.textContent = '← Back to Project Cinema';
+  box.appendChild(link);
+
+  el.appendChild(box);
+};
+
+// ── Entry points ────────────────────────────────────────────────
+ImmersiveApp.prototype.startWithSound = function () {
+  this.soundEnabled = true;
+  this.muted = false;
+  this.soundUnavailable = false;
+  this.audio = new window.CP_ImmersiveAudio();
+  try {
+    var ok = this.audio.init();
+    if (ok) {
+      this.audio.start();
+      this.audio.setMood(this.scenes[this.currentIndex].audioMood);
+    } else {
+      this.soundEnabled = false;
+      this.soundUnavailable = true;
     }
-    this._updateSoundIcon();
-    // CP-4E: Trigger entrance fly-in
-    this._startEntryFlyIn();
-  };
+  } catch (e) {
+    console.error('[Immersive] Audio init failed:', e);
+    this.soundEnabled = false;
+    this.soundUnavailable = true;
+  }
+  this._updateSoundIcon();
+  this._startEntryFlyIn();
+};
 
-  ImmersiveApp.prototype.destroy = function () {
-    if (this.frameId) cancelAnimationFrame(this.frameId);
-    if (this.audio) this.audio.destroy();
-    if (this.renderer) this.renderer.dispose();
-  };
+ImmersiveApp.prototype.startWithoutSound = function () {
+  this.soundEnabled = false;
+  this.muted = true;
+  this.soundUnavailable = false;
+  this.audio = new window.CP_ImmersiveAudio();
+  try {
+    this.audio.init();
+  } catch (e) {
+    // silent failure ok
+  }
+  this._updateSoundIcon();
+  this._startEntryFlyIn();
+};
 
-  window.CP_ImmersiveApp = ImmersiveApp;
+ImmersiveApp.prototype.destroy = function () {
+  if (this.frameId) cancelAnimationFrame(this.frameId);
+  if (this.audio) this.audio.destroy();
+  if (this.renderer) this.renderer.dispose();
+};
 
-})();
+// ── Export ─────────────────────────────────────────────────────
+window.CP_ImmersiveApp = ImmersiveApp;

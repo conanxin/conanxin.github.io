@@ -108,16 +108,17 @@
   </div>
 
   <script type="module">
-    // Load data layer first
+    // CP-4H-3: immersive.js uses top-level await ES module (no async IIFE)
+
+    // Load data layer (IIFEs that set window.*)
     import('./scene-data.js');
     import('./audio-engine.js');
 
-    // Then load main app (which imports THREE directly)
+    // Load immersive app (top-level await loads THREE; if fail, .catch handles it)
     import('./immersive.js').then(function () {
       var app = new window.CP_ImmersiveApp();
       var launched = false;
 
-      // CP-4H-2: immersive.js init() is now synchronous (THREE loaded at module scope)
       function launch(sound) {
         if (launched) return;
         launched = true;
@@ -140,7 +141,7 @@
       });
     }).catch(function (err) {
       console.error('[Immersive] Failed to load immersive.js:', err);
-      // CP-4H: DOM-based fallback (no innerHTML string concatenation)
+      // CP-4H-3: DOM-based fallback
       var entryOverlay = document.getElementById('entryOverlay');
       if (entryOverlay) {
         entryOverlay.setAttribute('hidden', '');
@@ -148,34 +149,34 @@
       }
       var el = document.getElementById('immersive-canvas');
       if (!el) return;
-      el.innerHTML = '';
-      var container = document.createElement('div');
-      container.className = 'immersive-fallback';
+      el.textContent = '';
+      var box = document.createElement('div');
+      box.className = 'immersive-fallback';
       var icon = document.createElement('div');
       icon.className = 'ifb-icon';
       icon.textContent = '⚠';
-      container.appendChild(icon);
+      box.appendChild(icon);
       var p1 = document.createElement('p');
       var strong = document.createElement('strong');
       strong.textContent = 'Module loading failed';
       p1.appendChild(strong);
-      container.appendChild(p1);
+      box.appendChild(p1);
       if (err) {
         var small = document.createElement('small');
         small.style.cssText = 'color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;';
         small.textContent = (err.message || String(err)).slice(0, 200);
-        container.appendChild(small);
+        box.appendChild(small);
       }
       var p2 = document.createElement('p');
       p2.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
       p2.textContent = 'Try: enabling WebGL, disabling privacy blocker, or using a different browser.';
-      container.appendChild(p2);
+      box.appendChild(p2);
       var link = document.createElement('a');
       link.href = '../';
       link.className = 'ifb-link';
       link.textContent = '← Back to Project Cinema';
-      container.appendChild(link);
-      el.appendChild(container);
+      box.appendChild(link);
+      el.appendChild(box);
     });
   </script>
 </body>

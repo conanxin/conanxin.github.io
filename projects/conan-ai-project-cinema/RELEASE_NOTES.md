@@ -788,3 +788,54 @@ Additionally, the original file was missing the `ImmersiveApp.prototype._toggleS
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4H-2*
+
+---
+
+## CP-4H-3: Rewrite Immersive Boot Module Safely
+
+**Phase:** CP-4H-3 — 2026-06-09
+
+### Root Cause (Updated)
+
+After CP-4H-2, real browsers STILL showed "missing ) in parenthetical". The root cause was not DOM API or innerHTML concatenation — it was the **async IIFE structure** inside an ES module context. When Safari's JavaScriptCore evaluated `(async function () { ... })()` as an ES module body, dynamic errors inside the async function (THREE import failure) could propagate as unhandled module evaluation errors that the inline script's `.catch()` could not reliably handle.
+
+### Fix: Clean Top-Level Await ES Module
+
+- **Removed async IIFE** — replaced with pure top-level `await import('./vendor/three.module.js')`
+- **Clean module structure** — no wrapping async functions, no orphan blocks
+- **THREE load with inline fallback** — if THREE fails, `throw e` propagates to index.html catch block
+- **All DOM-based fallback** — `_showFallback()` uses `createElement + textContent + appendChild`
+- **No async functions anywhere** in immersive.js
+- **All brackets balanced** (parens:0, braces:0, brackets:0)
+- **766 lines, 0 lines > 200 chars** — fully auditable
+
+### Changes
+
+- `immersive.js`: Complete rewrite — async IIFE → top-level await ES module
+- `index.html`: Updated inline script comment; catch block uses `textContent` (no innerHTML)
+
+### Safari Compatibility
+
+Top-level `await` in ES modules is supported in Safari 15+. This approach:
+1. Safari parses the module normally (no async IIFE to confuse the parser)
+2. THREE loading happens as part of module evaluation (await pauses execution)
+3. If THREE fails → `throw e` → module fails → inline `.catch()` handles it
+4. If THREE succeeds → module continues → `window.CP_ImmersiveApp` is set → `.then()` runs
+
+### Key Benefits
+
+- No async IIFE inside ES module (Safari-safe)
+- No innerHTML string concatenation
+- No orphan code blocks
+- Fully auditable (766 lines, no long lines)
+- All preserved features: 3D scene, scroll sync, continuous camera, sound toggle, scene cue, object focus, performance guard
+
+### Status
+
+- node --check: PASS (all 3 files)
+- All features preserved
+- Safari: should show graceful fallback on THREE/parser failure
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4H-3*

@@ -427,22 +427,55 @@
   }
 
   // ══════════════════════════════════════════════════════════════
-  // BOOT
+  // FALLBACK: reveal all scenes if JS fails
   // ══════════════════════════════════════════════════════════════
-  if (hasData) {
-    renderProjects();
-    renderArtifacts();
-    renderConstellation();
-  } else {
-    console.warn('[Cinema] artifacts.js data layer not found');
+  function revealAllScenesFallback() {
+    document.querySelectorAll('.scene').forEach(function (scene) {
+      scene.classList.add('visible');
+    });
   }
 
-  initScrollProgress();
-  initSectionReveal();
-  initSearch();
-  initFilters();
-  initProjectExpand();
-  initAgentStripScroll();
-  initConstellation();
+  // ══════════════════════════════════════════════════════════════
+  // SAFE RUNNER: prevent any single init failure from blanking the page
+  // ══════════════════════════════════════════════════════════════
+  function safeRun(name, fn) {
+    try {
+      fn();
+    } catch (err) {
+      console.error('[Cinema] ' + name + ' failed:', err);
+      revealAllScenesFallback();
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  // BOOT — always reveal content first, then try to enhance
+  // ══════════════════════════════════════════════════════════════
+
+  // Step 1: Always reveal scenes immediately (fallback)
+  safeRun('section reveal', function () {
+    // If IntersectionObserver is unavailable, reveal all now
+    if (!('IntersectionObserver' in window)) {
+      revealAllScenesFallback();
+      return;
+    }
+    initSectionReveal();
+  });
+
+  // Step 2: Try data-dependent renders
+  if (hasData) {
+    safeRun('project cards render', renderProjects);
+    safeRun('artifact cards render', renderArtifacts);
+    safeRun('constellation render', initConstellation);
+  } else {
+    console.warn('[Cinema] artifacts.js data layer not found');
+    revealAllScenesFallback();
+  }
+
+  // Step 3: Try UI interactions (non-critical)
+  safeRun('scroll progress', initScrollProgress);
+  safeRun('artifact search', initSearch);
+  safeRun('artifact filters', initFilters);
+  safeRun('project expand', initProjectExpand);
+  safeRun('agent strip scroll', initAgentStripScroll);
 
 })();

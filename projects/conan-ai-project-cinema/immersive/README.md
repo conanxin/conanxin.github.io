@@ -451,3 +451,71 @@ immersive/
 ---
 
 *README update by 辛 🔮 — CP-4I*
+
+---
+
+## CP-5A: Immersive Worldbuilding Upgrade
+
+**Phase:** CP-5A — 2026-06-10
+
+### Why worldbuilding over feature patches?
+
+The immersive route was functionally complete after CP-4K (scroll/keyboard/controls all working).
+But user feedback was clear: the space felt like a "3D skeleton prototype."
+
+CP-5A shifts from **functional fixes** to **experiential polish** — making each of the six scenes
+a visually distinct spatial world rather than just a camera position change.
+
+### Design Principles
+
+1. **Scene world per scene** — each scene has a dedicated thematic type, accent color, and core3D objects
+2. **Three-layer depth** — foreground dust + midground objects + background silhouettes
+3. **Cinematic camera** — orbital sweep + easeInOutCubic + longer duration
+4. **World group opacity** — active scene at full brightness, inactive scenes at 18% opacity
+5. **Mobile-first framing** — wider FOV (72°), closer camera, larger objects
+6. **No new framework** — pure Three.js + vanilla JS, no external assets
+
+### Scene World Summary
+
+| Scene | World Type | Atmosphere |
+|-------|-----------|-----------|
+| 01 | research-desk | thought fragments / research desk / idea links |
+| 02 | terminal-docs | terminal / docs / browser / workflow stream |
+| 03 | artifact-display | artifact production / display / archive objects |
+| 04 | agent-network | agent network / orchestration / active routing |
+| 05 | control-tower | tower / radar / constellation / command center |
+| 06 | archive-hall | archive hall / storage / final repository |
+
+### Performance Boundaries
+
+- Mobile: DPR cap 1.5, reduced particles, wider FOV
+- No external model files
+- Object count kept low (box/plane/sphere/torus/line primitives)
+- RAF-throttled resize + visibility pause when tab hidden
+
+### Architecture
+
+```
+scene-layout.js    — per-scene spatial config (layers/camera/accent)
+scene-data.js     — camera positions + audio mood
+audio-engine.js   — Web Audio API synthetic sounds
+immersive.js     — ImmersiveApp (ES module, async boot via esm.sh/three)
+index.html       — entry overlay + HUD + scroll story
+styles.css       — dark AI OS aesthetic + film timeline UI
+```
+
+### Version History
+
+| Version | Feature |
+|---------|---------|
+| v1 (CP-4A) | Basic 3D + entry overlay + fallback |
+| v2 (CP-4B-D) | Scroll sync + continuous camera + performance guard |
+| v3 (CP-4E-H) | Scene cue + entrance fly-in + Safari fix (esm.sh) |
+| v4 (CP-4I) | Control hint + scene progress |
+| v5 (CP-4J) | Real scroll container + keyboard nav |
+| v6 (CP-4K) | Explicit scene control panel + film dots |
+| v7 (CP-5A) | Worldbuilding + spatial depth + cinematic camera |
+
+---
+
+*README by 辛 🔮 — CP-5A*

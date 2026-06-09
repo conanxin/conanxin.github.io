@@ -403,3 +403,75 @@ CP-4A ~ CP-4H-3（技术基础）→ **CP-4I**（UX 引导）
 ---
 
 *Final closeout by 辛 🔮 — CP-4I*
+
+---
+
+## CP-5A: Immersive Worldbuilding Upgrade
+
+**Commit:** `fbc12e8` + `bfd479f`  
+**Date:** 2026-06-10
+
+### Scope
+
+CP-5A shifts the immersive route from "3D interaction prototype" to "cinematic project theater."
+It is the experiential layer that CP-4's functional fixes (scroll, keyboard, control panel) depend on.
+
+### Six Scenes — Distinct Spatial Worlds
+
+| Scene | World Type | Core Objects |
+|-------|-----------|-------------|
+| 01 Complex Ideas | research-desk | desk + 3 screens + paper fragments |
+| 02 AI Beyond Chat | terminal-docs | floating cards + terminal ribbon |
+| 03 Projects Become Artifacts | artifact-display | agent line tube + 4 nodes |
+| 04 Agents | agent-network | hub sphere + 4 satellite nodes + lines |
+| 05 Control Tower | control-tower | tower + antenna + 3 radar rings + 5 constellation nodes |
+| 06 Artifact Archive | archive-hall | back wall + 4×5 shelf grid + arch + floor strip |
+
+### Spatial Depth Layers
+
+- **FogExp2** (density 0.025) — atmospheric depth
+- **Background silhouettes** — dome + side walls
+- **Midground** — scene-specific core objects
+- **Foreground dust** — 80 counter-rotating particles
+- **Grid** — reduced to 0.35 opacity (spatial layer, not sole scene)
+
+### Cinematic Camera
+
+- Orbital sweep during transitions (±0.15 rad)
+- `_easeInOutCubic` easing
+- Transition duration: 1100ms
+- Mobile FOV: 72°
+
+### World Group System
+
+- `sceneWorldGroups[id]` — one THREE.Group per scene
+- `_buildSceneWorlds()` — init once
+- `_setWorldFocus(activeId)` — opacity/emissive/scale lerp per frame
+- Active scene: opacity 1.0 + emissive 1.0 + scale 1.08 (mobile)
+- Inactive scene: opacity 0.18 + emissive 0.15 + scale 0.92
+
+### Film Timeline UI
+
+- Dots: film-strip connector line + hover tooltip + active glow
+- Control panel: pill shape + hover scale
+- Progress hint: frosted glass panel
+
+### Files
+
+```
+immersive/index.html      — scene-layout import + control hint update
+immersive/immersive.js  — 1361 lines (+66 supplemental)
+immersive/styles.css    — film timeline + control panel + progress hint
+immersive/scene-layout.js — new (151 lines)
+```
+
+### Boundary
+
+- ✅ Main page: no Three.js
+- ✅ drafts: noindex maintained
+- ✅ data.json: unchanged
+- ✅ No React/Vue/Next/Vite/Tailwind
+
+---
+
+*Final closeout by 辛 🔮 — CP-5A*

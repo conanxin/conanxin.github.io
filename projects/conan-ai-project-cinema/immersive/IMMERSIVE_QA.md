@@ -180,3 +180,31 @@ The immersive route now uses local vendor Three.js which eliminates the primary 
 ---
 
 *QA update by 辛 🔮 — CP-4F-Rerun after CP-4G vendor fix*
+
+---
+
+## CP-4H: Fix Module Syntax Error
+
+**Phase:** CP-4H — 2026-06-09
+
+### Issue
+
+Real browsers showed "Module loading failed / missing ) in parenthetical" even after CP-4G vendor fix. Root cause: innerHTML string concatenation in fallback rendering could cause browser-parsing inconsistencies.
+
+### Fix
+
+- `_showFallback()` rewritten with DOM API (`createElement` + `textContent`)
+- Catch block in `index.html` rewritten with DOM API
+- No innerHTML string concatenation for fallback content
+- All `node --check` pass
+
+### Next Step
+
+Real-browser validation by project owner required. Confirm:
+- Entry overlay shows without fallback
+- Enter Without Sound → 3D scene loads
+- No "missing )" parse errors in browser console
+
+---
+
+*QA update by 辛 🔮 — CP-4H*

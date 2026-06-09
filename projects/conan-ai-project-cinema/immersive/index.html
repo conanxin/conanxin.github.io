@@ -139,21 +139,42 @@
       });
     }).catch(function (err) {
       console.error('[Immersive] Failed to load immersive.js:', err);
-      // CP-4F-Click-Hotfix: Hide entry overlay when showing fallback
+      // CP-4H: DOM-based fallback (no innerHTML string concatenation)
       var entryOverlay = document.getElementById('entryOverlay');
       if (entryOverlay) {
         entryOverlay.setAttribute('hidden', '');
         entryOverlay.style.display = 'none';
       }
-      var errMsg = err && err.message ? err.message.slice(0, 200) : String(err);
-      document.getElementById('immersive-canvas').innerHTML = '' +
-        '<div class="immersive-fallback">' +
-          '<div class="ifb-icon">⚠</div>' +
-          '<p><strong>Module loading failed</strong></p>' +
-          '<small style="color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;">' + errMsg + '</small>' +
-          '<p style="font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;">Try: enabling WebGL, disabling privacy blocker, or using a different browser.</p>' +
-          '<a href="../" class="ifb-link">← Back to Project Cinema</a>' +
-        '</div>';
+      var el = document.getElementById('immersive-canvas');
+      if (!el) return;
+      el.innerHTML = '';
+      var container = document.createElement('div');
+      container.className = 'immersive-fallback';
+      var icon = document.createElement('div');
+      icon.className = 'ifb-icon';
+      icon.textContent = '⚠';
+      container.appendChild(icon);
+      var p1 = document.createElement('p');
+      var strong = document.createElement('strong');
+      strong.textContent = 'Module loading failed';
+      p1.appendChild(strong);
+      container.appendChild(p1);
+      if (err) {
+        var small = document.createElement('small');
+        small.style.cssText = 'color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;';
+        small.textContent = (err.message || String(err)).slice(0, 200);
+        container.appendChild(small);
+      }
+      var p2 = document.createElement('p');
+      p2.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
+      p2.textContent = 'Try: enabling WebGL, disabling privacy blocker, or using a different browser.';
+      container.appendChild(p2);
+      var link = document.createElement('a');
+      link.href = '../';
+      link.className = 'ifb-link';
+      link.textContent = '← Back to Project Cinema';
+      container.appendChild(link);
+      el.appendChild(container);
     });
   </script>
 </body>

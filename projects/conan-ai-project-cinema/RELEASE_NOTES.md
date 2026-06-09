@@ -714,3 +714,34 @@ CP-4 is provisionally sealed. Real-browser validation by project owner required 
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4F-Rerun*
+
+---
+
+## CP-4H: Fix Immersive Module Syntax Error
+
+**Phase:** CP-4H — 2026-06-09
+
+### Root Cause
+
+Some browsers showed "Module loading failed / missing ) in parenthetical" when attempting to load the immersive route. While `node --check` passed for all files, the issue was traced to innerHTML string concatenation in fallback rendering — potential source of browser-parsing inconsistencies when error messages contain special characters.
+
+### Fix: DOM-based Fallback Rendering
+
+- `_showFallback()` in `immersive.js` — rewritten to use `createElement()` + `textContent` instead of innerHTML string concatenation
+- Catch block in `index.html` — rewritten to use DOM API instead of innerHTML string concatenation
+- No more multi-line string literals or innerHTML concatenation for fallback content
+
+### Changes
+
+- `immersive.js`: `_showFallback()` now builds DOM elements programmatically
+- `index.html`: catch block now uses DOM API for fallback
+
+### Status
+
+- Vendor Three.js (CP-4G) still in place
+- No unpkg/importmap dependency
+- All syntax checks pass
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4H*

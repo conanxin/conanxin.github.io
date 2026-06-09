@@ -882,25 +882,53 @@ import * as THREE from './vendor/three.module.js';
 
   // ── Fallback ────────────────────────────────────────────────────
   // CP-4G: Enhanced fallback with specific reason and detail
+  // CP-4H: DOM-based fallback (no innerHTML string concatenation)
   ImmersiveApp.prototype._showFallback = function (reason, detail) {
-    // Hide entry overlay when showing fallback
     var entryOverlay = document.getElementById('entryOverlay');
     if (entryOverlay) {
       entryOverlay.setAttribute('hidden', '');
       entryOverlay.style.display = 'none';
     }
     var el = document.getElementById('immersive-canvas');
-    if (el) {
-      var reasonText = reason || 'Unknown error';
-      var detailText = detail ? '<br><small style="color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;">' + detail.slice(0, 200) + '</small>' : '';
-      el.innerHTML = '' +
-        '<div class="immersive-fallback">' +
-          '<div class="ifb-icon">⚠</div>' +
-          '<p><strong>' + reasonText + '</strong></p>' + detailText +
-          '<p style="font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;">Try: enabling WebGL, disabling privacy blocker, or using a different browser.</p>' +
-          '<a href="../" class="ifb-link">← Continue with the standard page</a>' +
-        '</div>';
+    if (!el) return;
+
+    // Clear canvas
+    el.innerHTML = '';
+
+    // Build fallback DOM using createElement + textContent (safe, no string concatenation)
+    var container = document.createElement('div');
+    container.className = 'immersive-fallback';
+
+    var icon = document.createElement('div');
+    icon.className = 'ifb-icon';
+    icon.textContent = '⚠';
+    container.appendChild(icon);
+
+    var reasonP = document.createElement('p');
+    var strong = document.createElement('strong');
+    strong.textContent = String(reason || 'Failed to load the immersive 3D mode');
+    reasonP.appendChild(strong);
+    container.appendChild(reasonP);
+
+    if (detail) {
+      var detailSmall = document.createElement('small');
+      detailSmall.style.cssText = 'color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;';
+      detailSmall.textContent = String(detail).slice(0, 200);
+      container.appendChild(detailSmall);
     }
+
+    var hintP = document.createElement('p');
+    hintP.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
+    hintP.textContent = 'Try: enabling WebGL, disabling privacy blocker, or using a different browser.';
+    container.appendChild(hintP);
+
+    var link = document.createElement('a');
+    link.href = '../';
+    link.className = 'ifb-link';
+    link.textContent = '← Continue with the standard page';
+    container.appendChild(link);
+
+    el.appendChild(container);
   };
 
   // ── Start ───────────────────────────────────────────────────────

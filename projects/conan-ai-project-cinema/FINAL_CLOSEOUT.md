@@ -287,3 +287,29 @@ If real browser still shows fallback: record specific `fallbackReason` and addre
 ---
 
 *Final closeout by 辛 🔮 — CP-4F-Rerun*
+
+---
+
+## CP-4H — Fix Immersive Module Syntax Error
+
+**Phase:** CP-4H — 2026-06-09
+
+### Issue
+
+Some browsers showed "Module loading failed / missing ) in parenthetical" when loading the immersive route. The root cause was identified as innerHTML string concatenation in fallback rendering — potentially causing browser-parsing inconsistencies with special characters in error messages.
+
+### Fix
+
+- `_showFallback()` in `immersive.js` — DOM API (`createElement` + `textContent`), no innerHTML concatenation
+- Catch block in `index.html` — DOM API, no innerHTML concatenation
+- All syntax checks pass
+
+### CP-4 Series Status
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F-Click-Hotfix → CP-4G → CP-4F-Rerun → CP-4H
+
+CP-4H is the latest fix. Real-browser validation still required for final acceptance.
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-4H*

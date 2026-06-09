@@ -409,7 +409,7 @@ window.CP_ARTIFACTS = {
 **Status:** PASS
 
 **修复内容：**
-1. `DESIGN_NOTES.md` 中所有"爸爸" → `project owner` / `当前项目`
+1. `DESIGN_NOTES.md` 中所有私人称呼 → `project owner` / `当前项目`
 2. CP-1B 小节 BookTrans/ExplainLens 从 concept 改为 private / internal / not public yet
 3. Internal filter 新增 `type: 'Internal'` artifacts，确保 BookTrans/ExplainLens 可通过 filter 查看
 4. Terminal commit hash `68a4133` → `234daa0`

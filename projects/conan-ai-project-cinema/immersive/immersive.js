@@ -1,8 +1,10 @@
 /**
- * immersive.js — CP-4A Immersive Mode
+ * immersive.js — CP-4A Immersive Mode (Fixed)
  * Vanilla Three.js. Camera click-switching for 6 scenes.
- * Uses Three.js ES module from CDN (importmap).
+ * Uses direct ES module import (not window.THREE).
  */
+
+import * as THREE from 'three';
 
 (function () {
   'use strict';
@@ -15,15 +17,20 @@
     this.camera = null;
     this.objects = [];
     this.audio = null;
+    this.soundEnabled = false; // true only if user entered with sound
     this.muted = false;
     this.frameId = null;
     this.mouseX = 0;
     this.mouseY = 0;
-    this.clock = { delta: 0, elapsed: 0 };
     this.clockTime = 0;
     this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Camera base positions (set by _gotoScene, used in animation loop)
+    this.baseCameraPos = null;
+    this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
   };
 
+  // ── Init ─────────────────────────────────────────────────────────
   ImmersiveApp.prototype.init = function () {
     var self = this;
 
@@ -35,53 +42,68 @@
       return false;
     }
 
-    // Setup renderer
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.shadowMap.enabled = true;
-    document.getElementById('immersive-canvas').appendChild(this.renderer.domElement);
+    // Check THREE is available
+    if (typeof THREE === 'undefined') {
+      this._showFallback();
+      return false;
+    }
 
-    // Scene + camera
-    this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x060810);
-    this.scene.fog = new THREE.Fog(0x060810, 20, 60);
+    try {
+      // Setup renderer
+      this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.shadowMap.enabled = true;
+      document.getElementById('immersive-canvas').appendChild(this.renderer.domElement);
 
-    this.camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
+      // Scene + camera
+      this.scene = new THREE.Scene();
+      this.scene.background = new THREE.Color(0x060810);
+      this.scene.fog = new THREE.Fog(0x060810, 20, 60);
 
-    // Build scene objects
-    this._buildScene();
+      this.camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 100);
 
-    // HUD events
-    this._bindHUD();
+      // Build scene objects
+      this._buildScene();
 
-    // Mouse parallax
-    window.addEventListener('mousemove', function (e) {
-      self.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      self.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
+      // HUD events
+      this._bindHUD();
 
-    // Resize
-    window.addEventListener('resize', function () {
-      self.camera.aspect = window.innerWidth / window.innerHeight;
-      self.camera.updateProjectionMatrix();
-      self.renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+      // Mouse parallax
+      window.addEventListener('mousemove', function (e) {
+        self.mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        self.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
 
-    // Page visibility
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) self.audio && self.audio.suspend();
-      else self.audio && self.audio.resume();
-    });
+      // Resize
+      window.addEventListener('resize', function () {
+        self.camera.aspect = window.innerWidth / window.innerHeight;
+        self.camera.updateProjectionMatrix();
+        self.renderer.setSize(window.innerWidth, window.innerHeight);
+      });
 
-    // Start loop
-    this.clockTime = performance.now();
-    this._animate();
+      // Page visibility
+      document.addEventListener('visibilitychange', function () {
+        if (self.audio) {
+          if (document.hidden) self.audio.suspend();
+          else self.audio.resume();
+        }
+      });
+
+      // Start loop
+      this.clockTime = performance.now();
+      this._animate();
+
+    } catch (err) {
+      console.error('[Immersive] init error:', err);
+      this._showFallback();
+      return false;
+    }
 
     return true;
   };
 
-  // ── Build3D Scene Objects ────────────────────────────────────────
+  // ── Build 3D Scene Objects ────────────────────────────────────────
   ImmersiveApp.prototype._buildScene = function () {
     var self = this;
 
@@ -128,6 +150,7 @@
 
     // Scene nodes (6 spheres)
     this.sceneNodes = [];
+    this.sceneRings = [];
     this.scenes.forEach(function (s, i) {
       var geo = new THREE.SphereGeometry(0.3, 16, 16);
       var mat = new THREE.MeshStandardMaterial({
@@ -158,16 +181,29 @@
       ring.rotation.x = Math.PI / 2;
       ring.position.copy(mesh.position);
       self.scene.add(ring);
+      self.sceneRings.push(ring);
     });
 
-    // Floating artifact cards (small planes scattered around)
+    // Floating artifact cards
     this._buildArtifactCards();
 
-    // Agent workflow line (glowing line connecting4 agent points)
+    // Agent workflow line
     this._buildAgentLine();
 
-    // Initial camera position
-    this._gotoScene(0, false);
+    // Initial camera position (set base positions)
+    var firstScene = this.scenes[0];
+    this.baseCameraPos = new THREE.Vector3(
+      firstScene.cameraPosition.x,
+      firstScene.cameraPosition.y,
+      firstScene.cameraPosition.z
+    );
+    this.baseCameraTarget.set(
+      firstScene.cameraTarget.x,
+      firstScene.cameraTarget.y,
+      firstScene.cameraTarget.z
+    );
+    this.camera.position.copy(this.baseCameraPos);
+    this.camera.lookAt(this.baseCameraTarget);
   };
 
   ImmersiveApp.prototype._buildParticles = function () {
@@ -175,11 +211,11 @@
     var positions = new Float32Array(count * 3);
     var colors = new Float32Array(count * 3);
     for (var i = 0; i < count; i++) {
-      positions[i * 3]     = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 1] = (Math.random()) * 15;
+      positions[i * 3] = (Math.random() - 0.5) * 40;
+      positions[i * 3 + 1] = Math.random() * 15;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
       var c = new THREE.Color().setHSL(0.6 + Math.random() * 0.1, 0.5, 0.5);
-      colors[i * 3]     = c.r;
+      colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
     }
@@ -197,7 +233,6 @@
   };
 
   ImmersiveApp.prototype._buildCommandDesk = function () {
-    // Central command desk: large dark box with glowing edges
     var geo = new THREE.BoxGeometry(4, 0.3, 2.5);
     var mat = new THREE.MeshStandardMaterial({
       color: 0x0d1122,
@@ -212,7 +247,6 @@
     desk.receiveShadow = true;
     this.scene.add(desk);
 
-    // Edge glow lines (4 thin boxes)
     var edgeColor = 0x1a3060;
     var edgeMat = new THREE.MeshStandardMaterial({
       color: edgeColor,
@@ -227,7 +261,6 @@
     bottomEdge.position.set(0, 0.03, -1.27);
     this.scene.add(bottomEdge);
 
-    // 3 screen panels on the desk
     var screenColors = [0x7eb8f7, 0xa08cf7, 0x7af7b8];
     for (var i = 0; i < 3; i++) {
       var sGeo = new THREE.PlaneGeometry(0.8, 0.5);
@@ -289,9 +322,7 @@
     var tube = new THREE.Mesh(geo, mat);
     this.scene.add(tube);
 
-    // Agent nodes along the line
-    var labels = ['OC', 'HM', 'CX', 'PR'];
-    points.forEach(function (p, i) {
+    points.forEach(function (p) {
       var geo = new THREE.SphereGeometry(0.2, 12, 12);
       var mat = new THREE.MeshStandardMaterial({
         color: 0xf7c87a,
@@ -320,17 +351,28 @@
       btn.classList.toggle('active', i === index);
     });
 
-    // Camera
-    var targetPos = sceneData.cameraPosition;
+    // Set base camera positions for this scene
+    this.baseCameraPos = new THREE.Vector3(
+      sceneData.cameraPosition.x,
+      sceneData.cameraPosition.y,
+      sceneData.cameraPosition.z
+    );
+    this.baseCameraTarget.set(
+      sceneData.cameraTarget.x,
+      sceneData.cameraTarget.y,
+      sceneData.cameraTarget.z
+    );
+
+    // Camera movement
     if (animate && !this.prefersReducedMotion) {
-      this._tweenCamera(targetPos.x, targetPos.y, targetPos.z);
+      this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
     } else {
-      this.camera.position.set(targetPos.x, targetPos.y, targetPos.z);
-      this.camera.lookAt(sceneData.cameraTarget.x, sceneData.cameraTarget.y, sceneData.cameraTarget.z);
+      this.camera.position.copy(this.baseCameraPos);
+      this.camera.lookAt(this.baseCameraTarget);
     }
 
     // Accent lights
-    this.accentLights.forEach(function (light, i) {
+    this.accentLights.forEach(function (light) {
       light.color.set(sceneData.accentColor);
     });
 
@@ -340,20 +382,26 @@
     }
   };
 
-  ImmersiveApp.prototype._tweenCamera = function (tx, ty, tz) {
+  ImmersiveApp.prototype._tweenCamera = function (targetPos, targetLook) {
     var self = this;
-    var start = { x: this.camera.position.x, y: this.camera.position.y, z: this.camera.position.z };
+    var startPos = this.camera.position.clone();
+    var startLook = new THREE.Vector3();
+    this.camera.getWorldDirection(startLook);
+    startLook.multiplyScalar(5).add(startPos);
     var t0 = performance.now();
     var duration = 1200;
     function step(now) {
       var t = Math.min((now - t0) / duration, 1);
       var ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-      self.camera.position.x = start.x + (tx - start.x) * ease;
-      self.camera.position.y = start.y + (ty - start.y) * ease;
-      self.camera.position.z = start.z + (tz - start.z) * ease;
-      self.camera.lookAt(0, 0, 0);
-      if (t < 1) requestAnimationFrame(step);
-      else self.camera.position.set(tx, ty, tz);
+      self.camera.position.lerpVectors(startPos, targetPos, ease);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        self.camera.position.copy(targetPos);
+        self.camera.lookAt(targetLook);
+        self.baseCameraPos = targetPos.clone();
+        self.baseCameraTarget = targetLook.clone();
+      }
     }
     requestAnimationFrame(step);
   };
@@ -379,11 +427,29 @@
     });
 
     document.getElementById('hud-sound').addEventListener('click', function () {
-      self.muted = !self.muted;
-      var icon = document.getElementById('sound-icon');
-      icon.textContent = self.muted ? '🔇' : '🔊';
-      if (self.audio) self.audio.toggleMute();
+      self._toggleSound();
     });
+  };
+
+  ImmersiveApp.prototype._toggleSound = function () {
+    if (!this.soundEnabled) {
+      // Sound was never enabled
+      return;
+    }
+    this.muted = !this.muted;
+    this._updateSoundIcon();
+    if (this.audio) {
+      this.audio.toggleMute();
+    }
+  };
+
+  ImmersiveApp.prototype._updateSoundIcon = function () {
+    var icon = document.getElementById('sound-icon');
+    if (!this.soundEnabled) {
+      icon.textContent = '➤';
+      return;
+    }
+    icon.textContent = this.muted ? '🔇' : '🔊';
   };
 
   // ── Animation Loop ───────────────────────────────────────────────
@@ -391,28 +457,31 @@
     var self = this;
     this.frameId = requestAnimationFrame(function (ts) { self._animate(); });
 
-    var delta = (ts - this.clockTime) / 1000;
-    this.clockTime = ts;
-    var elapsed = ts / 1000;
-    this.clock.delta = Math.min(delta, 0.1);
-    this.clock.elapsed = elapsed;
+    var now = ts / 1000;
 
     // Particle drift
     if (this.particleSystem) {
-      this.particleSystem.rotation.y +=0.0003;
+      this.particleSystem.rotation.y += 0.0003;
     }
 
     // Node gentle float
     if (this.sceneNodes) {
       this.sceneNodes.forEach(function (node, i) {
-        node.position.y = Math.sin(elapsed * 0.5 + i * 0.8) * 0.1;
+        node.position.y = Math.sin(now * 0.5 + i * 0.8) * 0.1;
       });
     }
 
-    // Mouse parallax (subtle)
-    if (!this.prefersReducedMotion) {
-      this.camera.position.x += (this.mouseX * 0.3 - this.camera.position.x) * 0.02;
-      this.camera.position.y += (6 + this.mouseY * -0.2 - this.camera.position.y) * 0.02;
+    // Camera: base position + subtle parallax (no hard override)
+    if (this.baseCameraPos) {
+      var px = this.prefersReducedMotion ? 0 : this.mouseX * 0.25;
+      var py = this.prefersReducedMotion ? 0 : this.mouseY * -0.15;
+      var tx = this.baseCameraPos.x + px;
+      var ty = this.baseCameraPos.y + py;
+      var tz = this.baseCameraPos.z;
+      this.camera.position.x += (tx - this.camera.position.x) * 0.04;
+      this.camera.position.y += (ty - this.camera.position.y) * 0.04;
+      this.camera.position.z += (tz - this.camera.position.z) * 0.04;
+      this.camera.lookAt(this.baseCameraTarget);
     }
 
     this.renderer.render(this.scene, this.camera);
@@ -420,27 +489,47 @@
 
   // ── Fallback ────────────────────────────────────────────────────
   ImmersiveApp.prototype._showFallback = function () {
-    document.getElementById('immersive-canvas').innerHTML = '' +
-      '<div class="immersive-fallback">' +
-        '<div class="ifb-icon">⚠</div>' +
-        '<p>This device cannot run the immersive 3D mode.</p>' +
-        '<a href="../" class="ifb-link">← Continue with the standard page</a>' +
-      '</div>';
+    var el = document.getElementById('immersive-canvas');
+    if (el) {
+      el.innerHTML = '' +
+        '<div class="immersive-fallback">' +
+          '<div class="ifb-icon">⚠</div>' +
+          '<p>This device cannot run the immersive 3D mode.</p>' +
+          '<a href="../" class="ifb-link">← Continue with the standard page</a>' +
+        '</div>';
+    }
   };
 
   // ── Start ───────────────────────────────────────────────────────
   ImmersiveApp.prototype.startWithSound = function () {
+    this.soundEnabled = true;
+    this.muted = false;
     this.audio = new window.CP_ImmersiveAudio();
-    var ok = this.audio.init();
-    if (ok) {
-      this.audio.start();
-      this.audio.setMood(this.scenes[this.currentIndex].audioMood);
+    try {
+      var ok = this.audio.init();
+      if (ok) {
+        this.audio.start();
+        this.audio.setMood(this.scenes[this.currentIndex].audioMood);
+      } else {
+        this.soundEnabled = false;
+      }
+    } catch (e) {
+      console.error('[Immersive] Audio init failed:', e);
+      this.soundEnabled = false;
     }
+    this._updateSoundIcon();
   };
 
   ImmersiveApp.prototype.startWithoutSound = function () {
+    this.soundEnabled = false;
+    this.muted = true;
     this.audio = new window.CP_ImmersiveAudio();
-    this.audio.init(); // no sound but ready
+    try {
+      this.audio.init(); // no sound, just ready for potential unmute
+    } catch (e) {
+      // silent failure ok
+    }
+    this._updateSoundIcon();
   };
 
   ImmersiveApp.prototype.destroy = function () {

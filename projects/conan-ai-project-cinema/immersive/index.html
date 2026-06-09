@@ -62,16 +62,11 @@
   </div>
 
   <script type="module">
-    import * as THREE from 'three';
-
-    // Store THREE globally for immersive.js
-    window.THREE = THREE;
-
-    // Load data and engine first
+    // Load data layer first
     import('./scene-data.js');
     import('./audio-engine.js');
 
-    // Then load main app
+    // Then load main app (which imports THREE directly)
     import('./immersive.js').then(function () {
       var app = new window.CP_ImmersiveApp();
       var launched = false;
@@ -97,7 +92,13 @@
         launch(false);
       });
     }).catch(function (err) {
-      console.error('[Immersive] Failed to load:', err);
+      console.error('[Immersive] Failed to load immersive.js:', err);
+      document.getElementById('immersive-canvas').innerHTML = '' +
+        '<div class="immersive-fallback">' +
+          '<div class="ifb-icon">⚠</div>' +
+          '<p>Failed to load the immersive experience. Please try the standard page.</p>' +
+          '<a href="../" class="ifb-link">← Back to Project Cinema</a>' +
+        '</div>';
     });
   </script>
 </body>

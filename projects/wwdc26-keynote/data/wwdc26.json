@@ -3,8 +3,21 @@
     "title": "WWDC26：AI 回到操作系统",
     "subtitle": "2026 年 6 月 Apple 主题演讲完整梳理：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate 与系统级智能的下一阶段。",
     "date": "June 8, 2026",
-    "keyNumbers": ["June 8, 2026", "Siri AI", "iOS 27 / macOS Golden Gate / watchOS 27 / visionOS 27"],
-    "tags": ["Apple", "WWDC26", "Siri AI", "Apple Intelligence", "iOS 27", "macOS", "Child Safety", "Developer"]
+    "keyNumbers": [
+      "June 8, 2026",
+      "Siri AI",
+      "iOS 27 / macOS Golden Gate / watchOS 27 / visionOS 27"
+    ],
+    "tags": [
+      "Apple",
+      "WWDC26",
+      "Siri AI",
+      "Apple Intelligence",
+      "iOS 27",
+      "macOS",
+      "Child Safety",
+      "Developer"
+    ]
   },
   "sources": [
     {
@@ -12,71 +25,123 @@
       "title": "Apple unveils next generation of Apple Intelligence, Siri AI, and more",
       "source": "Apple Newsroom",
       "url": "https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
-      "usedIn": ["hero", "overview", "top10", "ai-apps", "performance", "availability"]
+      "usedIn": [
+        "hero",
+        "overview",
+        "top10",
+        "ai-apps",
+        "performance",
+        "availability"
+      ]
     },
     {
       "id": "S02",
       "title": "Apple introduces Siri AI, a profoundly more capable and personal assistant",
       "source": "Apple Newsroom",
       "url": "https://www.apple.com/newsroom/2026/06/apple-introduces-siri-ai-a-profoundly-more-capable-and-personal-assistant/",
-      "usedIn": ["siri-deep", "capability-matrix"]
+      "usedIn": [
+        "siri-deep",
+        "capability-matrix"
+      ]
     },
     {
       "id": "S03",
       "title": "Apple previews new child safety features",
       "source": "Apple Newsroom",
       "url": "https://www.apple.com/newsroom/2026/06/apple-previews-new-child-safety-features/",
-      "usedIn": ["child-safety"]
+      "usedIn": [
+        "child-safety"
+      ]
     },
     {
       "id": "S04",
       "title": "iOS 27 Preview",
       "source": "Apple",
       "url": "https://www.apple.com/os/ios/",
-      "usedIn": ["ios27", "ai-apps"]
+      "usedIn": [
+        "ios27",
+        "ai-apps"
+      ]
     },
     {
       "id": "S05",
       "title": "WWDC26 Apple Intelligence guide",
       "source": "Apple Developer",
       "url": "https://developer.apple.com/wwdc26/guides/apple-intelligence/",
-      "usedIn": ["developer"]
+      "usedIn": [
+        "developer"
+      ]
     },
     {
       "id": "S06",
       "title": "What's New in iOS 27",
       "source": "Apple Developer",
       "url": "https://developer.apple.com/ios/whats-new/",
-      "usedIn": ["developer", "foundation-models", "core-ai", "app-intents"]
+      "usedIn": [
+        "developer",
+        "foundation-models",
+        "core-ai",
+        "app-intents"
+      ]
     },
     {
       "id": "S07",
       "title": "Apple Intelligence",
       "source": "Apple Developer",
       "url": "https://developer.apple.com/apple-intelligence/",
-      "usedIn": ["developer"]
+      "usedIn": [
+        "developer"
+      ]
     },
     {
       "id": "S08",
       "title": "Foundation Models framework",
       "source": "Apple Developer",
       "url": "https://developer.apple.com/documentation/FoundationModels",
-      "usedIn": ["foundation-models"]
+      "usedIn": [
+        "foundation-models"
+      ]
     }
   ],
   "keynoteTimeline": [
-    { "time": "June 8, 2026 10:00 PDT", "event": "WWDC26 Keynote", "description": "Apple 主题演讲，发布下一代 Apple Intelligence 与全新 Siri AI" },
-    { "time": "June 8, 2026 13:00 PDT", "event": "Platforms State of the Union", "description": "开发者深度技术会议" },
-    { "time": "Today through developer program", "event": "Developer Beta", "description": "iOS 27 / iPadOS 27 / macOS 27 / visionOS 27 开发者测试开放" },
-    { "time": "Next month", "event": "Public Beta", "description": "Apple Beta Software Program 公开测试" },
-    { "time": "This fall", "event": "Public Release", "description": "免费软件更新正式发布" }
+    {
+      "time": "June 8, 2026 10:00 PDT",
+      "event": "WWDC26 Keynote",
+      "description": "Apple 主题演讲，发布下一代 Apple Intelligence 与全新 Siri AI"
+    },
+    {
+      "time": "June 8, 2026 13:00 PDT",
+      "event": "Platforms State of the Union",
+      "description": "开发者深度技术会议"
+    },
+    {
+      "time": "Developer Beta开放",
+      "event": "Developer Beta",
+      "description": "iOS 27 / iPadOS 27 / macOS 27 / visionOS 27 开发者测试今日开放"
+    },
+    {
+      "time": "下个月",
+      "event": "Public Beta",
+      "description": "Apple Beta Software Program 公开测试"
+    },
+    {
+      "time": "今年秋季",
+      "event": "Public Release",
+      "description": "免费软件更新正式发布"
+    }
   ],
   "keyAnnouncements": [
     {
       "id": "KA01",
       "title": "Siri AI 全新登场",
       "summary": "由 Apple Intelligence 驱动的新一代 Siri，具备屏幕感知、个人上下文理解、跨 App 执行动作能力。",
-      "platform": ["iOS 27", "iPadOS 27", "macOS 27", "watchOS 27", "visionOS 27"],
+      "platform": [
+        "iOS 27",
+        "iPadOS 27",
+        "macOS 27",
+        "watchOS 27",
+        "visionOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S02"
     },
@@ -84,15 +149,21 @@
       "id": "KA02",
       "title": "Apple Intelligence 进入更多系统 App",
       "summary": "Photos、Safari、Messages、Mail、Health、Apple Maps、AirPods 等系统 App 全面 AI 化。",
-      "platform": ["iOS 27", "iPadOS 27", "macOS 27"],
+      "platform": [
+        "iOS 27",
+        "iPadOS 27",
+        "macOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S01"
     },
     {
       "id": "KA03",
       "title": "iOS 27 发布",
-      "summary": "Siri AI、全新 Camera Siri mode、AI照片编辑、儿童安全大升级、性能大幅提升。",
-      "platform": ["iOS 27"],
+      "summary": "Siri AI、全新 Camera Siri mode、AI 照片编辑、儿童安全大升级、性能大幅提升。",
+      "platform": [
+        "iOS 27"
+      ],
       "layer": "用户层 / 开发者层",
       "sourceId": "S01"
     },
@@ -100,7 +171,9 @@
       "id": "KA04",
       "title": "iPadOS 27 发布",
       "summary": "Siri AI、Visual Intelligence、外接硬盘浏览传输速度提升 5x、大屏工作流优化。",
-      "platform": ["iPadOS 27"],
+      "platform": [
+        "iPadOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S01"
     },
@@ -108,7 +181,9 @@
       "id": "KA05",
       "title": "macOS 27 Golden Gate 发布",
       "summary": "Siri AI on Mac、Visual Intelligence、更统一 toolbar、edge-to-edge sidebars、colored sidebar icons。",
-      "platform": ["macOS 27"],
+      "platform": [
+        "macOS 27"
+      ],
       "layer": "用户层 / 开发者层",
       "sourceId": "S01"
     },
@@ -116,7 +191,9 @@
       "id": "KA06",
       "title": "watchOS 27 更新",
       "summary": "Siri AI、Dynamic app grid、Smart Stack tap gesture、Find My app 整合。",
-      "platform": ["watchOS 27"],
+      "platform": [
+        "watchOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S01"
     },
@@ -124,7 +201,9 @@
       "id": "KA07",
       "title": "visionOS 27 更新",
       "summary": "Siri AI / Visual Intelligence、全景图转空间场景、personal Environments、Wi-Fi 速度提升 3x。",
-      "platform": ["visionOS 27"],
+      "platform": [
+        "visionOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S01"
     },
@@ -132,15 +211,23 @@
       "id": "KA08",
       "title": "儿童安全与 Screen Time 大升级",
       "summary": "Child Account Setup、Allowed Apps、Ask to Browse、Communication Safety 扩展、Time Allowances、Schedules、重设计 Screen Time。",
-      "platform": ["iOS 27", "iPadOS 27", "macOS 27"],
+      "platform": [
+        "iOS 27",
+        "iPadOS 27",
+        "macOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S03"
     },
     {
       "id": "KA09",
       "title": "Liquid Glass 与性能修正",
-      "summary": "App启动速度提升最高30%、Photos 拍摄后加载提升 70%、AirDrop 传输提升 80%、Liquid Glass 可读性修正。",
-      "platform": ["iOS 27", "iPadOS 27", "macOS 27"],
+      "summary": "App 启动速度提升最高 30%、Photos 拍摄后加载提升 70%、AirDrop 传输提升 80%、Liquid Glass 可读性修正。",
+      "platform": [
+        "iOS 27",
+        "iPadOS 27",
+        "macOS 27"
+      ],
       "layer": "用户层",
       "sourceId": "S01"
     },
@@ -148,7 +235,13 @@
       "id": "KA10",
       "title": "Foundation Models / App Intents / Core AI 开发者框架",
       "summary": "Foundation Models Swift API、App Intents framework 让第三方 App 接入 Siri AI、Core AI 设备端运行框架。",
-      "platform": ["iOS 27", "iPadOS 27", "macOS 27", "watchOS 27", "visionOS 27"],
+      "platform": [
+        "iOS 27",
+        "iPadOS 27",
+        "macOS 27",
+        "watchOS 27",
+        "visionOS 27"
+      ],
       "layer": "开发者层",
       "sourceId": "S06"
     }
@@ -162,25 +255,25 @@
     },
     {
       "capability": "屏幕感知",
-      "userAction": "问 Siri 屏幕上显示的内容，比如"这是什么植物"",
+      "userAction": "问 Siri 屏幕上显示的内容，比如「这是什么植物」",
       "systemMeaning": "View Annotations API 让 App 内容可被屏幕感知",
       "availability": "later this year (English beta)"
     },
     {
       "capability": "个人上下文",
-      "userAction": "问 Siri"我上次和谁讨论过 XX 话题"，可搜索个人消息、邮件、照片",
+      "userAction": "问 Siri「我上次和谁讨论过 XX 话题」，可搜索个人消息、邮件、照片",
       "systemMeaning": "Spotlight 语义索引接入个人数据，隐私保护下工作",
       "availability": "later this year"
     },
     {
       "capability": "跨 App 执行动作",
-      "userAction": "说"帮我给妈妈发一条报平安的消息，附上当前位置"，Siri 跨 App 执行",
+      "userAction": "说「帮我给妈妈发一条报平安的消息，附上当前位置」，Siri 跨 App 执行",
       "systemMeaning": "App Intents 让第三方 App 可被 Siri 调用",
       "availability": "later this year"
     },
     {
       "capability": "联网回答",
-      "userAction": "问 Siri 任何最新信息，比如"今天北京到上海的航班"",
+      "userAction": "问 Siri 任何最新信息，比如「今天北京到上海的航班」",
       "systemMeaning": "Apple Intelligence 云端模型提供实时网络信息",
       "availability": "later this year"
     },
@@ -204,77 +297,262 @@
     }
   ],
   "appleIntelligenceFeatures": [
-    { "app": "Photos", "feature": "Spatial Reframing", "description": "拍完后重新智能构图，调整到最佳取景", "type": "AI", "sourceId": "S01" },
-    { "app": "Photos", "feature": "Clean Up 升级", "description": "更精准的照片清理，移除不需要的元素", "type": "AI", "sourceId": "S01" },
-    { "app": "Image Playground", "feature": "更高质量图像生成", "description": "photorealistic style 提升，支持 describe a change 直接修改", "type": "AI", "sourceId": "S01" },
-    { "app": "Safari", "feature": "Notify Me", "description": "监控网页变化，补货或降价时自动通知", "type": "AI", "sourceId": "S01" },
-    { "app": "Messages", "feature": "一键建议", "description": "基于聊天上下文的一键创建提醒或笔记建议", "type": "AI", "sourceId": "S01" },
-    { "app": "Mail", "feature": "Top Hits 排名改进", "description": "搜索结果重新排名，更相关的结果优先显示", "type": "AI", "sourceId": "S01" },
-    { "app": "Health", "feature": "Cycle Tracking 扩展", "description": "支持 perimenopause / menopause 相关记录和偏差通知", "type": "Health", "sourceId": "S04" },
-    { "app": "Apple Maps", "feature": "增强 Flyover", "description": "结合 AI 与航拍影像，渲染更详细的建筑细节和树木", "type": "AI", "sourceId": "S04" },
-    { "app": "AirPods", "feature": "Custom EQ", "description": "进一步个性化 AirPods 声音，调整低中高频", "type": "Audio", "sourceId": "S04" },
-    { "app": "iCloud Shared Albums", "feature": "跨平台完整分辨率分享", "description": "Android / Windows 用户也可加入并分享完整分辨率照片", "type": "Sharing", "sourceId": "S04" },
-    { "app": "Home", "feature": "Smart Home AI", "description": "智能合并相关通知、描述监控录像内容、AI搜索录像片段", "type": "AI", "sourceId": "S04" },
-    { "app": "GymKit", "feature": "iPhone 支持", "description": "GymKit 支持 iPhone 和 AirPods Pro 3，连接健身设备获取精准数据", "type": "Fitness", "sourceId": "S04" }
+    {
+      "app": "Photos",
+      "feature": "Spatial Reframing",
+      "description": "拍完后重新智能构图，调整到最佳取景",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Photos",
+      "feature": "Clean Up 升级",
+      "description": "更精准的照片清理，移除不需要的元素",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Image Playground",
+      "feature": "更高质量图像生成",
+      "description": "photorealistic style 提升，支持 describe a change 直接修改",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Safari",
+      "feature": "Notify Me",
+      "description": "监控网页变化，补货或降价时自动通知",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Messages",
+      "feature": "一键建议",
+      "description": "基于聊天上下文的一键创建提醒或笔记建议",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Mail",
+      "feature": "Top Hits 排名改进",
+      "description": "搜索结果重新排名，更相关的结果优先显示",
+      "type": "AI",
+      "sourceId": "S01"
+    },
+    {
+      "app": "Health",
+      "feature": "Cycle Tracking 扩展",
+      "description": "支持 perimenopause / menopause 相关记录和偏差通知",
+      "type": "Health",
+      "sourceId": "S04"
+    },
+    {
+      "app": "Apple Maps",
+      "feature": "增强 Flyover",
+      "description": "结合 AI 与航拍影像，渲染更详细的建筑细节和树木",
+      "type": "AI",
+      "sourceId": "S04"
+    },
+    {
+      "app": "AirPods",
+      "feature": "Custom EQ",
+      "description": "进一步个性化 AirPods 声音，调整低中高频",
+      "type": "Audio",
+      "sourceId": "S04"
+    },
+    {
+      "app": "iCloud Shared Albums",
+      "feature": "跨平台完整分辨率分享",
+      "description": "Android / Windows 用户也可加入并分享完整分辨率照片",
+      "type": "Sharing",
+      "sourceId": "S04"
+    },
+    {
+      "app": "Home",
+      "feature": "Smart Home AI",
+      "description": "智能合并相关通知、描述监控录像内容、AI搜索录像片段",
+      "type": "AI",
+      "sourceId": "S04"
+    },
+    {
+      "app": "GymKit",
+      "feature": "iPhone 支持",
+      "description": "GymKit 支持 iPhone 和 AirPods Pro 3，连接健身设备获取精准数据",
+      "type": "Fitness",
+      "sourceId": "S04"
+    }
   ],
   "platformUpdates": {
     "ios27": {
       "title": "iOS 27",
-      "highlights": ["Siri AI 全新登场", "Camera Siri mode 实时识别", "AI 照片编辑", "Child Safety 大升级", "性能提升最高 30% app启动"],
-      "details": ["iPhone 17 Pro 为展示主力设备", "Siri AI later this year English beta", "支持16 种语言", "图像生成功能有每日限额"]
+      "highlights": [
+        "Siri AI 全新登场",
+        "Camera Siri mode 实时识别",
+        "AI 照片编辑",
+        "Child Safety 大升级",
+        "性能提升最高 30% app 启动"
+      ],
+      "details": [
+        "iPhone 17 Pro 为展示主力设备",
+        "Siri AI later this year English beta",
+        "支持 16 种语言",
+        "图像生成功能有每日限额"
+      ]
     },
     "ipados27": {
       "title": "iPadOS 27",
-      "highlights": ["Siri AI", "Visual Intelligence", "外接硬盘浏览传输速度提升 5x", "大屏多任务工作流优化"],
-      "details": ["与 iOS 27 功能同步", "M 系列芯片 iPad 支持", "Files app 外接 SSD 体验接近 Mac Finder"]
+      "highlights": [
+        "Siri AI",
+        "Visual Intelligence",
+        "外接硬盘浏览传输速度提升 5x",
+        "大屏多任务工作流优化"
+      ],
+      "details": [
+        "与 iOS 27 功能同步",
+        "M 系列芯片 iPad 支持",
+        "Files app 外接 SSD 体验接近 Mac Finder"
+      ]
     },
     "macos27": {
       "title": "macOS 27 Golden Gate",
-      "highlights": ["Siri AI on Mac", "Visual Intelligence", "更统一 toolbar 设计", "edge-to-edge sidebars", "colored sidebar icons"],
-      "details": ["MacBook Neo (A18 Pro) 为高端代表", "M 系列芯片 Mac 支持", "Spotlight / Photos / Mail搜索重建"]
+      "highlights": [
+        "Siri AI on Mac",
+        "Visual Intelligence",
+        "更统一 toolbar 设计",
+        "edge-to-edge sidebars",
+        "colored sidebar icons"
+      ],
+      "details": [
+        "MacBook Neo (A18 Pro) 为高端代表",
+        "M 系列芯片 Mac 支持",
+        "Spotlight / Photos / Mail 搜索重建"
+      ]
     },
     "watchos27": {
       "title": "watchOS 27",
-      "highlights": ["Siri AI", "Dynamic app grid", "Smart Stack tap gesture", "Find My app 整合（Find Devices + Items + People）"],
-      "details": ["Apple Watch Series 9 / Ultra2 / SE 3 支持", "需要配对 Apple Intelligence iPhone", "watchOS 27 beta 稍晚推出"]
+      "highlights": [
+        "Siri AI",
+        "Dynamic app grid",
+        "Smart Stack tap gesture",
+        "Find My app 整合（Find Devices + Items + People）"
+      ],
+      "details": [
+        "Apple Watch Series 9 / Ultra2 / SE 3 支持",
+        "需要配对 Apple Intelligence iPhone",
+        "watchOS 27 beta 稍晚推出"
+      ]
     },
     "visionos27": {
       "title": "visionOS 27",
-      "highlights": ["Siri AI / Visual Intelligence", "全景图转空间场景", "personal Environments", "Wi-Fi 连接速度提升 3x"],
-      "details": ["Apple Vision Pro", "M5 芯片 Vision Pro 支持更强模型", "空间计算内容创作能力扩展"]
+      "highlights": [
+        "Siri AI / Visual Intelligence",
+        "全景图转空间场景",
+        "personal Environments",
+        "Wi-Fi 连接速度提升 3x"
+      ],
+      "details": [
+        "Apple Vision Pro",
+        "M5 芯片 Vision Pro 支持更强模型",
+        "空间计算内容创作能力扩展"
+      ]
     },
     "tvos27": {
       "title": "tvOS 27",
-      "highlights": ["系统一致性更新", "Apple TV体验优化"],
-      "details": ["官方资料较少，以系统维护和小功能更新为主"]
+      "highlights": [
+        "系统一致性更新",
+        "Apple TV 体验优化"
+      ],
+      "details": [
+        "官方资料较少，以系统维护和小功能更新为主"
+      ]
     }
   },
   "childSafety": {
     "features": [
-      { "name": "Child Account Setup", "description": "简化设置流程，推荐必要 App 组合，家长可自定义", "ageGroup": "全年龄段" },
-      { "name": "Allowed Apps", "description": "家长选择孩子可使用的预装 App 清单", "ageGroup": "全年龄段" },
-      { "name": "Ask to Browse", "description": "浏览网页需家长批准，iPad 上触发批准请求并通过 Messages 通知家长", "ageGroup": "全年龄段" },
-      { "name": "新联系人家长批准", "description": "新增联系人需家长批准，保护孩子通信安全", "ageGroup": "全年龄段" },
-      { "name": "Communication Safety 扩展", "description": "干预范围从 nudity 扩展到 explicit / violent / gore 内容", "ageGroup": "全年龄段" },
-      { "name": "Time Allowances", "description": "设置 Entertainment / Games / Social Media 每日使用时长上限", "ageGroup": "全年龄段" },
-      { "name": "Schedules", "description": "设置使用时间段（如 School 8:30-15:00），可设多个时间窗口", "ageGroup": "全年龄段" },
-      { "name": "Screen Time Redesigned", "description": "全新设计界面，家长控制更直观", "ageGroup": "全年龄段" },
-      { "name": "Screen Time Passcode Notifications", "description": "孩子输入 Screen Time 密码时家长会收到通知", "ageGroup": "全年龄段" },
-      { "name": "Apple Watch For Your Kids", "description": "孩子无 iPhone 也能用 Apple Watch，家长可通过 Find My 定位，孩子可通话发消息", "ageGroup": "无 iPhone 儿童" }
+      {
+        "name": "Child Account Setup",
+        "description": "简化设置流程，推荐必要 App 组合，家长可自定义",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Allowed Apps",
+        "description": "家长选择孩子可使用的预装 App 清单",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Ask to Browse",
+        "description": "浏览网页需家长批准，iPad 上触发批准请求并通过 Messages 通知家长",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "新联系人家长批准",
+        "description": "新增联系人需家长批准，保护孩子通信安全",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Communication Safety 扩展",
+        "description": "干预范围从 nudity 扩展到 explicit / violent / gore 内容",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Time Allowances",
+        "description": "设置 Entertainment / Games / Social Media 每日使用时长上限",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Schedules",
+        "description": "设置使用时间段（如 School 8:30-15:00），可设多个时间窗口",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Screen Time Redesigned",
+        "description": "全新设计界面，家长控制更直观",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Screen Time Passcode Notifications",
+        "description": "孩子输入 Screen Time 密码时家长会收到通知",
+        "ageGroup": "全年龄段"
+      },
+      {
+        "name": "Apple Watch For Your Kids",
+        "description": "孩子无 iPhone 也能用 Apple Watch，家长可通过 Find My 定位，孩子可通话发消息",
+        "ageGroup": "无 iPhone 儿童"
+      }
     ]
   },
   "performanceDesign": {
     "numbers": [
-      { "metric": "App 启动速度", "improvement": "up to 30% faster", "device": "iPhone / iPad", "sourceId": "S01" },
-      { "metric": "Photos 拍摄后加载", "improvement": "up to 70% faster", "device": "iPhone", "sourceId": "S01" },
-      { "metric": "AirDrop 传输", "improvement": "up to 80% faster", "device": "iPhone / iPad", "sourceId": "S01" },
-      { "metric": "外接硬盘浏览/传输", "improvement": "up to 5x faster", "device": "iPad", "sourceId": "S01" },
-      { "metric": "Wi-Fi 连接", "improvement": "up to 3x faster", "device": "Apple Vision Pro", "sourceId": "S01" }
-    ],
-    "design": [
-      { "item": "Liquid Glass透明度滑杆", "range": "ultra-clear → fully tinted", "note": "视觉模拟，用户可自定义" },
-      { "item": "App icons", "change": "sharper and more defined", "note": "清晰度提升" },
-      { "item": "Mac toolbar", "change": "更统一设计", "note": "edge-to-edge sidebars, colored sidebar icons" }
+      {
+        "metric": "App 启动速度",
+        "improvement": "up to 30% faster",
+        "device": "iPhone / iPad",
+        "sourceId": "S01"
+      },
+      {
+        "metric": "Photos 拍摄后加载",
+        "improvement": "up to 70% faster",
+        "device": "iPhone",
+        "sourceId": "S01"
+      },
+      {
+        "metric": "AirDrop 传输",
+        "improvement": "up to 80% faster",
+        "device": "iPhone / iPad",
+        "sourceId": "S01"
+      },
+      {
+        "metric": "外接硬盘浏览/传输",
+        "improvement": "up to 5x faster",
+        "device": "iPad",
+        "sourceId": "S01"
+      },
+      {
+        "metric": "Wi-Fi 连接",
+        "improvement": "up to 3x faster",
+        "device": "Apple Vision Pro",
+        "sourceId": "S01"
+      }
     ]
   },
   "developerFrameworks": {
@@ -289,7 +567,8 @@
         "Dynamic Profiles 动态切换模型、工具和指令",
         "Private Cloud Compute（Small Business Program 用户免费）"
       ],
-      "deviceRequirement": "iPhone Air / iPhone 17 Pro / Pro Max / iPad M4 12GB+ / Mac M3 12GB+ / Vision Pro M5",
+      "deviceRequirement": "部分高级功能另有更高设备门槛，见下方说明",
+      "deviceRequirementNote": "Apple官方脚注中列出：Apple 最强 on-device 模型（含 expressive voices 等高级特性）仅在 iPhone Air / iPhone 17 Pro / iPhone 17 Pro Max / iPad (M4) 12GB+ / Mac (M3) 12GB+ / Apple Vision Pro (M5) 上可用。这不等同于 Apple Intelligence 的总体设备门槛，后者覆盖更广的设备范围。",
       "sourceId": "S06"
     },
     "appIntents": {
@@ -318,7 +597,12 @@
     "visualIntelligence": {
       "name": "Visual Intelligence",
       "description": "屏幕、相机、图片理解，对系统级 AI 的意义",
-      "capabilities": ["屏幕内容识别", "相机实时识别", "图像理解", "与 Apple Intelligence 深度集成"],
+      "capabilities": [
+        "屏幕内容识别",
+        "相机实时识别",
+        "图像理解",
+        "与 Apple Intelligence 深度集成"
+      ],
       "sourceId": "S01"
     }
   },
@@ -333,13 +617,35 @@
         "EU_ios": "not initially",
         "China": "not available (regulatory requirements)"
       },
-      "devices": "iPhone 16+ / iPhone 15 Pro / iPad mini A17 Pro / iPad M1+ / MacBook Neo A18 Pro / Mac M1+ / Vision Pro / Watch Series 9+ / Watch Ultra 2+ / Watch SE 3 (with AI iPhone)"
+      "devices": "iPhone 16+ / iPhone 15 Pro / iPad mini A17 Pro / iPad M1+ / MacBook Neo A18 Pro / Mac M1+ / Vision Pro / Watch Series 9+ / Watch Ultra 2+ / Watch SE 3 (with AI iPhone nearby)"
     },
     "appleIntelligence": {
       "timing": "this fall with iOS 27 etc.",
-      "languages": ["English", "Danish", "Dutch", "French", "German", "Italian", "Norwegian", "Portuguese", "Spanish", "Swedish", "Turkish", "Vietnamese", "Chinese (simplified)", "Chinese (traditional)", "Japanese", "Korean"],
+      "languages": [
+        "English",
+        "Danish",
+        "Dutch",
+        "French",
+        "German",
+        "Italian",
+        "Norwegian",
+        "Portuguese",
+        "Spanish",
+        "Swedish",
+        "Turkish",
+        "Vietnamese",
+        "Chinese (simplified)",
+        "Chinese (traditional)",
+        "Japanese",
+        "Korean"
+      ],
       "devices": "iPhone 16+ / iPhone 15 Pro / iPad mini A17 Pro / iPad M1+ / Mac M1+ / Vision Pro / Watch Series 9+ / Watch Ultra 2+ / Watch SE 3",
       "limits": "图像生成等功能有每日限额，iCloud+ 订阅可增加额度"
+    },
+    "enhancedOnDeviceModel": {
+      "name": "最强 on-device 模型（含 expressive voices 等高级特性）",
+      "devices": "iPhone Air / iPhone 17 Pro / iPhone 17 Pro Max / iPad (M4) 12GB+ / Mac (M3) 12GB+ / Apple Vision Pro (M5)",
+      "note": "这是高级功能的单独门槛，不等同于 Apple Intelligence 总体门槛"
     }
   },
   "interpretation": {
@@ -351,7 +657,7 @@
       },
       {
         "title": "Siri AI 的真正价值：屏幕感知 + 个人上下文 + 跨 App 执行",
-        "content": "Siri AI 的核心突破不是"更会聊天"，而是三个新能力：能看屏幕、懂个人上下文、能调动第三方 App。这三点的结合让 Siri 从一个问答工具变成了一个真正的数字助手。"
+        "content": "Siri AI 的核心突破不是「更会聊天」，而是三个新能力：能看屏幕、懂个人上下文、能调动第三方 App。这三点的结合让 Siri 从一个问答工具变成了一个真正的数字助手。"
       },
       {
         "title": "开发者框架的野望：把第三方 App 变成语义模块",

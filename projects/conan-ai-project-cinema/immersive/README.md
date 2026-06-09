@@ -417,3 +417,37 @@ immersive/
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4G*
+
+---
+
+## CP-4I: Immersive Onboarding and Controls Hint
+
+**Phase:** CP-4I — 2026-06-09
+
+### 问题
+
+真实用户进入 immersive 页面后，不知道如何操作（"可以进入了，但是怎么操作？"）。3D 场景正常渲染，但缺少操作引导。
+
+### 解决方案
+
+**Controls Hint（可关闭操作提示）：**
+- 进入 3D 后显示底部毛玻璃提示
+- 内容：How to navigate + 3 条操作 + 中文一行
+- 自动6 秒淡出 / 点击 × 关闭 / 首次滚动关闭
+- reduced-motion：0.5 秒淡出
+
+**Scene Progress Hint：**
+- 右下角固定显示 `01 / 06 · Scroll to continue`
+- 随 Scene 切换自动更新编号
+
+**Sound Button 文案：**
+- `🔇 Sound Off` / `🔊 Sound On` / `🔇 Muted`
+- min-width 扩展到 6rem
+
+### 为什么需要这个
+
+用户反馈"可以进入了，但是怎么操作？"说明技术功能正确但 UX 引导缺失。Controls hint 是克制的小尺寸提示，不喧宾夺主，但足够让新用户知道三个核心操作：滚动、声音控制、返回。
+
+---
+
+*README update by 辛 🔮 — CP-4I*

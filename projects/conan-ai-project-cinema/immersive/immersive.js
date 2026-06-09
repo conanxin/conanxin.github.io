@@ -556,6 +556,7 @@
       }
 
       this._updateObjectFocus(index);
+      this._updateSceneProgress();
     };
 
     ImmersiveApp.prototype._scrollToScene = function (index) {
@@ -663,6 +664,78 @@
       }, delay);
     };
 
+    // ── Control hint (CP-4I) ───────────────────────────────────
+    ImmersiveApp.prototype._showControlHint = function () {
+      var self = this;
+      var hint = document.getElementById('controlHint');
+      if (!hint) return;
+
+      hint.classList.remove('is-hidden');
+      hint.classList.add('is-visible');
+
+      // Close button
+      var closeBtn = document.getElementById('controlHintClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          self._hideControlHint();
+        }, { once: true });
+      }
+
+      // Auto-fade after 6 seconds (or 0.5s if reduced motion)
+      var delay = this.prefersReducedMotion ? 500 : 6000;
+      setTimeout(function () {
+        self._hideControlHint();
+      }, delay);
+    };
+
+
+    ImmersiveApp.prototype._hideControlHint = function () {
+      var hint = document.getElementById('controlHint');
+      if (!hint) return;
+      hint.classList.remove('is-visible');
+      hint.classList.add('is-hidden');
+    };
+
+    // ── Scene progress (CP-4I) ──────────────────────────────────
+    ImmersiveApp.prototype._updateSceneProgress = function () {
+      var idx = this.currentIndex;
+      var sceneData = this.scenes[idx];
+
+      var spIndex = document.getElementById('spIndex');
+      var spHint = document.getElementById('spHint');
+
+      if (spIndex) {
+        spIndex.textContent = String(idx + 1).padStart(2, '0');
+      }
+      if (spHint && sceneData) {
+        spHint.textContent = 'Scroll to continue';
+      }
+    };
+
+    // ── Scroll progress binding (CP-4I) ────────────────────────
+    ImmersiveApp.prototype._bindScrollProgress = function () {
+      var self = this;
+      var el = this.scrollStoryEl;
+      if (!el) return;
+
+      var hint = document.getElementById('controlHint');
+      var progressHint = document.getElementById('sceneProgressHint');
+      var hasScrolled = false;
+
+
+      el.addEventListener('scroll', function () {
+        // Hide control hint on first scroll
+        if (!hasScrolled && hint) {
+          hasScrolled = true;
+          self._hideControlHint();
+        }
+        // Show scene progress hint
+        if (progressHint) {
+          progressHint.classList.add('is-visible');
+        }
+      }, { passive: true });
+    };
+
     // ── Toggle sound ─────────────────────────────────────────────
     ImmersiveApp.prototype._toggleSound = function () {
       if (this.soundUnavailable) return;
@@ -714,10 +787,12 @@
     ImmersiveApp.prototype._updateSoundIcon = function () {
       var el = document.getElementById('hud-sound');
       if (!el) return;
-      if (this.soundUnavailable || !this.soundEnabled || this.muted) {
-        el.textContent = '\ud83d\udd14';
+      if (this.soundUnavailable) {
+        el.textContent = '\ud83d\udd14 Muted';
+      } else if (!this.soundEnabled || this.muted) {
+        el.textContent = '\ud83d\udd14 Sound Off';
       } else {
-        el.textContent = '\ud83d\udd0a';
+        el.textContent = '\ud83d\udd0a Sound On';
       }
     };
 
@@ -822,6 +897,13 @@
 
       document.getElementById('entryOverlay').classList.add('hidden');
       document.getElementById('hud').classList.add('visible');
+
+      // CP-4I: Show control hint after entering 3D
+      app._showControlHint();
+      // CP-4I: Show scene progress hint
+      app._updateSceneProgress();
+      // CP-4I: Bind scene progress to scroll changes
+      app._bindScrollProgress();
     }
 
     document.getElementById('btnEnterSound')

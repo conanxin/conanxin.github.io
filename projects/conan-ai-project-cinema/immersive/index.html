@@ -35,6 +35,30 @@
   <!-- CP-4E: Scene transition cue (centered top, fixed) -->
   <div class="scene-cue" id="scene-cue" aria-live="polite" aria-atomic="true"></div>
 
+  <!-- CP-4I: Onboarding controls hint -->
+  <div class="control-hint" id="controlHint" role="status" aria-live="polite">
+    <button class="control-hint__close" id="controlHintClose" aria-label="Dismiss controls hint">×</button>
+    <div class="control-hint__title">How to navigate</div>
+    <ul>
+      <li><strong>Scroll</strong> to move through the six scenes.</li>
+      <li><strong>Sound</strong> button toggles ambient audio.</li>
+      <li><strong>Back</strong> returns to the standard project page.</li>
+    </ul>
+    <div class="control-hint__cn">
+      滚动推进六幕 &middot; 右上角控制声音 &middot; 左上角返回标准页面
+    </div>
+  </div>
+
+
+  <!-- CP-4I: Scene progress hint -->
+  <div class="scene-progress-hint" id="sceneProgressHint" aria-live="polite">
+    <span class="sp-index" id="spIndex">01</span>
+    <span class="sp-sep"> / </span>
+    <span class="sp-total">06</span>
+    <span class="sp-dot">&middot;</span>
+    <span class="sp-hint" id="spHint">Scroll to continue</span>
+  </div>
+
   <!-- HUD (shown after entry) -->
   <div class="hud" id="hud">
     <div class="hud-top">

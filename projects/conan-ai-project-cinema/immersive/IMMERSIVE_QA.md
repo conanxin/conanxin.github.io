@@ -299,3 +299,41 @@ GitHub Pages 重建 → 真实浏览器验证（Chrome/Firefox/Safari）
 ---
 
 *QA update by 辛 🔮 — CP-4H-3 v2*
+
+---
+
+## CP-4I: Immersive Onboarding and Controls Hint
+
+**Phase:** CP-4I — 2026-06-09
+
+### 新增检查项
+
+| 检查项 | 结果 |
+|--------|------|
+| Control hint HTML存在 | ✅ |
+| Control hint 显示（is-visible） | ✅ |
+| 3 条操作说明 | ✅ |
+| Scene progress 显示 01 / 06 | ✅ |
+| Sound button 文案 "Sound Off" | ✅ |
+| Back button href="../" | ✅ |
+| 关闭按钮可工作 | ✅ |
+| 3D scene / HUD / scroll sync | ✅ |
+| node --check immersive.js | ✅ PASS |
+| node --check audio-engine.js | ✅ PASS |
+| node --check scene-data.js | ✅ PASS |
+| 主页面无 Three.js 引用 | ✅ |
+| draft noindex | ✅ |
+
+### 样式细节
+
+- `.control-hint`: 毛玻璃底部居中，z-index 150，backdrop-filter blur
+- `.scene-progress-hint`: 右下角固定，z-index 90
+- `.hud-sound`: min-width 6rem
+
+### CP-4 系列完整性
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F → CP-4F-Click-Hotfix → CP-4G → CP-4F-Rerun → CP-4H → CP-4H-2 → CP-4H-3 → **CP-4I** (current)
+
+---
+
+*QA update by 辛 🔮 — CP-4I*

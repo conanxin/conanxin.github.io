@@ -375,3 +375,31 @@ GitHub Pages 传播后，真实浏览器打开 immersive 页面
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-4H-3 v2*
+
+---
+
+## CP-4I — Immersive Onboarding and Controls Hint
+
+**Phase:** CP-4I — 2026-06-09
+
+### 背景
+
+真实用户进入 immersive 页面后，不知道如何操作。
+
+### 新增功能
+
+1. **Controls Hint** — 可关闭操作提示（毛玻璃底部居中，6秒自动淡出）
+2. **Scene Progress Hint** — 右下角 `01 / 06 · Scroll to continue`
+3. **Sound Button 文案增强** — `🔇 Sound Off` / `🔊 Sound On` / `🔇 Muted`
+
+### CP-4 系列当前状态
+
+CP-4A ~ CP-4H-3（技术基础）→ **CP-4I**（UX 引导）
+
+### 待确认
+
+用户在真实浏览器验证 controls hint 显示和操作引导有效性
+
+---
+
+*Final closeout by 辛 🔮 — CP-4I*

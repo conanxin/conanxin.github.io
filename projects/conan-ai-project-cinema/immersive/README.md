@@ -359,3 +359,61 @@ CP-4 is sealed as a post-CP-3F extension line. The immersive route is independen
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4F*
+
+---
+
+## CP-4G: Vendor Three.js and Diagnose Load Failure
+
+**Phase:** CP-4G — 2026-06-09
+
+### Why the Immersive Route Was Failing
+
+The original CP-4A implementation used an importmap pointing to unpkg CDN:
+
+```html
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.169.0/build/three.module.js" } }
+</script>
+```
+
+This fails in many real-world browser configurations:
+- **Firefox:** Enhanced Tracking Protection blocks unpkg.com
+- **Safari:** Intelligent Tracking Prevention (ITP) blocks CDN domains
+- **Strict CSP:** Content Security Policy may block external scripts
+- **Network:** Some environments block unpkg CDN
+
+### Solution: Local Vendor File
+
+Three.js v0.169.0 is now downloaded locally to `vendor/three.module.js`.
+
+**Import:** `import * as THREE from './vendor/three.module.js';`
+
+**No importmap needed.** No CDN dependency. Works in all browsers that support ES modules + WebGL.
+
+### Enhanced Fallback Diagnostics
+
+`_showFallback(reason, detail)` now shows:
+
+1. **"WebGL unavailable"** — Your browser or privacy settings disabled WebGL
+2. **"Module loading failed"** — Three.js module did not load (check browser console)
+3. **"WebGL renderer failed"** — WebGL context creation failed
+
+Each shows: reason title + detail message + suggested actions.
+
+### File Structure
+
+```
+immersive/
+├── index.html          # No importmap, uses module script
+├── immersive.js        # import from './vendor/three.module.js'
+├── audio-engine.js
+├── scene-data.js
+├── styles.css
+├── vendor/
+│   └── three.module.js  # Three.js v0.169.0, 1.3MB (CP-4G)
+└── IMMERSIVE_QA.md
+```
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4G*

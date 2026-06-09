@@ -1,10 +1,10 @@
 /**
- * immersive.js — CP-4A Immersive Mode (Fixed)
+ * immersive.js — CP-4A Immersive Mode
  * Vanilla Three.js. Camera click-switching for 6 scenes.
- * Uses direct ES module import (not window.THREE).
+ * Uses local vendor Three.js (CP-4G: no unpkg dependency).
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 
 (function () {
   'use strict';
@@ -57,20 +57,32 @@ import * as THREE from 'three';
   };
 
   // ── Init ─────────────────────────────────────────────────────────
+  // CP-4G: Enhanced WebGL detection with specific error reasons
+  ImmersiveApp.prototype._isWebGLAvailable = function () {
+    try {
+      var canvas = document.createElement('canvas');
+      if (!window.WebGLRenderingContext) return { available: false, reason: 'WebGL not supported in this browser' };
+      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return { available: false, reason: 'WebGL disabled or blocked by browser/privacy settings' };
+      return { available: true };
+    } catch (e) {
+      return { available: false, reason: 'WebGL check failed: ' + (e.message || String(e)) };
+    }
+  };
+
   ImmersiveApp.prototype.init = function () {
     var self = this;
 
-    // Detect WebGL
-    var canvas = document.createElement('canvas');
-    var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-    if (!gl) {
-      this._showFallback();
+    // CP-4G: Enhanced WebGL check with specific reason
+    var webglCheck = this._isWebGLAvailable();
+    if (!webglCheck.available) {
+      this._showFallback('WebGL unavailable', webglCheck.reason);
       return false;
     }
 
-    // Check THREE is available
+    // Check THREE is available (module loaded successfully)
     if (typeof THREE === 'undefined') {
-      this._showFallback();
+      this._showFallback('Module loading failed', 'Three.js module did not load. Check browser console.');
       return false;
     }
 
@@ -141,7 +153,8 @@ import * as THREE from 'three';
 
     } catch (err) {
       console.error('[Immersive] init error:', err);
-      this._showFallback();
+      var msg = err && err.message ? err.message.slice(0, 200) : String(err);
+      this._showFallback('WebGL renderer failed', msg);
       return false;
     }
 
@@ -868,8 +881,9 @@ import * as THREE from 'three';
   };
 
   // ── Fallback ────────────────────────────────────────────────────
-  ImmersiveApp.prototype._showFallback = function () {
-    // CP-4F-Click-Hotfix: Hide entry overlay when showing fallback
+  // CP-4G: Enhanced fallback with specific reason and detail
+  ImmersiveApp.prototype._showFallback = function (reason, detail) {
+    // Hide entry overlay when showing fallback
     var entryOverlay = document.getElementById('entryOverlay');
     if (entryOverlay) {
       entryOverlay.setAttribute('hidden', '');
@@ -877,10 +891,13 @@ import * as THREE from 'three';
     }
     var el = document.getElementById('immersive-canvas');
     if (el) {
+      var reasonText = reason || 'Unknown error';
+      var detailText = detail ? '<br><small style="color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;">' + detail.slice(0, 200) + '</small>' : '';
       el.innerHTML = '' +
         '<div class="immersive-fallback">' +
           '<div class="ifb-icon">⚠</div>' +
-          '<p>This device cannot run the immersive 3D mode.</p>' +
+          '<p><strong>' + reasonText + '</strong></p>' + detailText +
+          '<p style="font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;">Try: enabling WebGL, disabling privacy blocker, or using a different browser.</p>' +
           '<a href="../" class="ifb-link">← Continue with the standard page</a>' +
         '</div>';
     }

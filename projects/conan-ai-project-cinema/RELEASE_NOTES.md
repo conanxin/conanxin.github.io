@@ -639,3 +639,47 @@ CP-4 is a post-CP-3F extension line. Main page (CP-3E) remains stable and sealed
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4F*
+
+---
+
+## CP-4G: Vendor Three.js and Diagnose Immersive Load Failure
+
+**Phase:** CP-4G — 2026-06-09
+
+### Root Cause: unpkg CDN Failure in Some Browsers
+
+The immersive route was using `importmap` + `unpkg.com/three@0.169.0`. This fails in:
+- Firefox with Enhanced Tracking Protection
+- Safari with ITP (Intelligent Tracking Prevention)
+- Browsers with strict CSP policies
+- Some network environments
+
+### Fix: Local Vendor Three.js
+
+- Downloaded `three@0.169.0` to `vendor/three.module.js` (1.3MB, fixed version)
+- Changed import to `from './vendor/three.module.js'`
+- Removed importmap from `index.html`
+- No more unpkg CDN dependency
+
+### Enhanced Fallback Diagnostics
+
+- `_isWebGLAvailable()` checks WebGL with specific error reasons
+- `_showFallback(reason, detail)` shows: reason title + detail message + suggested actions
+- Index.html catch block shows "Module loading failed" with error message
+
+### WebGL Detection
+
+Three specific error types now shown:
+1. **WebGL unavailable** — browser/privacy settings disabled WebGL
+2. **Module loading failed** — Three.js module did not load (check browser console)
+3. **WebGL renderer failed** — WebGL context creation failed
+
+### Current Status
+
+- **Phase:** CP-4G — Vendor Three.js + diagnostics
+- **Immersive route:** Active with local vendor Three.js
+- **Main page:** Unchanged
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4G*

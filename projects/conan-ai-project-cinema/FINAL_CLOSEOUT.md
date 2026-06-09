@@ -211,3 +211,31 @@ Main page (CP-3E) remains stable and sealed. Immersive route is a separate indep
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-4F*
+
+---
+
+## CP-4G — Vendor Three.js and Diagnose Load Failure
+
+**Phase:** CP-4G — 2026-06-09
+
+### Root Cause Fixed
+
+CP-4G diagnosed and fixed the root cause of immersive page failures in real browsers:
+- **Before:** unpkg CDN importmap (fails with privacy settings / CSP / Safari ITP)
+- **After:** Local vendor file (`vendor/three.module.js`, no CDN dependency)
+
+### Three.js Now Local
+
+- `vendor/three.module.js` — 1.3MB, Three.js v0.169.0
+- Import: `from './vendor/three.module.js'` (no importmap, no unpkg)
+- GitHub Pages compatible, no build step required
+
+### Fallback Now Diagnostic
+
+- Shows specific error type, not just "Failed to load"
+- Reason + detail + suggested actions
+- Three categories: WebGL unavailable / Module loading failed / WebGL renderer failed
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-4G*

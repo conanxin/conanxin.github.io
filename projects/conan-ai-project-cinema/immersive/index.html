@@ -7,15 +7,6 @@
   <meta name="description" content="3D soundscape for Conan's project archive. A spatial, immersive take on the AI Project Cinema.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Three.js ES Module (CDN, fixed version) -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.169.0/build/three.module.js"
-    }
-  }
-  </script>
 </head>
 <body>
 
@@ -154,10 +145,13 @@
         entryOverlay.setAttribute('hidden', '');
         entryOverlay.style.display = 'none';
       }
+      var errMsg = err && err.message ? err.message.slice(0, 200) : String(err);
       document.getElementById('immersive-canvas').innerHTML = '' +
         '<div class="immersive-fallback">' +
           '<div class="ifb-icon">⚠</div>' +
-          '<p>Failed to load the immersive experience. Please try the standard page.</p>' +
+          '<p><strong>Module loading failed</strong></p>' +
+          '<small style="color:#8a96b0;font-size:0.7rem;margin-top:0.4rem;display:block;max-width:400px;">' + errMsg + '</small>' +
+          '<p style="font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;">Try: enabling WebGL, disabling privacy blocker, or using a different browser.</p>' +
           '<a href="../" class="ifb-link">← Back to Project Cinema</a>' +
         '</div>';
     });

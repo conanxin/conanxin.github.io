@@ -1,0 +1,277 @@
+/**
+ * artifacts.js — CP-1C Data Layer
+ * Conan AI Project Cinema · Phase CP-1C
+ * All project and artifact data in one place.
+ * External links use target="_blank" rel="noopener noreferrer".
+ */
+
+(function () {
+  'use strict';
+
+  window.CP_ARTIFACTS = {
+
+    // ── Scene 03: Project Cards ──────────────────────────────────────
+    projects: [
+      {
+        id: 'how-to-ai-almost-anything-cn',
+        name: 'How to AI Almost Anything',
+        tag: 'how-to-ai-almost-anything-cn',
+        status: 'shipped',
+        visibility: 'public',
+        href: '/projects/how-to-ai-almost-anything-cn/',
+        description: '阶段式 AI 学习路径，涵盖研究、编码、写作、项目管理。实操性指南。',
+      },
+      {
+        id: 'wwdc26-keynote',
+        name: 'WWDC26 发布会总结',
+        tag: 'wwdc26-keynote',
+        status: 'shipped',
+        visibility: 'public',
+        href: '/projects/wwdc26-keynote/',
+        description: 'WWDC 2026 主题演讲总结页，卡片式结构化呈现，覆盖 Apple 全新框架和 API 更新。',
+      },
+      {
+        id: 'github-pages',
+        name: '数字花园 / GitHub Pages',
+        tag: 'github-pages',
+        status: 'shipped',
+        visibility: 'public',
+        href: '/',
+        description: '个人数字花园。知识不是终点，而是持续生长的有机体。记录 AI 研究、技术探索和思考过程。',
+      },
+      {
+        id: 'hermes-lofi-skill',
+        name: 'HERMES Lofi Skill',
+        tag: 'hermes-lofi-skill',
+        status: 'active',
+        visibility: 'public',
+        href: '/projects/hermes-lofi-skill/',
+        description: '让 Hermes 在轻量环境中运行的任务封装技能，零依赖运行。',
+      },
+      {
+        id: 'uap-files',
+        name: 'UAP 文件研究档案',
+        tag: 'uap-files',
+        status: 'active',
+        visibility: 'public',
+        href: '/projects/uap-files/',
+        description: 'UAP 文件研究档案，包含原始研究材料、分析报告和结构化解读。',
+      },
+      {
+        id: 'internet-builder-archive',
+        name: 'Internet Builder Archive',
+        tag: 'internet-builder-archive',
+        status: 'shipped',
+        visibility: 'public',
+        href: '/projects/internet-builder-archive/',
+        description: '互联网建设者的方法论档案，含创始人精神、技术创业历史等。',
+      },
+      {
+        id: 'booktrans',
+        name: '书籍翻译系统',
+        tag: 'BookTrans',
+        status: 'private',
+        visibility: 'internal',
+        href: '',
+        description: '书籍翻译与结构化输出相关项目。当前不是公开页面入口。',
+      },
+      {
+        id: 'explainlens',
+        name: '论文卡通化讲解',
+        tag: 'ExplainLens',
+        status: 'private',
+        visibility: 'internal',
+        href: '',
+        description: '论文讲解与卡片化/图解化相关项目。当前不是公开页面入口。',
+      },
+      {
+        id: 'claimlens',
+        name: 'ClaimLens',
+        tag: 'ClaimLens',
+        status: 'alpha',
+        visibility: 'public',
+        href: 'https://github.com/conanxin/claimlens',
+        description: '本地优先的公开内容主张提取与事实核查工具，支持文本/字幕输入、批量处理、跨 run 对比和静态报告导出。',
+      },
+    ],
+
+    // ── Scene 06: Artifact Archive Cards ────────────────────────────
+    artifacts: [
+      {
+        id: 'how2ai-phase-reports',
+        type: 'Report',
+        title: 'How2AI Phase Reports',
+        source: 'how-to-ai-almost-anything-cn',
+        status: 'active · multi-phase',
+        visibility: 'public',
+        href: '/projects/how-to-ai-almost-anything-cn/reports/',
+        description: '每个阶段的执行记录、设计决策和验证结果文档。',
+      },
+      {
+        id: 'internet-builder-guide',
+        type: 'Page',
+        title: 'Internet Builder Guide',
+        source: 'internet-builder-archive',
+        status: 'shipped',
+        visibility: 'public',
+        href: '/projects/internet-builder-archive/guide.html',
+        description: '互联网建设者的方法论指南，结构化呈现核心概念。',
+      },
+      {
+        id: 'ai-makes-coding-easier',
+        type: 'Article',
+        title: 'AI Makes Coding Easier',
+        source: 'articles/',
+        status: 'published',
+        visibility: 'public',
+        href: '/articles/ai-makes-coding-easier.md',
+        description: '关于 AI 如何降低编程门槛的深度分析文章。',
+      },
+      {
+        id: 'agent-reach-setup',
+        type: 'Report',
+        title: 'Agent Reach Setup Summary',
+        source: 'research/',
+        status: 'published',
+        visibility: 'public',
+        href: '/research/agent-reach-setup-summary.md',
+        description: 'Agent Reach 框架的搭建过程记录和配置指南。',
+      },
+      {
+        id: 'hermes-lofi-skill-artifact',
+        type: 'Tool',
+        title: 'HERMES Lofi Skill',
+        source: 'hermes-lofi-skill',
+        status: 'active',
+        visibility: 'public',
+        href: '/projects/hermes-lofi-skill/',
+        description: '轻量环境下的 Hermes 任务封装技能，零依赖运行。',
+      },
+      {
+        id: 'uap-files-archive',
+        type: 'Archive',
+        title: 'UAP Files Archive',
+        source: 'uap-files',
+        status: 'active',
+        visibility: 'public',
+        href: '/projects/uap-files/',
+        description: 'UAP 研究档案，含原始材料、分析报告和结构化解读。',
+      },
+      {
+        id: 'claimlens-artifact',
+        type: 'Tool',
+        title: 'ClaimLens',
+        source: 'claimlens (external repo)',
+        status: 'alpha · human-reviewable',
+        visibility: 'public',
+        href: 'https://github.com/conanxin/claimlens',
+        description: '本地优先的公开内容主张提取与事实核查工具，支持文本/字幕输入、批量处理、跨 run 对比和静态报告导出。',
+      },
+      {
+        id: 'personal-ai-ecosystem-2030',
+        type: 'Article',
+        title: 'Personal AI Ecosystem 2030',
+        source: 'articles/',
+        status: 'published',
+        visibility: 'public',
+        href: '/articles/personal-ai-ecosystem-2030-vision.md',
+        description: '对未来个人 AI 生态系统的愿景描述和能力边界分析。',
+      },
+      {
+        id: 'autoresearch-practical-guide',
+        type: 'Report',
+        title: 'AutoResearch Practical Guide',
+        source: 'research/',
+        status: 'published',
+        visibility: 'public',
+        href: '/research/autoresearch-practical-application-guide.md',
+        description: 'AutoResearch 框架的实操应用指南和案例分析。',
+      },
+      // Internal projects — only visible via Internal filter
+      {
+        id: 'booktrans-internal',
+        type: 'Internal',
+        title: 'BookTrans',
+        source: 'internal project',
+        status: 'private · not public yet',
+        visibility: 'internal',
+        href: '',
+        description: '书籍翻译与结构化输出相关项目。当前不是公开页面入口。',
+      },
+      {
+        id: 'explainlens-internal',
+        type: 'Internal',
+        title: 'ExplainLens',
+        source: 'internal project',
+        status: 'private · not public yet',
+        visibility: 'internal',
+        href: '',
+        description: '论文讲解与卡片化/图解化相关项目。当前不是公开页面入口。',
+      },
+    ],
+
+    // ── Scene 05: Constellation Nodes ───────────────────────────────
+    constellation: [
+      {
+        id: 'how2ai',
+        label: 'how2ai',
+        cx: '20%', cy: '40%',
+        status: 'shipped',
+        description: 'How to AI Almost Anything — 阶段式 AI 学习路径',
+        href: '/projects/how-to-ai-almost-anything-cn/',
+      },
+      {
+        id: 'hermes-lofi',
+        label: 'hermes-lofi',
+        cx: '35%', cy: '65%',
+        status: 'active',
+        description: 'HERMES Lofi Skill — 轻量环境下的任务封装',
+        href: '/projects/hermes-lofi-skill/',
+      },
+      {
+        id: 'internet-builder',
+        label: 'internet-builder',
+        cx: '50%', cy: '30%',
+        status: 'shipped',
+        description: 'Internet Builder Archive — 互联网建设者方法论',
+        href: '/projects/internet-builder-archive/',
+      },
+      {
+        id: 'uap-files',
+        label: 'uap-files',
+        cx: '65%', cy: '55%',
+        status: 'active',
+        description: 'UAP Files Archive — 研究档案与结构化解读',
+        href: '/projects/uap-files/',
+      },
+      {
+        id: 'github-pages',
+        label: 'github-pages',
+        cx: '80%', cy: '35%',
+        status: 'shipped',
+        description: 'conanxin.github.io — 个人数字花园',
+        href: '/',
+      },
+      {
+        id: 'digital-garden',
+        label: 'digital-garden',
+        cx: '50%', cy: '75%',
+        status: 'shipped',
+        description: 'Digital Garden — 知识不是终点，而是持续生长的有机体',
+        href: '/',
+      },
+    ],
+
+    // ── Constellation SVG connection lines ──────────────────────────
+    constellationLines: [
+      [20, 40, 35, 65],
+      [35, 65, 50, 30],
+      [50, 30, 65, 55],
+      [65, 55, 80, 35],
+      [35, 65, 50, 75],
+      [65, 55, 50, 75],
+    ],
+
+  };
+
+})();

@@ -449,5 +449,30 @@
       "bilingual",
       "vonnegut"
     ]
+  },
+  {
+    "title": "Conan AI Project Cinema",
+    "subtitle": "个人 AI 项目宇宙入口：电影化叙事、Artifact Archive、Agent 工作流与项目星图",
+    "slug": "conan-ai-project-cinema",
+    "category": "systems",
+    "type": "INTERACTIVE PROJECT ARCHIVE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-09",
+    "summary": "一个电影化滚动叙事的个人 AI 项目档案馆，将阅读、研究、代码、网页、Agent、GitHub Pages、OpenClaw、Hermes、VPS Control Tower、论文解读、书籍翻译和自动化项目串联起来。包含数据驱动的 Artifact Archive、搜索与筛选、项目星图和移动端优化。",
+    "entry_url": "/projects/conan-ai-project-cinema/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "AI",
+      "Agent",
+      "OpenClaw",
+      "Hermes",
+      "GitHub Pages",
+      "Project Archive",
+      "Artifact Archive",
+      "Personal AI OS",
+      "Interactive Page"
+    ]
   }
 ]

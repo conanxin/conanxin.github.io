@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Conan AI Project Cinema</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Draft Status Badge -->
+  <div class="draft-badge">
+    <span class="badge-tag">Draft</span>
+    <span class="badge-sep">·</span>
+    <span class="badge-phase">Published · Conan AI Project Cinema</span>
+  </div>
+
+  <!-- Draft Watermark -->
+  <div class="draft-watermark">Interactive Project Archive · Public Release</div>
+
+  <!-- Constellation Tooltip -->
+  <div class="const-tooltip" id="constTooltip" role="tooltip" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-label">
+        <span class="label-bracket">[</span>
+        AI Project Archive
+        <span class="label-bracket">]</span>
+      </div>
+      <h1 class="hero-title">Conan AI Project Cinema</h1>
+      <p class="hero-sub-cn">把阅读、研究、代码、网页和 Agent 连接成一个人的 AI 创造系统。</p>
+      <p class="hero-sub-en">A cinematic archive of projects, agents, pages, and experiments.</p>
+      <div class="hero-meta">
+        <span class="meta-item">conanxin.github.io</span>
+        <span class="meta-sep">/</span>
+        <span class="meta-item">AI Control Tower</span>
+        <span class="meta-sep">/</span>
+        <span class="meta-item">2026</span>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>↓ scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 01 ===================== -->
+  <section class="scene" id="scene-01">
+    <div class="scene-inner">
+      <div class="scene-number">01</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Complex Ideas</h2>
+        <p class="scene-body-cn">
+          一开始，我只是想把复杂内容讲清楚。<br>
+          一篇论文。<br>
+          一本书。<br>
+          一张截图。<br>
+          一个散落的想法。
+        </p>
+        <p class="scene-body-en">
+          At first, I just wanted to make complex ideas clear — a paper, a book, a screenshot, a stray thought.
+        </p>
+      </div>
+      <div class="scene-artifacts">
+        <div class="artifact-card artifact-paper">
+          <div class="artifact-icon">📄</div>
+          <div class="artifact-label">Paper</div>
+        </div>
+        <div class="artifact-card artifact-book">
+          <div class="artifact-icon">📖</div>
+          <div class="artifact-label">Book</div>
+        </div>
+        <div class="artifact-card artifact-screenshot">
+          <div class="artifact-icon">🖼</div>
+          <div class="artifact-label">Screenshot</div>
+        </div>
+        <div class="artifact-card artifact-note">
+          <div class="artifact-icon">🗒</div>
+          <div class="artifact-label">Note</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 02 ===================== -->
+  <section class="scene" id="scene-02">
+    <div class="scene-inner">
+      <div class="scene-number">02</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">AI Beyond Chat</h2>
+        <p class="scene-body-cn">
+          后来我发现，AI 不应该只停在聊天窗口里。<br>
+          它应该进入文档。<br>
+          进入网页。<br>
+          进入命令行。<br>
+          进入项目流程。
+        </p>
+        <p class="scene-body-en">
+          Then I realized — AI shouldn't stay in the chat box. It should live in documents, webpages, the command line, the project workflow.
+        </p>
+      </div>
+      <div class="scene-terminals">
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <span class="tb-dot tb-red"></span>
+            <span class="tb-dot tb-yellow"></span>
+            <span class="tb-dot tb-green"></span>
+            <span class="tb-title">bash — ai-agent</span>
+          </div>
+          <div class="terminal-body">
+            <div class="tb-line"><span class="tb-prompt">$</span> <span class="tb-sample">ai research --query "attention mechanism"</span></div>
+            <div class="tb-line"><span class="tb-sample">→ fetching 3 papers...</span></div>
+            <div class="tb-line"><span class="tb-sample">→ summarizing...</span></div>
+            <div class="tb-line"><span class="tb-sample">✓ done. 2 outputs generated.</span></div>
+          </div>
+        </div>
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <span class="tb-dot tb-red"></span>
+            <span class="tb-dot tb-yellow"></span>
+            <span class="tb-dot tb-green"></span>
+            <span class="tb-title">GitHub — conanxin</span>
+          </div>
+          <div class="terminal-body">
+            <div class="tb-line"><span class="tb-hash">234daa0</span> <span class="tb-sample">feat: add data-driven artifact archive</span></div>
+            <div class="tb-line"><span class="tb-hash">c224ff0</span> <span class="tb-sample">feat: upgrade project cinema draft artifacts</span></div>
+            <div class="tb-line"><span class="tb-hash">db269fc</span> <span class="tb-sample">feat: add CP-1A draft prototype</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 03 — Projects (JS-rendered) ===================== -->
+  <section class="scene" id="scene-03">
+    <div class="scene-inner">
+      <div class="scene-number">03</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Projects Become Artifacts</h2>
+        <p class="scene-body-cn">
+          每个想法，都应该留下可以被打开、阅读、运行和复盘的产物。
+        </p>
+        <p class="scene-body-en">
+          Every idea should leave behind something you can open, read, run, and review.
+        </p>
+      </div>
+      <!-- JS-rendered project grid -->
+      <div id="projectGrid" class="artifact-grid" data-render="projects"></div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 04 ===================== -->
+  <section class="scene" id="scene-04">
+    <div class="scene-inner">
+      <div class="scene-number">04</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Agents Join the Workflow</h2>
+        <p class="scene-body-cn">
+          我不只是让 AI 写代码。<br>
+          我让每个阶段留下设计理由。<br>
+          让每次修改留下影响分析。<br>
+          让代码、文档、测试共同服务于项目理论。
+        </p>
+        <p class="scene-body-en">
+          I don't just let AI write code. Every stage has a design rationale. Every change has an impact analysis. Code, docs, and tests serve the project theory together.
+        </p>
+      </div>
+      <div class="agent-strip" id="agentStrip">
+        <div class="agent-node">
+          <div class="an-avatar">🦊</div>
+          <div class="an-name">OpenClaw</div>
+          <div class="an-desc">本地/云端 Agent 执行 · 项目推进 · 文件修改 · 阶段验收</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> active
+          </div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">🦊</div>
+          <div class="an-name">Hermes</div>
+          <div class="an-desc">项目编排 · 报告沉淀 · 工作区管理 · GitHub Pages 发布辅助</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> active
+          </div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">🤖</div>
+          <div class="an-name">Codex</div>
+          <div class="an-desc">代码级修改 · 测试 · 构建 · 局部实现 · 技术方案落地</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> active
+          </div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">📋</div>
+          <div class="an-name">Phase Report</div>
+          <div class="an-desc">用人能理解的语言复述系统当前状态 · 设计理由 · 修改影响 · 验证结果</div>
+          <div class="an-status">
+            <span class="status-dot dot-yellow"></span> review
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 05 ===================== -->
+  <section class="scene" id="scene-05">
+    <div class="scene-inner">
+      <div class="scene-number">05</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Control Tower</h2>
+        <p class="scene-body-cn">
+          这些项目不是孤立的。<br>
+          它们正在变成一个系统：<br>
+          阅读系统，翻译系统，网页发布系统，<br>
+          Agent 执行系统，VPS 健康监测系统，<br>
+          个人知识广播系统。
+        </p>
+        <p class="scene-body-en">
+          These projects are not isolated. They are becoming a system — reading, translation, web publishing, agent execution, VPS health monitoring, personal knowledge broadcasting.
+        </p>
+      </div>
+      <div class="control-tower">
+        <div class="tower-header">
+          <span class="tower-title">Personal AI Control Tower</span>
+          <span class="tower-status">
+            <span class="status-dot dot-yellow"></span> Concept Preview — Not Live Data
+          </span>
+        </div>
+        <div class="tower-metrics">
+          <div class="tm-item">
+            <div class="tm-label">Projects</div>
+            <div class="tm-value tm-sample">~26</div>
+            <div class="tm-note">concept count</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Articles</div>
+            <div class="tm-value tm-sample">~25</div>
+            <div class="tm-note">in archive</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Research</div>
+            <div class="tm-value tm-sample">~30</div>
+            <div class="tm-note">notes &amp; reports</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Systems</div>
+            <div class="tm-value tm-sample">6</div>
+            <div class="tm-note">concept signals</div>
+          </div>
+        </div>
+        <div class="tower-log">
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Project system concept preview</span>
+          </div>
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Reading + translation pipeline</span>
+          </div>
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Agent execution + VPS monitoring</span>
+          </div>
+        </div>
+        <div class="constellation" id="constellation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 06 — Artifact Archive (JS-rendered) ===================== -->
+  <section class="scene" id="scene-06">
+    <div class="scene-inner">
+      <div class="scene-number">06</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Artifact Archive</h2>
+        <p class="scene-body-cn">
+          这里不是一份简历。这是一个持续生长的个人 AI 项目档案馆。
+        </p>
+        <p class="scene-body-en">
+          Not a résumé. A living archive — where each artifact has a home.
+        </p>
+      </div>
+
+      <!-- Artifact Search + Filter Bar -->
+      <div class="artifact-search-row" id="artifactSearchRow">
+        <div class="search-wrap">
+          <input
+            type="search"
+            id="artifactSearch"
+            class="artifact-search"
+            placeholder="Search artifacts, projects, status..."
+            aria-label="Search artifacts"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="search-clear" id="searchClear" aria-label="Clear search" style="display:none;">✕</button>
+        </div>
+      </div>
+
+      <!-- Interactive Filter Bar -->
+      <div class="artifact-filters" id="artifactFilters">
+        <button data-filter="all" class="filter-chip active">All</button>
+        <button data-filter="Page" class="filter-chip">Page</button>
+        <button data-filter="Tool" class="filter-chip">Tool</button>
+        <button data-filter="Report" class="filter-chip">Report</button>
+        <button data-filter="Article" class="filter-chip">Article</button>
+        <button data-filter="Archive" class="filter-chip">Archive</button>
+        <button data-filter="Internal" class="filter-chip">Internal</button>
+      </div>
+
+      <!-- JS-rendered artifact grid -->
+      <div id="artifactGrid" class="artifact-grid artifact-archive-grid" data-render="artifacts"></div>
+
+      <!-- Empty state (shown when filter yields 0 results) -->
+      <div id="artifactEmptyState" class="artifact-empty-state" style="display:none;">
+        <div class="aes-icon">📭</div>
+        <div class="aes-text">No artifacts in this category yet.</div>
+        <div class="aes-sub">Try "All" to see everything.</div>
+      </div>
+
+      <!-- CTA Grid -->
+      <div class="cta-grid">
+        <a href="https://conanxin.github.io/projects/" class="cta-card">
+          <div class="cta-icon">📁</div>
+          <div class="cta-label">Explore Projects</div>
+        </a>
+        <a href="https://github.com/conanxin/conanxin.github.io" class="cta-card" target="_blank" rel="noopener noreferrer">
+          <div class="cta-icon">🐙</div>
+          <div class="cta-label">Visit GitHub</div>
+        </a>
+        <a href="https://conanxin.github.io/articles/" class="cta-card">
+          <div class="cta-icon">📝</div>
+          <div class="cta-label">Read Notes</div>
+        </a>
+        <a href="https://x.com/conanxin" class="cta-card" target="_blank" rel="noopener noreferrer">
+          <div class="cta-icon">✖</div>
+          <div class="cta-label">Follow on X</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CREDITS ===================== -->
+  <footer class="credits">
+    <div class="credits-inner">
+      <p class="credit-line">Designed by Conan Xin</p>
+      <p class="credit-line">Built with Agents</p>
+      <p class="credit-line credit-phase">Public Release · Phase CP-1E</p>
+      <p class="credit-line credit-note">Conan AI Project Cinema · Public Project Archive</p>
+    </div>
+  </footer>
+
+  <!-- ===================== EXPAND TOOLTIP ===================== -->
+  <div class="expand-tooltip" id="expandTooltip"></div>
+
+  <script src="./artifacts.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

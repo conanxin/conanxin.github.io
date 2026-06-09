@@ -239,3 +239,51 @@ CP-4G diagnosed and fixed the root cause of immersive page failures in real brow
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-4G*
+
+---
+
+## CP-4G + CP-4F-Rerun: Vendor Fix and Final QA
+
+**Phase:** CP-4G + CP-4F-Rerun — 2026-06-09
+
+### CP-4G: Vendor Three.js
+
+CP-4G fixed the root cause of immersive route failures in real browsers:
+- **Before:** importmap + unpkg CDN (blocked by Firefox ETP, Safari ITP, strict CSP)
+- **After:** local vendor file, no CDN dependency
+- File: `vendor/three.module.js` (Three.js v0.169.0, 1.3MB)
+- Import: `from './vendor/three.module.js'`
+
+### CP-4F-Rerun: QA After Vendor Fix
+
+- **Original CP-4F QA invalidated** — was performed before CDN failure was known
+- **CP-4F-Rerun score: 85/100** — local vendor eliminates CDN failure mode
+- **Status: Target reached — with real-browser validation caveat**
+
+### Final CP-4 Series Status
+
+| Phase | Commit | Feature |
+|-------|--------|---------|
+| CP-4A | `165ff99` | Immersive 3D/Sound prototype |
+| CP-4A-Browser-Verification | `83ca4f2` | Fix THREE import, camera, sound toggle |
+| CP-4B | `e9b5733` | Scroll-driven camera and scene sync |
+| CP-4B-Sound-Hotfix | `db5c765` | Restore explicit sound toggle state |
+| CP-4C | `8936778` | Add immersive mode entry to main page |
+| CP-4D | `835f49c` | Continuous camera path + performance guard |
+| CP-4E | `ed4f73c` | Entrance fly-in, scene transition cue, object focus, sound cues |
+| CP-4F-Click-Hotfix | `39be215` | Fix fallback overlay blocking entry buttons |
+| CP-4G | `3bbab72` | Vendor Three.js (local, no CDN) + enhanced fallback diagnostics |
+| CP-4F-Rerun | (this) | Final QA after vendor fix |
+
+### Acceptance Decision
+
+**CP-4 series is provisionally sealed (85/100).**
+
+Definitive acceptance requires real-browser validation by the project owner in their target browser environment (Chrome/Firefox/Safari).
+
+If real browser confirms overlay → 3D → sound works without fallback: **fully sealed**.
+If real browser still shows fallback: record specific `fallbackReason` and address before final seal.
+
+---
+
+*Final closeout by 辛 🔮 — CP-4F-Rerun*

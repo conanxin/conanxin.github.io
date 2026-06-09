@@ -683,3 +683,34 @@ Three specific error types now shown:
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4G*
+
+---
+
+## CP-4F-Rerun: Final QA After Vendor Fix
+
+**Phase:** CP-4F-Rerun — 2026-06-09
+
+### Original CP-4F QA Invalidated
+
+The original CP-4F QA (84/100) was invalidated because:
+- It was performed before CP-4G fixed the vendor loading issue
+- unpkg CDN failure was not identified as a real-browser failure mode at the time
+- The QA was based on code review, not real-browser confirmation
+
+### CP-4F-Rerun Result
+
+**Score: 85/100** (improved from 84 due to removal of CDN failure mode)
+
+**Status: 3D/Sound immersive target reached — with real-browser validation caveat**
+
+The local vendor Three.js (CP-4G) eliminates the primary failure mode. Definitive acceptance requires real-browser validation by the project owner.
+
+### CP-4 Series Seal Status
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F → CP-4F-Click-Hotfix → CP-4G → CP-4F-Rerun
+
+CP-4 is provisionally sealed. Real-browser validation by project owner required for final acceptance.
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4F-Rerun*

@@ -136,6 +136,8 @@
 
       // Scene focus
       this.sceneNodeMeshes = {};
+      this.sceneWorldGroups = {};
+      this.activeWorldId = null;
 
       this.scrollObserver = null;
       this.prefersReducedMotion =
@@ -307,6 +309,10 @@
         this.camera.position.copy(this.baseCameraPos);
         this.camera.lookAt(this.baseCameraTarget);
       }
+
+      // CP-5A: Build scene world groups
+      this._buildSceneWorlds();
+      this._setWorldFocus(this.scenes[this.currentIndex].id);
     };
 
     // ── Particles ────────────────────────────────────────────────
@@ -683,6 +689,7 @@
       this._updateObjectFocus(index);
       this._triggerSceneCue(index, sceneData);
       this._updateSceneControl();
+      this._setWorldFocus(this.scenes[index].id);
     };
 
     // ── Camera tween ─────────────────────────────────────────────
@@ -844,6 +851,7 @@
       this._updateObjectFocus(index);
       this._updateSceneProgress();
       this._updateSceneControl();
+      this._setWorldFocus(this.scenes[index].id);
     };
 
     // CP-4J: Scroll scrollStory container to target section
@@ -1255,6 +1263,64 @@
 
       if (prev) prev.disabled = cur === 0;
       if (next) next.disabled = cur === this.scenes.length - 1;
+    };
+
+
+    // CP-5A: Build world groups for each scene — init once, switch by visibility
+    ImmersiveApp.prototype._buildSceneWorlds = function () {
+      var self = this;
+      this.scenes.forEach(function (scene) {
+        var group = new THREE.Group();
+        group.userData.sceneId = scene.id;
+        group.userData.sceneIndex = self.scenes.indexOf(scene);
+        group.visible = false;
+        group.position.set(0, 0, 0);
+        self.sceneWorldGroups[scene.id] = group;
+        self.scene.add(group);
+      });
+    };
+
+    // CP-5A: Focus a scene world, dim all others
+    ImmersiveApp.prototype._setWorldFocus = function (activeSceneId) {
+      var self = this;
+      var isMobile = window.innerWidth < 600;
+      var rm = this.prefersReducedMotion;
+
+      Object.keys(this.sceneWorldGroups).forEach(function (id) {
+        var group = self.sceneWorldGroups[id];
+        var isActive = (id === activeSceneId);
+        group.visible = isActive || true; // keep all visible for cross-fade
+        group.traverse(function (obj) {
+          if (!obj.isMesh && !obj.isPoints) return;
+          var targetOpacity = isActive ? 1.0 : 0.18;
+          var targetScale = isActive ? (isMobile ? 1.08 : 1.0) : 0.92;
+          if (obj.material) {
+            if (obj.material.transparent) {
+              if (!rm) {
+                obj.material.opacity += (targetOpacity - obj.material.opacity) * 0.08;
+              } else {
+                obj.material.opacity = targetOpacity;
+              }
+            }
+            if (isActive) {
+              obj.material.emissiveIntensity = obj.material.emissiveIntensity || 0.2;
+              obj.material.emissiveIntensity += (1.0 - obj.material.emissiveIntensity) * 0.1;
+            } else {
+              if (obj.material.emissiveIntensity !== undefined) {
+                obj.material.emissiveIntensity += (0.15 - obj.material.emissiveIntensity) * 0.1;
+              }
+            }
+          }
+          if (!rm) {
+            obj.scale.x += (targetScale - obj.scale.x) * 0.06;
+            obj.scale.y += (targetScale - obj.scale.y) * 0.06;
+            obj.scale.z += (targetScale - obj.scale.z) * 0.06;
+          } else {
+            obj.scale.setScalar(targetScale);
+          }
+        });
+      });
+      this.activeWorldId = activeSceneId;
     };
 
     var launched = false;

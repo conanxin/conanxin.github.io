@@ -45,9 +45,10 @@
       <li><strong>↑ ↓</strong> keys also switch scenes if scrolling does not respond.</li>
       <li><strong>Sound</strong> button toggles ambient audio.</li>
       <li><strong>Back</strong> returns to the standard project page.</li>
+      <li>Each scene changes the 3D space, camera, and sound mood.</li>
     </ul>
     <div class="control-hint__cn">
-      滚轮 / Next Prev / ↑↓ 均可切换六幕 &middot; 右上角控制声音 &middot; 左上角返回
+      滚轮 / Next / ↑↓ 切换六幕 &middot; 每幕改变空间与声音氛围 &middot; 右上角控制声音 &middot; 左上角返回
     </div>
   </div>
 
@@ -155,6 +156,7 @@
   <script type="module">
     // Load data layer first (sets window.CP_IMMERSIVE_SCENES, window.CP_ImmersiveAudio)
     import('./scene-data.js');
+    import('./scene-layout.js');
     import('./audio-engine.js');
 
     // immersive.js self-launches via async IIFE; catch any top-level errors

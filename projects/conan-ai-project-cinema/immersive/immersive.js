@@ -260,12 +260,23 @@
       ground.receiveShadow = true;
       this.scene.add(ground);
 
-      // Grid
+      // Fog for atmospheric depth
+      this.scene.fog = new THREE.FogExp2(0x050810, 0.025);
+
+      // Grid (reduced visual weight, becomes spatial layer)
       var gridHelper = new THREE.GridHelper(30, 30, 0x1a2040, 0x0d1428);
+      gridHelper.material.transparent = true;
+      gridHelper.material.opacity = 0.35;
       this.scene.add(gridHelper);
 
-      // Particles
+      // Background silhouettes
+      this._buildBackgroundSilhouettes();
+
+      // Particles (midground depth)
       this._buildParticles();
+
+      // Foreground dust
+      this._buildForegroundDust();
 
       // Command desk (scene 1)
       this._buildCommandDesk();
@@ -275,6 +286,15 @@
 
       // Agent line (scene 3)
       this._buildAgentLine();
+
+      // Agent hub (scene 4)
+      this._buildAgentHub();
+
+      // Control tower (scene 5)
+      this._buildControlTower();
+
+      // Artifact archive (scene 6)
+      this._buildArtifactArchive();
 
       // Camera init position
       var sceneData = this.scenes[this.currentIndex];
@@ -426,6 +446,217 @@
       }
     };
 
+    // ── Scene 04: Agent Hub ──────────────────────────────────────
+    ImmersiveApp.prototype._buildAgentHub = function () {
+      var hubPos = new THREE.Vector3(0, 1.2, 0);
+      var agents = [
+        { x: -5, y: 0.8, z: -1 },
+        { x:5, y: 0.8, z: -1 },
+        { x: -3, y: 1.5, z:  3 },
+        { x:  3, y: 1.5, z:  3 }
+      ];
+
+      var hubGeo = new THREE.SphereGeometry(0.45, 16, 16);
+      var hubMat = new THREE.MeshStandardMaterial({
+        color: 0xf7c87a, emissive: 0xf7c87a, emissiveIntensity: 0.6,
+        roughness: 0.3, metalness: 0.5
+      });
+      var hubMesh = new THREE.Mesh(hubGeo, hubMat);
+      hubMesh.position.copy(hubPos);
+      this.scene.add(hubMesh);
+      this._addNodeMesh('agent-hub', hubMesh);
+
+      agents.forEach(function (ag, i) {
+        var nodeGeo = new THREE.SphereGeometry(0.22, 12, 12);
+        var nodeMat = new THREE.MeshStandardMaterial({
+          color: 0xf7c87a, emissive: 0xf7c87a, emissiveIntensity: 0.4, roughness: 0.4
+        });
+        var node = new THREE.Mesh(nodeGeo, nodeMat);
+        node.position.set(ag.x, ag.y, ag.z);
+        this.scene.add(node);
+        this._addNodeMesh('agent-node-' + i, node);
+
+        var linePoints = [
+          new THREE.Vector3(ag.x, ag.y, ag.z),
+          hubPos.clone()
+        ];
+        var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
+        var lineMat = new THREE.LineBasicMaterial({ color: 0xf7c87a, transparent: true, opacity: 0.25 });
+        this.scene.add(new THREE.Line(lineGeo, lineMat));
+      }, this);
+    };
+
+    // ── Scene 05: Control Tower ───────────────────────────────────
+    ImmersiveApp.prototype._buildControlTower = function () {
+      var towerGeo = new THREE.CylinderGeometry(0.5, 0.7, 4, 8);
+      var towerMat = new THREE.MeshStandardMaterial({
+        color: 0x1a1520, emissive: 0xf78c7a, emissiveIntensity: 0.15, roughness: 0.6
+      });
+      var tower = new THREE.Mesh(towerGeo, towerMat);
+      tower.position.set(0, 2, 0);
+      this.scene.add(tower);
+      this._addNodeMesh('tower-0', tower);
+
+      var antGeo = new THREE.CylinderGeometry(0.05, 0.05, 1.5, 6);
+      var antMat = new THREE.MeshStandardMaterial({
+        color: 0xf78c7a, emissive: 0xf78c7a, emissiveIntensity: 0.8, roughness: 0.3
+      });
+      var antenna = new THREE.Mesh(antGeo, antMat);
+      antenna.position.set(0, 4.75, 0);
+      this.scene.add(antenna);
+      this._addNodeMesh('tower-0', antenna);
+
+      // Radar rings
+      for (var r = 0; r < 3; r++) {
+        var radius = 1.5 + r * 1.2;
+        var ringGeo = new THREE.TorusGeometry(radius, 0.02, 6, 48);
+        var ringMat = new THREE.MeshStandardMaterial({
+          color: 0xf78c7a, emissive: 0xf78c7a,
+          emissiveIntensity: 0.5 - r * 0.12,
+          transparent: true, opacity: 0.7 - r * 0.15, roughness: 0.5
+        });
+        var ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.set(0, 0.5 + r * 0.8, 0);
+        ring.rotation.x = Math.PI / 2;
+        this.scene.add(ring);
+        this._addNodeMesh('tower-ring-' + r, ring);
+      }
+
+      // Constellation nodes
+      var constellations = [
+        { x: -4, y: 3, z: -2 }, { x: 4, y: 2, z: -3 },
+        { x: -3, y: 5, z:  1 }, { x: 3, y: 4, z:  2 },
+        { x:  0, y: 6, z: -4 }
+      ];
+      constellations.forEach(function (cp, i) {
+        var cnodeGeo = new THREE.SphereGeometry(0.12, 8, 8);
+        var cnodeMat = new THREE.MeshStandardMaterial({
+          color: 0xf78c7a, emissive: 0xf78c7a, emissiveIntensity: 0.7, roughness: 0.4
+        });
+        var cnode = new THREE.Mesh(cnodeGeo, cnodeMat);
+        cnode.position.set(cp.x, cp.y, cp.z);
+        this.scene.add(cnode);
+        this._addNodeMesh('constellation-' + i, cnode);
+
+        var linePoints = [
+          new THREE.Vector3(cp.x, cp.y, cp.z),
+          new THREE.Vector3(0, 4.75, 0)
+        ];
+        var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
+        var lineMat = new THREE.LineBasicMaterial({ color: 0xf78c7a, transparent: true, opacity: 0.15 });
+        this.scene.add(new THREE.Line(lineGeo, lineMat));
+      }, this);
+    };
+
+    // ── Scene 06: Artifact Archive ───────────────────────────────
+    ImmersiveApp.prototype._buildArtifactArchive = function () {
+      // Back wall
+      var wallGeo = new THREE.BoxGeometry(14, 8, 0.3);
+      var wallMat = new THREE.MeshStandardMaterial({
+        color: 0x0a1520, emissive: 0x7ac8f7, emissiveIntensity: 0.05, roughness: 0.9
+      });
+      var wall = new THREE.Mesh(wallGeo, wallMat);
+      wall.position.set(0, 4, -8);
+      this.scene.add(wall);
+      this._addNodeMesh('archive-0', wall);
+
+      // Shelf rows with glowing items
+      for (var row = 0; row < 4; row++) {
+        for (var col = 0; col < 5; col++) {
+          var shelfGeo = new THREE.BoxGeometry(0.6, 0.08, 0.4);
+          var shelfMat = new THREE.MeshStandardMaterial({
+            color: 0x0d1a2a, emissive: 0x7ac8f7, emissiveIntensity: 0.2,
+            roughness: 0.7, transparent: true, opacity: 0.8
+          });
+          var shelf = new THREE.Mesh(shelfGeo, shelfMat);
+          shelf.position.set(-3.6 + col * 1.8, 1.0 + row * 1.4, -7.5);
+          this.scene.add(shelf);
+          this._addNodeMesh('archive-shelf-' + row + '-' + col, shelf);
+
+          var itemGeo = new THREE.BoxGeometry(0.3, 0.25, 0.2);
+          var itemMat = new THREE.MeshStandardMaterial({
+            color: 0x7ac8f7, emissive: 0x7ac8f7, emissiveIntensity: 0.5, roughness: 0.3
+          });
+          var item = new THREE.Mesh(itemGeo, itemMat);
+          item.position.set(-3.6 + col * 1.8, 1.2 + row * 1.4, -7.5);
+          this.scene.add(item);
+          this._addNodeMesh('archive-item-' + row + '-' + col, item);
+        }
+      }
+
+      // Arch passage
+      var archGeo = new THREE.TorusGeometry(1.2, 0.1, 8, 24, Math.PI);
+      var archMat = new THREE.MeshStandardMaterial({
+        color: 0x7ac8f7, emissive: 0x7ac8f7, emissiveIntensity: 0.4, roughness: 0.4
+      });
+      var arch = new THREE.Mesh(archGeo, archMat);
+      arch.position.set(0, 2, -5);
+      arch.rotation.x = Math.PI;
+      this.scene.add(arch);
+      this._addNodeMesh('archive-arch', arch);
+
+      // Floor glow strip
+      var stripGeo = new THREE.PlaneGeometry(2, 8);
+      var stripMat = new THREE.MeshStandardMaterial({
+        color: 0x7ac8f7, emissive: 0x7ac8f7, emissiveIntensity: 0.3,
+        transparent: true, opacity: 0.4, side: THREE.DoubleSide
+      });
+      var strip = new THREE.Mesh(stripGeo, stripMat);
+      strip.position.set(0, 0.01, -5);
+      strip.rotation.x = -Math.PI / 2;
+      this.scene.add(strip);
+      this._addNodeMesh('archive-strip', strip);
+    };
+
+    // ── Foreground dust ───────────────────────────────────────────
+    ImmersiveApp.prototype._buildForegroundDust = function () {
+      var count = 80;
+      var positions = new Float32Array(count * 3);
+      var colors = new Float32Array(count * 3);
+      for (var i = 0; i < count; i++) {
+        positions[i * 3]     = (Math.random() - 0.5) * 16;
+        positions[i * 3 + 1] = Math.random() * 3;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+        var c = new THREE.Color().setHSL(0.58 + Math.random() * 0.15, 0.3, 0.7);
+        colors[i * 3]     = c.r;
+        colors[i * 3 + 1] = c.g;
+        colors[i * 3 + 2] = c.b;
+      }
+      var geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3));
+      var mat = new THREE.PointsMaterial({
+        size: 0.04, vertexColors: true, transparent: true, opacity: 0.5, sizeAttenuation: true
+      });
+      this.foregroundDust = new THREE.Points(geo, mat);
+      this.scene.add(this.foregroundDust);
+    };
+
+    // ── Background silhouettes ───────────────────────────────────
+    ImmersiveApp.prototype._buildBackgroundSilhouettes = function () {
+      var silMat = new THREE.MeshStandardMaterial({
+        color: 0x080c14, emissive: 0x102030, emissiveIntensity: 0.05,
+        roughness: 1.0, side: THREE.BackSide
+      });
+      var domeGeo = new THREE.SphereGeometry(20, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2);
+      var dome = new THREE.Mesh(domeGeo, silMat);
+      dome.position.set(0, -2, -12);
+      this.scene.add(dome);
+
+      var wallGeo = new THREE.BoxGeometry(0.5, 12, 24);
+      [-10, 10].forEach(function (x) {
+        var w = new THREE.Mesh(wallGeo, silMat);
+        w.position.set(x, 4, 0);
+        this.scene.add(w);
+      }, this);
+    };
+
+    // ── Helper: add node mesh to tracking ────────────────────────
+    ImmersiveApp.prototype._addNodeMesh = function (key, mesh) {
+      if (!this.sceneNodeMeshes[key]) this.sceneNodeMeshes[key] = [];
+      this.sceneNodeMeshes[key].push(mesh);
+    };
+
     // ── Scene switch ──────────────────────────────────────────────
     ImmersiveApp.prototype._gotoScene = function (index, animate) {
       if (index < 0 || index >= this.scenes.length) return;
@@ -460,13 +691,25 @@
       var startPos = this.camera.position.clone();
       var startTarget =
         this.camera.target ? this.camera.target.clone() : this.baseCameraTarget.clone();
-      var duration = 800;
+      // Cinematic duration: slightly longer for drama
+      var duration = this.prefersReducedMotion ? 400 : 1100;
       var start = performance.now();
+      // Store orbital angle for cinematic sweep
+      var startAngle = Math.atan2(startPos.x, startPos.z);
+      var endAngle   = Math.atan2(targetLook.x, targetLook.z);
+      // Slight angle delta for orbital feel (max ±0.15 rad)
+      var angleDelta = (endAngle - startAngle) * 0.08;
+      var radius = Math.sqrt(startPos.x * startPos.x + startPos.z * startPos.z);
 
       function tick(now) {
         var t = Math.min((now - start) / duration, 1);
-        var et = self._easeOutCubic(t);
+        var et = self._easeInOutCubic(t);
+        // Lerp position
         self.camera.position.lerpVectors(startPos, targetPos, et);
+        // Cinematic orbital offset (subtle sweep)
+        var sweep = Math.sin(et * Math.PI) * angleDelta * radius * 0.15;
+        self.camera.position.x += sweep;
+        // Lerp look target
         var look = new THREE.Vector3().lerpVectors(startTarget, targetLook, et);
         self.camera.lookAt(look);
         if (t < 1) requestAnimationFrame(tick);
@@ -842,6 +1085,10 @@
       return 1 - Math.pow(1 - t, 3);
     };
 
+    ImmersiveApp.prototype._easeInOutCubic = function (t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
     // ── Sound icon ──────────────────────────────────────────────
     ImmersiveApp.prototype._updateSoundIcon = function () {
       var el = document.getElementById('hud-sound');
@@ -877,6 +1124,9 @@
       // Particle drift
       if (this.particleSystem) {
         this.particleSystem.rotation.y += 0.0003;
+      }
+      if (this.foregroundDust) {
+        this.foregroundDust.rotation.y -= 0.0002;
       }
 
       // Entry fly-in

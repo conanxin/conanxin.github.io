@@ -602,3 +602,40 @@ Upgraded the immersive 3D/sound experience with cinematic entrance, scene transi
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4E*
+
+---
+
+## CP-4F: Immersive Experience QA
+
+**Phase:** CP-4F — 2026-06-09
+
+### Final QA for Immersive Route
+
+CP-4F is a QA and acceptance phase, not a feature development phase.
+
+### QA Result: Target Reached
+
+**Final score: 84/100**
+
+10-dimension scoring across: 3D spatial presence / cinematic camera / scroll-driven narrative / scene transition feel / object focus / sound mood / sound cue feedback / user control / performance / main page integration.
+
+**Status: 3D/Sound immersive target reached for static GitHub Pages implementation.**
+
+### Remaining Limits (Not Included)
+
+- Spline-level visual design
+- Fully modeled 3D room
+- Professional sound design
+- Advanced WebGL post-processing
+- PWA / installable
+- Mobile swipe gesture (future)
+
+### CP-4 Series Summary
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F
+
+CP-4 is a post-CP-3F extension line. Main page (CP-3E) remains stable and sealed.
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4F*

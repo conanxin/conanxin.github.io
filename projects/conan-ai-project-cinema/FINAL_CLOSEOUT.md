@@ -163,3 +163,51 @@ CP-4C 将 immersive route 接入主页面入口。主页面新增 Immersive Entr
 ---
 
 *Final closeout update by 辛 🔮 — Phase CP-4C*
+
+---
+
+## CP-4 Immersive Extension Status
+
+**Phase:** CP-4A ~ CP-4F — 2026-06-09
+
+### CP-4 Series: Status — SEALED ✅
+
+The CP-4 immersive 3D/sound extension has reached its acceptance threshold (84/100) and is hereby sealed.
+
+### What CP-4 Delivered
+
+| Feature | Status |
+|---------|--------|
+| 3D scene with 6 navigable scenes | ✅ |
+| Scroll-driven continuous camera path | ✅ |
+| Scene-based spatial audio (6 moods) | ✅ |
+| Explicit sound consent (Enter With/Without Sound + toggle) | ✅ |
+| Entrance camera fly-in | ✅ |
+| Scene transition visual cues | ✅ |
+| Object focus / spotlight on active scene | ✅ |
+| Sound cues on scene change | ✅ |
+| Performance guard for mobile/low-power devices | ✅ |
+| Visibility pause (audio suspend on tab switch) | ✅ |
+| Reduced motion support | ✅ |
+| WebGL fallback | ✅ |
+| Main page immersive entry | ✅ |
+| No autoplay, user always in control | ✅ |
+
+### Remaining Limits (Out of Scope)
+
+- Spline-level visual design
+- Fully modeled 3D room
+- Professional sound design
+- Advanced WebGL post-processing
+- PWA / installable
+- Mobile swipe gesture
+
+### Decision
+
+**CP-4 series: SEALED ✅ — 3D/Sound immersive target reached.**
+
+Main page (CP-3E) remains stable and sealed. Immersive route is a separate independent extension.
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-4F*

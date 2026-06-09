@@ -318,3 +318,44 @@ Plays only when `soundEnabled && !muted && started`. Volume 0.04 (very low).
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4E*
+
+---
+
+## CP-4F: Immersive Experience QA
+
+**Phase:** CP-4F — 2026-06-09
+
+### Final Acceptance
+
+The immersive route was evaluated across 10 dimensions:
+
+| Dimension | Score |
+|-----------|-------|
+| 3D Spatial Presence | 8/10 |
+| Cinematic Camera | 8/10 |
+| Scroll-driven Narrative | 9/10 |
+| Scene Transition Feel | 7/10 |
+| Object Focus / Spotlight | 7/10 |
+| Sound Mood | 8/10 |
+| Sound Cue Feedback | 7/10 |
+| User Control / Sound Consent | 10/10 |
+| Performance / Fallback | 8/10 |
+| Integration with Main Page | 8/10 |
+
+**Final score: 84/100**
+
+**Status: 3D/Sound immersive target reached for static GitHub Pages implementation.**
+
+### Remaining Limits
+
+This implementation does not include: Spline-level visual design, fully modeled 3D room, professional sound design, advanced WebGL post-processing, PWA, or mobile swipe gesture. These are out of scope for the current static hosting environment.
+
+### CP-4 Series Seal
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F
+
+CP-4 is sealed as a post-CP-3F extension line. The immersive route is independent and does not affect main page stability.
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4F*

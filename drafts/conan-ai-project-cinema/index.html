@@ -13,7 +13,7 @@
   <div class="draft-badge">
     <span class="badge-tag">Draft</span>
     <span class="badge-sep">·</span>
-    <span class="badge-phase">Phase CP-1A</span>
+    <span class="badge-phase">Phase CP-1B</span>
   </div>
 
   <!-- Draft Watermark -->
@@ -110,10 +110,10 @@
             <span class="tb-title">bash — ai-agent</span>
           </div>
           <div class="terminal-body">
-            <div class="tb-line"><span class="tb-prompt">$</span> ai research --query "attention mechanism"</div>
-            <div class="tb-line"><span class="tb-comment">→ fetching 3 papers...</span></div>
-            <div class="tb-line"><span class="tb-comment">→ summarizing...</span></div>
-            <div class="tb-line"><span class="tb-success">✓ done. 2 outputs generated.</span></div>
+            <div class="tb-line"><span class="tb-prompt">$</span> <span class="tb-sample">ai research --query "attention mechanism"</span></div>
+            <div class="tb-line"><span class="tb-sample">→ fetching 3 papers...</span></div>
+            <div class="tb-line"><span class="tb-sample">→ summarizing...</span></div>
+            <div class="tb-line"><span class="tb-sample">✓ done. 2 outputs generated.</span></div>
           </div>
         </div>
         <div class="terminal-window">
@@ -124,9 +124,9 @@
             <span class="tb-title">GitHub — conanxin</span>
           </div>
           <div class="terminal-body">
-            <div class="tb-line"><span class="tb-hash">a3f9c21</span> feat: add phase report for ASI exec</div>
-            <div class="tb-line"><span class="tb-hash">b7e1d44</span> docs: update memory layer notes</div>
-            <div class="tb-line"><span class="tb-hash">c2a8f09</span> style: refine control tower UI</div>
+            <div class="tb-line"><span class="tb-hash">db269fc</span> <span class="tb-sample">feat: add CP-1A draft prototype</span></div>
+            <div class="tb-line"><span class="tb-hash">ae26823</span> <span class="tb-sample">docs: update project index</span></div>
+            <div class="tb-line"><span class="tb-hash">f14c390</span> <span class="tb-sample">refactor: consolidate how2ai phases</span></div>
           </div>
         </div>
       </div>
@@ -147,53 +147,77 @@
         </p>
       </div>
       <div class="artifact-grid" id="artifactGrid">
-        <div class="project-card" data-desc="多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原">
+        <!-- Real shipped project -->
+        <a class="project-card" data-desc="如何用 AI 做几乎任何事 · 中文版。阶段式 AI 学习路径，涵盖研究、编码、写作、项目管理。实操性指南。" href="https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/">
           <div class="pc-header">
-            <span class="pc-tag">BookTrans</span>
-            <span class="pc-status status-active">active</span>
+            <span class="pc-tag">how-to-ai-almost-anything-cn</span>
+            <span class="pc-status status-active">shipped</span>
           </div>
-          <div class="pc-title">书籍翻译系统</div>
-          <div class="pc-desc">多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原</div>
-        </div>
-        <div class="project-card" data-desc="把论文核心思想用卡通化图解重新讲解，降低阅读门槛">
-          <div class="pc-header">
-            <span class="pc-tag">ExplainLens</span>
-            <span class="pc-status status-active">active</span>
-          </div>
-          <div class="pc-title">论文卡通化讲解</div>
-          <div class="pc-desc">把论文核心思想用卡通化图解重新讲解，降低阅读门槛</div>
-        </div>
-        <div class="project-card" data-desc="对冲基金 13F 文件 + 新闻事实核查，输出结构化投资分析">
-          <div class="pc-header">
-            <span class="pc-tag">ClaimLens</span>
-            <span class="pc-status status-active">active</span>
-          </div>
-          <div class="pc-title">事实核查系统</div>
-          <div class="pc-desc">对冲基金 13F 文件 + 新闻事实核查，输出结构化投资分析</div>
-        </div>
-        <div class="project-card" data-desc="投资学习笔记页面，持续更新市场研究和学习方法论">
-          <div class="pc-header">
-            <span class="pc-tag">invest-learning</span>
-            <span class="pc-status status-standby">standby</span>
-          </div>
-          <div class="pc-title">投资学习页</div>
-          <div class="pc-desc">投资学习笔记页面，持续更新市场研究和学习方法论</div>
-        </div>
-        <div class="project-card" data-desc="WWDC 2026 主题演讲总结页，卡片式结构化呈现">
+          <div class="pc-title">How to AI Almost Anything</div>
+          <div class="pc-desc">阶段式 AI 学习路径，涵盖研究、编码、写作、项目管理。实操性指南。</div>
+        </a>
+        <!-- Real shipped project -->
+        <a class="project-card" data-desc="WWDC 2026 主题演讲总结页。卡片式结构化呈现，覆盖 Apple 全新框架和 API 更新。" href="https://conanxin.github.io/projects/wwdc26-keynote/">
           <div class="pc-header">
             <span class="pc-tag">wwdc26-keynote</span>
-            <span class="pc-status status-done">done</span>
+            <span class="pc-status status-active">shipped</span>
           </div>
           <div class="pc-title">WWDC26 发布会总结</div>
-          <div class="pc-desc">WWDC 2026 主题演讲总结页，卡片式结构化呈现</div>
-        </div>
-        <div class="project-card" data-desc="个人 GitHub Pages 档案馆，存放所有个人项目、笔记和实验记录">
+          <div class="pc-desc">WWDC 2026 主题演讲总结页，卡片式结构化呈现，覆盖 Apple 全新框架和 API 更新。</div>
+        </a>
+        <!-- Real shipped project -->
+        <a class="project-card" data-desc="个人数字花园。知识不是终点，而是持续生长的有机体。记录 AI 研究、技术探索和思考过程。" href="https://conanxin.github.io/">
           <div class="pc-header">
             <span class="pc-tag">github-pages</span>
+            <span class="pc-status status-active">shipped</span>
+          </div>
+          <div class="pc-title">数字花园 / GitHub Pages</div>
+          <div class="pc-desc">个人数字花园。知识不是终点，而是持续生长的有机体。</div>
+        </a>
+        <!-- Real artifact -->
+        <a class="project-card" data-desc="HERMES lofi skill — 让 Hermes 在轻量环境中运行的任务封装技能。" href="https://conanxin.github.io/projects/hermes-lofi-skill/">
+          <div class="pc-header">
+            <span class="pc-tag">hermes-lofi-skill</span>
             <span class="pc-status status-active">active</span>
           </div>
-          <div class="pc-title">GitHub Pages 档案馆</div>
-          <div class="pc-desc">个人 GitHub Pages 档案馆，存放所有个人项目、笔记和实验记录</div>
+          <div class="pc-title">HERMES Lofi Skill</div>
+          <div class="pc-desc">让 Hermes 在轻量环境中运行的任务封装技能。</div>
+        </a>
+        <!-- Real artifact -->
+        <a class="project-card" data-desc="UAP 文件研究档案。包含原始研究材料、分析报告和结构化解读。" href="https://conanxin.github.io/projects/uap-files/">
+          <div class="pc-header">
+            <span class="pc-tag">uap-files</span>
+            <span class="pc-status status-active">active</span>
+          </div>
+          <div class="pc-title">UAP 文件研究档案</div>
+          <div class="pc-desc">UAP 文件研究档案，包含原始研究材料、分析报告和结构化解读。</div>
+        </a>
+        <!-- Real shipped project -->
+        <a class="project-card" data-desc="Internet Builder Archive · 互联网建设者的方法论档案，含创始人精神、技术创业历史等。" href="https://conanxin.github.io/projects/internet-builder-archive/">
+          <div class="pc-header">
+            <span class="pc-tag">internet-builder-archive</span>
+            <span class="pc-status status-active">shipped</span>
+          </div>
+          <div class="pc-title">Internet Builder Archive</div>
+          <div class="pc-desc">互联网建设者的方法论档案，含创始人精神、技术创业历史等。</div>
+        </a>
+        <!-- Concept card -->
+        <div class="project-card concept-card" data-desc="多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原。目前处于概念阶段，待启动。">
+          <div class="pc-header">
+            <span class="pc-tag">BookTrans</span>
+            <span class="pc-status status-concept">concept</span>
+          </div>
+          <div class="pc-title">书籍翻译系统</div>
+          <div class="pc-desc">多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原。</div>
+        </div>
+        <!-- Concept card -->
+        <div class="project-card concept-card" data-desc="把论文核心思想用卡通化图解重新讲解，降低阅读门槛。概念验证中。">
+          <div class="pc-header">
+            <span class="pc-tag">ExplainLens</span>
+            <span class="pc-status status-concept">concept</span>
+          </div>
+          <div class="pc-title">论文卡通化讲解</div>
+          <div class="pc-desc">把论文核心思想用卡通化图解重新讲解，降低阅读门槛。</div>
         </div>
       </div>
     </div>
@@ -219,37 +243,37 @@
         <div class="agent-node">
           <div class="an-avatar">🦊</div>
           <div class="an-name">OpenClaw</div>
+          <div class="an-desc">本地/云端 Agent 执行 · 项目推进 · 文件修改 · 阶段验收</div>
           <div class="an-status">
-            <span class="status-dot dot-green"></span> PASS
+            <span class="status-dot dot-green"></span> active
           </div>
-          <div class="an-hash">c2a8f09</div>
         </div>
         <div class="agent-arrow">→</div>
         <div class="agent-node">
           <div class="an-avatar">🦊</div>
           <div class="an-name">Hermes</div>
+          <div class="an-desc">项目编排 · 报告沉淀 · 工作区管理 · GitHub Pages 发布辅助</div>
           <div class="an-status">
-            <span class="status-dot dot-green"></span> PASS
+            <span class="status-dot dot-green"></span> active
           </div>
-          <div class="an-hash">b7e1d44</div>
         </div>
         <div class="agent-arrow">→</div>
         <div class="agent-node">
           <div class="an-avatar">🤖</div>
           <div class="an-name">Codex</div>
+          <div class="an-desc">代码级修改 · 测试 · 构建 · 局部实现 · 技术方案落地</div>
           <div class="an-status">
-            <span class="status-dot dot-green"></span> PASS
+            <span class="status-dot dot-green"></span> active
           </div>
-          <div class="an-hash">a3f9c21</div>
         </div>
         <div class="agent-arrow">→</div>
         <div class="agent-node">
           <div class="an-avatar">📋</div>
           <div class="an-name">Phase Report</div>
+          <div class="an-desc">用人能理解的语言复述系统当前状态 · 设计理由 · 修改影响 · 验证结果</div>
           <div class="an-status">
-            <span class="status-dot dot-yellow"></span> REVIEW
+            <span class="status-dot dot-yellow"></span> review
           </div>
-          <div class="an-hash">README</div>
         </div>
       </div>
     </div>
@@ -274,50 +298,54 @@
       </div>
       <div class="control-tower">
         <div class="tower-header">
-          <span class="tower-title">VPS Control Tower</span>
+          <span class="tower-title">Personal AI Control Tower</span>
           <span class="tower-status">
-            <span class="status-dot dot-green"></span> All systems nominal
+            <span class="status-dot dot-yellow"></span> Concept Preview — Not Live Data
           </span>
         </div>
         <div class="tower-metrics">
           <div class="tm-item">
-            <div class="tm-label">Uptime</div>
-            <div class="tm-value">99.7%</div>
-          </div>
-          <div class="tm-item">
             <div class="tm-label">Projects</div>
-            <div class="tm-value">26</div>
+            <div class="tm-value tm-sample">~26</div>
+            <div class="tm-note">concept count</div>
           </div>
           <div class="tm-item">
-            <div class="tm-label">Events Today</div>
-            <div class="tm-value">3</div>
+            <div class="tm-label">Articles</div>
+            <div class="tm-value tm-sample">~25</div>
+            <div class="tm-note">in archive</div>
           </div>
           <div class="tm-item">
-            <div class="tm-label">Health</div>
-            <div class="tm-value tm-ok">OK</div>
+            <div class="tm-label">Research</div>
+            <div class="tm-value tm-sample">~30</div>
+            <div class="tm-note">notes &amp; reports</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Systems</div>
+            <div class="tm-value tm-sample">6</div>
+            <div class="tm-note">concept signals</div>
           </div>
         </div>
         <div class="tower-log">
-          <div class="log-entry log-info">
-            <span class="log-time">06-09 08:00</span>
-            <span class="log-msg">Health check: all services up</span>
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Project system concept preview</span>
           </div>
-          <div class="log-entry log-info">
-            <span class="log-time">06-09 09:14</span>
-            <span class="log-msg">GitHub Pages sync: success</span>
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Reading + translation pipeline</span>
           </div>
-          <div class="log-entry log-warn">
-            <span class="log-time">06-09 10:30</span>
-            <span class="log-msg">Memory layer backup: completed</span>
+          <div class="log-entry log-sample">
+            <span class="log-time">sample</span>
+            <span class="log-msg">Example signal — Agent execution + VPS monitoring</span>
           </div>
         </div>
         <div class="constellation" id="constellation">
-          <div class="const-node" data-label="BookTrans" style="--cx:20%;--cy:40%"></div>
-          <div class="const-node" data-label="ExplainLens" style="--cx:35%;--cy:65%"></div>
-          <div class="const-node" data-label="ClaimLens" style="--cx:50%;--cy:30%"></div>
-          <div class="const-node" data-label="GitHub Pages" style="--cx:65%;--cy:55%"></div>
-          <div class="const-node" data-label="OpenClaw" style="--cx:80%;--cy:35%"></div>
-          <div class="const-node" data-label="VPS Monitor" style="--cx:50%;--cy:75%"></div>
+          <div class="const-node" data-label="how2ai" style="--cx:20%;--cy:40%"></div>
+          <div class="const-node" data-label="hermes-lofi" style="--cx:35%;--cy:65%"></div>
+          <div class="const-node" data-label="internet-builder" style="--cx:50%;--cy:30%"></div>
+          <div class="const-node" data-label="uap-files" style="--cx:65%;--cy:55%"></div>
+          <div class="const-node" data-label="github-pages" style="--cx:80%;--cy:35%"></div>
+          <div class="const-node" data-label="digital-garden" style="--cx:50%;--cy:75%"></div>
           <svg class="const-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
             <line x1="20" y1="40" x2="35" y2="65" />
             <line x1="35" y1="65" x2="50" y2="30" />
@@ -331,20 +359,101 @@
     </div>
   </section>
 
-  <!-- ===================== SCENE 06 ===================== -->
+  <!-- ===================== SCENE 06 — Artifact Grid ===================== -->
   <section class="scene" id="scene-06">
     <div class="scene-inner">
       <div class="scene-number">06</div>
       <div class="scene-text">
-        <h2 class="scene-heading">Archive Entrance</h2>
+        <h2 class="scene-heading">Artifact Archive</h2>
         <p class="scene-body-cn">
-          这里不是一份简历。<br>
-          这是一个持续生长的个人 AI 项目档案馆。
+          这里不是一份简历。这是一个持续生长的个人 AI 项目档案馆。
         </p>
         <p class="scene-body-en">
-          This is not a résumé. It's a living archive of personal AI projects.
+          Not a résumé. A living archive — where each artifact has a home.
         </p>
       </div>
+
+      <!-- Artifact Type Filter (visual only in CP-1B) -->
+      <div class="artifact-type-bar">
+        <span class="atb-label">Artifact Types:</span>
+        <span class="atb-tag atb-active">All</span>
+        <span class="atb-tag">Report</span>
+        <span class="atb-tag">Page</span>
+        <span class="atb-tag">Tool</span>
+        <span class="atb-tag">Article</span>
+        <span class="atb-tag">Design</span>
+      </div>
+
+      <!-- Real artifact cards -->
+      <div class="artifact-grid artifact-archive-grid">
+
+        <a class="artifact-card" href="https://conanxin.github.io/projects/how-to-ai-almost-anything-cn/reports/">
+          <div class="ac-type"><span class="ac-type-tag">Report</span></div>
+          <div class="ac-title">How2AI Phase Reports</div>
+          <div class="ac-source">how-to-ai-almost-anything-cn</div>
+          <div class="ac-desc">每个阶段的执行记录、设计决策和验证结果文档。</div>
+          <div class="ac-status">active · multi-phase</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/projects/internet-builder-archive/guide.html">
+          <div class="ac-type"><span class="ac-type-tag">Page</span></div>
+          <div class="ac-title">Internet Builder Guide</div>
+          <div class="ac-source">internet-builder-archive</div>
+          <div class="ac-desc">互联网建设者的方法论指南，结构化呈现核心概念。</div>
+          <div class="ac-status">shipped</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/articles/ai-makes-coding-easier.md">
+          <div class="ac-type"><span class="ac-type-tag">Article</span></div>
+          <div class="ac-title">AI Makes Coding Easier</div>
+          <div class="ac-source">articles/</div>
+          <div class="ac-desc">关于 AI 如何降低编程门槛的深度分析文章。</div>
+          <div class="ac-status">published</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/research/agent-reach-setup-summary.md">
+          <div class="ac-type"><span class="ac-type-tag">Report</span></div>
+          <div class="ac-title">Agent Reach Setup Summary</div>
+          <div class="ac-source">research/</div>
+          <div class="ac-desc">Agent Reach 框架的搭建过程记录和配置指南。</div>
+          <div class="ac-status">published</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/projects/hermes-lofi-skill/">
+          <div class="ac-type"><span class="ac-type-tag">Tool</span></div>
+          <div class="ac-title">HERMES Lofi Skill</div>
+          <div class="ac-source">hermes-lofi-skill</div>
+          <div class="ac-desc">轻量环境下的 Hermes 任务封装技能，零依赖运行。</div>
+          <div class="ac-status">active</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/projects/uap-files/">
+          <div class="ac-type"><span class="ac-type-tag">Archive</span></div>
+          <div class="ac-title">UAP Files Archive</div>
+          <div class="ac-source">uap-files</div>
+          <div class="ac-desc">UAP 研究档案，含原始材料、分析报告和结构化解读。</div>
+          <div class="ac-status">active</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/articles/personal-ai-ecosystem-2030-vision.md">
+          <div class="ac-type"><span class="ac-type-tag">Article</span></div>
+          <div class="ac-title">Personal AI Ecosystem 2030</div>
+          <div class="ac-source">articles/</div>
+          <div class="ac-desc">对未来个人 AI 生态系统的愿景描述和能力边界分析。</div>
+          <div class="ac-status">published</div>
+        </a>
+
+        <a class="artifact-card" href="https://conanxin.github.io/research/autoresearch-practical-application-guide.md">
+          <div class="ac-type"><span class="ac-type-tag">Report</span></div>
+          <div class="ac-title">AutoResearch Practical Guide</div>
+          <div class="ac-source">research/</div>
+          <div class="ac-desc">AutoResearch 框架的实操应用指南和案例分析。</div>
+          <div class="ac-status">published</div>
+        </a>
+
+      </div>
+
+      <!-- CTA Grid -->
       <div class="cta-grid">
         <a href="https://conanxin.github.io/projects/" class="cta-card">
           <div class="cta-icon">📁</div>
@@ -371,8 +480,8 @@
     <div class="credits-inner">
       <p class="credit-line">Designed by Conan Xin</p>
       <p class="credit-line">Built with Agents</p>
-      <p class="credit-line credit-phase">Draft Phase CP-1A</p>
-      <p class="credit-line credit-note">Noindex Review Prototype</p>
+      <p class="credit-line credit-phase">Draft Phase CP-1B · Artifact Upgrade</p>
+      <p class="credit-line credit-note">Noindex Review Prototype · Not a public release</p>
     </div>
   </footer>
 

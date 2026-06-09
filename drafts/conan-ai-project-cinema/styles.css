@@ -1,5 +1,5 @@
 /* ================================
-   Conan AI Project Cinema — CP-1A
+   Conan AI Project Cinema — CP-1B
    Visual: Late-night research lab
    + AI OS + project screening room
    ================================ */
@@ -377,6 +377,11 @@ body {
   font-size: 0.72rem;
   margin-right: 0.5rem;
 }
+.tb-sample {
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.7;
+}
 
 /* Scene 03 — Project Grid */
 .artifact-grid {
@@ -394,6 +399,16 @@ body {
   cursor: pointer;
   transition: border-color 0.3s, background 0.3s, transform 0.3s;
   position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.project-card.concept-card {
+  opacity: 0.65;
+  border-style: dashed;
+}
+.project-card.concept-card:hover {
+  opacity: 0.85;
 }
 
 .project-card:hover {
@@ -441,6 +456,7 @@ body {
 .status-active { color: var(--status-green); background: rgba(126, 232, 160, 0.1); border: 1px solid rgba(126, 232, 160, 0.2); }
 .status-standby { color: var(--terminal-yellow); background: rgba(247, 224, 126, 0.1); border: 1px solid rgba(247, 224, 126, 0.2); }
 .status-done { color: var(--text-muted); background: rgba(90, 98, 117, 0.2); border: 1px solid var(--border); }
+.status-concept { color: var(--text-muted); background: rgba(90, 98, 117, 0.15); border: 1px solid var(--border); border-style: dashed; }
 
 .pc-title {
   font-size: 1rem;
@@ -511,6 +527,14 @@ body {
 .dot-yellow { background: var(--status-yellow); box-shadow: 0 0 4px var(--status-yellow); }
 .dot-red { background: var(--status-red); box-shadow: 0 0 4px var(--status-red); }
 
+.an-desc {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
 .an-hash {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -586,6 +610,16 @@ body {
   font-size: 1rem;
   padding-top: 0.2rem;
 }
+.tm-sample {
+  color: var(--text-secondary) !important;
+  font-size: 1.2rem;
+}
+.tm-note {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
 
 .tower-log {
   padding: 1rem 1.2rem;
@@ -603,6 +637,8 @@ body {
 .log-time { color: var(--text-muted); min-width: 80px; }
 .log-msg { color: var(--text-secondary); }
 .log-warn .log-msg { color: var(--terminal-yellow); }
+.log-sample .log-time { color: var(--terminal-yellow); font-style: italic; }
+.log-sample .log-msg { color: var(--text-muted); font-style: italic; }
 
 /* Constellation */
 .constellation {
@@ -694,6 +730,90 @@ body {
   letter-spacing: 0.04em;
 }
 
+/* --- Artifact Archive Grid (Scene 06) --- */
+.artifact-type-bar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.atb-label { color: var(--text-muted); }
+.atb-tag {
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  cursor: default;
+}
+.atb-tag.atb-active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.artifact-archive-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.artifact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.artifact-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.ac-type { margin-bottom: 0.2rem; }
+.ac-type-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ac-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.ac-source {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent);
+}
+.ac-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+.ac-status {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 0.4rem;
+  margin-top: 0.2rem;
+}
+
 /* --- Credits --- */
 .credits {
   padding: 4rem clamp(1.5rem, 5vw, 6rem);
@@ -759,4 +879,26 @@ body {
   .agent-arrow { text-align: center; padding: 0.3rem 0; transform: rotate(90deg); }
   .tower-metrics { grid-template-columns: repeat(2, 1fr); }
   .draft-badge { font-size: 0.62rem; right: 1rem; }
+}
+
+/* --- 375px Mobile Check --- */
+@media (max-width: 400px) {
+  .cta-grid { grid-template-columns: repeat(2, 1fr); }
+  .artifact-archive-grid { grid-template-columns: 1fr; }
+  .artifact-grid { grid-template-columns: 1fr; }
+  .scene-terminals { grid-template-columns: 1fr; }
+  .scene-artifacts { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Accessibility: Focus Visible --- */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- Accessibility: Increased touch targets on mobile --- */
+@media (max-width: 768px) {
+  .project-card, .artifact-card, .cta-card, .agent-node {
+    min-height: 44px;
+  }
 }

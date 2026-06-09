@@ -268,3 +268,53 @@ Both run independently.
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4D (updated)*
+
+---
+
+## CP-4E: Immersive Scene Polish and Sound Cues
+
+**Phase:** CP-4E — 2026-06-09
+
+### What's New
+
+#### Entrance Fly-in
+
+When the user clicks Enter Immersive Mode or Enter Without Sound:
+1. Camera starts at `baseCameraPos + (0, +3, +8)` offset
+2. Animation loop uses `easeOutCubic` to interpolate camera to target over 1600ms
+3. During fly-in, animation loop returns early (skipping continuous/section camera)
+4. Skipped entirely when `prefers-reduced-motion: reduce`
+
+#### Scene Transition Visual Cue
+
+- Fixed overlay (`<div class="scene-cue" id="scene-cue">`) at top-center
+- `_triggerSceneCue(index, sceneData)` called on every scene change
+- Shows "Scene 01 · Complex Ideas" label
+- CSS: opacity 0→1 on `.cue-visible` class, auto-hides after 1.2s
+- Reduced motion: just briefly shows then hides after 0.2s
+
+#### Scene Object Focus / Spotlight
+
+- `sceneNodeMeshes` maps `sceneIndex → [mesh, ring]`
+- `_updateObjectFocus(activeIndex)` sets active node: scale 1.25x, emissiveIntensity 1.0
+- Inactive nodes: scale 1.0, emissiveIntensity 0.2
+- Skipped in reduced motion
+
+#### Sound Cue Polish
+
+`playSceneCue(mood)` in audio-engine.js plays distinct short sounds per mood:
+
+| Mood | Sound Character | Duration |
+|------|----------------|----------|
+| ideas | Soft paper-like double click | ~120ms |
+| chat | Short digital blip | ~80ms |
+| artifacts | Warm chime (C-E-G triad) | ~200ms |
+| agents | Short tick sequence (3 ticks) | ~150ms |
+| tower | Low pulse (80Hz + 60Hz) | ~250ms |
+| archive | Airy open tone + noise texture | ~180ms |
+
+Plays only when `soundEnabled && !muted && started`. Volume 0.04 (very low).
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4E*

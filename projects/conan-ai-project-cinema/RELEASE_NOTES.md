@@ -568,3 +568,37 @@ After initial commit, the following were added to CP-4D:
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4D update*
+
+---
+
+## CP-4E: Immersive Scene Polish and Sound Cues
+
+**Phase:** CP-4E — 2026-06-09
+
+### Immersive Route Gets Polish and Sound Cues
+
+Upgraded the immersive 3D/sound experience with cinematic entrance, scene transitions, and audio feedback.
+
+### What's New
+
+- **Entrance Camera Fly-in** — Camera starts offset (z+8, y+3) and eases to scene position over 1600ms using easeOutCubic. Skipped in reduced motion.
+- **Scene Transition Visual Cue** — Fixed overlay at top-center flashes "Scene 01 · Complex Ideas" on scene change, auto-hides after 1.2s (0.2s in reduced motion).
+- **Scene Object Focus / Spotlight** — Active scene sphere+ring scales to 1.25x and emissiveIntensity=1.0; other nodes dim to 0.2. Skipped in reduced motion.
+- **Sound Cue Polish** — Short 120-300ms distinct sounds per mood (paper click for ideas, digital blip for chat, warm chime for artifacts, tick sequence for agents, low pulse for tower, airy tone for archive). Plays only when sound enabled and not muted.
+- **All features respect reduced motion** — Fly-in disabled, scale animation disabled, cue shows briefly then disappears.
+
+### No New Framework
+
+- Pure Three.js + Web Audio API + Vanilla JS
+- No build step
+- No autoplay sound
+
+### Current Status
+
+- **Immersive route:** CP-4E active
+- **Main page:** CP-4C entry (stable)
+- **Phase:** CP-4E Immersive Scene Polish and Sound Cues
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4E*

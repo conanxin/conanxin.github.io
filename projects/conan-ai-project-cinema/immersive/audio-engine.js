@@ -248,6 +248,53 @@
     this._osc(260, 'triangle', 0.015, 6);
   };
 
+  // ── CP-4E: Scene transition cues — short, distinct sounds ─────
+  // Only plays when sound is enabled and not muted. Volume very low.
+  AudioEngine.prototype.playSceneCue = function (mood) {
+    if (!this.ctx || !this.started || this.muted) return;
+    var t = this.ctx.currentTime;
+    var vol = 0.04; // very low volume
+    var duration = 0.12;
+    switch (mood) {
+      case 'ideas':
+        // Soft paper-like click
+        this._osc(800, 'sine', vol, 1, t, duration);
+        this._osc(600, 'sine', vol * 0.5, 1, t + 0.03, duration * 0.5);
+        break;
+      case 'chat':
+        // Short digital blip
+        this._osc(1200, 'square', vol * 0.6, 1, t, 0.08);
+        this._osc(900, 'sine', vol * 0.4, 1, t + 0.06, 0.06);
+        break;
+      case 'artifacts':
+        // Warm chime
+        this._osc(523, 'sine', vol, 1, t, 0.2);
+        this._osc(659, 'sine', vol * 0.6, 1, t + 0.08, 0.15);
+        this._osc(784, 'sine', vol * 0.4, 1, t + 0.15, 0.12);
+        break;
+      case 'agents':
+        // Short tick sequence
+        this._osc(400, 'square', vol * 0.5, 1, t, 0.05);
+        this._osc(600, 'square', vol * 0.4, 1, t + 0.08, 0.05);
+        this._osc(800, 'square', vol * 0.3, 1, t + 0.15, 0.05);
+        break;
+      case 'tower':
+        // Low pulse
+        this._osc(80, 'sine', vol * 1.5, 1, t, 0.25);
+        this._osc(60, 'sine', vol, 1, t + 0.05, 0.2);
+        break;
+      case 'archive':
+        // Airy open tone
+        this._osc(330, 'sine', vol, 1, t, 0.18);
+        this._osc(495, 'sine', vol * 0.5, 1, t + 0.05, 0.15);
+        this._noise(0.02, 1, t, 0.15); // brief noise texture
+        break;
+      default:
+        // Generic soft click
+        this._osc(660, 'sine', vol, 1, t, 0.1);
+    }
+  };
+
   // ── Expose globally ────────────────────────────────────────────
   window.CP_ImmersiveAudio = AudioEngine;
 

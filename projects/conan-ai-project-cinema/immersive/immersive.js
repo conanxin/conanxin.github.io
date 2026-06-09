@@ -43,6 +43,15 @@ import * as THREE from 'three';
     // CP-4D: Pause/resume for performance
     this.isPaused = false;
 
+    // CP-4E: Entrance fly-in
+    this.entryFlyInActive = false;
+    this.entryFlyInStart = 0;
+    this.entryFlyInDuration = 1600;
+    this.entryFlyInFrom = null;
+
+    // CP-4E: Scene object focus
+    this.sceneNodeMeshes = {}; // sceneIndex -> [meshes]
+
     this.scrollObserver = null;
     this.isScrolling = false;
   };
@@ -218,6 +227,10 @@ import * as THREE from 'three';
       ring.position.copy(mesh.position);
       self.scene.add(ring);
       self.sceneRings.push(ring);
+
+      // CP-4E: Index scene nodes by scene index for focus/spotlight
+      if (!self.sceneNodeMeshes[i]) self.sceneNodeMeshes[i] = [];
+      self.sceneNodeMeshes[i].push(mesh, ring);
     });
 
     // Floating artifact cards
@@ -415,7 +428,17 @@ import * as THREE from 'three';
     // Audio mood
     if (this.audio && this.audio.started) {
       this.audio.setMood(sceneData.audioMood);
+      // CP-4E: Play scene transition cue
+      if (this.soundEnabled && !this.muted) {
+        this.audio.playSceneCue(sceneData.audioMood);
+      }
     }
+
+    // CP-4E: Scene object focus
+    this._updateObjectFocus(index);
+
+    // CP-4E: Scene transition visual cue
+    this._triggerSceneCue(index, sceneData);
   };
 
   ImmersiveApp.prototype._tweenCamera = function (targetPos, targetLook) {
@@ -560,7 +583,17 @@ import * as THREE from 'three';
     // Audio mood
     if (this.audio && this.audio.started) {
       this.audio.setMood(sceneData.audioMood);
+      // CP-4E: Play scene transition cue
+      if (this.soundEnabled && !this.muted) {
+        this.audio.playSceneCue(sceneData.audioMood);
+      }
     }
+
+    // CP-4E: Scene object focus
+    this._updateObjectFocus(index);
+
+    // CP-4E: Scene transition visual cue
+    this._triggerSceneCue(index, sceneData);
   };
 
   ImmersiveApp.prototype._scrollToScene = function (index) {
@@ -623,7 +656,55 @@ import * as THREE from 'three';
     );
   };
 
-  ImmersiveApp.prototype._toggleSound = function () {
+  // CP-4E: Scene object focus — highlight active scene nodes, dim others
+  ImmersiveApp.prototype._updateObjectFocus = function (activeIndex) {
+    var self = this;
+    var allMeshes = [];
+    Object.keys(this.sceneNodeMeshes).forEach(function (key) {
+      allMeshes = allMeshes.concat(self.sceneNodeMeshes[key]);
+    });
+
+    allMeshes.forEach(function (mesh) {
+      var isActive = false;
+      if (self.sceneNodeMeshes[activeIndex]) {
+        isActive = self.sceneNodeMeshes[activeIndex].indexOf(mesh) !== -1;
+      }
+      if (mesh.material) {
+        if (isActive) {
+          mesh.material.emissiveIntensity = 1.0;
+          if (!self.prefersReducedMotion) {
+            mesh.scale.setScalar(1.25);
+          }
+        } else {
+          mesh.material.emissiveIntensity = 0.2;
+          mesh.scale.setScalar(1.0);
+        }
+      }
+    });
+  };
+
+  // CP-4E: Scene transition visual cue — brief label flash on scene change
+  ImmersiveApp.prototype._triggerSceneCue = function (index, sceneData) {
+    var cue = document.getElementById('scene-cue');
+    if (!cue) return;
+    var label = 'Scene ' + String(index + 1).padStart(2, '0') + ' \u00b7 ' + sceneData.title;
+    cue.textContent = label;
+    cue.classList.remove('cue-visible');
+    // Force reflow
+    void cue.offsetWidth;
+    cue.classList.add('cue-visible');
+    // Auto-hide after 1.2s (reduced motion: just update, no animation)
+    if (this.prefersReducedMotion) {
+      setTimeout(function () {
+        cue.classList.remove('cue-visible');
+      }, 200);
+    } else {
+      setTimeout(function () {
+        cue.classList.remove('cue-visible');
+      }, 1200);
+    }
+  };
+
     // If audio unavailable, do nothing
     if (this.soundUnavailable) return;
 
@@ -652,6 +733,26 @@ import * as THREE from 'three';
     this.muted = !this.muted;
     if (this.audio) this.audio.toggleMute();
     this._updateSoundIcon();
+  };
+
+  // CP-4E: Entrance fly-in
+  ImmersiveApp.prototype._startEntryFlyIn = function () {
+    if (this.prefersReducedMotion) return;
+    if (!this.baseCameraPos) return;
+    // Start camera offset behind and above current target
+    this.entryFlyInFrom = this.baseCameraPos.clone();
+    this.entryFlyInFrom.z += 8;
+    this.entryFlyInFrom.y += 3;
+    // Start camera at the from position
+    this.camera.position.copy(this.entryFlyInFrom);
+    this.camera.lookAt(this.baseCameraTarget);
+    this.entryFlyInActive = true;
+    this.entryFlyInStart = performance.now();
+  };
+
+  // CP-4E: easeOutCubic for fly-in
+  ImmersiveApp.prototype._easeOutCubic = function (t) {
+    return 1 - Math.pow(1 - t, 3);
   };
 
   ImmersiveApp.prototype._updateSoundIcon = function () {
@@ -720,6 +821,25 @@ import * as THREE from 'three';
       this.needsScrollUpdate = false;
     }
 
+    // CP-4E: Entrance fly-in — overrides camera during fly-in period
+    if (this.entryFlyInActive) {
+      var elapsed = performance.now() - this.entryFlyInStart;
+      var t = Math.min(elapsed / this.entryFlyInDuration, 1);
+      var ease = this._easeOutCubic(t);
+
+      if (this.entryFlyInFrom && this.baseCameraPos) {
+        this.camera.position.lerpVectors(this.entryFlyInFrom, this.baseCameraPos, ease);
+        this.camera.lookAt(this.baseCameraTarget);
+      }
+
+      if (t >= 1) {
+        this.entryFlyInActive = false;
+      }
+
+      this.renderer.render(this.scene, this.camera);
+      return; // skip continuous/section camera during fly-in
+    }
+
     // Camera: continuous path mode OR fallback to section-based base
     var useContinuous = this.continuousCameraEnabled && !this.prefersReducedMotion && this.scrollStoryEl;
     var targetPos, targetLook;
@@ -781,6 +901,8 @@ import * as THREE from 'three';
       this.soundUnavailable = true;
     }
     this._updateSoundIcon();
+    // CP-4E: Trigger entrance fly-in
+    this._startEntryFlyIn();
   };
 
   ImmersiveApp.prototype.startWithoutSound = function () {
@@ -794,6 +916,8 @@ import * as THREE from 'three';
       // silent failure ok
     }
     this._updateSoundIcon();
+    // CP-4E: Trigger entrance fly-in
+    this._startEntryFlyIn();
   };
 
   ImmersiveApp.prototype.destroy = function () {

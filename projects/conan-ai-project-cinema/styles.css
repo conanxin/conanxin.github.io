@@ -2256,3 +2256,101 @@ body {
   .mobile-scene-strip { display: none !important; }
   .credits { padding-bottom: 1.5rem; }
 }
+
+/* CP-4C: Immersive Mode Entry */
+
+/* ── Immersive Entry Section ── */
+.immersive-entry-section {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-primary);
+}
+@media (max-width: 768px) {
+  .immersive-entry-section { padding: 1.2rem 1.2rem; }
+}
+
+.immersive-entry-panel {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(10, 13, 24, 0.7);
+  border: 1px solid var(--accent-dim, rgba(100,140,255,0.25));
+  border-radius: 10px;
+  padding: 1rem 1.4rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.25s;
+}
+.immersive-entry-panel:hover {
+  border-color: rgba(100,140,255,0.5);
+}
+
+@media (max-width: 600px) {
+  .immersive-entry-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+  }
+}
+
+.iep-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.iep-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.iep-title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.iep-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.3rem;
+}
+
+.iep-note {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.iep-btn {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--accent, #7eb8f7);
+  border-radius: 6px;
+  color: var(--accent, #7eb8f7);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.iep-btn:hover {
+  background: rgba(126, 184, 247, 0.1);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  text-decoration: none;
+}

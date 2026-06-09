@@ -449,3 +449,39 @@ The immersive 3D prototype evolved from click-only scene switching to scroll-dri
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4B*
+
+---
+
+## CP-4C Main Page Immersive Entry
+
+**Phase:** CP-4C — 2026-06-09
+
+### Main Page Now Has Immersive Mode Entry
+
+The stable main page gains a clear entry point to the immersive 3D/sound prototype.
+
+### What's New
+
+- **Immersive Entry Section** — Located between Hero and Featured Strip
+- **Immersive Entry Panel** — Icon + title + subtitle + note + CTA button
+- **Explicit Description** — "Sound starts only on click", "Six scenes · Camera navigation · Spatial audio"
+- **CTA Button** — "Enter Immersive Mode" links to `/projects/conan-ai-project-cinema/immersive/`
+- **No Three.js in Main Page** — Main page remains pure HTML/CSS/JS, zero WebGL
+- **No Autoplay Sound** — Sound always requires user click
+
+### Design
+
+- Portal/launch-console aesthetic, not gaming UI
+- Consistent with main page dark/monospace style
+- Mobile: column layout, readable text
+- Main page stays stable and fast
+
+### Current Status
+
+- **Main page:** Unchanged in technical stack (CP-3E stable)
+- **Immersive route:** Active at `/immersive/` (CP-4B+)
+- **Phase:** CP-4C Main Page Immersive Entry
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4C*

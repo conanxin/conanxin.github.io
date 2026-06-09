@@ -147,3 +147,36 @@
 - Mobile touch/scroll gesture refinement (CP-4C)
 
 *Readme updated by 辛 🔮 — Phase CP-4B*
+
+---
+
+## CP-4C: Main Page Immersive Entry
+
+**Phase:** CP-4C — 2026-06-09
+
+### Main Page Now Links to Immersive Route
+
+The stable main page (CP-3E) now has an Immersive Entry Section between Hero and Featured Strip.
+
+### Entry Point
+
+- **URL:** `/projects/conan-ai-project-cinema/`
+- **Section:** Immersive entry panel with "Enter Immersive Mode" CTA
+- **Link:** Points to `/projects/conan-ai-project-cinema/immersive/`
+
+### Main Page Stays Clean
+
+- No Three.js loaded in main page
+- No immersive.js in main page
+- No audio-engine.js in main page
+- Main page remains pure HTML/CSS/JS
+
+### Immersive Route Still Independent
+
+- Still runs at `/immersive/`
+- Still has its own entry overlay
+- Still requires user click to enable sound
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4C*

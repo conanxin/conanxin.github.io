@@ -151,3 +151,15 @@ CP-3F 是静态电影化页面封版。CP-4 是新的可选扩展线，用于探
 ---
 
 *Post-closeout extension by 辛 🔮 — Phase CP-4A*
+
+---
+
+### CP-4C — Main Page Immersive Entry
+
+CP-4C 将 immersive route 接入主页面入口。主页面新增 Immersive Entry Section（Hero 下方），包含"Enter Immersive Mode"按钮和说明面板。
+
+主页面仍是 CP-3E stable static release，不加载 Three.js。immersive route 独立运行。
+
+---
+
+*Final closeout update by 辛 🔮 — Phase CP-4C*

@@ -780,6 +780,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .footer p { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
 .footer-note { font-size: 12px; line-height: 1.6; }
+.page-version-stamp { font-size: 11px; color: var(--text-secondary); opacity: 0.6; margin-top: 8px; letter-spacing: 0.02em; }
 
 /* --- Source Drawer --- */
 .source-drawer {

@@ -158,3 +158,46 @@
 - [ ] 添加 Print 友好样式（媒体打印优化）
 - [ ] 添加 Share 功能（分享按钮）
 - [ ] 添加 Service Worker 支持离线访问
+---
+
+## 10. Live Deployment Cache Verification
+
+**执行时间：** 2026-06-09 09:26 CST
+
+### 10.1 raw main 分支文件检查
+
+```bash
+grep "部分高级功能另有更高设备门槛" index.html
+```
+**结果：** ✅ 本地 main 分支文件已显示修正版，不含旧误导句子。
+
+### 10.2 GitHub Pages Live HTML 检查
+
+```bash
+curl -sL https://conanxin.github.io/projects/wwdc26-keynote/ | grep "部分高级功能"
+```
+**结果：** ✅ Live HTML 已显示修正版，与本地 main同步。
+
+### 10.3 缓存延迟记录
+
+**发现缓存延迟：** ❌ 否  
+GitHub Pages 在 commit `5b9047e` push 后约 2 分钟内已正常刷新，无明显缓存延迟。
+
+### 10.4 页面版本标记
+
+| 项目 | 内容 |
+|------|------|
+| 标记内容 | 页面版本：WWDC26 Keynote v2.1 · commit 5b9047e · QA fixed |
+| 位置 |页面底部 footer区域 |
+| 样式 | 低对比度小字（11px，opacity 0.6），不干扰主视觉 |
+| CSS 类 | `.page-version-stamp` |
+
+---
+
+## 11. Phase 2B 修改文件清单
+
+| 文件 | 操作 | 说明 |
+|------|------|------|
+| `projects/wwdc26-keynote/index.html` | 修改 | Footer 新增版本标记段落 |
+| `projects/wwdc26-keynote/assets/css/style.css` | 修改 | 新增 `.page-version-stamp` 低对比度样式 |
+| `projects/wwdc26-keynote/docs/WWDC26_KEYNOTE_PUBLIC_QA_REPORT.md` | 修改 | 新增第 10 节"Live Deployment Cache Verification" |

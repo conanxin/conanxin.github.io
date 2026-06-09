@@ -86,3 +86,50 @@
 ---
 
 *Release notes maintained by 辛 🔮*
+
+---
+
+## CP-3A Cinematic Experience Upgrade
+
+**Phase:** CP-3A — 2026-06-09
+
+从 Public Release Base（CP-2B）升级为 Cinematic Experience 版本的首次迭代。
+
+### 新增功能
+
+**Command Desk Hero**
+四个浮动状态面板（SYSTEM / AGENTS / ARTIFACTS / SIGNAL）叠加在 Hero 区域，营造 AI 工作台控制台感。
+
+**Signal Grid Ambient Layer**
+CSS-only 网格背景 + 光晕层，增加深夜研究室氛围深度。
+
+**Scene Visual Anchors**
+每一幕有专属视觉锚点：
+- Scene 01: Idea Fragments — 论文/笔记/截图/书籍片段展示
+- Scene 02: Pipeline Flow — Chat → Terminal → Web → Project 流水线
+- Scene 03: Artifact Conveyor — Idea → Code → Doc → Artifact 传送带
+- Scene 04: Agent Workflow Strip（已存在，增强布局）
+- Scene 05: Control Tower（已存在，增强星图）
+- Scene 06: Archive Console Header — 放映控制台标题栏
+
+**Scene Navigator**
+固定左侧边栏章节导航，滚动时高亮当前章节，可点击跳转。
+
+### 技术说明
+
+- **纯 CSS 增强** — 无新框架、无 Canvas、无图片依赖
+- **safeRun 保护** — 所有新交互均有 JS fallback
+- **reduced motion** — 导航滚动可随用户偏好关闭动画
+- **移动端降级** — Scene Navigator 1100px 以下隐藏，Command Desk 紧凑化
+
+### Current Status
+
+- **Phase:** CP-3A Cinematic Experience
+- **All prior features:** Active
+- **Scene navigator:** Active (desktop)
+- **Command desk:** Active
+- **Visual anchors:** 6 scenes enhanced
+
+---
+
+*Release notes maintained by 辛 🔮*

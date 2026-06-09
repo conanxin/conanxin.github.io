@@ -427,6 +427,66 @@
   }
 
   // ══════════════════════════════════════════════════════════════
+  // SCENE NAVIGATOR
+  // ══════════════════════════════════════════════════════════════
+  function initSceneNavigator() {
+    var nav = document.getElementById('sceneNav');
+    var snProgress = document.getElementById('snProgress');
+    if (!nav) return;
+
+    var sceneIds = ['hero', 'scene-01', 'scene-02', 'scene-03', 'scene-04', 'scene-05', 'scene-06'];
+    var navItems = nav.querySelectorAll('.sn-item');
+
+    function setActive(sceneId) {
+      navItems.forEach(function (item) {
+        item.classList.remove('active');
+        if (item.getAttribute('data-scene') === sceneId) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    // Click navigation
+    navItems.forEach(function (item) {
+      item.addEventListener('click', function () {
+        var target = item.getAttribute('data-scene');
+        var el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
+      });
+    });
+
+    // Scroll-driven active state
+    var scrollHandler = function () {
+      var scrollY = window.scrollY;
+      var wh = window.innerHeight;
+      var docH = document.documentElement.scrollHeight;
+
+      // Update progress bar
+      if (snProgress) {
+        snProgress.style.height = (docH > wh ? (scrollY / (docH - wh)) * 100 : 0) + '%';
+      }
+
+      // Find current scene
+      var current = 'hero';
+      sceneIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top <= wh * 0.5) {
+            current = id;
+          }
+        }
+      });
+      setActive(current);
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
+  }
+
+  // ══════════════════════════════════════════════════════════════
   // FALLBACK: reveal all scenes if JS fails
   // ══════════════════════════════════════════════════════════════
   function revealAllScenesFallback() {
@@ -450,6 +510,9 @@
   // ══════════════════════════════════════════════════════════════
   // BOOT — always reveal content first, then try to enhance
   // ══════════════════════════════════════════════════════════════
+
+  // Step 0: Scene navigator (scroll-driven side nav)
+  safeRun('scene navigator', initSceneNavigator);
 
   // Step 1: Always reveal scenes immediately (fallback)
   safeRun('section reveal', function () {

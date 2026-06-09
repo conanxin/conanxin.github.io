@@ -703,3 +703,60 @@ window.CP_ARTIFACTS = {
 ---
 
 *Design notes by 辛 🔮 — Phase CP-2A*
+
+---
+
+## CP-3A 小节 — Cinematic Experience Upgrade
+
+**Phase:** CP-3A
+**Date:** 2026-06-09
+**Status:** PASS
+
+### 为什么继续开发
+
+CP-2B 完成了 Public Release Base，但页面还停留在"可用的项目档案页"阶段，未达到最初设定的 Lawted-inspired 沉浸体验目标。CP-3A 要让页面从"可用"升级为"可体验"。
+
+### 为什么 CP-2B 不是最初目标终点
+
+**Public Release Base（CP-2B）：** 确认了技术架构、数据层、分享元数据、文档建设。功能完整，视觉仍像普通项目页面。
+
+**Cinematic Experience（CP-3A+）：** 目标是用六幕叙事结构 + 视觉分镜 + 空间层次感，让访客感受到"深夜个人研究室 + AI 控制台"的氛围。
+
+### CP-3A 新增视觉模块
+
+| 模块 | 说明 |
+|------|------|
+| Command Desk（Hero）| 四个浮动状态面板（SYSTEM / AGENTS / ARTIFACTS / SIGNAL），营造 AI 工作台感 |
+| Signal Grid | CSS-only 网格背景氛围层 |
+| Scene Visual Anchors | 每一幕有独立的视觉锚点区（pipeline / conveyor / fragments）|
+| Scene Navigator | 固定左侧边栏，滚动时高亮当前章节，可点击跳转 |
+| Archive Console Header | Archive 区域顶部控制台标题栏 |
+
+### 交互影响
+
+- Scene Navigator 依赖 scroll 事件，IntersectionObserver 同理
+- `safeRun` 保护：任意交互失败时 `revealAllScenesFallback()` 保底
+- reduced motion：`prefers-reduced-motion` 时 Scene Navigator 滚动行为改为 `auto`
+- 无性能影响（所有动画 CSS-only，JS 仅负责交互状态）
+
+### 性能与移动端边界
+
+- Scene Navigator 仅在 `min-width: 1100px` 显示，窄屏自动隐藏
+- Command Desk 在移动端自动降级为 2×2 紧凑布局
+- Scene Visual Anchors 在移动端保持可读，不强制缩小字号
+- 所有动画使用 CSS `transform`/`opacity`，不触发重排
+
+### 修改影响分析
+
+| 修改范围 | 结果 |
+|----------|------|
+| `drafts/conan-ai-project-cinema/` | ❌ 未触碰 |
+| `projects/data.json` | ❌ 未触碰 |
+| `app.js` | ✅ 新增 scene navigator + BOOT 更新 |
+| `index.html` | ✅ 新增 scene nav + hero panels + scene visuals + archive header |
+| `styles.css` | ✅ 新增 cinematic styles |
+| 风险等级 | **LOW** |
+
+---
+
+*Design notes by 辛 🔮 — Phase CP-3A*

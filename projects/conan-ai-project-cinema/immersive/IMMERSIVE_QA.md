@@ -421,3 +421,46 @@ CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C 
 ---
 
 *QA update by 辛 🔮 — CP-4K*
+
+---
+
+## CP-5A: Immersive Worldbuilding Upgrade
+
+**Phase:** CP-5A — 2026-06-10
+
+### 根因
+
+- 场景过于平面，缺少前景/中景/远景层次
+- Scenes 4-6 无专属对象，只有网格地板
+- Camera 切换缺乏电影感
+- UI 不够电影控制台风格
+
+### 修复
+
+| 项目 | 修复前 | 修复后 |
+|------|--------|--------|
+| Scene 04 | 仅有 Agent line tube | Agent hub + 4 satellite nodes + 连接线 |
+| Scene 05 | 空 | Tower + antenna + 3 radar rings + 5 constellation nodes |
+| Scene 06 | 空 | Archive wall + 4×5 shelf grid + arch + floor strip |
+| 背景层 | 无 | Dome + side wall silhouettes |
+| 前景层 | 无 | Foreground dust 80 particles |
+| Grid | 不透明 | 透明度 0.35（空间底层） |
+| Camera过渡 | lerp only | lerp + orbital sweep + easeInOutCubic |
+| Mobile FOV | 65 | 72 |
+| Timeline dots | plain buttons | film-strip + hover tooltip + glow |
+| Progress hint | plain text | frosted glass panel |
+
+### 代码验证
+
+| 检查项 | 结果 |
+|--------|------|
+| node --check | ✅ PASS |
+| 括号平衡 | ✅ 886/886 (diff0) |
+|场景方法 | ✅ `_buildAgentHub` / `_buildControlTower` / `_buildArtifactArchive` |
+| 深度层 | ✅ FogExp2 + foregroundDust + silhouettes |
+| 相机升级 | ✅ orbital sweep + easeInOutCubic + 1100ms |
+| Film UI | ✅ dots film-strip + hover tooltip + glow |
+
+---
+
+*QA update by 辛 🔮 — CP-5A*

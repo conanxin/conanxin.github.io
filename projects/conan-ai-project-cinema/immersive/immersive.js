@@ -28,6 +28,8 @@ import * as THREE from 'three';
     // Camera base positions (set by _gotoScene, used in animation loop)
     this.baseCameraPos = null;
     this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
+    this.scrollObserver = null;
+    this.isScrolling = false;
   };
 
   // ── Init ─────────────────────────────────────────────────────────
@@ -68,6 +70,9 @@ import * as THREE from 'three';
 
       // HUD events
       this._bindHUD();
+
+      // Scroll story overlay
+      this._initScrollStory();
 
       // Mouse parallax
       window.addEventListener('mousemove', function (e) {
@@ -417,7 +422,7 @@ import * as THREE from 'three';
       btn.textContent = '0' + (i + 1);
       btn.setAttribute('title', s.title);
       btn.addEventListener('click', function () {
-        self._gotoScene(i, true);
+        self._scrollToScene(i);
       });
       container.appendChild(btn);
     });
@@ -429,6 +434,105 @@ import * as THREE from 'three';
     document.getElementById('hud-sound').addEventListener('click', function () {
       self._toggleSound();
     });
+  };
+
+  // ── Scroll Story ─────────────────────────────────────────────────
+  ImmersiveApp.prototype._initScrollStory = function () {
+    var self = this;
+    var scrollStory = document.getElementById('scrollStory');
+    if (!scrollStory) return;
+
+    // Show scroll story
+    scrollStory.classList.add('visible');
+
+    // IntersectionObserver: which scroll scene is in viewport center
+    var options = {
+      root: null,
+      rootMargin: '-30% 0px -30% 0px',
+      threshold: 0,
+    };
+
+    this.scrollObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var idx = parseInt(entry.target.getAttribute('data-scene-index'), 10);
+          if (!isNaN(idx) && idx !== self.currentIndex) {
+            self._setSceneFromScroll(idx);
+          }
+        }
+      });
+    }, options);
+
+    // Observe all scroll scenes
+    var scenes = scrollStory.querySelectorAll('.scroll-scene');
+    scenes.forEach(function (el) {
+      self.scrollObserver.observe(el);
+    });
+  };
+
+  ImmersiveApp.prototype._setSceneFromScroll = function (index) {
+    if (index < 0 || index >= this.scenes.length) return;
+    this.currentIndex = index;
+    var sceneData = this.scenes[index];
+
+    // Update scroll story active classes
+    var ssAll = document.querySelectorAll('.scroll-scene');
+    ssAll.forEach(function (el, i) {
+      el.classList.toggle('is-active', i === index);
+    });
+
+    // Update HUD
+    document.getElementById('hud-scene-title').textContent = sceneData.title;
+    document.getElementById('hud-scene-title-zh').textContent = sceneData.titleZh;
+    document.getElementById('hud-scene-desc').textContent = sceneData.description;
+
+    // Update HUD nav active
+    document.querySelectorAll('.hud-scene-btn').forEach(function (btn, i) {
+      btn.classList.toggle('active', i === index);
+    });
+
+    // Update base camera position
+    this.baseCameraPos = new THREE.Vector3(
+      sceneData.cameraPosition.x,
+      sceneData.cameraPosition.y,
+      sceneData.cameraPosition.z
+    );
+    this.baseCameraTarget.set(
+      sceneData.cameraTarget.x,
+      sceneData.cameraTarget.y,
+      sceneData.cameraTarget.z
+    );
+
+    // Camera tween to new position
+    if (!this.prefersReducedMotion) {
+      this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
+    } else {
+      this.camera.position.copy(this.baseCameraPos);
+      this.camera.lookAt(this.baseCameraTarget);
+    }
+
+    // Update accent lights
+    if (this.accentLights) {
+      this.accentLights.forEach(function (light) {
+        light.color.set(sceneData.accentColor);
+      });
+    }
+
+    // Audio mood
+    if (this.audio && this.audio.started) {
+      this.audio.setMood(sceneData.audioMood);
+    }
+  };
+
+  ImmersiveApp.prototype._scrollToScene = function (index) {
+    var ssId = 'ss-scene-' + String(index + 1).padStart(2, '0');
+    var el = document.getElementById(ssId);
+    if (el) {
+      el.scrollIntoView({ behavior: this.prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+    } else {
+      // Fallback: direct gotoScene
+      this._gotoScene(index, true);
+    }
   };
 
   ImmersiveApp.prototype._toggleSound = function () {

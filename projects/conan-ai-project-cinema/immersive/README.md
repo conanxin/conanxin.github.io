@@ -109,3 +109,41 @@
 ---
 
 *Readme by 辛 🔮 — Phase CP-4A*
+---
+
+## CP-4B: Scroll-driven Scene Sync
+
+**Phase:** CP-4B — 2026-06-09
+
+### What Was Added
+
+- **Scroll Story Overlay** — Fixed-position text layer (z-index 50) with 6 scene text blocks
+- **IntersectionObserver** — Tracks which `.scroll-scene` is in viewport center (`rootMargin: '-30% 0px -30% 0px'`)
+- **Scene sync** — When scroll scene enters center, camera / HUD / sound / scroll-class sync simultaneously
+- **Click → Scroll unified** — Clicking scene switcher scrolls to the scene, scroll observer triggers sync
+- **Fallback** — If no scroll story element, click falls back to direct `_gotoScene()`
+
+### Camera Behavior
+
+- Each scene has a `baseCameraPos` + `baseCameraTarget` set by `_setSceneFromScroll()`
+- Animation loop lerps camera toward `baseCameraPos` + parallax offset
+- No more camera drift back to fixed position
+
+### Reduced Motion
+
+- `prefers-reduced-motion: reduce` → `scrollIntoView({ behavior: 'auto' })`
+- Camera tween skipped, position set immediately
+- Parallax disabled
+
+### Sound Mood Sync
+
+- `audio.setMood()` called in `_setSceneFromScroll()` when sound is enabled
+- No autoplay, sound only starts after user click
+
+### Not in CP-4B
+
+- Continuous camera path following scroll (CP-4C)
+- Main page integration entry (CP-4C)
+- Mobile touch/scroll gesture refinement (CP-4C)
+
+*Readme updated by 辛 🔮 — Phase CP-4B*

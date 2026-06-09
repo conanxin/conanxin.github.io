@@ -408,3 +408,44 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4A*
+
+---
+
+## CP-4B Scroll-driven Immersive Narrative
+
+**Phase:** CP-4B — 2026-06-09
+
+### Immersive Route Now Supports Scroll-driven Scene Sync
+
+The immersive 3D prototype evolved from click-only scene switching to scroll-driven narrative.
+
+### What's New
+
+- **Scroll Story Overlay** — Fixed cinematic text layer (6 scenes × Chapter eyebrow + title + subtitle + body)
+- **IntersectionObserver Scene Tracking** — Detects which scene section is in viewport center
+- **Camera/HUD/Sound Mood Sync** — All three update simultaneously when scroll scene changes
+- **Click+Scroll Unified** — Scene switcher buttons scroll to scene, IntersectionObserver handles sync
+- **Camera Base Positions Fixed** — No more camera drift back to fixed y=6 position
+
+### Technical Notes
+
+- IntersectionObserver `rootMargin: '-30% 0px -30% 0px'` — triggers when scene is in center 40% of viewport
+- `prefers-reduced-motion` respected throughout
+- No autoplay sound
+- Click falls back to direct `_gotoScene()` if scroll story elements missing
+
+### No New Framework
+
+- Pure Three.js + Web Audio + Vanilla JS
+- No build step
+- GitHub Pages static hosting
+
+### Current Status
+
+- **Phase:** CP-4B Scroll-driven Immersive Narrative
+- **Immersive route:** Active
+- **Main page:** Unchanged (CP-3F stable)
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4B*

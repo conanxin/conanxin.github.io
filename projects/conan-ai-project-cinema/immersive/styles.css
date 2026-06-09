@@ -281,3 +281,116 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+/* CP-4B: Scroll-driven Scene Sync */
+
+/* ── Scroll Story Overlay ── */
+.scroll-story {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  display: none;
+}
+.scroll-story.visible {
+  display: block;
+}
+
+/* Each scroll scene section — full viewport height */
+.scroll-scene {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 3rem 0 3rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.scroll-scene.is-active {
+  opacity: 1;
+}
+
+/* Position text to bottom-left on desktop */
+.scroll-scene {
+  align-items: flex-end;
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+  .scroll-scene {
+    align-items: flex-end;
+    padding-bottom: 5rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .scroll-scene {
+    padding-left: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Scene text block */
+.ss-inner {
+  max-width: 360px;
+  background: rgba(6, 8, 16, 0.65);
+  border: 1px solid rgba(126, 184, 247, 0.15);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
+  transition: border-color 0.4s;
+}
+.scroll-scene.is-active .ss-inner {
+  border-color: rgba(126, 184, 247, 0.35);
+}
+
+.ss-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent, #7eb8f7);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+.ss-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary, #d8e4f0);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.04em;
+}
+.ss-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent, #7eb8f7);
+  margin-bottom: 0.5rem;
+}
+.ss-body {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted, #4a5a78);
+  line-height: 1.5;
+}
+
+/* Mobile: smaller text */
+@media (max-width: 600px) {
+  .ss-inner { padding: 0.9rem 1rem; max-width: 100%; }
+  .ss-title { font-size: 0.95rem; }
+  .ss-sub { font-size: 0.68rem; }
+  .ss-body { font-size: 0.62rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-scene {
+    transition: none;
+    opacity: 1;
+  }
+  .ss-inner {
+    transition: none;
+  }
+}

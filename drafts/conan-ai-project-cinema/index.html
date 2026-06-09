@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Conan AI Project Cinema</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Draft Status Badge -->
+  <div class="draft-badge">
+    <span class="badge-tag">Draft</span>
+    <span class="badge-sep">·</span>
+    <span class="badge-phase">Phase CP-1A</span>
+  </div>
+
+  <!-- Draft Watermark -->
+  <div class="draft-watermark">Draft Review Prototype · Not a public release</div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-label">
+        <span class="label-bracket">[</span>
+        AI Project Archive
+        <span class="label-bracket">]</span>
+      </div>
+      <h1 class="hero-title">Conan AI Project Cinema</h1>
+      <p class="hero-sub-cn">把阅读、研究、代码、网页和 Agent 连接成一个人的 AI 创造系统。</p>
+      <p class="hero-sub-en">A cinematic archive of projects, agents, pages, and experiments.</p>
+      <div class="hero-meta">
+        <span class="meta-item">conanxin.github.io</span>
+        <span class="meta-sep">/</span>
+        <span class="meta-item">AI Control Tower</span>
+        <span class="meta-sep">/</span>
+        <span class="meta-item">2026</span>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>↓ scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 01 ===================== -->
+  <section class="scene" id="scene-01">
+    <div class="scene-inner">
+      <div class="scene-number">01</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Complex Ideas</h2>
+        <p class="scene-body-cn">
+          一开始，我只是想把复杂内容讲清楚。<br>
+          一篇论文。<br>
+          一本书。<br>
+          一张截图。<br>
+          一个散落的想法。
+        </p>
+        <p class="scene-body-en">
+          At first, I just wanted to make complex ideas clear — a paper, a book, a screenshot, a stray thought.
+        </p>
+      </div>
+      <div class="scene-artifacts">
+        <div class="artifact-card artifact-paper">
+          <div class="artifact-icon">📄</div>
+          <div class="artifact-label">Paper</div>
+        </div>
+        <div class="artifact-card artifact-book">
+          <div class="artifact-icon">📖</div>
+          <div class="artifact-label">Book</div>
+        </div>
+        <div class="artifact-card artifact-screenshot">
+          <div class="artifact-icon">🖼</div>
+          <div class="artifact-label">Screenshot</div>
+        </div>
+        <div class="artifact-card artifact-note">
+          <div class="artifact-icon">🗒</div>
+          <div class="artifact-label">Note</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 02 ===================== -->
+  <section class="scene" id="scene-02">
+    <div class="scene-inner">
+      <div class="scene-number">02</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">AI Beyond Chat</h2>
+        <p class="scene-body-cn">
+          后来我发现，AI 不应该只停在聊天窗口里。<br>
+          它应该进入文档。<br>
+          进入网页。<br>
+          进入命令行。<br>
+          进入项目流程。
+        </p>
+        <p class="scene-body-en">
+          Then I realized — AI shouldn't stay in the chat box. It should live in documents, webpages, the command line, the project workflow.
+        </p>
+      </div>
+      <div class="scene-terminals">
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <span class="tb-dot tb-red"></span>
+            <span class="tb-dot tb-yellow"></span>
+            <span class="tb-dot tb-green"></span>
+            <span class="tb-title">bash — ai-agent</span>
+          </div>
+          <div class="terminal-body">
+            <div class="tb-line"><span class="tb-prompt">$</span> ai research --query "attention mechanism"</div>
+            <div class="tb-line"><span class="tb-comment">→ fetching 3 papers...</span></div>
+            <div class="tb-line"><span class="tb-comment">→ summarizing...</span></div>
+            <div class="tb-line"><span class="tb-success">✓ done. 2 outputs generated.</span></div>
+          </div>
+        </div>
+        <div class="terminal-window">
+          <div class="terminal-titlebar">
+            <span class="tb-dot tb-red"></span>
+            <span class="tb-dot tb-yellow"></span>
+            <span class="tb-dot tb-green"></span>
+            <span class="tb-title">GitHub — conanxin</span>
+          </div>
+          <div class="terminal-body">
+            <div class="tb-line"><span class="tb-hash">a3f9c21</span> feat: add phase report for ASI exec</div>
+            <div class="tb-line"><span class="tb-hash">b7e1d44</span> docs: update memory layer notes</div>
+            <div class="tb-line"><span class="tb-hash">c2a8f09</span> style: refine control tower UI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 03 ===================== -->
+  <section class="scene" id="scene-03">
+    <div class="scene-inner">
+      <div class="scene-number">03</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Projects Become Artifacts</h2>
+        <p class="scene-body-cn">
+          每个想法，都应该留下可以被打开、阅读、运行和复盘的产物。
+        </p>
+        <p class="scene-body-en">
+          Every idea should leave behind something you can open, read, run, and review.
+        </p>
+      </div>
+      <div class="artifact-grid" id="artifactGrid">
+        <div class="project-card" data-desc="多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原">
+          <div class="pc-header">
+            <span class="pc-tag">BookTrans</span>
+            <span class="pc-status status-active">active</span>
+          </div>
+          <div class="pc-title">书籍翻译系统</div>
+          <div class="pc-desc">多语言书籍翻译流水线，支持 PDF 解析 + AI 翻译 + 格式还原</div>
+        </div>
+        <div class="project-card" data-desc="把论文核心思想用卡通化图解重新讲解，降低阅读门槛">
+          <div class="pc-header">
+            <span class="pc-tag">ExplainLens</span>
+            <span class="pc-status status-active">active</span>
+          </div>
+          <div class="pc-title">论文卡通化讲解</div>
+          <div class="pc-desc">把论文核心思想用卡通化图解重新讲解，降低阅读门槛</div>
+        </div>
+        <div class="project-card" data-desc="对冲基金 13F 文件 + 新闻事实核查，输出结构化投资分析">
+          <div class="pc-header">
+            <span class="pc-tag">ClaimLens</span>
+            <span class="pc-status status-active">active</span>
+          </div>
+          <div class="pc-title">事实核查系统</div>
+          <div class="pc-desc">对冲基金 13F 文件 + 新闻事实核查，输出结构化投资分析</div>
+        </div>
+        <div class="project-card" data-desc="投资学习笔记页面，持续更新市场研究和学习方法论">
+          <div class="pc-header">
+            <span class="pc-tag">invest-learning</span>
+            <span class="pc-status status-standby">standby</span>
+          </div>
+          <div class="pc-title">投资学习页</div>
+          <div class="pc-desc">投资学习笔记页面，持续更新市场研究和学习方法论</div>
+        </div>
+        <div class="project-card" data-desc="WWDC 2026 主题演讲总结页，卡片式结构化呈现">
+          <div class="pc-header">
+            <span class="pc-tag">wwdc26-keynote</span>
+            <span class="pc-status status-done">done</span>
+          </div>
+          <div class="pc-title">WWDC26 发布会总结</div>
+          <div class="pc-desc">WWDC 2026 主题演讲总结页，卡片式结构化呈现</div>
+        </div>
+        <div class="project-card" data-desc="个人 GitHub Pages 档案馆，存放所有个人项目、笔记和实验记录">
+          <div class="pc-header">
+            <span class="pc-tag">github-pages</span>
+            <span class="pc-status status-active">active</span>
+          </div>
+          <div class="pc-title">GitHub Pages 档案馆</div>
+          <div class="pc-desc">个人 GitHub Pages 档案馆，存放所有个人项目、笔记和实验记录</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 04 ===================== -->
+  <section class="scene" id="scene-04">
+    <div class="scene-inner">
+      <div class="scene-number">04</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Agents Join the Workflow</h2>
+        <p class="scene-body-cn">
+          我不只是让 AI 写代码。<br>
+          我让每个阶段留下设计理由。<br>
+          让每次修改留下影响分析。<br>
+          让代码、文档、测试共同服务于项目理论。
+        </p>
+        <p class="scene-body-en">
+          I don't just let AI write code. Every stage has a design rationale. Every change has an impact analysis. Code, docs, and tests serve the project theory together.
+        </p>
+      </div>
+      <div class="agent-strip" id="agentStrip">
+        <div class="agent-node">
+          <div class="an-avatar">🦊</div>
+          <div class="an-name">OpenClaw</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> PASS
+          </div>
+          <div class="an-hash">c2a8f09</div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">🦊</div>
+          <div class="an-name">Hermes</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> PASS
+          </div>
+          <div class="an-hash">b7e1d44</div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">🤖</div>
+          <div class="an-name">Codex</div>
+          <div class="an-status">
+            <span class="status-dot dot-green"></span> PASS
+          </div>
+          <div class="an-hash">a3f9c21</div>
+        </div>
+        <div class="agent-arrow">→</div>
+        <div class="agent-node">
+          <div class="an-avatar">📋</div>
+          <div class="an-name">Phase Report</div>
+          <div class="an-status">
+            <span class="status-dot dot-yellow"></span> REVIEW
+          </div>
+          <div class="an-hash">README</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 05 ===================== -->
+  <section class="scene" id="scene-05">
+    <div class="scene-inner">
+      <div class="scene-number">05</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Control Tower</h2>
+        <p class="scene-body-cn">
+          这些项目不是孤立的。<br>
+          它们正在变成一个系统：<br>
+          阅读系统，翻译系统，网页发布系统，<br>
+          Agent 执行系统，VPS 健康监测系统，<br>
+          个人知识广播系统。
+        </p>
+        <p class="scene-body-en">
+          These projects are not isolated. They are becoming a system — reading, translation, web publishing, agent execution, VPS health monitoring, personal knowledge broadcasting.
+        </p>
+      </div>
+      <div class="control-tower">
+        <div class="tower-header">
+          <span class="tower-title">VPS Control Tower</span>
+          <span class="tower-status">
+            <span class="status-dot dot-green"></span> All systems nominal
+          </span>
+        </div>
+        <div class="tower-metrics">
+          <div class="tm-item">
+            <div class="tm-label">Uptime</div>
+            <div class="tm-value">99.7%</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Projects</div>
+            <div class="tm-value">26</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Events Today</div>
+            <div class="tm-value">3</div>
+          </div>
+          <div class="tm-item">
+            <div class="tm-label">Health</div>
+            <div class="tm-value tm-ok">OK</div>
+          </div>
+        </div>
+        <div class="tower-log">
+          <div class="log-entry log-info">
+            <span class="log-time">06-09 08:00</span>
+            <span class="log-msg">Health check: all services up</span>
+          </div>
+          <div class="log-entry log-info">
+            <span class="log-time">06-09 09:14</span>
+            <span class="log-msg">GitHub Pages sync: success</span>
+          </div>
+          <div class="log-entry log-warn">
+            <span class="log-time">06-09 10:30</span>
+            <span class="log-msg">Memory layer backup: completed</span>
+          </div>
+        </div>
+        <div class="constellation" id="constellation">
+          <div class="const-node" data-label="BookTrans" style="--cx:20%;--cy:40%"></div>
+          <div class="const-node" data-label="ExplainLens" style="--cx:35%;--cy:65%"></div>
+          <div class="const-node" data-label="ClaimLens" style="--cx:50%;--cy:30%"></div>
+          <div class="const-node" data-label="GitHub Pages" style="--cx:65%;--cy:55%"></div>
+          <div class="const-node" data-label="OpenClaw" style="--cx:80%;--cy:35%"></div>
+          <div class="const-node" data-label="VPS Monitor" style="--cx:50%;--cy:75%"></div>
+          <svg class="const-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <line x1="20" y1="40" x2="35" y2="65" />
+            <line x1="35" y1="65" x2="50" y2="30" />
+            <line x1="50" y1="30" x2="65" y2="55" />
+            <line x1="65" y1="55" x2="80" y2="35" />
+            <line x1="35" y1="65" x2="50" y2="75" />
+            <line x1="65" y1="55" x2="50" y2="75" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 06 ===================== -->
+  <section class="scene" id="scene-06">
+    <div class="scene-inner">
+      <div class="scene-number">06</div>
+      <div class="scene-text">
+        <h2 class="scene-heading">Archive Entrance</h2>
+        <p class="scene-body-cn">
+          这里不是一份简历。<br>
+          这是一个持续生长的个人 AI 项目档案馆。
+        </p>
+        <p class="scene-body-en">
+          This is not a résumé. It's a living archive of personal AI projects.
+        </p>
+      </div>
+      <div class="cta-grid">
+        <a href="https://conanxin.github.io/projects/" class="cta-card">
+          <div class="cta-icon">📁</div>
+          <div class="cta-label">Explore Projects</div>
+        </a>
+        <a href="https://github.com/conanxin/conanxin.github.io" class="cta-card">
+          <div class="cta-icon">🐙</div>
+          <div class="cta-label">Visit GitHub</div>
+        </a>
+        <a href="https://conanxin.github.io/articles/" class="cta-card">
+          <div class="cta-icon">📝</div>
+          <div class="cta-label">Read Notes</div>
+        </a>
+        <a href="https://x.com/conanxin" class="cta-card">
+          <div class="cta-icon">✖</div>
+          <div class="cta-label">Follow on X</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CREDITS ===================== -->
+  <footer class="credits">
+    <div class="credits-inner">
+      <p class="credit-line">Designed by Conan Xin</p>
+      <p class="credit-line">Built with Agents</p>
+      <p class="credit-line credit-phase">Draft Phase CP-1A</p>
+      <p class="credit-line credit-note">Noindex Review Prototype</p>
+    </div>
+  </footer>
+
+  <!-- ===================== EXPAND TOOLTIP ===================== -->
+  <div class="expand-tooltip" id="expandTooltip"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

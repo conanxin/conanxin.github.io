@@ -5,35 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WWDC26：AI 回到操作系统</title>
   <meta name="description" content="2026 年 6 月 Apple WWDC26 Keynote完整梳理：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate 与系统级智能的下一阶段。">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="canonical" href="https://conanxin.github.io/projects/wwdc26-keynote/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="WWDC26：AI 回到操作系统">
+  <meta property="og:description" content="2026 年 6 月 Apple WWDC26 Keynote 完整梳理：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate 与系统级智能的下一阶段。">
+  <meta property="og:url" content="https://conanxin.github.io/projects/wwdc26-keynote/">
+  <meta property="og:image" content="https://conanxin.github.io/projects/wwdc26-keynote/assets/og-image.png">
+  <meta property="og:site_name" content="数字花园">
+  <meta property="article:published_time" content="2026-06-09">
+  <meta property="article:author" content="Xin Conan">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WWDC26：AI 回到操作系统">
+  <meta name="twitter:description" content="2026 年 6 月 Apple WWDC26 Keynote 完整梳理：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate 与系统级智能的下一阶段。">
+  <meta name="twitter:image" content="https://conanxin.github.io/projects/wwdc26-keynote/assets/og-image.png">
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "WWDC26：AI 回到操作系统",
+    "description": "2026 年 6 月 Apple WWDC26 Keynote 完整梳理：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate 与系统级智能的下一阶段。",
+    "datePublished": "2026-06-09",
+    "author": {"@type": "Person", "name": "Xin Conan"},
+    "publisher": {"@type": "Organization", "name": "数字花园"},
+    "url": "https://conanxin.github.io/projects/wwdc26-keynote/",
+    "about": {
+      "@type": "Event",
+      "name": "WWDC26",
+      "startDate": "2026-06-08",
+      "endDate": "2026-06-12",
+      "location": {"@type": "Place", "name": "Apple Park, Cupertino, CA"}
+    },
+    "proficiencyLevel": "Advanced"
+  }
+  </script>
+  <!-- Stylesheet with versioned cache bust -->
+  <link rel="stylesheet" href="assets/css/style.css?v=431c20f">
 </head>
 <body data-theme="light">
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar">
+  <!-- Progress Bar (decorative, aria-hidden) -->
+  <div class="progress-bar" id="progressBar" aria-hidden="true" role="presentation">
     <div class="progress-fill" id="progressFill"></div>
   </div>
 
   <!-- Command Palette -->
-  <div class="cmd-palette" id="cmdPalette" role="dialog" aria-modal="true" aria-label="快速搜索">
+  <div class="cmd-palette" id="cmdPalette" role="dialog" aria-modal="true" aria-label="快速搜索" hidden>
     <div class="cmd-input-wrap">
-      <input type="text" class="cmd-input" id="cmdInput" placeholder="搜索或跳转模块…" autocomplete="off">
+      <input type="text" class="cmd-input" id="cmdInput" placeholder="搜索或跳转模块…" autocomplete="off" aria-label="搜索内容">
     </div>
-    <div class="cmd-results" id="cmdResults"></div>
+    <div class="cmd-results" id="cmdResults" role="listbox"></div>
   </div>
 
   <!-- Sticky Nav -->
-  <nav class="sticky-nav" id="stickyNav">
+  <nav class="sticky-nav" id="stickyNav" aria-label="页面导航">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">WWDC26</a>
-      <button class="nav-search-btn" id="searchBtn" aria-label="搜索">
+      <a href="#hero" class="nav-logo" aria-label="返回页面顶部">WWDC26</a>
+      <!-- Mobile menu toggle -->
+      <button class="nav-menu-btn" id="navMenuBtn" aria-label="展开章节导航" aria-expanded="false" aria-controls="navLinks">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <button class="nav-search-btn" id="searchBtn" aria-label="打开搜索">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
-      <button class="nav-theme-btn" id="themeBtn" aria-label="切换明暗模式">
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <button class="nav-theme-btn" id="themeBtn" aria-label="切换明暗模式" aria-pressed="false">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
-    <div class="nav-links" id="navLinks">
+    <div class="nav-links" id="navLinks" role="navigation" hidden>
       <a href="#overview" class="nav-link">发布会概览</a>
       <a href="#top10" class="nav-link">十大发布</a>
       <a href="#siri-deep" class="nav-link">Siri AI</a>
@@ -48,19 +89,19 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-gradient"></div>
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-bg-gradient" aria-hidden="true"></div>
     <div class="hero-content">
       <p class="hero-kicker">June 8, 2026 · Apple Worldwide Developers Conference</p>
-      <h1 class="hero-title">WWDC26：AI 回到操作系统</h1>
+      <h1 class="hero-title" id="hero-title">WWDC26：AI 回到操作系统</h1>
       <p class="hero-subtitle">这次 WWDC26 的重点不是新硬件，而是 Apple 把 AI 从聊天窗口重新放回操作系统：Siri AI 成为入口，Apple Intelligence 成为系统能力，App Intents / Foundation Models / Core AI 成为开发者基础设施。</p>
-      <div class="hero-tags">
-        <span class="tag">June 8, 2026</span>
-        <span class="tag">Siri AI</span>
-        <span class="tag">iOS 27</span>
-        <span class="tag">macOS Golden Gate</span>
-        <span class="tag">watchOS 27</span>
-        <span class="tag">visionOS 27</span>
+      <div class="hero-tags" role="list">
+        <span class="tag" role="listitem">June 8, 2026</span>
+        <span class="tag" role="listitem">Siri AI</span>
+        <span class="tag" role="listitem">iOS 27</span>
+        <span class="tag" role="listitem">macOS Golden Gate</span>
+        <span class="tag" role="listitem">watchOS 27</span>
+        <span class="tag" role="listitem">visionOS 27</span>
       </div>
       <div class="hero-actions">
         <a href="#overview" class="btn btn-primary">开始阅读</a>
@@ -70,48 +111,48 @@
   </section>
 
   <!-- TIMELINE -->
-  <section class="section" id="timeline">
+  <section class="section" id="timeline" aria-labelledby="timeline-title">
     <div class="container">
-      <h2 class="section-title">发布会时间线</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
+      <h2 class="section-title" id="timeline-title">发布会时间线</h2>
+      <div class="timeline" role="list">
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <span class="timeline-time">June 8, 2026 · 10:00 PDT</span>
             <h3 class="timeline-event">WWDC26 Keynote</h3>
-            <p class="timeline-desc">Apple 主题演讲，发布下一代 Apple Intelligence 与全新 Siri AI</p>
+            <p class="timeline-desc">Apple 主题演讲，发布下一代 Apple Intelligence 与全新 Siri AI <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <span class="timeline-time">June 8, 2026 · 13:00 PDT</span>
             <h3 class="timeline-event">Platforms State of the Union</h3>
             <p class="timeline-desc">开发者深度技术会议</p>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <span class="timeline-time">开发者测试已开放</span>
             <h3 class="timeline-event">Developer Beta</h3>
-            <p class="timeline-desc">iOS 27 / iPadOS 27 / macOS 27 / visionOS 27 开发者测试今日开放</p>
+            <p class="timeline-desc">iOS 27 / iPadOS 27 / macOS 27 / visionOS 27 开发者测试今日开放 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <span class="timeline-time">下个月</span>
             <h3 class="timeline-event">Public Beta</h3>
-            <p class="timeline-desc">Apple Beta Software Program 公开测试</p>
+            <p class="timeline-desc">Apple Beta Software Program 公开测试 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
+        <div class="timeline-item" role="listitem">
+          <div class="timeline-dot" aria-hidden="true"></div>
           <div class="timeline-content">
             <span class="timeline-time">今年秋季</span>
             <h3 class="timeline-event">Public Release</h3>
-            <p class="timeline-desc">免费软件更新正式发布</p>
+            <p class="timeline-desc">免费软件更新正式发布 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
           </div>
         </div>
       </div>
@@ -119,144 +160,213 @@
   </section>
 
   <!-- OVERVIEW -->
-  <section class="section" id="overview">
+  <section class="section" id="overview" aria-labelledby="overview-title">
     <div class="container">
-      <h2 class="section-title">发布会概览</h2>
+      <h2 class="section-title" id="overview-title">发布会概览</h2>
       <p class="section-lead">WWDC26 Keynote 在 2026 年 6 月 8 日举行，Apple 官方称这次会议带来 AI advancements、新软件和开发者工具。这次是软件发布为主，横跨 iOS、iPadOS、macOS、watchOS、visionOS、tvOS 六大平台。</p>
       <div class="overview-grid">
         <div class="overview-card">
           <h3>Siri AI</h3>
-          <p>全新架构，Apple Intelligence 驱动，自然对话、屏幕感知、个人上下文、跨 App 执行动作</p>
+          <p>全新架构，Apple Intelligence 驱动，自然对话、屏幕感知、个人上下文、跨 App 执行动作 <span class="src-tag" data-source="S02" title="来源：Apple Newsroom - Siri AI">S02</span></p>
         </div>
         <div class="overview-card">
           <h3>Apple Intelligence</h3>
-          <p>进入更多系统 App：Photos、Messages、Mail、Safari、Health、Apple Maps、AirPods</p>
+          <p>进入更多系统 App：Photos、Messages、Mail、Safari、Health、Apple Maps、AirPods <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
         </div>
         <div class="overview-card">
           <h3>平台更新</h3>
-          <p>iOS 27 / iPadOS 27 / macOS 27 Golden Gate / watchOS 27 / visionOS 27 / tvOS 27</p>
+          <p>iOS 27 / iPadOS 27 / macOS 27 Golden Gate / watchOS 27 / visionOS 27 / tvOS 27 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
         </div>
         <div class="overview-card">
           <h3>儿童安全</h3>
-          <p>Screen Time 大升级：Child Account Setup、Ask to Browse、Time Allowances、Communication Safety 扩展</p>
+          <p>Screen Time 大升级：Child Account Setup、Ask to Browse、Time Allowances、Communication Safety 扩展 <span class="src-tag" data-source="S03" title="来源：Apple Newsroom - Child Safety">S03</span></p>
         </div>
         <div class="overview-card">
           <h3>性能与设计</h3>
-          <p>App 启动速度最高提升 30%、Liquid Glass 可读性修正、统一 toolbar 设计</p>
+          <p>App 启动速度最高提升 30%、Liquid Glass 可读性修正、统一 toolbar 设计 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></p>
         </div>
         <div class="overview-card">
           <h3>开发者框架</h3>
-          <p>Foundation Models Swift API、App Intents framework、Core AI 设备端运行框架</p>
+          <p>Foundation Models Swift API、App Intents framework、Core AI 设备端运行框架 <span class="src-tag" data-source="S06" title="来源：Apple Developer">S06</span></p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FEATURE FILTER -->
-  <section class="section" id="feature-filter">
+  <section class="section" id="feature-filter" aria-labelledby="filter-title">
     <div class="container">
-      <h2 class="section-title">Feature Explorer</h2>
+      <h2 class="section-title" id="filter-title">Feature Explorer</h2>
       <p class="section-lead">按类型筛选 WWDC26 发布功能</p>
-      <div class="filter-tags" id="filterTags">
-        <button class="filter-tag active" data-filter="all">全部</button>
-        <button class="filter-tag" data-filter="AI">AI</button>
-        <button class="filter-tag" data-filter="OS">OS</button>
-        <button class="filter-tag" data-filter="Safety">Safety</button>
-        <button class="filter-tag" data-filter="Developer">Developer</button>
-        <button class="filter-tag" data-filter="Performance">Performance</button>
-        <button class="filter-tag" data-filter="Design">Design</button>
-        <button class="filter-tag" data-filter="Health">Health</button>
-        <button class="filter-tag" data-filter="Photos">Photos</button>
-        <button class="filter-tag" data-filter="Safari">Safari</button>
-        <button class="filter-tag" data-filter="Messages">Messages</button>
-        <button class="filter-tag" data-filter="Vision">Vision</button>
+      <div class="filter-tags" id="filterTags" role="group" aria-label="功能类型筛选">
+        <button class="filter-tag active" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter-tag" data-filter="AI" aria-pressed="false">AI</button>
+        <button class="filter-tag" data-filter="OS" aria-pressed="false">OS</button>
+        <button class="filter-tag" data-filter="Safety" aria-pressed="false">Safety</button>
+        <button class="filter-tag" data-filter="Developer" aria-pressed="false">Developer</button>
+        <button class="filter-tag" data-filter="Performance" aria-pressed="false">Performance</button>
+        <button class="filter-tag" data-filter="Design" aria-pressed="false">Design</button>
+        <button class="filter-tag" data-filter="Health" aria-pressed="false">Health</button>
+        <button class="filter-tag" data-filter="Photos" aria-pressed="false">Photos</button>
+        <button class="filter-tag" data-filter="Safari" aria-pressed="false">Safari</button>
+        <button class="filter-tag" data-filter="Messages" aria-pressed="false">Messages</button>
+        <button class="filter-tag" data-filter="Vision" aria-pressed="false">Vision</button>
       </div>
-      <div class="filtered-items" id="filteredItems"></div>
+      <div class="filtered-items" id="filteredItems" role="list" aria-live="polite" aria-label="筛选结果"></div>
     </div>
   </section>
 
   <!-- TOP 10 ANNOUNCEMENTS -->
-  <section class="section" id="top10">
+  <section class="section" id="top10" aria-labelledby="top10-title">
     <div class="container">
-      <h2 class="section-title">十大发布重点</h2>
-      <div class="announce-grid" id="announceGrid"></div>
+      <h2 class="section-title" id="top10-title">十大发布重点</h2>
+      <!-- Static fallback content (hidden when JS renders) -->
+      <noscript>
+        <div class="announce-grid-static">
+          <div class="announce-card"><div class="announce-num">01</div><h3 class="announce-title">Siri AI 全新登场</h3><p class="announce-desc">由 Apple Intelligence 驱动的新一代 Siri，具备屏幕感知、个人上下文理解、跨 App 执行动作能力。</p></div>
+          <div class="announce-card"><div class="announce-num">02</div><h3 class="announce-title">Apple Intelligence 进入更多系统 App</h3><p class="announce-desc">Photos、Safari、Messages、Mail、Health、Apple Maps、AirPods 等系统 App 全面 AI 化。</p></div>
+          <div class="announce-card"><div class="announce-num">03</div><h3 class="announce-title">iOS 27 发布</h3><p class="announce-desc">Siri AI、全新 Camera Siri mode、AI 照片编辑、儿童安全大升级、性能大幅提升。</p></div>
+          <div class="announce-card"><div class="announce-num">04</div><h3 class="announce-title">iPadOS 27 发布</h3><p class="announce-desc">Siri AI、Visual Intelligence、外接硬盘浏览传输速度提升 5x、大屏工作流优化。</p></div>
+          <div class="announce-card"><div class="announce-num">05</div><h3 class="announce-title">macOS 27 Golden Gate 发布</h3><p class="announce-desc">Siri AI on Mac、Visual Intelligence、更统一 toolbar、edge-to-edge sidebars、colored sidebar icons。</p></div>
+          <div class="announce-card"><div class="announce-num">06</div><h3 class="announce-title">watchOS 27 更新</h3><p class="announce-desc">Siri AI、Dynamic app grid、Smart Stack tap gesture、Find My app 整合。</p></div>
+          <div class="announce-card"><div class="announce-num">07</div><h3 class="announce-title">visionOS 27 更新</h3><p class="announce-desc">Siri AI / Visual Intelligence、全景图转空间场景、personal Environments、Wi-Fi 速度提升 3x。</p></div>
+          <div class="announce-card"><div class="announce-num">08</div><h3 class="announce-title">儿童安全与 Screen Time 大升级</h3><p class="announce-desc">Child Account Setup、Allowed Apps、Ask to Browse、Communication Safety 扩展、Time Allowances、Schedules、重设计 Screen Time。</p></div>
+          <div class="announce-card"><div class="announce-num">09</div><h3 class="announce-title">Liquid Glass 与性能修正</h3><p class="announce-desc">App 启动速度提升最高 30%、Photos 拍摄后加载提升 70%、AirDrop 传输提升 80%、Liquid Glass 可读性修正。</p></div>
+          <div class="announce-card"><div class="announce-num">10</div><h3 class="announce-title">Foundation Models / App Intents / Core AI 开发者框架</h3><p class="announce-desc">Foundation Models Swift API、App Intents framework 让第三方 App 接入 Siri AI、Core AI 设备端运行框架。</p></div>
+        </div>
+      </noscript>
+      <div class="announce-grid" id="announceGrid" aria-label="十大发布重点列表"></div>
     </div>
   </section>
 
   <!-- SIRI AI DEEP DIVE -->
-  <section class="section section-dark" id="siri-deep">
+  <section class="section section-dark" id="siri-deep" aria-labelledby="siri-deep-title">
     <div class="container">
-      <h2 class="section-title">Siri AI 深度拆解</h2>
-      <p class="section-lead">Siri AI 是 Apple Intelligence 驱动的新一代 Siri，它更自然、更会对话、可理解屏幕内容、可结合个人上下文、可跨 App 执行动作、可联网回答最新信息。</p>
-      <div class="capability-matrix" id="capabilityMatrix"></div>
+      <h2 class="section-title" id="siri-deep-title">Siri AI 深度拆解</h2>
+      <p class="section-lead">Siri AI 是 Apple Intelligence 驱动的新一代 Siri，它更自然、更会对话、可理解屏幕内容、可结合个人上下文、可跨 App 执行动作、可联网回答最新信息 <span class="src-tag" data-source="S02" title="来源：Apple Newsroom - Siri AI">S02</span>。</p>
+      <!-- Static capability list for no-JS -->
+      <noscript>
+        <div class="capability-matrix">
+          <div class="cap-card"><div class="cap-header"><h4>自然对话</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>用口语化的方式问 Siri 问题，不用在意措辞</p></div><div class="cap-detail-item"><label>系统意义</label><p>更强的自然语言理解，跨越语言进化</p></div></div><span class="cap-availability">later this year (English beta)</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>屏幕感知</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>问 Siri 屏幕上显示的内容</p></div><div class="cap-detail-item"><label>系统意义</label><p>View Annotations API 让 App 内容可被屏幕感知</p></div></div><span class="cap-availability">later this year (English beta)</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>个人上下文</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>搜索个人消息、邮件、照片中的相关信息</p></div><div class="cap-detail-item"><label>系统意义</label><p>Spotlight 语义索引接入个人数据</p></div></div><span class="cap-availability">later this year</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>跨 App 执行动作</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>说「帮我给妈妈发消息附上当前位置」，Siri 跨 App 执行</p></div><div class="cap-detail-item"><label>系统意义</label><p>App Intents 让第三方 App 可被 Siri 调用</p></div></div><span class="cap-availability">later this year</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>联网回答</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>问 Siri 任何最新信息</p></div><div class="cap-detail-item"><label>系统意义</label><p>Apple Intelligence 云端模型提供实时网络信息</p></div></div><span class="cap-availability">later this year</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>独立 Siri App</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>查看对话历史，继续未完成的对话</p></div><div class="cap-detail-item"><label>系统意义</label><p>对话可跨设备通过 iCloud 同步</p></div></div><span class="cap-availability">later this year</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>Visual Intelligence 扩展</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>用相机实时识别物体、文字、场景</p></div><div class="cap-detail-item"><label>系统意义</label><p>视觉理解能力扩展到更多场景</p></div></div><span class="cap-availability">later this year</span></div></div>
+          <div class="cap-card"><div class="cap-header"><h4>写作工具集成</h4></div><div class="cap-detail"><div class="cap-detail-grid"><div class="cap-detail-item"><label>用户能做什么</label><p>让 Siri 帮你润色邮件、文档、消息</p></div><div class="cap-detail-item"><label>系统意义</label><p>Writing Tools 能力扩展到系统全局</p></div></div><span class="cap-availability">later this year</span></div></div>
+        </div>
+      </noscript>
+      <div class="capability-matrix" id="capabilityMatrix" aria-label="Siri AI 能力矩阵"></div>
       <div class="siri-notes">
         <h3>重要说明</h3>
         <ul>
-          <li><strong>英文 Beta 稍晚推出</strong>：Siri AI 将于今年晚些时候推出英文 Beta，其他语言逐步支持</li>
-          <li><strong>中国大陆暂不可用</strong>：Siri AI 和其他 Apple Intelligence 功能在中国大陆暂不可用（Apple 正在处理监管要求）</li>
-          <li><strong>欧盟 iOS/iPadOS 初期不可用</strong>：Mac / Apple Watch / Vision Pro 在欧盟可用 Siri AI</li>
-          <li><strong>独立 Siri App</strong>：用于查看和继续对话，通过 iCloud 私密同步对话历史</li>
+          <li><strong>英文 Beta 稍晚推出：</strong>Siri AI 将于今年晚些时候推出英文 Beta，其他语言逐步支持 <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
+          <li><strong>中国大陆暂不可用：</strong>Siri AI 和其他 Apple Intelligence 功能在中国大陆暂不可用（Apple 正在处理监管要求） <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
+          <li><strong>欧盟 iOS/iPadOS 初期不可用：</strong>Mac / Apple Watch / Vision Pro 在欧盟可用 Siri AI <span class="src-tag" data-source="S01" title="来源：Apple Newsroom">S01</span></li>
+          <li><strong>独立 Siri App：</strong>用于查看和继续对话，通过 iCloud 私密同步对话历史</li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- APPLE INTELLIGENCE APPS -->
-  <section class="section" id="ai-apps">
+  <section class="section" id="ai-apps" aria-labelledby="ai-apps-title">
     <div class="container">
-      <h2 class="section-title">Apple Intelligence 应用层更新</h2>
-      <div class="ai-apps-grid" id="aiAppsGrid"></div>
+      <h2 class="section-title" id="ai-apps-title">Apple Intelligence 应用层更新</h2>
+      <!-- Static fallback -->
+      <noscript>
+        <div class="ai-apps-grid ai-apps-grid-static">
+          <div class="ai-app-card"><div class="ai-app-app">Photos</div><h3 class="ai-app-feature">Spatial Reframing</h3><p class="ai-app-desc">拍完后重新智能构图，调整到最佳取景</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Image Playground</div><h3 class="ai-app-feature">更高质量图像生成</h3><p class="ai-app-desc">photorealistic style 提升，支持 describe a change 直接修改</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Safari</div><h3 class="ai-app-feature">Notify Me</h3><p class="ai-app-desc">监控网页变化，补货或降价时自动通知</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Messages</div><h3 class="ai-app-feature">一键建议</h3><p class="ai-app-desc">基于聊天上下文的一键创建提醒或笔记建议</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Mail</div><h3 class="ai-app-feature">Top Hits 排名改进</h3><p class="ai-app-desc">搜索结果重新排名，更相关的结果优先显示</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Health</div><h3 class="ai-app-feature">Cycle Tracking 扩展</h3><p class="ai-app-desc">支持 perimenopause / menopause 相关记录和偏差通知</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">Apple Maps</div><h3 class="ai-app-feature">增强 Flyover</h3><p class="ai-app-desc">结合 AI 与航拍影像，渲染更详细的建筑细节</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">AirPods</div><h3 class="ai-app-feature">Custom EQ</h3><p class="ai-app-desc">进一步个性化 AirPods 声音，调整低中高频</p></div>
+          <div class="ai-app-card"><div class="ai-app-app">iCloud Shared Albums</div><h3 class="ai-app-feature">跨平台完整分辨率分享</h3><p class="ai-app-desc">Android / Windows 用户也可加入并分享完整分辨率照片</p></div>
+        </div>
+      </noscript>
+      <div class="ai-apps-grid" id="aiAppsGrid" aria-label="Apple Intelligence 应用更新列表"></div>
     </div>
   </section>
 
   <!-- PLATFORM TABS -->
-  <section class="section" id="platforms">
+  <section class="section" id="platforms" aria-labelledby="platforms-title">
     <div class="container">
-      <h2 class="section-title">平台更新</h2>
-      <div class="platform-tabs" id="platformTabs" role="tablist">
-        <button class="platform-tab active" role="tab" data-platform="ios27">iOS 27</button>
-        <button class="platform-tab" role="tab" data-platform="ipados27">iPadOS 27</button>
-        <button class="platform-tab" role="tab" data-platform="macos27">macOS 27 Golden Gate</button>
-        <button class="platform-tab" role="tab" data-platform="watchos27">watchOS 27</button>
-        <button class="platform-tab" role="tab" data-platform="visionos27">visionOS 27</button>
-        <button class="platform-tab" role="tab" data-platform="tvos27">tvOS 27</button>
+      <h2 class="section-title" id="platforms-title">平台更新</h2>
+      <div class="platform-tabs" id="platformTabs" role="tablist" aria-label="平台切换">
+        <button class="platform-tab active" role="tab" id="tab-ios27" aria-selected="true" aria-controls="panel-ios27" data-platform="ios27">iOS 27</button>
+        <button class="platform-tab" role="tab" id="tab-ipados27" aria-selected="false" aria-controls="panel-ipados27" data-platform="ipados27">iPadOS 27</button>
+        <button class="platform-tab" role="tab" id="tab-macos27" aria-selected="false" aria-controls="panel-macos27" data-platform="macos27">macOS 27 Golden Gate</button>
+        <button class="platform-tab" role="tab" id="tab-watchos27" aria-selected="false" aria-controls="panel-watchos27" data-platform="watchos27">watchOS 27</button>
+        <button class="platform-tab" role="tab" id="tab-visionos27" aria-selected="false" aria-controls="panel-visionos27" data-platform="visionos27">visionOS 27</button>
+        <button class="platform-tab" role="tab" id="tab-tvos27" aria-selected="false" aria-controls="panel-tvos27" data-platform="tvos27">tvOS 27</button>
       </div>
-      <div class="platform-content" id="platformContent"></div>
+      <!-- Static fallback panels -->
+      <noscript>
+        <div class="platform-content">
+          <h3 class="platform-hl">iOS 27</h3><p class="platform-detail">Siri AI 全新登场</p><p class="platform-detail">Camera Siri mode 实时识别</p><p class="platform-detail">AI 照片编辑</p><p class="platform-detail">Child Safety 大升级</p><p class="platform-detail">性能提升最高 30% app 启动</p>
+        </div>
+      </noscript>
+      <div class="platform-content" id="platformContent" role="tabpanel" aria-label="平台更新详情"></div>
     </div>
   </section>
 
   <!-- CHILD SAFETY -->
-  <section class="section" id="child-safety">
+  <section class="section" id="child-safety" aria-labelledby="child-safety-title">
     <div class="container">
-      <h2 class="section-title">儿童安全与 Screen Time</h2>
-      <p class="section-lead">全新家长控制仪表盘，覆盖账户创建到日常使用的完整链路。注意：以下功能为 Apple官方说明，不构成医疗或育儿建议。</p>
+      <h2 class="section-title" id="child-safety-title">儿童安全与 Screen Time</h2>
+      <p class="section-lead">全新家长控制仪表盘，覆盖账户创建到日常使用的完整链路。注意：以下功能为 Apple 官方说明，不构成医疗或育儿建议 <span class="src-tag" data-source="S03" title="来源：Apple Newsroom - Child Safety">S03</span>。</p>
+      <!-- Static fallback -->
+      <noscript>
+        <div class="safety-cards">
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Child Account Setup</h4><p>简化设置流程，推荐必要 App 组合，家长可自定义</p></div>
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Ask to Browse</h4><p>浏览网页需家长批准，iPad 上触发批准请求并通过 Messages 通知家长</p></div>
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Time Allowances</h4><p>设置 Entertainment / Games / Social Media 每日使用时长上限</p></div>
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Communication Safety 扩展</h4><p>干预范围从 nudity 扩展到 explicit / violent / gore 内容</p></div>
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Schedules</h4><p>设置使用时间段（如 School 8:30-15:00），可设多个时间窗口</p></div>
+          <div class="safety-card"><h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Screen Time Redesigned</h4><p>全新设计界面，家长控制更直观</p></div>
+        </div>
+      </noscript>
       <div class="safety-calculator" id="safetyCalculator">
         <h3>家长控制概览</h3>
-        <div class="safety-cards" id="safetyCards"></div>
+        <div class="safety-cards" id="safetyCards" role="list"></div>
       </div>
     </div>
   </section>
 
   <!-- PERFORMANCE & LIQUID GLASS -->
-  <section class="section" id="performance">
+  <section class="section" id="performance" aria-labelledby="performance-title">
     <div class="container">
-      <h2 class="section-title">性能与设计</h2>
+      <h2 class="section-title" id="performance-title">性能与设计</h2>
       <h3 class="sub-title">性能数字（Apple 官方测试数据）</h3>
-      <div class="perf-grid" id="perfGrid"></div>
+      <noscript>
+        <div class="perf-grid">
+          <div class="perf-item"><div class="perf-number">up to 30% faster</div><div class="perf-metric">App 启动速度</div><div class="perf-device">iPhone / iPad</div></div>
+          <div class="perf-item"><div class="perf-number">up to 70% faster</div><div class="perf-metric">Photos 拍摄后加载</div><div class="perf-device">iPhone</div></div>
+          <div class="perf-item"><div class="perf-number">up to 80% faster</div><div class="perf-metric">AirDrop 传输</div><div class="perf-device">iPhone / iPad</div></div>
+          <div class="perf-item"><div class="perf-number">up to 5x faster</div><div class="perf-metric">外接硬盘浏览/传输</div><div class="perf-device">iPad</div></div>
+          <div class="perf-item"><div class="perf-number">up to 3x faster</div><div class="perf-metric">Wi-Fi 连接</div><div class="perf-device">Apple Vision Pro</div></div>
+        </div>
+      </noscript>
+      <div class="perf-grid" id="perfGrid" role="list" aria-label="性能数字列表"></div>
       <h3 class="sub-title">Liquid Glass 透明度模拟</h3>
       <p class="section-lead">拖动滑杆感受 ultra-clear 到 fully tinted 的视觉变化（仅模拟，非 Apple 原生效果）</p>
       <div class="glass-slider-demo">
-        <input type="range" min="0" max="100" value="30" class="glass-slider" id="glassSlider">
+        <label for="glassSlider" class="sr-only">Liquid Glass 透明度滑杆</label>
+        <input type="range" min="0" max="100" value="30" class="glass-slider" id="glassSlider" aria-label="Liquid Glass 透明度调整">
         <div class="glass-demo-cards" id="glassDemoCards">
-          <div class="glass-card">
+          <div class="glass-card" id="glass-ultra">
             <h4>ultra clear</h4>
             <p>最小透明度</p>
           </div>
-          <div class="glass-card">
+          <div class="glass-card" id="glass-medium">
             <h4>medium</h4>
             <p>中等透明度</p>
           </div>
-          <div class="glass-card">
+          <div class="glass-card" id="glass-tinted">
             <h4>fully tinted</h4>
             <p>最大透明度</p>
           </div>
@@ -266,41 +376,41 @@
   </section>
 
   <!-- DEVELOPER FRAMEWORKS -->
-  <section class="section" id="developer">
+  <section class="section" id="developer" aria-labelledby="developer-title">
     <div class="container">
-      <h2 class="section-title">开发者层：AI 基础设施</h2>
+      <h2 class="section-title" id="developer-title">开发者层：AI 基础设施</h2>
       <h3 class="sub-title">AI 系统架构</h3>
       <p class="section-lead">点击节点展开说明</p>
-      <div class="arch-map" id="archMap"></div>
+      <div class="arch-map" id="archMap" role="group" aria-label="AI 系统架构图"></div>
       <div class="arch-details" id="archDetails"></div>
       <div class="dev-frameworks">
         <div class="dev-card" id="devFoundation">
-          <h3>Foundation Models framework</h3>
+          <h3>Foundation Models framework <span class="src-tag" data-source="S06" title="来源：Apple Developer - iOS What's New">S06</span></h3>
           <p>原生 Swift API，直接访问 Apple Intelligence 设备端模型。支持 Apple Foundation Models、Claude、Gemini 或其他符合 Language Model protocol 的模型。</p>
           <ul>
             <li>访问 Apple Intelligence on-device model</li>
             <li>Multimodal prompts（图像+文字）</li>
-            <li>Dynamic Profiles 动态切换</li>
-            <li>Private Cloud Compute（Small Business Program 免费）</li>
+            <li>Dynamic Profiles 动态切换模型、工具和指令</li>
+            <li>Private Cloud Compute（Small Business Program 用户免费）</li>
           </ul>
-          <p class="dev-note">部分高级功能另有更高设备门槛：Apple 最强 on-device 模型（含 expressive voices 等高级特性）仅在 iPhone Air / iPhone 17 Pro / iPhone 17 Pro Max / iPad (M4) 12GB+ / Mac (M3) 12GB+ / Apple Vision Pro (M5) 上可用。这不等同于 Apple Intelligence 的总体设备要求。</p>
+          <p class="dev-note">部分高级功能另有更高设备门槛：Apple 最强 on-device 模型（含 expressive voices 等高级特性）仅在 iPhone Air / iPhone 17 Pro / iPhone 17 Pro Max / iPad (M4) 12GB+ / Mac (M3) 12GB+ / Apple Vision Pro (M5) 上可用。这不等同于 Apple Intelligence 的总体设备要求 <span class="src-tag" data-source="S02" title="来源：Apple Newsroom - Siri AI 脚注">S02</span>。</p>
         </div>
         <div class="dev-card" id="devAppIntents">
-          <h3>App Intents framework</h3>
+          <h3>App Intents framework <span class="src-tag" data-source="S05" title="来源：Apple Developer - WWDC26 AI Guide">S05</span></h3>
           <p>让第三方 App 接入 Apple Intelligence 和 Siri AI。通过 schemas 让 App 内容可被自然语言发现和调用。</p>
           <ul>
-            <li>Entity schemas 贡献内容到 Spotlight 语义索引</li>
-            <li>Intent schemas 让自然语言操作 App 内容</li>
+            <li>Entity schemas 贡献 App 内容到 Spotlight 语义索引</li>
+            <li>Intent schemas 让用户通过自然语言操作 App 内容</li>
             <li>View Annotations API 提供屏幕感知</li>
-            <li>App Intents Testing framework 验证集成</li>
+            <li>App Intents Testing framework 验证完整集成</li>
           </ul>
         </div>
         <div class="dev-card" id="devCoreAI">
-          <h3>Core AI</h3>
+          <h3>Core AI <span class="src-tag" data-source="S06" title="来源：Apple Developer - iOS What's New">S06</span></h3>
           <p>OS 内置框架，为 Apple Silicon 设计，完全设备端运行模型，无服务器依赖、无 token 成本、保护用户数据。</p>
           <ul>
             <li>自动为运行硬件专门化模型</li>
-            <li>ahead-of-time 编译快速加载</li>
+            <li>ahead-of-time 编译支持快速加载</li>
             <li>细粒度推理内存控制</li>
             <li>零拷贝数据路径、有状态执行</li>
           </ul>
@@ -310,13 +420,13 @@
   </section>
 
   <!-- AVAILABILITY CHECKER -->
-  <section class="section" id="availability">
+  <section class="section" id="availability" aria-labelledby="availability-title">
     <div class="container">
-      <h2 class="section-title">可用性查询</h2>
+      <h2 class="section-title" id="availability-title">可用性查询</h2>
       <div class="availability-checker" id="availabilityChecker">
-        <div class="av-form">
+        <div class="av-form" role="form" aria-label="可用性查询表单">
           <div class="av-field">
-            <label>地区</label>
+            <label for="avRegion">地区</label>
             <select id="avRegion">
               <option value="US">美国 / US</option>
               <option value="EU">欧盟 / EU</option>
@@ -325,7 +435,18 @@
             </select>
           </div>
           <div class="av-field">
-            <label>语言</label>
+            <label for="avPlatform">平台</label>
+            <select id="avPlatform">
+              <option value="IOS">iOS</option>
+              <option value="IPADOS">iPadOS</option>
+              <option value="MACOS">macOS</option>
+              <option value="WATCHOS">watchOS</option>
+              <option value="VISIONOS">visionOS</option>
+             <option value="TVOS">tvOS</option>
+            </select>
+          </div>
+          <div class="av-field">
+            <label for="avLanguage">语言</label>
             <select id="avLanguage">
               <option value="EN">English</option>
               <option value="ZH">中文</option>
@@ -335,7 +456,7 @@
             </select>
           </div>
           <div class="av-field">
-            <label>设备</label>
+            <label for="avDevice">设备</label>
             <select id="avDevice">
               <option value="IP16">iPhone 16 系列</option>
               <option value="IP15P">iPhone 15 Pro</option>
@@ -343,52 +464,82 @@
               <option value="MAC">Mac M1+</option>
               <option value="WATCH">Apple Watch Series 9+</option>
               <option value="VP">Apple Vision Pro</option>
-             <option value="OLD">老设备（不支持）</option>
+              <option value="OLD">老设备（不支持）</option>
             </select>
           </div>
-          <button class="btn btn-primary" id="avCheckBtn">查询可用性</button>
+          <button type="button" class="btn btn-primary" id="avCheckBtn">查询可用性</button>
         </div>
-        <div class="av-results" id="avResults"></div>
+        <div class="av-results" id="avResults" aria-live="polite" aria-label="可用性查询结果"></div>
       </div>
     </div>
   </section>
 
   <!-- INTERPRETATION -->
-  <section class="section section-dark" id="analysis">
+  <section class="section section-dark" id="analysis" aria-labelledby="analysis-title">
     <div class="container">
-      <h2 class="section-title">我的判断 / 产品分析</h2>
-      <p class="analysis-thesis" id="analysisThesis"></p>
-      <div class="analysis-points" id="analysisPoints"></div>
+      <h2 class="section-title" id="analysis-title">我的判断 / 产品分析</h2>
+      <p class="analysis-thesis" id="analysisThesis">Apple 不是在做一个新的 AI App，而是在把 AI 重新放回操作系统。</p>
+      <div class="analysis-points" id="analysisPoints">
+        <div class="analysis-point">
+          <h3>战略定位：OS 级 AI 而非 App 级 AI</h3>
+          <p>Chatbot 是入口，操作系统级 AI才是下一阶段。Apple 的思路是用 Siri AI 作为入口，把 Apple Intelligence 做成系统能力，让 AI 渗透到每一个系统 App 和操作行为中。这是 Google / Microsoft / OpenAI 都想做但没有做到的事情，因为它们没有设备级权限。</p>
+        </div>
+        <div class="analysis-point">
+          <h3>Siri AI 的真正价值：屏幕感知 + 个人上下文 + 跨 App 执行</h3>
+          <p>Siri AI 的核心突破不是「更会聊天」，而是三个新能力：能看屏幕、懂个人上下文、能调动第三方 App。这三点的结合让 Siri 从一个问答工具变成了一个真正的数字助手。</p>
+        </div>
+        <div class="analysis-point">
+          <h3>开发者框架的野望：把第三方 App 变成语义模块</h3>
+          <p>App Intents + Foundation Models + Core AI 的组合说明 Apple 想让第三方 App 变成可被 Siri 理解和调用的语义模块。Entity schemas 让 App 内容进入 Spotlight 语义索引，Intent schemas 让 App 行为被自然语言调用。这是 Apple 对开发者生态的一次重新定义。</p>
+        </div>
+        <div class="analysis-point">
+          <h3>Apple 的竞争优势：设备 + 系统权限 + 隐私叙事</h3>
+          <p>Apple 的 AI 推进速度可能慢于 OpenAI / Google / Anthropic，但它的优势是：设备级硬件控制、系统级 API 权限、Privacy on Device 的品牌叙事、以及覆盖 iPhone / iPad / Mac / Watch / Vision Pro 的跨设备一致性。这些是云端 AI 公司无法复制的。</p>
+        </div>
+        <div class="analysis-point">
+          <h3>最大限制：地区、语言、设备门槛</h3>
+          <p>Siri AI 在中国大陆不可用（监管原因），EU 的 iOS / iPadOS 初期不可用，英文之外语言支持滞后，设备门槛要求较高（iPhone 15 Pro 以上）。这些限制是 Apple 必须面对的现实，也给竞争者留下了空间。</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- SOURCES -->
-  <section class="section" id="sources">
+  <section class="section" id="sources" aria-labelledby="sources-title">
     <div class="container">
-      <h2 class="section-title">来源</h2>
+      <h2 class="section-title" id="sources-title">来源</h2>
       <p class="section-lead">以下为页面内容的事实来源。事实主干以 Apple 官方为准，媒体来源仅用于补充背景。</p>
+      <div class="sources-legend">
+        <span class="src-tag src-tag-legend" title="Apple Newsroom 官方发布">S01</span> Apple Newsroom 总览发布
+        <span class="src-tag src-tag-legend" title="Apple Newsroom Siri AI 发布">S02</span> Apple Newsroom Siri AI
+        <span class="src-tag src-tag-legend" title="Apple Newsroom 儿童安全发布">S03</span> Apple Newsroom 儿童安全
+        <span class="src-tag src-tag-legend" title="Apple 官方 iOS 27页面">S04</span> Apple iOS 27 预览
+        <span class="src-tag src-tag-legend" title="Apple Developer WWDC26 AI 指南">S05</span> Apple Developer AI指南
+        <span class="src-tag src-tag-legend" title="Apple Developer iOS 新功能">S06</span> Apple Developer iOS 新功能
+      </div>
       <div class="sources-grid" id="sourcesGrid"></div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <p>WWDC26 中文交互式梳理 · 页面创建于 2026-06-09</p>
       <p>本页面由辛（Xin）基于 Apple 官方公开信息整理 · 仅供参考</p>
       <p class="footer-note">信息来源：Apple Newsroom · Apple Developer · Apple 官方页面<br>本页面非 Apple 官方产品，不代表 Apple 立场</p>
-      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.1 · commit 5b9047e · QA fixed</p>
+      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.2 · build 431c20f · QA baseline 5b9047e</p>
     </div>
   </footer>
 
   <!-- Source Drawer -->
-  <div class="source-drawer" id="sourceDrawer">
-    <button class="drawer-close" id="drawerClose">×</button>
+  <div class="source-drawer" id="sourceDrawer" aria-hidden="true">
+    <button class="drawer-close" id="drawerClose" aria-label="关闭来源面板">×</button>
     <h3>来源引用</h3>
     <div class="drawer-sources" id="drawerSources"></div>
   </div>
-  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
 
-  <script src="assets/js/app.js"></script>
+  <!-- JS with versioned cache bust -->
+  <script src="assets/js/app.js?v=431c20f" defer></script>
 </body>
 </html>

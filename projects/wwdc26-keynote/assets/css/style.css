@@ -857,3 +857,157 @@ img { max-width: 100%; height: auto; display: block; }
   .announce-grid { grid-template-columns: 1fr; }
   .section { padding: 48px 0; }
 }
+/* --- Screen reader only ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Source Tags ---- */
+.src-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--tag-bg);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+  vertical-align: baseline;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: all 0.2s;
+}
+.src-tag:hover { background: var(--accent); color: #fff; }
+.src-tag-legend { cursor: default; }
+.src-tag-legend:hover { background: var(--tag-bg); color: var(--accent); }
+.sources-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* --- Mobile Nav Menu ---- */
+.nav-menu-btn {
+  display: none;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text);
+  transition: background 0.2s;
+}
+.nav-menu-btn:hover { background: var(--border); }
+
+@media (max-width: 768px) {
+  .nav-menu-btn { display: flex; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .nav-links[hidden] { display: none; }
+  .nav-links:not([hidden]) { display: flex; }
+  .nav-link {
+    display: block;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .nav-links { flex-wrap: unset; }
+}
+
+/* --- Mobile nav open state ---- */
+.nav-links:not([hidden]) { display: flex; }
+
+/* --- Platform content mobile cards ---- */
+@media (max-width: 480px) {
+  .platform-content { padding: 20px 16px; }
+}
+
+/* --- Announce grid mobile ---- */
+@media (max-width: 480px) {
+  .announce-grid { grid-template-columns: 1fr; }
+  .capability-matrix { gap: 8px; }
+  .cap-detail-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Availability form mobile ---- */
+@media (max-width: 480px) {
+  .av-form { flex-direction: column; }
+  .av-field { min-width: 100%; }
+  .av-form .btn { width: 100%; }
+}
+
+/* --- AI apps grid mobile ---- */
+@media (max-width: 480px) {
+  .ai-apps-grid { grid-template-columns: 1fr; }
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Analysis points mobile ---- */
+@media (max-width: 480px) {
+  .analysis-point { padding: 16px; }
+  .analysis-thesis { font-size: 16px; padding: 20px; }
+}
+
+/* --- Source drawer mobile ---- */
+@media (max-width: 480px) {
+  .source-drawer { width: 100%; right: -100%; }
+}
+
+/* --- Analysis thesis styling (static, not JS) ---- */
+.analysis-thesis {
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 40px;
+  padding: 28px;
+  background: rgba(0,113,227,0.08);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+}
+[data-theme="dark"] .analysis-thesis { background: rgba(0,113,227,0.15); }
+
+/* --- Capability matrix static fallback cards ---- */
+noscript .cap-card,
+noscript .announce-card,
+noscript .ai-app-card,
+noscript .safety-card,
+noscript .perf-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 8px;
+}
+noscript .announce-grid-static,
+noscript .ai-apps-grid-static { display: grid; gap: 12px; }
+@media (max-width: 768px) {
+  noscript .announce-grid-static,
+  noscript .ai-apps-grid-static { grid-template-columns: 1fr; }
+}
+
+/* --- Architecture map scrollable ---- */
+.arch-map { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+.arch-map::-webkit-scrollbar { height: 4px; }
+.arch-map::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }

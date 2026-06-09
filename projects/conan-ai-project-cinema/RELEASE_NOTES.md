@@ -360,3 +360,51 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/
 ---
 
 *Release notes by 辛 🔮 — Phase CP-3F · CP-3 Series Final Closeout*
+
+---
+
+## CP-4A Immersive Prototype
+
+**Phase:** CP-4A — 2026-06-09
+
+从静态电影化页面（CP-3）向 3D / Sound 沉浸体验的探索性扩展。
+
+### New: Immersive Route
+
+新增独立 route：`/projects/conan-ai-project-cinema/immersive/`
+
+不影响主页面。主页面仍为稳定静态版本。
+
+### What Was Built
+
+- **3D Scene（Vanilla Three.js）** — 暗色地面 + Command Desk + 6个 Scene Node + Particles + Agent Line + Artifact Cards
+- **Sound Layer（Web Audio API）** — 6种场景 mood，全部代码生成，不使用外部音频文件
+- **Entry Overlay** — 两个入口按钮（Enter Immersive Mode / Enter Without Sound）
+- **HUD** — Scene title + Chinese subtitle + scene switcher + sound toggle + back link
+- **WebGL Fallback** — 无 WebGL 时显示 fallback，不空白
+- **Safe Audio** — 不自动播放，页面隐藏时 suspend，用户离开清理 nodes
+
+### Technical Stack
+
+- Three.js `0.169.0` via CDN ES module（`importmap`）
+- Pure Web Audio API（oscillators + noise + gain nodes）
+- No external audio files
+- No build step
+- GitHub Pages static hosting
+
+### Design Principles
+
+- 主页面稳定性优先（immersion route 不修改主页面）
+- Sound永远不自动播放
+- WebGL 不可用时 graceful fallback
+- 代码控制所有 3D 效果（无外部模型文件）
+
+### Current Status
+
+- **Phase:** CP-4A Immersive Prototype
+- **Immersive route:** Active（独立 route）
+- **Main page:** Unchanged (CP-3F stable)
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4A*

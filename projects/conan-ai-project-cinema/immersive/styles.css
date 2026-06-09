@@ -1,0 +1,283 @@
+/* immersive/styles.css — CP-4A Immersive Mode */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap');
+
+:root {
+  --bg: #060810;
+  --surface: #0a0d18;
+  --border: #1a2040;
+  --accent: #7eb8f7;
+  --text-primary: #d8e4f0;
+  --text-secondary: #8a9ab8;
+  --text-muted: #4a5a78;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+/* ── Canvas Container ── */
+#immersive-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+#immersive-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── Overlay (Entry Screen) ── */
+.entry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(6, 8, 16, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+.entry-overlay.hidden {
+  display: none;
+}
+
+.eo-icon {
+  font-size: 3rem;
+  opacity: 0.8;
+}
+.eo-title {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+.eo-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 380px;
+  line-height: 1.6;
+}
+.eo-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 240px;
+}
+.eo-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.eo-btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+}
+.eo-btn--primary:hover {
+  background: #a0ccff;
+  border-color: #a0ccff;
+}
+.eo-btn--secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.eo-btn--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.eo-note {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+/* ── HUD ── */
+.hud {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  display: none;
+}
+.hud.visible { display: block; }
+.hud > * { pointer-events: auto; }
+
+/* Top bar */
+.hud-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(6,8,16,0.85) 0%, transparent 100%);
+}
+
+.hud-back {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: rgba(10,13,24,0.7);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hud-back:hover { color: var(--accent); border-color: var(--accent); }
+
+.hud-scene-info {
+  text-align: center;
+}
+.hud-scene-title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+.hud-scene-title-zh {
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-top: 0.2rem;
+}
+
+.hud-sound {
+  background: rgba(10,13,24,0.7);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  line-height: 1;
+}
+.hud-sound:hover { border-color: var(--accent); }
+
+/* Bottom bar */
+.hud-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+  background: linear-gradient(to top, rgba(6,8,16,0.85) 0%, transparent 100%);
+}
+
+.hud-scene-nav {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.hud-scene-btn {
+  background: rgba(10,13,24,0.7);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 36px;
+  text-align: center;
+}
+.hud-scene-btn:hover {
+  background: var(--bg-card-hover, rgba(20,24,40,0.8));
+  color: var(--text-secondary);
+  border-color: var(--accent);
+}
+.hud-scene-btn.active {
+  background: rgba(126,184,247,0.12);
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.hud-scene-desc {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ── Fallback ── */
+.immersive-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--bg);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 2rem;
+}
+.ifb-icon { font-size: 3rem; opacity: 0.6; }
+.ifb-icon ~ p {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.ifb-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  transition: background 0.2s;
+}
+.ifb-link:hover { background: rgba(126,184,247,0.1); }
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .eo-title { font-size: 1.2rem; }
+  .eo-sub { font-size: 0.82rem; }
+  .hud-scene-title { font-size: 0.78rem; }
+  .hud-scene-title-zh { font-size: 0.68rem; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conan AI Project Cinema — Immersive Mode</title>
+  <meta name="description" content="3D soundscape for Conan's project archive. A spatial, immersive take on the AI Project Cinema.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Three.js ES Module (CDN, fixed version) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.169.0/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Canvas target -->
+  <div id="immersive-canvas"></div>
+
+  <!-- Entry Overlay -->
+  <div class="entry-overlay" id="entryOverlay">
+    <div class="eo-icon">🎬</div>
+    <h1 class="eo-title">Conan AI Project Cinema</h1>
+    <p class="eo-sub">
+      A 3D soundscape for Conan's project archive, agents, pages, and workflows.<br>
+      Six scenes. Spatial camera. Ambient sound.
+    </p>
+    <div class="eo-buttons">
+      <button class="eo-btn eo-btn--primary" id="btnEnterSound">
+        Enter Immersive Mode
+      </button>
+      <button class="eo-btn eo-btn--secondary" id="btnEnterNoSound">
+        Enter Without Sound
+      </button>
+    </div>
+    <p class="eo-note">Sound starts only after you choose. You can mute it at any time.</p>
+  </div>
+
+  <!-- HUD (shown after entry) -->
+  <div class="hud" id="hud">
+    <div class="hud-top">
+      <a href="../" class="hud-back" id="hud-back">← Back</a>
+      <div class="hud-scene-info">
+        <div class="hud-scene-title" id="hud-scene-title">Complex Ideas</div>
+        <div class="hud-scene-title-zh" id="hud-scene-title-zh">把复杂内容讲清楚</div>
+      </div>
+      <button class="hud-sound" id="hud-sound" aria-label="Toggle sound">
+        <span id="sound-icon">🔇</span>
+      </button>
+    </div>
+    <div class="hud-bottom">
+      <div class="hud-scene-nav" id="hud-scene-nav">
+        <!-- JS inserts6 buttons -->
+      </div>
+      <div class="hud-scene-desc" id="hud-scene-desc">论文 · 书籍 · 截图</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    // Store THREE globally for immersive.js
+    window.THREE = THREE;
+
+    // Load data and engine first
+    import('./scene-data.js');
+    import('./audio-engine.js');
+
+    // Then load main app
+    import('./immersive.js').then(function () {
+      var app = new window.CP_ImmersiveApp();
+      var launched = false;
+
+      function launch(sound) {
+        if (launched) return;
+        launched = true;
+        var ok = app.init();
+        if (!ok) return;
+        if (sound) {
+          app.startWithSound();
+        } else {
+          app.startWithoutSound();
+        }
+        document.getElementById('entryOverlay').classList.add('hidden');
+        document.getElementById('hud').classList.add('visible');
+      }
+
+      document.getElementById('btnEnterSound').addEventListener('click', function () {
+        launch(true);
+      });
+      document.getElementById('btnEnterNoSound').addEventListener('click', function () {
+        launch(false);
+      });
+    }).catch(function (err) {
+      console.error('[Immersive] Failed to load:', err);
+    });
+  </script>
+</body>
+</html>

@@ -118,3 +118,36 @@
 ---
 
 *Final closeout document by 辛 🔮 — Phase CP-3F*
+---
+
+## Post-Closeout Extension: CP-4 Immersive Mode
+
+**Phase:** CP-4A — 2026-06-09
+
+CP-3F 是静态电影化页面封版。CP-4 是新的可选扩展线，用于探索 3D / Sound 级沉浸。
+
+### CP-4A 做了什么
+
+新增独立 immersive route（`/immersive/`）：
+- 3D 场景（Vanilla Three.js，CDN ES module）
+- 原生 Web Audio 引擎（无外部音频文件）
+- 六幕空间映射（camera position / target / accent color / audio mood）
+- WebGL fallback
+- 用户点击后启用声音（不自动播放）
+
+### 技术边界
+
+- Vanilla Three.js（无 React Three Fiber）
+- Web Audio API（无外部音频文件）
+- 不接 GitHub API
+- 不做 PWA
+- 不修改主页面
+- 主页面继续稳定
+
+### 主页面集成计划
+
+主页面集成入口将在 CP-4B 或 CP-4C 评估。
+
+---
+
+*Post-closeout extension by 辛 🔮 — Phase CP-4A*

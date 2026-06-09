@@ -208,3 +208,44 @@ Real-browser validation by project owner required. Confirm:
 ---
 
 *QA update by 辛 🔮 — CP-4H*
+
+---
+
+## CP-4H-3: Rewrite Immersive Boot Module Safely
+
+**Phase:** CP-4H-3 — 2026-06-09
+
+### Issue
+
+Real browsers STILL showed "missing ) in parenthetical" after CP-4H-2. External review confirmed the file was hard to audit (though actual line count was fine at 991 lines). Root cause misdiagnosis in CP-4H and CP-4H-2.
+
+### Root Cause
+
+The **async IIFE structure** inside an ES module body was confusing Safari's JavaScriptCore. When `(async function () { ... })()` appears as the module body and throws an error (THREE import failure), Safari treats it as an unresolvable module evaluation error rather than a caught promise rejection.
+
+### Fix
+
+Complete rewrite of immersive.js as a **clean top-level await ES module**:
+- Removed all async IIFE wrapping
+- `let THREE;` at module level → `THREE = await import(...)` as top-level await
+- All brackets balanced (parens:0, braces:0, brackets:0)
+- 766 lines, 0 lines > 200 chars
+- No orphan code blocks
+- DOM-based fallback in both `_showFallback()` and index.html catch block
+
+### Verification
+
+- `node --check`: PASS (raw GitHub, ed0db74)
+- No async functions in immersive.js
+- Top-level await confirmed
+- All brackets balanced
+- Main page: stable (1 × "Enter Immersive Mode")
+- vendor three.module.js: retained
+
+### Next Step
+
+GitHub Pages propagation → verify new immersive.js loads correctly in Safari/Chrome/Firefox
+
+---
+
+*QA update by 辛 🔮 — CP-4H-3*

@@ -313,3 +313,31 @@ CP-4H is the latest fix. Real-browser validation still required for final accept
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-4H*
+
+---
+
+## CP-4H-3 — Rewrite Immersive Boot Module Safely
+
+**Phase:** CP-4H-3 — 2026-06-09
+
+### Issue
+
+Real browsers STILL showed "missing ) in parenthetical" after CP-4H-2. Root cause was the async IIFE structure inside ES module context.
+
+### Fix
+
+Complete rewrite of immersive.js as clean top-level await ES module. Removed async IIFE. All features preserved. All brackets balanced.
+
+### CP-4 Series Status
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F-Click-Hotfix → CP-4G → CP-4F-Rerun → CP-4H → CP-4H-2 → **CP-4H-3** (latest)
+
+**Note:** CP-4H and CP-4H-2 root cause diagnoses were incorrect (innerHTML → async IIFE). CP-4H-3 is the definitive fix.
+
+### Pending
+
+GitHub Pages propagation → real-browser validation required
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-4H-3*

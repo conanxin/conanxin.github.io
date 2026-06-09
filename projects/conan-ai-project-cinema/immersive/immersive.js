@@ -40,6 +40,9 @@ import * as THREE from 'three';
     this.needsScrollUpdate = false;
     this.scrollStoryEl = null;
 
+    // CP-4D: Pause/resume for performance
+    this.isPaused = false;
+
     this.scrollObserver = null;
     this.isScrolling = false;
   };
@@ -65,9 +68,14 @@ import * as THREE from 'three';
     try {
       // Setup renderer
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-      // CP-4D Performance Guard: cap pixel ratio by device type
-      var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-      var maxPixelRatio = isMobile ? 1.5 : 2;
+      // CP-4D Performance Guard: cap pixel ratio by device type + viewport + hardware
+      var isMobileUA = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+      var isMobileVP = window.innerWidth < 768;
+      var isMobile = isMobileUA || isMobileVP;
+      var hwConcurrency = navigator.hardwareConcurrency || 4;
+      var deviceMemory = navigator.deviceMemory || 8;
+      var isLowPower = hwConcurrency <= 4 || deviceMemory <= 4;
+      var maxPixelRatio = isLowPower ? 1.0 : (isMobile ? 1.5 : 2);
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.renderer.shadowMap.enabled = true;
@@ -96,14 +104,22 @@ import * as THREE from 'three';
       });
 
       // Resize
+      // CP-4D: Throttled resize handler
+      var resizeRaf = null;
       window.addEventListener('resize', function () {
-        self.camera.aspect = window.innerWidth / window.innerHeight;
-        self.camera.updateProjectionMatrix();
-        self.renderer.setSize(window.innerWidth, window.innerHeight);
+        if (resizeRaf) return;
+        resizeRaf = requestAnimationFrame(function () {
+          self.camera.aspect = window.innerWidth / window.innerHeight;
+          self.camera.updateProjectionMatrix();
+          self.renderer.setSize(window.innerWidth, window.innerHeight);
+          resizeRaf = null;
+        });
       });
 
       // Page visibility
       document.addEventListener('visibilitychange', function () {
+        // CP-4D: Pause animation loop when hidden to save resources
+        self.isPaused = document.hidden;
         if (self.audio) {
           if (document.hidden) self.audio.suspend();
           else self.audio.resume();
@@ -676,6 +692,12 @@ import * as THREE from 'three';
   ImmersiveApp.prototype._animate = function () {
     var self = this;
     this.frameId = requestAnimationFrame(function (ts) { self._animate(); });
+
+    // CP-4D: Skip rendering when paused
+    if (this.isPaused) {
+      this.renderer.render(this.scene, this.camera);
+      return;
+    }
 
     var now = ts / 1000;
 

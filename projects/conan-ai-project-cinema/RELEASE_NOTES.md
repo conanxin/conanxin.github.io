@@ -528,3 +528,43 @@ Upgraded the immersive 3D experience from section-based snap to continuous scrol
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4D*
+
+---
+
+## CP-4D Update (Performance Guard + Visibility Pause)
+
+**Phase:** CP-4D — 2026-06-09 (hotfix)
+
+### Additional CP-4D Features
+
+After initial commit, the following were added to CP-4D:
+
+### Performance Guard (Enhanced)
+
+- **Mobile viewport:** `window.innerWidth < 768` → max pixel ratio 1.5
+- **Mobile UA:** `/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)` → max pixel ratio 1.5
+- **Low-power devices:** `navigator.hardwareConcurrency <= 4` OR `navigator.deviceMemory <= 4` → max pixel ratio 1.0
+- **Desktop:** max pixel ratio 2
+
+### Visibility Pause
+
+- `isPaused` flag added to animation loop
+- Page hidden → `this.isPaused = true` + audio suspend
+- Page visible → `this.isPaused = false` + audio resume
+- Renders one frame even when paused (avoids blank canvas)
+
+### Resize Throttle
+
+- Resize handler now uses `requestAnimationFrame` throttle
+- Prevents redundant renderer/camera updates during active resize
+
+### Reduced Motion
+
+- `prefers-reduced-motion: reduce` disables continuous camera path
+- Falls back to section-based camera (no interpolation)
+- Mouse parallax disabled in reduced motion mode
+- All other features (scene switching, HUD, sound) still work
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4D update*

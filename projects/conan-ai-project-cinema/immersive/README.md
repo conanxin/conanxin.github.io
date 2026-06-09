@@ -215,3 +215,56 @@ Both run independently; camera interpolation handles visual smoothness, section 
 ---
 
 *Readme update by 辛 🔮 — Phase CP-4D*
+
+---
+
+## CP-4D (Updated): Continuous Camera Path + Performance Guard
+
+**Phase:** CP-4D — 2026-06-09
+
+### How Continuous Camera Path Works
+
+1. Scroll listener sets `needsScrollUpdate = true` (passive, throttled)
+2. Animation loop picks up flag → calls `_updateScrollProgress()` → `_updateContinuousCamera()`
+3. `_updateScrollProgress()` calculates `scrollProgress 0~1` from scroll position
+4. `_updateContinuousCamera()` uses `THREE.Vector3.lerpVectors` between current and next scene camera position/target
+5. Camera smoothly interpolates toward `cameraPathPos` + `cameraPathTarget`
+
+### Performance Guard
+
+| Condition | Max Pixel Ratio |
+|-----------|-----------------|
+| Low-power (hwConcurrency ≤ 4 or deviceMemory ≤ 4) | 1.0 |
+| Mobile (UA match OR viewport < 768px) | 1.5 |
+| Desktop | 2.0 |
+
+### Visibility Pause
+
+- `document.addEventListener('visibilitychange')` → sets `this.isPaused`
+- Paused: animation loop skips heavy computation, still renders one frame
+- Audio: `suspend()` when hidden, `resume()` when visible
+
+### Resize Throttle
+
+- `requestAnimationFrame`-based throttle in resize handler
+- Prevents redundant renderer resize during active window resize
+
+### Reduced Motion
+
+- `prefers-reduced-motion: reduce` → `useContinuous = false`
+- Falls back to section-based `baseCameraPos` camera
+- Mouse parallax offset set to 0
+- Scene switching / HUD / sound all still functional
+
+### Section Sync vs Continuous Camera
+
+| System | Trigger | Purpose |
+|--------|---------|---------|
+| IntersectionObserver | Section enters viewport center | HUD active / sound mood / switcher |
+| Continuous camera | Scroll progress 0~1 | Visual camera interpolation |
+
+Both run independently.
+
+---
+
+*Readme update by 辛 🔮 — Phase CP-4D (updated)*

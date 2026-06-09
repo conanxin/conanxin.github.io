@@ -457,6 +457,9 @@ body {
 .status-standby { color: var(--terminal-yellow); background: rgba(247, 224, 126, 0.1); border: 1px solid rgba(247, 224, 126, 0.2); }
 .status-done { color: var(--text-muted); background: rgba(90, 98, 117, 0.2); border: 1px solid var(--border); }
 .status-concept { color: var(--text-muted); background: rgba(90, 98, 117, 0.15); border: 1px solid var(--border); border-style: dashed; }
+.status-private { color: var(--text-muted); background: rgba(90, 98, 117, 0.15); border: 1px solid var(--border); }
+.private-card { opacity: 0.7; border-style: dashed; }
+.private-card:hover { opacity: 0.9; }
 
 .pc-title {
   font-size: 1rem;

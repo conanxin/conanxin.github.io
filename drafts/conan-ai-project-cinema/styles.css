@@ -985,6 +985,18 @@ body {
   opacity: 0.5;
 }
 
+/* --- No-link artifact card (Internal/private items) --- */
+.artifact-card--no-link {
+  opacity: 0.65;
+  border-style: dashed;
+  cursor: default;
+}
+.artifact-card--no-link:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+  border-color: var(--border-bright);
+}
+
 /* --- Project Grid container --- */
 #projectGrid {
   grid-column: 1 / -1;

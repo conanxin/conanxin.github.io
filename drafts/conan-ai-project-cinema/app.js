@@ -123,13 +123,20 @@
 
       shown++;
       const isExternal = art.href && art.href.startsWith('http');
-      const link = document.createElement('a');
-      link.className = 'artifact-card';
-      link.href = art.href;
-      if (isExternal) {
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
+      let link;
+      if (art.href) {
+        link = document.createElement('a');
+        link.href = art.href;
+        if (isExternal) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+      } else {
+        // No href — render as a non-link card (e.g. private/internal projects)
+        link = document.createElement('div');
+        link.className = 'artifact-card artifact-card--no-link';
       }
+      link.classList.add('artifact-card');
 
       const typeEl = document.createElement('div');
       typeEl.className = 'ac-type';

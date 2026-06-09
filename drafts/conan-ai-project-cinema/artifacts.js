@@ -187,6 +187,27 @@
         href: '/research/autoresearch-practical-application-guide.md',
         description: 'AutoResearch 框架的实操应用指南和案例分析。',
       },
+      // Internal projects — only visible via Internal filter
+      {
+        id: 'booktrans-internal',
+        type: 'Internal',
+        title: 'BookTrans',
+        source: 'internal project',
+        status: 'private · not public yet',
+        visibility: 'internal',
+        href: '',
+        description: '书籍翻译与结构化输出相关项目。当前不是公开页面入口。',
+      },
+      {
+        id: 'explainlens-internal',
+        type: 'Internal',
+        title: 'ExplainLens',
+        source: 'internal project',
+        status: 'private · not public yet',
+        visibility: 'internal',
+        href: '',
+        description: '论文讲解与卡片化/图解化相关项目。当前不是公开页面入口。',
+      },
     ],
 
     // ── Scene 05: Constellation Nodes ───────────────────────────────

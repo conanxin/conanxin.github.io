@@ -272,6 +272,95 @@
       [65, 55, 50, 75],
     ],
 
+    // ── CP-3B: Featured Project Strip ──────────────────────────────
+    featured: [
+      {
+        id: 'conan-ai-project-cinema',
+        title: 'Conan AI Project Cinema',
+        label: 'Project Archive',
+        status: 'public',
+        href: '/projects/conan-ai-project-cinema/',
+        description: '电影化个人 AI 项目档案馆，串联 artifacts、agents、pages 与 workflows。',
+        visual: 'cinema',
+      },
+      {
+        id: 'claimlens',
+        title: 'ClaimLens',
+        label: 'Local-first Tool',
+        status: 'alpha',
+        href: 'https://github.com/conanxin/claimlens',
+        description: '本地优先的公开内容主张提取与事实核查计划，支持文本/字幕输入、批量处理。',
+        visual: 'lens',
+      },
+      {
+        id: 'wwdc26-keynote',
+        title: 'WWDC26 Keynote',
+        label: 'Interactive Page',
+        status: 'shipped',
+        href: '/projects/wwdc26-keynote/',
+        description: '发布会内容拆解与交互式学习页面，卡片式结构化呈现。',
+        visual: 'stage',
+      },
+    ],
+
+    // ── CP-3B: Artifact Preview Wall ────────────────────────────────
+    previews: [
+      {
+        id: 'how-to-ai',
+        title: 'How to AI Almost Anything',
+        type: 'Learning Page',
+        href: '/projects/how-to-ai-almost-anything-cn/',
+        status: 'shipped',
+        description: '阶段式 AI 学习路径与实践框架。',
+        motif: 'cards',
+      },
+      {
+        id: 'internet-builder',
+        title: 'Internet Builder Archive',
+        type: 'Archive',
+        href: '/projects/internet-builder-archive/',
+        status: 'shipped',
+        description: '互联网建设者方法论与历史档案。',
+        motif: 'archive',
+      },
+      {
+        id: 'claimlens-preview',
+        title: 'ClaimLens',
+        type: 'Tool',
+        href: 'https://github.com/conanxin/claimlens',
+        status: 'alpha',
+        description: '本地优先主张提取与事实核查工具。',
+        motif: 'lens',
+      },
+      {
+        id: 'hermes-lofi',
+        title: 'HERMES Lofi Skill',
+        type: 'Tool',
+        href: '/projects/hermes-lofi-skill/',
+        status: 'active',
+        description: '轻量环境下的 Hermes 任务封装技能，零依赖运行。',
+        motif: 'terminal',
+      },
+      {
+        id: 'uap-files',
+        title: 'UAP Files',
+        type: 'Archive',
+        href: '/projects/uap-files/',
+        status: 'active',
+        description: 'UAP 原始研究材料、分析报告与结构化解读。',
+        motif: 'files',
+      },
+      {
+        id: 'wwdc26-preview',
+        title: 'WWDC26 Keynote',
+        type: 'Interactive Page',
+        href: '/projects/wwdc26-keynote/',
+        status: 'shipped',
+        description: 'WWDC 2026 主题演讲交互式总结页。',
+        motif: 'stage',
+      },
+    ],
+
   };
 
 })();

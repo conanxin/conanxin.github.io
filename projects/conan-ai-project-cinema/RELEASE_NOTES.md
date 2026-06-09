@@ -133,3 +133,51 @@ CSS-only 网格背景 + 光晕层，增加深夜研究室氛围深度。
 ---
 
 *Release notes maintained by 辛 🔮*
+
+---
+
+## CP-3B Artifact Preview Wall + Featured Project Strip
+
+**Phase:** CP-3B — 2026-06-09
+
+从 Cinematic Experience（CP-3A）向"项目放映厅"目标的又一次迭代。
+
+### Featured Project Strip
+
+位于 Hero 之后、Scene 01 之前。3 张大卡片展示核心项目：
+- **Conan AI Project Cinema** — 自身项目档案馆入口
+- **ClaimLens** — 本地优先主张提取工具（alpha）
+- **WWDC26 Keynote** — 交互式发布会总结页
+
+每张卡片包含：visual block / label / title / description / status badge / Open CTA
+
+### Artifact Preview Wall
+
+位于 Scene 06 Artifact Archive 搜索区上方。横向滚动预览墙展示6 个主要项目：
+How2AI / Internet Builder / ClaimLens / HERMES Lofi / UAP Files / WWDC26
+
+每张卡片包含：browser chrome / screen motif / type / title / description / status / View CTA
+
+### Preview 数据层
+
+`window.CP_ARTIFACTS.featured` — 3 个 featured 项目
+`window.CP_ARTIFACTS.previews` — 6 个 preview wall 项目
+不虚构链接。external link 使用 `target="_blank" rel="noopener noreferrer"`。
+
+### 技术说明
+
+- **纯静态** — 无 GitHub API / 无 live data
+- **safeRun 保护** — 渲染失败时 revealAllScenesFallback() 保底
+- **移动端降级** — Preview Wall 在 600px 以下变为单列
+- **CSS only scrolling** — 无 JS 滚动监听
+
+### Current Status
+
+- **Phase:** CP-3B Artifact Preview Wall
+- **Featured Strip:** Active
+- **Preview Wall:** Active
+- **All prior features:** Active
+
+---
+
+*Release notes maintained by 辛 🔮*

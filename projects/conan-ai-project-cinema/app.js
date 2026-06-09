@@ -487,6 +487,129 @@
   }
 
   // ══════════════════════════════════════════════════════════════
+  // FEATURED PROJECT STRIP (CP-3B)
+  // ══════════════════════════════════════════════════════════════
+  function renderFeaturedProjects() {
+    var strip = document.getElementById('featuredStrip');
+    if (!strip) return;
+    var data = window.CP_ARTIFACTS && window.CP_ARTIFACTS.featured;
+    if (!data || !data.length) return;
+
+
+    strip.innerHTML = '';
+    data.forEach(function (item) {
+      var isExternal = item.href && item.href.indexOf('://') !== -1;
+      var linkAttrs = isExternal
+        ? ' target="_blank" rel="noopener noreferrer"'
+        : '';
+      var visualClass = 'fpv-' + (item.visual || 'default');
+
+
+      var card = document.createElement('div');
+      card.className = 'featured-card';
+      card.setAttribute('data-visual', item.visual || 'default');
+
+
+      card.innerHTML =
+        '<div class="featured-card__visual ' + visualClass + '">' +
+          '<span class="fpv-icon">' + getFeaturedIcon(item.visual) + '</span>' +
+        '</div>' +
+        '<div class="featured-card__body">' +
+          '<div class="fp-label">' + escHtml(item.label) + '</div>' +
+          '<div class="fp-title">' + escHtml(item.title) + '</div>' +
+          '<div class="fp-desc">' + escHtml(item.description) + '</div>' +
+          '<div class="fp-meta">' +
+            '<span class="fp-status status-' + item.status + '">' + escHtml(item.status) + '</span>' +
+          '</div>' +
+          (item.href
+            ? '<a href="' + escAttr(item.href) + '" class="fp-open"' + linkAttrs + '>Open →</a>'
+            : '<span class="fp-open fp-open--none">no link</span>') +
+        '</div>';
+
+
+      strip.appendChild(card);
+    });
+  }
+
+  function getFeaturedIcon(visual) {
+    var icons = {
+      cinema: '🎬',
+      lens: '🔍',
+      stage: '🎤',
+      terminal: '⌨',
+      cards: '📋',
+      archive: '📁',
+      files: '📎',
+      default: '◆',
+    };
+    return icons[visual] || icons.default;
+  }
+
+
+  // ══════════════════════════════════════════════════════════════
+  // ARTIFACT PREVIEW WALL (CP-3B)
+  // ══════════════════════════════════════════════════════════════
+  function renderPreviewWall() {
+    var wall = document.getElementById('previewWall');
+    if (!wall) return;
+    var data = window.CP_ARTIFACTS && window.CP_ARTIFACTS.previews;
+    if (!data || !data.length) return;
+
+
+    wall.innerHTML = '';
+    data.forEach(function (item) {
+      var isExternal = item.href && item.href.indexOf('://') !== -1;
+      var linkAttrs = isExternal
+        ? ' target="_blank" rel="noopener noreferrer"'
+        : '';
+      var motifClass = 'motif-' + (item.motif || 'default');
+
+
+      var card = document.createElement('div');
+      card.className = 'preview-card ' + motifClass;
+
+
+      card.innerHTML =
+        '<div class="preview-card__chrome">' +
+          '<span class="pcc-dot"></span>' +
+          '<span class="pcc-dot"></span>' +
+          '<span class="pcc-dot"></span>' +
+          '<span class="pcc-url">' + escHtml(item.title) + '</span>' +
+        '</div>' +
+        '<div class="preview-card__screen">' +
+          '<div class="pcs-motif pcs-motif--' + (item.motif || 'default') + '">' +
+            '<span class="pcs-icon">' + getPreviewIcon(item.motif) + '</span>' +
+          '</div>' +
+          '<div class="pcs-type">' + escHtml(item.type) + '</div>' +
+        '</div>' +
+        '<div class="preview-card__body">' +
+          '<div class="pct-title">' + escHtml(item.title) + '</div>' +
+          '<div class="pct-desc">' + escHtml(item.description) + '</div>' +
+          '<div class="pct-status status-' + item.status + '">' + escHtml(item.status) + '</div>' +
+        '</div>' +
+        (item.href
+          ? '<a href="' + escAttr(item.href) + '" class="preview-card__cta"' + linkAttrs + '>View →</a>'
+          : '<span class="preview-card__cta preview-card__cta--none">no link</span>');
+
+      wall.appendChild(card);
+    });
+  }
+
+
+  function getPreviewIcon(motif) {
+    var icons = {
+      cards: '📋',
+      archive: '📁',
+      lens: '🔍',
+      terminal: '⌨',
+      files: '📎',
+      stage: '🎤',
+      default: '◆',
+    };
+    return icons[motif] || icons.default;
+  }
+
+  // ══════════════════════════════════════════════════════════════
   // FALLBACK: reveal all scenes if JS fails
   // ══════════════════════════════════════════════════════════════
   function revealAllScenesFallback() {
@@ -526,6 +649,8 @@
 
   // Step 2: Try data-dependent renders
   if (hasData) {
+    safeRun('featured projects render', renderFeaturedProjects);
+    safeRun('preview wall render', renderPreviewWall);
     safeRun('project cards render', renderProjects);
     safeRun('artifact cards render', renderArtifacts);
     safeRun('constellation render', initConstellation);

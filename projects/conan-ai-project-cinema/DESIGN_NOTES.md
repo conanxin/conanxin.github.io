@@ -652,3 +652,54 @@ window.CP_ARTIFACTS = {
 ---
 
 *Design notes by 辛 🔮 — Phase CP-1E*
+
+---
+
+## CP-2A 小节 — Sharing & Discovery Polish
+
+**Phase:** CP-2A
+**Date:** 2026-06-09
+**Status:** PASS
+
+### 本阶段目标
+
+让正式页面更适合被分享、预览、索引和介绍。重点是传播质量，不是新功能。
+
+### 新增内容
+
+**1. Open Graph meta（正式页）：**
+- `og:title` — "Conan AI Project Cinema"
+- `og:description` — 中英双语描述
+- `og:type` — "website"
+- `og:url` — 正式页面 URL
+- `og:image` — 1200×630 分享图
+- `og:site_name` — "Conan Xin"
+
+**2. Twitter Card meta：**
+- `twitter:card` — "summary_large_image"
+- `twitter:site` — "@conanxin"
+- `twitter:title` / `twitter:description` / `twitter:image` — 同 OG
+
+**3. 分享图：**
+- 文件：`/projects/conan-ai-project-cinema/og-image.png`
+- 尺寸：1200×630px
+- 风格：深夜研究室 × AI OS × 项目档案馆
+
+**4. Sitemap 更新：**
+- 已将 `/projects/conan-ai-project-cinema/` 加入 `sitemap.xml`
+
+### 修改影响分析
+
+| 修改范围 | 结果 |
+|----------|------|
+| `drafts/conan-ai-project-cinema/` | ❌ 未触碰 |
+| `projects/data.json` | ❌ 未触碰 |
+| `app.js` / `artifacts.js` | ❌ 未触碰 |
+| `index.html`（public）| ✅ 新增 OG + Twitter meta |
+| `og-image.png` | ✅ 新增分享图 |
+| `sitemap.xml` | ✅ 新增条目 |
+| 风险等级 | **LOW** |
+
+---
+
+*Design notes by 辛 🔮 — Phase CP-2A*

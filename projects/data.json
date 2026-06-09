@@ -1,5 +1,29 @@
 [
   {
+    "title": "WWDC26：AI 回到操作系统",
+    "subtitle": "2026 年 6 月 Apple WWDC26 Keynote 中文交互式梳理",
+    "slug": "wwdc26-keynote",
+    "category": "research",
+    "type": "INTERACTIVE PAGE",
+    "status": "新上线",
+    "status_color": "#0071e3",
+    "updated": "2026-06-09",
+    "summary": "基于 Apple 官方信息，完整梳理 WWDC26 Keynote 发布内容：Siri AI、Apple Intelligence、iOS 27、macOS Golden Gate、watchOS 27、visionOS 27、儿童安全、开发者框架。包含十大发布重点、Siri AI 能力矩阵、平台 Tab、可用性查询、交互式 Liquid Glass 模拟等 12 个模块。",
+    "entry_url": "/projects/wwdc26-keynote/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "Apple",
+      "WWDC26",
+      "Siri AI",
+      "Apple Intelligence",
+      "iOS 27",
+      "macOS",
+      "Child Safety",
+      "Developer"
+    ]
+  },
+  {
     "title": "旧互联网建设者资料库",
     "subtitle": "Internet Builder Archive",
     "slug": "internet-builder-archive",
@@ -381,49 +405,49 @@
       "热力学"
     ]
   },
-    {
-      "title": "编程作为理论建构",
-      "subtitle": "Peter Naur《Programming as Theory Building》完整中文译文与交互式导读",
-      "slug": "programming-as-theory-building",
-      "category": "research",
-      "type": "PAPER STUDY",
-      "status": "已上线",
-      "status_color": "#3fb950",
-      "updated": "2026-06-07",
-      "summary": "Peter Naur 1985年经典论文《Programming as Theory Building》完整中文译文与交互式导读。包含论文全文翻译、深度解读、Naur三问、AI编程检查表、agent工作流模板、术语表和背景资料。",
-      "entry_url": "/projects/programming-as-theory-building/",
-      "source_kind": "static-site",
-      "featured": true,
-      "tags": [
-        "software engineering",
-        "programming",
-        "theory building",
-        "AI coding",
-        "Peter Naur",
-        "programming as theory building",
-        "中文译文"
-      ]
-    },
-    {
-      "title": "If This Isn't Nice",
-      "subtitle": "Kurt Vonnegut PBS NOW 2005 Interview",
-      "slug": "vonnegut-pbs-now-2005-interview",
-      "category": "creative",
-      "type": "INTERACTIVE LITERARY PAGE",
-      "status": "已上线",
-      "status_color": "#3fb950",
-      "updated": "2026-06-07",
-      "summary": "库尔特·冯内古特 2005 年 PBS NOW 访谈的双语文学生态网页，含英文/中文/双语三种阅读模式、主题导航、交互注释、引用卡片、个人笔记与键盘快捷键。",
-      "entry_url": "/projects/vonnegut-pbs-now-2005-interview/",
-      "source_kind": "interactive",
-      "featured": true,
-      "tags": [
-        "Kurt Vonnegut",
-        "literature",
-        "interview",
-        "PBS",
-        "bilingual",
-        "vonnegut"
-      ]
-    }
-  ]
+  {
+    "title": "编程作为理论建构",
+    "subtitle": "Peter Naur《Programming as Theory Building》完整中文译文与交互式导读",
+    "slug": "programming-as-theory-building",
+    "category": "research",
+    "type": "PAPER STUDY",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-07",
+    "summary": "Peter Naur 1985年经典论文《Programming as Theory Building》完整中文译文与交互式导读。包含论文全文翻译、深度解读、Naur三问、AI编程检查表、agent工作流模板、术语表和背景资料。",
+    "entry_url": "/projects/programming-as-theory-building/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "software engineering",
+      "programming",
+      "theory building",
+      "AI coding",
+      "Peter Naur",
+      "programming as theory building",
+      "中文译文"
+    ]
+  },
+  {
+    "title": "If This Isn't Nice",
+    "subtitle": "Kurt Vonnegut PBS NOW 2005 Interview",
+    "slug": "vonnegut-pbs-now-2005-interview",
+    "category": "creative",
+    "type": "INTERACTIVE LITERARY PAGE",
+    "status": "已上线",
+    "status_color": "#3fb950",
+    "updated": "2026-06-07",
+    "summary": "库尔特·冯内古特 2005 年 PBS NOW 访谈的双语文学生态网页，含英文/中文/双语三种阅读模式、主题导航、交互注释、引用卡片、个人笔记与键盘快捷键。",
+    "entry_url": "/projects/vonnegut-pbs-now-2005-interview/",
+    "source_kind": "interactive",
+    "featured": true,
+    "tags": [
+      "Kurt Vonnegut",
+      "literature",
+      "interview",
+      "PBS",
+      "bilingual",
+      "vonnegut"
+    ]
+  }
+]

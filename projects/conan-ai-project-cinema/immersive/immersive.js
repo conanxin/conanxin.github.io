@@ -4,9 +4,17 @@
  * Uses local vendor Three.js (CP-4G: no unpkg dependency).
  */
 
-import * as THREE from './vendor/three.module.js';
+(async function () {
+  // CP-4H-2: Dynamic import for Safari compatibility
+  // Parse errors in three.module.js now become runtime errors caught by index.html
+  var THREE;
+  try {
+    THREE = await import('./vendor/three.module.js');
+  } catch (e) {
+    console.error('[Immersive] THREE load failed:', e);
+    throw e; // Re-throw so index.html catch block can handle it
+  }
 
-(function () {
   'use strict';
 
   var ImmersiveApp = function () {
@@ -718,6 +726,7 @@ import * as THREE from './vendor/three.module.js';
     }
   };
 
+  ImmersiveApp.prototype._toggleSound = function () {
     // If audio unavailable, do nothing
     if (this.soundUnavailable) return;
 

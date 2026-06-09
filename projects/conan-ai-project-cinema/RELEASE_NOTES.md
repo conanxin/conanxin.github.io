@@ -745,3 +745,46 @@ Some browsers showed "Module loading failed / missing ) in parenthetical" when a
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4H*
+
+---
+
+## CP-4H-2: Actually Fix Deployed Immersive Syntax Error (Safari Compatibility)
+
+**Phase:** CP-4H-2 — 2026-06-09
+
+### Root Cause
+
+After CP-4H (DOM API fallback), real browsers still showed "missing ) in parenthetical". The root cause was **NOT** innerHTML concatenation — it was the **static `import * as THREE from './vendor/three.module.js'`** at the top of immersive.js.
+
+Safari's JavaScriptCore parser fails to parse the vendor three.module.js file (specifically a 15364-character GLSL string constant line). Static imports fail at **parse time** — before any try/catch can catch them. This causes Safari to show "missing ) in parenthetical" parse error.
+
+Additionally, the original file was missing the `ImmersiveApp.prototype._toggleSound` method definition, leaving an orphan code block at module level.
+
+### Fixes
+
+1. **Removed static THREE import** — replaced with `(async function () { ... })();` IIFE wrapping the entire module
+2. **Dynamic import for THREE** — `THREE = await import('./vendor/three.module.js')` inside the async IIFE. Parse errors become **runtime errors**, caught by index.html catch block
+3. **Fixed `_toggleSound` method** — added missing `ImmersiveApp.prototype._toggleSound = function () {` definition before the orphan code block
+
+### Changes
+
+- `immersive.js`: Static import → async IIFE + dynamic import; added `_toggleSound` method definition
+- `index.html`: Updated launch() comment (now correct — init() is synchronous again)
+
+### Key Benefits
+
+- Safari now shows graceful fallback instead of parse error
+- "missing ) in parenthetical" no longer appears
+- Parse errors in three.module.js become catchable runtime errors
+- All 3 JS files pass node --check
+- vendor three.module.js still in place (no CDN dependency)
+
+### Status
+
+- node --check: PASS (all 3 files)
+- Safari: graceful fallback on parse error
+- Chrome/Firefox: normal operation unchanged
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4H-2*

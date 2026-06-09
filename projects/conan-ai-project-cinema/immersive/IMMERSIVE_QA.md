@@ -376,3 +376,48 @@ CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C 
 ---
 
 *QA update by 辛 🔮 — CP-4J*
+
+---
+
+## CP-4K: Immersive Control Panel and Explicit Scene Navigation
+
+**Phase:** CP-4K — 2026-06-10
+
+### 根因
+
+-滚动操作反馈不明显，用户不知道如何推进场景
+- 无显式按钮切换，依赖滚轮/键盘，对新用户不友好
+
+### 修复
+
+| 项目 | 修复前 | 修复后 |
+|------|--------|--------|
+| 场景切换 | 仅滚轮/键盘 |显式 Prev/Next 按钮 + dots |
+| 进度显示 | 底部 hint | 控制面板 index + title |
+| 状态反馈 | 无 | Prev disabled @01, Next disabled @06 |
+| 操作提示 | 无 Next/Prev 说明 | control hint 明确提及 |
+
+### 代码验证
+
+| 检查项 | 结果 |
+|--------|------|
+| node --check | ✅ PASS |
+| 括号平衡 | ✅ 685/685 (差值 0) |
+| 方法链 | ✅ `_goToSceneControl` → `_scrollToScene` → `_setSceneFromScroll` → `_updateSceneControl` |
+| launch绑定 | ✅ `_bindSceneControls()` + `_updateSceneControl()` |
+| HTML ID匹配 | ✅ `scenePrev/Next/CtrlIndex/CtrlTitle/sceneDots` |
+| CSS 规则 | ✅ `.hud.visible .scene-control-panel { display:flex }` |
+
+### 待确认（真实浏览器）
+
+| 检查项 | 预期 |
+|--------|------|
+| Next按钮点击 | Scene 01→02，标题变化，index变为02/06 |
+| Prev 按钮 @Scene01 | disabled（不可点击） |
+| dot 05 点击 | 直接跳转 Scene 05 |
+| Next @Scene06 | disabled |
+| spHint 文案 | "Scroll / Next / ↑↓" |
+
+---
+
+*QA update by 辛 🔮 — CP-4K*

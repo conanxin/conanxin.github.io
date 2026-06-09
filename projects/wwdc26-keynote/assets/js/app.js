@@ -1,5 +1,5 @@
 /* ============================================
-   WWDC26 Interactive Page — JavaScript v2.2
+   WWDC26 Interactive Page — JavaScript v2.4
    ============================================ */
 
 (function() {
@@ -9,7 +9,7 @@
   let WWDC_DATA = null;
   async function loadData() {
     try {
-      const r = await fetch('data/wwdc26.json?v=phase5');
+      const r = await fetch('data/wwdc26.json?v=phase6');
       WWDC_DATA = await r.json();
     } catch(e) {
       console.warn('Failed to load wwdc26.json', e);
@@ -273,13 +273,14 @@
   function buildCapabilityMatrix() {
     const matrix = document.getElementById('capabilityMatrix');
     if (!matrix || !WWDC_DATA) return;
+
     matrix.innerHTML = WWDC_DATA.siriAICapabilities.map((cap, i) => `
-      <div class="cap-card" data-index="${i}">
-        <button class="cap-header" aria-expanded="false" aria-controls="cap-detail-${i}">
+      <div class="cap-card${i === 0 ? ' is-open' : ''}" data-index="${i}">
+        <button class="cap-header" aria-expanded="${i === 0}" aria-controls="cap-detail-${i}">
           <h4>${cap.capability}</h4>
           <span class="cap-expand" aria-hidden="true">+</span>
         </button>
-        <div class="cap-detail" id="cap-detail-${i}" hidden>
+        <div class="cap-detail" id="cap-detail-${i}"${i === 0 ? '' : ' hidden'}>
           <div class="cap-detail-grid">
             <div class="cap-detail-item">
               <label>用户能做什么</label>
@@ -294,15 +295,30 @@
         </div>
       </div>
     `).join('');
-    matrix.querySelectorAll('.cap-header').forEach(h => {
-      h.addEventListener('click', () => {
-        const card = h.closest('.cap-card');
-        const detail = card.querySelector('.cap-detail');
-        const isOpen = !detail.hidden;
-        detail.hidden = isOpen;
-        h.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        h.querySelector('.cap-expand').textContent = isOpen ? '+' : '−';
-      });
+
+    // Delegate click on the whole matrix (event delegation for stability)
+    matrix.addEventListener('click', e => {
+      const header = e.target.closest('.cap-header');
+      if (!header) return;
+      const card = header.closest('.cap-card');
+      const detail = card.querySelector('.cap-detail');
+      const isOpen = card.classList.contains('is-open');
+
+      // Toggle this card
+      card.classList.toggle('is-open', !isOpen);
+      detail.hidden = isOpen;
+      header.setAttribute('aria-expanded', String(!isOpen));
+      header.querySelector('.cap-expand').textContent = isOpen ? '+' : '−';
+    });
+
+    // Keyboard support: Enter/Space on the button
+    matrix.addEventListener('keydown', e => {
+      const header = e.target.closest('.cap-header');
+      if (!header) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
     });
   }
 
@@ -397,48 +413,63 @@
 
   /* ---- Build: Architecture Map ---- */
   function buildArchitectureMap() {
-    const map = document.getElementById('archMap');
+    // Handle the swimlane architecture (#archLayers) and detail panel (#archDetails)
+    const layers = document.getElementById('archLayers');
     const details = document.getElementById('archDetails');
-    if (!map || !WWDC_DATA) return;
-
-    const nodes = [
-      { id: 'user-intent', label: '用户意图', color: '#6e6e73' },
-      { id: 'siri-ai', label: 'Siri AI', color: '#0071e3' },
-      { id: 'apple-intel', label: 'Apple Intelligence', color: '#5856d6' },
-      { id: 'app-intents', label: 'App Intents', color: '#34c759' },
-      { id: 'spotlight', label: 'Spotlight', color: '#ff9500' },
-      { id: 'foundation', label: 'Foundation Models', color: '#ff2d55' },
-      { id: 'core-ai', label: 'Core AI', color: '#af52de' },
-      { id: 'app-actions', label: 'App Actions', color: '#00c7be' },
-      { id: 'pcc', label: 'Private Cloud Compute', color: '#64d2ff' },
-    ];
-
-    map.innerHTML = nodes.map(n => `<button class="arch-node" data-id="${n.id}" aria-pressed="false" style="border-left: 3px solid ${n.color}">${n.label}</button>`).join('');
-    map.innerHTML += `<span class="arch-arrow" aria-hidden="true">→</span>`.repeat(2) + `<button class="arch-node" data-id="local-model" aria-pressed="false" style="border-left: 3px solid #64d2ff">Local Model</button>`;
+    if (!layers || !WWDC_DATA) return;
 
     const detailData = {
-      'user-intent': { title: '用户意图', desc: '用户通过自然语言表达需求，是整个系统的入口。' },
-      'siri-ai': { title: 'Siri AI', desc: 'Apple Intelligence 驱动的全新 Siri，理解自然对话、屏幕感知、个人上下文、跨 App 执行动作。' },
-      'apple-intel': { title: 'Apple Intelligence', desc: '系统级 AI 能力，渗透到 iOS/iPadOS/macOS/watchOS/visionOS 的每一个系统 App 和操作。' },
-      'app-intents': { title: 'App Intents', desc: '让第三方 App 接入 Siri，Entity schemas 让内容进入 Spotlight 语义索引，Intent schemas 让行为被自然语言调用。' },
-      'spotlight': { title: 'Spotlight 语义索引', desc: '整合个人数据（消息、邮件、照片、App 内容），在隐私保护下提供语义搜索。' },
-      'foundation': { title: 'Foundation Models', desc: '原生 Swift API，访问 on-device 模型，支持 Claude/Gemini 等云端模型，Multimodal prompts。' },
-      'core-ai': { title: 'Core AI', desc: 'OS 内置框架，为 Apple Silicon 设计，完全设备端运行，无服务器依赖，保护用户数据。' },
-      'app-actions': { title: 'App Actions', desc: 'Siri 调用第三方 App 执行具体动作，如发消息、创建笔记、设置提醒。' },
-      'pcc': { title: 'Private Cloud Compute', desc: '隐私保护的云端 AI 计算，Small Business Program 用户可免费使用云端 Apple Foundation Models。' },
-      'local-model': { title: 'Local Model', desc: 'Apple Silicon 专用模型，完全设备端运行，无 token 成本，数据不离设备。' },
+      'user-intent':  { title: '用户意图', desc: '用户通过自然语言表达需求，是整个系统的入口。' },
+      'siri-ai':      { title: 'Siri AI', desc: 'Apple Intelligence 驱动的全新 Siri，理解自然对话、屏幕感知、个人上下文、跨 App 执行动作。' },
+      'apple-intel':  { title: 'Apple Intelligence', desc: '系统级 AI 能力，渗透到 iOS/iPadOS/macOS/watchOS/visionOS 的每一个系统 App 和操作。' },
+      'app-intents':  { title: 'App Intents', desc: '让第三方 App 接入 Siri，Entity schemas 让内容进入 Spotlight 语义索引，Intent schemas 让行为被自然语言调用。' },
+      'spotlight':    { title: 'Spotlight 语义索引', desc: '整合个人数据（消息、邮件、照片、App 内容），在隐私保护下提供语义搜索。' },
+      'foundation':   { title: 'Foundation Models', desc: '原生 Swift API，访问 on-device 模型，支持 Claude/Gemini 等云端模型，Multimodal prompts。' },
+      'core-ai':      { title: 'Core AI', desc: 'OS 内置框架，为 Apple Silicon 设计，完全设备端运行，无服务器依赖，保护用户数据。' },
+      'app-actions':  { title: 'App Actions', desc: 'Siri 调用第三方 App 执行具体动作，如发消息、创建笔记、设置提醒。' },
+      'pcc':          { title: 'Private Cloud Compute', desc: '隐私保护的云端 AI 计算，Small Business Program 用户可免费使用云端 Apple Foundation Models。' },
+      'local-model':  { title: 'Local Model', desc: 'Apple Silicon 专用模型，完全设备端运行，无 token 成本，数据不离设备。' },
     };
 
-    map.querySelectorAll('.arch-node').forEach(node => {
+    function showDetail(id) {
+      const d = detailData[id];
+      if (!d) return;
+      const iconSvg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`;
+      details.innerHTML = `
+        <div class="arch-detail-card arch-detail-highlight">
+          <div class="arch-detail-icon" aria-hidden="true">${iconSvg}</div>
+          <h4>${d.title}</h4>
+          <p>${d.desc}</p>
+        </div>
+      `;
+    }
+
+    // Wire up click on all arch-node buttons in the swimlane
+    layers.querySelectorAll('.arch-node').forEach(node => {
       node.addEventListener('click', () => {
-        map.querySelectorAll('.arch-node').forEach(n => n.classList.remove('active'));
-        node.classList.add('active');
-        const d = detailData[node.dataset.id];
-        if (d) {
-          details.innerHTML = `<div class="arch-detail-card"><h4>${d.title}</h4><p>${d.desc}</p></div>`;
-        }
+        // Deactivate all nodes
+        layers.querySelectorAll('.arch-node').forEach(n => {
+          n.classList.remove('arch-node-active');
+          n.setAttribute('aria-pressed', 'false');
+        });
+        // Activate clicked node
+        node.classList.add('arch-node-active');
+        node.setAttribute('aria-pressed', 'true');
+        showDetail(node.dataset.id);
+      });
+      // Keyboard
+      node.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); node.click(); }
       });
     });
+
+    // Default: Siri AI is active, show its detail
+    const defaultNode = layers.querySelector('[data-id="siri-ai"]');
+    if (defaultNode) {
+      defaultNode.classList.add('arch-node-active');
+      defaultNode.setAttribute('aria-pressed', 'true');
+      showDetail('siri-ai');
+    }
   }
 
   /* ---- Build: Analysis ---- */
@@ -556,22 +587,42 @@
     const cards = document.getElementById('glassDemoCards');
     if (!slider || !cards) return;
 
-    function getGlassStyle(val) {
-      const alpha = val / 100;
+    // Maps slider 0-100 to a rich glass appearance across 3 cards
+    // ultra-clear (0) -> medium (50) -> fully tinted (100)
+    function getGlassStyle(baseVal) {
+      const t = baseVal / 100;
+      // blur: 0px (clear) to 24px (frosted)
+      const blur = Math.round(0 + t * 24);
+      // alpha: 0.6 (clear glass) to 0.95 (dense tinted)
+      const alpha = 0.6 + t * 0.35;
+      // border highlight: subtle at clear, prominent at tinted
+      const borderA = 0.15 + t * 0.55;
+      // background base: very light at clear, deeper at tinted
+      const bgL = Math.round(255 - t * 30);
+      // shadow: minimal at clear, pronounced at tinted
+      const shadowA = 0.05 + t * 0.2;
+      // saturation boost for tinted
+      const saturate = 1 + t * 0.4;
+
       return {
-        background: `rgba(${Math.round(255 * (1 - alpha * 0.9))}, ${Math.round(255 * (1 - alpha * 0.9))}, ${Math.round(255 * (1 - alpha * 0.95))}, ${0.5 + alpha * 0.4})`,
-        border: `1px solid rgba(0,0,0,${(0.1 + alpha * 0.4).toFixed(2)})`,
-        backdropFilter: `blur(${Math.round(10 + alpha * 20)}px)`,
+        backdropFilter: `blur(${blur}px) saturate(${Math.round(saturate * 100)}%)`,
+        WebkitBackdropFilter: `blur(${blur}px) saturate(${Math.round(saturate * 100)}%)`,
+        background: `rgba(${bgL}, ${bgL}, ${Math.round(bgL + 5)}, ${alpha})`,
+        border: `1px solid rgba(255, 255, 255, ${borderA.toFixed(2)})`,
+        boxShadow: `0 ${Math.round(4 + t * 8)}px ${Math.round(16 + t * 20)}px rgba(0, ${Math.round(113 + t * 50)}, ${Math.round(227 + t * 30)}, ${shadowA.toFixed(2)})`,
       };
     }
 
     function updateGlass() {
       const val = parseInt(slider.value);
-      const cardEls = cards.querySelectorAll('.glass-card');
-      [cardEls[0], cardEls[1], cardEls[2]].forEach((card, idx) => {
-        if (!card) return;
-        const offset = idx === 0 ? -20 : idx === 2 ? 20 : 0;
-        const v = Math.max(0, Math.min(100, val + offset));
+      const cardEls = Array.from(cards.querySelectorAll('.glass-card'));
+      if (cardEls.length < 3) return;
+
+      // Three positions: ultra-clear (-25), medium (0), fully tinted (+25)
+      const offsets = [-25, 0, 25];
+      cardEls.forEach((card, idx) => {
+        const raw = val + offsets[idx];
+        const v = Math.max(0, Math.min(100, raw));
         Object.assign(card.style, getGlassStyle(v));
       });
     }

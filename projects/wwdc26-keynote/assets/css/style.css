@@ -1011,3 +1011,575 @@ noscript .ai-apps-grid-static { display: grid; gap: 12px; }
 .arch-map { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
 .arch-map::-webkit-scrollbar { height: 4px; }
 .arch-map::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+/* ============================================
+   Phase 6: Visual Polish & Interaction Upgrades
+   ============================================ */
+
+/* --- Hero Title Typography --- */
+.hero-title {
+  font-size: clamp(42px, 8vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  display: block;
+  margin-bottom: 0;
+}
+.hero-title-main {
+  display: block;
+  background: linear-gradient(135deg, #1d1d1f 0%, #0071e3 50%, #5856d6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-title-sub {
+  display: block;
+  color: var(--text);
+  opacity: 0.9;
+}
+[data-theme="dark"] .hero-title-sub {
+  background: linear-gradient(135deg, #0071e3 0%, #5856d6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Hero Background Enhancement --- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+.hero-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+/* Animated orbs for Apple-like depth */
+.hero-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+.hero-orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(0,113,227,0.25), transparent 70%);
+  animation-delay: 0s;
+}
+.hero-orb-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(88,86,214,0.2), transparent 70%);
+  animation-delay: -4s;
+}
+.hero-orb-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 30%;
+  background: radial-gradient(circle, rgba(0,199,190,0.15), transparent 70%);
+  animation-delay: -8s;
+}
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, 20px) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb { animation: none; }
+}
+
+/* --- Section Visual Rhythm --- */
+.section {
+  position: relative;
+}
+.section:nth-child(even of .main-content) {
+  background: var(--bg);
+}
+/* Alternating section tint for rhythm */
+.section-alt {
+  background: rgba(0,113,227,0.03);
+}
+[data-theme="dark"] .section-alt {
+  background: rgba(0,113,227,0.05);
+}
+
+/* --- Capability Matrix Improved --- */
+.capability-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.cap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  overflow: visible;
+}
+.cap-card:hover {
+  border-color: rgba(0,113,227,0.3);
+  box-shadow: 0 4px 20px rgba(0,113,227,0.08);
+}
+.cap-card.is-open {
+  border-color: rgba(0,113,227,0.4);
+  box-shadow: 0 6px 28px rgba(0,113,227,0.12);
+}
+.cap-header {
+  width: 100%;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+}
+.cap-header:hover { background: rgba(0,113,227,0.04); }
+.cap-header h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+.cap-header .cap-expand {
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 300;
+  transition: transform 0.25s var(--ease-out), color 0.2s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.cap-card.is-open .cap-expand {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+.cap-detail {
+  padding: 0 24px 20px;
+  border-top: 1px solid var(--border);
+}
+.cap-detail[hidden] { display: none; }
+.cap-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding-top: 16px;
+}
+.cap-detail-item label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 6px;
+}
+.cap-detail-item p { font-size: 14px; color: var(--text); line-height: 1.6; }
+.cap-availability {
+  display: inline-block;
+  font-size: 12px;
+  background: rgba(0,113,227,0.08);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-top: 12px;
+  font-weight: 500;
+}
+[data-theme="dark"] .cap-availability { background: rgba(0,113,227,0.15); }
+
+/* --- Liquid Glass Demo Upgrade --- */
+.glass-bg-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+.glass-orb-1 {
+  width: 300px; height: 300px;
+  top: -60px; left: 10%;
+  background: radial-gradient(circle, rgba(0,113,227,0.35), transparent 70%);
+}
+.glass-orb-2 {
+  width: 250px; height: 250px;
+  bottom: -40px; right: 15%;
+  background: radial-gradient(circle, rgba(88,86,214,0.3), transparent 70%);
+}
+.glass-orb-3 {
+  width: 200px; height: 200px;
+  top: 30%; left: 50%;
+  background: radial-gradient(circle, rgba(0,199,190,0.25), transparent 70%);
+}
+.glass-slider-demo {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px 24px;
+  background: rgba(0,0,0,0.02);
+  border: 1px solid var(--border);
+}
+[data-theme="dark"] .glass-slider-demo {
+  background: rgba(255,255,255,0.03);
+}
+.glass-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto 28px;
+}
+.glass-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 60px;
+}
+.glass-label:last-child { text-align: right; }
+.glass-slider {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-strong);
+  outline: none;
+  -webkit-appearance: none;
+}
+.glass-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,113,227,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.glass-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(0,113,227,0.5);
+}
+.glass-demo-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.glass-card {
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .glass-card {
+  background: rgba(30,30,35,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.glass-card-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  color: var(--accent);
+  opacity: 0.8;
+}
+.glass-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.glass-card p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* --- Architecture Map Swimlane Upgrade --- */
+.arch-layers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.arch-layer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+}
+.arch-layer-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.arch-layer-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+.arch-node {
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  color: var(--text);
+}
+.arch-node:hover {
+  background: rgba(0,113,227,0.12);
+  border-color: rgba(0,113,227,0.3);
+  color: var(--accent);
+}
+.arch-node-active,
+.arch-node[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(0,113,227,0.35);
+}
+.arch-connector {
+  text-align: center;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  font-size: 16px;
+  padding: 2px 0;
+}
+.arch-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.arch-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  transition: all 0.25s var(--ease-out);
+}
+.arch-detail-highlight {
+  border-color: rgba(0,113,227,0.3);
+  background: rgba(0,113,227,0.04);
+}
+[data-theme="dark"] .arch-detail-highlight {
+  background: rgba(0,113,227,0.08);
+}
+.arch-detail-icon {
+  margin-bottom: 8px;
+}
+.arch-detail-card h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.arch-default-badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+}
+.arch-detail-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* --- Arch map mobile --- */
+@media (max-width: 768px) {
+  .arch-layers { padding: 16px; gap: 2px; }
+  .arch-layer { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .arch-layer-label { min-width: unset; }
+  .arch-connector { display: none; }
+  .arch-layer { border-left: 2px solid var(--border); padding-left: 12px; margin-left: 8px; }
+}
+
+/* --- Overview cards improved hover --- */
+.overview-card {
+  transition: all 0.25s var(--ease), transform 0.15s;
+}
+.overview-card:hover {
+  border-color: rgba(0,113,227,0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* --- Announcement card improved --- */
+.announce-card {
+  transition: all 0.25s var(--ease), transform 0.15s;
+}
+.announce-card:hover {
+  border-color: rgba(0,113,227,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+}
+.announce-card:hover .announce-title {
+  color: var(--accent);
+}
+
+/* --- Button refined active states --- */
+.btn:active {
+  transform: scale(0.97);
+}
+.filter-tag:active {
+  transform: scale(0.95);
+}
+
+/* --- Hero kicker improved --- */
+.hero-kicker {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  opacity: 1;
+}
+
+/* --- Hero tags improved --- */
+.hero-tags {
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.tag {
+  background: rgba(0,113,227,0.08);
+  color: var(--accent);
+  border: 1px solid rgba(0,113,227,0.15);
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all 0.2s;
+}
+.tag:hover {
+  background: rgba(0,113,227,0.15);
+  transform: translateY(-1px);
+}
+
+/* --- Section title accent --- */
+.section-title::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #5856d6);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+/* --- Dev card improvements --- */
+.dev-card {
+  border-left: 3px solid var(--accent);
+  transition: all 0.2s;
+}
+.dev-card:hover {
+  border-left-color: #5856d6;
+  box-shadow: 0 4px 20px rgba(0,113,227,0.1);
+}
+
+/* --- AI App card hover --- */
+.ai-app-card:hover {
+  border-color: rgba(0,113,227,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+}
+.ai-app-app {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* --- Safety card icon --- */
+.safety-card svg {
+  flex-shrink: 0;
+}
+
+/* --- Performance item hover --- */
+.perf-item:hover {
+  border-color: rgba(0,113,227,0.2);
+  transform: translateY(-2px);
+}
+
+/* --- Hero actions spacing --- */
+.hero-actions {
+  gap: 12px;
+}
+
+/* --- Timeline connector line gradient --- */
+.timeline::before {
+  background: linear-gradient(180deg, var(--accent), #5856d6, var(--border-strong));
+}
+
+/* --- Overview card icon accent --- */
+.overview-card::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+/* --- Filter tags active glow --- */
+.filter-tag.active {
+  box-shadow: 0 0 0 3px rgba(0,113,227,0.15);
+}
+
+/* --- Mobile refinements --- */
+@media (max-width: 768px) {
+  .glass-demo-cards { grid-template-columns: 1fr; gap: 12px; }
+  .hero-title { font-size: clamp(36px, 10vw, 56px); }
+}
+@media (max-width: 480px) {
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; }
+}

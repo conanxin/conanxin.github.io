@@ -297,37 +297,41 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
-/* CP-4B: Scroll-driven Scene Sync */
+/* CP-4B / CP-4J: Scroll-driven Scene Sync */
 
-/* ── Scroll Story Overlay ── */
+/* ── Scroll Story Overlay (real scroll container) ── */
 .scroll-story {
   position: fixed;
   inset: 0;
   z-index: 50;
-  pointer-events: none;
+  pointer-events: auto;
   display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+  scrollbar-width: none;        /* Firefox */
+  -webkit-overflow-scrolling: touch;
 }
 .scroll-story.visible {
   display: block;
 }
+.scroll-story::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
 
-/* Each scroll scene section — full viewport height */
+/* Each scroll scene section — full viewport height + scroll-snap */
 .scroll-scene {
   height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 0 3rem 0 3rem;
+  align-items: flex-end;
+  padding: 0 3rem 6rem;
+  scroll-snap-align: center;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
 .scroll-scene.is-active {
   opacity: 1;
-}
-
-/* Position text to bottom-left on desktop */
-.scroll-scene {
-  align-items: flex-end;
-  padding-bottom: 6rem;
 }
 
 @media (max-width: 768px) {

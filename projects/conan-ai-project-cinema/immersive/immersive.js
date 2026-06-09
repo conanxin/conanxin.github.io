@@ -499,34 +499,76 @@
     // ── Scroll story ─────────────────────────────────────────────
     ImmersiveApp.prototype._initScrollStory = function () {
       var self = this;
-      var el = document.getElementById('scroll-story');
+      var el = document.getElementById('scrollStory');
       if (!el) return;
       this.scrollStoryEl = el;
 
       el.addEventListener('click', function (e) {
-        var target = e.target.closest('[data-scene]');
+        var target = e.target.closest('[data-scene-index]');
         if (!target) return;
-        var idx = parseInt(target.dataset.scene, 10);
+        var idx = parseInt(target.dataset.sceneIndex, 10);
         if (!isNaN(idx)) self._scrollToScene(idx);
       });
 
+      // CP-4J: Use scrollStory as root so IntersectionObserver tracks
+      // scrollable container, not the window viewport
       this.scrollObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              var idx = parseInt(entry.target.dataset.scene, 10);
+              var idx = parseInt(entry.target.dataset.sceneIndex, 10);
               if (!isNaN(idx) && idx !== self.currentIndex) {
                 self._setSceneFromScroll(idx);
               }
             }
           });
         },
-        { rootMargin: '-30% 0px -30% 0px', threshold: 0 }
+        {
+          root: el,
+          rootMargin: '-30% 0px -30% 0px',
+          threshold: 0.1
+        }
       );
 
-      var sections = el.querySelectorAll('[data-scene]');
+      var sections = el.querySelectorAll('[data-scene-index]');
       sections.forEach(function (sec) {
         self.scrollObserver.observe(sec);
+      });
+
+      // CP-4J: Keyboard navigation (ArrowUp/Down, PageUp/Down, Home/End)
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', function (e) {
+        var total = self.scenes.length;
+        var current = self.currentIndex;
+        var next = current;
+
+        switch (e.key) {
+          case 'ArrowDown':
+          case 'PageDown':
+          case ' ':
+            e.preventDefault();
+            next = Math.min(current + 1, total - 1);
+            break;
+          case 'ArrowUp':
+          case 'PageUp':
+            e.preventDefault();
+            next = Math.max(current - 1, 0);
+            break;
+          case 'Home':
+            e.preventDefault();
+            next = 0;
+            break;
+          case 'End':
+            e.preventDefault();
+            next = total - 1;
+            break;
+          default:
+            return;
+        }
+
+        if (next !== current) {
+          self._scrollToScene(next);
+        }
       });
     };
 
@@ -559,10 +601,21 @@
       this._updateSceneProgress();
     };
 
+    // CP-4J: Scroll scrollStory container to target section
     ImmersiveApp.prototype._scrollToScene = function (index) {
-      var el = document.querySelector('[data-scene="' + index + '"]');
-      if (!el) return;
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+           var story = this.scrollStoryEl;
+      if (!story) {
+          this._gotoScene(index, true);
+        return;
+      }
+      var target = story.querySelector('[data-scene-index="' + index + '"]');
+      if (!target) return;
+
+      var behavior = this.prefersReducedMotion ? 'auto' : 'smooth';
+      story.scrollTo({
+        top: target.offsetTop,
+        behavior: behavior
+      });
     };
 
     // ── Continuous camera ────────────────────────────────────────
@@ -570,20 +623,24 @@
       var el = this.scrollStoryEl;
       if (!el) return;
 
-      var rect = el.getBoundingClientRect();
-      var total = rect.height - window.innerHeight;
-      if (total <= 0) return;
+      // CP-4J: Use scrollTop of the real scroll container
+      var scrollTop = el.scrollTop;
+      var maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 0) return;
 
-      var scrolled = -rect.top;
-      this.scrollProgress = Math.max(0, Math.min(1, scrolled / total));
+      this.scrollProgress = Math.max(0, Math.min(1, scrollTop / maxScroll));
 
       var sceneCount = this.scenes.length;
       var rawIndex = this.scrollProgress * sceneCount;
-      this.scrollSceneIndex = Math.floor(rawIndex);
-      this.scrollSceneT = rawIndex - this.scrollSceneIndex;
-      this.scrollSceneIndex =
-        Math.min(this.scrollSceneIndex, sceneCount - 1);
+      var newIndex = Math.max(0, Math.min(sceneCount - 1, Math.floor(rawIndex)));
+      this.scrollSceneIndex = newIndex;
+      this.scrollSceneT = rawIndex - newIndex;
       this.needsScrollUpdate = true;
+
+      // CP-4J: Also trigger scene change if scroll moved to new scene
+      if (newIndex !== this.currentIndex) {
+        this._setSceneFromScroll(newIndex);
+      }
     };
 
     ImmersiveApp.prototype._updateContinuousCamera = function () {
@@ -897,6 +954,9 @@
 
       document.getElementById('entryOverlay').classList.add('hidden');
       document.getElementById('hud').classList.add('visible');
+      // CP-4J: Also make scrollStory visible (it is inside HUD)
+      var scrollStoryEl = document.getElementById('scrollStory');
+      if (scrollStoryEl) scrollStoryEl.classList.add('visible');
 
       // CP-4I: Show control hint after entering 3D
       app._showControlHint();

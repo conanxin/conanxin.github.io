@@ -337,3 +337,42 @@ CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C 
 ---
 
 *QA update by 辛 🔮 — CP-4I*
+
+---
+
+## CP-4J: Fix Immersive Scroll Controls
+
+**Phase:** CP-4J — 2026-06-09
+
+### 根因
+
+- `.scroll-story`：`pointer-events: none` → 滚轮无处接收
+- `getBoundingClientRect().top`：对 fixed 元素无效
+- IntersectionObserver：无 scroll container root
+- HTML 属性 `data-scene-index`，JS 用 `data-scene`（不匹配）
+
+### 修复
+
+| 项目 | 修复前 | 修复后 |
+|------|--------|--------|
+| scroll-story | `pointer-events: none` | `overflow-y: auto; pointer-events: auto` |
+| scroll progress | `getBoundingClientRect().top` | `el.scrollTop` |
+| IntersectionObserver | 无 root | `root: scrollStoryEl` |
+| scrollToScene | `el.scrollIntoView()` | `story.scrollTo({top: offsetTop})` |
+| JS data 属性 | `data-scene` | `data-scene-index` |
+
+### 浏览器验收（headless Chromium）
+
+| 检查项 | 结果 |
+|--------|------|
+| 滚动 → Scene 02 | ✅ "AI Beyond Chat" |
+| 滚动 → Scene 04 | ✅ "Agents Join the Workflow" |
+| ArrowDown 导航 | ✅ Scene 05 |
+| Home 导航 | ✅ Scene 01 |
+| End 导航 | ✅ Scene 06 |
+| Back button href | ✅ "../" |
+| node --check | ✅ PASS |
+
+---
+
+*QA update by 辛 🔮 — CP-4J*

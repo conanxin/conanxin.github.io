@@ -17,7 +17,8 @@ import * as THREE from 'three';
     this.camera = null;
     this.objects = [];
     this.audio = null;
-    this.soundEnabled = false; // true only if user entered with sound
+    this.soundEnabled = false; // true if user entered with sound
+    this.soundUnavailable = false;
     this.muted = false;
     this.frameId = null;
     this.mouseX = 0;
@@ -536,24 +537,68 @@ import * as THREE from 'three';
   };
 
   ImmersiveApp.prototype._toggleSound = function () {
+    // If audio unavailable, do nothing
+    if (this.soundUnavailable) return;
+
     if (!this.soundEnabled) {
-      // Sound was never enabled
+      // Try to enable audio now (user clicked "Sound Off" to enable it)
+      try {
+        if (!this.audio) this.audio = new window.CP_ImmersiveAudio();
+        var ok = this.audio.init();
+        if (ok) {
+          this.audio.start();
+          this.audio.setMood(this.scenes[this.currentIndex].audioMood);
+          this.soundEnabled = true;
+          this.muted = false;
+        } else {
+          this.soundUnavailable = true;
+        }
+      } catch (e) {
+        console.error('[Immersive] Audio enable failed:', e);
+        this.soundUnavailable = true;
+      }
+      this._updateSoundIcon();
       return;
     }
+
+    // Toggle mute
     this.muted = !this.muted;
+    if (this.audio) this.audio.toggleMute();
     this._updateSoundIcon();
-    if (this.audio) {
-      this.audio.toggleMute();
-    }
   };
 
   ImmersiveApp.prototype._updateSoundIcon = function () {
     var icon = document.getElementById('sound-icon');
-    if (!this.soundEnabled) {
-      icon.textContent = '➤';
+    var btn = document.getElementById('hud-sound');
+    if (!icon || !btn) return;
+
+    if (this.soundUnavailable) {
+      icon.textContent = 'Sound unavailable';
+      btn.setAttribute('aria-label', 'Sound unavailable');
+      btn.setAttribute('title', 'Sound unavailable');
+      btn.disabled = true;
       return;
     }
-    icon.textContent = this.muted ? '🔇' : '🔊';
+
+    btn.disabled = false;
+
+    if (!this.soundEnabled) {
+      // Entered without sound, can still be enabled
+      icon.textContent = 'Sound Off';
+      btn.setAttribute('aria-label', 'Sound off — click to enable');
+      btn.setAttribute('title', 'Sound off — click to enable');
+      return;
+    }
+
+    if (this.muted) {
+      icon.textContent = 'Muted';
+      btn.setAttribute('aria-label', 'Sound muted — click to unmute');
+      btn.setAttribute('title', 'Sound muted — click to unmute');
+    } else {
+      icon.textContent = 'Sound On';
+      btn.setAttribute('aria-label', 'Sound on — click to mute');
+      btn.setAttribute('title', 'Sound on — click to mute');
+    }
   };
 
   // ── Animation Loop ───────────────────────────────────────────────
@@ -608,6 +653,7 @@ import * as THREE from 'three';
   ImmersiveApp.prototype.startWithSound = function () {
     this.soundEnabled = true;
     this.muted = false;
+    this.soundUnavailable = false;
     this.audio = new window.CP_ImmersiveAudio();
     try {
       var ok = this.audio.init();
@@ -616,10 +662,12 @@ import * as THREE from 'three';
         this.audio.setMood(this.scenes[this.currentIndex].audioMood);
       } else {
         this.soundEnabled = false;
+        this.soundUnavailable = true;
       }
     } catch (e) {
       console.error('[Immersive] Audio init failed:', e);
       this.soundEnabled = false;
+      this.soundUnavailable = true;
     }
     this._updateSoundIcon();
   };
@@ -627,9 +675,10 @@ import * as THREE from 'three';
   ImmersiveApp.prototype.startWithoutSound = function () {
     this.soundEnabled = false;
     this.muted = true;
+    this.soundUnavailable = false;
     this.audio = new window.CP_ImmersiveAudio();
     try {
-      this.audio.init(); // no sound, just ready for potential unmute
+      this.audio.init();
     } catch (e) {
       // silent failure ok
     }

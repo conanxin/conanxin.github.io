@@ -587,3 +587,162 @@ html, body {
     transform: translateX(-50%);
   }
 }
+
+/* CP-4K: Scene control panel */
+.scene-control-panel {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: rgba(12, 12, 18, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.6rem;
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  white-space: nowrap;
+}
+
+.hud.visible .scene-control-panel {
+  display: flex;
+}
+
+.scene-ctrl-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.4rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 4rem;
+  text-align: center;
+}
+
+.scene-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.scene-ctrl-btn:active {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.scene-ctrl-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.scene-ctrl-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 8rem;
+  text-align: center;
+}
+
+#sceneCtrlIndex {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+}
+
+#sceneCtrlTitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* CP-4K: Scene dots */
+.scene-dots {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(12, 12, 18, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2rem;
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+}
+
+.hud.visible .scene-dots {
+  display: flex;
+}
+
+.dot-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.3rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.45rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 1.9rem;
+  text-align: center;
+}
+
+.dot-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.dot-btn.is-active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Mobile adjustments for CP-4K */
+@media (max-width: 600px) {
+  .scene-control-panel {
+    bottom: 4rem;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+  }
+  .scene-ctrl-btn {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.55rem;
+    min-width: 3.2rem;
+  }
+  .scene-ctrl-status {
+    min-width: 6rem;
+  }
+  #sceneCtrlTitle {
+    font-size: 0.65rem;
+  }
+  .scene-dots {
+    bottom: 2rem;
+    gap: 0.3rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .dot-btn {
+    font-size: 0.55rem;
+    min-width: 1.6rem;
+    padding: 0.2rem 0.35rem;
+  }
+}

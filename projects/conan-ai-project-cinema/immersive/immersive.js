@@ -451,6 +451,7 @@
 
       this._updateObjectFocus(index);
       this._triggerSceneCue(index, sceneData);
+      this._updateSceneControl();
     };
 
     // ── Camera tween ─────────────────────────────────────────────
@@ -599,6 +600,7 @@
 
       this._updateObjectFocus(index);
       this._updateSceneProgress();
+      this._updateSceneControl();
     };
 
     // CP-4J: Scroll scrollStory container to target section
@@ -940,6 +942,71 @@
 
     // ── Launch ──────────────────────────────────────────────────
     var app = new ImmersiveApp();
+
+    // CP-4K: Unified scene navigation via control panel / dots / keyboard
+    ImmersiveApp.prototype._goToSceneControl = function (index) {
+      index = Math.max(0, Math.min(this.scenes.length - 1, index));
+      this._scrollToScene(index);
+      this._setSceneFromScroll(index);
+      this._updateSceneControl();
+    };
+
+    // CP-4K: Bind Prev / Next / dots click handlers
+    ImmersiveApp.prototype._bindSceneControls = function () {
+      var self = this;
+
+      var prev = document.getElementById('scenePrev');
+      var next = document.getElementById('sceneNext');
+      var dots = document.querySelectorAll('#sceneDots [data-scene-index]');
+
+      if (prev) {
+        prev.addEventListener('click', function () {
+          self._goToSceneControl(self.currentIndex - 1);
+        });
+      }
+
+      if (next) {
+        next.addEventListener('click', function () {
+          self._goToSceneControl(self.currentIndex + 1);
+        });
+      }
+
+      dots.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.dataset.sceneIndex, 10);
+          if (!isNaN(idx)) self._goToSceneControl(idx);
+        });
+      });
+    };
+
+    // CP-4K: Update control panel + dots UI to match currentIndex
+    ImmersiveApp.prototype._updateSceneControl = function () {
+      var scene = this.scenes[this.currentIndex];
+      if (!scene) return;
+
+      var indexEl = document.getElementById('sceneCtrlIndex');
+      var titleEl = document.getElementById('sceneCtrlTitle');
+      var dots = document.querySelectorAll('#sceneDots [data-scene-index]');
+      var prev = document.getElementById('scenePrev');
+      var next = document.getElementById('sceneNext');
+
+      if (indexEl) {
+        indexEl.textContent = String(this.currentIndex + 1).padStart(2, '0') + ' / 06';
+      }
+      if (titleEl) {
+        titleEl.textContent = scene.title;
+      }
+
+      var cur = this.currentIndex;
+      dots.forEach(function (btn) {
+        var active = parseInt(btn.dataset.sceneIndex, 10) === cur;
+        btn.classList.toggle('is-active', active);
+      });
+
+      if (prev) prev.disabled = cur === 0;
+      if (next) next.disabled = cur === this.scenes.length - 1;
+    };
+
     var launched = false;
 
     function launch(sound) {
@@ -964,6 +1031,9 @@
       app._updateSceneProgress();
       // CP-4I: Bind scene progress to scroll changes
       app._bindScrollProgress();
+      // CP-4K: Bind scene control buttons
+      app._bindSceneControls();
+      app._updateSceneControl();
     }
 
     document.getElementById('btnEnterSound')

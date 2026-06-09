@@ -341,3 +341,37 @@ GitHub Pages propagation → real-browser validation required
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-4H-3*
+
+---
+
+## CP-4H-3 (v2) — Async IIFE Boot + esm.sh THREE
+
+**Phase:** CP-4H-3 v2 — 2026-06-09
+
+### Root Cause (Final)
+
+vendor/three.module.js 中存在 15364 字符的单行 GLSL 字符串常量，Safari JavaScriptCore 无法解析。node --check 通过但浏览器失败。
+
+### Fix
+
+- 改用 esm.sh CDN 加载 Three.js（格式正确，无超长行）
+- 使用 async IIFE 结构（用户推荐的安全启动结构）
+- showBootFallback: 全 DOM API，无 innerHTML
+
+### CP-4 Series History
+
+CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C → CP-4D → CP-4E → CP-4F → CP-4F-Click-Hotfix → CP-4G → CP-4F-Rerun → CP-4H → CP-4H-2 → CP-4H-3 v1 → **CP-4H-3 v2** (current)
+
+### 已废弃诊断
+
+- CP-4H: DOM API 修复（正确但不解决 Safari 问题）
+- CP-4H-2: top-level await（仍无法解决 Safari parse error）
+- CP-4H-3 v1: top-level await（same issue）
+
+### 待验证
+
+GitHub Pages 传播后，真实浏览器打开 immersive 页面
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-4H-3 v2*

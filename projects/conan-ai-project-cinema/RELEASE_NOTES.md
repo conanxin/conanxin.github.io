@@ -839,3 +839,44 @@ Top-level `await` in ES modules is supported in Safari 15+. This approach:
 ---
 
 *Release notes by 辛 🔮 — Phase CP-4H-3*
+
+---
+
+## CP-4H-3 (v2): Async IIFE Boot + esm.sh THREE
+
+**Phase:** CP-4H-3 v2 — 2026-06-09
+
+### Root Cause (Final)
+
+CP-4H (DOM API) 和 CP-4H-2 (top-level await) 的诊断都不准确。真实问题：**Safari 无法解析 vendor/three.module.js 中的超长行**（1.3MB 文件含 GLSL 字符串）。这是 Safari JavaScriptCore 的硬性限制，与模块加载方式无关。
+
+### Fix
+
+采用用户推荐的**安全启动结构**：
+- `(async function bootImmersive() { ... })()` — async IIFE，Safari 兼容
+- esm.sh CDN 加载 Three.js — 格式正确，无超长行问题
+- `showBootFallback(reason, detail)` — 全 DOM API，无 innerHTML 拼接
+- vendor/three.module.js **不再被 import**（保留在目录中作为备份）
+
+### 结构保证
+
+- 833 行，max 行长 89 字符
+- 所有括号平衡（parens:0, braces:0, brackets:0）
+- 仅 1 个 async 函数（bootImmersive IIFE）
+- 无 innerHTML 拼接
+- node --check: PASS
+
+### 依赖变化
+
+- **新增外部依赖：** esm.sh CDN（HTTP/2, CORS: *, 可靠）
+- **保留 vendor/three.module.js** 作为离线备用
+
+### 状态
+
+- 推送到 GitHub raw (4a760d9)
+- GitHub Pages 待重建（当前仍为上一版本）
+- 需真实浏览器验证
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-4H-3 v2*

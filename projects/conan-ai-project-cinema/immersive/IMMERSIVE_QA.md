@@ -249,3 +249,53 @@ GitHub Pages propagation → verify new immersive.js loads correctly in Safari/C
 ---
 
 *QA update by 辛 🔮 — CP-4H-3*
+
+---
+
+## CP-4H-3 (v2): Async IIFE Boot + esm.sh THREE
+
+**Phase:** CP-4H-3 v2 — 2026-06-09
+
+### Root Cause (Final)
+
+Safari JavaScriptCore 无法解析 vendor/three.module.js 中的超长行。与模块加载方式（static import / dynamic import / top-level await）无关。
+
+### Fix
+
+- 使用 `(async function bootImmersive() { ... })()` async IIFE
+- esm.sh CDN 加载 Three.js（格式正确）
+- 移除所有 vendor three.module.js 引用
+- showBootFallback: 全 DOM API
+
+### QA
+
+| 检查项 | 结果 |
+|--------|------|
+| node --check immersive.js | PASS |
+| node --check audio-engine.js | PASS |
+| node --check scene-data.js | PASS |
+| async functions | 1 (bootImmersive, correct) |
+| esm.sh THREE import | ✓ |
+| vendor import | 0 (correct) |
+| innerHTML in fallback | 0 (correct) |
+| Bracket balance | parens:0, braces:0, brackets:0 |
+| Max line length | 89 chars |
+| Total lines | 833 |
+
+### CP-4 Series Validity
+
+| Phase | Status |
+|-------|--------|
+| CP-4A ~ CP-4F-Rerun | Valid (CDN-based) |
+| CP-4H | invalid — wrong root cause |
+| CP-4H-2 | invalid — wrong root cause |
+| CP-4H-3 v1 | invalid — top-level await still fails in Safari |
+| **CP-4H-3 v2** | **Active** — esm.sh + async IIFE |
+
+### Pending
+
+GitHub Pages 重建 → 真实浏览器验证（Chrome/Firefox/Safari）
+
+---
+
+*QA update by 辛 🔮 — CP-4H-3 v2*

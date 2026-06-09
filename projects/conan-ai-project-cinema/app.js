@@ -432,26 +432,36 @@
   function initSceneNavigator() {
     var nav = document.getElementById('sceneNav');
     var snProgress = document.getElementById('snProgress');
-    if (!nav) return;
-
+    var mobileStrip = document.getElementById('mobileSceneStrip');
     var sceneIds = ['hero', 'scene-01', 'scene-02', 'scene-03', 'scene-04', 'scene-05', 'scene-06'];
-    var navItems = nav.querySelectorAll('.sn-item');
+
+    // Collect all nav items: desktop + mobile
+    function getAllNavItems() {
+      var items = [];
+      if (nav) items = items.concat(Array.prototype.slice.call(nav.querySelectorAll('.sn-item')));
+      if (mobileStrip) items = items.concat(Array.prototype.slice.call(mobileStrip.querySelectorAll('.mss-item')));
+      return items;
+    }
 
     function setActive(sceneId) {
-      navItems.forEach(function (item) {
+      var allItems = getAllNavItems();
+      allItems.forEach(function (item) {
         item.classList.remove('active');
-        if (item.getAttribute('data-scene') === sceneId) {
+      });
+      allItems.forEach(function (item) {
+        var attr = item.getAttribute('data-scene') || item.getAttribute('data-scene-target');
+        if (attr === sceneId) {
           item.classList.add('active');
         }
       });
-      // Also set document-level active scene for CSS selectors
       document.documentElement.dataset.activeScene = sceneId;
     }
 
-    // Click navigation
-    navItems.forEach(function (item) {
+    // Click navigation — unified for desktop + mobile
+    var allItems = getAllNavItems();
+    allItems.forEach(function (item) {
       item.addEventListener('click', function () {
-        var target = item.getAttribute('data-scene');
+        var target = item.getAttribute('data-scene') || item.getAttribute('data-scene-target');
         var el = document.getElementById(target);
         if (el) {
           el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });

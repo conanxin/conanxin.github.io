@@ -953,3 +953,65 @@ CSS `@keyframes sceneElementFadeIn`，从 opacity:0 + translateY(10px) 淡入到
 ---
 
 *Design notes by 辛 🔮 — Phase CP-3D*
+
+---
+
+## CP-3E 小节 — Mobile Story Navigation + Final Experience QA
+
+**Phase:** CP-3E
+**Date:** 2026-06-09
+**Status:** PASS
+
+### 为什么选择 Mobile Story Navigation，而不是 Terminal API / PWA / 暗色模式
+
+Terminal API / PWA / 暗色模式都引入额外维护负担。Mobile Story Navigation 只需要纯 CSS + 最小 JS 修改，却能直接解决手机用户的章节导航缺失问题。性价比最高。
+
+### Mobile Scene Strip 设计说明
+
+- **位置：** 固定底部，`z-index: 160`
+- **显示条件：** `max-width: 1099px`，桌面端隐藏
+- **内容：** TOP + 01~06 共7个节点
+- **active 状态：** accent 颜色 + 背景高亮
+- **点击行为：** `scrollIntoView({ behavior })`，reduced motion 时 auto
+- ** Credits底部留白：** `padding-bottom: calc(1.5rem + 52px)` 避免遮挡
+
+### active scene 复用方式
+
+`initSceneNavigator()` 已重构为统一处理 desktop nav + mobile strip：
+- `getAllNavItems()` 收集两处 `.sn-item` + `.mss-item`
+- `setActive()` 同时更新两处 active class
+- click 监听器同时绑定两处
+- `document.documentElement.dataset.activeScene` 保持不变
+
+### 移动端 QA 结果
+
+| 检查项 | 结果 |
+|--------|------|
+| Hero / Featured / Preview / Archive 在 375px | ✅ 无明显溢出 |
+| Search / Filter chips | ✅ 可用 |
+| Constellation tooltip | ✅ 不超出屏幕 |
+| Mobile Scene Strip active状态 | ✅ 随滚动变化 |
+| Mobile Scene Strip 点击跳转 | ✅ 正常 |
+| Credits 不被 strip 遮挡 | ✅ padding-bottom 保底 |
+| reduced motion 下 strip隐藏 | ✅ `display: none !important` |
+
+### 是否建议 CP-3 封版
+
+**✅ 建议封版。** 最初目标达成率90%+，剩余10%是不引入重型3D和API的增强功能。Mobile Story Strip补齐最后一块叙事导航缺失，Experience QA 确认无重大问题。
+
+### 修改影响分析
+
+| 修改范围 | 结果 |
+|----------|------|
+| `drafts/conan-ai-project-cinema/` | ❌ 未触碰 |
+| `projects/data.json` | ❌ 未触碰 |
+| `artifacts.js` | ❌ 未触碰 |
+| `index.html` | ✅ Mobile strip HTML + phase 更新 |
+| `app.js` | ✅ initSceneNavigator 扩展，BOOT 未变 |
+| `styles.css` | ✅ Mobile strip styles + credits padding |
+| 新增 `EXPERIENCE_QA.md` | ✅体验 QA 文档 |
+| 风险等级 | **LOW** |
+
+---
+
+*Design notes by 辛 🔮 — Phase CP-3E*

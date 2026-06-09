@@ -462,3 +462,99 @@ window.CP_ARTIFACTS = {
 ---
 
 *Design notes by 辛 🔮 — Phase CP-1C*
+
+---
+
+## CP-1D 小节 — Release Candidate Polish
+
+**Phase:** CP-1D
+**Date:** 2026-06-09
+**Status:** PASS
+
+### 本阶段目标
+
+把 CP-1C 的数据驱动 draft 页面打磨成接近可公开发布的 Release Candidate Draft。重点：搜索体验、移动端、星图交互、发布前检查质量。
+
+### 为什么做搜索而不是 3D / GitHub API
+
+**优先级判断：**
+1. **探索体验是档案馆的核心** — 用户来到页面，第一个问题是"这里有什么"，搜索比 3D 星图先回答这个问题
+2. **移动端可用性决定第一印象** — 主要流量可能来自手机端，3D 动效在移动端反而是负担
+3. **GitHub API 需要 token** — 当前环境没有持久 API key，接入会引入 auth 复杂性
+4. **数据稳定后才做展示层** — 数据结构在 CP-1C 已稳定，CP-1D 做展示层优化最合时宜
+
+### artifacts.js 变更（CP-1D）
+
+**Constellation 节点增强：**
+- 每个节点新增 `href` / `description` / `status` 字段
+- 不再是纯装饰节点，而是可点击导航
+- Internal 节点（无 href）显示为不可点击状态
+
+### 新增功能
+
+**1. Artifact Search（搜索框）：**
+- 搜索范围：`title` + `type` + `source` + `status` + `description`
+- 与 filter chip 联动：先选 Tool，再搜索 claim → 只显示 ClaimLens
+- ESC 清空 / Clear 按钮
+- 无结果时显示 empty state
+
+**2. Constellation 交互增强：**
+- Hover/Focus 显示 tooltip：label + status + description + Open 链接
+- 内部链接同页打开；外部链接新标签页
+- Internal 节点 tooltip 显示 "internal · no public link"
+- 键盘可聚焦（`tabindex` + Enter/Space）
+- 点击外部关闭 tooltip
+
+**3. 移动端 Polish：**
+- Hero 标题 clamp 优化（375px 不溢出）
+- Search row 全宽 + 横向滚动 filter
+- CTA 2×2 网格（400px）
+- Constellation tooltip viewport 边界 clamp
+
+### Release Candidate Checklist
+
+| 检查项 | 状态 |
+|--------|------|
+| noindex retained | ✅ |
+| draft path retained | ✅ |
+| projects/data.json untouched | ✅ |
+| no new framework | ✅ |
+| no 3D dependency | ✅ |
+| data-driven artifacts | ✅ |
+| search enabled | ✅ |
+| constellation interactive | ✅ |
+| mobile checked | ✅ |
+| ready for CP-1E publish decision | Pending |
+
+### 修改影响分析
+
+| 修改范围 | 结果 |
+|----------|------|
+| `projects/data.json` | ❌ 未触碰 |
+| `projects/*` | ❌ 未触碰 |
+| 六幕叙事文案 | ❌ 未触碰 |
+| 六幕视觉结构 | ❌ 未触碰 |
+| `artifacts.js` | ✅ 增强 constellation 节点字段 |
+| `app.js` | ✅ 新增 search + constellation 逻辑（约 350 行）|
+| `styles.css` | ✅ 新增 search/tooltip/mobile 样式 |
+| `index.html` | ✅ 新增 search UI + tooltip 容器 + badge 升级 |
+| 风险等级 | **LOW** |
+
+### 后续 CP-1E 建议
+
+**CP-1E（Publish Decision）：**
+- 从 `drafts/conan-ai-project-cinema/` 迁移到 `/projects/conan-ai-project-cinema/`
+- 加入 `projects/data.json`
+- 移除 `noindex, nofollow`
+- 确认 GitHub Pages 发布路径
+- 确认是否可以公开访问
+
+**CP-1D 之后可选优化（如需）：**
+1. 暗色/亮色模式切换（CSS 变量驱动）
+2. Terminal 真实化（GitHub API commit log）
+3. 移动端 PWA 支持（manifest.json）
+4. 项目页面截图预览（懒加载）
+
+---
+
+*Design notes by 辛 🔮 — Phase CP-1D*

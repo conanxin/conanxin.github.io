@@ -212,12 +212,54 @@
 
     // ── Scene 05: Constellation Nodes ───────────────────────────────
     constellation: [
-      { id: 'how2ai',       label: 'how2ai',           cx: '20%', cy: '40%' },
-      { id: 'hermes-lofi',  label: 'hermes-lofi',       cx: '35%', cy: '65%' },
-      { id: 'internet-builder', label: 'internet-builder', cx: '50%', cy: '30%' },
-      { id: 'uap-files',    label: 'uap-files',         cx: '65%', cy: '55%' },
-      { id: 'github-pages', label: 'github-pages',      cx: '80%', cy: '35%' },
-      { id: 'digital-garden', label: 'digital-garden',  cx: '50%', cy: '75%' },
+      {
+        id: 'how2ai',
+        label: 'how2ai',
+        cx: '20%', cy: '40%',
+        status: 'shipped',
+        description: 'How to AI Almost Anything — 阶段式 AI 学习路径',
+        href: '/projects/how-to-ai-almost-anything-cn/',
+      },
+      {
+        id: 'hermes-lofi',
+        label: 'hermes-lofi',
+        cx: '35%', cy: '65%',
+        status: 'active',
+        description: 'HERMES Lofi Skill — 轻量环境下的任务封装',
+        href: '/projects/hermes-lofi-skill/',
+      },
+      {
+        id: 'internet-builder',
+        label: 'internet-builder',
+        cx: '50%', cy: '30%',
+        status: 'shipped',
+        description: 'Internet Builder Archive — 互联网建设者方法论',
+        href: '/projects/internet-builder-archive/',
+      },
+      {
+        id: 'uap-files',
+        label: 'uap-files',
+        cx: '65%', cy: '55%',
+        status: 'active',
+        description: 'UAP Files Archive — 研究档案与结构化解读',
+        href: '/projects/uap-files/',
+      },
+      {
+        id: 'github-pages',
+        label: 'github-pages',
+        cx: '80%', cy: '35%',
+        status: 'shipped',
+        description: 'conanxin.github.io — 个人数字花园',
+        href: '/',
+      },
+      {
+        id: 'digital-garden',
+        label: 'digital-garden',
+        cx: '50%', cy: '75%',
+        status: 'shipped',
+        description: 'Digital Garden — 知识不是终点，而是持续生长的有机体',
+        href: '/',
+      },
     ],
 
     // ── Constellation SVG connection lines ──────────────────────────

@@ -13,11 +13,14 @@
   <div class="draft-badge">
     <span class="badge-tag">Draft</span>
     <span class="badge-sep">·</span>
-    <span class="badge-phase">Phase CP-1C</span>
+    <span class="badge-phase">Phase CP-1D</span>
   </div>
 
   <!-- Draft Watermark -->
   <div class="draft-watermark">Draft Review Prototype · Not a public release</div>
+
+  <!-- Constellation Tooltip -->
+  <div class="const-tooltip" id="constTooltip" role="tooltip" aria-hidden="true"></div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -286,6 +289,22 @@
         </p>
       </div>
 
+      <!-- Artifact Search + Filter Bar -->
+      <div class="artifact-search-row" id="artifactSearchRow">
+        <div class="search-wrap">
+          <input
+            type="search"
+            id="artifactSearch"
+            class="artifact-search"
+            placeholder="Search artifacts, projects, status..."
+            aria-label="Search artifacts"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="search-clear" id="searchClear" aria-label="Clear search" style="display:none;">✕</button>
+        </div>
+      </div>
+
       <!-- Interactive Filter Bar -->
       <div class="artifact-filters" id="artifactFilters">
         <button data-filter="all" class="filter-chip active">All</button>
@@ -334,7 +353,7 @@
     <div class="credits-inner">
       <p class="credit-line">Designed by Conan Xin</p>
       <p class="credit-line">Built with Agents</p>
-      <p class="credit-line credit-phase">Draft Phase CP-1C · Data Layer</p>
+      <p class="credit-line credit-phase">Draft Phase CP-1D · Release Candidate Polish</p>
       <p class="credit-line credit-note">Noindex Review Prototype · Not a public release</p>
     </div>
   </footer>

@@ -1018,3 +1018,177 @@ body {
     flex-shrink: 0;
   }
 }
+
+/* ── CP-1D: Artifact Search ──────────────────────────────── */
+.artifact-search-row {
+  grid-column: 1 / -1;
+  margin-bottom: 0.5rem;
+}
+
+.search-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 380px;
+}
+
+.artifact-search {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 0.45rem 2.2rem 0.45rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.artifact-search::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+.artifact-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+.artifact-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-clear {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.3rem;
+  border-radius: 50%;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.search-clear:hover {
+  color: var(--text-primary);
+}
+.search-clear:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ── CP-1D: Constellation Tooltip ──────────────────────────── */
+.const-tooltip {
+  position: fixed;
+  z-index: 500;
+  background: var(--bg-card);
+  border: 1px solid var(--border-bright);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  min-width: 160px;
+  max-width: 260px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 12px var(--accent-dim);
+}
+
+.ct-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.ct-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--status-green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+.ct-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+}
+.ct-open {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  padding-top: 0.35rem;
+  margin-top: 0.1rem;
+}
+.ct-internal {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  padding-top: 0.35rem;
+  margin-top: 0.1rem;
+}
+
+/* ── CP-1D: Mobile Polish ─────────────────────────────────── */
+
+/* 375px hero polish */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: clamp(1.6rem, 8vw, 2.5rem);
+  }
+  .hero-sub-cn {
+    font-size: 0.95rem;
+  }
+  .hero-meta {
+    font-size: 0.65rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}
+
+/* Mobile search row */
+@media (max-width: 480px) {
+  .artifact-search-row {
+    margin-bottom: 0.3rem;
+  }
+  .search-wrap {
+    max-width: 100%;
+  }
+  .artifact-search {
+    font-size: 0.75rem;
+    padding: 0.4rem 2rem 0.4rem 0.9rem;
+  }
+}
+
+/* Mobile constellation tooltip clamp */
+@media (max-width: 480px) {
+  .const-tooltip {
+    max-width: 200px;
+  }
+  .const-node {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Mobile CTA 2x2 */
+@media (max-width: 400px) {
+  .cta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cta-card {
+    padding: 1.2rem 0.8rem;
+  }
+  .cta-icon {
+    font-size: 1.5rem;
+  }
+}

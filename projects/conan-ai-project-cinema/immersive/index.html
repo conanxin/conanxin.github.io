@@ -108,48 +108,21 @@
   </div>
 
   <script type="module">
-    // CP-4H-3: immersive.js uses top-level await ES module (no async IIFE)
-
-    // Load data layer (IIFEs that set window.*)
+    // Load data layer first (sets window.CP_IMMERSIVE_SCENES, window.CP_ImmersiveAudio)
     import('./scene-data.js');
     import('./audio-engine.js');
 
-    // Load immersive app (top-level await loads THREE; if fail, .catch handles it)
-    import('./immersive.js').then(function () {
-      var app = new window.CP_ImmersiveApp();
-      var launched = false;
-
-      function launch(sound) {
-        if (launched) return;
-        launched = true;
-        var ok = app.init();
-        if (!ok) return;
-        if (sound) {
-          app.startWithSound();
-        } else {
-          app.startWithoutSound();
-        }
-        document.getElementById('entryOverlay').classList.add('hidden');
-        document.getElementById('hud').classList.add('visible');
-      }
-
-      document.getElementById('btnEnterSound').addEventListener('click', function () {
-        launch(true);
-      });
-      document.getElementById('btnEnterNoSound').addEventListener('click', function () {
-        launch(false);
-      });
-    }).catch(function (err) {
-      console.error('[Immersive] Failed to load immersive.js:', err);
-      // CP-4H-3: DOM-based fallback
+    // immersive.js self-launches via async IIFE; catch any top-level errors
+    import('./immersive.js').catch(function (err) {
+      console.error('[Immersive] Module load failed:', err);
       var entryOverlay = document.getElementById('entryOverlay');
       if (entryOverlay) {
         entryOverlay.setAttribute('hidden', '');
         entryOverlay.style.display = 'none';
       }
-      var el = document.getElementById('immersive-canvas');
-      if (!el) return;
-      el.textContent = '';
+      var stage = document.getElementById('immersive-canvas');
+      if (!stage) return;
+      stage.textContent = '';
       var box = document.createElement('div');
       box.className = 'immersive-fallback';
       var icon = document.createElement('div');
@@ -176,7 +149,7 @@
       link.className = 'ifb-link';
       link.textContent = '← Back to Project Cinema';
       box.appendChild(link);
-      el.appendChild(box);
+      stage.appendChild(box);
     });
   </script>
 </body>

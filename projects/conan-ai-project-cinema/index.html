@@ -56,26 +56,26 @@
   ═══════════════════════════════════════════ -->
   <nav class="scene-nav" id="sceneNav" aria-label="Scene navigation">
     <div class="scene-nav-inner">
-      <div class="sn-item active" data-scene="hero">
+      <div class="sn-item active" data-scene="hero" data-title="Top">
         <span class="sn-label">TOP</span>
       </div>
-      <div class="sn-item" data-scene="scene-01">
-        <span class="sn-label">01</span>
+      <div class="sn-item" data-scene="scene-01" data-title="Complex Ideas · 把复杂内容讲清楚">
+        <span class="sn-label">01 · Ideas</span>
       </div>
-      <div class="sn-item" data-scene="scene-02">
-        <span class="sn-label">02</span>
+      <div class="sn-item" data-scene="scene-02" data-title="AI Beyond Chat · AI 进入文档、网页、命令行">
+        <span class="sn-label">02 · Beyond Chat</span>
       </div>
-      <div class="sn-item" data-scene="scene-03">
-        <span class="sn-label">03</span>
+      <div class="sn-item" data-scene="scene-03" data-title="Projects Become Artifacts · 每个想法留下可运行的产物">
+        <span class="sn-label">03 · Artifacts</span>
       </div>
-      <div class="sn-item" data-scene="scene-04">
-        <span class="sn-label">04</span>
+      <div class="sn-item" data-scene="scene-04" data-title="Agents Join the Workflow · 阶段设计理由 + 影响分析">
+        <span class="sn-label">04 · Agents</span>
       </div>
-      <div class="sn-item" data-scene="scene-05">
-        <span class="sn-label">05</span>
+      <div class="sn-item" data-scene="scene-05" data-title="Control Tower · 项目系统化，AI 进入工作流">
+        <span class="sn-label">05 · Tower</span>
       </div>
-      <div class="sn-item" data-scene="scene-06">
-        <span class="sn-label">06</span>
+      <div class="sn-item" data-scene="scene-06" data-title="Artifact Archive · 持续生长的个人 AI 档案馆">
+        <span class="sn-label">06 · Archive</span>
       </div>
       <div class="sn-progress" id="snProgress"></div>
     </div>
@@ -94,7 +94,7 @@
         <div class="cdp-label">SYSTEM</div>
         <div class="cdp-line"><span class="cd-dot cd-green"></span> AI Archive Active</div>
         <div class="cdp-line"><span class="cd-dot cd-green"></span> 6 scenes loaded</div>
-        <div class="cdp-line"><span class="cd-dot cd-yellow"></span> Phase CP-3C</div>
+        <div class="cdp-line"><span class="cd-dot cd-yellow"></span> Phase CP-3D</div>
       </div>
       <div class="cd-panel cd-panel--tr">
         <div class="cdp-label">AGENTS</div>
@@ -138,6 +138,13 @@
     </div>
   </section>
 
+  <!-- Story Bridge: Hero → Featured → Story -->
+  <div class="story-bridge" aria-hidden="true">
+    <div class="sb-line"></div>
+    <div class="sb-label">AI Project Archive · 2026</div>
+    <div class="sb-line"></div>
+  </div>
+
   <!-- ═══════════════════════════════════════════
        FEATURED PROJECT STRIP
   ═══════════════════════════════════════════ -->
@@ -157,6 +164,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-01" data-scene-id="scene-01">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 01 · Ideas</div>
       <div class="scene-number">01</div>
       <div class="scene-text">
         <h2 class="scene-heading">Complex Ideas</h2>
@@ -223,6 +231,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-02" data-scene-id="scene-02">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 02 · Beyond Chat</div>
       <div class="scene-number">02</div>
       <div class="scene-text">
         <h2 class="scene-heading">AI Beyond Chat</h2>
@@ -302,6 +311,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-03" data-scene-id="scene-03">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 03 · Artifacts</div>
       <div class="scene-number">03</div>
       <div class="scene-text">
         <h2 class="scene-heading">Projects Become Artifacts</h2>
@@ -346,6 +356,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-04" data-scene-id="scene-04">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 04 · Agents</div>
       <div class="scene-number">04</div>
       <div class="scene-text">
         <h2 class="scene-heading">Agents Join the Workflow</h2>
@@ -404,6 +415,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-05" data-scene-id="scene-05">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 05 · Control Tower</div>
       <div class="scene-number">05</div>
       <div class="scene-text">
         <h2 class="scene-heading">Control Tower</h2>
@@ -471,6 +483,7 @@
   ═══════════════════════════════════════════ -->
   <section class="scene" id="scene-06" data-scene-id="scene-06">
     <div class="scene-inner">
+      <div class="scene-kicker">Chapter 06 · Archive</div>
       <div class="scene-number">06</div>
       <div class="scene-text">
         <h2 class="scene-heading">Artifact Archive</h2>
@@ -570,7 +583,7 @@
     <div class="credits-inner">
       <p class="credit-line">Designed by Conan Xin</p>
       <p class="credit-line">Built with Agents</p>
-      <p class="credit-line credit-phase">Public Release · CP-3C Cinematic Depth</p>
+      <p class="credit-line credit-phase">Public Release · CP-3D Narrative Rhythm</p>
       <p class="credit-line credit-note">Conan AI Project Cinema · Public Project Archive</p>
     </div>
   </footer>

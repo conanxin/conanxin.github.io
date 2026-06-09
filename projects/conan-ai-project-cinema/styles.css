@@ -2028,3 +2028,156 @@ body {
 @media (max-width: 768px) {
   .cinema-depth-layer { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   CP-3D: NARRATIVE RHYTHM + SCENE TRANSITIONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Story Bridge: Hero → Featured → Story 01 ── */
+.story-bridge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2rem;
+}
+.sb-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 30%, var(--border) 70%, transparent);
+  opacity: 0.5;
+}
+.sb-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .story-bridge { padding: 1rem 1.2rem; }
+  .sb-label { font-size: 0.58rem; }
+}
+
+/* ── Scene Kicker (chapter label) ── */
+.scene-kicker {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-bottom: 0.2rem;
+}
+.scene.visible .scene-kicker {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Layered Scene Entry Animation ── */
+.scene.visible .scene-number {
+  animation: sceneElementFadeIn 0.5s ease 0.1s both;
+}
+.scene.visible .scene-heading {
+  animation: sceneElementFadeIn 0.5s ease 0.2s both;
+}
+.scene.visible .scene-body-cn,
+.scene.visible .scene-body-en {
+  animation: sceneElementFadeIn 0.5s ease 0.3s both;
+}
+.scene.visible .scene-visual {
+  animation: sceneElementFadeIn 0.5s ease 0.45s both;
+}
+.scene.visible .scene-artifacts,
+.scene.visible .scene-terminals {
+  animation: sceneElementFadeIn 0.5s ease 0.5s both;
+}
+.scene.visible .agent-strip {
+  animation: sceneElementFadeIn 0.5s ease 0.5s both;
+}
+.scene.visible .control-tower {
+  animation: sceneElementFadeIn 0.5s ease 0.5s both;
+}
+
+@keyframes sceneElementFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Enhanced Scene Navigator ── */
+.sn-item {
+  position: relative;
+  width: 80px;
+  border-radius: 4px;
+  justify-content: flex-end;
+  padding-right: 0.4rem;
+}
+.sn-label {
+  font-size: 0.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
+}
+
+/* Tooltip for sn-item */
+.sn-item::after {
+  content: attr(data-title);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 11, 15, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+}
+.sn-item:hover::after { opacity: 1; }
+.sn-item.active::after { color: var(--accent); }
+
+@media (max-width: 1100px) {
+  .sn-item::after { display: none; }
+}
+
+/* Active state for enhanced nav */
+.sn-item.active .sn-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Reduced Motion: kill all narrative animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .scene-kicker { opacity: 1; transform: none; transition: none; }
+  .scene.visible .scene-number,
+  .scene.visible .scene-heading,
+  .scene.visible .scene-body-cn,
+  .scene.visible .scene-body-en,
+  .scene.visible .scene-visual,
+  .scene.visible .scene-artifacts,
+  .scene.visible .scene-terminals,
+  .scene.visible .agent-strip,
+  .scene.visible .control-tower {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .story-bridge { display: none; }
+  .sn-item { width: 28px; }
+  .sn-label { max-width: 28px; font-size: 0.55rem; }
+}

@@ -223,3 +223,48 @@ How2AI / Internet Builder / ClaimLens / HERMES Lofi / UAP Files / WWDC26
 ---
 
 *Release notes maintained by 辛 🔮*
+
+---
+
+## CP-3D Narrative Rhythm
+
+**Phase:** CP-3D — 2026-06-09
+
+从 Cinematic Depth（CP-3C）向"滚动叙事感"的又一次迭代。
+
+### Scene Transition Cues
+
+- **Story Bridge** — Hero → Featured Strip → Scene 01 之间的视觉连接线（双线 + 居中标签）
+- **Scene Kicker** — 每幕顶部 `Chapter XX · Title` 标签，建立"章节开场"感
+
+### Layered Scene Entry
+
+`scean-number → heading → body → visual` 依次淡入（0.1~0.5s 延迟阶梯），每幕像分镜一样逐层展开。纯 CSS keyframe，无 JS 开销。
+
+### Enhanced Story Navigation
+
+Scene Navigator 增强：
+- 短标题：`01 · Ideas` / `02 · Beyond Chat` / `03 · Artifacts` / `04 · Agents` / `05 · Tower` / `06 · Archive`
+- hover tooltip 显示中文标题描述
+- active 状态更明确（accent 颜色 + 字体加粗）
+
+### Hero-to-Story Bridge
+
+Hero → Featured Strip → Scene 01 之间增加了 Story Bridge 视觉连接，避免三个区块割裂。
+
+### No New Framework
+
+纯 CSS + HTML，无新框架依赖。
+
+### Current Status
+
+- **Phase:** CP-3D Narrative Rhythm
+- **All prior features:** Active
+- **Story bridge:** Active
+- **Scene kickers:** Active
+- **Layered scene entry:** Active
+- **Enhanced scene navigator:** Active
+
+---
+
+*Release notes maintained by 辛 🔮*

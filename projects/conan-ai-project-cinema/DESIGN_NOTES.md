@@ -894,3 +894,62 @@ CSS 选择器 `[data-active-scene="scene-XX"]` 据此为当前 scene 的 `.scene
 ---
 
 *Design notes by 辛 🔮 — Phase CP-3C*
+
+---
+
+## CP-3D 小节 — Narrative Rhythm + Scene Transitions
+
+**Phase:** CP-3D
+**Date:** 2026-06-09
+**Status:** PASS
+
+### 为什么做 Narrative Rhythm
+
+CP-3C 实现了空间层次，但页面仍然像"模块堆叠"。Narrative Rhythm 的目标是把六幕结构从"并行展示"升级为"线性叙事"——每一幕有开场感，章节间有连接，导航有上下文。
+
+### 为什么不做 GitHub API / PWA / 真实 log
+
+当前阶段核心是视觉叙事，不是数据基础设施。GitHub API commit log 需要认证和维护，PWA manifest 需要持续更新 service worker。CP-3D 专注纯 CSS/HTML 可以交付的叙事体验。
+
+### Scene Transition 设计说明
+
+- **Story Bridge** — Hero → Featured Strip → Scene 01 之间用细线 + 标签连接，避免三个区域割裂
+- **Scene Kicker** — 每幕顶部有 `Chapter XX · Title` 小标签，入场时淡入，为当前 scene 建立"开场"感
+- **Layered Entry** — scene-number → heading → body → visual依次淡入，模拟分镜节奏
+
+### Scene Entry Animation 说明
+
+CSS `@keyframes sceneElementFadeIn`，从 opacity:0 + translateY(10px) 淡入到正常位置。每幕内部元素有 0.1~0.45s 延迟阶梯，形成"分层入场"感。
+
+`prefers-reduced-motion: reduce` 时全部取消（`animation: none; opacity: 1; transform: none`）。
+
+### Reduced Motion 处理
+
+- 所有 `@keyframes` 动画在 `prefers-reduced-motion: reduce` 时关闭
+- Story bridge 完全隐藏
+- Scene kicker 保持 opacity:1（但无动画）
+- Scene navigator 宽度收缩
+
+### 修改影响分析
+
+| 修改范围 | 结果 |
+|----------|------|
+| `drafts/conan-ai-project-cinema/` | ❌ 未触碰 |
+| `projects/data.json` | ❌ 未触碰 |
+| `artifacts.js` | ❌ 未触碰 |
+| `app.js` | ❌ 未触碰 |
+| `index.html` | ✅ scene kickers + story bridge + navigator titles |
+| `styles.css` | ✅ 新增 CP-3D 全部样式 |
+| 风险等级 | **LOW** |
+
+### CP-3E 建议
+
+1. **Terminal 真实 log**（static sample 或 GitHub API 条件触发）
+2. **暗色/亮色模式切换**（CSS 变量驱动）
+3. **Mobile scene navigator**（1100px 以下用底部 horizontal scroll strip）
+4. **PWA manifest**（offline 可用性）
+5. **或者：CP-3E 之后正式封版**
+
+---
+
+*Design notes by 辛 🔮 — Phase CP-3D*

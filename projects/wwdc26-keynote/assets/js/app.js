@@ -1,5 +1,5 @@
 /* ============================================
-   WWDC26 Interactive Page — JavaScript v2.5
+   WWDC26 Interactive Page — JavaScript v2.6
    ============================================ */
 
 (function() {
@@ -9,7 +9,7 @@
   let WWDC_DATA = null;
   async function loadData() {
     try {
-      const r = await fetch('data/wwdc26.json?v=phase61');
+      const r = await fetch('data/wwdc26.json?v=phase62');
       WWDC_DATA = await r.json();
     } catch(e) {
       console.warn('Failed to load wwdc26.json', e);
@@ -19,18 +19,9 @@
   /* ---- Init All ---- */
   async function init() {
     await loadData();
-    if (!WWDC_DATA) return;
 
-    buildAnnounceGrid();
-    buildCapabilityMatrix();
-    buildAIAppsGrid();
-    buildPlatformTabs();
-    buildChildSafetyCards();
-    buildPerfGrid();
-    buildArchitectureMap();
-    buildAnalysis();
-    buildSources();
-    buildFeatureFilter();
+    // Always bind core interactions first (works with or without JSON)
+    initSiriAccordion();
     initScrollReveal();
     initProgressBar();
     initThemeToggle();
@@ -42,6 +33,21 @@
     initMobileNav();
     initSourceTags();
     initFocusTrap();
+    initArchitectureInteraction();
+
+    // Data-dependent builds only when JSON loaded
+    if (WWDC_DATA) {
+      buildAnnounceGrid();
+      buildCapabilityMatrix();
+      buildAIAppsGrid();
+      buildPlatformTabs();
+      buildChildSafetyCards();
+      buildPerfGrid();
+      buildArchitectureMap();
+      buildAnalysis();
+      buildSources();
+      buildFeatureFilter();
+    }
   }
 
   /* ---- Progress Bar ---- */
@@ -295,31 +301,99 @@
         </div>
       </div>
     `).join('');
+  }
 
-    // Delegate click on the whole matrix (event delegation for stability)
-    matrix.addEventListener('click', e => {
-      const header = e.target.closest('.cap-header');
-      if (!header) return;
-      const card = header.closest('.cap-card');
-      const detail = card.querySelector('.cap-detail');
-      const isOpen = card.classList.contains('is-open');
+  /* ---- Init: Siri AI Accordion (independent of JSON load) ---- */
+  function initSiriAccordion() {
+    // Bind to #siri-deep section (always present in DOM, stable parent)
+    // This works for: JS-built cards (in #capabilityMatrix) + any fallback cards
+    const section = document.getElementById('siri-deep');
+    if (!section) {
+      console.warn('[SiriAccordion] #siri-deep section not found');
+      return;
+    }
 
-      // Toggle this card
-      card.classList.toggle('is-open', !isOpen);
-      detail.hidden = isOpen;
-      header.setAttribute('aria-expanded', String(!isOpen));
-      header.querySelector('.cap-expand').textContent = isOpen ? '+' : '−';
+    // Convert any non-button cap-headers to buttons for accessibility
+    section.querySelectorAll('.cap-header:not(button)').forEach(h => {
+      const parent = h.parentElement;
+      if (!parent) return;
+      // Check if already wrapped
+      if (parent.querySelector('button.cap-header')) return;
+      const text = h.textContent.trim();
+      const card = parent.closest('.cap-card');
+      const detailId = card ? card.querySelector('.cap-detail')?.id : '';
+      const btn = document.createElement('button');
+      btn.className = 'cap-header';
+      btn.setAttribute('aria-expanded', 'false');
+      if (detailId) btn.setAttribute('aria-controls', detailId);
+      btn.innerHTML = '<h4>' + text + '</h4><span class="cap-expand" aria-hidden="true">+</span>';
+      h.replaceWith(btn);
     });
 
-    // Keyboard support: Enter/Space on the button
-    matrix.addEventListener('keydown', e => {
-      const header = e.target.closest('.cap-header');
-      if (!header) return;
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        header.click();
+    // Ensure first card is open (only if no card is currently open)
+    const anyOpen = section.querySelector('.cap-card.is-open');
+    if (!anyOpen) {
+      const firstCard = section.querySelector('.cap-card');
+      const firstHeader = section.querySelector('.cap-card .cap-header');
+      const firstDetail = section.querySelector('.cap-detail');
+      if (firstCard && firstHeader) {
+        firstCard.classList.add('is-open');
+        if (firstDetail) firstDetail.hidden = false;
+        firstHeader.setAttribute('aria-expanded', 'true');
+        firstHeader.querySelector('.cap-expand').textContent = '−';
       }
-    });
+    }
+
+    // Click handler (event delegation on section)
+    section.removeEventListener('click', handleSiriAccordionClick);
+    section.addEventListener('click', handleSiriAccordionClick);
+
+    // Keyboard handler
+    section.removeEventListener('keydown', handleSiriAccordionKeydown);
+    section.addEventListener('keydown', handleSiriAccordionKeydown);
+  }
+
+  function handleSiriAccordionClick(e) {
+    const header = e.target.closest('.cap-header');
+    if (!header) return;
+    const card = header.closest('.cap-card');
+    if (!card) return;
+    const detail = card.querySelector('.cap-detail');
+    const isOpen = card.classList.contains('is-open');
+
+    // Close ALL cards first (accordion behavior: one open at a time)
+    const section = document.getElementById('siri-deep');
+    if (section) {
+      section.querySelectorAll('.cap-card.is-open').forEach(openCard => {
+        openCard.classList.remove('is-open');
+        const openDetail = openCard.querySelector('.cap-detail');
+        if (openDetail) openDetail.hidden = true;
+        const openHeader = openCard.querySelector('.cap-header');
+        if (openHeader) {
+          openHeader.setAttribute('aria-expanded', 'false');
+          const expEl = openHeader.querySelector('.cap-expand');
+          if (expEl) expEl.textContent = '+';
+        }
+      });
+    }
+
+    // Toggle the clicked card (open it if it was closed)
+    if (!isOpen) {
+      card.classList.add('is-open');
+      if (detail) detail.hidden = false;
+      header.setAttribute('aria-expanded', 'true');
+      const expandEl = header.querySelector('.cap-expand');
+      if (expandEl) expandEl.textContent = '−';
+    }
+  }
+
+  function handleSiriAccordionKeydown(e) {
+    const header = e.target.closest('.cap-header');
+    if (!header) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      header.click();
+    }
   }
 
   /* ---- Build: AI Apps Grid ---- */
@@ -464,6 +538,73 @@
     });
 
     // Default: Siri AI is active, show its detail
+    const defaultNode = layers.querySelector('[data-id="siri-ai"]');
+    if (defaultNode) {
+      defaultNode.classList.add('arch-node-active');
+      defaultNode.setAttribute('aria-pressed', 'true');
+      showDetail('siri-ai');
+    }
+  }
+
+  /* ---- Init: Architecture Map Interaction (independent of JSON load) ---- */
+  function initArchitectureInteraction() {
+    const layers = document.getElementById('archLayers');
+    const details = document.getElementById('archDetails');
+    if (!layers) {
+      console.warn('[ArchInteraction] #archLayers not found');
+      return;
+    }
+
+    // Hardcoded detail data (arch nodes are static HTML, don't need WWDC_DATA)
+    const detailData = {
+      'user-intent':  { title: '用户意图', desc: '用户通过自然语言表达需求，是整个系统的入口。' },
+      'siri-ai':      { title: 'Siri AI', desc: 'Apple Intelligence 驱动的全新 Siri，理解自然对话、屏幕感知、个人上下文、跨 App 执行动作。' },
+      'apple-intel':  { title: 'Apple Intelligence', desc: '系统级 AI 能力，渗透到 iOS/iPadOS/macOS/watchOS/visionOS 的每一个系统 App 和操作。' },
+      'app-intents':  { title: 'App Intents', desc: '让第三方 App 接入 Siri，Entity schemas 让内容进入 Spotlight 语义索引，Intent schemas 让行为被自然语言调用。' },
+      'spotlight':    { title: 'Spotlight 语义索引', desc: '整合个人数据（消息、邮件、照片、App 内容），在隐私保护下提供语义搜索。' },
+      'foundation':   { title: 'Foundation Models', desc: '原生 Swift API，访问 on-device 模型，支持 Claude/Gemini 等云端模型，Multimodal prompts。' },
+      'core-ai':      { title: 'Core AI', desc: 'OS 内置框架，为 Apple Silicon 设计，完全设备端运行，无服务器依赖，保护用户数据。' },
+      'app-actions':  { title: 'App Actions', desc: 'Siri 调用第三方 App 执行具体动作，如发消息、创建笔记、设置提醒。' },
+      'pcc':          { title: 'Private Cloud Compute', desc: '隐私保护的云端 AI 计算，Small Business Program 用户可免费使用云端 Apple Foundation Models。' },
+      'local-model':  { title: 'Local Model', desc: 'Apple Silicon 专用模型，完全设备端运行，无 token 成本，数据不离设备。' },
+    };
+
+    function showDetail(id) {
+      if (!details) return;
+      const d = detailData[id];
+      if (!d) return;
+      const iconSvg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`;
+      details.innerHTML = `
+        <div class="arch-detail-card arch-detail-highlight">
+          <div class="arch-detail-icon" aria-hidden="true">${iconSvg}</div>
+          <h4>${d.title}</h4>
+          <p>${d.desc}</p>
+        </div>
+      `;
+    }
+
+    // Remove any existing handlers before adding new ones (idempotent)
+    layers.querySelectorAll('.arch-node').forEach(node => {
+      const newNode = node.cloneNode(true);
+      node.parentNode.replaceChild(newNode, node);
+    });
+
+    layers.querySelectorAll('.arch-node').forEach(node => {
+      node.addEventListener('click', () => {
+        layers.querySelectorAll('.arch-node').forEach(n => {
+          n.classList.remove('arch-node-active');
+          n.setAttribute('aria-pressed', 'false');
+        });
+        node.classList.add('arch-node-active');
+        node.setAttribute('aria-pressed', 'true');
+        showDetail(node.dataset.id);
+      });
+      node.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); node.click(); }
+      });
+    });
+
+    // Default: activate Siri AI node and show its detail
     const defaultNode = layers.querySelector('[data-id="siri-ai"]');
     if (defaultNode) {
       defaultNode.classList.add('arch-node-active');

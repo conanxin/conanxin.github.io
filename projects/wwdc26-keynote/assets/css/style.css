@@ -460,11 +460,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .cap-card.open .cap-expand { transform: rotate(45deg); }
 .cap-detail {
-  display: none;
   padding: 0 24px 20px;
   border-top: 1px solid var(--border);
 }
-.cap-card.open .cap-detail { display: block; }
+.cap-detail[hidden] { display: none; }
 .cap-detail-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

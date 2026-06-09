@@ -1,5 +1,5 @@
 /* ============================================
-   WWDC26 Interactive Page — JavaScript v2.4
+   WWDC26 Interactive Page — JavaScript v2.5
    ============================================ */
 
 (function() {
@@ -9,7 +9,7 @@
   let WWDC_DATA = null;
   async function loadData() {
     try {
-      const r = await fetch('data/wwdc26.json?v=phase6');
+      const r = await fetch('data/wwdc26.json?v=phase61');
       WWDC_DATA = await r.json();
     } catch(e) {
       console.warn('Failed to load wwdc26.json', e);
@@ -629,6 +629,25 @@
 
     slider.addEventListener('input', updateGlass);
     updateGlass();
+
+    // Update real-time parameter display
+    const gpBlur = document.getElementById('gp-blur');
+    const gpSat  = document.getElementById('gp-sat');
+    const gpAlpha = document.getElementById('gp-alpha');
+    const gpBorder = document.getElementById('gp-border');
+    const gpShadow = document.getElementById('gp-shadow');
+
+    function updateParams(val) {
+      const t = val / 100;
+      if (gpBlur)   gpBlur.textContent   = Math.round(0 + t * 24) + 'px';
+      if (gpSat)    gpSat.textContent    = Math.round((1 + t * 0.4) * 100) + '%';
+      if (gpAlpha)  gpAlpha.textContent  = Math.round((0.6 + t * 0.35) * 100) + '%';
+      if (gpBorder) gpBorder.textContent = Math.round((0.15 + t * 0.55) * 100) + '%';
+      if (gpShadow) gpShadow.textContent = Math.round((0.05 + t * 0.2) * 100) + '%';
+    }
+
+    slider.addEventListener('input', () => updateParams(parseInt(slider.value)));
+    updateParams(parseInt(slider.value));
   }
 
   /* ---- Availability Checker (fixed EU logic + platform selector) ---- */

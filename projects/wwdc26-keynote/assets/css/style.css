@@ -1583,3 +1583,110 @@ noscript .ai-apps-grid-static { display: grid; gap: 12px; }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; }
 }
+
+/* ============================================
+   Phase 6.1: Live Consistency Polish
+   ============================================ */
+
+/* --- Liquid Glass real-time params --- */
+.glass-params {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.glass-param {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 52px;
+}
+.glass-param-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+.glass-param-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  transition: color 0.2s;
+}
+.glass-params[aria-live] { min-height: 0; }
+
+/* --- AI Architecture reading guide --- */
+.arch-reading-guide {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: rgba(0,113,227,0.05);
+  border: 1px solid rgba(0,113,227,0.12);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+[data-theme="dark"] .arch-reading-guide {
+  background: rgba(0,113,227,0.08);
+  border-color: rgba(0,113,227,0.2);
+}
+
+/* --- Arch detail section headings --- */
+.arch-detail-heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin: 16px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.arch-detail-heading:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* --- Button press refinement --- */
+.btn:active { transform: scale(0.97); }
+.filter-tag:active { transform: scale(0.95); }
+
+/* --- glass-card-active default state --- */
+.glass-card-active {
+  border-color: rgba(0,113,227,0.3) !important;
+  box-shadow: 0 4px 20px rgba(0,113,227,0.12) !important;
+}
+
+/* --- Arch detail card paragraph --- */
+.arch-detail-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-top: 4px;
+}
+
+/* --- arch-detail-highlight layout --- */
+.arch-detail-highlight {
+  display: flex;
+  flex-direction: column;
+}
+.arch-detail-highlight > h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.arch-detail-icon { margin-bottom: 8px; }
+
+/* --- Mobile fixes --- */
+@media (max-width: 480px) {
+  .glass-params { gap: 12px; }
+  .glass-param { min-width: 44px; }
+  .glass-param-value { font-size: 12px; }
+  .arch-reading-guide { font-size: 11px; padding: 8px 10px; }
+}

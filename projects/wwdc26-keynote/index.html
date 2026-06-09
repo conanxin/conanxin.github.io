@@ -42,7 +42,7 @@
   }
   </script>
   <!-- Stylesheet with versioned cache bust -->
-  <link rel="stylesheet" href="assets/css/style.css?v=phase6">
+  <link rel="stylesheet" href="assets/css/style.css?v=phase61">
 </head>
 <body data-theme="light">
   <!-- Progress Bar (decorative, aria-hidden) -->
@@ -366,6 +366,13 @@
           <input type="range" min="0" max="100" value="30" class="glass-slider" id="glassSlider" aria-label="Liquid Glass 透明度调整">
           <span class="glass-label">fully tinted</span>
         </div>
+        <div class="glass-params" id="glassParams" aria-live="polite" aria-atomic="true">
+          <span class="glass-param"><span class="glass-param-label">Blur</span><span class="glass-param-value" id="gp-blur">0px</span></span>
+          <span class="glass-param"><span class="glass-param-label">Sat</span><span class="glass-param-value" id="gp-sat">100%</span></span>
+          <span class="glass-param"><span class="glass-param-label">Opacity</span><span class="glass-param-value" id="gp-alpha">60%</span></span>
+          <span class="glass-param"><span class="glass-param-label">Border</span><span class="glass-param-value" id="gp-border">15%</span></span>
+          <span class="glass-param"><span class="glass-param-label">Shadow</span><span class="glass-param-value" id="gp-shadow">5%</span></span>
+        </div>
         <div class="glass-demo-cards" id="glassDemoCards">
           <div class="glass-card" id="glass-ultra">
             <div class="glass-card-icon" aria-hidden="true">
@@ -399,6 +406,7 @@
       <h2 class="section-title" id="developer-title">开发者层：AI 基础设施</h2>
       <h3 class="sub-title">AI 系统架构</h3>
       <p class="section-lead">点击节点展开说明</p>
+      <p class="arch-reading-guide" aria-label="架构图阅读引导">从左到右理解：用户意图 → Siri AI / Apple Intelligence → App Intents / Spotlight / Foundation Models / Core AI → App Actions / 本地模型 / Private Cloud Compute</p>
       <div class="arch-layers" id="archLayers">
         <div class="arch-layer" data-layer="user">
           <div class="arch-layer-label">用户层</div>
@@ -434,11 +442,13 @@
           </div>
         </div>
       </div>
+      <h4 class="arch-detail-heading">节点摘要</h4>
       <div class="arch-details" id="archDetails">
         <div class="arch-detail-card arch-detail-highlight">
           <div class="arch-detail-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
           <h4>Siri AI <span class="arch-default-badge">默认高亮</span></h4>
           <p>Apple Intelligence 驱动的全新 Siri，理解自然对话、屏幕感知、个人上下文、跨 App 执行动作。</p>
+          <h4 class="arch-detail-heading">框架详细说明</h4>
         </div>
       </div>
       <div class="dev-frameworks">
@@ -585,7 +595,7 @@
       <p>WWDC26 中文交互式梳理 · 页面创建于 2026-06-09</p>
       <p>本页面由辛（Xin）基于 Apple 官方公开信息整理 · 仅供参考</p>
       <p class="footer-note">信息来源：Apple Newsroom · Apple Developer · Apple 官方页面<br>本页面非 Apple 官方产品，不代表 Apple 立场</p>
-      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.4 · visual polish · QA baseline 5b9047e</p>
+      <p class="page-version-stamp">页面版本：WWDC26 Keynote v2.5 · live consistency polish · QA baseline 5b9047e</p>
     </div>
   </footer>
 
@@ -598,6 +608,6 @@
   <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
 
   <!-- JS with versioned cache bust -->
-  <script src="assets/js/app.js?v=phase6" defer></script>
+  <script src="assets/js/app.js?v=phase61" defer></script>
 </body>
 </html>

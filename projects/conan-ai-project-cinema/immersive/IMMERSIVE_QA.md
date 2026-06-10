@@ -464,3 +464,43 @@ CP-4A → CP-4A-Browser-Verification → CP-4B → CP-4B-Sound-Hotfix → CP-4C 
 ---
 
 *QA update by 辛 🔮 — CP-5A*
+
+---
+
+## CP-5A Visual QA — FAIL (Real Browser Required)
+
+**Date:** 2026-06-10
+
+### Result
+
+CP-5A code-level implementation completed, but visual QA did not pass.
+
+### User Feedback
+
+> "看完仍然觉得像简单 3D 网格 + 一些点。"
+
+### Root Cause
+
+| Issue | Detail |
+|-------|--------|
+| Setpieces too small | desk 4×2.5, card 0.4×0.25 — invisible on load |
+| Grid dominates | grid opacity 0.35, ground plane40×40 |
+| Scene differentiation weak | all scenes share same floor + sparse points |
+| Mobile view too distant | camera at z=10, main object appears tiny |
+| Objects too abstract | basic boxes/spheres, no recognizable spatial anchor |
+
+### Judgment
+
+CP-5A worldbuilding is incomplete. Proceeding to CP-5B.
+
+### What CP-5A Got Right
+
+- Scene layout config structure (`scene-layout.js`)
+- World groups + `_setWorldFocus` architecture
+- Cinematic camera (orbital sweep, easeInOutCubic)
+- Film timeline UI
+- FogExp2 atmospheric depth
+
+---
+
+*CP-5A QA by 辛 🔮 — 2026-06-10*

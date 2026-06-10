@@ -475,5 +475,26 @@
       "Interactive Page",
       "Workflow"
     ]
+  },
+  {
+    "title": "Artvee Gallery · 公共 Demo",
+    "subtitle": "Artvee Public-Domain Artworks · Curated Demo",
+    "slug": "artvee-gallery-demo",
+    "category": "tools",
+    "type": "GALLERY",
+    "status": "首次发布",
+    "status_color": "#3fb950",
+    "updated": "2026-06-11",
+    "summary": "从本地 Artvee 精选图库派生的可静态托管 public demo：精选 100 张公版艺术作品（4 类各 25 张），含 256/512 两套缩略图、艺术家、来源链。仅 ~5.7MB，可托管到任意静态服务器。仅作浏览与灵感参考；详情请回 artvee.com 原页。",
+    "entry_url": "/projects/artvee-gallery-demo/",
+    "source_kind": "static-site",
+    "featured": false,
+    "tags": [
+      "图库",
+      "公版艺术",
+      "Artvee",
+      "静态站点",
+      "Demo"
+    ]
   }
 ]

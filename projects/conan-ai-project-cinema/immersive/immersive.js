@@ -14,20 +14,21 @@
     // ── THREE load ──────────────────────────────────────────────
     let THREE = null;
     try {
-      // Use esm.sh CDN for Three.js — primary, always works in real browser
-      THREE = await import('https://esm.sh/three@0.169.0');
-    } catch (e) {
-      // Fallback to local vendor file
+      // CP-5C-Hotfix-1: Try local vendor FIRST (for reliable local testing)
+      // then fall back to esm.sh CDN
       try {
         THREE = await import('./vendor/three.module.js');
       } catch (ve) {
-        console.error('[Immersive] THREE load failed (CDN: ' + e + ', vendor: ' + ve + ')');
-        showBootFallback(
-          'Three.js failed to load',
-          e && e.message ? e.message.slice(0, 200) : String(e)
-        );
-        return;
+        // Fallback to esm.sh CDN
+        THREE = await import('https://esm.sh/three@0.169.0');
       }
+    } catch (e) {
+      console.error('[Immersive] THREE load failed:', e && e.message ? e.message.slice(0, 200) : String(e));
+      showBootFallback(
+        'Three.js failed to load',
+        e && e.message ? e.message.slice(0, 200) : String(e)
+      );
+      return;
     }
 
     // ── Fallback helper (DOM API only) ─────────────────────────

@@ -603,3 +603,119 @@ Awaiting user's real phone screenshot after hotfix to confirm:
 ---
 
 *QA by 辛 🔮 — CP-5C*
+
+---
+
+## CP-5D QA Report
+
+**Date:** 2026-06-10
+**Status:** BLOCKED → RECOVERED (CP-5D-Hotfix-1)
+
+### CP-5D Initial QA: BLOCKED
+
+CP-5D visual upgrade deployed but runtime was **BLOCKED** by a JavaScript ReferenceError:
+
+```
+ReferenceError: i is not defined
+```
+
+Users saw fallback message "WebGL renderer failed / i is not defined" — this was **NOT** a WebGL issue, but a JS runtime bug in `_createBeyondChatSetpiece()`:
+
+```js
+for (var t = 0; t < 5; t++) {
+  var tLineMat = new THREE.MeshStandardMaterial({
+    transparent: true, opacity: 0.6 + (i % 2) * 0.15  // ❌ 'i' used, 't' declared
+  });
+}
+```
+
+### CP-5D-Hotfix-1: Runtime Recovery
+
+**Fix:** Changed `(i % 2)` → `(t % 2)` to match loop variable `var t`.
+
+**Additional improvements:**
+- Enhanced `showBootFallback()` — now detects ReferenceError/TypeError/SyntaxError separately
+- Added global `window.addEventListener('error')` + `'unhandledrejection'` handlers
+- Runtime error fallback now shows `Scene runtime error` title + structured error detail
+- Phase hint (`v=cp5d-hotfix1`) always displayed
+
+### CP-5D-Hotfix-1 Verification
+
+| Check | Result |
+|-------|--------|
+| `node --check` immersive.js | ✅ PASS |
+| `node --check` audio-engine.js | ✅ PASS |
+| `node --check` scene-data.js | ✅ PASS |
+| No `i is not defined` in codebase | ✅ |
+| `window.addEventListener('error')` present | ✅ |
+| `Scene runtime error` fallback message | ✅ |
+| Real browser: no fallback shown | ✅ |
+| Real browser: 3D enters cleanly | ✅ |
+| Real browser: Scene 01–06 switchable | ✅ |
+
+---
+
+## CP-5D-Final-Live-Confirm QA
+
+**Date:** 2026-06-10
+**Phase:** CP-5D-Final-Live-Confirm
+**User Verified:** ✅ YES (real browser)
+
+### User Confirmation (provided in task)
+
+> - 页面不再显示 WebGL renderer failed ✅
+> - 不再显示 i is not defined ✅
+> - 可以进入 3D ✅
+> - Scene 01–06 均可切换 ✅
+> - Sound / Back / Prev / Next / dots 可见可用 ✅
+
+### Final Scoring
+
+| Dimension | Score | Evidence |
+|-----------|-------|----------|
+| **Runtime** | ✅ PASS | ReferenceError fixed, 3D enters cleanly, no fallback |
+| **Interaction** | ✅ PASS | All controls verified by user: Sound/Back/Prev/Next/dots |
+| **Cinematic Visual** | 🟡 PARTIAL | Setpieces exist and are functional, but alpha quality — not production-ready |
+
+### Visual Assessment
+
+CP-5D setpieces are **functional** (all 6 scenes render, all controls work) but at **alpha visual quality**:
+- Setpiece proportions may need refinement
+- Lighting balance across scenes needs tuning
+- Mobile rendering at alpha level
+- Film grain/vignette post-processing present
+
+### Recommendation
+
+**NOT ready for final seal.** Visual quality is alpha, not production.
+
+**Recommended: CP-5E — Assetized Cinematic Setpieces**
+- Goal: elevate visual quality to production-ready level
+- Scope: only visual polish — no new features
+- Criteria: 爸爸真实浏览器确认为"有电影感" before final seal
+
+### Boundary Confirmed
+
+| Check | Result |
+|-------|--------|
+| Main page: no Three.js | ✅ |
+| drafts: noindex intact | ✅ |
+| projects/data.json: unchanged | ✅ |
+| No React/Vue/Next/Vite/Tailwind | ✅ |
+| No auto-play sound | ✅ |
+
+### CP-5 Series Current Status
+
+| Phase | Commit | Status |
+|-------|--------|--------|
+| CP-5A | `fbc12e8` | PASS (architecture) |
+| CP-5B | `3b73f62` | PASS (setpieces) |
+| CP-5B-Hotfix-1 | `a6d082c` | PASS (Scene 01 fix) |
+| CP-5C | (multiple) | PASS (scene isolation) |
+| CP-5D | (multiple) | PASS (cinematic look) — BLOCKED by ReferenceError |
+| **CP-5D-Hotfix-1** | `3c26567` | ✅ **PASS** (runtime recovered) |
+| CP-5E | — | NEXT — Assetized Cinematic Setpieces |
+
+---
+
+*QA by 辛 🔮 — CP-5D-Final-Live-Confirm*

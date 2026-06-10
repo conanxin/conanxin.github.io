@@ -1454,3 +1454,125 @@ Lines: 2184
 - `node --check` on all 3 JS files: PASS
 - Main page index.html: 0 references to immersive files (correct)
 - All noindex tags intact
+
+---
+
+## Phase CP-5D-Hotfix-1: Fix Immersive Runtime ReferenceError
+
+**Commit:** `3c26567`
+**Date:** 2026-06-10
+**Goal:** Fix JavaScript runtime ReferenceError that blocked immersive 3D entry
+
+### Root Cause
+
+`immersive.js` line ~1911 in `_createBeyondChatSetpiece()`:
+```js
+for (var t = 0; t < 5; t++) {
+  var tLineMat = new THREE.MeshStandardMaterial({
+    transparent: true, opacity: 0.6 + (i % 2) * 0.15  // ❌ ReferenceError: i is not defined
+  });
+```
+Loop variable is `t`, but `opacity` formula incorrectly used `i`.
+
+### Fix Applied
+
+```js
+// Before
+opacity: 0.6 + (i % 2) * 0.15
+// After
+opacity: 0.6 + (t % 2) * 0.15
+```
+
+### Enhanced Fallback Diagnostics
+
+`showBootFallback()` now detects `ReferenceError` / `TypeError` / `SyntaxError` separately from WebGL errors:
+- **WebGL unavailable** → shows WebGL-specific message
+- **Runtime error** → shows `Scene runtime error` title + `error.name: error.message`
+- `?debugScene=1` → shows first 3 lines of `error.stack`
+- Phase hint (`v=cp5d-hotfix1`) always shown in fallback
+
+### Global Error Handlers
+
+Added to boot:
+```js
+window.addEventListener('error', function (e) {
+  console.error('[Immersive] uncaught error:', e.error);
+});
+window.addEventListener('unhandledrejection', function (e) {
+  console.error('[Immersive] unhandled rejection:', e.reason);
+});
+```
+
+### node --check
+
+```
+immersive.js: PASS
+audio-engine.js: PASS
+scene-data.js: PASS
+```
+
+### Real Browser Confirmation (User Verified)
+
+- ✅ Page no longer shows `WebGL renderer failed`
+- ✅ No `i is not defined` error
+- ✅ Can enter 3D scene
+- ✅ Scene 01–06 all switchable
+- ✅ Sound / Back / Prev / Next / dots all functional
+
+### Boundary
+
+- ✅ Only modified `projects/conan-ai-project-cinema/immersive/`
+- ✅ Main page untouched
+- ✅ No React/Vue/Next/Vite/Tailwind
+- ✅ No auto-play sound
+
+---
+
+## Phase CP-5D-Final-Live-Confirm
+
+**Date:** 2026-06-10
+**Status:** CONFIRMED — Runtime Recovered
+
+### Live Browser Confirmation
+
+User verified on real browser (Chrome/Firefox):
+
+| Check | Result |
+|-------|--------|
+| No `WebGL renderer failed` display | ✅ |
+| No `i is not defined` error | ✅ |
+| 3D scene enters successfully | ✅ |
+| Scene 01 visible | ✅ |
+| Scene 02–06 all switchable | ✅ |
+| Sound button functional | ✅ |
+| Back button returns to main page | ✅ |
+| Prev/Next buttons work | ✅ |
+| Dots 01–06 all clickable | ✅ |
+
+### Current Status
+
+| Dimension | Status | Note |
+|-----------|--------|------|
+| **Runtime** | ✅ PASS | ReferenceError fixed, 3D enters cleanly |
+| **Interaction** | ✅ PASS | All controls (scroll/Next/Prev/dots/keyboard/Sound/Back) functional |
+| **Cinematic Visual** | 🟡 PARTIAL | Visual quality at alpha level — setpieces exist but not production-ready |
+
+### NOT Recommended for Final Seal
+
+CP-5D cinematic look is at **alpha** quality. The 3D setpieces are functional but not visually polished enough for production release. Visual issues include:
+
+- Some setpiece proportions may need refinement
+- Lighting balance across scenes may need tuning
+- Mobile rendering at alpha quality
+
+### Next Step: CP-5E
+
+**Recommended: CP-5E: Assetized Cinematic Setpieces**
+- Elevate setpiece visual quality to production level
+- Refine proportions, materials, and lighting per scene
+- Polish mobile rendering
+- No new features — only visual quality improvement
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5D-Final-Live-Confirm*

@@ -740,3 +740,74 @@ scene-data.js: OK
 - Main page: untouched
 - Frameworks: none introduced
 - All controls: preserved
+
+---
+
+## Phase CP-5D-Hotfix-1: Fix Immersive Runtime ReferenceError
+
+**Commit:** `3c26567`
+**Date:** 2026-06-10
+**Status:** FIXED ✅
+
+### Root Cause
+
+`immersive.js` line ~1911 — loop variable `t` used where `i` was referenced:
+```js
+for (var t = 0; t < 5; t++) {
+  opacity: 0.6 + (i % 2) * 0.15  // ReferenceError: i is not defined
+}
+```
+
+### Fix
+- `(i % 2)` → `(t % 2)` — matches loop variable `var t`
+
+- Enhanced `showBootFallback()` with ReferenceError detection + structured error display
+- Added global `window.addEventListener('error')` and `'unhandledrejection'` handlers
+- Pass `err` object to fallback for runtime vs WebGL error classification
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| node --check immersive.js | ✅ PASS |
+| node --check audio-engine.js | ✅ PASS |
+| node --check scene-data.js | ✅ PASS |
+| Real browser: no `i is not defined` | ✅ |
+| Real browser: 3D enters cleanly | ✅ |
+
+---
+
+## Phase CP-5D-Final-Live-Confirm
+
+**Date:** 2026-06-10
+**Status:** CONFIRMED ✅ — Runtime Recovered
+
+### Live Browser Confirmation (User Verified)
+
+| Check | Result |
+|-------|--------|
+| No fallback error display | ✅ |
+| 3D scene enters | ✅ |
+| Scene 01–06 all switchable | ✅ |
+| All controls functional | ✅ |
+
+### Current Scoring
+
+| Dimension | Score | Status |
+|-----------|-------|--------|
+| **Runtime** | PASS | ReferenceError fixed |
+| **Interaction** | PASS | All controls verified |
+| **Cinematic Visual** | PARTIAL | Alpha quality — setpieces functional but not production-ready |
+
+### Recommendation
+
+**NOT ready for final seal.** Cinematic visual at alpha level.
+
+**Recommended next step: CP-5E — Assetized Cinematic Setpieces**
+- Elevate setpiece visual quality to production level
+- No new features — only visual polish
+- Target: production-ready cinematic look before final seal
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-5D-Final-Live-Confirm*

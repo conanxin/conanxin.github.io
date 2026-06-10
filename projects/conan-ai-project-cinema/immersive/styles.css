@@ -60,6 +60,24 @@ html, body {
   display: none;
 }
 
+/* CP-5C-Hotfix-1: Debug overlay */
+#debug-overlay {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  background: rgba(0,0,0,0.88);
+  color: #fff;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  min-width: 290px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
 .eo-icon {
   font-size: 3rem;
   opacity: 0.8;

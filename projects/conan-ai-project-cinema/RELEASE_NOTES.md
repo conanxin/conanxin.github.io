@@ -1350,4 +1350,65 @@ Lines: 2106
 
 ---
 
+
+
+---
+
+## Phase CP-5C-Hotfix-1: Restore Scene 01 Visible Setpiece
+
+**Commit:** 640a96e + this commit
+**Date:** 2026-06-10
+**Goal:** Restore Scene 01 research desk after scene group isolation
+
+### Root Cause Analysis
+
+Headless browser 无法加载 esm.sh CDN（proxy 拦截），导致 THREE.js 加载失败，Scene 01 主视觉不显示。真实浏览器无此问题。
+
+**修复：**
+1. **THREE loading order:** local vendor FIRST, then esm.sh CDN fallback
+   - vendor/three.module.js 是完整的 474KB Three.js build
+   - 本地优先保证本地测试环境正常工作
+2. **_getSceneCamera helper:** 统一读取 camera.desktop/mobile 结构
+   - 修复了 _updateContinuousCamera 读取旧键（undefined → NaN）的问题
+   - 修复了 _setSceneFromScroll 同样的问题
+3. **Debug overlay:** 添加 ?debugScene=1 可视化调试面板
+   - 显示所有 6 个 scene group 的 children count 和 visibility
+   - 显示 camera position / target / scroll progress
+4. **Scene01 debug sentinel:** cyan glowing sphere + ring at (-7, 2.4, 2)
+   - 如果 scene 渲染，sphere 必定可见（emissiveIntensity: 2.0）
+   - 用于快速验证 Scene 01 是否真正渲染
+
+### Verification (Headless)
+
+```
+*group[0]: 31 children, visible=true   (29 original + anchor + ring)
+group[1]: 21 children, visible=false
+group[2]: 31 children, visible=false
+group[3]: 18 children, visible=false
+group[4]: 17 children, visible=false
+group[5]: 54 children, visible=false
+cam pos: -7.0, 3.4, 9.0  (research desk area)
+cam tgt: -7.0, 1.3, 1.5
+```
+
+### Code
+
+```
+node --check: PASS (4/4 files)
+Bracket diff: 0
+Lines: 2184
+```
+
+### Real Browser Confirmation Required
+
+**URL:** https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5c-hotfix1
+
+**验收标准：**
+- [ ] Scene 01 显示 research desk + 4 paper sheets + cyan sentinel sphere
+- [ ] Scene 01 无 tower/archive/hub 可见（isolation 正常）
+- [ ] Debug overlay (debugScene=1) 显示 g0:31/true, g1..g5:false
+- [ ] Next/Prev/dots/scroll/keyboard/Sound/Back 全部正常
+
+*Release notes by 辛 🔮 — Phase CP-5C-Hotfix-1*
+
 *Release notes by 辛 🔮 — Phase CP-5C re-implemented*

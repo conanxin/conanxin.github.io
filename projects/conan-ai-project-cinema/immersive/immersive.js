@@ -1408,6 +1408,9 @@
         }
       });
 
+      // CP-5C-Hotfix-1: Update debug overlay after visibility change
+      this._updateDebugOverlay();
+
       // CP-5C: Dim global group (dome, particles, dust) for scene cleanliness
       if (this.globalGroup) {
         this.globalGroup.traverse(function (obj) {
@@ -1421,7 +1424,7 @@
     // CP-5C: Update debug overlay
        // CP-5C-Hotfix-1: Enhanced debug overlay — all groups + continuous camera state
     ImmersiveApp.prototype._updateDebugOverlay = function () {
-      if (!this.debugMode) return;
+      if (!this.debugMode) { document.getElementById("debug-overlay").style.display = "none"; return; } document.getElementById("debug-overlay").style.display = "block";
       var scene = this.scenes[this.currentIndex];
       var idx = this.currentIndex;
       var pos = this.camera ? this.camera.position : null;
@@ -1562,6 +1565,31 @@
         this._addToSceneGroup(0, connLine);
 
       }
+
+
+      // CP-5C-Hotfix-1: Debug sentinel — bright cyan marker visible from camera
+      // Position: (-7, 2.4, 2) — above the idea core, clearly visible
+      var anchorGeo = new THREE.SphereGeometry(0.18, 12, 12);
+      var anchorMat = new THREE.MeshStandardMaterial({
+        color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 2.0,
+        roughness: 0.1, metalness: 0.0
+      });
+      var anchor = new THREE.Mesh(anchorGeo, anchorMat);
+      anchor.position.set(-7, 2.4, 2);
+      anchor.name = 'scene01-debug-anchor';
+      this._addToSceneGroup(0, anchor);
+
+      // Bright ring around anchor for extra visibility
+      var ringGeo = new THREE.TorusGeometry(0.3, 0.03, 8, 32);
+      var ringMat = new THREE.MeshStandardMaterial({
+        color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 1.5,
+        roughness: 0.2
+      });
+      var ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.set(-7, 2.4, 2);
+      ring.rotation.x = Math.PI / 2;
+      ring.name = 'scene01-debug-ring';
+      this._addToSceneGroup(0, ring);
 
       // Left/right knowledge wall silhouettes (background layer)
       var wallMat = new THREE.MeshStandardMaterial({

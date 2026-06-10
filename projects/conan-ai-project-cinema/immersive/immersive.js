@@ -682,6 +682,11 @@
         sceneData.cameraPosition.y,
         sceneData.cameraPosition.z
       );
+      this.baseCameraTarget = new THREE.Vector3(
+        sceneData.cameraTarget.x,
+        sceneData.cameraTarget.y,
+        sceneData.cameraTarget.z
+      );
 
       if (animate && !this.prefersReducedMotion) {
         this._tweenCamera(this.baseCameraPos, this.baseCameraTarget);
@@ -840,6 +845,11 @@
           sceneData.cameraPosition.x,
           sceneData.cameraPosition.y,
           sceneData.cameraPosition.z
+        );
+        this.baseCameraTarget = new THREE.Vector3(
+          sceneData.cameraTarget.x,
+          sceneData.cameraTarget.y,
+          sceneData.cameraTarget.z
         );
         this.camera.position.copy(this.baseCameraPos);
         this.camera.lookAt(this.baseCameraTarget);
@@ -1348,7 +1358,7 @@
         roughness: 0.8, metalness: 0.2
       });
       var desk = new THREE.Mesh(deskGeo, deskMat);
-      desk.position.set(0, 0.8, 0);
+      desk.position.set(-7, 0.8, 2); // CP-5B-HF1: left side, away from tower
       this.scene.add(desk);
       this._tagWorldObject(desk, 'scene-01');
 
@@ -1376,7 +1386,7 @@
           roughness: 0.9, side: THREE.DoubleSide, transparent: true, opacity: 0.9
         });
         var sheet = new THREE.Mesh(sheetGeo, sheetMat);
-        sheet.position.set(-2.0 + i * 1.5, 1.2 + (i % 2) * 0.15, -0.3 + (Math.floor(i / 2) - 0.5) * 1.2);
+        sheet.position.set(-9.0 + i * 1.5, 1.2 + (i % 2) * 0.15, 1.7 + (Math.floor(i / 2) - 0.5) * 1.2);
         sheet.rotation.y = -0.3 + i * 0.1;
         this.scene.add(sheet);
         this._tagWorldObject(sheet, 'scene-01');
@@ -1403,17 +1413,17 @@
         roughness: 0.2, metalness: 0.5
       });
       var core = new THREE.Mesh(coreGeo, coreMat);
-      core.position.set(0, 1.6, 0);
+      core.position.set(-7, 1.6, 2); // CP-5B-HF1: follows desk
       this.scene.add(core);
       this._tagWorldObject(core, 'scene-01');
 
       // Connection lines from papers to core
       for (var k = 0; k < 4; k++) {
-        var px = -2.0 + k * 1.5;
-        var pz = (Math.floor(k / 2) - 0.5) * 1.2;
+        var px = -9.0 + k * 1.5;
+        var pz = 1.7 + (Math.floor(k / 2) - 0.5) * 1.2;
         var linePoints = [
           new THREE.Vector3(px, 1.2, pz),
-          new THREE.Vector3(0, 1.6, 0)
+          new THREE.Vector3(-7, 1.6, 2)
         ];
         var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
         var lineMat = new THREE.LineBasicMaterial({
@@ -1432,7 +1442,7 @@
       [-8, 8].forEach(function (x) {
         var wGeo = new THREE.BoxGeometry(0.3, 6, 10);
         var wall = new THREE.Mesh(wGeo, wallMat);
-        wall.position.set(x, 3, -1);
+        wall.position.set(x, 3, 1); // CP-5B-HF1: follows desk area
         this.scene.add(wall);
         this._tagWorldObject(wall, 'scene-01');
       }, this);
@@ -1696,7 +1706,7 @@
         roughness: 0.2, metalness: 0.6
       });
       var hub = new THREE.Mesh(hubGeo, hubMat);
-      hub.position.set(0, 2.5, 0);
+      hub.position.set(0, 2.5, -15); // CP-5B-HF1: far z
       this.scene.add(hub);
       this._tagWorldObject(hub, 'scene-04');
 
@@ -1788,7 +1798,7 @@
         roughness: 0.7, metalness: 0.4
       });
       var tower = new THREE.Mesh(baseGeo, baseMat);
-      tower.position.set(0, 3, 0);
+           tower.position.set(0, 3, -20); // CP-5B-HF1: far z to avoid conflict
       this.scene.add(tower);
       this._tagWorldObject(tower, 'scene-05');
 
@@ -1881,7 +1891,7 @@
         roughness: 0.95
       });
       var wall = new THREE.Mesh(wallGeo, wallMat);
-      wall.position.set(0, 4, -10);
+      wall.position.set(0, 4, -25); // CP-5B-HF1: far z
       this.scene.add(wall);
       this._tagWorldObject(wall, 'scene-06');
 

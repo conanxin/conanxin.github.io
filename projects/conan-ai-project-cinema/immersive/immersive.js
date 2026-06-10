@@ -1365,6 +1365,72 @@
       });
     };
 
+
+    // CP-5F: Micro-animations — halo rotation, panel float, beacon pulse, portal breath, underlight breath
+    ImmersiveApp.prototype._updateMicroAnimations = function () {
+      if (!this.sceneGroups) return;
+      if (this.prefersReducedMotion) return;
+      var activeGroup = this.sceneGroups[this.currentIndex];
+      if (!activeGroup) return;
+      var now = performance.now();
+      var t = now * 0.001; // seconds
+      activeGroup.traverse(function (obj) {
+        var ud = obj.userData;
+        // Halo slow rotation (Scene 01 — idea core rings)
+        if (ud.haloRotation) {
+          obj.rotation.y += 0.004;
+          obj.rotation.z += 0.002;
+        }
+        // Panel floating (Scene 02 — glass panels float at different phases)
+        if (ud.floatPhase !== undefined) {
+          var baseY = ud.floatBaseY || obj.position.y;
+          obj.position.y = baseY + Math.sin(t * 0.4 + ud.floatPhase) * 0.06;
+        }
+        // Beacon pulse (Scene 05 — tower beacon)
+        if (ud.beaconPulse) {
+          var intensity = 0.6 + Math.sin(t * 1.2) * 0.5;
+          if (obj.material) {
+            var mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(function (m) {
+              if (m.emissiveIntensity !== undefined) {
+                m.emissiveIntensity = intensity;
+              }
+            });
+          }
+          // Also animate scale slightly
+          var s = 1.0 + Math.sin(t * 1.2) * 0.05;
+          obj.scale.set(s, s, s);
+        }
+        // Portal breathing glow (Scene 06)
+        if (ud.breathPhase !== undefined) {
+          var bIntensity = 0.5 + Math.sin(t * 0.5 + ud.breathPhase) * 0.35;
+          if (obj.material) {
+            var mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(function (m) {
+              if (m.emissiveIntensity !== undefined) {
+                m.emissiveIntensity = bIntensity;
+              }
+              if (m.opacity !== undefined) {
+                m.opacity = 0.6 + Math.sin(t * 0.5 + ud.breathPhase) * 0.2;
+              }
+            });
+          }
+        }
+        // Underlight breathing (Scene 03 — plinth underglow)
+        if (ud.underlightBreath) {
+          if (obj.material) {
+            var mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(function (m) {
+              if (m.emissiveIntensity !== undefined) {
+                m.emissiveIntensity = 0.4 + Math.sin(t * 0.6 + ud.underlightBreath) * 0.3;
+              }
+            });
+          }
+        }
+      });
+    };
+
+
     // ── Sound icon ──────────────────────────────────────────────
     ImmersiveApp.prototype._updateSoundIcon = function () {
       var el = document.getElementById('hud-sound');
@@ -1442,6 +1508,8 @@
       if (this.renderer && this.scene && this.camera) {
         // CP-5D: Update pulsing dots animation
         this._updatePulsingDots();
+        // CP-5F: Update micro-animations (halo rotation, panel float, beacon pulse, portal breath)
+        this._updateMicroAnimations();
         this.renderer.render(this.scene, this.camera);
       }
     };
@@ -1788,30 +1856,34 @@
       core.position.set(-7, 1.65, 1.5);
       this._addToSceneGroup(0, core);
 
-      // Core outer glow ring
+      // Core outer glow ring (CP-5F: halo rotation flag)
       var coreRingGeo = new THREE.TorusGeometry(0.42, 0.04, 8, 32);
       var coreRingMat = createGlowMaterial(cyanGlow, 0.9);
       var coreRing = new THREE.Mesh(coreRingGeo, coreRingMat);
       coreRing.position.set(-7, 1.65, 1.5);
       coreRing.rotation.x = Math.PI / 3;
       coreRing.rotation.y = Math.PI / 6;
+      coreRing.userData.haloRotation = true;
       this._addToSceneGroup(0, coreRing);
 
-      // Secondary glow ring
+
+      // Secondary glow ring (CP-5F: halo rotation flag)
       var coreRing2Geo = new THREE.TorusGeometry(0.55, 0.025, 8, 32);
       var coreRing2Mat = createGlowMaterial(cyanGlow, 0.5);
       var coreRing2 = new THREE.Mesh(coreRing2Geo, coreRing2Mat);
       coreRing2.position.set(-7, 1.65, 1.5);
       coreRing2.rotation.x = Math.PI / 2;
+      coreRing2.userData.haloRotation = true;
       this._addToSceneGroup(0, coreRing2);
 
-      // CP-5E: Third orbit halo ring (wider, slower tilt)
+      // CP-5E: Third orbit halo ring (wider, slower tilt) (CP-5F: halo rotation flag)
       var coreRing3Geo = new THREE.TorusGeometry(0.75, 0.018, 6, 48);
       var coreRing3Mat = createGlowMaterial(cyanGlow, 0.35);
       var coreRing3 = new THREE.Mesh(coreRing3Geo, coreRing3Mat);
       coreRing3.position.set(-7, 1.65, 1.5);
       coreRing3.rotation.x = Math.PI / 4;
       coreRing3.rotation.z = Math.PI / 5;
+      coreRing3.userData.haloRotation = true;
       this._addToSceneGroup(0, coreRing3);
 
       // CP-5E: Desk lamp (corner of desk — lamp stem + glow bulb)
@@ -1902,6 +1974,7 @@
       keyLight.position.set(-10, 5, 4);
       this._addToSceneGroup(0, keyLight);
 
+
       // Fill light (from right)
       var fillLight = new THREE.DirectionalLight(0x1a2040, 0.3);
       fillLight.position.set(2, 3, 3);
@@ -1911,6 +1984,48 @@
       var coreLight = new THREE.PointLight(cyanGlow, 0.9, 12);
       coreLight.position.set(-7, 2.0, 1.5);
       this._addToSceneGroup(0, coreLight);
+
+
+      // CP-5F: Rim light (back-right, creates edge separation)
+      var rimLight = new THREE.DirectionalLight(0x4080c0, 0.25);
+      rimLight.position.set(-3, 4, -4);
+      this._addToSceneGroup(0, rimLight);
+
+
+      // CP-5F: Environment — Foreground floor strip (thin glowing edge in front of desk)
+      var floorStripGeo = new THREE.BoxGeometry(8, 0.03, 0.18);
+      var floorStripMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.22,
+        transparent: true, opacity: 0.55, roughness: 0.9
+      });
+      var floorStrip = new THREE.Mesh(floorStripGeo, floorStripMat);
+      floorStrip.position.set(-7, 0.62, 3.1);
+      this._addToSceneGroup(0, floorStrip);
+
+      // CP-5F: Environment — Desk surface edge glow (thin accent line along desk edge)
+      var deskEdgeGeo = new THREE.BoxGeometry(0.03, 0.22, 3.0);
+      var deskEdgeMat = createEdgeGlowMaterial(accent, 0.5);
+      var deskEdgeRight = new THREE.Mesh(deskEdgeGeo, deskEdgeMat);
+      deskEdgeRight.position.set(-4.22, 0.81, 1.5);
+      this._addToSceneGroup(0, deskEdgeRight);
+
+
+      // CP-5F: Environment — Background constellation dots (far background stars)
+      var bgStarPositions = [
+        { x: -12, y: 5, z: -3 }, { x: -11, y: 6, z: 2 },
+        { x: -2, y: 5.5, z: -4 }, { x: -1, y: 4.5, z: 3 },
+        { x: -13, y: 4, z: 0 }, { x: -3, y: 6, z: -2 }
+      ];
+      bgStarPositions.forEach(function (star) {
+        var starGeo = new THREE.SphereGeometry(0.05, 5, 5);
+        var starMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.5,
+          transparent: true, opacity: 0.4
+        });
+        var starMesh = new THREE.Mesh(starGeo, starMat);
+        starMesh.position.set(star.x, star.y, star.z);
+        self._addToSceneGroup(0, starMesh);
+      });
 
     };
 
@@ -1923,11 +2038,13 @@
       var self = this;
 
       // ── Left Panel: Docs (File folder icon) ───────────────────
-      // Glass panel body — CP-5E: float at y=1.9
+      // Glass panel body — CP-5E: float at y=1.9 (CP-5F: float animation flag)
       var docsGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
       var docsMat = createGlassMaterial(accent, 0.55);
       var docsPanel = new THREE.Mesh(docsGeo, docsMat);
       docsPanel.position.set(-4, 1.9, 0);
+      docsPanel.userData.floatPhase = 0;
+      docsPanel.userData.floatBaseY = 1.9;
       this._addToSceneGroup(1, docsPanel);
 
       // CP-5E: Panel edge glow strip (left edge)
@@ -1964,11 +2081,13 @@
       }
 
       // ── Center Panel: Terminal ────────────────────────────────
-      // CP-5E: float at y=2.1 (layered vs docs at y=1.9)
+      // CP-5E: float at y=2.1 (layered vs docs at y=1.9) (CP-5F: float animation flag)
       var termGeo = new THREE.BoxGeometry(3.2, 2.6, 0.08);
       var termMat = createGlassMaterial(accent, 0.6);
       var termPanel = new THREE.Mesh(termGeo, termMat);
       termPanel.position.set(0, 2.1, 0);
+      termPanel.userData.floatPhase = 1.2;
+      termPanel.userData.floatBaseY = 2.1;
       this._addToSceneGroup(1, termPanel);
 
       // CP-5E: Panel edge glow strips (left + right edges)
@@ -2014,11 +2133,13 @@
       this._addToSceneGroup(1, blink);
 
       // ── Right Panel: Browser ───────────────────────────────────
-      // CP-5E: float at y=1.95 (layered depth)
+      // CP-5E: float at y=1.95 (layered depth) (CP-5F: float animation flag)
       var browserGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
       var browserMat = createGlassMaterial(accent, 0.55);
       var browserPanel = new THREE.Mesh(browserGeo, browserMat);
       browserPanel.position.set(4, 1.95, 0);
+      browserPanel.userData.floatPhase = 2.4;
+      browserPanel.userData.floatBaseY = 1.95;
       this._addToSceneGroup(1, browserPanel);
 
       // CP-5E: Browser panel edge glow (right edge)
@@ -2126,6 +2247,29 @@
       pointLight.position.set(0, 4, 3);
       this._addToSceneGroup(1, pointLight);
 
+      // CP-5F: Rim light (back-left, edge separation)
+      var rimLight = new THREE.DirectionalLight(0x6040a0, 0.25);
+      rimLight.position.set(-6, 4, -4);
+      this._addToSceneGroup(1, rimLight);
+
+      // CP-5F: Environment — Background constellation (faint stars behind panels)
+      var s2BgStars = [
+        { x: -9, y: 6, z: -4 }, { x: -8, y: 5, z: -2 },
+        { x: 8, y: 6, z: -3 }, { x: 9, y: 5, z: -5 },
+        { x: 0, y: 7, z: -6 }, { x: -6, y: 7, z: -2 },
+        { x: 6, y: 7, z: -2 }
+      ];
+      s2BgStars.forEach(function (star) {
+        var starGeo = new THREE.SphereGeometry(0.06, 5, 5);
+        var starMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.45,
+          transparent: true, opacity: 0.35
+        });
+        var starMesh = new THREE.Mesh(starGeo, starMat);
+        starMesh.position.set(star.x, star.y, star.z);
+        self._addToSceneGroup(1, starMesh);
+      });
+
     };
 
     // ── Scene 3: Artifact Exhibition ───────────────────────────
@@ -2172,9 +2316,10 @@
         strip.position.set(cfg.x, 0.02, cfg.z + 0.38);
         self._addToSceneGroup(2, strip);
 
-        // CP-5E: Under-plinth point light (base glow effect)
+        // CP-5E: Under-plinth point light (base glow effect) (CP-5F: underlight breath flag)
         var plinthLight = new THREE.PointLight(accent, 0.35, 3.5);
         plinthLight.position.set(cfg.x, 0.1, cfg.z);
+        plinthLight.userData.underlightBreath = i * 0.8;
         self._addToSceneGroup(2, plinthLight);
 
         // Artifact card on plinth (tilted slightly)
@@ -2280,6 +2425,32 @@
       var accentLight = new THREE.PointLight(accent, 0.7, 20);
       accentLight.position.set(0, 5, 2);
       this._addToSceneGroup(2, accentLight);
+
+
+      // CP-5F: Rim light (side edge separation)
+      var rimLight = new THREE.DirectionalLight(0x206040, 0.25);
+      rimLight.position.set(-8, 4, -2);
+      this._addToSceneGroup(2, rimLight);
+
+      // CP-5F: Environment — Foreground floor guide strip
+      var fgStripGeo = new THREE.BoxGeometry(14, 0.03, 0.15);
+      var fgStripMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.3,
+        transparent: true, opacity: 0.5, roughness: 0.9
+      });
+      var fgStrip = new THREE.Mesh(fgStripGeo, fgStripMat);
+      fgStrip.position.set(0, 0.02, 3.2);
+      this._addToSceneGroup(2, fgStrip);
+
+      // CP-5F: Environment — Background gallery wall (taller, more present)
+      var wallMat = new THREE.MeshStandardMaterial({
+        color: 0x060e1a, emissive: accent, emissiveIntensity: 0.04,
+        roughness: 0.95, transparent: true, opacity: 0.5
+      });
+      var bgWallGeo = new THREE.BoxGeometry(16, 6, 0.15);
+      var bgWall = new THREE.Mesh(bgWallGeo, wallMat);
+      bgWall.position.set(-0.5, 3, -4);
+      this._addToSceneGroup(2, bgWall);
 
     };
 
@@ -2433,6 +2604,21 @@
       hubLight.position.set(hubX, hubY + 1, hubZ);
       this._addToSceneGroup(3, hubLight);
 
+      // CP-5F: Rim light (edge separation for hub/nodes)
+      var rimLight = new THREE.DirectionalLight(0x604020, 0.25);
+      rimLight.position.set(-6, 6, -20);
+      this._addToSceneGroup(3, rimLight);
+
+      // CP-5F: Environment — Foreground floor grid strip (ground plane hint)
+      var gridStripGeo = new THREE.BoxGeometry(14, 0.03, 0.18);
+      var gridStripMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.2,
+        transparent: true, opacity: 0.4, roughness: 0.9
+      });
+      var gridStrip = new THREE.Mesh(gridStripGeo, gridStripMat);
+      gridStrip.position.set(0, 0.02, -10);
+      this._addToSceneGroup(3, gridStrip);
+
     };
 
     // ── Scene 5: Control Tower ────────────────────────────────────
@@ -2500,11 +2686,12 @@
       beacon.position.set(0, 6.3, towerZ);
       this._addToSceneGroup(4, beacon);
 
-      // Beacon top sphere (signal source)
+      // Beacon top sphere (signal source) (CP-5F: beacon pulse flag)
       var signalGeo = new THREE.SphereGeometry(0.18, 12, 12);
       var signalMat = createGlowMaterial(accent, 1.5);
       var signal = new THREE.Mesh(signalGeo, signalMat);
       signal.position.set(0, 6.9, towerZ);
+      signal.userData.beaconPulse = true;
       this._addToSceneGroup(4, signal);
 
       // Signal beam (vertical ray above beacon)
@@ -2599,6 +2786,23 @@
       fillLight.position.set(5, 3, towerZ - 3);
       this._addToSceneGroup(4, fillLight);
 
+      // CP-5F: Rim light (edge glow on tower)
+      var rimLight = new THREE.DirectionalLight(0x502010, 0.3);
+      rimLight.position.set(5, 5, towerZ - 5);
+      this._addToSceneGroup(4, rimLight);
+
+
+      // CP-5F: Environment — Ground plane hint (subtle floor at tower base)
+      var groundGeo = new THREE.CylinderGeometry(3, 3.5, 0.04, 16);
+      var groundMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.12,
+        transparent: true, opacity: 0.35, roughness: 0.9
+      });
+      var ground = new THREE.Mesh(groundGeo, groundMat);
+      ground.position.set(0, 0.02, towerZ);
+      this._addToSceneGroup(4, ground);
+
+
     };
 
     // ── Scene 6: Archive Hall ────────────────────────────────────
@@ -2682,12 +2886,13 @@
       });
 
       // ── Central Archive Gate / Passage ───────────────────────────
-      // Arch frame (half-torus)
+      // Arch frame (half-torus) (CP-5F: portal breath flag)
       var archGeo = new THREE.TorusGeometry(2.0, 0.12, 10, 32, Math.PI);
       var archMat = createGlowMaterial(accent, 0.6);
       var arch = new THREE.Mesh(archGeo, archMat);
       arch.position.set(0, 3.0, -10);
       arch.rotation.x = Math.PI;
+      arch.userData.breathPhase = 1.5;
       this._addToSceneGroup(5, arch);
 
       // Arch inner glow
@@ -2728,7 +2933,7 @@
       portal.position.set(0, 4, -23);
       this._addToSceneGroup(5, portal);
 
-      // CP-5E: Portal depth — mid ring (stacked for depth illusion)
+      // CP-5E: Portal depth — mid ring (stacked for depth illusion) (CP-5F: portal breath flag)
       var portalMidGeo = new THREE.TorusGeometry(0.9, 0.07, 8, 32);
       var portalMidMat = new THREE.MeshStandardMaterial({
         color: accent, emissive: accent, emissiveIntensity: 0.5,
@@ -2736,10 +2941,12 @@
       });
       var portalMid = new THREE.Mesh(portalMidGeo, portalMidMat);
       portalMid.position.set(0, 4, -23.5);
+      portalMid.userData.breathPhase = 0;
       this._addToSceneGroup(5, portalMid);
 
 
-      // Portal inner glow
+
+      // Portal inner glow (CP-5F: portal breath flag)
       var portalCoreGeo = new THREE.SphereGeometry(0.8, 12, 12);
       var portalCoreMat = new THREE.MeshStandardMaterial({
         color: accent, emissive: accent, emissiveIntensity: 0.2,
@@ -2793,6 +3000,21 @@
       var portalLight = new THREE.PointLight(accent, 0.5, 20);
       portalLight.position.set(0, 5, -22);
       this._addToSceneGroup(5, portalLight);
+
+      // CP-5F: Rim light (edge separation for archive wall)
+      var rimLight = new THREE.DirectionalLight(0x204060, 0.3);
+      rimLight.position.set(-6, 6, -28);
+      this._addToSceneGroup(5, rimLight);
+
+      // CP-5F: Environment — Foreground arch base glow
+      var archBaseGeo = new THREE.BoxGeometry(5, 0.03, 0.2);
+      var archBaseMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.35,
+        transparent: true, opacity: 0.5, roughness: 0.9
+      });
+      var archBase = new THREE.Mesh(archBaseGeo, archBaseMat);
+      archBase.position.set(0, 0.02, -10);
+      this._addToSceneGroup(5, archBase);
 
     };
 

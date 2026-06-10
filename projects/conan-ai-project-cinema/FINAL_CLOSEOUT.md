@@ -613,7 +613,18 @@ immersive/immersive.js — scene group isolation + _setWorldFocus rewrite
 
 ---
 
-*Final closeout by 辛 🔮 — CP-5C*
+### CP-5C-Hotfix-1 Update (2026-06-10)
+
+- Added debug overlay (?debugScene=1) for scene state visibility
+- Added scene01 debug sentinel: cyan sphere at (-7, 2.4, 2)
+- THREE loading: local vendor first, then esm.sh CDN
+- Camera reading fixed via _getSceneCamera helper
+- Scene01 research desk visible confirmed via headless diagnostics
+- Real browser confirmation still required
+
+---
+
+*Final closeout by 辛 🔮 — CP-5C-Hotfix-1*
 
 
 ---
@@ -676,4 +687,15 @@ immersive/scene-data.js — per-scene camera configs (desktop/mobile)
 
 ---
 
-*Final closeout by 辛 🔮 — CP-5C*
+### CP-5C-Hotfix-1 Update (2026-06-10)
+
+- Added debug overlay (?debugScene=1) for scene state visibility
+- Added scene01 debug sentinel: cyan sphere at (-7, 2.4, 2)
+- THREE loading: local vendor first, then esm.sh CDN
+- Camera reading fixed via _getSceneCamera helper
+- Scene01 research desk visible confirmed via headless diagnostics
+- Real browser confirmation still required
+
+---
+
+*Final closeout by 辛 🔮 — CP-5C-Hotfix-1*

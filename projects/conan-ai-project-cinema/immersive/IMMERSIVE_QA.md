@@ -887,3 +887,96 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
 ---
 
 *QA by 辛 🔮 — CP-5F baseline established*
+
+---
+
+## CP-5G: Cinematic Recomposition and Spatial Depth
+
+**Date:** 2026-06-10
+**Phase:** CP-5G — Cinematic Recomposition and Spatial Depth
+**Status:** IN PROGRESS (code complete, visual verification pending)
+
+### Baseline (CP-5D-Hotfix-1) — Rollback Point
+
+If CP-5G visual upgrades cause issues, rollback to:
+- **Commit:** `3c26567f0a2129bc86a409d21446cb8fa0a2bdfc`
+- **URL:** https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5d-hotfix1
+
+### CP-5G Changes Applied
+
+#### Scene 04 — Complete Rewrite (Most Critical)
+
+| Component | Before | After |
+|-----------|--------|-------|
+| Hub | Simple torus + sphere | Octagonal base platform + core pillar + stripe + mid ring + status band + core + beacon + beam |
+| Agent nodes | Simple spheres | Glass panels with pedestal + title bar + code label + role label + edge glow + point light |
+| Connections | Straight lines | Curved forward paths + curved return paths (CatmullRomCurve3) |
+| Feel | 星图/雷达图 | Agent orchestration center |
+
+#### Scene 02 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Panel bases | Pedestals under docs/terminal/browser |
+| Workflow | 2 curved tubes + pulsing dots |
+| Foreground | Desk surface strip |
+
+#### Scene 03 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Hero plinth | h=2.4 (tallest), cardW=1.1 (largest) |
+| Gallery wall | 2-layer + shelf rows |
+| Production line | Converging to hero |
+| Foreground guides | 2 curved strips |
+
+#### Scene 01 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Foreground papers | 3 scattered papers at z=3.8–4.2 |
+
+### node --check
+
+| File | Result |
+|------|--------|
+| immersive.js | ✅ PASS |
+| audio-engine.js | ✅ PASS |
+| scene-data.js | ✅ PASS |
+
+### Bracket Balance
+
+| Type | Count | Diff |
+|------|-------|------|
+| Curly braces `{}` | 411/411 | ✅ 0 |
+| Brackets `[]` | 127/127 | ✅ 0 |
+| Parens `()` | 1851/1851 | ✅ 0 |
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g
+```
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要确认：
+
+**六幕第一眼印象：**
+- [ ] Scene 01: research desk 为主视觉，前景有碎片，orbit halo 旋转
+- [ ] Scene 02: AI 工作舱，三块面板有底座，workflow 曲线连接
+- [ ] Scene 03: 展厅感，中央 hero plinth 最高最突出
+- [ ] Scene 04: agent orchestration center，hub 有实体感，OC/HM/CX/PR 可读
+- [ ] Scene 05: 低角度 control tower，beacon脉冲
+- [ ] Scene 06: archive hall portal depth
+
+**功能性确认：**
+- [ ] Prev / Next / dots / scroll / keyboard 正常
+- [ ] Sound / Back 正常
+- [ ] 无 WebGL renderer failed
+- [ ] 无 Scene runtime error
+- [ ] Console 无 ReferenceError
+
+---
+
+*QA by 辛 🔮 — CP-5G baseline established*

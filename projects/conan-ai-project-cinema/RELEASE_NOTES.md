@@ -1703,3 +1703,85 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5F*
+
+---
+
+## Phase CP-5G: Cinematic Recomposition and Spatial Depth
+
+**Commit:** `4669836`
+**Date:** 2026-06-10
+**Goal:** Refine cameras, reinforce spatial layers, elevate cinematic feel per scene
+
+### Scene 04 — COMPLETE REWRITE (Most Critical)
+
+**Before:** Simple spheres + straight lines → "星图/雷达图" feel
+**After:** Hero hub platform + agent panels + curved workflow paths → "agent orchestration center"
+
+| Component | Detail |
+|-----------|--------|
+| Hero hub | Octagonal base platform + vertical core pillar + emissive stripe + mid ring + status band + core sphere + top beacon + signal beam |
+| Coordination rings | 3 orbit rings at radii2.2 / 3.2 / 4.5 around hub |
+| Agent panels | 4 panels (OC/HM/CX/PR) with pedestal + glass body + title bar + role label + edge glow strips + point light |
+| Workflow paths | Curved forward paths (agent→hub) + curved return paths (hub→agent) via CatmullRomCurve3 |
+| Pulsing dots | On each workflow path |
+
+### Scene 02 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Panel bases | Pedestals under all 3 panels (docs/terminal/browser) |
+| Base glow edges | Glow strip on each panel base |
+| Workflow paths | 2 curved tubes with arrows + pulsing dots |
+| Foreground | Desk surface strip (y=0.65, z=2.8) |
+| Background | 10 enhanced star field positions |
+
+### Scene 03 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Hero central plinth | Tallest (h=2.4), largest card (W=1.1), with glow ring + point light |
+| Side plinths | Heights1.0–1.8, card widths 0.75–0.9 |
+| Gallery wall | 2-layer (far faint + mid shelf outlines) |
+| Production line | Converging to hero center via CatmullRomCurve3 |
+| Foreground guides | 2 curved strips converging from left/right to hero |
+
+### Scene 01 — Enhanced
+
+| Enhancement | Detail |
+|------------|--------|
+| Foreground papers | 3 scattered paper fragments at z=3.8–4.2 (closer than desk) |
+
+### node --check
+
+```
+immersive.js: PASS
+audio-engine.js: PASS
+scene-data.js: PASS
+```
+
+### Bracket Balance
+
+| Type | Count | Diff |
+|------|-------|------|
+| Curly braces `{}` | 411/411 | ✅ 0 |
+| Brackets `[]` | 127/127 | ✅ 0 |
+| Parens `()` | 1851/1851 | ✅ 0 |
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g
+```
+
+### Boundary
+
+- ✅ Only modified `immersive/` directory
+- ✅ Main page untouched
+- ✅ No React/Vue/Next/Vite/Tailwind
+- ✅ No new feature buttons
+- ✅ All original controls preserved
+- ✅ Reduced motion respected
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5G*

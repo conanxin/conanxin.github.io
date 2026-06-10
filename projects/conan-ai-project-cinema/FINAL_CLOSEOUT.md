@@ -896,3 +896,47 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-5F*
+
+---
+
+## Phase CP-5G: Cinematic Recomposition and Spatial Depth
+
+**Commit:** `4669836`
+**Status:** PASS — Code Complete, Visual Verification Pending
+
+### Scope
+
+| Scene | Change | Status |
+|-------|--------|--------|
+| Scene 04 | Complete rewrite (hero hub + agent panels + curved workflows) | ✅ |
+| Scene 02 | Enhanced (panel bases + curved workflows + foreground strip) | ✅ |
+| Scene 03 | Enhanced (hero plinth + multi-layer wall + converging guides) | ✅ |
+| Scene 01 | Enhanced (foreground paper fragments) | ✅ |
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| node --check immersive.js | ✅ PASS |
+| node --check audio-engine.js | ✅ PASS |
+| node --check scene-data.js | ✅ PASS |
+| bracket balance | ✅ 0 diff |
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要验证六幕第一眼印象：
+- [ ] Scene 01: 研究桌 + 前景碎片 + orbit halo 旋转
+- [ ] Scene 02: AI 工作舱，三块面板有底座，workflow流动
+- [ ] Scene 03: 展厅感，中央 hero plinth 最高最突出
+- [ ] Scene 04: agent orchestration center，hub 有实体感，panels 可读 OC/HM/CX/PR
+- [ ] Scene 05: 低角度 control tower，beacon脉冲
+- [ ] Scene 06: archive hall portal depth
+
+### Next Step
+
+- If 视觉确认"更有电影感/空间感/资产感" → CP-5G 封版
+- If 某幕仍需调整 → CP-5G-Hotfix-X → 再验收
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-5G*

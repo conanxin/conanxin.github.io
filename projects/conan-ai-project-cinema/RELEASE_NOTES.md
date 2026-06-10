@@ -1275,3 +1275,79 @@ Lines: 2033
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5C*
+
+
+---
+
+## CP-5C: Scene Isolation and Director Composition
+
+**Phase:** CP-5C — 2026-06-10 (re-implemented)
+
+### 根因
+
+| 问题 | 原因 |
+|------|------|
+| 跨场景物体串场 | 所有 setpiece 对象加入 `this.scene`，切换场景时无法隐藏 |
+| 材质透明化不够 | opacity=0.05 仍有微弱发光污染画面 |
+| 非当前幕大型物体可见 | Scene 05 Tower/Archive 在 Scene 01 相机视角内 |
+
+### 架构：Scene Group Isolation
+
+```
+_buildScene():
+  globalGroup = new THREE.Group()  // 全局元素（dome/particles/grid）
+  _buildSceneGroups() // 6个 sceneGroups[idx]，初始 invisible
+  for gi in 0..5:
+    _createResearchDeskSetpiece()  // 对象通过 _addToSceneGroup(idx, obj)
+    ...
+
+launch():
+  _updateSceneGroupVisibility(0)  // active=true, others=false
+```
+
+### Active Scene Visibility Manager
+
+| 场景状态 | visible | opacity |
+|---------|---------|---------|
+| Active | `true` | 1.0 |
+| Non-active | **`false`** | — |
+
+### 全局元素处理
+
+| 元素 | 处理 |
+|------|------|
+| Background silhouettes (dome/walls) | `globalGroup`，dim to 0.12 |
+| Particles | `globalGroup`，dim to 0.12 |
+| Grid | `globalGroup`，opacity 0.18 |
+
+### Per-Scene Camera Config
+
+```js
+camera: {
+  desktop: { position: {x,y,z}, target: {x,y,z} },
+  mobile:  { position: {x,y,z}, target: {x,y,z} }
+}
+```
+
+### Debug Mode
+
+`?v=cp5c&debugScene=1` 显示调试面板（scene index / title / group name / camera pos）
+
+### 代码验证
+
+```
+node --check: PASS (4/4 files)
+Bracket diff: 0
+Lines: 2106
+```
+
+### Boundary
+
+- ✅ 主页面无 Three.js
+- ✅ drafts noindex
+- ✅ data.json 未改
+- ✅ 无 React/Vue/Next/Tailwind
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5C re-implemented*

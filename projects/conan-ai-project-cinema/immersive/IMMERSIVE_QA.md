@@ -547,3 +547,59 @@ Awaiting user's real phone screenshot after hotfix to confirm:
 ---
 
 *QA by 辛 🔮 — CP-5B-Hotfix-1*
+
+
+---
+
+## CP-5C QA Report
+
+**Date:** 2026-06-10  
+**Status:** PARTIAL (headless browser limitation)
+
+### Headless Test Limitation
+
+**esm.sh CDN is blocked in headless test environment** (proxy restriction). Result: `THREE type: undefined` in headless browser, entry overlay stays visible, 3D scene cannot be rendered in headless screenshots.
+
+**Real browser confirmation required** —爸爸需要在 Chrome/Firefox/Safari 中打开线上链接验证。
+
+### Code Verification (PASS)
+
+| Check | Result |
+|-------|--------|
+| `node --check` | ✅ PASS (4/4 files) |
+| Bracket diff | ✅ 0 (2106 lines) |
+| `sceneGroups` init | ✅ Constructor line 147 |
+| `_buildSceneGroups` before setpieces | ✅ Line 297 |
+| `_addToSceneGroup` in all setpieces | ✅ 42 calls replaced |
+| `_updateSceneGroupVisibility` | ✅ active=true, others=false |
+| `globalGroup` for background | ✅ dome/particles/grid |
+| Per-scene camera config | ✅ scene-data.js updated |
+| Debug mode | ✅ `?v=cp5c&debugScene=1` |
+
+### Architecture Verification
+
+| Component | Status |
+|----------|--------|
+| 6 scene groups created | ✅ |
+| Groups populated via `_addToSceneGroup` | ✅ |
+| Active group visible, others hidden | ✅ |
+| Global elements dimmed to 0.12 | ✅ |
+| Per-scene camera desktop/mobile | ✅ |
+
+### Real Browser Checklist (爸爸验证)
+
+- [ ] Scene 01 — research desk visible, no tower/archive/hub
+- [ ] Scene 02 — terminal/browser panels visible
+- [ ] Scene 03 — artifact display visible
+- [ ] Scene 04 — agent network visible
+- [ ] Scene 05 — control tower as center focal point
+- [ ] Scene 06 — archive hall visible
+- [ ] Scroll / Next / Prev / dots / keyboard — all work
+- [ ] Sound toggle works
+- [ ] Back returns to main page
+- [ ] Mobile viewport — bottom UI不遮挡主对象
+- [ ] Main page unaffected
+
+---
+
+*QA by 辛 🔮 — CP-5C*

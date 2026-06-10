@@ -1099,3 +1099,70 @@ node --check: PASS
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5A*
+
+---
+
+## CP-5B: Scene Setpiece Upgrade
+
+**Phase:** CP-5B — 2026-06-10
+
+### 背景
+
+CP-5A 代码验收通过，但用户视觉反馈："看完仍然觉得像简单 3D 网格 + 一些点。"
+
+### 根因
+
+- Setpiece 太小（desk 4×2.5，card 0.4×0.25）
+- Grid 透明度 0.35，抢主导地位
+- 场景区分度不够强
+- 移动端 camera距主对象太远
+- 对象太抽象，无可辨识空间锚点
+
+### 修复内容
+
+#### 六幕大型 Setpiece
+
+| Scene | Setpiece | 尺寸/规模 |
+|-------|---------|-----------|
+| 01 Complex Ideas | Research desk + 4 paper sheets + idea core | desk 7×3.5 units |
+| 02 AI Beyond Chat | Chat-to-terminal portal (3 panels + flow arrows) | 3 panels |
+| 03 Projects | Artifact exhibition table + 5 framed cards | table 10×2 units |
+| 04 Agents | Agent orchestration core (hub r=1.0 + 4 nodes + rings) | hub sphere r=1.0 |
+| 05 Control Tower | Tower (h=6) + antenna + 3 radar rings + constellation | h=6 + antenna2.5 |
+| 06 Archive | Archive hall (back wall + 4×6 shelf + arch + strip) | wall 16×8 |
+
+#### 空间降权
+
+- Grid opacity：0.35 → **0.18**
+- Inactive opacity：0.18 → **0.05**
+
+#### Active Focus 增强
+
+- Active emissiveIntensity：**1.2**（从 1.0）
+- Inactive emissiveIntensity：**0.05**（从 0.15）
+- Mobile scale：**1.35**
+
+#### 移动端 Camera
+
+- Camera z × **0.55**（更近）
+- FOV：**76°**（更宽）
+- Camera y ×1.1（略高）
+
+#### 架构
+
+- `_tagWorldObject(mesh, sceneId)`：50 个调用标记所有 setpiece 网格
+- `_setWorldFocus`：遍历整个 scene，根据 worldSceneId tag区分 active/inactive
+
+### 验证
+
+```
+1995 lines, bracket diff 0
+node --check: PASS（4/4 文件）
+Setpiece functions: 6
+_tagWorldObject calls: 50
+Grid opacity: 0.18
+```
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5B*

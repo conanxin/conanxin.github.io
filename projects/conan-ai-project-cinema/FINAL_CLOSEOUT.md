@@ -475,3 +475,55 @@ immersive/scene-layout.js — new (151 lines)
 ---
 
 *Final closeout by 辛 🔮 — CP-5A*
+
+---
+
+## CP-5B: Scene Setpiece Upgrade
+
+**Commit:** `3b73f62`  
+**Date:** 2026-06-10
+
+### What Changed
+
+CP-5B replaces abstract 3D primitives with large, recognizable scene-specific "setpieces" that serve as the dominant visual anchor for each of the six scenes.
+
+### Six Setpieces
+
+| Scene | Setpiece | Key Visual |
+|-------|---------|-----------|
+| 01 | Research Desk + Paper Sheets + Idea Core | Knowledge workspace |
+| 02 | Chat-Terminal-Web Portal | AI workflow pipeline |
+| 03 | Exhibition Table + Artifact Cards | Project production line |
+| 04 | Agent Orchestration Core (large hub sphere) | Agent network hub |
+| 05 | Control Tower + Radar Rings + Constellation | Command center |
+| 06 | Archive Hall + Shelf Grid + Arch | Repository entrance |
+
+### Key Numbers
+
+- Desk: 7×3.5 units (was 4×2.5)
+- Hub sphere: r=1.0 (was r=0.45)
+- Tower: h=6 + antenna 2.5 (was h=4)
+- Archive wall: 16×8 units
+- Grid opacity: 0.18 (was 0.35)
+- Inactive opacity: 0.05 (was 0.18)
+- Active emissive: 1.2 (was 1.0)
+- Mobile camera z: ×0.55, FOV 76°
+
+### Architecture
+
+```
+_tagWorldObject(mesh, sceneId) — tag each setpiece mesh with scene ID
+_setWorldFocus(activeId) — traverse all scene objects, apply opacity/emissive/scale by tag
+50 _tagWorldObject calls across 6 setpiece functions
+```
+
+### Boundary
+
+- ✅ Main page: no Three.js
+- ✅ drafts: noindex maintained
+- ✅ data.json: unchanged
+- ✅ No React/Vue/Next/Vite/Tailwind
+
+---
+
+*Final closeout by 辛 🔮 — CP-5B*

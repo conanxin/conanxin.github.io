@@ -321,9 +321,9 @@
         } else {
           this.baseCameraPos = new THREE.Vector3(0, 4, 8);
           this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
-      // CP-5C: Debug mode — enabled via ?v=cp5c&debugScene=1
-      var urlParams = new URLSearchParams(window.location.search);
-      this.debugMode = urlParams.get('debugScene') === '1';
+          // CP-5C: Debug mode — enabled via ?v=cp5c&debugScene=1
+          var urlParams = new URLSearchParams(window.location.search);
+          this.debugMode = urlParams.get('debugScene') === '1';
         }
         this.camera.position.copy(this.baseCameraPos);
         this.camera.lookAt(this.baseCameraTarget);
@@ -874,21 +874,20 @@
       });
     };
 
-    ImmersiveApp.prototype._setSceneFromScroll = function (index) {
+       ImmersiveApp.prototype._setSceneFromScroll = function (index) {
       this.currentIndex = index;
       var sceneData = this.scenes[index];
 
       if (sceneData) {
-        this.baseCameraPos = new THREE.Vector3(
-          sceneData.cameraPosition.x,
-          sceneData.cameraPosition.y,
-          sceneData.cameraPosition.z
-        );
-        this.baseCameraTarget = new THREE.Vector3(
-          sceneData.cameraTarget.x,
-          sceneData.cameraTarget.y,
-          sceneData.cameraTarget.z
-        );
+        // CP-5C-Hotfix-1: Use _getSceneCamera helper (same as _gotoScene)
+        var cam = this._getSceneCamera(sceneData);
+        if (cam) {
+          this.baseCameraPos = cam.position;
+          this.baseCameraTarget = cam.target;
+        } else {
+          this.baseCameraPos = new THREE.Vector3(0, 4, 8);
+          this.baseCameraTarget = new THREE.Vector3(0, 0, 0);
+        }
         this.camera.position.copy(this.baseCameraPos);
         this.camera.lookAt(this.baseCameraTarget);
       }
@@ -952,6 +951,18 @@
       }
     };
 
+       // CP-5C-Hotfix-1: Read camera from per-scene config (camera.desktop)
+    ImmersiveApp.prototype._getSceneCamera = function (sceneData) {
+      if (!sceneData || !sceneData.camera) return null;
+      var isMobile = window.innerWidth < 600;
+      var cam = isMobile ? (sceneData.camera.mobile || sceneData.camera.desktop) : sceneData.camera.desktop;
+      if (!cam) return null;
+      return {
+        position: new THREE.Vector3(cam.position.x, cam.position.y, cam.position.z),
+        target: new THREE.Vector3(cam.target.x, cam.target.y, cam.target.z)
+      };
+    };
+
     ImmersiveApp.prototype._updateContinuousCamera = function () {
       if (!this.needsScrollUpdate) return;
       this.needsScrollUpdate = false;
@@ -965,29 +976,12 @@
       var nextScene = this.scenes[nextIdx];
       if (!curScene || !nextScene) return;
 
-      var curPos = new THREE.Vector3(
-        curScene.cameraPosition.x,
-        curScene.cameraPosition.y,
-        curScene.cameraPosition.z
-      );
-      var nextPos = new THREE.Vector3(
-        nextScene.cameraPosition.x,
-        nextScene.cameraPosition.y,
-        nextScene.cameraPosition.z
-      );
-      var curTarget = new THREE.Vector3(
-        curScene.cameraTarget.x,
-        curScene.cameraTarget.y,
-        curScene.cameraTarget.z
-      );
-      var nextTarget = new THREE.Vector3(
-        nextScene.cameraTarget.x,
-        nextScene.cameraTarget.y,
-        nextScene.cameraTarget.z
-      );
+      var curCam = this._getSceneCamera(curScene);
+      var nextCam = this._getSceneCamera(nextScene);
+      if (!curCam || !nextCam) return;
 
-      this.cameraPathPos.lerpVectors(curPos, nextPos, t);
-      this.cameraPathTarget.lerpVectors(curTarget, nextTarget, t);
+      this.cameraPathPos.lerpVectors(curCam.position, nextCam.position, t);
+      this.cameraPathTarget.lerpVectors(curCam.target, nextCam.target, t);
       this.camera.position.copy(this.cameraPathPos);
       this.camera.lookAt(this.cameraPathTarget);
     };
@@ -1167,12 +1161,34 @@
     };
 
     // ── Animate ─────────────────────────────────────────────────
+       var _animateDiagLogged = false;
     ImmersiveApp.prototype._animate = function () {
       var self = this;
       this.frameId = requestAnimationFrame(function () {
         self._animate();
       });
       if (this.isPaused) return;
+
+      // CP-5C-HF1: Log camera/group state on first frame only (once)
+      if (!_animateDiagLogged) {
+        _animateDiagLogged = true;
+        var idx = this.currentIndex;
+        var scene = this.scenes[idx];
+        var cam = this.camera ? this.camera.position : null;
+        var tgt = this.baseCameraTarget;
+        var camStr = cam ? cam.x.toFixed(1) + ',' + cam.y.toFixed(1) + ',' + cam.z.toFixed(1) : 'N/A';
+        var tgtStr = tgt ? tgt.x.toFixed(1) + ',' + tgt.y.toFixed(1) + ',' + tgt.z.toFixed(1) : 'N/A';
+        var childCounts = [];
+        if (this.sceneGroups) {
+          for (var gi = 0; gi < this.sceneGroups.length; gi++) {
+            var g = this.sceneGroups[gi];
+            childCounts.push('g' + gi + ':' + (g ? g.children.length : -1) + '/' + (g && g.visible));
+          }
+        }
+        console.log('[CP-5C-HF1] INIT scene=' + (idx + 1) + ' ' + (scene ? scene.title : 'N/A'));
+        console.log('[CP-5C-HF1] cam pos=' + camStr + ' cam tgt=' + tgtStr);
+        console.log('[CP-5C-HF1] groups: ' + childCounts.join(' '));
+      }
 
       this._updateScrollProgress();
       this._updateContinuousCamera();
@@ -1402,30 +1418,43 @@
 
 
     // CP-5C: Update debug overlay
+       // CP-5C-Hotfix-1: Enhanced debug overlay — all groups + continuous camera state
     ImmersiveApp.prototype._updateDebugOverlay = function () {
       if (!this.debugMode) return;
       var scene = this.scenes[this.currentIndex];
-      var group = this.sceneGroups ? this.sceneGroups[this.currentIndex] : null;
-      var pos = this.camera.position;
-      var tgt = this.baseCameraTarget;
       var idx = this.currentIndex;
-      var items = [
-        'scene: ' + (idx + 1) + '/06',
-        'title: ' + (scene ? scene.title : 'N/A'),
-        'group: ' + (group ? group.name : 'N/A'),
-        'cam pos: ' + pos.x.toFixed(1) + ', ' + pos.y.toFixed(1) + ', ' + pos.z.toFixed(1),
-        'cam tgt: ' + tgt.x.toFixed(1) + ', ' + tgt.y.toFixed(1) + ', ' + tgt.z.toFixed(1)
-      ];
-      var el = document.getElementById('dbg-scene');
-      if (el) {
-        el.innerHTML = items.slice(0, 2).map(function (s) { return '<div>' + s + '</div>'; }).join('');
-        var el2 = document.getElementById('dbg-group');
-        if (el2) el2.innerHTML = '<div>' + items[2] + '</div>';
-        var el3 = document.getElementById('dbg-cam-pos');
-        if (el3) el3.innerHTML = '<div>' + items[3] + '</div>';
-        var el4 = document.getElementById('dbg-cam-target');
-        if (el4) el4.innerHTML = '<div>' + items[4] + '</div>';
+      var pos = this.camera ? this.camera.position : null;
+      var tgt = this.baseCameraTarget;
+      var groupsHtml = '';
+
+      // Show ALL group children counts and visibility
+      if (this.sceneGroups) {
+        for (var gi = 0; gi < this.sceneGroups.length; gi++) {
+          var g = this.sceneGroups[gi];
+          var childCount = g ? g.children.length : 0;
+          var vis = g ? g.visible : false;
+          var marker = (gi === idx) ? '*' : ' ';
+          groupsHtml += '<div style="color:' + (vis ? '#7ef7b8' : '#666') + '">' +
+            marker + 'group[' + gi + ']: ' + childCount + ' children, visible=' + vis + '</div>';
+        }
+      } else {
+        groupsHtml = '<div style="color:#f77">sceneGroups not initialized</div>';
       }
+
+      var camPosStr = pos ? pos.x.toFixed(1) + ',' + pos.y.toFixed(1) + ',' + pos.z.toFixed(1) : 'N/A';
+      var camTgtStr = tgt ? tgt.x.toFixed(1) + ',' + tgt.y.toFixed(1) + ',' + tgt.z.toFixed(1) : 'N/A';
+      var continuousActive = this.continuousCameraEnabled ? 'ON' : 'OFF';
+      var scrollProgress = this.scrollProgress ? this.scrollProgress.toFixed(3) : '0.000';
+
+      var html = '<div style="font-size:14px;font-weight:bold;margin-bottom:8px;color:#f7c87a">DEBUG MODE</div>' +
+        '<div style="color:#7ef7b8">scene: ' + (idx + 1) + '/06 — ' + (scene ? scene.title : 'N/A') + '</div>' +
+        '<div style="margin-top:6px">' + groupsHtml + '</div>' +
+        '<div style="margin-top:6px;color:#aaf">cam pos: ' + camPosStr + '</div>' +
+        '<div style="color:#aaf">cam tgt: ' + camTgtStr + '</div>' +
+        '<div style="color:#888">continuous: ' + continuousActive + ' | scroll: ' + scrollProgress + '</div>';
+
+      var el = document.getElementById('debug-overlay');
+      if (el) el.innerHTML = html;
     };
 
     // CP-5C: Set opacity on single object (not group traverse)
@@ -2095,6 +2124,26 @@
       app._updateSceneControl();
       // CP-5C: Set initial scene group visibility
       app._updateSceneGroupVisibility(0);
+
+      // CP-5C-Hotfix-1: Diagnostic — log scene/group state once (for headless testing)
+      (function logDiagnostics() {
+        var idx = app.currentIndex;
+        var scene = app.scenes[idx];
+        var group = app.sceneGroups ? app.sceneGroups[idx] : null;
+        var cam = app.camera ? app.camera.position : null;
+        var tgt = app.baseCameraTarget;
+        var camStr = cam ? cam.x.toFixed(1) + ',' + cam.y.toFixed(1) + ',' + cam.z.toFixed(1) : 'N/A';
+        var tgtStr = tgt ? tgt.x.toFixed(1) + ',' + tgt.y.toFixed(1) + ',' + tgt.z.toFixed(1) : 'N/A';
+        var childCounts = [];
+        if (app.sceneGroups) {
+          for (var gi = 0; gi < app.sceneGroups.length; gi++) {
+            childCounts.push('g' + gi + ':' + (app.sceneGroups[gi] ? app.sceneGroups[gi].children.length : -1));
+          }
+        }
+        console.log('[CP-5C-HF1] scene=' + (idx + 1) + ' title=' + (scene ? scene.title : 'N/A'));
+        console.log('[CP-5C-HF1] cam pos=' + camStr + ' tgt=' + tgtStr);
+        console.log('[CP-5C-HF1] group children: ' + childCounts.join(' '));
+      }());
     }
 
     document.getElementById('btnEnterSound')

@@ -280,19 +280,22 @@
       // Foreground dust
       this._buildForegroundDust();
 
-      // CP-5B: Large scene setpieces — each scene dominates its view
-      // Scene 1: Research desk + knowledge wall
-      this._createResearchDeskSetpiece();
-      // Scene 2: Chat-to-terminal portal
-      this._createBeyondChatSetpiece();
-      // Scene 3: Artifact exhibition
-      this._createArtifactExhibitionSetpiece();
-      // Scene 4: Agent orchestration core
-      this._createAgentCoreSetpiece();
-      // Scene 5: Control tower
-      this._createControlTowerSetpiece();
-      // Scene 6: Archive hall
-      this._createArchiveHallSetpiece();
+      // CP-5C: Build setpieces into their scene groups (not this.scene)
+      var origScene = this.scene;
+      var sceneIds = ['scene-01','scene-02','scene-03','scene-04','scene-05','scene-06'];
+      var self = this;
+      sceneIds.forEach(function (sid, idx) {
+        self.scene = self.sceneWorldGroups[sid] || self.scene;
+        switch (idx) {
+          case 0: self._createResearchDeskSetpiece(); break;
+          case 1: self._createBeyondChatSetpiece(); break;
+          case 2: self._createArtifactExhibitionSetpiece(); break;
+          case 3: self._createAgentCoreSetpiece(); break;
+          case 4: self._createControlTowerSetpiece(); break;
+          case 5: self._createArchiveHallSetpiece(); break;
+        }
+      });
+      this.scene = origScene;
 
       // Camera init position
       var sceneData = this.scenes[this.currentIndex];
@@ -1298,44 +1301,67 @@
       });
     };
 
-    // CP-5B: Focus active scene — traverse ALL objects (setpieces + world groups)
+    // CP-5C: Scene group isolation — active group visible, others hidden
     ImmersiveApp.prototype._setWorldFocus = function (activeSceneId) {
       var self = this;
       var isMobile = window.innerWidth < 600;
       var rm = this.prefersReducedMotion;
-      var targetOpacity = 0.05;
-      var targetScale = isMobile ? 1.35 : 1.12;
-      var targetEmissive = 1.2;
 
-      // Traverse entire scene — tag-based scene ID routing
-      this.scene.traverse(function (obj) {
-        if (!obj.isMesh && !obj.isPoints) return;
-        var objSceneId = obj.userData.worldSceneId;
-        var isActive = (objSceneId === activeSceneId);
+      // Find active scene index
+      var activeIdx = -1;
+      this.scenes.forEach(function (s, i) {
+        if (s.id === activeSceneId) activeIdx = i;
+      });
 
-        if (!objSceneId) {
-          // Untagged objects (floor, grid, particles, silhouettes) — neutral, keep dim
-          if (obj.material && obj.material.transparent) {
-            obj.material.opacity += (0.12 - obj.material.opacity) * (rm ? 1 : 0.03);
-          }
-          return;
+      Object.keys(this.sceneWorldGroups).forEach(function (id) {
+        var group = self.sceneWorldGroups[id];
+        var sceneIdx = -1;
+        self.scenes.forEach(function (s, i) {
+          if (s.id === id) sceneIdx = i;
+        });
+
+        var isActive = (id === activeSceneId);
+        var isAdjacent = (Math.abs(sceneIdx - activeIdx) === 1);
+
+        if (isActive) {
+          // Active: fully visible, full brightness
+          group.visible = true;
+          group.traverse(function (obj) {
+            if (!obj.isMesh && !obj.isPoints) return;
+            if (obj.material) {
+              if (obj.material.transparent) {
+                obj.material.opacity += (1.0 - obj.material.opacity) * (rm ? 1 : 0.1);
+              }
+              if (obj.material.emissiveIntensity !== undefined) {
+                obj.material.emissiveIntensity += (1.2 - obj.material.emissiveIntensity) * (rm ? 1 : 0.1);
+              }
+            }
+            var sc = isMobile ? 1.35 : 1.12;
+            obj.scale.x += (sc - obj.scale.x) * (rm ? 1 : 0.06);
+            obj.scale.y += (sc - obj.scale.y) * (rm ? 1 : 0.06);
+            obj.scale.z += (sc - obj.scale.z) * (rm ? 1 : 0.06);
+          });
+        } else if (isAdjacent) {
+          // Adjacent: visible but dimmed (far background suggestion)
+          group.visible = true;
+          group.traverse(function (obj) {
+            if (!obj.isMesh && !obj.isPoints) return;
+            if (obj.material) {
+              if (obj.material.transparent) {
+                obj.material.opacity += (0.12 - obj.material.opacity) * (rm ? 1 : 0.05);
+              }
+              if (obj.material.emissiveIntensity !== undefined) {
+                obj.material.emissiveIntensity += (0.08 - obj.material.emissiveIntensity) * (rm ? 1 : 0.05);
+              }
+            }
+            obj.scale.x += (0.95 - obj.scale.x) * (rm ? 1 : 0.04);
+            obj.scale.y += (0.95 - obj.scale.y) * (rm ? 1 : 0.04);
+            obj.scale.z += (0.95 - obj.scale.z) * (rm ? 1 : 0.04);
+          });
+        } else {
+          // Non-adjacent: completely hidden
+          group.visible = false;
         }
-
-        var tOp = isActive ? 1.0 : targetOpacity;
-        var tSc = isActive ? targetScale : 0.9;
-        var tEm = isActive ? targetEmissive :0.05;
-
-        if (obj.material) {
-          if (obj.material.transparent) {
-            obj.material.opacity += (tOp - obj.material.opacity) * (rm ? 1 : 0.06);
-          }
-          if (obj.material.emissiveIntensity !== undefined) {
-            obj.material.emissiveIntensity += (tEm - obj.material.emissiveIntensity) * (rm ? 1 : 0.08);
-          }
-        }
-        obj.scale.x += (tSc - obj.scale.x) * (rm ? 1 : 0.05);
-        obj.scale.y += (tSc - obj.scale.y) * (rm ? 1 : 0.05);
-        obj.scale.z += (tSc - obj.scale.z) * (rm ? 1 : 0.05);
       });
       this.activeWorldId = activeSceneId;
     };
@@ -1994,6 +2020,8 @@
       // CP-4K: Bind scene control buttons
       app._bindSceneControls();
       app._updateSceneControl();
+      // CP-5C: Set initial scene group visibility
+      app._setWorldFocus(app.scenes[0].id);
     }
 
     document.getElementById('btnEnterSound')

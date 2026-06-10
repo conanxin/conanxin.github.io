@@ -559,3 +559,58 @@ immersive/styles.css   — mobile bottom UI raised
 ---
 
 *Final closeout by 辛 🔮 — CP-5B-Hotfix-1*
+
+---
+
+## CP-5C: Scene Isolation and Cinematic Composition
+
+**Commit:** TBD  
+**Date:** 2026-06-10
+
+### What Changed
+
+CP-5C implements true scene group isolation — each scene's setpiece objects are added to a dedicated `THREE.Group` rather than the shared `this.scene`. The `_setWorldFocus` method now uses `group.visible` switching instead of material opacity dimming.
+
+### Architecture
+
+```
+_buildScene():
+  origScene = this.scene
+  for each scene (0-5):
+    this.scene = sceneWorldGroups[sceneId]  // switch target
+    call setpiece function (objects added to the group)
+  this.scene = origScene  // restore
+
+_setWorldFocus(activeSceneId):
+  Active group:   visible=true, full brightness, scale 1.12-1.35
+  Adjacent group: visible=true, opacity 0.12, scale 0.95
+  Non-adjacent:   visible=false  ← key change
+```
+
+### Key Numbers
+
+| Parameter | Value |
+|-----------|-------|
+| Scene groups | 6 dedicated `THREE.Group` |
+| Non-adjacent visibility | `false` (was 0.05 opacity) |
+| Adjacent opacity | 0.12 |
+| Active opacity | 1.0 |
+| Active scale mobile | 1.35 |
+| Active scale desktop | 1.12 |
+
+### Files
+
+```
+immersive/immersive.js — scene group isolation + _setWorldFocus rewrite
+```
+
+### Boundary
+
+- ✅ Main page: no Three.js
+- ✅ drafts: noindex maintained
+- ✅ data.json: unchanged
+- ✅ No React/Vue/Next/Vite/Tailwind
+
+---
+
+*Final closeout by 辛 🔮 — CP-5C*

@@ -1219,3 +1219,59 @@ Lines: 2005
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5B-Hotfix-1*
+
+---
+
+## CP-5C: Scene Isolation and Cinematic Composition
+
+**Phase:** CP-5C — 2026-06-10
+
+### 背景
+
+CP-5B-Hotfix-1 后，所有 setpiece 仍在同一 `THREE.Scene` 共存，通过材质 opacity dimming 区分，非 active 场景仍会在远处产生视觉干扰。
+
+### 根因
+
+| 问题 | 原因 |
+|------|------|
+| setpieces 仍共存 | 所有对象加到 `this.scene`，无空间隔离 |
+| 跨场景干扰 | Scene 05 Tower 即使在 z=-20，仍与 Scene 01 共享同一渲染空间 |
+| opacity dimming 不够 | 0.05 opacity 仍有微弱发光，影响构图纯净度 |
+
+### 修复：Scene Group Isolation
+
+架构变更：`_buildScene` 中，setpiece 不再加入 `this.scene`，而是加入对应 `sceneWorldGroups[sceneId]`。
+
+```
+Build 阶段：
+  origScene = this.scene
+  for each scene:
+    this.scene = sceneWorldGroups[sceneId]
+    call setpiece function (对象加入 this.scene，即对应 group)
+  this.scene = origScene  // 恢复
+
+切换阶段：
+  active group → visible = true, opacity 1.0
+  adjacent group → visible = true, opacity 0.12
+  non-adjacent group → visible = false  // 完全隐藏
+```
+
+### Active Scene Visibility Manager
+
+| 状态 | visible | opacity | scale |
+|------|---------|---------|-------|
+| Active | `true` | 1.0 | 1.12 desktop / 1.35 mobile |
+| Adjacent | `true` | 0.12 | 0.95 |
+| Non-adjacent | **`false`** | — | — |
+
+### 验证
+
+```
+node --check: PASS（4/4 文件）
+Bracket diff: 0
+Lines: 2033
+```
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5C*

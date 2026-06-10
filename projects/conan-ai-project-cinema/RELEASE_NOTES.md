@@ -1576,3 +1576,130 @@ CP-5D cinematic look is at **alpha** quality. The 3D setpieces are functional bu
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5D-Final-Live-Confirm*
+
+---
+
+## Phase CP-5E: Assetized Cinematic Setpieces
+
+**Commit:** `8f4cb9e`
+**Date:** 2026-06-10
+**Goal:** Elevate six scene setpieces from low-poly alpha to asset-grade visuals
+
+### Scene Upgrades Applied
+
+| Scene | Upgrade |
+|-------|---------|
+| Scene 01 | Orbit halo ring (3rd ring, wider/slower) + desk lamp (base+stem+glow+scan beam) |
+| Scene 02 | Floating panels (layered y: docs=1.9, term=2.1, browser=1.95) + panel edge glow strips |
+| Scene 03 | Under-plinth point lights (base glow under each of 5 plinths) |
+| Scene 04 | Hub status band + hub point light + short codes (OC/HM/CX/PR) + connection opacity 0.5 |
+| Scene 05 | Tower observation deck (glow ring y=4.5) + cross-arm beams + system node orbit rings |
+| Scene 06 | Portal depth mid-ring (stacked torus) + side floor guide lines |
+
+### New Material Helpers
+
+- `createEdgeGlowMaterial(hexColor, intensity)` — bright emissive edge lines
+- `createLabelPlateMaterial(hexColor)` — dark label plates for agent/node labels
+
+### node --check
+
+```
+immersive.js: PASS
+audio-engine.js: PASS
+scene-data.js: PASS
+```
+
+### Baseline Established
+
+CP-5D-Hotfix-1 (`3c26567`) remains as rollback baseline:
+- URL: `?v=cp5d-hotfix1`
+- State: Runtime PASS / Interaction PASS / Visual PARTIAL (alpha)
+
+### Boundary
+
+- ✅ Only modified `immersive/` directory
+- ✅ Main page untouched
+- ✅ No React/Vue/Next/Vite/Tailwind
+- ✅ No auto-play sound
+- ✅ No new feature buttons
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5E*
+
+---
+
+## Phase CP-5F: Environment and Cinematic Polish
+
+**Commit:** `c0597fb`
+**Date:** 2026-06-10
+**Goal:** Add three-layer environment shells, refine cameras, upgrade lighting, add micro-animations
+
+### Camera Refactoring (scene-data.js)
+
+| Scene | Before | After | Note |
+|-------|--------|-------|------|
+| Scene 02 | (-4, 3.2, 8) → (0, 1.5, 0) | (-2, 3.5, 7) → (0, 2.0, 0) | Diagonal layered composition |
+| Scene 03 | (3, 4.5, 8) → (0, 1.2, 0) | (0, 6, 9) → (0, 1.5, 0) | Overhead gallery angle |
+| Scene 04 | (0, 5, 5) → (0, 2.5, -15) | (0, 4.5, 2) → (0, 2.5, -15) | Pulled closer |
+| Scene 05 | (-4, 6, -10) → (0, 3, -20) | (-2, 1.5, -10) → (0, 4, -20) | Low-angle upward shot |
+| Scene 06 | (0, 3.5, -5) → (0, 2, -25) | (0, 3.5, -3) → (0, 2, -25) | Central-axis perspective |
+
+### Micro-Animations (animate loop)
+
+New `_updateMicroAnimations()` — supports reduced-motion fallback:
+
+| Animation | Scene | userData key | Effect |
+|-----------|-------|--------------|--------|
+| Halo rotation | 01 | `haloRotation` | orbit rings slow spin (y+z) |
+| Panel floating | 02 | `floatPhase` | panels oscillate y ±0.06 |
+| Beacon pulse | 05 | `beaconPulse` | emissive + scale breathe |
+| Portal breath | 06 | `breathPhase` | emissive + opacity breathe |
+| Underlight breath | 03 | `underlightBreath` | plinth light intensity breathe |
+
+### Environment Shells (Three Layers)
+
+| Scene | Foreground | Mid-ground | Background |
+|-------|-----------|-----------|-----------|
+| Scene 01 | floor strip + desk edge glow | papers + desk | bg stars + wall silhouettes |
+| Scene 02 | — | 3 floating glass panels | bg constellation stars |
+| Scene 03 | floor guide strip | plinths + cards | tall gallery wall |
+| Scene 04 | ground grid strip | hub + nodes | — |
+| Scene 05 | ground plane hint | tower + nodes | constellation stars |
+| Scene 06 | arch base glow | arch + portal | archive wall |
+
+### Lighting Upgrades
+
+All six scenes now have:
+- Key light (front-upper)
+- Fill light (side)
+- Accent point light (scene focus)
+- Rim light (back-side, edge separation)
+
+### node --check
+
+```
+immersive.js: PASS
+audio-engine.js: PASS
+scene-data.js: PASS
+bracket balance: 0 diff (curly/brackets/parens all equal)
+```
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
+```
+
+### Boundary
+
+- ✅ Only modified `immersive/` directory + scene-data.js
+- ✅ Main page untouched
+- ✅ No React/Vue/Next/Vite/Tailwind
+- ✅ No new feature buttons
+- ✅ All original controls preserved (Prev/Next/dots/Sound/Back/scroll/keyboard)
+- ✅ Reduced motion respected (all animations skip when `prefersReducedMotion`)
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5F*

@@ -794,3 +794,96 @@ If CP-5E visual upgrades cause issues, rollback to:
 ---
 
 *QA by 辛 🔮 — CP-5E baseline established*
+
+---
+
+## CP-5F: Environment and Cinematic Polish
+
+**Date:** 2026-06-10
+**Phase:** CP-5F — Environment and Cinematic Polish
+**Status:** IN PROGRESS (code complete, visual verification pending)
+
+### Baseline (CP-5D-Hotfix-1) — Rollback Point
+
+If CP-5F visual upgrades cause issues, rollback to:
+- **Commit:** `3c26567f0a2129bc86a409d21446cb8fa0a2bdfc`
+- **URL:** https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5d-hotfix1
+
+### CP-5F Changes Applied
+
+#### Camera Refactoring (scene-data.js)
+
+| Scene | Desktop Position | Desktop Target | Note |
+|-------|-----------------|-----------------|------|
+| Scene 01 | (-7, 3.4, 9) | (-7, 1.3, 1.5) | Unchanged |
+| Scene 02 | (-2, 3.5, 7) | (0, 2.0, 0) | Diagonal layered |
+| Scene 03 | (0, 6, 9) | (0, 1.5, 0) | Overhead gallery |
+| Scene 04 | (0, 4.5, 2) | (0, 2.5, -15) | Pulled closer |
+| Scene 05 | (-2, 1.5, -10) | (0, 4, -20) | Low-angle upward |
+| Scene 06 | (0, 3.5, -3) | (0, 2, -25) | Central-axis |
+
+#### Micro-Animations (`_updateMicroAnimations`)
+
+| Animation | Scene | userData Key | Effect | Reduced Motion |
+|-----------|-------|--------------|--------|----------------|
+| Halo rotation | 01 | `haloRotation` | orbit rings slow spin | Skip if `prefersReducedMotion` |
+| Panel float | 02 | `floatPhase` | panels y-oscillate ±0.06 | Skip if `prefersReducedMotion` |
+| Beacon pulse | 05 | `beaconPulse` | emissive + scale breathe | Skip if `prefersReducedMotion` |
+| Portal breath | 06 | `breathPhase` | emissive + opacity breathe | Skip if `prefersReducedMotion` |
+| Underlight breath | 03 | `underlightBreath` | plinth light intensity | Skip if `prefersReducedMotion` |
+
+#### Environment Shells
+
+| Scene | Foreground | Mid-ground | Background | Rim Light |
+|-------|-----------|-----------|-----------|-----------|
+| Scene 01 | floor strip + desk edge | papers + desk | bg stars + wall | ✅ (0x4080c0) |
+| Scene 02 | — | 3 floating panels | bg stars | ✅ (0x6040a0) |
+| Scene 03 | floor guide strip | plinths + cards | tall gallery wall | ✅ (0x206040) |
+| Scene 04 | grid strip | hub + nodes | — | ✅ (0x604020) |
+| Scene 05 | ground plane | tower + nodes | constellation | ✅ (0x502010) |
+| Scene 06 | arch base glow | arch + portal | archive wall | ✅ (0x204060) |
+
+### node --check
+
+| File | Result |
+|------|--------|
+| immersive.js | ✅ PASS |
+| audio-engine.js | ✅ PASS |
+| scene-data.js | ✅ PASS |
+
+### Bracket Balance
+
+| Type | Count | Diff |
+|------|-------|------|
+| Curly braces `{}` | 395/395 | ✅ 0 |
+| Brackets `[]` | 120/120 | ✅ 0 |
+| Parens `()` | 1688/1688 | ✅ 0 |
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
+```
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要在真实浏览器确认：
+
+**六幕第一眼印象：**
+- [ ] Scene 01: research desk 为主视觉，orbit halo 缓慢旋转，desk lamp 发光
+- [ ] Scene 02: 三块面板漂浮于不同高度，violet + electric blue 配色，背景有星点
+- [ ] Scene 03: 展台底座有呼吸灯效果，gallery wall 明显
+- [ ] Scene 04: hub + 4 nodes 更近，short codes OC/HM/CX/PR 可读
+- [ ] Scene 05: 低角度仰拍，tower 更有气势，beacon 有脉冲
+- [ ] Scene 06: portal 有呼吸发光，arch 门感更强
+
+**功能性确认：**
+- [ ] Prev / Next / dots / scroll / keyboard 正常
+- [ ] Sound / Back 正常
+- [ ] 无 WebGL renderer failed
+- [ ] 无 Scene runtime error
+- [ ] Console 无 ReferenceError
+
+---
+
+*QA by 辛 🔮 — CP-5F baseline established*

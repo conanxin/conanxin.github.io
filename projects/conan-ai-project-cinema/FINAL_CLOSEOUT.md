@@ -811,3 +811,88 @@ for (var t = 0; t < 5; t++) {
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-5D-Final-Live-Confirm*
+
+---
+
+## Phase CP-5E: Assetized Cinematic Setpieces
+
+**Commit:** `8f4cb9e`
+**Status:** PASS — Code Complete, Visual Verification Pending
+
+### Scope
+
+Elevate six scene setpieces from low-poly alpha to asset-grade:
+- Scene 01: orbit halo + desk lamp
+- Scene 02: floating panels + edge glow strips
+- Scene 03: under-plinth lights
+- Scene 04: hub status band + short codes
+- Scene 05: tower deck + cross-arm + orbit rings
+- Scene 06: portal depth mid-ring + side guide lines
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| node --check immersive.js | ✅ PASS |
+| node --check audio-engine.js | ✅ PASS |
+| node --check scene-data.js | ✅ PASS |
+| bracket balance | ✅ 0 diff |
+| No new feature buttons | ✅ |
+| Main page untouched | ✅ |
+
+### Next Step
+
+CP-5F: Environment and Cinematic Polish
+
+---
+
+## Phase CP-5F: Environment and Cinematic Polish
+
+**Commit:** `c0597fb`
+**Status:** PASS — Code Complete, Visual Verification Pending
+
+### Scope
+
+- Camera refactoring (5 of 6 scenes updated)
+- Three-layer environment shells per scene
+- Micro-animations system (`_updateMicroAnimations`)
+- Rim lighting (edge separation)
+- All animations respect reduced motion
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| node --check immersive.js | ✅ PASS |
+| node --check audio-engine.js | ✅ PASS |
+| node --check scene-data.js | ✅ PASS |
+| bracket balance | ✅ 0 diff |
+| rim lights | ✅ 6 scenes |
+| environment shells | ✅ 6 scenes |
+| micro-animations | ✅ 5 types |
+| reduced motion | ✅ respected |
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
+```
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要验证六幕第一眼印象：
+- Scene 01: 研究桌为主视觉，有 orbit halo 旋转动画
+- Scene 02: 三块面板漂浮，背景有星点
+- Scene 03: 展台底座有呼吸灯效果
+- Scene 04: hub 与节点更近，地面有引导线
+- Scene 05: 低角度仰拍，beacon 有脉冲动画
+- Scene 06: portal 有呼吸发光效果
+
+### Next Step
+
+- If视觉确认"有电影感" → CP-5F 封版 → 进入下一阶段
+- If 某幕仍需调整 → CP-5F-Hotfix-X → 再验收
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-5F*

@@ -323,7 +323,8 @@
 
     // ── Particles ────────────────────────────────────────────────
     ImmersiveApp.prototype._buildParticles = function () {
-      var count = 200;
+      // CP-5C: Reduced count, more subtle — ambient depth only
+      var count = 80;
       var positions = new Float32Array(count * 3);
       var colors = new Float32Array(count * 3);
 
@@ -345,7 +346,7 @@
         size: 0.06,
         vertexColors: true,
         transparent: true,
-        opacity: 0.7,
+        opacity: 0.5, // CP-5C: reduced from 0.7
         sizeAttenuation: true
       });
 
@@ -646,19 +647,22 @@
 
     // ── Background silhouettes ───────────────────────────────────
     ImmersiveApp.prototype._buildBackgroundSilhouettes = function () {
+      // CP-5C: Make silhouettes transparent so they can be dimmed
       var silMat = new THREE.MeshStandardMaterial({
-        color: 0x080c14, emissive: 0x102030, emissiveIntensity: 0.05,
-        roughness: 1.0, side: THREE.BackSide
+        color: 0x080c14, emissive: 0x102030, emissiveIntensity: 0.04,
+        roughness: 1.0, side: THREE.BackSide,
+        transparent: true, opacity: 0.4
       });
+      // Move further back to avoid appearing in scene cameras
       var domeGeo = new THREE.SphereGeometry(20, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2);
       var dome = new THREE.Mesh(domeGeo, silMat);
-      dome.position.set(0, -2, -12);
+      dome.position.set(0, -2, -25); // was -12, now -25 (very far)
       this.scene.add(dome);
 
-      var wallGeo = new THREE.BoxGeometry(0.5, 12, 24);
-      [-10, 10].forEach(function (x) {
+      var wallGeo = new THREE.BoxGeometry(0.5, 10, 20);
+      [-14, 14].forEach(function (x) {
         var w = new THREE.Mesh(wallGeo, silMat);
-        w.position.set(x, 4, 0);
+        w.position.set(x, 3, -5); // was (x, 4, 0), now further back and narrower
         this.scene.add(w);
       }, this);
     };

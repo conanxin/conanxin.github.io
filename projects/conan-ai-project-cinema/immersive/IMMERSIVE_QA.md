@@ -719,3 +719,78 @@ CP-5D setpieces are **functional** (all 6 scenes render, all controls work) but 
 ---
 
 *QA by 辛 🔮 — CP-5D-Final-Live-Confirm*
+
+---
+
+## CP-5E: Assetized Cinematic Setpieces
+
+**Date:** 2026-06-10
+**Phase:** CP-5E — Assetized Cinematic Setpieces
+**Status:** IN PROGRESS (code complete, visual verification pending)
+
+### Baseline (CP-5D-Hotfix-1) — Rollback Point
+
+If CP-5E visual upgrades cause issues, rollback to:
+- **Commit:** `3c26567f0a2129bc86a409d21446cb8fa0a2bdfc`
+- **URL:** https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5d-hotfix1
+- **State:** Runtime PASS / Interaction PASS / Cinematic Visual PARTIAL (alpha baseline)
+
+### CP-5E Visual Upgrades Applied
+
+#### Scene 01 — Research Desk
+- Added third orbit halo ring (wider, slower tilt)
+- Added desk lamp (base + stem + glow head + scan beam)
+- Desk lamp point light for localized illumination
+
+#### Scene 02 — AI Beyond Chat
+- Panels now float at different heights (docs: y=1.9, terminal: y=2.1, browser: y=1.95)
+- Panel edge glow strips added to left/right edges of each panel
+- Terminal panel edge strips on both sides
+- Browser panel right edge glow strip
+
+#### Scene 03 — Artifact Exhibition
+- Under-plinth point lights added (base glow effect under each of 5 plinths)
+
+#### Scene 04 — Agents
+- Hub status band added (horizontal glow ring at hub level)
+- Hub point light added for agent area illumination
+- Agent node labels changed from full names to short codes: OC / HM / CX / PR
+- Connection line opacity increased: 0.35 → 0.5
+- Status badge material changed to `createLabelPlateMaterial`
+
+#### Scene 05 — Control Tower
+- Tower observation deck added (wide glow ring at mid-height y=4.5)
+- Tower cross-arm beams added (horizontal bars at y=4.5)
+- System nodes now have orbit rings (wider orbit ring around each node)
+
+#### Scene 06 — Archive
+- Portal depth enhanced with mid-ring (stacked torus for depth illusion)
+- Side guide lines added (offset floor strips leading to arch from left/right)
+
+#### New Material Helpers Added
+- `createEdgeGlowMaterial(hexColor, intensity)` — bright emissive edge lines
+- `createLabelPlateMaterial(hexColor)` — dark label plates for agent/node labels
+
+### node --check
+
+| File | Result |
+|------|--------|
+| immersive.js | ✅ PASS |
+| audio-engine.js | ✅ PASS |
+| scene-data.js | ✅ PASS |
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要在真实浏览器打开线上链接确认：
+- [ ] Scene 01: Desk lamp visible, orbit ring visible, papers layered
+- [ ] Scene 02: Panels at different heights, edge glow strips visible
+- [ ] Scene 03: Under-plinth glow visible
+- [ ] Scene 04: Hub status band visible, short codes OC/HM/CX/PR visible
+- [ ] Scene 05: Observation deck + cross-arm visible, system node orbit rings
+- [ ] Scene 06: Portal depth (stacked rings), side guide lines visible
+- [ ] No new runtime errors (ReferenceError/SyntaxError)
+- [ ] Prev/Next/dots/Sound/Back still functional
+
+---
+
+*QA by 辛 🔮 — CP-5E baseline established*

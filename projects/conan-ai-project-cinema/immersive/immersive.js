@@ -194,6 +194,34 @@
       });
     }
 
+    // CP-5E: Edge glow material for accent lines and borders
+    function createEdgeGlowMaterial(hexColor, intensity) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: c,
+        emissive: c,
+        emissiveIntensity: intensity !== undefined ? intensity : 0.8,
+        roughness: 0.1,
+        metalness: 0.2,
+        transparent: true,
+        opacity: 0.9
+      });
+    }
+
+    // CP-5E: Label plate material for small text-indicator plates
+    function createLabelPlateMaterial(hexColor) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: 0x060c18,
+        emissive: c,
+        emissiveIntensity: 0.5,
+        roughness: 0.6,
+        metalness: 0.5,
+        transparent: true,
+        opacity: 0.85
+      });
+    }
+
     // Create a small glowing status badge
     function createStatusBadge(sceneGroup, x, y, z, label, accentColor, app) {
       var c = new THREE.Color(accentColor);
@@ -1777,6 +1805,52 @@
       coreRing2.rotation.x = Math.PI / 2;
       this._addToSceneGroup(0, coreRing2);
 
+      // CP-5E: Third orbit halo ring (wider, slower tilt)
+      var coreRing3Geo = new THREE.TorusGeometry(0.75, 0.018, 6, 48);
+      var coreRing3Mat = createGlowMaterial(cyanGlow, 0.35);
+      var coreRing3 = new THREE.Mesh(coreRing3Geo, coreRing3Mat);
+      coreRing3.position.set(-7, 1.65, 1.5);
+      coreRing3.rotation.x = Math.PI / 4;
+      coreRing3.rotation.z = Math.PI / 5;
+      this._addToSceneGroup(0, coreRing3);
+
+      // CP-5E: Desk lamp (corner of desk — lamp stem + glow bulb)
+      var lampBaseGeo = new THREE.CylinderGeometry(0.12, 0.15, 0.06, 8);
+      var lampBaseMat = createDarkMetalMaterial(accent, 0.06);
+      var lampBase = new THREE.Mesh(lampBaseGeo, lampBaseMat);
+      lampBase.position.set(-4.2, 0.82, 0.4);
+      this._addToSceneGroup(0, lampBase);
+
+      var lampStemGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.9, 6);
+      var lampStemMat = createDarkMetalMaterial(accent, 0.08);
+      var lampStem = new THREE.Mesh(lampStemGeo, lampStemMat);
+      lampStem.position.set(-4.2, 1.27, 0.4);
+      this._addToSceneGroup(0, lampStem);
+
+      var lampHeadGeo = new THREE.SphereGeometry(0.1, 8, 8);
+      var lampHeadMat = createGlowMaterial(accent, 1.2);
+      var lampHead = new THREE.Mesh(lampHeadGeo, lampHeadMat);
+      lampHead.position.set(-4.2, 1.75, 0.4);
+      this._addToSceneGroup(0, lampHead);
+
+      // Desk lamp point light (soft warm accent)
+      var lampLight = new THREE.PointLight(accent, 0.5, 5);
+      lampLight.position.set(-4.2, 1.75, 0.4);
+      this._addToSceneGroup(0, lampLight);
+
+      // CP-5E: Scan beam (thin cylinder from lamp head, pointing down at desk)
+      var scanGeo = new THREE.CylinderGeometry(0.015, 0.08, 0.7, 6);
+      var scanMat = new THREE.MeshStandardMaterial({
+        color: accent,
+        emissive: accent,
+        emissiveIntensity: 0.2,
+        transparent: true,
+        opacity: 0.25
+      });
+      var scanBeam = new THREE.Mesh(scanGeo, scanMat);
+      scanBeam.position.set(-4.2, 1.35, 0.4);
+      this._addToSceneGroup(0, scanBeam);
+
       // ── Fine connection lines (papers → core) ─────────────────
       paperConfigs.forEach(function (cfg, i) {
         createConnectionLine(0, cfg.x, cfg.y + 0.1, cfg.z, -7, 1.65, 1.5, cyanGlow, 0.3, self);
@@ -1849,25 +1923,32 @@
       var self = this;
 
       // ── Left Panel: Docs (File folder icon) ───────────────────
-      // Glass panel body
+      // Glass panel body — CP-5E: float at y=1.9
       var docsGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
       var docsMat = createGlassMaterial(accent, 0.55);
       var docsPanel = new THREE.Mesh(docsGeo, docsMat);
-      docsPanel.position.set(-4, 2.0, 0);
+      docsPanel.position.set(-4, 1.9, 0);
       this._addToSceneGroup(1, docsPanel);
+
+      // CP-5E: Panel edge glow strip (left edge)
+      var docsEdgeGeo = new THREE.BoxGeometry(0.025, 2.4, 0.04);
+      var docsEdgeMat = createEdgeGlowMaterial(accent, 0.6);
+      var docsEdge = new THREE.Mesh(docsEdgeGeo, docsEdgeMat);
+      docsEdge.position.set(-5.5, 1.9, 0);
+      this._addToSceneGroup(1, docsEdge);
 
       // Top header bar (darker glass)
       var docsHeaderGeo = new THREE.BoxGeometry(3.0, 0.35, 0.04);
       var docsHeaderMat = createDarkMetalMaterial(accent, 0.1);
       var docsHeader = new THREE.Mesh(docsHeaderGeo, docsHeaderMat);
-      docsHeader.position.set(-4, 3.2, 0.05);
+      docsHeader.position.set(-4, 3.1, 0.05);
       this._addToSceneGroup(1, docsHeader);
 
       // Docs icon (simplified folder shape)
       var folderGeo = new THREE.BoxGeometry(0.5, 0.35, 0.05);
       var folderMat = createGlowMaterial(accent, 0.7);
       var folder = new THREE.Mesh(folderGeo, folderMat);
-      folder.position.set(-4.6, 3.2, 0.07);
+      folder.position.set(-4.6, 3.1, 0.07);
       this._addToSceneGroup(1, folder);
 
       // Docs title text line
@@ -1878,29 +1959,39 @@
           transparent: true, opacity: 0.5 + d * 0.05
         });
         var dLine = new THREE.Mesh(dLineGeo, dLineMat);
-        dLine.position.set(-4, 2.7 - d * 0.38, 0.05);
+        dLine.position.set(-4, 2.6 - d * 0.38, 0.05);
         this._addToSceneGroup(1, dLine);
       }
 
       // ── Center Panel: Terminal ────────────────────────────────
+      // CP-5E: float at y=2.1 (layered vs docs at y=1.9)
       var termGeo = new THREE.BoxGeometry(3.2, 2.6, 0.08);
       var termMat = createGlassMaterial(accent, 0.6);
       var termPanel = new THREE.Mesh(termGeo, termMat);
-      termPanel.position.set(0, 2.0, 0);
+      termPanel.position.set(0, 2.1, 0);
       this._addToSceneGroup(1, termPanel);
+
+      // CP-5E: Panel edge glow strips (left + right edges)
+      [-1.6, 1.6].forEach(function (ex) {
+        var tEdgeGeo = new THREE.BoxGeometry(0.025, 2.6, 0.04);
+        var tEdgeMat = createEdgeGlowMaterial(accent, 0.5);
+        var tEdge = new THREE.Mesh(tEdgeGeo, tEdgeMat);
+        tEdge.position.set(ex, 2.1, 0);
+        self._addToSceneGroup(1, tEdge);
+      });
 
       // Terminal header bar
       var termHeaderGeo = new THREE.BoxGeometry(3.2, 0.35, 0.04);
       var termHeaderMat = createDarkMetalMaterial(accent, 0.12);
       var termHeader = new THREE.Mesh(termHeaderGeo, termHeaderMat);
-      termHeader.position.set(0, 3.25, 0.05);
+      termHeader.position.set(0, 3.35, 0.05);
       this._addToSceneGroup(1, termHeader);
 
       // Terminal icon (cursor block)
       var cursorGeo = new THREE.BoxGeometry(0.18, 0.22, 0.04);
       var cursorMat = createGlowMaterial(accent, 1.0);
       var cursor = new THREE.Mesh(cursorGeo, cursorMat);
-      cursor.position.set(-0.55, 3.25, 0.07);
+      cursor.position.set(-0.55, 3.35, 0.07);
       this._addToSceneGroup(1, cursor);
 
       // Terminal text lines (5 lines, varying opacity)
@@ -1911,7 +2002,7 @@
           transparent: true, opacity: 0.6 + (t % 2) * 0.15
         });
         var tLine = new THREE.Mesh(tLineGeo, tLineMat);
-        tLine.position.set(0, 2.75 - t * 0.36, 0.05);
+        tLine.position.set(0, 2.85 - t * 0.36, 0.05);
         this._addToSceneGroup(1, tLine);
       }
 
@@ -1919,28 +2010,36 @@
       var blinkGeo = new THREE.SphereGeometry(0.06, 6, 6);
       var blinkMat = createGlowMaterial(accent, 1.2);
       var blink = new THREE.Mesh(blinkGeo, blinkMat);
-      blink.position.set(0.6, 1.3, 0.05);
+      blink.position.set(0.6, 1.4, 0.05);
       this._addToSceneGroup(1, blink);
 
       // ── Right Panel: Browser ───────────────────────────────────
+      // CP-5E: float at y=1.95 (layered depth)
       var browserGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
       var browserMat = createGlassMaterial(accent, 0.55);
       var browserPanel = new THREE.Mesh(browserGeo, browserMat);
-      browserPanel.position.set(4, 2.0, 0);
+      browserPanel.position.set(4, 1.95, 0);
       this._addToSceneGroup(1, browserPanel);
+
+      // CP-5E: Browser panel edge glow (right edge)
+      var bEdgeGeo = new THREE.BoxGeometry(0.025, 2.4, 0.04);
+      var bEdgeMat = createEdgeGlowMaterial(accent, 0.6);
+      var bEdge = new THREE.Mesh(bEdgeGeo, bEdgeMat);
+      bEdge.position.set(5.5, 1.95, 0);
+      this._addToSceneGroup(1, bEdge);
 
       // Browser header bar
       var browserHeaderGeo = new THREE.BoxGeometry(3.0, 0.35, 0.04);
       var browserHeaderMat = createDarkMetalMaterial(accent, 0.1);
       var browserHeader = new THREE.Mesh(browserHeaderGeo, browserHeaderMat);
-      browserHeader.position.set(4, 3.2, 0.05);
+      browserHeader.position.set(4, 3.15, 0.05);
       this._addToSceneGroup(1, browserHeader);
 
       // Browser icon (globe shape)
       var globeGeo = new THREE.SphereGeometry(0.18, 8, 8);
       var globeMat = createGlowMaterial(accent, 0.7);
       var globe = new THREE.Mesh(globeGeo, globeMat);
-      globe.position.set(3.5, 3.2, 0.07);
+      globe.position.set(3.5, 3.15, 0.07);
       this._addToSceneGroup(1, globe);
 
       // Address bar
@@ -1950,7 +2049,7 @@
         transparent: true, opacity: 0.75
       });
       var addrBar = new THREE.Mesh(addrGeo, addrMat);
-      addrBar.position.set(4, 3.0, 0.05);
+      addrBar.position.set(4, 2.95, 0.05);
       this._addToSceneGroup(1, addrBar);
 
       // Browser content blocks (3 blocks)
@@ -1961,7 +2060,7 @@
           transparent: true, opacity: 0.65
         });
         var bBlock = new THREE.Mesh(bGeo, bMat);
-        bBlock.position.set(4, 2.5 - b * 0.55, 0.05);
+        bBlock.position.set(4, 2.45 - b * 0.55, 0.05);
         this._addToSceneGroup(1, bBlock);
       }
 
@@ -2072,6 +2171,11 @@
         var strip = new THREE.Mesh(stripGeo, stripMat);
         strip.position.set(cfg.x, 0.02, cfg.z + 0.38);
         self._addToSceneGroup(2, strip);
+
+        // CP-5E: Under-plinth point light (base glow effect)
+        var plinthLight = new THREE.PointLight(accent, 0.35, 3.5);
+        plinthLight.position.set(cfg.x, 0.1, cfg.z);
+        self._addToSceneGroup(2, plinthLight);
 
         // Artifact card on plinth (tilted slightly)
         var cardW = 0.9, cardH = 0.7;
@@ -2191,6 +2295,14 @@
       var hubX = 0, hubY = 2.5, hubZ = -15;
 
       // ── Central Agent Hub (elegant, not huge) ──────────────────
+      // CP-5E: Status band ring (horizontal, at hub level)
+      var hubBandGeo = new THREE.TorusGeometry(0.72, 0.035, 8, 32);
+      var hubBandMat = createGlowMaterial(accent, 0.65);
+      var hubBand = new THREE.Mesh(hubBandGeo, hubBandMat);
+      hubBand.position.set(hubX, hubY, hubZ);
+      hubBand.rotation.x = Math.PI / 2;
+      this._addToSceneGroup(3, hubBand);
+
       // Outer glow ring
       var hubRingGeo = new THREE.TorusGeometry(0.6, 0.06, 8, 32);
       var hubRingMat = createGlowMaterial(accent, 0.9);
@@ -2206,6 +2318,7 @@
       hubCore.position.set(hubX, hubY, hubZ);
       this._addToSceneGroup(3, hubCore);
 
+
       // Hub vertical beam
       var hubBeamGeo = new THREE.CylinderGeometry(0.05, 0.05, 1.2, 6);
       var hubBeamMat = createGlowMaterial(accent, 0.5);
@@ -2213,12 +2326,18 @@
       hubBeam.position.set(hubX, hubY + 0.8, hubZ);
       this._addToSceneGroup(3, hubBeam);
 
+      // CP-5E: Hub point light (illuminate nearby agents)
+      var hubLight = new THREE.PointLight(accent, 0.6, 12);
+      hubLight.position.set(hubX, hubY, hubZ);
+      this._addToSceneGroup(3, hubLight);
+
       // ── 4 Agent Nodes (OpenClaw / Hermes / Codex / Phase Report) ─
+      // CP-5E: Short codes for visual clarity
       var agentNodes = [
-        { name: 'OpenClaw', x: -5.5, y: 2.5, z: -1 },
-        { name: 'Hermes',   x:  5.5, y: 2.5, z: -1 },
-        { name: 'Codex',    x: -3.5, y: 4.0, z:  2 },
-        { name: 'Report',   x:  3.5, y: 4.0, z:  2 }
+        { name: 'OC', x: -5.5, y: 2.5, z: -1 },
+        { name: 'HM', x:  5.5, y: 2.5, z: -1 },
+        { name: 'CX', x: -3.5, y: 4.0, z:  2 },
+        { name: 'PR', x:  3.5, y: 4.0, z:  2 }
       ];
 
       agentNodes.forEach(function (agent, i) {
@@ -2239,21 +2358,19 @@
         nodeGlow.position.set(agent.x, agent.y, agent.z);
         self._addToSceneGroup(3, nodeGlow);
 
-        // Glowing connection line from node to hub
-        createConnectionLine(3, agent.x, agent.y, agent.z, hubX, hubY, hubZ, accent, 0.35, self);
+        // CP-5E: Glowing connection line (more prominent, opacity 0.5)
+        createConnectionLine(3, agent.x, agent.y, agent.z, hubX, hubY, hubZ, accent, 0.5, self);
 
         // Pulsing dot on the connection line
         createPulsingDot(3, agent.x, agent.y, agent.z, hubX, hubY, hubZ, accent, self);
 
         // Small status badge below node
-        var badgeGeo = new THREE.BoxGeometry(0.9, 0.14, 0.05);
-        var badgeMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.7,
-          roughness: 0.3, metalness: 0.5
-        });
+        var badgeGeo = new THREE.BoxGeometry(0.55, 0.14, 0.05);
+        var badgeMat = createLabelPlateMaterial(accent);
         var badge = new THREE.Mesh(badgeGeo, badgeMat);
         badge.position.set(agent.x, agent.y - 0.75, agent.z);
         self._addToSceneGroup(3, badge);
+
 
         // Status indicator dot (top of node)
         var dotGeo = new THREE.SphereGeometry(0.08, 6, 6);
@@ -2359,6 +2476,23 @@
       stripe.position.set(0.35, 3.25, towerZ);
       this._addToSceneGroup(4, stripe);
 
+      // CP-5E: Tower observation deck (wide ring at mid-height)
+      var deckGeo = new THREE.TorusGeometry(1.0, 0.04, 6, 32);
+      var deckMat = createGlowMaterial(accent, 0.6);
+      var deck = new THREE.Mesh(deckGeo, deckMat);
+      deck.position.set(0, 4.5, towerZ);
+      deck.rotation.x = Math.PI / 2;
+      this._addToSceneGroup(4, deck);
+
+      // CP-5E: Tower cross-arm (horizontal beam at mid section)
+      [-1.2, 1.2].forEach(function (dx) {
+        var armGeo = new THREE.BoxGeometry(0.06, 0.06, 0.8);
+        var armMat = createDarkMetalMaterial(accent, 0.1);
+        var arm = new THREE.Mesh(armGeo, armMat);
+        arm.position.set(dx, 4.5, towerZ);
+        self._addToSceneGroup(4, arm);
+      });
+
       // ── Tower Beacon (top signal emitter) ─────────────────────
       var beaconGeo = new THREE.CylinderGeometry(0.15, 0.25, 0.8, 8);
       var beaconMat = createGlowMaterial(accent, 0.8);
@@ -2412,6 +2546,15 @@
         var snRing = new THREE.Mesh(snRingGeo, snRingMat);
         snRing.position.set(node.x, node.y, node.z);
         self._addToSceneGroup(4, snRing);
+
+        // CP-5E: Orbit ring around system node
+        var snOrbitGeo = new THREE.TorusGeometry(0.4, 0.018, 6, 24);
+        var snOrbitMat = createGlowMaterial(accent, 0.25);
+        var snOrbit = new THREE.Mesh(snOrbitGeo, snOrbitMat);
+        snOrbit.position.set(node.x, node.y, node.z);
+        snOrbit.rotation.y = Math.PI / 4;
+        self._addToSceneGroup(4, snOrbit);
+
 
         // Connection line to tower beacon
         createConnectionLine(4, node.x, node.y, node.z, 0, 6.9, towerZ, accent, 0.2, self);
@@ -2575,6 +2718,7 @@
       });
 
       // ── Archive Portal (deep background) ──────────────────────
+      // CP-5E: Portal depth — outer ring
       var portalGeo = new THREE.TorusGeometry(1.2, 0.1, 8, 32);
       var portalMat = new THREE.MeshStandardMaterial({
         color: accent, emissive: accent, emissiveIntensity: 0.35,
@@ -2583,6 +2727,17 @@
       var portal = new THREE.Mesh(portalGeo, portalMat);
       portal.position.set(0, 4, -23);
       this._addToSceneGroup(5, portal);
+
+      // CP-5E: Portal depth — mid ring (stacked for depth illusion)
+      var portalMidGeo = new THREE.TorusGeometry(0.9, 0.07, 8, 32);
+      var portalMidMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.5,
+        transparent: true, opacity: 0.35
+      });
+      var portalMid = new THREE.Mesh(portalMidGeo, portalMidMat);
+      portalMid.position.set(0, 4, -23.5);
+      this._addToSceneGroup(5, portalMid);
+
 
       // Portal inner glow
       var portalCoreGeo = new THREE.SphereGeometry(0.8, 12, 12);
@@ -2608,6 +2763,23 @@
       });
       var floorStrip = new THREE.Mesh(floorStripGeo, floorStripMat);
       this._addToSceneGroup(5, floorStrip);
+
+      // CP-5E: Side guide lines (offset, leading to arch from sides)
+      [-1.5, 1.5].forEach(function (sx) {
+        var sideGuidePoints = [
+          new THREE.Vector3(sx, 0.02, 2),
+          new THREE.Vector3(sx, 0.02, -5),
+          new THREE.Vector3(sx * 0.3, 0.02, -10)
+        ];
+        var sideGuideCurve = new THREE.CatmullRomCurve3(sideGuidePoints);
+        var sideGuideGeo = new THREE.TubeGeometry(sideGuideCurve, 15, 0.06, 4, false);
+        var sideGuideMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.2,
+          transparent: true, opacity: 0.25
+        });
+        var sideGuide = new THREE.Mesh(sideGuideGeo, sideGuideMat);
+        self._addToSceneGroup(5, sideGuide);
+      });
 
       // ── Per-scene lighting ─────────────────────────────────────
       var keyLight = new THREE.DirectionalLight(accent, 0.6);

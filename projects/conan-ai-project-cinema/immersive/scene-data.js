@@ -62,9 +62,10 @@ window.CP_IMMERSIVE_SCENES = [
     titleZh: '每个阶段留下设计理由',
     description: 'OpenClaw · Hermes · Codex · Phase Report',
     // CP-5F: pulled closer — hub fills more frame
+    // CP-5G-HF1: camera adjusted to avoid workflow lines dominating view
     camera: {
-      desktop: { position: { x: 0, y: 4.5, z: 2 },   target: { x: 0, y: 2.5, z: -15 } },
-      mobile:  { position: { x: 0, y: 4, z: 0 },   target: { x: 0, y: 2.5, z: -15 } }
+      desktop: { position: { x: 0, y: 5.5, z: 5 },   target: { x: 0, y: 2.5, z: -15 } },
+      mobile:  { position: { x: 0, y: 4.5, z: 3 },   target: { x: 0, y: 2.5, z: -15 } }
     },
     accentColor: '#f7c87a',
     audioMood: 'agents',

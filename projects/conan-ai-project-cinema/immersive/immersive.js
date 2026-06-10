@@ -2099,12 +2099,19 @@
       docsHeader.position.set(-4, 3.05, 0.05);
       this._addToSceneGroup(1, docsHeader);
 
-      // Folder icon (simplified)
-      var folderGeo = new THREE.BoxGeometry(0.5, 0.35, 0.05);
-      var folderMat = createGlowMaterial(accent, 0.7);
+      // Folder icon (simplified — larger, more prominent)
+      var folderGeo = new THREE.BoxGeometry(0.65, 0.45, 0.06);
+      var folderMat = createGlowMaterial(accent, 0.75);
       var folder = new THREE.Mesh(folderGeo, folderMat);
       folder.position.set(-4.6, 3.05, 0.07);
       this._addToSceneGroup(1, folder);
+
+      // Folder tab (small protrusion on top of folder)
+      var tabGeo = new THREE.BoxGeometry(0.25, 0.1, 0.06);
+      var tabMat = createGlowMaterial(accent, 0.6);
+      var tab = new THREE.Mesh(tabGeo, tabMat);
+      tab.position.set(-4.35, 3.28, 0.07);
+      this._addToSceneGroup(1, tab);
 
       // Doc content lines (4 lines, varied opacity)
       for (var d = 0; d < 4; d++) {
@@ -2229,15 +2236,22 @@
       globe.position.set(3.5, 3.1, 0.07);
       this._addToSceneGroup(1, globe);
 
-      // Address bar
-      var addrGeo = new THREE.PlaneGeometry(2.2, 0.12);
+      // Address bar (distinctive browser URL bar look)
+      var addrGeo = new THREE.PlaneGeometry(2.2, 0.15);
       var addrMat = new THREE.MeshStandardMaterial({
-        color: 0x1a2540, emissive: accent, emissiveIntensity: 0.25,
-        transparent: true, opacity: 0.75
+        color: 0x1a2540, emissive: accent, emissiveIntensity: 0.3,
+        transparent: true, opacity: 0.8
       });
       var addrBar = new THREE.Mesh(addrGeo, addrMat);
-      addrBar.position.set(4, 2.9, 0.05);
+      addrBar.position.set(4, 2.88, 0.05);
       this._addToSceneGroup(1, addrBar);
+
+      // URL bar left indicator (green circle)
+      var urlDotGeo = new THREE.SphereGeometry(0.04, 6, 6);
+      var urlDotMat = createGlowMaterial(accent, 1.0);
+      var urlDot = new THREE.Mesh(urlDotGeo, urlDotMat);
+      urlDot.position.set(3.4, 2.88, 0.06);
+      this._addToSceneGroup(1, urlDot);
 
       // Browser content blocks (3 blocks)
       for (var b = 0; b < 3; b++) {
@@ -2577,31 +2591,32 @@
       fillLight.position.set(8, 3, 2);
       this._addToSceneGroup(2, fillLight);
 
-      // CP-5G: Foreground — converging floor guide strips
+      // CP-5G-HF1: Foreground — floor guide strips (avoid bottom-center UI)
+      // Converge toward sides of hero, not center-bottom
       var fgStrip1Pts = [
         new THREE.Vector3(-7, 0.02, 4),
-        new THREE.Vector3(-3, 0.02, 2),
-        new THREE.Vector3(heroX, 0.02, 0.5)
+        new THREE.Vector3(-4, 0.02, 2.5),
+        new THREE.Vector3(heroX - 1.5, 0.02, 1.5)
       ];
       var fgStrip1Curve = new THREE.CatmullRomCurve3(fgStrip1Pts);
-      var fgStrip1Geo = new THREE.TubeGeometry(fgStrip1Curve, 20, 0.04, 4, false);
+      var fgStrip1Geo = new THREE.TubeGeometry(fgStrip1Curve, 20, 0.035, 4, false);
       var fgStrip1Mat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.25,
-        transparent: true, opacity: 0.4
+        color: accent, emissive: accent, emissiveIntensity: 0.2,
+        transparent: true, opacity: 0.3
       });
       var fgStrip1 = new THREE.Mesh(fgStrip1Geo, fgStrip1Mat);
       this._addToSceneGroup(2, fgStrip1);
 
       var fgStrip2Pts = [
         new THREE.Vector3(7, 0.02, 4),
-        new THREE.Vector3(3, 0.02, 2),
-        new THREE.Vector3(heroX, 0.02, 0.5)
+        new THREE.Vector3(4, 0.02, 2.5),
+        new THREE.Vector3(heroX + 1.5, 0.02, 1.5)
       ];
       var fgStrip2Curve = new THREE.CatmullRomCurve3(fgStrip2Pts);
-      var fgStrip2Geo = new THREE.TubeGeometry(fgStrip2Curve, 20, 0.04, 4, false);
+      var fgStrip2Geo = new THREE.TubeGeometry(fgStrip2Curve, 20, 0.035, 4, false);
       var fgStrip2Mat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.25,
-        transparent: true, opacity: 0.4
+        color: accent, emissive: accent, emissiveIntensity: 0.2,
+        transparent: true, opacity: 0.3
       });
       var fgStrip2 = new THREE.Mesh(fgStrip2Geo, fgStrip2Mat);
       this._addToSceneGroup(2, fgStrip2);
@@ -2699,8 +2714,8 @@
       coordRingRadii.forEach(function (r, i) {
         var cRingGeo = new THREE.TorusGeometry(r, 0.02, 6, 48);
         var cRingMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.3 - i * 0.08,
-          transparent: true, opacity: 0.3 - i * 0.08
+          color: accent, emissive: accent, emissiveIntensity: 0.15 - i * 0.04,
+          transparent: true, opacity: 0.15 - i * 0.04
         });
         var cRing = new THREE.Mesh(cRingGeo, cRingMat);
         cRing.position.set(hubX, hubY, hubZ);
@@ -2710,10 +2725,10 @@
 
       // ── 4 Agent Panels ────────────────────────────────────────
       var agentPanels = [
-        { code: 'OC', role: 'Orchestrator', x: -5.5, y: 2.8, z: -1 },
-        { code: 'HM', role: 'Memory', x: 5.5, y: 2.8, z: -1 },
-        { code: 'CX', role: 'Coder', x: -3.5, y: 4.5, z: 2 },
-        { code: 'PR', role: 'Reporter', x: 3.5, y: 4.5, z: 2 }
+        { code: 'OC', role: 'Orchestrator', x: -3.2, y: 2.8, z: -2 },
+        { code: 'HM', role: 'Memory', x: 3.2, y: 2.8, z: -2 },
+        { code: 'CX', role: 'Coder', x: -2.0, y: 4.0, z: 0 },
+        { code: 'PR', role: 'Reporter', x: 2.0, y: 4.0, z: 0 }
       ];
 
       agentPanels.forEach(function (ap, i) {
@@ -2741,8 +2756,8 @@
         // Agent code label (large, glowing)
         var codeGeo = new THREE.PlaneGeometry(0.5, 0.18);
         var codeMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 1.2,
-          transparent: true, opacity: 0.9
+          color: accent, emissive: accent, emissiveIntensity: 1.8,
+          transparent: true, opacity: 0.95
         });
         var codeMesh = new THREE.Mesh(codeGeo, codeMat);
         codeMesh.position.set(ap.x, ap.y + 0.29, ap.z + 0.06);
@@ -2751,8 +2766,8 @@
         // Agent role label (smaller, below code)
         var roleGeo = new THREE.PlaneGeometry(0.6, 0.12);
         var roleMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.5,
-          transparent: true, opacity: 0.7
+          color: accent, emissive: accent, emissiveIntensity: 0.7,
+          transparent: true, opacity: 0.8
         });
         var roleMesh = new THREE.Mesh(roleGeo, roleMat);
         roleMesh.position.set(ap.x, ap.y + 0.08, ap.z + 0.06);
@@ -2789,10 +2804,10 @@
           new THREE.Vector3(hubX, hubY, hubZ)
         ];
         var wfCurve = new THREE.CatmullRomCurve3(wfPts);
-        var wfGeo = new THREE.TubeGeometry(wfCurve, 20, 0.04, 6, false);
+        var wfGeo = new THREE.TubeGeometry(wfCurve, 20, 0.012, 6, false);
         var wfMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.55,
-          transparent: true, opacity: 0.5
+          color: accent, emissive: accent, emissiveIntensity: 0.2,
+          transparent: true, opacity: 0.2
         });
         var wfPath = new THREE.Mesh(wfGeo, wfMat);
         self._addToSceneGroup(3, wfPath);
@@ -2807,10 +2822,10 @@
           new THREE.Vector3(ap.x, ap.y + 0.3, ap.z)
         ];
         var rtCurve = new THREE.CatmullRomCurve3(rtPts);
-        var rtGeo = new THREE.TubeGeometry(rtCurve, 15, 0.025, 4, false);
+        var rtGeo = new THREE.TubeGeometry(rtCurve, 15, 0.008, 4, false);
         var rtMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.35,
-          transparent: true, opacity: 0.35
+          color: accent, emissive: accent, emissiveIntensity: 0.12,
+          transparent: true, opacity: 0.15
         });
         var rtPath = new THREE.Mesh(rtGeo, rtMat);
         self._addToSceneGroup(3, rtPath);
@@ -3209,6 +3224,17 @@
       var portalCore = new THREE.Mesh(portalCoreGeo, portalCoreMat);
       portalCore.position.set(0, 4, -23);
       this._addToSceneGroup(5, portalCore);
+
+      // CP-5G-HF1: Portal inner depth ring (darker, creates depth illusion)
+      var portalDepthGeo = new THREE.TorusGeometry(0.55, 0.05, 8, 32);
+      var portalDepthMat = new THREE.MeshStandardMaterial({
+        color: 0x020810, emissive: accent, emissiveIntensity: 0.08,
+        transparent: true, opacity: 0.6
+      });
+      var portalDepth = new THREE.Mesh(portalDepthGeo, portalDepthMat);
+      portalDepth.position.set(0, 4, -23.2);
+      portalDepth.userData.breathPhase = 2.5;
+      this._addToSceneGroup(5, portalDepth);
 
       // ── Floor Glow Strip (leading to arch) ─────────────────────
       var floorStripPoints = [

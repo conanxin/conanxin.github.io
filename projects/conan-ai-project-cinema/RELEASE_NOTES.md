@@ -1412,3 +1412,45 @@ Lines: 2184
 *Release notes by 辛 🔮 — Phase CP-5C-Hotfix-1*
 
 *Release notes by 辛 🔮 — Phase CP-5C re-implemented*
+
+---
+
+## Phase CP-5D: Cinematic Look Development
+
+**Date:** 2026-06-10
+**Status:** Complete
+
+### What Changed
+
+**Visual Overhaul — from "3D prototype" to "low-poly cinematic space"**
+
+| Scene | Before | After |
+|-------|--------|-------|
+| Scene 01 — Complex Ideas | Large vertical wall blocking view | Research desk hero + 6 paper fragments + cyan idea core + fine connection lines |
+| Scene 02 — AI Beyond Chat | Three flat purple planes | Glass panels (docs/browser/terminal) + icons + workflow ribbon |
+| Scene 03 — Artifacts | Green board + flat cards | Artifact gallery with plinths at varying heights + production line |
+| Scene 04 — Agents | Single yellow ball | Agent network: hub + 4 nodes (OpenClaw/Hermes/Codex/Report) + pulsing dots |
+| Scene 05 — Control Tower | Single cylinder | Multi-part tower: base/core/beacon/radar rings + system nodes |
+| Scene 06 — Archive | Simple shelf blocks | Deep archive hall: side shelves + central gate + portal |
+
+### Technical Improvements
+
+- **Material helpers**: `createGlassMaterial()`, `createGlowMaterial()`, `createPanelMaterial()`, `createDarkMetalMaterial()`
+- **Post-processing**: ACESFilmic tone mapping (exposure 1.15), FogExp2 atmospheric fog, CSS vignette overlay, CSS grain overlay
+- **Per-scene lighting**: Key light + fill light + accent point per scene
+- **Pulsing animation**: Dots travel along agent network connection lines
+- **Mobile optimization**: Reduced post-processing intensity on mobile
+
+### Boundaries Preserved
+
+- ✅ Only modified `projects/conan-ai-project-cinema/immersive/`
+- ✅ Main page untouched
+- ✅ No React/Vue/Next/Vite/Tailwind
+- ✅ All controls preserved (scroll/keyboard/Next/Prev/Sound/Back)
+- ✅ No auto-play sound
+
+### Verification
+
+- `node --check` on all 3 JS files: PASS
+- Main page index.html: 0 references to immersive files (correct)
+- All noindex tags intact

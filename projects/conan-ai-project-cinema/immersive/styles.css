@@ -834,3 +834,62 @@ html, body {
     padding: 0.3rem 0.5rem;
   }
 }
+
+/* CP-5D: Post-processing overlays — cinematic atmosphere */
+
+/* Vignette: darkens edges for focus effect */
+.post-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(3, 5, 12, 0.5) 75%,
+    rgba(3, 5, 12, 0.8) 100%
+  );
+}
+
+/* Subtle grain: adds film-like texture */
+.post-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: grain-shift 0.5s steps(1) infinite;
+}
+
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2px, 1px); }
+  50%  { transform: translate(1px, -1px); }
+  75%  { transform: translate(-1px, 2px); }
+  100% { transform: translate(2px, -2px); }
+}
+
+/* Mobile: reduce post-processing intensity */
+@media (max-width: 600px) {
+  .post-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 30%,
+      rgba(3, 5, 12, 0.4) 70%,
+      rgba(3, 5, 12, 0.7) 100%
+    );
+  }
+  .post-grain {
+    opacity: 0.025;
+  }
+}
+
+/* CP-5D: Reduce motion for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .post-grain {
+    animation: none;
+  }
+}

@@ -699,3 +699,44 @@ immersive/scene-data.js — per-scene camera configs (desktop/mobile)
 ---
 
 *Final closeout by 辛 🔮 — CP-5C-Hotfix-1*
+
+---
+
+## Phase CP-5D: Cinematic Look Development
+
+**Date:** 2026-06-10
+**Status:** Complete — PASS
+
+### Summary
+
+6-scene visual refactor transforming the immersive experience from "3D prototype" to "low-poly cinematic space". Each scene received dedicated visual treatment with proper depth layers, cinematic lighting, material unification, and post-processing.
+
+### Scene Upgrades
+
+1. **Scene 01**: Research desk + 6 paper fragments + cyan idea core (not wall panel)
+2. **Scene 02**: Glass panels (docs/browser/terminal) + workflow ribbon
+3. **Scene 03**: Artifact gallery with varied-height plinths + production line
+4. **Scene 04**: Agent network (hub + 4 nodes + pulsing dots) — most significant change
+5. **Scene 05**: Multi-part control tower (base/core/beacon/radar rings) — most significant change
+6. **Scene 06**: Deep archive hall with side shelves, central gate, portal
+
+### Technical
+
+- Material helper system (4 helpers)
+- ACES tone mapping + FogExp2 + CSS vignette + CSS grain
+- Per-scene 3-light setup (key/fill/accent)
+- Pulsing dot animation on agent network connections
+
+### node --check
+
+```
+immersive.js: OK
+audio-engine.js: OK
+scene-data.js: OK
+```
+
+### Boundaries
+
+- Main page: untouched
+- Frameworks: none introduced
+- All controls: preserved

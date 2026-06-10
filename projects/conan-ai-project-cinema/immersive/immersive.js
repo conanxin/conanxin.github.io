@@ -101,6 +101,125 @@
       }
     }
 
+    // ═══════════════════════════════════════════════════════════════
+    // CP-5D: Material helpers — cinematic look development
+    // ═══════════════════════════════════════════════════════════════
+
+    // Glass-like material with transparency
+    function createGlassMaterial(hexColor, opacity) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: c,
+        emissive: c,
+        emissiveIntensity: 0.15,
+        roughness: 0.1,
+        metalness: 0.1,
+        transparent: true,
+        opacity: opacity !== undefined ? opacity : 0.6,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+    }
+
+    // Glow material for emissive objects
+    function createGlowMaterial(hexColor, intensity) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: c,
+        emissive: c,
+        emissiveIntensity: intensity !== undefined ? intensity : 1.0,
+        roughness: 0.2,
+        metalness: 0.3
+      });
+    }
+
+    // Panel material for UI-like surfaces
+    function createPanelMaterial(hexColor) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: 0x0a1220,
+        emissive: c,
+        emissiveIntensity: 0.12,
+        roughness: 0.6,
+        metalness: 0.4
+      });
+    }
+
+    // Dark metal material
+    function createDarkMetalMaterial(hexColor, emissiveIntensity) {
+      var c = new THREE.Color(hexColor);
+      return new THREE.MeshStandardMaterial({
+        color: 0x0d1520,
+        emissive: c,
+        emissiveIntensity: emissiveIntensity !== undefined ? emissiveIntensity : 0.05,
+        roughness: 0.8,
+        metalness: 0.5
+      });
+    }
+
+    // Create a small glowing status badge
+    function createStatusBadge(sceneGroup, x, y, z, label, accentColor, app) {
+      var c = new THREE.Color(accentColor);
+      // Badge base
+      var badgeGeo = new THREE.BoxGeometry(0.7, 0.14, 0.05);
+      var badgeMat = new THREE.MeshStandardMaterial({
+        color: c, emissive: c, emissiveIntensity: 0.6,
+        roughness: 0.3, metalness: 0.5
+      });
+      var badge = new THREE.Mesh(badgeGeo, badgeMat);
+      badge.position.set(x, y, z);
+      app._addToSceneGroup(sceneGroup, badge);
+      return badge;
+    }
+
+    // Create pulsing dot that travels along a path
+    function createPulsingDot(sceneGroup, x1, y1, z1, x2, y2, z2, color, app) {
+      var c = new THREE.Color(color);
+      var dotGeo = new THREE.SphereGeometry(0.08, 8, 8);
+      var dotMat = new THREE.MeshStandardMaterial({
+        color: c, emissive: c, emissiveIntensity: 1.5,
+        roughness: 0.1, transparent: true, opacity: 0.9
+      });
+      var dot = new THREE.Mesh(dotGeo, dotMat);
+      dot.userData.pulsePath = [
+        new THREE.Vector3(x1, y1, z1),
+        new THREE.Vector3(x2, y2, z2)
+      ];
+      dot.userData.pulseT = Math.random();
+      dot.userData.pulseSpeed = 0.3 + Math.random() * 0.2;
+      app._addToSceneGroup(sceneGroup, dot);
+      return dot;
+    }
+
+    // Create connecting line between two points
+    function createConnectionLine(sceneGroup, x1, y1, z1, x2, y2, z2, color, opacity, app) {
+      var c = new THREE.Color(color);
+      var points = [new THREE.Vector3(x1, y1, z1), new THREE.Vector3(x2, y2, z2)];
+      var geo = new THREE.BufferGeometry().setFromPoints(points);
+      var mat = new THREE.LineBasicMaterial({
+        color: c, transparent: true,
+        opacity: opacity !== undefined ? opacity : 0.35
+      });
+      var line = new THREE.Line(geo, mat);
+      app._addToSceneGroup(sceneGroup, line);
+      return line;
+    }
+
+    // Create a radar ring at given height
+    function createRadarRing(sceneGroup, radius, y, color, app) {
+      var c = new THREE.Color(color);
+      var ringGeo = new THREE.TorusGeometry(radius, 0.03, 6, 48);
+      var ringMat = new THREE.MeshStandardMaterial({
+        color: c, emissive: c, emissiveIntensity: 0.5,
+        transparent: true, opacity: 0.6
+      });
+      var ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.set(0, y, 0);
+      ring.rotation.x = Math.PI / 2;
+      app._addToSceneGroup(sceneGroup, ring);
+      return ring;
+    }
+
     // ── ImmersiveApp ────────────────────────────────────────────
     var ImmersiveApp = function () {
       this.scenes = window.CP_IMMERSIVE_SCENES || [];
@@ -183,13 +302,17 @@
         );
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.shadowMap.enabled = true;
+        // CP-5D: Cinematic tone mapping
+        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        this.renderer.toneMappingExposure = 1.15;
 
         document.getElementById('immersive-canvas')
           .appendChild(this.renderer.domElement);
 
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x060810);
-        this.scene.fog = new THREE.Fog(0x060810, 20, 60);
+        // CP-5D: Atmospheric fog — deeper cinematic feel
+        this.scene.fog = new THREE.FogExp2(0x050810, 0.02);
 
         this.camera = new THREE.PerspectiveCamera(
           65,
@@ -1148,6 +1271,30 @@
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     };
 
+    // CP-5D: Animate pulsing dots along their paths
+    ImmersiveApp.prototype._updatePulsingDots = function () {
+      var self = this;
+      if (!this.sceneGroups) return;
+      var activeGroup = this.sceneGroups[this.currentIndex];
+      if (!activeGroup) return;
+      activeGroup.traverse(function (obj) {
+        if (!obj.userData.pulsePath) return;
+        var path = obj.userData.pulsePath;
+        var t = obj.userData.pulseT;
+        var speed = obj.userData.pulseSpeed || 0.3;
+        obj.userData.pulseT = (t + speed * 0.016) % 1;
+        var p = t;
+        obj.position.lerpVectors(path[0], path[1], p);
+        // Pulse opacity
+        if (obj.material) {
+          var mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+          mats.forEach(function (m) {
+            m.opacity = 0.5 + Math.sin(performance.now() * 0.005) * 0.4;
+          });
+        }
+      });
+    };
+
     // ── Sound icon ──────────────────────────────────────────────
     ImmersiveApp.prototype._updateSoundIcon = function () {
       var el = document.getElementById('hud-sound');
@@ -1223,6 +1370,8 @@
       }
 
       if (this.renderer && this.scene && this.camera) {
+        // CP-5D: Update pulsing dots animation
+        this._updatePulsingDots();
         this.renderer.render(this.scene, this.camera);
       }
     };
@@ -1478,648 +1627,958 @@
     // ═══════════════════════════════════════════════════════════════
 
     // ── Scene 1: Research Desk + Knowledge Wall ─────────────────
+    // CP-5D: Scene 01 — Complex Ideas (Research Desk + Cyan Idea Core)
     ImmersiveApp.prototype._createResearchDeskSetpiece = function () {
       var scene = this.scenes[0];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var cyanGlow = new THREE.Color(0x00ffff);
 
-      // Large desk surface
-      var deskGeo = new THREE.BoxGeometry(7, 0.25, 3.5);
-      var deskMat = new THREE.MeshStandardMaterial({
-        color: 0x0d1a2a, emissive: accent, emissiveIntensity: 0.06,
-        roughness: 0.8, metalness: 0.2
-      });
+      // ── Research Desk (HERO — center-left) ──────────────────
+      var deskGeo = new THREE.BoxGeometry(6.5, 0.22, 3.0);
+      var deskMat = createDarkMetalMaterial(accent, 0.08);
       var desk = new THREE.Mesh(deskGeo, deskMat);
-      desk.position.set(-7, 0.8, 2); // CP-5B-HF1: left side, away from tower
+      desk.position.set(-7, 0.7, 1.5);
+      desk.castShadow = true;
       this._addToSceneGroup(0, desk);
 
-
       // Desk legs
-      [-3, 3].forEach(function (x) {
-        [-1.4, 1.4].forEach(function (z) {
-          var legGeo = new THREE.BoxGeometry(0.12, 0.8, 0.12);
-          var legMat = new THREE.MeshStandardMaterial({
-            color: 0x101828, roughness: 0.9
-          });
+      [-3.0, 3.0].forEach(function (x) {
+        [-1.1, 1.1].forEach(function (z) {
+          var legGeo = new THREE.BoxGeometry(0.1, 0.7, 0.1);
+          var legMat = createDarkMetalMaterial(accent, 0.03);
           var leg = new THREE.Mesh(legGeo, legMat);
-          leg.position.set(x, 0.4, z);
+          leg.position.set(x, 0.35, z);
           this._addToSceneGroup(0, leg);
-
         }, this);
       }, this);
 
-      // 4 large paper sheets on desk
-      for (var i = 0; i < 4; i++) {
-        var pw = 1.6 + (i % 2) * 0.4;
-        var ph = 1.1 + Math.floor(i / 2) * 0.3;
-        var sheetGeo = new THREE.PlaneGeometry(pw, ph);
+      // Desk edge trim (emissive line)
+      var trimGeo = new THREE.BoxGeometry(6.5, 0.04, 0.04);
+      var trimMat = createGlowMaterial(accent, 0.4);
+      var trimTop = new THREE.Mesh(trimGeo, trimMat);
+      trimTop.position.set(-7, 0.82, -0.5);
+      this._addToSceneGroup(0, trimTop);
+
+      // ── Paper Fragments (6 sheets, scattered on desk) ────────
+      var paperConfigs = [
+        { x: -9.5, y: 1.05, z: 0.8, ry: -0.25, pw: 1.4, ph: 1.0 },
+        { x: -8.2, y: 1.12, z: 1.8, ry:  0.15, pw: 1.2, ph: 0.9 },
+        { x: -6.8, y: 1.08, z: 0.6, ry: -0.4,  pw: 1.5, ph: 1.1 },
+        { x: -5.5, y: 1.15, z: 2.0, ry:  0.3,  pw: 1.1, ph: 0.85 },
+        { x: -4.2, y: 1.03, z: 0.9, ry: -0.15, pw: 1.3, ph: 0.95 },
+        { x: -9.0, y: 1.20, z: 2.3, ry:  0.45, pw: 0.9, ph: 0.7 }
+      ];
+      var self = this;
+      paperConfigs.forEach(function (cfg, i) {
+        // Paper sheet
+        var sheetGeo = new THREE.PlaneGeometry(cfg.pw, cfg.ph);
         var sheetMat = new THREE.MeshStandardMaterial({
-          color: 0xf0f4ff, emissive: accent, emissiveIntensity: 0.15,
-          roughness: 0.9, side: THREE.DoubleSide, transparent: true, opacity: 0.9
+          color: 0xf0f4ff,
+          emissive: accent,
+          emissiveIntensity: 0.12,
+          roughness: 0.95,
+          side: THREE.DoubleSide,
+          transparent: true,
+          opacity: 0.88
         });
         var sheet = new THREE.Mesh(sheetGeo, sheetMat);
-        sheet.position.set(-9.0 + i * 1.5, 1.2 + (i % 2) * 0.15, 1.7 + (Math.floor(i / 2) - 0.5) * 1.2);
-        sheet.rotation.y = -0.3 + i * 0.1;
-        this._addToSceneGroup(0, sheet);
+        sheet.position.set(cfg.x, cfg.y, cfg.z);
+        sheet.rotation.y = cfg.ry;
+        sheet.rotation.x = -0.05;
+        self._addToSceneGroup(0, sheet);
 
-
-        // Text lines on paper
+        // Text lines on paper (3 lines per sheet)
         for (var j = 0; j < 3; j++) {
-          var lineGeo = new THREE.PlaneGeometry(pw * 0.7, 0.04);
-          var lineMat = new THREE.MeshStandardMaterial({
-            color: accent, emissive: accent, emissiveIntensity: 0.4,
-            transparent: true, opacity: 0.6
+          var lw = cfg.pw * 0.65;
+          var lGeo = new THREE.PlaneGeometry(lw, 0.035);
+          var lMat = new THREE.MeshStandardMaterial({
+            color: accent,
+            emissive: accent,
+            emissiveIntensity: 0.35,
+            transparent: true,
+            opacity: 0.55
           });
-          var line = new THREE.Mesh(lineGeo, lineMat);
-          line.position.set(sheet.position.x -0.1, sheet.position.y + 0.25 - j * 0.22, sheet.position.z + 0.01);
-          line.rotation.y = sheet.rotation.y;
-          this._addToSceneGroup(0, line);
-
+          var lMesh = new THREE.Mesh(lGeo, lMat);
+          lMesh.position.set(
+            cfg.x - 0.08,
+            cfg.y + 0.22 - j * 0.2,
+            cfg.z + 0.012
+          );
+          lMesh.rotation.y = cfg.ry;
+          self._addToSceneGroup(0, lMesh);
         }
-      }
-
-      // Glowing idea core at center-top of desk
-      var coreGeo = new THREE.SphereGeometry(0.35, 16, 16);
-      var coreMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.8,
-        roughness: 0.2, metalness: 0.5
       });
+
+      // ── Idea Core (cyan glow, above desk center) ─────────────
+      // Inner core sphere
+      var coreGeo = new THREE.SphereGeometry(0.28, 16, 16);
+      var coreMat = createGlowMaterial(cyanGlow, 1.4);
       var core = new THREE.Mesh(coreGeo, coreMat);
-      core.position.set(-7, 1.6, 2); // CP-5B-HF1: follows desk
+      core.position.set(-7, 1.65, 1.5);
       this._addToSceneGroup(0, core);
 
+      // Core outer glow ring
+      var coreRingGeo = new THREE.TorusGeometry(0.42, 0.04, 8, 32);
+      var coreRingMat = createGlowMaterial(cyanGlow, 0.9);
+      var coreRing = new THREE.Mesh(coreRingGeo, coreRingMat);
+      coreRing.position.set(-7, 1.65, 1.5);
+      coreRing.rotation.x = Math.PI / 3;
+      coreRing.rotation.y = Math.PI / 6;
+      this._addToSceneGroup(0, coreRing);
 
-      // Connection lines from papers to core
-      for (var k = 0; k < 4; k++) {
-        var px = -9.0 + k * 1.5;
-        var pz = 1.7 + (Math.floor(k / 2) - 0.5) * 1.2;
-        var linePoints = [
-          new THREE.Vector3(px, 1.2, pz),
-          new THREE.Vector3(-7, 1.6, 2)
-        ];
-        var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
-        var lineMat = new THREE.LineBasicMaterial({
-          color: accent, transparent: true, opacity: 0.35
-        });
-        var connLine = new THREE.Line(lineGeo, lineMat);
-        this._addToSceneGroup(0, connLine);
+      // Secondary glow ring
+      var coreRing2Geo = new THREE.TorusGeometry(0.55, 0.025, 8, 32);
+      var coreRing2Mat = createGlowMaterial(cyanGlow, 0.5);
+      var coreRing2 = new THREE.Mesh(coreRing2Geo, coreRing2Mat);
+      coreRing2.position.set(-7, 1.65, 1.5);
+      coreRing2.rotation.x = Math.PI / 2;
+      this._addToSceneGroup(0, coreRing2);
 
+      // ── Fine connection lines (papers → core) ─────────────────
+      paperConfigs.forEach(function (cfg, i) {
+        createConnectionLine(0, cfg.x, cfg.y + 0.1, cfg.z, -7, 1.65, 1.5, cyanGlow, 0.3, self);
+      });
+
+      // ── Small floating idea particles around core ────────────
+      for (var p = 0; p < 8; p++) {
+        var angle = (p / 8) * Math.PI * 2;
+        var pGeo = new THREE.SphereGeometry(0.04, 6, 6);
+        var pMat = createGlowMaterial(cyanGlow, 0.7);
+        var particle = new THREE.Mesh(pGeo, pMat);
+        particle.position.set(
+          -7 + Math.cos(angle) * 0.65,
+          1.65 + (p % 3) * 0.12 - 0.12,
+          1.5 + Math.sin(angle) * 0.65
+        );
+        this._addToSceneGroup(0, particle);
       }
 
-
-      // CP-5C-Hotfix-1: Debug sentinel — bright cyan marker visible from camera
-      // Position: (-7, 2.4, 2) — above the idea core, clearly visible
-      var anchorGeo = new THREE.SphereGeometry(0.18, 12, 12);
-      var anchorMat = new THREE.MeshStandardMaterial({
-        color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 2.0,
-        roughness: 0.1, metalness: 0.0
-      });
-      var anchor = new THREE.Mesh(anchorGeo, anchorMat);
-      anchor.position.set(-7, 2.4, 2);
-      anchor.name = 'scene01-debug-anchor';
-      this._addToSceneGroup(0, anchor);
-
-      // Bright ring around anchor for extra visibility
-      var ringGeo = new THREE.TorusGeometry(0.3, 0.03, 8, 32);
-      var ringMat = new THREE.MeshStandardMaterial({
-        color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 1.5,
-        roughness: 0.2
-      });
-      var ring = new THREE.Mesh(ringGeo, ringMat);
-      ring.position.set(-7, 2.4, 2);
-      ring.rotation.x = Math.PI / 2;
-      ring.name = 'scene01-debug-ring';
-      this._addToSceneGroup(0, ring);
-
-      // Left/right knowledge wall silhouettes (background layer)
+      // ── Knowledge Wall (LOW-OPACITY silhouette, not blocking) ─
       var wallMat = new THREE.MeshStandardMaterial({
-        color: 0x060c18, emissive: accent, emissiveIntensity: 0.03,
-        roughness: 1.0, side: THREE.BackSide
+        color: 0x040810,
+        emissive: accent,
+        emissiveIntensity: 0.02,
+        roughness: 1.0,
+        transparent: true,
+        opacity: 0.35,
+        side: THREE.BackSide
       });
-      [-8, 8].forEach(function (x) {
-        var wGeo = new THREE.BoxGeometry(0.3, 6, 10);
-        var wall = new THREE.Mesh(wGeo, wallMat);
-        wall.position.set(x, 3, 1); // CP-5B-HF1: follows desk area
-        this._addToSceneGroup(0, wall);
+      // Left wall silhouette
+      var lWallGeo = new THREE.BoxGeometry(0.25, 5.5, 9);
+      var lWall = new THREE.Mesh(lWallGeo, wallMat);
+      lWall.position.set(-10.5, 2.75, 1.5);
+      this._addToSceneGroup(0, lWall);
+      // Right wall silhouette
+      var rWallGeo = new THREE.BoxGeometry(0.25, 5.5, 9);
+      var rWall = new THREE.Mesh(rWallGeo, wallMat);
+      rWall.position.set(-3.5, 2.75, 1.5);
+      this._addToSceneGroup(0, rWall);
+      // Back wall (very faint)
+      var bWallGeo = new THREE.BoxGeometry(7.5, 5.5, 0.15);
+      var bWall = new THREE.Mesh(bWallGeo, wallMat);
+      bWall.position.set(-7, 2.75, -2.5);
+      this._addToSceneGroup(0, bWall);
 
-      }, this);
+      // ── Per-scene lighting ────────────────────────────────────
+      // Key light (from upper front-left)
+      var keyLight = new THREE.DirectionalLight(accent, 0.7);
+      keyLight.position.set(-10, 5, 4);
+      this._addToSceneGroup(0, keyLight);
 
-      // Point light for scene1
-      var light = new THREE.PointLight(accent, 0.8, 18);
-      light.position.set(0, 3, 3);
-      this._addToSceneGroup(0, light);
+      // Fill light (from right)
+      var fillLight = new THREE.DirectionalLight(0x1a2040, 0.3);
+      fillLight.position.set(2, 3, 3);
+      this._addToSceneGroup(0, fillLight);
+
+      // Point light for core glow
+      var coreLight = new THREE.PointLight(cyanGlow, 0.9, 12);
+      coreLight.position.set(-7, 2.0, 1.5);
+      this._addToSceneGroup(0, coreLight);
 
     };
 
     // ── Scene 2: Chat-to-Terminal Portal ─────────────────────────
+    // CP-5D: Scene 02 — AI Beyond Chat (Docs / Browser / Terminal Glass Panels)
     ImmersiveApp.prototype._createBeyondChatSetpiece = function () {
       var scene = this.scenes[1];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var self = this;
 
-      // Chat bubble (left panel)
-      var chatGeo = new THREE.BoxGeometry(3.5, 2.5, 0.12);
-      var chatMat = new THREE.MeshStandardMaterial({
-        color: 0x0d1a2a, emissive: accent, emissiveIntensity: 0.08,
-        roughness: 0.7, metalness: 0.3
-      });
-      var chatPanel = new THREE.Mesh(chatGeo, chatMat);
-      chatPanel.position.set(-3, 2.0, 0);
-      this._addToSceneGroup(1, chatPanel);
+      // ── Left Panel: Docs (File folder icon) ───────────────────
+      // Glass panel body
+      var docsGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
+      var docsMat = createGlassMaterial(accent, 0.55);
+      var docsPanel = new THREE.Mesh(docsGeo, docsMat);
+      docsPanel.position.set(-4, 2.0, 0);
+      this._addToSceneGroup(1, docsPanel);
 
+      // Top header bar (darker glass)
+      var docsHeaderGeo = new THREE.BoxGeometry(3.0, 0.35, 0.04);
+      var docsHeaderMat = createDarkMetalMaterial(accent, 0.1);
+      var docsHeader = new THREE.Mesh(docsHeaderGeo, docsHeaderMat);
+      docsHeader.position.set(-4, 3.2, 0.05);
+      this._addToSceneGroup(1, docsHeader);
 
-      // Chat bubble tail
-      var tailGeo = new THREE.BoxGeometry(0.6, 0.4, 0.1);
-      var tail = new THREE.Mesh(tailGeo, chatMat);
-      tail.position.set(-4.6, 1.1, 0);
-      this._addToSceneGroup(1, tail);
+      // Docs icon (simplified folder shape)
+      var folderGeo = new THREE.BoxGeometry(0.5, 0.35, 0.05);
+      var folderMat = createGlowMaterial(accent, 0.7);
+      var folder = new THREE.Mesh(folderGeo, folderMat);
+      folder.position.set(-4.6, 3.2, 0.07);
+      this._addToSceneGroup(1, folder);
 
-
-      // Simulated chat text lines on chat panel
-      for (var c = 0; c < 4; c++) {
-        var cLineGeo = new THREE.PlaneGeometry(2.5, 0.1);
-        var cLineMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.5,
-          transparent: true, opacity: 0.7
+      // Docs title text line
+      for (var d = 0; d < 4; d++) {
+        var dLineGeo = new THREE.PlaneGeometry(2.2, 0.06);
+        var dLineMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.4,
+          transparent: true, opacity: 0.5 + d * 0.05
         });
-        var cLine = new THREE.Mesh(cLineGeo, cLineMat);
-        cLine.position.set(-3, 2.7 - c * 0.4, 0.07);
-        this._addToSceneGroup(1, cLine);
-
+        var dLine = new THREE.Mesh(dLineGeo, dLineMat);
+        dLine.position.set(-4, 2.7 - d * 0.38, 0.05);
+        this._addToSceneGroup(1, dLine);
       }
 
-      // Arrow flow from chat to terminal
-      var arrowPoints = [
-        new THREE.Vector3(-1.2, 2.0, 0),
-        new THREE.Vector3(0, 2.0, 0),
-        new THREE.Vector3(1.5, 2.0, 0)
-      ];
-      var arrowGeo = new THREE.BufferGeometry().setFromPoints(arrowPoints);
-      var arrowMat = new THREE.LineBasicMaterial({
-        color: accent, transparent: true, opacity: 0.5
-      });
-      var arrow = new THREE.Line(arrowGeo, arrowMat);
-      this._addToSceneGroup(1, arrow);
-
-
-      // Arrow head
-      var headGeo = new THREE.ConeGeometry(0.15, 0.35, 3);
-      var headMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.6
-      });
-      var head = new THREE.Mesh(headGeo, headMat);
-      head.position.set(1.5, 2.0, 0);
-      head.rotation.z = -Math.PI / 2;
-      this._addToSceneGroup(1, head);
-
-
-      // Terminal window (center)
-      var termGeo = new THREE.BoxGeometry(3.2, 2.8, 0.12);
-      var termMat = new THREE.MeshStandardMaterial({
-        color: 0x080e1a, emissive: accent, emissiveIntensity: 0.12,
-        roughness: 0.6, metalness: 0.4
-      });
+      // ── Center Panel: Terminal ────────────────────────────────
+      var termGeo = new THREE.BoxGeometry(3.2, 2.6, 0.08);
+      var termMat = createGlassMaterial(accent, 0.6);
       var termPanel = new THREE.Mesh(termGeo, termMat);
       termPanel.position.set(0, 2.0, 0);
       this._addToSceneGroup(1, termPanel);
 
+      // Terminal header bar
+      var termHeaderGeo = new THREE.BoxGeometry(3.2, 0.35, 0.04);
+      var termHeaderMat = createDarkMetalMaterial(accent, 0.12);
+      var termHeader = new THREE.Mesh(termHeaderGeo, termHeaderMat);
+      termHeader.position.set(0, 3.25, 0.05);
+      this._addToSceneGroup(1, termHeader);
 
-      // Terminal text lines
+      // Terminal icon (cursor block)
+      var cursorGeo = new THREE.BoxGeometry(0.18, 0.22, 0.04);
+      var cursorMat = createGlowMaterial(accent, 1.0);
+      var cursor = new THREE.Mesh(cursorGeo, cursorMat);
+      cursor.position.set(-0.55, 3.25, 0.07);
+      this._addToSceneGroup(1, cursor);
+
+      // Terminal text lines (5 lines, varying opacity)
       for (var t = 0; t < 5; t++) {
-        var tLineGeo = new THREE.PlaneGeometry(2.4, 0.1);
+        var tLineGeo = new THREE.PlaneGeometry(2.3, 0.08);
         var tLineMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.6,
-          transparent: true, opacity: 0.8
+          color: accent, emissive: accent, emissiveIntensity: 0.55,
+          transparent: true, opacity: 0.6 + (i % 2) * 0.15
         });
         var tLine = new THREE.Mesh(tLineGeo, tLineMat);
-        tLine.position.set(0, 2.8 - t * 0.35, 0.07);
+        tLine.position.set(0, 2.75 - t * 0.36, 0.05);
         this._addToSceneGroup(1, tLine);
-
       }
 
-      // Second arrow to web panel
-      var arrow2Points = [
-        new THREE.Vector3(1.6, 2.0, 0),
-        new THREE.Vector3(3.2, 2.0, 0)
-      ];
-      var arrow2Geo = new THREE.BufferGeometry().setFromPoints(arrow2Points);
-      var arrow2 = new THREE.Line(arrow2Geo, arrowMat);
-      this._addToSceneGroup(1, arrow2);
+      // Blinking cursor glow (emissive dot)
+      var blinkGeo = new THREE.SphereGeometry(0.06, 6, 6);
+      var blinkMat = createGlowMaterial(accent, 1.2);
+      var blink = new THREE.Mesh(blinkGeo, blinkMat);
+      blink.position.set(0.6, 1.3, 0.05);
+      this._addToSceneGroup(1, blink);
 
+      // ── Right Panel: Browser ───────────────────────────────────
+      var browserGeo = new THREE.BoxGeometry(3.0, 2.4, 0.08);
+      var browserMat = createGlassMaterial(accent, 0.55);
+      var browserPanel = new THREE.Mesh(browserGeo, browserMat);
+      browserPanel.position.set(4, 2.0, 0);
+      this._addToSceneGroup(1, browserPanel);
 
-      // Web browser panel (right)
-      var webGeo = new THREE.BoxGeometry(3.2, 2.5, 0.12);
-      var webMat = new THREE.MeshStandardMaterial({
-        color: 0x0a1525, emissive: accent, emissiveIntensity: 0.1,
-        roughness: 0.7, metalness: 0.3
+      // Browser header bar
+      var browserHeaderGeo = new THREE.BoxGeometry(3.0, 0.35, 0.04);
+      var browserHeaderMat = createDarkMetalMaterial(accent, 0.1);
+      var browserHeader = new THREE.Mesh(browserHeaderGeo, browserHeaderMat);
+      browserHeader.position.set(4, 3.2, 0.05);
+      this._addToSceneGroup(1, browserHeader);
+
+      // Browser icon (globe shape)
+      var globeGeo = new THREE.SphereGeometry(0.18, 8, 8);
+      var globeMat = createGlowMaterial(accent, 0.7);
+      var globe = new THREE.Mesh(globeGeo, globeMat);
+      globe.position.set(3.5, 3.2, 0.07);
+      this._addToSceneGroup(1, globe);
+
+      // Address bar
+      var addrGeo = new THREE.PlaneGeometry(2.2, 0.12);
+      var addrMat = new THREE.MeshStandardMaterial({
+        color: 0x1a2540, emissive: accent, emissiveIntensity: 0.25,
+        transparent: true, opacity: 0.75
       });
-      var webPanel = new THREE.Mesh(webGeo, webMat);
-      webPanel.position.set(3.6, 2.0, 0);
-      this._addToSceneGroup(1, webPanel);
+      var addrBar = new THREE.Mesh(addrGeo, addrMat);
+      addrBar.position.set(4, 3.0, 0.05);
+      this._addToSceneGroup(1, addrBar);
 
-
-      // Browser address bar
-      var barGeo = new THREE.PlaneGeometry(2.4, 0.18);
-      var barMat = new THREE.MeshStandardMaterial({
-        color: 0x1a2540, emissive: accent, emissiveIntensity: 0.3,
-        transparent: true, opacity: 0.8
-      });
-      var bar = new THREE.Mesh(barGeo, barMat);
-      bar.position.set(3.6, 2.9, 0.07);
-      this._addToSceneGroup(1, bar);
-
-
-      // Web content blocks
-      for (var w = 0; w < 3; w++) {
-        var wBlockGeo = new THREE.PlaneGeometry(2.4, 0.35);
-        var wBlockMat = new THREE.MeshStandardMaterial({
-          color: 0x0d1f35, emissive: accent, emissiveIntensity: 0.15,
-          transparent: true, opacity: 0.8
+      // Browser content blocks (3 blocks)
+      for (var b = 0; b < 3; b++) {
+        var bGeo = new THREE.PlaneGeometry(2.2, 0.38);
+        var bMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.18,
+          transparent: true, opacity: 0.65
         });
-        var wBlock = new THREE.Mesh(wBlockGeo, wBlockMat);
-        wBlock.position.set(3.6, 2.35 - w * 0.55, 0.07);
-        this._addToSceneGroup(1, wBlock);
-
+        var bBlock = new THREE.Mesh(bGeo, bMat);
+        bBlock.position.set(4, 2.5 - b * 0.55, 0.05);
+        this._addToSceneGroup(1, bBlock);
       }
 
-      // Point light
-      var light = new THREE.PointLight(accent, 0.8, 18);
-      light.position.set(0, 4, 3);
-      this._addToSceneGroup(1, light);
+      // ── Workflow Ribbon (flowing between panels) ──────────────
+      // Left → Center ribbon
+      var ribbon1Points = [
+        new THREE.Vector3(-2.5, 1.5, 0.2),
+        new THREE.Vector3(-2.0, 1.5, 0.2),
+        new THREE.Vector3(-1.5, 1.5, 0.2),
+        new THREE.Vector3(-1.0, 1.5, 0.2)
+      ];
+      var ribbon1Curve = new THREE.CatmullRomCurve3(ribbon1Points);
+      var ribbon1Geo = new THREE.TubeGeometry(ribbon1Curve, 20, 0.04, 6, false);
+      var ribbon1Mat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.6,
+        transparent: true, opacity: 0.55
+      });
+      var ribbon1 = new THREE.Mesh(ribbon1Geo, ribbon1Mat);
+      this._addToSceneGroup(1, ribbon1);
+
+      // Center → Right ribbon
+      var ribbon2Points = [
+        new THREE.Vector3(1.6, 1.5, 0.2),
+        new THREE.Vector3(2.0, 1.5, 0.2),
+        new THREE.Vector3(2.5, 1.5, 0.2),
+        new THREE.Vector3(3.0, 1.5, 0.2)
+      ];
+      var ribbon2Curve = new THREE.CatmullRomCurve3(ribbon2Points);
+      var ribbon2Geo = new THREE.TubeGeometry(ribbon2Curve, 20, 0.04, 6, false);
+      var ribbon2Mat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.6,
+        transparent: true, opacity: 0.55
+      });
+      var ribbon2 = new THREE.Mesh(ribbon2Geo, ribbon2Mat);
+      this._addToSceneGroup(1, ribbon2);
+
+      // Flow arrows (small cones on ribbons)
+      var arrowPositions = [
+        { x: -1.8, y: 1.5, z: 0.2 },
+        { x: -1.2, y: 1.5, z: 0.2 },
+        { x:  2.2, y: 1.5, z: 0.2 },
+        { x:  2.8, y: 1.5, z: 0.2 }
+      ];
+      arrowPositions.forEach(function (pos) {
+        var aGeo = new THREE.ConeGeometry(0.08, 0.2, 4);
+        var aMat = createGlowMaterial(accent, 0.8);
+        var arrow = new THREE.Mesh(aGeo, aMat);
+        arrow.position.set(pos.x, pos.y, pos.z);
+        arrow.rotation.z = -Math.PI / 2;
+        self._addToSceneGroup(1, arrow);
+      });
+
+      // ── Per-scene lighting ─────────────────────────────────────
+      var keyLight = new THREE.DirectionalLight(accent, 0.6);
+      keyLight.position.set(-5, 6, 4);
+      this._addToSceneGroup(1, keyLight);
+
+      var fillLight = new THREE.DirectionalLight(0x20183a, 0.3);
+      fillLight.position.set(5, 3, 3);
+      this._addToSceneGroup(1, fillLight);
+
+      var pointLight = new THREE.PointLight(accent, 0.7, 18);
+      pointLight.position.set(0, 4, 3);
+      this._addToSceneGroup(1, pointLight);
 
     };
 
     // ── Scene 3: Artifact Exhibition ───────────────────────────
+    // CP-5D: Scene 03 — Projects Become Artifacts (Gallery + Production Line)
     ImmersiveApp.prototype._createArtifactExhibitionSetpiece = function () {
       var scene = this.scenes[2];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var self = this;
 
-      // Long exhibition table
-      var tableGeo = new THREE.BoxGeometry(10, 0.18, 2.0);
-      var tableMat = new THREE.MeshStandardMaterial({
-        color: 0x0d1a2a, emissive: accent, emissiveIntensity: 0.06,
-        roughness: 0.8, metalness: 0.3
+      // ── Gallery Floor (dark, reflective feel) ─────────────────
+      var floorGeo = new THREE.PlaneGeometry(16, 6);
+      var floorMat = new THREE.MeshStandardMaterial({
+        color: 0x0a1020, emissive: accent, emissiveIntensity: 0.04,
+        roughness: 0.7, metalness: 0.4
       });
-      var table = new THREE.Mesh(tableGeo, tableMat);
-      table.position.set(0, 0.9, 0);
-      this._addToSceneGroup(2, table);
+      var floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.set(0, 0.01, 0);
+      this._addToSceneGroup(2, floor);
 
+      // ── Display Plinths (5 plinths with varying heights) ────────
+      var plinthConfigs = [
+        { x: -5.5, h: 1.2, z: -1 },
+        { x: -3.0, h: 1.8, z: 0 },
+        { x: -0.5, h: 1.4, z: -1 },
+        { x:  2.0, h: 2.0, z: 0 },
+        { x:  4.5, h: 1.6, z: -1 }
+      ];
 
-      // Table legs
-      [-4.5, 4.5].forEach(function (x) {
-        [-0.7, 0.7].forEach(function (z) {
-          var legGeo = new THREE.BoxGeometry(0.12, 0.9, 0.12);
-          var legMat = new THREE.MeshStandardMaterial({
-            color: 0x101828, roughness: 0.9
-          });
-          var leg = new THREE.Mesh(legGeo, legMat);
-          leg.position.set(x, 0.45, z);
-          this._addToSceneGroup(2, leg);
+      plinthConfigs.forEach(function (cfg, i) {
+        // Plinth base
+        var pGeo = new THREE.BoxGeometry(1.1, cfg.h, 0.8);
+        var pMat = createDarkMetalMaterial(accent, 0.06);
+        var plinth = new THREE.Mesh(pGeo, pMat);
+        plinth.position.set(cfg.x, cfg.h / 2, cfg.z);
+        plinth.castShadow = true;
+        self._addToSceneGroup(2, plinth);
 
-        }, this);
-      }, this);
+        // Base glow strip (bottom light)
+        var stripGeo = new THREE.BoxGeometry(1.1, 0.04, 0.04);
+        var stripMat = createGlowMaterial(accent, 0.5);
+        var strip = new THREE.Mesh(stripGeo, stripMat);
+        strip.position.set(cfg.x, 0.02, cfg.z + 0.38);
+        self._addToSceneGroup(2, strip);
 
-      // 5 artifact cards on table
-      var cardPositions = [-4, -2, 0, 2, 4];
-      cardPositions.forEach(function (x, i) {
-        var cardW = 1.4, cardH = 1.0;
-        var cardGeo = new THREE.BoxGeometry(cardW, cardH, 0.08);
+        // Artifact card on plinth (tilted slightly)
+        var cardW = 0.9, cardH = 0.7;
+        var cardGeo = new THREE.BoxGeometry(cardW, cardH, 0.06);
         var cardMat = new THREE.MeshStandardMaterial({
-          color: 0x0d1f35, emissive: accent, emissiveIntensity: 0.2,
-          roughness: 0.6, metalness: 0.4
+          color: 0x0d1f35, emissive: accent, emissiveIntensity: 0.25,
+          roughness: 0.5, metalness: 0.5
         });
         var card = new THREE.Mesh(cardGeo, cardMat);
-        card.position.set(x, 1.55, 0);
-        this._addToSceneGroup(2, card);
+        card.position.set(cfg.x, cfg.h + cardH / 2 + 0.05, cfg.z);
+        card.rotation.y = -0.15 + i * 0.08;
+        card.rotation.x = -0.08;
+        self._addToSceneGroup(2, card);
 
-
-        // Card frame border
-        var frameGeo = new THREE.BoxGeometry(cardW + 0.08, cardH + 0.08, 0.04);
-        var frameMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.5,
-          roughness: 0.5
-        });
+        // Card frame glow
+        var frameGeo = new THREE.BoxGeometry(cardW + 0.06, cardH + 0.06, 0.03);
+        var frameMat = createGlowMaterial(accent, 0.4);
         var frame = new THREE.Mesh(frameGeo, frameMat);
-        frame.position.set(x, 1.55, -0.02);
-        this._addToSceneGroup(2, frame);
+        frame.position.set(cfg.x, cfg.h + cardH / 2 + 0.05, cfg.z - 0.02);
+        frame.rotation.y = card.rotation.y;
+        self._addToSceneGroup(2, frame);
 
-
-        // Content lines inside card
+        // Card content lines (2 lines)
         for (var j = 0; j < 2; j++) {
-          var cLineGeo = new THREE.PlaneGeometry(cardW * 0.75, 0.08);
-          var cLineMat = new THREE.MeshStandardMaterial({
-            color: accent, emissive: accent, emissiveIntensity: 0.5,
-            transparent: true, opacity: 0.7
+          var clGeo = new THREE.PlaneGeometry(cardW * 0.7, 0.055);
+          var clMat = new THREE.MeshStandardMaterial({
+            color: accent, emissive: accent, emissiveIntensity: 0.45,
+            transparent: true, opacity: 0.6
           });
-          var cLine = new THREE.Mesh(cLineGeo, cLineMat);
-          cLine.position.set(x, 1.7 - j * 0.3, 0.05);
-          this._addToSceneGroup(2, cLine);
-
+          var clMesh = new THREE.Mesh(clGeo, clMat);
+          clMesh.position.set(
+            cfg.x - 0.05,
+            cfg.h + cardH / 2 + 0.15 - j * 0.22,
+            cfg.z + 0.04
+          );
+          clMesh.rotation.y = card.rotation.y;
+          self._addToSceneGroup(2, clMesh);
         }
-      }, this);
 
-      // Archive capsule (right side, taller)
-      var capsGeo = new THREE.CylinderGeometry(0.3, 0.3, 1.8, 12);
-      var capsMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.5,
-        roughness: 0.3, metalness: 0.6
+        // Project stack tag (small marker above card)
+        var tagGeo = new THREE.BoxGeometry(0.35, 0.12, 0.04);
+        var tagMat = createGlowMaterial(accent, 0.7);
+        var tag = new THREE.Mesh(tagGeo, tagMat);
+        tag.position.set(cfg.x + 0.25, cfg.h + cardH + 0.2, cfg.z);
+        self._addToSceneGroup(2, tag);
       });
-      var capsule = new THREE.Mesh(capsGeo, capsMat);
-      capsule.position.set(6.5, 1.8, 0);
-      this._addToSceneGroup(2, capsule);
 
+      // ── Archive Wall (background — low profile, not blocking) ──
+      var wallMat = new THREE.MeshStandardMaterial({
+        color: 0x060e1a, emissive: accent, emissiveIntensity: 0.03,
+        roughness: 0.95, transparent: true, opacity: 0.4
+      });
+      var bgWallGeo = new THREE.BoxGeometry(14, 5, 0.12);
+      var bgWall = new THREE.Mesh(bgWallGeo, wallMat);
+      bgWall.position.set(-0.5, 2.5, -3.5);
+      this._addToSceneGroup(2, bgWall);
 
-      // Directional flow arrow (left to right)
-      for (var f = 0; f < 4; f++) {
-        var arrowGeo = new THREE.ConeGeometry(0.12, 0.3, 4);
-        var arrowMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.5
+      // Archive shelves (faint outlines on wall)
+      for (var s = 0; s < 3; s++) {
+        var shelfLineGeo = new THREE.BoxGeometry(12, 0.04, 0.04);
+        var shelfLineMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.2,
+          transparent: true, opacity: 0.25
         });
-        var arrow = new THREE.Mesh(arrowGeo, arrowMat);
-        arrow.position.set(-3.5 + f * 2.5, 1.3, 0.8);
-        arrow.rotation.z = -Math.PI / 2;
-        this._addToSceneGroup(2, arrow);
-
+        var shelfLine = new THREE.Mesh(shelfLineGeo, shelfLineMat);
+        shelfLine.position.set(-0.5, 1.5 + s * 1.2, -3.45);
+        this._addToSceneGroup(2, shelfLine);
       }
 
-      // Point light
-      var light = new THREE.PointLight(accent, 0.8, 18);
-      light.position.set(0, 4, 3);
-      this._addToSceneGroup(2, light);
+      // ── Production Line Arrow Strip (foreground, flowing) ──────
+      var stripPoints = [
+        new THREE.Vector3(-6, 0.25, 2),
+        new THREE.Vector3(-3, 0.25, 2),
+        new THREE.Vector3(0, 0.25, 2),
+        new THREE.Vector3(3, 0.25, 2),
+        new THREE.Vector3(5.5, 0.25, 2)
+      ];
+      var stripCurve = new THREE.CatmullRomCurve3(stripPoints);
+      var stripGeo = new THREE.TubeGeometry(stripCurve, 30, 0.05, 6, false);
+      var stripMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.45,
+        transparent: true, opacity: 0.5
+      });
+      var stripLine = new THREE.Mesh(stripGeo, stripMat);
+      this._addToSceneGroup(2, stripLine);
+
+      // Directional arrows on production line
+      for (var a = 0; a < 4; a++) {
+        var aGeo = new THREE.ConeGeometry(0.1, 0.25, 4);
+        var aMat = createGlowMaterial(accent, 0.7);
+        var arrow = new THREE.Mesh(aGeo, aMat);
+        arrow.position.set(-4.5 + a * 3.0, 0.35, 2);
+        arrow.rotation.z = -Math.PI / 2;
+        self._addToSceneGroup(2, arrow);
+      }
+
+      // ── Per-scene lighting ─────────────────────────────────────
+      var keyLight = new THREE.DirectionalLight(accent, 0.65);
+      keyLight.position.set(0, 7, 5);
+      this._addToSceneGroup(2, keyLight);
+
+      var accentLight = new THREE.PointLight(accent, 0.7, 20);
+      accentLight.position.set(0, 5, 2);
+      this._addToSceneGroup(2, accentLight);
 
     };
 
     // ── Scene 4: Agent Orchestration Core ────────────────────────
+    // CP-5D: Scene 04 — Agents Join the Workflow (Agent Network)
     ImmersiveApp.prototype._createAgentCoreSetpiece = function () {
       var scene = this.scenes[3];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var self = this;
 
-      // Central hub sphere (large)
-      var hubGeo = new THREE.SphereGeometry(1.0, 20, 20);
-      var hubMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.6,
-        roughness: 0.2, metalness: 0.6
-      });
-      var hub = new THREE.Mesh(hubGeo, hubMat);
-      hub.position.set(0, 2.5, -15); // CP-5B-HF1: far z
-      this._addToSceneGroup(3, hub);
+      // Hub position
+      var hubX = 0, hubY = 2.5, hubZ = -15;
 
+      // ── Central Agent Hub (elegant, not huge) ──────────────────
+      // Outer glow ring
+      var hubRingGeo = new THREE.TorusGeometry(0.6, 0.06, 8, 32);
+      var hubRingMat = createGlowMaterial(accent, 0.9);
+      var hubRing = new THREE.Mesh(hubRingGeo, hubRingMat);
+      hubRing.position.set(hubX, hubY, hubZ);
+      hubRing.rotation.x = Math.PI / 2;
+      this._addToSceneGroup(3, hubRing);
 
-      // Hub inner glow sphere
-      var glowGeo = new THREE.SphereGeometry(0.6, 16, 16);
-      var glowMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 1.2,
-        roughness: 0.1, transparent: true, opacity: 0.7
-      });
-      var glow = new THREE.Mesh(glowGeo, glowMat);
-      glow.position.set(0, 2.5, 0);
-      this._addToSceneGroup(3, glow);
+      // Inner core sphere
+      var hubCoreGeo = new THREE.SphereGeometry(0.3, 16, 16);
+      var hubCoreMat = createGlowMaterial(accent, 1.3);
+      var hubCore = new THREE.Mesh(hubCoreGeo, hubCoreMat);
+      hubCore.position.set(hubX, hubY, hubZ);
+      this._addToSceneGroup(3, hubCore);
 
+      // Hub vertical beam
+      var hubBeamGeo = new THREE.CylinderGeometry(0.05, 0.05, 1.2, 6);
+      var hubBeamMat = createGlowMaterial(accent, 0.5);
+      var hubBeam = new THREE.Mesh(hubBeamGeo, hubBeamMat);
+      hubBeam.position.set(hubX, hubY + 0.8, hubZ);
+      this._addToSceneGroup(3, hubBeam);
 
-      // 4 agent nodes around hub
+      // ── 4 Agent Nodes (OpenClaw / Hermes / Codex / Phase Report) ─
       var agentNodes = [
-        { x: -4.5, y: 2.0, z: -1 },
-        { x: 4.5,  y: 2.0, z: -1 },
-        { x: -3, y: 3.5, z: 2 },
-        { x: 3,    y: 3.5, z: 2 }
+        { name: 'OpenClaw', x: -5.5, y: 2.5, z: -1 },
+        { name: 'Hermes',   x:  5.5, y: 2.5, z: -1 },
+        { name: 'Codex',    x: -3.5, y: 4.0, z:  2 },
+        { name: 'Report',   x:  3.5, y: 4.0, z:  2 }
       ];
-      agentNodes.forEach(function (node, i) {
-        // Agent sphere
-        var nodeGeo = new THREE.SphereGeometry(0.5, 14, 14);
+
+      agentNodes.forEach(function (agent, i) {
+        // Agent node sphere
+        var nodeGeo = new THREE.SphereGeometry(0.42, 14, 14);
         var nodeMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.5,
-          roughness: 0.3, metalness: 0.5
+          color: accent, emissive: accent, emissiveIntensity: 0.6,
+          roughness: 0.25, metalness: 0.55
         });
         var nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-        nodeMesh.position.set(node.x, node.y, node.z);
-        this._addToSceneGroup(3, nodeMesh);
+        nodeMesh.position.set(agent.x, agent.y, agent.z);
+        self._addToSceneGroup(3, nodeMesh);
 
+        // Node inner glow
+        var nodeGlowGeo = new THREE.SphereGeometry(0.22, 10, 10);
+        var nodeGlowMat = createGlowMaterial(accent, 0.9);
+        var nodeGlow = new THREE.Mesh(nodeGlowGeo, nodeGlowMat);
+        nodeGlow.position.set(agent.x, agent.y, agent.z);
+        self._addToSceneGroup(3, nodeGlow);
 
-        // Node label bar
-        var barGeo = new THREE.BoxGeometry(0.8, 0.12, 0.06);
-        var barMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.7
+        // Glowing connection line from node to hub
+        createConnectionLine(3, agent.x, agent.y, agent.z, hubX, hubY, hubZ, accent, 0.35, self);
+
+        // Pulsing dot on the connection line
+        createPulsingDot(3, agent.x, agent.y, agent.z, hubX, hubY, hubZ, accent, self);
+
+        // Small status badge below node
+        var badgeGeo = new THREE.BoxGeometry(0.9, 0.14, 0.05);
+        var badgeMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.7,
+          roughness: 0.3, metalness: 0.5
         });
-        var bar = new THREE.Mesh(barGeo, barMat);
-        bar.position.set(node.x, node.y - 0.8, node.z);
-        this._addToSceneGroup(3, bar);
+        var badge = new THREE.Mesh(badgeGeo, badgeMat);
+        badge.position.set(agent.x, agent.y - 0.75, agent.z);
+        self._addToSceneGroup(3, badge);
 
+        // Status indicator dot (top of node)
+        var dotGeo = new THREE.SphereGeometry(0.08, 6, 6);
+        var dotMat = createGlowMaterial(accent, 1.0);
+        var dot = new THREE.Mesh(dotGeo, dotMat);
+        dot.position.set(agent.x, agent.y + 0.55, agent.z);
+        self._addToSceneGroup(3, dot);
+      });
 
-        // Connection line to hub
+      // ── Signal Rings (orbit around hub) ───────────────────────
+      for (var r = 0; r < 3; r++) {
+        var ringGeo = new THREE.TorusGeometry(1.6 + r * 0.9, 0.03, 6, 48);
+        var ringMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.4 - r * 0.1,
+          transparent: true, opacity: 0.5 - r * 0.12
+        });
+        var ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.set(hubX, hubY, hubZ);
+        ring.rotation.x = Math.PI / 2;
+        this._addToSceneGroup(3, ring);
+      }
+
+      // ── Background constellation (faint star field) ───────────
+      var starPositions = [
+        { x: -7, y: 5.5, z: -8 },
+        { x:  7, y: 4.5, z: -10 },
+        { x: -4, y: 6.5, z: -12 },
+        { x:  5, y: 3.5, z: -8 },
+        { x:  0, y: 7.0, z: -9 }
+      ];
+      starPositions.forEach(function (star) {
+        var starGeo = new THREE.SphereGeometry(0.06, 5, 5);
+        var starMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.4,
+          transparent: true, opacity: 0.5
+        });
+        var starMesh = new THREE.Mesh(starGeo, starMat);
+        starMesh.position.set(star.x, star.y, star.z);
+        self._addToSceneGroup(3, starMesh);
+
+        // Faint line to nearest star
         var linePoints = [
-          new THREE.Vector3(node.x, node.y, node.z),
-          new THREE.Vector3(0, 2.5, 0)
+          new THREE.Vector3(star.x, star.y, star.z),
+          new THREE.Vector3(star.x * 0.5, star.y * 0.8, star.z + 3)
         ];
         var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
         var lineMat = new THREE.LineBasicMaterial({
-          color: accent, transparent: true, opacity: 0.4
+          color: accent, transparent: true, opacity: 0.12
         });
-        var connLine = new THREE.Line(lineGeo, lineMat);
-        this._addToSceneGroup(3, connLine);
+        var line = new THREE.Line(lineGeo, lineMat);
+        self._addToSceneGroup(3, line);
+      });
 
-      }, this);
+      // ── Per-scene lighting ─────────────────────────────────────
+      var keyLight = new THREE.DirectionalLight(accent, 0.7);
+      keyLight.position.set(0, 8, 3);
+      this._addToSceneGroup(3, keyLight);
 
-      // Pulsing rings around hub
-      for (var r = 0; r < 3; r++) {
-        var ringGeo = new THREE.TorusGeometry(1.8 + r * 0.8, 0.025, 6, 48);
-        var ringMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.4 - r * 0.1,
-          transparent: true, opacity: 0.5 - r * 0.1
-        });
-        var ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.position.set(0, 2.5, 0);
-        ring.rotation.x = Math.PI / 2;
-        this._addToSceneGroup(3, ring);
-
-      }
-
-      // Point light
-      var light = new THREE.PointLight(accent, 1.0, 20);
-      light.position.set(0, 5, 3);
-      this._addToSceneGroup(3, light);
+      var hubLight = new THREE.PointLight(accent, 1.0, 22);
+      hubLight.position.set(hubX, hubY + 1, hubZ);
+      this._addToSceneGroup(3, hubLight);
 
     };
 
     // ── Scene 5: Control Tower ────────────────────────────────────
+    // CP-5D: Scene 05 — Control Tower (Multi-part Tower + Radar + Signal)
     ImmersiveApp.prototype._createControlTowerSetpiece = function () {
       var scene = this.scenes[4];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var self = this;
 
-      // Tower base (large cylinder)
-      var baseGeo = new THREE.CylinderGeometry(0.8, 1.0, 6, 10);
-      var baseMat = new THREE.MeshStandardMaterial({
-        color: 0x0d1520, emissive: accent, emissiveIntensity: 0.1,
-        roughness: 0.7, metalness: 0.4
+      var towerZ = -20;
+      var towerBaseY = 0;
+
+      // ── Tower Base (octagonal platform) ────────────────────────
+      var baseGeo = new THREE.CylinderGeometry(1.4, 1.8, 0.5, 8);
+      var baseMat = createDarkMetalMaterial(accent, 0.08);
+      var towerBase = new THREE.Mesh(baseGeo, baseMat);
+      towerBase.position.set(0, 0.25, towerZ);
+      towerBase.castShadow = true;
+      this._addToSceneGroup(4, towerBase);
+
+      // Base glow ring
+      var baseRingGeo = new THREE.TorusGeometry(1.4, 0.06, 6, 32);
+      var baseRingMat = createGlowMaterial(accent, 0.5);
+      var baseRing = new THREE.Mesh(baseRingGeo, baseRingMat);
+      baseRing.position.set(0, 0.5, towerZ);
+      baseRing.rotation.x = Math.PI / 2;
+      this._addToSceneGroup(4, baseRing);
+
+      // ── Tower Core (vertical column) ────────────────────────────
+      var coreGeo = new THREE.CylinderGeometry(0.35, 0.5, 5.5, 8);
+      var coreMat = createDarkMetalMaterial(accent, 0.1);
+      var towerCore = new THREE.Mesh(coreGeo, coreMat);
+      towerCore.position.set(0, 3.25, towerZ);
+      this._addToSceneGroup(4, towerCore);
+
+      // Core emissive stripe
+      var stripeGeo = new THREE.BoxGeometry(0.06, 5.5, 0.06);
+      var stripeMat = createGlowMaterial(accent, 0.5);
+      var stripe = new THREE.Mesh(stripeGeo, stripeMat);
+      stripe.position.set(0.35, 3.25, towerZ);
+      this._addToSceneGroup(4, stripe);
+
+      // ── Tower Beacon (top signal emitter) ─────────────────────
+      var beaconGeo = new THREE.CylinderGeometry(0.15, 0.25, 0.8, 8);
+      var beaconMat = createGlowMaterial(accent, 0.8);
+      var beacon = new THREE.Mesh(beaconGeo, beaconMat);
+      beacon.position.set(0, 6.3, towerZ);
+      this._addToSceneGroup(4, beacon);
+
+      // Beacon top sphere (signal source)
+      var signalGeo = new THREE.SphereGeometry(0.18, 12, 12);
+      var signalMat = createGlowMaterial(accent, 1.5);
+      var signal = new THREE.Mesh(signalGeo, signalMat);
+      signal.position.set(0, 6.9, towerZ);
+      this._addToSceneGroup(4, signal);
+
+      // Signal beam (vertical ray above beacon)
+      var beamGeo = new THREE.CylinderGeometry(0.04, 0.12, 3.5, 6);
+      var beamMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.4,
+        transparent: true, opacity: 0.3
       });
-      var tower = new THREE.Mesh(baseGeo, baseMat);
-           tower.position.set(0, 3, -20); // CP-5B-HF1: far z to avoid conflict
-      this._addToSceneGroup(4, tower);
+      var beam = new THREE.Mesh(beamGeo, beamMat);
+      beam.position.set(0, 8.5, towerZ);
+      this._addToSceneGroup(4, beam);
 
-
-      // Tower top antenna
-      var antGeo = new THREE.CylinderGeometry(0.06, 0.06, 2.5, 6);
-      var antMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.9,
-        roughness: 0.2, metalness: 0.7
+      // ── 3 Radar Rings (horizontal, at different heights) ───────
+      var radarHeights = [1.2, 2.5, 4.0];
+      radarHeights.forEach(function (ry, i) {
+        createRadarRing(4, 2.2 + i * 1.2, ry, accent, self);
       });
-      var antenna = new THREE.Mesh(antGeo, antMat);
-      antenna.position.set(0, 6.75, 0);
-      this._addToSceneGroup(4, antenna);
 
-
-      // Antenna tip glow
-      var tipGeo = new THREE.SphereGeometry(0.15, 8, 8);
-      var tipMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 1.5,
-        roughness: 0.1
-      });
-      var tip = new THREE.Mesh(tipGeo, tipMat);
-      tip.position.set(0, 7.9, 0);
-      this._addToSceneGroup(4, tip);
-
-
-      // 3 radar rings
-      for (var r = 0; r < 3; r++) {
-        var ringGeo = new THREE.TorusGeometry(2.0 + r * 1.4, 0.04, 8, 60);
-        var ringMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent,
-          emissiveIntensity: 0.6 - r * 0.12,
-          transparent: true, opacity: 0.7 - r * 0.15
-        });
-        var ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.position.set(0, 1.0 + r * 1.5, 0);
-        ring.rotation.x = Math.PI / 2;
-        this._addToSceneGroup(4, ring);
-
-      }
-
-      // 5 constellation nodes with lines to antenna
-      var constellations = [
-        { x: -5, y: 4, z: -2 },
-        { x: 5,  y: 3, z: -3 },
-        { x: -4, y: 6, z: 1 },
-        { x: 4,  y: 5, z: 2 },
-        { x: 0,  y: 7, z: -4 }
+      // ── 6 System Nodes (surrounding the tower) ─────────────────
+      var systemNodes = [
+        { x: -4.5, y: 2.5, z: towerZ - 2 },
+        { x:  4.5, y: 2.5, z: towerZ - 2 },
+        { x: -3.5, y: 4.5, z: towerZ + 1 },
+        { x:  3.5, y: 4.5, z: towerZ + 1 },
+        { x: -2.5, y: 6.0, z: towerZ - 1 },
+        { x:  2.5, y: 6.0, z: towerZ - 1 }
       ];
-      constellations.forEach(function (cp, i) {
-        var cnodeGeo = new THREE.SphereGeometry(0.18, 10, 10);
-        var cnodeMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.8,
-          roughness: 0.3
+      systemNodes.forEach(function (node) {
+        // Node sphere
+        var snGeo = new THREE.SphereGeometry(0.2, 10, 10);
+        var snMat = createGlowMaterial(accent, 0.75);
+        var snMesh = new THREE.Mesh(snGeo, snMat);
+        snMesh.position.set(node.x, node.y, node.z);
+        self._addToSceneGroup(4, snMesh);
+
+        // Small status ring on node
+        var snRingGeo = new THREE.TorusGeometry(0.28, 0.025, 6, 20);
+        var snRingMat = createGlowMaterial(accent, 0.4);
+        var snRing = new THREE.Mesh(snRingGeo, snRingMat);
+        snRing.position.set(node.x, node.y, node.z);
+        self._addToSceneGroup(4, snRing);
+
+        // Connection line to tower beacon
+        createConnectionLine(4, node.x, node.y, node.z, 0, 6.9, towerZ, accent, 0.2, self);
+      });
+
+      // ── Background Constellation Lines ──────────────────────────
+      var bgStars = [
+        { x: -8, y: 7, z: towerZ - 8 },
+        { x:  8, y: 6, z: towerZ - 8 },
+        { x: -6, y: 8, z: towerZ - 5 },
+        { x:  6, y: 5, z: towerZ - 6 },
+        { x:  0, y: 9, z: towerZ - 10 },
+        { x: -4, y: 5, z: towerZ - 3 },
+        { x:  4, y: 7, z: towerZ - 4 }
+      ];
+      bgStars.forEach(function (star, i) {
+        var starGeo = new THREE.SphereGeometry(0.07, 6, 6);
+        var starMat = new THREE.MeshStandardMaterial({
+          color: accent, emissive: accent, emissiveIntensity: 0.35,
+          transparent: true, opacity: 0.4
         });
-        var cnode = new THREE.Mesh(cnodeGeo, cnodeMat);
-        cnode.position.set(cp.x, cp.y, cp.z);
-        this._addToSceneGroup(4, cnode);
+        var starMesh = new THREE.Mesh(starGeo, starMat);
+        starMesh.position.set(star.x, star.y, star.z);
+        self._addToSceneGroup(4, starMesh);
 
+        // Faint connection to beacon
+        if (i % 2 === 0) {
+          createConnectionLine(4, star.x, star.y, star.z, 0, 6.9, towerZ, accent, 0.08, self);
+        }
+      });
 
-        var linePoints = [
-          new THREE.Vector3(cp.x, cp.y, cp.z),
-          new THREE.Vector3(0, 7.9, 0)
-        ];
-        var lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
-        var lineMat = new THREE.LineBasicMaterial({
-          color: accent, transparent: true, opacity: 0.2
-        });
-        var connLine = new THREE.Line(lineGeo, lineMat);
-        this._addToSceneGroup(4, connLine);
+      // ── Per-scene lighting ─────────────────────────────────────
+      var keyLight = new THREE.DirectionalLight(accent, 0.65);
+      keyLight.position.set(-5, 10, 3);
+      this._addToSceneGroup(4, keyLight);
 
-      }, this);
+      var beaconLight = new THREE.PointLight(accent, 1.2, 25);
+      beaconLight.position.set(0, 7.5, towerZ);
+      this._addToSceneGroup(4, beaconLight);
 
-      // Point light
-      var light = new THREE.PointLight(accent, 1.0, 22);
-      light.position.set(0, 6, 4);
-      this._addToSceneGroup(4, light);
+      var fillLight = new THREE.PointLight(0x1a1528, 0.4, 18);
+      fillLight.position.set(5, 3, towerZ - 3);
+      this._addToSceneGroup(4, fillLight);
 
     };
 
     // ── Scene 6: Archive Hall ────────────────────────────────────
+    // CP-5D: Scene 06 — Artifact Archive (Deep Archive Hall)
     ImmersiveApp.prototype._createArchiveHallSetpiece = function () {
       var scene = this.scenes[5];
       if (!scene) return;
       var accent = new THREE.Color(scene.accentColor);
+      var self = this;
 
-      // Large back wall
-      var wallGeo = new THREE.BoxGeometry(16, 8, 0.25);
+      // ── Archive Back Wall (far depth, low opacity) ───────────────
+      var wallGeo = new THREE.BoxGeometry(16, 8, 0.18);
       var wallMat = new THREE.MeshStandardMaterial({
-        color: 0x060f1a, emissive: accent, emissiveIntensity: 0.04,
-        roughness: 0.95
+        color: 0x040c18, emissive: accent, emissiveIntensity: 0.04,
+        roughness: 0.98, transparent: true, opacity: 0.55
       });
       var wall = new THREE.Mesh(wallGeo, wallMat);
-      wall.position.set(0, 4, -25); // CP-5B-HF1: far z
+      wall.position.set(0, 4, -25);
       this._addToSceneGroup(5, wall);
 
+      // ── Side Shelves (left and right, with depth) ──────────────
+      var shelfSides = [-1, 1]; // left = -1, right = 1
+      shelfSides.forEach(function (side) {
+        var sideX = side * 8;
 
-      // 4 rows of 6 shelf units
-      for (var row = 0; row < 4; row++) {
-        for (var col = 0; col < 6; col++) {
+        // Side wall
+        var sideWallGeo = new THREE.BoxGeometry(0.18, 6, 8);
+        var sideWallMat = new THREE.MeshStandardMaterial({
+          color: 0x050e1a, emissive: accent, emissiveIntensity: 0.03,
+          roughness: 0.95, transparent: true, opacity: 0.45
+        });
+        var sideWall = new THREE.Mesh(sideWallGeo, sideWallMat);
+        sideWall.position.set(sideX, 3, -18);
+        self._addToSceneGroup(5, sideWall);
+
+        // 3 rows of shelves on each side
+        for (var row = 0; row < 3; row++) {
           // Shelf board
-          var shelfGeo = new THREE.BoxGeometry(1.0, 0.1, 0.5);
+          var shelfGeo = new THREE.BoxGeometry(3.5, 0.08, 0.6);
           var shelfMat = new THREE.MeshStandardMaterial({
-            color: 0x0a1a2a, emissive: accent, emissiveIntensity: 0.1,
-            roughness: 0.85
+            color: 0x0a1a2a, emissive: accent, emissiveIntensity: 0.12,
+            roughness: 0.8
           });
           var shelf = new THREE.Mesh(shelfGeo, shelfMat);
-          shelf.position.set(-7.0 + col * 2.8, 1.5 + row * 1.6, -9.5);
-          this._addToSceneGroup(5, shelf);
+          shelf.position.set(sideX, 1.5 + row * 1.5, -18);
+          self._addToSceneGroup(5, shelf);
 
+          // 4 archive blocks per shelf row
+          for (var col = 0; col < 4; col++) {
+            var bx = sideX + (col - 1.5) * 0.75;
 
-          // Glowing artifact on shelf
-          var itemGeo = new THREE.BoxGeometry(0.5, 0.4, 0.3);
-          var itemMat = new THREE.MeshStandardMaterial({
-            color: accent, emissive: accent, emissiveIntensity: 0.55,
-            roughness: 0.3, metalness: 0.5
-          });
-          var item = new THREE.Mesh(itemGeo, itemMat);
-          item.position.set(-7.0 + col * 2.8, 1.9 + row * 1.6, -9.5);
-          this._addToSceneGroup(5, item);
+            // Archive block
+            var blockGeo = new THREE.BoxGeometry(0.55, 0.4, 0.35);
+            var blockMat = new THREE.MeshStandardMaterial({
+              color: 0x0d1f30, emissive: accent, emissiveIntensity: 0.18,
+              roughness: 0.5, metalness: 0.4
+            });
+            var block = new THREE.Mesh(blockGeo, blockMat);
+            block.position.set(bx, 1.9 + row * 1.5, -18);
+            block.rotation.y = side * 0.1;
+            self._addToSceneGroup(5, block);
 
+            // Glowing edge on block (top)
+            var edgeGeo = new THREE.BoxGeometry(0.55, 0.04, 0.35);
+            var edgeMat = createGlowMaterial(accent, 0.4);
+            var edge = new THREE.Mesh(edgeGeo, edgeMat);
+            edge.position.set(bx, 2.1 + row * 1.5, -18);
+            self._addToSceneGroup(5, edge);
+
+            // Faint glow strip on shelf
+            var stripGeo = new THREE.BoxGeometry(3.5, 0.03, 0.04);
+            var stripMat = new THREE.MeshStandardMaterial({
+              color: accent, emissive: accent, emissiveIntensity: 0.25,
+              transparent: true, opacity: 0.4
+            });
+            var strip = new THREE.Mesh(stripGeo, stripMat);
+            strip.position.set(sideX, 1.54 + row * 1.5, -17.7);
+            self._addToSceneGroup(5, strip);
+          }
         }
-      }
-
-      // Central arch passage
-      var archGeo = new THREE.TorusGeometry(1.8, 0.12, 10, 32, Math.PI);
-      var archMat = new THREE.MeshStandardMaterial({
-        color: accent, emissive: accent, emissiveIntensity: 0.5,
-        roughness: 0.3, metalness: 0.6
       });
+
+      // ── Central Archive Gate / Passage ───────────────────────────
+      // Arch frame (half-torus)
+      var archGeo = new THREE.TorusGeometry(2.0, 0.12, 10, 32, Math.PI);
+      var archMat = createGlowMaterial(accent, 0.6);
       var arch = new THREE.Mesh(archGeo, archMat);
-      arch.position.set(0, 2.8, -6);
+      arch.position.set(0, 3.0, -10);
       arch.rotation.x = Math.PI;
       this._addToSceneGroup(5, arch);
 
-
-      // Arch side pillars
-      [-1.8, 1.8].forEach(function (x) {
-        var pillarGeo = new THREE.BoxGeometry(0.2, 2.8, 0.2);
-        var pillarMat = new THREE.MeshStandardMaterial({
-          color: accent, emissive: accent, emissiveIntensity: 0.3,
-          roughness: 0.6
-        });
-        var pillar = new THREE.Mesh(pillarGeo, pillarMat);
-        pillar.position.set(x, 1.4, -6);
-        this._addToSceneGroup(5, pillar);
-
-      }, this);
-
-      // Floor glow strip (leading to arch)
-      var stripGeo = new THREE.PlaneGeometry(2.5, 8);
-      var stripMat = new THREE.MeshStandardMaterial({
+      // Arch inner glow
+      var archGlowGeo = new THREE.TorusGeometry(1.7, 0.06, 8, 32, Math.PI);
+      var archGlowMat = new THREE.MeshStandardMaterial({
         color: accent, emissive: accent, emissiveIntensity: 0.3,
-        transparent: true, opacity: 0.35, side: THREE.DoubleSide
+        transparent: true, opacity: 0.4
       });
-      var strip = new THREE.Mesh(stripGeo, stripMat);
-      strip.position.set(0, 0.01, -5);
-      strip.rotation.x = -Math.PI / 2;
-      this._addToSceneGroup(5, strip);
+      var archGlow = new THREE.Mesh(archGlowGeo, archGlowMat);
+      archGlow.position.set(0, 3.0, -10);
+      archGlow.rotation.x = Math.PI;
+      this._addToSceneGroup(5, archGlow);
 
+      // Arch pillars
+      [-2.0, 2.0].forEach(function (x) {
+        var pillarGeo = new THREE.BoxGeometry(0.18, 3.0, 0.18);
+        var pillarMat = createDarkMetalMaterial(accent, 0.08);
+        var pillar = new THREE.Mesh(pillarGeo, pillarMat);
+        pillar.position.set(x, 1.5, -10);
+        self._addToSceneGroup(5, pillar);
 
-      // Point light
-      var light = new THREE.PointLight(accent, 0.9, 22);
-      light.position.set(0, 5, -5);
-      this._addToSceneGroup(5, light);
+        // Pillar top glow
+        var ptGeo = new THREE.BoxGeometry(0.18, 0.06, 0.18);
+        var ptMat = createGlowMaterial(accent, 0.5);
+        var pt = new THREE.Mesh(ptGeo, ptMat);
+        pt.position.set(x, 3.0, -10);
+        self._addToSceneGroup(5, pt);
+      });
+
+      // ── Archive Portal (deep background) ──────────────────────
+      var portalGeo = new THREE.TorusGeometry(1.2, 0.1, 8, 32);
+      var portalMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.35,
+        transparent: true, opacity: 0.4
+      });
+      var portal = new THREE.Mesh(portalGeo, portalMat);
+      portal.position.set(0, 4, -23);
+      this._addToSceneGroup(5, portal);
+
+      // Portal inner glow
+      var portalCoreGeo = new THREE.SphereGeometry(0.8, 12, 12);
+      var portalCoreMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.2,
+        transparent: true, opacity: 0.2
+      });
+      var portalCore = new THREE.Mesh(portalCoreGeo, portalCoreMat);
+      portalCore.position.set(0, 4, -23);
+      this._addToSceneGroup(5, portalCore);
+
+      // ── Floor Glow Strip (leading to arch) ─────────────────────
+      var floorStripPoints = [
+        new THREE.Vector3(0, 0.02, 0),
+        new THREE.Vector3(0, 0.02, -5),
+        new THREE.Vector3(0, 0.02, -10)
+      ];
+      var floorStripCurve = new THREE.CatmullRomCurve3(floorStripPoints);
+      var floorStripGeo = new THREE.TubeGeometry(floorStripCurve, 20, 0.15, 6, false);
+      var floorStripMat = new THREE.MeshStandardMaterial({
+        color: accent, emissive: accent, emissiveIntensity: 0.35,
+        transparent: true, opacity: 0.4
+      });
+      var floorStrip = new THREE.Mesh(floorStripGeo, floorStripMat);
+      this._addToSceneGroup(5, floorStrip);
+
+      // ── Per-scene lighting ─────────────────────────────────────
+      var keyLight = new THREE.DirectionalLight(accent, 0.6);
+      keyLight.position.set(0, 8, 0);
+      this._addToSceneGroup(5, keyLight);
+
+      var archLight = new THREE.PointLight(accent, 0.8, 22);
+      archLight.position.set(0, 4, -10);
+      this._addToSceneGroup(5, archLight);
+
+      var portalLight = new THREE.PointLight(accent, 0.5, 20);
+      portalLight.position.set(0, 5, -22);
+      this._addToSceneGroup(5, portalLight);
 
     };
 

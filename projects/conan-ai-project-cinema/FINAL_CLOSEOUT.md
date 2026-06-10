@@ -940,3 +940,29 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5f
 ---
 
 *Final closeout by 辛 🔮 — Phase CP-5G*
+
+---
+
+## Phase CP-5G-Hotfix-1: Fix Agent Scene Composition
+
+**Commit:** `0b4f63d`
+**Status:** PASS — Code Complete, Visual Verification Pending
+
+### Scope
+
+- Scene 04: Workflow lines de-emphasized, panels moved closer to hub, camera pulled back
+- Scene 02: Panel differentiation (folder, URL bar)
+- Scene 03: Floor guide strips avoid bottom-center UI
+- Scene 06: Portal inner depth ring added
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要确认：
+- [ ] Scene 04: 第一眼不是粗线条，hub是主角，OC/HM/CX/PR可见
+- [ ] Scene 02: docs/terminal/browser 可区分
+- [ ] Scene 03: hero plinth 不被 UI 破坏
+- [ ] Scene 06: portal depth 增强
+
+---
+
+*Final closeout by 辛 🔮 — Phase CP-5G-Hotfix-1*

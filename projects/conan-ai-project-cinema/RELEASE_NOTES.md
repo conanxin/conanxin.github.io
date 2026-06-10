@@ -1785,3 +1785,87 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5G*
+
+---
+
+## Phase CP-5G-Hotfix-1: Fix Agent Scene Composition and Panel Readability
+
+**Commit:** `0b4f63d`
+**Date:** 2026-06-10
+**Goal:** Fix Scene 04 workflow lines dominating view; make panels more distinct
+
+### Scene 04 — Workflow Line De-emphasis
+
+| Property | Before | After |
+|----------|--------|-------|
+| Forward workflow tube radius | 0.04 | 0.012 |
+| Return workflow tube radius | 0.025 | 0.008 |
+| Forward workflow opacity | 0.5 | 0.2 |
+| Forward workflow emissive | 0.55 | 0.2 |
+| Return workflow opacity | 0.35 | 0.15 |
+| Return workflow emissive | 0.35 | 0.12 |
+| Coordination ring opacity | 0.3 | 0.15 |
+
+### Scene 04 — Agent Panels Closer to Hub
+
+| Agent | Before (x, y, z) | After (x, y, z) |
+|-------|-------------------|-------------------|
+| OC | (-5.5, 2.8, -1) | (-3.2, 2.8, -2) |
+| HM | (5.5, 2.8, -1) | (3.2, 2.8, -2) |
+| CX | (-3.5, 4.5, 2) | (-2.0, 4.0, 0) |
+| PR | (3.5, 4.5, 2) | (2.0, 4.0, 0) |
+
+### Scene 04 — Camera Adjustment
+
+| Platform | Before | After |
+|----------|--------|-------|
+| Desktop | (0, 4.5, 2) | (0, 5.5, 5) |
+| Mobile | (0, 4, 0) | (0, 4.5, 3) |
+
+### Scene 04 — Label Readability
+
+| Label | Before | After |
+|-------|--------|-------|
+| Code emissive | 1.2 | 1.8 |
+| Role emissive | 0.5 | 0.7 |
+
+### Scene 02 — Panel Differentiation
+
+| Panel | Enhancement |
+|-------|------------|
+| Docs | Larger folder icon (0.5×0.35 → 0.65×0.45) + tab protrusion |
+| Browser | Wider URL bar (0.12 → 0.15 height) + green dot indicator |
+
+### Scene 03 — UI Conflict Fix
+
+Floor guide strips now converge toward heroX±1.5 (sides) instead of center-bottom:
+- Strip opacity: 0.4 → 0.3
+- Strip emissive: 0.25 → 0.2
+- Tube radius: 0.04 → 0.035
+
+### Scene 06 — Portal Depth Enhancement
+
+Added inner dark depth ring:
+- TorusGeometry at radius 0.55, thickness 0.05
+- Color: 0x020810 (near-black)
+- Emissive: 0.08 (very dim)
+- Position: (0, 4, -23.2)
+- Breath phase: 2.5 (offset from outer rings)
+
+### node --check
+
+```
+immersive.js: PASS
+audio-engine.js: PASS
+scene-data.js: PASS
+```
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g-hotfix1
+```
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5G-Hotfix-1*

@@ -980,3 +980,48 @@ https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g
 ---
 
 *QA by 辛 🔮 — CP-5G baseline established*
+
+---
+
+## CP-5G-Hotfix-1: Fix Agent Scene Composition
+
+**Date:** 2026-06-10
+**Phase:** CP-5G-Hotfix-1
+**Status:** IN PROGRESS (code complete, visual verification pending)
+
+### Changes Applied
+
+| Scene | Fix |
+|-------|-----|
+| Scene 04 | Workflow lines reduced (radius 0.04→0.012), opacity (0.5→0.2), panels moved closer to hub, camera pulled back |
+| Scene 02 | Folder icon larger, browser URL bar wider with green dot |
+| Scene 03 | Floor guide strips converge to sides (heroX±1.5) |
+| Scene 06 | Inner dark depth ring added to portal |
+
+### Online URL
+
+```
+https://conanxin.github.io/projects/conan-ai-project-cinema/immersive/?v=cp5g-hotfix1
+```
+
+### Pending: Real Browser Visual Verification
+
+爸爸需要确认：
+
+**Scene 04 验收：**
+- [ ] 第一眼不是粗金色线条
+- [ ] central hub 是画面主角
+- [ ] OC/HM/CX/PR 可见可读
+- [ ] 连接线细、克制
+- [ ] camera 不贴线
+
+**功能性确认：**
+- [ ] Prev / Next / dots / scroll / keyboard 正常
+- [ ] Sound / Back 正常
+- [ ] 无 WebGL renderer failed
+- [ ] 无 Scene runtime error
+- [ ] Console 无 ReferenceError
+
+---
+
+*QA by 辛 🔮 — CP-5G-Hotfix-1*

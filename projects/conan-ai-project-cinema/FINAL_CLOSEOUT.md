@@ -527,3 +527,35 @@ _setWorldFocus(activeId) — traverse all scene objects, apply opacity/emissive/
 ---
 
 *Final closeout by 辛 🔮 — CP-5B*
+
+---
+
+## CP-5B-Hotfix-1: Rebuild Scene 01 Research Desk Setpiece
+
+**Commit:** `a6d082c`  
+**Date:** 2026-06-10
+
+### What Was Wrong
+
+User's real phone screenshot showed a "giant red central column" in Scene 01.
+This was the Control Tower base cylinder (r=0.8-1.0, h=6, warm red color) sitting at the world origin (0, 0, 0) — directly in front of Scene 01's camera which was pointed at (0, 0, 0).
+
+### The Fix
+
+1. **Repositioned Scene 01 setpiece** to x=-7, z=2 (left side of room)
+2. **Pushed conflicting setpieces to far z**: Tower z=-20, Hub z=-15, Archive z=-25
+3. **Updated Scene 01 camera**: position (-7, 4, 10), target (-7, 1.5, 2)
+4. **Fixed cameraTarget**: `_gotoScene` and `_setSceneFromScroll` now update `baseCameraTarget` per scene
+5. **Mobile UI**: raised fixed controls to avoid overlap with hud-bottom bar
+
+### Key Files
+
+```
+immersive/immersive.js  — position fixes + cameraTarget fixes
+immersive/scene-data.js — Scene 01 camera updated
+immersive/styles.css   — mobile bottom UI raised
+```
+
+---
+
+*Final closeout by 辛 🔮 — CP-5B-Hotfix-1*

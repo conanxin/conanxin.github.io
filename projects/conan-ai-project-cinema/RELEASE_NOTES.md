@@ -1166,3 +1166,56 @@ Grid opacity: 0.18
 ---
 
 *Release notes by 辛 🔮 — Phase CP-5B*
+
+---
+
+## CP-5B-Hotfix-1: Rebuild Scene 01 Research Desk Setpiece
+
+**Phase:** CP-5B-Hotfix-1 — 2026-06-10
+
+### 用户反馈
+
+用户真实手机截图显示 Scene 01 出现"巨大红色中央柱体"——这是 Scene 05 Control Tower 的底座圆柱（r=0.8-1.0, h=6, color 0xf78c7a）位于原点 (0, 0, 0)，而 Scene 01 camera 正好朝向此处。
+
+### 根因
+
+| 问题 | 原因 |
+|------|------|
+| Giant red column | Control Tower 底座位于原点，Scene 01 相机朝向此处 |
+| Desk 不可见 | desk 在 (0, 0.8, 0)，被 Tower 遮挡 |
+| cameraTarget 固定 | `_gotoScene` / `_setSceneFromScroll` 未使用 `sceneData.cameraTarget` |
+
+### 空间修复
+
+| 对象 | 修复前 | 修复后 |
+|------|--------|--------|
+| Scene 01 setpiece | (0, 0.8, 0) | **(-7, 0.8, 2)** 左移 |
+| Control Tower | z=0 | **z=-20** 远后方 |
+| Agent Hub | z=0 | **z=-15** 远后方 |
+| Archive wall | z=-10 | **z=-25** 远后方 |
+| Scene 01 camera | (0, 3, 10) → (0,0,0) | **(-7, 4, 10) → (-7, 1.5, 2)** |
+
+### 代码修复
+
+- `_gotoScene`：新增使用 `sceneData.cameraTarget` 更新 `baseCameraTarget`
+- `_setSceneFromScroll`：同样新增 `baseCameraTarget` 更新
+
+### 移动端 UI 重叠修复
+
+|元素 | 修复前 | 修复后 |
+|------|--------|--------|
+| scene-dots | bottom: 2rem | **5.5rem** |
+| scene-control-panel | bottom: 4rem | **7.8rem（全宽）** |
+| scene-progress-hint | bottom: 3.5rem | **10.5rem** |
+
+### 验证
+
+```
+node --check: PASS（4/4 文件）
+Bracket diff: 0
+Lines: 2005
+```
+
+---
+
+*Release notes by 辛 🔮 — Phase CP-5B-Hotfix-1*

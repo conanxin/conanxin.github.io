@@ -504,3 +504,46 @@ CP-5A worldbuilding is incomplete. Proceeding to CP-5B.
 ---
 
 *CP-5A QA by 辛 🔮 — 2026-06-10*
+
+---
+
+## CP-5B-Hotfix-1: Rebuild Scene 01 Research Desk Setpiece
+
+**Phase:** CP-5B-Hotfix-1 — 2026-06-10
+
+### User Feedback (Real Phone Screenshot)
+
+> "巨大红色中央柱体" visible in Scene 01 — not a research desk at all.
+
+### Root Cause
+
+| Issue | Detail |
+|-------|--------|
+| Tower at origin | Control Tower base (r=0.8-1.0, h=6) at (0, 3, 0) — straight ahead of Scene 01 camera |
+| Hub at origin | Agent Hub sphere r=1.0 at (0, 2.5, 0) — also in Scene 01 view |
+| Archive wall z=-10 | Archive back wall partially visible from Scene 01 |
+| cameraTarget not per-scene | `_gotoScene` / `_setSceneFromScroll` used fixed (0,0,0) target |
+
+### Fixes Applied
+
+| Item | Fix |
+|------|-----|
+| Scene 01 position | Moved to x=-7, z=2 |
+| Tower z | 0 → -20 |
+| Hub z | 0 → -15 |
+| Archive wall z | -10 → -25 |
+| Scene 01 camera | (-7, 4, 10) → target (-7, 1.5, 2) |
+| cameraTarget | Now updated per-scene in `_gotoScene` + `_setSceneFromScroll` |
+| Mobile UI | dots: 2rem→5.5rem / panel: 4rem→7.8rem / hint: 3.5rem→10.5rem |
+
+### Pending Verification
+
+Awaiting user's real phone screenshot after hotfix to confirm:
+- [ ] No giant red column in Scene 01
+- [ ] Research desk visible at left side of screen
+- [ ] Camera looking at desk area, not at tower location
+- [ ] Mobile UI no longer overlaps
+
+---
+
+*QA by 辛 🔮 — CP-5B-Hotfix-1*

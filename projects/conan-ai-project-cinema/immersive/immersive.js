@@ -11,6 +11,14 @@
   // ── Boot ─────────────────────────────────────────────────────
   (async function bootImmersive() {
 
+    // CP-5D-Hotfix-1: Global error handlers for runtime ReferenceError detection
+    window.addEventListener('error', function (e) {
+      console.error('[Immersive] uncaught error:', e.error);
+    });
+    window.addEventListener('unhandledrejection', function (e) {
+      console.error('[Immersive] unhandled rejection:', e.reason);
+    });
+
     // ── THREE load ──────────────────────────────────────────────
     let THREE = null;
     try {
@@ -32,7 +40,8 @@
     }
 
     // ── Fallback helper (DOM API only) ─────────────────────────
-    function showBootFallback(reason, detail) {
+    // CP-5D-Hotfix-1: Enhanced error detail — distinguishes ReferenceError vs WebGL
+    function showBootFallback(reason, detail, errObj) {
       var entryOverlay = document.getElementById('entryOverlay');
       if (entryOverlay) {
         entryOverlay.setAttribute('hidden', '');
@@ -62,10 +71,38 @@
           'Try the standard page or use a browser with WebGL enabled.';
       }
 
+      // CP-5D-Hotfix-1: Show detailed error info for runtime errors
+      var debugMode = new URLSearchParams(window.location.search).get('debugScene') === '1';
+      if (errObj && (errObj instanceof ReferenceError || errObj instanceof TypeError || errObj.name === 'SyntaxError')) {
+        // Scene runtime error — show structured detail
+        var errDetail = document.createElement('small');
+        errDetail.style.cssText = 'color:#c05050;font-size:0.65rem;margin-top:0.3rem;display:block;max-width:420px;word-break:break-all;';
+        var errLines = [];
+        errLines.push(errObj.name + ': ' + errObj.message);
+        if (debugMode && errObj.stack) {
+          var stackParts = errObj.stack.split('\n').slice(0, 4);
+          errLines = errLines.concat(stackParts.slice(1));
+        }
+        errDetail.textContent = errLines.join(' | ').slice(0, 300);
+        box.appendChild(errDetail);
+
+        // Update title to reflect runtime error
+        title.textContent = 'Scene runtime error';
+        title.style.color = '#c05050';
+      }
+
+      // CP-5D-Hotfix-1: Show phase/version hint
+      var hint = document.createElement('small');
+      hint.style.cssText = 'color:#4a5a7a;font-size:0.6rem;margin-top:0.4rem;display:block;';
+      hint.textContent = 'Phase CP-5D · v=cp5d-hotfix1';
+      box.appendChild(hint);
+
+
       var help = document.createElement('p');
       help.style.cssText = 'font-size:0.8rem;color:#8a96b0;margin-top:0.5rem;';
       help.textContent =
         'Try: enabling WebGL, disabling privacy blockers, or using a different browser.';
+
 
       var link = document.createElement('a');
       link.href = '../';
@@ -359,7 +396,12 @@
         console.error('[Immersive] init error:', err);
         var msg = err && err.message ?
                   err.message.slice(0, 200) : String(err);
-        showBootFallback('WebGL renderer failed', msg);
+        // CP-5D-Hotfix-1: Pass err object for ReferenceError detection
+        if (err instanceof ReferenceError || err instanceof TypeError || err.name === 'SyntaxError') {
+          showBootFallback('WebGL renderer failed', msg, err);
+        } else {
+          showBootFallback('WebGL renderer failed', msg);
+        }
         return false;
       }
 
@@ -1866,7 +1908,7 @@
         var tLineGeo = new THREE.PlaneGeometry(2.3, 0.08);
         var tLineMat = new THREE.MeshStandardMaterial({
           color: accent, emissive: accent, emissiveIntensity: 0.55,
-          transparent: true, opacity: 0.6 + (i % 2) * 0.15
+          transparent: true, opacity: 0.6 + (t % 2) * 0.15
         });
         var tLine = new THREE.Mesh(tLineGeo, tLineMat);
         tLine.position.set(0, 2.75 - t * 0.36, 0.05);

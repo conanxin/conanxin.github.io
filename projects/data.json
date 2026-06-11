@@ -496,5 +496,27 @@
       "静态站点",
       "Demo"
     ]
+  },
+  {
+    "title": "Artvee Daily Digest",
+    "subtitle": "Artvee Public-Domain Artworks · Daily 5-Pick Digest",
+    "slug": "artvee-gallery-digest",
+    "category": "tools",
+    "type": "DIGEST",
+    "status": "首次发布",
+    "status_color": "#3fb950",
+    "updated": "2026-06-12",
+    "summary": "从本地 Artvee Gallery 派生的每日精选 5 张公版艺术作品（512 缩略图），轻量 static 页面 (324KB)，可静态托管到任意 CDN。仅浏览与灵感参考；详情请回 artvee.com 原页。",
+    "entry_url": "/projects/artvee-gallery-digest/",
+    "source_kind": "static-site",
+    "featured": false,
+    "tags": [
+      "图库",
+      "公版艺术",
+      "Artvee",
+      "每日精选",
+      "静态站点",
+      "Digest"
+    ]
   }
 ]

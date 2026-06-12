@@ -6,12 +6,16 @@
     "html_path": "digests/artvee-digest-2026-06-12.html",
     "selected_count": 5,
     "categories": [
-      "japanese-prints"
+      "book-illustrations",
+      "japanese-prints",
+      "posters-design"
     ],
     "artists": [
-      "Utagawa_Kuniyoshi"
+      "Amaldus_Nielsen_(Norwegian,_1838_–_1932)",
+      "Anonymous",
+      "Yoshida_Hiroshi_(Japanese,_1876-1950)"
     ],
     "strategy": "diverse",
-    "created_at": "2026-06-12T02:04:59"
+    "created_at": "2026-06-12T12:44:08"
   }
 ]

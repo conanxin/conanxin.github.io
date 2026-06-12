@@ -3,67 +3,75 @@
 ## 1. 今日概览
 - 候选范围：20 张
 - 精选数量：5 张
-- 涉及分类：japanese-prints
-- 涉及艺术家：Utagawa_Kuniyoshi
+- 涉及分类：book-illustrations, japanese-prints, posters-design
+- 涉及艺术家：Amaldus_Nielsen_(Norwegian,_1838_–_1932), Anonymous, Yoshida_Hiroshi_(Japanese,_1876-1950)
 - 选择策略：`diverse`
 
 ## 2. 今日精选
 
-### 1. Rōben_Waterfall_at_Mount_Ōyama — Utagawa_Kuniyoshi
-![preview](./assets/thumbs/512/Utagawa_Kuniyoshi_Rōben_Waterfall_at_Mount_Ōyama_japanese-prints_standard.jpg)
-- 分类：japanese-prints
-- 来源：https://artvee.com/dl/roben-waterfall-at-mount-oyama/
+### 1. Høstdag._Bjelland,_Mandal_(1862) — Amaldus_Nielsen_(Norwegian,_1838_–_1932)
+![preview](./assets/thumbs/512/amaldus_nielsen_norwegian_1838_1932_høstdag._bjelland_mandal_1862_book-illustrations_standard_e9b1953f.jpg)
+- 分类：book-illustrations
+- 来源：https://artvee.com/dl/hostdag-bjelland-mandal/
 - 视觉：构图：横向构图
-- 视觉：dominant palette: #a09080, #b0a090, #c0b0a0, #908070, #e0d0c0
-- 用途：海报背景, 书籍封面, 视频分镜参考, 动画参考帧
-- Prompt seed：`ukiyo-e inspired vintage art print, Rōben_Waterfall_at_Mount_Ōyama, public domain print`
+- 视觉：dominant palette: #90b0c0, #907060, #a08060, #807060, #807050
+- 用途：书籍插图, 童话配图, 故事封面, 明信片
+- Prompt seed：`classic book illustration watercolor, Høstdag._Bjelland,_Mandal_(1862), public domain print`
 
-### 2. Poem_by_Dainagon_Kintō — Utagawa_Kuniyoshi
-![preview](./assets/thumbs/512/Utagawa_Kuniyoshi_Poem_by_Dainagon_Kintō_japanese-prints_standard.jpg)
+### 2. Jaipuuru_no_Ajumeru_mon_(The_Ajmer_Gate_at_Jaipur)_(1931) — Yoshida_Hiroshi_(Japanese,_1876-1950)
+![preview](./assets/thumbs/512/yoshida_hiroshi_japanese_1876-1950_jaipuuru_no_ajumeru_mon_the_ajmer_gate_at_jaipur_1931_japanese-prints_standard_e033f21d.jpg)
 - 分类：japanese-prints
-- 来源：https://artvee.com/dl/poem-by-dainagon-kinto/
+- 来源：https://artvee.com/dl/jaipuuru-no-ajumeru-mon-the-ajmer-gate-at-jaipur/
 - 视觉：构图：纵向构图
-- 视觉：dominant palette: #f0e0d0, #d0c0b0, #d0d0c0, #c0b0a0, #c0d0c0
+- 视觉：dominant palette: #e0d0b0, #c0c0b0, #e0c0a0, #b0c0b0, #e0b090
 - 用途：海报背景, 书籍封面, 视频分镜参考, 动画参考帧
-- Prompt seed：`ukiyo-e inspired vintage art print, Poem_by_Dainagon_Kintō, public domain print`
+- Prompt seed：`ukiyo-e inspired vintage art print, Jaipuuru_no_Ajumeru_mon_(The_Ajmer_Gate_at_Jaipur)_(1931), public domain print`
 
-### 3. Plovers_of_the_Noda_Jewel_River_of_Mutsu_Province — Utagawa_Kuniyoshi
-![preview](./assets/thumbs/512/Utagawa_Kuniyoshi_Plovers_of_the_Noda_Jewel_River_of_Mutsu_Province_japanese-prints_standard.jpg)
-- 分类：japanese-prints
-- 来源：https://artvee.com/dl/plovers-of-the-noda-jewel-river-of-mutsu-province/
-- 视觉：构图：横向构图
-- 视觉：dominant palette: #d0c0b0, #d0d0c0, #d0c0c0, #e0d0c0, #e0e0d0
-- 用途：海报背景, 书籍封面, 视频分镜参考, 动画参考帧
-- Prompt seed：`ukiyo-e inspired vintage art print, Plovers_of_the_Noda_Jewel_River_of_Mutsu_Province, public domain print`
-
-### 4. Osayo_and_Genta — Utagawa_Kuniyoshi
-![preview](./assets/thumbs/512/Utagawa_Kuniyoshi_Osayo_and_Genta_japanese-prints_standard.jpg)
-- 分类：japanese-prints
-- 来源：https://artvee.com/dl/osayo-and-genta/
+### 3. Affiche_van_de_Chambre_Syndicale_des_Éditeurs_et_Marchands_d’Estampes_et_Dessins_Anciens_et_Modernes_te_Parijs_(1919) — Anonymous
+![preview](./assets/thumbs/512/anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_posters-design_standard_262e24fc.jpg)
+- 分类：posters-design
+- 来源：https://artvee.com/dl/affiche-van-de-chambre-syndicale-des-editeurs-et-marchands-destampes-et-dessins-anciens-et-modernes-te-parijs/
 - 视觉：构图：纵向构图
-- 视觉：dominant palette: #e0c0a0, #d0b090, #c0a080, #e0c0b0, #c0a090
-- 用途：海报背景, 书籍封面, 视频分镜参考, 动画参考帧
-- Prompt seed：`ukiyo-e inspired vintage art print, Osayo_and_Genta, public domain print`
+- 视觉：dominant palette: #f0d0b0, #e0d0b0, #f0e0c0, #d0c0a0, #e0c0a0
+- 用途：海报设计参考, 活动宣传, 展览主视觉, 壁纸
+- Prompt seed：`art nouveau vintage poster illustration, Affiche_van_de_Chambre_Syndicale_des_Éditeurs_et_Marchands_d, public domain print`
 
-### 5. On_the_Way_to_Kyoto_Minamoto_no_Raikō_Meets_Kaidōmaru_in_the_Ashigara_Mountains_of_Sagami_Province_and_Takes_Him_as_a_Retainer — Utagawa_Kuniyoshi
-![preview](./assets/thumbs/512/Utagawa_Kuniyoshi_On_the_Way_to_Kyoto_Minamoto_no_Raikō_Meets_Kaidōmaru_in_the_Ashigara_Mountains_of_Sagami_Province_and_Takes_Him_as_a_Retainer_japanese-prints_standard.jpg)
+### 4. High_Gate_in_Ajmer_(The_Buland_Darwaza,_Ajmer)_(1931) — Yoshida_Hiroshi_(Japanese,_1876-1950)
+![preview](./assets/thumbs/512/yoshida_hiroshi_japanese_1876-1950_high_gate_in_ajmer_the_buland_darwaza_ajmer_1931_japanese-prints_standard_ed24c664.jpg)
 - 分类：japanese-prints
-- 来源：https://artvee.com/dl/on-the-way-to-kyoto-minamoto-no-raiko-meets-kaidomaru-in-the-ashigara-mountains-of-sagami-province-and-takes-him-as-a-retainer/
+- 来源：https://artvee.com/dl/high-gate-in-ajmer-the-buland-darwaza-ajmer/
 - 视觉：构图：纵向构图
-- 视觉：dominant palette: #807060, #908070, #706050, #605040, #a09080
+- 视觉：dominant palette: #d0c0a0, #6090a0, #d0b090, #e0c0a0, #70a0a0
 - 用途：海报背景, 书籍封面, 视频分镜参考, 动画参考帧
-- Prompt seed：`ukiyo-e inspired vintage art print, On_the_Way_to_Kyoto_Minamoto_no_Raikō_Meets_Kaidōmaru_in_the, public domain print`
+- Prompt seed：`ukiyo-e inspired vintage art print, High_Gate_in_Ajmer_(The_Buland_Darwaza,_Ajmer)_(1931), public domain print`
+
+### 5. Affiche_van_de_Chambre_Syndicale_des_Éditeurs_et_Marchands_d’Estampes_et_Dessins_Anciens_et_Modernes_te_Parijs_(1919_-_1952) — Anonymous
+![preview](./assets/thumbs/512/anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_-_1952_posters-design_standard_4c9ef9cd.jpg)
+- 分类：posters-design
+- 来源：https://artvee.com/dl/affiche-van-de-chambre-syndicale-des-editeurs-et-marchands-destampes-et-dessins-anciens-et-modernes-te-parijs-3/
+- 视觉：构图：纵向构图
+- 视觉：dominant palette: #d0b090, #e0c090, #e0c0a0, #d0c090, #b0a080
+- 用途：海报设计参考, 活动宣传, 展览主视觉, 壁纸
+- Prompt seed：`art nouveau vintage poster illustration, Affiche_van_de_Chambre_Syndicale_des_Éditeurs_et_Marchands_d, public domain print`
 
 ## 3. 今日风格总结
-- 构图分布：纵向构图(3), 横向构图(2)
-- 主色（top across picks）：#a09080, #c0b0a0, #908070, #e0d0c0, #d0c0b0, #d0d0c0, #b0a090, #f0e0d0
-- 类别分布：japanese-prints(5)
+- 构图分布：纵向构图(4), 横向构图(1)
+- 主色（top across picks）：#e0c0a0, #e0d0b0, #d0c0a0, #d0b090, #90b0c0, #907060, #a08060, #807060
+- 类别分布：japanese-prints(2), posters-design(2), book-illustrations(1)
 
 ## 4. 可用于哪些项目
-- 海报背景（命中 5 张）
-- 书籍封面（命中 5 张）
-- 视频分镜参考（命中 5 张）
-- 动画参考帧（命中 5 张）
+- 海报背景（命中 2 张）
+- 书籍封面（命中 2 张）
+- 视频分镜参考（命中 2 张）
+- 动画参考帧（命中 2 张）
+- 海报设计参考（命中 2 张）
+- 活动宣传（命中 2 张）
+- 展览主视觉（命中 2 张）
+- 壁纸（命中 2 张）
+- 书籍插图（命中 1 张）
+- 童话配图（命中 1 张）
+- 故事封面（命中 1 张）
+- 明信片（命中 1 张）
 
 ## 5. 数据来源与边界
 - 数据源：`web/data/artworks.json`（P1 builder 输出）

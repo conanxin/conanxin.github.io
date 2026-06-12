@@ -18,6 +18,38 @@
       "Yoshida_Hiroshi_(Japanese,_1876-1950)"
     ],
     "strategy": "diverse",
-    "created_at": "2026-06-12T17:27:18"
+    "picks": [
+      {
+        "id": "amaldus_nielsen_norwegian_1838_1932_høstdag._bjelland_mandal_1862_book-illustrations_standard_e9b1953f",
+        "artist": "Amaldus_Nielsen_(Norwegian,_1838_–_1932)",
+        "category": "book-illustrations",
+        "near_dup_cluster_id": "cluster-006"
+      },
+      {
+        "id": "yoshida_hiroshi_japanese_1876-1950_jaipuuru_no_ajumeru_mon_the_ajmer_gate_at_jaipur_1931_japanese-prints_standard_e033f21d",
+        "artist": "Yoshida_Hiroshi_(Japanese,_1876-1950)",
+        "category": "japanese-prints",
+        "near_dup_cluster_id": null
+      },
+      {
+        "id": "anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_posters-design_standard_262e24fc",
+        "artist": "Anonymous",
+        "category": "posters-design",
+        "near_dup_cluster_id": null
+      },
+      {
+        "id": "alphonse_mucha_czech_1860-1939_abstract_design_based_on_arabesques_1900_posters-design_standard_cfec02d3",
+        "artist": "Alphonse_Mucha_(Czech,_1860-1939)",
+        "category": "posters-design",
+        "near_dup_cluster_id": null
+      },
+      {
+        "id": "utagawa_hiroshige_japanese_1797_1858_yoshida_1855_japanese-prints_standard_26319964",
+        "artist": "Utagawa_Hiroshige_(Japanese,_1797_–_1858)",
+        "category": "japanese-prints",
+        "near_dup_cluster_id": null
+      }
+    ],
+    "created_at": "2026-06-12T22:25:01"
   }
 ]

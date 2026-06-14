@@ -383,6 +383,25 @@ function setupSearch() {
   });
 }
 
+// ====== Image error fallback (V8) ======
+function setupImageFallbacks() {
+  $$('.article img').forEach(img => {
+    img.addEventListener('error', () => {
+      const fig = img.closest('.article-figure');
+      if (!fig) return;
+      // Skip if already converted
+      if (fig.querySelector('.image-fallback')) return;
+      const alt = img.alt || '图片';
+      fig.classList.add('img-broken');
+      // Replace img with clean fallback div
+      const fallback = document.createElement('div');
+      fallback.className = 'image-fallback';
+      fallback.textContent = '图片暂不可用：' + alt;
+      img.replaceWith(fallback);
+    }, { once: true });
+  });
+}
+
 // ====== Init ======
 async function init() {
   applyTheme(state.theme);
@@ -413,6 +432,8 @@ async function init() {
     if (!hasPrerendered) {
       renderArticle(md);
     }
+    // V8: add image error fallback for any img in the article
+    setupImageFallbacks();
     updateProgress();
     updateTOC();
   } else if (!hasPrerendered) {

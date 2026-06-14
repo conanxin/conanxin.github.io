@@ -375,6 +375,37 @@ img { max-width: 100%; height: auto; display: block; }
 
 .article li { margin: 0.4rem 0; }
 
+/* Article figure (V8) */
+.article-figure {
+  margin: 2rem auto;
+  max-width: 100%;
+}
+.article-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 14px;
+}
+.article-figure a {
+  display: block;
+}
+.article-figure figcaption {
+  margin-top: .65rem;
+  color: var(--muted, #94a3b8);
+  font-size: .9rem;
+  text-align: center;
+  line-height: 1.5;
+}
+.image-fallback {
+  border: 1px solid rgba(148, 163, 184, .25);
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--muted, #94a3b8);
+  background: rgba(15, 23, 42, .45);
+  font-size: .9rem;
+}
+
 .article blockquote {
   border-left: 4px solid var(--accent-2);
   background: var(--bg-card);

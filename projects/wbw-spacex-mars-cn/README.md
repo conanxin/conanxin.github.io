@@ -109,7 +109,13 @@ python3 -m http.server 8080
 
 详细验证结果见 `REPORT.md`。
 
+## V9C 增量说明（2026-06-14）
 
-## V8 Update (2026-06-14)
+- **结构修复**：Part 2 与 Phase 1 在 MD 中原本是粗体 `**...**`，V9C 渲染前已升级为 `#` / `##`，因此 `id="part-1/2/3"` 与 `id="phase-1/2/3"` 锚点全部可点击跳转。Phase 3 标题在 MD line 1921 位于 Part 2 `## 脚注` 之后，已通过调整 article body 切分策略保留。
+- **脚注重排**：3 个 Part 中重复的 `note-1-3902` 之类 MD ref 在 HTML 输出中加 `p1-/p2-/p3-` 后缀，全文 0 重复 id。
+- **静态预渲染**：glossary (32)、timeline (30)、sources (5) 全部从 JS 注入改为 HTML 内联，no-JS 可读。
+- **V8 旧表述清理**：「30+ 次（2024 纪录）」「乐观 2028-2031」「正在加载术语/时间线」等全部移除；替换为「截至 2026 年 6 月，Falcon 9 助推器 B1067 已完成第 35 次发射与着陆」「火星城市仍是远期愿景」「NASA Artemis III 已实现载人绕月、Starship HLS 仍是 NASA Artemis HLS 架构的一部分」。
+- **资源版本号**：`styles.css?v=20260614-v9c`、`app.js?v=20260614-v9c`，避免浏览器缓存。
+- **CSS 补丁**：`styles.css` 追加 1,127 字节 V9C 结构样式（`.article-footnotes`、`.original-appendix`、`.sources-grid` 等）。
 
-图片渲染全面修复: 134 张带链接图片从 markdown 残片正确渲染为 `<figure>` 元素，所有路径归一化为项目内相对路径 (`assets/images/original/...`)，CSS 加 figure / fallback 样式，app.js 加图片错误回退，cache-bust 升级到 `?v=20260614-v8`。详见 [REPORT.md](REPORT.md)。
+详细 gate 数据见 `REPORT.md` 末尾 V9C 章节。

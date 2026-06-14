@@ -995,3 +995,70 @@ sup a[href^="#footnote"]:hover {
   .article p { font-size: 0.98rem; }
   .module-title { font-size: 1.4rem; }
 }
+
+/* V9C structure / appendix polish */
+.article-footnotes,
+.original-appendix,
+.context-panel,
+.sources-section {
+  margin: 4rem auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.article-footnotes {
+  font-size: 0.94rem;
+  color: var(--text-muted, #94a3b8);
+}
+
+.footnote-list {
+  padding-left: 1.35rem;
+}
+
+.footnote-list li {
+  margin: 0.75rem 0;
+  line-height: 1.75;
+}
+
+.footnote-ref {
+  font-size: 0.75em;
+  margin-left: 0.12rem;
+}
+
+.footnote-backref {
+  margin-left: 0.5rem;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.original-appendix details {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 16px;
+  padding: 1rem 1.15rem;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.original-appendix summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.appendix-card,
+.source-card {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  padding: 1rem;
+  margin: 0.85rem 0;
+  background: rgba(15, 23, 42, 0.20);
+}
+
+.sources-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .sources-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

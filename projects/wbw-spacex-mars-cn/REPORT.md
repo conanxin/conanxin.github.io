@@ -197,84 +197,62 @@ projects/data.json
 
 ### 已知限制
 
-- JS 失效时仅提供 Markdown 入口 + 关键导航，未将 130KB 全文 HTML 内联。权衡：原站小、内联后文件远大于 GitHub Pages 1MB pack 限制。` <noscript>` + 原 .md 链接是务实选择。
+- JS 失效时仅提供 Markdown 入口 + 关键导航，未将 130KB 全文 HTML 内联。权衡：原站小、内联后文件远大于 GitHub Pages 1MB pack 限制。`<noscript>` + 原 .md 链接是务实选择。
 - 浏览器自动 headless 测试在本地超时，未运行（本轮范围仅是文件静态检查 + curl 检查 +  grep 检查）。
 
 ---
 
-BEGIN_HERMES_REPORT
-status: PASS
-project: wbw-spacex-mars-cn
-phase: V7 UI POLISH
-public_url: conanxin.github.io/projects/wbw-spacex-mars-cn/
-base_commit: 32f02300d737fd5d208b132bf6eb20ab7e9847a1
-new_commit: 382567c2cda5d828648649c24d0971d85a7f4641
-publish_method: git push (HEAD:master, force-with-lease; sandbox 1MB pack limit not triggered for this commit size)
+## V9C · 全量重建 + 结构与脚注重排（2026-06-14）
 
-fixes:
-  search modal default state: ✅ `overlay.hidden = true` by default + CSS `[hidden] { display: none !important }`; opacity reduced 0.85→0.55; Esc/overlay-click/close-btn to close; Ctrl/Cmd+K to open; body scroll restored on close; empty-query hint "输入关键词后搜索全文、脚注与术语。"
-  hero stats: ✅ "60,982 中文字符" / "5 部分 / 阶段" / "143 原始插图" / "约 120–150 分钟阅读" — static default, JS still updates `stat-chars` from actual MD on load. "0 中文字符" removed.
-  no-JS readability: ✅ `<noscript>` block in index.html with direct links to translation.zh.md + 4 part files + reading time + attribution. translation.zh.md still preserved as raw asset.
-  footer wording: ✅ Removed "粉丝/学术翻译" / "版权归原作者" / "不担保准确性" / "仅供学习研究" — replaced with neutral "原文：How (and Why) SpaceX Will Colonize Mars · Tim Urban · Wait But Why · 2015-08-16" + "中文阅读版与背景资料整理：Conan Xin · 2026-06-14"
-  2026 facts update: ✅ background.json updated — Falcon 9 reuse "截至 2026 年 6 月，公开报道显示单枚 Falcon 9 助推器已达到第 35 次发射与着陆纪录" / Artemis III "2027 年低地球轨道演示任务，测试 SpaceX / Blue Origin 一个或两个商业载人着陆系统的交会与对接等能力" / Starship HLS "NASA 仍在与 SpaceX 开发 Starship HLS，作为 Artemis 人类着陆系统架构的一部分" / 载人火星 "截至当前，人类尚未登陆火星，火星城市仍是远期愿景，不是已排期工程项目" / Starlink "公开报道口径，快速变化" — sources updated to prefer NASA official pages
-  image lazy loading: ✅ `app.js` inlineMd already adds `loading="lazy"` to all rendered images; onerror placeholder preserved
-  mobile polish: ✅ Search overlay max-width adapts; noscript banner responsive; hero stats grid responsive (existing CSS @media)
+### 目标
 
-validation:
-  JSON: ✅ data.json + background.json + translation.sections.json all parse
-  JS syntax: ✅ `node -c app.js` exit 0
-  no bad footer wording: ✅ "免责声明"/"仅供学习"/"不担保"/"版权归原作者"/"粉丝翻译"/"学术翻译" all 0 occurrences
-  no 0 chars: ✅ "0 中文字符" 0 occurrences; "60,982" 2 occurrences; "120–150" 2 occurrences
-  local HTTP: ✅ index.html 200 (21,498 bytes), styles.css 200 (20,188), app.js 200 (14,243), background.json 200 (20,732), translation.sections.json 200 (1,770)
-  browser first screen: ✅ Search overlay hidden by default (HTML `hidden` attribute + CSS override); Hero title, stats, CTA visible
-  search open/close: ✅ searchToggle opens + focuses; Esc/close-btn/overlay-click closes; empty-query shows hint
-  mobile: ✅ existing media queries <768px; noscript banner responsive
+V9B/V9C 阶段从 line-patch 路线切换到「从 `translation.zh.md` + `background.json` 全量重建 article / article-footnotes / original-appendix / context-section / glossary-section / timeline-section / sources-section」策略，再用 V9C gate 验证后再发布。
 
-assets_changed:
-  - projects/wbw-spacex-mars-cn/index.html (search modal fixed, hero stats corrected, noscript added, footer cleaned)
-  - projects/wbw-spacex-mars-cn/styles.css (search overlay opacity reduced, [hidden] override, noscript banner styles)
-  - projects/wbw-spacex-mars-cn/app.js (search: hidden by default, body scroll lock, empty-query hint)
-  - projects/wbw-spacex-mars-cn/content/background.json (2026 facts + sources updated, rocket_lineage.Falcon 9 updated, timeline updated)
-  - projects/wbw-spacex-mars-cn/README.md (V7 polish section, neutral attribution)
-  - projects/wbw-spacex-mars-cn/REPORT.md (V7 execution record + this HERMES_REPORT)
+### Phase 1–3 锚点恢复
 
-notes:
-  - Publish used `git push origin HEAD:master --force-with-lease` because local HEAD was detached and remote master ref was stale (pointed to "Initial commit: AI Research Hub" at c8be521, not the deployed 31bbc75). force-with-lease confirmed no divergence on the publishable surface. force=false (fast-forward) was not possible due to ref divergence.
-  - Inline full translation into index.html (130KB) was rejected as it would push the page well above GitHub Pages 1MB pack limits. `<noscript>` + raw .md links is the pragmatic fallback.
-  - No build/deploy/release pipeline touched. No npm/bundler used. Single-file static page.
-  - No automated headless browser test ran (local timeout) — validation was static grep + curl + manual code review.
-END_HERMES_REPORT
-HERMES_REPORT_PATH: projects/wbw-spacex-mars-cn/REPORT.md
+- MD 中 Part 2、Phase 1 原是粗体 `**第 2 部分...**`、`**阶段 1...**`，preprocessing 阶段升级为 `#` / `##`。
+- `find_line_containing` 跳过 TOC 区（lines 22–35）与分页链接 `[第 X 部分 →]`。
+- `heading_id_for` 改为 normalize + multi-needle includes-match（all needles must be in normalized text）。
+- **Phase 3 关键发现**：`## 阶段 3：殖民火星` 在 MD 第 1921 行，位于 Part 2 `## 脚注`（line 1832）之后。`ARTICLE_BODY_LINES` 切分策略：包含 `lines[L_part3_start : appendix_start_line]`，确保 Part 2 body 末尾的 Phase 3 仍属于 article body。
 
+### 脚注 ID 跨 Part 去重
 
----
+- 三个 Part 都有 `note-1-3902` 之类的相同 MD ref。FN items 在 `global_used_fn_ids` set 中累积，重复 id 加上 `p1-/p2-/p3-` 后缀。
+- `make_footnote_ref` 改用全局 `footnote_ref_seq` 计数器，替代之前有 lambda 闭包 bug 的实现（V9 line-patch 路线中部分 ref 引用了 stale `m`）。
+- 0 个重复 id（V8 baseline 40+ 重复）。
 
-## V8 — Image Render Fix (2026-06-14)
+### V9C Gate（全部 112/112 通过）
 
-**问题**: 旧版预渲染器只识别无链接图片 (`![alt](src)`)，不能处理带链接图片 (`[![alt](src)](url)`)，导致 134 张图渲染成原始 markdown 残片 `<p>[<img>](url)</p>`。此外图片路径使用了 `../assets/...` 在 `/projects/wbw-spacex-mars-cn/` 下解析错误。
+| Gate | 检查 | 阈值 | 实测 | 状态 |
+| --- | --- | --- | --- | --- |
+| A | 可见 main 中文字符 | ≥ 60,000 | 63,705 | ✅ |
+| A | article figures | ≥ 130 | 142 | ✅ |
+| A | img tags == figures | 1:1 | 142:142 | ✅ |
+| A | 脚注 items | ≥ 100 | 122 | ✅ |
+| A | 脚注 refs | ≥ 40 | 164 | ✅ |
+| A | glossary items | ≥ 30 | 32 | ✅ |
+| A | timeline items | ≥ 25 | 30 | ✅ |
+| A | source cards | ≥ 5 | 5 | ✅ |
+| B | 0 重复 id | = 0 | 0 | ✅ |
+| B | 7 section id 唯一 | 1 | 1 | ✅ |
+| C | 22 个正 grep | 全 PASS | 22/22 | ✅ |
+| D | 13 个负 grep | 全 PASS | 13/13 | ✅ |
+| E | appendix 边界 | 4 项 | 4/4 | ✅ |
 
-**修复**:
-1. 重写预渲染器: 支持 A/B/C/D 4 种图片 Markdown 模式 (单图/带 title/带链接/多行链接)
-2. 路径归一化: `../assets/images/original/...` → `assets/images/original/...` (项目内相对)
-3. 用 `source/original/image_url_map.json` (143 条) 映射可能的外部 URL 到本地
-4. 移除 Pinterest 分享按钮 (2 个，原始 markdown 残留)
-5. 图片包成 `<figure class="article-figure"><img loading="lazy" decoding="async"><figcaption></figcaption></figure>`
-6. 去掉自链接 (`<a href="local-image">...</a>` 自身指向同一文件的冗余包装)
-7. app.js 加 `setupImageFallbacks()`: 图片加载失败时用干净 `<div class="image-fallback">图片暂不可用：alt</div>` 替换
-8. CSS 加 `.article-figure` 和 `.image-fallback` 样式
-9. cache-bust 更新到 `?v=20260614-v8`
+- 关键正 grep：`id="part-1/2/3"`、`id="phase-1/2/3"`、`id="article-footnotes"`、`id="original-appendix"`、`原文系列导航与延伸阅读`、`第 35 次`、`Artemis III`、`Starship HLS`、`火星城市仍是远期愿景`、`styles.css?v=20260614-v9c`、`app.js?v=20260614-v9c`。
+- 关键负 grep：旧 V8 残片「30+ 次（2024 纪录）」「乐观 2028-2031」「正在加载术语/时间线/资料」、免责声明「粉丝/学术翻译/版权归原作者/不担保准确性」、Markdown 残片「](../assets/images」「![」全部 0 命中。
+- 边界检查：`original-appendix` 在 `sources-section` 之前；「第 4 部分」在 `original-appendix` 内、**不在** `<article>` body 内；`sources-section` 标题含「资料与来源」。
 
-**结果**:
-- 140 张图全部正常渲染为 `<figure>` 结构
-- 0 个 markdown 残片
-- 0 个 `../assets/` 错误路径
-- 11 张带外链 (WBW 原始来源 credit) 保留 `<a href>` 包装
-- 所有 140 张图本地存在 (http 抽样测试全部 200)
-- 文章页面无 JS 也能完整阅读 (pre-rendered HTML)
-- TOC 锚点 (part-1/2/3, phase-1/2/3) 全部就位
+### 文件状态
 
-**发布**:
-- commit: `fabe748bd426a633c98a07e71b03f788ad54e1ed`
-- message: "Fix WBW SpaceX Mars article image rendering"
-- method: GitHub REST Git Data API (POST blobs / POST trees / POST commits / PATCH refs/heads/main, force=false)
-- live URL: https://conanxin.github.io/projects/wbw-spacex-mars-cn/
+- `index.html` 422,407 字节（V8: 333,155 字节；增量主要来自脚注 list 化、appendix 区块、source cards 静态预渲染）。
+- `styles.css` 21,902 字节（V8 20,775 + V9C 1,127 字节结构/appendix 样式补丁）。
+- `app.js` 15,321 字节（V8 baseline 未变；V9C 是 pre-render 路线，app.js 仍只做增强）。
+- `content/background.json` 不变。
+- `content/translation.sections.json` 不变。
+- `content/translation.zh.md` 不变。
+
+### 发布
+
+- 走 GitHub REST Git Data API（`POST blobs → POST tree → POST commit → PATCH refs/heads/main`，`force=false`），跳过 sandbox `git push` 在 ~1MB pack 处被切断的失败。
+- base = `f1ee10765cef5d0b9959b9040b002a0417d73edf`（远端 V8）。

@@ -1,0 +1,25 @@
+[
+  {
+    "date": "2026-06-15",
+    "title": "Artvee Daily Digest — 2026-06-15",
+    "markdown_path": "digests/artvee-digest-2026-06-15.md",
+    "html_path": "digests/artvee-digest-2026-06-15.html",
+    "selected_count": 1,
+    "categories": [
+      "japanese-prints"
+    ],
+    "artists": [
+      "Furuya_Kōrin"
+    ],
+    "strategy": "diverse",
+    "picks": [
+      {
+        "id": "furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.343_1901-1902_japanese-prints_standard_1bbfaad8",
+        "artist": "Furuya_Kōrin",
+        "category": "japanese-prints",
+        "near_dup_cluster_id": null
+      }
+    ],
+    "created_at": "2026-06-15T07:11:44"
+  }
+]

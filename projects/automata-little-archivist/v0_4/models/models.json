@@ -1,9 +1,0 @@
-[
-  {
-    "label": "Assembly Preview — v0.1 Unified Body",
-    "filename": "assembly_preview.stl",
-    "category": "assembly",
-    "description": "Full v0.1 unified body with lean angle, shell geometry, and internal mechanism preview.",
-    "default": true
-  }
-]

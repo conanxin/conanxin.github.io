@@ -1,5 +1,0 @@
-faada0e Add Amazon Tax reading note, evidence, and concept pages
-A	agent-idea-wiki/wiki/concepts/amazon-tax.md
-A	agent-idea-wiki/wiki/concepts/aws-primitives.md
-A	agent-idea-wiki/wiki/evidence/amazon-tax-core-arguments.md
-A	agent-idea-wiki/wiki/reading-notes/amazon-tax-2016.md

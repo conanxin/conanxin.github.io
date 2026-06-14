@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.0",
+  "project": "wbw-spacex-mars-cn",
+  "last_updated": "2026-06-14",
+  "source_article": {
+    "title": "How (and Why) SpaceX Will Colonize Mars",
+    "author": "Tim Urban",
+    "site": "Wait But Why",
+    "published_date": "2015-08-16",
+    "source_url": "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+    "series": "Elon Musk companies series, Part 3 of 4",
+    "word_count_estimate": 41265
+  },
+  "article_context": {
+    "what_is_wbw": "Wait But Why（WBW）是 Tim Urban 自 2013 年创办的长文博客，以通俗幽默风格解释复杂主题（AI、火箭、冥想、Procrastination 等）。每一篇都是数千到上万字深度长文。",
+    "author_intro": "Tim Urban（生于 1980 年代）— 长文作家、博客 Wait But Why 创始人、The Oatmeal 联合创始人。擅长把复杂主题用 stick figures + 幽默 + 类比拆解。",
+    "this_post_role": "本文是 2015 年 Musk 公司系列四部曲的第 3 篇，位于：Part 1 Elon Musk 介绍（2015-05）→ Part 2 Tesla（2015-06）→ **Part 3 SpaceX & Mars**（2015-08）→ Part 4 Musk's Secret Sauce（2015-11）",
+    "core_question": "为什么 SpaceX 要殖民火星 + 如何实现？文章核心论证：人类应作为多星球物种备份「硬盘」，并通过火箭复用把火星票价压到 50 万美元/座。"
+  },
+  "spacex_context": {
+    "company_founding": "SpaceX 2002 年由埃隆·马斯克创立，目标是降低太空运输成本并使火星殖民成为可能。",
+    "rocket_lineage": {
+      "Falcon 1": {
+        "type": "小型运载火箭",
+        "first_flight": "2006-03",
+        "status_2015": "已退役（5 次发射中 4 失败 1 部分失败 → 2008-09 成功 1 次）",
+        "significance": "第一枚私人公司研发到达轨道的液体燃料火箭。"
+      },
+      "Falcon 9": {
+        "type": "中型两级可复用运载火箭",
+        "first_flight": "2010-06",
+        "status_2015": "主力火箭，已复用实验",
+        "significance": "可重复使用一级革命 — 单价远低于行业平均。"
+      },
+      "Falcon Heavy": {
+        "type": "重型火箭（3 个 Falcon 9 一级）",
+        "first_flight_planned_2015": "2016（实际 2018-02 首飞）",
+        "significance": "现役最大运力火箭之一。"
+      },
+      "Dragon / Dragon 2": {
+        "type": "货运 / 载人飞船",
+        "first_flight": "Dragon 1: 2010（Demo）；Dragon 2: 2019（无载人 Demo）",
+        "significance": "唯一能从 ISS 带货物返回的现役货运飞船。"
+      },
+      "Starship / Super Heavy": {
+        "type": "下一代完全可复用超重型运载系统",
+        "first_flight_planned_2015": "文章中尚未命名（叫 MCT/BFR）",
+        "actual_progress": "2019 改名 Starship；2020-2025 完成多次测试，包括 2024-10 首次筷子夹住 Super Heavy；2025 进入频繁亚轨道测试阶段。",
+        "significance": "文章火星殖民运输器（MCT）的真正实现。"
+      }
+    },
+    "why_reusability_matters": "传统火箭每次发射后坠海或烧毁，等于每次花 6,000 万美元扔一架波音 737。SpaceX 通过一级回收+翻新，目标把单次发射边际成本从火箭造价降到几乎只剩燃料，让太空旅行便宜 100 倍。这是文章的核心论点。",
+    "commercial_milestones_2015_2026": [
+      "2008: NASA CRS 合同 12 次 Dragon 任务到 ISS（价值 16 亿美元）",
+      "2012-2015: Dragon 多次对接 ISS；Falcon 9 一级回收实验（2015 多次失败 → 2015-12-21 首次陆地着陆成功）",
+      "2014-2019: Crew Dragon 研发 + 2020-05 首次载人（Demo-2）",
+      "2019-2025: Starlink 巨型星座部署，迄今（2026）已超 7,000 颗在轨",
+      "2020-2025: Starship 原型机 SN5/SN6/SN8/SN9/SN10/SN15 + 多次高空跳跃 → IFT-1 至 IFT-7+ 轨道试飞"
+    ]
+  },
+  "vision_vs_reality": {
+    "2015_vision": {
+      "falcon_9_reuse": "可复用一级 — 行业标准数千万美元单次发射，SpaceX 目标降到五分之一甚至十分之一",
+      "falcon_heavy": "2016 首飞，载荷为当时其他火箭的两倍以上",
+      "crew_dragon": "2017 首次载人飞行",
+      "starlink_constellation": "4,000 颗 LEO 互联网卫星，2030 前部署",
+      "mct_bfr_starship": "Mars Colonial Transporter — 100+ 人/次，去火星 50 万美元/座",
+      "first_mars_crew": "2025 或 2027 年（Musk 预测）",
+      "mars_city_by_2040": "Musk 估计"
+    },
+    "2026_reality": {
+      "falcon_9_reuse": "✅ 大获成功。Falcon 9 已成为世界最繁忙火箭，单枚助推器最高复用超 30 次。单次发射价 6,700 万美元左右，回收价更低（约 5,000 万美元）。改变了行业。",
+      "falcon_heavy": "✅ 2018-02 首飞成功，已多次执行军方/商业任务（NROL/USSF）。但 Starship 发展使 Falcon Heavy 长期前景不明。",
+      "crew_dragon": "✅ 2020-05 Demo-2 首次载人，2020-11 正式 operational。已多次运送 NASA 宇航员到 ISS。恢复了美国本土载人能力。",
+      "starlink_constellation": "✅✅ 超额完成。Starlink 已成为全球最大卫星星座，2024 起在轨超 7,000 颗。提供全球互联网接入，月活用户超 500 万。",
+      "starship": "⚠️ 进展中但推迟。SN15 完成 10 km 跳跃，Orbital 试飞 IFT-1 至 IFT-7+ 已多次执行。2024-10 首次筷子夹住 Super Heavy。但 Starship 完整轨道复用 + 载人 + 火星任务仍在研发中。",
+      "first_mars_crew": "❌ 仍未实现。Musk 多次推迟 — 2024 公开表示乐观目标 2028-2031，但工程难度极大。",
+      "mars_city_by_2040": "❌ 极不可能。当前 Starship 仍在亚轨道测试阶段，月球 Artemis III（2027 推迟至更晚）才是下一个载人深空目标。"
+    },
+    "still_unresolved": {
+      "human_mars_landing": "没有任何国家或机构在 2026 年前完成载人火星。NASA 月球计划 Artemis 多次推迟。SpaceX 仍需证明 Starship 完整复用 + 长期载人 + 火星进入/着陆/上升全链路。",
+      "radiation_protection": "6-9 个月深空辐射对人体健康的影响仍未完全解决，需要新型屏蔽或药物。",
+      "in_situ_resource_utilization": "在火星上用 CO2 + H2O 制造甲烷/氧气推进剂 — Musk 多次强调，原理清楚，但工程化未验证。",
+      "long_term_low_gravity_health": "0.38g 火星重力对人类长期骨密度、肌肉、心血管、视力影响尚无数据。",
+      "closed_ecosystem_psychology": "小群体在密闭环境中的心理稳定性、跨代繁衍可行性 — 未有长期数据。",
+      "mars_economy": "火星城市如何自给自足？Mars 出口（药物、艺术品、稀有元素）的经济模型仍属理论。",
+      "governance": "火星上数十万人社区的治理形式（直接民主？公司治理？地球国家延伸？）未确定。",
+      "terraforming": "完全地球化火星需 100-1000 年，2026 年仍处理论阶段。"
+    }
+  },
+  "mars_challenges": {
+    "life_support": "ECLSS（环境控制与生命保障系统）需在火星上长期闭环运行 — 空气、水、食物循环。当前 ISS 系统需定期补给，火星没有补给。",
+    "radiation": "火星大气密度仅地球 1%，无全球磁场。地表年辐射剂量约 240-300 mSv（ISS 约 200 mSv，地球表面约 2.4 mSv）。需要：地下/水冰掩体 / 新型材料 / 药物（仍研发中）。",
+    "low_gravity": "0.38g 长期影响未知。ISS 经验：0g 引起骨密度下降 1-1.5%/月、肌肉萎缩、视力变化。火星重力介于 0g 和 1g 之间，结果未知。",
+    "closed_ecosystem": "生物再生生命保障系统（如 NASA 的 MELiSSA 计划）测试中，但完整闭循环（食物+空气+水全自给）尚未在 Mars 真实条件验证。",
+    "food_production": "火星土壤含高氯酸盐，需清洗或微生物处理。温室种植需要：人工光（LED）、加压、授粉昆虫或人工授粉。",
+    "energy": "Musk 倾向太阳能。火星距太阳更远（1.52 AU）→ 太阳能约为地球 43%。沙尘暴可能覆盖太阳能板数周。核反应堆（KiloPower 等）可能更稳定。",
+    "medical": "无地球式医院。远程手术、3D 打印药物、AI 辅助诊断等是预期解决方案。",
+    "psychology": "小群体（< 100 人）密闭数月旅行 + 数年定居的 B 效应、抑郁、人际冲突风险。类比南极冬季站/ISS，但更长。",
+    "governance": "火星定居者的法律地位？由 SpaceX 公司治理？由国际条约（1967 Outer Space Treaty 限制国家主权）？2026 仍无定论。",
+    "economics": "火星无法自给自足前的补给成本 — 单人往返地球-火星保守估计 100-1000 亿美元（2015 Musk 目标 50 万美元/座）。火星经济如何起步？谁买火星出口？"
+  },
+  "terraforming_controversy": {
+    "supporters": ["Musk（明确支持）", "Robert Zubrin（Mars Society 创始人）", "NASA Chris McKay", "大量 sci-fi 想象"],
+    "critics": [
+      "技术难度 — 完全地球化需 100-1000 年，过程中火星将经历剧烈气候转型",
+      "伦理 — 是否应该把一颗有潜在微生物生命的星球改造为人类可居住？",
+      "国际法 — 1967 Outer Space Treaty 把天体列为「人类共同遗产」，大规模改造火星可能违反原则",
+      "替代方案 — 建造封闭栖息地（人工生物圈）可能比改造整颗行星更现实",
+      "不可逆性 — 一旦开始地球化，无法回退到原始状态"
+    ],
+    "alternatives": [
+      "地下城市（利用火星熔岩管）",
+      "大型加压穹顶",
+      "轨道栖息地（类似 O'Neill Cylinder）"
+    ]
+  },
+  "glossary": [
+    {"term": "SpaceX", "definition": "Space Exploration Technologies Corp.，2002 年由埃隆·马斯克创办的美国私人航天公司。"},
+    {"term": "Falcon 1", "definition": "SpaceX 第一款运载火箭，小型，2006-2009 共 5 次发射。"},
+    {"term": "Falcon 9", "definition": "SpaceX 主力两级运载火箭，2010 首飞，可一级回收。"},
+    {"term": "Falcon Heavy", "definition": "3 个 Falcon 9 一级绑成的重型火箭，2018 首飞。"},
+    {"term": "Dragon 飞船", "definition": "SpaceX 货运/载人飞船，CRS 任务载货到 ISS，Dragon 2 载人。"},
+    {"term": "Crew Dragon", "definition": "Dragon 2 载人版，2020 首次载人，恢复美国本土载人能力。"},
+    {"term": "Starship", "definition": "SpaceX 下一代完全可复用超重型运载系统，含 Super Heavy 一级 + Starship 上面级。原名 MCT/BFR。"},
+    {"term": "Super Heavy", "definition": "Starship 的超重型第一级，配备 33 台 Raptor 发动机。"},
+    {"term": "Raptor", "definition": "SpaceX 全流量分级燃烧甲烷氧发动机，Starship 专用。"},
+    {"term": "Merlin", "definition": "SpaceX 主力燃气发生器循环煤油氧发动机，Falcon 系列专用。"},
+    {"term": "近地轨道 (LEO)", "definition": "Low Earth Orbit，高度 160-2000 km 的地球轨道。"},
+    {"term": "地球静止轨道 (GEO)", "definition": "Geostationary Orbit，距地 35,786 km，绕地周期与地球自转同步。"},
+    {"term": "ISS", "definition": "国际空间站，1998 开始建造，2011 Space Shuttle 退役后是唯一长期载人空间站。"},
+    {"term": "Mars Colonial Transporter (MCT)", "definition": "文章 2015 年对 SpaceX 火星殖民火箭的暂定名，后改名 BFR (Big Falcon Rocket)，最终定名 Starship。"},
+    {"term": "可重复使用火箭 (Reusable Rocket)", "definition": "能够回收、翻新、再次发射的火箭。SpaceX 通过回收 Falcon 9 一级把单次发射成本降低数倍。"},
+    {"term": "地球化改造 (Terraforming)", "definition": "通过工程手段改变行星气候和环境使其适合地球生命。文章讨论融化极地冰、释放 CO2、引入植物等方法。"},
+    {"term": "Starlink", "definition": "SpaceX LEO 互联网卫星星座，2019 起部署，目标数万颗。"},
+    {"term": "推进式着陆 (Propulsive Landing)", "definition": "用发动机反推减速着陆，区别于降落伞或滑翔。"},
+    {"term": "栅格翼 (Grid Fins)", "definition": "Falcon 9 一级顶部可展开的钛合金方格状控制翼，大气层内用于姿态控制。"},
+    {"term": "SuperDraco", "definition": "Dragon 2 推进式着陆和中止系统用发动机，3D 打印制造。"},
+    {"term": "原位资源利用 (ISRU)", "definition": "In-Situ Resource Utilization，用当地资源（Mars 的 CO2/H2O）制造燃料、氧气、建材。"},
+    {"term": "在轨加注", "definition": "Orbital Refueling，在轨道上为飞船补充推进剂，是 Starship 火星任务的关键技术。"},
+    {"term": "蓝色起源 (Blue Origin)", "definition": "Jeff Bezos 创办的私人航天公司，主要竞争对手。研发 New Glenn 等火箭。"},
+    {"term": "ULA (United Launch Alliance)", "definition": "波音 + 洛马合资的美国军方发射服务商，长期垄断美国政府发射，近年被 SpaceX 抢占份额。"},
+    {"term": "NASA Commercial Crew", "definition": "NASA 2014 年启动的私人公司载人航天合同，SpaceX 获 26 亿美元，波音获 42 亿美元。"},
+    {"term": "Artemis 计划", "definition": "NASA 2019 启动的重返月球计划，2024-2025 多次推迟，目标 2027+ 实现载人月球着陆，使用 SpaceX Starship 作为月面着陆器（HLS）。"},
+    {"term": "火星殖民舰队 (MCT Colonial Fleet)", "definition": "文章中描述的火星殖民运输器机队，多艘飞船在轨道集结后同时飞往火星。"},
+    {"term": "木卫三 (Ganymede)", "definition": "Jupiter 最大的卫星，是太阳系最大的卫星。文章开头场景设在 2365 AD 人类在木卫三的女儿准备前往地球。"},
+    {"term": "Zurple & Quignee", "definition": "文章中两个外星人角色，在他们的星球 Uvuvuwu 上打赌地球生命是否会灭绝。"},
+    {"term": "Uvuvuwu & 143-Snoogie", "definition": "Uvuvuwu 是外星人的母星，143-Snoogie 是他们对地球的命名。"},
+    {"term": "IntelliWatch App", "definition": "文章中虚构的外星人 app，当某星球生命达到「胎儿智能」或「上帝点」时推送通知。"},
+    {"term": "上帝点 (God Point)", "definition": "文章概念：物种同时获得「永久消除自身脆弱性」和「意外灭绝自身」两种力量的关键时刻。"}
+  ],
+  "timeline": [
+    {"date": "1957-10", "event": "Sputnik 1 发射，太空竞赛开始", "category": "space_race"},
+    {"date": "1961-04", "event": "尤里·加加林成为首个进入太空的人类", "category": "space_race"},
+    {"date": "1969-07", "event": "Apollo 11 登月", "category": "apollo"},
+    {"date": "1972-12", "event": "Apollo 17，最后一次载人登月", "category": "apollo"},
+    {"date": "1981-1985", "event": "Space Shuttle 投入运行", "category": "apollo"},
+    {"date": "1998-2011", "event": "ISS 建造、运行", "category": "iss"},
+    {"date": "2002", "event": "SpaceX 创立", "category": "spacex"},
+    {"date": "2006-2008", "event": "Falcon 1 五次发射（4 失败 1 成功）", "category": "spacex"},
+    {"date": "2008-09", "event": "Falcon 1 第四次发射首次成功，SpaceX 获 NASA CRS 合同", "category": "spacex"},
+    {"date": "2010-06", "event": "Falcon 9 首飞", "category": "spacex"},
+    {"date": "2010-12", "event": "Dragon 飞船首次入轨 + 回收", "category": "spacex"},
+    {"date": "2012-05", "event": "Dragon 首次对接 ISS", "category": "spacex"},
+    {"date": "2014-05", "event": "Dragon 2 揭幕", "category": "spacex"},
+    {"date": "2014-09", "event": "NASA Commercial Crew 合同：SpaceX $26 亿 / Boeing $42 亿", "category": "spacex"},
+    {"date": "2015-08", "event": "本文《How (and Why) SpaceX Will Colonize Mars》发布", "category": "milestone"},
+    {"date": "2015-12", "event": "Falcon 9 一级首次陆地成功回收", "category": "spacex"},
+    {"date": "2016-04", "event": "Falcon 9 一级首次海上驳船成功回收", "category": "spacex"},
+    {"date": "2018-02", "event": "Falcon Heavy 首飞（Elon 把 Tesla Roadster 送入火星轨道）", "category": "spacex"},
+    {"date": "2019-03", "event": "SpaceX Crew Dragon Demo-1 无人首飞", "category": "spacex"},
+    {"date": "2019-05", "event": "首批 60 颗 Starlink 卫星发射", "category": "starlink"},
+    {"date": "2019-11", "event": "Starship MK1 揭幕（正式命名）", "category": "starship"},
+    {"date": "2020-05", "event": "Crew Dragon Demo-2 首次载人", "category": "spacex"},
+    {"date": "2020-2025", "event": "Starlink 大规模部署，2025 末已超 7,000 颗", "category": "starlink"},
+    {"date": "2021-04", "event": "NASA 选 SpaceX Starship 作为 Artemis HLS 登月器", "category": "artemis"},
+    {"date": "2021-2024", "event": "Starship 多架原型机 SN5/SN6/SN8-SN15 试飞", "category": "starship"},
+    {"date": "2023-04", "event": "Starship 首次完整堆叠轨道试飞 (IFT-1)", "category": "starship"},
+    {"date": "2024-10", "event": "Starship 首次筷子夹住 Super Heavy 助推器", "category": "starship"},
+    {"date": "2025-2026", "event": "Starship 进入频繁亚轨道/轨道测试，目标 Artemis III 支援", "category": "starship"},
+    {"date": "2027+ (推)", "event": "NASA Artemis III 计划载人登月（多次推迟）", "category": "artemis"},
+    {"date": "2028+ (推)", "event": "SpaceX 乐观目标：首次载人火星（极可能再推迟）", "category": "mars"}
+  ],
+  "sources": {
+    "primary": [
+      "原文：https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+      "WBW 同一系列：Elon Musk: The World's Raddest Man（2015-05）",
+      "WBW 同一系列：How Tesla Will Change Your Life（2015-06）",
+      "WBW 同一系列：The Cook and the Chef: Musk's Secret Sauce（2015-11）"
+    ],
+    "biography": "Ashlee Vance: Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future (2015)",
+    "official": [
+      "SpaceX 官网：https://www.spacex.com",
+      "NASA Mars 计划：https://mars.nasa.gov",
+      "NASA Artemis：https://www.nasa.gov/artemis"
+    ],
+    "updates_2015_2026": [
+      "SpaceX 推特：https://twitter.com/spacex（每次发射直播）",
+      "SpaceX 维基发射列表：https://en.wikipedia.org/wiki/List_of_Falcon_9_and_Falcon_Heavy_launches",
+      "Starship 进度：https://en.wikipedia.org/wiki/SpaceX_Starship",
+      "Starlink 状态：https://en.wikipedia.org/wiki/Starlink",
+      "Artemis 计划：https://en.wikipedia.org/wiki/Artemis_program"
+    ],
+    "academic": [
+      "Robert Zubrin: The Case for Mars（1996，中译《赶往火星》）",
+      "NASA Mars Architecture 2024",
+      "Chris McKay 关于火星地球化的论文"
+    ]
+  },
+  "reading_paths": {
+    "casual": ["Why go to Mars", "Starship 进展", "Time line"],
+    "engineer": ["Falcon 9 / Merlin / Super Heavy", "How Reusability Works", "Mars Challenges"],
+    "futurist": ["Civilization Backup", "Why This Decade Matters", "Beyond Mars"]
+  }
+}

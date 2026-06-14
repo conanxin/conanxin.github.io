@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="deep-space" data-mode="immersive">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Wait But Why 长文《How (and Why) SpaceX Will Colonize Mars》完整中文版，附 2015 vs 2026 SpaceX / Starship / 火星殖民进展对比。">
+  <title>SpaceX 如何以及为什么要殖民火星 · Wait But Why 长文中文版</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23c1440e'/%3E%3Ccircle cx='35' cy='40' r='6' fill='%23ff6b3d' opacity='0.6'/%3E%3Ccircle cx='60' cy='55' r='4' fill='%23ff6b3d' opacity='0.5'/%3E%3Ccircle cx='55' cy='30' r='3' fill='%23ff6b3d' opacity='0.4'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- ======= HERO ======= -->
+  <header class="hero" id="hero">
+    <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+    <div class="hero-bg" aria-hidden="true">
+      <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="marsGlow" cx="80%" cy="50%" r="40%">
+            <stop offset="0%" stop-color="#c1440e" stop-opacity="0.6"/>
+            <stop offset="50%" stop-color="#7a2412" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="orbitGlow" cx="20%" cy="30%" r="50%">
+            <stop offset="0%" stop-color="#4a8cff" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1200" height="600" fill="#0a0e1a"/>
+        <ellipse cx="960" cy="300" rx="220" ry="180" fill="url(#marsGlow)"/>
+        <circle cx="960" cy="300" r="100" fill="#c1440e"/>
+        <circle cx="940" cy="280" r="8" fill="#7a2412" opacity="0.7"/>
+        <circle cx="985" cy="310" r="6" fill="#7a2412" opacity="0.5"/>
+        <circle cx="950" cy="335" r="4" fill="#7a2412" opacity="0.6"/>
+        <ellipse cx="240" cy="180" rx="280" ry="120" fill="url(#orbitGlow)"/>
+        <ellipse cx="240" cy="180" rx="220" ry="85" fill="none" stroke="#4a8cff" stroke-width="1" opacity="0.3"/>
+        <ellipse cx="240" cy="180" rx="280" ry="120" fill="none" stroke="#4a8cff" stroke-width="0.5" opacity="0.2" stroke-dasharray="4 6"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-meta">
+        <span class="badge">Wait But Why 长文中文版</span>
+        <span class="badge badge-source">原文 · 2015-08-16</span>
+        <span class="badge badge-translator">中文翻译 · 2026-06-14</span>
+      </div>
+      <h1 class="hero-title">SpaceX 如何<br>以及为什么<br>要殖民火星</h1>
+      <p class="hero-subtitle">人类、太空、火星与文明备份</p>
+      <div class="hero-byline">
+        <span><strong>作者：</strong>Tim Urban</span>
+        <span><strong>发布：</strong>2015-08-16</span>
+        <span><strong>来源：</strong><a href="https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html" target="_blank" rel="noopener">waitbutwhy.com</a></span>
+        <span><strong>翻译：</strong>2026-06-14</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="stat-chars">0</span><span class="stat-label">中文字符</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">章节</span></div>
+        <div class="stat"><span class="stat-num">143</span><span class="stat-label">原始插图</span></div>
+        <div class="stat"><span class="stat-num">~40min</span><span class="stat-label">阅读时长</span></div>
+      </div>
+      <a href="#part-1" class="hero-cta">开始阅读 →</a>
+    </div>
+    <div class="progress-bar" id="progressBar" aria-hidden="true">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </header>
+
+  <!-- ======= TOOLBAR ======= -->
+  <div class="toolbar" id="toolbar">
+    <button class="tool-btn" id="tocToggle" aria-label="切换目录">
+      <span class="tool-icon">☰</span> 目录
+    </button>
+    <div class="tool-group">
+      <button class="tool-btn" data-mode="immersive" aria-label="沉浸模式">沉浸</button>
+      <button class="tool-btn" data-mode="annotated" aria-label="注释模式">注释</button>
+      <button class="tool-btn" data-mode="compact" aria-label="紧凑模式">紧凑</button>
+    </div>
+    <div class="tool-group">
+      <button class="tool-btn" data-theme="deep-space" aria-label="深空暗色">🌌 深空</button>
+      <button class="tool-btn" data-theme="mars-sand" aria-label="火星沙色">🪐 火星沙</button>
+    </div>
+    <button class="tool-btn" id="searchToggle" aria-label="搜索术语">🔍 术语</button>
+    <a href="#hero" class="tool-btn" id="topBtn" aria-label="返回顶部">↑ 顶部</a>
+  </div>
+
+  <!-- ======= LAYOUT ======= -->
+  <div class="layout">
+    <!-- ======= TOC SIDEBAR ======= -->
+    <aside class="toc" id="toc" aria-label="章节目录">
+      <div class="toc-inner">
+        <h2 class="toc-title">章节目录</h2>
+        <nav>
+          <ul class="toc-list" id="tocList">
+            <li class="toc-h1"><a href="#part-1" class="toc-link">第 1 部分 · 人类与太空的故事</a></li>
+            <li class="toc-h1"><a href="#part-2" class="toc-link">第 2 部分 · 马斯克的使命</a></li>
+            <li class="toc-h1"><a href="#part-3" class="toc-link">第 3 部分 · 如何殖民火星</a>
+              <ul>
+                <li class="toc-h2"><a href="#phase-1" class="toc-link">阶段 1 · 想办法把东西送入太空</a></li>
+                <li class="toc-h2"><a href="#phase-2" class="toc-link">阶段 2 · 革命化太空旅行的成本</a></li>
+                <li class="toc-h2"><a href="#phase-3" class="toc-link">阶段 3 · 殖民火星</a></li>
+              </ul>
+            </li>
+            <li class="toc-h1"><a href="#background" class="toc-link">背景资料 · 2015 vs 2026</a></li>
+            <li class="toc-h1"><a href="#glossary-section" class="toc-link">关键术语</a></li>
+            <li class="toc-h1"><a href="#timeline-section" class="toc-link">时间线</a></li>
+            <li class="toc-h1"><a href="#sources-section" class="toc-link">资料与来源</a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ======= MAIN ======= -->
+    <main class="main" id="main">
+      <!-- Translation will be rendered here -->
+      <article class="article" id="article">
+        <div class="loading">正在加载中文译文…</div>
+      </article>
+
+      <!-- ======= WHY GO TO MARS ======= -->
+      <section class="module" id="why-mars">
+        <h2 class="module-title">「为什么去火星？」交互卡片</h2>
+        <p class="module-sub">点开下面 5 个理由展开 Tim Urban 原文核心论据</p>
+        <div class="card-grid">
+          <details class="card" open>
+            <summary>1. 备份硬盘</summary>
+            <p>地球生命 36 亿年来经历过 5 次大灭绝，每隔 1 亿年一次。人类用「硬存硬盘」比喻：<strong>别把所有鸡蛋放一个篮子里</strong>。把 100 万人送到火星 = 复制一份 Excel 文档到第二个硬盘。</p>
+          </details>
+          <details class="card">
+            <summary>2. 上帝点</summary>
+            <p>当一个物种同时获得「永久消除自身脆弱」和「意外灭绝自身」两种力量时，就是「上帝点」。今天人类正同时在 AI、基因工程、纳米、核武、气候工程方向逼近。</p>
+          </details>
+          <details class="card">
+            <summary>3. 火星是唯一现实选项</summary>
+            <p>水星是地狱；金星是高压锅；木星/土星没有地面；月亮太小。火星重力 0.38g、自转 24.5 小时、有水冰、有大气——是太阳系唯一「可生存」的地外行星。</p>
+          </details>
+          <details class="card">
+            <summary>4. 上限成本：从 100 亿美元/座 → 50 万美元/座</summary>
+            <p>1989 老布什时代估算去火星要 100 亿美元/座。Musk 目标 50 万美元/座。要降 20,000 倍，靠两个杠杆：<em>大飞船</em>（降 20 倍）+ <em>火箭复用</em>（再降 100 倍）。</p>
+          </details>
+          <details class="card">
+            <summary>5. 冒险与文明叙事</summary>
+            <p>Apollo 11 让一代人不再问「人能去哪」。马斯克认为：让几十亿人参与一场真实的「从地球到火星」冒险，能重新点燃「文明叙事」——这是政治、医疗、贫困之外的另一种必要。</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- ======= HOW TO GO TO MARS ======= -->
+      <section class="module" id="how-mars">
+        <h2 class="module-title">「如何去火星？」工程路线图</h2>
+        <p class="module-sub">Musk 的三阶段战略</p>
+        <div class="roadmap">
+          <div class="roadmap-step">
+            <div class="roadmap-num">1</div>
+            <div class="roadmap-body">
+              <h3>阶段 1 · 学会把东西送入太空</h3>
+              <p>2002 SpaceX 创立 → 2008 Falcon 1 首次成功 → 2010 Falcon 9 首飞 → 2012 Dragon 对接 ISS。<strong>目标：</strong>把发射成本砍到行业标准 1/5。</p>
+              <div class="roadmap-tag status-2015">2015 状态：进行中</div>
+              <div class="roadmap-tag status-2026">2026 状态：✅ 完成</div>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">2</div>
+            <div class="roadmap-body">
+              <h3>阶段 2 · 革命化太空旅行的成本</h3>
+              <p>Falcon 9 一级回收（2015-12 首次陆地成功）→ Falcon Heavy（2018 首飞）→ Crew Dragon（2020 首次载人）→ Starlink 巨型星座 → Starship 开发。</p>
+              <div class="roadmap-tag status-2015">2015 状态：测试中</div>
+              <div class="roadmap-tag status-2026">2026 状态：✅ 主要达成，Starship 仍在测试</div>
+            </div>
+          </div>
+          <div class="roadmap-step">
+            <div class="roadmap-num">3</div>
+            <div class="roadmap-body">
+              <h3>阶段 3 · 殖民火星</h3>
+              <p>Mars Colonial Transporter（2015 暂定名）→ 最终改名 BFR / Starship（2019）。100+ 人/次，去火星 50 万美元/座。文章预测 2025-2027 首次载人。</p>
+              <div class="roadmap-tag status-2015">2015 状态：未启动</div>
+              <div class="roadmap-tag status-2026">2026 状态：⚠️ 推迟，乐观目标 2028-2031</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= REUSABILITY ======= -->
+      <section class="module" id="reusability">
+        <h2 class="module-title">「SpaceX 火箭复用逻辑」成本曲线</h2>
+        <p class="module-sub">为什么 Musk 说「复用能把太空成本砍 100 倍」</p>
+        <div class="cost-curve">
+          <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" aria-label="复用降低发射成本示意图">
+            <defs>
+              <linearGradient id="c1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4a8cff" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#4a8cff" stop-opacity="0.05"/>
+              </linearGradient>
+            </defs>
+            <line x1="50" y1="250" x2="580" y2="250" stroke="#888" stroke-width="1"/>
+            <line x1="50" y1="20" x2="50" y2="250" stroke="#888" stroke-width="1"/>
+            <text x="300" y="275" text-anchor="middle" fill="#aaa" font-size="12">复用次数</text>
+            <text x="20" y="135" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90 20 135)">单次发射边际成本</text>
+            <rect x="80" y="40" width="60" height="210" fill="url(#c1)"/>
+            <text x="110" y="35" text-anchor="middle" fill="#4a8cff" font-size="11">传统火箭</text>
+            <text x="110" y="55" text-anchor="middle" fill="#fff" font-size="14">$170M</text>
+            <rect x="180" y="50" width="50" height="200" fill="url(#c1)" opacity="0.9"/>
+            <text x="205" y="45" text-anchor="middle" fill="#4a8cff" font-size="11">1 次复用</text>
+            <text x="205" y="65" text-anchor="middle" fill="#fff" font-size="12">$90M</text>
+            <rect x="260" y="100" width="50" height="150" fill="url(#c1)" opacity="0.8"/>
+            <text x="285" y="95" text-anchor="middle" fill="#4a8cff" font-size="11">5 次复用</text>
+            <text x="285" y="115" text-anchor="middle" fill="#fff" font-size="12">$40M</text>
+            <rect x="340" y="150" width="50" height="100" fill="url(#c1)" opacity="0.7"/>
+            <text x="365" y="145" text-anchor="middle" fill="#4a8cff" font-size="11">10 次复用</text>
+            <text x="365" y="165" text-anchor="middle" fill="#fff" font-size="12">$25M</text>
+            <rect x="420" y="190" width="50" height="60" fill="url(#c1)" opacity="0.6"/>
+            <text x="445" y="185" text-anchor="middle" fill="#4a8cff" font-size="11">20 次复用</text>
+            <text x="445" y="205" text-anchor="middle" fill="#fff" font-size="12">$15M</text>
+            <rect x="500" y="215" width="50" height="35" fill="#c1440e" opacity="0.6"/>
+            <text x="525" y="210" text-anchor="middle" fill="#c1440e" font-size="11">Starship</text>
+            <text x="525" y="232" text-anchor="middle" fill="#fff" font-size="11">~$3M</text>
+            <text x="580" y="60" text-anchor="end" fill="#4a8cff" font-size="11">↓ 100x</text>
+            <line x1="110" y1="40" x2="525" y2="215" stroke="#4a8cff" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+          </svg>
+        </div>
+        <p class="module-note">实际数字（2026）：Falcon 9 单次价 6,700 万美元（复用价更低）；Falcon 9 单枚助推器最高复用超 30 次（2024 纪录）。Starship 设计目标：完全快速复用，目标 $3M/次。</p>
+      </section>
+
+      <!-- ======= CIVILIZATION BACKUP ======= -->
+      <section class="module" id="backup">
+        <h2 class="module-title">「单星球物种 → 多星球物种」文明备份</h2>
+        <div class="backup-diagram">
+          <div class="planet planet-earth">
+            <div class="planet-circle earth-circle">地球</div>
+            <div class="planet-stats">
+              <div>🟢 100 亿年生命史</div>
+              <div>🟢 36 亿年生物</div>
+              <div>🟢 200,000 年智人</div>
+              <div>🔴 全部鸡蛋一个篮</div>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="planet planet-mars">
+            <div class="planet-circle mars-circle">火星</div>
+            <div class="planet-stats">
+              <div>🔴 0% 生命</div>
+              <div>🟡 36 英尺深全球海洋水当量冰</div>
+              <div>🟡 自转 24.5 小时</div>
+              <div>🟢 重力 0.38g</div>
+              <div>🟡 大气 1% 地球</div>
+            </div>
+          </div>
+        </div>
+        <p class="module-note">如果人类成功在火星建立自给自足的 100 万人社区，即使地球发生灾难（火山、小行星、核战、气候崩溃），人类物种也不会灭绝。这就是 Musk 说的「行星冗余 /planetary redundancy」或「物种人寿保险」。</p>
+      </section>
+
+      <!-- ======= 2015 vs 2026 ======= -->
+      <section class="module" id="background">
+        <h2 class="module-title">「2015 愿景 vs 2026 现实」对照</h2>
+        <p class="module-sub">数据来源：见底部「资料与来源」</p>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr><th>主题</th><th>2015 愿景</th><th>2026 现状</th><th>状态</th></tr>
+            </thead>
+            <tbody id="compareBody">
+              <tr><td>Falcon 9 复用</td><td>刚启动测试，目标降本</td><td>主力火箭，单次价 $67M，助推器复用 30+ 次</td><td class="ok">✅ 远超预期</td></tr>
+              <tr><td>Falcon Heavy</td><td>2016 首飞</td><td>2018 首飞成功，多次执行发射</td><td class="ok">✅ 完成</td></tr>
+              <tr><td>Crew Dragon</td><td>2017 首次载人</td><td>2020 Demo-2 首次载人，已多次轮班</td><td class="ok">✅ 完成</td></tr>
+              <tr><td>Starlink 星座</td><td>2030 前 4,000 颗</td><td>2025 末超 7,000 颗，500 万+ 用户</td><td class="ok">✅ 远超预期</td></tr>
+              <tr><td>Starship / MCT</td><td>2015 叫 MCT，目标 50 万人上火星</td><td>2019 改名 Starship，亚轨道/轨道测试中</td><td class="warn">⚠️ 进展中</td></tr>
+              <tr><td>NASA Artemis HLS</td><td>未涉及</td><td>2021 选 SpaceX Starship 为月面着陆器</td><td class="ok">✅ 落地</td></tr>
+              <tr><td>首次载人火星</td><td>Musk 预测 2025-2027</td><td>仍未实现，乐观 2028-2031</td><td class="fail">❌ 推迟</td></tr>
+              <tr><td>火星城市 2040</td><td>Musk 估计届时成型</td><td>载人登月尚未实现</td><td class="fail">❌ 极不可能</td></tr>
+              <tr><td>火箭复用 (一般)</td><td>无任何复用成功</td><td>Falcon 9 回收 + 翻新 300+ 次</td><td class="ok">✅ 革命性突破</td></tr>
+              <tr><td>辐射 / 生命保障</td><td>未解决</td><td>研发中，未验证</td><td class="warn">⚠️ 未解决</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ======= GLOSSARY ======= -->
+      <section class="module" id="glossary-section">
+        <h2 class="module-title">关键术语（可搜索）</h2>
+        <input type="search" id="glossarySearch" class="glossary-search" placeholder="搜索术语或定义…" aria-label="搜索术语">
+        <div class="glossary-grid" id="glossaryGrid">
+          <p class="loading">正在加载术语…</p>
+        </div>
+      </section>
+
+      <!-- ======= TIMELINE ======= -->
+      <section class="module" id="timeline-section">
+        <h2 class="module-title">时间线 · 太空竞赛到 Starship</h2>
+        <div class="timeline-filter">
+          <button class="filter-btn active" data-cat="all">全部</button>
+          <button class="filter-btn" data-cat="space_race">太空竞赛</button>
+          <button class="filter-btn" data-cat="apollo">阿波罗</button>
+          <button class="filter-btn" data-cat="spacex">SpaceX</button>
+          <button class="filter-btn" data-cat="starship">Starship</button>
+          <button class="filter-btn" data-cat="starlink">Starlink</button>
+          <button class="filter-btn" data-cat="artemis">Artemis</button>
+          <button class="filter-btn" data-cat="milestone">里程碑</button>
+        </div>
+        <ol class="timeline" id="timeline">
+          <li class="loading">正在加载时间线…</li>
+        </ol>
+      </section>
+
+      <!-- ======= SOURCES ======= -->
+      <section class="module" id="sources-section">
+        <h2 class="module-title">资料与来源</h2>
+        <div class="sources-grid" id="sourcesGrid">
+          <p class="loading">正在加载…</p>
+        </div>
+      </section>
+
+      <footer class="article-footer">
+        <p>原文：<a href="https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html" target="_blank" rel="noopener">How (and Why) SpaceX Will Colonize Mars</a> · 作者 Tim Urban · 2015-08-16</p>
+        <p>中文翻译：2026-06-14 · <a href="content/translation.zh.md">查看原始 Markdown 译文</a></p>
+        <p class="footer-note">本站为粉丝/学术翻译，所有内容版权归原作者。本站不对翻译的准确性作担保。</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay" hidden>
+    <div class="search-box">
+      <input type="search" id="searchInput" placeholder="全文搜索（含脚注）…" aria-label="搜索">
+      <button id="searchClose" aria-label="关闭">×</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

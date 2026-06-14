@@ -1,0 +1,39 @@
+{
+  "title": "How (and Why) SpaceX Will Colonize Mars",
+  "title_zh": "SpaceX 如何以及为什么要殖民火星",
+  "author": "Tim Urban",
+  "author_short": "Tim Urban · Wait But Why",
+  "published_date": "2015-08-16",
+  "source_url": "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+  "fetched_at": "2026-06-14T04:39:58Z",
+  "page_urls": [
+    "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+    "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html/2",
+    "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html/3",
+    "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html/4",
+    "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html/5"
+  ],
+  "image_count": 143,
+  "word_count_estimate": 41265,
+  "char_count_estimate": 285697,
+  "footnote_marker_count": 950,
+  "page_count": 5,
+  "original_publication_context": {
+    "site": "Wait But Why",
+    "series": "Elon Musk companies series, Part 3 of 4",
+    "earlier_parts": [
+      {
+        "title": "Elon Musk: The World's Raddest Man",
+        "url": "https://waitbutwhy.com/2015/05/elon-musk-the-worlds-raddest-man.html"
+      },
+      {
+        "title": "How Tesla Will Change Your Life",
+        "url": "https://waitbutwhy.com/2015/06/how-tesla-will-change-your-life.html"
+      }
+    ],
+    "later_part": {
+      "title": "Neuralink and the Brain's Magical Future",
+      "url": "https://waitbutwhy.com/2017/04/neuralink.html"
+    }
+  }
+}

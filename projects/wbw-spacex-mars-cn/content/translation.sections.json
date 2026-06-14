@@ -1,0 +1,65 @@
+{
+  "source": "Wait But Why - How (and Why) SpaceX Will Colonize Mars",
+  "source_url": "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+  "author": "Tim Urban",
+  "published_date": "2015-08-16",
+  "translated_at": "2026-06-14",
+  "total_chinese_chars": 60982,
+  "sections": [
+    {
+      "id": "part-1",
+      "title": "第 1 部分：人类与太空的故事",
+      "level": "part",
+      "part": "part1",
+      "phase": null,
+      "html_anchor": "part-1",
+      "word_count_estimate": 12373,
+      "markdown_start": 2320,
+      "markdown_length": 32077
+    },
+    {
+      "id": "part-2",
+      "title": "第 2 部分：马斯克的使命",
+      "level": "part",
+      "part": "part2",
+      "phase": null,
+      "html_anchor": "part-2",
+      "word_count_estimate": 17571,
+      "markdown_start": 34397,
+      "markdown_length": 31434
+    },
+    {
+      "id": "part-3-phase1",
+      "title": "阶段 1：想办法把东西送入太空",
+      "level": "phase",
+      "part": "part3",
+      "phase": 1,
+      "html_anchor": "part-3-phase1",
+      "word_count_estimate": 8222,
+      "markdown_start": 65831,
+      "markdown_length": 17351
+    },
+    {
+      "id": "part-3-phase2",
+      "title": "阶段 2：革命化太空旅行的成本",
+      "level": "phase",
+      "part": "part3",
+      "phase": 2,
+      "html_anchor": "part-3-phase2",
+      "word_count_estimate": 12968,
+      "markdown_start": 83182,
+      "markdown_length": 30165
+    },
+    {
+      "id": "part-3-phase3",
+      "title": "阶段 3：殖民火星",
+      "level": "phase",
+      "part": "part3",
+      "phase": 3,
+      "html_anchor": "part-3-phase3",
+      "word_count_estimate": 9075,
+      "markdown_start": 113347,
+      "markdown_length": 16885
+    }
+  ]
+}

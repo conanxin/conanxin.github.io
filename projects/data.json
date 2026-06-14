@@ -475,5 +475,27 @@
       "Interactive Page",
       "Workflow"
     ]
+  },
+  {
+    "title": "SpaceX 如何以及为什么要殖民火星",
+    "subtitle": "Wait But Why 长文中文版 · 人类、太空、火星与文明备份",
+    "slug": "wbw-spacex-mars-cn",
+    "category": "Translation",
+    "type": "INTERACTIVE PAGE",
+    "status": "新上线",
+    "status_color": "#c1440e",
+    "updated": "2026-06-14",
+    "summary": "Wait But Why 火星殖民长文完整中文版，附 SpaceX、Starship、火星移民与文明备份背景资料。包含 5 章完整译文、2015 愿景 vs 2026 现实对照表、火箭复用成本曲线、火星殖民挑战、术语搜索、时间线模块、深空/火星沙双主题。",
+    "entry_url": "/projects/wbw-spacex-mars-cn/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "SpaceX",
+      "Mars",
+      "Wait But Why",
+      "Translation",
+      "Starship",
+      "Longform"
+    ]
   }
 ]

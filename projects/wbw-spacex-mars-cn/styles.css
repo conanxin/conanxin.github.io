@@ -826,12 +826,43 @@ sup a[href^="#footnote"]:hover {
 .search-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 100;
   display: flex;
   flex-direction: column;
   padding: 4rem 1.5rem 1.5rem;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
+}
+
+.search-overlay[hidden] {
+  display: none !important;
+}
+
+/* No-JS fallback banner */
+.noscript-banner {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 900px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.noscript-banner ul {
+  margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.noscript-banner a {
+  color: #92400e;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.noscript-banner p {
+  margin-top: 0.5rem;
 }
 
 .search-box {

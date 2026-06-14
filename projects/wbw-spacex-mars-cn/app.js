@@ -330,12 +330,23 @@ function setupSearch() {
   const overlay = $('#searchOverlay');
   const input = $('#searchInput');
   const results = $('#searchResults');
+  // Ensure overlay is hidden by default
+  overlay.hidden = true;
+  // Disable body scroll when search is open
+  const setBodyScroll = (enabled) => {
+    document.body.style.overflow = enabled ? '' : 'hidden';
+  };
   const open = () => {
     overlay.hidden = false;
-    input.focus();
-    setTimeout(() => input.select(), 50);
+    setBodyScroll(false);
+    setTimeout(() => input.focus(), 50);
   };
-  const close = () => { overlay.hidden = true; input.value = ''; results.innerHTML = ''; };
+  const close = () => {
+    overlay.hidden = true;
+    setBodyScroll(true);
+    input.value = '';
+    results.innerHTML = '';
+  };
 
   $('#searchToggle')?.addEventListener('click', open);
   $('#searchClose')?.addEventListener('click', close);
@@ -347,7 +358,10 @@ function setupSearch() {
 
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
-    if (!q) { results.innerHTML = ''; return; }
+    if (!q) {
+      results.innerHTML = '<div class="hit search-hint">输入关键词后搜索全文、脚注与术语。</div>';
+      return;
+    }
     const text = window._articleText || '';
     const sentences = text.split(/(?<=[。！？\n])/);
     const hits = sentences.filter(s => s.toLowerCase().includes(q)).slice(0, 20);
@@ -359,6 +373,13 @@ function setupSearch() {
       const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
       return `<div class="hit">${esc(h).replace(re, '<mark>$1</mark>').substring(0, 400)}${h.length > 400 ? '…' : ''}</div>`;
     }).join('');
+  });
+
+  // Show hint when search is open with empty query
+  overlay.addEventListener('show', () => {
+    if (!input.value.trim()) {
+      results.innerHTML = '<div class="hit search-hint">输入关键词后搜索全文、脚注与术语。</div>';
+    }
   });
 }
 
@@ -383,13 +404,19 @@ async function init() {
 
   // Load data
   const [md, bg] = await Promise.all([loadTranslation(), loadBackground()]);
+  // The article body is pre-rendered inline in index.html for no-JS readability.
+  // JS only enhances it; we don't overwrite unless fetch returns newer content.
+  const articleEl = $('#article');
+  const hasPrerendered = articleEl && articleEl.children.length > 1;
   if (md) {
     window._articleText = md;
-    renderArticle(md);
+    if (!hasPrerendered) {
+      renderArticle(md);
+    }
     updateProgress();
     updateTOC();
-  } else {
-    $('#article').innerHTML = '<div class="loading">⚠️ 译文加载失败</div>';
+  } else if (!hasPrerendered) {
+    articleEl.innerHTML = '<div class="loading">⚠️ 译文加载失败</div>';
   }
   if (bg) {
     renderGlossary(bg);

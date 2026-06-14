@@ -245,3 +245,36 @@ notes:
   - No automated headless browser test ran (local timeout) — validation was static grep + curl + manual code review.
 END_HERMES_REPORT
 HERMES_REPORT_PATH: projects/wbw-spacex-mars-cn/REPORT.md
+
+
+---
+
+## V8 — Image Render Fix (2026-06-14)
+
+**问题**: 旧版预渲染器只识别无链接图片 (`![alt](src)`)，不能处理带链接图片 (`[![alt](src)](url)`)，导致 134 张图渲染成原始 markdown 残片 `<p>[<img>](url)</p>`。此外图片路径使用了 `../assets/...` 在 `/projects/wbw-spacex-mars-cn/` 下解析错误。
+
+**修复**:
+1. 重写预渲染器: 支持 A/B/C/D 4 种图片 Markdown 模式 (单图/带 title/带链接/多行链接)
+2. 路径归一化: `../assets/images/original/...` → `assets/images/original/...` (项目内相对)
+3. 用 `source/original/image_url_map.json` (143 条) 映射可能的外部 URL 到本地
+4. 移除 Pinterest 分享按钮 (2 个，原始 markdown 残留)
+5. 图片包成 `<figure class="article-figure"><img loading="lazy" decoding="async"><figcaption></figcaption></figure>`
+6. 去掉自链接 (`<a href="local-image">...</a>` 自身指向同一文件的冗余包装)
+7. app.js 加 `setupImageFallbacks()`: 图片加载失败时用干净 `<div class="image-fallback">图片暂不可用：alt</div>` 替换
+8. CSS 加 `.article-figure` 和 `.image-fallback` 样式
+9. cache-bust 更新到 `?v=20260614-v8`
+
+**结果**:
+- 140 张图全部正常渲染为 `<figure>` 结构
+- 0 个 markdown 残片
+- 0 个 `../assets/` 错误路径
+- 11 张带外链 (WBW 原始来源 credit) 保留 `<a href>` 包装
+- 所有 140 张图本地存在 (http 抽样测试全部 200)
+- 文章页面无 JS 也能完整阅读 (pre-rendered HTML)
+- TOC 锚点 (part-1/2/3, phase-1/2/3) 全部就位
+
+**发布**:
+- commit: `fabe748bd426a633c98a07e71b03f788ad54e1ed`
+- message: "Fix WBW SpaceX Mars article image rendering"
+- method: GitHub REST Git Data API (POST blobs / POST trees / POST commits / PATCH refs/heads/main, force=false)
+- live URL: https://conanxin.github.io/projects/wbw-spacex-mars-cn/

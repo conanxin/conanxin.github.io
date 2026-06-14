@@ -108,3 +108,8 @@ python3 -m http.server 8080
 ```
 
 详细验证结果见 `REPORT.md`。
+
+
+## V8 Update (2026-06-14)
+
+图片渲染全面修复: 134 张带链接图片从 markdown 残片正确渲染为 `<figure>` 元素，所有路径归一化为项目内相对路径 (`assets/images/original/...`)，CSS 加 figure / fallback 样式，app.js 加图片错误回退，cache-bust 升级到 `?v=20260614-v8`。详见 [REPORT.md](REPORT.md)。

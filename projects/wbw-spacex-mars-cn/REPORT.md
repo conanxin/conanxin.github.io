@@ -256,3 +256,22 @@ V9B/V9C 阶段从 line-patch 路线切换到「从 `translation.zh.md` + `backgr
 
 - 走 GitHub REST Git Data API（`POST blobs → POST tree → POST commit → PATCH refs/heads/main`，`force=false`），跳过 sandbox `git push` 在 ~1MB pack 处被切断的失败。
 - base = `f1ee10765cef5d0b9959b9040b002a0417d73edf`（远端 V8）。
+- **V9D 实际发布**：commit `4ff153accb972dd21d9fac6575834e8aa1046cd2`（2026-06-14 13:44:26 UTC），tree `de88a84e670b37f81c18ef7d2f153b2d4db002b6`，包含 4 个 blob：
+  - `projects/wbw-spacex-mars-cn/index.html` 422,407 字节
+  - `projects/wbw-spacex-mars-cn/styles.css` 21,902 字节
+  - `projects/wbw-spacex-mars-cn/README.md` 5,721 字节
+  - `projects/wbw-spacex-mars-cn/REPORT.md` 12,861 字节
+- `app.js` 15,321 字节继承 V8 base（未改动，不需重新发布）。
+- `background.json` / `translation.sections.json` / `translation.zh.md` / 143 张图片 全部继承 V8 base（V9C 未修改）。
+
+### Live 验证（V9D）
+
+| 检查 | 结果 |
+| --- | --- |
+| GitHub API `GET /repos/.../commits/main` | sha = `4ff153a` |
+| `GET /git/trees/4ff153a?recursive=1` | 4 个目标文件 size 与本地 byte-for-byte 一致 |
+| `curl https://conanxin.github.io/projects/wbw-spacex-mars-cn/?cb=v9d_...` | HTTP 200，422,407 bytes（V9C 体积；未 bypass 时 333,155 bytes 是 CDN 缓存命中） |
+| `diff -q` 本地 vs 远端下载 | 完全一致 |
+| 15/15 V9C 正 grep | 全 PASS |
+| 9/9 V8 残片负 grep | 全 PASS（远端无 `30+ 次（2024 纪录）`、无 `正在加载术语` 等） |
+| 远端 main 链 | `4ff153a (V9C) → f1ee1076 (V8) → fabe748b → 23580af3 → 31bbc75e → ...` |

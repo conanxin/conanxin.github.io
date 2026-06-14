@@ -275,3 +275,15 @@ V9B/V9C 阶段从 line-patch 路线切换到「从 `translation.zh.md` + `backgr
 | 15/15 V9C 正 grep | 全 PASS |
 | 9/9 V8 残片负 grep | 全 PASS（远端无 `30+ 次（2024 纪录）`、无 `正在加载术语` 等） |
 | 远端 main 链 | `4ff153a (V9C) → f1ee1076 (V8) → fabe748b → 23580af3 → 31bbc75e → ...` |
+
+## V10 — Anchor / TOC / Sources Polish
+Status: PASS before publish.
+Changes:
+- Added TOC links for #article-footnotes and #original-appendix.
+- Added scroll-margin offset for stable hash navigation.
+- Collapsed original WBW series navigation into an appendix section.
+- Grouped original footnotes by Part.
+- Cleaned hidden search/no-JS semantics.
+- Upgraded #sources-section source cards from Wikipedia-heavy references to stronger NASA / Space.com / SpaceX references.
+- Added visible version marker: V10 Anchor / TOC / Sources Polish.
+- Preserved V9C gates and V8 image rendering invariants.

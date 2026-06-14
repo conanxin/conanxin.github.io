@@ -1062,3 +1062,59 @@ sup a[href^="#footnote"]:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* V10 anchor / TOC / appendix / sources polish */
+section[id],
+h1[id],
+h2[id],
+h3[id] {
+  scroll-margin-top: 112px;
+}
+
+.toc a[href="#article-footnotes"],
+.toc a[href="#original-appendix"],
+.toc a[href="#sources-section"] {
+  font-weight: 650;
+}
+
+.footnote-help {
+  color: var(--text-dim, #94a3b8);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.footnote-group {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  margin: 0.85rem 0;
+  background: rgba(15, 23, 42, 0.18);
+}
+
+.footnote-group > summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.source-card-title,
+.appendix-card-title {
+  margin: 0 0 0.5rem;
+}
+
+.source-card-meta {
+  color: var(--text-dim, #94a3b8);
+  font-size: 0.88rem;
+  margin: 0 0 0.6rem;
+}
+
+.source-list {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.page-version-marker {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: var(--text-mute, #5b6577);
+  letter-spacing: 0.02em;
+}

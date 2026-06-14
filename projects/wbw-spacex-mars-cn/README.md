@@ -119,3 +119,13 @@ python3 -m http.server 8080
 - **CSS 补丁**：`styles.css` 追加 1,127 字节 V9C 结构样式（`.article-footnotes`、`.original-appendix`、`.sources-grid` 等）。
 
 详细 gate 数据见 `REPORT.md` 末尾 V9C 章节。
+
+## V10 — Anchor / TOC / Sources Polish
+V10 improves the longform reading experience after V9C:
+- Adds TOC entries for original footnotes and original appendix.
+- Improves hash-anchor offsets for sticky navigation.
+- Collapses the original Wait But Why series navigation into an appendix.
+- Groups footnotes by article part.
+- Removes stale no-JS/loading text from normal document flow.
+- Upgrades source cards for 2026 factual context.
+- Adds a visible V10 version marker.

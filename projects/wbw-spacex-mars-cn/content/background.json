@@ -403,34 +403,44 @@
       "category": "milestone"
     }
   ],
-  "sources": {
-    "primary": [
-      "原文：https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
-      "WBW 同一系列：Elon Musk: The World's Raddest Man（2015-05）",
-      "WBW 同一系列：How Tesla Will Change Your Life（2015-06）",
-      "WBW 同一系列：The Cook and the Chef: Musk's Secret Sauce（2015-11）"
-    ],
-    "biography": "Ashlee Vance: Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future (2015)",
-    "official": [
-      "SpaceX 官网：https://www.spacex.com",
-      "NASA Mars 计划：https://mars.nasa.gov",
-      "NASA Artemis：https://www.nasa.gov/artemis"
-    ],
-    "updates_2015_2026": [
-      "NASA Artemis III: https://www.nasa.gov/missions/artemis/artemis/",
-      "NASA Artemis Architecture: https://www.nasa.gov/moontomarsarchitecture/",
-      "NASA Human Landing System: https://www.nasa.gov/humans-in-space/human-landing-system/",
-      "Falcon 9 reuse record (2026 报道交叉): https://en.wikipedia.org/wiki/Falcon_9",
-      "Starship 进度: https://en.wikipedia.org/wiki/SpaceX_Starship",
-      "Starlink 状态: https://en.wikipedia.org/wiki/Starlink",
-      "Artemis 计划: https://en.wikipedia.org/wiki/Artemis_program"
-    ],
-    "academic": [
-      "Robert Zubrin: The Case for Mars（1996，中译《赶往火星》）",
-      "NASA Mars Architecture 2024",
-      "Chris McKay 关于火星地球化的论文"
-    ]
-  },
+  "sources": [
+    {
+      "title": "Wait But Why · How (and Why) SpaceX Will Colonize Mars",
+      "type": "original",
+      "url": "https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html",
+      "note": "2015 原文来源"
+    },
+    {
+      "title": "Space.com · SpaceX launched and landed Falcon 9 booster for the 35th time",
+      "type": "2026_update",
+      "url": "https://www.space.com/space-exploration/launches-spacecraft/spacex-starlink-10-35-b1067-ccsfs-asog",
+      "note": "Falcon 9 B1067 第 35 次发射与着陆纪录"
+    },
+    {
+      "title": "NASA · Artemis III",
+      "type": "official",
+      "url": "https://www.nasa.gov/mission/artemis-iii/",
+      "note": "Artemis III 低地球轨道商业 HLS 交会与对接测试说明"
+    },
+    {
+      "title": "NASA · Strengthens Artemis, Adds Mission, Refines Overall Architecture",
+      "type": "official",
+      "url": "https://www.nasa.gov/directorates/esdmd/nasa-strengthens-artemis-adds-mission-refines-overall-architecture/",
+      "note": "Artemis 架构更新与 2027 LEO 测试任务"
+    },
+    {
+      "title": "NASA · Human Landing System",
+      "type": "official",
+      "url": "https://www.nasa.gov/humans-in-space/human-landing-system/",
+      "note": "NASA HLS 架构与 Starship HLS 背景"
+    },
+    {
+      "title": "SpaceX · Mission: Moon",
+      "type": "official",
+      "url": "https://www.spacex.com/humanspaceflight/moon",
+      "note": "SpaceX Starship / Artemis 月球任务说明"
+    }
+  ],
   "reading_paths": {
     "casual": [
       "Why go to Mars",

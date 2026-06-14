@@ -162,3 +162,40 @@ projects/data.json
 - 增加打印优化样式（中文长文 print 友好）
 - 增加内容搜索结果高亮跳转
 - 增加更多 Wikipedia / NASA 引用链接
+
+## 11. V7 UI Polish 执行记录（2026-06-14）
+
+**状态：✅ PASS**
+
+| 修复项 | 结果 |
+|---|---|
+| 搜索弹窗默认关闭 | ✅ `overlay.hidden = true` + CSS `[hidden]` 优先 |
+| 搜索遮罩不透明度 | ✅ 从 0.85 降为 0.55，减少背景被压暗的感觉 |
+| 空搜索提示 | ✅ “输入关键词后搜索全文、脚注与术语。” |
+| Ctrl/Cmd+K 打开 | ✅ |
+| Esc 关闭 | ✅ |
+| 搜索开/关后恢复页面滚动 | ✅ `document.body.style.overflow` 切换 |
+| Hero 统计改为 60,982 / 5 / 143 / 120–150 | ✅ 静态 default，JS 后覆盖 |
+| “0 中文字符”默认显示 | ✅ 已消除 |
+| 无 JS 可读性 | ✅ `<noscript>` 提供 Markdown 译文入口、关键项阅读信息 |
+| 底部免责声明口吻 | ✅ 全部删除，替换为中性信息 |
+| 2026 事实更新 | ✅ background.json：Falcon 9、Artemis III、Starship HLS、载人火星、Starlink 措辞更新 |
+| 图片懒加载 | ✅ `app.js` 渲染时已添加 `loading="lazy"` |
+| 资源来源 | ✅ 优先 NASA 官方 / Falcon 9 维基交叉 |
+
+### 验证
+
+- ✅ JSON 合法（data.json / background.json / translation.sections.json）
+- ✅ JS 语法（`node -c app.js`）
+- ✅ HTML 内容检查：
+  - “0 中文字符” 0 次
+  - “60,982” 2 次
+  - “120–150” 2 次
+  - “原文 ... How ... SpaceX ... Mars” 2 次
+  - “免责声明 / 仅供学习 / 不担保 / 版权归原作者 / 粉丝翻译 / 学术翻译” 全部 0 次
+- ✅ 本地 HTTP 200 OK：`/projects/wbw-spacex-mars-cn/`、`/styles.css`、`/app.js`、`/content/background.json`、`/content/translation.sections.json`
+
+### 已知限制
+
+- JS 失效时仅提供 Markdown 入口 + 关键导航，未将 130KB 全文 HTML 内联。权衡：原站小、内联后文件远大于 GitHub Pages 1MB pack 限制。` <noscript>` + 原 .md 链接是务实选择。
+- 浏览器自动 headless 测试在本地超时，未运行（本轮范围仅是文件静态检查 + curl 检查 +  grep 检查）。

@@ -76,9 +76,19 @@ wbw-spacex-mars-cn/
 
 ## 版权
 
-- 原文版权归 Tim Urban / Wait But Why
-- 本翻译为学术/粉丝用途，**请勿商用**
-- 中文译文可能与原文有细微差异，建议对照原文阅读
+- 原文：How (and Why) SpaceX Will Colonize Mars · 作者 Tim Urban · Wait But Why · 2015-08-16
+- 中文阅读版与背景资料整理：Conan Xin · 2026-06-14
+
+## V7 UI Polish（2026-06-14）
+
+V7 是一次小版本 UI / 内容校准，不重做翻译、不重新抓取原文。主要修复：
+
+- 搜索弹窗默认关闭，遮罩不透明度从 0.85 降为 0.55，开后聚焦、关后恢复滚动
+- Hero 统计改为：60,982 中文字符 / 5 部分 / 143 原始插图 / 约 120–150 分钟阅读
+- JS 失效时：`<noscript>` 提供原始 Markdown 译文链接和资源入口
+- 底部去除“粉丝/学术翻译”、“版权归原作者”、“不担保”类表述
+- 2026 事实更新：Falcon 9 复用记录、Artemis III、Starship HLS、载人火星、Starlink
+- 图片加 `loading="lazy"`（`app.js` 渲染时已加）
 
 ## 部署
 

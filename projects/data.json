@@ -1,5 +1,30 @@
 [
   {
+    "title": "学术论文写作方法和技巧",
+    "subtitle": "从机器翻译演示稿到 AI 论文写作系统",
+    "slug": "academic-paper-writing-guide",
+    "category": "research",
+    "type": "INTERACTIVE GUIDE",
+    "status": "已扩展",
+    "status_color": "#8b5cf6",
+    "updated": "2026-06-15",
+    "summary": "基于刘洋《机器翻译学术论文写作方法和技巧》244页演示稿的非官方学习型整理，扩展为完整学术论文写作方法页。包含论文发表六步流程、演示稿十模块主线、审稿人5分钟阅读路径、标题/摘要/引言/方法/实验/图表/相关工作拆解、CARS/IMRaD/读者预期/可复现性框架、LLM与Agent论文补充要求、可复制写作模板和交互检查表。",
+    "entry_url": "/projects/academic-paper-writing-guide/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "学术写作",
+      "论文写作",
+      "机器翻译",
+      "NLP",
+      "AI Research",
+      "CARS",
+      "IMRaD",
+      "可复现性",
+      "交互页面"
+    ]
+  },
+  {
     "title": "WWDC26：AI 回到操作系统",
     "subtitle": "2026 年 6 月 Apple WWDC26 Keynote 中文交互式梳理",
     "slug": "wwdc26-keynote",

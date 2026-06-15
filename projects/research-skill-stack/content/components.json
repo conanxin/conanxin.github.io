@@ -1,0 +1,86 @@
+{
+  "version": "v1.0-20260615",
+  "skill_stack_layers": [
+    {"id": "pick", "no": 1, "name": "自选问题", "en": "Pick your own problems", "color": "#e9b949"},
+    {"id": "input", "no": 2, "name": "输入升级", "en": "Upgrade your inputs", "color": "#5fb0a4"},
+    {"id": "taste", "no": 3, "name": "研究品味", "en": "Taste", "color": "#a8a4e6"},
+    {"id": "writing", "no": 4, "name": "写作校准", "en": "Writing", "color": "#e98074"},
+    {"id": "loop", "no": 5, "name": "实验循环", "en": "Tighten the loop", "color": "#7bc16a"},
+    {"id": "outputs", "no": 6, "name": "输出观察", "en": "Stare at outputs", "color": "#d97aa6"},
+    {"id": "wander", "no": 7, "name": "跨领域游荡", "en": "Wander on purpose", "color": "#6fb1d7"},
+    {"id": "people", "no": 8, "name": "研究共同体", "en": "Find your people", "color": "#c9a47c"}
+  ],
+  "log_template": {
+    "title": "Research Log · 实验日志模板",
+    "fields": [
+      {"name": "hypothesis", "label": "Hypothesis · 假设", "placeholder": "我预期会发生什么？为什么？例如：在 32 batch size 下小模型先过拟合能复现 Karpathy 步骤 3，从而省下后面一半调参时间。", "rows": 3},
+      {"name": "setup", "label": "Setup · 设置", "placeholder": "数据子集 / 模型规模 / 命令 / config diff / 关键超参", "rows": 3},
+      {"name": "expectation", "label": "Expectation · 预期数值", "placeholder": "准确率 / 损失 / 训练时长 / 资源消耗的数字范围", "rows": 2},
+      {"name": "result", "label": "Result · 实际结果", "placeholder": "实际跑出来的数字 / 行为 / 异常点", "rows": 2},
+      {"name": "updated_belief", "label": "Updated Belief · 修正后的判断", "placeholder": "我的假设该被保留 / 修改 / 抛弃？下一步是什么？", "rows": 2}
+    ],
+    "copy_label": "复制为 Markdown",
+    "reset_label": "清空"
+  },
+  "taste_training": {
+    "title": "Taste Training · 品味训练小组件",
+    "intro": "每一个研究中的好品味，都是被这套循环训出来的：",
+    "steps": [
+      {"id": "predict", "title": "1. Predict · 预测", "body": "实验前写下：我预期会发生什么。读论文时盖住 Results 段，猜数字。"},
+      {"id": "record", "title": "2. Record · 记录", "body": "把预测和结果都写下来——比记忆可靠得多（参见 Darwin）。"},
+      {"id": "review", "title": "3. Review · 复盘", "body": "过一段时间批量回看：哪类预测一直准？哪类系统性偏？"},
+      {"id": "calibrate", "title": "4. Calibrate · 校正", "body": "把系统性的偏差写进自己的判断模型，下一次预测前先调权。"}
+    ]
+  },
+  "error_bucket_demo": {
+    "title": "Error Bucket Demo · 错误桶示例",
+    "intro": "Andrew Ng 的核心动作：拉 100 个失败样本，全读，分类，攻击最大堆。下面是一个虚构的文本分类失败案例分桶（点击桶可高亮）。",
+    "buckets": [
+      {"id": "label_wrong", "label": "标签本身是错的", "count": 38, "color": "#e9b949", "example": "人工标注 100 条里就有 38 条与多数人不一致——你的“失败”部分是标签噪声。"},
+      {"id": "ood", "label": "分布外 / 罕见表述", "count": 27, "color": "#5fb0a4", "example": "测试集出现训练集未覆盖的俚语、缩写、跨语言混合。"},
+      {"id": "long_tail", "label": "长尾类被压平", "count": 18, "color": "#a8a4e6", "example": "少数类被多数类淹没；模型对它们学得慢。"},
+      {"id": "schema", "label": "schema / 解析失败", "count": 11, "color": "#e98074", "example": "结构化抽取时 JSON 字段类型不一致；模型猜了一个相近类型。"},
+      {"id": "spurious", "label": "虚假相关（spurious）", "count": 6, "color": "#7bc16a", "example": "模型学到了“句子里有句号 → 正例”这种捷径。"}
+    ],
+    "takeaway": "建议动作：先攻击占比最大的桶（这里：标签噪声），而不是一上来就调超参。"
+  },
+  "seven_day_plan": {
+    "title": "7-Day Practice Plan · 7 天研究训练计划",
+    "intro": "面向个人 AI / 论文 / agent 项目。每条任务 ≈ 60-90 分钟，可拆分。",
+    "days": [
+      {"day": "Day 1", "theme": "自选问题", "tasks": ["列出 3 个你目前能跑得动的问题。", "对每个问题写一句：它为什么重要？没有你它会缺什么？", "从 3 个里挑 1 个；这个选择要写下来。"]},
+      {"day": "Day 2", "theme": "输入升级", "tasks": ["读一篇 1990 年前的经典（任意子领域）。", "读一篇 2020 年后的代表性论文。", "在两者之间用一句话建立“复用 / 重新发现”联系。"]},
+      {"day": "Day 3", "theme": "研究品味", "tasks": ["选一篇本月 arxiv 热门，预测它的方法能否 scale。", "把预测写下来。", "两周后回看。"]},
+      {"day": "Day 4", "theme": "写作校准", "tasks": ["把昨天那个预测用 200 字写清楚。", "请一位不熟该领域的朋友读，挑出 1-2 个“不成立”的地方。", "改。"]},
+      {"day": "Day 5", "theme": "实验循环", "tasks": ["给当前项目写一个 1 命令启动 + 1 命令画图的脚本。", "把已有 config 整理成可复现的 hash 化日志。", "在单 batch 上做一次过拟合，验证骨架。"]},
+      {"day": "Day 6", "theme": "输出观察", "tasks": ["拉 50 个错例，全读。", "用上方的错误桶 demo 给自己写一个分桶表。", "选定最大桶，写下明天的攻击方案。"]},
+      {"day": "Day 7", "theme": "跨领域 + 共同体", "tasks": ["去一个不熟悉的方向读 1 篇综述。", "找 1 位做相关工作的人，发一条具体的、能引发讨论的反馈。", "公开记录本周进展（半成形也可）。"]}
+    ]
+  },
+  "personal_takeaways": {
+    "title": "Personal Takeaways · 把研究能力栈接到 AI 编程 / Agent 工作流",
+    "intro": "把这篇文章翻译并做成页面的同时，我自己得到的最大启发是：把研究能力栈当作 agent 项目的设计原则，而不是“研究方法论”。下面 5 条是我会马上在 agent / AI 编程项目里应用的。",
+    "items": [
+      {
+        "title": "每个阶段形成 design rationale",
+        "body": "在 agent 项目的每个阶段报告里，除了“做了什么”，还要写“为什么这样做”。研究品味离不开理由记录——下一次你/agent 决策时，理由文件就是 ground truth。"
+      },
+      {
+        "title": "记录 why，而不只是 what",
+        "body": "agent 的代码改动、prompt 改动、eval 改动，默认要被记下来。失败改动尤其要记——它们是研究品味训练的语料。"
+      },
+      {
+        "title": "让 agent 输出 modified-impact analysis",
+        "body": "每次要求 agent 改一段代码 / 一段文档 / 一段配置，要求它顺手输出：影响范围 / 风险点 / 验证方式。这等于把 Ng 的错误桶前置到改动阶段。"
+      },
+      {
+        "title": "代码、文档、测试一起服务于“项目理论”",
+        "body": "agent 项目容易陷入“功能越来越花，理论越来越乱”。Olah-Carter 提醒：清晰解释本身是研究贡献。代码 + 文档 + 测试，应该一起让“项目是什么 / 不是什么”显形。"
+      },
+      {
+        "title": "阶段收口时用人话复述",
+        "body": "每个 phase 收口时写一段 200 字的 STATE OF THE SYSTEM（用人话）——这呼应 Hamming 的“开门办公室”：把当前现实摆出来，对打扰（rebuttal）开放。"
+      }
+    ]
+  }
+}

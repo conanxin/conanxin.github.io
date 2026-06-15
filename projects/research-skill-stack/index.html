@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="notebook">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>如何成为优秀的研究者：研究能力栈 · 中文交互式梳理</title>
+  <meta name="description" content="@itsreallyvivek 2026-06-10 帖《how to be good at research》完整中文翻译 + 研究能力栈 8 层 + 资料卡 + 实验日志模板 + 7 天训练计划。">
+  <meta name="author" content="翻译/整理: Xin Conan">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0e1116">
+  <link rel="stylesheet" href="styles.css?v=v1-20260615">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="返回顶部">
+        <span class="brand-mark">⌘</span>
+        <span class="brand-text">Research · Skill Stack</span>
+      </a>
+      <nav class="topnav" aria-label="主导航">
+        <a href="#skill-stack-map">能力栈</a>
+        <a href="#translation">全文翻译</a>
+        <a href="#background-cards">资料卡</a>
+        <a href="#log-template">实验日志</a>
+        <a href="#seven-day-plan">7 天计划</a>
+        <a href="#takeaways">Takeaways</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="切换深色/浅色主题">
+        <span class="theme-label-dark">夜间</span>
+        <span class="theme-label-light">日间</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">翻译 / 整理 · 2026-06-15</p>
+        <h1 class="hero-title">如何成为优秀的研究者：<br><span class="hero-accent">研究能力栈</span></h1>
+        <p class="hero-lede">没人真正教你研究。给你一张桌子、一个别人挑好的问题、一句模糊的指令——<em>做出点新东西</em>。于是大多数人只能从他们能看到的东西（论文、推文、发布通告）里反向工程这份工作，结果他们真正学会的，是怎么“看起来像个研究者”，而不是怎么成为研究者。</p>
+        <p class="hero-quote">研究不是一种身份，而是一组可以训练的小技能。</p>
+        <div class="hero-meta">
+          <span class="hero-chip">原帖：@itsreallyvivek · 2026-06-10</span>
+          <span class="hero-chip">8 章节完整翻译</span>
+          <span class="hero-chip">11 张资料卡</span>
+          <span class="hero-chip">7 个交互组件</span>
+        </div>
+        <a class="hero-cta" href="#skill-stack-map">开始看能力栈 ↓</a>
+      </div>
+    </section>
+
+    <!-- SKILL STACK MAP -->
+    <section class="section section-stack" id="skill-stack-map">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Skill Stack Map · 能力栈地图</p>
+          <h2 class="block-title">8 层能力，<span class="muted">从下读到上是一个完整周期</span></h2>
+          <p class="block-lede">点击任一层跳到对应章节。</p>
+        </header>
+        <ol class="stack-list" id="stackList">
+
+      <li class="stack-layer" data-id="pick" style="--lc:#e9b949">
+        <span class="stack-no">01</span>
+        <span class="stack-name">自选问题</span>
+        <span class="stack-en">Pick your own problems</span>
+      </li>
+
+      <li class="stack-layer" data-id="input" style="--lc:#5fb0a4">
+        <span class="stack-no">02</span>
+        <span class="stack-name">输入升级</span>
+        <span class="stack-en">Upgrade your inputs</span>
+      </li>
+
+      <li class="stack-layer" data-id="taste" style="--lc:#a8a4e6">
+        <span class="stack-no">03</span>
+        <span class="stack-name">研究品味</span>
+        <span class="stack-en">Taste</span>
+      </li>
+
+      <li class="stack-layer" data-id="writing" style="--lc:#e98074">
+        <span class="stack-no">04</span>
+        <span class="stack-name">写作校准</span>
+        <span class="stack-en">Writing</span>
+      </li>
+
+      <li class="stack-layer" data-id="loop" style="--lc:#7bc16a">
+        <span class="stack-no">05</span>
+        <span class="stack-name">实验循环</span>
+        <span class="stack-en">Tighten the loop</span>
+      </li>
+
+      <li class="stack-layer" data-id="outputs" style="--lc:#d97aa6">
+        <span class="stack-no">06</span>
+        <span class="stack-name">输出观察</span>
+        <span class="stack-en">Stare at outputs</span>
+      </li>
+
+      <li class="stack-layer" data-id="wander" style="--lc:#6fb1d7">
+        <span class="stack-no">07</span>
+        <span class="stack-name">跨领域游荡</span>
+        <span class="stack-en">Wander on purpose</span>
+      </li>
+
+      <li class="stack-layer" data-id="people" style="--lc:#c9a47c">
+        <span class="stack-no">08</span>
+        <span class="stack-name">研究共同体</span>
+        <span class="stack-en">Find your people</span>
+      </li>
+        </ol>
+        <p class="stack-footnote">颜色 ≠ 排序；每层都同等重要。它们之间不是金字塔，更像乐高：换序、缺一块都会塌。</p>
+      </div>
+    </section>
+
+    <!-- FULL TRANSLATION -->
+    <section class="section section-translation" id="translation">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Full Translation · 完整中文译文</p>
+          <h2 class="block-title">8 个章节，一字未删</h2>
+          <p class="block-lede">保留原帖段落结构与节奏。专有名词保留英文以便溯源。</p>
+        </header>
+
+        <div class="translation-layout">
+          <aside class="toc" aria-label="目录">
+            <p class="toc-title">目录</p>
+            <ol class="toc-list" id="tocList">
+        <li><a class="toc-link" href="#sec-1" data-target="sec-1"><span class="toc-no">01</span><span class="toc-name">选择你自己的问题</span></a></li>
+        <li><a class="toc-link" href="#sec-2" data-target="sec-2"><span class="toc-no">02</span><span class="toc-name">升级你的输入</span></a></li>
+        <li><a class="toc-link" href="#sec-3" data-target="sec-3"><span class="toc-no">03</span><span class="toc-name">把所有东西写下来</span></a></li>
+        <li><a class="toc-link" href="#sec-4" data-target="sec-4"><span class="toc-no">04</span><span class="toc-name">收紧反馈循环</span></a></li>
+        <li><a class="toc-link" href="#sec-5" data-target="sec-5"><span class="toc-no">05</span><span class="toc-name">凝视输出</span></a></li>
+        <li><a class="toc-link" href="#sec-6" data-target="sec-6"><span class="toc-no">06</span><span class="toc-name">有目的地游荡</span></a></li>
+        <li><a class="toc-link" href="#sec-7" data-target="sec-7"><span class="toc-no">07</span><span class="toc-name">找到你的人</span></a></li>
+        <li><a class="toc-link" href="#sec-8" data-target="sec-8"><span class="toc-no">08</span><span class="toc-name">长期游戏</span></a></li>
+            </ol>
+            <div class="toc-progress" aria-hidden="true">
+              <span class="toc-progress-label">阅读进度</span>
+              <div class="toc-progress-track"><div class="toc-progress-bar" id="readProgress"></div></div>
+              <span class="toc-progress-pct" id="readPct">0%</span>
+            </div>
+          </aside>
+
+          <article class="article" id="article">
+  <section class="article-section" id="sec-1" data-section="1">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 01</span>
+      <h2 class="section-title">选择你自己的问题</h2>
+    </header>
+    <div class="section-body">
+<p>在贝尔实验室，Richard Hamming 有一个习惯让他在午餐时不受欢迎——他会问坐在他旁边的人：“你这个领域最重要的问题是什么？”然后再问：“你为什么不在做它？”人们于是换桌子。这个问题刺人，是因为我们大多数人都没有好答案。我们并不挑选问题，我们只是吸收它们——从导师那里，从某个大实验室上个季度宣布的方向，从这周所有人都在引用的那篇论文。</p>
+<p>一个“被吸收来的问题”麻烦在于：你拿到了结论，却没拿到论证过程。你知道某著名实验室在意某个方向，却不知道为什么，他们预期会找到什么，又会因为什么而放弃它。当他们转向时，你一年后才后知后觉。而在已经时髦的问题上，你是在和一千个比你起步更早、算力更多的人赛跑。</p>
+<p>John Schulman 的《机器学习研究指南》把研究分成两种模式：一种是你读文献然后寻找可以改进的地方；另一种是你选一个你真心想让它存在的目标，然后倒推回去设计实验。他主张后者，而其中沉默的理由是——后者会“制造”原创性。一个你真正在意的目标，会把你拖进任何综述论文都覆盖不到的领域。</p>
+<p>至于“品味”，人们常把它讨论成一种天赋。它其实更像一块肌肉：在跑实验之前先预测结果；把论文结果部分盖住，只看方法猜数字；标记本月发布的成果里哪些两年后还重要，然后过一段时间核对你的命中率。一个预测加一次修正，重复几百次——这正是每一个优秀模型被训练出来的方式，包括你脑子里那一个。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-2" data-section="2">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 02</span>
+      <h2 class="section-title">升级你的输入</h2>
+    </header>
+    <div class="section-body">
+<p>共享的阅读清单会生产共享的想法。如果你的信息食谱只有 arxiv 的 trending 页，加上群聊筛选后剩下来的东西，你必然会与所有人同时得出相同的结论——而这也让这些结论差不多一文不值。</p>
+<p>旧材料的估值低得离谱。这个领域在不断重复自己的过去：Mixture of Experts 可以追溯到 1991 年，LSTM 追溯到 1997 年，反向传播在 1986 年就已主流化。Rich Sutton 在 2019 年只用大约一千字写出《苦涩的教训》，它对这个领域未来形态的预测比十倍长度的综述还准。Claude Shannon 在 1952 年做了一场关于创造性思维的演讲，开场动作是：把问题缩小到近乎 trivial，搞定这个最小版本，再把难度一点点加回去。仅这一招，比任何现代生产力建议都能带你穿过更多墙壁。</p>
+<p>广度与深度同样重要。可解释性神经科学上是毫不客气地借用过来的；评测设计是披着白大褂的机制设计；懂一点 GPU 到底怎么搬内存，能让你在基准跑出来之前就看出哪些架构论文注定失败。而诚实的统计学，可能是机器学习里最稀缺的技能——这里很多“严谨”是带误差棒的氛围。</p>
+<p>还有一件事：去读论文本身，而不是读别人总结它的推文。附录才是埋尸体的位置，而 Limitations 那一节通常是一篇论文里最诚实的一段。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-3" data-section="3">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 03</span>
+      <h2 class="section-title">把所有东西写下来</h2>
+    </header>
+    <div class="section-body">
+<p>Paul Graham 指出：一个想法在落到字面上之前，常常感觉已经完全成形。纸面会找到你脑子里糊过去的空隙：你从未检验的假设、其实不成立的那一步、悄悄互相矛盾的两条断言。</p>
+<p>Feynman 的法则是：第一个你不能骗的人是你自己，因为你是最容易的靶子。写作是迄今最便宜的防御。Darwin 把它做成流程化：任何与他的理论相左的事实，必须当场记下来——因为他已经发现自己的记忆会删除不方便的证据，速度远快于删除方便的证据。你的记忆对你的失败实验也是这么干的。保持一份日志：假设、设置、预期、结果、修正后的判断。一个月后重读自己写的东西，那种谦卑，是任何审稿人都给不了的。</p>
+<p>然后把其中一部分放到公开处。Olah 和 Carter 的《研究债》论文主张：领域会噎在没被消化的想法上，而清晰的解释本身是真正的贡献，不是什么服务性工作。今天很多在做可解释性的人，是通过可读的博客进入这个领域的，不是会议论文。一批公开写作也是你能拿出来的最强凭证——因为它是一份不可伪造的、你思维方式的小样。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-4" data-section="4">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 04</span>
+      <h2 class="section-title">收紧反馈循环</h2>
+    </header>
+    <div class="section-body">
+<p>关于 Alec Radford 的故事，几乎没有哪一段涉及一次灵感爆发——它们都关乎量。更多的运行/天、更多的错误想法被丢掉/周，一个比任何人都更新得更快的现实模型。这才是真正的比赛。研究速度，主要是你发现自己是错的速度。</p>
+<p>这也让工具成为一等公民的研究活动。启动一次实验应该是一条命令；画图应该再一条；每个实验都要能从它的 config 复现；比较两次实验应该是几秒钟的事，不是半天的考古学。Karpathy 的《训练神经网络的菜谱》里有一步，性价比高到可以回本一百次：在上规模训练前，先在单 batch 上过拟合。三十秒，半数 bug 消失。把所有东西缩小到便宜，把它们做对，再去花算力。</p>
+<p>也请放弃“工程是研究里 junior partner”的念头。在前沿，这两个工种已经融合。能搭架子、能写 eval、能拉数据管线的那个研究者，他的假设才真的被测了。其他人都在排队等。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-5" data-section="5">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 05</span>
+      <h2 class="section-title">凝视输出</h2>
+    </header>
+    <div class="section-body">
+<p>一条下降的 loss 曲线不是分析，而是安慰。你的实验扔出来的信息远多于你实际消费的：转录文本、失败案例、分布那条奇怪的尾巴。它们中的大部分在 logs 目录里默默死去。</p>
+<p>Karpathy 的菜谱在任何训练代码被写出来之前就启动——花几小时手抠原始数据。多数机器学习的 bug 活在数据里，且静默失败。什么也不崩，你只是得到一个平庸的模型，再配上一个关于“为什么”的错误理论。</p>
+<p>Andrew Ng 十几年来反复教的是同一招不性感的动作：拉出一百个失败样本，全读一遍，分类成几堆，攻击最大的那一堆。它对模型有效，对 eval 也一样——一个你从未读过它转录文本的 benchmark，是一个你其实并不理解的 benchmark。一段真正奇怪行为的转录，教给你的比下一个小数点后的精度更多。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-6" data-section="6">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 06</span>
+      <h2 class="section-title">有目的地游荡</h2>
+    </header>
+    <div class="section-body">
+<p>你的第一个子领域是时机的偶然，所以把它当偶然对待。在可解释性、评测、强化学习、系统里都真待一段时间，再决定你住哪里。在这个领域的某个角落，你那份具体的“怪”会是一种不公平的优势，而定位它的唯一方法，是先去几个地方交学费。没人会免你的学费。</p>
+<p>先跑每个想法的“一次性”版本，让它们大多数年轻时就死掉。把你的基线调到痛，因为机器学习的坟场里，充满了对调好的基线就蒸发了的“提升”，而审稿人是你最不该从那里学到这一点的人。消融到你知道是哪个组件在扛结果——通常是一个，而且通常不是标题里那一个。</p>
+<p>广度也是保险。子领域都会饱和，全部，通常就在它们在 Twitter 上达峰之后。那些在过渡期里还在持续产出的，正是早就在邻近区域里认路的人。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-7" data-section="7">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 07</span>
+      <h2 class="section-title">找到你的人</h2>
+    </header>
+    <div class="section-body">
+<p>Hamming 注意到了一个模式：谁最终做出了重要工作。关着办公室门的同事，某一年产出更多；开着门的同事，做的工作更重要——因为打扰里带的信息，是关于世界真正需要什么。你的“开着门”很可能就是一个收件箱，保持那样。</p>
+<p>慷慨在研究里的复利无与伦比。复现一个结果，把你发现的发表出来。把为自用而写的工具放出来。用平实的语言解释很难的东西。回报是侧向到达的，几个月后，变成你无法申请的那次合作、那篇引用、或那个角色。把你半成形的想法也浮到公开处，因为在时间线上错，比在印刷品里错便宜得多。那个会告诉你“想法是烂的”的合作者，值超过一卡时算力——这种关系买不到，只能挣。</p>
+    </div>
+  </section>
+
+  <section class="article-section" id="sec-8" data-section="8">
+    <header class="section-head">
+      <span class="section-no">CHAPTER 08</span>
+      <h2 class="section-title">长期游戏</h2>
+    </header>
+    <div class="section-body">
+<p>Pasteur 说机遇偏爱有准备的头脑；Hamming 在这之上建了整套职业哲学：知识与生产力按利息复利。每天的边缘单独看都很琐碎——你读什么、记什么、循环多快、和谁争论——给它们几年，它们会产出从外面看像运气的职业生涯。比感觉必要的更早开始复利。未来的你，已经知道这是当时最便宜的部分。</p>
+    </div>
+  </section></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKGROUND CARDS -->
+    <section class="section section-bg" id="background-cards">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Background Cards · 背景资料卡</p>
+          <h2 class="block-title">文中 11 个人物 / 作品 / 方法</h2>
+          <p class="block-lede">每张卡都点出该来源对哪一层“研究能力”有直接贡献，并标注来源核查状态。</p>
+        </header>
+        <ul class="bg-card-grid" id="bgGrid">
+      <article class="bg-card" data-id="hamming">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Richard Hamming</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">贝尔实验室 / 数字通信先驱 / 图灵奖 1968</p>
+        <p class="bg-card-work"><strong>《You and Your Research》</strong> · 1986 演讲（贝尔实验室内部）；1995 录像由 IEEE 整理发布</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>在午餐时问同事：你这个领域最重要的问题是什么？为什么你不在做？做重要工作的能力 = 品味 + 勇气 + 努力，且会随工作环境的开放性（开门/关门办公室）而拉开差距。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>Hamming 的“重要问题”问题是文中第一节“选择你自己的问题”的直接源头；他的“开门办公室”观察是第七节“找到你的人”的源头。</p>
+        <p class="card-source">来源：<a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html" rel="noopener" target="_blank">https://www.cs.virginia.edu/~robins/YouAndYourResearch.html</a></p>
+        <p class="card-note">备注：演讲全文与录像公开可得，标题与年份可核。</p>
+      </article>
+
+      <article class="bg-card" data-id="schulman">
+        <header class="bg-card-head">
+          <div class="bg-card-name">John Schulman</div>
+          <span class="bg-card-badge" style="--badge:#e9b949">需进一步核实</span>
+        </header>
+        <p class="bg-card-role">OpenAI 联合创始人 / RLHF 核心作者之一</p>
+        <p class="bg-card-work"><strong>《An Opinionated Guide to ML Research》</strong> · 约 2023（草稿在 Schulman 个人网站流传；具体版本需进一步核实）</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>把研究分两种模式：(1) 文献驱动，读论文找可改进点；(2) 目标驱动，先选一个你希望存在的产物，倒推实验设计。他主张后者，因为后者会“制造”原创性，把你带进综述覆盖不到的领域。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>直接对应文中第一节“目标驱动”段落；为“自选问题”提供操作上的两分法。</p>
+        <p class="card-source">来源：<a href="https://joschu.github.io/" rel="noopener" target="_blank">https://joschu.github.io/</a></p>
+        <p class="card-note">备注：草稿在 joschu.github.io 可达；具体修订时间与最终发表/未发表状态以原页面为准。</p>
+      </article>
+
+      <article class="bg-card" data-id="sutton">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Rich Sutton</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">DeepMind 杰出研究科学家 / 强化学习经典教材作者</p>
+        <p class="bg-card-work"><strong>《The Bitter Lesson》</strong> · 2019</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>七十年 AI 史反复教同一件事：把算力 + 可扩展方法（搜索 / 学习）放在人类先验知识之上，最终总是更有效。“苦涩”在于这条经验总被人类知识派的优雅短期方案暂时遮蔽。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>解释为什么“旧材料”在 ML 中被长期低估（MoE/LSTM/BP 都在几十年后复用），并提供“方法 vs 知识”的研究品味锚。</p>
+        <p class="card-source">来源：<a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html" rel="noopener" target="_blank">http://www.incompleteideas.net/IncIdeas/BitterLesson.html</a></p>
+        <p class="card-note">备注：短文，可全文核；字数约 1000，与原帖描述一致。</p>
+      </article>
+
+      <article class="bg-card" data-id="shannon">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Claude Shannon</div>
+          <span class="bg-card-badge" style="--badge:#e9b949">需进一步核实</span>
+        </header>
+        <p class="bg-card-role">信息论创始人 / 图灵奖 1966</p>
+        <p class="bg-card-work"><strong>《Creative Thinking》</strong> · 1952（贝尔实验室 / 麻省理工演讲，1990s 整理稿流传）</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>面对一个困难问题，先把它缩小到几乎 trivial 的版本，解决最小版本；然后再把难度一项一项加回去。化整为零再化零为整。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>这是文中第二节“升级你的输入”里直接引用的一招；也是现代 RL/ML 调试（先在小 toy 上跑通再扩规模）的方法论原型。</p>
+        <p class="card-source">来源：<a href="https://www.cs.virginia.edu/~robins/Shannon_Creative_Thinking.html" rel="noopener" target="_blank">https://www.cs.virginia.edu/~robins/Shannon_Creative_Thinking.html</a></p>
+        <p class="card-note">备注：讲稿流通广，但权威整理/出版渠道较少；如需作为一手引用，建议进一步核实整理者与年份。</p>
+      </article>
+
+      <article class="bg-card" data-id="graham">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Paul Graham</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">Y Combinator 创始人 / 程序员与作家</p>
+        <p class="bg-card-work"><strong>《Putting Ideas into Words》/《How to Do Great Work》</strong> · Putting Ideas into Words 约 2012；How to Do Great Work 2023</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>把想法落到纸上的过程会暴露你脑子里糊过去的空隙：未经检验的假设、不成立的推理、悄悄矛盾的两个断言。写作是“看清自己想法”最便宜的工具。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第三节“把所有东西写下来”的开头段；把“写下来”从习惯升级为研究方法。</p>
+        <p class="card-source">来源：<a href="http://www.paulgraham.com/words.html" rel="noopener" target="_blank">http://www.paulgraham.com/words.html</a></p>
+        <p class="card-note">备注：原文公开可得；与 How to Do Great Work 的写作章节相互呼应。</p>
+      </article>
+
+      <article class="bg-card" data-id="feynman">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Richard Feynman</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">诺贝尔物理学奖 1965 / 加州理工</p>
+        <p class="bg-card-work"><strong>《Cargo Cult Science》演讲（加州的 1974 毕业典礼）</strong> · 1974 演讲；Caltech Engineering and Science 杂志同期发表</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>科学的完整诚实包含一种特殊的美——你必须不欺骗自己，因为你比任何人都更容易被自己骗。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第三节 Feynman 的规则，是“把失败实验也写下来”的精神源头。</p>
+        <p class="card-source">来源：<a href="https://calteches.library.caltech.edu/51/2/CargoCult.pdf" rel="noopener" target="_blank">https://calteches.library.caltech.edu/51/2/CargoCult.pdf</a></p>
+        <p class="card-note">备注：Caltech Library 公开 PDF；演讲时间/场合与原帖描述一致。</p>
+      </article>
+
+      <article class="bg-card" data-id="darwin">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Charles Darwin</div>
+          <span class="bg-card-badge" style="--badge:#a8a4e6">二手资料</span>
+        </header>
+        <p class="bg-card-role">《物种起源》作者</p>
+        <p class="bg-card-work"><strong>达尔文笔记（私人笔记本 / Notebooks on Transmutation of Species）</strong> · 约 1836-1844</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>凡与现有理论相左的事实，必须当场记下来——以对抗记忆对“便利证据”的偏好。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第三节“把失败实验也记下来”的反证程序。</p>
+        <p class="card-source">来源：<a href="https://www.darwinproject.ac.uk/" rel="noopener" target="_blank">https://www.darwinproject.ac.uk/</a></p>
+        <p class="card-note">备注：原帖的“达尔文记反证”广为流传但常以二手形式引用；此处标 secondary，建议以 Darwin Correspondence Project / Cambridge 数字版笔记本为后续核实入口。</p>
+      </article>
+
+      <article class="bg-card" data-id="olah-carter">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Chris Olah &amp; Shan Carter</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">Anthropic 可解释性 / 早期 Google Brain</p>
+        <p class="bg-card-work"><strong>《Research Debt》</strong> · 约 2020（Distill.pub 刊出）</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>领域会“欠”一种债：未被消化的想法。清晰的解释本身就是研究贡献，不是服务性工作。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第三节“把一部分写公开”的论证；强调解释/可视化与实验同样是一等贡献。</p>
+        <p class="card-source">来源：<a href="https://distill.pub/2020/research-debt/" rel="noopener" target="_blank">https://distill.pub/2020/research-debt/</a></p>
+        <p class="card-note">备注：Distill 文章公开。</p>
+      </article>
+
+      <article class="bg-card" data-id="karpathy">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Andrej Karpathy</div>
+          <span class="bg-card-badge" style="--badge:#3fbf7f">已核</span>
+        </header>
+        <p class="bg-card-role">前 Tesla AI 总监 / 前 OpenAI 研究员 / Eureka Labs</p>
+        <p class="bg-card-work"><strong>《A Recipe for Training Neural Networks》</strong> · 2019 博客</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>训练神经网络要先看数据，再训练；具体步骤包括 (a) 熟悉数据，(b) 设置端到端训练/评测/tensorboard 闭环，(c) 过拟合一个 batch，(d) 找强于随机的正则化，(e) 调参。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第四节“过拟合一个 batch”的金科玉律；也是第五节“先看数据”的方法论。</p>
+        <p class="card-source">来源：<a href="https://karpathy.github.io/2019/04/25/recipe/" rel="noopener" target="_blank">https://karpathy.github.io/2019/04/25/recipe/</a></p>
+        <p class="card-note">备注：博客公开，2019 04 发布。</p>
+      </article>
+
+      <article class="bg-card" data-id="ng">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Andrew Ng</div>
+          <span class="bg-card-badge" style="--badge:#e9b949">需进一步核实</span>
+        </header>
+        <p class="bg-card-role">Stanford 教授 / DeepLearning.AI 创始人 / Landing AI</p>
+        <p class="bg-card-work"><strong>《Machine Learning Yearning》/ DeepLearning.AI 错误分析材料</strong> · 2016-2018 草稿系列（MLY）/ DeepLearning.AI 课程系列持续更新</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>在追求提升精度前，先手动检查 100 个错例，分堆，针对最大的堆下手。这套错误分析（error analysis）程序比盲目调参更有效。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第五节“凝视输出”的核心动作：手动分桶 → 攻击最大堆。</p>
+        <p class="card-source">来源：<a href="https://www.deeplearning.ai/resources/" rel="noopener" target="_blank">https://www.deeplearning.ai/resources/</a></p>
+        <p class="card-note">备注：MLY 草稿 PDF 多处流通；具体页码引用以最新公开版本为准。</p>
+      </article>
+
+      <article class="bg-card" data-id="radford">
+        <header class="bg-card-head">
+          <div class="bg-card-name">Alec Radford</div>
+          <span class="bg-card-badge" style="--badge:#d97aa6">未核实轶事</span>
+        </header>
+        <p class="bg-card-role">OpenAI 研究员（GPT-2/3、CLIP、DALL·E 论文作者之一）</p>
+        <p class="bg-card-work"><strong>（原帖为对个人研究风格的转述，非引用具体论文）</strong> · 不适用</p>
+        <p class="bg-card-idea"><span class="card-label">核心</span>所谓研究速度，主要是你发现自己是错的速度——更多运行/天，更多错误想法被快速丢弃/周。</p>
+        <p class="bg-card-rel"><span class="card-label">研究能力</span>对应文中第四节“收紧反馈循环”的叙事。</p>
+        
+        <p class="card-note">备注：原帖的 Radford 轶事广为流传但很难独立核实；本卡只用作研究速度观的代表人物，不引用具体数字或言论。需进一步核实。</p>
+      </article>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LOG TEMPLATE -->
+    <section class="section section-log" id="log-template">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Research Log · 实验日志模板</p>
+          <h2 class="block-title">五段式记录 · 把“研究品味”练成肌肉</h2>
+          <p class="block-lede">Darwin 程序：<em>任何与现有理论相左的事实，必须当场记下来</em>。下面这套模板源自文中第三节。</p>
+        </header>
+        <form class="log-form" id="logForm" autocomplete="off">
+          <div class="log-field">
+            <label class="log-label" for="log-hypothesis">Hypothesis · 假设</label>
+            <textarea id="log-hypothesis" name="hypothesis" rows="3" placeholder="我预期会发生什么？为什么？例如：在 32 batch size 下小模型先过拟合能复现 Karpathy 步骤 3，从而省下后面一半调参时间。"></textarea>
+          </div>
+
+          <div class="log-field">
+            <label class="log-label" for="log-setup">Setup · 设置</label>
+            <textarea id="log-setup" name="setup" rows="3" placeholder="数据子集 / 模型规模 / 命令 / config diff / 关键超参"></textarea>
+          </div>
+
+          <div class="log-field">
+            <label class="log-label" for="log-expectation">Expectation · 预期数值</label>
+            <textarea id="log-expectation" name="expectation" rows="2" placeholder="准确率 / 损失 / 训练时长 / 资源消耗的数字范围"></textarea>
+          </div>
+
+          <div class="log-field">
+            <label class="log-label" for="log-result">Result · 实际结果</label>
+            <textarea id="log-result" name="result" rows="2" placeholder="实际跑出来的数字 / 行为 / 异常点"></textarea>
+          </div>
+
+          <div class="log-field">
+            <label class="log-label" for="log-updated_belief">Updated Belief · 修正后的判断</label>
+            <textarea id="log-updated_belief" name="updated_belief" rows="2" placeholder="我的假设该被保留 / 修改 / 抛弃？下一步是什么？"></textarea>
+          </div>
+          <div class="log-actions">
+            <button type="button" id="logCopy" class="btn btn-primary">复制为 Markdown</button>
+            <button type="reset" id="logReset" class="btn btn-ghost">清空</button>
+            <span class="log-toast" id="logToast" aria-live="polite"></span>
+          </div>
+        </form>
+        <p class="log-foot">日志只在本机浏览器保存（localStorage），不会上传。</p>
+      </div>
+    </section>
+
+    <!-- TASTE TRAINING -->
+    <section class="section section-taste" id="taste-training">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Taste Training · 品味训练小组件</p>
+          <h2 class="block-title">预测 → 记录 → 复盘 → 校正</h2>
+          <p class="block-lede">每一个研究中的好品味，都是被这套循环训出来的：</p>
+        </header>
+        <ol class="taste-loop" id="tasteLoop">
+          <li class="taste-step" data-step="predict">
+            <h4 class="taste-title">1. Predict · 预测</h4>
+            <p>实验前写下：我预期会发生什么。读论文时盖住 Results 段，猜数字。</p>
+          </li>
+
+          <li class="taste-step" data-step="record">
+            <h4 class="taste-title">2. Record · 记录</h4>
+            <p>把预测和结果都写下来——比记忆可靠得多（参见 Darwin）。</p>
+          </li>
+
+          <li class="taste-step" data-step="review">
+            <h4 class="taste-title">3. Review · 复盘</h4>
+            <p>过一段时间批量回看：哪类预测一直准？哪类系统性偏？</p>
+          </li>
+
+          <li class="taste-step" data-step="calibrate">
+            <h4 class="taste-title">4. Calibrate · 校正</h4>
+            <p>把系统性的偏差写进自己的判断模型，下一次预测前先调权。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ERROR BUCKET DEMO -->
+    <section class="section section-bucket" id="error-bucket">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Error Bucket Demo · 错误桶示例</p>
+          <h2 class="block-title">Andrew Ng 的核心动作：分桶 → 攻击最大堆</h2>
+          <p class="block-lede">Andrew Ng 的核心动作：拉 100 个失败样本，全读，分类，攻击最大堆。下面是一个虚构的文本分类失败案例分桶（点击桶可高亮）。</p>
+        </header>
+        <ul class="error-buckets" id="errorBuckets">
+          <li class="error-bucket" data-bucket="label_wrong" style="--bc:#e9b949">
+            <button class="bucket-row" type="button">
+              <span class="bucket-dot"></span>
+              <span class="bucket-label">标签本身是错的</span>
+              <span class="bucket-count">38</span>
+            </button>
+            <p class="bucket-example">人工标注 100 条里就有 38 条与多数人不一致——你的“失败”部分是标签噪声。</p>
+          </li>
+
+          <li class="error-bucket" data-bucket="ood" style="--bc:#5fb0a4">
+            <button class="bucket-row" type="button">
+              <span class="bucket-dot"></span>
+              <span class="bucket-label">分布外 / 罕见表述</span>
+              <span class="bucket-count">27</span>
+            </button>
+            <p class="bucket-example">测试集出现训练集未覆盖的俚语、缩写、跨语言混合。</p>
+          </li>
+
+          <li class="error-bucket" data-bucket="long_tail" style="--bc:#a8a4e6">
+            <button class="bucket-row" type="button">
+              <span class="bucket-dot"></span>
+              <span class="bucket-label">长尾类被压平</span>
+              <span class="bucket-count">18</span>
+            </button>
+            <p class="bucket-example">少数类被多数类淹没；模型对它们学得慢。</p>
+          </li>
+
+          <li class="error-bucket" data-bucket="schema" style="--bc:#e98074">
+            <button class="bucket-row" type="button">
+              <span class="bucket-dot"></span>
+              <span class="bucket-label">schema / 解析失败</span>
+              <span class="bucket-count">11</span>
+            </button>
+            <p class="bucket-example">结构化抽取时 JSON 字段类型不一致；模型猜了一个相近类型。</p>
+          </li>
+
+          <li class="error-bucket" data-bucket="spurious" style="--bc:#7bc16a">
+            <button class="bucket-row" type="button">
+              <span class="bucket-dot"></span>
+              <span class="bucket-label">虚假相关（spurious）</span>
+              <span class="bucket-count">6</span>
+            </button>
+            <p class="bucket-example">模型学到了“句子里有句号 → 正例”这种捷径。</p>
+          </li>
+        </ul>
+        <p class="bucket-takeaway">合计 100 个失败样本 · <strong>建议动作：先攻击占比最大的桶（这里：标签噪声），而不是一上来就调超参。</strong></p>
+      </div>
+    </section>
+
+    <!-- 7-DAY PLAN -->
+    <section class="section section-plan" id="seven-day-plan">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">7-Day Practice Plan · 7 天研究训练计划</p>
+          <h2 class="block-title">每天 60-90 分钟 · 7 天跑完一个最小循环</h2>
+          <p class="block-lede">面向个人 AI / 论文 / agent 项目。每条任务 ≈ 60-90 分钟，可拆分。</p>
+        </header>
+        <div class="day-grid" id="dayGrid">
+          <article class="day-card" data-day="Day 1">
+            <header class="day-head">
+              <span class="day-no">Day 1</span>
+              <h4 class="day-theme">自选问题</h4>
+            </header>
+            <ul class="day-tasks"><li>列出 3 个你目前能跑得动的问题。</li><li>对每个问题写一句：它为什么重要？没有你它会缺什么？</li><li>从 3 个里挑 1 个；这个选择要写下来。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 2">
+            <header class="day-head">
+              <span class="day-no">Day 2</span>
+              <h4 class="day-theme">输入升级</h4>
+            </header>
+            <ul class="day-tasks"><li>读一篇 1990 年前的经典（任意子领域）。</li><li>读一篇 2020 年后的代表性论文。</li><li>在两者之间用一句话建立“复用 / 重新发现”联系。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 3">
+            <header class="day-head">
+              <span class="day-no">Day 3</span>
+              <h4 class="day-theme">研究品味</h4>
+            </header>
+            <ul class="day-tasks"><li>选一篇本月 arxiv 热门，预测它的方法能否 scale。</li><li>把预测写下来。</li><li>两周后回看。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 4">
+            <header class="day-head">
+              <span class="day-no">Day 4</span>
+              <h4 class="day-theme">写作校准</h4>
+            </header>
+            <ul class="day-tasks"><li>把昨天那个预测用 200 字写清楚。</li><li>请一位不熟该领域的朋友读，挑出 1-2 个“不成立”的地方。</li><li>改。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 5">
+            <header class="day-head">
+              <span class="day-no">Day 5</span>
+              <h4 class="day-theme">实验循环</h4>
+            </header>
+            <ul class="day-tasks"><li>给当前项目写一个 1 命令启动 + 1 命令画图的脚本。</li><li>把已有 config 整理成可复现的 hash 化日志。</li><li>在单 batch 上做一次过拟合，验证骨架。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 6">
+            <header class="day-head">
+              <span class="day-no">Day 6</span>
+              <h4 class="day-theme">输出观察</h4>
+            </header>
+            <ul class="day-tasks"><li>拉 50 个错例，全读。</li><li>用上方的错误桶 demo 给自己写一个分桶表。</li><li>选定最大桶，写下明天的攻击方案。</li></ul>
+          </article>
+
+          <article class="day-card" data-day="Day 7">
+            <header class="day-head">
+              <span class="day-no">Day 7</span>
+              <h4 class="day-theme">跨领域 + 共同体</h4>
+            </header>
+            <ul class="day-tasks"><li>去一个不熟悉的方向读 1 篇综述。</li><li>找 1 位做相关工作的人，发一条具体的、能引发讨论的反馈。</li><li>公开记录本周进展（半成形也可）。</li></ul>
+          </article>
+        </div>
+        <p class="plan-progress" id="planProgress"><span>0</span> / 7 天已完成</p>
+      </div>
+    </section>
+
+    <!-- PERSONAL TAKEAWAYS -->
+    <section class="section section-takeaways" id="takeaways">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Personal Takeaways · 自己的启发</p>
+          <h2 class="block-title">把研究能力栈接到 AI 编程 / Agent 工作流</h2>
+          <p class="block-lede">把这篇文章翻译并做成页面的同时，我自己得到的最大启发是：把研究能力栈当作 agent 项目的设计原则，而不是“研究方法论”。下面 5 条是我会马上在 agent / AI 编程项目里应用的。</p>
+        </header>
+        <ol class="takeaway-list" id="takeawayList">
+      <li class="takeaway">
+        <h4 class="takeaway-title">每个阶段形成 design rationale</h4>
+        <p>在 agent 项目的每个阶段报告里，除了“做了什么”，还要写“为什么这样做”。研究品味离不开理由记录——下一次你/agent 决策时，理由文件就是 ground truth。</p>
+      </li>
+
+      <li class="takeaway">
+        <h4 class="takeaway-title">记录 why，而不只是 what</h4>
+        <p>agent 的代码改动、prompt 改动、eval 改动，默认要被记下来。失败改动尤其要记——它们是研究品味训练的语料。</p>
+      </li>
+
+      <li class="takeaway">
+        <h4 class="takeaway-title">让 agent 输出 modified-impact analysis</h4>
+        <p>每次要求 agent 改一段代码 / 一段文档 / 一段配置，要求它顺手输出：影响范围 / 风险点 / 验证方式。这等于把 Ng 的错误桶前置到改动阶段。</p>
+      </li>
+
+      <li class="takeaway">
+        <h4 class="takeaway-title">代码、文档、测试一起服务于“项目理论”</h4>
+        <p>agent 项目容易陷入“功能越来越花，理论越来越乱”。Olah-Carter 提醒：清晰解释本身是研究贡献。代码 + 文档 + 测试，应该一起让“项目是什么 / 不是什么”显形。</p>
+      </li>
+
+      <li class="takeaway">
+        <h4 class="takeaway-title">阶段收口时用人话复述</h4>
+        <p>每个 phase 收口时写一段 200 字的 STATE OF THE SYSTEM（用人话）——这呼应 Hamming 的“开门办公室”：把当前现实摆出来，对打扰（rebuttal）开放。</p>
+      </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FURTHER READING -->
+    <section class="section section-refs" id="further-reading">
+      <div class="section-inner">
+        <header class="block-head">
+          <p class="block-eyebrow">Further Reading · 资料与来源</p>
+          <h2 class="block-title">想再深一点</h2>
+        </header>
+        <ul class="ref-list">
+          <li><strong>原帖：</strong> @itsreallyvivek, <em>how to be good at research</em>, 2026-06-10 — 原文为 X (Twitter) 长帖；本页面为非官方翻译/整理，仅作个人学习用，版权归原作者。</li>
+          <li><strong>Richard Hamming</strong>, <em>You and Your Research</em>, 贝尔实验室内部演讲 (1986)；录像与整理稿见 IEEE / Virginia CS 镜像。</li>
+          <li><strong>John Schulman</strong>, <em>An Opinionated Guide to ML Research</em>, 草稿 (2023 前后, 需进一步核实具体版本)。</li>
+          <li><strong>Rich Sutton</strong>, <em>The Bitter Lesson</em>, 2019, incompleteideas.net。</li>
+          <li><strong>Claude Shannon</strong>, <em>Creative Thinking</em>, 1952 演讲；整理稿见 cs.virginia.edu (需进一步核实整理者与年份)。</li>
+          <li><strong>Paul Graham</strong>, <em>Putting Ideas into Words</em> + <em>How to Do Great Work</em>。</li>
+          <li><strong>Richard Feynman</strong>, <em>Cargo Cult Science</em>, 加州理工 1974 毕业典礼演讲。</li>
+          <li><strong>Darwin 笔记</strong>, 二手资料为主；可从 Darwin Correspondence Project 进一步核实。</li>
+          <li><strong>Chris Olah & Shan Carter</strong>, <em>Research Debt</em>, Distill.pub 2020。</li>
+          <li><strong>Andrej Karpathy</strong>, <em>A Recipe for Training Neural Networks</em>, 2019 博客。</li>
+          <li><strong>Andrew Ng</strong>, <em>Machine Learning Yearning</em> (2016-2018 草稿) + DeepLearning.AI 错误分析材料。</li>
+        </ul>
+        <p class="ref-note">对未独立核实的人物/年份/具体言论，本页面已尽量标注为“需进一步核实 / secondary / 未核实轶事”；读者引用时建议二次核查。</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-line">研究能力栈 · 中文交互式梳理 · 整理：Xin Conan · 2026-06-15</p>
+      <p class="footer-line footer-meta">本页面为非官方学习整理；原帖版权归 @itsreallyvivek 所有。</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=v1-20260615" defer></script>
+</body>
+</html>

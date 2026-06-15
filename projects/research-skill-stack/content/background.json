@@ -1,0 +1,138 @@
+{
+  "version": "v1.0-20260615",
+  "title": "研究能力栈 · 背景资料卡",
+  "cards": [
+    {
+      "id": "hamming",
+      "name": "Richard Hamming",
+      "role": "贝尔实验室 / 数字通信先驱 / 图灵奖 1968",
+      "title_of_work": "《You and Your Research》",
+      "year": "1986 演讲（贝尔实验室内部）；1995 录像由 IEEE 整理发布",
+      "core_idea": "在午餐时问同事：你这个领域最重要的问题是什么？为什么你不在做？做重要工作的能力 = 品味 + 勇气 + 努力，且会随工作环境的开放性（开门/关门办公室）而拉开差距。",
+      "research_relevance": "Hamming 的“重要问题”问题是文中第一节“选择你自己的问题”的直接源头；他的“开门办公室”观察是第七节“找到你的人”的源头。",
+      "source_status": "verified",
+      "source_url": "https://www.cs.virginia.edu/~robins/YouAndYourResearch.html",
+      "source_note": "演讲全文与录像公开可得，标题与年份可核。"
+    },
+    {
+      "id": "schulman",
+      "name": "John Schulman",
+      "role": "OpenAI 联合创始人 / RLHF 核心作者之一",
+      "title_of_work": "《An Opinionated Guide to ML Research》",
+      "year": "约 2023（草稿在 Schulman 个人网站流传；具体版本需进一步核实）",
+      "core_idea": "把研究分两种模式：(1) 文献驱动，读论文找可改进点；(2) 目标驱动，先选一个你希望存在的产物，倒推实验设计。他主张后者，因为后者会“制造”原创性，把你带进综述覆盖不到的领域。",
+      "research_relevance": "直接对应文中第一节“目标驱动”段落；为“自选问题”提供操作上的两分法。",
+      "source_status": "need-verify",
+      "source_url": "https://joschu.github.io/",
+      "source_note": "草稿在 joschu.github.io 可达；具体修订时间与最终发表/未发表状态以原页面为准。"
+    },
+    {
+      "id": "sutton",
+      "name": "Rich Sutton",
+      "role": "DeepMind 杰出研究科学家 / 强化学习经典教材作者",
+      "title_of_work": "《The Bitter Lesson》",
+      "year": "2019",
+      "core_idea": "七十年 AI 史反复教同一件事：把算力 + 可扩展方法（搜索 / 学习）放在人类先验知识之上，最终总是更有效。“苦涩”在于这条经验总被人类知识派的优雅短期方案暂时遮蔽。",
+      "research_relevance": "解释为什么“旧材料”在 ML 中被长期低估（MoE/LSTM/BP 都在几十年后复用），并提供“方法 vs 知识”的研究品味锚。",
+      "source_status": "verified",
+      "source_url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html",
+      "source_note": "短文，可全文核；字数约 1000，与原帖描述一致。"
+    },
+    {
+      "id": "shannon",
+      "name": "Claude Shannon",
+      "role": "信息论创始人 / 图灵奖 1966",
+      "title_of_work": "《Creative Thinking》",
+      "year": "1952（贝尔实验室 / 麻省理工演讲，1990s 整理稿流传）",
+      "core_idea": "面对一个困难问题，先把它缩小到几乎 trivial 的版本，解决最小版本；然后再把难度一项一项加回去。化整为零再化零为整。",
+      "research_relevance": "这是文中第二节“升级你的输入”里直接引用的一招；也是现代 RL/ML 调试（先在小 toy 上跑通再扩规模）的方法论原型。",
+      "source_status": "need-verify",
+      "source_url": "https://www.cs.virginia.edu/~robins/Shannon_Creative_Thinking.html",
+      "source_note": "讲稿流通广，但权威整理/出版渠道较少；如需作为一手引用，建议进一步核实整理者与年份。"
+    },
+    {
+      "id": "graham",
+      "name": "Paul Graham",
+      "role": "Y Combinator 创始人 / 程序员与作家",
+      "title_of_work": "《Putting Ideas into Words》/《How to Do Great Work》",
+      "year": "Putting Ideas into Words 约 2012；How to Do Great Work 2023",
+      "core_idea": "把想法落到纸上的过程会暴露你脑子里糊过去的空隙：未经检验的假设、不成立的推理、悄悄矛盾的两个断言。写作是“看清自己想法”最便宜的工具。",
+      "research_relevance": "对应文中第三节“把所有东西写下来”的开头段；把“写下来”从习惯升级为研究方法。",
+      "source_status": "verified",
+      "source_url": "http://www.paulgraham.com/words.html",
+      "source_note": "原文公开可得；与 How to Do Great Work 的写作章节相互呼应。"
+    },
+    {
+      "id": "feynman",
+      "name": "Richard Feynman",
+      "role": "诺贝尔物理学奖 1965 / 加州理工",
+      "title_of_work": "《Cargo Cult Science》演讲（加州的 1974 毕业典礼）",
+      "year": "1974 演讲；Caltech Engineering and Science 杂志同期发表",
+      "core_idea": "科学的完整诚实包含一种特殊的美——你必须不欺骗自己，因为你比任何人都更容易被自己骗。",
+      "research_relevance": "对应文中第三节 Feynman 的规则，是“把失败实验也写下来”的精神源头。",
+      "source_status": "verified",
+      "source_url": "https://calteches.library.caltech.edu/51/2/CargoCult.pdf",
+      "source_note": "Caltech Library 公开 PDF；演讲时间/场合与原帖描述一致。"
+    },
+    {
+      "id": "darwin",
+      "name": "Charles Darwin",
+      "role": "《物种起源》作者",
+      "title_of_work": "达尔文笔记（私人笔记本 / Notebooks on Transmutation of Species）",
+      "year": "约 1836-1844",
+      "core_idea": "凡与现有理论相左的事实，必须当场记下来——以对抗记忆对“便利证据”的偏好。",
+      "research_relevance": "对应文中第三节“把失败实验也记下来”的反证程序。",
+      "source_status": "secondary",
+      "source_url": "https://www.darwinproject.ac.uk/",
+      "source_note": "原帖的“达尔文记反证”广为流传但常以二手形式引用；此处标 secondary，建议以 Darwin Correspondence Project / Cambridge 数字版笔记本为后续核实入口。"
+    },
+    {
+      "id": "olah-carter",
+      "name": "Chris Olah & Shan Carter",
+      "role": "Anthropic 可解释性 / 早期 Google Brain",
+      "title_of_work": "《Research Debt》",
+      "year": "约 2020（Distill.pub 刊出）",
+      "core_idea": "领域会“欠”一种债：未被消化的想法。清晰的解释本身就是研究贡献，不是服务性工作。",
+      "research_relevance": "对应文中第三节“把一部分写公开”的论证；强调解释/可视化与实验同样是一等贡献。",
+      "source_status": "verified",
+      "source_url": "https://distill.pub/2020/research-debt/",
+      "source_note": "Distill 文章公开。"
+    },
+    {
+      "id": "karpathy",
+      "name": "Andrej Karpathy",
+      "role": "前 Tesla AI 总监 / 前 OpenAI 研究员 / Eureka Labs",
+      "title_of_work": "《A Recipe for Training Neural Networks》",
+      "year": "2019 博客",
+      "core_idea": "训练神经网络要先看数据，再训练；具体步骤包括 (a) 熟悉数据，(b) 设置端到端训练/评测/tensorboard 闭环，(c) 过拟合一个 batch，(d) 找强于随机的正则化，(e) 调参。",
+      "research_relevance": "对应文中第四节“过拟合一个 batch”的金科玉律；也是第五节“先看数据”的方法论。",
+      "source_status": "verified",
+      "source_url": "https://karpathy.github.io/2019/04/25/recipe/",
+      "source_note": "博客公开，2019 04 发布。"
+    },
+    {
+      "id": "ng",
+      "name": "Andrew Ng",
+      "role": "Stanford 教授 / DeepLearning.AI 创始人 / Landing AI",
+      "title_of_work": "《Machine Learning Yearning》/ DeepLearning.AI 错误分析材料",
+      "year": "2016-2018 草稿系列（MLY）/ DeepLearning.AI 课程系列持续更新",
+      "core_idea": "在追求提升精度前，先手动检查 100 个错例，分堆，针对最大的堆下手。这套错误分析（error analysis）程序比盲目调参更有效。",
+      "research_relevance": "对应文中第五节“凝视输出”的核心动作：手动分桶 → 攻击最大堆。",
+      "source_status": "need-verify",
+      "source_url": "https://www.deeplearning.ai/resources/",
+      "source_note": "MLY 草稿 PDF 多处流通；具体页码引用以最新公开版本为准。"
+    },
+    {
+      "id": "radford",
+      "name": "Alec Radford",
+      "role": "OpenAI 研究员（GPT-2/3、CLIP、DALL·E 论文作者之一）",
+      "title_of_work": "（原帖为对个人研究风格的转述，非引用具体论文）",
+      "year": "不适用",
+      "core_idea": "所谓研究速度，主要是你发现自己是错的速度——更多运行/天，更多错误想法被快速丢弃/周。",
+      "research_relevance": "对应文中第四节“收紧反馈循环”的叙事。",
+      "source_status": "unverified-anecdote",
+      "source_url": "",
+      "source_note": "原帖的 Radford 轶事广为流传但很难独立核实；本卡只用作研究速度观的代表人物，不引用具体数字或言论。需进一步核实。"
+    }
+  ]
+}

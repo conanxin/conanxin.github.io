@@ -7,9 +7,15 @@ const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
 // ====== State ======
+const READING_MODE_KEY = "wbw-reading-mode";
+const VALID_READING_MODES = ["immersive", "annotated", "compact"];
+
 const state = {
   theme: localStorage.getItem('wbw-theme') || 'deep-space',
-  mode: localStorage.getItem('wbw-mode') || 'immersive',
+  readingMode: (() => {
+    const saved = localStorage.getItem(READING_MODE_KEY);
+    return VALID_READING_MODES.includes(saved) ? saved : 'immersive';
+  })(),
   data: { sections: [], glossary: [], timeline: [], sources: {} }
 };
 
@@ -247,7 +253,7 @@ function inlineLinks(text) {
   return esc(text).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
 
-// ====== Theme + Mode ======
+// ====== Theme + Reading Mode ======
 function applyTheme(theme) {
   state.theme = theme;
   document.documentElement.setAttribute('data-theme', theme);
@@ -255,11 +261,40 @@ function applyTheme(theme) {
   $$('[data-theme]').forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
 }
 
-function applyMode(mode) {
-  state.mode = mode;
-  document.documentElement.setAttribute('data-mode', mode);
-  localStorage.setItem('wbw-mode', mode);
-  $$('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+function updateReadingModeHint(mode) {
+  const hint = document.getElementById("readingModeHint");
+  if (!hint) return;
+  const labels = {
+    immersive: "沉浸：隐藏目录，正文居中",
+    annotated: "注释：突出脚注、链接与资料",
+    compact: "紧凑：缩小间距，一屏更多内容",
+  };
+  hint.textContent = labels[mode] || labels.immersive;
+}
+
+function applyReadingMode(mode) {
+  const normalized = VALID_READING_MODES.includes(mode) ? mode : 'immersive';
+  state.readingMode = normalized;
+  document.documentElement.dataset.readingMode = normalized;
+  document.body.dataset.readingMode = normalized;
+  localStorage.setItem(READING_MODE_KEY, normalized);
+
+  document.querySelectorAll("[data-reading-mode]").forEach((button) => {
+    const active = button.dataset.readingMode === normalized;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  updateReadingModeHint(normalized);
+}
+
+function initReadingModes() {
+  applyReadingMode(state.readingMode);
+  document.querySelectorAll("[data-reading-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      applyReadingMode(button.dataset.readingMode);
+    });
+  });
 }
 
 // ====== Progress bar ======
@@ -405,11 +440,10 @@ function setupImageFallbacks() {
 // ====== Init ======
 async function init() {
   applyTheme(state.theme);
-  applyMode(state.mode);
+  initReadingModes();
 
-  // Theme + mode buttons
+  // Theme buttons
   $$('[data-theme]').forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.theme)));
-  $$('[data-mode]').forEach(b => b.addEventListener('click', () => applyMode(b.dataset.mode)));
 
   // TOC toggle (mobile)
   $('#tocToggle')?.addEventListener('click', () => $('#toc').classList.toggle('open'));

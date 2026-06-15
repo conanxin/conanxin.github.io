@@ -129,3 +129,11 @@ V10 improves the longform reading experience after V9C:
 - Removes stale no-JS/loading text from normal document flow.
 - Upgrades source cards for 2026 factual context.
 - Adds a visible V10 version marker.
+
+## V11 — Reading Mode Fix
+
+V11 makes the three reading modes visually distinct:
+- Immersive mode hides the side TOC and centers the article for continuous reading.
+- Annotated mode highlights footnotes, links, and reference-heavy sections for research reading.
+- Compact mode reduces line height, spacing, and figure margins for denser reading.
+- The current mode is persisted with localStorage and displayed in a small toolbar hint.

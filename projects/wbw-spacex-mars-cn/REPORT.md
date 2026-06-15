@@ -287,3 +287,14 @@ Changes:
 - Upgraded #sources-section source cards from Wikipedia-heavy references to stronger NASA / Space.com / SpaceX references.
 - Added visible version marker: V10 Anchor / TOC / Sources Polish.
 - Preserved V9C gates and V8 image rendering invariants.
+
+## V11 — Reading Mode Fix
+
+Status: PASS before publish.
+
+Changes:
+- Wired reading-mode buttons to `document.documentElement.dataset.readingMode`.
+- Added persistent reading-mode state via localStorage (key `wbw-reading-mode`).
+- Added strong CSS differences for immersive / annotated / compact modes.
+- Added mode titles and live hint text.
+- Preserved V10 TOC / sources / footnotes fixes.

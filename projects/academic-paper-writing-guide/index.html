@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>学术论文写作方法和技巧｜从机器翻译演示稿出发</title>
+  <meta name="description" content="基于刘洋《机器翻译学术论文写作方法和技巧》演示稿，补充 CARS、IMRaD、读者预期、图表表达与可复现性，形成一份面向 AI / NLP / 研究项目的论文写作方法页。" />
+  <style>
+    :root {
+      --paper: #f8f1e7;
+      --paper-2: #fffaf2;
+      --ink: #2b262d;
+      --muted: #6b606b;
+      --line: rgba(79, 54, 86, .16);
+      --lavender: #ead7ea;
+      --lavender-2: #d8b6dd;
+      --rose: #f6beb7;
+      --blue: #38647e;
+      --blue-2: #dcebf1;
+      --gold: #b98229;
+      --green: #617b54;
+      --shadow: 0 20px 60px rgba(69, 43, 72, .14);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(216,182,221,.45), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(220,235,241,.75), transparent 28%),
+        linear-gradient(180deg, #fbf5ed 0%, var(--paper) 48%, #f3e7d9 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.72;
+    }
+    a { color: inherit; }
+    .page { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 241, 231, .78);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .02em; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--lavender-2), var(--rose)); box-shadow: inset 0 0 0 5px rgba(255,255,255,.45); }
+    .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a { text-decoration: none; font-size: 13px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.38); }
+    .hero { display: grid; grid-template-columns: 1.12fr .88fr; gap: 32px; align-items: stretch; padding: 72px 0 34px; }
+    .hero-card, .panel, .source-card {
+      border: 1px solid var(--line);
+      background: rgba(255,250,242,.82);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card { padding: clamp(28px, 5vw, 56px); position: relative; overflow: hidden; }
+    .hero-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 12px; background: linear-gradient(90deg, var(--lavender-2), var(--rose), var(--blue-2)); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 999px; background: var(--lavender); color: #6c3f75; font-weight: 800; font-size: 13px; }
+    h1 { margin: 24px 0 16px; font-size: clamp(38px, 7vw, 76px); line-height: .98; letter-spacing: -.06em; }
+    .subtitle { color: var(--muted); font-size: clamp(17px, 2vw, 22px); max-width: 780px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { border: 1px solid var(--line); border-radius: 999px; padding: 11px 16px; text-decoration: none; font-weight: 800; background: #fff; box-shadow: 0 8px 22px rgba(62, 42, 66, .08); }
+    .btn.primary { background: var(--ink); color: var(--paper-2); border-color: var(--ink); }
+    .slide-stack { padding: 22px; display: grid; gap: 14px; align-content: stretch; }
+    .slide { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-height: 118px; position: relative; overflow: hidden; }
+    .slide .bar { height: 18px; margin: -18px -18px 14px; background: var(--lavender); }
+    .slide h3 { margin: 0 0 8px; font-size: 22px; }
+    .slide p { margin: 0; color: var(--muted); font-size: 14px; }
+    .stamp { position: absolute; right: 14px; bottom: 10px; font-size: 42px; color: rgba(108, 63, 117, .11); font-weight: 900; }
+    .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 14px 0 54px; }
+    .meta { border: 1px solid var(--line); background: rgba(255,255,255,.58); border-radius: 18px; padding: 18px; }
+    .meta b { display: block; font-size: 24px; line-height: 1.1; }
+    .meta span { display: block; color: var(--muted); font-size: 13px; margin-top: 6px; }
+    section { scroll-margin-top: 90px; margin: 56px 0; }
+    .section-title { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+    .section-title h2 { margin: 0; font-size: clamp(26px, 4vw, 46px); letter-spacing: -.04em; }
+    .section-title p { margin: 0; color: var(--muted); max-width: 560px; }
+    .panel { padding: clamp(20px, 3vw, 34px); }
+    .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+    .flow-card { border: 1px solid var(--line); background: linear-gradient(180deg, #fff, #fff7ef); border-radius: 18px; padding: 16px; min-height: 168px; position: relative; }
+    .flow-card .num { color: var(--blue); font-weight: 900; font-size: 13px; }
+    .flow-card h3 { margin: 8px 0 8px; font-size: 19px; }
+    .flow-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .flow-card::after { content: "→"; position: absolute; right: -12px; top: 44%; color: var(--lavender-2); font-weight: 900; font-size: 22px; }
+    .flow-card:last-child::after { display: none; }
+    .two-col { display: grid; grid-template-columns: .95fr 1.05fr; gap: 18px; }
+    .note { border-left: 5px solid var(--blue); background: var(--blue-2); padding: 18px; border-radius: 16px; color: #294b5f; }
+    .quote-box { border: 1px dashed rgba(108,63,117,.38); background: #fff; border-radius: 18px; padding: 20px; }
+    .quote-box strong { display: block; font-size: 22px; margin-bottom: 10px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: rgba(255,255,255,.64); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .card p, .card li { color: var(--muted); font-size: 14px; }
+    .card ul { margin: 10px 0 0; padding-left: 20px; }
+    .reader-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+    .reader-box { border-radius: 20px; padding: 22px; border: 1px solid var(--line); background: #fff; }
+    .reader-box.bad { background: #fff4f1; }
+    .reader-box.good { background: #f2f8f2; }
+    .reader-box h3 { margin-top: 0; }
+    .arrow-label { text-align: center; font-weight: 900; color: var(--gold); margin: 12px 0; }
+    .info-rank { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-weight: 800; font-size: 14px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .tab { cursor: pointer; border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 10px 14px; font-weight: 800; color: var(--muted); }
+    .tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .section-map { display: grid; grid-template-columns: 220px 1fr; gap: 14px; }
+    .toc-mini { display: grid; gap: 8px; }
+    .toc-mini a { text-decoration: none; border: 1px solid var(--line); background: rgba(255,255,255,.5); border-radius: 14px; padding: 10px 12px; font-weight: 800; color: var(--muted); }
+    .paper-part { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: #fff; margin-bottom: 12px; }
+    .paper-part h3 { margin: 0 0 8px; }
+    .paper-part p { margin: 0; color: var(--muted); }
+    .check-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 18px; }
+    .checklist { display: grid; gap: 10px; }
+    .check-item { display: flex; gap: 12px; align-items: flex-start; padding: 13px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+    .check-item input { margin-top: 6px; transform: scale(1.2); accent-color: var(--blue); }
+    .check-item b { display: block; }
+    .check-item span { color: var(--muted); font-size: 13px; }
+    .score { position: sticky; top: 86px; align-self: start; text-align: center; padding: 24px; border-radius: 22px; background: var(--ink); color: #fff; }
+    .score-num { font-size: 62px; font-weight: 900; line-height: 1; }
+    .score small { color: rgba(255,255,255,.7); }
+    .progress { height: 10px; background: rgba(255,255,255,.18); border-radius: 999px; overflow: hidden; margin-top: 16px; }
+    .progress > span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--lavender-2), var(--rose)); transition: width .25s ease; }
+    .sources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .source-card { padding: 18px; box-shadow: none; }
+    .source-card h3 { margin: 0 0 8px; font-size: 18px; }
+    .source-card p { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+    .source-card a { font-weight: 800; color: var(--blue); }
+    footer { padding: 40px 0 70px; color: var(--muted); text-align: center; }
+    @media (max-width: 980px) {
+      .hero, .two-col, .reader-grid, .check-wrap, .section-map { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: repeat(2, 1fr); }
+      .flow-card::after { display: none; }
+      .meta-grid, .cards, .sources { grid-template-columns: repeat(2, 1fr); }
+      .score { position: static; }
+    }
+    @media (max-width: 640px) {
+      .nav { display: none; }
+      .hero { padding-top: 38px; }
+      .flow, .meta-grid, .cards, .sources { grid-template-columns: 1fr; }
+      h1 { font-size: 42px; }
+      .hero-card { padding: 28px 20px; }
+      .section-title { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="page topbar-inner">
+      <div class="brand"><span class="brand-mark"></span><span>Academic Writing Lab</span></div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#flow">发表流程</a>
+        <a href="#reader">读者优先</a>
+        <a href="#sections">论文结构</a>
+        <a href="#methods">方法与实验</a>
+        <a href="#frameworks">延展框架</a>
+        <a href="#checklist">检查表</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero" id="top">
+      <div class="hero-card">
+        <span class="eyebrow">基于刘洋 CWMT 2014 演示稿的学习型整理</span>
+        <h1>把研究写成读者愿意读的思想产品</h1>
+        <p class="subtitle">以《机器翻译学术论文写作方法和技巧》为主线，补充 CARS、IMRaD、读者预期、图表表达与可复现性，形成一套面向 AI / NLP / 研究项目的论文写作方法。</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#flow">进入方法地图</a>
+          <a class="btn" href="#checklist">打开论文检查表</a>
+          <a class="btn" href="#sources">查看资料来源</a>
+        </div>
+      </div>
+      <aside class="hero-card slide-stack" aria-label="核心幻灯片摘要">
+        <div class="slide">
+          <div class="bar"></div>
+          <h3>论文不是工作日志</h3>
+          <p>它是把研究思想、证据链和表达路径重新组织给读者看的信息产品。</p>
+          <span class="stamp">01</span>
+        </div>
+        <div class="slide">
+          <div class="bar"></div>
+          <h3>写作不在最后发生</h3>
+          <p>选题、问题、思路、方法、实验，一开始就决定了论文能否讲清楚。</p>
+          <span class="stamp">02</span>
+        </div>
+        <div class="slide">
+          <div class="bar"></div>
+          <h3>降低理解难度</h3>
+          <p>图、例子、标题、摘要和 Introduction，是帮助审稿人快速理解的入口。</p>
+          <span class="stamp">03</span>
+        </div>
+      </aside>
+    </section>
+
+    <div class="meta-grid" aria-label="资料概览">
+      <div class="meta"><b>244</b><span>原始演示稿页数</span></div>
+      <div class="meta"><b>2014</b><span>中国澳门，第十届全国机器翻译研讨会</span></div>
+      <div class="meta"><b>6 步</b><span>从方向到论文的发表流程</span></div>
+      <div class="meta"><b>1 条主线</b><span>全心全意为读者服务</span></div>
+    </div>
+
+    <section id="flow">
+      <div class="section-title">
+        <h2>一、论文发表流程：从研究生成到论文表达</h2>
+        <p>演示稿不是从“怎么写摘要”开始，而是先把研究工作拆成六个环节：方向、问题、思路、方法、实验、论文。</p>
+      </div>
+      <div class="panel flow">
+        <div class="flow-card"><span class="num">01</span><h3>确定方向</h3><p>选择研究大领域。不是盲目追热点，而是判断领域势能、问题密度和个人长期兴趣。</p></div>
+        <div class="flow-card"><span class="num">02</span><h3>确定问题</h3><p>从宽泛方向中抽出具体挑战。问题要能被表述、被比较、被验证。</p></div>
+        <div class="flow-card"><span class="num">03</span><h3>确定思路</h3><p>提出能解释问题的核心洞察。好思路要新颖，但也要让读者能跟上。</p></div>
+        <div class="flow-card"><span class="num">04</span><h3>确定方法</h3><p>把思路落到算法、模型、规则、系统或流程中。方法是思想的实现，不是思想本身。</p></div>
+        <div class="flow-card"><span class="num">05</span><h3>实验验证</h3><p>用标准数据、强基线、主辅实验和显著性检验建立可信证据链。</p></div>
+        <div class="flow-card"><span class="num">06</span><h3>撰写论文</h3><p>按读者理解路径重新组织材料，让审稿人快速看见贡献。</p></div>
+      </div>
+    </section>
+
+    <section id="choice">
+      <div class="section-title">
+        <h2>二、选题的智慧：热门与冷门之外</h2>
+        <p>演示稿用“热门方向”和“冷门方向”对比，真正要训练的是对问题价值的判断力。</p>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <h3>好题目的四个信号</h3>
+          <div class="cards" style="grid-template-columns:1fr 1fr;">
+            <div class="card"><h3>重要问题</h3><p>它不是小修小补，而是领域里反复出现、阻碍进展的关键困难。</p></div>
+            <div class="card"><h3>自己感兴趣</h3><p>足够难的问题需要长期投入，兴趣是穿越低反馈阶段的燃料。</p></div>
+            <div class="card"><h3>即将变热</h3><p>最好站在未来趋势的前夜，而不是人群已经拥挤的中心。</p></div>
+            <div class="card"><h3>高风险性</h3><p>真正有差异的研究常常伴随不确定性，要做好暂时不被承认的准备。</p></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>今天的 AI / LLM 语境怎么用？</h3>
+          <p>不要只问“哪个模型更强”，而要问：什么评价还不可信？什么交互还不可控？什么数据污染还没被处理？什么 Agent 失败模式还没被表达清楚？</p>
+          <div class="note"><strong>判断标准：</strong>能否形成“重要缺口 → 核心洞察 → 可检验证据 → 可复现细节”的闭环。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reader">
+      <div class="section-title">
+        <h2>三、观念转变：从作者中心到读者中心</h2>
+        <p>这份演示稿最重要的写作伦理，是把论文看成给读者使用的认知工具。</p>
+      </div>
+      <div class="panel">
+        <div class="reader-grid">
+          <div class="reader-box bad">
+            <h3>作者中心</h3>
+            <p>我做了很多实验，所以都要写进去；我按做事顺序推进，所以论文也按这个顺序写；我懂这个领域，所以术语可以直接出现。</p>
+          </div>
+          <div class="reader-box good">
+            <h3>读者中心</h3>
+            <p>读者先需要知道问题为什么重要；再需要知道现有方法为什么不够；然后才需要看我的方法和实验；重要信息要出现在读者预期的位置。</p>
+          </div>
+        </div>
+        <div class="arrow-label">把“工作经历”重排成“理解路径”</div>
+        <div class="quote-box">
+          <strong>信息呈现的优先级</strong>
+          <p>图和例子负责建立直觉；表和曲线负责承载证据；正文负责组织逻辑；公式负责精确定义。不要把所有理解负担都压给正文和数学符号。</p>
+          <div class="info-rank"><span class="pill">图</span><span class="pill">曲线</span><span class="pill">表</span><span class="pill">正文</span><span class="pill">公式</span><span class="pill">算法</span><span class="pill">证明</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sections">
+      <div class="section-title">
+        <h2>四、论文结构：每个部分都有任务</h2>
+        <p>不要把论文看成章节拼装。每个部分都在替同一条中心贡献服务。</p>
+      </div>
+      <div class="panel section-map">
+        <nav class="toc-mini" aria-label="论文部分索引">
+          <a href="#part-title">标题</a>
+          <a href="#part-abstract">摘要</a>
+          <a href="#part-intro">Introduction</a>
+          <a href="#part-method">方法</a>
+          <a href="#part-exp">实验</a>
+          <a href="#part-related">相关工作</a>
+        </nav>
+        <div>
+          <div class="paper-part" id="part-title"><h3>标题：一句话压缩贡献</h3><p>标题不是装饰，而是第一层过滤器。它应该包含问题、方法或贡献关键词，并能在一年后让人记住你的中心贡献。</p></div>
+          <div class="paper-part" id="part-abstract"><h3>摘要：问题、做法、方法、结果</h3><p>摘要不是把所有细节压缩进去，而是让读者在最短时间内判断“这篇论文解决了什么、为什么值得继续读”。</p></div>
+          <div class="paper-part" id="part-intro"><h3>Introduction：建立缺口并占据缺口</h3><p>先说明领域重要，再说明现有方法面临的关键挑战，最后说明你的方法如何缓解挑战。不要把 Introduction 写成宽泛文献综述。</p></div>
+          <div class="paper-part" id="part-method"><h3>方法：先例子，再直觉，最后形式化</h3><p>先讲 baseline 和 running example，让读者获得直觉；再解释核心思想；最后才进入符号定义、算法和复杂细节。</p></div>
+          <div class="paper-part" id="part-exp"><h3>实验：构造可信证据链</h3><p>主实验回答“是否有效”，消融回答“为什么有效”，分析实验回答“何时有效”，错误分析回答“边界在哪里”。</p></div>
+          <div class="paper-part" id="part-related"><h3>相关工作：建立领域地图</h3><p>不要罗列 A 做了什么、B 做了什么。要把领域分成路线、假设、方法族，并说明你的贡献站在地图的什么位置。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods">
+      <div class="section-title">
+        <h2>五、方法与实验：把“想法”变成“可信主张”</h2>
+        <p>方法写作降低理解难度；实验写作降低怀疑成本。</p>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Running Example</h3><p>全篇尽量用同一个例子解释 baseline、你的方法、关键差异和错误案例。例子是读者进入复杂方法的门。</p></div>
+        <div class="card"><h3>Baseline First</h3><p>先介绍读者已经熟悉或领域公认的 baseline，再说明你的方法改了哪里、为什么这个改动有意义。</p></div>
+        <div class="card"><h3>Formalize Last</h3><p>数学工具用于形式化已有直觉，不是用来制造高深感。每个符号都必须被定义，每个公式都要有语言解释。</p></div>
+        <div class="card"><h3>Strong Baseline</h3><p>使用公认数据集、强基线和合理评价指标。弱基线会让读者怀疑提升来自设置，而不是方法。</p></div>
+        <div class="card"><h3>Auxiliary → Main</h3><p>开发集上做参数与组件分析，测试集上做主结果。先辅后主，让证据逐步收束。</p></div>
+        <div class="card"><h3>Significance</h3><p>报告显著性、置信区间、多随机种子或人工评测一致性，让“提升”变成可检验主张。</p></div>
+      </div>
+    </section>
+
+    <section id="frameworks">
+      <div class="section-title">
+        <h2>六、把演示稿放进国际写作研究脉络</h2>
+        <p>刘洋演示稿的“读者优先”思想，与国际科学写作研究高度一致。</p>
+      </div>
+      <div class="panel">
+        <div class="tabs" role="tablist" aria-label="写作框架">
+          <button class="tab active" data-tab="cars">CARS</button>
+          <button class="tab" data-tab="imrad">IMRaD</button>
+          <button class="tab" data-tab="reader-exp">读者预期</button>
+          <button class="tab" data-tab="repro">可复现性</button>
+        </div>
+        <div class="tab-panel active" id="cars">
+          <h3>CARS：Create A Research Space</h3>
+          <p>Introduction 的任务可以理解为三步：建立领域重要性、指出现有缺口、说明本文如何占据这个缺口。它对应演示稿中“问题为什么重要、现有方法为什么不够、我的方法如何缓解挑战”。</p>
+        </div>
+        <div class="tab-panel" id="imrad">
+          <h3>IMRaD：科学论文的标准叙事</h3>
+          <p>Introduction 回答为什么，Methods 回答怎么做，Results 回答发现什么，Discussion 回答意味着什么。刘洋的六步流程则是 IMRaD 的研究生成版。</p>
+        </div>
+        <div class="tab-panel" id="reader-exp">
+          <h3>Reader Expectations：结构决定理解</h3>
+          <p>读者会根据句子、段落和章节结构判断重点。写作不是堆信息，而是把旧信息、新信息、强调信息放在读者预期的位置。</p>
+        </div>
+        <div class="tab-panel" id="repro">
+          <h3>Reproducibility：可信论文的底线</h3>
+          <p>今天的 AI / NLP 论文还需要报告数据、代码、模型版本、硬件、随机种子、prompt、推理参数、运行成本、限制与潜在风险。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="llm">
+      <div class="section-title">
+        <h2>七、LLM / Agent 论文的补充要求</h2>
+        <p>2014 年的演示稿诞生于统计机器翻译时代，但底层原则在大模型时代更重要。</p>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Prompt 透明</h3><p>报告 system prompt、user prompt、few-shot 示例、解码参数和工具调用规则。</p></div>
+        <div class="card"><h3>数据污染</h3><p>说明 benchmark 是否可能被模型见过，是否使用新构造测试集或时间切分。</p></div>
+        <div class="card"><h3>交互轨迹</h3><p>Agent 系统要给出完整 trace：输入、计划、工具、记忆、失败恢复、最终输出。</p></div>
+        <div class="card"><h3>成本指标</h3><p>不仅比较效果，还要比较 token、时延、调用次数、人工标注成本与部署复杂度。</p></div>
+        <div class="card"><h3>失败案例</h3><p>好论文不只展示成功，还要说明失败边界、幻觉类型、不可控场景。</p></div>
+        <div class="card"><h3>复现包</h3><p>尽量提供代码、配置、数据说明、模型版本、环境和最小复现实验。</p></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-title">
+        <h2>八、论文写作交互检查表</h2>
+        <p>用它检查论文、项目报告、技术页面或研究型博客。勾选越多，越接近“读者可理解、证据可信、结构完整”。</p>
+      </div>
+      <div class="check-wrap">
+        <div class="checklist">
+          <label class="check-item"><input type="checkbox" data-check><span><b>一句话贡献清楚</b><span>能说清：问题、缺口、核心方法、主要结果。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>Introduction 有缺口结构</b><span>不是泛泛综述，而是逐步建立领域、挑战和本文位置。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>标题和摘要服务中心贡献</b><span>读者只看标题摘要，也能判断论文是否值得读。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>方法部分有 running example</b><span>先例子、再直觉、最后形式化。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>图表能独立讲清主线</b><span>看图和 caption 能理解方法结构和关键结果。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>实验对比合理</b><span>标准数据、强 baseline、公平设置、主辅实验清楚。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>显著性与消融完整</b><span>说明提升是否可靠，以及哪些组件真正贡献效果。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>相关工作形成地图</b><span>按路线和假设组织，而不是论文清单。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>复现细节可检查</b><span>数据、代码、模型、参数、硬件、成本、随机种子清楚。</span></span></label>
+          <label class="check-item"><input type="checkbox" data-check><span><b>限制与失败案例诚实</b><span>说明方法边界、失败条件和潜在风险。</span></span></label>
+        </div>
+        <aside class="score" aria-live="polite">
+          <div class="score-num" id="scoreNum">0%</div>
+          <small>写作成熟度</small>
+          <div class="progress"><span id="progressBar"></span></div>
+          <p id="scoreText">先从一句话贡献开始。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-title">
+        <h2>资料来源与延伸阅读</h2>
+        <p>本页是非官方学习型整理，主线来自刘洋演示稿，并补充公开写作框架与可复现规范。</p>
+      </div>
+      <div class="sources">
+        <div class="source-card"><h3>刘洋《机器翻译学术论文写作方法和技巧》</h3><p>第十届全国机器翻译研讨会，中国澳门，2014 年 11 月。原始 244 页演示稿。</p><a href="https://nlp.csai.tsinghua.edu.cn/~ly/talks/cwmt14_tut.pdf" target="_blank" rel="noopener">打开 PDF</a></div>
+        <div class="source-card"><h3>刘洋《如何撰写高质量科技论文》</h3><p>2021 北京智源大会青源学术年会，同源主题的升级版演讲与整理。</p><a href="https://air.tsinghua.edu.cn/info/1007/1359.htm" target="_blank" rel="noopener">打开 AIR 页面</a></div>
+        <div class="source-card"><h3>Swales CARS Model</h3><p>Introduction 的经典修辞模型：建立领域、建立缺口、占据缺口。</p><a href="https://owl.purdue.edu/owl/general_writing/the_writing_process/organization_CARS_Model.html" target="_blank" rel="noopener">打开 Purdue OWL</a></div>
+        <div class="source-card"><h3>Gopen & Swan：The Science of Scientific Writing</h3><p>以读者预期解释科学写作为什么难懂，以及如何通过结构降低理解成本。</p><a href="https://www.americanscientist.org/blog/the-long-view/the-science-of-scientific-writing" target="_blank" rel="noopener">打开 American Scientist</a></div>
+        <div class="source-card"><h3>Ten simple rules for structuring papers</h3><p>强调中心贡献、读者体验和论文多尺度结构。</p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619" target="_blank" rel="noopener">打开 PLOS</a></div>
+        <div class="source-card"><h3>NeurIPS / ACL 可复现检查表</h3><p>面向机器学习与 NLP 论文的复现、透明度、伦理和实验报告要求。</p><a href="https://neurips.cc/public/guides/PaperChecklist" target="_blank" rel="noopener">NeurIPS Checklist</a> · <a href="https://2021.aclweb.org/calls/reproducibility-checklist/" target="_blank" rel="noopener">ACL Checklist</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page">
+    <p>Conan Xin / 学术论文写作方法页 · 非官方学习整理 · 以读者为核心，降低理解难度。</p>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    const checks = [...document.querySelectorAll('[data-check]')];
+    const scoreNum = document.getElementById('scoreNum');
+    const progressBar = document.getElementById('progressBar');
+    const scoreText = document.getElementById('scoreText');
+    function updateScore() {
+      const done = checks.filter(c => c.checked).length;
+      const pct = Math.round(done / checks.length * 100);
+      scoreNum.textContent = pct + '%';
+      progressBar.style.width = pct + '%';
+      scoreText.textContent = pct < 40 ? '先收束问题与贡献。' : pct < 75 ? '结构已经成型，继续补强证据链。' : '接近可提交稿，重点打磨表达与复现细节。';
+    }
+    checks.forEach(c => c.addEventListener('change', updateScore));
+    updateScore();
+  </script>
+</body>
+</html>

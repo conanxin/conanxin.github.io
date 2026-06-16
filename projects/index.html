@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目 | Xin Conan</title>
+  <meta name="description" content="Xin Conan 的公开项目索引：AI、Agent、研究、互动页面、工具与创意实验。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Xin Conan">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+  <style>
+    .projects-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px 180px;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .projects-toolbar input,
+    .projects-toolbar select {
+      width: 100%;
+      border: 1px solid rgba(139, 148, 158, 0.35);
+      background: rgba(13, 17, 23, 0.72);
+      color: #f0f6fc;
+      border-radius: 10px;
+      padding: 0.72rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.92rem;
+      outline: none;
+    }
+    .projects-toolbar input:focus,
+    .projects-toolbar select:focus {
+      border-color: #58a6ff;
+      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.16);
+    }
+    .projects-meta-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      color: #8b949e;
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      border: 1px solid rgba(139, 148, 158, 0.24);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(22, 27, 34, 0.62);
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(88, 166, 255, 0.52);
+      background: rgba(22, 27, 34, 0.9);
+    }
+    .project-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      color: #8b949e;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.7rem;
+    }
+    .project-card__status {
+      border-radius: 999px;
+      padding: 0.12rem 0.5rem;
+      background: rgba(63, 185, 80, 0.12);
+      color: #3fb950;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .project-card__title {
+      margin: 0 0 0.45rem;
+      color: #f0f6fc;
+      font-size: 1.06rem;
+      line-height: 1.4;
+    }
+    .project-card__subtitle {
+      margin: 0 0 0.7rem;
+      color: #c9d1d9;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .project-card__summary {
+      margin: 0;
+      color: #8b949e;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+    .project-card__tags {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: 0.9rem;
+    }
+    .project-card__tag {
+      border: 1px solid rgba(139, 148, 158, 0.24);
+      border-radius: 999px;
+      color: #8b949e;
+      padding: 0.1rem 0.45rem;
+      font-size: 0.72rem;
+    }
+    .empty-state,
+    .load-error {
+      border: 1px dashed rgba(139, 148, 158, 0.35);
+      border-radius: 16px;
+      padding: 1.5rem;
+      color: #8b949e;
+      background: rgba(22, 27, 34, 0.42);
+    }
+    @media (max-width: 720px) {
+      .projects-toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-container">
+    <div class="status-bar">
+      <div class="status-left">
+        <span class="status-dot"></span>
+        <span>STATUS // ONLINE</span>
+      </div>
+      <div class="status-right">
+        <span>XIN_CONAN</span>
+        <span class="separator">|</span>
+        <span>v1.0</span>
+        <span class="separator">|</span>
+        <span id="datetime">--</span>
+      </div>
+    </div>
+
+    <header class="terminal-header">
+      <div class="logo">
+        <span class="prompt">></span>
+        <span class="logo-text">xin-conan</span>
+        <span class="cursor blink">_</span>
+      </div>
+      <p class="tagline">// public project catalog</p>
+    </header>
+
+    <nav class="terminal-nav">
+      <a href="/" class="nav-item"><span class="nav-num">01.</span><span>HOME</span></a>
+      <a href="/posts/" class="nav-item"><span class="nav-num">02.</span><span>POSTS</span></a>
+      <a href="/podcast/" class="nav-item"><span class="nav-num">02.5</span><span>PODCAST</span></a>
+      <a href="/projects/" class="nav-item active"><span class="nav-num">03.</span><span>PROJECTS</span></a>
+      <a href="/about.html" class="nav-item"><span class="nav-num">04.</span><span>ABOUT</span></a>
+      <a href="/feed.xml" class="nav-item"><span class="nav-num">05.</span><span>RSS</span></a>
+    </nav>
+
+    <main class="terminal-main">
+      <section class="intro-section">
+        <div class="section-header">
+          <span class="cmd">$</span>
+          <span class="cmd-text">cat ./projects/README.md</span>
+        </div>
+        <div class="section-content">
+          <p>这里是我的公开项目入口：研究型页面、Agent 工作流、工具、互动档案、翻译与创意实验。项目数据来自 <code>projects/data.json</code>，这个页面是稳定入口，避免目录缺少 index 文件导致 <code>/projects/</code> 无法打开。</p>
+        </div>
+      </section>
+
+      <section class="featured-section">
+        <div class="section-header">
+          <span class="cmd">$</span>
+          <span class="cmd-text">cat ./projects/data.json | render</span>
+        </div>
+        <div class="section-content">
+          <div class="projects-toolbar" aria-label="项目筛选">
+            <input id="project-search" type="search" placeholder="搜索项目、标签、摘要..." autocomplete="off">
+            <select id="project-category" aria-label="按分类筛选">
+              <option value="">全部分类</option>
+            </select>
+            <select id="project-featured" aria-label="按精选状态筛选">
+              <option value="">全部项目</option>
+              <option value="featured">只看 featured</option>
+            </select>
+          </div>
+          <div class="projects-meta-row">
+            <span id="project-count">loading...</span>
+            <span>source: projects/data.json</span>
+            <span>updated: live catalog</span>
+          </div>
+          <div id="projects-grid" class="project-grid" aria-live="polite"></div>
+          <noscript>
+            <div class="load-error">
+              需要启用 JavaScript 渲染项目目录。也可以直接打开 <a href="/projects/data.json">/projects/data.json</a> 查看原始项目数据。
+            </div>
+          </noscript>
+        </div>
+      </section>
+    </main>
+
+    <footer class="terminal-footer">
+      <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
+        <span><span class="label" style="color:#8b949e;">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></span>
+        <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
+        <span><span class="label" style="color:#8b949e;">GITHUB:</span> <a href="https://github.com/conanxin" class="link">@conanxin</a></span>
+      </div>
+      <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
+        # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> © 2026 Xin Conan
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const state = {
+      projects: [],
+      q: '',
+      category: '',
+      featured: ''
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+
+    function updateTime() {
+      const el = document.getElementById('datetime');
+      if (!el) return;
+      const now = new Date();
+      el.textContent = now.toISOString().slice(0, 19).replace('T', ' ');
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[ch]));
+    }
+
+    function normalizeProject(raw, index) {
+      return {
+        title: raw.title || raw.slug || `Project ${index + 1}`,
+        subtitle: raw.subtitle || '',
+        slug: raw.slug || '',
+        category: raw.category || 'uncategorized',
+        type: raw.type || 'PROJECT',
+        status: raw.status || '',
+        statusColor: raw.status_color || '#3fb950',
+        updated: raw.updated || '',
+        summary: raw.summary || '',
+        entryUrl: raw.entry_url || '#',
+        sourceKind: raw.source_kind || '',
+        featured: Boolean(raw.featured),
+        tags: Array.isArray(raw.tags) ? raw.tags : []
+      };
+    }
+
+    function sortProjects(projects) {
+      return [...projects].sort((a, b) => {
+        if (a.featured !== b.featured) return a.featured ? -1 : 1;
+        return String(b.updated).localeCompare(String(a.updated));
+      });
+    }
+
+    function projectMatches(project) {
+      const haystack = [
+        project.title,
+        project.subtitle,
+        project.slug,
+        project.category,
+        project.type,
+        project.status,
+        project.summary,
+        project.sourceKind,
+        project.tags.join(' ')
+      ].join(' ').toLowerCase();
+      if (state.q && !haystack.includes(state.q.toLowerCase())) return false;
+      if (state.category && project.category !== state.category) return false;
+      if (state.featured === 'featured' && !project.featured) return false;
+      return true;
+    }
+
+    function renderCategories() {
+      const select = $('#project-category');
+      const categories = Array.from(new Set(state.projects.map((p) => p.category))).sort();
+      select.innerHTML = '<option value="">全部分类</option>' + categories.map((cat) => (
+        `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`
+      )).join('');
+    }
+
+    function renderProjects() {
+      const grid = $('#projects-grid');
+      const list = sortProjects(state.projects).filter(projectMatches);
+      $('#project-count').textContent = `${list.length} / ${state.projects.length} projects`;
+
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty-state">没有匹配的项目。试试清空搜索或切换分类。</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map((project) => {
+        const isExternal = /^https?:\/\//.test(project.entryUrl);
+        const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+        const tags = project.tags.slice(0, 6).map((tag) => `<span class="project-card__tag">${escapeHtml(tag)}</span>`).join('');
+        const status = project.status ? `<span class="project-card__status" style="color:${escapeHtml(project.statusColor)}">${escapeHtml(project.status)}</span>` : '';
+        const subtitle = project.subtitle ? `<p class="project-card__subtitle">${escapeHtml(project.subtitle)}</p>` : '';
+        return `
+          <a class="project-card" href="${escapeHtml(project.entryUrl)}"${target}>
+            <div class="project-card__meta">
+              <span>${escapeHtml(project.type)}</span>
+              <span class="separator">//</span>
+              <span>${escapeHtml(project.category)}</span>
+              ${status}
+              ${project.featured ? '<span class="project-card__status">featured</span>' : ''}
+            </div>
+            <h2 class="project-card__title">${escapeHtml(project.title)}</h2>
+            ${subtitle}
+            <p class="project-card__summary">${escapeHtml(project.summary)}</p>
+            <div class="project-card__meta" style="margin-top:0.9rem;margin-bottom:0;">
+              <span>updated: ${escapeHtml(project.updated || 'unknown')}</span>
+              ${project.sourceKind ? `<span>source: ${escapeHtml(project.sourceKind)}</span>` : ''}
+            </div>
+            ${tags ? `<div class="project-card__tags">${tags}</div>` : ''}
+          </a>
+        `;
+      }).join('');
+    }
+
+    async function loadProjects() {
+      const grid = $('#projects-grid');
+      try {
+        const response = await fetch('./data.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error('projects/data.json is not an array');
+        state.projects = data.map(normalizeProject);
+        renderCategories();
+        renderProjects();
+      } catch (error) {
+        $('#project-count').textContent = 'load failed';
+        grid.innerHTML = `<div class="load-error">项目索引加载失败：${escapeHtml(error.message || error)}。可直接打开 <a href="/projects/data.json">/projects/data.json</a> 查看目录数据。</div>`;
+      }
+    }
+
+    function wireEvents() {
+      $('#project-search').addEventListener('input', (event) => {
+        state.q = event.target.value.trim();
+        renderProjects();
+      });
+      $('#project-category').addEventListener('change', (event) => {
+        state.category = event.target.value;
+        renderProjects();
+      });
+      $('#project-featured').addEventListener('change', (event) => {
+        state.featured = event.target.value;
+        renderProjects();
+      });
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+    wireEvents();
+    loadProjects();
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+name: Projects Entry Liveness
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-project-entry-url-liveness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check projects/data.json entry URLs
+        run: python3 scripts/check-project-entry-url-liveness.py

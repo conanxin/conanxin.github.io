@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 认证架构师备考指南 · CCA-F 中文系统备考路线</title>
+<meta name="description" content="Claude Certified Architect – Foundations（CCA-F）中文备考仪表盘：覆盖 Claude API、MCP、Claude Code、Agent SDK 等五大领域。含教程、8 个实战 Lab、18 道架构判断题、可复制提示词。">
+<link rel="stylesheet" href="styles.css?v=20260616-1">
+</head>
+<body>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">C</span>
+      Claude 认证架构师备考指南
+    </a>
+    <div class="nav-links">
+      <a href="#hero">首页</a>
+      <a href="#what">认证说明</a>
+      <a href="#info">考试信息</a>
+      <a href="#domains">五大领域</a>
+      <a href="#roadmap">备考路线</a>
+      <a href="#tutorials">教程</a>
+      <a href="#labs">Lab</a>
+      <a href="#resources">资源</a>
+      <a href="#mock">模拟题</a>
+      <a href="#prompts">提示词</a>
+      <a href="#sources">资料来源</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header id="hero" class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">任务代号 · CLAUDE-CCA-CN-PAGE-1 · v2026-06-16</span>
+    <h1>Claude 认证架构师备考指南</h1>
+    <p class="hero-sub">
+      从 Claude API、MCP、Claude Code 到 Agent 架构的中文系统备考路线——
+      一份可长期使用的"学习仪表盘 + 教程页 + 资源索引 + 实战 Lab 指南"。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="k">认证名称</div>
+        <div class="v">Claude Certified Architect – Foundations（CCA-F）</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="k">目标定位</div>
+        <div class="v">构建生产级 Claude 应用的架构能力</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="k">认证状态</div>
+        <div class="v">Anthropic 首个技术认证 · 当前主要面向 Partner</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="k">推荐学习节奏</div>
+        <div class="v">10 天冲刺 / 4 周系统 / 12 周稳扎稳打</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <a href="#domains" class="btn btn-primary">立即开始学习</a>
+      <a href="#roadmap" class="btn btn-ghost">查看备考路线</a>
+      <a href="#resources" class="btn btn-ghost">资源索引</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== 1. 这是什么认证 ============== -->
+<section id="what">
+  <div class="container">
+    <span class="section-tag">第 1 节</span>
+    <h2>这是什么认证？</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>CCA-F 是什么</h3>
+        <p>
+          <b>Claude Certified Architect – Foundations（CCA-F）</b>是 Anthropic 于
+          <b>2026 年 3 月 12 日</b>随 Claude Partner Network 发布的<b>第一项 Claude 技术认证</b>，
+          由 Anthropic Academy（托管在 Skilljar LMS）提供，面向正在用 Claude 构建生产级应用的
+          solution architects。
+        </p>
+        <p>
+          它的目标不是测试"会不会用 Claude"，而是测试"能不能把 Claude 设计进一个能上线、能维护、
+          能扛住业务负载的应用系统"。
+        </p>
+      </div>
+      <div class="card">
+        <h3>不是普通 Claude 使用证书</h3>
+        <p>与一般 prompt 课程不同，CCA-F 强调的是：</p>
+        <ul class="bullet-list">
+          <li>Agentic loop 与多 agent 编排</li>
+          <li>工具 / MCP 设计与错误处理</li>
+          <li>Claude Code 工程化配置（CLAUDE.md、Skills、Hooks、Subagents）</li>
+          <li>生产级 prompt 设计与结构化输出</li>
+          <li>Context 管理与可靠性工程</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>重点是生产级架构</h3>
+        <p>
+          官方说明强调：CCA-F 是面向"正在为生产环境设计 Claude 解决方案"的 architect 的
+          技术考试，重点不是 prompt 技巧，而是<b>系统设计、可靠性、与 Claude Code 工作流的工程化</b>。
+        </p>
+      </div>
+      <div class="card">
+        <h3>谁适合考</h3>
+        <ul class="bullet-list">
+          <li><b>Solution architects</b>：为企业设计 Claude 集成方案</li>
+          <li><b>AI Agent 工程师</b>：用 Agent SDK / MCP 构建 agentic system</li>
+          <li><b>Claude Code 重度用户</b>：想用工程化方式管团队/项目</li>
+          <li><b>MCP / tool use 开发者</b>：设计生产级工具集成</li>
+          <li><b>企业 AI 应用实施者</b>：负责把 Claude 落地为可运营业务</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <b>对已有 Hermes / OpenClaw / Codex / Skills / GitHub Pages 项目经验的人：</b>
+      你的实际工程经验已经覆盖了考试很大一部分——重点是把"我会用"翻译成"我理解为什么这么用"。
+      建议把已有项目整理为 CCA-F casebook（见下面"个人备考计划"）。
+    </div>
+  </div>
+</section>
+
+<!-- ============== 2. 考试信息与可信度 ============== -->
+<section id="info">
+  <div class="container">
+    <span class="section-tag">第 2 节</span>
+    <h2>考试信息与可信度</h2>
+    <p>以下表格严格区分三类来源，避免把社区结论伪装成官方信息。</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>来源</th>
+            <th>可信度</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>认证名称 = Claude Certified Architect, Foundations（CCA-F）</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td><span class="tag tag-docs">高</span></td>
+            <td>见 anthropic.com/news/claude-partner-network（2026-03-12 发布通稿）</td>
+          </tr>
+          <tr>
+            <td>Anthropic 第一项 Claude 技术认证</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td><span class="tag tag-docs">高</span></td>
+            <td>官方原文："the first Claude technical certification, available today"</td>
+          </tr>
+          <tr>
+            <td>面向 solution architects 构建生产应用</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td><span class="tag tag-docs">高</span></td>
+            <td>官方原文："technical exam for solution architects building production applications with Claude"</td>
+          </tr>
+          <tr>
+            <td>当前主要面向 Anthropic Partner</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td><span class="tag tag-docs">高</span></td>
+            <td>官方报名入口 = anthropic.skilljar.com/claude-certified-architect-foundations-access-request（需要申请）</td>
+          </tr>
+          <tr>
+            <td>考试形式 = 多选 + scenario-based</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>claudecertifications.com 整理；官方未直接披露考试形式细节</td>
+          </tr>
+          <tr>
+            <td>题量 = 4 of 6 scenarios</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>claudecertifications.com 整理；官方未直接确认场景数与抽题机制</td>
+          </tr>
+          <tr>
+            <td>分数线 = 720 / 1000</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>社区来源；官方未公布分数线</td>
+          </tr>
+          <tr>
+            <td>费用 = Free（对前 5,000 名 Partner 员工）</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>社区整理；Partner Network 免费加入是官方事实；考试本身对个人是否收费官方未明确</td>
+          </tr>
+          <tr>
+            <td>五大领域与权重 25/20/20/20/15</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>claudecertifications.com / skillcertpro 整理；官方仅披露领域划分，权重为社区推断</td>
+          </tr>
+          <tr>
+            <td>6 个 exam scenario 描述</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td><span class="tag tag-community">中</span></td>
+            <td>社区整理的题型描述；不能视作原题</td>
+          </tr>
+          <tr>
+            <td>个人报名通道</td>
+            <td><span class="tag tag-community">待官方确认</span></td>
+            <td><span class="tag tag-community">中-低</span></td>
+            <td>目前官方入口为 Partner 申请页面；个人报名开放程度需以 anthropic.skilljar.com 为准</td>
+          </tr>
+          <tr>
+            <td>2026 年内将推出更多认证（sellers / architects / developers）</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td><span class="tag tag-docs">高</span></td>
+            <td>官方原文："Additional certifications for sellers, architects, and developers later in 2026"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>⚠ 截至 2026-06-16：</b>所有"题量 / 费用 / 分数线 / 领域权重 / 开放对象"信息，
+      除非另有标注，均来自社区整理，<b>需以 Anthropic Skilljar 报名页与官方公告为准</b>。
+      本页不会把这些内容伪装成官方结论。
+    </div>
+  </div>
+</section>
+
+<!-- ============== 3. 五大考试领域 ============== -->
+<section id="domains">
+  <div class="container">
+    <span class="section-tag">第 3 节</span>
+    <h2>五大考试领域</h2>
+    <p>下表领域划分来自 Anthropic 官方说明；权重百分比来自社区整理，仅供参考。</p>
+
+    <div class="domain-tabs">
+      <button class="domain-tab active" data-target="d1">
+        1. Agentic Architecture <span class="weight">~25%</span>
+      </button>
+      <button class="domain-tab" data-target="d2">
+        2. Tool Design & MCP <span class="weight">~20%</span>
+      </button>
+      <button class="domain-tab" data-target="d3">
+        3. Claude Code <span class="weight">~20%</span>
+      </button>
+      <button class="domain-tab" data-target="d4">
+        4. Prompt & Structured Output <span class="weight">~20%</span>
+      </button>
+      <button class="domain-tab" data-target="d5">
+        5. Context & Reliability <span class="weight">~15%</span>
+      </button>
+    </div>
+
+    <!-- D1 -->
+    <div class="domain-panel active" id="d1">
+      <div class="panel-inner">
+        <h3>Domain 1 · Agentic Architecture & Orchestration <span class="tag tag-community">权重 ~25% (社区)</span></h3>
+        <h4>考什么</h4>
+        <p>设计并实现 agentic system，覆盖 agentic loop、多 agent 编排、hooks、workflows、session 管理、任务分解。</p>
+        <h4>必懂概念</h4>
+        <ul class="bullet-list">
+          <li><code>stop_reason</code> = <code>tool_use</code> / <code>end_turn</code> 的语义</li>
+          <li>Hub-and-spoke 架构：coordinator + subagents 模式</li>
+          <li>Task tool 派生子 agent；<code>allowedTools</code> 必须显式声明</li>
+          <li>Context 隔离：subagent 只回 summary，不污染主对话</li>
+          <li>Hook = 确定性控制（vs prompt = 概率性指引）</li>
+        </ul>
+        <h4>典型场景题</h4>
+        <p>"用 Agent SDK 设计一个能自己决定工具调用次数和终止条件的 customer support agent。"</p>
+        <h4>常见错误答案</h4>
+        <ul class="bullet-list">
+          <li>把 agentic 终止条件写成"自然语言指令"而不是 <code>stop_reason</code> 检查</li>
+          <li>把所有工具一股脑给 coordinator，导致 context 污染</li>
+          <li>让 subagent 直接改主对话 state，破坏 session 隔离</li>
+        </ul>
+        <h4>推荐官方资源</h4>
+        <ul class="bullet-list">
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/sdk" target="_blank">Agent SDK Overview（官方）</a></li>
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank">Hooks Reference（官方）</a></li>
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents" target="_blank">Subagents（官方）</a></li>
+        </ul>
+        <h4>实战 Lab</h4>
+        <p>→ <a href="#lab2">Lab 2 · 带工具调用的客户支持 agent</a> · <a href="#lab7">Lab 7 · 多 subagent research system</a></p>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="domain-panel" id="d2">
+      <div class="panel-inner">
+        <h3>Domain 2 · Tool Design & MCP Integration <span class="tag tag-community">权重 ~20% (社区)</span></h3>
+        <h4>考什么</h4>
+        <p>设计有效工具 + 集成 MCP servers：tool description 最佳实践、结构化错误响应、工具分发、MCP 配置、内置工具。</p>
+        <h4>必懂概念</h4>
+        <ul class="bullet-list">
+          <li><b>Tool</b>：model-controlled，LLM 自动调用</li>
+          <li><b>Resource</b>：app-controlled，主机程序主动暴露</li>
+          <li><b>Prompt</b>：user-controlled，用户/客户端选择触发</li>
+          <li><code>tools/list</code>、<code>tools/call</code> 协议</li>
+          <li><code>strict: true</code> 工具 → schema 保证</li>
+        </ul>
+        <h4>典型场景题</h4>
+        <p>"让 Claude 调用的工具返回错误时，怎么写 <code>tool_result</code> 才能让 agent 决定 retry 还是 escalate？"</p>
+        <h4>常见错误答案</h4>
+        <ul class="bullet-list">
+          <li>工具错误只返回自由字符串，丢失可重试信息</li>
+          <li>把 resource 错当 tool 暴露，引入不必要控制权</li>
+          <li>description 写得模糊，导致 Claude 选错工具或漏调用</li>
+          <li>把破坏性工具与只读工具一起挂给 agent</li>
+        </ul>
+        <h4>推荐官方资源</h4>
+        <ul class="bullet-list">
+          <li><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank">What is MCP（官方）</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/2025-06-18/server/tools" target="_blank">MCP Tools Spec（官方）</a></li>
+          <li><a href="https://platform.claude.com/docs/en/build-with-claude/tool-use/overview" target="_blank">Tool use with Claude（官方）</a></li>
+          <li><a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">MCP Course（官方 Skilljar）</a></li>
+        </ul>
+        <h4>实战 Lab</h4>
+        <p>→ <a href="#lab1">Lab 1 · 结构化信息提取器</a> · <a href="#lab3">Lab 3 · 本地知识库 MCP server</a></p>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="domain-panel" id="d3">
+      <div class="panel-inner">
+        <h3>Domain 3 · Claude Code Configuration & Workflows <span class="tag tag-community">权重 ~20% (社区)</span></h3>
+        <h4>考什么</h4>
+        <p>配置 Claude Code：CLAUDE.md 层级、custom commands/skills、plan mode、iterative refinement、CI/CD 集成、batch 处理。</p>
+        <h4>必懂概念</h4>
+        <ul class="bullet-list">
+          <li><b>CLAUDE.md</b> = 静态规则（每 session 都加载）</li>
+          <li><b>Skills (SKILL.md)</b> = 按需加载的工作流</li>
+          <li><b>Hooks</b> = 确定性 shell/HTTP/MCP 拦截</li>
+          <li><b>Subagents</b> = 隔离上下文的专门 agent</li>
+          <li><code>claude -p</code> 非交互模式 + <code>--output-format json</code> + <code>--json-schema</code></li>
+        </ul>
+        <h4>典型场景题</h4>
+        <p>"团队需要在 CI 里自动 review PR，怎么用 <code>claude -p</code> + structured output 替代人工？"</p>
+        <h4>常见错误答案</h4>
+        <ul class="bullet-list">
+          <li>把所有规则塞进 CLAUDE.md，导致 context 膨胀</li>
+          <li>用 prompt 让 Claude "千万不要 rm -rf"，而非 PreToolUse hook</li>
+          <li>把 <code>.claude/commands/</code> 和 <code>.claude/skills/</code> 重复定义同一名字</li>
+          <li>在 CI 里共享 session，generator/reviewer 状态互相污染</li>
+        </ul>
+        <h4>推荐官方资源</h4>
+        <ul class="bullet-list">
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Overview（官方）</a></li>
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank">CLAUDE.md & Memory（官方）</a></li>
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/skills" target="_blank">Skills（官方）</a></li>
+          <li><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Claude Code 101 Course（官方 Skilljar）</a></li>
+        </ul>
+        <h4>实战 Lab</h4>
+        <p>→ <a href="#lab4">Lab 4 · Claude Code 项目配置包</a> · <a href="#lab5">Lab 5 · Skills 工作流设计</a> · <a href="#lab6">Lab 6 · Hook 确定性控制</a></p>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="domain-panel" id="d4">
+      <div class="panel-inner">
+        <h3>Domain 4 · Prompt Engineering & Structured Output <span class="tag tag-community">权重 ~20% (社区)</span></h3>
+        <h4>考什么</h4>
+        <p>显式 criteria、few-shot prompting、<code>tool_use</code> 用于结构化输出、JSON schema 设计、validation-retry 循环、多 pass 审查。</p>
+        <h4>必懂概念</h4>
+        <ul class="bullet-list">
+          <li><b>JSON outputs</b> = <code>output_config.format = json_schema</code></li>
+          <li><b>Strict tool use</b> = <code>strict: true</code> 保证 schema 合规</li>
+          <li><b>Few-shot</b> = 2–4 个示例</li>
+          <li><b>Validation-retry</b> = 把结构化错误回填进 prompt 再 call</li>
+          <li><b>Multi-pass review</b> = per-file 本地分析 + cross-file 整合</li>
+        </ul>
+        <h4>典型场景题</h4>
+        <p>"从邮件正文抽取 name/email/plan/demo_requested 四个字段，怎么保证 100% 字段类型正确？"</p>
+        <h4>常见错误答案</h4>
+        <ul class="bullet-list">
+          <li>在 system prompt 里说"请用 JSON 输出"而不给 schema</li>
+          <li>所有字段都 optional，导致关键字段丢失</li>
+          <li>试图在同 session 让 Claude 自我批评，引用同一 reasoning</li>
+        </ul>
+        <h4>推荐官方资源</h4>
+        <ul class="bullet-list">
+          <li><a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank">Structured Outputs（官方）</a></li>
+          <li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank">Prompt Engineering Overview（官方）</a></li>
+          <li><a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank">Building with the Claude API Course（官方）</a></li>
+        </ul>
+        <h4>实战 Lab</h4>
+        <p>→ <a href="#lab1">Lab 1 · 结构化信息提取器</a></p>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="domain-panel" id="d5">
+      <div class="panel-inner">
+        <h3>Domain 5 · Context Management & Reliability <span class="tag tag-community">权重 ~15% (社区)</span></h3>
+        <h4>考什么</h4>
+        <p>progressive summarization 风险、context positioning、escalation 模式、error propagation、context degradation、人工 review、信息溯源。</p>
+        <h4>必懂概念</h4>
+        <ul class="bullet-list">
+          <li><b>Progressive summarization</b> 会渐进丢失细节</li>
+          <li><b>Context positioning</b>：关键决策要放在 context 中后段（"lost-in-the-middle"）</li>
+          <li><b>Retry vs Escalate</b>：相同错误 2 次 → escalate 到人工</li>
+          <li><b>Information provenance</b>：每个结论要带来源</li>
+        </ul>
+        <h4>典型场景题</h4>
+        <p>"一个 research agent 跑了 50 轮 context 接近上限，结果开始胡说，怎么设计 degradation 防护？"</p>
+        <h4>常见错误答案</h4>
+        <ul class="bullet-list">
+          <li>无脑一直 retry，浪费 token 不收敛</li>
+          <li>summary 不带 source pointer → hallucination 风险</li>
+          <li>破坏性操作无人工确认</li>
+        </ul>
+        <h4>推荐官方资源</h4>
+        <ul class="bullet-list">
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Context Management（官方）</a></li>
+          <li><a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank">Memory & CLAUDE.md（官方）</a></li>
+        </ul>
+        <h4>实战 Lab</h4>
+        <p>→ <a href="#lab8">Lab 8 · Context degradation / reliability 测试</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 4. 备考路线图 ============== -->
+<section id="roadmap">
+  <div class="container">
+    <span class="section-tag">第 4 节</span>
+    <h2>备考路线图</h2>
+    <p>下面三条路线，内容深度一致，节奏不同。可根据自己的档期直接挑一条用。</p>
+
+    <div class="roadmap-switcher">
+      <button class="active" data-roadmap="r10"><div class="ttl">10 天冲刺版</div><div class="meta">2-3 小时/天 · 适合已有 Claude Code / API 经验</div></button>
+      <button data-roadmap="r4w"><div class="ttl">4 周系统版</div><div class="meta">1.5 小时/天 · 适合有一定 agent 经验</div></button>
+      <button data-roadmap="r12w"><div class="ttl">12 周稳扎稳打版</div><div class="meta">~1 小时/天 · 适合从零开始</div></button>
+    </div>
+
+    <!-- 10-day -->
+    <div class="roadmap-panel active" id="r10">
+      <h3>10 天冲刺版 · 每天 2-3 小时</h3>
+      <ol class="timeline">
+        <li><b>Day 1 · Claude API 速通：</b>anthropic SDK、system prompt、temperature、streaming、structured output（<code>output_config.format</code>）。</li>
+        <li><b>Day 2 · Prompt Engineering：</b>XML 标签、few-shot、显式 criteria；做 5 个练习。</li>
+        <li><b>Day 3 · Tool use：</b>工具 schema、<code>tool_choice</code>、<code>strict: true</code>、<code>tool_result</code> 错误结构化。</li>
+        <li><b>Day 4 · MCP：</b>tools / resources / prompts 三种原语；用 Python SDK 写一个本地 MCP server。</li>
+        <li><b>Day 5 · Agentic loop：</b><code>stop_reason</code>、termination 条件、max iteration；实现最小 Agent SDK 循环。</li>
+        <li><b>Day 6 · Claude Code 入门：</b>CLI、<code>claude -p</code>、plan mode、approval mode。</li>
+        <li><b>Day 7 · CLAUDE.md / Memory / Skills：</b>写项目 CLAUDE.md、做 1 个 SKILL.md、用 dynamic context injection。</li>
+        <li><b>Day 8 · Hooks + Subagents：</b>PreToolUse 拦截、Subagent 工具白名单、Hub-and-spoke。</li>
+        <li><b>Day 9 · Context & Reliability：</b>progressive summarization 风险、validation-retry 循环、escalation 模式；做 Lab 8。</li>
+        <li><b>Day 10 · 模拟题 + 反模式清单：</b>过 18 道题 + 反模式卡片；做错题归类。</li>
+      </ol>
+    </div>
+
+    <!-- 4-week -->
+    <div class="roadmap-panel" id="r4w">
+      <h3>4 周系统版 · 每天 1.5 小时</h3>
+      <ol class="timeline">
+        <li><b>Week 1 · API + Prompt + Tool：</b>Day1-2 API 基础 + 作业；Day3-4 prompt engineering；Day5-6 tool use + structured outputs；Day7 复盘。</li>
+        <li><b>Week 2 · MCP + Agentic Loop：</b>Day1-3 MCP 三原语；Day4-5 Agent SDK agentic loop；Day6 多 agent 编排；Day7 复盘 + Lab 1/3。</li>
+        <li><b>Week 3 · Claude Code 工程化：</b>Day1 CLAUDE.md + memory；Day2-3 Skills；Day4 Hooks；Day5-6 Subagents；Day7 复盘 + Lab 4/5/6。</li>
+        <li><b>Week 4 · Context + Reliability + 模拟：</b>Day1-3 context / reliability；Day4-5 Lab 2/7/8；Day6-7 18 道模拟题 + 反模式复盘。</li>
+      </ol>
+    </div>
+
+    <!-- 12-week -->
+    <div class="roadmap-panel" id="r12w">
+      <h3>12 周稳扎稳打版 · 每天 ~1 小时（结构来源：claudecertifications.com 社区整理）</h3>
+      <h4>Phase 1 · Foundations（W1–W4）</h4>
+      <ol class="timeline">
+        <li><b>W1 Agentic Loops & Core API：</b>agentic loop lifecycle、<code>stop_reason</code>、最小 agent 循环、反模式。</li>
+        <li><b>W2 Multi-Agent Orchestration：</b>Hub-and-spoke、coordinator role、subagent 隔离、Task tool。</li>
+        <li><b>W3 Hooks, Workflows & Sessions：</b>PostToolUse、确定性 vs 概率性、session resume / fork。</li>
+        <li><b>W4 Tool Design & MCP：</b>tool description、结构化错误、4-5 tools per agent、MCP 配置。</li>
+      </ol>
+      <h4>Phase 2 · Applied Knowledge（W5–W8）</h4>
+      <ol class="timeline">
+        <li><b>W5 Claude Code Configuration：</b>CLAUDE.md 层级、<code>@import</code>、<code>.claude/rules/</code>。</li>
+        <li><b>W6 Plan Mode, Iteration & CI/CD：</b><code>-p</code>、<code>--output-format json</code>、Message Batches API。</li>
+        <li><b>W7 Prompt Engineering & Structured Output：</b>显式 criteria、few-shot、<code>tool_use</code> + JSON schema。</li>
+        <li><b>W8 Validation, Batch & Multi-Pass：</b>validation-retry、per-file + cross-file 双 pass。</li>
+      </ol>
+      <h4>Phase 3 · Exam Prep（W9–W12）</h4>
+      <ol class="timeline">
+        <li><b>W9–W10 Context Management & Reliability：</b>progressive summarization、escalation、信息溯源。</li>
+        <li><b>W11 Hands-on 综合 Lab：</b>8 个 Lab 全做完 + 整理 casebook。</li>
+        <li><b>W12 Full Mock：</b>3 套完整模拟题 + 反模式清单 + 报名 + 上场。</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 5. 详细教程 ============== -->
+<section id="tutorials">
+  <div class="container">
+    <span class="section-tag">第 5 节</span>
+    <h2>详细教程区</h2>
+    <p>8 节可读教程，每节包含：一句话理解、适用场景、错误做法、正确做法、小练习。</p>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 1</span>
+      <h3>如何理解 agentic loop</h3>
+      <p class="one-liner"><b>一句话：</b>agentic loop = Claude 调用工具 → 拿到 <code>tool_result</code> → 决定是否继续，直到 <code>stop_reason</code> = <code>end_turn</code>。</p>
+      <h4>适用场景</h4>
+      <p>任何让 Claude 自主决策"要不要再调用一次"的场景：研究 agent、code refactor agent、customer support escalation agent。</p>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确做法：</b>把终止条件交给 <code>stop_reason</code> 和 schema 合规度，由代码判断。</div>
+        <div class="dont"><b>❌ 错误做法：</b>在 system prompt 里写"请自己决定什么时候停"，把概率当确定。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>用 Agent SDK 写一个最小循环，限制最多 10 轮；超过即记录到结构化 log 并 exit。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 2</span>
+      <h3>什么时候用 prompt，什么时候用 tool</h3>
+      <p class="one-liner"><b>一句话：</b>prompt 管"如何思考"，tool 管"能做什么"。动作性强、可结构化的，必须是 tool。</p>
+      <h4>适用场景</h4>
+      <ul class="bullet-list">
+        <li>查数据库 / 写文件 / 调 API → tool</li>
+        <li>让 Claude 调整输出风格 / 多角度思考 → prompt</li>
+        <li>需要被审计和 retry 的副作用 → tool + 结构化错误</li>
+      </ul>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>把"退款 $300"做成 <code>process_refund</code> tool，输入 schema 强制 amount &gt; 0。</div>
+        <div class="dont"><b>❌ 错误：</b>让 Claude 在文本里说"已退款 $300"，再让下游解析自然语言。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>列出你最近一次 Claude 任务的 5 个动作，把每个动作分到 prompt / tool / 拆分到 subagent 三类。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 3</span>
+      <h3>MCP 的 tools / resources / prompts 怎么区分</h3>
+      <p class="one-liner"><b>一句话：</b>tool = 模型调用；resource = 应用主动注入；prompt = 用户显式选择。</p>
+      <h4>适用场景</h4>
+      <ul class="bullet-list">
+        <li><b>Tool</b>：搜索代码库、查数据库、调外部 API</li>
+        <li><b>Resource</b>：暴露一份 README 给 Claude 上下文（app 决定什么时候加载）</li>
+        <li><b>Prompt</b>：模板化指令如"/summarize-changes"，由用户/客户端触发</li>
+      </ul>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>把"打开当前文件"做成 resource（URI: <code>file://...</code>），把"搜索关键字"做成 tool。</div>
+        <div class="dont"><b>❌ 错误：</b>把"打开文件"做成 tool，结果 Claude 每次都主动调用浪费调用次数。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>用 Python MCP SDK 写一个 server，同时暴露 1 个 tool + 1 个 resource + 1 个 prompt。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 4</span>
+      <h3>CLAUDE.md、Skills、Hooks、Subagents 的边界</h3>
+      <p class="one-liner"><b>一句话：</b>CLAUDE.md = 每 session 都读的"宪法"；Skills = 按需加载的工作流；Hooks = 确定性拦截；Subagents = 隔离上下文的专家。</p>
+      <h4>适用场景</h4>
+      <table class="tbl-wrap" style="margin: 10px 0;">
+        <thead>
+          <tr><th>组件</th><th>加载时机</th><th>典型用途</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CLAUDE.md</td><td>每 session 启动</td><td>代码风格、build 命令、项目架构</td></tr>
+          <tr><td>Skills</td><td>用到时才加载</td><td>/review-pr、/deploy-staging 等长流程</td></tr>
+          <tr><td>Hooks</td><td>事件触发（PreToolUse 等）</td><td>拦截 rm -rf、记录审计日志</td></tr>
+          <tr><td>Subagents</td><td>显式 Task 派发</td><td>research / code review / exploration</td></tr>
+        </tbody>
+      </table>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>"不要 rm -rf" 用 PreToolUse hook；"code style 是 2 空格缩进" 放 CLAUDE.md；"PR review 流程" 做 SKILL.md。</div>
+        <div class="dont"><b>❌ 错误：</b>所有东西塞 CLAUDE.md；试图用 prompt 拦截危险命令；让 subagent 共享主对话 state。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>把已有项目规则分类：每条放进 CLAUDE.md / Skill / Hook 中最合适的一项。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 5</span>
+      <h3>如何设计结构化输出与 JSON Schema</h3>
+      <p class="one-liner"><b>一句话：</b>用 <code>output_config.format = json_schema</code> 或 <code>strict: true</code> 工具，让 Claude"被"生成合法 JSON，不再靠 <code>JSON.parse()</code> 救火。</p>
+      <h4>适用场景</h4>
+      <p>邮件抽取、表格生成、API 响应构造、CI 输出物、agent tool result。</p>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>required 字段用 <code>"required": ["name","email"]</code>；enum 字段保留 <code>"other"</code> + detail。</div>
+        <div class="dont"><b>❌ 错误：</b>所有字段 optional；试图用 prompt 让 Claude"返回有效 JSON"。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>为"从工单抽取 product / severity / customer_tier / action_required" 设计一个 JSON Schema，并思考哪里需要 enum 兜底。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 6</span>
+      <h3>如何做 context management</h3>
+      <p class="one-liner"><b>一句话：</b>context 是稀缺资源。少而精 &gt; 多而杂，关键决策要放在 context 中后段（lost-in-the-middle 现象）。</p>
+      <h4>适用场景</h4>
+      <ul class="bullet-list">
+        <li>长会话 → 用 subagent 隔离 exploration</li>
+        <li>大量历史 → <code>/compact</code> + 显式保留关键 facts</li>
+        <li>多源信息 → 标 source，避免后段引用丢失</li>
+      </ul>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>让 Explore subagent 先扫一遍，只回 summary + source pointers。</div>
+        <div class="dont"><b>❌ 错误：</b>把整个 50 KB 文件读进主对话；把关键决策放在对话开头（容易被"中间遗忘"）。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>挑一个真实 agent run，把超过 10 轮的步骤改写成"主对话只持有 facts，子 agent 拥有 raw 数据"。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 7</span>
+      <h3>如何设计 retry / fail / escalate</h3>
+      <p class="one-liner"><b>一句话：</b>同错误 2 次 → retry 带具体错误回填；2 次后仍失败 → escalate 人工；破坏性操作永远需要确认。</p>
+      <h4>适用场景</h4>
+      <p>任何有副作用的工具调用：退款、删文件、发邮件、deploy。</p>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>工具返回 <code>{isError:true, errorCategory:"rate_limit", isRetryable:true, hint:"backoff 5s"}</code>。</div>
+        <div class="dont"><b>❌ 错误：</b>无脑 retry 10 次；让 agent 自己决定是否要"不再问人工"。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>为你的 3 个核心工具设计 <code>errorCategory</code> 枚举和 retry 策略矩阵。
+      </div>
+    </div>
+
+    <div class="tutorial">
+      <span class="tut-num">教程 8</span>
+      <h3>如何把自己的项目做成 CCA-F casebook</h3>
+      <p class="one-liner"><b>一句话：</b>把你已经跑通的 Hermes / OpenClaw / Codex 项目，按 5 个领域重新整理为"可被考试复用"的知识资产。</p>
+      <h4>适用场景</h4>
+      <p>需要把零散经验转化为可解释的架构决策时（考试、面试、团队 onboarding）。</p>
+      <div class="do-dont">
+        <div class="do"><b>✅ 正确：</b>每个 case 都写：场景、决策、原因、结果、反思。</div>
+        <div class="dont"><b>❌ 错误：</b>只贴代码不写决策依据；只写"成功了"不写"为什没选其他方案"。</div>
+      </div>
+      <div class="exercise">
+        <b>小练习：</b>挑 1 个项目，按下表写 5 行 case：
+        <pre>场景: [某客户支持 agent 设计]
+决策: [用 subagent 隔离 query rewriting]
+原因: [避免污染主对话的 escalation context]
+结果: [escalation 准确率 +18%, 详见 Lab 2]
+反思: [还可以把 tool 错误 schema 化]      </pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 6. 实战 Lab 清单 ============== -->
+<section id="labs">
+  <div class="container">
+    <span class="section-tag">第 6 节</span>
+    <h2>实战 Lab 清单</h2>
+    <p>8 个 Lab，覆盖 5 个领域。每个 Lab 都附验收标准与复盘问题。</p>
+
+    <div class="grid grid-2">
+      <div class="lab" id="lab1">
+        <div class="lab-head"><span class="lab-tag">Lab 1</span><h3>结构化信息提取器</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 4</span>
+          <span class="lab-chip">Domain 2</span>
+          <span class="lab-chip">~2 小时</span>
+        </div>
+        <p><b>目标：</b>用 Claude API + JSON schema，从非结构化邮件抽取 4 个字段，0 解析错误。</p>
+        <p><b>需要用到的能力：</b>structured outputs、<code>output_config.format</code>、validation-retry。</p>
+        <p><b>文件结构建议：</b></p>
+        <pre>lab1/
+├── extract.py         # 主调用脚本
+├── schema.py          # Pydantic / dataclass schema
+├── samples/           # 10 个测试邮件
+└── eval.py            # 字段级准确率评测</pre>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>10 个样本字段准确率 ≥ 95%</li>
+          <li>0 次 <code>JSON.parse</code> 异常</li>
+          <li>retry 次数分布（p50/p90）记录</li>
+        </ul>
+        <p><b>复盘问题：</b>哪些字段最容易丢？enum + "other" 是否必要？</p>
+      </div>
+
+      <div class="lab" id="lab2">
+        <div class="lab-head"><span class="lab-tag">Lab 2</span><h3>带工具调用的客户支持 agent</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 1</span>
+          <span class="lab-chip">~3 小时</span>
+        </div>
+        <p><b>目标：</b>实现一个能在 5 轮内自行判断"能否解决 / 是否 escalate"的客户支持 agent。</p>
+        <p><b>需要用到的能力：</b>Agent SDK、tool schema、escalation 模式、<code>stop_reason</code>。</p>
+        <p><b>文件结构建议：</b></p>
+        <pre>lab2/
+├── agent.py          # 主循环
+├── tools/
+│   ├── lookup_order.py
+│   ├── request_refund.py
+│   └── escalate.py
+├── tests/
+│   └── scenarios.md  # 5 个 customer 场景
+└── audit.log         # 审计日志</pre>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>3 个简单场景自动解决</li>
+          <li>2 个复杂场景正确 escalate</li>
+          <li>退款 &gt; $500 被 PreToolUse hook 拦下</li>
+        </ul>
+        <p><b>复盘问题：</b>escalation 阈值放在哪里？system prompt 还是代码？</p>
+      </div>
+
+      <div class="lab" id="lab3">
+        <div class="lab-head"><span class="lab-tag">Lab 3</span><h3>本地知识库 MCP server</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 2</span>
+          <span class="lab-chip">~3 小时</span>
+        </div>
+        <p><b>目标：</b>用 Python MCP SDK 写一个暴露本地文档的 MCP server（同时含 tool / resource / prompt）。</p>
+        <p><b>需要用到的能力：</b>MCP 三原语、Python SDK 装饰器、Server Inspector 调试。</p>
+        <p><b>文件结构建议：</b></p>
+        <pre>lab3/
+├── server.py         # MCP server 主体
+├── knowledge/        # Markdown 文档
+└── README.md         # 客户端接入说明</pre>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>tool：search_docs(query) 返回 top-3 段落</li>
+          <li>resource：暴露 file:// URI 列表</li>
+          <li>prompt：/summarize-doc 模板可用</li>
+          <li>Claude Desktop 能连接并调用</li>
+        </ul>
+        <p><b>复盘问题：</b>tool 与 resource 的边界画在哪里？</p>
+      </div>
+
+      <div class="lab" id="lab4">
+        <div class="lab-head"><span class="lab-tag">Lab 4</span><h3>Claude Code 项目配置包</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 3</span>
+          <span class="lab-chip">~2 小时</span>
+        </div>
+        <p><b>目标：</b>为一个真实 repo 准备完整的 Claude Code 工程化配置（CLAUDE.md + 2 个 skills + 1 个 hook）。</p>
+        <p><b>需要用到的能力：</b>CLAUDE.md 层级、SKILL.md frontmatter、<code>PreToolUse</code> hook。</p>
+        <p><b>文件结构建议：</b></p>
+        <pre>lab4/
+├── CLAUDE.md
+├── .claude/
+│   ├── settings.json
+│   ├── hooks/
+│   │   └── block-dangerous-rm.sh
+│   └── skills/
+│       ├── review-pr/SKILL.md
+│       └── run-tests/SKILL.md
+└── test/             # 触发 hook 的反例脚本</pre>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>Claude Code 启动后自动加载 CLAUDE.md</li>
+          <li>/review-pr 可用且执行符合预期</li>
+          <li><code>rm -rf /</code> 被 hook 拦下并给出 reason</li>
+        </ul>
+        <p><b>复盘问题：</b>CLAUDE.md 控制在多少行以内？</p>
+      </div>
+
+      <div class="lab" id="lab5">
+        <div class="lab-head"><span class="lab-tag">Lab 5</span><h3>Skills 工作流设计</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 3</span>
+          <span class="lab-chip">Domain 1</span>
+          <span class="lab-chip">~2 小时</span>
+        </div>
+        <p><b>目标：</b>把团队里"每次都要重复说"的 3 段流程，封装为 3 个 SKILL.md。</p>
+        <p><b>需要用到的能力：</b>SKILL.md frontmatter、dynamic context injection（`` !`git diff` ``）。</p>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>/release-prep 自动跑 lint + test + diff summary</li>
+          <li>/triage-issue 根据 issue 标签路由到对应 subagent</li>
+          <li>/postmortem 引导结构化输出 5 段</li>
+        </ul>
+        <p><b>复盘问题：</b>哪些逻辑必须放在 skill 里，哪些留在 CLAUDE.md？</p>
+      </div>
+
+      <div class="lab" id="lab6">
+        <div class="lab-head"><span class="lab-tag">Lab 6</span><h3>Hook 确定性控制</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 3</span>
+          <span class="lab-chip">~2 小时</span>
+        </div>
+        <p><b>目标：</b>用 PreToolUse + PostToolUse hook 实现"自动格式化 + 拦截危险命令 + 审计日志"。</p>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>每次 Edit/Write 后自动 prettier 格式化</li>
+          <li><code>rm -rf</code>、<code>git push --force</code> 被 deny</li>
+          <li>审计日志记录 file path + 时间戳 + 决策</li>
+        </ul>
+        <p><b>复盘问题：</b>hook 失败时 Claude Code 行为是什么？是否要 graceful fallback？</p>
+      </div>
+
+      <div class="lab" id="lab7">
+        <div class="lab-head"><span class="lab-tag">Lab 7</span><h3>多 subagent research system</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 1</span>
+          <span class="lab-chip">~4 小时</span>
+        </div>
+        <p><b>目标：</b>Coordinator + 3 subagents（search / fetch / summarize），并行研究一个主题并汇总。</p>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>3 个 subagent 真正并行（< 60s 完成）</li>
+          <li>汇总时显式带 source provenance</li>
+          <li>subagent 失败可优雅降级到 2 个</li>
+        </ul>
+        <p><b>复盘问题：</b>context 怎么传递？subagent 之间要不要通信？</p>
+      </div>
+
+      <div class="lab" id="lab8">
+        <div class="lab-head"><span class="lab-tag">Lab 8</span><h3>Context degradation / reliability 测试</h3></div>
+        <div class="lab-meta">
+          <span class="lab-chip">Domain 5</span>
+          <span class="lab-chip">~3 小时</span>
+        </div>
+        <p><b>目标：</b>故意制造一个 30+ 轮的长对话，观察 Claude 的"中间遗忘"和 hallucination，并加入 mitigation。</p>
+        <p><b>验收标准：</b></p>
+        <ul class="bullet-list">
+          <li>记录 baseline 在第 15 / 20 / 25 / 30 轮的 fact recall 率</li>
+          <li>加入 source pointer 后 recall 率提升 ≥ 10pp</li>
+          <li>连续 2 次错误 → escalate 路径被触发</li>
+        </ul>
+        <p><b>复盘问题：</b>什么时候该 <code>/compact</code>？什么时候该 fork session？</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 7. 备考资源库 ============== -->
+<section id="resources">
+  <div class="container">
+    <span class="section-tag">第 7 节</span>
+    <h2>备考资源库</h2>
+    <p>可按"类型 / 领域"筛选。优先级：⭐⭐⭐ 必看 · ⭐⭐ 推荐 · ⭐ 选看。</p>
+
+    <div class="filter-row">
+      <label>类型：</label>
+      <select id="flt-type">
+        <option value="">全部</option>
+        <option value="官方">官方</option>
+        <option value="社区">社区</option>
+        <option value="课程">课程</option>
+      </select>
+      <label>领域：</label>
+      <select id="flt-domain">
+        <option value="">全部</option>
+        <option value="通用">通用</option>
+        <option value="D1">D1 Agentic</option>
+        <option value="D2">D2 Tool &amp; MCP</option>
+        <option value="D3">D3 Claude Code</option>
+        <option value="D4">D4 Prompt &amp; Output</option>
+        <option value="D5">D5 Context</option>
+      </select>
+      <label>优先级：</label>
+      <select id="flt-priority">
+        <option value="">全部</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    </div>
+
+    <div class="tbl-wrap">
+      <table id="resourceTable">
+        <thead>
+          <tr>
+            <th>资源名称</th>
+            <th>类型</th>
+            <th>领域</th>
+            <th>优先级</th>
+            <th>学习用途</th>
+            <th>链接</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-type="官方" data-domain="通用" data-priority="3">
+            <td>Anthropic Partner Network 发布通稿</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td>通用</td>
+            <td>⭐⭐⭐</td>
+            <td>了解 CCA-F 来源、定位、Partner 计划</td>
+            <td><a href="https://www.anthropic.com/news/claude-partner-network" target="_blank">anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="通用" data-priority="3">
+            <td>Services Track & Partner Hub 通稿</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td>通用</td>
+            <td>⭐⭐⭐</td>
+            <td>了解 Partner Network 后续服务认证体系</td>
+            <td><a href="https://www.anthropic.com/news/services-track-partner-hub" target="_blank">anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="通用" data-priority="3">
+            <td>Anthropic Skilljar 主页</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td>通用</td>
+            <td>⭐⭐⭐</td>
+            <td>CCA-F 报名入口、课程导航</td>
+            <td><a href="https://anthropic.skilljar.com/" target="_blank">anthropic.skilljar.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="通用" data-priority="3">
+            <td>CCA-F Access Request 页</td>
+            <td><span class="tag tag-official">官方</span></td>
+            <td>通用</td>
+            <td>⭐⭐⭐</td>
+            <td>CCA-F 官方申请入口（Partner 优先）</td>
+            <td><a href="https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request" target="_blank">anthropic.skilljar.com</a></td>
+          </tr>
+          <tr data-type="课程" data-domain="D4" data-priority="3">
+            <td>Building with the Claude API</td>
+            <td><span class="tag tag-course">官方课程</span></td>
+            <td>D4 / D2</td>
+            <td>⭐⭐⭐</td>
+            <td>API、prompt、tool、structured output 入门到精通</td>
+            <td><a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank">Skilljar</a></td>
+          </tr>
+          <tr data-type="课程" data-domain="D3" data-priority="3">
+            <td>Claude Code 101</td>
+            <td><span class="tag tag-course">官方课程</span></td>
+            <td>D3</td>
+            <td>⭐⭐⭐</td>
+            <td>CLAUDE.md / Skills / Hooks / Subagents 系统课</td>
+            <td><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Skilljar</a></td>
+          </tr>
+          <tr data-type="课程" data-domain="D2" data-priority="3">
+            <td>Introduction to Model Context Protocol</td>
+            <td><span class="tag tag-course">官方课程</span></td>
+            <td>D2</td>
+            <td>⭐⭐⭐</td>
+            <td>MCP 三原语 + Python SDK server/client 实战</td>
+            <td><a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">Skilljar</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D3" data-priority="3">
+            <td>Claude Code Overview（官方文档）</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D3</td>
+            <td>⭐⭐⭐</td>
+            <td>CLI / IDE / Desktop / Web / CI 集成</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D3" data-priority="3">
+            <td>How Claude Remembers Your Project</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D3 / D5</td>
+            <td>⭐⭐⭐</td>
+            <td>CLAUDE.md / Memory 完整机制</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D3" data-priority="3">
+            <td>Skills（官方文档）</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D3</td>
+            <td>⭐⭐⭐</td>
+            <td>SKILL.md 规范、bundled skills、动态上下文注入</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/skills" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D3" data-priority="3">
+            <td>Hooks Reference（官方文档）</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D3 / D1</td>
+            <td>⭐⭐⭐</td>
+            <td>完整 hook 事件、matcher、JSON IO、HTTP hook</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D1" data-priority="3">
+            <td>Subagents（官方文档）</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D1</td>
+            <td>⭐⭐⭐</td>
+            <td>Built-in subagents、自定义 subagent 写法</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D1" data-priority="3">
+            <td>Agent SDK Overview</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D1</td>
+            <td>⭐⭐⭐</td>
+            <td>Python / TypeScript SDK、Hooks、MCP、Subagents</td>
+            <td><a href="https://docs.anthropic.com/en/docs/claude-code/sdk" target="_blank">docs.anthropic.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D2" data-priority="3">
+            <td>Tool use with Claude</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D2</td>
+            <td>⭐⭐⭐</td>
+            <td>tool schema、<code>strict</code>、<code>tool_choice</code></td>
+            <td><a href="https://platform.claude.com/docs/en/build-with-claude/tool-use/overview" target="_blank">platform.claude.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D4" data-priority="3">
+            <td>Structured Outputs</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D4</td>
+            <td>⭐⭐⭐</td>
+            <td>JSON outputs + strict tool use</td>
+            <td><a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank">platform.claude.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D4" data-priority="2">
+            <td>Prompt Engineering Overview</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D4</td>
+            <td>⭐⭐</td>
+            <td>何时该做 prompt engineering、何时该换模型</td>
+            <td><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank">platform.claude.com</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D2" data-priority="3">
+            <td>What is MCP（官方协议站）</td>
+            <td><span class="tag tag-docs">官方文档</span></td>
+            <td>D2</td>
+            <td>⭐⭐⭐</td>
+            <td>MCP 概念、生态、build server/client</td>
+            <td><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank">modelcontextprotocol.io</a></td>
+          </tr>
+          <tr data-type="官方" data-domain="D2" data-priority="3">
+            <td>MCP Tools Spec（2025-06-18）</td>
+            <td><span class="tag tag-docs">官方规范</span></td>
+            <td>D2</td>
+            <td>⭐⭐⭐</td>
+            <td>tools/list、tools/call、tool schema 字段</td>
+            <td><a href="https://modelcontextprotocol.io/specification/2025-06-18/server/tools" target="_blank">modelcontextprotocol.io</a></td>
+          </tr>
+          <tr data-type="社区" data-domain="通用" data-priority="2">
+            <td>Claude Certifications – Exam Guide（社区）</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td>通用</td>
+            <td>⭐⭐</td>
+            <td>社区整理的考试形式、6 scenarios 描述</td>
+            <td><a href="https://claudecertifications.com/claude-certified-architect/exam-guide" target="_blank">claudecertifications.com</a></td>
+          </tr>
+          <tr data-type="社区" data-domain="通用" data-priority="2">
+            <td>Claude Certifications – Domains</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td>通用</td>
+            <td>⭐⭐</td>
+            <td>5 领域详细拆解（社区推断权重）</td>
+            <td><a href="https://claudecertifications.com/claude-certified-architect/domains" target="_blank">claudecertifications.com</a></td>
+          </tr>
+          <tr data-type="社区" data-domain="通用" data-priority="2">
+            <td>Claude Certifications – 12-Week Study Guide</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td>通用</td>
+            <td>⭐⭐</td>
+            <td>社区整理的 12 周计划</td>
+            <td><a href="https://claudecertifications.com/claude-certified-architect/study-guide" target="_blank">claudecertifications.com</a></td>
+          </tr>
+          <tr data-type="社区" data-domain="通用" data-priority="1">
+            <td>paullarionov / claude-certified-architect（GitHub）</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td>通用</td>
+            <td>⭐</td>
+            <td>社区整理的开源 study notes</td>
+            <td><a href="https://github.com/paullarionov/claude-certified-architect" target="_blank">github.com</a></td>
+          </tr>
+          <tr data-type="社区" data-domain="通用" data-priority="1">
+            <td>Tutorials Dojo – CCA-F Study Guide</td>
+            <td><span class="tag tag-community">社区</span></td>
+            <td>通用</td>
+            <td>⭐</td>
+            <td>第三方培训机构整理</td>
+            <td><a href="https://tutorialsdojo.com/cca-f-claude-certified-architect-foundations-study-guide/" target="_blank">tutorialsdojo.com</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 8. 高频架构判断题 ============== -->
+<section id="mock">
+  <div class="container">
+    <span class="section-tag">第 8 节</span>
+    <h2>高频架构判断题（原创练习题，非真题）</h2>
+    <div class="callout">
+      <b>声明：</b>以下题目为原创练习题，<b>不声称是 CCA-F 真题</b>。场景来自公开的 Anthropic 文档、社区资料与常见生产实践。
+      用于训练"看完场景立刻判断"的能力。
+    </div>
+
+    <details class="mock">
+      <summary>1. 你想让 Claude 在调用 <code>Bash(rm ...)</code> 时绝对不能删除 <code>/</code> 下的东西。下列哪种方案最合适？</summary>
+      <div class="mock-body">
+        <p>A. 在 system prompt 里写"严禁 rm -rf /"</p>
+        <p>B. 用 PostToolUse hook 拦截并 undo</p>
+        <p>C. 用 PreToolUse hook + matcher <code>"Bash"</code> + <code>if</code> 条件判断命令内容，命中则 <code>permissionDecision: "deny"</code></p>
+        <p>D. 让 Claude 每次执行前先问用户</p>
+        <div class="ans">答案：C</div>
+        <div class="why">
+          官方 Hooks Reference 的"Blocking <code>rm -rf</code>"示例就是这个模式。PreToolUse 可以在工具执行前 deny，且是确定性的；
+          PostToolUse 只能事后处理；system prompt 是概率性的；"每次问用户"既不高效也容易疲劳。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>2. 你希望 Claude 在 PR review 时自动拉一组固定规则。下列哪种放法最合理？</summary>
+      <div class="mock-body">
+        <p>A. 全部塞 CLAUDE.md（每个 session 都加载）</p>
+        <p>B. 做成一个 /review-pr skill，需要时调用</p>
+        <p>C. 写在 system prompt</p>
+        <p>D. 写成 Bash 脚本手动跑</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Skills 按需加载、不会污染每 session context（官方 Skills 文档明确："Unlike CLAUDE.md content, a skill's body loads only when it's used"）。
+          CLAUDE.md 应该只放每 session 都要知道的事实。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>3. 主对话需要做大量 codebase exploration，下列哪个最有利于保持主对话 context 干净？</summary>
+      <div class="mock-body">
+        <p>A. 在主对话里直接 Read 每个文件</p>
+        <p>B. 派一个 Explore subagent（read-only），让它只回 summary</p>
+        <p>C. 用 /compact 多压缩几次</p>
+        <p>D. 把所有文件复制到 CLAUDE.md</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Subagents 文档："Subagents work within a single session ... Preserve context by isolating exploration/implementation from main conversation"。
+          Explore subagent 是 built-in 的 read-only 默认选项。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>4. 你想让 Claude 列出所有仓库文件，下列 MCP 原语最合适？</summary>
+      <div class="mock-body">
+        <p>A. tool（model-controlled）</p>
+        <p>B. resource（app-controlled）</p>
+        <p>C. prompt（user-controlled）</p>
+        <p>D. 都不合适，直接用 Read 工具</p>
+        <div class="ans">答案：A</div>
+        <div class="why">
+          列出文件 = 由模型决策什么时候调用 = tool。
+          Resource 是 app 主动注入；Prompt 是用户显式选择。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>5. 你想从邮件中抽取 4 个字段且 100% 字段类型正确，下列方案最稳？</summary>
+      <div class="mock-body">
+        <p>A. 在 system prompt 让 Claude"返回 JSON"</p>
+        <p>B. 用 <code>output_config.format = json_schema</code> + strict tool</p>
+        <p>C. 后处理自然语言回复，正则抽取</p>
+        <p>D. 让 Claude 输出 XML 再解析</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          官方 Structured Outputs 文档："Constrained decoding ... Always valid, Type safe, Reliable"。
+          这是 production-grade 的标准做法。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>6. 工具调用出现"rate limit"错误 3 次，下列哪种最合理？</summary>
+      <div class="mock-body">
+        <p>A. 一直 retry，直到成功</p>
+        <p>B. 在 tool_result 里返回结构化 <code>{isRetryable:true, hint:"backoff 5s"}</code>，由 agent 决定 retry 策略；retry 2 次仍失败则 escalate</p>
+        <p>C. 直接抛异常给上游</p>
+        <p>D. 让 Claude 自由决定</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          retry vs escalate 的标准模式 = "具体错误回填 + 阈值"。社区整理的反模式明确提到"无脑一直 retry"。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>7. 跑了一个长 session，Claude 在第 25 轮开始"中间遗忘"早期 fact。下列哪种不是 mitigation？</summary>
+      <div class="mock-body">
+        <p>A. 把关键 fact 放在 context 中后段（recency boost）</p>
+        <p>B. 把关键 fact 标 source pointer</p>
+        <p>C. 全部重发一遍早期 message</p>
+        <p>D. 适当 <code>/compact</code> + summary with sources</p>
+        <div class="ans">答案：C</div>
+        <div class="why">
+          "全部重发"会进一步消耗 token，并触发新一轮 context 衰减。其他都是官方文档推荐的 mitigation。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>8. 工具 description 写得很模糊，下列哪种后果最可能发生？</summary>
+      <div class="mock-body">
+        <p>A. Claude 一定不会调用该工具</p>
+        <p>B. Claude 调用但传错参数，或漏调用</p>
+        <p>C. 工具报错</p>
+        <p>D. 工具被自动禁用</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          官方 tool use 文档明确指出：<code>tools</code> 参数里的 description 是模型决策的依据；模糊 description 是考试中"常见错误答案"。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>9. 你有一个"删除用户"的高破坏性 tool，下列哪种最合适？</summary>
+      <div class="mock-body">
+        <p>A. 让 Claude 自己决定</p>
+        <p>B. 默认永远拒绝</p>
+        <p>C. PreToolUse hook + matcher 命中时弹人工确认；或要求 tool input 显式 <code>confirm:true</code>，由 hook 校验</p>
+        <p>D. 改成只读工具</p>
+        <div class="ans">答案：C</div>
+        <div class="why">
+          MCP Tools Spec 明确："There SHOULD always be a human in the loop with the ability to deny tool invocations"。
+          破坏性操作必须人工确认。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>10. 你想用一个 Claude 跑出 eval-driven prompt 改进，下列哪个流程最完整？</summary>
+      <div class="mock-body">
+        <p>A. 凭感觉改 prompt，再跑一次</p>
+        <p>B. 写一组代表样本 → 跑 baseline → 改 prompt → 跑同组样本 → 比较</p>
+        <p>C. 改 10 个不同版本，让 Claude 自己挑最好的</p>
+        <p>D. 让 Claude 一次输出 100 个变体</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          官方 Prompt Engineering 课程明确："Define success criteria → Build eval → Iterate"。
+          这是 eval-driven 的标准循环。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>11. 你的 agent 跑了 50 轮后开始 hallucinate source。下列哪种 mitigation 最直接？</summary>
+      <div class="mock-body">
+        <p>A. 继续跑，相信 Claude 会自我修正</p>
+        <p>B. 让每个结论必须带可追溯 source pointer；source 缺失则拒绝结论</p>
+        <p>C. 加大 temperature</p>
+        <p>D. 切换到 Haiku</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          "Information provenance" 是 Domain 5 必懂概念；加大 temperature 只会加重 hallucination。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>12. 你想用 Claude 做 CI PR 自动 review。下列哪种最合适？</summary>
+      <div class="mock-body">
+        <p>A. 跑一个长对话 session 复用</p>
+        <p>B. 用 <code>claude -p</code> + <code>--output-format json</code> + 独立 session，generator 与 reviewer 分开</p>
+        <p>C. 用 Anthropic SDK 直接循环调用</p>
+        <p>D. 让 Claude 自己启动 Web UI</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Claude Code Overview 与社区整理都明确：CI 用 <code>-p</code> + <code>--output-format json</code>；session 隔离避免 generator/reviewer 互相污染。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>13. 你的项目里有 5 个 subagent，每个都需要 read-only 工具。下列哪种 best practice？</summary>
+      <div class="mock-body">
+        <p>A. 全部给所有工具，自己把控</p>
+        <p>B. 在每个 subagent 的 <code>tools</code> 白名单里只列 Read / Glob / Grep</p>
+        <p>C. 用一个全局 deny list</p>
+        <p>D. 让 Claude 自动决定</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Subagents 文档："Enforce constraints by limiting tool access"。
+          白名单比黑名单更安全。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>14. 团队反馈 CLAUDE.md 越来越长，Claude 不再遵守早期规则。下列哪种最合适？</summary>
+      <div class="mock-body">
+        <p>A. 把 CLAUDE.md 缩成 bullet list</p>
+        <p>B. 把多步骤流程拆成 SKILL.md；topic-specific 规则放进 <code>.claude/rules/</code> 路径作用域</p>
+        <p>C. 增加 system prompt 强调</p>
+        <p>D. 重启 Claude Code</div>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Claude Code Memory 文档："Target under 200 lines per file ... use path-scoped rules to load instructions only when needed"。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>15. 一个工具调用失败 2 次后还失败，下列哪种最合适？</summary>
+      <div class="mock-body">
+        <p>A. 继续 retry 到成功</p>
+        <p>B. 切换到 fallback 工具</p>
+        <p>C. escalate 到人工，并把失败上下文（含 tool_result、retry 次数）一并交付</p>
+        <p>D. 静默失败</p>
+        <div class="ans">答案：C</div>
+        <div class="why">
+          retry vs escalate 模式：破坏性操作尤其要 escalate，且失败上下文越完整越便于人工诊断。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>16. Claude API 中 <code>tool_choice: {"type": "any"}</code> 的含义是？</summary>
+      <div class="mock-body">
+        <p>A. Claude 不能调用任何工具</p>
+        <p>B. Claude 必须调用至少一个工具</p>
+        <p>C. Claude 可以选任意工具</p>
+        <p>D. Claude 必须按特定工具调用</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          官方 tool use 文档：<code>any</code> 强制至少一次工具调用；<code>auto</code> 让模型自由决定；<code>tool</code> 强制特定工具。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>17. 你希望 Claude 在 PR 合并前自动跑测试。下列哪种最合适？</summary>
+      <div class="mock-body">
+        <p>A. 在 CLAUDE.md 里写"记得跑测试"</p>
+        <p>B. 用 PostToolUse hook 监听 Edit/Write → 触发 <code>npm test</code></p>
+        <p>C. 让 Claude 自由决定</p>
+        <p>D. 在 push 之前手动跑</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          Hook 是确定性的；CLAUDE.md 是概率性的且容易被遗忘。
+          PostToolUse 在每次代码改动后触发测试，是考试推荐的 deterministic 模式。
+        </div>
+      </div>
+    </details>
+
+    <details class="mock">
+      <summary>18. 你想评估 Claude 输出 JSON 字段的稳定性，下列哪种方案最合理？</summary>
+      <div class="mock-body">
+        <p>A. 看一次结果，凭感觉打分</p>
+        <p>B. 跑 N 个样本，计算字段级 precision/recall/F1，与 baseline 对比</p>
+        <p>C. 让 Claude 自评</p>
+        <p>D. 用人工 review</p>
+        <div class="ans">答案：B</div>
+        <div class="why">
+          官方 Prompt Evaluation 课程的标准做法：N 个样本 + 字段级指标 + baseline 对比。
+          "Claude 自评"是 Domain 4 的反模式。
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============== 9. 反模式清单 ============== -->
+<section id="antipatterns">
+  <div class="container">
+    <span class="section-tag">第 9 节</span>
+    <h2>反模式清单（看到要立刻警惕）</h2>
+    <div class="anti-grid">
+      <div class="anti"><h4>把规则塞进 system prompt</h4><p>system prompt 是概率性的，关键规则应当用 hook 或 subagent 工具白名单来实现。</p></div>
+      <div class="anti"><h4>长流程全塞 CLAUDE.md</h4><p>CLAUDE.md 应当每 session 都加载，多步骤流程应该拆为 SKILL.md（按需加载）。</p></div>
+      <div class="anti"><h4>该用 hook 却只靠 prompt</h4><p>"千万不要 rm -rf" 在 prompt 里是软约束；PreToolUse hook 是硬约束。</p></div>
+      <div class="anti"><h4>工具错误只返回字符串</h4><p>自由字符串错误无法被结构化处理；用 <code>{isError, errorCategory, isRetryable}</code>。</p></div>
+      <div class="anti"><h4>subagent 越多越好</h4><p>过度切分导致 context 反复序列化、loss 与 cost 暴涨；通常 2-4 个 subagent 已足够。</p></div>
+      <div class="anti"><h4>不传递关键上下文</h4><p>subagent 起步没有 source pointer 和明确目标，summary 会失真。</p></div>
+      <div class="anti"><h4>不做 eval</h4><p>没有 eval 的 prompt 改进 = 盲改；至少要 N 个样本 + 字段级指标。</p></div>
+      <div class="anti"><h4>不区分 tool / resource / prompt</h4><p>MCP 三原语边界不清晰，会让 Claude 错把 resource 当 tool 调用，或反之。</p></div>
+      <div class="anti"><h4>destructive action 无人工确认</h4><p>删除 / 退款 / deploy 永远要 hook 拦截 + 人工确认。</p></div>
+      <div class="anti"><h4>只刷题不做 Lab</h4><p>CCA-F 是架构认证，单纯记忆题库过不了；必须靠真实跑通 + 复盘。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 10. 个人备考计划 ============== -->
+<section id="personal">
+  <div class="container">
+    <span class="section-tag">第 10 节</span>
+    <h2>我的个人备考计划</h2>
+    <p>结合已有 OpenClaw / Hermes / Codex / Skills / Wiki / GitHub Pages 项目经验，把它们整理为 CCA-F casebook。</p>
+
+    <div class="card">
+      <h3>已有经验映射</h3>
+      <ul class="bullet-list">
+        <li><b>OpenClaw / Hermes</b>：多 agent 编排 + 工具调度 → D1 Agentic Architecture</li>
+        <li><b>Skills / SKILL.md</b>：已经在用的工作流抽象 → D3 Claude Code</li>
+        <li><b>Plugin / Hooks</b>：openclaw-config-repair、proxyerror-defense-hardening 经验 → D3 + D5</li>
+        <li><b>MCP / Tool 设计</b>：claudecertifications.com、exa / parallel / minimax 集成 → D2</li>
+        <li><b>CI 自动化</b>：gh release + smoke test + GitHub Actions → D3 + D4</li>
+        <li><b>Structured output</b>：mmx-music-studio structured lyric output → D4</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:24px;">推荐产出目录（cca-f-casebook/）</h3>
+    <div class="plan-tree">cca-f-casebook/
+├── domain-1-agentic-architecture.md
+├── domain-2-tool-mcp.md
+├── domain-3-claude-code.md
+├── domain-4-prompt-structured-output.md
+├── domain-5-context-reliability.md
+├── labs/
+│   ├── lab-1-extractor/
+│   ├── lab-2-support-agent/
+│   ├── lab-3-mcp-server/
+│   ├── lab-4-claude-code-config/
+│   ├── lab-5-skills/
+│   ├── lab-6-hooks/
+│   ├── lab-7-multi-subagent/
+│   └── lab-8-context-reliability/
+├── anti-patterns.md
+└── mock-scenarios.md</div>
+
+    <h3 style="margin-top:24px;">每个阶段的"五问"</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Phase 1 · 收集已有项目经验</h4>
+        <ul class="bullet-list">
+          <li><b>为什么这样设计：</b>避免从零学，把已掌握的资产结构化。</li>
+          <li><b>改了什么：</b>梳理 Hermes / OpenClaw / Codex 的"决策依据"。</li>
+          <li><b>影响范围：</b>cca-f-casebook/ 初稿，不动生产代码。</li>
+          <li><b>验证结果：</b>每个 case 都能讲出"决策 + 结果 + 反思"。</li>
+          <li><b>仍不确定：</b>OpenClaw 与 Hermes 的边界（DD1/DD5）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Phase 2 · 补 5 领域知识</h4>
+        <ul class="bullet-list">
+          <li><b>为什么这样设计：</b>casebook 经验为骨，官方文档为肉。</li>
+          <li><b>改了什么：</b>按 5 领域读官方文档 + 做 Lab。</li>
+          <li><b>影响范围：</b>casebook 增加官方引用。</li>
+          <li><b>验证结果：</b>每个领域至少 2 个 Lab 通过。</li>
+          <li><b>仍不确定：</b>MCP 2025-06-18 spec 后续是否更新。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Phase 3 · 模拟 + 错题归类</h4>
+        <ul class="bullet-list">
+          <li><b>为什么这样设计：</b>CCA-F 是 scenario-based，必须模拟。</li>
+          <li><b>改了什么：</b>18 道题 + 反模式卡片。</li>
+          <li><b>影响范围：</b>casebook/mock-scenarios.md。</li>
+          <li><b>验证结果：</b>错题归类 ≥ 80%。</li>
+          <li><b>仍不确定：</b>个人报名通道（以官方 Skilljar 为准）。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Phase 4 · 上场前 24 小时</h4>
+        <ul class="bullet-list">
+          <li><b>为什么这样设计：</b>减少临场不确定性。</li>
+          <li><b>改了什么：</b>复盘 casebook + 反模式清单。</li>
+          <li><b>影响范围：</b>个人状态。</li>
+          <li><b>验证结果：</b>反模式能立即识别。</li>
+          <li><b>仍不确定：</b>Skilljar 当天稳定性。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 11. 可复制提示词 ============== -->
+<section id="prompts">
+  <div class="container">
+    <span class="section-tag">第 11 节</span>
+    <h2>可复制提示词</h2>
+    <p>8 个中文提示词模板，覆盖学习 / Lab 复盘 / 架构 review / MCP 设计等场景。</p>
+
+    <div class="prompt-card" data-prompt="你是 CCA-F 备考教练。我要学习 Domain {N}：{领域名}。请按以下顺序给我讲：1) 核心概念与官方定义；2) 必懂子主题；3) 1 个反模式；4) 1 个实战 mini-Lab（30 分钟内可完成）；5) 给 3 道原创判断题并给出答案与原因。语言：中文。所有引用必须标明是官方还是社区推断。">
+      <button class="copy-btn">复制</button>
+      <h4>① 领域学习提示词</h4>
+      <pre>你是 CCA-F 备考教练。我要学习 Domain {N}：{领域名}。
+请按以下顺序给我讲：
+1) 核心概念与官方定义（必须标明 Anthropic 官方 / 社区推断）
+2) 必懂子主题
+3) 1 个反模式 + 为什么错
+4) 1 个实战 mini-Lab（30 分钟内可完成）
+5) 给 3 道原创判断题 + 答案 + 原因
+要求：所有引用必须标明来源类型。语言：中文。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="我刚完成了 Lab {N}：{Lab 标题}。请帮我做 Lab 审查，按下列结构输出：1) 我做完的部分达到了什么效果；2) 哪个反模式我可能踩了；3) 哪个官方最佳实践我没用上；4) 如果只能重写一段，应该改哪里；5) 帮我生成 3 道"如果面试官追问这个 Lab，他会问什么"的问题并回答。">
+      <button class="copy-btn">复制</button>
+      <h4>② Lab 审查提示词</h4>
+      <pre>我刚完成了 Lab {N}：{Lab 标题}。请帮我做 Lab 审查：
+1) 我做完的部分达到了什么效果
+2) 哪个反模式我可能踩了
+3) 哪个官方最佳实践我没用上
+4) 如果只能重写一段，应该改哪里
+5) 帮我生成 3 道"如果面试官追问这个 Lab，他会问什么"的问题并回答
+要求：基于 Anthropic 官方文档与 MCP spec 来评分。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="请按 CCA-F 风格出 1 道原创判断题。题目要求：1) 必须是 scenario-based，不考死记硬背；2) 必须基于公开的 Anthropic 文档 / MCP spec；3) 给出 A/B/C/D 4 个选项，其中 1 个正确、3 个是真实会有人选的典型错误答案；4) 答案部分必须解释每个错误选项错在哪里；5) 标注本题对应哪个 Domain。">
+      <button class="copy-btn">复制</button>
+      <h4>③ 模拟题生成提示词</h4>
+      <pre>请按 CCA-F 风格出 1 道原创判断题：
+1) 必须是 scenario-based，不考死记硬背
+2) 必须基于公开的 Anthropic 文档 / MCP spec
+3) 给出 A/B/C/D 4 个选项，其中 1 个正确、3 个是真实会有人选的典型错误答案
+4) 答案部分必须解释每个错误选项错在哪里
+5) 标注本题对应哪个 Domain
+要求：不得声称是真题。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="我做了这个架构决策：{决策描述}。请帮我做架构复盘：1) 我为什么选这个（决策依据）；2) 备选方案有哪些；3) 这个决策在 production 可能出什么问题（context degradation / retry storm / escalation overflow 等）；4) Anthropic 官方文档是否支持 / 反对这个决策；5) 给一个改进建议。">
+      <button class="copy-btn">复制</button>
+      <h4>④ 架构复盘提示词</h4>
+      <pre>我做了这个架构决策：{决策描述}。
+请帮我做架构复盘：
+1) 我为什么选这个（决策依据）
+2) 备选方案有哪些
+3) 这个决策在 production 可能出什么问题（context degradation / retry storm / escalation overflow 等）
+4) Anthropic 官方文档是否支持 / 反对这个决策（引用 URL）
+5) 给一个改进建议</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="请帮我为这个仓库生成一份 Claude Code 工程化配置：CLAUDE.md（≤ 200 行）+ 2 个 SKILL.md + 1 个 PreToolUse hook（拦截危险命令）+ 1 个 Subagent（read-only review）。输出格式：每个文件给出完整 frontmatter + body。要求：SKILL.md 必须用 dynamic context injection。">
+      <button class="copy-btn">复制</button>
+      <h4>⑤ Claude Code 项目配置提示词</h4>
+      <pre>请帮我为这个仓库生成一份 Claude Code 工程化配置：
+- CLAUDE.md（≤ 200 行）
+- 2 个 SKILL.md
+- 1 个 PreToolUse hook（拦截危险命令）
+- 1 个 Subagent（read-only review）
+输出格式：每个文件给出完整 frontmatter + body。
+要求：SKILL.md 必须用 dynamic context injection（!`git diff` 等）。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="请帮我设计一个 MCP server。要求：1) 暴露 1 个 tool + 1 个 resource + 1 个 prompt；2) 用 Python SDK 装饰器写法；3) tool description 必须包含 input/output schema + 1 个 example；4) resource 用 templated URI；5) prompt 是用户显式触发的；6) 工具错误必须返回结构化 {isError, errorCategory, isRetryable}；7) 包含人类确认路径。">
+      <button class="copy-btn">复制</button>
+      <h4>⑥ MCP Server 设计提示词</h4>
+      <pre>请帮我设计一个 MCP server：
+1) 暴露 1 个 tool + 1 个 resource + 1 个 prompt
+2) 用 Python SDK 装饰器写法
+3) tool description 必须包含 input/output schema + 1 个 example
+4) resource 用 templated URI
+5) prompt 是用户显式触发的
+6) 工具错误必须返回结构化 {isError, errorCategory, isRetryable}
+7) 包含人类确认路径（PreToolUse hook）
+要求：符合 MCP 2025-06-18 spec。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="我跑了一个 agent session（{轮数} 轮），附件是 transcript。请做 context reliability 检查：1) 哪几轮开始出现 fact recall 衰减；2) 哪些结论没有 source pointer；3) 哪些 retry 模式不合理；4) 哪些破坏性操作缺人工确认；5) 给一个具体的 mitigation 清单（5 条以内）。">
+      <button class="copy-btn">复制</button>
+      <h4>⑦ Context Reliability 检查提示词</h4>
+      <pre>我跑了一个 agent session（{轮数} 轮），附件是 transcript。
+请做 context reliability 检查：
+1) 哪几轮开始出现 fact recall 衰减
+2) 哪些结论没有 source pointer
+3) 哪些 retry 模式不合理
+4) 哪些破坏性操作缺人工确认
+5) 给一个具体的 mitigation 清单（5 条以内）
+要求：基于 Anthropic 官方 reliability 建议。</pre>
+    </div>
+
+    <div class="prompt-card" data-prompt="请帮我设计一个 CCA-F 备考评测系统：1) 每领域至少 N 道原创题（标注 Domain）；2) 每题给出 official / community 来源标注；3) 题型比例：scenario-based 80% / 概念 20%；4) 包含 retry vs escalate / hook vs prompt / subagent vs main 等高频考点；5) 输出为 JSON schema，方便我做评测。">
+      <button class="copy-btn">复制</button>
+      <h4>⑧ 备考评测生成提示词</h4>
+      <pre>请帮我设计一个 CCA-F 备考评测系统：
+1) 每领域至少 N 道原创题（标注 Domain）
+2) 每题给出 official / community 来源标注
+3) 题型比例：scenario-based 80% / 概念 20%
+4) 包含 retry vs escalate / hook vs prompt / subagent vs main 等高频考点
+5) 输出为 JSON schema，方便我做评测
+要求：不得声称是真题。</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 12. 互动 / Checklist / 进度 ============== -->
+<section id="checklist">
+  <div class="container">
+    <span class="section-tag">第 12 节</span>
+    <h2>备考 Checklist（勾选自动保存在 localStorage）</h2>
+    <p>进度：<span id="progressText">0%</span></p>
+    <div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+    <h3>📚 基础概念</h3>
+    <ul class="check-list" id="checklist-root">
+      <li><input type="checkbox" id="c1"><label for="c1">读完 Claude Partner Network 发布通稿</label></li>
+      <li><input type="checkbox" id="c2"><label for="c2">注册 Anthropic Skilljar 账号</label></li>
+      <li><input type="checkbox" id="c3"><label for="c3">完成 Building with the Claude API 课程</label></li>
+      <li><input type="checkbox" id="c4"><label for="c4">完成 Claude Code 101 课程</label></li>
+      <li><input type="checkbox" id="c5"><label for="c5">完成 Introduction to MCP 课程</label></li>
+    </ul>
+
+    <h3>🔧 Domain 1 · Agentic Architecture</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="d1c1"><label for="d1c1">理解 <code>stop_reason</code> 的 <code>tool_use</code> / <code>end_turn</code></label></li>
+      <li><input type="checkbox" id="d1c2"><label for="d1c2">能写出 Hub-and-spoke 编排代码</label></li>
+      <li><input type="checkbox" id="d1c3"><label for="d1c3">完成 Lab 2（客户支持 agent）</label></li>
+      <li><input type="checkbox" id="d1c4"><label for="d1c4">完成 Lab 7（多 subagent research）</label></li>
+    </ul>
+
+    <h3>🔌 Domain 2 · Tool &amp; MCP</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="d2c1"><label for="d2c1">读完 MCP 2025-06-18 spec tools 部分</label></li>
+      <li><input type="checkbox" id="d2c2"><label for="d2c2">理解 tool / resource / prompt 三原语</label></li>
+      <li><input type="checkbox" id="d2c3"><label for="d2c3">完成 Lab 1（结构化提取器）</label></li>
+      <li><input type="checkbox" id="d2c4"><label for="d2c4">完成 Lab 3（本地 MCP server）</label></li>
+    </ul>
+
+    <h3>⚙️ Domain 3 · Claude Code</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="d3c1"><label for="d3c1">读完 Claude Code Memory / Skills / Hooks / Subagents 四个文档</label></li>
+      <li><input type="checkbox" id="d3c2"><label for="d3c2">完成 Lab 4（项目配置包）</label></li>
+      <li><input type="checkbox" id="d3c3"><label for="d3c3">完成 Lab 5（Skills 工作流）</label></li>
+      <li><input type="checkbox" id="d3c4"><label for="d3c4">完成 Lab 6（Hooks）</label></li>
+    </ul>
+
+    <h3>✍️ Domain 4 · Prompt &amp; Structured Output</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="d4c1"><label for="d4c1">完成 Lab 1 的 JSON schema 设计与评测</label></li>
+      <li><input type="checkbox" id="d4c2"><label for="d4c2">理解 <code>output_config.format</code> vs <code>strict: true</code></label></li>
+      <li><input type="checkbox" id="d4c3"><label for="d4c3">写过 validation-retry 循环</label></li>
+    </ul>
+
+    <h3>🛡 Domain 5 · Context &amp; Reliability</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="d5c1"><label for="d5c1">完成 Lab 8（context degradation 测试）</label></li>
+      <li><input type="checkbox" id="d5c2"><label for="d5c2">理解 progressive summarization 风险</label></li>
+      <li><input type="checkbox" id="d5c3"><label for="d5c3">设计过 retry / escalate 阈值</label></li>
+    </ul>
+
+    <h3>🎯 模拟题 + 反模式</h3>
+    <ul class="check-list">
+      <li><input type="checkbox" id="mc1"><label for="mc1">做完全部 18 道模拟题</label></li>
+      <li><input type="checkbox" id="mc2"><label for="mc2">错题归类 + 写入 mock-scenarios.md</label></li>
+      <li><input type="checkbox" id="mc3"><label for="mc3">复盘 10 条反模式清单</label></li>
+      <li><input type="checkbox" id="mc4"><label for="mc4">整理 cca-f-casebook/ 完整版</label></li>
+    </ul>
+
+    <hr>
+    <button class="btn btn-ghost" id="resetChecklist">重置进度</button>
+  </div>
+</section>
+
+<!-- ============== FOOTER / SOURCES ============== -->
+<footer id="sources">
+  <div class="container">
+    <h2>资料来源与可信度说明</h2>
+
+    <div class="src-section">
+      <h3>✅ Anthropic 官方资料（高可信度）</h3>
+      <ul>
+        <li><a href="https://www.anthropic.com/news/claude-partner-network" target="_blank">Anthropic 投入 1 亿美元到 Claude Partner Network（2026-03-12 发布通稿）</a> — CCA-F 名称、定位、发布时间、首批对象的<b>最权威来源</b>。</li>
+        <li><a href="https://www.anthropic.com/news/services-track-partner-hub" target="_blank">Introducing the Services Track and Partner Hub（2026-06-03）</a> — Partner Network 三 tier 体系、认证在 Practice 中的角色。</li>
+        <li><a href="https://anthropic.skilljar.com/" target="_blank">Anthropic Skilljar 主页</a> — 课程导航 + CCA-F 报名入口。</li>
+        <li><a href="https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request" target="_blank">CCA-F Access Request 页</a> — 官方报名申请页（Partner 优先）。</li>
+        <li><a href="https://anthropic.skilljar.com/claude-with-the-anthropic-api" target="_blank">Building with the Claude API（官方课程）</a></li>
+        <li><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Claude Code 101（官方课程）</a></li>
+        <li><a href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank">Introduction to MCP（官方课程）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank">Claude Code Overview（官方文档）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/memory" target="_blank">How Claude Remembers Your Project（官方文档）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/skills" target="_blank">Extend Claude with Skills（官方文档）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank">Hooks Reference（官方文档）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents" target="_blank">Subagents（官方文档）</a></li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code/sdk" target="_blank">Agent SDK Overview（官方文档）</a></li>
+        <li><a href="https://platform.claude.com/docs/en/build-with-claude/tool-use/overview" target="_blank">Tool use with Claude（官方文档）</a></li>
+        <li><a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank">Structured Outputs（官方文档）</a></li>
+        <li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank">Prompt Engineering Overview（官方文档）</a></li>
+        <li><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank">What is MCP（MCP 协议官方站）</a></li>
+        <li><a href="https://modelcontextprotocol.io/specification/2025-06-18/server/tools" target="_blank">MCP Tools Spec（2025-06-18 官方规范）</a></li>
+      </ul>
+    </div>
+
+    <div class="src-section">
+      <h3>⚠ 第三方 / 社区资料（中可信度，仅供参考）</h3>
+      <ul>
+        <li><a href="https://claudecertifications.com/claude-certified-architect" target="_blank">Claude Certifications – 主页面（社区）</a></li>
+        <li><a href="https://claudecertifications.com/claude-certified-architect/exam-guide" target="_blank">Exam Guide（社区）</a> — 题型 / 分数 / scenario 描述均为社区整理</li>
+        <li><a href="https://claudecertifications.com/claude-certified-architect/domains" target="_blank">Domains（社区）</a> — 5 领域与权重为社区推断</li>
+        <li><a href="https://claudecertifications.com/claude-certified-architect/study-guide" target="_blank">12-Week Study Guide（社区）</a> — 12 周路线参考来源</li>
+        <li><a href="https://github.com/paullarionov/claude-certified-architect" target="_blank">paullarionov / claude-certified-architect（GitHub）</a></li>
+        <li><a href="https://tutorialsdojo.com/cca-f-claude-certified-architect-foundations-study-guide/" target="_blank">Tutorials Dojo – CCA-F Study Guide</a></li>
+      </ul>
+    </div>
+
+    <div class="src-section">
+      <h3>📌 可信度边界声明</h3>
+      <ul>
+        <li>本页面所有官方结论（如"CCA-F = Anthropic 首项 Claude 技术认证 / 面向 solution architects / 2026-03-12 发布"）均可通过上方"官方资料"链接交叉验证。</li>
+        <li>本页面所有标注 <span class="tag tag-community">社区</span> 的内容（题量、分数、费用、scenario 描述、领域权重）<b>不视为官方结论</b>，且明确标注"以官方 Skilljar 报名页与 Anthropic 公告为准"。</li>
+        <li>页面底部所有"原创练习题"明确标注非真题。</li>
+        <li>页面生成日期：<b>2026-06-16</b>。考试政策可能随时调整，请以 anthropic.skilljar.com 与 anthropic.com/news 最新公告为准。</li>
+      </ul>
+    </div>
+
+    <hr>
+    <p style="text-align:center; color: var(--c-text-muted); font-size: 0.85rem;">
+      © 2026 Xin Conan · CLAUDE-CCA-CN-PAGE-1 · 仅供个人备考使用 · 不构成任何官方认证承诺
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" title="回到顶部">↑</button>
+
+<script src="app.js?v=20260616-1"></script>
+</body>
+</html>

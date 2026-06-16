@@ -565,5 +565,31 @@
       "Starship",
       "Longform"
     ]
+  },
+  {
+    "title": "Claude 认证架构师备考指南",
+    "subtitle": "CCA-F 中文系统备考路线 · 学习仪表盘 + 教程 + Lab 指南",
+    "slug": "claude-certified-architect-cn",
+    "category": "research",
+    "type": "INTERACTIVE PAGE",
+    "status": "新上线",
+    "status_color": "#d97706",
+    "updated": "2026-06-16",
+    "summary": "Anthropic Claude Certified Architect – Foundations (CCA-F) 中文备考仪表盘：覆盖 Agentic Architecture、Tool Design & MCP、Claude Code、Prompt & Structured Output、Context & Reliability 五大领域。包含 8 篇深度教程、8 个实战 Lab、18 道原创架构判断题、8 个可复制中文提示词模板、交互式 Checklist 与 100% 官方文档溯源。",
+    "entry_url": "/projects/claude-certified-architect-cn/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "Anthropic",
+      "Claude",
+      "CCA-F",
+      "认证",
+      "备考",
+      "Agentic",
+      "MCP",
+      "Claude Code",
+      "Prompt Engineering",
+      "Context Engineering"
+    ]
   }
 ]

@@ -1,7 +1,32 @@
 {
   "version": 1,
-  "updated_at": "2026-06-18T11:06:01",
+  "updated_at": "2026-06-18T11:40:41",
+  "generated_at": "2026-06-18T11:40:41",
   "window_days": 30,
+  "history_entries": 7,
+  "available_range": {
+    "first_date": "2026-06-12",
+    "latest_date": "2026-06-18"
+  },
+  "summary": {
+    "total_days": 7,
+    "total_picks": 15,
+    "unique_artists": 13,
+    "top_categories": [
+      {
+        "category": "japanese-prints",
+        "count": 7
+      },
+      {
+        "category": "posters-design",
+        "count": 7
+      },
+      {
+        "category": "book-illustrations",
+        "count": 1
+      }
+    ]
+  },
   "entries": [
     {
       "date": "2026-06-18",

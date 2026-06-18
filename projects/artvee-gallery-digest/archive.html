@@ -7,42 +7,102 @@
 <link rel="stylesheet" href="./style.css">
 <style>
   body.archive-index {
-    max-width: 960px; margin: 2rem auto; padding: 0 1rem;
+    max-width: 1100px; margin: 2rem auto; padding: 0 1rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
                  sans-serif;
     color: #1f2328;
   }
-  h1 { margin: 0 0 0.5rem; font-size: 1.5rem; }
+  h1 { margin: 0 0 0.5rem; font-size: 1.6rem; }
   p.lead { color: #555; margin: 0 0 1rem; }
+  nav.top-nav { background: #f3f4f6; padding: 0.6rem 0.9rem;
+                border-radius: 6px; margin-bottom: 1rem;
+                font-size: 0.95rem; }
+  nav.top-nav a { color: #2563eb; text-decoration: none;
+                  margin-right: 0.9rem; }
+  nav.top-nav a:hover { text-decoration: underline; }
+  nav.top-nav .sep { color: #c0c4cc; margin-right: 0.9rem; }
   .meta { background: #f3f4f6; padding: 0.6rem 0.9rem; border-radius: 6px;
           margin-bottom: 1rem; font-size: 0.9rem; }
   .meta span { display: inline-block; margin-right: 1rem; }
-  table.archive { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
-  table.archive th, table.archive td {
-    padding: 0.4rem 0.6rem; border-bottom: 1px solid #f0f0f0; text-align: left;
-    vertical-align: top;
-  }
-  table.archive th { background: #f9fafb; font-weight: 600; }
-  table.archive td.picks { max-width: 380px; }
-  .picks a { color: #2563eb; text-decoration: none; }
-  .picks a:hover { text-decoration: underline; }
-  .footer { margin-top: 1.5rem; color: #888; font-size: 0.85rem; }
   .empty { background: #fffbeb; border: 1px solid #fde68a;
-            padding: 0.75rem 1rem; border-radius: 6px; }
+            padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+  .summary { display: flex; flex-wrap: wrap; gap: 1rem;
+             margin: 0 0 1.25rem; font-size: 0.9rem;
+             color: #555; }
+  .summary .chip { background: #eef2ff; color: #3730a3;
+                    padding: 0.2rem 0.55rem; border-radius: 999px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 0.5rem;
+              align-items: center; margin: 0 0 1rem;
+              padding: 0.6rem 0.9rem; background: #fff;
+              border: 1px solid #e5e7eb; border-radius: 6px; }
+  .filters label { font-size: 0.85rem; color: #555; }
+  .filters input, .filters select {
+    padding: 0.3rem 0.5rem; border: 1px solid #d1d5db;
+    border-radius: 4px; font-size: 0.9rem; }
+  .filters input[type="text"] { min-width: 200px; }
+  .filters .clear-btn { background: #f3f4f6; border: 1px solid #d1d5db;
+                         padding: 0.3rem 0.6rem; border-radius: 4px;
+                         font-size: 0.85rem; cursor: pointer; }
+  .filters .jump-latest { background: #2563eb; color: #fff;
+                           border: 0; padding: 0.3rem 0.6rem;
+                           border-radius: 4px; font-size: 0.85rem;
+                           cursor: pointer; margin-left: auto; }
+  .day-card { background: #fff; border: 1px solid #e5e7eb;
+               border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem; }
+  .day-card h2 { margin: 0 0 0.5rem; font-size: 1.15rem;
+                  display: flex; flex-wrap: wrap; gap: 0.5rem;
+                  align-items: baseline; }
+  .day-card h2 code { background: #f3f4f6; padding: 0.15rem 0.5rem;
+                       border-radius: 4px; font-size: 0.95rem; }
+  .day-card .day-meta { font-size: 0.85rem; color: #555; margin-bottom: 0.75rem; }
+  .day-card .day-meta .chip { background: #eef2ff; color: #3730a3;
+                               padding: 0.1rem 0.5rem; border-radius: 999px;
+                               margin-right: 0.3rem; font-size: 0.78rem; }
+  .day-card .day-meta .cat-chip { background: #fef3c7; color: #92400e; }
+  .day-card .day-meta .nd-chip { background: #fee2e2; color: #991b1b; }
+  .pick-grid { display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 0.75rem; }
+  .pick { background: #f9fafb; border-radius: 6px; overflow: hidden; }
+  .pick img { display: block; width: 100%; height: 160px;
+                object-fit: cover; background: #f3f4f6; }
+  .pick .pick-meta { padding: 0.4rem 0.55rem; font-size: 0.78rem; }
+  .pick .pick-meta .artist { font-weight: 600; color: #1f2328;
+                              white-space: nowrap; overflow: hidden;
+                              text-overflow: ellipsis; }
+  .pick .pick-meta .category { color: #6b7280; font-size: 0.72rem; }
+  .pick .pick-meta .nd { color: #991b1b; font-size: 0.7rem; }
+  .day-card.hidden { display: none; }
+  .pick.hidden { display: none; }
+  .no-results { text-align: center; color: #6b7280;
+                  padding: 2rem; font-size: 0.95rem; }
+  .footer { margin-top: 1.5rem; color: #888; font-size: 0.85rem; }
+  .footer a { color: #2563eb; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body class="archive-index">
+<nav class="top-nav" aria-label="Archive navigation">
+  <a href="./index.html">📄 Latest Digest</a>
+  <a href="https://conanxin.github.io/projects/artvee-gallery-demo/" target="_blank" rel="noopener">🎨 Gallery Demo</a>
+  <a href="https://github.com/conanxin/artvee-gallery" target="_blank" rel="noopener">📦 GitHub</a>
+  <a href="https://github.com/conanxin/artvee-gallery" target="_blank" rel="noopener">🏷️ v0.2.0</a>
+  <span class="sep">·</span>
+  <a href="./archive.html">Archive</a>
+  <a href="./data/digests.json" target="_blank" rel="noopener">data/digests.json</a>
+  <a href="./data/digest-history.json" target="_blank" rel="noopener">data/digest-history.json</a>
+</nav>
+
 <h1>Artvee Daily Digest · 30-day Archive</h1>
-<p class="lead">Every day's picks, surfaced as a single rolling
-list. The history is regenerated daily from the local-first
-Artvee Gallery pipeline; this page is read-only.</p>
+<p class="lead">Every day's picks, surfaced as browsable cards.
+Filter by artist or category, or search by title fragment. The
+history is regenerated daily from the local-first Artvee Gallery
+pipeline; this page is read-only.</p>
 
 <div class="meta">
   <span><strong>Window:</strong> 30 days</span>
   <span><strong>Entries available:</strong> <span class="p8b-archive-count">7</span></span>
-  <span><strong>Total picks:</strong> 15</span>
-  <span><strong>Unique artists:</strong> 13</span>
   <span><strong>Release:</strong> v0.2.0</span>
 </div>
 
@@ -52,73 +112,102 @@ Artvee Gallery pipeline; this page is read-only.</p>
   fill up as more daily digests run.
 </div>
 
-<table class="archive" aria-label="Digest archive">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Strategy</th>
-      <th>Picks</th>
-      <th>Categories</th>
-      <th>Near-dup cluster</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>2026-06-18</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Luther_Daniels_Bradley <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_dd7b462b</span></div></td>
-      <td>posters-design</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-17</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Furuya_Kōrin <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_bea192c9</span></div><div class="picks">Thomas_Hastings <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_c093395a</span></div><div class="picks">Abbott_Handerson_Thayer <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_3893d792</span></div><div class="picks">Nicholas_Matthew_Condy <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_74070819</span></div><div class="picks">Ralph_Earl <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_e286c156</span></div></td>
-      <td>japanese-prints, posters-design</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-16</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Furuya_Kōrin <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_bc04eaa4</span></div></td>
-      <td>japanese-prints</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-15</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Furuya_Kōrin <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_1bbfaad8</span></div></td>
-      <td>japanese-prints</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-14</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Nakayasu_Shinzaburō <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_be47e928</span></div></td>
-      <td>japanese-prints</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-13</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Kondo_Shiun <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_463194be</span></div></td>
-      <td>japanese-prints</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><code>2026-06-12</code></td>
-      <td>diverse</td>
-      <td class="picks"><div class="picks">Amaldus_Nielsen_(Norwegian,_1838_–_1932) <span style="color:#888">(book-illustrations)</span> <span style="color:#bbb">· cluster #cluster-006</span><br><span style="color:#bbb;font-size:0.75em">-illustrations_standard_e9b1953f</span></div><div class="picks">Yoshida_Hiroshi_(Japanese,_1876-1950) <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_e033f21d</span></div><div class="picks">Anonymous <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_262e24fc</span></div><div class="picks">Alphonse_Mucha_(Czech,_1860-1939) <span style="color:#888">(posters-design)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">posters-design_standard_cfec02d3</span></div><div class="picks">Utagawa_Hiroshige_(Japanese,_1797_–_1858) <span style="color:#888">(japanese-prints)</span> <span style="color:#bbb">· —</span><br><span style="color:#bbb;font-size:0.75em">apanese-prints_standard_26319964</span></div></td>
-      <td>book-illustrations, japanese-prints, posters-design</td>
-      <td>#cluster-006</td>
-    </tr>
-  </tbody>
-</table>
+<div class="summary" id="summary" aria-label="Archive summary">
+  <span class="chip"><strong>Total days:</strong> 7</span><span class="chip"><strong>Total picks:</strong> 15</span><span class="chip"><strong>Unique artists:</strong> 13</span><span class="chip"><strong>Available range:</strong> 2026-06-12 → 2026-06-18</span><span class="chip"><strong>Top categories:</strong></span><span class="chip">japanese-prints · 7</span><span class="chip">posters-design · 7</span><span class="chip">book-illustrations · 1</span>
+</div>
+
+<div class="filters" id="filters" aria-label="Archive filters">
+  <label for="filter-artist">Artist:</label>
+  <select id="filter-artist" data-filter="artist">
+    <option value="">All</option>
+  </select>
+  <label for="filter-category">Category:</label>
+  <select id="filter-category" data-filter="category">
+    <option value="">All</option>
+  </select>
+  <label for="filter-search">Search:</label>
+  <input type="text" id="filter-search" data-filter="search"
+         placeholder="title / artist fragment">
+  <button class="clear-btn" id="filter-clear" type="button">Clear</button>
+  <button class="jump-latest" id="jump-latest" type="button">↑ Jump to latest</button>
+</div>
+
+<div id="day-cards">
+<section class="day-card" id="latest-day" data-artists="Amaldus_Nielsen_(Norwegian,_1838_–_1932)|Yoshida_Hiroshi_(Japanese,_1876-1950)|Anonymous|Alphonse_Mucha_(Czech,_1860-1939)|Utagawa_Hiroshige_(Japanese,_1797_–_1858)" data-categories="book-illustrations|japanese-prints|posters-design" data-search="2026-06-12 diverse amaldus_nielsen_norwegian_1838_1932_høstdag._bjelland_mandal_1862_book-illustrations_standard_e9b1953f yoshida_hiroshi_japanese_1876-1950_jaipuuru_no_ajumeru_mon_the_ajmer_gate_at_jaipur_1931_japanese-prints_standard_e033f21d anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_posters-design_standard_262e24fc alphonse_mucha_czech_1860-1939_abstract_design_based_on_arabesques_1900_posters-design_standard_cfec02d3 utagawa_hiroshige_japanese_1797_1858_yoshida_1855_japanese-prints_standard_26319964">
+  <h2><code>2026-06-12</code><span style="font-size:0.85rem;color:#888">5 picks</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">book-illustrations</span><span class="chip cat-chip">japanese-prints</span><span class="chip cat-chip">posters-design</span>
+    <span class="chip nd-chip">cluster #cluster-006</span>
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/amaldus_nielsen_norwegian_1838_1932_høstdag._bjelland_mandal_1862_book-illustrations_standard_e9b1953f.jpg" alt="Amaldus_Nielsen_(Norwegian,_1838_–_1932)" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Amaldus_Nielsen_(Norwegian,_1838_–_1932)">Amaldus_Nielsen_(Norwegian,_1838_–_1932)</div><div class="category">book-illustrations</div><div class="nd">cluster #cluster-006</div></div></div><div class="pick"><img src="./assets/thumbs/256/yoshida_hiroshi_japanese_1876-1950_jaipuuru_no_ajumeru_mon_the_ajmer_gate_at_jaipur_1931_japanese-prints_standard_e033f21d.jpg" alt="Yoshida_Hiroshi_(Japanese,_1876-1950)" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Yoshida_Hiroshi_(Japanese,_1876-1950)">Yoshida_Hiroshi_(Japanese,_1876-1950)</div><div class="category">japanese-prints</div></div></div><div class="pick"><img src="./assets/thumbs/256/anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_posters-design_standard_262e24fc.jpg" alt="Anonymous" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Anonymous">Anonymous</div><div class="category">posters-design</div></div></div><div class="pick"><img src="./assets/thumbs/256/alphonse_mucha_czech_1860-1939_abstract_design_based_on_arabesques_1900_posters-design_standard_cfec02d3.jpg" alt="Alphonse_Mucha_(Czech,_1860-1939)" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Alphonse_Mucha_(Czech,_1860-1939)">Alphonse_Mucha_(Czech,_1860-1939)</div><div class="category">posters-design</div></div></div><div class="pick"><img src="./assets/thumbs/256/utagawa_hiroshige_japanese_1797_1858_yoshida_1855_japanese-prints_standard_26319964.jpg" alt="Utagawa_Hiroshige_(Japanese,_1797_–_1858)" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Utagawa_Hiroshige_(Japanese,_1797_–_1858)">Utagawa_Hiroshige_(Japanese,_1797_–_1858)</div><div class="category">japanese-prints</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Kondo_Shiun" data-categories="japanese-prints" data-search="2026-06-13 diverse kondo_shiun_november_ukiyo-e_beauties_ca._1923_japanese-prints_standard_463194be">
+  <h2><code>2026-06-13</code><span style="font-size:0.85rem;color:#888">1 pick</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">japanese-prints</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/kondo_shiun_november_ukiyo-e_beauties_ca._1923_japanese-prints_standard_463194be.jpg" alt="Kondo_Shiun" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Kondo_Shiun">Kondo_Shiun</div><div class="category">japanese-prints</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Nakayasu_Shinzaburō" data-categories="japanese-prints" data-search="2026-06-14 diverse nakayasu_shinzaburō_japanese_before_1892_shin_zuan_pl_7_1892_japanese-prints_standard_be47e928">
+  <h2><code>2026-06-14</code><span style="font-size:0.85rem;color:#888">1 pick</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">japanese-prints</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/nakayasu_shinzaburō_japanese_before_1892_shin_zuan_pl_7_1892_japanese-prints_standard_be47e928.jpg" alt="Nakayasu_Shinzaburō" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Nakayasu_Shinzaburō">Nakayasu_Shinzaburō</div><div class="category">japanese-prints</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Furuya_Kōrin" data-categories="japanese-prints" data-search="2026-06-15 diverse furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.343_1901-1902_japanese-prints_standard_1bbfaad8">
+  <h2><code>2026-06-15</code><span style="font-size:0.85rem;color:#888">1 pick</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">japanese-prints</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.343_1901-1902_japanese-prints_standard_1bbfaad8.jpg" alt="Furuya_Kōrin" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Furuya_Kōrin">Furuya_Kōrin</div><div class="category">japanese-prints</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Furuya_Kōrin" data-categories="japanese-prints" data-search="2026-06-16 diverse furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.316_1901-1902_japanese-prints_standard_bc04eaa4">
+  <h2><code>2026-06-16</code><span style="font-size:0.85rem;color:#888">1 pick</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">japanese-prints</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.316_1901-1902_japanese-prints_standard_bc04eaa4.jpg" alt="Furuya_Kōrin" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Furuya_Kōrin">Furuya_Kōrin</div><div class="category">japanese-prints</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Furuya_Kōrin|Thomas_Hastings|Abbott_Handerson_Thayer|Nicholas_Matthew_Condy|Ralph_Earl" data-categories="japanese-prints|posters-design" data-search="2026-06-17 diverse furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.359_1901-1902_japanese-prints_standard_bea192c9 thomas_hastings_english_1778_1854_in_bradley_vale_29_may_1833_1833_posters-design_standard_c093395a abbott_handerson_thayer_american_1849-1921_townsend_bradley_martin_1919_posters-design_standard_3893d792 nicholas_matthew_condy_english_1816_1851_the_thousand_guinea_match_between_henry_bradley_s_brig_the_water_witch_and_lord_belfast_s_schooner_galatea_posters-design_standard_74070819 ralph_earl_american_1751-1801_lucy_bradley_1794_posters-design_standard_e286c156">
+  <h2><code>2026-06-17</code><span style="font-size:0.85rem;color:#888">5 picks</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">japanese-prints</span><span class="chip cat-chip">posters-design</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.359_1901-1902_japanese-prints_standard_bea192c9.jpg" alt="Furuya_Kōrin" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Furuya_Kōrin">Furuya_Kōrin</div><div class="category">japanese-prints</div></div></div><div class="pick"><img src="./assets/thumbs/256/thomas_hastings_english_1778_1854_in_bradley_vale_29_may_1833_1833_posters-design_standard_c093395a.jpg" alt="Thomas_Hastings" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Thomas_Hastings">Thomas_Hastings</div><div class="category">posters-design</div></div></div><div class="pick"><img src="./assets/thumbs/256/abbott_handerson_thayer_american_1849-1921_townsend_bradley_martin_1919_posters-design_standard_3893d792.jpg" alt="Abbott_Handerson_Thayer" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Abbott_Handerson_Thayer">Abbott_Handerson_Thayer</div><div class="category">posters-design</div></div></div><div class="pick"><img src="./assets/thumbs/256/nicholas_matthew_condy_english_1816_1851_the_thousand_guinea_match_between_henry_bradley_s_brig_the_water_witch_and_lord_belfast_s_schooner_galatea_posters-design_standard_74070819.jpg" alt="Nicholas_Matthew_Condy" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Nicholas_Matthew_Condy">Nicholas_Matthew_Condy</div><div class="category">posters-design</div></div></div><div class="pick"><img src="./assets/thumbs/256/ralph_earl_american_1751-1801_lucy_bradley_1794_posters-design_standard_e286c156.jpg" alt="Ralph_Earl" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Ralph_Earl">Ralph_Earl</div><div class="category">posters-design</div></div></div></div>
+</section>
+<section class="day-card" data-artists="Luther_Daniels_Bradley" data-categories="posters-design" data-search="2026-06-18 diverse luther_daniels_bradley_american_1853_1917_an_international_conference_that_would_bring_about_peace_1914_posters-design_standard_dd7b462b">
+  <h2><code>2026-06-18</code><span style="font-size:0.85rem;color:#888">1 pick</span></h2>
+  <div class="day-meta">
+    <span class="chip">diverse</span>
+    <span class="chip cat-chip">posters-design</span>
+    
+  </div>
+  <div class="pick-grid"><div class="pick"><img src="./assets/thumbs/256/luther_daniels_bradley_american_1853_1917_an_international_conference_that_would_bring_about_peace_1914_posters-design_standard_dd7b462b.jpg" alt="Luther_Daniels_Bradley" loading="lazy" onerror="this.style.visibility='hidden'"><div class="pick-meta"><div class="artist" title="Luther_Daniels_Bradley">Luther_Daniels_Bradley</div><div class="category">posters-design</div></div></div></div>
+</section>
+</div>
+
+<p class="no-results hidden" id="no-results">
+  No archive entries match the current filters.
+</p>
 
 <p class="footer">
   📚 <a href="./index.html">Back to the latest digest</a> ·
   🖼️ <a href="./data/digests.json" target="_blank" rel="noopener">data/digests.json</a> ·
   📦 <a href="https://github.com/conanxin/artvee-gallery" target="_blank" rel="noopener">Open-source repository</a>
 </p>
+
+<script src="./archive.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,630 @@
+/* =========================================================
+   Calvin and Hobbes · 完整性的代价
+   中文专题页面 —— 静态样式表
+   设计取向：纸张底色 / 手绘墨线 / 报纸分栏 / 大量留白
+   ========================================================= */
+
+/* ---------- 基础重置 ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Han Serif SC", "Noto Serif SC", "Songti SC",
+               "STSong", "SimSun", "宋体", Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #2b2118;
+  background: #f5ecd7;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(120, 80, 40, 0.04) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(120, 80, 40, 0.04) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 24px,
+                              rgba(120, 80, 40, 0.025) 25px, transparent 26px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- 纸张边缘（顶部 / 底部） ---------- */
+.paper-edge {
+  background: #ede0c2;
+  border-top: 1px solid #c9b487;
+  border-bottom: 1px solid #c9b487;
+  padding: 14px 24px;
+  position: relative;
+}
+.paper-edge.bottom {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+  color: #6e5b3a;
+  padding: 28px 24px;
+}
+.snow-line {
+  height: 6px;
+  background:
+    radial-gradient(circle 3px at 12% 4px, #ffffff 100%, transparent),
+    radial-gradient(circle 2px at 28% 5px, #ffffff 100%, transparent),
+    radial-gradient(circle 3px at 45% 3px, #ffffff 100%, transparent),
+    radial-gradient(circle 2px at 62% 5px, #ffffff 100%, transparent),
+    radial-gradient(circle 3px at 78% 3px, #ffffff 100%, transparent),
+    radial-gradient(circle 2px at 92% 5px, #ffffff 100%, transparent);
+  opacity: 0.85;
+}
+
+/* ---------- 顶部导航 ---------- */
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  justify-content: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.top-nav a {
+  color: #5a4427;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  border-bottom: 1px dashed transparent;
+  padding: 2px 0;
+  transition: all 0.2s ease;
+}
+.top-nav a:hover {
+  color: #2b2118;
+  border-bottom-color: #8a6c3d;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 90px 24px 70px;
+  max-width: 920px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-ornament {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  opacity: 0.55;
+}
+.branch {
+  width: 90px;
+  height: 18px;
+  border-bottom: 2px solid #5a4427;
+  border-radius: 50%;
+  position: relative;
+}
+.branch::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #5a4427;
+  border-radius: 50%;
+  background: #f5ecd7;
+}
+.branch.left::before { left: 8px; }
+.branch.right::before { right: 8px; }
+
+.title-hand {
+  font-family: "Source Han Serif SC", "STKaiti", "KaiTi", "楷体",
+               Georgia, serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #2b2118;
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.subtitle-hand {
+  font-size: 19px;
+  color: #6e5b3a;
+  margin-bottom: 36px;
+  letter-spacing: 1px;
+}
+
+/* 装饰漫画格子（纯 CSS，不引用官方图像） */
+.comic-strip-deco {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  max-width: 720px;
+  margin: 36px auto;
+  border: 2px solid #2b2118;
+  padding: 6px;
+  background: #ffffff;
+  box-shadow: 2px 2px 0 #2b2118;
+}
+.comic-strip-deco .panel {
+  background: #fbf6e8;
+  border: 1.5px solid #2b2118;
+  height: 110px;
+  position: relative;
+  overflow: hidden;
+}
+.comic-strip-deco .panel::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2b2118;
+  border-radius: 50%;
+  background: #fff;
+}
+/* 雪堆 */
+.snowdrift {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: #ffffff;
+  border-top-left-radius: 60% 100%;
+  border-top-right-radius: 70% 100%;
+}
+.snowdrift.small { height: 14px; left: 30%; right: 20%; bottom: 28px; }
+/* 纸箱 */
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 40px;
+  border: 2px solid #2b2118;
+  background: #ede0c2;
+}
+.box::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: 50%;
+  border: 2px solid #2b2118;
+  background: #f5ecd7;
+}
+/* 树 + 星星 */
+.tree {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 50px solid #6b8e5b;
+}
+.tree::after {
+  content: "";
+  position: absolute;
+  bottom: -55px;
+  left: -3px;
+  width: 6px;
+  height: 8px;
+  background: #4a3424;
+}
+.star {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #2b2118;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.star { top: 18px; right: 24px; }
+.star.s2 { top: 40px; right: 56px; transform: scale(0.7); }
+
+/* Hero lede */
+.lede {
+  font-size: 17px;
+  line-height: 2;
+  color: #3a2f22;
+  max-width: 720px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+.lede em {
+  font-style: italic;
+  color: #2b2118;
+}
+.lede strong { color: #2b2118; }
+
+.entry-buttons {
+  margin-top: 36px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #2b2118;
+  color: #f5ecd7;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 1px;
+  border: 2px solid #2b2118;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 #8a6c3d;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #8a6c3d;
+}
+.btn.alt {
+  background: #f5ecd7;
+  color: #2b2118;
+}
+
+.meta-strip {
+  margin-top: 32px;
+  font-size: 13px;
+  color: #6e5b3a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.meta-strip code {
+  font-family: "Menlo", "Consolas", monospace;
+  background: #ede0c2;
+  padding: 2px 8px;
+  border: 1px solid #c9b487;
+  font-size: 12px;
+}
+
+/* ---------- 通用 section ---------- */
+.section {
+  max-width: 880px;
+  margin: 70px auto;
+  padding: 0 24px;
+}
+.section-title {
+  font-family: "Source Han Serif SC", "STKaiti", "KaiTi", "楷体", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2b2118;
+  border-bottom: 2px solid #2b2118;
+  padding-bottom: 12px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.section-title .num {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  background: #2b2118;
+  color: #f5ecd7;
+  padding: 4px 10px;
+  letter-spacing: 1px;
+}
+
+.paper-card {
+  background: #fdf8e8;
+  border: 1px solid #c9b487;
+  box-shadow:
+    inset 0 0 60px rgba(180, 150, 90, 0.08),
+    4px 4px 0 #c9b487;
+  padding: 50px 44px;
+  position: relative;
+}
+.paper-card.alt-bg {
+  background: #faf2d8;
+}
+
+/* 纸面 "咬痕"（纸边缺角） */
+.paper-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 28px;
+  height: 28px;
+  background:
+    linear-gradient(225deg, transparent 50%, #f5ecd7 50%);
+  border-left: 1px solid #c9b487;
+  border-bottom: 1px solid #c9b487;
+}
+
+/* ---------- 长文阅读 ---------- */
+.long-text {
+  font-size: 17px;
+  line-height: 2;
+  color: #2b2118;
+}
+.long-text p {
+  margin-bottom: 18px;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+.long-text em {
+  font-style: italic;
+}
+.long-text strong {
+  color: #1a140d;
+}
+
+.epigraph {
+  border-left: 3px solid #8a6c3d;
+  padding: 8px 18px;
+  background: rgba(138, 108, 61, 0.08);
+  font-size: 16px;
+  color: #4a3424;
+  margin-bottom: 28px !important;
+}
+
+.part-head {
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2b2118;
+  text-align: center;
+  margin: 40px 0 20px;
+  letter-spacing: 8px;
+  position: relative;
+}
+.part-head::before,
+.part-head::after {
+  content: "——";
+  margin: 0 12px;
+  color: #8a6c3d;
+  letter-spacing: 0;
+}
+
+.letter {
+  margin: 24px 0;
+  padding: 22px 26px;
+  background: #fff;
+  border: 1px solid #c9b487;
+  border-left: 4px solid #2b2118;
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.95;
+}
+.letter p { margin-bottom: 12px; }
+.letter strong { font-weight: normal; }
+
+.signature-line {
+  text-align: right;
+  font-style: italic;
+  color: #4a3424;
+  margin-top: 32px !important;
+  padding-right: 12px;
+  border-top: 1px dashed #c9b487;
+  padding-top: 16px;
+}
+
+.source-note {
+  margin-top: 36px !important;
+  padding: 16px 20px;
+  background: #ede0c2;
+  border: 1px dashed #c9b487;
+  font-size: 14px;
+  color: #4a3424;
+  line-height: 1.85;
+}
+
+.translation-meta {
+  font-size: 14px;
+  color: #6e5b3a;
+  border-left: 3px solid #8a6c3d;
+  padding: 8px 16px;
+  background: rgba(138, 108, 61, 0.06);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+/* ---------- 时间线 ---------- */
+.timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 28px;
+  margin-top: 24px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: #2b2118;
+}
+.timeline li {
+  position: relative;
+  margin-bottom: 26px;
+  padding-left: 16px;
+}
+.timeline .dot {
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #f5ecd7;
+  border: 2.5px solid #2b2118;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 #8a6c3d;
+}
+.timeline h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #2b2118;
+  margin-bottom: 6px;
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+}
+.timeline p {
+  font-size: 15px;
+  color: #3a2f22;
+  line-height: 1.85;
+}
+
+/* ---------- 主题卡 ---------- */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.theme-card {
+  background: #fdf8e8;
+  border: 1px solid #c9b487;
+  padding: 22px 22px 18px;
+  position: relative;
+  box-shadow: 3px 3px 0 #c9b487;
+}
+.theme-card h3 {
+  font-size: 18px;
+  color: #2b2118;
+  margin-bottom: 10px;
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+  border-bottom: 1px dashed #8a6c3d;
+  padding-bottom: 6px;
+}
+.theme-card p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #3a2f22;
+}
+
+/* ---------- 背景资料 details ---------- */
+.bg-block {
+  background: #fdf8e8;
+  border: 1px solid #c9b487;
+  margin-bottom: 14px;
+  padding: 0;
+  box-shadow: 2px 2px 0 #c9b487;
+}
+.bg-block summary {
+  cursor: pointer;
+  padding: 16px 22px;
+  font-size: 16px;
+  color: #2b2118;
+  list-style: none;
+  position: relative;
+  background: #f5ecd7;
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s ease;
+}
+.bg-block summary::-webkit-details-marker { display: none; }
+.bg-block summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 12px;
+  color: #8a6c3d;
+  transition: transform 0.2s ease;
+}
+.bg-block[open] > summary::before { transform: rotate(90deg); }
+.bg-block summary h3 {
+  display: inline;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+}
+.bg-block summary:hover { background: #ede0c2; }
+.bg-body {
+  padding: 18px 22px;
+  background: #fdf8e8;
+}
+.bg-body p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #3a2f22;
+  margin-bottom: 12px;
+}
+
+/* ---------- 参考资料 ---------- */
+.source-list {
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.95;
+  color: #3a2f22;
+}
+.source-list li {
+  margin-bottom: 14px;
+  padding-left: 6px;
+}
+.source-list code {
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 13px;
+  background: #ede0c2;
+  padding: 1px 6px;
+  border: 1px solid #c9b487;
+  word-break: break-all;
+}
+
+/* ---------- 回到顶部 ---------- */
+#back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  background: #2b2118;
+  color: #f5ecd7;
+  border: 2px solid #2b2118;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #8a6c3d;
+  display: none;
+  transition: transform 0.2s ease;
+  z-index: 100;
+}
+#back-to-top:hover { transform: translate(-1px, -1px); }
+#back-to-top.visible { display: block; }
+
+/* ---------- 底部小脚印 ---------- */
+.footprint {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #8a6c3d;
+  letter-spacing: 14px;
+  opacity: 0.7;
+}
+
+/* ---------- 移动端适配 ---------- */
+@media (max-width: 720px) {
+  body { font-size: 16px; line-height: 1.8; }
+  .title-hand { font-size: 30px; letter-spacing: 1px; }
+  .subtitle-hand { font-size: 16px; }
+  .section { margin: 50px auto; }
+  .section-title { font-size: 22px; }
+  .paper-card { padding: 30px 22px; }
+  .long-text { font-size: 16px; }
+  .long-text p { text-align: left; }
+  .part-head { font-size: 19px; letter-spacing: 4px; }
+  .letter { padding: 16px 18px; font-size: 15px; }
+  .timeline { padding-left: 24px; }
+  .comic-strip-deco { max-width: 100%; }
+  .comic-strip-deco .panel { height: 80px; }
+  .top-nav { gap: 4px 12px; }
+  .top-nav a { font-size: 13px; }
+  .meta-strip { flex-direction: column; gap: 6px; }
+  .hero { padding: 60px 18px 50px; }
+  .entry-buttons { flex-direction: column; gap: 10px; }
+  .btn { width: 100%; text-align: center; }
+  .footer-line { display: block; margin-bottom: 4px; }
+}
+
+@media (max-width: 420px) {
+  .title-hand { font-size: 26px; }
+  .section-title { flex-direction: column; gap: 8px; }
+  .timeline .dot { left: -22px; }
+  .timeline { padding-left: 18px; }
+}
+
+/* ---------- 打印优化 ---------- */
+@media print {
+  body { background: #fff; color: #000; }
+  .top-nav, #back-to-top, .entry-buttons { display: none; }
+  .paper-card { box-shadow: none; border: 1px solid #888; }
+  .section { page-break-inside: avoid; }
+}

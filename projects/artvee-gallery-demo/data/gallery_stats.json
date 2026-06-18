@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T07:11:46",
+  "generated_at": "2026-06-18T11:06:02",
   "mode": "public-demo",
   "base_url": ".",
   "source": {
@@ -7,21 +7,21 @@
     "strategy": "diverse",
     "limit": 100,
     "full_counts": {
-      "artworks": 815,
+      "artworks": 875,
       "categories": 4,
-      "artists": 79,
-      "thumb_256_total": 815,
-      "thumb_512_total": 815
+      "artists": 87,
+      "thumb_256_total": 875,
+      "thumb_512_total": 875
     }
   },
   "counts": {
     "artworks": 100,
     "categories": 4,
-    "artists": 8,
+    "artists": 11,
     "thumb_256_total": 100,
     "thumb_512_total": 100
   },
-  "last_downloaded_at": "2026-06-15T02:04:35.169640",
+  "last_downloaded_at": "2026-06-18T02:04:55.139104",
   "categories": {
     "book-illustrations": 25,
     "botanical-charts": 25,

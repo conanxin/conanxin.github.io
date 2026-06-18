@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-18T11:06:01",
+  "window_days": 30,
+  "entries": [
+    {
+      "date": "2026-06-18",
+      "picks": [
+        {
+          "id": "luther_daniels_bradley_american_1853_1917_an_international_conference_that_would_bring_about_peace_1914_posters-design_standard_dd7b462b",
+          "artist": "Luther_Daniels_Bradley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "picks": [
+        {
+          "id": "furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.359_1901-1902_japanese-prints_standard_bea192c9",
+          "artist": "Furuya_Kōrin",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "thomas_hastings_english_1778_1854_in_bradley_vale_29_may_1833_1833_posters-design_standard_c093395a",
+          "artist": "Thomas_Hastings",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "abbott_handerson_thayer_american_1849-1921_townsend_bradley_martin_1919_posters-design_standard_3893d792",
+          "artist": "Abbott_Handerson_Thayer",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "nicholas_matthew_condy_english_1816_1851_the_thousand_guinea_match_between_henry_bradley_s_brig_the_water_witch_and_lord_belfast_s_schooner_galatea_posters-design_standard_74070819",
+          "artist": "Nicholas_Matthew_Condy",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "ralph_earl_american_1751-1801_lucy_bradley_1794_posters-design_standard_e286c156",
+          "artist": "Ralph_Earl",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-16",
+      "picks": [
+        {
+          "id": "furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.316_1901-1902_japanese-prints_standard_bc04eaa4",
+          "artist": "Furuya_Kōrin",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-15",
+      "picks": [
+        {
+          "id": "furuya_kōrin_japanese_1875_-_1910_shin-bijutsukai_pl.343_1901-1902_japanese-prints_standard_1bbfaad8",
+          "artist": "Furuya_Kōrin",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14",
+      "picks": [
+        {
+          "id": "nakayasu_shinzaburō_japanese_before_1892_shin_zuan_pl_7_1892_japanese-prints_standard_be47e928",
+          "artist": "Nakayasu_Shinzaburō",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13",
+      "picks": [
+        {
+          "id": "kondo_shiun_november_ukiyo-e_beauties_ca._1923_japanese-prints_standard_463194be",
+          "artist": "Kondo_Shiun",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "picks": [
+        {
+          "id": "amaldus_nielsen_norwegian_1838_1932_høstdag._bjelland_mandal_1862_book-illustrations_standard_e9b1953f",
+          "artist": "Amaldus_Nielsen_(Norwegian,_1838_–_1932)",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": "cluster-006"
+        },
+        {
+          "id": "yoshida_hiroshi_japanese_1876-1950_jaipuuru_no_ajumeru_mon_the_ajmer_gate_at_jaipur_1931_japanese-prints_standard_e033f21d",
+          "artist": "Yoshida_Hiroshi_(Japanese,_1876-1950)",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "anonymous_affiche_van_de_chambre_syndicale_des_éditeurs_et_marchands_d_estampes_et_dessins_anciens_et_modernes_te_parijs_1919_posters-design_standard_262e24fc",
+          "artist": "Anonymous",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "alphonse_mucha_czech_1860-1939_abstract_design_based_on_arabesques_1900_posters-design_standard_cfec02d3",
+          "artist": "Alphonse_Mucha_(Czech,_1860-1939)",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "utagawa_hiroshige_japanese_1797_1858_yoshida_1855_japanese-prints_standard_26319964",
+          "artist": "Utagawa_Hiroshige_(Japanese,_1797_–_1858)",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    }
+  ]
+}

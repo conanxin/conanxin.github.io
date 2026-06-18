@@ -646,10 +646,83 @@ body {
   .name-glossary .dot-sep { display: none; }
 }
 
+/* ---------- 音频卡片 ---------- */
+.audio-card {
+  margin: 28px 0 36px;
+  padding: 22px 26px 20px;
+  background: #fdf8e8;
+  border: 1.5px solid #2b2118;
+  border-left: 5px solid #2b2118;
+  box-shadow: 3px 3px 0 #c9b487;
+  position: relative;
+}
+.audio-card.alt {
+  background: #faf2d8;
+  border-left-color: #8a6c3d;
+}
+.audio-card::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  background: #2b2118;
+  color: #f5ecd7;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 2px 2px 0 #8a6c3d;
+}
+.audio-card::after {
+  content: "▸ 听";
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  color: #f5ecd7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 1;
+  pointer-events: none;
+}
+.audio-title {
+  font-family: "STKaiti", "KaiTi", "楷体", Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #2b2118;
+  margin: 0 0 10px;
+  letter-spacing: 1px;
+}
+.audio-note {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #4a3424;
+  margin: 0 0 10px;
+}
+.audio-meta {
+  font-size: 13.5px;
+  color: #6e5b3a;
+  margin: 0 0 14px;
+  font-style: italic;
+  border-top: 1px dashed #c9b487;
+  padding-top: 8px;
+}
+.audio-player {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 4px;
+  outline: none;
+}
+.audio-player:focus { outline: 2px solid #8a6c3d; outline-offset: 2px; }
+
 /* ---------- 打印优化 ---------- */
 @media print {
   body { background: #fff; color: #000; }
-  .top-nav, #back-to-top, .entry-buttons { display: none; }
+  .top-nav, #back-to-top, .entry-buttons, .audio-card { display: none; }
   .paper-card { box-shadow: none; border: 1px solid #888; }
   .section { page-break-inside: avoid; }
 }

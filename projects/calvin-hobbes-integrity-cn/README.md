@@ -96,3 +96,4 @@ git push origin main
 | --- | --- | --- |
 | v0.1 | 2026-06-18 | 首次发布：完整中文译本（文章 + 演讲）+ 背景资料 + 时间线 + 主题导读 + 参考资料 |
 | v0.2 | 2026-06-18 | 最小修订：补充 Hero 区专名中英对照小条；为 *Tenth Anniversary Book* / *Sunday Pages 1985–1995* / *The Mysteries* 加译者注；sources.md 补 Wikipedia 词条与命名约定。 |
+| v0.3 | 2026-06-19 | 新增两篇中文译文的朗读音频（mp3）：文章音频约 38 分钟，演讲音频约 18 分钟；文章/演讲音频分别放在各自译文正文前；新增 `audio/` 与 `tools/build_audio.py`。 |

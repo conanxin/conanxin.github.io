@@ -59,4 +59,11 @@
 | 整理者 | Xin Conan |
 | 整理日期 | 2026-06-18 |
 | 译本风格 | 忠实完整译本，按原文段落结构呈现，长段做分句调整，未做概括或删减 |
-| 命名约定 | Calvin and Hobbes 保留英文；Hobbes 译"霍布斯"；Calvin 译"卡尔文"；Bill Watterson 保留英文/译"比尔·沃特森"；Kenyon College 译"凯尼恩学院"；Universal Press Syndicate 译"环球新闻辛迪加"并在首次出现时附英文 |
+| 命名约定 | Calvin and Hobbes 保留英文（首次出现时同时给出"卡尔文与霍布斯"中译）；Hobbes 保留英文（首次出现译注"霍布斯"）；Calvin 保留英文（首次出现译注"卡尔文"）；Bill Watterson 保留英文（首次出现译注"比尔·沃特森"）；Kenyon College 保留英文（首次出现译注"凯尼恩学院"）；Universal Press Syndicate 保留英文（首次出现译注"环球新闻辛迪加"） |
+
+## 六、版本记录
+
+| 版本 | 日期 | 说明 |
+| --- | --- | --- |
+| v0.1 | 2026-06-18 | 首次发布：完整中文译本（文章 + 演讲）+ 背景资料 + 时间线 + 主题导读 + 参考资料 |
+| v0.2 | 2026-06-18 | 最小修订：(1) Hero 区新增"专名中英对照小条"，列 5 项首次出现专名；(2) 文章正文首次出现处为 *Tenth Anniversary Book* / *Sunday Pages 1985–1995* / *The Mysteries* 三个书名加简短译者注；(3) 本文件补充 Wikipedia 通用词条 + 命名约定细则 + v0.2 修订说明。结构、样式、脚本、译文、其他 `projects/` 目录均未变动。 |

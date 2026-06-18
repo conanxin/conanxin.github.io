@@ -89,3 +89,10 @@ git push origin main
 - 文章原文版权归 Matthew Morgan / The Republic of Letters 所有。
 - 演讲文本版权属于 Bill Watterson。
 - 任何转载、改编或公开分发，请保留原作者署名及原文链接。
+
+## 版本记录
+
+| 版本 | 日期 | 说明 |
+| --- | --- | --- |
+| v0.1 | 2026-06-18 | 首次发布：完整中文译本（文章 + 演讲）+ 背景资料 + 时间线 + 主题导读 + 参考资料 |
+| v0.2 | 2026-06-18 | 最小修订：补充 Hero 区专名中英对照小条；为 *Tenth Anniversary Book* / *Sunday Pages 1985–1995* / *The Mysteries* 加译者注；sources.md 补 Wikipedia 词条与命名约定。 |

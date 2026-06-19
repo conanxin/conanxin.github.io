@@ -1,5 +1,32 @@
 [
   {
+    "title": "Interlatent 现代 AI 机器人中文译读",
+    "subtitle": "从第一性原理、VLA、动作分块到物理 AI 后训练闭环",
+    "slug": "interlatent-robotics-cn",
+    "category": "research",
+    "type": "TRANSLATION PAGE",
+    "status": "已上线",
+    "status_color": "#ff5b1f",
+    "updated": "2026-06-19",
+    "summary": "完整翻译 Interlatent Primer 系列两篇正典文章：机器人硬件入门指南 + 从第一性原理看现代 AI 机器人。保留原文结构、9+6 张可视化图示位置、术语译名表与背景资料链接（VLA、ACT、π₀、GR00T、RT-2、Open X-Embodiment、LeRobot、Genie 3、EgoMimic、HIL-SERL 等）。",
+    "entry_url": "/projects/interlatent-robotics-cn/",
+    "source_kind": "translation",
+    "featured": false,
+    "tags": [
+      "机器人",
+      "Physical AI",
+      "VLA",
+      "动作分块",
+      "RT-2",
+      "π₀",
+      "GR00T",
+      "LeRobot",
+      "SO-101",
+      "翻译",
+      "Interlatent"
+    ]
+  },
+  {
     "title": "学术论文写作方法和技巧",
     "subtitle": "从机器翻译演示稿到 AI 论文写作系统",
     "slug": "academic-paper-writing-guide",

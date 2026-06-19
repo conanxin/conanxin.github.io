@@ -421,6 +421,14 @@ button { font: inherit; }
 
 .beadHit:active { cursor: grabbing; }
 
+.cord[data-cord="red"] .bead {
+  --pull: var(--red-pull);
+}
+
+.cord[data-cord="black"] .bead {
+  --pull: var(--black-pull);
+}
+
 /* the visible bead — anchored absolutely inside the cord column.
    At rest, top = CORD_REST (110px) so the bead's TOP touches the cord tail.
    When dragged, --pull translates the bead straight down. */

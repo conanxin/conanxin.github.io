@@ -33,8 +33,10 @@
   const readGlow     = document.getElementById('readGlow');
 
   // ---------- constants ----------
-  const CORD_REST = 110;   // matches --cord-rest-len in CSS
+  const CORD_REST = 110;    // matches --cord-rest-len in CSS
   const CORD_PULL_MAX = 80; // matches --cord-max-pull in CSS
+  const VALID_PULL_PX = 32; // valid pull threshold for one tactile tier switch
+  const TAP_FALLBACK_MS = 550;
 
   // Sun y positions (fraction of panel height, top=0)
   const SUN_LOW    = 0.56;
@@ -71,6 +73,15 @@
   function easeOutBack(t) {
     const c1 = 1.70158, c3 = c1 + 1;
     return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+  }
+
+  function nextTier(idx) {
+    return (idx + 1) % 3;
+  }
+
+  function isPointInside(el, x, y) {
+    const rect = el.getBoundingClientRect();
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
   }
 
   function sunSize(idx) {
@@ -154,13 +165,46 @@
 
   // ---------- drag handler ----------
   function makeDragger(hitEl, cordEl, key, opts) {
-    // opts: { getCurrentIdx, setIdx, onLiveProgress }
+    // opts: { getCurrentIdx, setIdx }
     let active = false;
     let pointerId = null;
     let startY = 0;
-    let startPull = 0;
+    let downAt = 0;
+    let baseIdx = opts.getCurrentIdx();
     let maxPull = 0;
-    let lastTier = opts.getCurrentIdx();
+    let previewIdx = baseIdx;
+
+    function preview(idx) {
+      if (previewIdx === idx) return;
+      previewIdx = idx;
+      opts.setIdx(idx);
+      applyLampState();
+    }
+
+    function endDrag(e, cancelled) {
+      if (!active || (e.pointerId !== undefined && e.pointerId !== pointerId)) return;
+      active = false;
+      try { hitEl.releasePointerCapture(pointerId); } catch (_) {}
+      cordEl.classList.remove('is-dragging');
+
+      const elapsed = performance.now() - downAt;
+      const canTapFallback = !cancelled &&
+        maxPull < VALID_PULL_PX &&
+        elapsed <= TAP_FALLBACK_MS &&
+        isPointInside(hitEl, e.clientX, e.clientY);
+
+      if (!cancelled && (maxPull >= VALID_PULL_PX || canTapFallback)) {
+        opts.setIdx(nextTier(baseIdx));
+      } else {
+        opts.setIdx(baseIdx);
+      }
+      applyLampState();
+
+      // spring the bead back to rest after every release/cancel
+      state[key] = 0;
+      applyPullVars();
+      pointerId = null;
+    }
 
     function onDown(e) {
       if (e.button !== undefined && e.button !== 0) return;
@@ -169,9 +213,12 @@
       active = true;
       pointerId = e.pointerId;
       startY = e.clientY;
-      startPull = state[key];
-      maxPull = startPull;
-      lastTier = opts.getCurrentIdx();
+      downAt = performance.now();
+      baseIdx = opts.getCurrentIdx();
+      previewIdx = baseIdx;
+      maxPull = 0;
+      state[key] = 0;
+      applyPullVars();
       try { hitEl.setPointerCapture(pointerId); } catch (_) {}
       cordEl.classList.add('is-dragging');
     }
@@ -179,67 +226,53 @@
     function onMove(e) {
       if (!active || e.pointerId !== pointerId) return;
       e.preventDefault();
-      // vertical-only: ignore horizontal motion
       const dy = e.clientY - startY;
-      let p = startPull + dy;
-      if (p < 0) p = 0;
-      if (p > CORD_PULL_MAX) p = CORD_PULL_MAX;
+      const p = clamp(dy, 0, CORD_PULL_MAX);
       if (p > maxPull) maxPull = p;
       state[key] = p;
       applyPullVars();
-      // live tier feedback while pulling (optional)
-      if (opts.onLiveProgress) opts.onLiveProgress(p);
+
+      // Immediate feedback: show the next tier as soon as the pull crosses
+      // the validity threshold, then restore the base tier if the finger
+      // slides back above it before release.
+      preview(p >= VALID_PULL_PX ? nextTier(baseIdx) : baseIdx);
     }
 
     function onUp(e) {
-      if (!active || (e.pointerId !== undefined && e.pointerId !== pointerId)) return;
-      active = false;
-      try { hitEl.releasePointerCapture(pointerId); } catch (_) {}
-      cordEl.classList.remove('is-dragging');
-      // commit lamp state from the max pull reached
-      opts.commit(maxPull);
-      // spring the bead back to rest
-      state[key] = 0;
-      applyPullVars();
+      e.preventDefault();
+      endDrag(e, false);
+    }
+
+    function onCancel(e) {
+      endDrag(e, true);
     }
 
     hitEl.addEventListener('pointerdown',   onDown,   { passive: false });
     hitEl.addEventListener('pointermove',   onMove,   { passive: false });
     hitEl.addEventListener('pointerup',     onUp,     { passive: false });
-    hitEl.addEventListener('pointercancel', onUp,     { passive: false });
+    hitEl.addEventListener('pointercancel', onCancel, { passive: false });
     hitEl.addEventListener('lostpointercapture', () => {
-      if (active) { active = false; cordEl.classList.remove('is-dragging'); state[key] = 0; applyPullVars(); }
+      if (active) {
+        active = false;
+        cordEl.classList.remove('is-dragging');
+        opts.setIdx(baseIdx);
+        state[key] = 0;
+        applyLampState();
+        applyPullVars();
+      }
     });
   }
 
-  // Red bead: pull down → raise sun. Commit on release based on max pull.
-  // We use a step model so each "valid" pull beyond a threshold raises by one tier.
-  // However, we also let the user drag back down to lower the sun (reverse).
+  // Red bead: every valid pull or short tap cycles Low → Middle → High → Low.
   makeDragger(beadHitRed, cordRed, 'pullRed', {
     getCurrentIdx: () => state.sunIdx,
-    commit: (maxPullPx) => {
-      // map pull depth → tier offset from current.
-      // 24px = one tier up (down to 96px = four tiers, but we only have 3).
-      const delta = Math.round(maxPullPx / 24);
-      const newIdx = clamp(state.sunIdx + delta, 0, 2);
-      if (newIdx !== state.sunIdx) {
-        state.sunIdx = newIdx;
-        applyLampState();
-      }
-    }
+    setIdx: (idx) => { state.sunIdx = idx; }
   });
 
-  // Black bead: pull down → brighten glow. Same step model.
+  // Black bead: every valid pull or short tap cycles Dim → Warm → Sunset → Dim.
   makeDragger(beadHitBlack, cordBlack, 'pullBlack', {
     getCurrentIdx: () => state.glowIdx,
-    commit: (maxPullPx) => {
-      const delta = Math.round(maxPullPx / 24);
-      const newIdx = clamp(state.glowIdx + delta, 0, 2);
-      if (newIdx !== state.glowIdx) {
-        state.glowIdx = newIdx;
-        applyLampState();
-      }
-    }
+    setIdx: (idx) => { state.glowIdx = idx; }
   });
 
   // ---------- buttons ----------
@@ -311,11 +344,7 @@
     if (autoState.phase === 'pullRed') {
       state.pullRed = pull;
       state.pullBlack = 0;
-      // while pulling red, raise sun by one tier per cycle
-      // we just commit the new idx live for visual feedback
-      if (pull > 40 && autoState.committedRed !== state.sunIdx + 1) {
-        // no-op, we commit at end of phase
-      }
+      // visual pull only; tier changes at phase end using the same cycle logic as manual pulls.
     } else {
       state.pullRed = 0;
       state.pullBlack = pull;
@@ -329,22 +358,16 @@
 
     // phase end — commit and advance
     if (autoState.phase === 'pullRed') {
-      // raise sun by one tier if not already at top
-      if (state.sunIdx < 2) {
-        state.sunIdx = clamp(state.sunIdx + 1, 0, 2);
-        applyLampState();
-      }
+      state.sunIdx = nextTier(state.sunIdx);
+      applyLampState();
       autoState.phase = 'pullBlack';
       autoState.t0 = now;
       autoState.committedRed = true;
     } else {
-      // brighten glow by one tier if not already at top
-      if (state.glowIdx < 2) {
-        state.glowIdx = clamp(state.glowIdx + 1, 0, 2);
-        applyLampState();
-      }
+      state.glowIdx = nextTier(state.glowIdx);
+      applyLampState();
       autoState.cycle += 1;
-      if (autoState.cycle >= autoState.totalCycles || (state.sunIdx === 2 && state.glowIdx === 2)) {
+      if (autoState.cycle >= autoState.totalCycles) {
         // done — hold at peak with beads at rest
         state.pullRed = 0;
         state.pullBlack = 0;
@@ -370,9 +393,9 @@
   function onKey(bead, dir) {
     cancelAutoDemo();
     if (bead === 'red') {
-      state.sunIdx = clamp(state.sunIdx + (dir === 'down' ? 1 : -1), 0, 2);
+      state.sunIdx = dir === 'down' ? nextTier(state.sunIdx) : (state.sunIdx + 2) % 3;
     } else {
-      state.glowIdx = clamp(state.glowIdx + (dir === 'down' ? 1 : -1), 0, 2);
+      state.glowIdx = dir === 'down' ? nextTier(state.glowIdx) : (state.glowIdx + 2) % 3;
     }
     applyLampState();
   }

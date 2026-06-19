@@ -9,27 +9,26 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="stage" id="stage">
+  <main class="page" id="page">
     <!-- soft light-warm room with plant silhouette -->
     <div class="room" aria-hidden="true">
       <div class="wall"></div>
       <div class="wall__vignette"></div>
-      <div class="plant plant--right" aria-hidden="true"></div>
+      <div class="plant plant--right"></div>
       <div class="lampGlow" id="lampGlow"></div>
     </div>
 
-    <!-- top brand bar: small, single line -->
-    <header class="topbar">
-      <span class="topbar__eyebrow">INTERACTIVE DEMO</span>
+    <!-- 1) TOP compact header -->
+    <header class="topbar" aria-label="page title">
+      <p class="topbar__title">Sunset Time Ambient Art Wall Lamp</p>
+      <p class="topbar__subtitle">Pull the beads. Move the sun. Warm the room.</p>
     </header>
 
-    <!-- the hero: lamp + cords, centered, single screen focal point -->
-    <section class="hero" aria-label="Sunset ambient wall lamp simulator">
+    <!-- 2) MIDDLE lamp stage: panel + cords + beads ONLY -->
+    <section class="stage" aria-label="Sunset ambient wall lamp simulator">
       <div class="lamp" id="lamp">
-        <!-- mount bracket (subtle metal arm above the lamp) -->
         <div class="bracket" aria-hidden="true"></div>
 
-        <!-- the wall panel: small radius, real-frame feel, 4 screw dots -->
         <div class="panel" id="panel" role="img" aria-label="Square sunset-gradient art panel mounted on a warm wall">
           <div class="panel__sky" id="panelSky"></div>
           <div class="panel__sun" id="panelSun">
@@ -46,41 +45,42 @@
           <span class="screw screw--br" aria-hidden="true"></span>
         </div>
 
-        <!-- two pull cords with beads -->
-        <div class="cords" id="cords" aria-label="Pull cords. Touch and drag the beads up and down.">
-          <div class="cord cord--red" data-cord="red">
+        <div class="cords" id="cords" aria-label="Pull cords. Touch and drag a bead downward.">
+          <!-- red cord -->
+          <div class="cord" data-cord="red">
             <div class="cord__string" id="cordStringRed">
-              <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="10" y1="0" x2="10" y2="200" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
+              <svg class="cord__line" viewBox="0 0 20 208" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="10" y1="0" x2="10" y2="110" id="cordLineRed" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
               </svg>
             </div>
-            <button class="bead bead--red" id="beadRed" type="button" aria-label="Red bead. Drag down to raise the sun."></button>
-            <span class="cord__label cord__label--red">RED · SUN</span>
+            <div class="beadHit" id="beadHitRed" role="button" tabindex="0" aria-label="Red bead. Pull down to raise the sun.">
+              <span class="bead bead--red" id="beadRed"></span>
+            </div>
           </div>
 
-          <div class="cord cord--black" data-cord="black">
+          <!-- black cord -->
+          <div class="cord" data-cord="black">
             <div class="cord__string" id="cordStringBlack">
-              <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
-                <line x1="10" y1="0" x2="10" y2="200" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
+              <svg class="cord__line" viewBox="0 0 20 208" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="10" y1="0" x2="10" y2="110" id="cordLineBlack" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
               </svg>
             </div>
-            <button class="bead bead--black" id="beadBlack" type="button" aria-label="Black bead. Drag down to brighten the light."></button>
-            <span class="cord__label cord__label--black">BLACK · GLOW</span>
+            <div class="beadHit" id="beadHitBlack" role="button" tabindex="0" aria-label="Black bead. Pull down to brighten the light.">
+              <span class="bead bead--black" id="beadBlack"></span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- bottom HUD: title + short hint + 2 product-style chips + buttons -->
-    <section class="hud" aria-label="Lamp controls">
-      <h1 class="title">Sunset Time Ambient Art Wall Lamp</h1>
-      <p class="subtitle">Pull the beads. Move the sun. Warm the room.</p>
+    <!-- 3) BOTTOM control panel: hint, chips, buttons -->
+    <section class="control" aria-label="Lamp controls">
       <p class="hint">下拉红色珠子移动太阳，下拉黑色珠子调节光线。</p>
 
       <div class="chips" id="chips" aria-live="polite">
         <span class="chip">
           <span class="chip__key">Sun Height</span>
-          <span class="chip__val" id="readSun">Mid</span>
+          <span class="chip__val" id="readSun">Middle</span>
         </span>
         <span class="chip">
           <span class="chip__key">Glow Level</span>

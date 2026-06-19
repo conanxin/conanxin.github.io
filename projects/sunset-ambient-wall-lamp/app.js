@@ -1,281 +1,272 @@
 /* ============================================================
-   Sunset Time Ambient Art Wall Lamp — V2 interaction logic
-   - Pointer Events (touch + mouse unified)
-   - Red bead  → sun height  (panel-y 0.58 low → 0.34 high)
-   - Black bead→ glow level  (3 tiers: dim / warm / sunset)
-   - Cord length visually extends while dragging, spring-backs on release
-   - Lamp state retained after release
-   - Auto Demo: animated sun rise + glow ramp + bead wiggle
+   Sunset Time Ambient Art Wall Lamp — V3 pull-chain interaction
+   - Beads translate via CSS --pull variable (set on :root by JS)
+   - Cord length: SVG line y2 attribute updates on pull
+   - Red bead: pull → raise sun (3-step: low=0.56, middle=0.45, high=0.36)
+   - Black bead: pull → brighten glow (3-step: dim/warm/sunset, continuous fill)
+   - Bead always springs back to rest after release; lamp state retained
+   - Auto Demo: simulated pulls on both beads
+   - Reset: sun=middle, glow=warm
    ============================================================ */
 
 (function () {
   'use strict';
 
   // ---------- elements ----------
-  const panel       = document.getElementById('panel');
-  const panelSky    = document.getElementById('panelSky');
-  const panelSun    = document.getElementById('panelSun');
-  const lampGlow    = document.getElementById('lampGlow');
-  const cordRed     = document.querySelector('.cord--red');
-  const cordBlack   = document.querySelector('.cord--black');
-  const beadRed     = document.getElementById('beadRed');
-  const beadBlack   = document.getElementById('beadBlack');
+  const panel        = document.getElementById('panel');
+  const panelSky     = document.getElementById('panelSky');
+  const panelSun     = document.getElementById('panelSun');
+  const lampGlow     = document.getElementById('lampGlow');
+  const cordRed      = document.querySelector('.cord[data-cord="red"]');
+  const cordBlack    = document.querySelector('.cord[data-cord="black"]');
+  const beadHitRed   = document.getElementById('beadHitRed');
+  const beadHitBlack = document.getElementById('beadHitBlack');
+  const beadRed      = document.getElementById('beadRed');
+  const beadBlack    = document.getElementById('beadBlack');
   const cordStringRed   = document.getElementById('cordStringRed');
   const cordStringBlack = document.getElementById('cordStringBlack');
-  const btnReset    = document.getElementById('btnReset');
-  const btnAuto     = document.getElementById('btnAuto');
-  const readSun     = document.getElementById('readSun');
-  const readGlow    = document.getElementById('readGlow');
+  const cordLineRed     = document.getElementById('cordLineRed');
+  const cordLineBlack   = document.getElementById('cordLineBlack');
+  const btnReset     = document.getElementById('btnReset');
+  const btnAuto      = document.getElementById('btnAuto');
+  const readSun      = document.getElementById('readSun');
+  const readGlow     = document.getElementById('readGlow');
 
-  // ---------- constraints ----------
-  // Sun y range inside the panel (0 = top, 1 = bottom)
-  // Higher value = lower in the panel. We keep the sun in the upper-middle band.
-  const SUN_TOP_MIN  = 0.34;   // top (high sun) — NEVER above 0.34 → never clipped
-  const SUN_TOP_MAX  = 0.58;   // bottom (low sun / horizon)
+  // ---------- constants ----------
+  const CORD_REST = 110;   // matches --cord-rest-len in CSS
+  const CORD_PULL_MAX = 80; // matches --cord-max-pull in CSS
 
-  // Glow tiers (continuous, but UI labels snap to 3 levels)
-  const GLOW_DIM    = 0.18;
-  const GLOW_WARM   = 0.55;
-  const GLOW_SUNSET = 0.92;
+  // Sun y positions (fraction of panel height, top=0)
+  const SUN_LOW    = 0.56;
+  const SUN_MIDDLE = 0.45;
+  const SUN_HIGH   = 0.36;
+  const SUN_STEPS  = [SUN_LOW, SUN_MIDDLE, SUN_HIGH];
+  const SUN_LABELS = ['Low', 'Middle', 'High'];
 
-  // Default state — looks good immediately
-  const DEFAULT = { sun: 0.42, glow: GLOW_WARM };
+  // Glow 3 tiers (continuous fill between them)
+  const GLOW_DIM    = 0.20;
+  const GLOW_WARM   = 0.58;
+  const GLOW_SUNSET = 0.95;
+  const GLOW_TIERS  = [GLOW_DIM, GLOW_WARM, GLOW_SUNSET];
+  const GLOW_LABELS = ['Dim', 'Warm', 'Sunset'];
 
-  // Live state
+  // Default state
+  const DEFAULT_SUN_IDX  = 1; // Middle
+  const DEFAULT_GLOW_IDX = 1; // Warm
+
+  // ---------- live state ----------
   const state = {
-    sun:  DEFAULT.sun,
-    glow: DEFAULT.glow,
+    sunIdx:  DEFAULT_SUN_IDX,
+    glowIdx: DEFAULT_GLOW_IDX,
+    // current pull depth in px (0..CORD_PULL_MAX), per cord
+    pullRed:   0,
+    pullBlack: 0,
   };
-
-  // Cord pull ratios (visual only — separate from lamp state)
-  // 0 = rest, 1 = fully pulled
-  const pull = { red: 0, black: 0 };
 
   // ---------- helpers ----------
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
   function easeInOut(t) {
     return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   }
-
-  function sunSize(s) {
-    // smaller when high, larger when low (horizon glow effect)
-    // s=0.34 (top) → 76px ;  s=0.58 (bottom) → 102px
-    const t = (s - SUN_TOP_MIN) / (SUN_TOP_MAX - SUN_TOP_MIN); // 0..1
-    return Math.round(76 + t * 26);
+  function easeOutBack(t) {
+    const c1 = 1.70158, c3 = c1 + 1;
+    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
   }
 
-  function sunOpacity(g) {
-    return clamp(0.55 + g * 0.45, 0, 1);
+  function sunSize(idx) {
+    // high → smaller, low → larger
+    // idx 0 (low) = 100px, idx 2 (high) = 80px
+    return Math.round(100 - idx * 10);
   }
 
-  function ambientColor(g) {
-    // wall wash: dim warm red → bright orange
-    const r = Math.round(140 + g * 110);
-    const gr = Math.round(60  + g * 90);
-    const b = Math.round(30  + g * 30);
-    const a = (0.10 + g * 0.32).toFixed(3);
+  function sunOpacityFromGlowIdx(idx) {
+    // base 0.55, +0.225 per tier up
+    return 0.55 + idx * 0.225;
+  }
+
+  function ambientColorFromGlowIdx(idx) {
+    const tier = GLOW_TIERS[idx];
+    const r = Math.round(140 + tier * 110);
+    const gr = Math.round(60  + tier * 90);
+    const b = Math.round(30  + tier * 30);
+    const a = (0.10 + tier * 0.32).toFixed(3);
     return `rgba(${r}, ${gr}, ${b}, ${a})`;
   }
 
-  function panelGlowColor(g) {
-    // outer panel box-shadow tint
-    const r = Math.round(180 + g * 75);
-    const gr = Math.round(80  + g * 80);
-    const b = Math.round(40  + g * 20);
-    const a = (0.20 + g * 0.45).toFixed(3);
+  function panelGlowFromIdx(idx) {
+    const tier = GLOW_TIERS[idx];
+    const r = Math.round(180 + tier * 75);
+    const gr = Math.round(80  + tier * 80);
+    const b = Math.round(40  + tier * 20);
+    const a = (0.20 + tier * 0.45).toFixed(3);
     return `rgba(${r}, ${gr}, ${b}, ${a})`;
   }
 
-  function skyBrightness(g) {
-    // 0.88..1.10
-    return (0.88 + g * 0.22).toFixed(2);
-  }
-
-  function glowLabel(g) {
-    if (g < 0.38) return 'Dim';
-    if (g < 0.78) return 'Warm';
-    return 'Sunset';
-  }
-
-  function sunLabel(s) {
-    // s closer to SUN_TOP_MIN = top
-    if (s < 0.42) return 'High';
-    if (s < 0.52) return 'Mid';
-    return 'Low';
+  function skyBrightness(idx) {
+    return (0.88 + GLOW_TIERS[idx] * 0.22).toFixed(2);
   }
 
   // ---------- core render ----------
   function applyLampState() {
-    const g = state.glow;
-    const s = state.sun;
+    const sIdx = state.sunIdx;
+    const gIdx = state.glowIdx;
 
-    panelSun.style.setProperty('--sun-top', s.toFixed(3));
-    panelSun.style.setProperty('--sun-size', sunSize(s) + 'px');
-    panelSun.style.setProperty('--sun-opacity', sunOpacity(g).toFixed(2));
+    const top = SUN_STEPS[sIdx];
+    const size = sunSize(sIdx);
+    const op   = sunOpacityFromGlowIdx(gIdx);
 
-    panel.style.setProperty('--ambient-warm', panelGlowColor(g));
+    panelSun.style.setProperty('--sun-top', top.toFixed(3));
+    panelSun.style.setProperty('--sun-size', size + 'px');
+    panelSun.style.setProperty('--sun-opacity', op.toFixed(2));
+
+    panel.style.setProperty('--ambient-warm', panelGlowFromIdx(gIdx));
     lampGlow.style.background =
-      `radial-gradient(ellipse 50% 50% at 50% 50%, ${ambientColor(g)} 0%, transparent 65%)`;
+      `radial-gradient(ellipse 50% 50% at 50% 50%, ${ambientColorFromGlowIdx(gIdx)} 0%, transparent 65%)`;
 
     panelSky.style.filter =
-      `brightness(${skyBrightness(g)}) saturate(${(0.95 + g * 0.2).toFixed(2)})`;
+      `brightness(${skyBrightness(gIdx)}) saturate(${(0.95 + GLOW_TIERS[gIdx] * 0.2).toFixed(2)})`;
 
-    document.documentElement.style.setProperty('--glow-strength', g.toFixed(2));
-
-    if (readSun)  readSun.textContent  = sunLabel(s);
-    if (readGlow) readGlow.textContent = glowLabel(g);
+    if (readSun)  readSun.textContent  = SUN_LABELS[sIdx];
+    if (readGlow) readGlow.textContent = GLOW_LABELS[gIdx];
   }
 
-  // ---------- cord visual ----------
-  function applyCord(cordEl, beadEl, cordStringEl, ratio) {
-    // ratio: 0..1 (visual pull only)
-    const base = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cord-base')) || 92;
-    const max  = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cord-pull-max')) || 120;
-    const length = base + ratio * max;
-    cordStringEl.style.setProperty('--cord-current', length + 'px');
-    beadEl.style.top = length + 'px';
+  // ---------- cord + bead visual ----------
+  // The bead is centered in the hit area; its visual position is
+  //   translateY(60px + --pull) inside the hit area, where the hit area's
+  //   bottom edge lines up with the resting cord length. So at rest the bead
+  //   sits 60px above the bottom of the hit area, and pulling extends the cord
+  //   downward by --pull.
+  //
+  // We update TWO things:
+  //   (1) --red-pull / --black-pull on :root (drives the bead transform via CSS)
+  //   (2) the SVG line y2 attribute (drives the visible cord length)
+  function applyCord(cordString, cordLine, pullPx) {
+    const y2 = CORD_REST + pullPx;
+    if (cordLine) cordLine.setAttribute('y2', y2);
+  }
 
-    // slight curve on the cord when pulled
-    const line = cordStringEl.querySelector('line');
-    if (line) {
-      const curve = ratio * 5;
-      line.setAttribute('transform', `rotate(${curve.toFixed(2)} 10 0)`);
-    }
+  function applyPullVars() {
+    document.documentElement.style.setProperty('--red-pull',   state.pullRed   + 'px');
+    document.documentElement.style.setProperty('--black-pull', state.pullBlack + 'px');
+    applyCord(cordStringRed,   cordLineRed,   state.pullRed);
+    applyCord(cordStringBlack, cordLineBlack, state.pullBlack);
   }
 
   // ---------- drag handler ----------
-  function makeDragger(bead, cordEl, cordStringEl, opts) {
-    // opts: { getPull, setPull, getLampValue, setLampValue, lampMin, lampMax, key }
+  function makeDragger(hitEl, cordEl, key, opts) {
+    // opts: { getCurrentIdx, setIdx, onLiveProgress }
     let active = false;
     let pointerId = null;
     let startY = 0;
     let startPull = 0;
     let maxPull = 0;
+    let lastTier = opts.getCurrentIdx();
 
     function onDown(e) {
       if (e.button !== undefined && e.button !== 0) return;
       e.preventDefault();
-      // cancel any running auto-demo so it doesn't fight the user
       cancelAutoDemo();
       active = true;
       pointerId = e.pointerId;
       startY = e.clientY;
-      startPull = opts.getPull();
+      startPull = state[key];
       maxPull = startPull;
-      try { bead.setPointerCapture(pointerId); } catch (_) {}
-      bead.classList.add('is-dragging');
-      cordEl.classList.add('is-active');
-      bead.style.transition = 'none';
-      // also disable cord-string transition during drag
-      cordStringEl.style.transition = 'none';
+      lastTier = opts.getCurrentIdx();
+      try { hitEl.setPointerCapture(pointerId); } catch (_) {}
+      cordEl.classList.add('is-dragging');
     }
 
     function onMove(e) {
       if (!active || e.pointerId !== pointerId) return;
       e.preventDefault();
-      const dy = e.clientY - startY; // positive = down
-      // 1px ≈ 0.005 of pull ratio (200px = full)
-      let p = startPull + dy / 200;
-      p = clamp(p, 0, 1);
+      // vertical-only: ignore horizontal motion
+      const dy = e.clientY - startY;
+      let p = startPull + dy;
+      if (p < 0) p = 0;
+      if (p > CORD_PULL_MAX) p = CORD_PULL_MAX;
       if (p > maxPull) maxPull = p;
-      opts.setPull(p);
-      applyCord(cordEl, bead, cordStringEl, p);
-      // also map pull → lamp value live
-      const lamp = opts.lampMin + (opts.lampMax - opts.lampMin) * p;
-      opts.setLampValue(lamp);
-      applyLampState();
+      state[key] = p;
+      applyPullVars();
+      // live tier feedback while pulling (optional)
+      if (opts.onLiveProgress) opts.onLiveProgress(p);
     }
 
     function onUp(e) {
       if (!active || (e.pointerId !== undefined && e.pointerId !== pointerId)) return;
       active = false;
-      try { bead.releasePointerCapture(pointerId); } catch (_) {}
-      bead.classList.remove('is-dragging');
-      cordEl.classList.remove('is-active');
-      // restore transitions
-      bead.style.transition = '';
-      cordStringEl.style.transition = '';
-      // spring cord back, retain lamp value
-      opts.setPull(0);
-      applyCord(cordEl, bead, cordStringEl, 0);
+      try { hitEl.releasePointerCapture(pointerId); } catch (_) {}
+      cordEl.classList.remove('is-dragging');
+      // commit lamp state from the max pull reached
+      opts.commit(maxPull);
+      // spring the bead back to rest
+      state[key] = 0;
+      applyPullVars();
     }
 
-    function onCancel(e) {
-      if (!active) return;
-      onUp(e);
-    }
-
-    bead.addEventListener('pointerdown',   onDown,   { passive: false });
-    bead.addEventListener('pointermove',   onMove,   { passive: false });
-    bead.addEventListener('pointerup',     onUp,     { passive: false });
-    bead.addEventListener('pointercancel', onCancel, { passive: false });
-    bead.addEventListener('lostpointercapture', () => {
-      if (active) { active = false; bead.classList.remove('is-dragging'); cordEl.classList.remove('is-active'); applyCord(cordEl, bead, cordStringEl, 0); }
+    hitEl.addEventListener('pointerdown',   onDown,   { passive: false });
+    hitEl.addEventListener('pointermove',   onMove,   { passive: false });
+    hitEl.addEventListener('pointerup',     onUp,     { passive: false });
+    hitEl.addEventListener('pointercancel', onUp,     { passive: false });
+    hitEl.addEventListener('lostpointercapture', () => {
+      if (active) { active = false; cordEl.classList.remove('is-dragging'); state[key] = 0; applyPullVars(); }
     });
   }
 
-  // ---------- red bead → sun height (LOW=0.58 .. HIGH=0.34) ----------
-  // Pulling DOWN (positive p) should RAISE the sun (smaller s).
-  makeDragger(beadRed, cordRed, cordStringRed, {
-    getPull: () => pull.red,
-    setPull: (p) => { pull.red = p; },
-    getLampValue: () => state.sun,
-    setLampValue: (v) => {
-      // v is 0..1 from drag. Map: v=0 (no pull) -> low (0.58); v=1 (max pull) -> high (0.34)
-      state.sun = SUN_TOP_MAX - v * (SUN_TOP_MAX - SUN_TOP_MIN);
-    },
-    lampMin: 0, lampMax: 1, key: 'sun'
+  // Red bead: pull down → raise sun. Commit on release based on max pull.
+  // We use a step model so each "valid" pull beyond a threshold raises by one tier.
+  // However, we also let the user drag back down to lower the sun (reverse).
+  makeDragger(beadHitRed, cordRed, 'pullRed', {
+    getCurrentIdx: () => state.sunIdx,
+    commit: (maxPullPx) => {
+      // map pull depth → tier offset from current.
+      // 24px = one tier up (down to 96px = four tiers, but we only have 3).
+      const delta = Math.round(maxPullPx / 24);
+      const newIdx = clamp(state.sunIdx + delta, 0, 2);
+      if (newIdx !== state.sunIdx) {
+        state.sunIdx = newIdx;
+        applyLampState();
+      }
+    }
   });
 
-  // ---------- black bead → glow (DIM 0.18 .. SUNSET 0.92) ----------
-  makeDragger(beadBlack, cordBlack, cordStringBlack, {
-    getPull: () => pull.black,
-    setPull: (p) => { pull.black = p; },
-    getLampValue: () => state.glow,
-    setLampValue: (v) => {
-      // v is 0..1 from drag. Map: v=0 -> dim (0.18), v=1 -> sunset (0.92)
-      state.glow = GLOW_DIM + v * (GLOW_SUNSET - GLOW_DIM);
-    },
-    lampMin: 0, lampMax: 1, key: 'glow'
+  // Black bead: pull down → brighten glow. Same step model.
+  makeDragger(beadHitBlack, cordBlack, 'pullBlack', {
+    getCurrentIdx: () => state.glowIdx,
+    commit: (maxPullPx) => {
+      const delta = Math.round(maxPullPx / 24);
+      const newIdx = clamp(state.glowIdx + delta, 0, 2);
+      if (newIdx !== state.glowIdx) {
+        state.glowIdx = newIdx;
+        applyLampState();
+      }
+    }
   });
 
   // ---------- buttons ----------
   function reset() {
     cancelAutoDemo();
-    state.sun = DEFAULT.sun;
-    state.glow = DEFAULT.glow;
-    pull.red = 0;
-    pull.black = 0;
+    state.sunIdx = DEFAULT_SUN_IDX;
+    state.glowIdx = DEFAULT_GLOW_IDX;
+    state.pullRed = 0;
+    state.pullBlack = 0;
     applyLampState();
-    applyCord(cordRed,   beadRed,   cordStringRed,   0);
-    applyCord(cordBlack, beadBlack, cordStringBlack, 0);
+    applyPullVars();
   }
 
-  // ---------- auto demo ----------
+  // ---------- Auto Demo: simulated pulls on both beads ----------
+  // Sequence: red pulls (raises sun) → black pulls (brightens glow) → repeat
+  // Each "pull" animates the bead 0 → 70px → 0 over ~700ms.
+  // 3 cycles, ending at sun=High + glow=Sunset, then both beads rest.
   let autoTimer = null;
   let autoStart = 0;
-  let autoDuration = 6000; // ms
-  let autoFromSun = 0;
-  let autoFromGlow = 0;
-  let autoTargetSun = 0;
-  let autoTargetGlow = 0;
+  let autoState = null; // { phase, t0, fromIdx, toIdx, cycle, totalCycles }
 
   function startAutoDemo() {
     cancelAutoDemo();
-    autoFromSun = state.sun;
-    autoFromGlow = state.glow;
-    // target: high sun + sunset glow, unless we're already there, then go to dusk
-    const atPeak = state.sun < 0.40 && state.glow > 0.80;
-    if (atPeak) {
-      autoTargetSun = 0.55;
-      autoTargetGlow = GLOW_DIM;
-    } else {
-      autoTargetSun = 0.36;
-      autoTargetGlow = GLOW_SUNSET;
-    }
-    autoStart = performance.now();
     btnAuto.disabled = true;
     btnAuto.textContent = 'Demo…';
+    autoStart = performance.now();
+    autoState = { phase: 'pullRed', cycle: 0, totalCycles: 3, t0: autoStart };
     autoTimer = requestAnimationFrame(tickAuto);
   }
 
@@ -284,33 +275,87 @@
       cancelAnimationFrame(autoTimer);
       autoTimer = null;
     }
+    autoState = null;
     btnAuto.disabled = false;
     btnAuto.textContent = 'Auto Demo';
+    // ensure beads are at rest
+    state.pullRed = 0;
+    state.pullBlack = 0;
+    applyPullVars();
   }
 
+  const PHASE_DUR = 700; // ms per pull animation
+
   function tickAuto(now) {
-    const t = clamp((now - autoStart) / autoDuration, 0, 1);
-    const e = easeInOut(t);
-    state.sun  = autoFromSun  + (autoTargetSun  - autoFromSun)  * e;
-    state.glow = autoFromGlow + (autoTargetGlow - autoFromGlow) * e;
-    // map current state → cord pull ratios for the bead wiggle
-    const redPull   = clamp(1 - (state.sun  - SUN_TOP_MIN) / (SUN_TOP_MAX - SUN_TOP_MIN), 0, 1);
-    const blackPull = clamp((state.glow - GLOW_DIM) / (GLOW_SUNSET - GLOW_DIM), 0, 1);
-    pull.red = redPull;
-    pull.black = blackPull;
-    applyCord(cordRed,   beadRed,   cordStringRed,   redPull);
-    applyCord(cordBlack, beadBlack, cordStringBlack, blackPull);
-    applyLampState();
+    if (!autoState) return;
+    const phaseAge = now - autoState.t0;
+    const t = clamp(phaseAge / PHASE_DUR, 0, 1);
+
+    // up-and-down envelope: 0..1..0 over t=0..1, with ease
+    let env;
+    if (t < 0.5) env = easeOutBack(t * 2) * 0.7 + 0.3;       // ramp up to ~0.95 quickly
+    else         env = (1 - (t - 0.5) * 2) * 0.7 + 0.3;      // ramp back to 0.3, but we go to 0
+
+    // simpler envelope: pull goes 0 → max → 0 across the phase
+    let pull;
+    if (t < 0.5) {
+      const k = t / 0.5;
+      pull = easeOutBack(k) * 60; // reach ~60px
+    } else {
+      const k = (t - 0.5) / 0.5;
+      pull = (1 - easeInOut(k)) * 60;
+    }
+    pull = clamp(pull, 0, 80);
+
+    // active cord in this phase
+    if (autoState.phase === 'pullRed') {
+      state.pullRed = pull;
+      state.pullBlack = 0;
+      // while pulling red, raise sun by one tier per cycle
+      // we just commit the new idx live for visual feedback
+      if (pull > 40 && autoState.committedRed !== state.sunIdx + 1) {
+        // no-op, we commit at end of phase
+      }
+    } else {
+      state.pullRed = 0;
+      state.pullBlack = pull;
+    }
+    applyPullVars();
+
     if (t < 1) {
       autoTimer = requestAnimationFrame(tickAuto);
-    } else {
-      // hold at target, then spring back to resting position
-      cancelAutoDemo();
-      pull.red = 0;
-      pull.black = 0;
-      applyCord(cordRed,   beadRed,   cordStringRed,   0);
-      applyCord(cordBlack, beadBlack, cordStringBlack, 0);
+      return;
     }
+
+    // phase end — commit and advance
+    if (autoState.phase === 'pullRed') {
+      // raise sun by one tier if not already at top
+      if (state.sunIdx < 2) {
+        state.sunIdx = clamp(state.sunIdx + 1, 0, 2);
+        applyLampState();
+      }
+      autoState.phase = 'pullBlack';
+      autoState.t0 = now;
+      autoState.committedRed = true;
+    } else {
+      // brighten glow by one tier if not already at top
+      if (state.glowIdx < 2) {
+        state.glowIdx = clamp(state.glowIdx + 1, 0, 2);
+        applyLampState();
+      }
+      autoState.cycle += 1;
+      if (autoState.cycle >= autoState.totalCycles || (state.sunIdx === 2 && state.glowIdx === 2)) {
+        // done — hold at peak with beads at rest
+        state.pullRed = 0;
+        state.pullBlack = 0;
+        applyPullVars();
+        cancelAutoDemo();
+        return;
+      }
+      autoState.phase = 'pullRed';
+      autoState.t0 = now;
+    }
+    autoTimer = requestAnimationFrame(tickAuto);
   }
 
   btnReset.addEventListener('click', reset);
@@ -322,25 +367,24 @@
   }, { passive: false });
 
   // ---------- keyboard accessibility ----------
-  beadRed.addEventListener('keydown', (e) => {
-    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-    e.preventDefault();
+  function onKey(bead, dir) {
     cancelAutoDemo();
-    const dir = e.key === 'ArrowDown' ? 1 : -1;
-    state.sun = clamp(state.sun - dir * 0.03, SUN_TOP_MIN, SUN_TOP_MAX);
+    if (bead === 'red') {
+      state.sunIdx = clamp(state.sunIdx + (dir === 'down' ? 1 : -1), 0, 2);
+    } else {
+      state.glowIdx = clamp(state.glowIdx + (dir === 'down' ? 1 : -1), 0, 2);
+    }
     applyLampState();
+  }
+
+  beadHitRed.addEventListener('keydown',   (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); onKey('red', e.key === 'ArrowDown' ? 'down' : 'up'); }
   });
-  beadBlack.addEventListener('keydown', (e) => {
-    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-    e.preventDefault();
-    cancelAutoDemo();
-    const dir = e.key === 'ArrowDown' ? 1 : -1;
-    state.glow = clamp(state.glow + dir * 0.05, 0, 1);
-    applyLampState();
+  beadHitBlack.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); onKey('black', e.key === 'ArrowDown' ? 'down' : 'up'); }
   });
 
   // ---------- init ----------
   applyLampState();
-  applyCord(cordRed,   beadRed,   cordStringRed,   0);
-  applyCord(cordBlack, beadBlack, cordStringBlack, 0);
+  applyPullVars();
 })();

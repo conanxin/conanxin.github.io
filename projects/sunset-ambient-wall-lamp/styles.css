@@ -1,29 +1,37 @@
 /* ============================================================
-   Sunset Time Ambient Art Wall Lamp — V2 polish
-   Mobile-first, light warm-room aesthetic, real-frame lamp panel
+   Sunset Time Ambient Art Wall Lamp — V3 pull-chain interaction
+   - 3 clear zones: topbar / lamp-stage / control panel
+   - bead position: translateY(--pull), cord length: SVG line y2
+   - bottom padding so Reset/Auto Demo are above any iOS browser bar
+   - mobile-first, viewport-fit=cover, safe-area-inset respected
    ============================================================ */
 
 :root {
   /* core sizing */
-  --panel-w: min(72vw, 320px);
-  --panel-h: min(72vw, 320px);
-  --panel-radius: 10px;            /* small radius — looks like a real product, not a card */
-  --bead-size: 42px;
+  --panel-w: min(70vw, 300px);
+  --panel-h: min(70vw, 300px);
+  --panel-radius: 8px;
+  --bead-size: 38px;
+  --hit-w: 96px;
+  --hit-h: 140px;
 
-  /* cord pull range */
-  --cord-base: 92px;                /* rest length */
-  --cord-pull-max: 120px;
+  /* cord geometry */
+  --cord-rest-len: 110px;   /* resting cord length (line y2 = 110) */
+  --cord-max-pull: 80px;    /* max visual drop when fully pulled */
   --cord-line-color: #1a1310;
 
-  /* lamp state, controlled by JS */
-  --sun-top: 0.45;                  /* 0.34 (high) → 0.58 (low) */
+  /* pulled state — both default to 0 (resting) */
+  --red-pull: 0px;
+  --black-pull: 0px;
+
+  /* lamp state */
+  --sun-top: 0.45;          /* 0.36 (high) — 0.56 (low) */
   --sun-size: 88px;
   --sun-opacity: 0.95;
-  --glow-strength: 0.55;            /* 0 = dim, 1 = full sunset */
   --ambient-warm: rgba(255, 150, 80, 0.22);
 
   /* motion */
-  --ease-spring: cubic-bezier(.22, 1.2, .36, 1);
+  --ease-spring: cubic-bezier(.22, 1.25, .36, 1);
   --ease-soft:   cubic-bezier(.4, 0, .2, 1);
 }
 
@@ -33,7 +41,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background: #efe7da;
   color: #2b2018;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -49,23 +57,25 @@ html, body {
 
 body { overflow-x: hidden; }
 
+button { font: inherit; }
+
 /* ============================================================
-   stage layout — single column, lamp focal, all in 1 screen
+   page = 3-row column, no overlap
    ============================================================ */
 
-.stage {
+.page {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: 100dvh;
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 8px);
+  align-items: stretch;
   isolation: isolate;
 }
 
 /* ============================================================
-   room — light warm wall with subtle texture and corner plant
+   room — light warm wall, subtle texture, corner plant, lamp glow
    ============================================================ */
 
 .room {
@@ -81,7 +91,6 @@ body { overflow-x: hidden; }
   position: absolute;
   inset: 0;
   background:
-    /* paper / wall micro-noise */
     repeating-linear-gradient(0deg,
       rgba(120, 90, 60, 0.025) 0px,
       rgba(120, 90, 60, 0.025) 1px,
@@ -95,7 +104,6 @@ body { overflow-x: hidden; }
   opacity: 0.55;
 }
 
-/* soft inner vignette so center is brighter (where lamp sits) */
 .wall__vignette {
   position: absolute;
   inset: 0;
@@ -110,8 +118,6 @@ body { overflow-x: hidden; }
   pointer-events: none;
 }
 
-/* blurred plant silhouette — pushed to the extreme bottom-right corner
-   so it never overlaps the bottom HUD on any mobile width */
 .plant {
   position: absolute;
   right: -14%;
@@ -123,16 +129,13 @@ body { overflow-x: hidden; }
   filter: blur(0.4px);
   opacity: 0.40;
   background:
-    /* pot */
     radial-gradient(ellipse 16% 14% at 50% 100%, #3b2a1d 0%, #2a1d12 60%, transparent 75%),
-    /* leaves cluster */
     radial-gradient(ellipse 9% 55% at 30% 60%, #2c4a32 55%, transparent 75%),
     radial-gradient(ellipse 13% 65% at 55% 50%, #1f3a26 55%, transparent 75%),
     radial-gradient(ellipse 8% 50% at 75% 65%, #345a3a 55%, transparent 75%),
     radial-gradient(ellipse 14% 30% at 50% 35%, #284a30 60%, transparent 80%);
 }
 
-/* warm ambient glow on the wall around the lamp, driven by --glow-strength */
 .lampGlow {
   position: absolute;
   top: 18%;
@@ -152,36 +155,46 @@ body { overflow-x: hidden; }
 }
 
 /* ============================================================
-   topbar — small, single line
+   1) TOP compact header — single line each, capped height
    ============================================================ */
 
 .topbar {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 10px 0 0;
+  padding: 8px 6vw 6px;
 }
 
-.topbar__eyebrow {
-  font-size: 9px;
-  letter-spacing: 0.32em;
+.topbar__title {
+  margin: 0;
+  font-size: clamp(15px, 4.4vw, 19px);
   font-weight: 600;
-  color: #a78b6b;
+  letter-spacing: 0.005em;
+  line-height: 1.22;
+  color: #2b2018;
+}
+
+.topbar__subtitle {
+  margin: 3px 0 0;
+  font-size: clamp(10.5px, 2.9vw, 12px);
+  letter-spacing: 0.05em;
+  color: #8a7a64;
+  font-weight: 400;
 }
 
 /* ============================================================
-   hero — lamp + cords, single focal point
+   2) MIDDLE lamp stage — panel + cords + beads only
    ============================================================ */
 
-.hero {
+.stage {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;        /* lamp sits at the top, not vertically centered — gives room for control panel */
   justify-content: center;
   width: 100%;
+  padding: 6px 0 0;
   min-height: 0;
-  padding: 8px 0 0;
 }
 
 .lamp {
@@ -191,7 +204,6 @@ body { overflow-x: hidden; }
   align-items: center;
 }
 
-/* small dark mount bracket above the panel */
 .bracket {
   width: 4px;
   height: 14px;
@@ -202,7 +214,7 @@ body { overflow-x: hidden; }
 }
 
 /* ============================================================
-   panel — square, small radius, real-frame feel
+   panel — small radius, real-frame feel
    ============================================================ */
 
 .panel {
@@ -212,20 +224,15 @@ body { overflow-x: hidden; }
   border-radius: var(--panel-radius);
   overflow: hidden;
   background: #1a0608;
-  /* acrylic feel + wall shadow under the lamp */
   box-shadow:
-    /* ambient warm glow around the panel */
     0 0 70px -10px var(--ambient-warm),
-    /* inset frame highlight */
     inset 0 0 0 1px rgba(255, 220, 180, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    /* drop shadow on the wall */
     0 22px 40px -22px rgba(60, 30, 10, 0.45),
     0 6px 14px -8px rgba(60, 30, 10, 0.30);
   transition: box-shadow 600ms var(--ease-soft);
 }
 
-/* sunset gradient — yellow→orange→red→black, like the reference video */
 .panel__sky {
   position: absolute;
   inset: 0;
@@ -239,7 +246,7 @@ body { overflow-x: hidden; }
     #1a0505 100%);
 }
 
-/* sun — 3 layers: outer red glow, orange halo, white core */
+/* sun — 3 layers */
 .panel__sun {
   position: absolute;
   left: 50%;
@@ -249,10 +256,10 @@ body { overflow-x: hidden; }
   transform: translate(-50%, -50%);
   pointer-events: none;
   transition:
-    top 280ms var(--ease-spring),
-    width 320ms var(--ease-spring),
-    height 320ms var(--ease-spring),
-    opacity 320ms var(--ease-soft);
+    top 360ms var(--ease-spring),
+    width 360ms var(--ease-spring),
+    height 360ms var(--ease-spring),
+    opacity 360ms var(--ease-soft);
   opacity: var(--sun-opacity);
   will-change: top, transform, opacity;
 }
@@ -294,7 +301,6 @@ body { overflow-x: hidden; }
 @keyframes haloBreath  { 0%,100% { transform:scale(1);   opacity:.85; } 50% { transform:scale(1.06); opacity:1; } }
 @keyframes coreBreath  { 0%,100% { transform:scale(1);   filter:brightness(1); } 50% { transform:scale(1.04); filter:brightness(1.08); } }
 
-/* darken the bottom of the panel — ground line */
 .panel__horizon {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -303,7 +309,6 @@ body { overflow-x: hidden; }
   pointer-events: none;
 }
 
-/* acrylic sheen — diagonal highlight */
 .panel__sheen {
   position: absolute;
   inset: 0;
@@ -317,7 +322,6 @@ body { overflow-x: hidden; }
   mix-blend-mode: screen;
 }
 
-/* thin inner frame line */
 .panel__frame {
   position: absolute;
   inset: 0;
@@ -329,17 +333,13 @@ body { overflow-x: hidden; }
   pointer-events: none;
 }
 
-/* 4 small screws — corner mounts, real product feel */
 .screw {
   position: absolute;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, #c8b9a0 0%, #6e5c44 55%, #2a2018 100%);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(0,0,0,0.4),
-    0 0.5px 1px rgba(0,0,0,0.25);
+  background: radial-gradient(circle at 35% 30%, #c8b9a0 0%, #6e5c44 55%, #2a2018 100%);
+  box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.4), 0 0.5px 1px rgba(0,0,0,0.25);
   z-index: 4;
 }
 .screw--tl { top: 8px;  left: 8px; }
@@ -348,25 +348,30 @@ body { overflow-x: hidden; }
 .screw--br { bottom: 8px; right: 8px; }
 
 /* ============================================================
-   cords + beads
+   cords — fixed geometry, no overlap with title or buttons
+   - cord container: fixed 30px wide, height = rest + max pull + small slack
+   - cord string:    absolute from top:0, width 20px, height = rest + pull
+   - cord line:      SVG line, y1=0, y2 controlled by JS
+   - bead hit area:  positioned at bottom of cord string, bead centered inside
    ============================================================ */
 
 .cords {
   position: relative;
   display: flex;
-  gap: 17vw;
+  gap: 16vw;
   margin-top: 2px;
   width: 100%;
   justify-content: center;
   z-index: 1;
-  touch-action: none;     /* critical: prevent page scroll while dragging */
-  padding-bottom: 4px;
+  touch-action: none;
+  /* container height defines the visual zone the cord occupies */
+  height: calc(var(--cord-rest-len) + var(--cord-max-pull) + 18px);
 }
 
 .cord {
   position: relative;
   width: 30px;
-  height: calc(var(--cord-base) + var(--cord-pull-max) + 8px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -378,50 +383,61 @@ body { overflow-x: hidden; }
   left: 50%;
   transform: translateX(-50%);
   width: 20px;
-  height: var(--cord-current, var(--cord-base));
+  height: 100%;
   pointer-events: none;
-  transition: height 320ms var(--ease-spring);
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.20));
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.18));
+  z-index: 1;          /* above the bead which sits below the cord tail */
 }
 
 .cord__line {
   width: 100%;
   height: 100%;
   display: block;
+  overflow: visible;
 }
 
 .cord__line line {
-  transform-origin: 10px 0;
-  transition: transform 280ms var(--ease-spring);
+  /* never tilted, always vertical */
+  transform: none !important;
 }
 
+/* bead hit area — invisible 96×140 box anchored at the bottom of the cord
+   string. The visible bead is positioned so that:
+     - at rest, the bead's TOP edge lines up with the cord tail (y = 110)
+     - when pulled, --pull translates both the bead and the cord tail down */
+.beadHit {
+  position: absolute;
+  top: 0;             /* aligns with top of .cord */
+  left: 50%;
+  width: var(--hit-w);
+  height: 100%;
+  transform: translateX(-50%);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 3;
+}
+
+.beadHit:active { cursor: grabbing; }
+
+/* the visible bead — anchored absolutely inside the cord column.
+   At rest, top = CORD_REST (110px) so the bead's TOP touches the cord tail.
+   When dragged, --pull translates the bead straight down. */
 .bead {
   position: absolute;
-  top: var(--cord-current, var(--cord-base));
   left: 50%;
-  transform: translate(-50%, -50%);
+  top: var(--cord-rest-len);  /* bead top at cord tail */
   width: var(--bead-size);
   height: var(--bead-size);
   border-radius: 50%;
-  border: none;
-  padding: 0;
-  cursor: grab;
-  touch-action: none;
+  display: block;
+  transform: translate(-50%, var(--pull, 0px));
+  transition: transform 520ms var(--ease-spring);
   background-clip: padding-box;
-  transition:
-    top 320ms var(--ease-spring),
-    transform 220ms var(--ease-spring),
-    box-shadow 280ms var(--ease-soft);
-  will-change: top, transform;
+  will-change: transform;
 }
 
-.bead:active { cursor: grabbing; }
-
-.bead.is-dragging {
-  transform: translate(-50%, -50%) scale(1.06);
-}
-
-/* red bead — has a clear top highlight, deep red body, soft cast shadow */
 .bead--red {
   background:
     radial-gradient(circle at 32% 28%, #ffb0a0 0%, #f0573d 35%, #b81f15 70%, #4a0807 100%);
@@ -433,7 +449,6 @@ body { overflow-x: hidden; }
     0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* black bead — dark gray, not pure black, with a clear specular highlight */
 .bead--black {
   background:
     radial-gradient(circle at 32% 28%, #6a625a 0%, #2a2622 40%, #14110f 75%, #050403 100%);
@@ -445,62 +460,39 @@ body { overflow-x: hidden; }
     0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* cord label (static, beneath the cord area) */
-.cord__label {
-  position: absolute;
-  bottom: -16px;
-  left: 50%;
-  font-size: 8.5px;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0.55;
-  transition: opacity 220ms var(--ease-soft);
+.bead.is-dragging {
+  transition: none;            /* no spring while user is actively dragging */
 }
-.cord__label--red   { transform: translateX(-110%); color: #b54a3a; }
-.cord__label--black { transform: translateX(8%);    color: #6a605a; }
 
-.cord.is-active .cord__label { opacity: 0.95; }
+/* while dragging, suppress the spring so the bead tracks the finger 1:1 */
+.cord.is-dragging .bead {
+  transition: none;
+}
 
 /* ============================================================
-   bottom HUD — title, hint, chips, buttons
+   3) BOTTOM control panel — separated from lamp stage
    ============================================================ */
 
-.hud {
+.control {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 10px 7vw calc(env(safe-area-inset-bottom) + 14px);
+  padding:
+    10px 7vw
+    calc(max(96px, env(safe-area-inset-bottom) + 88px));
   text-align: center;
-}
-
-.title {
-  margin: 0;
-  font-size: clamp(15px, 4.4vw, 19px);
-  font-weight: 600;
-  letter-spacing: 0.005em;
-  line-height: 1.22;
-  color: #2b2018;
-}
-
-.subtitle {
-  margin: 3px 0 0;
-  font-size: clamp(10.5px, 2.9vw, 12px);
-  letter-spacing: 0.05em;
-  color: #8a7a64;
-  font-weight: 400;
+  /* clear gap between this block and the lamp stage above */
+  margin-top: 14px;
 }
 
 .hint {
-  margin: 6px 0 12px;
+  margin: 0 0 12px;
   font-size: 12px;
   line-height: 1.4;
   color: #6a5a48;
   letter-spacing: 0.01em;
 }
 
-/* chips — product style, not debug */
 .chips {
   display: inline-flex;
   gap: 8px;
@@ -537,7 +529,6 @@ body { overflow-x: hidden; }
   font-weight: 600;
 }
 
-/* buttons — product demo style */
 .controls {
   display: inline-flex;
   gap: 10px;
@@ -591,15 +582,17 @@ body { overflow-x: hidden; }
 
 @media (max-height: 720px) {
   :root {
-    --panel-w: min(64vw, 280px);
-    --panel-h: min(64vw, 280px);
-    --cord-base: 80px;
+    --panel-w: min(60vw, 260px);
+    --panel-h: min(60vw, 260px);
+    --cord-rest-len: 90px;
+    --cord-max-pull: 70px;
   }
-  .topbar { padding-top: 6px; }
-  .topbar__eyebrow { font-size: 8px; }
-  .cords { gap: 18vw; }
-  .hud { padding-top: 4px; }
-  .hint { margin: 4px 0 8px; font-size: 11px; }
+  .topbar { padding-top: 4px; }
+  .topbar__title { font-size: 14px; }
+  .topbar__subtitle { font-size: 10px; }
+  .stage { padding-top: 2px; }
+  .control { margin-top: 8px; padding-bottom: calc(max(80px, env(safe-area-inset-bottom) + 76px)); }
+  .hint { margin: 0 0 8px; font-size: 11px; }
 }
 
 @media (min-width: 720px) {
@@ -608,8 +601,8 @@ body { overflow-x: hidden; }
     --panel-h: 360px;
   }
   .cords { gap: 180px; }
-  .title { font-size: 22px; }
-  .subtitle { font-size: 13px; }
+  .topbar__title { font-size: 22px; }
+  .topbar__subtitle { font-size: 13px; }
   .hint { font-size: 13px; }
   .plant { right: 4%; bottom: 0; opacity: 0.55; }
 }

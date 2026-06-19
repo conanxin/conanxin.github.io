@@ -1,14 +1,30 @@
 /* ============================================================
-   Sunset Time Ambient Art Wall Lamp — mobile-first styles
+   Sunset Time Ambient Art Wall Lamp — V2 polish
+   Mobile-first, light warm-room aesthetic, real-frame lamp panel
    ============================================================ */
 
 :root {
-  --panel-w: min(78vw, 360px);
-  --panel-h: min(78vw, 360px);
-  --bead-size: 44px;
-  --cord-max-pull: 200px;
+  /* core sizing */
+  --panel-w: min(72vw, 320px);
+  --panel-h: min(72vw, 320px);
+  --panel-radius: 10px;            /* small radius — looks like a real product, not a card */
+  --bead-size: 42px;
+
+  /* cord pull range */
+  --cord-base: 92px;                /* rest length */
+  --cord-pull-max: 120px;
+  --cord-line-color: #1a1310;
+
+  /* lamp state, controlled by JS */
+  --sun-top: 0.45;                  /* 0.34 (high) → 0.58 (low) */
+  --sun-size: 88px;
+  --sun-opacity: 0.95;
+  --glow-strength: 0.55;            /* 0 = dim, 1 = full sunset */
+  --ambient-warm: rgba(255, 150, 80, 0.22);
+
+  /* motion */
   --ease-spring: cubic-bezier(.22, 1.2, .36, 1);
-  --ease-soft: cubic-bezier(.4, 0, .2, 1);
+  --ease-soft:   cubic-bezier(.4, 0, .2, 1);
 }
 
 * { box-sizing: border-box; }
@@ -16,10 +32,10 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   width: 100%;
-  background: #0d0606;
-  color: #f4e9da;
+  height: 100%;
+  background: #efe7da;
+  color: #2b2018;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
                "Segoe UI", "PingFang SC", "Hiragino Sans GB",
                "Microsoft YaHei", sans-serif;
@@ -27,354 +43,330 @@ html, body {
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
   touch-action: manipulation;
-}
-
-body {
-  overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
 }
 
-/* ---------------- stage layout ---------------- */
+body { overflow-x: hidden; }
+
+/* ============================================================
+   stage layout — single column, lamp focal, all in 1 screen
+   ============================================================ */
 
 .stage {
   position: relative;
   width: 100vw;
-  height: 100dvh;
-  height: 100vh; /* fallback */
+  min-height: 100dvh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  align-items: center;
-  justify-items: center;
-  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 8px);
   isolation: isolate;
 }
 
-/* ---------------- soft room background ---------------- */
+/* ============================================================
+   room — light warm wall with subtle texture and corner plant
+   ============================================================ */
 
 .room {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, #2a1612 0%, #140808 65%, #0a0505 100%);
+    radial-gradient(ellipse 70% 55% at 50% 30%, #faf3e6 0%, #efe2cf 50%, #e3d3bb 100%);
 }
 
 .wall {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(255, 200, 150, 0.04), transparent 60%),
-    repeating-linear-gradient(180deg,
-      rgba(255, 240, 220, 0.018) 0px,
-      rgba(255, 240, 220, 0.018) 2px,
-      transparent 2px,
-      transparent 6px);
-  opacity: 0.9;
-}
-
-.corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 35%;
-  height: 55%;
-  background: linear-gradient(225deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%);
-  pointer-events: none;
-}
-
-.plant {
-  position: absolute;
-  bottom: 0;
-  width: 28%;
-  max-width: 140px;
-  height: 32%;
-  pointer-events: none;
+    /* paper / wall micro-noise */
+    repeating-linear-gradient(0deg,
+      rgba(120, 90, 60, 0.025) 0px,
+      rgba(120, 90, 60, 0.025) 1px,
+      transparent 1px,
+      transparent 3px),
+    repeating-linear-gradient(90deg,
+      rgba(120, 90, 60, 0.018) 0px,
+      rgba(120, 90, 60, 0.018) 1px,
+      transparent 1px,
+      transparent 3px);
   opacity: 0.55;
-  filter: blur(0.3px);
 }
 
-.plant--left {
-  left: -4%;
-  background:
-    radial-gradient(ellipse 40% 18% at 50% 100%, #0a1a10 60%, transparent 70%),
-    radial-gradient(ellipse 22% 60% at 30% 90%, #0d2014 55%, transparent 70%),
-    radial-gradient(ellipse 24% 65% at 70% 88%, #0b1d12 55%, transparent 72%);
-}
-
-.plant--right {
-  right: -2%;
-  background:
-    radial-gradient(ellipse 38% 20% at 50% 100%, #0a1a10 60%, transparent 70%),
-    radial-gradient(ellipse 18% 55% at 30% 88%, #0b1d12 55%, transparent 70%),
-    radial-gradient(ellipse 22% 60% at 70% 92%, #0d2014 55%, transparent 72%);
-}
-
-/* ambient room wash driven by JS via --ambient-color */
-.ambient {
+/* soft inner vignette so center is brighter (where lamp sits) */
+.wall__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 55%, var(--ambient-color, rgba(255, 120, 60, 0.0)) 0%, transparent 70%);
-  mix-blend-mode: screen;
-  transition: background 600ms var(--ease-soft);
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 38%,
+      rgba(255, 240, 215, 0.55) 0%,
+      rgba(255, 240, 215, 0) 60%),
+    radial-gradient(ellipse 110% 90% at 50% 50%,
+      transparent 55%,
+      rgba(80, 50, 30, 0.10) 90%,
+      rgba(60, 35, 20, 0.18) 100%);
   pointer-events: none;
 }
 
-/* ---------------- HUD text ---------------- */
+/* blurred plant silhouette — pushed to the extreme bottom-right corner
+   so it never overlaps the bottom HUD on any mobile width */
+.plant {
+  position: absolute;
+  right: -14%;
+  bottom: -6%;
+  width: 26%;
+  max-width: 130px;
+  height: 18%;
+  pointer-events: none;
+  filter: blur(0.4px);
+  opacity: 0.40;
+  background:
+    /* pot */
+    radial-gradient(ellipse 16% 14% at 50% 100%, #3b2a1d 0%, #2a1d12 60%, transparent 75%),
+    /* leaves cluster */
+    radial-gradient(ellipse 9% 55% at 30% 60%, #2c4a32 55%, transparent 75%),
+    radial-gradient(ellipse 13% 65% at 55% 50%, #1f3a26 55%, transparent 75%),
+    radial-gradient(ellipse 8% 50% at 75% 65%, #345a3a 55%, transparent 75%),
+    radial-gradient(ellipse 14% 30% at 50% 35%, #284a30 60%, transparent 80%);
+}
 
-.hud {
+/* warm ambient glow on the wall around the lamp, driven by --glow-strength */
+.lampGlow {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 540px;
+  height: 60vh;
+  max-height: 520px;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%,
+    var(--ambient-warm) 0%,
+    transparent 65%);
+  filter: blur(8px);
+  transition: background 600ms var(--ease-soft);
+  z-index: 0;
+}
+
+/* ============================================================
+   topbar — small, single line
+   ============================================================ */
+
+.topbar {
   position: relative;
   z-index: 2;
-  width: 100%;
-  padding: 0 6vw;
   text-align: center;
+  padding: 10px 0 0;
 }
 
-.hud--top { padding-top: 14px; }
-.hud--bottom { padding-bottom: 14px; }
-
-.eyebrow {
-  margin: 0 0 4px;
-  font-size: 10px;
+.topbar__eyebrow {
+  font-size: 9px;
   letter-spacing: 0.32em;
-  color: rgba(255, 200, 150, 0.55);
   font-weight: 600;
+  color: #a78b6b;
 }
 
-.title {
-  margin: 0;
-  font-size: clamp(18px, 5.2vw, 26px);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.18;
-  color: #fff1d6;
-  text-shadow: 0 1px 12px rgba(255, 140, 60, 0.18);
-}
+/* ============================================================
+   hero — lamp + cords, single focal point
+   ============================================================ */
 
-.subtitle {
-  margin: 4px 0 0;
-  font-size: clamp(11px, 3.2vw, 13px);
-  letter-spacing: 0.04em;
-  color: rgba(255, 220, 180, 0.62);
-  font-weight: 400;
-}
-
-.hint {
-  margin: 0 0 10px;
-  font-size: 12px;
-  line-height: 1.4;
-  color: rgba(255, 220, 180, 0.7);
-  letter-spacing: 0.02em;
-}
-
-.readout {
-  display: inline-flex;
-  gap: 10px;
-  margin: 0 0 12px;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 200, 150, 0.12);
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-}
-
-.readout__row {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255, 220, 180, 0.85);
-}
-
-.readout__key {
-  color: rgba(255, 200, 150, 0.5);
-  font-size: 10px;
-}
-
-.controls {
-  display: inline-flex;
-  gap: 10px;
-}
-
-.btn {
-  appearance: none;
-  -webkit-appearance: none;
-  border: 1px solid rgba(255, 200, 150, 0.25);
-  background: rgba(255, 255, 255, 0.04);
-  color: #fff1d6;
-  font: 600 13px/1 inherit;
-  letter-spacing: 0.08em;
-  padding: 11px 18px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 160ms var(--ease-soft),
-              background 200ms var(--ease-soft),
-              border-color 200ms var(--ease-soft);
-  min-width: 96px;
-  touch-action: manipulation;
-}
-
-.btn:active { transform: scale(0.97); }
-
-.btn--primary {
-  background: linear-gradient(180deg, #f08a3c 0%, #d65a1e 100%);
-  border-color: rgba(255, 180, 110, 0.5);
-  color: #1a0a05;
-  box-shadow: 0 6px 20px -8px rgba(240, 120, 50, 0.6);
-}
-
-.btn--primary:hover { background: linear-gradient(180deg, #f59a4c 0%, #e0681e 100%); }
-
-.btn--ghost:hover { background: rgba(255, 200, 150, 0.08); }
-
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ---------------- lamp body ---------------- */
-
-.lamp {
+.hero {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
   min-height: 0;
+  padding: 8px 0 0;
 }
+
+.lamp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* small dark mount bracket above the panel */
+.bracket {
+  width: 4px;
+  height: 14px;
+  background: linear-gradient(180deg, #5a4a3a 0%, #2a2018 100%);
+  border-radius: 2px 2px 0 0;
+  margin-bottom: -2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+/* ============================================================
+   panel — square, small radius, real-frame feel
+   ============================================================ */
 
 .panel {
   position: relative;
   width: var(--panel-w);
   height: var(--panel-h);
-  border-radius: 22px;
+  border-radius: var(--panel-radius);
   overflow: hidden;
   background: #1a0608;
+  /* acrylic feel + wall shadow under the lamp */
   box-shadow:
-    0 0 0 1px rgba(255, 200, 150, 0.08),
-    0 30px 60px -20px rgba(0, 0, 0, 0.6),
-    0 0 80px -20px var(--glow-color, rgba(255, 120, 60, 0.45));
+    /* ambient warm glow around the panel */
+    0 0 70px -10px var(--ambient-warm),
+    /* inset frame highlight */
+    inset 0 0 0 1px rgba(255, 220, 180, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    /* drop shadow on the wall */
+    0 22px 40px -22px rgba(60, 30, 10, 0.45),
+    0 6px 14px -8px rgba(60, 30, 10, 0.30);
   transition: box-shadow 600ms var(--ease-soft);
-  /* acrylic feel */
-  backdrop-filter: blur(2px);
 }
 
+/* sunset gradient — yellow→orange→red→black, like the reference video */
 .panel__sky {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    #ffd16a 0%,
-    #ffa233 22%,
-    #f06a2a 45%,
-    #b81d1d 70%,
-    #4a0a0a 90%,
-    #0a0202 100%);
-  transition: background 500ms var(--ease-soft);
+    #ffdf7a 0%,
+    #ffb44a 14%,
+    #ff8a2a 28%,
+    #f25a22 44%,
+    #c41d1d 62%,
+    #6e0e0e 80%,
+    #1a0505 100%);
 }
 
-.panel__horizon {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 22%;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.55) 60%, rgba(0, 0, 0, 0.85) 100%);
-  pointer-events: none;
-}
-
+/* sun — 3 layers: outer red glow, orange halo, white core */
 .panel__sun {
   position: absolute;
   left: 50%;
-  top: var(--sun-top, 65%);
-  width: var(--sun-size, 80px);
-  height: var(--sun-size, 80px);
+  top: calc(var(--sun-top) * 100%);
+  width: var(--sun-size);
+  height: var(--sun-size);
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: top 220ms var(--ease-spring),
-              width 320ms var(--ease-spring),
-              height 320ms var(--ease-spring),
-              opacity 300ms var(--ease-soft);
-  opacity: var(--sun-opacity, 0.95);
+  transition:
+    top 280ms var(--ease-spring),
+    width 320ms var(--ease-spring),
+    height 320ms var(--ease-spring),
+    opacity 320ms var(--ease-soft);
+  opacity: var(--sun-opacity);
+  will-change: top, transform, opacity;
 }
 
-.panel__sunCore {
+.panel__sunOuter {
   position: absolute;
-  inset: 22%;
+  inset: -10%;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 45%,
-    #ffffff 0%,
-    #fff5d6 30%,
-    #ffd07a 65%,
-    #ff9a3a 100%);
-  box-shadow:
-    0 0 24px rgba(255, 220, 160, 0.7),
-    0 0 60px rgba(255, 160, 70, 0.5);
-  animation: sunBreath 4.2s ease-in-out infinite;
-}
-
-@keyframes sunBreath {
-  0%, 100% { transform: scale(1); filter: brightness(1); }
-  50%      { transform: scale(1.05); filter: brightness(1.08); }
+  background: radial-gradient(circle, rgba(220, 50, 40, 0.45) 0%, rgba(220, 50, 40, 0.10) 45%, transparent 70%);
+  filter: blur(4px);
+  animation: outerBreath 4.2s ease-in-out infinite;
 }
 
 .panel__sunHalo {
   position: absolute;
-  inset: 0;
+  inset: 4%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 200, 120, 0.55) 0%, rgba(255, 150, 70, 0.18) 40%, transparent 70%);
-  filter: blur(6px);
+  background: radial-gradient(circle, rgba(255, 180, 90, 0.65) 0%, rgba(255, 140, 60, 0.20) 50%, transparent 75%);
+  filter: blur(3px);
   animation: haloBreath 4.2s ease-in-out infinite;
 }
 
-@keyframes haloBreath {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50%      { transform: scale(1.12); opacity: 1; }
+.panel__sunCore {
+  position: absolute;
+  inset: 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%,
+    #ffffff 0%,
+    #fff4d0 35%,
+    #ffd07a 70%,
+    #ff9a3a 100%);
+  box-shadow:
+    0 0 16px rgba(255, 230, 180, 0.7),
+    0 0 36px rgba(255, 170, 80, 0.45);
+  animation: coreBreath 4.2s ease-in-out infinite;
 }
 
-/* acrylic sheen */
+@keyframes outerBreath { 0%,100% { opacity:.7; } 50% { opacity:1; } }
+@keyframes haloBreath  { 0%,100% { transform:scale(1);   opacity:.85; } 50% { transform:scale(1.06); opacity:1; } }
+@keyframes coreBreath  { 0%,100% { transform:scale(1);   filter:brightness(1); } 50% { transform:scale(1.04); filter:brightness(1.08); } }
+
+/* darken the bottom of the panel — ground line */
+.panel__horizon {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 24%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+
+/* acrylic sheen — diagonal highlight */
 .panel__sheen {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 35%, transparent 65%, rgba(255, 255, 255, 0.04) 100%);
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      transparent 28%,
+      transparent 72%,
+      rgba(255, 255, 255, 0.06) 100%);
   pointer-events: none;
   mix-blend-mode: screen;
 }
 
+/* thin inner frame line */
 .panel__frame {
   position: absolute;
   inset: 0;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 220, 180, 0.12);
+  border-radius: var(--panel-radius);
+  border: 1px solid rgba(255, 220, 180, 0.18);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.30);
   pointer-events: none;
 }
 
-/* ---------------- cords + beads ---------------- */
+/* 4 small screws — corner mounts, real product feel */
+.screw {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #c8b9a0 0%, #6e5c44 55%, #2a2018 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0,0,0,0.4),
+    0 0.5px 1px rgba(0,0,0,0.25);
+  z-index: 4;
+}
+.screw--tl { top: 8px;  left: 8px; }
+.screw--tr { top: 8px;  right: 8px; }
+.screw--bl { bottom: 8px; left: 8px; }
+.screw--br { bottom: 8px; right: 8px; }
+
+/* ============================================================
+   cords + beads
+   ============================================================ */
 
 .cords {
   position: relative;
   display: flex;
-  gap: 18vw;
-  margin-top: -6px;
-  padding-bottom: 26px; /* room for static hint labels */
-  height: 346px;
+  gap: 17vw;
+  margin-top: 2px;
   width: 100%;
   justify-content: center;
   z-index: 1;
-  touch-action: none; /* prevent page scroll interfering */
+  touch-action: none;     /* critical: prevent page scroll while dragging */
+  padding-bottom: 4px;
 }
 
 .cord {
   position: relative;
   width: 30px;
-  height: 100%;
+  height: calc(var(--cord-base) + var(--cord-pull-max) + 8px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -386,9 +378,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 20px;
-  height: var(--cord-length, 180px);
+  height: var(--cord-current, var(--cord-base));
   pointer-events: none;
-  transition: height 220ms var(--ease-spring);
+  transition: height 320ms var(--ease-spring);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.20));
 }
 
 .cord__line {
@@ -398,14 +391,13 @@ body {
 }
 
 .cord__line line {
-  /* slight curve when pulled (set via JS as transform) */
   transform-origin: 10px 0;
-  transition: transform 220ms var(--ease-spring);
+  transition: transform 280ms var(--ease-spring);
 }
 
 .bead {
   position: absolute;
-  top: var(--cord-length, 180px);
+  top: var(--cord-current, var(--cord-base));
   left: 50%;
   transform: translate(-50%, -50%);
   width: var(--bead-size);
@@ -414,87 +406,217 @@ body {
   border: none;
   padding: 0;
   cursor: grab;
-  touch-action: none; /* critical: prevent page scroll while dragging */
+  touch-action: none;
   background-clip: padding-box;
-  box-shadow:
-    inset -3px -4px 6px rgba(0, 0, 0, 0.4),
-    inset 3px 4px 6px rgba(255, 255, 255, 0.18),
-    0 6px 16px rgba(0, 0, 0, 0.45);
-  transition: top 220ms var(--ease-spring),
-              transform 220ms var(--ease-spring),
-              box-shadow 220ms var(--ease-soft);
+  transition:
+    top 320ms var(--ease-spring),
+    transform 220ms var(--ease-spring),
+    box-shadow 280ms var(--ease-soft);
   will-change: top, transform;
 }
 
 .bead:active { cursor: grabbing; }
 
+.bead.is-dragging {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* red bead — has a clear top highlight, deep red body, soft cast shadow */
 .bead--red {
   background:
-    radial-gradient(circle at 35% 30%, #ff8a78 0%, #d8331f 45%, #7a0d0a 100%);
+    radial-gradient(circle at 32% 28%, #ffb0a0 0%, #f0573d 35%, #b81f15 70%, #4a0807 100%);
   box-shadow:
     inset -3px -4px 6px rgba(0, 0, 0, 0.45),
-    inset 3px 4px 6px rgba(255, 200, 180, 0.25),
-    0 6px 16px rgba(180, 30, 10, 0.55);
+    inset 3px 4px 6px rgba(255, 200, 180, 0.30),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.10),
+    0 5px 12px rgba(140, 30, 15, 0.40),
+    0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* black bead — dark gray, not pure black, with a clear specular highlight */
 .bead--black {
   background:
-    radial-gradient(circle at 35% 30%, #4a4440 0%, #1a1715 55%, #050403 100%);
+    radial-gradient(circle at 32% 28%, #6a625a 0%, #2a2622 40%, #14110f 75%, #050403 100%);
   box-shadow:
-    inset -3px -4px 6px rgba(0, 0, 0, 0.7),
-    inset 3px 4px 6px rgba(180, 170, 160, 0.18),
-    0 6px 16px rgba(0, 0, 0, 0.6);
+    inset -3px -4px 6px rgba(0, 0, 0, 0.65),
+    inset 3px 4px 6px rgba(200, 190, 180, 0.22),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.06),
+    0 5px 12px rgba(0, 0, 0, 0.40),
+    0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.bead.is-dragging {
-  cursor: grabbing;
-  transform: translate(-50%, -50%) scale(1.08);
-}
-
-/* static legend label (does NOT move with the cord, so labels never overlap each other) */
-.cord__hint {
+/* cord label (static, beneath the cord area) */
+.cord__label {
   position: absolute;
-  bottom: -22px;
+  bottom: -16px;
   left: 50%;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  font-weight: 600;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0.55;
   transition: opacity 220ms var(--ease-soft);
 }
-.cord__hint--red   { transform: translateX(-105%); }
-.cord__hint--black { transform: translateX(5%); }
+.cord__label--red   { transform: translateX(-110%); color: #b54a3a; }
+.cord__label--black { transform: translateX(8%);    color: #6a605a; }
 
-.cord__hint--red   { color: #ff9b88; }
-.cord__hint--black { color: #c2b8b0; }
+.cord.is-active .cord__label { opacity: 0.95; }
 
-.cord.is-active .cord__hint { opacity: 0.9; }
+/* ============================================================
+   bottom HUD — title, hint, chips, buttons
+   ============================================================ */
 
-/* ---------------- responsive tweaks ---------------- */
+.hud {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 10px 7vw calc(env(safe-area-inset-bottom) + 14px);
+  text-align: center;
+}
 
-@media (max-height: 640px) {
+.title {
+  margin: 0;
+  font-size: clamp(15px, 4.4vw, 19px);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.22;
+  color: #2b2018;
+}
+
+.subtitle {
+  margin: 3px 0 0;
+  font-size: clamp(10.5px, 2.9vw, 12px);
+  letter-spacing: 0.05em;
+  color: #8a7a64;
+  font-weight: 400;
+}
+
+.hint {
+  margin: 6px 0 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6a5a48;
+  letter-spacing: 0.01em;
+}
+
+/* chips — product style, not debug */
+.chips {
+  display: inline-flex;
+  gap: 8px;
+  margin: 0 0 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(160, 120, 80, 0.18);
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #5a4a38;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 2px 6px -3px rgba(80,50,30,0.15);
+}
+
+.chip__key {
+  font-size: 10px;
+  color: #9a8a72;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-weight: 500;
+}
+
+.chip__val {
+  color: #2b2018;
+  font-weight: 600;
+}
+
+/* buttons — product demo style */
+.controls {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(120, 90, 60, 0.25);
+  background: rgba(255, 255, 255, 0.7);
+  color: #3a2a1c;
+  font: 600 13px/1 inherit;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease-soft),
+    background 200ms var(--ease-soft),
+    box-shadow 200ms var(--ease-soft);
+  min-width: 100px;
+  touch-action: manipulation;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 8px -3px rgba(80,50,30,0.20);
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn--primary {
+  background: linear-gradient(180deg, #f8a85a 0%, #e07020 100%);
+  border-color: rgba(180, 100, 40, 0.35);
+  color: #2a1208;
+  box-shadow:
+    0 2px 8px -3px rgba(180, 90, 30, 0.45),
+    inset 0 1px 0 rgba(255, 240, 200, 0.4);
+}
+
+.btn--primary:hover { background: linear-gradient(180deg, #fbb86a 0%, #ea7828 100%); }
+
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.85); }
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================================
+   responsive tweaks
+   ============================================================ */
+
+@media (max-height: 720px) {
   :root {
-    --panel-w: min(60vw, 280px);
-    --panel-h: min(60vw, 280px);
+    --panel-w: min(64vw, 280px);
+    --panel-h: min(64vw, 280px);
+    --cord-base: 80px;
   }
-  .cords { height: 260px; }
+  .topbar { padding-top: 6px; }
+  .topbar__eyebrow { font-size: 8px; }
+  .cords { gap: 18vw; }
+  .hud { padding-top: 4px; }
+  .hint { margin: 4px 0 8px; font-size: 11px; }
 }
 
 @media (min-width: 720px) {
   :root {
-    --panel-w: 380px;
-    --panel-h: 380px;
+    --panel-w: 360px;
+    --panel-h: 360px;
   }
-  .cords { gap: 220px; }
-  .title { font-size: 28px; }
-  .subtitle { font-size: 15px; }
+  .cords { gap: 180px; }
+  .title { font-size: 22px; }
+  .subtitle { font-size: 13px; }
+  .hint { font-size: 13px; }
+  .plant { right: 4%; bottom: 0; opacity: 0.55; }
 }
 
-/* respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .panel__sunCore,
-  .panel__sunHalo { animation: none; }
+  .panel__sunHalo,
+  .panel__sunOuter { animation: none; }
   * { transition-duration: 0ms !important; }
 }

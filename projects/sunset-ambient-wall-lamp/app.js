@@ -1,10 +1,11 @@
 /* ============================================================
-   Sunset Time Ambient Art Wall Lamp — interaction logic
-   - Pointer Events for unified touch + mouse
-   - Red bead → sun height (top % of panel)
-   - Black bead → brightness (glow + ambient wash + sun intensity)
-   - Spring-back release + retained state
-   - Auto Demo: animates from dim dusk to full sunset
+   Sunset Time Ambient Art Wall Lamp — V2 interaction logic
+   - Pointer Events (touch + mouse unified)
+   - Red bead  → sun height  (panel-y 0.58 low → 0.34 high)
+   - Black bead→ glow level  (3 tiers: dim / warm / sunset)
+   - Cord length visually extends while dragging, spring-backs on release
+   - Lamp state retained after release
+   - Auto Demo: animated sun rise + glow ramp + bead wiggle
    ============================================================ */
 
 (function () {
@@ -14,7 +15,7 @@
   const panel       = document.getElementById('panel');
   const panelSky    = document.getElementById('panelSky');
   const panelSun    = document.getElementById('panelSun');
-  const ambient     = document.getElementById('ambient');
+  const lampGlow    = document.getElementById('lampGlow');
   const cordRed     = document.querySelector('.cord--red');
   const cordBlack   = document.querySelector('.cord--black');
   const beadRed     = document.getElementById('beadRed');
@@ -26,152 +27,163 @@
   const readSun     = document.getElementById('readSun');
   const readGlow    = document.getElementById('readGlow');
 
-  // ---------- state ----------
-  // sunHeight: 0 = below horizon, 1 = high in sky (range 0.05–0.92)
-  // glow:      0 = dim/dusk, 1 = full bright sunset
+  // ---------- constraints ----------
+  // Sun y range inside the panel (0 = top, 1 = bottom)
+  // Higher value = lower in the panel. We keep the sun in the upper-middle band.
+  const SUN_TOP_MIN  = 0.34;   // top (high sun) — NEVER above 0.34 → never clipped
+  const SUN_TOP_MAX  = 0.58;   // bottom (low sun / horizon)
+
+  // Glow tiers (continuous, but UI labels snap to 3 levels)
+  const GLOW_DIM    = 0.18;
+  const GLOW_WARM   = 0.55;
+  const GLOW_SUNSET = 0.92;
+
+  // Default state — looks good immediately
+  const DEFAULT = { sun: 0.42, glow: GLOW_WARM };
+
+  // Live state
   const state = {
-    sunHeight: 0.30,   // start: sun low (sunset)
-    glow:      0.45,   // start: dim/medium glow
-    pullRed:   0,      // 0..1 of how far the cord is currently pulled
-    pullBlack: 0,
+    sun:  DEFAULT.sun,
+    glow: DEFAULT.glow,
   };
 
-  // baseline cord length when at rest
-  const CORD_BASE = 180;   // px
-  const CORD_PULL_MAX = 160; // px additional when fully dragged
+  // Cord pull ratios (visual only — separate from lamp state)
+  // 0 = rest, 1 = fully pulled
+  const pull = { red: 0, black: 0 };
 
-  // limits for sun and glow
-  const SUN_TOP_MIN = 0.05;
-  const SUN_TOP_MAX = 0.92;
-  const GLOW_MIN = 0;
-  const GLOW_MAX = 1;
-
-  // ---------- derived rendering ----------
-  // map sunHeight (0..1) to css --sun-top (0.92..0.08) — invert so high value = high in sky
-  function sunTopFromHeight(h) {
-    // h=0 -> top=0.88 (low), h=1 -> top=0.10 (high)
-    return 0.88 - h * 0.78;
+  // ---------- helpers ----------
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   }
 
-  function sunSizeFromHeight(h) {
-    // sun appears slightly smaller when high in sky, larger at horizon
-    return 70 + (1 - h) * 35; // 70..105 px
+  function sunSize(s) {
+    // smaller when high, larger when low (horizon glow effect)
+    // s=0.34 (top) → 76px ;  s=0.58 (bottom) → 102px
+    const t = (s - SUN_TOP_MIN) / (SUN_TOP_MAX - SUN_TOP_MIN); // 0..1
+    return Math.round(76 + t * 26);
   }
 
-  function sunOpacityFromGlow(g) {
-    return 0.45 + g * 0.55; // 0.45..1.0
-  }
-
-  function glowColor(g) {
-    // mix from dim red to bright orange-yellow
-    // g=0:   rgba(120, 30, 20, 0.25)
-    // g=0.5: rgba(220, 90, 30, 0.55)
-    // g=1:   rgba(255, 170, 60, 0.75)
-    const r = Math.round(120 + g * 135);
-    const gr = Math.round(30 + g * 140);
-    const b = Math.round(20 + g * 40);
-    const a = (0.25 + g * 0.5).toFixed(2);
-    return `rgba(${r}, ${gr}, ${b}, ${a})`;
+  function sunOpacity(g) {
+    return clamp(0.55 + g * 0.45, 0, 1);
   }
 
   function ambientColor(g) {
-    // room wash: warmer/brighter as glow rises
-    const r = Math.round(60 + g * 200);
-    const gr = Math.round(20 + g * 120);
-    const b = Math.round(10 + g * 40);
-    const a = (g * 0.32).toFixed(2);
+    // wall wash: dim warm red → bright orange
+    const r = Math.round(140 + g * 110);
+    const gr = Math.round(60  + g * 90);
+    const b = Math.round(30  + g * 30);
+    const a = (0.10 + g * 0.32).toFixed(3);
     return `rgba(${r}, ${gr}, ${b}, ${a})`;
   }
 
-  function sunLabel(h) {
-    if (h < 0.25) return 'low';
-    if (h < 0.6)  return 'rising';
-    if (h < 0.85) return 'high';
-    return 'noon';
+  function panelGlowColor(g) {
+    // outer panel box-shadow tint
+    const r = Math.round(180 + g * 75);
+    const gr = Math.round(80  + g * 80);
+    const b = Math.round(40  + g * 20);
+    const a = (0.20 + g * 0.45).toFixed(3);
+    return `rgba(${r}, ${gr}, ${b}, ${a})`;
+  }
+
+  function skyBrightness(g) {
+    // 0.88..1.10
+    return (0.88 + g * 0.22).toFixed(2);
   }
 
   function glowLabel(g) {
-    if (g < 0.25) return 'dim';
-    if (g < 0.55) return 'warm';
-    if (g < 0.8)  return 'bright';
-    return 'sunset';
+    if (g < 0.38) return 'Dim';
+    if (g < 0.78) return 'Warm';
+    return 'Sunset';
   }
 
-  function applyState() {
-    const top = sunTopFromHeight(state.sunHeight);
-    const size = sunSizeFromHeight(state.sunHeight);
-    const op = sunOpacityFromGlow(state.glow);
+  function sunLabel(s) {
+    // s closer to SUN_TOP_MIN = top
+    if (s < 0.42) return 'High';
+    if (s < 0.52) return 'Mid';
+    return 'Low';
+  }
 
-    panelSun.style.setProperty('--sun-top', top);
-    panelSun.style.setProperty('--sun-size', size + 'px');
-    panelSun.style.setProperty('--sun-opacity', op.toFixed(2));
-
-    panel.style.setProperty('--glow-color', glowColor(state.glow));
-    ambient.style.setProperty('--ambient-color', ambientColor(state.glow));
-
-    // slight sky shift: brighter as glow rises
+  // ---------- core render ----------
+  function applyLampState() {
     const g = state.glow;
-    const skyBrightness = 0.85 + g * 0.15;
-    panelSky.style.filter = `brightness(${skyBrightness.toFixed(2)}) saturate(${0.95 + g * 0.2})`;
+    const s = state.sun;
 
-    if (readSun)  readSun.textContent  = sunLabel(state.sunHeight);
-    if (readGlow) readGlow.textContent = glowLabel(state.glow);
+    panelSun.style.setProperty('--sun-top', s.toFixed(3));
+    panelSun.style.setProperty('--sun-size', sunSize(s) + 'px');
+    panelSun.style.setProperty('--sun-opacity', sunOpacity(g).toFixed(2));
+
+    panel.style.setProperty('--ambient-warm', panelGlowColor(g));
+    lampGlow.style.background =
+      `radial-gradient(ellipse 50% 50% at 50% 50%, ${ambientColor(g)} 0%, transparent 65%)`;
+
+    panelSky.style.filter =
+      `brightness(${skyBrightness(g)}) saturate(${(0.95 + g * 0.2).toFixed(2)})`;
+
+    document.documentElement.style.setProperty('--glow-strength', g.toFixed(2));
+
+    if (readSun)  readSun.textContent  = sunLabel(s);
+    if (readGlow) readGlow.textContent = glowLabel(g);
   }
 
-  // ---------- cord visual update ----------
-  function applyCord(cordEl, beadEl, cordStringEl, pullRatio) {
-    // pullRatio: 0..1
-    const length = CORD_BASE + pullRatio * CORD_PULL_MAX;
-    cordStringEl.style.setProperty('--cord-length', length + 'px');
-    beadEl.style.setProperty('--cord-length', length + 'px');
+  // ---------- cord visual ----------
+  function applyCord(cordEl, beadEl, cordStringEl, ratio) {
+    // ratio: 0..1 (visual pull only)
+    const base = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cord-base')) || 92;
+    const max  = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cord-pull-max')) || 120;
+    const length = base + ratio * max;
+    cordStringEl.style.setProperty('--cord-current', length + 'px');
     beadEl.style.top = length + 'px';
 
-    // bend the cord slightly when pulled
+    // slight curve on the cord when pulled
     const line = cordStringEl.querySelector('line');
     if (line) {
-      // slight curve outward: translate endpoint a few px
-      const curve = pullRatio * 6;
-      line.setAttribute('y2', 200);
+      const curve = ratio * 5;
       line.setAttribute('transform', `rotate(${curve.toFixed(2)} 10 0)`);
     }
-
-    // hint labels are static (CSS-positioned) so they never overlap each other
   }
 
   // ---------- drag handler ----------
-  function makeDragger(bead, cordEl, cordStringEl, onPull) {
+  function makeDragger(bead, cordEl, cordStringEl, opts) {
+    // opts: { getPull, setPull, getLampValue, setLampValue, lampMin, lampMax, key }
     let active = false;
     let pointerId = null;
     let startY = 0;
     let startPull = 0;
-    let maxPull = 0; // updated per drag
+    let maxPull = 0;
 
     function onDown(e) {
-      // only primary button / single touch / pen
       if (e.button !== undefined && e.button !== 0) return;
       e.preventDefault();
+      // cancel any running auto-demo so it doesn't fight the user
+      cancelAutoDemo();
       active = true;
       pointerId = e.pointerId;
       startY = e.clientY;
-      startPull = onPull.get();
+      startPull = opts.getPull();
       maxPull = startPull;
-      bead.setPointerCapture(pointerId);
+      try { bead.setPointerCapture(pointerId); } catch (_) {}
       bead.classList.add('is-dragging');
       cordEl.classList.add('is-active');
       bead.style.transition = 'none';
+      // also disable cord-string transition during drag
+      cordStringEl.style.transition = 'none';
     }
 
     function onMove(e) {
       if (!active || e.pointerId !== pointerId) return;
       e.preventDefault();
-      const dy = e.clientY - startY; // positive when dragging down
-      // 1px ≈ 0.005 pull ratio (so 200px drag = full)
-      let pull = startPull + dy / 200;
-      if (pull < 0) pull = 0;
-      if (pull > 1) pull = 1;
-      if (pull > maxPull) maxPull = pull;
-      onPull.set(pull);
-      applyCord(cordEl, bead, cordStringEl, pull);
+      const dy = e.clientY - startY; // positive = down
+      // 1px ≈ 0.005 of pull ratio (200px = full)
+      let p = startPull + dy / 200;
+      p = clamp(p, 0, 1);
+      if (p > maxPull) maxPull = p;
+      opts.setPull(p);
+      applyCord(cordEl, bead, cordStringEl, p);
+      // also map pull → lamp value live
+      const lamp = opts.lampMin + (opts.lampMax - opts.lampMin) * p;
+      opts.setLampValue(lamp);
+      applyLampState();
     }
 
     function onUp(e) {
@@ -180,70 +192,61 @@
       try { bead.releasePointerCapture(pointerId); } catch (_) {}
       bead.classList.remove('is-dragging');
       cordEl.classList.remove('is-active');
-      // keep the value the user reached (maxPull) — that's the "retained" state
-      onPull.commit(maxPull);
-      // visual spring-back: drop the cord back to baseline while keeping the lamp state
+      // restore transitions
       bead.style.transition = '';
+      cordStringEl.style.transition = '';
+      // spring cord back, retain lamp value
+      opts.setPull(0);
       applyCord(cordEl, bead, cordStringEl, 0);
     }
 
-    bead.addEventListener('pointerdown', onDown, { passive: false });
-    bead.addEventListener('pointermove', onMove, { passive: false });
-    bead.addEventListener('pointerup',     onUp,    { passive: false });
-    bead.addEventListener('pointercancel', onUp,    { passive: false });
+    function onCancel(e) {
+      if (!active) return;
+      onUp(e);
+    }
 
-    // also handle losing pointer outside bead
+    bead.addEventListener('pointerdown',   onDown,   { passive: false });
+    bead.addEventListener('pointermove',   onMove,   { passive: false });
+    bead.addEventListener('pointerup',     onUp,     { passive: false });
+    bead.addEventListener('pointercancel', onCancel, { passive: false });
     bead.addEventListener('lostpointercapture', () => {
-      if (active) {
-        active = false;
-        bead.classList.remove('is-dragging');
-        cordEl.classList.remove('is-active');
-        applyCord(cordEl, bead, cordStringEl, 0);
-      }
+      if (active) { active = false; bead.classList.remove('is-dragging'); cordEl.classList.remove('is-active'); applyCord(cordEl, bead, cordStringEl, 0); }
     });
   }
 
-  // ---------- red bead: controls sun height ----------
+  // ---------- red bead → sun height (LOW=0.58 .. HIGH=0.34) ----------
+  // Pulling DOWN (positive p) should RAISE the sun (smaller s).
   makeDragger(beadRed, cordRed, cordStringRed, {
-    get: () => state.pullRed,
-    set: (p) => {
-      state.pullRed = p;
-      // map pull 0..1 -> sunHeight 0..1
-      // (this is the "live" mapping while dragging)
-      state.sunHeight = p;
-      applyState();
+    getPull: () => pull.red,
+    setPull: (p) => { pull.red = p; },
+    getLampValue: () => state.sun,
+    setLampValue: (v) => {
+      // v is 0..1 from drag. Map: v=0 (no pull) -> low (0.58); v=1 (max pull) -> high (0.34)
+      state.sun = SUN_TOP_MAX - v * (SUN_TOP_MAX - SUN_TOP_MIN);
     },
-    commit: (maxP) => {
-      // retain the highest sun position reached
-      state.sunHeight = maxP;
-      state.pullRed = 0;
-      applyState();
-    }
+    lampMin: 0, lampMax: 1, key: 'sun'
   });
 
-  // ---------- black bead: controls glow/brightness ----------
+  // ---------- black bead → glow (DIM 0.18 .. SUNSET 0.92) ----------
   makeDragger(beadBlack, cordBlack, cordStringBlack, {
-    get: () => state.pullBlack,
-    set: (p) => {
-      state.pullBlack = p;
-      state.glow = p;
-      applyState();
+    getPull: () => pull.black,
+    setPull: (p) => { pull.black = p; },
+    getLampValue: () => state.glow,
+    setLampValue: (v) => {
+      // v is 0..1 from drag. Map: v=0 -> dim (0.18), v=1 -> sunset (0.92)
+      state.glow = GLOW_DIM + v * (GLOW_SUNSET - GLOW_DIM);
     },
-    commit: (maxP) => {
-      state.glow = maxP;
-      state.pullBlack = 0;
-      applyState();
-    }
+    lampMin: 0, lampMax: 1, key: 'glow'
   });
 
   // ---------- buttons ----------
   function reset() {
     cancelAutoDemo();
-    state.sunHeight = 0.30;
-    state.glow = 0.45;
-    state.pullRed = 0;
-    state.pullBlack = 0;
-    applyState();
+    state.sun = DEFAULT.sun;
+    state.glow = DEFAULT.glow;
+    pull.red = 0;
+    pull.black = 0;
+    applyLampState();
     applyCord(cordRed,   beadRed,   cordStringRed,   0);
     applyCord(cordBlack, beadBlack, cordStringBlack, 0);
   }
@@ -251,17 +254,26 @@
   // ---------- auto demo ----------
   let autoTimer = null;
   let autoStart = 0;
-  let autoFromH = 0;
-  let autoFromG = 0;
-  let autoDuration = 7000; // ms
-  let autoDirection = 1;
+  let autoDuration = 6000; // ms
+  let autoFromSun = 0;
+  let autoFromGlow = 0;
+  let autoTargetSun = 0;
+  let autoTargetGlow = 0;
 
   function startAutoDemo() {
     cancelAutoDemo();
-    autoFromH = state.sunHeight;
-    autoFromG = state.glow;
+    autoFromSun = state.sun;
+    autoFromGlow = state.glow;
+    // target: high sun + sunset glow, unless we're already there, then go to dusk
+    const atPeak = state.sun < 0.40 && state.glow > 0.80;
+    if (atPeak) {
+      autoTargetSun = 0.55;
+      autoTargetGlow = GLOW_DIM;
+    } else {
+      autoTargetSun = 0.36;
+      autoTargetGlow = GLOW_SUNSET;
+    }
     autoStart = performance.now();
-    autoDirection = (state.glow > 0.85 && state.sunHeight > 0.85) ? -1 : 1;
     btnAuto.disabled = true;
     btnAuto.textContent = 'Demo…';
     autoTimer = requestAnimationFrame(tickAuto);
@@ -277,24 +289,27 @@
   }
 
   function tickAuto(now) {
-    const t = Math.min(1, (now - autoStart) / autoDuration);
-    // smooth ease
-    const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-    if (autoDirection === 1) {
-      state.sunHeight = autoFromH + (0.95 - autoFromH) * e;
-      state.glow      = autoFromG + (0.95 - autoFromG) * e;
-    } else {
-      state.sunHeight = autoFromH + (0.20 - autoFromH) * e;
-      state.glow      = autoFromG + (0.15 - autoFromG) * e;
-    }
-    applyState();
+    const t = clamp((now - autoStart) / autoDuration, 0, 1);
+    const e = easeInOut(t);
+    state.sun  = autoFromSun  + (autoTargetSun  - autoFromSun)  * e;
+    state.glow = autoFromGlow + (autoTargetGlow - autoFromGlow) * e;
+    // map current state → cord pull ratios for the bead wiggle
+    const redPull   = clamp(1 - (state.sun  - SUN_TOP_MIN) / (SUN_TOP_MAX - SUN_TOP_MIN), 0, 1);
+    const blackPull = clamp((state.glow - GLOW_DIM) / (GLOW_SUNSET - GLOW_DIM), 0, 1);
+    pull.red = redPull;
+    pull.black = blackPull;
+    applyCord(cordRed,   beadRed,   cordStringRed,   redPull);
+    applyCord(cordBlack, beadBlack, cordStringBlack, blackPull);
+    applyLampState();
     if (t < 1) {
       autoTimer = requestAnimationFrame(tickAuto);
     } else {
-      // hold at peak, then go back next time the user hits the button
-      btnAuto.disabled = false;
-      btnAuto.textContent = 'Auto Demo';
-      autoTimer = null;
+      // hold at target, then spring back to resting position
+      cancelAutoDemo();
+      pull.red = 0;
+      pull.black = 0;
+      applyCord(cordRed,   beadRed,   cordStringRed,   0);
+      applyCord(cordBlack, beadBlack, cordStringBlack, 0);
     }
   }
 
@@ -306,26 +321,26 @@
     e.preventDefault();
   }, { passive: false });
 
-  // ---------- keyboard accessibility (optional nicety) ----------
+  // ---------- keyboard accessibility ----------
   beadRed.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      const delta = (e.key === 'ArrowDown' ? 0.05 : -0.05);
-      state.sunHeight = Math.max(0, Math.min(1, state.sunHeight + delta));
-      applyState();
-    }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    cancelAutoDemo();
+    const dir = e.key === 'ArrowDown' ? 1 : -1;
+    state.sun = clamp(state.sun - dir * 0.03, SUN_TOP_MIN, SUN_TOP_MAX);
+    applyLampState();
   });
   beadBlack.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-      const delta = (e.key === 'ArrowDown' ? 0.05 : -0.05);
-      state.glow = Math.max(0, Math.min(1, state.glow + delta));
-      applyState();
-    }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    cancelAutoDemo();
+    const dir = e.key === 'ArrowDown' ? 1 : -1;
+    state.glow = clamp(state.glow + dir * 0.05, 0, 1);
+    applyLampState();
   });
 
   // ---------- init ----------
-  applyState();
+  applyLampState();
   applyCord(cordRed,   beadRed,   cordStringRed,   0);
   applyCord(cordBlack, beadBlack, cordStringBlack, 0);
 })();

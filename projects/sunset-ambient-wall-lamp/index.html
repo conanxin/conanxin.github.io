@@ -3,71 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-  <meta name="theme-color" content="#1a0a0a" />
+  <meta name="theme-color" content="#efe7da" />
   <meta name="description" content="An interactive demo of a sunset ambient art wall lamp. Pull the beads to move the sun and warm the room." />
   <title>Sunset Time Ambient Art Wall Lamp</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="stage" id="stage">
-    <!-- soft wall background with hint of greenery and a corner -->
+    <!-- soft light-warm room with plant silhouette -->
     <div class="room" aria-hidden="true">
       <div class="wall"></div>
-      <div class="corner"></div>
-      <div class="plant plant--left"></div>
-      <div class="plant plant--right"></div>
-      <div class="ambient" id="ambient"></div>
+      <div class="wall__vignette"></div>
+      <div class="plant plant--right" aria-hidden="true"></div>
+      <div class="lampGlow" id="lampGlow"></div>
     </div>
 
-    <header class="hud hud--top">
-      <p class="eyebrow">INTERACTIVE DEMO</p>
-      <h1 class="title">Sunset Time Ambient Art Wall Lamp</h1>
-      <p class="subtitle">Pull the beads. Move the sun. Warm the room.</p>
+    <!-- top brand bar: small, single line -->
+    <header class="topbar">
+      <span class="topbar__eyebrow">INTERACTIVE DEMO</span>
     </header>
 
-    <section class="lamp" id="lamp" aria-label="Sunset ambient wall lamp simulator">
-      <!-- the wall panel itself -->
-      <div class="panel" id="panel">
-        <div class="panel__sky" id="panelSky"></div>
-        <div class="panel__sun" id="panelSun">
-          <div class="panel__sunCore"></div>
-          <div class="panel__sunHalo"></div>
-        </div>
-        <div class="panel__horizon"></div>
-        <div class="panel__sheen"></div>
-        <div class="panel__frame"></div>
-      </div>
+    <!-- the hero: lamp + cords, centered, single screen focal point -->
+    <section class="hero" aria-label="Sunset ambient wall lamp simulator">
+      <div class="lamp" id="lamp">
+        <!-- mount bracket (subtle metal arm above the lamp) -->
+        <div class="bracket" aria-hidden="true"></div>
 
-      <!-- two pull cords with beads -->
-      <div class="cords" id="cords" aria-label="Pull cords. Touch and drag the beads up and down.">
-        <div class="cord cord--red" data-cord="red">
-          <div class="cord__string" id="cordStringRed">
-            <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
-              <line x1="10" y1="0" x2="10" y2="200" stroke="rgba(20,12,8,0.78)" stroke-width="2" stroke-linecap="round" />
-            </svg>
+        <!-- the wall panel: small radius, real-frame feel, 4 screw dots -->
+        <div class="panel" id="panel" role="img" aria-label="Square sunset-gradient art panel mounted on a warm wall">
+          <div class="panel__sky" id="panelSky"></div>
+          <div class="panel__sun" id="panelSun">
+            <div class="panel__sunOuter"></div>
+            <div class="panel__sunCore"></div>
+            <div class="panel__sunHalo"></div>
           </div>
-          <button class="bead bead--red" id="beadRed" type="button" aria-label="Red bead. Drag down to raise the sun."></button>
-          <span class="cord__hint cord__hint--red">RED · SUN</span>
+          <div class="panel__horizon"></div>
+          <div class="panel__sheen"></div>
+          <div class="panel__frame"></div>
+          <span class="screw screw--tl" aria-hidden="true"></span>
+          <span class="screw screw--tr" aria-hidden="true"></span>
+          <span class="screw screw--bl" aria-hidden="true"></span>
+          <span class="screw screw--br" aria-hidden="true"></span>
         </div>
 
-        <div class="cord cord--black" data-cord="black">
-          <div class="cord__string" id="cordStringBlack">
-            <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
-              <line x1="10" y1="0" x2="10" y2="200" stroke="rgba(20,12,8,0.82)" stroke-width="2" stroke-linecap="round" />
-            </svg>
+        <!-- two pull cords with beads -->
+        <div class="cords" id="cords" aria-label="Pull cords. Touch and drag the beads up and down.">
+          <div class="cord cord--red" data-cord="red">
+            <div class="cord__string" id="cordStringRed">
+              <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="10" y1="0" x2="10" y2="200" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <button class="bead bead--red" id="beadRed" type="button" aria-label="Red bead. Drag down to raise the sun."></button>
+            <span class="cord__label cord__label--red">RED · SUN</span>
           </div>
-          <button class="bead bead--black" id="beadBlack" type="button" aria-label="Black bead. Drag down to brighten the light."></button>
-          <span class="cord__hint cord__hint--black">BLACK · BRIGHTNESS</span>
+
+          <div class="cord cord--black" data-cord="black">
+            <div class="cord__string" id="cordStringBlack">
+              <svg class="cord__line" viewBox="0 0 20 200" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="10" y1="0" x2="10" y2="200" stroke="#1a1310" stroke-width="1.6" stroke-linecap="round" />
+              </svg>
+            </div>
+            <button class="bead bead--black" id="beadBlack" type="button" aria-label="Black bead. Drag down to brighten the light."></button>
+            <span class="cord__label cord__label--black">BLACK · GLOW</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="hud hud--bottom" aria-label="Lamp controls">
-      <p class="hint" id="hint">下拉红色珠子调节太阳高度，下拉黑色珠子调节光线强度。</p>
-      <div class="readout" id="readout" aria-live="polite">
-        <span class="readout__row"><span class="readout__key">SUN</span><span class="readout__val" id="readSun">low</span></span>
-        <span class="readout__row"><span class="readout__key">GLOW</span><span class="readout__val" id="readGlow">dim</span></span>
+    <!-- bottom HUD: title + short hint + 2 product-style chips + buttons -->
+    <section class="hud" aria-label="Lamp controls">
+      <h1 class="title">Sunset Time Ambient Art Wall Lamp</h1>
+      <p class="subtitle">Pull the beads. Move the sun. Warm the room.</p>
+      <p class="hint">下拉红色珠子移动太阳，下拉黑色珠子调节光线。</p>
+
+      <div class="chips" id="chips" aria-live="polite">
+        <span class="chip">
+          <span class="chip__key">Sun Height</span>
+          <span class="chip__val" id="readSun">Mid</span>
+        </span>
+        <span class="chip">
+          <span class="chip__key">Glow Level</span>
+          <span class="chip__val" id="readGlow">Warm</span>
+        </span>
       </div>
+
       <div class="controls">
         <button class="btn btn--ghost" id="btnReset" type="button">Reset</button>
         <button class="btn btn--primary" id="btnAuto" type="button">Auto Demo</button>

@@ -1,32 +1,5 @@
 [
   {
-    "title": "Interlatent 现代 AI 机器人中文译读",
-    "subtitle": "从第一性原理、VLA、动作分块到物理 AI 后训练闭环",
-    "slug": "interlatent-robotics-cn",
-    "category": "research",
-    "type": "TRANSLATION PAGE",
-    "status": "已上线",
-    "status_color": "#ff5b1f",
-    "updated": "2026-06-19",
-    "summary": "完整翻译 Interlatent Primer 系列两篇正典文章：机器人硬件入门指南 + 从第一性原理看现代 AI 机器人。保留原文结构、9+6 张可视化图示位置、术语译名表与背景资料链接（VLA、ACT、π₀、GR00T、RT-2、Open X-Embodiment、LeRobot、Genie 3、EgoMimic、HIL-SERL 等）。",
-    "entry_url": "/projects/interlatent-robotics-cn/",
-    "source_kind": "translation",
-    "featured": false,
-    "tags": [
-      "机器人",
-      "Physical AI",
-      "VLA",
-      "动作分块",
-      "RT-2",
-      "π₀",
-      "GR00T",
-      "LeRobot",
-      "SO-101",
-      "翻译",
-      "Interlatent"
-    ]
-  },
-  {
     "title": "学术论文写作方法和技巧",
     "subtitle": "从机器翻译演示稿到 AI 论文写作系统",
     "slug": "academic-paper-writing-guide",
@@ -536,8 +509,8 @@
     "type": "GALLERY",
     "status": "active",
     "status_color": "#3fb950",
-    "updated": "2026-06-18",
-    "summary": "Artvee Gallery demo · refreshed 2026-06-18",
+    "updated": "2026-06-15",
+    "summary": "Artvee Gallery demo · refreshed 2026-06-15",
     "entry_url": "/projects/artvee-gallery-demo/",
     "source_kind": "static-site",
     "featured": false,
@@ -557,8 +530,8 @@
     "type": "DIGEST",
     "status": "active",
     "status_color": "#3fb950",
-    "updated": "2026-06-18",
-    "summary": "Artvee daily digest · refreshed 2026-06-18",
+    "updated": "2026-06-15",
+    "summary": "Artvee daily digest · refreshed 2026-06-15",
     "entry_url": "/projects/artvee-gallery-digest/",
     "source_kind": "static-site",
     "featured": false,
@@ -617,6 +590,32 @@
       "Claude Code",
       "Prompt Engineering",
       "Context Engineering"
+    ]
+  },
+  {
+    "title": "日落氛围艺术壁灯",
+    "subtitle": "Sunset Time Ambient Art Wall Lamp · 拉绳互动模拟",
+    "slug": "sunset-ambient-wall-lamp",
+    "category": "creative",
+    "type": "INTERACTIVE DEMO",
+    "status": "新上线",
+    "status_color": "#f08a3c",
+    "updated": "2026-06-19",
+    "summary": "移动优先的日落氛围艺术壁灯交互模拟器。手机触屏拖拽两条拉绳上的红珠与黑珠，红色珠子控制太阳在黄橙红黑渐变面板中的高度与光晕大小，黑色珠子切换微光 / 暖光 / 明亮日落三种强度并实时改变房间环境光与面板 glow。Pointer Events + touch-action: none，桌面鼠标与移动触摸一致；松手保留调节结果并 spring-back 拉绳；Reset 与 Auto Demo 按钮可一键还原或自动演示从微光到完整日落的过程。",
+    "entry_url": "/projects/sunset-ambient-wall-lamp/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "Interactive",
+      "Wall Lamp",
+      "Sunset",
+      "Ambient",
+      "Pointer Events",
+      "Mobile-first",
+      "Web Art",
+      "创意",
+      "灯具",
+      "产品交互"
     ]
   }
 ]

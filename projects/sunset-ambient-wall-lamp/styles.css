@@ -1,0 +1,500 @@
+/* ============================================================
+   Sunset Time Ambient Art Wall Lamp — mobile-first styles
+   ============================================================ */
+
+:root {
+  --panel-w: min(78vw, 360px);
+  --panel-h: min(78vw, 360px);
+  --bead-size: 44px;
+  --cord-max-pull: 200px;
+  --ease-spring: cubic-bezier(.22, 1.2, .36, 1);
+  --ease-soft: cubic-bezier(.4, 0, .2, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: #0d0606;
+  color: #f4e9da;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+}
+
+body {
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------------- stage layout ---------------- */
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  height: 100vh; /* fallback */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  isolation: isolate;
+}
+
+/* ---------------- soft room background ---------------- */
+
+.room {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #2a1612 0%, #140808 65%, #0a0505 100%);
+}
+
+.wall {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(255, 200, 150, 0.04), transparent 60%),
+    repeating-linear-gradient(180deg,
+      rgba(255, 240, 220, 0.018) 0px,
+      rgba(255, 240, 220, 0.018) 2px,
+      transparent 2px,
+      transparent 6px);
+  opacity: 0.9;
+}
+
+.corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 55%;
+  background: linear-gradient(225deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+}
+
+.plant {
+  position: absolute;
+  bottom: 0;
+  width: 28%;
+  max-width: 140px;
+  height: 32%;
+  pointer-events: none;
+  opacity: 0.55;
+  filter: blur(0.3px);
+}
+
+.plant--left {
+  left: -4%;
+  background:
+    radial-gradient(ellipse 40% 18% at 50% 100%, #0a1a10 60%, transparent 70%),
+    radial-gradient(ellipse 22% 60% at 30% 90%, #0d2014 55%, transparent 70%),
+    radial-gradient(ellipse 24% 65% at 70% 88%, #0b1d12 55%, transparent 72%);
+}
+
+.plant--right {
+  right: -2%;
+  background:
+    radial-gradient(ellipse 38% 20% at 50% 100%, #0a1a10 60%, transparent 70%),
+    radial-gradient(ellipse 18% 55% at 30% 88%, #0b1d12 55%, transparent 70%),
+    radial-gradient(ellipse 22% 60% at 70% 92%, #0d2014 55%, transparent 72%);
+}
+
+/* ambient room wash driven by JS via --ambient-color */
+.ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 55%, var(--ambient-color, rgba(255, 120, 60, 0.0)) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  transition: background 600ms var(--ease-soft);
+  pointer-events: none;
+}
+
+/* ---------------- HUD text ---------------- */
+
+.hud {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 6vw;
+  text-align: center;
+}
+
+.hud--top { padding-top: 14px; }
+.hud--bottom { padding-bottom: 14px; }
+
+.eyebrow {
+  margin: 0 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: rgba(255, 200, 150, 0.55);
+  font-weight: 600;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(18px, 5.2vw, 26px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.18;
+  color: #fff1d6;
+  text-shadow: 0 1px 12px rgba(255, 140, 60, 0.18);
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: clamp(11px, 3.2vw, 13px);
+  letter-spacing: 0.04em;
+  color: rgba(255, 220, 180, 0.62);
+  font-weight: 400;
+}
+
+.hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 220, 180, 0.7);
+  letter-spacing: 0.02em;
+}
+
+.readout {
+  display: inline-flex;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 200, 150, 0.12);
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.readout__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 220, 180, 0.85);
+}
+
+.readout__key {
+  color: rgba(255, 200, 150, 0.5);
+  font-size: 10px;
+}
+
+.controls {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255, 200, 150, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff1d6;
+  font: 600 13px/1 inherit;
+  letter-spacing: 0.08em;
+  padding: 11px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-soft),
+              background 200ms var(--ease-soft),
+              border-color 200ms var(--ease-soft);
+  min-width: 96px;
+  touch-action: manipulation;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn--primary {
+  background: linear-gradient(180deg, #f08a3c 0%, #d65a1e 100%);
+  border-color: rgba(255, 180, 110, 0.5);
+  color: #1a0a05;
+  box-shadow: 0 6px 20px -8px rgba(240, 120, 50, 0.6);
+}
+
+.btn--primary:hover { background: linear-gradient(180deg, #f59a4c 0%, #e0681e 100%); }
+
+.btn--ghost:hover { background: rgba(255, 200, 150, 0.08); }
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------------- lamp body ---------------- */
+
+.lamp {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.panel {
+  position: relative;
+  width: var(--panel-w);
+  height: var(--panel-h);
+  border-radius: 22px;
+  overflow: hidden;
+  background: #1a0608;
+  box-shadow:
+    0 0 0 1px rgba(255, 200, 150, 0.08),
+    0 30px 60px -20px rgba(0, 0, 0, 0.6),
+    0 0 80px -20px var(--glow-color, rgba(255, 120, 60, 0.45));
+  transition: box-shadow 600ms var(--ease-soft);
+  /* acrylic feel */
+  backdrop-filter: blur(2px);
+}
+
+.panel__sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    #ffd16a 0%,
+    #ffa233 22%,
+    #f06a2a 45%,
+    #b81d1d 70%,
+    #4a0a0a 90%,
+    #0a0202 100%);
+  transition: background 500ms var(--ease-soft);
+}
+
+.panel__horizon {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 22%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.55) 60%, rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+}
+
+.panel__sun {
+  position: absolute;
+  left: 50%;
+  top: var(--sun-top, 65%);
+  width: var(--sun-size, 80px);
+  height: var(--sun-size, 80px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: top 220ms var(--ease-spring),
+              width 320ms var(--ease-spring),
+              height 320ms var(--ease-spring),
+              opacity 300ms var(--ease-soft);
+  opacity: var(--sun-opacity, 0.95);
+}
+
+.panel__sunCore {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%,
+    #ffffff 0%,
+    #fff5d6 30%,
+    #ffd07a 65%,
+    #ff9a3a 100%);
+  box-shadow:
+    0 0 24px rgba(255, 220, 160, 0.7),
+    0 0 60px rgba(255, 160, 70, 0.5);
+  animation: sunBreath 4.2s ease-in-out infinite;
+}
+
+@keyframes sunBreath {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.05); filter: brightness(1.08); }
+}
+
+.panel__sunHalo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 200, 120, 0.55) 0%, rgba(255, 150, 70, 0.18) 40%, transparent 70%);
+  filter: blur(6px);
+  animation: haloBreath 4.2s ease-in-out infinite;
+}
+
+@keyframes haloBreath {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50%      { transform: scale(1.12); opacity: 1; }
+}
+
+/* acrylic sheen */
+.panel__sheen {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 35%, transparent 65%, rgba(255, 255, 255, 0.04) 100%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.panel__frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 220, 180, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* ---------------- cords + beads ---------------- */
+
+.cords {
+  position: relative;
+  display: flex;
+  gap: 18vw;
+  margin-top: -6px;
+  padding-bottom: 26px; /* room for static hint labels */
+  height: 346px;
+  width: 100%;
+  justify-content: center;
+  z-index: 1;
+  touch-action: none; /* prevent page scroll interfering */
+}
+
+.cord {
+  position: relative;
+  width: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cord__string {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: var(--cord-length, 180px);
+  pointer-events: none;
+  transition: height 220ms var(--ease-spring);
+}
+
+.cord__line {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cord__line line {
+  /* slight curve when pulled (set via JS as transform) */
+  transform-origin: 10px 0;
+  transition: transform 220ms var(--ease-spring);
+}
+
+.bead {
+  position: absolute;
+  top: var(--cord-length, 180px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--bead-size);
+  height: var(--bead-size);
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: grab;
+  touch-action: none; /* critical: prevent page scroll while dragging */
+  background-clip: padding-box;
+  box-shadow:
+    inset -3px -4px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 4px 6px rgba(255, 255, 255, 0.18),
+    0 6px 16px rgba(0, 0, 0, 0.45);
+  transition: top 220ms var(--ease-spring),
+              transform 220ms var(--ease-spring),
+              box-shadow 220ms var(--ease-soft);
+  will-change: top, transform;
+}
+
+.bead:active { cursor: grabbing; }
+
+.bead--red {
+  background:
+    radial-gradient(circle at 35% 30%, #ff8a78 0%, #d8331f 45%, #7a0d0a 100%);
+  box-shadow:
+    inset -3px -4px 6px rgba(0, 0, 0, 0.45),
+    inset 3px 4px 6px rgba(255, 200, 180, 0.25),
+    0 6px 16px rgba(180, 30, 10, 0.55);
+}
+
+.bead--black {
+  background:
+    radial-gradient(circle at 35% 30%, #4a4440 0%, #1a1715 55%, #050403 100%);
+  box-shadow:
+    inset -3px -4px 6px rgba(0, 0, 0, 0.7),
+    inset 3px 4px 6px rgba(180, 170, 160, 0.18),
+    0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.bead.is-dragging {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* static legend label (does NOT move with the cord, so labels never overlap each other) */
+.cord__hint {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 220ms var(--ease-soft);
+}
+.cord__hint--red   { transform: translateX(-105%); }
+.cord__hint--black { transform: translateX(5%); }
+
+.cord__hint--red   { color: #ff9b88; }
+.cord__hint--black { color: #c2b8b0; }
+
+.cord.is-active .cord__hint { opacity: 0.9; }
+
+/* ---------------- responsive tweaks ---------------- */
+
+@media (max-height: 640px) {
+  :root {
+    --panel-w: min(60vw, 280px);
+    --panel-h: min(60vw, 280px);
+  }
+  .cords { height: 260px; }
+}
+
+@media (min-width: 720px) {
+  :root {
+    --panel-w: 380px;
+    --panel-h: 380px;
+  }
+  .cords { gap: 220px; }
+  .title { font-size: 28px; }
+  .subtitle { font-size: 15px; }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel__sunCore,
+  .panel__sunHalo { animation: none; }
+  * { transition-duration: 0ms !important; }
+}

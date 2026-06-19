@@ -1,25 +1,25 @@
 [
   {
-    "date": "2026-06-18",
-    "title": "Artvee Daily Digest — 2026-06-18",
-    "markdown_path": "digests/artvee-digest-2026-06-18.md",
-    "html_path": "digests/artvee-digest-2026-06-18.html",
+    "date": "2026-06-20",
+    "title": "Artvee Daily Digest — 2026-06-20",
+    "markdown_path": "digests/artvee-digest-2026-06-20.md",
+    "html_path": "digests/artvee-digest-2026-06-20.html",
     "selected_count": 1,
     "categories": [
       "posters-design"
     ],
     "artists": [
-      "Luther_Daniels_Bradley"
+      "Edward_Penfield"
     ],
     "strategy": "diverse",
     "picks": [
       {
-        "id": "luther_daniels_bradley_american_1853_1917_an_international_conference_that_would_bring_about_peace_1914_posters-design_standard_dd7b462b",
-        "artist": "Luther_Daniels_Bradley",
+        "id": "edward_penfield_american_1866_-_1925_collier_s_vol_xxvii_no_22_august_31_1901_1901_posters-design_standard_aeec9b7f",
+        "artist": "Edward_Penfield",
         "category": "posters-design",
         "near_dup_cluster_id": null
       }
     ],
-    "created_at": "2026-06-18T11:40:41"
+    "created_at": "2026-06-20T07:45:22"
   }
 ]

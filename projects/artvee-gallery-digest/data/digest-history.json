@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updated_at": "2026-06-18T11:40:41",
-  "generated_at": "2026-06-18T11:40:41",
+  "updated_at": "2026-06-20T07:45:22",
+  "generated_at": "2026-06-20T07:45:22",
   "window_days": 30,
-  "history_entries": 7,
+  "history_entries": 9,
   "available_range": {
     "first_date": "2026-06-12",
-    "latest_date": "2026-06-18"
+    "latest_date": "2026-06-20"
   },
   "summary": {
-    "total_days": 7,
-    "total_picks": 15,
-    "unique_artists": 13,
+    "total_days": 9,
+    "total_picks": 17,
+    "unique_artists": 14,
     "top_categories": [
       {
-        "category": "japanese-prints",
-        "count": 7
+        "category": "posters-design",
+        "count": 9
       },
       {
-        "category": "posters-design",
+        "category": "japanese-prints",
         "count": 7
       },
       {
@@ -28,6 +28,28 @@
     ]
   },
   "entries": [
+    {
+      "date": "2026-06-20",
+      "picks": [
+        {
+          "id": "edward_penfield_american_1866_-_1925_collier_s_vol_xxvii_no_22_august_31_1901_1901_posters-design_standard_aeec9b7f",
+          "artist": "Edward_Penfield",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-19",
+      "picks": [
+        {
+          "id": "luther_daniels_bradley_american_1853_1917_christmas_carols_perhaps_the_monarchs_will_oblige_1914_posters-design_standard_e72dd606",
+          "artist": "Luther_Daniels_Bradley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
     {
       "date": "2026-06-18",
       "picks": [

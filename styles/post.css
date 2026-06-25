@@ -305,3 +305,23 @@ blockquote p:last-child {
         padding: var(--space-xs);
     }
 }
+
+/* Post cover image (article-scoped: only targets <figure class="post-cover">) */
+.post-cover {
+    margin: var(--space-lg) 0;
+}
+
+.post-cover img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .post-cover img {
+        max-height: 220px;
+    }
+}

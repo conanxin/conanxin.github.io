@@ -1,0 +1,116 @@
+---
+description: Taste rules for the wbw-spacex-mars-cn project — a long-form Chinese essay page under projects/wbw-spacex-mars-cn/. Apply these rules whenever writing or modifying CSS, components, or layout for this project. Reference DNA: Vercel (primary) + Stripe (secondary). Source: TASTE-2B polish.
+globs:
+  - "projects/wbw-spacex-mars-cn/**/*.css"
+  - "projects/wbw-spacex-mars-cn/**/*.scss"
+  - "projects/wbw-spacex-mars-cn/**/*.html"
+  - "projects/wbw-spacex-mars-cn/**/*.js"
+  - "projects/wbw-spacex-mars-cn/**/*.ts"
+  - "projects/wbw-spacex-mars-cn/**/*.tsx"
+  - "projects/wbw-spacex-mars-cn/**/*.jsx"
+  - "projects/wbw-spacex-mars-cn/**/*.vue"
+  - "projects/wbw-spacex-mars-cn/**/*.svelte"
+  - "projects/wbw-spacex-mars-cn/**/*.astro"
+alwaysApply: false
+---
+
+# wbw-spacex-mars-cn — Taste Rules
+
+**Reference DNA**: Vercel (primary — engineering clarity, restraint) + Stripe (secondary — long-form body rhythm, accent rationing).
+**Source audit**: `docs/taste-rules.md` (repo root) + TASTE-2A audit.
+
+---
+
+## Identity
+
+Long-form Chinese-language essay (a Wait But Why translation). Typography-first reading experience. The interface disappears when the reader is engaged. Dark editorial theme only — light theme is wrong for long-form reading.
+
+## Color tokens (must use these; never hardcode hex outside `:root`)
+
+```
+--bg: #0a0e1a
+--bg-soft: #111727
+--bg-card: #161e2e
+--text: #e6edf3
+--text-dim: #8a96a8
+--text-mute: #5b6577
+--text-muted: #94a3b8
+--accent: #4a8cff                (links, active, focus, glassmorphic card tint)
+--accent-2: #c1440e              (ONE-TIME scarcity glow; ≤ 1 element)
+--accent-3: #ffb347              (tertiary, sparingly)
+--border: #232c40
+--link: #5aa6ff
+--shadow: 0 4px 24px rgba(0,0,0,.4)
+--shadow-card: 0 0 0 1px rgba(74,140,255,0.18)   (Vercel-style border-shadow)
+--status-ok: #4ade80
+--status-warn: #fbbf24
+--status-fail: #f87171
+--warn-bg: #fef3c7
+--warn-border: #f59e0b
+--warn-text: #92400e
+--earth-from: #6cb0ff
+--earth-to: #1e5a99
+--mars-from: #c1440e
+--mars-to: #5a1a08
+```
+
+## Radius tokens (must use these)
+
+```
+--radius: 8px                     (default card / button)
+--radius-sm: 4px                  (small UI: annotation hint, roadmap tag)
+--radius-lg: 12px                 (panels: annotated mode, image-fallback)
+--radius-card: 14px               (source cards, footnote groups, article figures)
+--radius-pill: 999px              (nav tags, footnote refs)
+```
+
+## Accent rationing (mandatory)
+
+`--accent` / `#4a8cff`: links, buttons, `:focus-visible`, interactive card tints, active section nav pills.
+`--accent-2` / `#c1440e`: **EXACTLY ONE** element per page (scarcity signal). The current usage is a 60px wide glow on one card.
+`--accent-3` / `#ffb347`: sparingly.
+
+Never: section headers in accent, dividers in accent, decorative icons in accent, multiple orange elements.
+
+Before merging, `grep -rE '#c1440e' projects/wbw-spacex-mars-cn/styles.css` must be ≤ 1 (within `:root` definition only).
+
+## Accessibility (MANDATORY — do NOT remove)
+
+1. **`:focus-visible` outline rule** — 2px solid `var(--accent)`, 2px offset, `var(--radius-sm)` border-radius.
+2. **`prefers-reduced-motion` block** — kills all transitions, animations, and the starfield canvas animation when user has reduced-motion set.
+
+If you remove or weaken either rule, you are violating WCAG 2.4.7 (Focus Visible) or WCAG 2.3.3 (Animation from Interactions). Don't do it.
+
+## Typography
+
+- Font family: `-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif`
+- 2 font families only: system sans + `JetBrains Mono` (for code/special callouts). No web fonts.
+- Hero H1: 80px / 800 weight / -1.6px tracking
+- H2: 24px / 700
+- Body: 17.28px / 400 / 1.95 line-height (immersive mode) — the long-form reading rhythm from Stripe
+
+## Anti-patterns (always forbidden)
+
+- Hero photography
+- Light theme (use `data-theme="mars-sand"` only as opt-in toggle)
+- Multi-color accent inflation
+- `filter: drop-shadow(...)`
+- Border-style shadows outside annotated mode (they disappear on dark)
+- Web fonts
+- Pill-shape buttons (pills are for nav tags only)
+- Hover lift above 1px
+- Animations on text content (only on cards / nav)
+- Hardcoded hex outside `:root`
+- `git add .` / `git add -A` (per-file add is mandatory)
+- Direct use of `#4a8cff` in component CSS (use `var(--accent)`)
+
+## 4 extracted taste principles
+
+1. **Hero-Scale Title as Commitment Signal** — 80px/800 typographic hero = "decide in 3 seconds"
+2. **Dark Glassmorphic Cards Over Flat Boxes** — blue tint + blue glow
+3. **Single Accent Color as Signal, Not Shade** — blue dominant, orange scarcity
+4. **Restraint: No Hero Image** — the essay's value is intellectual, not emotional
+
+## When in doubt
+
+Read `docs/taste-rules.md` (repo root) for the full rationale. If a change doesn't fit any of the 4 documented principles, propose it as a separate design review — not a silent code change.

@@ -6,18 +6,34 @@
   --text: #e6edf3;
   --text-dim: #8a96a8;
   --text-mute: #5b6577;
+  --text-muted: #94a3b8;             /* P0: alias used in fallback declarations */
   --accent: #4a8cff;
   --accent-2: #c1440e;
   --accent-3: #ffb347;
   --border: #232c40;
   --link: #5aa6ff;
   --shadow: 0 4px 24px rgba(0,0,0,.4);
+  --shadow-card: 0 0 0 1px rgba(74,140,255,0.18);  /* P0: Vercel-style border-shadow (used in annotated mode) */
   --max-width: 1100px;
   --content-width: 720px;
   --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
-  --radius: 8px;
+  --radius: 8px;                     /* default card / button */
+  --radius-sm: 4px;                  /* P0: small UI elements (annotation hint corners) */
+  --radius-lg: 12px;                 /* P0: panels (annotated mode panels) */
+  --radius-card: 14px;               /* P0: source cards, footnote groups */
+  --radius-pill: 999px;              /* P0: nav tags / footnote refs */
   --transition: 0.2s ease;
+  --status-ok: #4ade80;              /* P0: comparison table "ok" */
+  --status-warn: #fbbf24;            /* P0: comparison table "warn" */
+  --status-fail: #f87171;            /* P0: comparison table "fail" */
+  --warn-bg: #fef3c7;                /* P0: warning callout background (mars-sand) */
+  --warn-border: #f59e0b;            /* P0: warning callout border */
+  --warn-text: #92400e;              /* P0: warning callout text */
+  --earth-from: #6cb0ff;             /* P0: earth circle gradient (deep-space) */
+  --earth-to: #1e5a99;
+  --mars-from: #c1440e;              /* P0: mars circle gradient (deep-space) */
+  --mars-to: #5a1a08;
 }
 
 [data-theme="mars-sand"] {
@@ -142,7 +158,7 @@ html[data-reading-mode="annotated"] .article-body {
 html[data-reading-mode="annotated"] .footnote-ref {
   background: rgba(74, 140, 255, 0.18);
   border: 1px solid rgba(74, 140, 255, 0.4);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   padding: 0.05rem 0.32rem;
   color: var(--accent);
   font-weight: 600;
@@ -163,8 +179,8 @@ html[data-reading-mode="annotated"] .context-panel,
 html[data-reading-mode="annotated"] .article-footnotes,
 html[data-reading-mode="annotated"] .original-appendix,
 html[data-reading-mode="annotated"] .sources-section {
-  box-shadow: 0 0 0 1px rgba(74, 140, 255, 0.18);
-  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
   padding: 1rem 1.15rem;
   margin-block: 1.2rem;
 }
@@ -172,8 +188,8 @@ html[data-reading-mode="annotated"] .sources-section {
 html[data-reading-mode="annotated"] #context-section,
 html[data-reading-mode="annotated"] #glossary-section,
 html[data-reading-mode="annotated"] #timeline-section {
-  box-shadow: 0 0 0 1px rgba(74, 140, 255, 0.18);
-  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
   padding: 1rem 1.15rem;
 }
 
@@ -185,7 +201,7 @@ html[data-reading-mode="annotated"] .annotation-hint {
   margin: 0 0 1.5rem;
   color: var(--text);
   font-size: 0.95rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 html[data-reading-mode="annotated"] .source-card,
@@ -619,7 +635,7 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 100%;
   height: auto;
   margin: 0 auto;
-  border-radius: 14px;
+  border-radius: var(--radius-card);
 }
 .article-figure a {
   display: block;
@@ -633,7 +649,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .image-fallback {
   border: 1px solid rgba(148, 163, 184, .25);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 1rem;
   color: var(--muted, #94a3b8);
   background: rgba(15, 23, 42, .45);
@@ -828,7 +844,7 @@ sup a[href^="#footnote"]:hover {
 .roadmap-tag {
   display: inline-block;
   padding: 0.25rem 0.7rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.78rem;
   margin-right: 0.5rem;
 }
@@ -873,8 +889,8 @@ sup a[href^="#footnote"]:hover {
   box-shadow: 0 0 60px rgba(74, 140, 255, 0.4);
 }
 
-.earth-circle { background: radial-gradient(circle at 30% 30%, #6cb0ff 0%, #1e5a99 100%); }
-.mars-circle { background: radial-gradient(circle at 30% 30%, #c1440e 0%, #5a1a08 100%); box-shadow: 0 0 60px rgba(193, 68, 14, 0.4); }
+.earth-circle { background: radial-gradient(circle at 30% 30%, var(--earth-from) 0%, var(--earth-to) 100%); }
+.mars-circle { background: radial-gradient(circle at 30% 30%, var(--mars-from) 0%, var(--mars-to) 100%); box-shadow: 0 0 60px rgba(193, 68, 14, 0.4); }
 
 .planet-stats { font-size: 0.9rem; color: var(--text-dim); }
 .planet-stats div { margin: 0.3rem 0; }
@@ -912,9 +928,9 @@ sup a[href^="#footnote"]:hover {
 
 .compare-table tr:hover { background: var(--bg-card); }
 
-.compare-table td.ok { color: #4ade80; font-weight: 600; }
-.compare-table td.warn { color: #fbbf24; font-weight: 600; }
-.compare-table td.fail { color: #f87171; font-weight: 600; }
+.compare-table td.ok { color: var(--status-ok); font-weight: 600; }
+.compare-table td.warn { color: var(--status-warn); font-weight: 600; }
+.compare-table td.fail { color: var(--status-fail); font-weight: 600; }
 
 /* Glossary */
 .glossary-search {
@@ -930,6 +946,14 @@ sup a[href^="#footnote"]:hover {
 }
 
 .glossary-search:focus { outline: none; border-color: var(--accent); }
+/* P0 polish: keep the custom border on focus, but restore the keyboard
+   outline via :focus-visible so screen-reader / keyboard users still see
+   a visible focus ring on this input. The outline is suppressed for
+   mouse :focus (the original behavior) but shown for keyboard :focus-visible. */
+.glossary-search:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 
 .glossary-grid {
   display: grid;
@@ -1034,7 +1058,7 @@ sup a[href^="#footnote"]:hover {
   padding: 0.1rem 0.5rem;
   background: var(--bg-soft);
   color: var(--text-mute);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.72rem;
   text-transform: uppercase;
 }
@@ -1105,9 +1129,9 @@ sup a[href^="#footnote"]:hover {
 
 /* No-JS fallback banner */
 .noscript-banner {
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
-  color: #92400e;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  color: var(--warn-text);
   padding: 1.5rem;
   margin: 1.5rem auto;
   max-width: 900px;
@@ -1121,7 +1145,7 @@ sup a[href^="#footnote"]:hover {
 }
 
 .noscript-banner a {
-  color: #92400e;
+  color: var(--warn-text);
   text-decoration: underline;
   font-weight: 600;
 }
@@ -1280,7 +1304,7 @@ sup a[href^="#footnote"]:hover {
 .appendix-card,
 .source-card {
   border: 1px solid rgba(148, 163, 184, 0.22);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   padding: 1rem;
   margin: 0.85rem 0;
   background: rgba(15, 23, 42, 0.20);
@@ -1319,7 +1343,7 @@ h3[id] {
 
 .footnote-group {
   border: 1px solid rgba(148, 163, 184, 0.22);
-  border-radius: 14px;
+  border-radius: var(--radius-card);
   padding: 0.85rem 1rem;
   margin: 0.85rem 0;
   background: rgba(15, 23, 42, 0.18);
@@ -1351,4 +1375,36 @@ h3[id] {
   font-size: 0.82rem;
   color: var(--text-mute, #5b6577);
   letter-spacing: 0.02em;
+}
+
+/* =====================================================
+   P0 polish (TASTE-2B) — accessibility, motion, and token alignment
+   Reference: Vercel (primary) + Stripe (secondary)
+   ===================================================== */
+
+/* Vercel-style keyboard focus — applies to all interactive elements
+   except the glossary search (which has its own token-aligned focus style). */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Honor user's motion preference (WCAG 2.3.3) — kill all transitions +
+   animations, and stop the starfield canvas from being a continuous
+   animation. The page must remain readable; only the visual motion stops. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  /* Pause the starfield canvas animation; leaving it running wastes CPU
+     on a static-looking page for users who explicitly disabled motion. */
+  .starfield {
+    animation: none !important;
+  }
 }

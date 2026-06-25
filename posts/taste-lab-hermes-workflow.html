@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>把"设计品味"变成"可执行工作流"：Taste Lab × Hermes Agent | Xin Conan</title>
+    <meta name="description" content="设计品味不是天赋，是一组可被提取、可被审计、可在 PR 里被机械执行的取舍。三段真实案例（知识库 / 长文 / 个人主页）讲清楚怎么工程化。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/post.css">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-dot"></span>
+                <span>STATUS // ONLINE</span>
+            </div>
+            <div class="status-right">
+                <span>XIN_CONAN</span>
+                <span class="separator">|</span>
+                <span>v1.0</span>
+                <span class="separator">|</span>
+                <span id="datetime">--</span>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="terminal-header">
+            <div class="logo">
+                <span class="prompt">></span>
+                <span class="logo-text">xin-conan</span>
+                <span class="cursor">_</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="terminal-nav">
+            <a href="/" class="nav-item">
+                <span class="nav-num">01.</span>
+                <span>HOME</span>
+            </a>
+            <a href="/posts/" class="nav-item active">
+                <span class="nav-num">02.</span>
+                <span>POSTS</span>
+            </a>
+            <a href="/about.html" class="nav-item">
+                <span class="nav-num">03.</span>
+                <span>ABOUT</span>
+            </a>
+            <a href="/feed.xml" class="nav-item">
+                <span class="nav-num">04.</span>
+                <span>RSS</span>
+            </a>
+        </nav>
+
+        <!-- Article -->
+        <article class="post-article">
+            <header class="post-header">
+                <div class="post-meta-header">
+                    <span class="meta-date">2026-06-25</span>
+                    <span class="separator">//</span>
+                    <span class="meta-tag">ESSAY</span>
+                    <span class="separator">//</span>
+                    <span class="meta-read">10 min</span>
+                </div>
+                <h1 class="post-title">把"设计品味"变成"可执行工作流"：Taste Lab × Hermes Agent</h1>
+                <p class="post-subtitle">设计品味不是天赋，是一组可被提取、可被审计、可在 PR 里被机械执行的取舍。三段真实案例（知识库 / 长文 / 个人主页）讲清楚怎么工程化。</p>
+            </header>
+
+            <div class="post-content">
+
+                <figure class="post-cover">
+                    <img src="../assets/images/taste-lab-hermes-workflow/01-cover-taste-lab-hermes-workflow.jpg" alt="封面图：Taste Lab 与 Hermes Agent 如何把设计品味转化为可执行工作流" loading="lazy">
+                    <figcaption>封面概念图：Taste Lab 与 Hermes Agent 如何把设计品味转化为可执行工作流</figcaption>
+                </figure>
+
+                <blockquote class="post-attribution">
+                    <p>本文配图由 MiniMax image-01 生成，人工筛选后使用；配图为概念图 / 流程图 / 示意图，不是真实产品截图。</p>
+                </blockquote>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-1.md</span>
+                </div>
+
+                <h2>一句话核心</h2>
+
+                <p>设计品味不是形容词，而是一组可迁移的取舍。把它工程化之后，就从"个人审美"变成了"可被自动执行、可被新人复用、可在 PR 里被审查"的工作流。</p>
+
+                <h2>写在前面</h2>
+
+                <p>我做工程师的时间不短。很长时间里，"设计品味"对我而言是一个尴尬的词——它像是天赋、像是个人的灵感、像是某些设计师会议室里才会出现的话题。一个工程师谈品味，听上去就像在说"我懂艺术"。</p>
+
+                <p>但过去几个月，我在 Taste Lab 这个 pilot 项目里做了一件很具体的事：用 Claude Code 加一个叫 taste 的 skill，把 Vercel / Linear / Stripe 这类网站的设计系统拆成 token 表格，再用拆出来的 token 去 audit 自己的几个老项目，最后在 PR 里只做 CSS 改动的 P0 polish，再合到 main 上，发布到 GitHub Pages，校验线上 CSS 和本地 CSS 字节级一致。</p>
+
+                <p>这件具体的事做下来之后，我对"品味"的看法变了。它不是灵感，不是天赋，它是一组<strong>可被提取、可被量化、可被机械执行的取舍</strong>。一旦你把这种取舍工程化，你就不再需要"找到一个有品味的设计师"——你只需要"找到一组对的设计参考"。</p>
+
+                <p>这篇文章想讲的就是这件事：怎么把"我有品味"变成"我们有一套方法论"。三段案例，分别覆盖知识库 / 长文工程页 / 个人主页三类页面形态，正好对应三个真实项目。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-2.md</span>
+                </div>
+
+                <h2>一、为什么 Stripe 不是所有项目的默认参考</h2>
+
+                <p>我先讲一个反直觉的事。</p>
+
+                <p>按照很多设计师的本能，"想要看起来像 Stripe" 几乎是中文互联网产品页的默认目标。Bento grid、留白、克制的 accent color、multi-layer shadow——这些 Stripe 的招牌元素，几乎成了"高级感"的代名词。</p>
+
+                <p>但如果你的项目是一个<strong>长篇阅读页</strong>（比如一篇翻译稿、一个 essay collection、一个文档站的长文），照搬 Stripe 几乎一定会失败。Stripe 的设计逻辑是为 30 秒决定买不买的 B2B 买家服务的——你需要在 banner、CTA、demo 截图之间高强度切换注意力，所以你需要 bento grid 的不对称来制造节奏，需要 accent color 来锚定 CTA，需要 navy-tinted shadow 来给浮在白底上的卡片"按下去"。</p>
+
+                <p>长文不是这样工作的。长文的读者要在同一个页面上待 10 分钟、20 分钟、40 分钟。他们不需要 CTA，不需要 bento grid，不需要 accent ratioing 的紧迫感——他们需要的是排版安静、章节清晰、色彩温度不刺眼。Stripe 那种"克制但有紧迫感"的克制，对长文来说反而是噪音。</p>
+
+                <p>我做的 WBW SpaceX Mars CN（一个把 Wait But Why 翻译成中文的长文工程页）就踩了这个坑。一开始我打算按之前项目的成功经验，直接 Linear + Vercel 的 reference DNA 套上去。但 audit 跑完，报告非常明确地告诉我：这是一个 editorial / long-form essay 页面，不是 engineering project 页面，Linear 的"工具在暗色调里跑 8 小时"的设计哲学可以借鉴，但 Linear 的 accent 颜色（lime 在 10% 透明度的微弱叠加）放在一个中文长文里完全不对味。</p>
+
+                <p>我最后改成 <strong>Vercel 主 + Stripe 辅</strong>。Vercel 提供工程感的克制和 giant typography 的版面气势，Stripe 提供长文 lede 的字号、weight、行高和重点色 discipline。</p>
+
+                <p>这个改动的意义远大于一篇文章的视觉选择。它意味着：<strong>reference DNA 不是一个可以复用的常量，而是一个和项目 archetype 强相关的决策</strong>。Taste Lab 给我带来的最大收获之一，就是让这件事从"靠设计师的直觉"变成"靠 audit 阶段的 mismatch 显式报错"。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-3.md</span>
+                </div>
+
+                <h2>二、Taste Lab 的核心机制</h2>
+
+                <p>Taste Lab 不是一个产品，它是一组<strong>约定</strong>。包括：一个 Claude Code 的 taste skill（装在本地 skills 目录下），一组 reference 站点的 Design DNA 库（用 Playwright MCP 抓 token），一个 4 步 pipeline（Measure → Pattern → Taste → Observer），和一套被强制执行的 anti-slop 审计（拒绝 "clean and modern" 这类空话）。</p>
+
+                <p>具体怎么用，三步走。</p>
+
+                <p><strong>第一步：建一个 reference DNA 库。</strong> 选三到五个你觉得"知道为什么好看"的网站作为 reference，用 taste skill 跑一遍。skill 会做四件事：Playwright 抓 1440×900 的 viewport 截图和 full-page 截图（full-page 在长文上经常超时，是已知问题），用 accessibility tree 把 DOM 的关键 token（spacing、typography、colors、radius、shadows、grid、image ratios）抓出来，然后在 markdown 里写出 Design Map 和 Taste DNA 两个部分——前者是测量值的结构化表格，后者是 4 条核心 taste principle（每条都是 "Trigger → Decision → Reason → Evidence" 的四元组）。最后做一次 anti-slop grep，把 "clean and modern" / "user-friendly" 这类没有信息量的形容词都标红。<strong>零 anti-slop match 是硬性要求。</strong></p>
+
+                <p>我自己的库里有 Linear、Stripe、Vercel 三个 PASS（这三个跨了 dev tool / B2B SaaS / technical platform 三种 archetype，互相之间的 DNA 几乎完全不一样，但放在一起看反而把"什么能借鉴、什么不能借鉴"这件事讲清楚了），加上 noemamag.com 的一个 PARTIAL 网络失败（Meta 的 IP 在 WSL2 网络上被挡，TCP/443 一直 timeout），加上 tastelab.xyz 的 baseline。</p>
+
+                <p><strong>第二步：拿这个库去 audit 自己的项目。</strong> 选一个真实项目，填入三件套：URL、target repo path、archetype guess。skill 会跑同一个 pipeline，把你项目的 token 抓出来，然后和 reference 库做 cross-ref，输出一份审计报告。审计报告会明确告诉你：你的项目应该 borrow 哪些 reference 的哪些 principle，应该 avoid 哪些 reference 的哪些 principle。这就是"design DNA mismatch 在 audit 阶段被显式捕获"的来源。</p>
+
+                <p><strong>第三步：把审计结论转成 CSS 改动，PR，合到 main。</strong> 这一步反而是整个工作流里最不"AI"的一步——你打开项目的 styles.css，做 7 处 surgical 的 patch：加几个 :root token，把 9 个 inline hex 迁过去，把 8 个 inline border-radius 改用 token，加一条 :focus-visible 规则，加一条 prefers-reduced-motion 块。然后 <code>git add &lt;file&gt;</code> 一个一个加（不能 <code>git add .</code>，那会扫到不相关的改动），开 PR。PR 合了之后等 GitHub Pages 部署完成，curl 下来线上 CSS，和本地 main 的 styles.css 用 sha256sum 比对——前缀必须完全一致。这是 byte-identity 校验，比像素 diff 强得多。</p>
+
+                <p>到这里，整个回路是闭合的。Taste 不是灵感，是工程。</p>
+
+                <figure>
+                    <img src="../assets/images/taste-lab-hermes-workflow/02-workflow-pipeline-diagram.jpg" alt="流程图：从 reference DNA 到 audit、rules、CSS polish、PR、deploy、regression check" loading="lazy">
+                    <figcaption>流程图：从 reference DNA 到 audit、rules、CSS polish、PR、deploy、regression check</figcaption>
+                </figure>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-4.md</span>
+                </div>
+
+                <h2>三、三个真实案例</h2>
+
+                <figure>
+                    <img src="../assets/images/taste-lab-hermes-workflow/03-three-archetypes-map.jpg" alt="三类页面：知识库、长文工程页、个人主页的设计 DNA" loading="lazy">
+                    <figcaption>三类页面：知识库、长文工程页、个人主页的设计 DNA</figcaption>
+                </figure>
+
+                <h3>案例一：Hermes KB（知识库 / Agent 项目说明页）</h3>
+
+                <p><strong>Archetype</strong>：knowledge base，record browser with filter pills + search + card list。</p>
+                <p><strong>Reference DNA 选型</strong>：Linear（primary）+ Vercel（secondary）。</p>
+                <p><strong>为什么是 Linear 主</strong>：知识库是长会话工具，读者会在页面上停很久来读、搜、跳章节。Linear 的 near-black ground plane 配 Inter Variable 的紧排版，本来就是为这种 marathon session 设计的。我把"暗色调可以减轻长会话的视觉疲劳"这条经验搬过来。</p>
+                <p><strong>从 Linear 借</strong>：暗色 ground、Inter Variable 的 H1/H2/H3 hierarchy、8px spacing 量化、borders-over-shadows 扁平深度。</p>
+                <p><strong>从 Vercel 借</strong>：warm off-white 次级背景、1440px container、border-style shadow。</p>
+                <p><strong>不要 Linear 的 lime accent at 10%</strong>：lime 在 Linear 里的语义是"信号叠加"——状态指示、active state、hover 态——但 Hermes KB 需要一个明显的 status indicator（"verified" / "draft" / "verified-by-X"），用 10% 透明的 lime 区分不出"是状态"还是"是装饰"。所以我换了一个不太常见的灰蓝色作为 status color，明确告诉读者这是语义。</p>
+                <p><strong>PR 落地</strong>：5 个文件改，CSS polish + 三份新文档（CLAUDE.md、docs/taste-rules.md、.cursor/rules/hermes-kb-taste.mdc），per-file <code>git add</code>。CI 没配，但 7/7 自动化 design regression check 全过。线上 CSS 和本地 main 字节级一致。</p>
+                <p><strong>关键 takeaway</strong>：reference DNA 是按 archetype 选型，不是按个人偏好选型。Linear 不是因为"我喜欢 Linear"，是因为"这个 archetype 的 usage pattern 匹配 Linear 的设计假设"。</p>
+
+                <h3>案例二：WBW SpaceX Mars CN（长文 / Editorial 工程页）</h3>
+
+                <p><strong>Archetype</strong>：editorial / long-form essay，中文翻译稿。读者在页面上停留 10-40 分钟，单向滚动，需要 reading-mode 切换（沉浸 / 注释 / 紧凑），需要 section anchor，需要长 footnote 群组。</p>
+                <p><strong>Reference DNA 选型（修订后）</strong>：Vercel（primary）+ Stripe（secondary）。<strong>初始推荐是 Linear + Vercel，被 audit 阶段否定。</strong></p>
+                <p><strong>为什么 audit 阶段否掉了 Linear</strong>：Linear 的 accent 策略（lime at 10%）放在中文长文里会出现两个问题——一是 10% 透明度的灰绿在中文 dense text 旁边几乎不可见（中文的笔画密度让"弱信号"几乎消失），二是长文读者不需要"状态指示"——他们需要的是"在 2000 字里只看到一个重点"。</p>
+                <p><strong>从 Vercel 借</strong>：giant typography（64px H1，-3.84px tracking），208px section gap，Geist Mono body 的版本——我用的是 JetBrains Mono 替代（Geist 是 Vercel 自己的字体，proprietary），1px border-style shadow 体系。</p>
+                <p><strong>从 Stripe 借</strong>：body lede 32px / weight 300 / line-height 1.95（这是 Stripe 文档站 lede 的参数，单条 token 可以直接 borrow）；accent rationing 原则——这一页里 accent 颜色只用在两个地方：focus 状态和 active section 锚点的左边线。</p>
+                <p><strong>PR 落地</strong>：12 个新 :root token（其中 :focus-visible 一条、prefers-reduced-motion 一条），9 个 inline hex 迁移到 token，8 个 inline border-radius 改用 token，4 个文件改。11/11 自动化 design regression check 全过，sha256[:16] 线上和本地匹配。</p>
+                <p><strong>关键 takeaway</strong>：audit 阶段发现 DNA mismatch 是这个工作流最重要的"省钱"机制。如果直接照着 reference doc 的默认推荐（Vercel+Linear）做，PR 合了之后上线才发现"中文长文里 lime accent 几乎看不见"，那修改成本是 audit 阶段的 5-10 倍。<strong>在 audit 阶段被显式报错的 mismatch，是最便宜的 mismatch。</strong></p>
+
+                <h3>案例三：Conanxin Homepage（个人主页 / Portfolio Index）</h3>
+
+                <p><strong>Archetype</strong>：personal landing page，digital garden 的入口。读者可能是从一个老博客回链进来的老朋友，可能是搜索结果里路过的好奇人，可能是某个项目的 README 里点过来的开发者。</p>
+                <p><strong>Reference DNA 选型</strong>：Vercel（primary）+ Linear（secondary），Stripe 只在某些 visual element 上做局部 accent，不进入 reference 体系。</p>
+                <p><strong>为什么 Stripe 退到 local accent 而不进 reference 体系</strong>：个人主页和 B2B SaaS landing 是两件事。Stripe 的"30 秒决定买不买"的设计假设对一个个人主页是错配——没人会在你的个人主页上 30 秒内做买不买的决定，他们更可能在某个项目卡片上停 10 分钟。所以 Stripe 的 bento grid、accent rationing、CTA hierarchy 这些 reference 价值，对个人主页来说不进入"参考"级别，只在某些 visual element 级别上借鉴。</p>
+                <p><strong>从 Vercel 借</strong>：还是 giant typography、-3.84px tracking、border-style shadow、1440px container。但这次 max-width 是 1080px，container 居中——个人主页的入口是 single-screen，不是 full-viewport。</p>
+                <p><strong>从 Linear 借</strong>：dark mode toggle 的实现参考（near-black ground + 8px spacing quanta），但只对 dark mode 启用——light mode 是默认。Linear 的 depth philosophy（1px borders over shadows）在两个 mode 下都用。</p>
+                <p><strong>不要 Stripe 的 bento grid</strong>：个人主页的项目卡片用规则的 grid（3 列 × N 行）比 bento 更合适——读者来这里是找项目，不是看视觉 demo。规则 grid 把"找项目"这件事做得更直接，bento 会把注意力往视觉上分。</p>
+                <p><strong>关键 takeaway</strong>：reference DNA 的"主 / 辅 / 局部"分层是这个工作流的核心抽象。同一个 reference（Vercel）在不同 archetype 下都是 primary，但 borrow 的具体 token 不一样；同一个 reference（Stripe）在一个 archetype 下是 secondary（长文工程页），在另一个 archetype 下（个人主页）连 secondary 都不是，只做局部 accent。这个分层一旦固化下来，新项目的 audit 报告就有一个明确的输出格式：primary DNA、secondary DNA、local accent。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-5.md</span>
+                </div>
+
+                <h2>四、回头看：品味是不是天赋</h2>
+
+                <figure>
+                    <img src="../assets/images/taste-lab-hermes-workflow/04-before-after-collage.jpg" alt="概念图：从嘈杂的视觉系统到收敛后的设计约束" loading="lazy">
+                    <figcaption>概念图：从嘈杂的视觉系统到收敛后的设计约束</figcaption>
+                </figure>
+
+                <p>写完这三个案例，我再回到开头的那个问题。</p>
+
+                <p>我越来越觉得，<strong>设计品味不是"看得多"的结果，是"取舍的次数"的结果</strong>。Linear 的设计师选 lime at 10% 不是因为好看，是因为"信号叠加"在 marathon session 里是必要的；Stripe 的设计师把 accent color 锁在 CTA 上不是因为优雅，是因为他们想让"点按钮"这件事在视觉上独占整个 attention budget；Vercel 的设计师用 Geist Mono 做 body 不是因为炫技，是因为他们的核心受众（开发者）读 code 比读 prose 多。</p>
+
+                <p>每一个看似"灵感"的视觉决策，背后都是一个具体的、可以用一句话说清楚的取舍。一旦你把这种取舍工程化——用 Playwright 抓 token，用 taste skill 写出 4 条 principle，用 anti-slop grep 拒绝空话，用 audit 阶段显式捕获 DNA mismatch——你就不再依赖某个人的"审美眼光"了。</p>
+
+                <p>Taste Lab 这个 pilot 项目最后没有变成一个产品。但它给我留下了一组方法、一组 token 库、一组 PR 模板、一组可被自动校验的 design regression check。这些加起来，就是我说的"把品味变成可执行工作流"。</p>
+
+                <div class="section-header">
+                    <span class="cmd">$</span>
+                    <span class="cmd-text">cat ./section-6.md</span>
+                </div>
+
+                <h2>五、给想试这个工作流的人</h2>
+
+                <p>三句话。</p>
+
+                <p>第一，<strong>先建库再做项目</strong>。不要直接对自己的项目做 taste extraction，那会陷入"我的项目就是这样"的 confirmation bias。先选三到五个你尊重其设计的 reference，跑通 pipeline 拿到 token 表和 4 条 principle，然后再去 audit 自己的项目。</p>
+
+                <p>第二，<strong>audit 阶段允许否掉 reference doc 的默认推荐</strong>。reference DNA 不是常量，是决策。如果 audit 跑出来发现 reference doc 的推荐是错的（比如 Linear accent 放在中文长文里不可见），要改 reference 选型，不要硬套。</p>
+
+                <p>第三，<strong>PR 阶段的"不做的事"和"做的事"一样重要</strong>。一个 P0 polish 通常只动 4 个文件、改 400 多行 CSS、加 12 个 :root token。不要顺手 refactor 组件、不要顺手改 SVG、不要顺手迁移 build system。<strong>小、准、可审查的 PR，是这个工作流能被复用的前提。</strong></p>
+
+                <p>#taste #design #workflow #css #design-system #engineering #agent</p>
+
+                <hr>
+
+                <p class="post-footer-note">本文不包含 token、key、env、commit hash、本地路径、机器名、端口号、详细费用流水。完整工作流档案见 taste-lab-pilot 项目的相关 case archive。</p>
+
+            </div>
+        </article>
+
+        <!-- Post Navigation -->
+        <nav class="post-nav">
+            <a href="/posts/" class="nav-link">
+                <span class="nav-label">返回文章列表</span>
+                <span class="nav-arrow">←</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="terminal-footer">
+            <div class="footer-line">
+                <span class="prompt">$</span>
+                <span class="footer-text">echo "感谢阅读"</span>
+            </div>
+            <p class="copyright">© 2026 Xin Conan. Built with HTML & CSS.</p>
+        </footer>
+    </div>
+    <script>
+        // Update datetime
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+    </script>
+</body>
+</html>

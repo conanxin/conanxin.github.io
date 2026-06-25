@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0",
+  "project": "yarvin-moldbug-cn",
+  "last_updated": "2026-06-25",
+  "source_article": {
+    "title": "Curtis Yarvin: The People Are Never Right",
+    "author": "Juan Ruocco 🧙‍♂️",
+    "site": "421.news",
+    "published_date": "2026-06-24",
+    "source_url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+    "series": "421 思想家系列",
+    "word_count_estimate": 7300,
+    "translation_chinese_chars": 11037
+  },
+  "article_context": {
+    "what_is_421": "421.news 是阿根廷作者、传媒创业者 Juan Ruocco 于 2020 年创办的思想/文化/技术评论站。以西班牙语为主，兼发英文文章。主题覆盖政治哲学、网络文化、模因学、加速主义、比特币、AI 等。全站有大量关于 Nick Land、Curtis Yarvin、Peter Sloterdijk 的深度长文。",
+    "author_intro": "Juan Ruocco（生于 1987，布宜诺斯艾利斯）— 阿根廷作家、媒体人、421.news 创始人。出版过 3 部小说、1 部文集。长期关注加速主义、新反动主义、模因政治。是西语世界最有影响力的当代思想评论人之一。",
+    "this_post_role": "本文是 421.news 在 2026 年推出的 Curtis Yarvin 思想导读，整理 Yarvin 三篇核心文本：《温和入门》（A Gentle Introduction to Unqualified Reservations，2009）、《Patchwork》（2008）、《致开放派进步人士的公开信》（2008），并辅以阿根廷本土政治语境的解读。",
+    "core_question": "为什么一个从肥胖论坛匿名博客起家的作家，变成了今天影响全球右翼思想界的重要坐标？如何理解 Yarvin 提出的「红丸」「大教堂」「拼凑方案（Patchwork）」「新议事主义（Neocameralism）」？为什么说 Yarvin 是「反美国的保守主义者」？"
+  },
+  "yarvin_context": {
+    "real_name": "Curtis Guy Yarvin，1973 年生，美国计算机科学家、政治作家。",
+    "pen_name": "Mencius Moldbug — 2007-2014 年的匿名博客笔名，2021 年以本名 Gray Mirror Substack 重新出现。",
+    "tech_work": "曾任 Urbit 项目创始人、Tlon CEO（Urbit 是一套从头构建的去中心化操作系统/网络协议）。Urbit 于 2013 年公开，获 Peter Thiel 的 Founders Fund 投资。",
+    "intellectual_lineage": [
+      "Thomas Carlyle（英雄崇拜、反民主）",
+      "James Burnham（管理革命、技术官僚）",
+      "Carl Schmitt（决断政治、例外状态）",
+      "Eric Hoffer（群众运动）",
+      "Ludwig von Mises（奥地利学派）",
+      "Hans-Hermann Hoppe（民主是失败的）"
+    ],
+    "key_claim": "自由民主从设计上就注定走向官僚扩张和政治腐败。三权分立稀释主权、制造持续的内部斗争。现代西方的真正主权者不在民选政府，而在一套由媒体、大学、好莱坞、NGO 构成的去中心化神权 — 即「大教堂」（Cathedral）。",
+    "proposed_solution": "企业化的微型国家（microstate/city-state）：国家像公司一样治理，CEO 由股东（公民=所有者）任免，KPI 是境内不动产价值的增长。这一模式被称作「新议事主义」（Neocameralism）。"
+  },
+  "neocameralism_context": {
+    "name_origin": "Cameralism（官房学/议事学）是 17-18 世纪德国/奥地利的一套行政科学，把国家治理视为管理一个大庄园。前缀 Neo- 表示在 21 世纪数字化语境下的重构。",
+    "core_features": [
+      "主权集中在单一决策中心（CEO + 董事会）",
+      "国家就是一家盈利公司，居民/土地是它的资产",
+      "董事会有权随时罢免 CEO（防止政变的制度设计）",
+      "国家合法性基于财产权和合同，而非投票权",
+      "没有三权分立：立法、行政、司法是同一机构的不同职能",
+      "军队由密码学锁控制：只有股东集体授权才能动用武力"
+    ],
+    "patchwork": "Yarvin 设想的全球秩序：把现有大型民族国家拆解为成千上万个主权微型国家（city-state），居民可以自由选择在哪生活。企业间竞争治理质量，形成市场式的政治秩序。",
+    "critiques": [
+      "被批判为「封建主义 2.0」或「公司专制」",
+      "缺乏任何从现状过渡的可行路径",
+      "假设微型国家之间能和平共存（无理论依据）",
+      "把公民降低为消费者：无法选择价值观，只能选择房东"
+    ],
+    "real_world_precedent": [
+      "摩纳哥、列支敦士登、卢森堡（微型富裕国家）",
+      "新加坡（一家独大的执政党 + 强行政 + 以房地产为核心的经济模式）",
+      "香港（回归前）、迪拜"
+    ]
+  },
+  "neoreaction_movement": {
+    "core_figures": [
+      "Curtis Yarvin / Mencius Moldbug",
+      "Nick Land（加速主义哲学家）",
+      "Bronze Age Pervert（匿名右翼作家）",
+      "Michael Anissimov（LessWrong / Futurism）"
+    ],
+    "key_themes": [
+      "反民主、反平等主义",
+      "反「普世价值」、反人权",
+      "反政治正确、反 woke",
+      "支持技术治理、支持精英政治",
+      "支持民族主义、反全球主义",
+      "反女权、反多元文化"
+    ],
+    "meme_impact": [
+      "「红丸」（Red Pill）— 源自本文，被全球右翼广泛使用",
+      "「大教堂」（Cathedral）— 媒体/大学/NGO 复合体",
+      "「蓝药丸」（Blue Pill）— 安于被大教堂洗脑的人",
+      "「克苏鲁总向左游」— 社会不可阻挡地向左漂移"
+    ]
+  },
+  "cathedral_theory": {
+    "three_pillars": [
+      "**大学** — 意识形态生产车间，负责生产「进步」的理论话语",
+      "**媒体（特别是 NYT）** — 意识形态的验证者、扩音器，设定公共议程",
+      "**好莱坞/娱乐业** — 把意识形态包装成情感产品植入大众文化"
+    ],
+    "the_mechanism": "大教堂没有中央控制者。去中心化意味着每个人都被迫自我审查、校准自身观点以符合共识。偏离共识者会被取消资格（deplatformed）、失去工作、被污名化。这是一种没有警察但无所不在的软极权。",
+    "historical_origin": "美国清教传统的世俗化版本。美国从建国起就是一个「使命型国家」，要把自由/民主/进步推广到全世界。这套意识形态在 20 世纪演变成 Cathedral。",
+    "parallels": [
+      "Louis Althusser — 意识形态国家机器（ISA）",
+      "Noam Chomsky — 制造共识（Manufacturing Consent）",
+      "Antonio Gramsci — 文化霸权（Hegemony）",
+      "Giorgio Agamben — 神圣人（Homo Sacer）、例外状态常态化"
+    ]
+  },
+  "glossary": [
+    {
+      "term": "Mencius Moldbug",
+      "definition": "Curtis Yarvin 的博客笔名（2007-2014）。文章发布于 Unqualified Reservations 博客。名字来源于孟子（Mencius）+ moldbug（软件领域俚语：古老的、没人敢动的代码片段）。"
+    },
+    {
+      "term": "Unqualified Reservations",
+      "definition": "Mencius Moldbug 的匿名博客（2007-2014）。Yarvin 在这里提出了他整套政治哲学。文章以长、重复、密度高著称。"
+    },
+    {
+      "term": "Gray Mirror",
+      "definition": "Yarvin 在 2021 年复出后的 Substack 账号，发表对时事、技术、政治的评论。不再使用 Moldbug 笔名。"
+    },
+    {
+      "term": "红丸 (Red Pill)",
+      "definition": "Yarvin 最有影响力的模因。概念出自《黑客帝国》：红色药丸代表接受痛苦的真相（民主是骗局、大教堂在统治我们），蓝色药丸代表活在愉悦的幻觉中。"
+    },
+    {
+      "term": "大教堂 (Cathedral)",
+      "definition": "Yarvin 用来指代美国（及全球）意识形态权力中心的术语：大学、主流媒体、好莱坞、NGO、智库。一套去中心化、但运作如神权政体的系统。"
+    },
+    {
+      "term": "新议事主义 (Neocameralism)",
+      "definition": "Yarvin 提出的政体模型：国家像股份公司一样运行，CEO 掌握行政权，股东（公民/所有者）可以随时撤换他。KPI 是境内不动产价值。"
+    },
+    {
+      "term": "Patchwork (拼凑方案)",
+      "definition": "Yarvin 提出的全球秩序：把大型民族国家拆解为成千上万个主权微型国家（city-state），居民可以自由迁移。竞争迫使每个微型国家提供更好的治理。"
+    },
+    {
+      "term": "辉格史 (Whig History)",
+      "definition": "英国历史上的辉格党（Whig）叙事：历史是朝向自由、民主、进步的线性运动。Yarvin 认为所有现代主流历史都是辉格式的，其本质是胜利者自我合法化的宣传。"
+    },
+    {
+      "term": "Cthulhu 总是向左游",
+      "definition": "Yarvin 的著名格言：现代社会有一种不可阻挡的、向「左」漂移的趋势，哪怕没有人在刻意推动。克苏鲁（Cthulhu）是洛夫克拉夫特神话中的古神，象征不可名状的庞大力量。"
+    },
+    {
+      "term": "新反动主义 (Neoreaction / NRx)",
+      "definition": "2000 年代末在网络论坛（LessWrong、4chan、Reddit）兴起的一股反民主、反进步、反平等的思想潮流。核心人物包括 Mencius Moldbug、Nick Land 等。"
+    },
+    {
+      "term": "加速主义 (Accelerationism)",
+      "definition": "与 Nick Land 关联的思想：资本主义和技术发展越快，现有体系崩溃越快，新秩序越快到来。分为左翼加速主义（#Accelerate）和右翼加速主义（Dark Enlightenment 黑暗启蒙）。"
+    },
+    {
+      "term": "Dark Enlightenment (黑暗启蒙)",
+      "definition": "Nick Land 提出的术语：反对启蒙运动的自由/平等/进步理想，主张通过技术加速走向一种新的、非民主的秩序。与 Neoreaction 高度重叠。"
+    },
+    {
+      "term": "过度社会化 (Oversocialization)",
+      "definition": "Ted Kaczynski（Unabomber）在《工业社会及其未来》（1995）中提出的概念：社会规范内化为个体的道德感，使偏离者产生负罪感，从而实现不需要警察的社会控制。Yarvin 以此为起点构建他的大教堂理论。"
+    },
+    {
+      "term": "詹姆斯·伯恩汉姆 (James Burnham)",
+      "definition": "20 世纪美国政治理论家，前托洛茨基主义者。在《管理革命》（1941）中提出：资本主义正在被「管理主义」取代，权力从所有者转移到专业经理阶层。Yarvin 将其视为最重要的思想先驱之一。"
+    },
+    {
+      "term": "卡尔·施米特 (Carl Schmitt)",
+      "definition": "20 世纪德国法学家、政治理论家。核心概念：决断（decision）、例外状态、政治就是区分敌友。纳粹政权的桂冠法学家。Yarvin 从他那里继承了「主权就是决定例外状态」的思想。"
+    },
+    {
+      "term": "安东尼奥·葛兰西 (Antonio Gramsci)",
+      "definition": "20 世纪意大利马克思主义哲学家。提出「文化霸权」（hegemony）概念：统治阶级通过文化而非暴力维持统治，被统治者自愿接受其价值观。Yarvin 的大教堂理论是葛兰西霸权理论的右翼版本。"
+    },
+    {
+      "term": "路易·阿尔都塞 (Louis Althusser)",
+      "definition": "20 世纪法国马克思主义哲学家。提出「意识形态国家机器」（ISA）：学校、家庭、教会、媒体、工会、政治党派等通过意识形态实现控制。大教堂理论是这一概念的右翼反写。"
+    },
+    {
+      "term": "彼得·蒂尔 (Peter Thiel)",
+      "definition": "PayPal 创始人、风险投资家、科技亿万富翁。公开表达对民主的怀疑，投资了 Urbit（Yarvin 的项目）。被视为新反动思想在硅谷的重要支持者。他和 Alex Karp（Palantir CEO）是 Yarvin 思想的重要传播者。"
+    },
+    {
+      "term": "Urbit",
+      "definition": "Curtis Yarvin 创立的去中心化操作系统/网络协议。目标是构建一个不受任何公司或政府控制的、点对点的计算网络。Urbit 的地址空间（Azimuth）是一种基于以太坊的 NFT。"
+    },
+    {
+      "term": "Bitcoin / 比特币",
+      "definition": "Yarvin 在 2011 年就写过关于比特币的深度分析，被认为是最早认真看待比特币的知识分子之一。他把比特币视为一种去政治化的货币，符合新反动主义对国家垄断货币的批判。"
+    },
+    {
+      "term": "模因 (Meme)",
+      "definition": "Yarvin 是最早把模因（文化传播单位）作为严肃政治分析工具的作者之一。他认为 Cathedral 本质上是一套模因复合体，通过自我复制实现统治。"
+    },
+    {
+      "term": "Alt-Right / 另类右翼",
+      "definition": "2010 年代在美国兴起的一股右翼思潮，反移民、反多元文化、反全球化、反政治正确。Yarvin 被视为其重要的思想来源之一，但他本人与该运动保持距离。"
+    },
+    {
+      "term": "MAGA",
+      "definition": "\"Make America Great Again\" — 唐纳德·特朗普的竞选口号。Yarvin 对特朗普的态度复杂：一方面认为特朗普是对 Cathedral 的一次不成功的叛乱，另一方面认为特朗普本人缺乏实现真正变革的能力。"
+    },
+    {
+      "term": "J.D. Vance",
+      "definition": "《乡下人的悲歌》作者，曾任美国副总统。公开引用 Yarvin 的思想。是 Yarvin 思想进入主流政治的重要通道。本文写作时（2026 年 6 月）他因丑闻已身败名裂。"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "1973",
+      "event": "Curtis Yarvin 出生",
+      "category": "yarvin"
+    },
+    {
+      "date": "1995",
+      "event": "Ted Kaczynski 发表《工业社会及其未来》，提出过度社会化概念",
+      "category": "background"
+    },
+    {
+      "date": "2002",
+      "event": "SpaceX 创立；技术右翼思潮开始在硅谷形成",
+      "category": "background"
+    },
+    {
+      "date": "2007",
+      "event": "Mencius Moldbug 开始在 Unqualified Reservations 博客发文",
+      "category": "yarvin"
+    },
+    {
+      "date": "2008",
+      "event": "发表《Patchwork: A Positive Vision》和《致开放派进步人士的公开信》",
+      "category": "yarvin"
+    },
+    {
+      "date": "2009",
+      "event": "发表《A Gentle Introduction to Unqualified Reservations》，系统提出红丸和大教堂理论",
+      "category": "yarvin"
+    },
+    {
+      "date": "2011",
+      "event": "Yarvin 发表关于比特币的深度分析；Urbit 项目公开",
+      "category": "yarvin"
+    },
+    {
+      "date": "2013",
+      "event": "Urbit 获 Founders Fund（Peter Thiel）投资",
+      "category": "yarvin"
+    },
+    {
+      "date": "2014",
+      "event": "Mencius Moldbug 博客停更；Gamergate 事件把红丸概念推向大众",
+      "category": "meme"
+    },
+    {
+      "date": "2015",
+      "event": "特朗普宣布参选总统；Alt-Right 进入主流视野",
+      "category": "meme"
+    },
+    {
+      "date": "2016",
+      "event": "特朗普当选美国总统；红丸/蓝药丸模因爆炸式传播",
+      "category": "meme"
+    },
+    {
+      "date": "2021",
+      "event": "Yarvin 在 Substack 以 Gray Mirror 复出；J.D. Vance 进入政坛",
+      "category": "yarvin"
+    },
+    {
+      "date": "2025",
+      "event": "《纽约客》《纽约时报》《华盛顿邮报》相继发表关于 Yarvin 的长篇报道；他从边缘博主变成主流思想话题",
+      "category": "meme"
+    },
+    {
+      "date": "2026-06-24",
+      "event": "Juan Ruocco 在 421.news 发表本文（Curtis Yarvin: The People Are Never Right）",
+      "category": "meme"
+    }
+  ],
+  "sources": {
+    "primary_youtube_videos": [
+      "Curtis Yarvin 与 Lex Fridman 对谈（2022）",
+      "Mencius Moldbug — The Cathedral（YouTube 音频合集）",
+      "Dark Enlightenment: The Philosophy of Nick Land（纪录片）"
+    ],
+    "official_texts": [
+      "Curtis Yarvin, *A Gentle Introduction to Unqualified Reservations* (2009)",
+      "Curtis Yarvin, *Patchwork: A Positive Vision* (2008)",
+      "Curtis Yarvin, *An Open Letter to Open-Minded Progressives* (2008)",
+      "Curtis Yarvin, Gray Mirror Substack (2021-)"
+    ],
+    "critical_readings": [
+      "Ted Kaczynski, *Industrial Society and Its Future* (1995)",
+      "James Burnham, *The Managerial Revolution* (1941)",
+      "Carl Schmitt, *Political Theology* (1922)",
+      "Antonio Gramsci, *Prison Notebooks* (1929-1935)",
+      "Louis Althusser, *Ideology and Ideological State Apparatuses* (1970)",
+      "Eric Hoffer, *The True Believer* (1951)",
+      "Hans-Hermann Hoppe, *Democracy: The God That Failed* (2001)",
+      "Nick Land, *Fanged Noumena* (2011)",
+      "Thomas Carlyle, *On Heroes, Hero-Worship, and The Heroic in History* (1841)"
+    ],
+    "related_421_articles": [
+      "Nick Land: The Apostle of Chaos",
+      "Becoming Ungovernable: Peter Sloterdijk",
+      "Guide to Accelerationism",
+      "How the Far Right Took Over 4chan",
+      "The Milei Anomaly"
+    ],
+    "further_exploration": [
+      "Urbit 官方文档与白皮书",
+      "Gray Mirror Substack",
+      "The Byzantine Generals Problem（Lamport 1982 — 分布式共识的理论基础，Yarvin 多次引用）",
+      "《雪崩》（Neal Stephenson 1992 — 巴尔干化美国的科幻原型）"
+    ]
+  },
+  "reading_paths": {
+    "casual_reader": [
+      "先读本文，了解 Yarvin 思想的大致轮廓",
+      "读 Yarvin Gray Mirror 的《精灵与霍比特人》文章（本文结尾推荐）",
+      "看 Lex Fridman 对谈视频（3 小时，最平易近人的介绍）"
+    ],
+    "serious_thinker": [
+      "本文 + 《温和入门》全篇",
+      "《致开放派进步人士的公开信》",
+      "James Burnham《管理革命》",
+      "Carl Schmitt《政治的神学》",
+      "Antonio Gramsci《狱中札记》",
+      "对比阅读：Chomsky《制造共识》"
+    ],
+    "tech_aligned": [
+      "先了解 Urbit 是什么",
+      "读 Patchwork，理解 Yarvin 对国家作为软件的想象",
+      "《拜占庭将军问题》论文",
+      "比特币白皮书（2008）",
+      "思考：为什么去中心化货币和中心化政府在新反动思想中可以并存？"
+    ],
+    "critical_reader": [
+      "先读 Karl Popper《开放社会及其敌人》对柏拉图/黑格尔/马克思的批判",
+      "读 Hannah Arendt《极权主义的起源》",
+      "再读 Yarvin，注意他如何把反极权论证翻转过来为专制辩护",
+      "关注：Yarvin 如何处理『君主发疯了怎么办？』这个经典问题"
+    ]
+  },
+  "key_further_questions": [
+    "Yarvin 对民主的批判真的是『新』的吗？它与 19-20 世纪的保守主义/威权主义思想有什么继承关系？",
+    "如果『大教堂』真的是去中心化的，那它是如何维持共识的？它有没有自我纠错机制？",
+    "微型国家的 Patchwork 如何避免被更大的军事力量吞并？Yarvin 对此没有任何论述。",
+    "当国家 KPI 是『房地产价值最大化』时，环境保护、文化、教育、公共卫生这些非经济价值会发生什么？",
+    "为什么这么多科技亿万富翁（Thiel、Musk、Andreessen 等）对 Yarvin 的思想感兴趣？它符合什么阶级利益？"
+  ]
+}

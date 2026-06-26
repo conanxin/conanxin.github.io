@@ -325,3 +325,37 @@ blockquote p:last-child {
         max-height: 220px;
     }
 }
+
+/* Post body figures (article-scoped: only targets <figure class="post-figure">) */
+.post-figure {
+    margin: var(--space-lg) auto;
+    max-width: 720px;
+}
+
+.post-figure img {
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    max-height: 380px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.post-figure figcaption {
+    margin-top: var(--space-xs);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .post-figure {
+        max-width: 100%;
+        margin: var(--space-md) auto;
+    }
+    .post-figure img {
+        max-width: 100%;
+        max-height: 240px;
+    }
+}

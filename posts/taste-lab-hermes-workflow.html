@@ -107,11 +107,11 @@
 <p><strong>第二步：拿这个库去 audit 自己的项目。</strong> 选一个真实项目，填入三件套：URL、target repo path、archetype guess。skill 会跑同一个 pipeline，把你项目的 token 抓出来，然后和 reference 库做 cross-ref，输出一份审计报告。审计报告会明确告诉你：你的项目应该 borrow 哪些 reference 的哪些 principle，应该 avoid 哪些 reference 的哪些 principle。这就是&quot;design DNA mismatch 在 audit 阶段被显式捕获&quot;的来源。</p>
 <p><strong>第三步：把审计结论转成 CSS 改动，PR，合到 main。</strong> 这一步反而是整个工作流里最不&quot;AI&quot;的一步——你打开项目的 styles.css，做 7 处 surgical 的 patch：加几个 :root token，把 9 个 inline hex 迁过去，把 8 个 inline border-radius 改用 token，加一条 :focus-visible 规则，加一条 prefers-reduced-motion 块。然后 <code>git add &lt;file&gt;</code> 一个一个加（不能 <code>git add .</code>，那会扫到不相关的改动），开 PR。PR 合了之后等 GitHub Pages 部署完成，curl 下来线上 CSS，和本地 main 的 styles.css 用 sha256sum 比对——前缀必须完全一致。这是 byte-identity 校验，比像素 diff 强得多。</p>
 <p>到这里，整个回路是闭合的。Taste 不是灵感，是工程。</p>
-<figure>
+<figure class="post-figure">
     <img src="/assets/images/taste-lab-hermes-workflow/02-workflow-pipeline-diagram.jpg" alt="流程图：从 reference DNA 到 audit、rules、CSS polish、PR、deploy、regression check" loading="lazy">
     <figcaption>流程图：从 reference DNA 到 audit、rules、CSS polish、PR、deploy、regression check</figcaption>
 </figure>
-<figure>
+<figure class="post-figure">
     <img src="/assets/images/taste-lab-hermes-workflow/03-three-archetypes-map.jpg" alt="三类页面：知识库、长文工程页、个人主页的设计 DNA" loading="lazy">
     <figcaption>三类页面：知识库、长文工程页、个人主页的设计 DNA</figcaption>
 </figure>
@@ -140,7 +140,7 @@
 <p><strong>从 Linear 借</strong>：dark mode toggle 的实现参考（near-black ground + 8px spacing quanta），但只对 dark mode 启用——light mode 是默认。Linear 的 depth philosophy（1px borders over shadows）在两个 mode 下都用。</p>
 <p><strong>不要 Stripe 的 bento grid</strong>：个人主页的项目卡片用规则的 grid（3 列 × N 行）比 bento 更合适——读者来这里是找项目，不是看视觉 demo。规则 grid 把&quot;找项目&quot;这件事做得更直接，bento 会把注意力往视觉上分。</p>
 <p><strong>关键 takeaway</strong>：reference DNA 的&quot;主 / 辅 / 局部&quot;分层是这个工作流的核心抽象。同一个 reference（Vercel）在不同 archetype 下都是 primary，但 borrow 的具体 token 不一样；同一个 reference（Stripe）在一个 archetype 下是 secondary（长文工程页），在另一个 archetype 下（个人主页）连 secondary 都不是，只做局部 accent。这个分层一旦固化下来，新项目的 audit 报告就有一个明确的输出格式：primary DNA、secondary DNA、local accent。</p>
-<figure>
+<figure class="post-figure">
     <img src="/assets/images/taste-lab-hermes-workflow/04-before-after-collage.jpg" alt="概念图：从嘈杂的视觉系统到收敛后的设计约束" loading="lazy">
     <figcaption>概念图：从嘈杂的视觉系统到收敛后的设计约束</figcaption>
 </figure>

@@ -14,15 +14,10 @@
     
     --accent-green: #7ee787;
     --accent-blue: #79c0ff;
-    --accent-orange: #ffa657;
-    --accent-purple: #d2a8ff;
-    --accent-red: #ff7b72;
-    
     --border-color: #30363d;
     
     /* Typography */
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
     /* Spacing */
     --space-xs: 0.25rem;
@@ -287,7 +282,7 @@ body {
 }
 
 .featured-date {
-    color: var(--accent-orange);
+    color: var(--text-muted);
 }
 
 .featured-tag {
@@ -347,7 +342,7 @@ body {
 }
 
 .post-date {
-    color: var(--accent-orange);
+    color: var(--text-muted);
 }
 
 .post-tag {
@@ -446,4 +441,35 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-muted);
+}
+
+/* =====================================================
+   P0 polish (TASTE-3B) — accessibility, motion, and accent discipline
+   Reference: Vercel (primary) + Linear (secondary) + Stripe (local accent only)
+   ===================================================== */
+
+/* Vercel-style keyboard focus — applies to all interactive elements.
+   The outline uses --accent-green (the active-state accent) and respects
+   the 4px border-radius of the page's pill chips. */
+:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Honor user's motion preference (WCAG 2.3.3) — kill all transitions +
+   animations, including the .status-dot pulse. The page must remain
+   fully readable; only the visual motion stops. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+    /* Pause the .status-dot pulse animation — leaving it running wastes
+       CPU on a static-looking page for users who explicitly disabled motion. */
+    .status-dot {
+        animation: none !important;
+    }
 }

@@ -1,33 +1,311 @@
 {
   "version": 1,
-  "updated_at": "2026-06-20T07:45:22",
-  "generated_at": "2026-06-20T07:45:22",
+  "updated_at": "2026-07-12T07:00:36",
+  "generated_at": "2026-07-12T07:00:36",
   "window_days": 30,
-  "history_entries": 9,
+  "history_entries": 29,
   "available_range": {
     "first_date": "2026-06-12",
-    "latest_date": "2026-06-20"
+    "latest_date": "2026-07-12"
   },
   "summary": {
-    "total_days": 9,
-    "total_picks": 17,
-    "unique_artists": 14,
+    "total_days": 29,
+    "total_picks": 46,
+    "unique_artists": 25,
     "top_categories": [
       {
         "category": "posters-design",
-        "count": 9
+        "count": 21
       },
       {
         "category": "japanese-prints",
-        "count": 7
+        "count": 10
       },
       {
         "category": "book-illustrations",
-        "count": 1
+        "count": 9
+      },
+      {
+        "category": "botanical-charts",
+        "count": 6
       }
     ]
   },
   "entries": [
+    {
+      "date": "2026-07-12",
+      "picks": [
+        {
+          "id": "edward_penfield_american_1866_-_1925_the_last_of_the_knickerbockers_1901_posters-design_standard_635a9a7c",
+          "artist": "Edward_Penfield",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "picks": [
+        {
+          "id": "gustave_doré_french_1832-1883_the_vision_of_purgatory_and_paradise_by_dante_alighieri_pl.03_1900_book-illustrations_standard_f77c709c",
+          "artist": "Gustave_Doré",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "sydenham_edwards_english_1768-1819_ruddy_godetia_1815-1819_botanical-charts_standard_34e10f1f",
+          "artist": "Sydenham_Edwards",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "utagawa_hiroshige_japanese_1797_1858_okitsu_1855_japanese-prints_standard_430542d2",
+          "artist": "Utagawa_Hiroshige",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "edward_penfield_american_1866_-_1925_collier_s_feb_22_1908_1908_posters-design_standard_f9aaa467",
+          "artist": "Edward_Penfield",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "anonymous_album_of_70_asian_fruit_paintings_pl.63_19th_century_botanical-charts_standard_20023224",
+          "artist": "Anonymous",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "picks": [
+        {
+          "id": "utagawa_hiroshige_japanese_1797_1858_shimada_1855_japanese-prints_standard_825951bb",
+          "artist": "Utagawa_Hiroshige",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "picks": [
+        {
+          "id": "robert_john_thornton_english_1768-1837_anatomy_of_the_queen_flower_1799_1810_botanical-charts_standard_0c70c050",
+          "artist": "Robert_John_Thornton",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "utagawa_hiroshige_japanese_1797_1858_album_of_ichiryusai_hiroshige_s_sketches_pl.16_ca._1850_japanese-prints_standard_c1e7dbbe",
+          "artist": "Utagawa_Hiroshige",
+          "category": "japanese-prints",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "picks": [
+        {
+          "id": "sydenham_edwards_english_1768-1819_rough-stemmed_tulip_1815-1819_botanical-charts_standard_d7dbee5e",
+          "artist": "Sydenham_Edwards",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "picks": [
+        {
+          "id": "sydenham_edwards_english_1768-1819_shining_royena_1815-1819_botanical-charts_standard_68904c1c",
+          "artist": "Sydenham_Edwards",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-04",
+      "picks": [
+        {
+          "id": "abraham_meertens_dutch_1747-1823_ontwerp_voor_een_kamerversiering_met_een_ruit_en_ornamenten_1767_-_1823_book-illustrations_standard_8da445b3",
+          "artist": "Abraham_Meertens",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "sydenham_edwards_english_1768-1819_sessile-flowered_sobralia_1815-1819_botanical-charts_standard_2599d8c8",
+          "artist": "Sydenham_Edwards",
+          "category": "botanical-charts",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "picks": [
+        {
+          "id": "roberts_beaumont_english_1862-1924_1._vesting_with_corkscrew_ground._2._mantling_pattern_of_the_pine-figure_class._1890_book-illustrations_standard_6fe3ae09",
+          "artist": "Roberts_Beaumont",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "picks": [
+        {
+          "id": "kay_rasmus_nielsen_danish_1886-1957_east_of_the_sun_and_west_of_the_moon_pl_04_1922_book-illustrations_standard_fe453327",
+          "artist": "Kay_Rasmus_Nielsen",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "picks": [
+        {
+          "id": "kay_rasmus_nielsen_danish_1886-1957_east_of_the_sun_and_west_of_the_moon_pl_11_1922_book-illustrations_standard_b1bef594",
+          "artist": "Kay_Rasmus_Nielsen",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "gustave_doré_french_1832-1883_conseil_tenu_par_les_rats_1868_book-illustrations_standard_39e27b23",
+          "artist": "Gustave_Doré",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "picks": [
+        {
+          "id": "gustave_doré_french_1832-1883_the_raven_pl.22_1884_book-illustrations_standard_98a5ff28",
+          "artist": "Gustave_Doré",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-29",
+      "picks": [
+        {
+          "id": "gustave_doré_french_1832-1883_contes_des_fées_pl.10_1876_book-illustrations_standard_46efccfc",
+          "artist": "Gustave_Doré",
+          "category": "book-illustrations",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "george_ashdown_audsley_scottish_1838-1925_outlines_of_ornament_in_the_leading_styles_pl.52_1881_posters-design_standard_3f889ed1",
+          "artist": "George_Ashdown_Audsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-28",
+      "picks": [
+        {
+          "id": "george_ashdown_audsley_scottish_1838-1925_outlines_of_ornament_in_the_leading_styles_pl.55_1881_posters-design_standard_1f73982e",
+          "artist": "George_Ashdown_Audsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-27",
+      "picks": [
+        {
+          "id": "owen_jones_english_1809_-_1874_the_grammar_of_ornament_title_page_1910_posters-design_standard_47a9544f",
+          "artist": "Owen_Jones",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        },
+        {
+          "id": "george_ashdown_audsley_scottish_1838-1925_outlines_of_ornament_in_the_leading_styles_pl.12_1881_posters-design_standard_70134447",
+          "artist": "George_Ashdown_Audsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "picks": [
+        {
+          "id": "george_ashdown_audsley_scottish_1838-1925_outlines_of_ornament_in_the_leading_styles_pl.22_1881_posters-design_standard_f8f4200d",
+          "artist": "George_Ashdown_Audsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "picks": [
+        {
+          "id": "aubrey_vincent_beardsley_english_1872-1898_crouching_midget_1892-98_posters-design_standard_98e361f8",
+          "artist": "Aubrey_Vincent_Beardsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "picks": [
+        {
+          "id": "aubrey_vincent_beardsley_english_1872-1898_vignette_from_le_morte_darthur_1897_posters-design_standard_2bc067d1",
+          "artist": "Aubrey_Vincent_Beardsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "picks": [
+        {
+          "id": "aubrey_vincent_beardsley_english_1872-1898_illustrations_by_aubrey_beardsley_for_king_arthur_pl.10_1893-1894_posters-design_standard_1f72849f",
+          "artist": "Aubrey_Vincent_Beardsley",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-22",
+      "picks": [
+        {
+          "id": "josef_hoffmann_austrian_1831_1904_marmorpapier_mit_kreis-_und_herzförmigen_motiven_1903_-_1907_posters-design_standard_b885c7d1",
+          "artist": "Josef_Hoffmann",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-21",
+      "picks": [
+        {
+          "id": "edward_penfield_american_1866_-_1925_harper_s_march_1895_posters-design_standard_21a88587",
+          "artist": "Edward_Penfield",
+          "category": "posters-design",
+          "near_dup_cluster_id": null
+        }
+      ]
+    },
     {
       "date": "2026-06-20",
       "picks": [

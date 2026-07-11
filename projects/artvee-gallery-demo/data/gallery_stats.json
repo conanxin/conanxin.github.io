@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-06-20T07:45:23",
+  "generated_at": "2026-07-12T07:00:40",
   "mode": "public-demo",
   "base_url": ".",
   "source": {
     "schema": "artvee-gallery/v1",
     "strategy": "diverse",
-    "limit": 200,
+    "limit": 300,
     "full_counts": {
-      "artworks": 915,
+      "artworks": 1306,
       "categories": 4,
-      "artists": 88,
-      "thumb_256_total": 915,
-      "thumb_512_total": 915
+      "artists": 111,
+      "thumb_256_total": 1306,
+      "thumb_512_total": 1306
     }
   },
   "counts": {
-    "artworks": 200,
+    "artworks": 300,
     "categories": 4,
-    "artists": 11,
-    "thumb_256_total": 200,
-    "thumb_512_total": 200
+    "artists": 22,
+    "thumb_256_total": 300,
+    "thumb_512_total": 300
   },
-  "last_downloaded_at": "2026-06-20T02:04:43.447038",
+  "last_downloaded_at": "2026-07-12T02:05:05.597268",
   "categories": {
-    "book-illustrations": 50,
-    "botanical-charts": 50,
-    "japanese-prints": 50,
-    "posters-design": 50
+    "book-illustrations": 75,
+    "botanical-charts": 75,
+    "japanese-prints": 75,
+    "posters-design": 75
   }
 }

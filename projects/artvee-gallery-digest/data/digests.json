@@ -1,9 +1,9 @@
 [
   {
-    "date": "2026-06-20",
-    "title": "Artvee Daily Digest — 2026-06-20",
-    "markdown_path": "digests/artvee-digest-2026-06-20.md",
-    "html_path": "digests/artvee-digest-2026-06-20.html",
+    "date": "2026-07-12",
+    "title": "Artvee Daily Digest — 2026-07-12",
+    "markdown_path": "digests/artvee-digest-2026-07-12.md",
+    "html_path": "digests/artvee-digest-2026-07-12.html",
     "selected_count": 1,
     "categories": [
       "posters-design"
@@ -14,12 +14,12 @@
     "strategy": "diverse",
     "picks": [
       {
-        "id": "edward_penfield_american_1866_-_1925_collier_s_vol_xxvii_no_22_august_31_1901_1901_posters-design_standard_aeec9b7f",
+        "id": "edward_penfield_american_1866_-_1925_the_last_of_the_knickerbockers_1901_posters-design_standard_635a9a7c",
         "artist": "Edward_Penfield",
         "category": "posters-design",
         "near_dup_cluster_id": null
       }
     ],
-    "created_at": "2026-06-20T07:45:22"
+    "created_at": "2026-07-12T07:00:36"
   }
 ]

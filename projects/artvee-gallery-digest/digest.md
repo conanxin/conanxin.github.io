@@ -1,4 +1,4 @@
-# Artvee Daily Digest — 2026-06-20
+# Artvee Daily Digest — 2026-07-12
 
 ## 1. 今日概览
 - 候选范围：20 张
@@ -9,18 +9,18 @@
 
 ## 2. 今日精选
 
-### 1. Colliers_Vol_XXVII_no_22_August_31_1901 — Edward_Penfield
-![preview](./assets/thumbs/512/edward_penfield_american_1866_-_1925_collier_s_vol_xxvii_no_22_august_31_1901_1901_posters-design_standard_aeec9b7f.jpg)
+### 1. The_Last_of_the_Knickerbockers — Edward_Penfield
+![preview](./assets/thumbs/512/edward_penfield_american_1866_-_1925_the_last_of_the_knickerbockers_1901_posters-design_standard_635a9a7c.jpg)
 - 分类：posters-design
-- 来源：https://artvee.com/dl/colliers-vol-xxvii-no-22-august-31-1901/
-- 视觉：构图：纵向构图
-- 视觉：dominant palette: #f0e0d0, #203030, #606060, #707070, #f0f0e0
+- 来源：https://artvee.com/dl/the-last-of-the-knickerbockers/
+- 视觉：构图：横向构图
+- 视觉：dominant palette: #909080, #808070, #707060, #908070, #807060
 - 用途：海报设计参考, 活动宣传, 展览主视觉, 壁纸
-- Prompt seed：`art nouveau vintage poster illustration, Colliers_Vol_XXVII_no_22_August_31_1901, public domain print`
+- Prompt seed：`art nouveau vintage poster illustration, The_Last_of_the_Knickerbockers, public domain print`
 
 ## 3. 今日风格总结
-- 构图分布：纵向构图(1)
-- 主色（top across picks）：#f0e0d0, #203030, #606060, #707070, #f0f0e0
+- 构图分布：横向构图(1)
+- 主色（top across picks）：#909080, #808070, #707060, #908070, #807060
 - 类别分布：posters-design(1)
 
 ## 4. 可用于哪些项目

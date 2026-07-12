@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T07:00:40",
+  "generated_at": "2026-07-12T08:42:59",
   "mode": "public-demo",
   "base_url": ".",
   "source": {
@@ -14,12 +14,15 @@
       "thumb_512_total": 1306
     }
   },
+  "detail_thumb_policy": "none",
+  "thumbs_256_count": 300,
+  "thumbs_512_count": 0,
   "counts": {
     "artworks": 300,
     "categories": 4,
     "artists": 22,
     "thumb_256_total": 300,
-    "thumb_512_total": 300
+    "thumb_512_total": 0
   },
   "last_downloaded_at": "2026-07-12T02:05:05.597268",
   "categories": {

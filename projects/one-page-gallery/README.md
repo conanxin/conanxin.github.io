@@ -5,6 +5,7 @@
 ## 当前展品
 
 - `america-250/` — 《250 / 250：美国如何成为美国》，包含 250 本书的中文专题书单、阅读路径、搜索筛选、详情抽屉与本地阅读进度。
+- `eastbound-sugoroku/` — 《东行绘双六》，以四幅历史绘双六为线索制作的 1–4 人互动棋盘，包含 36 格 AI 重绘场景、格子事件、高清大图与原作档案。
 
 ## 目录规范
 
@@ -29,3 +30,4 @@ projects/one-page-gallery/
 
 - 收藏馆首页：https://conanxin.github.io/projects/one-page-gallery/
 - America 250：https://conanxin.github.io/projects/one-page-gallery/america-250/
+- 东行绘双六：https://conanxin.github.io/projects/one-page-gallery/eastbound-sugoroku/

@@ -1,0 +1,187 @@
+---
+description: Design rules for the conanxin-homepage (https://conanxin.github.io/) — the personal landing page at the conanxin.github.io repo root. Apply these rules whenever writing or modifying the homepage (index.html) or the homepage stylesheet (styles/main.css). Reference DNA: Vercel (primary) + Linear (secondary) + Stripe (local accent only). Source: TASTE-3A audit.
+globs:
+  - "index.html"
+  - "styles/main.css"
+  - "styles/*.css"
+  - "*.html"
+  - "*.css"
+  - "*.scss"
+alwaysApply: false
+---
+
+# conanxin-homepage — Taste Rules
+
+**Reference DNA**: Vercel (primary — engineering clarity, restraint) + Linear (secondary — dark theme, tool-over-display) + Stripe (local accent only — single-accent discipline, NOT marketing-page moves).
+**Source audit**: `outputs/taste-3a-conanxin-homepage-audit/TASTE_3A_HOMEPAGE_DESIGN_AUDIT.md` (in the taste-lab-pilot repo).
+**Full design rationale**: `docs/homepage-taste-rules.md` (in this repo).
+
+---
+
+## Identity
+
+Personal digital-garden home. Terminal / code-editor aesthetic. The interface feels like a calm, restrained entry point — not a marketing page, not a dashboard. Single-page, multi-section. Dark theme only. The monospace font is the identity.
+
+## Color tokens (use these; never hardcode hex outside `styles/main.css :root`)
+
+```
+--bg-primary: #0d1117             (page + body, near-black with cool blue cast)
+--bg-secondary: #161b22          (status bar, surface cards)
+--bg-tertiary: #21262d           (elevated surface, scrollbar thumb)
+--text-primary: #e6edf3          (headings, key labels)
+--text-secondary: #8b949e        (body copy)
+--text-muted: #6e7681            (timestamps, low-emphasis)
+--accent-green: #7ee787          (PRIMARY accent — links, active states, "Now" highlight, focus)
+--accent-blue: #79c0ff           (SECONDARY accent — secondary interactive text)
+--border-color: #30363d          (1px borders, dividers)
+```
+
+## Accent rationing (mandatory — 1+1 discipline)
+
+`--accent-green` / `#7ee787`: links, active nav items, focus-visible outline, status dot, "Now" section highlight. **Nothing else.**
+`--accent-blue` / `#79c0ff`: secondary interactive text. **Nothing else.**
+
+**No other accent colors.** P0 removed 3 unused accent tokens (`--accent-orange`, `--accent-purple`, `--accent-red`) to enforce this discipline structurally. Do not re-add them.
+
+Never: section headers in accent, dividers in accent, decorative icons in accent, card decorations in accent, multiple accent elements competing for attention, decorative use of accent on backgrounds.
+
+Before merging, run `grep -rE '#7ee787|var\(--accent-green\)' styles/` and `grep -rE '#79c0ff|var\(--accent-blue\)' styles/` — if either count grew beyond the legitimate uses above, accent crept in.
+
+## Typography
+
+- **Font family**: `'JetBrains Mono', 'Fira Code', 'Consolas', monospace` (web font via Google Fonts CDN; system-mono fallback chain is required)
+- **2 font weights only**: `400` and `600`. No `300`, no `500`, no `700`, no `900`.
+- **Scale** (already in use):
+  - Hero title: `28px` / `600` (deliberately small — terminal aesthetic, not marketing-page scale)
+  - H2: `20px` / `600` / line-height `28px`
+  - H3: `16px` / `600` / line-height `22.4px`
+  - Body: `16px` / `400` / line-height `27.2px` (1.7×)
+  - Meta: `14px` / `400`
+- **No H1 element** — the homepage uses a `<div class="logo">`. Don't change to `<h1>` without author review.
+- **No negative letter-spacing** — monospace fonts are already balanced.
+- **No web font addition** — JetBrains Mono (via Google Fonts) is the only one. Don't add Inter, Geist, IBM Plex, etc. (Inter was loaded but unused; P0 dropped it.)
+
+## Spacing scale (use these values)
+
+```
+--space-xs: 0.25rem   (4px — base unit × 1)
+--space-sm: 0.5rem    (8px)
+--space-md: 1rem      (16px)
+--space-lg: 1.5rem    (24px)
+--space-xl: 2rem      (32px)
+--space-xxl: 3rem     (48px — section gap)
+```
+
+No `64px`, no `96px`, no other values.
+
+## Container & grid
+
+- **Max-width**: `800px` (via `--max-width`; do NOT change to 1440px or 1280px)
+- **Body padding**: terminal-container has its own padding; the wide side margins ARE the whitespace
+- **Grid**: 2 columns in `.featured-grid`, 24px gutter, `repeat(auto-fit, minmax(280px, 1fr))` for responsiveness
+
+## Components
+
+### Status bar
+- Top of viewport, full width (within terminal-container), ~32px height
+- Background: `var(--bg-secondary)` (`#161b22`)
+- Text: `var(--text-muted)`
+- Status dot: 8px circle in `var(--accent-green)`, with `pulse` keyframe animation (2s infinite)
+- Right side: version / datetime, all monospace, all muted
+
+### Nav
+- Horizontal flex with `.terminal-nav` class
+- Item padding via `--space-md` and `--space-sm`
+- Default: muted text → hover: green accent → active: primary text + green underline
+- Numbered prefix (`01.`, `02.`, etc.) in muted color
+
+### Card / featured item
+- Background: `var(--bg-secondary)`
+- Border: `1px solid var(--border-color)`
+- Radius: `var(--border-radius)` (6px) for cards; 4px for chips
+- **Shadow: NONE** (flat depth discipline)
+- Hover: `border-color` shifts only; no lift, no shadow change, no scale
+
+### Button / link
+- Background: transparent
+- Text: `var(--text-secondary)` default → `var(--accent-green)` on hover
+- Padding: minimal (terminal aesthetic)
+- Border: none
+
+## Transitions
+
+- **Properties**: `color` and `border-color` only (NOT `transform`, NOT `opacity`, NOT `box-shadow`)
+- **Duration**: `0.2s`
+- **Easing**: `ease` (default)
+
+The transition discipline is part of the terminal aesthetic. Adding `transform: scale(1.05)` on hover would break the terminal feel.
+
+## Accessibility (MANDATORY — ship in P0)
+
+1. **`:focus-visible` outline rule** — 2px solid `var(--accent-green)`, 2px offset, 4px border-radius. Closes WCAG 2.4.7.
+2. **`prefers-reduced-motion` media query** — kills all transitions, animations, and the `.status-dot` pulse animation when user has reduced-motion set. Closes WCAG 2.3.3.
+3. **Color contrast** — all current text/bg pairs above WCAG AA (verified in TASTE-3A audit §9).
+
+## Mobile (below 768px)
+
+- Container: full-width (no 800px constraint)
+- Nav: collapse to single horizontal scroll row (`.terminal-nav` flex-wrap)
+- Grid: collapse to single column
+- Touch targets: min 44×44px
+- Font sizes: stay the same (system font scaling handles the rest)
+
+## Anti-patterns (always forbidden)
+
+- Hero image
+- Light theme
+- Multi-color accent expansion (the 1+1 discipline is sacred)
+- `filter: drop-shadow(...)`
+- Multi-layer shadows (zero shadows is the discipline)
+- Gradients (zero gradients is the discipline)
+- Pill-shape buttons (radius 4-6px is the discipline; chips stay 4px)
+- Hover lift above 1px
+- Animations on text content (only `color` and `border-color` may transition)
+- Box-shadow on cards
+- SaaS-hero layout (big headline + subhead + CTA)
+- Web font addition beyond JetBrains Mono
+- Proportional font families in any selector (everything must be monospace)
+- Container > 800px
+- Bento grid / asymmetric mosaic
+- Direct use of `#7ee787` in component CSS (use `var(--accent-green)`)
+- Direct use of `#79c0ff` in component CSS (use `var(--accent-blue)`)
+- Direct use of `#0d1117` in component CSS (use `var(--bg-primary)`)
+- `git add .` / `git add -A` (per-file add is mandatory; the repo has many `projects/*` sub-directories)
+
+## 4 extracted taste principles (read these first)
+
+1. **Monospace as Identity** — JetBrains Mono for every text role; the monospace aesthetic IS the site's personality
+2. **Flat Depth Over Simulated Depth** — zero shadows, zero gradients; cards separated only by 1-step background contrast and 1px border
+3. **Sparse Canvas Over Data Density** — 800px container on 1440px viewport (~55% width); the whitespace signals "there's no rush"
+4. **One Accent, Used with Discipline** — `#7ee787` for active states only; `#79c0ff` for secondary interactive; nothing else
+
+## P0 scope (TASTE-3B; do only these in P0)
+
+1. Add `:focus-visible` outline rule
+2. Add `prefers-reduced-motion` media query
+3. Remove 3 unused accent colors (`--accent-orange`, `--accent-purple`, `--accent-red`)
+4. Migrate `.featured-date` and `.post-date` from `var(--accent-orange)` to `var(--text-muted)`
+5. Drop Inter from the Google Fonts URL
+6. Remove unused `--font-sans` token
+7. Add `docs/homepage-taste-rules.md` (design rationale)
+8. Add this file (`.cursor/rules/conanxin-homepage-taste.mdc`)
+9. Extend top-level `CLAUDE.md` with the "Conanxin Homepage Taste Rules (TASTE-3B)" section
+
+## P1 scope (defer to TASTE-3C)
+
+- Skip-to-main-content link
+- Section IDs for direct linking
+- Active-section highlighting in nav
+- Image lazy-loading preparation
+
+## P2 scope (defer to TASTE-3D)
+
+- `scripts/check-design-tokens.sh` + `.github/workflows/design-lint.yml` for CI enforcement
+
+## When in doubt
+
+Read `docs/homepage-taste-rules.md` (in this repo) for the full rationale behind every rule. If a change doesn't fit any of the 4 documented principles, propose it as a separate design review — not a silent code change.

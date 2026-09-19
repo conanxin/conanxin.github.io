@@ -1,5 +1,28 @@
 [
   {
+    "title": "Research-to-Drama Engine｜史料到受控戏剧生成引擎",
+    "subtitle": "让每一段戏剧，都有证据来路",
+    "slug": "research-to-drama-engine",
+    "category": "systems",
+    "type": "RESEARCH PROTOTYPE",
+    "status": "L2 · L3 CONDITIONAL",
+    "status_color": "#426a5a",
+    "updated": "2026-09-19",
+    "summary": "一套证据约束的 Research-to-Drama 研究原型：把来源、命题、证据/推断、历史世界、创作权限、场景蓝图与最终文本分层，让每段生成内容都能说明自己的证据来路与授权边界。已完成 5 个正式验收样本与第二来源 Shadow E2E；正式双独立来源 L3 仍等待人工核验。",
+    "entry_url": "/projects/research-to-drama-engine/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "历史研究",
+      "AI",
+      "Provenance",
+      "Evidence",
+      "Drama",
+      "Agent Workflow",
+      "Digital Humanities"
+    ]
+  },
+  {
     "title": "Curtis Yarvin：人民从来不会正确",
     "subtitle": "421.news 长文完整中文翻译，新反动主义思想导读",
     "slug": "yarvin-moldbug-cn",

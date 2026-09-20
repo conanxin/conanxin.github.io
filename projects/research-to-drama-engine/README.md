@@ -4,7 +4,7 @@
 
 **[打开中文图文介绍页](https://conanxin.github.io/projects/research-to-drama-engine/)** · **[阅读开发纪事（P1–P10）](DEVELOPMENT.zh-CN.md)** · [查看网页源码](index.html)
 
-> 发布范围：本目录公开中文介绍页、方法图解和开发纪事，**不是完整 Engine 源码发行版**。原工程 `research-to-drama-skills` 尚待从原工作树导出可公开的源码、Schemas、Skills、测试与运行说明。不要将名称相似的 `classic-to-drama-engine` 当成本项目。
+> 本目录公开中文介绍页、方法图解和开发纪事。Engine 的 sanitized public source release 已发布到 **[`conanxin/research-to-drama-skills`](https://github.com/conanxin/research-to-drama-skills)**；私人扫描、往来邮件、凭据和完整私有研究 Git 历史不在公开发行树中。不要将名称相似的 `classic-to-drama-engine` 当成本项目。
 
 ## 项目是什么
 
@@ -79,12 +79,10 @@ projects/research-to-drama-engine/
 
 网页是静态 HTML/CSS/JavaScript，不需要后端、登录或数据库。下载本目录后可直接打开 `index.html`。Engine 的安装及测试命令必须从实际工程恢复；本目录不提供尚未核实的 CLI、pip 包名或启动参数。
 
-## 源码开源的剩余工作
+## 开源源码
 
-从原 `research-to-drama-skills` 工作树导出真实工程，保留原有许可证和第三方归属，提供可运行的最小示例与实际测试入口。公开发行树不包含私人邮件、个人地址、凭据、原始私人扫描或未筛选日志，也不直接携带可能含有这些内容的全部研究 Git 历史。
+公开源码仓库：**https://github.com/conanxin/research-to-drama-skills**。该仓库由原 `research-to-drama-skills` 工作树导出为独立 sanitized release，保留实际 schemas、skills、docs、evals、测试和去隐私化 pilot；不公开私人邮件、个人地址、凭据、原始私人扫描、未筛选日志或完整私有研究 Git 历史。
 
-完整 Engine 仓库发布后，其 README 与 Homepage 应链接到：
+源码仓库 README 已回链本中文项目页：**https://conanxin.github.io/projects/research-to-drama-engine/**。
 
-**https://conanxin.github.io/projects/research-to-drama-engine/**
-
-网页公开、源码公开和史料核验是三个不同的完成条件。当前不能把中文页面公开表述为完整 Engine 已开源。
+网页公开、源码公开和史料核验仍是三个不同的完成条件；源码开源不使第二条 canonical 证据链或 L3 自动成立。

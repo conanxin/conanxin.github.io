@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this research infrastructure or its published methodology, please cite it as below."
+title: "SHUGE-RESEARCH-DB: Provenance-aware research infrastructure for digitized Chinese historical documents"
+type: software
+authors:
+  - family-names: Xin
+    given-names: Conan
+date-released: 2026-09-28
+license: MIT
+repository-code: "https://github.com/conanxin/conanxin.github.io"
+url: "https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-research-db"
+keywords:
+  - digital humanities
+  - Chinese rare books
+  - IIIF
+  - OCR
+  - provenance
+  - citation
+  - research infrastructure

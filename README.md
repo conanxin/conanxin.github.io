@@ -6,6 +6,10 @@
 
 **在线访问：** [https://conanxin.github.io/digital-garden](https://conanxin.github.io/digital-garden)
 
+## 项目入口
+
+**[Research-to-Drama Engine｜中文图文介绍](https://conanxin.github.io/projects/research-to-drama-engine/)** — 从史料、证据与历史世界到逐单元授权的戏剧文本。[开源源码](https://github.com/conanxin/research-to-drama-skills) · [项目说明](projects/research-to-drama-engine/README.md) · [开发纪事 P1–P10](projects/research-to-drama-engine/DEVELOPMENT.zh-CN.md)。
+
 ---
 
 ## 最新更新

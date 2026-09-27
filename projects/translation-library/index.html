@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>译文馆 · THE TRANSLATION LIBRARY</title>
+<meta name="description" content="译文馆是一个收录优秀单篇文章中文译本的长篇阅读项目。每篇文章保留原文结构、图片位置与访谈节奏。">
+<link rel="canonical" href="https://conanxin.github.io/projects/translation-library/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="译文馆 · THE TRANSLATION LIBRARY">
+<meta property="og:description" content="把值得完整阅读的文章，带入中文世界。">
+<meta property="og:url" content="https://conanxin.github.io/projects/translation-library/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="译文馆 · THE TRANSLATION LIBRARY">
+
+<style>
+  :root {
+    --ink: #14110f;
+    --paper: #fbf7f0;
+    --paper-2: #f3ece0;
+    --rule: #d8cdb9;
+    --muted: #6b6357;
+    --accent: #8a2b1f;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong",
+                 "Times New Roman", Georgia, serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+
+  /* Masthead — like a journal */
+  header.masthead {
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 24px 0 28px;
+    margin-bottom: 56px;
+    text-align: center;
+  }
+  .title-zh {
+    font-size: 56px;
+    letter-spacing: 8px;
+    margin: 0 0 4px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .title-en {
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: var(--muted);
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+  .masthead-rule {
+    width: 64px;
+    height: 1px;
+    background: var(--ink);
+    margin: 18px auto;
+  }
+  .manifesto {
+    font-size: 17px;
+    color: var(--ink);
+    margin: 16px auto 0;
+    max-width: 640px;
+    line-height: 1.85;
+  }
+
+  /* Issue header */
+  .issue-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+    margin: 0 0 28px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* Article entry — index-card / catalogue style */
+  article.entry {
+    margin: 0 0 64px;
+    padding: 0;
+  }
+  .entry-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (min-width: 720px) {
+    .entry-grid {
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+    }
+  }
+
+  .entry-cover {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .entry-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .entry-text {
+    min-width: 0;
+  }
+  .entry-number {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .entry-title-zh {
+    font-size: 28px;
+    line-height: 1.3;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .entry-title-zh a { border-bottom: none; }
+  .entry-title-zh a:hover { color: var(--accent); }
+  .entry-title-en {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 16px;
+  }
+  .entry-byline {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 14px;
+    letter-spacing: 0.3px;
+  }
+  .entry-byline .dot { margin: 0 8px; opacity: 0.5; }
+  .entry-tags {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 14px;
+    letter-spacing: 1px;
+  }
+  .entry-tags .tag {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  .entry-tags .tag::before { content: "·"; margin-right: 8px; color: var(--rule); }
+  .entry-tags .tag:first-child::before { content: ""; margin: 0; }
+  .entry-excerpt {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin: 0 0 16px;
+    border-left: 2px solid var(--rule);
+    padding: 4px 0 4px 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .entry-cta {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  /* Section headings */
+  section.block {
+    margin: 64px 0 48px;
+  }
+  .block-title {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 8px;
+  }
+  .block-body {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  .block-body p { margin: 0 0 14px; }
+  .block-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+  .block-body li {
+    padding: 4px 0;
+    color: var(--ink);
+  }
+  .block-body li::before {
+    content: "—";
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* Categories */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 4px 14px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .category-grid span {
+    padding: 4px 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+
+  /* Status block */
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+    font-size: 14px;
+  }
+  @media (max-width: 640px) {
+    .status-grid { grid-template-columns: 1fr; }
+  }
+  .status-grid .label { color: var(--muted); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2px; }
+  .status-grid .value { color: var(--ink); font-size: 16px; }
+
+  /* Footer */
+  footer.colophon {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 3px double var(--ink);
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  footer.colophon .col-zh { font-size: 14px; color: var(--ink); letter-spacing: 4px; margin-bottom: 4px; }
+  footer.colophon .col-en { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+  footer.colophon .col-signature { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 32px 18px 64px; }
+    .title-zh { font-size: 36px; letter-spacing: 6px; }
+    .title-en { letter-spacing: 4px; }
+    .entry-title-zh { font-size: 22px; }
+    .entry-cover { max-width: 280px; }
+    .issue-meta { flex-wrap: wrap; gap: 4px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <h1 class="title-zh">译 文 馆</h1>
+    <p class="title-en">The Translation Library</p>
+    <div class="masthead-rule"></div>
+    <p class="manifesto">把值得完整阅读的文章，带入中文世界。</p>
+  </header>
+
+  <p class="issue-meta">
+    <span>创刊号 · Issue No. 001</span>
+    <span>二〇二六年七月 · July 2026</span>
+  </p>
+
+  <article class="entry" aria-labelledby="entry-001-title">
+    <div class="entry-grid">
+      <a class="entry-cover" href="./cybernetics-library-interview/" aria-hidden="true" tabindex="-1">
+        <img src="./cybernetics-library-interview/assets/img-01-47245467.jpg"
+             alt="控制论图书馆：两位馆员在大桌子前翻书">
+      </a>
+      <div class="entry-text">
+        <p class="entry-number">第 001 篇 · ARTICLE 001</p>
+        <h2 class="entry-title-zh" id="entry-001-title">
+          <a href="./cybernetics-library-interview/">与「控制论图书馆」幕后成员的对谈</a>
+        </h2>
+        <p class="entry-title-en">An Interview with the People Behind the Cybernetics Library</p>
+        <p class="entry-byline">
+          文 / 梅格娜·拉奥（Meghna Rao）
+          <span class="dot">·</span>
+          译 / 译文馆
+          <span class="dot">·</span>
+          2026 年 7 月 16 日
+        </p>
+        <p class="entry-tags">
+          <span class="tag">访谈</span>
+          <span class="tag">控制论</span>
+          <span class="tag">图书馆</span>
+          <span class="tag">知识组织</span>
+          <span class="tag">集体实践</span>
+        </p>
+        <p class="entry-excerpt">
+          位于地狱厨房区一间合作社里的「控制论图书馆」，是一个仅供馆内浏览的小空间。
+          它装下了上百本书、小册子和海报，但两位馆员戴维·艾萨克·赫克特与查斯基，
+          更愿意把它看作一个「会接收反馈、不断演化」的活物——
+          这一点，或许正是这家图书馆最迷人的地方。
+        </p>
+        <p class="entry-cta">
+          <a href="./cybernetics-library-interview/">阅读全文 →</a>
+          &nbsp;&nbsp;
+          <a href="https://www.are.na/editorial/an-interview-with-the-people-behind-the-cybernetics-library" target="_blank" rel="noopener">查看原文</a>
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <section class="block" aria-labelledby="about-title">
+    <h3 class="block-title" id="about-title">关于译文馆 · ABOUT</h3>
+    <div class="block-body">
+      <p>译文馆是一个专门收录优秀单篇文章中文译本的数字阅读项目。</p>
+      <p>这里收录值得完整阅读、反复阅读和长期保存的中文译文。每篇文章尽可能保留原文的段落结构、图片位置、访谈节奏与编辑语境。</p>
+      <p>项目原则：</p>
+      <ul>
+        <li>优先完整翻译，而不是摘要</li>
+        <li>尽量保留原文章结构</li>
+        <li>保留图片与上下文</li>
+        <li>标明原文出处与发布日期</li>
+        <li>为中文长篇阅读重新排版</li>
+        <li>每篇文章拥有独立永久页面</li>
+        <li>项目将持续加入新的文章</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="scope-title">
+    <h3 class="block-title" id="scope-title">收藏范围 · SCOPE</h3>
+    <div class="block-body">
+      <p>译文馆主要收录：</p>
+      <div class="category-grid" aria-label="收录范围">
+        <span>访谈</span>
+        <span>随笔</span>
+        <span>评论</span>
+        <span>艺术</span>
+        <span>设计</span>
+        <span>建筑</span>
+        <span>技术</span>
+        <span>媒介</span>
+        <span>社会</span>
+        <span>自然</span>
+        <span>思想史</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="status-title">
+    <h3 class="block-title" id="status-title">项目状态 · STATUS</h3>
+    <div class="block-body">
+      <div class="status-grid">
+        <div>
+          <div class="label">当前收录</div>
+          <div class="value">1 篇</div>
+        </div>
+        <div>
+          <div class="label">创建时间</div>
+          <div class="value">2026</div>
+        </div>
+        <div>
+          <div class="label">语言</div>
+          <div class="value">简体中文</div>
+        </div>
+        <div>
+          <div class="label">更新方式</div>
+          <div class="value">不定期编辑</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <div class="col-zh">译 文 馆</div>
+    <div class="col-en">The Translation Library</div>
+    <div>A Chinese Reading Archive by conanxin</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

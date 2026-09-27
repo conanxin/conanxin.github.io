@@ -1,78 +1,88 @@
-# SHUGE-RESEARCH-DB STATUS
+# Status
 
-_Last updated: 2026-09-28 04:44:25 _
+## Current project state
 
-## 当前阶段
+**Phase:** P5-B2 complete · P5-C next
 
-**P5-C: COMPLETE** (Thematic Research Collections, Issue #8 closed)
+**Operational state:** `COMPLETE_P5B2`
 
-## 数据库
+Completed issue: [#7 · P5-B2 Finalization — Citation / Search QA / Regression Freeze](https://github.com/conanxin/conanxin.github.io/issues/7)
 
-- **DATABASE_SIZE**: 45,117,440 bytes
-- **OCR_TOTAL_SUCCESS**: 3553
-- **OCR_TOTAL_EMPTY**: 33
-- **OCR_TOTAL_FAILED**: 0
-- **OCR_TOTAL_PENDING**: 0
-- **integrity_check**: ok
-- **foreign_key_check**: 0 violations
+The long-running JDA OCR job has finished cleanly.
 
-## 三部 JDA works (P5-B2 frozen)
+## Post-OCR check
 
-| work_id | name | pages | OCR success | searchable |
-|---|---|---|---|---|
-| p124575 | 水经注 | 956 | 956 | 933 |
-| p44159 | 工程做法 | 1456 | 1456 | 1456 |
-| p48341 | 河防一览 | 122 | 122 | 122 |
+Database:
 
-## P5-C Thematic Collections
+- size: 45,010,944 bytes
+- SQLite integrity: OK
+- foreign-key violations: 0
+- active OCR workers: 0
+- active importers: 0
 
-- **2 collections**: `historical-hydrology`, `architecture-construction`
-- **Total memberships**: 283 (4 WORK + 279 PAGE, UNIT reserved)
-- **WORK seeds**: 水经注 + 河防一览 (hydrology), 工程做法 + 园冶 (architecture)
-- **PAGE members**: 天工开物 p211203 (hydrology: 63 / architecture: 216)
-- **Schema**: `research_collections`, `collection_memberships`
-- **Tools**: `scripts/collections.py list/show/works/page-counts`
-- **--collection flag**: `research_search.py` + `research.py` (filter BEFORE evidence synthesis)
+OCR:
 
-## P5-C Acceptance Gate
+- SUCCESS: 3553
+- EMPTY: 33
+- FAILED: 0
+- PENDING: 0
 
-- ✅ 2 collections created
-- ✅ all 283 memberships have inclusion_method + reason + confidence
-- ✅ same work/page can belong to multiple collections (天工开物 p211203 in both)
-- ✅ collection filter works in `research_search.py` (SQL-level)
-- ✅ collection filter works in `research.py` (passed to subprocess BEFORE evidence synthesis)
-- ✅ ≥10 collection-scoped queries (12 total)
-- ✅ OUT_OF_COLLECTION_EVIDENCE_LEAKAGE = 0
-- ✅ verified-false regression (collection scope) PASS
-- ✅ abstention in bounded collections PASS
-- ✅ UNSUPPORTED_CLAIM_SENTENCES = 0
-- ✅ Citation IDs / provenance unchanged
-- ✅ 0 new acquisition / 0 OCR / 0 raw OCR changes
+FTS:
 
-## P5-B2 终态 (frozen)
+- virtual row count: 3553
+- docsize row count: 3553
+- shadow state: healthy
 
-- 14/14 acceptance gate PASS (Issue #7 closed)
-- 三部 JDA OCR 100% 完成 (3553 SUCCESS / 33 EMPTY / 0 FAILED)
-- FTS5 健康 (ocr_fts=3553=docsize)
-- Search QA 15/15 TRUE, Visual QA 60页 0 FAIL
-- 9 research questions (corpus-grounded)
-- 乃粒回归 + JDA 负例回归 + P4-E 12/12 + abstention 6/6 PASS
-- UNSUPPORTED_CLAIM_SENTENCES=0
+## JDA corpus
 
-## Deferred (P5-D+)
+### 《水经注》
 
-- Embedding / Vector DB / Neo4j / Web UI
-- document_unit 维度 membership 注入
-- PP-OCRv5 二次 OCR (工程做法 9 POOR 页)
-- Harvard 浏览器路径整合
-- Shuge JS portal
-- 梦粱录卷10-20
+- pages: 956
+- OCR SUCCESS: 956
+- FTS searchable non-empty: 933
+- zero-text / genuine blank: 23
 
-## Reports
+### 《工程做法》
 
-- `REPORT_P5C.txt` (P5-C 终报, 8691 bytes)
-- `REPORT_P5B2.txt` (P5-B2 终报, 6471 bytes)
-- `reports/thematic_collections.md`
-- `reports/collection_membership_hydrology.csv`
-- `reports/collection_membership_architecture.csv`
-- `reports/p5c_collection_qa.md`
+- pages: 1456
+- OCR SUCCESS: 1456
+- FTS searchable: 1456
+
+### 《河防一览》
+
+- pages: 122
+- OCR SUCCESS: 122
+- FTS searchable: 122
+
+## P5-B2 finalization result
+
+The local finalization run completed with all 14/14 gates passing, including the verified-false regression fix.
+
+Final state:
+
+- `STATUS=COMPLETE_P5B2`
+- no new acquisition or OCR during finalization
+- Citation / Search QA / Visual QA / research regressions completed
+- project returned to idle
+- GitHub issue #7 closed as completed
+
+## Known limitations
+
+- several thousand pages are searchable, but reading-order reconstruction remains partial
+- some decorative / blank / image-only pages are intentionally not text-searchable
+- stronger secondary OCR remains deferred on the current hardware
+- current public GitHub package documents the research system; large local assets and DB files are not mirrored here
+
+## P5-C direction
+
+Shift from source-centric organization to thematic research collections.
+
+Candidate collections:
+
+1. Historical Hydrology & River Defense
+2. Architecture & Construction
+3. Urban Space
+4. Classical Knowledge & Technology
+5. Medicine & Recipes
+
+A future query should be able to constrain research to one or more thematic collections without changing the provenance and citation model.

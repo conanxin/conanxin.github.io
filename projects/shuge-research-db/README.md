@@ -124,10 +124,13 @@ See:
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [METHODS_AND_FINDINGS.md](./METHODS_AND_FINDINGS.md)
 - [STATUS.md](./STATUS.md)
+- [OPEN_SOURCE.md](./OPEN_SOURCE.md)
+- [CITATION.cff](./CITATION.cff)
+- [LICENSE](./LICENSE)
 
 ## Repository scope
 
-This public package currently publishes the research process, architecture, failure analysis, methodological findings, and stable project state.
+This public package publishes the research process, architecture, failure analysis, methodological findings, reproducibility boundary, and stable project state under the MIT License. See [OPEN_SOURCE.md](./OPEN_SOURCE.md) for the public-release scope and [CITATION.cff](./CITATION.cff) for citation metadata.
 
 The full local working implementation lives at:
 

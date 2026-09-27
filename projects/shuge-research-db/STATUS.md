@@ -2,11 +2,11 @@
 
 ## Current project state
 
-**Phase:** P5-B2 finalization pending
+**Phase:** P5-B2 complete · P5-C next
 
-**Operational state:** `READY_FOR_P5B2_FINALIZATION`
+**Operational state:** `COMPLETE_P5B2`
 
-Tracking issue: [#7 · P5-B2 Finalization — Citation / Search QA / Regression Freeze](https://github.com/conanxin/conanxin.github.io/issues/7)
+Completed issue: [#7 · P5-B2 Finalization — Citation / Search QA / Regression Freeze](https://github.com/conanxin/conanxin.github.io/issues/7)
 
 The long-running JDA OCR job has finished cleanly.
 
@@ -54,21 +54,17 @@ FTS:
 - OCR SUCCESS: 122
 - FTS searchable: 122
 
-## Remaining P5-B2 finalization
+## P5-B2 finalization result
 
-- Citation ID full-coverage audit
-- at least 45-page visual QA
-- at least 5 search-QA terms per JDA work
-- at least 3 corpus-grounded research questions per JDA work
-- cross-work term tests
-- “乃粒” regression
-- negative recovery regression:
-  - 靖海全图 must remain NOT_FOUND
-  - 今古舆地图 must remain AMBIGUOUS
-- P4-E benchmark regression
-- abstention regression
-- verified-false regression
-- final static corpus snapshot
+The local finalization run completed with all 14/14 gates passing, including the verified-false regression fix.
+
+Final state:
+
+- `STATUS=COMPLETE_P5B2`
+- no new acquisition or OCR during finalization
+- Citation / Search QA / Visual QA / research regressions completed
+- project returned to idle
+- GitHub issue #7 closed as completed
 
 ## Known limitations
 
@@ -77,7 +73,7 @@ FTS:
 - stronger secondary OCR remains deferred on the current hardware
 - current public GitHub package documents the research system; large local assets and DB files are not mirrored here
 
-## Candidate P5-C direction
+## P5-C direction
 
 Shift from source-centric organization to thematic research collections.
 

@@ -355,19 +355,11 @@ Post-OCR static check:
 
 《水经注》 contains 23 genuine zero-text / blank pages, leaving 933 searchable non-empty pages.
 
-Current status:
+Finalization result:
 
-`READY_FOR_P5B2_FINALIZATION`
+`COMPLETE_P5B2`
 
-Remaining finalization work:
-
-- citation coverage audit
-- >=45-page visual QA
-- per-work search QA
-- >=9 corpus-grounded research queries
-- cross-work tests
-- negative regression tests
-- P4-E regression freeze
+The local finalization run reported all 14/14 acceptance gates passing, including Citation coverage, Search QA, Visual QA, cross-work tests, negative recovery regressions, P4-E regression checks, abstention behavior, verified-false handling, and the unsupported-claim audit. Issue #7 was closed after the project returned to idle.
 
 ## Current interpretation
 

@@ -6,6 +6,8 @@
 
 **Operational state:** `READY_FOR_P5B2_FINALIZATION`
 
+Tracking issue: [#7 · P5-B2 Finalization — Citation / Search QA / Regression Freeze](https://github.com/conanxin/conanxin.github.io/issues/7)
+
 The long-running JDA OCR job has finished cleanly.
 
 ## Post-OCR check

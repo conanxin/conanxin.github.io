@@ -1,0 +1,192 @@
+{
+  "version": "v0.3",
+  "rooms": {
+    "room1": {
+      "id": "room1",
+      "title_zh": "从目录到研究基础设施",
+      "introduction": "本展厅呈现一个数字人文研究基础设施是如何从一份简单的古籍目录开始,逐层构建为可被研究、可被引证、可被治理的系统。9 个里程碑标记了这条演化路径的关键转折点。",
+      "objects": [
+        {
+          "name": "原始书格目录",
+          "description": "9 部 featured works 的元数据起点 (post_id + title + author + dynasty)",
+          "kind": "元数据"
+        },
+        {
+          "name": "OCR 文本层",
+          "description": "3,553 个 page OCR + 833,202 字符 — 来自 PaddleOCR/PP-OCRv4-mobile",
+          "kind": "数据层"
+        },
+        {
+          "name": "FTS5 索引",
+          "description": "SQLite FTS5 unicode61 — 全文检索能力",
+          "kind": "索引"
+        },
+        {
+          "name": "2 个专题集合",
+          "description": "historical-hydrology + architecture-construction — 治理单元",
+          "kind": "治理"
+        },
+        {
+          "name": "Research Workspaces",
+          "description": "3 个 workspace + 20 QA — 跨集合研究",
+          "kind": "应用"
+        }
+      ],
+      "further_reading": [
+        "GitHub Issue #8 (P5-C): collection schema + memberships",
+        "GitHub Issue #9 (P5-D): governance + precision + compare",
+        "本地报告: SHUGE-RESEARCH-DB/reports/collection_governance.md"
+      ]
+    },
+    "room2": {
+      "id": "room2",
+      "title_zh": "一部书的生命: 水经注个案",
+      "introduction": "以北魏郦道元《水经注》为个案,展示一部古籍如何从静态 PDF 图像变成可被检索、可被引证的研究资源。956 页、322,030 字、933 页可搜索 — 这些数字定义了这部书在研究系统中的「重量」。",
+      "objects": [
+        {
+          "name": "水经注 PDF (956 页)",
+          "description": "post_id=124575 · 明万历吴琯校刊本",
+          "kind": "原始资源"
+        },
+        {
+          "name": "OCR 文本",
+          "description": "322,030 字 · searchable=933 页 · zero_text=7 页",
+          "kind": "数据层"
+        },
+        {
+          "name": "60 页样本",
+          "description": "v0.3 仍展示前 60 页元数据 — 不暴露全部 956 页",
+          "kind": "展品"
+        },
+        {
+          "name": "5 个 Page Image Viewer Framework",
+          "description": "v0.3 framework only — 不暴露 IIIF URL",
+          "kind": "框架"
+        },
+        {
+          "name": "Collection 归属",
+          "description": "historical-hydrology (WORK scope)",
+          "kind": "治理"
+        }
+      ],
+      "further_reading": [
+        "https://www.shuge.org/view/shui_jing_zhu/",
+        "《水经注》研究综述 (李约瑟《中国科学技术史》第一卷)",
+        "本地报告: SHUGE-RESEARCH-DB/reports/thematic_collections.md"
+      ]
+    },
+    "room3": {
+      "id": "room3",
+      "title_zh": "历史水利与河防",
+      "introduction": "「历史水利与河防」专题集合 — 项目第一个策展性研究集合。本展厅呈现这个集合如何被定义、如何被治理、如何被审计。",
+      "objects": [
+        {
+          "name": "2 WORK 种子",
+          "description": "水经注 + 河防一览 — 人工收录 (MANUAL review_status)",
+          "kind": "种子"
+        },
+        {
+          "name": "63 PAGE 成员 (天工开物)",
+          "description": "auto-rebuilt · REVIEWED · confidence ≥ 0.5",
+          "kind": "自动成员"
+        },
+        {
+          "name": "19 include terms",
+          "description": "水/河/江/湖/海/漕/堤/渠/坝/堰/闸/河工/水利/海塘/黄河/运河/漕运/灌溉/河防",
+          "kind": "规则"
+        },
+        {
+          "name": "snapshot chain",
+          "description": "P5-C → P5-D → current · membership_hash 稳定",
+          "kind": "审计"
+        },
+        {
+          "name": "evidence cards (collection-scoped)",
+          "description": "6 个 sample cards · 全部带 4 个 v0.3 新字段",
+          "kind": "展品"
+        }
+      ],
+      "further_reading": [
+        "GitHub Issue #8 (P5-C): collection governance 入门",
+        "GitHub Issue #9 (P5-D): rebuild idempotent + snapshot diff",
+        "本地报告: SHUGE-RESEARCH-DB/reports/collection_governance.md"
+      ]
+    },
+    "room4": {
+      "id": "room4",
+      "title_zh": "建筑营造与工程做法",
+      "introduction": "「建筑营造与工程做法」专题集合 — 以《工程做法》为骨干,辅以《园冶》《天工开物》。本展厅与展厅 3 形成 cross-collection compare 的对照样本。",
+      "objects": [
+        {
+          "name": "2 WORK 种子",
+          "description": "工程做法 + 园冶 — 人工收录",
+          "kind": "种子"
+        },
+        {
+          "name": "216 PAGE 成员 (天工开物)",
+          "description": "auto-rebuilt · REVIEWED · confidence ≥ 0.5",
+          "kind": "自动成员"
+        },
+        {
+          "name": "28 include terms",
+          "description": "柱/梁/枋/斗/栱/檐/瓦/砖/石/木/构/架/厅/堂/殿/楼/阁/门/窗/墙/基/阶/径/营造/工程做法/大木/柱径/正心",
+          "kind": "规则"
+        },
+        {
+          "name": "cross-collection overlap",
+          "description": "天工开物 (p211203) 同时属两 collection (PAGE 成员按 page 而非 cross-page)",
+          "kind": "治理"
+        },
+        {
+          "name": "evidence cards (collection-scoped)",
+          "description": "6 个 sample cards · 与 hydrology 严格分离",
+          "kind": "展品"
+        }
+      ],
+      "further_reading": [
+        "《工程做法》原本影印版 (梁思成《清式营造则例》)",
+        "《园冶》(明) 计成 著",
+        "GitHub Issue #9 (P5-D) Track D: cross-collection compare"
+      ]
+    },
+    "room5": {
+      "id": "room5",
+      "title_zh": "AI-assisted Historical Research",
+      "introduction": "AI 在本项目中的真实角色 — 是研究助产士,不是替代者。本展厅直接展示 AI 产出的 12 个 evidence cards + 3 个研究工作区,让观众自己判断「AI 做了什么」「人类做了什么」「哪些边界由人类持有」。",
+      "objects": [
+        {
+          "name": "12 evidence cards (v0.3)",
+          "description": "每个 card 带 source_context / citation_path / collection / related_workspace 四字段",
+          "kind": "展品"
+        },
+        {
+          "name": "3 Research Workspaces",
+          "description": "水经注河水分布研究 / 河防一览黄河 / 工程做法柱径",
+          "kind": "工作区"
+        },
+        {
+          "name": "6 个系统层 (layer)",
+          "description": "OCR → FTS5 → collection → run → workspace → site",
+          "kind": "基础设施"
+        },
+        {
+          "name": "6 项治理指标",
+          "description": "LEAKAGE=0 / VERIFIED_FALSE=PASS / ABSTENTION=PASS / CLAIMS=0 / IDs=unchanged / PROVENANCE=unchanged",
+          "kind": "指标"
+        },
+        {
+          "name": "Citation Viewer (per card)",
+          "description": "点击 evidence-ledger-row 弹出 6 字段 viewer",
+          "kind": "交互"
+        }
+      ],
+      "further_reading": [
+        "GitHub Issue #9 (P5-D): retrieval precision + 12/12 negative controls",
+        "本地报告: SHUGE-RESEARCH-DB/reports/query_precision_benchmark.md",
+        "本地报告: SHUGE-RESEARCH-DB/reports/workspace_qa.md"
+      ]
+    }
+  },
+  "generated_at": "2026-09-28T09:05:00+08:00",
+  "note": "v0.3 新增 — 每个 room 5 个 section: Introduction / Objects / Evidence / Take-away / Further Reading"
+}

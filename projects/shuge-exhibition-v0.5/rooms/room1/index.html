@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 1 · From Catalogue to Research Infrastructure</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 1</h1>
+  <p class="masthead-subtitle">From Catalogue to Research Infrastructure · 从目录到研究基础设施</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html" class="active">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html">展厅 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../cases/case1/index.html">案例 1</a>
+    <a href="../../cases/case2/index.html">案例 2</a>
+    <a href="../../cases/case5/index.html">案例 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.2">v0.2 ↗</a>
+  </div>
+  <div class="topnav-meta">9 milestones · 6 layers</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>From Catalogue to Research Infrastructure</h1>
+    <p class="hero-lead">一个数字人文研究基础设施是如何从一份简单的古籍目录开始的。</p>
+    <p>9 个里程碑标记了从「一份元数据清单」到「可被治理、可被引证的研究系统」的演化路径。</p>
+  </section>
+
+  <!-- v0.3 NEW: Introduction -->
+  <section class="room-introduction">
+    <h2>Introduction</h2>
+    <p id="intro1"></p>
+  </section>
+
+  <!-- v0.3 NEW: Objects -->
+  <section class="room-objects">
+    <h2>Objects</h2>
+    <div id="objects1" class="objects-grid"></div>
+  </section>
+
+  <!-- v0.3 Evidence (existing) -->
+  <section>
+    <h2>Evidence</h2>
+    <h3>9 个里程碑</h3>
+    <div id="timeline"></div>
+    <h3 style="margin-top:1.5rem">6 个研究系统层</h3>
+    <table class="meta-table">
+      <tr><th>Layer 1</th><td>原始书格目录 · 756 个 works (shuge.org ingest)</td></tr>
+      <tr><th>Layer 2</th><td>OCR · 3,553 页 · 833,202 字符 (PP-OCRv4-mobile)</td></tr>
+      <tr><th>Layer 3</th><td>FTS5 索引 · 全文检索能力</td></tr>
+      <tr><th>Layer 4</th><td>Collection Governance · 283 memberships · 2 collections</td></tr>
+      <tr><th>Layer 5</th><td>Research Workspaces · 3 个 · 20 QA</td></tr>
+      <tr><th>Layer 6</th><td>Public Exhibition (v0.1 → v0.2 → v0.3)</td></tr>
+    </table>
+    <h3 style="margin-top:1.5rem">Map Placeholder</h3>
+    <p class="dim">v0.3 仍为 framework only — 简化东亚大陆轮廓 + 8 个坐标点。</p>
+    <div class="map-placeholder" id="map-placeholder"></div>
+  </section>
+
+  <!-- v0.3 Take-away (existing) -->
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      一份目录变成研究基础设施的轨迹,是 <strong>9 个里程碑 + 6 个研究系统层</strong> 的累积结果 — 每一个里程碑都不是孤立的功能,而是下一个层的基础。
+    </div>
+  </section>
+
+  <!-- v0.3 NEW: Further Reading -->
+  <section class="room-further-reading">
+    <h2>Further Reading</h2>
+    <ul id="further1" class="further-reading"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 1</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+// Render room_intros sections
+fetch('../../data/room_intros.json').then(r => r.json()).then(d => {
+  var r = d.rooms.room1;
+  document.getElementById('intro1').textContent = r.introduction;
+  var oHtml = '';
+  r.objects.forEach(function(o) {
+    oHtml += '<article class="object-card">';
+    oHtml += '<div class="object-card-header"><span class="object-card-kind">' + o.kind + '</span></div>';
+    oHtml += '<h3 class="object-card-name">' + o.name + '</h3>';
+    oHtml += '<p class="object-card-desc">' + o.description + '</p>';
+    oHtml += '</article>';
+  });
+  document.getElementById('objects1').innerHTML = oHtml;
+  var fHtml = '';
+  r.further_reading.forEach(function(x) { fHtml += '<li>' + x + '</li>'; });
+  document.getElementById('further1').innerHTML = fHtml;
+});
+
+// Timeline
+fetch('../../data/timeline.json').then(r => r.json()).then(d => {
+  var t = document.getElementById('timeline');
+  var html = '<table class="meta-table"><thead><tr><th>#</th><th>date</th><th>milestone</th><th>description</th></tr></thead><tbody>';
+  d.milestones.forEach(function(m, i) {
+    html += '<tr><td><span class="mono">' + (i+1) + '</span></td><td><span class="mono">' + m.date + '</span></td><td>' + m.title + '</td><td>' + (m.description || '') + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  t.innerHTML = html;
+});
+
+// Map placeholder
+fetch('../../data/map_placeholder.json').then(r => r.json()).then(d => {
+  var container = document.getElementById('map-placeholder');
+  container.innerHTML = '<svg viewBox="100 25 45 20" xmlns="http://www.w3.org/2000/svg" class="map-svg">'
+    + '<rect x="100" y="25" width="45" height="20" fill="#efe9da" stroke="#c8bfa9"/>'
+    + '<path d="M 102 30 L 110 28 L 118 29 L 125 27 L 132 28 L 140 26 L 142 28 L 144 32 L 142 36 L 138 38 L 132 39 L 128 41 L 124 42 L 130 41 L 126 40 L 122 38 L 112 38 L 108 36 L 105 33 Z" fill="#c8bfa9" stroke="#6b5944" stroke-width="0.2"/>'
+    + '</svg>';
+  var svg = container.querySelector('svg');
+  d.centers.forEach(function(pt) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', pt.x);
+    c.setAttribute('cy', pt.y);
+    c.setAttribute('r', '0.6');
+    c.setAttribute('class', 'map-point');
+    c.setAttribute('data-name', pt.name);
+    c.setAttribute('data-note', pt.note);
+    svg.appendChild(c);
+  });
+  var tooltip = document.createElement('div');
+  tooltip.className = 'map-tooltip';
+  container.appendChild(tooltip);
+  svg.querySelectorAll('.map-point').forEach(function(pt) {
+    pt.addEventListener('mouseenter', function() {
+      tooltip.textContent = pt.getAttribute('data-name') + ' — ' + pt.getAttribute('data-note');
+      tooltip.style.opacity = '1';
+    });
+    pt.addEventListener('mouseleave', function() { tooltip.style.opacity = '0'; });
+  });
+});
+</script>
+</body>
+</html>

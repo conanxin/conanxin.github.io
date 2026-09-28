@@ -1,0 +1,379 @@
+{
+  "version": "v0.4",
+  "generated_at": "2026-09-28",
+  "schema_version": "1.0",
+  "design_notes": "v0.4 引入 Place Entity 概念;每个 place 绑定已有 citation_id 与 collection。坐标全部 placeholder,P5-E 才接入 GIS。",
+  "constraints": [
+    "static_json_readonly",
+    "no_actual_coordinates",
+    "no_new_acquisition",
+    "no_ocr_execution",
+    "no_citation_id_change",
+    "no_embeddings_vector_db_neo4j",
+    "no_web_ui_backend"
+  ],
+  "place_categories": {
+    "natural_river": "natural_river",
+    "historical_city": "historical_city",
+    "architectural_type": "architectural_type",
+    "infrastructure": "infrastructure",
+    "waterway": "waterway"
+  },
+  "extraction_methods": {
+    "place_name_match": "From OCR text, NER-like substring matching against place names",
+    "collection_seed": "From existing collection seed works",
+    "chapter_title_match": "From chapter titles of seed works",
+    "work_topic_match": "From work's main subject",
+    "work_geography_match": "From work's default geographical scope",
+    "category_match": "From architectural/topical categories",
+    "category_only": "Placeholder;no citation yet"
+  },
+  "status_values": {
+    "DRAFT": "Bound to at least one citation; ready for review",
+    "PLACEHOLDER": "No citation binding yet; awaiting future field notes",
+    "REVIEWED": "Manually reviewed; ready for fieldwork priority",
+    "ARCHIVED": "Removed from current exhibition focus"
+  },
+  "total_places": 10,
+  "places": [
+    {
+      "place_id": "sangganhe",
+      "slug": "sanggan-he",
+      "name_zh": "桑干河",
+      "name_pinyin": "Sanggan He",
+      "name_en": "Sanggan River",
+      "category": "natural_river",
+      "kind_zh": "北方河流",
+      "kind_en": "Northern river",
+      "description_zh": "桑干河为永定河之上游,流经山西、河北。郦道元《水经注》记其源出累头山,《水经》云「桑干水出代郡桑干县北山」。",
+      "description_en": "Sanggan River is the upstream tributary of Yongding River, flowing through Shanxi and Hebei.",
+      "dynasty_range": [
+        "北魏",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "note": "v0.4 示意坐标;实际坐标待 P5-E 接入 GIS 后回填"
+      },
+      "related_collections": [
+        "historical-hydrology"
+      ],
+      "related_works": [
+        "p124575"
+      ],
+      "primary_citations": [
+        "SHUGE:p124575:1",
+        "SHUGE:p124575:15"
+      ],
+      "extraction_method": "place_name_match (水经注地理实体识别)",
+      "status": "DRAFT",
+      "fieldwork_priority": "high",
+      "notes": "v0.4 第一批 Place;后续可扩展至水经注全 40 卷 1252 河名。"
+    },
+    {
+      "place_id": "huanghe",
+      "slug": "huang-he",
+      "name_zh": "黄河",
+      "name_pinyin": "Huang He",
+      "name_en": "Yellow River",
+      "category": "natural_river",
+      "kind_zh": "华夏母亲河",
+      "kind_en": "Major Chinese river",
+      "description_zh": "黄河为中国第二长河,自先秦至明清皆为河防重镇。《河防一览》《天工开物》多记其河工与泥沙治理。",
+      "description_en": "Yellow River, the second longest in China, central to historical river defense.",
+      "dynasty_range": [
+        "先秦",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region"
+      },
+      "related_collections": [
+        "historical-hydrology"
+      ],
+      "related_works": [
+        "p48341",
+        "p211203"
+      ],
+      "primary_citations": [
+        "SHUGE:p48341:1",
+        "SHUGE:p211203:1096"
+      ],
+      "extraction_method": "place_name_match + collection_seed",
+      "status": "DRAFT",
+      "fieldwork_priority": "high",
+      "notes": "河防一览 p48341 为 collection#1 seed work;此 place 有 8 张 evidence cards 命中。"
+    },
+    {
+      "place_id": "jiangshui",
+      "slug": "jiang-shui",
+      "name_zh": "江水",
+      "name_pinyin": "Jiang Shui",
+      "name_en": "Yangtze Waters",
+      "category": "natural_river",
+      "kind_zh": "南方大江",
+      "kind_en": "Southern great river",
+      "description_zh": "《水经注》江水篇记长江三峡、武陵、洞庭一带水道,涵盖水道 80 余处。",
+      "description_en": "Yangtze River, recorded in Shu Jing Zhu's river chapter.",
+      "dynasty_range": [
+        "北魏",
+        "明"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region"
+      },
+      "related_collections": [
+        "historical-hydrology"
+      ],
+      "related_works": [
+        "p124575"
+      ],
+      "primary_citations": [
+        "SHUGE:p124575:200",
+        "SHUGE:p124575:215"
+      ],
+      "extraction_method": "chapter_title_match (江水篇)",
+      "status": "DRAFT",
+      "fieldwork_priority": "medium",
+      "notes": "水经注江水篇为水经注 40 卷中条目最多之一。"
+    },
+    {
+      "place_id": "linan",
+      "slug": "lin-an",
+      "name_zh": "临安",
+      "name_pinyin": "Lin'an",
+      "name_en": "Lin'an (Southern Song capital)",
+      "category": "historical_city",
+      "kind_zh": "南宋都城",
+      "kind_en": "Southern Song capital",
+      "description_zh": "临安为南宋行在(1127-1276),今杭州。《梦粱录》专记临安城市生活、市井风物。",
+      "description_en": "Lin'an (modern Hangzhou) was Southern Song capital 1127-1276.",
+      "dynasty_range": [
+        "南宋"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "lat": 30.27,
+        "lng": 120.15
+      },
+      "related_collections": [],
+      "related_works": [
+        "p205024"
+      ],
+      "primary_citations": [
+        "SHUGE:p205024:1",
+        "SHUGE:p205024:15"
+      ],
+      "extraction_method": "work_topic_match (梦粱录专记临安)",
+      "status": "DRAFT",
+      "fieldwork_priority": "medium",
+      "notes": "梦粱录 p205024 为城市史重要素材。"
+    },
+    {
+      "place_id": "beijing",
+      "slug": "bei-jing",
+      "name_zh": "北京",
+      "name_pinyin": "Beijing",
+      "name_en": "Beijing",
+      "category": "historical_city",
+      "kind_zh": "明清帝都",
+      "kind_en": "Ming-Qing imperial capital",
+      "description_zh": "明清两代皇城,宫殿、坛庙、园林、衙署汇集。《工程做法》记录清雍正朝官式营造规制。",
+      "description_en": "Ming-Qing imperial capital, center of palace and architectural practice.",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "lat": 39.9,
+        "lng": 116.4
+      },
+      "related_collections": [
+        "architecture-construction"
+      ],
+      "related_works": [
+        "p44159"
+      ],
+      "primary_citations": [
+        "SHUGE:p44159:1",
+        "SHUGE:p44159:50"
+      ],
+      "extraction_method": "work_geography_match (工程做法默认北京规制)",
+      "status": "DRAFT",
+      "fieldwork_priority": "high",
+      "notes": "工程做法 p44159 为 collection#2 seed work。"
+    },
+    {
+      "place_id": "garden",
+      "slug": "yuan-lin",
+      "name_zh": "园林",
+      "name_pinyin": "Yuanlin",
+      "name_en": "Classical garden",
+      "category": "architectural_type",
+      "kind_zh": "明清园林",
+      "kind_en": "Ming-Qing garden",
+      "description_zh": "中国古典园林。明计成《园冶》专记造园理论与技艺,涵盖相地、立基、掇山、理水。",
+      "description_en": "Classical Chinese gardens, recorded in Ji Cheng's Yuan Ye.",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "园林为类型,非单点坐标"
+      },
+      "related_collections": [
+        "architecture-construction"
+      ],
+      "related_works": [
+        "p168491"
+      ],
+      "primary_citations": [
+        "SHUGE:p168491:1",
+        "SHUGE:p168491:30"
+      ],
+      "extraction_method": "category_match (园冶全书专记园林)",
+      "status": "DRAFT",
+      "fieldwork_priority": "medium",
+      "notes": "园冶 p168491 为 collection#2 seed work;园林为建筑类型,无单点坐标。"
+    },
+    {
+      "place_id": "palace",
+      "slug": "gong-dian",
+      "name_zh": "宫殿",
+      "name_pinyin": "Gongdian",
+      "name_en": "Imperial palace",
+      "category": "architectural_type",
+      "kind_zh": "宫殿建筑",
+      "kind_en": "Palatial architecture",
+      "description_zh": "帝王居所与朝会之所,涵盖紫禁城、沈阳故宫、太和殿等。《工程做法》记清官式大木作规制。",
+      "description_en": "Imperial palace architecture, codified in Qing Gongcheng Zuofa.",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "宫殿为类型,代表坐标为北京紫禁城 39.916, 116.397"
+      },
+      "related_collections": [
+        "architecture-construction"
+      ],
+      "related_works": [
+        "p44159"
+      ],
+      "primary_citations": [
+        "SHUGE:p44159:100",
+        "SHUGE:p44159:200"
+      ],
+      "extraction_method": "category_match (工程做法涵盖宫殿做法)",
+      "status": "DRAFT",
+      "fieldwork_priority": "medium",
+      "notes": "代表实例为北京紫禁城。"
+    },
+    {
+      "place_id": "temple",
+      "slug": "si-miao",
+      "name_zh": "寺庙",
+      "name_pinyin": "Simiao",
+      "name_en": "Temple / Monastery",
+      "category": "architectural_type",
+      "kind_zh": "佛道寺观",
+      "kind_en": "Buddhist/Daoist temple",
+      "description_zh": "佛寺、道观及坛庙建筑群。中国古代寺庙分布广,与山水、地方信仰紧密结合。",
+      "description_en": "Buddhist and Daoist temple architecture across China.",
+      "dynasty_range": [
+        "汉",
+        "唐",
+        "宋",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "寺庙为类型,代表坐标待补"
+      },
+      "related_collections": [
+        "architecture-construction"
+      ],
+      "related_works": [
+        "p44159"
+      ],
+      "primary_citations": [
+        "SHUGE:p44159:300"
+      ],
+      "extraction_method": "category_match",
+      "status": "DRAFT",
+      "fieldwork_priority": "low",
+      "notes": "工程做法涵盖寺庙做法,具体实例待扩展。"
+    },
+    {
+      "place_id": "ancient_road",
+      "slug": "gu-dao",
+      "name_zh": "古道",
+      "name_pinyin": "Gudao",
+      "name_en": "Ancient road",
+      "category": "infrastructure",
+      "kind_zh": "陆上古道",
+      "kind_en": "Overland ancient road",
+      "description_zh": "中国古道系统,包括栈道、驿道、丝绸之路、茶马古道等,联通政治经济文化空间。",
+      "description_en": "Ancient road network including plank roads, post roads, Silk Road.",
+      "dynasty_range": [
+        "先秦",
+        "汉",
+        "唐",
+        "宋",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "古道为线性地理,非单点"
+      },
+      "related_collections": [],
+      "related_works": [],
+      "primary_citations": [],
+      "extraction_method": "category_only (v0.4 暂未绑定 citation,待 P5-E 扩展)",
+      "status": "PLACEHOLDER",
+      "fieldwork_priority": "low",
+      "notes": "v0.4 无现有 citation 绑定,留作 P5-E 实地调查候选。"
+    },
+    {
+      "place_id": "grand_canal",
+      "slug": "yun-he",
+      "name_zh": "运河",
+      "name_pinyin": "Yunhe",
+      "name_en": "Grand Canal",
+      "category": "waterway",
+      "kind_zh": "京杭大运河",
+      "kind_en": "Grand Canal",
+      "description_zh": "京杭大运河,世界最长人工运河,贯通海河、黄河、淮河、长江、钱塘江五大水系。",
+      "description_en": "Grand Canal, world's longest artificial waterway.",
+      "dynasty_range": [
+        "隋",
+        "元",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "linear_region"
+      },
+      "related_collections": [
+        "historical-hydrology"
+      ],
+      "related_works": [
+        "p48341"
+      ],
+      "primary_citations": [
+        "SHUGE:p48341:50"
+      ],
+      "extraction_method": "work_topic_match (河防一览含运河河工)",
+      "status": "DRAFT",
+      "fieldwork_priority": "medium",
+      "notes": "河防一览 p48341 含运河河工记录。"
+    }
+  ]
+}

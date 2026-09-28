@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Research Articles · SHUGE DH Research Platform v0.8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Evidence-backed research articles — DRAFT · REVIEW · REVISED · PUBLISHED state machine">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Research Articles · Evidence-backed Publication Layer</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.8</span>
+    <span class="badge badge-status">DESIGN_ONLY</span>
+    <span class="badge badge-publication">PUBLISHED forbidden</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../articles/" class="active">Articles</a>
+  <a href="../publications/">Publications</a>
+  <a href="../export/">Export</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Research Articles</h2>
+  <p class="hero-lead">3 个 Evidence-backed Research Article · 15 sections · 27 paragraphs · 48 claims · 360 字。每个 article 由 v0.7 draft 生成,经历 DRAFT → REVIEW → REVISED 状态机(PUBLISHED 在 v0.8 严格边界内禁止)。</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v0.8</dd>
+    <dt>Articles</dt><dd id="meta-articles-count">—</dd>
+    <dt>Sections (total)</dt><dd id="meta-sections-count">—</dd>
+    <dt>Paragraphs (total)</dt><dd id="meta-paragraphs-count">—</dd>
+    <dt>Claims (total)</dt><dd id="meta-claims-count">—</dd>
+    <dt>Boundaries</dt><dd>STRICTLY READ-ONLY ID LINK · 不自动生成正文 · 不直接进入 PUBLISHED</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Review Status Filter</h3>
+  <p class="section-lead">当前 v0.8 演示:1 article 在 DRAFT,1 article 在 REVIEW,1 article 在 REVISED。<strong>0 article 在 PUBLISHED(边界)</strong>。</p>
+  <div class="place-filter-bar">
+    <button class="badge active" data-filter="ALL">ALL</button>
+    <button class="badge" data-filter="DRAFT">DRAFT</button>
+    <button class="badge" data-filter="REVIEW">REVIEW</button>
+    <button class="badge" data-filter="REVISED">REVISED</button>
+    <button class="badge disabled-badge" data-filter="PUBLISHED" title="v0.8 严格边界:不进入 PUBLISHED">PUBLISHED (禁止)</button>
+  </div>
+</section>
+
+<section>
+  <h3>3 Research Articles · 完整结构</h3>
+  <p class="section-lead">每个 article 由 v0.7 draft 生成,5 sections × 9 paragraphs,绑定 v0.7 evidence_paragraphs + bibliography + linked archive IDs。</p>
+  <div class="cards-grid-1" id="articles-list"></div>
+</section>
+
+<section>
+  <h3>Articles Cross-Compare</h3>
+  <p class="section-lead">3 个 article 横向对比:状态、evidence-backed 强度、Archive ID 链接数、跨 workspace / project 绑定。</p>
+  <table class="stats-table" id="articles-cross-compare">
+    <thead><tr><th>字段</th><th>article 1</th><th>article 2</th><th>article 3</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../publications/">/publications/</a> — Publication Workflow Hub</li>
+    <li><a href="../export/">/export/</a> — Markdown / CSL JSON / BibTeX Export</li>
+    <li><a href="../drafts/">/drafts/</a> — 3 v0.7 Drafts (article 来源)</li>
+    <li><a href="../DESIGN_v0.8.md">DESIGN_v0.8.md</a> — §3.1 Article schema · §5 boundaries</li>
+    <li><a href="../IA_v0.8.md">IA_v0.8.md</a> — §1 /articles/ 原型结构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.8 · Research Articles · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const articlesData = await fetch('../data/research_articles.json').then(r => r.json());
+  const articles = articlesData.articles;
+
+  // meta
+  document.getElementById('meta-articles-count').textContent = articlesData.total_articles;
+  document.getElementById('meta-sections-count').textContent = articlesData.stats.total_sections;
+  document.getElementById('meta-paragraphs-count').textContent = articlesData.stats.total_paragraphs;
+  document.getElementById('meta-claims-count').textContent = articlesData.stats.total_claims;
+
+  // article cards
+  const articlesHtml = articles.map(a => {
+    const sectionsHtml = a.sections.map(sec => `
+      <tr>
+        <td><code>${sec.section_id}</code></td>
+        <td>${sec.heading_zh} / ${sec.heading_en}</td>
+        <td><span class="badge badge-status">${sec.status}</span></td>
+        <td>${sec.paragraphs_resolved.length}</td>
+        <td>${sec.word_count}</td>
+        <td>${sec.claims_count}</td>
+        <td>${sec.citations_count}</td>
+      </tr>
+    `).join('');
+
+    const claimsHtml = a.claims.map(c => `
+      <tr>
+        <td><code>${c.claim_id}</code></td>
+        <td><code>${c.paragraph_id}</code></td>
+        <td><span class="badge badge-status">${c.binding_state}</span></td>
+      </tr>
+    `).join('');
+
+    return `
+      <article class="article-card" data-review-status="${a.review_status}">
+        <div class="article-card-head">
+          <h4><code>${a.article_id}</code> · ${a.short_title_zh}</h4>
+          <div class="article-card-meta">
+            <span class="badge badge-review-${a.review_status.toLowerCase()}">${a.review_status}</span>
+            <span class="badge badge-language">${a.language}</span>
+          </div>
+        </div>
+        <p class="article-card-meta">title_en: <em>${a.short_title_en}</em> · owner: <code>${a.owner}</code></p>
+        <p class="article-card-meta">draft_id: <code>${a.draft_id}</code> · project_id: <code>${a.project_id}</code> · workspace_id: <code>${a.linked_workspace_id}</code></p>
+        <p class="article-card-meta"><strong>Abstract (zh):</strong> ${a.abstract_zh}</p>
+        <p class="article-card-meta"><strong>Abstract (en):</strong> <em>${a.abstract_en}</em></p>
+        <p class="article-card-meta"><strong>Review notes:</strong> ${a.review_notes}</p>
+        <ul class="article-card-stats">
+          <li>Sections:${a.stats.sections}</li>
+          <li>Paragraphs:${a.stats.paragraphs}</li>
+          <li>Claims:${a.stats.claims}</li>
+          <li>Citations (unique):${a.stats.citations}</li>
+          <li>Evidence Cards (unique):${a.stats.evidence_cards}</li>
+          <li>Field Notes (unique):${a.stats.field_notes}</li>
+          <li>Word Count:${a.stats.word_count} 字</li>
+          <li>Bibliography:works=${a.stats.bibliography_works} · institutions=${a.stats.bibliography_institutions}</li>
+        </ul>
+
+        <div class="article-card-tabs">
+          <button class="tab-btn active" data-tab="sections-${a.article_id}">sections</button>
+          <button class="tab-btn" data-tab="claims-${a.article_id}">claims index</button>
+          <button class="tab-btn" data-tab="biblio-${a.article_id}">bibliography</button>
+          <button class="tab-btn" data-tab="archive-${a.article_id}">archive links</button>
+        </div>
+
+        <div class="article-card-pane active" id="sections-${a.article_id}">
+          <h5>sections · 5 sections × 9 paragraphs</h5>
+          <table class="data-table">
+            <thead><tr><th>section_id</th><th>heading</th><th>status</th><th>paragraphs</th><th>word_count</th><th>claims</th><th>citations</th></tr></thead>
+            <tbody>${sectionsHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="article-card-pane" id="claims-${a.article_id}" hidden>
+          <h5>claims index · all ${a.claims.length} claims across paragraphs</h5>
+          <table class="data-table">
+            <thead><tr><th>claim_id</th><th>paragraph_id</th><th>binding_state</th></tr></thead>
+            <tbody>${claimsHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="article-card-pane" id="biblio-${a.article_id}" hidden>
+          <h5>bibliography · 引用 works / institutions / citations</h5>
+          <p>bibliography_works: <code>[${a.bibliography_works.join(', ')}]</code></p>
+          <p>bibliography_institutions: <code>[${a.bibliography_institutions.join(', ')}]</code></p>
+          <p>bibliography_citations: <code>[${a.bibliography_citations.join(', ')}]</code></p>
+          <p class="article-card-note">⚠ v0.8 边界: full_text 永不可用。详见 <a href="../export/">/export/</a>。</p>
+        </div>
+
+        <div class="article-card-pane" id="archive-${a.article_id}" hidden>
+          <h5>linked archive IDs (READ-ONLY ID LINK)</h5>
+          <p>archive_note_ids (FN-*): <code>[${a.linked_archive_note_ids.join(', ')}]</code></p>
+          <p>archive_rq_ids (rq-*): <code>[${a.linked_archive_rq_ids.join(', ')}]</code></p>
+          <p>archive_gap_ids (gap-*): <code>[${a.linked_archive_gap_ids.join(', ')}]</code></p>
+          <p>linked_workspace_id (ws-*): <code>${a.linked_workspace_id}</code></p>
+          <p>linked_project_id (rp-*): <code>${a.linked_project_id}</code></p>
+          <p class="article-card-note">⚠ 这些字段仅是 ID 引用,不暴露 Archive 任何内容。详见 <a href="../archive-bridge/">/archive-bridge/</a>。</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+  document.getElementById('articles-list').innerHTML = articlesHtml;
+
+  // cross-compare
+  const compareRows = [
+    ['article_id', ...articles.map(a => a.article_id)],
+    ['short_title_zh', ...articles.map(a => a.short_title_zh)],
+    ['draft_id', ...articles.map(a => a.draft_id)],
+    ['project_id', ...articles.map(a => a.project_id)],
+    ['workspace_id', ...articles.map(a => a.linked_workspace_id)],
+    ['review_status', ...articles.map(a => '<span class="badge badge-review-' + a.review_status.toLowerCase() + '">' + a.review_status + '</span>')],
+    ['language', ...articles.map(a => a.language)],
+    ['sections / paragraphs / claims', ...articles.map(a => a.stats.sections + ' / ' + a.stats.paragraphs + ' / ' + a.stats.claims)],
+    ['citations / evidence_cards / field_notes', ...articles.map(a => a.stats.citations + ' / ' + a.stats.evidence_cards + ' / ' + a.stats.field_notes)],
+    ['word_count', ...articles.map(a => a.stats.word_count + ' 字')],
+    ['bibliography (works / institutions)', ...articles.map(a => a.stats.bibliography_works + ' / ' + a.stats.bibliography_institutions)],
+    ['archive_note_ids', ...articles.map(a => a.linked_archive_note_ids.length + ' 条 FN-*')],
+    ['archive_rq_ids', ...articles.map(a => a.linked_archive_rq_ids.length + ' 条 rq-*')],
+    ['archive_gap_ids', ...articles.map(a => a.linked_archive_gap_ids.length + ' 条 gap-*')]
+  ];
+  document.querySelector('#articles-cross-compare tbody').innerHTML =
+    compareRows.map(row => '<tr><td><code>' + row[0] + '</code></td><td>' + row[1] + '</td><td>' + row[2] + '</td><td>' + row[3] + '</td></tr>').join('');
+
+  // tab switch
+  document.querySelectorAll('.article-card-tabs .tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.article-card');
+      card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      card.querySelectorAll('.article-card-pane').forEach(p => p.hidden = true);
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.tab);
+      target.hidden = false;
+    });
+  });
+
+  // status filter
+  document.querySelectorAll('.place-filter-bar .badge[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      if (filter === 'PUBLISHED') return; // boundary
+      document.querySelectorAll('.place-filter-bar .badge[data-filter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.article-card').forEach(card => {
+        const visible = filter === 'ALL' || card.dataset.reviewStatus === filter;
+        card.style.display = visible ? 'block' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fieldwork · 书格数字人文研究站 · v0.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Fieldwork Bridge · v0.4</h1>
+  <div class="masthead-subtitle">实地调查桥接 schema — 把田野笔记、照片、GPS、访谈桥接到 Place × Citation × Evidence</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Fieldwork</a>
+  </div>
+  <div class="topnav-meta">v0.4 · 2026-09-28 · schema only (P5-E 才接入真实数据)</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Fieldwork Bridge</h1>
+  <div class="hero-lead">第三条证据来源 — 在文本证据 (Evidence) 与空间锚点 (Place) 之外,引入现场调查</div>
+  <p>v0.4 只交付 schema + 2 个 demo records。实际数据接入由 P5-E 启动,本期不做。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Item</th><th>Count</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Demo Records</td><td>2</td><td>FW-20260928-001 桑干河 + FW-20260928-002 北京</td></tr>
+      <tr><td>Phases</td><td>5</td><td>Planning → Site → Transcription → Review → Archive</td></tr>
+      <tr><td>Status Types</td><td>6</td><td>PLANNED / IN_PROGRESS / NOTE_COLLECTED / TRANSCRIBED / VERIFIED / ARCHIVED</td></tr>
+      <tr><td>Schema Fields</td><td>18</td><td>fieldwork_id, place_id, gps_lat/lng, linked_citation_ids ...</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Introduction · 为什么需要 Fieldwork?</h2>
+  <p style="font-family:Source Serif 4, serif; font-size:1.02rem; line-height:1.7;">
+    数字展览通常止步于「文本证据 + 空间锚点」两层。然而许多关键问题需要现场才能回答:桑干河今天的实际走向与《水经注》记载是否吻合?紫禁城琉璃瓦的现行颜色与《工程做法》规定是否一致?临安 (杭州) 凤凰山脚下的南宋御街遗址,如何与《梦粱录》中的街市描述对应?
+  </p>
+  <p style="font-family:Source Serif 4, serif; font-size:1.02rem; line-height:1.7;">
+    Fieldwork Bridge 不替代文本证据,也不替代空间锚点。它提供第三条证据来源:现场笔记、照片、GPS、访谈 — 全部与已有 <span class="mono">citation_id</span> 锁定,确保与 P5-D 终态数据可追溯。
+  </p>
+</section>
+
+<section>
+  <h2>Fieldwork Record Schema</h2>
+  <p class="dim">18 字段,定义于 <span class="mono">data/fieldwork_schema.json</span>。v0.4 仅展示 schema,真实数据由 P5-E 写入。</p>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>fieldwork_id</td><td>string</td><td>yes</td><td><span class="mono">FW-YYYYMMDD-&lt;seq&gt;</span></td></tr>
+      <tr><td>place_id</td><td>string</td><td>yes</td><td>must match places.json place_id</td></tr>
+      <tr><td>fieldworker_name</td><td>string</td><td>yes</td><td>anonymized in v0.4</td></tr>
+      <tr><td>visit_date</td><td>string (YYYY-MM-DD)</td><td>yes</td><td>—</td></tr>
+      <tr><td>visit_type</td><td>enum</td><td>yes</td><td>site_survey / archive_visit / interview / oral_history</td></tr>
+      <tr><td>gps_lat</td><td>float</td><td>no</td><td>placeholder in v0.4; actual GPS in P5-E</td></tr>
+      <tr><td>gps_lng</td><td>float</td><td>no</td><td>placeholder in v0.4</td></tr>
+      <tr><td>weather_conditions</td><td>string</td><td>no</td><td>optional</td></tr>
+      <tr><td>equipment_used</td><td>array[string]</td><td>no</td><td>—</td></tr>
+      <tr><td>raw_notes_path</td><td>string</td><td>yes</td><td>placeholder; e.g. fieldwork/notes/FW-001.md</td></tr>
+      <tr><td>photo_count</td><td>int</td><td>no</td><td>—</td></tr>
+      <tr><td>audio_recording_count</td><td>int</td><td>no</td><td>—</td></tr>
+      <tr><td>linked_citation_ids</td><td>array[string]</td><td>yes</td><td><span class="mono">SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt;</span></td></tr>
+      <tr><td>linked_evidence_card_ids</td><td>array[string]</td><td>no</td><td>claim_id format</td></tr>
+      <tr><td>new_citation_proposed</td><td>array</td><td>no</td><td>P5-E 才允许</td></tr>
+      <tr><td>verification_status</td><td>enum</td><td>yes</td><td>VERIFIED / UNVERIFIED / CONTRADICTED</td></tr>
+      <tr><td>notes_for_curator</td><td>string</td><td>no</td><td>curator-facing annotation</td></tr>
+      <tr><td>next_action</td><td>string</td><td>no</td><td>proposed follow-up</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Status Phases · 6 阶段</h2>
+  <p class="dim">从计划到归档的完整生命周期。</p>
+  <table class="meta-table">
+    <thead><tr><th>Status</th><th>Phase</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-status-open">PLANNED</span></td><td>Phase A 启动</td><td>fieldwork 已排期但未开始</td></tr>
+      <tr><td><span class="badge badge-status-open">IN_PROGRESS</span></td><td>Phase B 实地</td><td>fieldworker 在现场</td></tr>
+      <tr><td><span class="badge badge-status-searching">NOTE_COLLECTED</span></td><td>Phase B 完成</td><td>笔记已捕获,待誊录</td></tr>
+      <tr><td><span class="badge badge-status-searching">TRANSCRIBED</span></td><td>Phase C</td><td>笔记已誊录,待核实</td></tr>
+      <tr><td><span class="badge badge-status-archived">VERIFIED</span></td><td>Phase D</td><td>已与现有 citation 核实</td></tr>
+      <tr><td><span class="badge badge-no-collection">ARCHIVED</span></td><td>Phase E 完成</td><td>已整合入展览,作为新证据</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>5 Phases Timeline</h2>
+  <p class="dim">完整 fieldwork 工作流。每个 phase 可独立估算工时。</p>
+  <table class="meta-table" id="phases-timeline">
+    <thead><tr><th>Phase</th><th>Duration</th><th>Deliverables</th></tr></thead>
+    <tbody id="phases-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Demo Records · 2 个 mock 案例</h2>
+  <p class="dim">仅作 schema 示范。真实数据接入待 P5-E。</p>
+  <div id="demo-records"></div>
+</section>
+
+<section>
+  <h2>Integration Points</h2>
+  <p class="dim">Fieldwork 通过 <span class="mono">citation_id</span> 链接到所有 P5-D 数据。</p>
+  <table class="meta-table">
+    <thead><tr><th>Target</th><th>File</th><th>Link Field</th></tr></thead>
+    <tbody>
+      <tr><td>Places</td><td><span class="mono">data/places.json</span></td><td><span class="mono">fieldwork.place_id → places.place_id</span></td></tr>
+      <tr><td>Evidence Cards</td><td><span class="mono">data/evidence_cards_v3.json</span></td><td><span class="mono">fieldwork.linked_evidence_card_ids → claim_id</span></td></tr>
+      <tr><td>Citations</td><td><span class="mono">data/citations.json</span></td><td><span class="mono">fieldwork.linked_citation_ids → SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt;</span></td></tr>
+      <tr><td>Evidence Graph</td><td><span class="mono">data/evidence_graph.json</span></td><td>(post-P5-E) edge type: fieldwork_about_place / fieldwork_cites_citation</td></tr>
+      <tr><td>Collections</td><td><span class="mono">data/collections.json</span></td><td>(post-P5-E) via place.related_collections</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>v0.4 Status Note</h2>
+  <div class="takeaway">
+    <div class="takeaway-label">重要边界</div>
+    <p>本期 <strong>仅交付 schema + 2 个 mock records</strong>。真实的实地照片、GPS 数据、田野笔记、访谈录音由 <strong>P5-E</strong> 接入。本期不抓取 shuge.org 任何资源,不引入 GIS,不存储实际照片(总容量限制 ≤8 GB,沿用 P5 阶段预算)。</p>
+    <p class="dim" style="margin-top:0.5rem;">所有 fieldwork 字段保持 placeholder 状态 (gps_lat/gps_lng 为示意坐标,raw_notes_path 为路径占位)。</p>
+  </div>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/fieldwork/</a> — Fieldwork Bridge (本页)</li>
+    <li><a href="../data/fieldwork_schema.json">data/fieldwork_schema.json</a> — 完整 schema + demo records</li>
+    <li><a href="../places/">/places/</a> — 10 个 place (实地调查候选)</li>
+    <li><a href="../evidence-explorer/">/evidence-explorer/</a> — 三层证据结构可视化</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.4 · Fieldwork Bridge · 2026-09-28 · 
+  schema-only v0.4 · 真实数据接入待 P5-E · 
+  边界: no new acquisition · no actual GPS · no actual photos in v0.4
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  function statusBadge(s) {
+    return '<span class="badge badge-status-' + s.toLowerCase() + '">' + s + '</span>';
+  }
+
+  function renderPhases(schema) {
+    var host = document.getElementById('phases-body');
+    if (!host) return;
+    var html = '';
+    schema.fieldwork_phases.forEach(function (p) {
+      html += '<tr>' +
+        '<td><strong>' + p.phase + '</strong></td>' +
+        '<td><span class="mono">' + p.duration_weeks + ' weeks</span></td>' +
+        '<td>' + p.deliverables.map(function (d) { return '<span class="badge mono">' + d + '</span>'; }).join(' ') + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderDemoRecords(schema) {
+    var host = document.getElementById('demo-records');
+    if (!host) return;
+    var html = '';
+    schema.v04_demo_records.forEach(function (r) {
+      var linkedCite = (r.linked_citation_ids || []).map(function (c) { return '<span class="mono">' + c + '</span>'; }).join(', ');
+      var equipment = (r.equipment_used || []).join(', ');
+      html += '<div class="evidence-card" style="margin-bottom:1rem;">' +
+        '<div class="evidence-card-header">' +
+          '<div class="evidence-card-question">' + r.fieldwork_id + ' · ' + r.place_id + '</div>' +
+          '<div class="evidence-card-meta">' + r.visit_date + ' · ' + r.visit_type + '</div>' +
+        '</div>' +
+        '<div class="source-context-block">' +
+          '<div class="source-context-label">Fieldwork Context</div>' +
+          '<div class="source-context-fields">' +
+            '<span><strong>Worker:</strong> ' + r.fieldworker_name + '</span>' +
+            '<span><strong>GPS:</strong> <span class="mono">' + r.gps_lat + ', ' + r.gps_lng + '</span></span>' +
+            '<span><strong>Weather:</strong> ' + (r.weather_conditions || 'N/A') + '</span>' +
+            '<span><strong>Equipment:</strong> ' + equipment + '</span>' +
+            '<span><strong>Photos:</strong> ' + r.photo_count + '</span>' +
+            '<span><strong>Audio:</strong> ' + r.audio_recording_count + '</span>' +
+          '</div>' +
+          '<div class="source-context-link">Raw notes: <span class="mono">' + r.raw_notes_path + '</span></div>' +
+        '</div>' +
+        '<div class="source-context-block">' +
+          '<div class="source-context-label">Linked Citations</div>' +
+          '<div>' + linkedCite + '</div>' +
+        '</div>' +
+        '<div class="source-context-block">' +
+          '<div class="source-context-label">Curator Note + Verification</div>' +
+          '<p style="font-size:0.85rem;line-height:1.6;margin:0.3rem 0;">' + r.notes_for_curator + '</p>' +
+          '<p class="dim" style="font-size:0.78rem;margin-top:0.4rem;"><strong>Next action:</strong> ' + r.next_action + '</p>' +
+        '</div>' +
+        '<div class="evidence-card-footer-meta">' +
+          '<span class="ecfm-coll">verification: ' + statusBadge(r.verification_status) + '</span>' +
+        '</div>' +
+      '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  fetch('../data/fieldwork_schema.json').then(function (r) { return r.json(); }).then(function (schema) {
+    renderPhases(schema);
+    renderDemoRecords(schema);
+  }).catch(function (err) {
+    console.error('Fieldwork page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

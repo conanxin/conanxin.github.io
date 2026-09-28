@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例 1 · 水经注数字生命史</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-case">
+<header class="masthead">
+  <h1 class="masthead-title">案例 1</h1>
+  <p class="masthead-subtitle">水经注数字生命史 · Digital Life History of Water Classic</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <span class="topnav-divider">·</span>
+    <a href="../case2/index.html">案例 2</a>
+    <a href="../case3/index.html">案例 3</a>
+    <a href="../case4/index.html">案例 4</a>
+    <a href="../case5/index.html">案例 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../rooms/room2/index.html">展厅 2</a>
+  </div>
+  <div class="topnav-meta"><a href="https://www.shuge.org/view/shui_jing_zhu/">shuge.org ↗</a></div>
+</nav>
+
+<main class="body">
+  <header class="case-study-hero">
+    <div class="case-study-badges">
+      <span class="badge badge-collection-hydrology">historical-hydrology</span>
+    </div>
+    <h1>水经注数字生命史</h1>
+    <p class="case-study-title-en">Digital Life History of Water Classic</p>
+    <p class="case-study-subtitle">From a static PDF to a research-grade citation ID</p>
+  </header>
+
+  <section class="case-section">
+    <div class="section-num">1</div>
+    <h2 class="section-label">Question</h2>
+    <p class="question-text" id="q1"></p>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">2</div>
+    <h2 class="section-label">Source</h2>
+    <div id="s1" class="source-fields"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">3</div>
+    <h2 class="section-label">Evidence</h2>
+    <div id="e1"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">4</div>
+    <h2 class="section-label">Citation</h2>
+    <div id="c1"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">5</div>
+    <h2 class="section-label">Interpretation Boundary</h2>
+    <div id="i1"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">6</div>
+    <h2 class="section-label">Further Research</h2>
+    <ul id="f1" class="further-reading"></ul>
+  </section>
+
+  <section class="case-section">
+    <div class="takeaway" id="tk1"></div>
+  </section>
+
+  <p class="case-study-back"><a href="../../rooms/room2/index.html">← 返回展厅 2 (The Life of a Book)</a></p>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 1</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
+  var c = d.case_studies[0];
+  document.getElementById('q1').textContent = c.question;
+
+  var s = c.source;
+  var sHtml = '<table class="meta-table">';
+  sHtml += '<tr><th>作品</th><td><a href="' + s.shuge_url + '">' + s.work_title + '</a> · post_id=' + s.shuge_post_id + '</td></tr>';
+  sHtml += '<tr><th>作者 / 时代</th><td>' + s.author + ' · ' + s.dynasty + '</td></tr>';
+  sHtml += '<tr><th>总页数</th><td><span class="mono">' + s.page_count + '</span></td></tr>';
+  sHtml += '<tr><th>OCR 引擎</th><td><span class="mono">' + s.ocr_engine + '</span></td></tr>';
+  sHtml += '<tr><th>OCR 模型</th><td><span class="mono">' + s.ocr_model + '</span></td></tr>';
+  sHtml += '<tr><th>OCR 字符数</th><td><span class="mono">' + s.ocr_chars.toLocaleString() + '</span></td></tr>';
+  sHtml += '<tr><th>可搜索页数</th><td><span class="mono">' + s.searchable_pages + '</span> / ' + s.page_count + '</td></tr>';
+  sHtml += '<tr><th>Zero-text 页</th><td><span class="mono">' + s.zero_text_pages + '</span> (不进入检索池)</td></tr>';
+  sHtml += '<tr><th>Collection 归属</th><td><span class="badge badge-collection-hydrology">' + s.collections.join(', ') + '</span></td></tr>';
+  sHtml += '<tr><th>Workspace 关联</th><td><span class="mono">' + s.workspace + '</span></td></tr>';
+  sHtml += '</table>';
+  document.getElementById('s1').innerHTML = sHtml;
+
+  var e = c.evidence;
+  var eHtml = '<p>' + e.summary + '</p>';
+  if (e.evidence_ledger_samples && e.evidence_ledger_samples.length) {
+    eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Evidence ledger 样本</h3>';
+    eHtml += '<table class="meta-table"><thead><tr><th>citation_id</th><th>matched_terms</th><th>retrieval_score</th><th>text_reliability</th></tr></thead><tbody>';
+    e.evidence_ledger_samples.forEach(function(l) {
+      eHtml += '<tr><td><span class="mono">' + l.citation_id + '</span></td><td><span class="mono">' + l.matched_terms + '</span></td><td><span class="mono">' + l.retrieval_score.toFixed(2) + '</span></td><td><span class="mono">' + l.text_reliability + '</span></td></tr>';
+    });
+    eHtml += '</tbody></table>';
+  }
+  document.getElementById('e1').innerHTML = eHtml;
+
+  var cit = c.citation;
+  var cHtml = '<p>总引用数:<span class="mono">' + cit.total_citations + '</span> · 唯一 work_ids:<span class="mono">[' + cit.unique_work_ids.join(', ') + ']</span></p>';
+  cHtml += '<p>引用格式:<span class="mono">' + cit.citation_format + '</span></p>';
+  cHtml += '<p>引用 ID 自 <span class="verified">' + cit.immutable_since + '</span> 保持不变。</p>';
+  if (cit.sample_citation_ids && cit.sample_citation_ids.length) {
+    cHtml += '<h3 style="font-size:1rem;margin-top:1rem">样本 citations</h3>';
+    cHtml += '<ul style="font-family:IBM Plex Mono,monospace;font-size:0.85rem;margin-left:1.5rem">';
+    cit.sample_citation_ids.forEach(function(id) {
+      cHtml += '<li>' + id + '</li>';
+    });
+    cHtml += '</ul>';
+  }
+  document.getElementById('c1').innerHTML = cHtml;
+
+  var ib = c.interpretation_boundary;
+  var iHtml = '<h3 style="font-size:1rem">限制</h3><ul>';
+  ib.limitations.forEach(function(l) { iHtml += '<li>' + l + '</li>'; });
+  iHtml += '</ul><h3 style="font-size:1rem;margin-top:1rem">回归门禁</h3><ul>';
+  ib.regression_gates.forEach(function(g) { iHtml += '<li><span class="verified mono">' + g + '</span></li>'; });
+  iHtml += '</ul>';
+  document.getElementById('i1').innerHTML = iHtml;
+
+  var f = c.further_research;
+  var fHtml = '';
+  f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
+  document.getElementById('f1').innerHTML = fHtml;
+
+  var tk = '<div class="takeaway-label">Take-away</div>';
+  tk += '一部书的「数字生命」是从 PDF 出发,经 <strong>OCR → FTS5 → collection → evidence ledger → claim → Citation ID</strong> 的可追溯链条。每一个环节都留下审计痕迹。';
+  document.getElementById('tk1').innerHTML = tk;
+});
+</script>
+</body>
+</html>

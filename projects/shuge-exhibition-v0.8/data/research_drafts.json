@@ -1,0 +1,915 @@
+{
+  "version": "v0.7",
+  "generated_at": "2026-09-28T10:05:00+08:00",
+  "source": "v0.6 research_projects.json + research_workspaces.json + research_questions.json + field_notes.json + evidence_cards_v3.json",
+  "total_drafts": 3,
+  "stats": {
+    "total_sections": 15,
+    "total_paragraphs": 27,
+    "total_citations_unique": 18,
+    "total_evidence_cards_unique": 9,
+    "total_field_notes_unique": 6,
+    "total_evidence_links": 18,
+    "total_word_count": 2340,
+    "total_revisions": 9
+  },
+  "drafts": [
+    {
+      "draft_id": "draft-hydrology-river-distribution",
+      "draft_title_zh": "水经注河水分布研究 · 草稿",
+      "draft_title_en": "River Distribution in 水经注 · Working Draft",
+      "project_id": "rp-hydrology-river-distribution",
+      "research_question": "《水经注》记载的主要河流分布如何?这些河流与今天的水系是否吻合?",
+      "language": "zh-CN",
+      "owner": "research-team",
+      "status": "IN_PROGRESS",
+      "outline": [
+        {
+          "section_id": "sec-intro",
+          "order": 1,
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-intro-1"
+          ]
+        },
+        {
+          "section_id": "sec-question",
+          "order": 2,
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-q-1",
+            "para-hydrology-river-distribution-q-2"
+          ]
+        },
+        {
+          "section_id": "sec-evidence",
+          "order": 3,
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "claim_count_target": 4,
+          "paragraph_count_target": 3,
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-ev-1",
+            "para-hydrology-river-distribution-ev-2",
+            "para-hydrology-river-distribution-ev-3"
+          ]
+        },
+        {
+          "section_id": "sec-discussion",
+          "order": 4,
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-ds-1",
+            "para-hydrology-river-distribution-ds-2"
+          ]
+        },
+        {
+          "section_id": "sec-conclusion",
+          "order": 5,
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-cn-1"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "section_id": "sec-intro",
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "order": 1,
+          "status": "REVISED",
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-intro-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-question",
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "order": 2,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-q-1",
+            "para-hydrology-river-distribution-q-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1"
+          ],
+          "word_count": 180,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-evidence",
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "order": 3,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-ev-1",
+            "para-hydrology-river-distribution-ev-2",
+            "para-hydrology-river-distribution-ev-3"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1",
+            "F1"
+          ],
+          "word_count": 240,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-discussion",
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "order": 4,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-ds-1",
+            "para-hydrology-river-distribution-ds-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-conclusion",
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "order": 5,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-hydrology-river-distribution-cn-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        }
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "evidence_links": [
+        {
+          "link_id": "el-hydrology-river-distribution-01",
+          "citation_id": "SHUGE:p168491:68",
+          "use_count": 1,
+          "first_used_section_id": "sec-intro",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-hydrology-river-distribution-02",
+          "citation_id": "SHUGE:p211203:1096",
+          "use_count": 2,
+          "first_used_section_id": "sec-question",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-hydrology-river-distribution-03",
+          "citation_id": "SHUGE:p211203:1178",
+          "use_count": 3,
+          "first_used_section_id": "sec-evidence",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-hydrology-river-distribution-04",
+          "citation_id": "SHUGE:p211203:1320",
+          "use_count": 1,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-hydrology-river-distribution-05",
+          "citation_id": "SHUGE:p211203:1338",
+          "use_count": 2,
+          "first_used_section_id": "sec-conclusion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-hydrology-river-distribution-06",
+          "citation_id": "SHUGE:p44159:552",
+          "use_count": 3,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        }
+      ],
+      "revision_history": [
+        {
+          "revision_id": "rev-1",
+          "at": "2026-09-20T10:00:00+08:00",
+          "author": "research-team",
+          "summary_zh": "建立 outline 与引言段",
+          "sections_modified": [
+            "sec-intro",
+            "sec-question"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 0
+        },
+        {
+          "revision_id": "rev-2",
+          "at": "2026-09-24T15:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "完成证据分析前 2 段",
+          "sections_modified": [
+            "sec-evidence"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 1
+        },
+        {
+          "revision_id": "rev-3",
+          "at": "2026-09-28T09:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "绑定 v0.5/v0.6 field notes,准备进入 v0.7 写作环境",
+          "sections_modified": [
+            "sec-evidence",
+            "sec-discussion"
+          ],
+          "paragraphs_added": 1,
+          "paragraphs_revised": 1
+        }
+      ],
+      "stats": {
+        "sections": 5,
+        "sections_outline": 2,
+        "sections_draft": 2,
+        "sections_revised": 1,
+        "paragraphs_total": 9,
+        "citations_unique": 6,
+        "evidence_cards_unique": 5,
+        "field_notes_unique": 2,
+        "evidence_links_total": 6,
+        "word_count_total": 780,
+        "revisions": 3
+      },
+      "linked_archive_note_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "linked_archive_rq_ids": [
+        {
+          "rq_id": "rq-ws1-001",
+          "text": "《水经注》中记载的桑干河在历史上是否经过今河北省境内?",
+          "status": "OPEN"
+        },
+        {
+          "rq_id": "rq-ws1-002",
+          "text": "运河作为人工水道,在《水经注》中以何名出现?",
+          "status": "OPEN"
+        }
+      ],
+      "linked_archive_gap_ids": [
+        "gap-ws1-001",
+        "gap-ws1-002",
+        "gap-ws1-003"
+      ]
+    },
+    {
+      "draft_id": "draft-architecture-pillar-diameter",
+      "draft_title_zh": "工程做法柱径标准 · 草稿",
+      "draft_title_en": "Pillar Diameter Standards in 工程做法 · Working Draft",
+      "project_id": "rp-architecture-pillar-diameter",
+      "research_question": "《工程做法》中柱径与正心的标准关系是什么?这一标准在不同朝代建筑实物中是否一致?",
+      "language": "zh-CN",
+      "owner": "research-team",
+      "status": "IN_PROGRESS",
+      "outline": [
+        {
+          "section_id": "sec-intro",
+          "order": 1,
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-intro-1"
+          ]
+        },
+        {
+          "section_id": "sec-question",
+          "order": 2,
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-q-1",
+            "para-architecture-pillar-diameter-q-2"
+          ]
+        },
+        {
+          "section_id": "sec-evidence",
+          "order": 3,
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "claim_count_target": 4,
+          "paragraph_count_target": 3,
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-ev-1",
+            "para-architecture-pillar-diameter-ev-2",
+            "para-architecture-pillar-diameter-ev-3"
+          ]
+        },
+        {
+          "section_id": "sec-discussion",
+          "order": 4,
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-ds-1",
+            "para-architecture-pillar-diameter-ds-2"
+          ]
+        },
+        {
+          "section_id": "sec-conclusion",
+          "order": 5,
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-cn-1"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "section_id": "sec-intro",
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "order": 1,
+          "status": "REVISED",
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-intro-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-question",
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "order": 2,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-q-1",
+            "para-architecture-pillar-diameter-q-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1"
+          ],
+          "word_count": 180,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-evidence",
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "order": 3,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-ev-1",
+            "para-architecture-pillar-diameter-ev-2",
+            "para-architecture-pillar-diameter-ev-3"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1",
+            "F1"
+          ],
+          "word_count": 240,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-discussion",
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "order": 4,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-ds-1",
+            "para-architecture-pillar-diameter-ds-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-conclusion",
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "order": 5,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-architecture-pillar-diameter-cn-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        }
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-002",
+        "FN-20260928-003"
+      ],
+      "evidence_links": [
+        {
+          "link_id": "el-architecture-pillar-diameter-01",
+          "citation_id": "SHUGE:p168491:68",
+          "use_count": 1,
+          "first_used_section_id": "sec-intro",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-architecture-pillar-diameter-02",
+          "citation_id": "SHUGE:p211203:1096",
+          "use_count": 2,
+          "first_used_section_id": "sec-question",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-architecture-pillar-diameter-03",
+          "citation_id": "SHUGE:p211203:1178",
+          "use_count": 3,
+          "first_used_section_id": "sec-evidence",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-architecture-pillar-diameter-04",
+          "citation_id": "SHUGE:p211203:1320",
+          "use_count": 1,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-architecture-pillar-diameter-05",
+          "citation_id": "SHUGE:p211203:1338",
+          "use_count": 2,
+          "first_used_section_id": "sec-conclusion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-architecture-pillar-diameter-06",
+          "citation_id": "SHUGE:p44159:552",
+          "use_count": 3,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        }
+      ],
+      "revision_history": [
+        {
+          "revision_id": "rev-1",
+          "at": "2026-09-20T10:00:00+08:00",
+          "author": "research-team",
+          "summary_zh": "建立 outline 与引言段",
+          "sections_modified": [
+            "sec-intro",
+            "sec-question"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 0
+        },
+        {
+          "revision_id": "rev-2",
+          "at": "2026-09-24T15:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "完成证据分析前 2 段",
+          "sections_modified": [
+            "sec-evidence"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 1
+        },
+        {
+          "revision_id": "rev-3",
+          "at": "2026-09-28T09:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "绑定 v0.5/v0.6 field notes,准备进入 v0.7 写作环境",
+          "sections_modified": [
+            "sec-evidence",
+            "sec-discussion"
+          ],
+          "paragraphs_added": 1,
+          "paragraphs_revised": 1
+        }
+      ],
+      "stats": {
+        "sections": 5,
+        "sections_outline": 2,
+        "sections_draft": 2,
+        "sections_revised": 1,
+        "paragraphs_total": 9,
+        "citations_unique": 6,
+        "evidence_cards_unique": 3,
+        "field_notes_unique": 2,
+        "evidence_links_total": 6,
+        "word_count_total": 780,
+        "revisions": 3
+      },
+      "linked_archive_note_ids": [
+        "FN-20260928-002",
+        "FN-20260928-003"
+      ],
+      "linked_archive_rq_ids": [
+        {
+          "rq_id": "rq-ws2-001",
+          "text": "《工程做法》中柱径 d 与正心 c 的比例是否为 d=2c?",
+          "status": "OPEN"
+        },
+        {
+          "rq_id": "rq-ws2-002",
+          "text": "园林建筑是否同样适用此比例?",
+          "status": "OPEN"
+        }
+      ],
+      "linked_archive_gap_ids": [
+        "gap-ws2-001",
+        "gap-ws2-002"
+      ]
+    },
+    {
+      "draft_id": "draft-cross-hydrology-architecture",
+      "draft_title_zh": "营造与水利交叉 · 草稿",
+      "draft_title_en": "Architecture × Hydrology Cross-Cutting Study · Working Draft",
+      "project_id": "rp-cross-hydrology-architecture",
+      "research_question": "营造与水利在历史工程中的相互关系 — 桥梁、堤坝、水闸等兼具建筑与水利属性的工程,在文献中如何被分类?",
+      "language": "zh-CN",
+      "owner": "research-team",
+      "status": "IN_PROGRESS",
+      "outline": [
+        {
+          "section_id": "sec-intro",
+          "order": 1,
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-intro-1"
+          ]
+        },
+        {
+          "section_id": "sec-question",
+          "order": 2,
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-q-1",
+            "para-cross-hydrology-architecture-q-2"
+          ]
+        },
+        {
+          "section_id": "sec-evidence",
+          "order": 3,
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "claim_count_target": 4,
+          "paragraph_count_target": 3,
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-ev-1",
+            "para-cross-hydrology-architecture-ev-2",
+            "para-cross-hydrology-architecture-ev-3"
+          ]
+        },
+        {
+          "section_id": "sec-discussion",
+          "order": 4,
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "claim_count_target": 2,
+          "paragraph_count_target": 2,
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-ds-1",
+            "para-cross-hydrology-architecture-ds-2"
+          ]
+        },
+        {
+          "section_id": "sec-conclusion",
+          "order": 5,
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "claim_count_target": 1,
+          "paragraph_count_target": 1,
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-cn-1"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "section_id": "sec-intro",
+          "heading_zh": "引言",
+          "heading_en": "Introduction",
+          "order": 1,
+          "status": "REVISED",
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-intro-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-question",
+          "heading_zh": "研究问题",
+          "heading_en": "Research Question",
+          "order": 2,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-q-1",
+            "para-cross-hydrology-architecture-q-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1"
+          ],
+          "word_count": 180,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-evidence",
+          "heading_zh": "证据分析",
+          "heading_en": "Evidence Analysis",
+          "order": 3,
+          "status": "DRAFT",
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-ev-1",
+            "para-cross-hydrology-architecture-ev-2",
+            "para-cross-hydrology-architecture-ev-3"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids_used": [
+            "F1"
+          ],
+          "word_count": 240,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-discussion",
+          "heading_zh": "讨论",
+          "heading_en": "Discussion",
+          "order": 4,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-ds-1",
+            "para-cross-hydrology-architecture-ds-2"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        },
+        {
+          "section_id": "sec-conclusion",
+          "heading_zh": "结论与展望",
+          "heading_en": "Conclusion & Next Steps",
+          "order": 5,
+          "status": "OUTLINE",
+          "paragraph_ids": [
+            "para-cross-hydrology-architecture-cn-1"
+          ],
+          "citation_ids_used": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids_used": [],
+          "word_count": 120,
+          "last_revised_at": "2026-09-28T09:30:00+08:00"
+        }
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "evidence_links": [
+        {
+          "link_id": "el-cross-hydrology-architecture-01",
+          "citation_id": "SHUGE:p168491:68",
+          "use_count": 1,
+          "first_used_section_id": "sec-intro",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-cross-hydrology-architecture-02",
+          "citation_id": "SHUGE:p211203:1096",
+          "use_count": 2,
+          "first_used_section_id": "sec-question",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-cross-hydrology-architecture-03",
+          "citation_id": "SHUGE:p211203:1178",
+          "use_count": 3,
+          "first_used_section_id": "sec-evidence",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-cross-hydrology-architecture-04",
+          "citation_id": "SHUGE:p211203:1320",
+          "use_count": 1,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-cross-hydrology-architecture-05",
+          "citation_id": "SHUGE:p211203:1338",
+          "use_count": 2,
+          "first_used_section_id": "sec-conclusion",
+          "note": "Sample citation link"
+        },
+        {
+          "link_id": "el-cross-hydrology-architecture-06",
+          "citation_id": "SHUGE:p44159:552",
+          "use_count": 3,
+          "first_used_section_id": "sec-discussion",
+          "note": "Sample citation link"
+        }
+      ],
+      "revision_history": [
+        {
+          "revision_id": "rev-1",
+          "at": "2026-09-20T10:00:00+08:00",
+          "author": "research-team",
+          "summary_zh": "建立 outline 与引言段",
+          "sections_modified": [
+            "sec-intro",
+            "sec-question"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 0
+        },
+        {
+          "revision_id": "rev-2",
+          "at": "2026-09-24T15:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "完成证据分析前 2 段",
+          "sections_modified": [
+            "sec-evidence"
+          ],
+          "paragraphs_added": 2,
+          "paragraphs_revised": 1
+        },
+        {
+          "revision_id": "rev-3",
+          "at": "2026-09-28T09:30:00+08:00",
+          "author": "research-team",
+          "summary_zh": "绑定 v0.5/v0.6 field notes,准备进入 v0.7 写作环境",
+          "sections_modified": [
+            "sec-evidence",
+            "sec-discussion"
+          ],
+          "paragraphs_added": 1,
+          "paragraphs_revised": 1
+        }
+      ],
+      "stats": {
+        "sections": 5,
+        "sections_outline": 2,
+        "sections_draft": 2,
+        "sections_revised": 1,
+        "paragraphs_total": 9,
+        "citations_unique": 6,
+        "evidence_cards_unique": 1,
+        "field_notes_unique": 2,
+        "evidence_links_total": 6,
+        "word_count_total": 780,
+        "revisions": 3
+      },
+      "linked_archive_note_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "linked_archive_rq_ids": [
+        {
+          "rq_id": "rq-ws3-001",
+          "text": "桥梁工程应当归入 hydrology 还是 architecture collection?",
+          "status": "OPEN"
+        },
+        {
+          "rq_id": "rq-ws3-002",
+          "text": "《水经注》中提到的桥梁,与《工程做法》中的桥梁描述如何对应?",
+          "status": "OPEN"
+        }
+      ],
+      "linked_archive_gap_ids": [
+        "gap-ws3-001",
+        "gap-ws3-002"
+      ]
+    }
+  ]
+}

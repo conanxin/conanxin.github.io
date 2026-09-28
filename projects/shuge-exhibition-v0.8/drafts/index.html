@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Research Drafts · SHUGE DH Research Platform v0.7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="3 research drafts · 15 sections · 27 paragraphs · evidence-backed">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Research Drafts · Evidence-backed Working Drafts</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.7</span>
+    <span class="badge badge-status">DESIGN_ONLY</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/" class="active">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Research Drafts</h2>
+  <p class="hero-lead">3 个 Research Draft · 15 sections · 27 paragraphs · 18 evidence_links · 2,340 word_count(估算)· 9 revisions。每个 draft 绑定一个 v0.6 research_project,且 draft 仅 evidence-backed writing environment,不存在 published state。</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v0.7</dd>
+    <dt>Drafts</dt><dd id="meta-drafts-count">—</dd>
+    <dt>Section 总数</dt><dd id="meta-sections-count">—</dd>
+    <dt>Paragraph 总数</dt><dd id="meta-paragraphs-count">—</dd>
+    <dt>Evidence Links</dt><dd id="meta-evidence-links">—</dd>
+    <dt>Boundaries</dt><dd>STRICTLY READ-ONLY ID LINK · 不引入 LLM · 不引入向量数据库 · 不锁定草稿</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Status Filter</h3>
+  <p class="section-lead">当前所有 draft 状态:IN_PROGRESS。v0.7 不存在 LOCKED/PUBLISHED 路径。</p>
+  <div class="place-filter-bar">
+    <button class="badge active" data-filter="ALL">ALL</button>
+    <button class="badge" data-filter="IN_PROGRESS">IN_PROGRESS</button>
+    <button class="badge" data-filter="LOCKED">LOCKED</button>
+    <button class="badge" data-filter="ABANDONED">ABANDONED</button>
+  </div>
+</section>
+
+<section>
+  <h3>3 Research Drafts · 完整结构</h3>
+  <p class="section-lead">每个 draft 包含:outline (5 sections 推荐) · sections detail (status + word_count + citation_ids_used) · evidence_links (citation 拓扑) · revision_history (timeline-style) · linked_archive_* IDs (READ-ONLY ID link)。</p>
+  <div class="cards-grid-1" id="drafts-list"></div>
+</section>
+
+<section>
+  <h3>Drafts Cross-Compare</h3>
+  <p class="section-lead">3 个 draft 横向对比:项目规模、证据强度、引用密度、田野支持、修订历史。</p>
+  <table class="stats-table" id="drafts-cross-compare">
+    <thead><tr><th>字段</th><th>draft 1</th><th>draft 2</th><th>draft 3</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Citation Topology Summary</h3>
+  <p class="section-lead">draft 中 evidence_links 是引用拓扑(同一 citation 跨 section 复用)。下表显示每个 draft 的 citation 复用度。</p>
+  <table class="stats-table" id="citation-topology">
+    <thead><tr><th>draft_id</th><th>unique citations</th><th>total evidence_links</th><th>reuse ratio</th><th>most_reused_citation</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../research-writing/">/research-writing/</a> — Research Writing hub</li>
+    <li><a href="../bibliography/">/bibliography/</a> — Works + Institutions + Citations</li>
+    <li><a href="../projects/">/projects/</a> — v0.6 Research Projects(每个 draft 绑定一个 project_id)</li>
+    <li><a href="../DESIGN_v0.7.md">DESIGN_v0.7.md</a> — §3.1 Draft schema · §6 writing flow</li>
+    <li><a href="../IA_v0.7.md">IA_v0.7.md</a> — §2 /drafts/ 原型结构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.7 · Research Drafts · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const drafts = await fetch('../data/research_drafts.json').then(r => r.json());
+  const paragraphs = await fetch('../data/evidence_paragraphs.json').then(r => r.json());
+
+  // meta
+  document.getElementById('meta-drafts-count').textContent = drafts.total_drafts;
+  document.getElementById('meta-sections-count').textContent = drafts.stats.total_sections;
+  document.getElementById('meta-paragraphs-count').textContent = drafts.stats.total_paragraphs;
+  document.getElementById('meta-evidence-links').textContent = drafts.stats.total_evidence_links;
+
+  // drafts list
+  const draftsHtml = drafts.drafts.map(d => {
+    const sectionsHtml = d.sections.map(s => `
+      <tr>
+        <td><code>${s.section_id}</code></td>
+        <td>${s.heading_zh} / ${s.heading_en}</td>
+        <td><span class="badge badge-status">${s.status}</span></td>
+        <td><code>${s.paragraph_ids.length}</code></td>
+        <td>${s.word_count}</td>
+        <td><code style="font-size:0.7rem;">[${s.citation_ids_used.slice(0,3).join(', ')}${s.citation_ids_used.length > 3 ? ', ...' : ''}]</code></td>
+      </tr>
+    `).join('');
+
+    const evidenceLinksHtml = d.evidence_links.map(el => `
+      <tr>
+        <td><code>${el.link_id}</code></td>
+        <td><code>${el.citation_id}</code></td>
+        <td>${el.use_count}</td>
+        <td><code>${el.first_used_section_id}</code></td>
+      </tr>
+    `).join('');
+
+    const revisionsHtml = d.revision_history.map(r => `
+      <tr>
+        <td><code>${r.revision_id}</code></td>
+        <td><code style="font-size:0.7rem;">${r.at}</code></td>
+        <td>${r.author}</td>
+        <td>${r.summary_zh}</td>
+        <td><code>${r.sections_modified.join(', ')}</code></td>
+        <td>+${r.paragraphs_added} / ~${r.paragraphs_revised}</td>
+      </tr>
+    `).join('');
+
+    return `
+      <article class="draft-card">
+        <div class="draft-card-head">
+          <h4><code>${d.draft_id}</code> · ${d.draft_title_zh}</h4>
+          <div class="draft-card-meta">
+            <span class="badge badge-status">${d.status}</span>
+            <span class="badge badge-language">${d.language}</span>
+          </div>
+        </div>
+        <p class="draft-card-meta">draft_title_en: <em>${d.draft_title_en}</em> · owner: <code>${d.owner}</code></p>
+        <p class="draft-card-meta">project_id: <code>${d.project_id}</code></p>
+        <p class="draft-card-meta">research_question: <em>${d.research_question}</em></p>
+        <ul class="draft-card-stats">
+          <li>Sections:${d.stats.sections} (大纲 ${d.stats.sections_outline} · 草稿 ${d.stats.sections_draft} · 修订 ${d.stats.sections_revised})</li>
+          <li>Paragraphs:${d.stats.paragraphs_total}</li>
+          <li>Citations (unique):${d.stats.citations_unique}</li>
+          <li>Evidence Cards (unique):${d.stats.evidence_cards_unique}</li>
+          <li>Field Notes (unique):${d.stats.field_notes_unique}</li>
+          <li>Evidence Links (topology):${d.stats.evidence_links_total}</li>
+          <li>Word Count (估算):${d.stats.word_count_total} 字</li>
+          <li>Revisions:${d.stats.revisions}</li>
+        </ul>
+
+        <div class="draft-card-tabs">
+          <button class="tab-btn active" data-tab="outline-${d.draft_id}">outline</button>
+          <button class="tab-btn" data-tab="sections-${d.draft_id}">sections</button>
+          <button class="tab-btn" data-tab="evidence-${d.draft_id}">evidence_links</button>
+          <button class="tab-btn" data-tab="revisions-${d.draft_id}">revisions</button>
+          <button class="tab-btn" data-tab="archive-${d.draft_id}">archive links</button>
+        </div>
+
+        <div class="draft-card-pane active" id="outline-${d.draft_id}">
+          <h5>outline · 5 sections 推荐结构</h5>
+          <ol>
+            ${d.outline.map(s => `<li><code>${s.section_id}</code> · ${s.heading_zh} (${s.heading_en}) · claims_target=${s.claim_count_target} · paragraphs=${s.paragraph_count_target}</li>`).join('')}
+          </ol>
+        </div>
+
+        <div class="draft-card-pane" id="sections-${d.draft_id}" hidden>
+          <h5>sections · status + word_count + citation_ids_used</h5>
+          <table class="data-table">
+            <thead><tr><th>section_id</th><th>heading</th><th>status</th><th>paragraphs</th><th>word_count</th><th>citations_used (sample)</th></tr></thead>
+            <tbody>${sectionsHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="draft-card-pane" id="evidence-${d.draft_id}" hidden>
+          <h5>evidence_links · citation topology</h5>
+          <table class="data-table">
+            <thead><tr><th>link_id</th><th>citation_id</th><th>use_count</th><th>first_used_section_id</th></tr></thead>
+            <tbody>${evidenceLinksHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="draft-card-pane" id="revisions-${d.draft_id}" hidden>
+          <h5>revision_history · timeline-style</h5>
+          <table class="data-table">
+            <thead><tr><th>rev_id</th><th>at</th><th>author</th><th>summary_zh</th><th>sections_modified</th><th>paragraphs</th></tr></thead>
+            <tbody>${revisionsHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="draft-card-pane" id="archive-${d.draft_id}" hidden>
+          <h5>linked_archive_* IDs (READ-ONLY ID LINK)</h5>
+          <p>archive_note_ids: <code>[${d.linked_archive_note_ids.join(', ')}]</code></p>
+          <p>archive_rq_ids: <code>[${d.linked_archive_rq_ids.join(', ')}]</code></p>
+          <p>archive_gap_ids: <code>[${d.linked_archive_gap_ids.join(', ')}]</code></p>
+          <p class="draft-card-note">⚠ 注: 这些字段仅是 ID 引用,不暴露 Archive 任何内容。详见 /archive-bridge/。</p>
+        </div>
+      </article>
+    `;
+  }).join('');
+  document.getElementById('drafts-list').innerHTML = draftsHtml;
+
+  // cross-compare
+  const compareRows = [
+    ['draft_id', ...drafts.drafts.map(d => d.draft_id)],
+    ['draft_title_zh', ...drafts.drafts.map(d => d.draft_title_zh)],
+    ['project_id', ...drafts.drafts.map(d => d.project_id)],
+    ['status', ...drafts.drafts.map(d => d.status)],
+    ['language', ...drafts.drafts.map(d => d.language)],
+    ['sections (大纲/草稿/修订)', ...drafts.drafts.map(d => `${d.stats.sections} (${d.stats.sections_outline}/${d.stats.sections_draft}/${d.stats.sections_revised})`)],
+    ['paragraphs', ...drafts.drafts.map(d => d.stats.paragraphs_total)],
+    ['citations (unique)', ...drafts.drafts.map(d => d.stats.citations_unique)],
+    ['evidence_cards (unique)', ...drafts.drafts.map(d => d.stats.evidence_cards_unique)],
+    ['field_notes (unique)', ...drafts.drafts.map(d => d.stats.field_notes_unique)],
+    ['evidence_links', ...drafts.drafts.map(d => d.stats.evidence_links_total)],
+    ['word_count', ...drafts.drafts.map(d => d.stats.word_count_total + ' 字')],
+    ['revisions', ...drafts.drafts.map(d => d.stats.revisions)],
+    ['archive_note_ids', ...drafts.drafts.map(d => d.linked_archive_note_ids.length + ' 条')],
+    ['archive_rq_ids', ...drafts.drafts.map(d => d.linked_archive_rq_ids.length + ' 条')],
+    ['archive_gap_ids', ...drafts.drafts.map(d => d.linked_archive_gap_ids.length + ' 条')]
+  ];
+  document.querySelector('#drafts-cross-compare tbody').innerHTML =
+    compareRows.map(row => `<tr><td><code>${row[0]}</code></td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td></tr>`).join('');
+
+  // citation topology
+  const topoHtml = drafts.drafts.map(d => {
+    const reuse = d.stats.evidence_links_total / Math.max(d.stats.citations_unique, 1);
+    const linkCounts = {};
+    d.evidence_links.forEach(el => {
+      linkCounts[el.citation_id] = (linkCounts[el.citation_id] || 0) + el.use_count;
+    });
+    const sortedCites = Object.entries(linkCounts).sort((a, b) => b[1] - a[1]);
+    const mostReused = sortedCites[0] ? `${sortedCites[0][0]} (×${sortedCites[0][1]})` : '—';
+    return `<tr>
+      <td><code>${d.draft_id}</code></td>
+      <td>${d.stats.citations_unique}</td>
+      <td>${d.stats.evidence_links_total}</td>
+      <td>${reuse.toFixed(2)}×</td>
+      <td><code>${mostReused}</code></td>
+    </tr>`;
+  }).join('');
+  document.querySelector('#citation-topology tbody').innerHTML = topoHtml;
+
+  // tab switch
+  document.querySelectorAll('.draft-card-tabs .tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.draft-card');
+      card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      card.querySelectorAll('.draft-card-pane').forEach(p => p.hidden = true);
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.tab);
+      target.hidden = false;
+    });
+  });
+
+  // status filter
+  document.querySelectorAll('.place-filter-bar .badge[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.place-filter-bar .badge[data-filter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.draft-card').forEach(card => {
+        const draftId = card.querySelector('h4 code').textContent;
+        const draft = drafts.drafts.find(d => d.draft_id === draftId);
+        const visible = filter === 'ALL' || draft.status === filter;
+        card.style.display = visible ? 'block' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

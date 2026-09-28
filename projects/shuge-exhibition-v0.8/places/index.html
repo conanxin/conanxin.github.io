@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Places · 书格数字人文研究站 · v0.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Places · v0.4</h1>
+  <div class="masthead-subtitle">10 个地理实体 — 把 Evidence 锚定到空间</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a>
+  </div>
+  <div class="topnav-meta">v0.4 · 2026-09-28 · read-only P5-D snapshot</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>10 Place Entities</h1>
+  <div class="hero-lead">地理空间维度 — 把 evidence_card 锚定到具体地点</div>
+  <p>v0.4 第一批 Place;每个 place 严格绑定到已有的 citation_id 与 work_id_text,无新增、无 fabrication。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Category</th><th>Count</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-status-searching">natural_river</span></td><td>3</td><td>桑干河 / 黄河 / 江水</td></tr>
+      <tr><td><span class="badge badge-status-searching">historical_city</span></td><td>2</td><td>临安 / 北京</td></tr>
+      <tr><td><span class="badge badge-status-searching">architectural_type</span></td><td>3</td><td>园林 / 宫殿 / 寺庙</td></tr>
+      <tr><td><span class="badge badge-status-searching">infrastructure</span></td><td>1</td><td>古道 (PLACEHOLDER)</td></tr>
+      <tr><td><span class="badge badge-status-searching">waterway</span></td><td>1</td><td>运河</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Category Filter</h2>
+  <div class="place-filter-bar" id="place-filter-bar"></div>
+</section>
+
+<section>
+  <h2>10 Places</h2>
+  <p class="dim">点击卡片展开详情。每个 place 严格对应 P5-D 数据库中的已有 citation_id。</p>
+  <div class="cards-grid-3" id="places-grid"></div>
+</section>
+
+<section>
+  <h2>Place ↔ Evidence Card Cross-Reference</h2>
+  <p class="dim">7 个 places 绑定到 12 张 evidence cards 中的 19 处引用(per-card bindings,可能多个 card 共享同一 place)。</p>
+  <div id="place-card-cross"></div>
+</section>
+
+<section>
+  <h2>Place ↔ Collection Mapping</h2>
+  <table class="meta-table" id="place-collection-map">
+    <thead><tr><th>Place</th><th>Collection</th><th>Status</th></tr></thead>
+    <tbody id="place-collection-body"></tbody>
+  </table>
+</section>
+
+<section class="takeaway">
+  <div class="takeaway-label">Take-away</div>
+  <p>5 类 place category 覆盖自然 / 城市 / 建筑 / 设施 / 水系。黄河 (7 cards 绑定) 是 v0.4 命中最高的 place — 与 historical-hydrology 集合高度重叠。古道是唯一 PLACEHOLDER,留作 P5-E 实地调查候选。</p>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/places/</a> — 10 个 Place entities (本页)</li>
+    <li><a href="../data/places.json">data/places.json</a> — Place schema + 10 records</li>
+    <li><a href="../data/place_evidence.json">data/place_evidence.json</a> — 19 bindings</li>
+    <li><a href="../evidence-explorer/">/evidence-explorer/</a> — Place ↔ Card 可视化</li>
+    <li><a href="../fieldwork/">/fieldwork/</a> — 实地调查候选(高优先级:桑干河)</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.4 · Places · 2026-09-28 · 
+  数据: P5-D 终态 (DB 45,989,888 bytes) · 
+  边界: no actual coordinates · no new acquisition · no GIS integration in v0.4
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var categoryFilter = 'all';
+
+  function statusBadge(s) {
+    return '<span class="badge badge-status-' + s.toLowerCase() + '">' + s + '</span>';
+  }
+  function catBadge(c) {
+    return '<span class="badge badge-status-searching">' + c + '</span>';
+  }
+
+  function renderFilterBar(places) {
+    var host = document.getElementById('place-filter-bar');
+    if (!host) return;
+    var cats = ['all'].concat(Array.from(new Set(places.map(function (p) { return p.category; }))));
+    var html = '<div style="display:flex;flex-wrap:wrap;gap:0.5rem;">';
+    cats.forEach(function (c) {
+      var active = c === categoryFilter ? 'background:var(--evidence-tint);border-color:var(--seal-red);' : '';
+      html += '<button class="badge" style="cursor:pointer;border:1px solid var(--rule-gray);padding:0.3rem 0.6rem;' + active + '" data-cat="' + c + '">' + c + '</button>';
+    });
+    html += '</div>';
+    host.innerHTML = html;
+    Array.from(host.querySelectorAll('button')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        categoryFilter = btn.getAttribute('data-cat');
+        var cards = window.__v04_places || [];
+        renderFilterBar(cards);
+        renderPlacesGrid(cards, window.__v04_place_evidence);
+      });
+    });
+  }
+
+  function renderPlacesGrid(places, placeEvidence) {
+    var host = document.getElementById('places-grid');
+    if (!host) return;
+    host.innerHTML = '';
+    var filtered = categoryFilter === 'all' ? places : places.filter(function (p) { return p.category === categoryFilter; });
+    filtered.forEach(function (p) {
+      var binding = placeEvidence.by_place[p.place_id];
+      var bindingCount = binding ? binding.binding_count : 0;
+      var card = document.createElement('div');
+      card.className = 'place-card card';
+      card.innerHTML =
+        '<div class="card-header">' +
+          '<span class="card-num">' + p.place_id + '</span>' +
+          catBadge(p.category) +
+        '</div>' +
+        '<div class="card-title">' + p.name_zh + '</div>' +
+        '<div class="card-en-title">' + p.name_en + '</div>' +
+        '<div class="card-subtitle dim">' + (p.description_zh || '').slice(0, 80) + '...</div>' +
+        '<div class="card-meta">' +
+          statusBadge(p.status) + ' ' +
+          '<span class="mono">' + bindingCount + ' cards</span>' +
+        '</div>';
+      // Click to expand detail panel
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function () {
+        var existing = document.getElementById('place-detail-' + p.place_id);
+        if (existing) {
+          existing.remove();
+          return;
+        }
+        var detail = document.createElement('div');
+        detail.id = 'place-detail-' + p.place_id;
+        detail.className = 'takeaway';
+        detail.style.marginTop = '0.5rem';
+        var collList = (p.related_collections || []).map(function (c) { return '<span class="badge badge-collection-' + (c === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + c + '</span>'; }).join(' ');
+        var workList = (p.related_works || []).map(function (w) { return '<span class="mono">' + w + '</span>'; }).join(', ');
+        var citeList = (p.primary_citations || []).length
+          ? p.primary_citations.map(function (c) { return '<span class="mono">' + c + '</span>'; }).join(', ')
+          : '<span class="dim">— (PLACEHOLDER)</span>';
+        var cardList = binding && binding.evidence_card_ids.length
+          ? binding.evidence_card_ids.join(', ')
+          : '<span class="dim">no card bindings yet</span>';
+        detail.innerHTML =
+          '<div class="takeaway-label">' + p.name_zh + ' · 详情</div>' +
+          '<p>' + (p.description_zh || '') + '</p>' +
+          '<p class="dim" style="font-size:0.85rem;margin-top:0.5rem;">' + (p.description_en || '') + '</p>' +
+          '<table class="meta-table" style="margin-top:0.6rem;"><tbody>' +
+            '<tr><th>Place ID</th><td><span class="mono">' + p.place_id + '</span></td></tr>' +
+            '<tr><th>Slug</th><td><span class="mono">' + p.slug + '</span></td></tr>' +
+            '<tr><th>Category</th><td>' + catBadge(p.category) + '</td></tr>' +
+            '<tr><th>Dynasty Range</th><td>' + (p.dynasty_range || []).join(' / ') + '</td></tr>' +
+            '<tr><th>Coordinates</th><td><span class="dim">' + (p.coordinates_placeholder && p.coordinates_placeholder.note ? p.coordinates_placeholder.note : 'placeholder') + '</span></td></tr>' +
+            '<tr><th>Related Collections</th><td>' + (collList || '<span class="dim">none</span>') + '</td></tr>' +
+            '<tr><th>Related Works</th><td>' + (workList || '<span class="dim">none</span>') + '</td></tr>' +
+            '<tr><th>Primary Citations</th><td>' + citeList + '</td></tr>' +
+            '<tr><th>Bound Cards</th><td>' + cardList + '</td></tr>' +
+            '<tr><th>Extraction Method</th><td><span class="mono">' + p.extraction_method + '</span></td></tr>' +
+            '<tr><th>Status</th><td>' + statusBadge(p.status) + '</td></tr>' +
+            '<tr><th>Fieldwork Priority</th><td><span class="mono">' + p.fieldwork_priority + '</span></td></tr>' +
+            '<tr><th>Notes</th><td class="dim" style="font-size:0.82rem;">' + (p.notes || '') + '</td></tr>' +
+          '</tbody></table>';
+        card.after(detail);
+      });
+      host.appendChild(card);
+    });
+  }
+
+  function renderPlaceCardCross(placeEvidence) {
+    var host = document.getElementById('place-card-cross');
+    if (!host) return;
+    var html = '<table class="meta-table"><thead><tr><th>Place</th><th>Citation IDs</th><th>Bound Cards</th></tr></thead><tbody>';
+    Object.keys(placeEvidence.by_place).forEach(function (pid) {
+      var b = placeEvidence.by_place[pid];
+      var citeList = (b.citation_ids || []).length
+        ? b.citation_ids.map(function (c) { return '<span class="mono">' + c + '</span>'; }).join(', ')
+        : '<span class="dim">—</span>';
+      var cardList = b.evidence_card_ids.length
+        ? b.evidence_card_ids.join(', ')
+        : '<span class="dim">—</span>';
+      html += '<tr>' +
+        '<td><strong>' + b.name_zh + '</strong></td>' +
+        '<td>' + citeList + '</td>' +
+        '<td>' + cardList + '</td>' +
+      '</tr>';
+    });
+    html += '</tbody></table>';
+    host.innerHTML = html;
+  }
+
+  function renderPlaceCollectionMap(places) {
+    var host = document.getElementById('place-collection-body');
+    if (!host) return;
+    var html = '';
+    places.forEach(function (p) {
+      var cols = p.related_collections || [];
+      if (cols.length === 0) {
+        html += '<tr><td><strong>' + p.name_zh + '</strong></td><td><span class="dim">none</span></td><td>' + statusBadge(p.status) + '</td></tr>';
+      } else {
+        cols.forEach(function (c) {
+          html += '<tr><td><strong>' + p.name_zh + '</strong></td><td><span class="badge badge-collection-' + (c === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + c + '</span></td><td>' + statusBadge(p.status) + '</td></tr>';
+        });
+      }
+    });
+    host.innerHTML = html;
+  }
+
+  Promise.all([
+    fetch('../data/places.json').then(function (r) { return r.json(); }),
+    fetch('../data/place_evidence.json').then(function (r) { return r.json(); })
+  ]).then(function (results) {
+    var places = results[0].places;
+    var placeEvidence = results[1];
+    window.__v04_places = places;
+    window.__v04_place_evidence = placeEvidence;
+    renderFilterBar(places);
+    renderPlacesGrid(places, placeEvidence);
+    renderPlaceCardCross(placeEvidence);
+    renderPlaceCollectionMap(places);
+  }).catch(function (err) {
+    console.error('Places page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

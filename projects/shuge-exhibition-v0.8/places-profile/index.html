@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Profiles · 书格数字人文研究平台 · v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Place Profiles · v0.6</h1>
+  <div class="masthead-subtitle">完整地点 profile — 从 place 跨到 research project × field note × evidence card</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a><span class="topnav-divider">·</span>
+    <a href="../projects/">Projects</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Place Profiles</a><span class="topnav-divider">·</span>
+    <a href="../field-note-input/">FN Input</a><span class="topnav-divider">·</span>
+    <a href="../archive-bridge/">Archive</a>
+  </div>
+  <div class="topnav-meta">v0.6 · 2026-09-28 · 10 profiles · 16 citations · 14 projects · 3 notes</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Place Profiles</h1>
+  <div class="hero-lead">v0.6 完整 place profile — 每个 place 跨到 citations × works × collections × research projects × field notes × evidence cards。</div>
+  <p>从 v0.4 「places list」升级为 v0.6 「完整 place profile」。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Place</th><th>Category</th><th>Status</th><th>Citations</th><th>Projects</th><th>Notes</th><th>Evidence</th></tr></thead>
+    <tbody id="stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Filter by Category</h2>
+  <div id="category-filter" class="place-filter-bar"></div>
+</section>
+
+<section>
+  <h2>10 Place Profiles</h2>
+  <p class="dim">点击卡片展开 10-section 完整 place profile。</p>
+  <div id="place-grid" class="cards-grid-3"></div>
+</section>
+
+<section>
+  <h2>Cross-Place Compare</h2>
+  <table class="meta-table" id="compare-table">
+    <thead><tr><th>Place</th><th>Category</th><th>Status</th><th>Works</th><th>Projects</th><th>Notes</th><th>Evidence</th></tr></thead>
+    <tbody id="compare-body"></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/places-profile/</a> — Place Profiles (本页)</li>
+    <li><a href="../data/place_profiles.json">data/place_profiles.json</a> — 完整 schema (13.8 KB · 10 profiles)</li>
+    <li><a href="../places/">/places/</a> — v0.4 Places list (上一层)</li>
+    <li><a href="../projects/">/projects/</a> — 3 Research Projects (反向链接)</li>
+    <li><a href="../DESIGN_v0.6.md">DESIGN_v0.6.md</a> — v0.6 完整设计文档</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Research Platform v0.6 · Place Profiles · 2026-09-28 ·
+  10 profiles · 16 citations · 14 research_projects · 3 field_notes · 3 bound_evidence_cards ·
+  sources: v0.4 places.json + v0.5 field_notes.json (canonical) + v0.6 research_projects.json + v0.3 evidence_cards_v3.json
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderStatsTable(pp) {
+    var host = document.getElementById('stats-body');
+    if (!host) return;
+    var html = '';
+    pp.place_profiles.forEach(function (p) {
+      html += '<tr>' +
+        '<td><strong>' + p.name_zh + '</strong><br><span class="dim mono" style="font-size:0.72rem;">' + p.place_id + '</span></td>' +
+        '<td><span class="badge mono">' + p.category + '</span></td>' +
+        '<td><span class="badge badge-status-' + p.status.toLowerCase() + '">' + p.status + '</span></td>' +
+        '<td>' + p.stats.citations + '</td>' +
+        '<td>' + p.stats.research_projects + '</td>' +
+        '<td>' + p.stats.field_notes + '</td>' +
+        '<td>' + p.stats.evidence_cards + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderCategoryFilter(pp) {
+    var host = document.getElementById('category-filter');
+    if (!host) return;
+    var categories = {};
+    pp.place_profiles.forEach(function (p) { categories[p.category] = (categories[p.category] || 0) + 1; });
+    var html = '<button class="badge mono active" data-category="all">all (' + pp.place_profiles.length + ')</button>';
+    Object.keys(categories).forEach(function (c) {
+      html += '<button class="badge mono" data-category="' + c + '">' + c + ' (' + categories[c] + ')</button>';
+    });
+    host.innerHTML = html;
+
+    host.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        host.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderPlaceGrid(pp, btn.getAttribute('data-category'));
+      });
+    });
+  }
+
+  function renderPlaceGrid(pp, filter) {
+    var host = document.getElementById('place-grid');
+    if (!host) return;
+    var html = '';
+    pp.place_profiles.forEach(function (p) {
+      if (filter !== 'all' && filter !== p.category) return;
+      var aliasHtml = (p.aliases || []).slice(0, 3).map(function (a) { return '<span class="badge mono" style="font-size:0.62rem;">' + a + '</span>'; }).join(' ');
+      html += '<div class="evidence-card place-profile-card" data-place-id="' + p.place_id + '" style="border-left:4px solid var(--seal-red);">' +
+        '<div class="evidence-card-header">' +
+          '<div class="evidence-card-question">' + p.name_zh + '</div>' +
+          '<div class="evidence-card-meta">' + p.place_id + '</div>' +
+        '</div>' +
+        '<div class="place-meta-row" style="display:flex; flex-wrap:wrap; gap:0.4rem; margin:0.3rem 0;">' +
+          '<span class="badge mono">' + p.category + '</span>' +
+          '<span class="badge badge-status-' + p.status.toLowerCase() + '">' + p.status + '</span>' +
+          '<span class="badge mono">' + p.dynasty_range + '</span>' +
+        '</div>' +
+        '<div style="margin:0.3rem 0;">' + aliasHtml + '</div>' +
+        '<div class="evidence-card-footer-meta">' +
+          '<span class="badge mono">' + p.stats.citations + ' cites</span>' +
+          '<span class="badge mono">' + p.stats.research_projects + ' projects</span>' +
+          '<span class="badge mono">' + p.stats.field_notes + ' notes</span>' +
+        '</div>' +
+        '<button class="toggle-btn mono" data-target="place-detail-' + p.place_id + '">▶ 10-section profile</button>' +
+        '<div id="place-detail-' + p.place_id + '" class="place-profile-detail" style="display:none;">' +
+          renderDrilldown(p) +
+        '</div>' +
+      '</div>';
+    });
+    if (!html) html = '<p class="dim">No places match this filter.</p>';
+    host.innerHTML = html;
+    bindToggle();
+  }
+
+  function renderDrilldown(p) {
+    var aliasHtml = (p.aliases || []).map(function (a) { return '<span class="badge mono" style="font-size:0.65rem;">' + a + '</span>'; }).join(' ');
+    var citeHtml = p.primary_citations.map(function (c) { return '<span class="badge mono">' + c + '</span>'; }).join(' ');
+    var workHtml = p.linked_works.map(function (w) {
+      return '<span class="badge mono" title="' + w.title + '">' + w.work_id + '</span>';
+    }).join(' ');
+    var collHtml = p.linked_collections.map(function (c) { return '<span class="badge mono">' + c + '</span>'; }).join(' ');
+    var projHtml = p.linked_research_projects.map(function (rp) {
+      return '<a href="../projects/#' + rp.project_id + '" class="badge mono">' + rp.project_id + '</a>';
+    }).join(' ') || '<span class="dim">—</span>';
+    var noteHtml = p.linked_field_note_ids.map(function (n) {
+      return '<a href="../field-notes/#' + n + '" class="badge mono">' + n + '</a>';
+    }).join(' ') || '<span class="dim">—</span>';
+    var cardHtml = p.bound_evidence_card_ids.map(function (c) { return '<span class="badge mono">' + c + '</span>'; }).join(' ') || '<span class="dim">—</span>';
+
+    return '' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Aliases</div>' +
+        '<div>' + (aliasHtml || '<span class="dim">—</span>') + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Dynasty Range</div>' +
+        '<p style="font-size:0.85rem;margin:0.3rem 0;">' + p.dynasty_range + '</p>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Coordinates (placeholder)</div>' +
+        '<p class="mono" style="font-size:0.78rem;margin:0.3rem 0;">' + (p.coordinates_placeholder || '—') + '</p>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Primary Citations (' + p.primary_citations.length + ')</div>' +
+        '<div>' + citeHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Works (' + p.linked_works.length + ')</div>' +
+        '<div>' + (workHtml || '<span class="dim">—</span>') + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Collections</div>' +
+        '<div>' + collHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Research Projects (' + p.linked_research_projects.length + ')</div>' +
+        '<div>' + projHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Field Notes (' + p.linked_field_note_ids.length + ')</div>' +
+        '<div>' + noteHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Bound Evidence Cards (' + p.bound_evidence_card_ids.length + ')</div>' +
+        '<div>' + cardHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Extraction + Priority</div>' +
+        '<p style="font-size:0.78rem;line-height:1.5;margin:0.3rem 0;">' + p.extraction_method + '</p>' +
+        '<p style="font-size:0.78rem;margin-top:0.4rem;">Priority: <span class="badge mono">' + p.fieldwork_priority + '</span></p>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Notes</div>' +
+        '<p style="font-size:0.78rem;line-height:1.5;margin:0.3rem 0;">' + (p.notes || '—') + '</p>' +
+      '</div>';
+  }
+
+  function renderCompareTable(pp) {
+    var host = document.getElementById('compare-body');
+    if (!host) return;
+    var html = '';
+    pp.place_profiles.forEach(function (p) {
+      html += '<tr>' +
+        '<td><strong>' + p.name_zh + '</strong></td>' +
+        '<td>' + p.category + '</td>' +
+        '<td>' + p.status + '</td>' +
+        '<td>' + p.stats.works + '</td>' +
+        '<td>' + p.stats.research_projects + '</td>' +
+        '<td>' + p.stats.field_notes + '</td>' +
+        '<td>' + p.stats.evidence_cards + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function bindToggle() {
+    document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tgt = document.getElementById(btn.getAttribute('data-target'));
+        if (tgt) {
+          var isOpen = tgt.style.display === 'block';
+          tgt.style.display = isOpen ? 'none' : 'block';
+          btn.textContent = isOpen ? '▶ 10-section profile' : '▼ 10-section profile';
+        }
+      });
+    });
+  }
+
+  fetch('../data/place_profiles.json').then(function (r) { return r.json(); }).then(function (pp) {
+    renderStatsTable(pp);
+    renderCategoryFilter(pp);
+    renderPlaceGrid(pp, 'all');
+    renderCompareTable(pp);
+  }).catch(function (err) {
+    console.error('Place Profiles page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

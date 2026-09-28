@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Bibliography · SHUGE DH Research Platform v0.7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bibliography layer — citations + works + institutions aggregated for v0.7 drafts">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Bibliography Layer · Citations + Works + Institutions</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.7</span>
+    <span class="badge badge-status">DESIGN_ONLY</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/" class="active">Bibliography</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Bibliography</h2>
+  <p class="hero-lead">聚合 v0.3 citations + v0.6 works + institutions,作为 Draft 引用的统一视图。仅 ID 引用,绝不复制原文 — `full_text_unavailable: true` 强制,`text_source: P5-D snapshot only`。</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v0.7</dd>
+    <dt>Works</dt><dd id="meta-works-count">—</dd>
+    <dt>Institutions</dt><dd id="meta-inst-count">—</dd>
+    <dt>Citations</dt><dd id="meta-cites-count">—</dd>
+    <dt>Boundaries</dt><dd>不下载资源 · 不抓取 shuge.org · 不暴露 full_text · ID-only reference</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Filter Bar</h3>
+  <p class="section-lead">按 dynasty / language / collection_slug 过滤。drafts 引用计数实时统计。</p>
+  <div class="place-filter-bar">
+    <button class="badge active" data-filter="dynasty" data-value="ALL">ALL</button>
+    <button class="badge" data-filter="dynasty" data-value="Northern Wei">Northern Wei</button>
+    <button class="badge" data-filter="dynasty" data-value="Song">Song</button>
+    <button class="badge" data-filter="dynasty" data-value="Qing">Qing</button>
+    <button class="badge" data-filter="dynasty" data-value="Ming">Ming</button>
+    <button class="badge" data-filter="dynasty" data-value="PRC">PRC</button>
+  </div>
+</section>
+
+<section>
+  <h3>Institutions</h3>
+  <p class="section-lead">所有 v0.7 draft 引用的机构 — 仅 ID 引用,不暴露机构全名/地址/联系方式。`note` 字段显式标记 READ-ONLY。</p>
+  <div class="cards-grid-3" id="institutions-list"></div>
+</section>
+
+<section>
+  <h3>Works</h3>
+  <p class="section-lead">所有 v0.7 draft 引用的书籍/典籍。仅记录 work_id + title + dynasty + institution_id + collection_slug。原文绝不复制。</p>
+  <div class="cards-grid-3" id="works-list"></div>
+</section>
+
+<section>
+  <h3>Citations</h3>
+  <p class="section-lead">v0.7 全部 citations 列表。`full_text_unavailable: true` 强制,`cited_count` 实时统计。`cited_in_drafts` 反向索引显示每条 citation 被哪些 draft 引用。</p>
+  <table class="data-table" id="citations-table">
+    <thead><tr><th>citation_id</th><th>work_id</th><th>page_seq</th><th>short_form_zh</th><th>short_form_en</th><th>cited_count</th><th>cited_in_drafts</th><th>full_text</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Bibliography Stats</h3>
+  <p class="section-lead">整个 bibliography layer 的统计指标。</p>
+  <table class="stats-table" id="biblio-stats">
+    <thead><tr><th>指标</th><th>数值</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../research-writing/">/research-writing/</a> — Research Writing hub</li>
+    <li><a href="../drafts/">/drafts/</a> — 3 Research Drafts</li>
+    <li><a href="../archive-bridge/">/archive-bridge/</a> — ID-only Archive Bridge</li>
+    <li><a href="../DESIGN_v0.7.md">DESIGN_v0.7.md</a> — §3.3 Bibliography Layer</li>
+    <li><a href="../IA_v0.7.md">IA_v0.7.md</a> — §3 /bibliography/ 原型结构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.7 · Bibliography Layer · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const biblio = await fetch('../data/bibliography.json').then(r => r.json());
+
+  // meta
+  document.getElementById('meta-works-count').textContent = biblio.total_works;
+  document.getElementById('meta-inst-count').textContent = biblio.total_institutions;
+  document.getElementById('meta-cites-count').textContent = biblio.total_citations;
+
+  // institutions
+  document.getElementById('institutions-list').innerHTML = biblio.institutions.map(inst => `
+    <article class="place-profile-card">
+      <h4><code>${inst.institution_id}</code></h4>
+      <p class="place-meta-row"><strong>${inst.name_zh}</strong> · <em>${inst.name_en}</em></p>
+      <p>type: <code>${inst.type}</code></p>
+      <p>url: <code>${inst.url}</code> <span class="badge badge-status">READ-ONLY</span></p>
+      <p class="archive-field-note">${inst.note}</p>
+    </article>
+  `).join('');
+
+  // works
+  document.getElementById('works-list').innerHTML = biblio.works.map(w => `
+    <article class="place-profile-card" data-dynasty="${w.dynasty}" data-lang="${w.language}" data-coll="${w.collection_slug}">
+      <h4><code>${w.work_id}</code></h4>
+      <p class="place-meta-row"><strong>${w.title_zh}</strong> · <em>${w.title_en}</em></p>
+      <p>dynasty: <code>${w.dynasty}</code> · language: <code>${w.language}</code></p>
+      <p>collection_slug: <code>${w.collection_slug}</code></p>
+      <p>institution_id: <code>${w.institution_id}</code></p>
+      <p>page_count_estimate: <code>${w.page_count_estimate}</code></p>
+      <p class="archive-field-note">⚠ Read-only ID reference only. No full text exposed.</p>
+    </article>
+  `).join('');
+
+  // citations
+  document.querySelector('#citations-table tbody').innerHTML = biblio.citations.map(c => `
+    <tr>
+      <td><code>${c.citation_id}</code></td>
+      <td><code>${c.work_id}</code></td>
+      <td><code>${c.page_seq}</code></td>
+      <td>${c.short_form_zh}</td>
+      <td><em>${c.short_form_en}</em></td>
+      <td>${c.cited_count}</td>
+      <td><code style="font-size:0.7rem;">[${c.cited_in_drafts.join(', ')}]</code></td>
+      <td><span class="badge badge-status">${c.full_text_unavailable ? 'unavailable' : 'available'}</span></td>
+    </tr>
+  `).join('');
+
+  // stats
+  const statsRows = [
+    ['Total Works', biblio.stats.works_total],
+    ['Total Institutions', biblio.stats.institutions_total],
+    ['Total Citations', biblio.stats.citations_total],
+    ['Citations Cited Once', biblio.stats.citations_cited_once],
+    ['Citations Cited Multiple Times', biblio.stats.citations_cited_multiple],
+    ['Max Citation Count', biblio.stats.max_citation_count],
+    ['Total Drafts Referenced', biblio.stats.total_drafts_referenced],
+    ['Institutions Deduped', biblio.stats.institutions_deduped ? 'true' : 'false']
+  ];
+  document.querySelector('#biblio-stats tbody').innerHTML =
+    statsRows.map(([k, v]) => `<tr><td>${k}</td><td><code>${v}</code></td></tr>`).join('');
+
+  // dynasty filter
+  document.querySelectorAll('.place-filter-bar .badge[data-filter="dynasty"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const value = btn.dataset.value;
+      document.querySelectorAll('.place-filter-bar .badge[data-filter="dynasty"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.place-profile-card[data-dynasty]').forEach(card => {
+        const visible = value === 'ALL' || card.dataset.dynasty === value;
+        card.style.display = visible ? 'block' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

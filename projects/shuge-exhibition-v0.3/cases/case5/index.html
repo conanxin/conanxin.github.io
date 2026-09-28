@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例 5 · AI-assisted Historical Research</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-case">
+<header class="masthead">
+  <h1 class="masthead-title">案例 5</h1>
+  <p class="masthead-subtitle">AI-assisted Historical Research</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <span class="topnav-divider">·</span>
+    <a href="../case1/index.html">案例 1</a>
+    <a href="../case2/index.html">案例 2</a>
+    <a href="../case3/index.html">案例 3</a>
+    <a href="../case4/index.html">案例 4</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../rooms/room5/index.html">展厅 5</a>
+  </div>
+  <div class="topnav-meta"><a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 ↗</a></div>
+</nav>
+
+<main class="body">
+  <header class="case-study-hero">
+    <div class="case-study-badges">
+      <span class="badge">6 layers</span>
+      <span class="badge">12 cards (v0.3)</span>
+    </div>
+    <h1>AI-assisted Historical Research</h1>
+    <p class="case-study-title-en">AI-assisted Historical Research</p>
+    <p class="case-study-subtitle">AI 在本项目中的真实角色 — research midwife, not replacer</p>
+  </header>
+
+  <section class="case-section">
+    <div class="section-num">1</div>
+    <h2 class="section-label">Question</h2>
+    <p id="q5" class="question-text"></p>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">2</div>
+    <h2 class="section-label">Source</h2>
+    <div id="s5"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">3</div>
+    <h2 class="section-label">Evidence</h2>
+    <div id="e5"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">4</div>
+    <h2 class="section-label">Citation</h2>
+    <div id="c5"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">5</div>
+    <h2 class="section-label">Interpretation Boundary</h2>
+    <div id="i5"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">6</div>
+    <h2 class="section-label">Further Research</h2>
+    <ul id="f5" class="further-reading"></ul>
+  </section>
+
+  <section class="case-section">
+    <div class="takeaway" id="tk5"></div>
+  </section>
+
+  <p class="case-study-back"><a href="../../rooms/room5/index.html">← 返回展厅 5 (AI-assisted Historical Research)</a></p>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 5</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
+  var c = d.case_studies[4];
+  document.getElementById('q5').textContent = c.question;
+  var s = c.source;
+  var sHtml = '<h3 style="font-size:1rem">System Layers</h3>';
+  sHtml += '<table class="meta-table"><thead><tr><th>#</th><th>name</th><th>tool</th><th>scale</th></tr></thead><tbody>';
+  s.system_layers.forEach(function(l) {
+    sHtml += '<tr><td><span class="mono">' + l.layer + '</span></td><td>' + l.name + '</td><td><span class="mono" style="font-size:0.78rem">' + l.tool + '</span></td><td>';
+    if (l.pages) sHtml += '<span class="mono">' + l.pages + '</span> pages · ';
+    if (l.chars) sHtml += '<span class="mono">' + l.chars + '</span> chars · ';
+    if (l.rows) sHtml += '<span class="mono">' + l.rows + '</span> rows · ';
+    if (l.memberships) sHtml += '<span class="mono">' + l.memberships + '</span> memberships · ';
+    if (l.runs) sHtml += '<span class="mono">' + l.runs + '</span> runs · ';
+    if (l.claims) sHtml += '<span class="mono">' + l.claims + '</span> claims · ';
+    if (l.workspaces) sHtml += '<span class="mono">' + l.workspaces + '</span> workspaces · ';
+    if (l.pages) sHtml += '<span class="mono">' + l.pages + '</span> pages';
+    sHtml += '</td></tr>';
+  });
+  sHtml += '</tbody></table>';
+  sHtml += '<h3 style="font-size:1rem;margin-top:1rem">AI 不做的事</h3><ul>';
+  s.ai_does_not_do.forEach(function(item) { sHtml += '<li>' + item + '</li>'; });
+  sHtml += '</ul>';
+  document.getElementById('s5').innerHTML = sHtml;
+  var e = c.evidence;
+  var eHtml = '<p>' + e.summary + '</p>';
+  eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Governance Metrics</h3>';
+  eHtml += '<table class="meta-table">';
+  Object.keys(e.governance_metrics).forEach(function(k) {
+    eHtml += '<tr><th>' + k + '</th><td><span class="verified mono">' + e.governance_metrics[k] + '</span></td></tr>';
+  });
+  eHtml += '</table>';
+  eHtml += '<p style="margin-top:1rem">evidence_card_count(v0.3):<span class="mono">' + e.evidence_card_count + '</span></p>';
+  document.getElementById('e5').innerHTML = eHtml;
+  var cit = c.citation;
+  var cHtml = '<p>all_evidence_cards_have_v3_fields:<span class="verified mono">' + cit.all_evidence_cards_have_v3_fields + '</span></p>';
+  cHtml += '<p>citation_id_format:<span class="mono">' + cit.citation_id_format + '</span></p>';
+  cHtml += '<p>citation_ids_unchanged_since:<span class="verified mono">' + cit.citation_ids_unchanged_since + '</span></p>';
+  document.getElementById('c5').innerHTML = cHtml;
+  var ib = c.interpretation_boundary;
+  var iHtml = '<h3 style="font-size:1rem">限制</h3><ul>';
+  ib.limitations.forEach(function(l) { iHtml += '<li>' + l + '</li>'; });
+  iHtml += '</ul><h3 style="font-size:1rem;margin-top:1rem">人类持的边界</h3><ul>';
+  ib.human_held_boundaries.forEach(function(b) { iHtml += '<li>' + b + '</li>'; });
+  iHtml += '</ul>';
+  document.getElementById('i5').innerHTML = iHtml;
+  var f = c.further_research;
+  var fHtml = '';
+  f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
+  document.getElementById('f5').innerHTML = fHtml;
+  var tk = '<div class="takeaway-label">Take-away</div>';
+  tk += 'AI 让 <strong>可规模化的部分</strong> 更便宜(OCR、分词、证据合成),但 <strong>判断与策展</strong> 仍由人类完成。<strong>0 个 unsupported claim</strong>、<strong>12/12 negative control abstention</strong>、<strong>collection governance 重建幂等</strong> — 这三条是边界的具体形态。';
+  document.getElementById('tk5').innerHTML = tk;
+});
+</script>
+</body>
+</html>

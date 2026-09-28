@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 3 · Historical Hydrology & River Defense</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 3</h1>
+  <p class="masthead-subtitle">Historical Hydrology & River Defense · 历史水利与河防</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html" class="active">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html">展厅 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../cases/case2/index.html">案例 2</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.2">v0.2 ↗</a>
+  </div>
+  <div class="topnav-meta">historical-hydrology · 30 page sample</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>Historical Hydrology & River Defense</h1>
+    <p class="hero-lead">「历史水利与河防」专题集合 — 项目第一个策展性研究集合。</p>
+    <p>本集合的研究问题：在中国古代水利史与河防工程史的语境中，哪些文献页面包含了值得被引证的论述？</p>
+  </section>
+
+  <section class="room-introduction">
+    <h2>Introduction</h2>
+    <p id="intro3"></p>
+  </section>
+
+  <section class="room-objects">
+    <h2>Objects</h2>
+    <div id="objects3" class="objects-grid"></div>
+  </section>
+
+  <section>
+    <h2>Evidence</h2>
+    <h3>集合的定义</h3>
+    <div id="coll-detail"></div>
+
+    <h3 style="margin-top:1.5rem">30 个高置信度页面样本</h3>
+    <p>按 membership.confidence 降序排列。展示 collection_id=1 的前 30 个 PAGE scope 成员。</p>
+    <div style="max-height:600px;overflow:auto;border:1px solid var(--rule-gray)">
+      <table class="meta-table" id="hyd-table" style="margin:0">
+        <thead><tr><th>#</th><th>作品</th><th>页序</th><th>页签</th><th>chars</th><th>conf</th><th>method</th><th>review</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:1.5rem">集合治理</h3>
+    <table class="meta-table">
+      <tr><th>Definition Version</th><td>v1 (active) — P5-C 写入</td></tr>
+      <tr><th>Snapshot Chain</th><td>P5-C + P5-D 两张快照 · membership_hash 稳定</td></tr>
+      <tr><th>Corpus Fingerprint</th><td><span class="mono">0d07aa6b604334e5</span> · 跨 snapshot 不可变</td></tr>
+      <tr><th>Rebuild Idempotent</th><td><span class="verified">PASS</span> · 两次连续重建结果一致</td></tr>
+      <tr><th>Membership Review Status</th><td>MANUAL（2 WORK seeds）+ REVIEWED（63 PAGE auto-rebuilt）</td></tr>
+      <tr><th>Inclusion Method</th><td>TERMS_RULE（19 include terms）+ WORK_SEED（2 WORK 直接收录）</td></tr>
+    </table>
+
+    <h3 style="margin-top:1.5rem">研究问答（6 个 collection-scoped samples · v0.3 升级）</h3>
+    <p>v0.3 展示使用 evidence_cards_v3.json — 每个 card 带 source_context / citation_path / collection / related_workspace 四字段。</p>
+    <div id="qa-list"></div>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      一个集合不仅是「一堆页面」，而是「<strong>一个研究问题 + 一组术语规则 + 一份可治理的成员清单 + 一条审计链</strong>」。重建幂等（rebuild idempotent）是这条纪律的核心。
+    </div>
+  </section>
+
+  <section class="room-further-reading">
+    <h2>Further Reading</h2>
+    <ul id="further3" class="further-reading"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 3</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+// Room intros
+fetch('../../data/room_intros.json').then(r => r.json()).then(d => {
+  var r = d.rooms.room3;
+  document.getElementById('intro3').textContent = r.introduction;
+  var oHtml = '';
+  r.objects.forEach(function(o) {
+    oHtml += '<article class="object-card">';
+    oHtml += '<div class="object-card-header"><span class="object-card-kind">' + o.kind + '</span></div>';
+    oHtml += '<h3 class="object-card-name">' + o.name + '</h3>';
+    oHtml += '<p class="object-card-desc">' + o.description + '</p>';
+    oHtml += '</article>';
+  });
+  document.getElementById('objects3').innerHTML = oHtml;
+  var fHtml = '';
+  r.further_reading.forEach(function(x) { fHtml += '<li>' + x + '</li>'; });
+  document.getElementById('further3').innerHTML = fHtml;
+});
+
+// Collection detail
+fetch('../../data/collections.json').then(r => r.json()).then(d => {
+  var c = d.collections.find(function(x) { return x.slug === 'historical-hydrology'; });
+  if (!c) return;
+  var det = document.getElementById('coll-detail');
+  var html = '<div class="card">';
+  html += '<div class="card-header"><h3 class="card-title">historical-hydrology · 历史水利与河防</h3><span class="mono dim">collection_id=1 · v1</span></div>';
+  html += '<p>' + (c.description || '河流水系、堤防、灌溉、漕运、河工治理 — 以《水经注》《河防一览》为骨干，辅以《天工开物》相关篇章。') + '</p>';
+  html += '<table class="meta-table">';
+  html += '<tr><th>Slug</th><td><span class="mono">historical-hydrology</span></td></tr>';
+  html += '<tr><th>Status</th><td><span class="badge badge-status-open">ACTIVE</span></td></tr>';
+  html += '<tr><th>Definition</th><td><span class="mono">v1</span> (active)</td></tr>';
+  html += '<tr><th>WORK 种子</th><td>水经注 (p124575) · 河防一览 (p48341)</td></tr>';
+  html += '<tr><th>Include Terms</th><td><span class="mono">' + (c.include_terms_count || 19) + ' 个核心术语</span></td></tr>';
+  html += '<tr><th>Min Confidence</th><td><span class="mono">0.5</span></td></tr>';
+  html += '<tr><th>Memberships</th><td>' + c.membership_count.toLocaleString() + ' 条（' + c.scope_distribution.WORK + ' WORK + ' + c.scope_distribution.PAGE + ' PAGE）</td></tr>';
+  html += '<tr><th>Review Status</th><td>MANUAL=' + c.review_status_distribution.MANUAL + ' · REVIEWED=' + c.review_status_distribution.REVIEWED + '</td></tr>';
+  html += '</table></div>';
+  det.insertAdjacentHTML('beforeend', html);
+});
+
+// 30 page sample
+fetch('../../data/hydrology_pages.json').then(r => r.json()).then(d => {
+  var tbody = document.querySelector('#hyd-table tbody');
+  d.pages.forEach(function(p, i) {
+    var html = '<tr>';
+    html += '<td>' + (i+1) + '</td>';
+    html += '<td>' + p.title + '</td>';
+    html += '<td><span class="mono">' + p.page_index + '</span></td>';
+    html += '<td><span class="mono">' + (p.page_label || '') + '</span></td>';
+    html += '<td>' + p.char_count + '</td>';
+    html += '<td>' + (p.confidence || 0).toFixed(2) + '</td>';
+    html += '<td><span class="mono" style="font-size:0.7rem">' + p.inclusion_method + '</span></td>';
+    html += '<td><span class="mono" style="font-size:0.7rem">' + p.review_status + '</span></td>';
+    html += '</tr>';
+    tbody.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+// v0.3 upgraded evidence cards (filtered to historical-hydrology)
+fetch('../../data/evidence_cards_v3.json').then(r => r.json()).then(d => {
+  var qa = document.getElementById('qa-list');
+  var hydCards = d.cards.filter(function(c) { return c.collection === 'historical-hydrology'; }).slice(0, 4);
+  if (hydCards.length === 0) {
+    qa.innerHTML = '<p class="dim">本次抽样中没有 historical-hydrology 命中的 evidence cards。</p>';
+    return;
+  }
+  hydCards.forEach(function(c) {
+    var html = renderEvidenceCardV3(c);
+    qa.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

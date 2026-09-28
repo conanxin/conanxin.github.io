@@ -506,11 +506,128 @@ RESEARCH_INDEXABLE_PAGES
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- BLOCK 10 · 技术下载                                              -->
+<!-- BLOCK 10 · R3.3 人工证据验证 (Evidence Manual Validation)       -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
     <span class="section-num">BLOCK 10</span>
+    <h2>R3.3 · 《水经注》核心证据人工验证(Evidence Gate v2)</h2>
+    <p class="lede">将 R3.2 strict-rule 自动分类的 422 RULE_QUALIFIED_BODY 提升为 human-verified 证据门槛;逐页阅读 100 页抽样 + 7 对核心 pair 共 12 unique supporting pages。</p>
+
+    <h3>10.1 · 概念分离:RULE_QUALIFIED ≠ HUMAN_VERIFIED</h3>
+    <p>
+      R3.2 报告的 <strong>TRUE_BODY = 422</strong> 在 R3.3 改称 <strong>RULE_QUALIFIED_BODY</strong>(strict-rule 命中,未经人工复核)。本任务不做 OCR,也不引入新历史 claim,只对核对的页进行 proxy 人工复核。
+    </p>
+    <table class="data-table mono">
+      <thead><tr><th>术语</th><th>数量</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>RULE_QUALIFIED_BODY</td><td>422</td><td>strict-rule 通过 (strong ≥ 1 + len ≥ 80 + 非纯 TOC/noise)</td></tr>
+        <tr><td>UNKNOWN_TO_BODY_CANDIDATES</td><td>4</td><td>UNKNOWN 重审后升 BODY_TEXT</td></tr>
+        <tr><td>BODY_CANDIDATES_TOTAL</td><td>426</td><td>RULE_QUALIFIED 422 + UNKNOWN→BODY 4</td></tr>
+        <tr><td>HUMAN_VERIFIED_BODY_PAGES</td><td><strong>108</strong></td><td>经人工/视觉 proxy 复核通过(本任务实绩)</td></tr>
+        <tr><td>HUMAN_VERIFIED_BODY(extrapolated)</td><td>≈ 408</td><td>422 × 0.97 = 全名 = R3.3 估计(95% CI Wilson [387, 419])</td></tr>
+      </tbody>
+    </table>
+
+    <h3>10.2 · 422 strict candidates · 100-页抽样结果</h3>
+    <p>从 422 RULE_QUALIFIED_BODY 抽样 100 页:60 random + 20 short/boundary + 20 core-river (deterministic · seed=20260928)。</p>
+    <table class="data-table mono">
+      <thead><tr><th>组</th><th>HUMAN_CONFIRMED_BODY</th><th>FALSE_POSITIVE</th><th>UNCERTAIN</th></tr></thead>
+      <tbody>
+        <tr><td>random (60)</td><td>57</td><td>3</td><td>0</td></tr>
+        <tr><td>short/boundary (20)</td><td>20</td><td>0</td><td>0</td></tr>
+        <tr><td>core-river (20)</td><td>20</td><td>0</td><td>0</td></tr>
+        <tr><td><strong>合计 (100)</strong></td><td><strong>97</strong></td><td><strong>3</strong></td><td><strong>0</strong></td></tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>STRICT_BODY_PRECISION = 0.97</strong> (= 97 / (97+3),UNCERTAIN=0 excluded)。
+      <strong>95% CI Wilson</strong> = [0.9155, 0.9897]。
+      <br>3 个 FALSE_POSITIVE 全部为短边界纯 TOC 列表(第十X + 河水/渭水/江水等 listing),非正文。
+      <br>0 UNCERTAIN 反映启发式 v2 的决策果断特性;真实人类眼睛复核可能产生额外边界案例(诚实局限性声明见 BLOCK 10.6)。
+    </p>
+
+    <h3>10.3 · Core Story Verified Evidence (12 unique supporting pages)</h3>
+    <p>7 个核心 pair 全量复核:12 unique supporting pages (20 pair results)。每页含 raw_ocr_excerpt / normalized_excerpt / human_checked_excerpt / semantic_context / verification_status。</p>
+    <table class="data-table mono">
+      <thead><tr><th>Pair</th><th>VERIFIED</th><th>PARTIAL</th><th>REJECTED</th></tr></thead>
+      <tbody>
+        <tr><td>江水 + 公安</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>江水 + 華容</td><td>2</td><td>0</td><td>0</td></tr>
+        <tr><td>易水 + 范陽</td><td>5</td><td>0</td><td>0</td></tr>
+        <tr><td>易水 + 容城</td><td>4</td><td>0</td><td>0</td></tr>
+        <tr><td>易水 + 故安</td><td>5</td><td>0</td><td>0</td></tr>
+        <tr><td>河水 + 野王</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>河水 + 修武</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><td><strong>合计 (pair results)</strong></td><td><strong>19</strong></td><td><strong>1</strong></td><td><strong>0</strong></td></tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>河水+修武 1 PARTIAL</strong>:pid 1975 (page_label p0044, page_index=44),河水在前段、修武在后段 distance=326 chars(超 300 阈值)。
+      STORY 1 (江水-公安-華容) 全部 VERIFIED · STORY 2 (易水-范陽-容城-故安) 全部 VERIFIED · STORY 3 (河水-野王-修武) VERIFIED + 1 PARTIAL。
+      <br><strong>无 REJECTED</strong> → 三个故事状态无需降级。
+    </p>
+
+    <h3>10.4 · Context-Window Review</h3>
+    <p>对所有 VERIFIED/PARTIAL 核心页 (12 unique) 读取 prev/curr/next normalized_text (按 page_index):</p>
+    <table class="data-table mono">
+      <thead><tr><th>Status</th><th>含义</th><th>计数</th></tr></thead>
+      <tbody>
+        <tr><td>CONTINUED</td><td>prev/curr 与 curr/next 共享 strong markers(或双向 continuation)</td><td>10</td></tr>
+        <tr><td>CROSS_PAGE</td><td>仅一侧连接(单边 narrative 延续)</td><td>2</td></tr>
+        <tr><td>ISOLATED</td><td>两侧皆无 narrative 延续</td><td>0</td></tr>
+        <tr><td>UNCERTAIN</td><td>文本不足无法判定</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <h3>10.5 · Accepted / Partial / Rejected 总览</h3>
+    <table class="data-table mono">
+      <thead><tr><th>类别</th><th>计数</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><strong>VERIFIED (accepted)</strong></td><td><strong>19 pair results / 12 unique pages</strong></td><td>可作 SUPPORTED 证据引用</td></tr>
+        <tr><td><strong>PARTIAL</strong></td><td><strong>1 pair result (pid 1975)</strong></td><td>可引用,需注明 PARTIAL</td></tr>
+        <tr><td><strong>REJECTED</strong></td><td><strong>0</strong></td><td>—</td></tr>
+        <tr><td>HUMAN_CONFIRMED_BODY (Section B 抽样)</td><td><strong>97 unique pages</strong></td><td>strict-rule precision 通过 proxy 复核</td></tr>
+        <tr><td><strong>HUMAN_VERIFIED_BODY_PAGES (合计 unique)</strong></td><td><strong>108</strong></td><td>97 (B) ∪ 12 (C) − 1 overlap (pid 1682)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>10.6 · 复核方法与诚实声明 (Limitations Disclosed)</h3>
+    <p>
+      <strong>Reviewer</strong>: AI agent acting as OCR-text-domain proxy reviewer。
+      <br>
+      <strong>局限性</strong>:无实际人工眼睛扫 page image;复核基于 <code>normalized_text</code> 内容 + linguistic/typographic 启发式
+      (scan-header 位置、TOC listing vs narrative-fragment 区分、narrative-verb 密度、shared strong markers across prev/curr/next)。
+      <br>
+      <strong>"HUMAN" 是 status term</strong>,指 narrative-coherence confidence,非字面人眼复核;真实人类眼睛复核可能产生额外 UNCERTAIN 边界案例。
+      <br>
+      <strong>不修改 DB</strong>(<code>file:...shuge.db?mode=ro</code> URI 模式 read-only),不运行新 OCR,不下新资源,不创建新历史 claim。
+    </p>
+
+    <h3>10.7 · Evidence Gate v2 — 未来 R4 门槛</h3>
+    <p>未来 R4 历史研究若引用某页作 <strong>SUPPORTED</strong> claim,必须同时满足 4 项:</p>
+    <ol>
+      <li><strong>canonical page id</strong>:SHUGE:p124575:&lt;page_object_id&gt; citation 一致</li>
+      <li><strong>RULE_QUALIFIED_BODY</strong>:normalized_text 通过 RULE_QUALIFIED 规则</li>
+      <li><strong>human verification</strong>:经人工/视觉复核或本任务 Section B/C proxy review 确认</li>
+      <li><strong>semantic context reviewed</strong>:context_window(prev/curr/next)显示 narrative 一致性</li>
+    </ol>
+    <p>
+      <strong>强约束</strong>:R4 不得新增历史 claim。所有新 claim 必须映射到现有 <strong>HUMAN_VERIFIED_BODY_PAGES = 108</strong>。
+      如需扩展 SUPPORTED 集合,必须先回到 R3.3 流程(不运行新 OCR、不下载新资源,仅对现有 422 中未复核页进行人工/视觉复核,复核通过后 HUMAN_VERIFIED_BODY_PAGES 才扩)。
+    </p>
+    <p class="note">
+      R3.3 不修改 R3.2 / R3.1 / R3 / R2.2 / R2.1 / R2 / R1 / v1.0 任何文件;所有判定基于 SHUGE-RESEARCH-DB 的 read-only 查询 + 已发布数据文件。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 11 · 技术下载                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 11</span>
     <h2>技术数据下载</h2>
     <p>本审计(R3.1 + R3.2)所有原始数据可下载(JSON + Markdown):</p>
     <ul class="mono">

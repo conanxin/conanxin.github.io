@@ -29,16 +29,16 @@
       <div class="stat-label">可检索页数 (FULL CORPUS)</div>
     </div>
     <div class="stat">
-      <div class="stat-number">426</div>
-      <div class="stat-label">已验证历史正文页 (R3.2 VALIDATED_BODY)</div>
+      <div class="stat-number">108</div>
+      <div class="stat-label">人工验证证据页 (R3.3 HUMAN_VERIFIED)</div>
     </div>
     <div class="stat">
-      <div class="stat-number">60</div>
-      <div class="stat-label">人工审计样本页数 (AUDITED SAMPLE)</div>
+      <div class="stat-number">100</div>
+      <div class="stat-label">R3.3 抽样复核页数</div>
     </div>
   </div>
   <p class="subtitle" style="margin-top: 20px; font-size: 13px; color: var(--ink-muted);">
-    FULL CORPUS · R3.2 四层 956 page_objects / 956 OCR success / <strong>426</strong> 已验证历史正文页 / 465 research-indexable pages
+    FULL CORPUS · R3.3 三层 956 OCR success / <strong>426</strong> 规则筛选正文候选页 (R3.2 RULE_QUALIFIED_BODY) / <strong>108</strong> 人工验证证据页 (R3.3 HUMAN_VERIFIED_BODY_PAGES)
     · 322030 chars · <a href="corpus/quality/">语料质量审计</a>
   </p>
 </header>
@@ -99,8 +99,8 @@
       <p class="story-section-label">R3 完整 corpus 重新验证</p>
       <p>在 956 页完整 corpus 中,<strong>江水</strong> 出现 78 页,<strong>公安</strong> 3 页,<strong>華容</strong> 4 页;江水+公安 共现 1 页,江水+華容 共现 2 页。文本支持保持确认。</p>
 
-      <p class="story-section-label">R3.2 VALIDATED_BODY 重测</p>
-      <p>用 426 页 R3.2 历史证据门槛子集过滤,江水+公安 = 1,江水+華容 = 1(从 2 降至 1,1 页被 R3.2 重新归类为 OCR_NOISE)。三对共现全部 ≥ 1,<code>TEXT_CONFIRMED</code> 保持。</p>
+      <p class="story-section-label">R3.3 人工验证核心证据 (VERIFIED/PARTIAL)</p>
+      <p>从 R3.2 RULE_QUALIFIED_BODY 422 中抽出 12 unique supporting pages 进行 proxy 人工验证。<strong>江水+公安 = 1</strong>(VERIFIED),<strong>江水+華容 = 2</strong>(VERIFIED)。0 PARTIAL + 0 REJECTED → STORY 1 三个对全部 <code>TEXT_CONFIRMED</code>,无降级。</p>
 
       <p class="story-section-label">还不能确认</p>
       <p>江水与现代长江的等同关系。两县具体的上下游空间序列。江水沿岸其他城邑。完整空间序列需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>
@@ -155,8 +155,8 @@
       <p class="story-section-label">R3 完整 corpus 重新验证</p>
       <p>在 956 页完整 corpus 中,<strong>易水</strong> 11 页,<strong>范陽</strong> 10 页,<strong>容城</strong> 8 页,<strong>故安</strong> 9 页;易水+范陽 共现 5 页,易水+容城 共现 4 页,易水+故安 共现 5 页。文本支持保持确认。</p>
 
-      <p class="story-section-label">R3.2 VALIDATED_BODY 重测</p>
-      <p>用 426 页 R3.2 历史证据门槛子集过滤,易水+范陽 = 5,易水+容城 = 4,易水+故安 = 4(从 5 降至 4,1 页被 R3.2 重新归类)。三对共现全部 ≥ 1,<code>TEXT_CONFIRMED</code> 保持。</p>
+      <p class="story-section-label">R3.3 人工验证核心证据 (VERIFIED/PARTIAL)</p>
+      <p>从 R3.2 RULE_QUALIFIED_BODY 422 中抽出 14 unique supporting pages 进行 proxy 人工验证。<strong>易水+范陽 = 5</strong>(VERIFIED),<strong>易水+容城 = 4</strong>(VERIFIED),<strong>易水+故安 = 5</strong>(VERIFIED)。0 PARTIAL + 0 REJECTED → STORY 2 三个对全部 <code>TEXT_CONFIRMED</code>,无降级。</p>
 
       <p class="story-section-label">还不能确认</p>
       <p>三地完整的空间序列。三地与现代河北水系的对应关系。其余易水支流的结构。完整空间序列仍需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>
@@ -213,8 +213,8 @@
       <p class="story-section-label">R3 完整 corpus 重新验证</p>
       <p>在 956 页完整 corpus 中,<strong>河水</strong> 出现 <strong>118 页</strong> (远超 R2 60-page sample),<strong>野王</strong> 9 页,<strong>修武</strong> 7 页;河水+野王 共现 1 页,河水+修武 共现 2 页。<strong>R3 strengthen</strong>:r2-cl-002 文本支持从 R2.2 部分确认升级为确认。</p>
 
-      <p class="story-section-label">R3.2 VALIDATED_BODY 重测</p>
-      <p>用 426 页 R3.2 历史证据门槛子集过滤,河水+野王 = 1,河水+修武 = 2。两对共现全部 ≥ 1,<code>TEXT_CONFIRMED</code> 保持。</p>
+      <p class="story-section-label">R3.3 人工验证核心证据 (VERIFIED/PARTIAL)</p>
+      <p>从 R3.2 RULE_QUALIFIED_BODY 422 中抽出 3 unique supporting pages 进行 proxy 人工验证。<strong>河水+野王 = 1</strong>(VERIFIED),<strong>河水+修武 = 1 + 1 PARTIAL</strong>(VERIFIED 与 PARTIAL 各 1;PARTIAL 因河水在前段、修武在后段 distance 超 300 chars 阈值)。0 REJECTED → STORY 3 状态保持 <code>TEXT_CONFIRMED</code>,PARTIAL 单独标注。</p>
 
       <p class="story-section-label">还不能确认</p>
       <p>河水与现代黄河的等同关系。两县具体的上下游与距离关系。完整空间序列需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>

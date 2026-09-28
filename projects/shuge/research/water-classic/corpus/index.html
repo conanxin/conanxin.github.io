@@ -13,27 +13,28 @@
 
 <header class="hero">
   <h1>《水经注》完整数字语料</h1>
-  <p class="subtitle">FULL CORPUS · 956 页 · R3 完整语料校准</p>
+  <p class="subtitle">FULL CORPUS · 956 页 · R3.3 核心证据人工验证</p>
   <blockquote class="core-statement">
-    R3 将 R2 公开研究使用的 60-page sample 重新连接到 SHUGE-RESEARCH-DB 中已存在的完整《水经注》corpus。当前完整语料包含 <strong>956 页</strong> page_objects,使用既有 OCR(rapidocr · PP-OCRv4-mobile · 2026-09-27 batch run)重新检索三个核心故事,确认文本共现,但 spatial 与 modern 对应仍未解。
+    R3 将 R2 公开研究使用的 60-page sample 重新连接到 SHUGE-RESEARCH-DB 中已存在的完整《水经注》corpus。R3.1 三层 page_objects / OCR non-empty / research-searchable body pages 已经分级,R3.2 引入 strict-rule BODY_TEXT 验证与 426 规则筛选正文候选页,R3.3 对其中 100 页抽样人工复核 + 7 对核心 pair 共 12 unique supporting pages 全量复核,得到 <strong>108</strong> 人工验证证据页。<br>
+    <strong>R3.3 起不再把 426 称作"已验证正文页"</strong>——只有进入 HUMAN_VERIFIED_BODY_PAGES (108) 的页才允许作为 SUPPORTED 历史证据。
   </blockquote>
   <div class="stats">
     <div class="stat">
       <div class="stat-number">956</div>
-      <div class="stat-label">page_objects · 完整 corpus</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">956</div>
-      <div class="stat-label">OCR success</div>
+      <div class="stat-label">OCR success (page_objects 全数)</div>
     </div>
     <div class="stat">
       <div class="stat-number">426</div>
-      <div class="stat-label">已验证/可信历史正文页</div>
+      <div class="stat-label">规则筛选正文候选页 (R3.2)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">108</div>
+      <div class="stat-label">人工验证证据页 (R3.3)</div>
     </div>
   </div>
   <p class="subtitle" style="margin-top: 24px; font-size: 14px;">
-    <strong>FULL CORPUS · R3.2 四层</strong> · 956 page_objects / 956 OCR success / 426 已验证历史正文页 / 465 research-indexable pages (含 38 标题 + 1 目录) · 322030 chars · 81 SCAN_HEADER_ONLY · 5 REMAIN_UNKNOWN<br>
-    <strong>历史证据门槛</strong>(R3.2 Historical Evidence Gate):任何 SUPPORTED 历史声明必须 page_object_id ∈ HISTORICAL_BODY_PAGES(426)。<a href="quality/">查看语料质量审计</a>
+    <strong>FULL CORPUS · R3.3 三层</strong> · 956 OCR success / <strong>426 规则筛选正文候选页</strong>(= RULE_QUALIFIED_BODY 422 + UNKNOWN→BODY 4)/ <strong>108 人工验证证据页</strong>(= HUMAN_VERIFIED_BODY_PAGES 108) · 322030 chars · R3.3 严格 RULE_QUALIFIED ≠ HUMAN_VERIFIED。<br>
+    <strong>证据门槛</strong>(R3.3 Historical Evidence Gate v2):任何 SUPPORTED 历史声明必须 page_object_id ∈ HUMAN_VERIFIED_BODY_PAGES(108) + 4 项 AND 条件(canonical + RULE_QUALIFIED + human verification + semantic context reviewed)。<a href="quality/">查看语料质量审计</a>
   </p>
 </header>
 

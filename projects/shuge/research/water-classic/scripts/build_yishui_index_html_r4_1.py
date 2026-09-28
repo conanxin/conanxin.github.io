@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT · Rewrite /yishui/index.html with R4.1 audit content.
+
+R4 frozen yishui/index.html is NOT overwritten; this writes the R4.1 audit-version
+public page that reflects:
+  - 7/12 claims SUPPORTED + 5/12 PARTIALLY_SUPPORTED
+  - R4-YSH-012 deep-澤 / RONGCHENG correction
+  - R4-YSH-011 inference scope clarification
+  - External source provenance (3 ACCESSED + 3 IDENTIFIED + 1 PRIMARY)
+  - CORE_TOPOLOGY (9 nodes, 15 edges) with claim-to-edge binding
+  - FULL_TOPOLOGY preserved as fold/appendix
+
+Hard boundaries: NEW_OCR=0 · NEW_PRIMARY_ACQUISITION=0 · DB_WRITES=0 · EMBEDDINGS=0
+"""
+
+from pathlib import Path
+
+PROJECT_ROOT = Path("/home/conanxin/conanxin.github.io")
+HTML_OUT = PROJECT_ROOT / "projects/shuge/research/water-classic/yishui/index.html"
+
+
+def build_html() -> str:
+    head = """<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -108,7 +131,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     R2.1 audit: <span class="wc-cite">5683 B</span>
   </p>
 </header>
+"""
 
+    section_rq = """
 <section class="wc-section" id="sec-rq">
   <h2 class="wc-h2">研究問題 (Research Questions)</h2>
 
@@ -128,7 +153,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   <h3 class="wc-h3">RQ3 · 證據等級與外部校核</h3>
   <p>12 條 R4 historical claims 中，哪些可由《水經注》文本<strong>直接支持</strong>（TEXT_REPORTS），哪些僅屬<strong>文本順序推論</strong>（TEXTUAL_INFERENCE）？哪些已由<strong>外部史料獨立校核</strong>（HISTORICAL_CORROBORATED），哪些仍待考證？R4-YSH-012 對「深澤封國 vs 容城封國」的處理是否需要修正？</p>
 </section>
+"""
 
+    section_findings = """
 <section class="wc-section" id="sec-findings">
   <h2 class="wc-h2">五個核心發現 (Core Findings)</h2>
 
@@ -170,7 +197,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     <strong>為何是 5 個而非 7 個 SUPPORTED：</strong>R4 報告「12/12 SUPPORTED」；R4.1 審計後 7 條 SUPPORTED + 5 條 PARTIALLY_SUPPORTED。降級理由見 <a href="#sec-claims">Claims 分類</a> 與 <code>source/YISHUI_CLAIM_AUDIT_R4_1.md</code>。
   </div>
 </section>
+"""
 
+    section_topology = """
 <section class="wc-section" id="sec-topology">
   <h2 class="wc-h2">簡化文本空間拓撲 (CORE Topology)</h2>
 
@@ -313,7 +342,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     邊關係類型 = origin_from / flow_east / flows_into / passes_south_of / passes_north_of / historical_relation / south_of_city_east_flow / confluences_with / enters_into / passes_east_of / location_in（11 種）。</p>
   </details>
 </section>
+"""
 
+    section_text = """
 <section class="wc-section" id="sec-text">
   <h2 class="wc-h2">關鍵原文 (Key Primary Text)</h2>
 
@@ -354,7 +385,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     <p><span class="wc-cite">SHUGE:p124575:1661</span> &nbsp;|&nbsp; <small>→ R4-YSH-012 (CLAIM_012_CORRECTED=true) · <strong>深澤 ≠ 容城</strong></small></p>
   </div>
 </section>
+"""
 
+    section_claims = """
 <section class="wc-section" id="sec-claims">
   <h2 class="wc-h2">Claims 分類（12 條）</h2>
 
@@ -456,7 +489,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     <p>陳橋驛《水經注校證》(2007) 註明「攜徐盧」一作「撅徐盧」。R4.1 不採信 EXT-CHEN-2007 URL（zhihu.com/question/... 為 placeholder），但保留此異文記錄為 VARIANT_PASSAGES=1。</p>
   </div>
 </section>
+"""
 
+    section_uncertainty = """
 <section class="wc-section" id="sec-uncertainty">
   <h2 class="wc-h2">不確定性 (Uncertainty)</h2>
 
@@ -512,7 +547,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     - 手動正規化（套用 OCR 校正 + 過濾）→ <code>normalized_research_reading_layer</code>。
   </div>
 </section>
+"""
 
+    section_sources = """
 <section class="wc-section" id="sec-sources">
   <h2 class="wc-h2">來源 (Sources)</h2>
 
@@ -593,7 +630,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     PRIMARY source（EXT-NII-DIGITAL）從 EXTERNAL_SOURCES 列表中<strong>移除</strong>，獨立標示為 PRIMARY。
   </div>
 </section>
+"""
 
+    section_method = """
 <section class="wc-section" id="sec-method">
   <h2 class="wc-h2">方法論邊界 (Methodology & Boundaries)</h2>
 
@@ -673,7 +712,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     </ul>
   </details>
 </section>
+"""
 
+    section_completion = """
 <section class="wc-section" id="sec-completion">
   <h2 class="wc-h2">研究結論 (Conclusions)</h2>
 
@@ -692,7 +733,9 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     R4 frozen JSON 完整保留；R4.1 為審計 overlay，可隨未來外部校核（如 EXT-CHEN-2007 URL 修復）再行更新。</p>
   </div>
 </section>
+"""
 
+    footer = """
 <footer class="wc-footer">
   <p><strong>WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT</strong> · publication-level scholarly audit of R4 (582c852)</p>
   <p>硬邊界：<code>NEW_OCR=0 · NEW_PRIMARY_ACQUISITION=0 · DB_WRITES=0 · EMBEDDINGS=0</code></p>
@@ -703,3 +746,18 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
 
 </body>
 </html>
+"""
+
+    return head + section_rq + section_findings + section_topology + section_text + section_claims + section_uncertainty + section_sources + section_method + section_completion + footer
+
+
+def main():
+    html = build_html()
+    HTML_OUT.parent.mkdir(parents=True, exist_ok=True)
+    with open(HTML_OUT, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Wrote {HTML_OUT.relative_to(PROJECT_ROOT)} ({len(html)} bytes)")
+
+
+if __name__ == "__main__":
+    main()

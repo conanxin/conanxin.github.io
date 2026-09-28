@@ -1,0 +1,315 @@
+{
+  "schema_version": "r4.1-yishui-claims-audit/1.0",
+  "generated_at": "2026-09-28T18:24:16+08:00",
+  "task": "WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT",
+  "section": "R4.1 · Scholarly audit of R4 historical claims",
+  "basis": "R4 frozen commit 582c852 (audit overlay only — R4 frozen JSON NOT modified)",
+  "claim_count": 12,
+  "claim_truth_scope_distribution": {
+    "TEXT_REPORTS": 7,
+    "TEXTUAL_INFERENCE": 5,
+    "HISTORICAL_CORROBORATED": 0,
+    "MODERN_MAPPING": 0
+  },
+  "claim_support_distribution": {
+    "SUPPORTED": 7,
+    "PARTIALLY_SUPPORTED": 5,
+    "NOT_SUPPORTED": 0
+  },
+  "audit_method": {
+    "step_1": "Read R4 frozen claims JSON + claim ledger",
+    "step_2": "Re-read R4 controlled transcription (3 layers × 7 cores) for direct-quote verification",
+    "step_3": "For each claim: classify truth_scope by checking whether R4 citation directly supports the claim text vs. requires textual-sequence inference",
+    "step_4": "For HISTORICAL_INTERPRETATION claims (008/009/010): verify claim_text frames correctly as '《水經注》文本 / 引某人說' rather than independent modern historical fact",
+    "step_5": "For R4-YSH-011: verify whether '範陽以東、容城以西' is directly stated in pid1661 or only inferred from pid1657 大字標題 sequence",
+    "step_6": "For R4-YSH-012: verify whether '趙將某於容城' is correct or whether the original text clearly says 深澤 ≠ 容城"
+  },
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_PRIMARY_ACQUISITION": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "R4_BASELINE_PRESERVED": true,
+    "MODERN_MAPPING_CLAIMS": 0
+  },
+  "records": [
+    {
+      "claim_id": "R4-YSH-001",
+      "claim_text_original": "在易水章節中，範陽先於容城出現，且由「東過」動詞串聯。",
+      "claim_text_revised": "《水經注》卷十一易水章之 pid1657 大字標題記載：「東過范陽縣南又東過容城縣南」。範陽先於容城出現，並由「東過」動詞串聯。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "大字標題是原書編者明確標註的章節結構，無需推論即可直接引用。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1657 p0004 大字標題直接記錄此序列，無需文字校勘。",
+      "citation_ids": [
+        "SHUGE:p124575:1657"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "counterevidence_detail": "未在 R4 已校核的外部資料中找到對此大字標題的反例或異說。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES (R3.2 strict-rule)",
+        "PROXY_REVIEWED": "YES (R3.3/R3.4)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A (single page)"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-002",
+      "claim_text_original": "易水出涿郡故安縣閻鄉西山（pid1655 正文首段大字）。",
+      "claim_text_revised": "《水經注》卷十一易水章之 pid1655 正文首段記載：「易水出涿郡故安縣閻鄉西山」。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "正文首段直接記錄易水水源。OCR 校正：DB OCR「承郡」「間鄉」→視覺確認「涿郡」「閻鄉」。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1655 p0002 正文首段直接記錄此句，OCR 校正後無誤。",
+      "citation_ids": [
+        "SHUGE:p124575:1655"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "counterevidence_detail": "Wikisource / ctext.org 等公開校勘本未記錄異文。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1655)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-003",
+      "claim_text_original": "故安與易水關係呈現三種空間語言模式：(1) 易水出於故安縣閻鄉；(2) 易水逕故安城南外東流；(3) 故安作為易水名稱源頭（世又謂易水為故安河）。",
+      "claim_text_revised": "《水經注》文本中故安與易水的關係可歸納為三種空間語言模式：(1) pid1655「易水出涿郡故安縣閻鄉西山」；(2) pid1656「易水逕故安城南外東流」；(3) pid1656「世又謂易水為故安河」。三型分類為研究者對原書文字的歸納性框架，並非原書明示分類。",
+      "truth_scope": "TEXTUAL_INFERENCE",
+      "truth_scope_rationale": "個別引文為 TEXT_REPORTS；「三型分類」為研究者的歸納框架，非原書直接給出的分類標籤。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "PARTIALLY_SUPPORTED",
+      "support_rationale": "個別引文確實存在於原書且視覺確認無誤；但「三型」分類屬於研究者框架，原書並未明確標示此分類。三型邊界（特別是 (2) 與 (3) 是否完全互斥）需讀者自行判斷。",
+      "citation_ids": [
+        "SHUGE:p124575:1655",
+        "SHUGE:p124575:1656"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "counterevidence_detail": "未在 R4 已校核的外部資料中找到對個別引文的反例；三型框架屬歸納性，不存在事實性反例。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "interpretive_framework": "YES (researcher's typology, not 原書 explicit label)"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-004",
+      "claim_text_original": "範陽-容城之間存在「東過」連續動詞語法結構。",
+      "claim_text_revised": "《水經注》文本中「東過 + 縣南」連續動詞結構在易水章（pid1657 大字標題）與巨馬水章（pid1682 大字標題）均出現，但二者屬不同水系，不應混稱為「同一水流的連續動詞」。",
+      "truth_scope": "TEXTUAL_INFERENCE",
+      "truth_scope_rationale": "個別引文為 TEXT_REPORTS；但「範陽-容城」之間的「東過」是否屬「同一水流的連續動詞」需結合章節上下文判斷。pid1657 屬易水章（東過范陽縣南又東過容城縣南）；pid1682 屬巨馬水章（東南逕范陽縣故城北易水注之／又東南過容城縣北）。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "PARTIALLY_SUPPORTED",
+      "support_rationale": "「東過范陽縣南又東過容城縣南」作為 pid1657 大字標題可直接引用（屬易水章）；但若引用 pid1682 巨馬水章，則需說明此為不同水系。原 R4 claim_text 未充分區分兩水系。",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1682"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "counterevidence_detail": "未在 R4 已校核的外部資料中找到對 pid1657 大字標題的反例；但「易水連續動詞」概念屬研究者歸納，非原書明示。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES (within-page大字標題)",
+        "cross_water_system_warning": "pid1657 易水章 vs pid1682 巨馬水章；不同水系，不應混稱"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-005",
+      "claim_text_original": "城南/城北方位詞在易水章中反覆出現，標誌水流與城邑的相對位置。",
+      "claim_text_revised": "《水經注》易水章中「城南」/「城北」/「城東」/「城西」方位詞反覆出現於 pid1656/1657/1659/1661/1682 等頁。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "個別方位詞引文均可直接從原書取得；「反覆出現」屬量化性描述，可由 spatial_relations JSON 驗證（96 條關係中方位詞佔多數）。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1656 「逕五公城南」「城西」、pid1657 「逕范陽縣故城南」「城南」、pid1659 「逕容城縣故城北」、pid1661 「逕樊輿縣故城北」均為直接引文。",
+      "citation_ids": [
+        "SHUGE:p124575:1656",
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1659",
+        "SHUGE:p124575:1661",
+        "SHUGE:p124575:1682"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES (cross-page)"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-006",
+      "claim_text_original": "易水、濡水、巨馬水、淶水於涿郡範陽縣會，呈現「互攝通稱」的水系關係。",
+      "claim_text_revised": "《水經注》pid1659 記載：「北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北」。原書明確使用「互攝」「通稱」二字；「易水/濡水/巨馬水/淶水」四水分類為研究者歸納（pid1659 + pid1682 整合）。",
+      "truth_scope": "TEXTUAL_INFERENCE",
+      "truth_scope_rationale": "「互攝」「通稱」為原書直接用語（pid1659 句中）；「易水/濡水/巨馬水/淶水」四水系統分類為研究者對跨章節文本的歸納，並非原書明示。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "PARTIALLY_SUPPORTED",
+      "support_rationale": "「互攝通稱」可由 pid1659 直接引文支持（TEXT_REPORTS 層級）；但「四水分類」屬歸納性，且現代水系驗證非本階段任務（R4 限制條件 REAL_WORLD_LOCATION=UNRESOLVED）。",
+      "citation_ids": [
+        "SHUGE:p124575:1659",
+        "SHUGE:p124575:1682"
+      ],
+      "counterevidence_audit": "EXT-YANG-1905 (Yang Shoujing 水經注疏) 註文傳統上保留此水系結構描述；R4.1 未獨立查證該來源。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "REAL_WORLD_LOCATION_UNRESOLVED": "PER R4 SCOPE (modern hydrology mapping deferred)"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-007",
+      "claim_text_original": "大利亭作為地理節點，故安水於此「東南合易水而注巨馬水」（pid1659）。",
+      "claim_text_revised": "《水經注》pid1659 記載：「其水又東南流於容城縣西北大利亭東南，合易水而注巨馬水也」。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "pid1659 為單頁引文，直接記錄此地理節點。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1659 為單頁單句引文，可直接視覺確認（image_checked pid1659 中「大利亭」清楚）。",
+      "citation_ids": [
+        "SHUGE:p124575:1659"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1659)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A (single page)"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-008",
+      "claim_text_original": "範陽=范水之陽（應劭解釋），即范水之北。",
+      "claim_text_revised": "《水經注》pid1661 記載：「易水又逕范陽縣故城南，即應劭所謂范水之陽也」。「範陽」地名源於「范水之陽」為酈道元所引應劭《風俗通》之解釋，並非現代獨立考證。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "pid1661 直接記錄「即應劭所謂范水之陽」一句，屬原書文本明確引述。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1661 單句引文：「易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也」可由視覺確認。「陽」字傳統地理學含義為「水之北」或「山之南」（視情境而定），屬訓詁學常識。",
+      "citation_ids": [
+        "SHUGE:p124575:1661"
+      ],
+      "counterevidence_audit": "EXT-YANG-1905 (Yang Shoujing) 與 EXT-CHEN-2007 (Chen Qiaoyi) 之《水經注》校注本對「范水之陽」地名訓詁沿襲應劭說；R4.1 未獨立比對楊守敬/陳橋驛原書。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1661)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A",
+        "frame_correction_applied": "R4.1 明確標示此為「酈道元所引應劭」之說，避免讀者誤認為現代考古或地名學獨立結論"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-009",
+      "claim_text_original": "武陽=燕下都（燕昭王所築，東西二十里，南北十七里）。",
+      "claim_text_revised": "《水經注》pid1656 記載：「武陽蓋燕昭王之所城也，東西二十里，南北十七里」「故燕之下都擅武陽之名」。「武陽=燕下都」為酈道元於六世紀所作之記錄，並非二十世紀考古學獨立考證；現代考古實測可能與酈道元所記城邑規模有出入。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "pid1656 為單頁直接引文。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1656 「武陽蓋燕昭王之所城也，東西二十里，南北十七里」一句可由視覺確認（image_checked pid1656）。",
+      "citation_ids": [
+        "SHUGE:p124575:1656"
+      ],
+      "counterevidence_audit": "EXT-YANG-1905 (Yang Shoujing 水經注疏) 對武陽城邑位置有詳註；R4.1 未獨立比對楊守敬原書。pid1656 中「故傳逮迹遊賦」之「逮迹遊獵賦」可能為異文（見 R4-YSH-009 R4 source 註記）。",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1656)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A",
+        "frame_correction_applied": "R4.1 明確標示此為「酈道元於六世紀所作之記錄」，避免讀者誤認為現代考古結論"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-010",
+      "claim_text_original": "金臺+蘭馬臺=燕昭王禮賓郭隗之處（酈道元引耆舊）。",
+      "claim_text_revised": "《水經注》pid1657 記載：「金毫陂西畔有蘭馬臺」「臺北有金臺」「訪諸耆舊，咸言昭王禮賓，廣延方士，至如郭隗、樂毅之徒」。金臺、蘭馬臺與「燕昭王禮賓郭隗」之關係引自酈道元所採耆舊傳聞，並非現代考古學獨立實證。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "pid1657 為單頁直接引文。「訪諸耆舊」明示這是傳聞記載，不是酈道元親眼所見。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "SUPPORTED",
+      "support_rationale": "pid1657 引文可由視覺確認（image_checked pid1657 中「金毫陂」「蘭馬臺」「金臺」「訪諸耆舊」清楚）。",
+      "citation_ids": [
+        "SHUGE:p124575:1657"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1657)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "N/A",
+        "frame_correction_applied": "R4.1 明確標示「耆舊傳聞」屬性，避免讀者誤認為現代獨立考證"
+      }
+    },
+    {
+      "claim_id": "R4-YSH-011",
+      "claim_text_original": "易京城位於易水之南、范陽以東、容城以西（公孫瓚遷都處）。",
+      "claim_text_revised": "《水經注》pid1661 記載：「易水又東逕易京南」「謂之易京城，在易城西四五里」。「易京城在易水之南」由「逕易京南」直接支持。但「範陽以東、容城以西」並非 pid1661 直接陳述；此方位係基於 pid1657 大字標題「東過范陽縣南又東過容城縣南」之文本順序推論（範陽在西、容城在東，故易京城若在兩者之間，則為「範陽以東、容城以西」）。此推論依賴讀者接受「易水先過範陽、再過容城」的章節結構。",
+      "truth_scope": "TEXTUAL_INFERENCE",
+      "truth_scope_rationale": "「易水之南」直接引文；「範陽以東、容城以西」為文本順序推論（TEXTUAL_INFERENCE）。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "PARTIALLY_SUPPORTED",
+      "support_rationale": "原 R4 claim_text 將三項方位並列，未明示哪幾項為直接引文、哪幾項為文本順序推論。R4.1 修正後明示「易水之南」為直接引文（SUPPORTED 層級），「範陽以東、容城以西」為 TEXTUAL_INFERENCE。CLAIM_011_REVISED=true。",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1661"
+      ],
+      "counterevidence_audit": "none_found_in_checked_sources",
+      "counterevidence_detail": "未在 R4 已校核的外部資料中找到對「易京城在易水之南」的反例；「範陽以東、容城以西」為推論性結論，本身不存在事實性反例。",
+      "evidence_status": {
+        "canonical_citation": "YES (for both pids)",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1657 + pid1661)",
+        "same_page_semantic_support": "YES (for 易水之南)",
+        "VALID_SEQUENCE_CONTEXT": "YES (cross-page)",
+        "TEXTUAL_INFERENCE_scope": "範陽以東 + 容城以西 (依賴 pid1657 大字標題順序)"
+      },
+      "claim_011_revised": true
+    },
+    {
+      "claim_id": "R4-YSH-012",
+      "claim_text_original": "在《水經注》文本中，範陽與容城在漢代多次作為封國出現：範陽為匈奴降王封國（漢景帝中元三年），容城為趙將封國（漢高帝六年）+ 匈奴降王封國（景帝中元三年）。",
+      "claim_text_revised": "《水經注》文本記載三項獨立的漢代封國事件（pid1657 + pid1661 對校後）：\n  (1) 範陽封國：景帝中元三年封匈奴降王信為侯國（pid1657）。\n  (2) 容城封國：景帝中元三年以封匈奴降王攜徐盧為侯國（pid1661）。\n  (3) 深澤封國（非容城）：漢高帝六年封趙將某於深澤（pid1661）。\nR4 原 claim 將「趙將某於深澤」誤歸屬於容城封國；R4.1 已將深澤封國拆分為獨立 enfeoffment，避免地名混淆。CLAIM_012_CORRECTED=true。",
+      "truth_scope": "TEXT_REPORTS",
+      "truth_scope_rationale": "pid1661 引文：「易水東逕容城縣故城南漢高帝六年封趙將夕於深澤景帝中元三年以封匈奴降王携徐盧於容城皆爲侯國」。三項 enfeoffment 文本明確區分深澤（漢高帝六年 + 趙將某）與容城（景帝中元三年 + 攜徐盧）。",
+      "support_level_original": "SUPPORTED",
+      "support_level_revised": "PARTIALLY_SUPPORTED",
+      "support_rationale": "原 R4 將深澤、容城兩個 enfeoffment 混為一談（「容城為趙將封國（漢高帝六年）」錯誤）。R4.1 修正後 TEXT_REPORTS 層級成立（三項獨立 enfeoffment 直接引文均可由視覺確認），但 PARTIALLY_SUPPORTED 因為 (a) 人物姓名（信、某、攜徐盧）有 OCR 不確定性；(b) 「趙將夕」視覺確認可能為「趙將某」之誤；(c) 攜徐盧與撅徐盧之間存在異文（見 EXT-CHEN-2007 註記）。",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1661"
+      ],
+      "counterevidence_audit": "EXT-CHEN-2007 (陳橋驛《水經注校證》) 註明「攜徐盧」一作「撅徐盧」——此為 VARIANT_PASSAGES 的依據。R4.1 不採信 EXT-CHEN-2007 URL（zhihu.com/question/... 為 placeholder），但保留此異文記錄以備未來學術查證。",
+      "evidence_status": {
+        "canonical_citation": "YES (for both pids)",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES (image_checked pid1657 + pid1661; OCR uncertain for 人物姓名)",
+        "same_page_semantic_support": "YES (for the corrected three-event split)",
+        "VALID_SEQUENCE_CONTEXT": "YES (cross-page)",
+        "deep_ze_RONGCHENG_conflation_FIXED": true,
+        "人物姓名_OCR_uncertain": true,
+        "EXT_CHEN_variant_recorded": true
+      },
+      "claim_012_corrected": true
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "schema_version": "r4.1-yishui-external-sources-audit/1.0",
+  "generated_at": "2026-09-28T18:24:16+08:00",
+  "task": "WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT",
+  "section": "R4.1 · External source provenance audit",
+  "basis": "R4 frozen commit 582c852; EXT-NII-DIGITAL reclassified as PRIMARY (excluded from EXTERNAL_SOURCES)",
+  "reviewer_honesty_disclosure": "R4.1 audit downgraded placeholder-URL sources from PASSAGE_VERIFIED to IDENTIFIED. None of the external sources were independently re-fetched and cross-checked in R4.1 audit; status reflects URL provenance + R4 claim audit, not new passage-level verification.",
+  "source_count_total": 7,
+  "primary_sources": 1,
+  "external_sources": 6,
+  "passage_verified_sources": 0,
+  "verification_status_distribution": {
+    "PRIMARY_LOCATED": 1,
+    "ACCESSED_real_URL_passage_unre_verified_in_R41": 3,
+    "IDENTIFIED_placeholder_URL_only": 3
+  },
+  "passage_level_statistics": {
+    "corroborating_passages": 6,
+    "variant_passages": 1,
+    "contradicting_passages": 0,
+    "background_only_sources": 1,
+    "background_only_passages": 1,
+    "note": "CORROBORATING_PASSAGES = 6 counts only passages from sources with verification_status=ACCESSED (real URLs: EXT-WIKI-001, EXT-CTEXT-001, EXT-YANG-1905). Passages from sources with status=IDENTIFIED (placeholder URLs: CHEN-2007 1 + ZHONGHUA-2013 2 = 3 corroborating + 1 variant) are recorded but flagged as 'claimed in R4 but URL not yet verified in R4.1 audit'."
+  },
+  "records": [
+    {
+      "source_id": "EXT-NII-DIGITAL",
+      "source_role": "PRIMARY",
+      "source_type": "DIGITAL_PRIMARY_SCAN",
+      "title": "國立公文書館藏《水經注》明吳琯校本（卷十一 易水/滱水）",
+      "institution_author": "國立公文書館 (National Archives of Japan, Tokyo) / 桑欽 撰 / 後魏 酈道元 注 / 明 吳琯 校",
+      "url": "https://www.digital.archives.go.jp/DAS/meta/listPhoto?LANG=default&BID=F1000000000000003985&ID=&REFCODE=C0000000000000003985",
+      "access_date": "2026-09-28",
+      "publication_date": "明萬曆年間 (1573-1620) 吳琯校梓",
+      "reliability": "PRIMARY_DIGITAL_SCAN",
+      "verification_status": "LOCATED",
+      "verification_status_rationale": "URL 為真實 IIIF 端點；此即 pid1655-pid1683 之 primary scan 來源。R4.1 確認此為 PRIMARY（不計入 EXTERNAL_SOURCES）。",
+      "relation_to_primary": "SELF (PRIMARY)",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1655,
+          "passage": "易水出涿郡故安縣閻鄉西山",
+          "note": "OCR 校正：「承郡」→「涿郡」、「間鄉」→「閻鄉」（image_checked pid1655）"
+        }
+      ],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": []
+    },
+    {
+      "source_id": "EXT-WIKI-001",
+      "source_role": "DIGITAL_TEXT",
+      "source_type": "WIKISOURCE_DIGITAL_TEXT",
+      "title": "《水經注》卷十一 易水 (Wikisource 維基文庫)",
+      "institution_author": "Wikisource contributors / public domain",
+      "url": "https://zh.wikisource.org/wiki/%E6%B0%B4%E7%B6%93%E6%B3%A8/%E5%8D%B711",
+      "access_date": "2026-09-28",
+      "publication_date": "latest revision (public domain)",
+      "reliability": "PUBLIC_DOMAIN_DIGITAL_TEXT (multi-edition cross-check)",
+      "verification_status": "ACCESSED",
+      "verification_status_rationale": "URL 為真實 Wikisource 卷十一頁面（zh.wikisource.org）；R4.1 未獨立重新逐句比對，僅確認 URL 真實存在與 R4 記錄一致。",
+      "relation_to_primary": "CORROBORATES",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1655,
+          "passage": "易水出涿郡故安縣閻鄉西山",
+          "variant_in_source": "Wikisource 校勘版本作「易水出涿郡故安縣閻鄉西山」（無異文）",
+          "note": "CORROBORATES DB OCR 校正：「涿郡」/「閻鄉」"
+        }
+      ],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": []
+    },
+    {
+      "source_id": "EXT-CTEXT-001",
+      "source_role": "DIGITAL_TEXT",
+      "source_type": "DIGITAL_TEXT_DATABASE",
+      "title": "中國哲學書電子化計劃 ctext.org 水經注 卷十一",
+      "institution_author": "ctext.org contributors (Donald Sturgeon 主編)",
+      "url": "https://ctext.org/text.pl?node=600306&if=en",
+      "access_date": "2026-09-28",
+      "publication_date": "持續更新",
+      "reliability": "DIGITAL_TEXT_DATABASE (cross-check with multiple editions)",
+      "verification_status": "ACCESSED",
+      "verification_status_rationale": "URL 為真實 ctext.org 水經注頁面；R4.1 未獨立重新逐句比對。",
+      "relation_to_primary": "CORROBORATES",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1657,
+          "passage": "東過范陽縣南又東過容城縣南",
+          "variant_in_source": "ctext.org 版本作「東過范陽縣南又東過容城縣南」（無異文）",
+          "note": "CORROBORATES pid1657 大字標題"
+        },
+        {
+          "primary_pid": 1657,
+          "passage": "易水東南流，逕范陽縣故城南，即應劭所謂范水之陽也。漢景帝中元三年，封匈奴降王信為侯國",
+          "variant_in_source": "ctext.org 版本同文（無異文）",
+          "note": "CORROBORATES pid1657 R4-YSH-008/012 引文"
+        }
+      ],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": []
+    },
+    {
+      "source_id": "EXT-YANG-1905",
+      "source_role": "SCHOLARLY_EDITION",
+      "source_type": "SCHOLARLY_ANNOTATED_EDITION",
+      "title": "楊守敬《水經注疏》(1905 影印本, ctext.org 數位化)",
+      "institution_author": "楊守敬 (1839-1915) / 熊會貞 續疏",
+      "url": "https://ctext.org/wiki.pl?if=zh&res=644196",
+      "access_date": "2026-09-28",
+      "publication_date": "1905 (清光緒三十一年) 初次影印；ctext.org 數位化版持續更新",
+      "reliability": "SCHOLARLY_ANNOTATED_EDITION (Yang Shoujing + Xiong Huizhen annotations)",
+      "verification_status": "ACCESSED",
+      "verification_status_rationale": "URL 為 ctext.org wiki.pl 頁面（res=644196），可定位；R4.1 未獨立重新逐句比對楊守敬原書。",
+      "relation_to_primary": "CORROBORATES",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1656,
+          "passage": "故傳逮迹遊賦曰：出北薊，歷良鄉，登金臺，觀武陽",
+          "variant_in_source": "楊守敬《水經注疏》註：謝靈運《撰征賦》（一作「逮迹遊獵賦」）",
+          "note": "CORROBORATES pid1656 R4-YSH-009 引文；標註謝靈運《撰征賦》之異稱"
+        },
+        {
+          "primary_pid": 1659,
+          "passage": "故《地理志》曰：故安縣閻鄉，易水所出，至范陽入濡水",
+          "variant_in_source": "楊守敬《水經注疏》註：班固《漢書·地理志》原文",
+          "note": "CORROBORATES pid1659 R4-YSH-006 引文"
+        },
+        {
+          "primary_pid": 1682,
+          "passage": "漢景帝中元三年，以封匈奴降王隆疆爲侯國",
+          "variant_in_source": "楊守敬《水經注疏》註：王莽更名「迺屏」",
+          "note": "CORROBORATES pid1682 enfeoffment 記錄（迺縣=迺屏）"
+        }
+      ],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": []
+    },
+    {
+      "source_id": "EXT-CHEN-2007",
+      "source_role": "SCHOLARLY_EDITION",
+      "source_type": "SCHOLARLY_ANNOTATED_EDITION",
+      "title": "陳橋驛《水經注校證》(2007)",
+      "institution_author": "陳橋驛 (1923-2015) / 浙江大學",
+      "url": "https://www.zhihu.com/question/... (placeholder URL — needs real link)",
+      "access_date": "2026-09-28",
+      "publication_date": "2007 (中華書局出版)",
+      "reliability": "SCHOLARLY_ANNOTATED_EDITION (Chen Qiaoyi collated multiple editions)",
+      "verification_status": "IDENTIFIED",
+      "verification_status_rationale": "URL 為 zhihu.com/question/... placeholder；R4.1 無法定位真實可訪問 URL。本書 ISBN 978-7-101-08566-6；真實 URL 應指向 中華書局官方頁面或 浙江大学出版社 紀念頁面。",
+      "relation_to_primary": "CLAIMED_BUT_NOT_VERIFIED_IN_R41",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1661,
+          "passage": "景帝中元三年以封匈奴降王攜徐盧於容城",
+          "variant_in_source": "陳橋驛《水經注校證》註：「攜徐盧」一作「撅徐盧」",
+          "note": "CLAIMED in R4 record; URL not verified in R4.1 audit. VARIANT 記錄仍標示於 R4-VARIANT_PASSAGES。"
+        }
+      ],
+      "variant_passages": [
+        {
+          "primary_pid": 1661,
+          "passage": "景帝中元三年以封匈奴降王攜徐盧於容城",
+          "variant": "撅徐盧 (一作)",
+          "source_attribution": "陳橋驛《水經注校證》(2007) — claimed in R4 record, URL not verified in R4.1 audit",
+          "note": "異文記錄保留以備未來學術查證；R4.1 不將此計入 PASSAGE_VERIFIED count。"
+        }
+      ],
+      "contradicting_passages": [],
+      "background_passages": []
+    },
+    {
+      "source_id": "EXT-WANG-1956",
+      "source_role": "SCHOLARLY_EDITION",
+      "source_type": "SCHOLARLY_ANNOTATED_EDITION",
+      "title": "王國維《水經注校》(1956 重印本)",
+      "institution_author": "王國維 (1877-1927) / 1956 影印",
+      "url": "https://... (placeholder URL — needs real link)",
+      "access_date": "2026-09-28",
+      "publication_date": "1956 影印 (原作 1920s 期間)",
+      "reliability": "SCHOLARLY_ANNOTATED_EDITION (Wang Guowei textual criticism)",
+      "verification_status": "IDENTIFIED",
+      "verification_status_rationale": "URL 為 https://... placeholder；R4.1 無法定位真實可訪問 URL。王國維《水經注校》1956 由 人民文學出版社 重印。",
+      "relation_to_primary": "BACKGROUND_ONLY",
+      "corroborated_passages": [],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": [
+        {
+          "primary_pid": 1656,
+          "passage": "逮迹遊賦",
+          "note": "BACKGROUND：謝靈運《撰征賦》之校勘背景；王國維《水經注校》提供歷史學背景但對 pid1656/1661 主題不直接構成校核。"
+        }
+      ]
+    },
+    {
+      "source_id": "EXT-ZHONGHUA-2013",
+      "source_role": "SCHOLARLY_EDITION",
+      "source_type": "SCHOLARLY_PUNCTUATED_EDITION",
+      "title": "中華書局《水經注》標點本 (2013)",
+      "institution_author": "中華書局 / 陳橋驛 點校",
+      "url": "https://www.zhbc.com/... (placeholder URL — needs real link)",
+      "access_date": "2026-09-28",
+      "publication_date": "2013 (中華書局重印)",
+      "reliability": "SCHOLARLY_PUNCTUATED_EDITION",
+      "verification_status": "IDENTIFIED",
+      "verification_status_rationale": "URL 為 zhbc.com/... placeholder；R4.1 無法定位真實可訪問 URL。中華書局官方頁面應為 www.zhbc.com.cn。",
+      "relation_to_primary": "CLAIMED_BUT_NOT_VERIFIED_IN_R41",
+      "corroborated_passages": [
+        {
+          "primary_pid": 1656,
+          "passage": "易水逕故安城南外東流",
+          "variant_in_source": "中華書局標點本作「易水逕故安城南，外東流」（逗號標點異於明吳琯校本）",
+          "note": "CLAIMED in R4 record; URL not verified in R4.1 audit. 標點異議為現代標點符號差異，非實質異文。"
+        },
+        {
+          "primary_pid": 1682,
+          "passage": "又東南過容城縣北",
+          "variant_in_source": "中華書局標點本同文（無異文）",
+          "note": "CLAIMED in R4 record; URL not verified in R4.1 audit."
+        }
+      ],
+      "variant_passages": [],
+      "contradicting_passages": [],
+      "background_passages": []
+    }
+  ],
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_PRIMARY_ACQUISITION": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "R4_BASELINE_PRESERVED": true,
+    "PRIMARY_SOURCES_EXCLUDED_FROM_EXTERNAL": true
+  },
+  "audit_summary": {
+    "primary_sources": 1,
+    "external_sources": 6,
+    "passage_verified_sources": 0,
+    "verification_status_summary": {
+      "PRIMARY_LOCATED": [
+        "EXT-NII-DIGITAL"
+      ],
+      "ACCESSED_real_URL": [
+        "EXT-WIKI-001",
+        "EXT-CTEXT-001",
+        "EXT-YANG-1905"
+      ],
+      "IDENTIFIED_placeholder_URL": [
+        "EXT-CHEN-2007",
+        "EXT-WANG-1956",
+        "EXT-ZHONGHUA-2013"
+      ]
+    },
+    "downgrades_from_R4": {
+      "EXT-CHEN-2007": "CORROBORATES → CLAIMED_BUT_NOT_VERIFIED_IN_R41 (zhihu.com placeholder)",
+      "EXT-ZHONGHUA-2013": "CORROBORATES → CLAIMED_BUT_NOT_VERIFIED_IN_R41 (zhbc.com placeholder)",
+      "EXT-WANG-1956": "BACKGROUND_ONLY (preserved; placeholder URL recorded)"
+    },
+    "variant_passages_recovered": 1,
+    "variant_source": "EXT-CHEN-2007 陳橋驛《水經注校證》(2007) — 「攜徐盧」一作「撅徐盧」(claimed in R4, URL not verified in R4.1)"
+  }
+}

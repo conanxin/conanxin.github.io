@@ -1,0 +1,877 @@
+{
+  "schema_version": "r4-yishui-spatial-relations/1.0",
+  "generated_at": "2026-09-28T17:25:28+08:00",
+  "task": "WATER_CLASSIC_R4_YISHUI_TEXTUAL_SPATIAL_STUDY",
+  "section": "E · Spatial-language extraction",
+  "spatial_operators": [
+    "出",
+    "東流",
+    "西流",
+    "南流",
+    "北流",
+    "東過",
+    "西過",
+    "南過",
+    "北過",
+    "經",
+    "注",
+    "合",
+    "會",
+    "入",
+    "城南",
+    "城北",
+    "城東",
+    "城西",
+    "入于",
+    "東入"
+  ],
+  "relation_types": [
+    "south_of_city",
+    "passes_east_of",
+    "flow_north",
+    "east_of_city",
+    "flow_west",
+    "enters_into",
+    "passes_south_of",
+    "north_of_city",
+    "passes_west_of",
+    "flows_into",
+    "confluences_with",
+    "flow_south",
+    "enters_east",
+    "west_of_city",
+    "flow_east",
+    "meets",
+    "origin_from",
+    "passes_north_of",
+    "passes",
+    "enters"
+  ],
+  "page_count": 7,
+  "total_relations": 96,
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0
+  },
+  "records": [
+    {
+      "page_object_id": 1655,
+      "context_role": "CORE",
+      "spatial_operator_count": 6,
+      "relations": [
+        {
+          "relation": "passes",
+          "operator_text": "經",
+          "subject_fragment": "左页题署：水",
+          "object_fragment": "第十一 / 漢 桑欽 撰 /",
+          "full_sentence": "左页题署：水經第十一 / 漢 桑欽 撰 / 後魏 酈道元 注 / 明 吳琯 校",
+          "sentence_length": 39
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "漢 桑欽 撰 / 後魏 酈道元",
+          "object_fragment": "/ 明 吳琯 校",
+          "full_sentence": "左页题署：水經第十一 / 漢 桑欽 撰 / 後魏 酈道元 注 / 明 吳琯 校",
+          "sentence_length": 39
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "正文首段：易水",
+          "object_fragment": "涿郡故安縣閻鄉西山",
+          "full_sentence": "正文首段：易水出涿郡故安縣閻鄉西山",
+          "sentence_length": 17
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "续：易水",
+          "object_fragment": "西山寬中谷，東逕五大夫城南",
+          "full_sentence": "续：易水出西山寬中谷，東逕五大夫城南",
+          "sentence_length": 18
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "：易水出西山寬中谷，東逕五大夫",
+          "object_fragment": "",
+          "full_sentence": "续：易水出西山寬中谷，東逕五大夫城南",
+          "sentence_length": 18
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "易水東左與子莊溪水",
+          "object_fragment": "",
+          "full_sentence": "易水東左與子莊溪水合",
+          "sentence_length": 10
+        }
+      ]
+    },
+    {
+      "page_object_id": 1656,
+      "context_role": "CORE",
+      "spatial_operator_count": 24,
+      "relations": [
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "右页：水北",
+          "object_fragment": "子莊關，南流逕五公城西，屈逕其",
+          "full_sentence": "右页：水北出子莊關，南流逕五公城西，屈逕其城南",
+          "sentence_length": 23
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "右页：水北出子莊關，",
+          "object_fragment": "逕五公城西，屈逕其城南",
+          "full_sentence": "右页：水北出子莊關，南流逕五公城西，屈逕其城南",
+          "sentence_length": 23
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "右页：水北出子莊關，南流逕五公",
+          "object_fragment": "，屈逕其城南",
+          "full_sentence": "右页：水北出子莊關，南流逕五公城西，屈逕其城南",
+          "sentence_length": 23
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "子莊關，南流逕五公城西，屈逕其",
+          "object_fragment": "",
+          "full_sentence": "右页：水北出子莊關，南流逕五公城西，屈逕其城南",
+          "sentence_length": 23
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "其水東南",
+          "object_fragment": "于易水",
+          "full_sentence": "其水東南入于易水",
+          "sentence_length": 8
+        },
+        {
+          "relation": "enters_into",
+          "operator_text": "入于",
+          "subject_fragment": "其水東南",
+          "object_fragment": "易水",
+          "full_sentence": "其水東南入于易水",
+          "sentence_length": 8
+        },
+        {
+          "relation": "confluences_with",
+          "operator_text": "會",
+          "subject_fragment": "易水又右",
+          "object_fragment": "女思谷水，水出西南女思澗，東北",
+          "full_sentence": "易水又右會女思谷水，水出西南女思澗，東北流注于易，謂之三會口",
+          "sentence_length": 30
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "易水又右會女思谷水，水",
+          "object_fragment": "西南女思澗，東北流注于易，謂之",
+          "full_sentence": "易水又右會女思谷水，水出西南女思澗，東北流注于易，謂之三會口",
+          "sentence_length": 30
+        },
+        {
+          "relation": "flow_north",
+          "operator_text": "北流",
+          "subject_fragment": "會女思谷水，水出西南女思澗，東",
+          "object_fragment": "注于易，謂之三會口",
+          "full_sentence": "易水又右會女思谷水，水出西南女思澗，東北流注于易，謂之三會口",
+          "sentence_length": 30
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "思谷水，水出西南女思澗，東北流",
+          "object_fragment": "于易，謂之三會口",
+          "full_sentence": "易水又右會女思谷水，水出西南女思澗，東北流注于易，謂之三會口",
+          "sentence_length": 30
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "易水又東屈關門",
+          "object_fragment": "南，即燕之長城門也，與樊石山水",
+          "full_sentence": "易水又東屈關門城西南，即燕之長城門也，與樊石山水合",
+          "sentence_length": 25
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "南，即燕之長城門也，與樊石山水",
+          "object_fragment": "",
+          "full_sentence": "易水又東屈關門城西南，即燕之長城門也，與樊石山水合",
+          "sentence_length": 25
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "水源西",
+          "object_fragment": "廣昌鄉縣之樊石山，東流逕覆釜山",
+          "full_sentence": "水源西出廣昌鄉縣之樊石山，東流逕覆釜山下，東流注",
+          "sentence_length": 24
+        },
+        {
+          "relation": "flow_east",
+          "operator_text": "東流",
+          "subject_fragment": "水源西出廣昌鄉縣之樊石山，",
+          "object_fragment": "逕覆釜山下，東流注",
+          "full_sentence": "水源西出廣昌鄉縣之樊石山，東流逕覆釜山下，東流注",
+          "sentence_length": 24
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "之樊石山，東流逕覆釜山下，東流",
+          "object_fragment": "",
+          "full_sentence": "水源西出廣昌鄉縣之樊石山，東流逕覆釜山下，東流注",
+          "sentence_length": 24
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "易水又東歷燕之長城，又東逕漸離",
+          "object_fragment": "",
+          "full_sentence": "易水又東歷燕之長城，又東逕漸離城南",
+          "sentence_length": 17
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "蓋易自寬中歷武夫關東",
+          "object_fragment": "，是兼武水之稱，故燕之下都擅武",
+          "full_sentence": "蓋易自寬中歷武夫關東出，是兼武水之稱，故燕之下都擅武陽之名",
+          "sentence_length": 29
+        },
+        {
+          "relation": "east_of_city",
+          "operator_text": "城東",
+          "subject_fragment": "左得濡水枝津故瀆，武陽大",
+          "object_fragment": "南小城即故安縣之故城也",
+          "full_sentence": "左得濡水枝津故瀆，武陽大城東南小城即故安縣之故城也",
+          "sentence_length": 25
+        },
+        {
+          "relation": "east_of_city",
+          "operator_text": "城東",
+          "subject_fragment": "",
+          "object_fragment": "西二里，南北一里半",
+          "full_sentence": "城東西二里，南北一里半",
+          "sentence_length": 11
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "高誘云：易水逕故安",
+          "object_fragment": "外東流，即斯水也",
+          "full_sentence": "高誘云：易水逕故安城南外東流，即斯水也",
+          "sentence_length": 19
+        },
+        {
+          "relation": "flow_east",
+          "operator_text": "東流",
+          "subject_fragment": "高誘云：易水逕故安城南外",
+          "object_fragment": "，即斯水也",
+          "full_sentence": "高誘云：易水逕故安城南外東流，即斯水也",
+          "sentence_length": 19
+        },
+        {
+          "relation": "passes",
+          "operator_text": "經",
+          "subject_fragment": "誘是涿人事，明",
+          "object_fragment": "證今，水破城東南隅，世又謂易水",
+          "full_sentence": "誘是涿人事，明經證今，水破城東南隅，世又謂易水為故安河",
+          "sentence_length": 27
+        },
+        {
+          "relation": "east_of_city",
+          "operator_text": "城東",
+          "subject_fragment": "誘是涿人事，明經證今，水破",
+          "object_fragment": "南隅，世又謂易水為故安河",
+          "full_sentence": "誘是涿人事，明經證今，水破城東南隅，世又謂易水為故安河",
+          "sentence_length": 27
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "故傳逮迹遊賦曰：",
+          "object_fragment": "北薊，歷良鄉，登金臺，觀武陽",
+          "full_sentence": "故傳逮迹遊賦曰：出北薊，歷良鄉，登金臺，觀武陽",
+          "sentence_length": 23
+        }
+      ]
+    },
+    {
+      "page_object_id": 1657,
+      "context_role": "CORE",
+      "spatial_operator_count": 10,
+      "relations": [
+        {
+          "relation": "passes_east_of",
+          "operator_text": "東過",
+          "subject_fragment": "卷之十 提纲大字:",
+          "object_fragment": "范陽縣南又東過容城縣南",
+          "full_sentence": "卷之十 提纲大字: 東過范陽縣南又東過容城縣南",
+          "sentence_length": 23
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "正文：水",
+          "object_fragment": "金毫陂，東西六七十步，南北百步",
+          "full_sentence": "正文：水出金毫陂，東西六七十步，南北百步，陂水北接范陽陂，陂在范陽城西十里",
+          "sentence_length": 37
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "百步，陂水北接范陽陂，陂在范陽",
+          "object_fragment": "十里",
+          "full_sentence": "正文：水出金毫陂，東西六七十步，南北百步，陂水北接范陽陂，陂在范陽城西十里",
+          "sentence_length": 37
+        },
+        {
+          "relation": "passes",
+          "operator_text": "經",
+          "subject_fragment": "又一水",
+          "object_fragment": "故安城西側城南注易水",
+          "full_sentence": "又一水經故安城西側城南注易水",
+          "sentence_length": 14
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "又一水經故安",
+          "object_fragment": "側城南注易水",
+          "full_sentence": "又一水經故安城西側城南注易水",
+          "sentence_length": 14
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "又一水經故安城西側",
+          "object_fragment": "注易水",
+          "full_sentence": "又一水經故安城西側城南注易水",
+          "sentence_length": 14
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "又一水經故安城西側城南",
+          "object_fragment": "易水",
+          "full_sentence": "又一水經故安城西側城南注易水",
+          "sentence_length": 14
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "陂水東",
+          "object_fragment": "，歷范陽之故城...易水東南流",
+          "full_sentence": "陂水東南流，歷范陽之故城...易水東南流，逕范陽縣故城南，即應劭所謂范水之陽也",
+          "sentence_length": 39
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "城...易水東南流，逕范陽縣故",
+          "object_fragment": "，即應劭所謂范水之陽也",
+          "full_sentence": "陂水東南流，歷范陽之故城...易水東南流，逕范陽縣故城南，即應劭所謂范水之陽也",
+          "sentence_length": 39
+        },
+        {
+          "relation": "passes",
+          "operator_text": "經",
+          "subject_fragment": "高數丈，秀峙相對，翼臺左右水流",
+          "object_fragment": "通，長廡廣宇周施，蒲渚棟堵咸淪",
+          "full_sentence": "臺北有蘭馬臺，並悉高數丈，秀峙相對，翼臺左右水流經通，長廡廣宇周施，蒲渚棟堵咸淪，柱礎尚存，是其基構可得而尋",
+          "sentence_length": 54
+        }
+      ]
+    },
+    {
+      "page_object_id": 1659,
+      "context_role": "CORE",
+      "spatial_operator_count": 19,
+      "relations": [
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "其水",
+          "object_fragment": "注于檀水，故俗有并溝之稱焉",
+          "full_sentence": "其水南流注于檀水，故俗有并溝之稱焉",
+          "sentence_length": 17
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "其水南流",
+          "object_fragment": "于檀水，故俗有并溝之稱焉",
+          "full_sentence": "其水南流注于檀水，故俗有并溝之稱焉",
+          "sentence_length": 17
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "其水又東",
+          "object_fragment": "，歷故安縣北，而南注濡水，又東",
+          "full_sentence": "其水又東南流，歷故安縣北，而南注濡水，又東南流於容城縣西北大利亭東南，合易水而注巨馬水也",
+          "sentence_length": 44
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "其水又東南流，歷故安縣北，而南",
+          "object_fragment": "濡水，又東南流於容城縣西北大利",
+          "full_sentence": "其水又東南流，歷故安縣北，而南注濡水，又東南流於容城縣西北大利亭東南，合易水而注巨馬水也",
+          "sentence_length": 44
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "東南流於容城縣西北大利亭東南，",
+          "object_fragment": "易水而注巨馬水也",
+          "full_sentence": "其水又東南流，歷故安縣北，而南注濡水，又東南流於容城縣西北大利亭東南，合易水而注巨馬水也",
+          "sentence_length": 44
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "地理志》曰：故安縣閻鄉，易水所",
+          "object_fragment": "，至范陽入濡水",
+          "full_sentence": "故《地理志》曰：故安縣閻鄉，易水所出，至范陽入濡水",
+          "sentence_length": 25
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "：故安縣閻鄉，易水所出，至范陽",
+          "object_fragment": "濡水",
+          "full_sentence": "故《地理志》曰：故安縣閻鄉，易水所出，至范陽入濡水",
+          "sentence_length": 25
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "又曰：濡水",
+          "object_fragment": "渠，許愼曰：",
+          "full_sentence": "又曰：濡水合渠，許愼曰：",
+          "sentence_length": 12
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "左页：濡水",
+          "object_fragment": "深，深二號，即巨馬之異名",
+          "full_sentence": "左页：濡水入深，深二號，即巨馬之異名",
+          "sentence_length": 18
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "然二易俱",
+          "object_fragment": "一鄉，同入濡水，南濡北易，至涿",
+          "full_sentence": "然二易俱出一鄉，同入濡水，南濡北易，至涿郡范陽縣會",
+          "sentence_length": 25
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "然二易俱出一鄉，同",
+          "object_fragment": "濡水，南濡北易，至涿郡范陽縣會",
+          "full_sentence": "然二易俱出一鄉，同入濡水，南濡北易，至涿郡范陽縣會",
+          "sentence_length": 25
+        },
+        {
+          "relation": "confluences_with",
+          "operator_text": "會",
+          "subject_fragment": "入濡水，南濡北易，至涿郡范陽縣",
+          "object_fragment": "",
+          "full_sentence": "然二易俱出一鄉，同入濡水，南濡北易，至涿郡范陽縣會",
+          "sentence_length": 25
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "北濡又並亂流",
+          "object_fragment": "淶，是則易水與諸水互攝，通稱東",
+          "full_sentence": "北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北，渾濤東注，至勃海平舒縣與易水合",
+          "sentence_length": 45
+        },
+        {
+          "relation": "north_of_city",
+          "operator_text": "城北",
+          "subject_fragment": "水與諸水互攝，通稱東逕容城縣故",
+          "object_fragment": "，渾濤東注，至勃海平舒縣與易水",
+          "full_sentence": "北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北，渾濤東注，至勃海平舒縣與易水合",
+          "sentence_length": 45
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "，通稱東逕容城縣故城北，渾濤東",
+          "object_fragment": "，至勃海平舒縣與易水合",
+          "full_sentence": "北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北，渾濤東注，至勃海平舒縣與易水合",
+          "sentence_length": 45
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "，渾濤東注，至勃海平舒縣與易水",
+          "object_fragment": "",
+          "full_sentence": "北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北，渾濤東注，至勃海平舒縣與易水合",
+          "sentence_length": 45
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "駰曰：涿郡西界代之易水，而是水",
+          "object_fragment": "代郡廣昌縣東南，即山東北燕王仙",
+          "full_sentence": "闞駰曰：涿郡西界代之易水，而是水出代郡廣昌縣東南，即山東北燕王仙臺",
+          "sentence_length": 33
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "騰雲冠峯，高霞翼嶺，岫壑冲深，",
+          "object_fragment": "煙覃霧者，舊言燕昭王求仙處",
+          "full_sentence": "東臺有三峯，甚爲崇峻，騰雲冠峯，高霞翼嶺，岫壑冲深，合煙覃霧者，舊言燕昭王求仙處",
+          "sentence_length": 40
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "採涿郡山石以樹墳塋，陵隧碑獸並",
+          "object_fragment": "此山，謂之石虎山，山有所遺",
+          "full_sentence": "後其葬，採涿郡山石以樹墳塋，陵隧碑獸並出此山，謂之石虎山，山有所遺",
+          "sentence_length": 33
+        }
+      ]
+    },
+    {
+      "page_object_id": 1660,
+      "context_role": "CORE",
+      "spatial_operator_count": 16,
+      "relations": [
+        {
+          "relation": "passes",
+          "operator_text": "經",
+          "subject_fragment": "",
+          "object_fragment": "所謂閻鄉曲其水東流、有淠水南會",
+          "full_sentence": "經所謂閻鄉曲其水東流、有淠水南會、渾波同注",
+          "sentence_length": 21
+        },
+        {
+          "relation": "flow_east",
+          "operator_text": "東流",
+          "subject_fragment": "經所謂閻鄉曲其水",
+          "object_fragment": "、有淠水南會、渾波同注",
+          "full_sentence": "經所謂閻鄉曲其水東流、有淠水南會、渾波同注",
+          "sentence_length": 21
+        },
+        {
+          "relation": "confluences_with",
+          "operator_text": "會",
+          "subject_fragment": "經所謂閻鄉曲其水東流、有淠水南",
+          "object_fragment": "、渾波同注",
+          "full_sentence": "經所謂閻鄉曲其水東流、有淠水南會、渾波同注",
+          "sentence_length": 21
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "曲其水東流、有淠水南會、渾波同",
+          "object_fragment": "",
+          "full_sentence": "經所謂閻鄉曲其水東流、有淠水南會、渾波同注",
+          "sentence_length": 21
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "之爲雹河、司馬彪郡國志曰：雹水",
+          "object_fragment": "故安縣",
+          "full_sentence": "俗謂之爲雹河、司馬彪郡國志曰：雹水出故安縣",
+          "sentence_length": 21
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "東、逕孔山北、山下有鍾乳穴、穴",
+          "object_fragment": "佳乳、採者備火、尋路入穴、里許",
+          "full_sentence": "易水又東、逕孔山北、山下有鍾乳穴、穴出佳乳、採者備火、尋路入穴、里許、渡一水、潛通流注、其深可涉",
+          "sentence_length": 48
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "乳穴、穴出佳乳、採者備火、尋路",
+          "object_fragment": "穴、里許、渡一水、潛通流注、其",
+          "full_sentence": "易水又東、逕孔山北、山下有鍾乳穴、穴出佳乳、採者備火、尋路入穴、里許、渡一水、潛通流注、其深可涉",
+          "sentence_length": 48
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "尋路入穴、里許、渡一水、潛通流",
+          "object_fragment": "、其深可涉",
+          "full_sentence": "易水又東、逕孔山北、山下有鍾乳穴、穴出佳乳、採者備火、尋路入穴、里許、渡一水、潛通流注、其深可涉",
+          "sentence_length": 48
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "於中衆穴奇分、令",
+          "object_fragment": "入者疑迷不知所趣",
+          "full_sentence": "於中衆穴奇分、令出入者疑迷不知所趣",
+          "sentence_length": 17
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "於中衆穴奇分、令出",
+          "object_fragment": "者疑迷不知所趣",
+          "full_sentence": "於中衆穴奇分、令出入者疑迷不知所趣",
+          "sentence_length": 17
+        },
+        {
+          "relation": "flow_east",
+          "operator_text": "東流",
+          "subject_fragment": "易水又",
+          "object_fragment": "、逕長城西、又東流、南過武遂縣",
+          "full_sentence": "易水又東流、逕長城西、又東流、南過武遂縣南",
+          "sentence_length": 21
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "易水又東流、逕長",
+          "object_fragment": "、又東流、南過武遂縣南",
+          "full_sentence": "易水又東流、逕長城西、又東流、南過武遂縣南",
+          "sentence_length": 21
+        },
+        {
+          "relation": "passes_south_of",
+          "operator_text": "南過",
+          "subject_fragment": "易水又東流、逕長城西、又東流、",
+          "object_fragment": "武遂縣南",
+          "full_sentence": "易水又東流、逕長城西、又東流、南過武遂縣南",
+          "sentence_length": 21
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "分爲梁門陂、易水又東、梁門陂水",
+          "object_fragment": "之、水上承易水於梁門東、入長城",
+          "full_sentence": "易水東分爲梁門陂、易水又東、梁門陂水注之、水上承易水於梁門東、入長城、東北入陂、陂水北接范陽、陂、陂在范陽城西十里、",
+          "sentence_length": 58
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "陂水注之、水上承易水於梁門東、",
+          "object_fragment": "長城、東北入陂、陂水北接范陽、",
+          "full_sentence": "易水東分爲梁門陂、易水又東、梁門陂水注之、水上承易水於梁門東、入長城、東北入陂、陂水北接范陽、陂、陂在范陽城西十里、",
+          "sentence_length": 58
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "陂、陂水北接范陽、陂、陂在范陽",
+          "object_fragment": "十里、",
+          "full_sentence": "易水東分爲梁門陂、易水又東、梁門陂水注之、水上承易水於梁門東、入長城、東北入陂、陂水北接范陽、陂、陂在范陽城西十里、",
+          "sentence_length": 58
+        }
+      ]
+    },
+    {
+      "page_object_id": 1661,
+      "context_role": "CORE",
+      "spatial_operator_count": 13,
+      "relations": [
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "臺陂陂水南通梁門淀方三里淀水東",
+          "object_fragment": "出長注易謂之范水易水自下有范水",
+          "full_sentence": "右页：方一十五里俗亦謂之爲鹽臺陂陂水南通梁門淀方三里淀水東南流出長注易謂之范水易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也易水又逕樊輿縣故城北漢武帝",
+          "sentence_length": 174
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "陂水南通梁門淀方三里淀水東南流",
+          "object_fragment": "長注易謂之范水易水自下有范水通",
+          "full_sentence": "右页：方一十五里俗亦謂之爲鹽臺陂陂水南通梁門淀方三里淀水東南流出長注易謂之范水易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也易水又逕樊輿縣故城北漢武帝",
+          "sentence_length": 174
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "南通梁門淀方三里淀水東南流出長",
+          "object_fragment": "易謂之范水易水自下有范水通目又",
+          "full_sentence": "右页：方一十五里俗亦謂之爲鹽臺陂陂水南通梁門淀方三里淀水東南流出長注易謂之范水易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也易水又逕樊輿縣故城北漢武帝",
+          "sentence_length": 174
+        },
+        {
+          "relation": "south_of_city",
+          "operator_text": "城南",
+          "subject_fragment": "水自下有范水通目又東逕范陽縣故",
+          "object_fragment": "即應劭所謂范水之陽也易水又逕樊",
+          "full_sentence": "右页：方一十五里俗亦謂之爲鹽臺陂陂水南通梁門淀方三里淀水東南流出長注易謂之范水易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也易水又逕樊輿縣故城北漢武帝",
+          "sentence_length": 174
+        },
+        {
+          "relation": "north_of_city",
+          "operator_text": "城北",
+          "subject_fragment": "所謂范水之陽也易水又逕樊輿縣故",
+          "object_fragment": "漢武帝元朔五年封中山靖王子劉條",
+          "full_sentence": "右页：方一十五里俗亦謂之爲鹽臺陂陂水南通梁門淀方三里淀水東南流出長注易謂之范水易水自下有范水通目又東逕范陽縣故城南即應劭所謂范水之陽也易水又逕樊輿縣故城北漢武帝",
+          "sentence_length": 174
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "底端：易水又東渥水",
+          "object_fragment": "之其水上承二陂於容城縣東",
+          "full_sentence": "底端：易水又東渥水注之其水上承二陂於容城縣東",
+          "sentence_length": 22
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "左页：南謂之大渥澱小渥澱水",
+          "object_fragment": "注易水謂之渥同口水側有渾渥城易",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "左页：南謂之大渥澱小渥澱水南流",
+          "object_fragment": "易水謂之渥同口水側有渾渥城易水",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "meets",
+          "operator_text": "合",
+          "subject_fragment": "渥同口水側有渾渥城易水逕其南東",
+          "object_fragment": "濾水故桑欽曰易水出北新城西北東",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "origin_from",
+          "operator_text": "出",
+          "subject_fragment": "易水逕其南東合濾水故桑欽曰易水",
+          "object_fragment": "北新城西北東入淀自下濾易互受通",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "west_of_city",
+          "operator_text": "城西",
+          "subject_fragment": "其南東合濾水故桑欽曰易水出北新",
+          "object_fragment": "北東入淀自下濾易互受通稱矣易水",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "enters_east",
+          "operator_text": "東入",
+          "subject_fragment": "合濾水故桑欽曰易水出北新城西北",
+          "object_fragment": "淀自下濾易互受通稱矣易水又東逕",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        },
+        {
+          "relation": "enters",
+          "operator_text": "入",
+          "subject_fragment": "濾水故桑欽曰易水出北新城西北東",
+          "object_fragment": "淀自下濾易互受通稱矣易水又東逕",
+          "full_sentence": "左页：南謂之大渥澱小渥澱水南流注易水謂之渥同口水側有渾渥城易水逕其南東合濾水故桑欽曰易水出北新城西北東入淀自下濾易互受通稱矣易水又東逕易京南漢末公孫瓚害劉虞於薊",
+          "sentence_length": 174
+        }
+      ]
+    },
+    {
+      "page_object_id": 1682,
+      "context_role": "CORE",
+      "spatial_operator_count": 8,
+      "relations": [
+        {
+          "relation": "passes_east_of",
+          "operator_text": "東過",
+          "subject_fragment": "",
+          "object_fragment": "迺縣北",
+          "full_sentence": "東過迺縣北",
+          "sentence_length": 5
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "引水自成淵渚長川漫下十一許步東",
+          "object_fragment": "逕縣故城東漢景帝中元三年以封匈",
+          "full_sentence": "淶水上承故瀆於縣北垂重源再發結為長潭潭廣百許步長數百步左右翼帶淯流控引水自成淵渚長川漫下十一許步東南流逕縣故城東漢景帝中元三年以封匈奴降王隆疆爲侯國王莽更名迺屏",
+          "sentence_length": 144
+        },
+        {
+          "relation": "east_of_city",
+          "operator_text": "城東",
+          "subject_fragment": "渚長川漫下十一許步東南流逕縣故",
+          "object_fragment": "漢景帝中元三年以封匈奴降王隆疆",
+          "full_sentence": "淶水上承故瀆於縣北垂重源再發結為長潭潭廣百許步長數百步左右翼帶淯流控引水自成淵渚長川漫下十一許步東南流逕縣故城東漢景帝中元三年以封匈奴降王隆疆爲侯國王莽更名迺屏",
+          "sentence_length": 144
+        },
+        {
+          "relation": "north_of_city",
+          "operator_text": "城北",
+          "subject_fragment": "七千人即此水也又東南逕范陽縣故",
+          "object_fragment": "易水注之",
+          "full_sentence": "淶水上承故瀆於縣北垂重源再發結為長潭潭廣百許步長數百步左右翼帶淯流控引水自成淵渚長川漫下十一許步東南流逕縣故城東漢景帝中元三年以封匈奴降王隆疆爲侯國王莽更名迺屏",
+          "sentence_length": 144
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "此水也又東南逕范陽縣故城北易水",
+          "object_fragment": "之",
+          "full_sentence": "淶水上承故瀆於縣北垂重源再發結為長潭潭廣百許步長數百步左右翼帶淯流控引水自成淵渚長川漫下十一許步東南流逕縣故城東漢景帝中元三年以封匈奴降王隆疆爲侯國王莽更名迺屏",
+          "sentence_length": 144
+        },
+        {
+          "relation": "passes_south_of",
+          "operator_text": "南過",
+          "subject_fragment": "又東",
+          "object_fragment": "容城縣北",
+          "full_sentence": "又東南過容城縣北",
+          "sentence_length": 8
+        },
+        {
+          "relation": "flows_into",
+          "operator_text": "注",
+          "subject_fragment": "巨馬水又東酈亭溝水",
+          "object_fragment": "之水上承督亢溝水於迺縣東東南流",
+          "full_sentence": "巨馬水又東酈亭溝水注之水上承督亢溝水於迺縣東東南流歷紫淵東余六世祖樂浪府君自涿之先賢鄉爰宅其陰西帶巨川東翼茲水枝流津通纏絡墟圃匪直田漁之贍可懷信為遊神之勝處也其",
+          "sentence_length": 95
+        },
+        {
+          "relation": "flow_south",
+          "operator_text": "南流",
+          "subject_fragment": "水注之水上承督亢溝水於迺縣東東",
+          "object_fragment": "歷紫淵東余六世祖樂浪府君自涿之",
+          "full_sentence": "巨馬水又東酈亭溝水注之水上承督亢溝水於迺縣東東南流歷紫淵東余六世祖樂浪府君自涿之先賢鄉爰宅其陰西帶巨川東翼茲水枝流津通纏絡墟圃匪直田漁之贍可懷信為遊神之勝處也其",
+          "sentence_length": 95
+        }
+      ]
+    }
+  ]
+}

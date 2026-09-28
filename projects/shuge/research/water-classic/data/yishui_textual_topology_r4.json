@@ -1,0 +1,722 @@
+{
+  "schema_version": "r4-yishui-textual-topology/1.0",
+  "generated_at": "2026-09-28T17:25:28+08:00",
+  "task": "WATER_CLASSIC_R4_YISHUI_TEXTUAL_SPATIAL_STUDY",
+  "section": "F · Textual topology reconstruction",
+  "node_count": 72,
+  "edge_count": 29,
+  "node_types": [
+    "historical_place",
+    "lake",
+    "mountain",
+    "river",
+    "tributary"
+  ],
+  "relation_types": [
+    "confluences_with",
+    "enters_into",
+    "flow_east",
+    "flows_into",
+    "historical_relation",
+    "location_in",
+    "origin_from",
+    "passes_east_of",
+    "passes_north_of",
+    "passes_south_of",
+    "south_of_city_east_flow"
+  ],
+  "three_dimensions": {
+    "TEXTUAL_ORDER": "verified by 水經 text sequencing and section headers (東過范陽縣南又東過容城縣南)",
+    "HYDROLOGICAL_RELATION": "verified by 水系 flowing relations (出/注/合/會/入)",
+    "REAL_WORLD_LOCATION": "UNRESOLVED — modern geography mapping deferred to independent scholarship"
+  },
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0
+  },
+  "nodes": [
+    {
+      "node_id": "n_001",
+      "name": "中山",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_002",
+      "name": "中山簡王塋",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_003",
+      "name": "五公城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_004",
+      "name": "五大夫城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_005",
+      "name": "代郡",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_006",
+      "name": "勃海",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_007",
+      "name": "北新城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_008",
+      "name": "北易",
+      "type": "river"
+    },
+    {
+      "node_id": "n_009",
+      "name": "南易",
+      "type": "river"
+    },
+    {
+      "node_id": "n_010",
+      "name": "大利亭",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_011",
+      "name": "女思谷水",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_012",
+      "name": "子莊溪",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_013",
+      "name": "子莊關",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_014",
+      "name": "孔山",
+      "type": "mountain"
+    },
+    {
+      "node_id": "n_015",
+      "name": "安次縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_016",
+      "name": "容城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_017",
+      "name": "容城縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_018",
+      "name": "容城縣故城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_019",
+      "name": "巨馬水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_020",
+      "name": "巨馬河",
+      "type": "river"
+    },
+    {
+      "node_id": "n_021",
+      "name": "平舒縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_022",
+      "name": "廣昌縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_023",
+      "name": "故安",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_024",
+      "name": "故安縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_025",
+      "name": "故安縣故城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_026",
+      "name": "文安縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_027",
+      "name": "易京",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_028",
+      "name": "易京城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_029",
+      "name": "易水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_030",
+      "name": "易縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_031",
+      "name": "東州縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_032",
+      "name": "梁門陂",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_033",
+      "name": "樊輿",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_034",
+      "name": "樊輿縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_035",
+      "name": "武陽",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_036",
+      "name": "武陽城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_037",
+      "name": "涿縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_038",
+      "name": "涿郡",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_039",
+      "name": "淶水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_040",
+      "name": "渠水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_041",
+      "name": "渥水",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_042",
+      "name": "滱水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_043",
+      "name": "濡水",
+      "type": "river"
+    },
+    {
+      "node_id": "n_044",
+      "name": "濡水枝津",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_045",
+      "name": "濾水",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_046",
+      "name": "燕下都",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_047",
+      "name": "燕王仙臺",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_048",
+      "name": "白溝水",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_049",
+      "name": "督亢溝",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_050",
+      "name": "督亢澤",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_051",
+      "name": "督亢陌",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_052",
+      "name": "石泉固",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_053",
+      "name": "石虎山",
+      "type": "mountain"
+    },
+    {
+      "node_id": "n_054",
+      "name": "石虎罡",
+      "type": "mountain"
+    },
+    {
+      "node_id": "n_055",
+      "name": "紫淵",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_056",
+      "name": "范水",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_057",
+      "name": "范陽",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_058",
+      "name": "范陽縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_059",
+      "name": "范陽縣故城",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_060",
+      "name": "蘭馬臺",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_061",
+      "name": "迺縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_062",
+      "name": "遒縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_063",
+      "name": "酈亭溝",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_064",
+      "name": "金毫陂",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_065",
+      "name": "金臺",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_066",
+      "name": "閻鄉",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_067",
+      "name": "閻鄉西山",
+      "type": "mountain"
+    },
+    {
+      "node_id": "n_068",
+      "name": "雩池",
+      "type": "lake"
+    },
+    {
+      "node_id": "n_069",
+      "name": "雹河",
+      "type": "tributary"
+    },
+    {
+      "node_id": "n_070",
+      "name": "靈丘縣",
+      "type": "historical_place"
+    },
+    {
+      "node_id": "n_071",
+      "name": "高氏山",
+      "type": "mountain"
+    },
+    {
+      "node_id": "n_072",
+      "name": "鹽臺陂",
+      "type": "historical_place"
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "e_001",
+      "subject": "閻鄉西山",
+      "relation": "origin_from",
+      "object": "易水",
+      "supporting_page_object_id": "pid1655",
+      "source_type": "canonical",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_002",
+      "subject": "易水",
+      "relation": "flow_east",
+      "object": "五大夫城南",
+      "supporting_page_object_id": "pid1655",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_003",
+      "subject": "子莊溪",
+      "relation": "flows_into",
+      "object": "易水",
+      "supporting_page_object_id": "pid1655",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_004",
+      "subject": "易水",
+      "relation": "passes_east_of",
+      "object": "關門城西南",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_005",
+      "subject": "女思谷水",
+      "relation": "confluences_with",
+      "object": "易水",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_006",
+      "subject": "易水",
+      "relation": "passes_south_of",
+      "object": "漸離城",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_007",
+      "subject": "易水",
+      "relation": "passes_south_of",
+      "object": "武陽",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_008",
+      "subject": "濡水枝津",
+      "relation": "flows_into",
+      "object": "易水",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_009",
+      "subject": "故安縣故城",
+      "relation": "south_of_city_east_flow",
+      "object": "易水",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_010",
+      "subject": "易水",
+      "relation": "passes_south_of",
+      "object": "范陽縣故城",
+      "supporting_page_object_id": "pid1657",
+      "source_type": "canonical_header",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_011",
+      "subject": "易水",
+      "relation": "passes_south_of",
+      "object": "容城縣故城",
+      "supporting_page_object_id": "pid1657",
+      "source_type": "canonical_header",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_012",
+      "subject": "范陽",
+      "relation": "origin_from",
+      "object": "范水",
+      "supporting_page_object_id": "pid1661",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_013",
+      "subject": "故安縣",
+      "relation": "passes_north_of",
+      "object": "濡水",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_014",
+      "subject": "閻鄉",
+      "relation": "origin_from",
+      "object": "易水",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_015",
+      "subject": "范陽",
+      "relation": "enters_into",
+      "object": "濡水",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_016",
+      "subject": "易水",
+      "relation": "confluences_with",
+      "object": "濡水",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_017",
+      "subject": "易水",
+      "relation": "passes_north_of",
+      "object": "容城縣故城",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_018",
+      "subject": "容城",
+      "relation": "confluences_with",
+      "object": "易水",
+      "supporting_page_object_id": "pid1659",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_019",
+      "subject": "武陽城",
+      "relation": "historical_relation",
+      "object": "燕下都",
+      "supporting_page_object_id": "pid1656",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_020",
+      "subject": "故安縣故城",
+      "relation": "historical_relation",
+      "object": "燕丹餞荊軻",
+      "supporting_page_object_id": "pid1660",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_021",
+      "subject": "易水",
+      "relation": "passes_south_of",
+      "object": "易京城",
+      "supporting_page_object_id": "pid1661",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_022",
+      "subject": "巨馬水",
+      "relation": "passes_north_of",
+      "object": "迺縣故城",
+      "supporting_page_object_id": "pid1682",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_023",
+      "subject": "巨馬水",
+      "relation": "passes_north_of",
+      "object": "范陽縣故城",
+      "supporting_page_object_id": "pid1682",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_024",
+      "subject": "易水",
+      "relation": "flows_into",
+      "object": "巨馬水",
+      "supporting_page_object_id": "pid1682",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_025",
+      "subject": "巨馬水",
+      "relation": "passes_north_of",
+      "object": "容城縣故城",
+      "supporting_page_object_id": "pid1682",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_026",
+      "subject": "督亢溝",
+      "relation": "flows_into",
+      "object": "巨馬水",
+      "supporting_page_object_id": "pid1682",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_027",
+      "subject": "督亢陌",
+      "relation": "location_in",
+      "object": "故安縣南",
+      "supporting_page_object_id": "pid1683",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_028",
+      "subject": "巨馬水",
+      "relation": "passes_south_of",
+      "object": "涿縣故城",
+      "supporting_page_object_id": "pid1683",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    },
+    {
+      "edge_id": "e_029",
+      "subject": "巨馬水",
+      "relation": "passes_south_of",
+      "object": "益昌縣故城",
+      "supporting_page_object_id": "pid1683",
+      "source_type": "visual",
+      "TEXTUAL_ORDER_status": "TEXTUAL_ORDER_VERIFIED",
+      "HYDROLOGICAL_RELATION_status": "HYDROLOGICAL_RELATION_VERIFIED",
+      "REAL_WORLD_LOCATION_status": "UNRESOLVED"
+    }
+  ]
+}

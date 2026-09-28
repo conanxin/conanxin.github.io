@@ -16,9 +16,7 @@
   <p class="subtitle">永久成果入口 · 当前专题与最新研究结论</p>
   <blockquote class="core-statement">
     <strong>当前专题:</strong>《水经注》数字证据研究。<br>
-    <strong>最新研究结论 (R3.4 · 《水经注》上下文序列修复):</strong>在 R3.3 PROXY_REVIEWED 108 之上修复 prev/next 跨序列污染:R3.3 的 12 个核心证据页全部映射到错误的 sequence_group (WCSEQ-001),R3.4 以 <code>page_objects.id</code> 顺序 + <code>page_index</code> 单调性建立 <strong>20 个 sequence_group (WCSEQ-001..020)</strong>,12 个核心页分布于 4 个 group (WCSEQ-004/008/011/018)。修复后上下文状态:SAME_SEQUENCE_CONTINUED = 0、CROSS_PAGE_VALID = 3 (1659/1661/1682)、SINGLE_PAGE_SUFFICIENT = 9、CONTEXT_UNRESOLVED = 0。同时正式将「<strong>人工验证/HUMAN_VERIFIED</strong>」改称「<strong>文本代理复核/PROXY_REVIEWED</strong>」(<code>STRICT_BODY_PRECISION</code> → <code>PROXY_REVIEW_AGREEMENT_RATE</code>)。
-    三故事 R3.4 重评估:TEXT_SUPPORTED = 3、CONTEXT_PARTIAL = 3、MODERN_UNRESOLVED = 3。<strong>PROXY_REVIEWED_BODY_PAGES = 108</strong>(= 97 抽样 + 12 核心 − 1 overlap pid 1682)。
-    证据门槛升级到 Gate v3:TEXT_SUPPORTED claim 必须同时满足 4 项 AND(canonical + RULE_QUALIFIED + PROXY_REVIEWED + same-page semantic support);跨页 claim 额外需要 VALID_SEQUENCE_CONTEXT(同 WCSEQ-XXX + page_index ± 1)。空间序列与现代地理对应仍待独立考证 (volume_status = UNRESOLVED)。
+    <strong>最新研究结论 (R4 · 《水经注》易水叙事研究):</strong>进入历史研究阶段第一专题。<strong>研究题目:</strong>《水经注》易水叙事中的范陽、容城与故安 — 河流、城邑与文本空间关系的证据重建。<strong>核心序列:</strong>WCSEQ-004;<strong>核心 7 页:</strong>pid 1655, 1656, 1657, 1659, 1660, 1661, 1682;<strong>上下文 5 页:</strong>pid 1654, 1658, 1662, 1681, 1683。重建易水章节<strong>textual spatial topology</strong>:72 nodes · 29 edges;识别 <strong>96 个空间关系</strong>(出/流/过/经/注/合/会/入 + 城南/城北/城東/城西);首轮允许 NEW_HISTORICAL_CLAIMS > 0,产生 <strong>12 個 claims</strong>(TEXTUAL_ORDER × 2、SPATIAL_LANGUAGE × 3、HYDROLOGICAL_RELATION × 2、HISTORICAL_INTERPRETATION × 5),全部 <strong>SUPPORTED</strong>(均通过 Gate v3 五项 AND);7 份外部学术校核源(Wikisource / ctext.org / 楊守敬《水經注疏》/ 陳橋驛《水經注校證》/ 王國維《水經注校》/ 中華書局標點本 / 國立公文書館數位檔案):CORROBORATES = 6 · BACKGROUND_ONLY = 1。<strong>范围边界:</strong>本阶段不以现代地图匹配为目标 (REAL_WORLD_LOCATION = UNRESOLVED)。R1–R3.4 数据与 QA 阶段全部 frozen 为 research baseline,不再修改。<a href="/projects/shuge/research/water-classic/yishui/">进入易水专题</a>。
   </blockquote>
 </header>
 
@@ -28,7 +26,7 @@
 <!-- 进入专题 (Primary CTA · First Screen Anchor)                     -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <div class="archive-primary">
-  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a> · <a href="/projects/shuge/research/water-classic/evidence/">查看核心证据</a></p>
+  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a> · <a href="/projects/shuge/research/water-classic/evidence/">查看核心证据</a> · <a href="/projects/shuge/research/water-classic/yishui/">易水专题</a></p>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
@@ -102,6 +100,7 @@
     <span class="section-num">版本历史</span>
     <h2>版本历史</h2>
     <ul class="version-list">
+      <li><span><strong>R4</strong> · 《水经注》易水叙事研究 · textual spatial topology + 7 核心页(WCSEQ-004) + 96 spatial relations + 72 nodes / 29 edges + 12 SUPPORTED claims + 7 外部学术校核 + 易水专题入口 · <strong>首轮允许 NEW_HISTORICAL_CLAIMS &gt; 0</strong> · REAL_WORLD_LOCATION = UNRESOLVED</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3.4</strong> · 《水经注》上下文序列修复 · 20 sequence_group (WCSEQ-001..020) + 12 核心页 4 档上下文状态 + Gate v3 + PROXY_REVIEWED 命名修正 + 108 PROXY_REVIEWED_BODY</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3.3</strong> · 《水经注》核心证据文本代理复核 · 422 RULE_QUALIFIED + 100-页抽样 0.97 + 12 核心 + 19 VERIFIED + 1 PARTIAL + 108 PROXY_REVIEWED</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3.2</strong> · 《水经注》正文可信度验证 · 426 HISTORICAL_BODY + 465 INDEXABLE + 90-页抽样 0.6364 + 58 UNKNOWN 全量重审</span><span class="ver-sha">SPEC RUN</span></li>

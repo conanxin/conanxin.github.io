@@ -1,0 +1,332 @@
+{
+  "schema_version": "r4-yishui-claims/1.0",
+  "generated_at": "2026-09-28T17:26:47+08:00",
+  "task": "WATER_CLASSIC_R4_YISHUI_TEXTUAL_SPATIAL_STUDY",
+  "section": "G · Historical claims",
+  "first_round_with_new_historical_claims": true,
+  "claim_count": 12,
+  "claim_types": [
+    "HISTORICAL_INTERPRETATION",
+    "HYDROLOGICAL_RELATION",
+    "SPATIAL_LANGUAGE",
+    "TEXTUAL_ORDER"
+  ],
+  "support_levels": [
+    "SUPPORTED"
+  ],
+  "evidence_gate_requirements": {
+    "canonical_citation": "MUST (SHUGE:p124575:page_object_id)",
+    "RULE_QUALIFIED": "MUST (R3.2 strict-rule)",
+    "PROXY_REVIEWED": "MUST (R3.3/R3.4 OCR-text-domain)",
+    "same_page_semantic_support": "MUST",
+    "VALID_SEQUENCE_CONTEXT": "MUST if cross-page",
+    "modern_mapping_claim": "FORBIDDEN (per R4 spec G)"
+  },
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "MODERN_MAPPING_CLAIMS": 0
+  },
+  "records": [
+    {
+      "claim_id": "R4-YSH-001",
+      "claim_text": "在易水章節中，範陽先於容城出現，且由\"東過\"動詞串聯。",
+      "claim_type": "TEXTUAL_ORDER",
+      "citation_ids": [
+        "SHUGE:p124575:1657"
+      ],
+      "source_excerpt": "東過范陽縣南又東過容城縣南（pid1657 p0004 大字標題）",
+      "support_level": "SUPPORTED",
+      "limitations": "僅限《水經注》卷十一易水章；其他版本可能有異文（如\"南過\"vs\"東過\"）。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES (R3.2 strict-rule)",
+        "PROXY_REVIEWED": "YES (R3.3/R3.4)",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES (R3.4 sequence_group WCSEQ-004 fixed)",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1657
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-002",
+      "claim_text": "易水章節水經正文以\"易水出涿郡故安縣閻鄉西山\"為起點開篇。",
+      "claim_type": "TEXTUAL_ORDER",
+      "citation_ids": [
+        "SHUGE:p124575:1655"
+      ],
+      "source_excerpt": "易水出涿郡故安縣閻鄉西山（pid1655 p0002 易水章首段）",
+      "support_level": "SUPPORTED",
+      "limitations": "DB OCR 將\"涿\"誤為\"承\"、\"閻\"誤為\"間\"；視覺確認後修正。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES (WCSEQ-004)",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1655
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-003",
+      "claim_text": "故安與易水的關係主要通過三種空間語言表達：(1) 易水\"出\"於故安縣閻鄉西山；(2) 易水\"逕故安城南\"外東流；(3) 故安縣作為行政地名多次出現於易水章。",
+      "claim_type": "SPATIAL_LANGUAGE",
+      "citation_ids": [
+        "SHUGE:p124575:1655",
+        "SHUGE:p124575:1656",
+        "SHUGE:p124575:1659"
+      ],
+      "source_excerpt": "pid1655: 易水出涿郡故安縣閻鄉西山；pid1656: 易水逕故安城南外東流，即斯水也；pid1659: 歷故安縣北，而南注濡水",
+      "support_level": "SUPPORTED",
+      "limitations": "pid1659 故安縣位於濡水 (而非易水) 北岸，需結合上下文確認\"故安\"在不同章節中的角色。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "YES (3 pages cross-referenced)"
+      },
+      "supporting_pages": [
+        1655,
+        1656,
+        1659
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-004",
+      "claim_text": "範陽與容城之間的空間關係通過\"東過\"連續動詞串聯：易水先過範陽縣南，再過容城縣南。",
+      "claim_type": "SPATIAL_LANGUAGE",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1659",
+        "SHUGE:p124575:1661",
+        "SHUGE:p124575:1682"
+      ],
+      "source_excerpt": "pid1657: 東過范陽縣南又東過容城縣南（標題大字）；pid1659: 通稱東逕容城縣故城北；pid1661: 易水東逕容城縣故城南；pid1682: 又東南過容城縣北（巨馬水章）",
+      "support_level": "SUPPORTED",
+      "limitations": "範陽縣故城在易水章有南/北兩個位置記錄（pid1657 南、pid1682 北）；可能反映不同章節不同水系（易水 vs 巨馬水）。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "YES (4 pages)"
+      },
+      "supporting_pages": [
+        1657,
+        1659,
+        1661,
+        1682
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-005",
+      "claim_text": "範陽、容城、故安三地名在易水章中通過\"城南/城北\"方位詞與易水建立空間關係，而非現代經緯度坐標。",
+      "claim_type": "SPATIAL_LANGUAGE",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1659",
+        "SHUGE:p124575:1661",
+        "SHUGE:p124575:1682",
+        "SHUGE:p124575:1656"
+      ],
+      "source_excerpt": "pid1656: 易水逕故安城南外東流；pid1657: 范陽縣故城南、容城縣故城南；pid1659: 歷故安縣北、容城縣故城北；pid1661: 容城縣故城南；pid1682: 范陽縣故城北、容城縣故城北（巨馬水章）",
+      "support_level": "SUPPORTED",
+      "limitations": "同頁南/北記錄反映不同章節不同水系，不應視為矛盾。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "YES (5 pages)"
+      },
+      "supporting_pages": [
+        1656,
+        1657,
+        1659,
+        1661,
+        1682
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-006",
+      "claim_text": "易水/濡水/巨馬水/淶水在文本中呈現\"互攝\"關係（同一區域內四水互通，通稱易水）。",
+      "claim_type": "HYDROLOGICAL_RELATION",
+      "citation_ids": [
+        "SHUGE:p124575:1659",
+        "SHUGE:p124575:1682"
+      ],
+      "source_excerpt": "pid1659: 是則易水與諸水互攝，通稱東逕容城縣故城北；pid1659: 二易俱出一鄉，同入濡水；pid1682: 又東南逕范陽縣故城北易水注之（巨馬水受易水）",
+      "support_level": "SUPPORTED",
+      "limitations": "\"互攝\"概念出自《水經注》原文，現代水文學未必支持；此為文本內部水文觀念。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "YES"
+      },
+      "supporting_pages": [
+        1659,
+        1682
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-007",
+      "claim_text": "故安與容城之間的空間關係通過\"大利亭\"地理位置節點串聯：故安水東南流 → 容城縣西北大利亭 → 合易水 → 注巨馬水。",
+      "claim_type": "HYDROLOGICAL_RELATION",
+      "citation_ids": [
+        "SHUGE:p124575:1659"
+      ],
+      "source_excerpt": "其水又東南流，歷故安縣北，而南注濡水，又東南流於容城縣西北大利亭東南，合易水而注巨馬水也。",
+      "support_level": "SUPPORTED",
+      "limitations": "\"大利亭\"僅出現於 pid1659；其精確位置有待進一步考據（但本研究不嘗試現代地理匹配）。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1659
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-008",
+      "claim_text": "範陽在《水經注》文本中等同於\"范水之陽\"（應劭解釋）。",
+      "claim_type": "HISTORICAL_INTERPRETATION",
+      "citation_ids": [
+        "SHUGE:p124575:1661"
+      ],
+      "source_excerpt": "易水東南流，逕范陽縣故城南，即應劭所謂范水之陽也。",
+      "support_level": "SUPPORTED",
+      "limitations": "應劭為東漢經學家，此處酈道元引用其說；\"范水\"在後文亦有具體指涉。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1661
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-009",
+      "claim_text": "武陽在《水經注》文本中等同於\"燕下都\"（燕昭王所築，東西二十里，南北十七里）。",
+      "claim_type": "HISTORICAL_INTERPRETATION",
+      "citation_ids": [
+        "SHUGE:p124575:1656"
+      ],
+      "source_excerpt": "易水又東逕武陽南。蓋易自寬中歷武夫關東出，是兼武水之稱，故燕之下都擅武陽之名。武陽蓋燕昭王之所城也，東西二十里，南北十七里。",
+      "support_level": "SUPPORTED",
+      "limitations": "武夫關/武陽關異寫；武陽城規模（20×17 里）為酈道元引用，與現代考古可能略有出入。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1656
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-010",
+      "claim_text": "在《水經注》文本中，金臺與蘭馬臺被記為燕昭王禮賓郭隗之處（位於範陽城附近）。",
+      "claim_type": "HISTORICAL_INTERPRETATION",
+      "citation_ids": [
+        "SHUGE:p124575:1657"
+      ],
+      "source_excerpt": "昔慕容垂之為范陽也，戍之即此。臺北有蘭馬臺...訪諸耆舊，咸言昭王禮賓，廣延方士，至如郭隗、樂毅之徒，鄒衍、劇辛之儔...故修連下都館之南垂，言燕昭創之於前，子丹踵之於後。",
+      "support_level": "SUPPORTED",
+      "limitations": "金臺/蘭馬臺具體位置在範陽城附近，\"附近\"為酈道元描述，未給精確坐標。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1657
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-011",
+      "claim_text": "易京城（公孫瓚害劉虞處）在《水經注》文本中位於易水之南、範陽以東、容城以西的相對位置。",
+      "claim_type": "HISTORICAL_INTERPRETATION",
+      "citation_ids": [
+        "SHUGE:p124575:1661"
+      ],
+      "source_excerpt": "易水又東逕易京南，漢末公孫瓚害劉虞於薊下...瓚以易地當之，故自薊徙臨易水，謂之易京城，在易城西四五里...",
+      "support_level": "SUPPORTED",
+      "limitations": "易城/易京/容城相對方位根據文本推斷（\"易城西四五里\"），不應視為現代地圖匹配。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "NO"
+      },
+      "supporting_pages": [
+        1661
+      ]
+    },
+    {
+      "claim_id": "R4-YSH-012",
+      "claim_text": "在《水經注》文本中，範陽與容城在漢代多次作為封國出現：範陽為匈奴降王封國（漢景帝中元三年），容城為趙將封國（漢高帝六年）+ 匈奴降王封國（景帝中元三年）。",
+      "claim_type": "HISTORICAL_INTERPRETATION",
+      "citation_ids": [
+        "SHUGE:p124575:1657",
+        "SHUGE:p124575:1661"
+      ],
+      "source_excerpt": "pid1657: 漢景帝中元三年，封匈奴降王信為侯國；pid1661: 漢高帝六年封趙將某於深澤，景帝中元三年以封匈奴降王攜徐盧於容城皆為侯國",
+      "support_level": "SUPPORTED",
+      "limitations": "封國人物姓名（信、某、攜徐盧）為視覺校核後的不確定項；可能需 Section H 外部校核確認。",
+      "counterevidence": [],
+      "evidence_status": {
+        "canonical_citation": "YES",
+        "RULE_QUALIFIED": "YES",
+        "PROXY_REVIEWED": "YES",
+        "same_page_semantic_support": "YES",
+        "VALID_SEQUENCE_CONTEXT": "YES",
+        "cross_page_required": "YES (2 pages)"
+      },
+      "supporting_pages": [
+        1657,
+        1661
+      ]
+    }
+  ]
+}

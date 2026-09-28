@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《水经注》完整数字语料 · SHUGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/shuge/research/water-classic/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1>《水经注》完整数字语料</h1>
+  <p class="subtitle">FULL CORPUS · 956 页 · R3 完整语料校准</p>
+  <blockquote class="core-statement">
+    R3 将 R2 公开研究使用的 60-page sample 重新连接到 SHUGE-RESEARCH-DB 中已存在的完整《水经注》corpus。当前完整语料包含 <strong>956 页</strong> page_objects,使用既有 OCR(rapidocr · PP-OCRv4-mobile · 2026-09-27 batch run)重新检索三个核心故事,确认文本共现,但 spatial 与 modern 对应仍未解。
+  </blockquote>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">956</div>
+      <div class="stat-label">完整 corpus 页数</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">956</div>
+      <div class="stat-label">可检索页数 (FULL CORPUS)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">60</div>
+      <div class="stat-label">人工审计样本页数 (AUDITED SAMPLE)</div>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 24px; font-size: 14px;">
+    <strong>FULL CORPUS</strong>(956 页 / 956 searchable / 0 zero-text / 302951 chars)<br>
+    <strong>AUDITED SAMPLE</strong>(R2 60-page sample / 39 substantial body OCR · R2.1 锁定)
+  </p>
+</header>
+
+<div class="page">
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 01 · 语料概览                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 01</span>
+    <h2>语料概览</h2>
+    <p class="lede">
+      本节汇总 SHUGE-RESEARCH-DB 对《水经注》(work_id <code>p124575</code>)的当前 corpus 状态。所有数值来自 <code>data/shuge.db</code> 只读查询,DB 为 authoritative。
+    </p>
+
+    <h3>1.1 Work 身份</h3>
+    <ul>
+      <li><strong>canonical SHUGE work record</strong> = <code>post_id 124575</code></li>
+      <li><strong>title</strong>:水经注 · <strong>author</strong>:桑钦撰 后魏 郦道元 注</li>
+      <li><strong>edition</strong>:明万历十三年 (乙酉 1585) 新安吴琯刊山水经合刻本 · 14 volumes · 14 册</li>
+      <li><strong>shuge_url</strong>:https://www.shuge.org/view/shui_jing_zhu/</li>
+    </ul>
+
+    <h3>1.2 page_objects (956) · 与 EXPECTED 对照</h3>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>字段</th><th>EXPECTED</th><th>DB authoritative</th><th>差异</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TOTAL_PAGE_OBJECTS</td><td>956</td><td>956</td><td>— ✓</td></tr>
+        <tr><td>OCR_SUCCESS</td><td>956</td><td>956 (via page_ocr.status)</td><td>page_objects.ocr_status 仍为 QUEUED (上游未更新)</td></tr>
+        <tr><td>SEARCHABLE_PAGES</td><td>933</td><td>956</td><td>+23 页 ⚠</td></tr>
+        <tr><td>ZERO_TEXT_PAGES</td><td>23</td><td>0</td><td>-23 页 ⚠</td></tr>
+        <tr><td>OCR_CHARS</td><td>322030</td><td>302951</td><td>-19079 chars ⚠</td></tr>
+      </tbody>
+    </table>
+    <p class="note">DB authoritative 报告与 EXPECTED_FROM_PRIOR_REPORT 不一致。本页面如实报告,不作修正。三处 ⚠ discrepancy 是 corpus 真实状态。</p>
+
+    <h3>1.3 char_count 分布</h3>
+    <table class="evidence-table">
+      <thead><tr><th>bucket</th><th>pages</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td></tr>
+        <tr><td>1–50</td><td>27</td></tr>
+        <tr><td>51–200</td><td>64</td></tr>
+        <tr><td>201–500</td><td>865</td></tr>
+        <tr><td>501+</td><td>0</td></tr>
+        <tr><td>NULL</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <h3>1.4 page_index / page_label ⚠</h3>
+    <ul>
+      <li><code>MIN(id)</code>=1501 · <code>MAX(id)</code>=2456 · <code>MIN(page_index)</code>=1 · <code>MAX(page_index)</code>=91</li>
+      <li>distinct <code>page_label</code> = <strong>91</strong> · 共映射到 <strong>956</strong> 个 page_objects(1:10.5)</li>
+      <li>R2.1 已发现 page_seq (page_label) 仅 5 unique 不唯一;R3 进一步发现 <code>page_index</code> 同样 1:N</li>
+    </ul>
+
+    <h3>1.5 digital_objects / document_units</h3>
+    <ul>
+      <li><strong>digital_objects linked to p124575</strong>:0(全部 NULL,见 §1.6)</li>
+      <li><strong>document_units for p124575</strong>:0(见 Section D · volume_status = UNRESOLVED)</li>
+    </ul>
+
+    <h3>1.6 ocr_fts · 不可用 ⚠</h3>
+    <p>FTS5 virtual table <code>ocr_fts</code> (tokenize='trigram') 对 p124575 完全无数据。R3 全部故事 retest 使用 <code>page_ocr.normalized_text LIKE</code> 替代 FTS。</p>
+
+    <h3>1.7 OCR runs</h3>
+    <ul>
+      <li>run 10/11/12/14 (rapidocr · PP-OCRv4-mobile · 2026-09-27 batch run) — 实际 OCR 已完成</li>
+      <li>page_objects.ocr_status='QUEUED' 是上游未更新 (DB column lag),不影响 corpus 使用</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 02 · Canonical Citation system                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 02</span>
+    <h2>Canonical Citation 系统</h2>
+    <p class="lede">
+      SHUGE architecture contract(取代 R2.1 legacy Citation ID):
+    </p>
+    <pre><code>SHUGE:&lt;work_id&gt;:&lt;page_object_id&gt;</code></pre>
+
+    <h3>2.1 关键验证</h3>
+    <table class="evidence-table">
+      <thead><tr><th>字段</th><th>值</th></tr></thead>
+      <tbody>
+        <tr><td><code>CANONICAL_CITATION_COUNT</code></td><td><strong>956</strong></td></tr>
+        <tr><td><code>CITATION_COLLISIONS</code></td><td><strong>0</strong></td></tr>
+        <tr><td>page_objects.id (INTEGER PK)</td><td>work_id=p124575 范围内天然唯一</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 legacy format (保留不变)</h3>
+    <p><code>SHUGE:p124575:&lt;page_seq&gt;</code>(例如 <code>SHUGE:p124575:4</code>) — R3 不再视为 page-level canonical,仅作为 legacy 字段保留。</p>
+    <p>disambiguation example:同一个 legacy <code>SHUGE:p124575:4</code> 在 R2 实际对应 6 个不同的 page_objects(1594 / 1657 / 1795 / 2005 / 2079 / 2323)。canonical 必须使用 <code>SHUGE:p124575:1594</code> 等具体 page_object_id。</p>
+
+    <h3>2.3 sample canonical citations (前 10)</h3>
+    <table class="evidence-table">
+      <thead><tr><th>canonical_citation_id</th><th>page_object_id</th><th>page_label</th></tr></thead>
+      <tbody>
+        <tr><td><code>SHUGE:p124575:1501</code></td><td>1501</td><td>p0001</td></tr>
+        <tr><td><code>SHUGE:p124575:1502</code></td><td>1502</td><td>p0002</td></tr>
+        <tr><td><code>SHUGE:p124575:1503</code></td><td>1503</td><td>p0003</td></tr>
+        <tr><td><code>SHUGE:p124575:1504</code></td><td>1504</td><td>p0004</td></tr>
+        <tr><td><code>SHUGE:p124575:1505</code></td><td>1505</td><td>p0005</td></tr>
+        <tr><td><code>SHUGE:p124575:1591</code></td><td>1591</td><td>p0001</td></tr>
+        <tr><td><code>SHUGE:p124575:1592</code></td><td>1592</td><td>p0002</td></tr>
+        <tr><td><code>SHUGE:p124575:1593</code></td><td>1593</td><td>p0003</td></tr>
+        <tr><td><code>SHUGE:p124575:1594</code></td><td>1594</td><td>p0004</td></tr>
+        <tr><td><code>SHUGE:p124575:1595</code></td><td>1595</td><td>p0005</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 03 · R2 Sample → Full Corpus Mapping                        -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 03</span>
+    <h2>R2 Sample → Full Corpus Mapping</h2>
+    <p class="lede">R2.1 的 60 个 <code>WC124575:PAGE&lt;page_id&gt;</code> evidence_ref 全部 EXACT 映射到 956 页 corpus 中的 page_object_id。</p>
+
+    <h3>3.1 映射汇总</h3>
+    <table class="evidence-table">
+      <thead><tr><th>mapping_status</th><th>count</th></tr></thead>
+      <tbody>
+        <tr><td>EXACT</td><td><strong>60</strong></td></tr>
+        <tr><td>AMBIGUOUS</td><td>0</td></tr>
+        <tr><td>NOT_FOUND</td><td>0</td></tr>
+        <tr><td>TOTAL</td><td>60</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 映射示例 (10 entries)</h3>
+    <table class="evidence-table">
+      <thead><tr><th>public_evidence_ref</th><th>canonical_citation_id</th><th>region (R2.2)</th></tr></thead>
+      <tbody>
+        <tr><td><code>WC124575:PAGE1594</code></td><td><code>SHUGE:p124575:1594</code></td><td>河水_野王_修武</td></tr>
+        <tr><td><code>WC124575:PAGE1657</code></td><td><code>SHUGE:p124575:1657</code></td><td>易水_范陽_容城</td></tr>
+        <tr><td><code>WC124575:PAGE1795</code></td><td><code>SHUGE:p124575:1795</code></td><td>渭水_關中</td></tr>
+        <tr><td><code>WC124575:PAGE2005</code></td><td><code>SHUGE:p124575:2005</code></td><td>汾水_代城</td></tr>
+        <tr><td><code>WC124575:PAGE2079</code></td><td><code>SHUGE:p124575:2079</code></td><td>汝水_霍陽_梁</td></tr>
+        <tr><td><code>WC124575:PAGE2323</code></td><td><code>SHUGE:p124575:2323</code></td><td>江水_公安_華容</td></tr>
+        <tr><td><code>WC124575:PAGE1501</code></td><td><code>SHUGE:p124575:1501</code></td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1502</code></td><td><code>SHUGE:p124575:1502</code></td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1503</code></td><td><code>SHUGE:p124575:1503</code></td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2321</code></td><td><code>SHUGE:p124575:2321</code></td><td>江水_公安_华容</td></tr>
+      </tbody>
+    </table>
+    <p class="note">完整 60 entries 映射见 <a href="../data/water_classic_r2_to_full_corpus_map.json">data/water_classic_r2_to_full_corpus_map.json</a>。</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 04 · 三组核心故事 · 完整 corpus 重新验证                  -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 04</span>
+    <h2>三组核心故事 · 完整 corpus 重新验证</h2>
+    <p class="lede">R3 在 956 页完整 corpus 上重新检索三个核心故事。检索方法:<code>page_ocr.normalized_text LIKE</code>(FTS5 不可用)。</p>
+
+    <article class="story">
+      <h3 class="story-title">江水 — 公安 — 華容</h3>
+      <p class="story-river-line">江水<span class="sep">→</span>公安<span class="sep">→</span>華容</p>
+      <ul>
+        <li><strong>江水</strong>:78 页(full corpus)</li>
+        <li><strong>公安</strong>:3 页</li>
+        <li><strong>華容</strong>:4 页</li>
+        <li>江水+公安 共现:<strong>1 页</strong></li>
+        <li>江水+華容 共现:<strong>2 页</strong></li>
+      </ul>
+      <div class="status-triad">
+        <div class="status-row"><span class="status-key">文本支持</span><span class="status-value-confirmed">已确认</span><span class="en-machine">TEXT_CONFIRMED</span></div>
+        <div class="status-row"><span class="status-key">空间解释</span><span class="status-value-unresolved">待确认</span><span class="en-machine">SPATIAL_UNRESOLVED</span></div>
+        <div class="status-row"><span class="status-key">现代对应</span><span class="status-value-unresolved">未确认</span><span class="en-machine">MODERN_UNRESOLVED</span></div>
+      </div>
+    </article>
+
+    <article class="story">
+      <h3 class="story-title">易水 — 范陽 — 容城 — 故安</h3>
+      <p class="story-river-line">易水<span class="sep">→</span>范陽<span class="sep">→</span>容城<span class="sep">→</span>故安</p>
+      <ul>
+        <li><strong>易水</strong>:11 页</li>
+        <li><strong>范陽</strong>:10 页</li>
+        <li><strong>容城</strong>:8 页</li>
+        <li><strong>故安</strong>:9 页</li>
+        <li>易水+范陽 共现:<strong>5 页</strong></li>
+        <li>易水+容城 共现:<strong>4 页</strong></li>
+        <li>易水+故安 共现:<strong>5 页</strong></li>
+      </ul>
+      <div class="status-triad">
+        <div class="status-row"><span class="status-key">文本支持</span><span class="status-value-confirmed">已确认</span><span class="en-machine">TEXT_CONFIRMED</span></div>
+        <div class="status-row"><span class="status-key">空间解释</span><span class="status-value-unresolved">待确认</span><span class="en-machine">SPATIAL_UNRESOLVED</span></div>
+        <div class="status-row"><span class="status-key">现代对应</span><span class="status-value-unresolved">未确认</span><span class="en-machine">MODERN_UNRESOLVED</span></div>
+      </div>
+    </article>
+
+    <article class="story">
+      <h3 class="story-title">河水 — 野王 — 修武</h3>
+      <p class="story-river-line">河水<span class="sep">→</span>野王<span class="sep">→</span>修武</p>
+      <ul>
+        <li><strong>河水</strong>:<strong>118 页</strong>(远超 R2 60-page sample)</li>
+        <li><strong>野王</strong>:9 页</li>
+        <li><strong>修武</strong>:7 页</li>
+        <li>河水+野王 共现:<strong>1 页</strong></li>
+        <li>河水+修武 共现:<strong>2 页</strong></li>
+      </ul>
+      <p>⚡ R3 strengthen:r2-cl-002 从 R2.2 PARTIALLY_SUPPORTED → R3 TEXT_CONFIRMED(因 full corpus 显示 118 页河水 + 完整 7+9 修武+野王 + 共现关系)</p>
+      <div class="status-triad">
+        <div class="status-row"><span class="status-key">文本支持</span><span class="status-value-confirmed">已确认</span><span class="en-machine">TEXT_CONFIRMED</span></div>
+        <div class="status-row"><span class="status-key">空间解释</span><span class="status-value-unresolved">待确认</span><span class="en-machine">SPATIAL_UNRESOLVED</span></div>
+        <div class="status-row"><span class="status-key">现代对应</span><span class="status-value-unresolved">未确认</span><span class="en-machine">MODERN_UNRESOLVED</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 05 · 研究缺口                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 05</span>
+    <h2>研究缺口 · Volume / Sequence / digital_objects</h2>
+    <p class="lede">以下为 R3 发现的结构性缺口,记录为 RESEARCH_LEAD(非 SUPPORTED CLAIM)。</p>
+
+    <h3>5.1 volume_status = UNRESOLVED</h3>
+    <ul>
+      <li><code>document_units</code> 表存在,但对 p124575 为空</li>
+      <li>无 (volume, page_range) 映射可建立</li>
+      <li>严禁基于 <code>page_label</code> (p0001..p0091) 推测卷次</li>
+      <li>14 volumes 由 <code>editions.volume_info</code> 报告,但无 page-level 验证</li>
+    </ul>
+
+    <h3>5.2 digital_objects = 0 linked</h3>
+    <ul>
+      <li>完整 corpus DB 中其他 work 有 20 条 digital_objects,无一条属于 p124575</li>
+      <li>canonical_citation_id 可建立(基于 page_objects.id),但 digital_object_id 字段填 NULL</li>
+    </ul>
+
+    <h3>5.3 OCR column lag</h3>
+    <ul>
+      <li><code>page_objects.ocr_status</code> 全部 = QUEUED(上游未更新)</li>
+      <li><code>page_ocr.status</code> 全部 = SUCCESS(实际数据正确)</li>
+      <li>R3 报告值采用 <code>page_ocr.status</code> 视角</li>
+    </ul>
+
+    <h3>5.4 ocr_fts 不可用</h3>
+    <ul>
+      <li>FTS5 virtual table <code>ocr_fts</code> 对该 work 完全无数据</li>
+      <li>R3 全部 retest 使用 <code>page_ocr.normalized_text LIKE</code> 替代</li>
+    </ul>
+
+    <h3>5.5 RESEARCH_LEADS (not CLAIM)</h3>
+    <ul>
+      <li><strong>RL-001</strong>:完整 corpus 中 河水 出现 118 页 — 远超 R2 60-page sample 涵盖范围;待建立河水 (R3 R2 r2-cl-002) 之外的其他河水河段叙事文本收集</li>
+      <li><strong>RL-002</strong>:完整 corpus 中 江水 出现 78 页 — 江水叙事跨多个 volume;待 document_units 重建后才可确认卷次</li>
+      <li><strong>RL-003</strong>:易水 / 范陽 / 容城 / 故安 分别 11 / 10 / 8 / 9 页 — 卷十一(易水、滱水)推断但未在 DB 中确认</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 06 · 技术数据下载                                          -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 06</span>
+    <h2>技术数据下载</h2>
+    <p class="lede">R3 全部输出文件机器可读。</p>
+
+    <h3>6.1 数据文件 (data/)</h3>
+    <ul>
+      <li><a href="../data/water_classic_full_corpus_stats_r3.json">water_classic_full_corpus_stats_r3.json</a> · FULL CORPUS 全部数值 + discrepancies</li>
+      <li><a href="../data/water_classic_canonical_citations_r3.json">water_classic_canonical_citations_r3.json</a> · 956 canonical citations + collision verification</li>
+      <li><a href="../data/water_classic_r2_to_full_corpus_map.json">water_classic_r2_to_full_corpus_map.json</a> · 60 R2 → FULL CORPUS 映射</li>
+      <li><a href="../data/water_classic_volume_structure_r3.json">water_classic_volume_structure_r3.json</a> · volume_structure = UNRESOLVED</li>
+      <li><a href="../data/water_classic_story_retest_r3.json">water_classic_story_retest_r3.json</a> · 3 故事完整 corpus retest</li>
+    </ul>
+
+    <h3>6.2 审计文档 (source/)</h3>
+    <ul>
+      <li><a href="../source/WATER_CLASSIC_FULL_CORPUS_AUDIT_R3.md">WATER_CLASSIC_FULL_CORPUS_AUDIT_R3.md</a> · Section A 审计</li>
+      <li><a href="../source/CANONICAL_CITATION_AUDIT_R3.md">CANONICAL_CITATION_AUDIT_R3.md</a> · Section B canonical Citation audit</li>
+      <li><a href="../source/WATER_CLASSIC_R2_FULL_CORPUS_RECONCILIATION.md">WATER_CLASSIC_R2_FULL_CORPUS_RECONCILIATION.md</a> · Section C R2 映射</li>
+      <li><a href="../source/WATER_CLASSIC_STORY_RETEST_R3.md">WATER_CLASSIC_STORY_RETEST_R3.md</a> · Section E 故事 retest</li>
+    </ul>
+
+    <h3>6.3 关联页面</h3>
+    <ul>
+      <li><a href="../">《水经注》数字证据研究 · 主页面</a>(R2.2 4-block · R3 更新 hero stats)</li>
+      <li><a href="../appendix/">技术附录</a>(R2.2 §10 · 三层证据状态)</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>《水经注》完整数字语料 · SHUGE Research · R3 Full Corpus Reconciliation</p>
+  <p>R2.2 frozen at <code>8a5a130</code> · v1.0 frozen baseline (<code>3a51ef5</code>) 未修改 · R1 route (<code>59d258e</code>) 保留 · R2.1 frozen (<code>fda2ecb</code>) 保留</p>
+  <p><a href="../">返回主页面</a> · <a href="../appendix/">技术附录</a> · <a href="/projects/shuge/">SHUGE 数字人文研究</a></p>
+</footer>
+
+</div>
+</body>
+</html>

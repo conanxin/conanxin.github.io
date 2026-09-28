@@ -1,0 +1,22 @@
+{
+  "schema_version": "volume-structure-r3/1.0",
+  "generated_at": "2026-09-28T14:50:00Z",
+  "work_id": "p124575",
+  "edition_volume_info": "十四",
+  "edition_text": "明万历十三年 (乙酉 1585) 新安吴琯刊山水经合刻本",
+  "document_units_for_p124575": 0,
+  "document_units_total_db": 21,
+  "page_range": {
+    "page_object_id_min": 1501,
+    "page_object_id_max": 2456,
+    "page_index_min": 1,
+    "page_index_max": 91
+  },
+  "volume_status": "UNRESOLVED",
+  "notes": [
+    "document_units 表在 DB 中存在 (work_id 列存在), 但 p124575 该 work 尚未建立任何 document_unit 记录",
+    "无任何 (volume, page_range, end_page_object_id) 数据可建立",
+    "严禁基于 page_seq (p0001..p0005) 推测卷次 — R2.1 已确认 page_seq 仅 5 unique 但 page_objects 有 956 个",
+    "volume_status = UNRESOLVED · 待 document_units 重建后才可恢复"
+  ]
+}

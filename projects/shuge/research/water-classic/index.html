@@ -15,25 +15,28 @@
   <h1>《水经注》数字证据研究</h1>
   <p class="subtitle">从文本片段观察河流、城邑与历史空间</p>
   <blockquote class="core-statement">
-    当前证据表明,《水经注》的现有 OCR 片段中可以识别出多组"水系—城邑"共现关系,
-    其中<strong>江水 — 公安 — 华容</strong>、
-    <strong>易水 — 范阳 — 容城 — 故安</strong>、
-    <strong>河水 — 野王 — 修武</strong>最值得继续研究。
+    当前证据表明,基于 60-page sample,其中 39 页具有足够正文片段,可用于当前证据分析。
+    R3 将该 sample 连接到完整 corpus (956 页):江水 — 公安 — 華容、易水 — 范陽 — 容城 — 故安、
+    河水 — 野王 — 修武 在完整 corpus 中均得到文本支持确认,但空间序列与现代地理对应仍待独立考证。
   </blockquote>
   <div class="stats">
     <div class="stat">
-      <div class="stat-number">39</div>
-      <div class="stat-label">可用于证据分析的文本页</div>
+      <div class="stat-number">956</div>
+      <div class="stat-label">完整 corpus 页数 (FULL CORPUS)</div>
     </div>
     <div class="stat">
-      <div class="stat-number">3</div>
-      <div class="stat-label">核心研究故事</div>
+      <div class="stat-number">956</div>
+      <div class="stat-label">可检索页数 (FULL CORPUS)</div>
     </div>
     <div class="stat">
-      <div class="stat-number">6</div>
-      <div class="stat-label">证据论断</div>
+      <div class="stat-number">60</div>
+      <div class="stat-label">人工审计样本页数 (AUDITED SAMPLE)</div>
     </div>
   </div>
+  <p class="subtitle" style="margin-top: 20px; font-size: 13px; color: var(--ink-muted);">
+    FULL CORPUS (956 / 956 searchable / 0 zero-text) vs AUDITED SAMPLE (R2 60-page · 39 substantial)
+    · <a href="corpus/">查看完整语料</a> · <a href="appendix/">技术附录</a>
+  </p>
 </header>
 
 <div class="page">
@@ -89,8 +92,11 @@
       <p class="story-section-label">目前可以确认</p>
       <p>公安縣、華容 出现在同一段江水相关文本中。文本片段同时出现两县名称,显示江水叙事覆盖这一河段。</p>
 
+      <p class="story-section-label">R3 完整 corpus 重新验证</p>
+      <p>在 956 页完整 corpus 中,<strong>江水</strong> 出现 78 页,<strong>公安</strong> 3 页,<strong>華容</strong> 4 页;江水+公安 共现 1 页,江水+華容 共现 2 页。文本支持保持确认。</p>
+
       <p class="story-section-label">还不能确认</p>
-      <p>江水与现代长江的等同关系。两县具体的上下游空间序列。江水沿岸其他城邑。</p>
+      <p>江水与现代长江的等同关系。两县具体的上下游空间序列。江水沿岸其他城邑。完整空间序列需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>
 
       <div class="status-triad">
         <div class="status-row">
@@ -100,8 +106,8 @@
         </div>
         <div class="status-row">
           <span class="status-key">空间解释</span>
-          <span class="status-value-preliminary">初步支持</span>
-          <span class="en-machine">SPATIAL_PRELIMINARY</span>
+          <span class="status-value-unresolved">待确认</span>
+          <span class="en-machine">SPATIAL_UNRESOLVED</span>
         </div>
         <div class="status-row">
           <span class="status-key">现代对应</span>
@@ -115,8 +121,10 @@
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE2321 · WC124575:PAGE2322 · WC124575:PAGE2323</dd>
+            <dt>canonical_citation_id</dt><dd>SHUGE:p124575:2321 · SHUGE:p124575:2322 · SHUGE:p124575:2323</dd>
             <dt>linked_claim</dt><dd>r2-cl-001</dd>
-            <dt>pages</dt><dd>3 substantial body OCR</dd>
+            <dt>pages (R2 sample)</dt><dd>3 substantial body OCR</dd>
+            <dt>pages (R3 full corpus · 江水 term)</dt><dd>78 pages</dd>
           </dl>
         </div>
       </details>
@@ -137,8 +145,11 @@
       <p class="story-section-label">目前可以确认</p>
       <p>范陽、容城、故安 出现在同一组易水相关文本片段中,并伴随"东过""城西""城南""注易水"等方向描述。</p>
 
+      <p class="story-section-label">R3 完整 corpus 重新验证</p>
+      <p>在 956 页完整 corpus 中,<strong>易水</strong> 11 页,<strong>范陽</strong> 10 页,<strong>容城</strong> 8 页,<strong>故安</strong> 9 页;易水+范陽 共现 5 页,易水+容城 共现 4 页,易水+故安 共现 5 页。文本支持保持确认。</p>
+
       <p class="story-section-label">还不能确认</p>
-      <p>三地完整的空间序列。三地与现代河北水系的对应关系。其余易水支流的结构。</p>
+      <p>三地完整的空间序列。三地与现代河北水系的对应关系。其余易水支流的结构。完整空间序列仍需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>
 
       <div class="status-triad">
         <div class="status-row">
@@ -164,8 +175,10 @@
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE1655 · WC124575:PAGE1656 · WC124575:PAGE1657 · WC124575:PAGE1865</dd>
+            <dt>canonical_citation_id</dt><dd>SHUGE:p124575:1655 · SHUGE:p124575:1656 · SHUGE:p124575:1657 · SHUGE:p124575:1865</dd>
             <dt>linked_claim</dt><dd>r2-cl-003</dd>
-            <dt>pages</dt><dd>4 substantial body OCR</dd>
+            <dt>pages (R2 sample)</dt><dd>4 substantial body OCR</dd>
+            <dt>pages (R3 full corpus · 易水 term)</dt><dd>11 pages</dd>
           </dl>
         </div>
       </details>
@@ -187,14 +200,17 @@
       <p class="story-section-label">目前可以确认</p>
       <p>野王、修武 出现在同一段水文叙事中,且与"河内""蔡溝""吴澤"等水文元素共现。</p>
 
+      <p class="story-section-label">R3 完整 corpus 重新验证</p>
+      <p>在 956 页完整 corpus 中,<strong>河水</strong> 出现 <strong>118 页</strong> (远超 R2 60-page sample),<strong>野王</strong> 9 页,<strong>修武</strong> 7 页;河水+野王 共现 1 页,河水+修武 共现 2 页。<strong>R3 strengthen</strong>:r2-cl-002 文本支持从 R2.2 部分确认升级为确认。</p>
+
       <p class="story-section-label">还不能确认</p>
-      <p>河水与现代黄河的等同关系。两县具体的上下游与距离关系。本组证据仅有 2 页 substantial body OCR,样本量不足以建立空间序列论断。</p>
+      <p>河水与现代黄河的等同关系。两县具体的上下游与距离关系。完整空间序列需全页 OCR 与卷次重建确认 (volume_status = UNRESOLVED)。</p>
 
       <div class="status-triad">
         <div class="status-row">
           <span class="status-key">文本支持</span>
-          <span class="status-value-partial">部分确认</span>
-          <span class="en-machine">TEXT_PARTIAL</span>
+          <span class="status-value-confirmed">已确认</span>
+          <span class="en-machine">TEXT_CONFIRMED</span>
         </div>
         <div class="status-row">
           <span class="status-key">空间解释</span>
@@ -213,8 +229,10 @@
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE1593 · WC124575:PAGE1594</dd>
-            <dt>linked_claim</dt><dd>r2-cl-002</dd>
-            <dt>pages</dt><dd>2 substantial body OCR (样本量不足)</dd>
+            <dt>canonical_citation_id</dt><dd>SHUGE:p124575:1593 · SHUGE:p124575:1594</dd>
+            <dt>linked_claim</dt><dd>r2-cl-002 (R3 strengthened to TEXT_CONFIRMED)</dd>
+            <dt>pages (R2 sample)</dt><dd>2 substantial body OCR</dd>
+            <dt>pages (R3 full corpus · 河水 term)</dt><dd><strong>118 pages</strong> (远超 R2 sample)</dd>
           </dl>
         </div>
       </details>
@@ -265,18 +283,18 @@
     <span class="section-num">BLOCK 04</span>
     <h2>深入研究</h2>
     <p class="lede">
-      本页面刻意保持简洁:核心发现技术史、三个研究问题的内部编号、9 个 river groups、9 个 historical places、60-page audit、scan sequence 分析、所有 6 条 claims、machine IDs、source downloads、版本历史,均移至技术附录。
+      本页面刻意保持简洁。R2.2 4-block 结构未修改,仅 hero stats 区分 FULL CORPUS 与 AUDITED SAMPLE,3 组故事已用 R3 完整 corpus retest 证据更新。
     </p>
     <div class="archive-primary">
-      <p>→ <a href="appendix/">进入技术附录</a></p>
+      <p>→ <a href="corpus/">进入完整数字语料</a> · <a href="appendix/">技术附录</a></p>
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <p>《水经注》数字证据研究 · SHUGE Research</p>
-  <p>本页基于 R2.1 frozen outputs · v1.0 frozen baseline (<code>3a51ef5</code>) 未修改 · R1 route (<code>59d258e</code>) 保留</p>
-  <p><a href="/projects/shuge/research/water-classic-evidence-r1/">R1 路由保留</a> · <a href="/projects/shuge/">SHUGE 数字人文研究</a></p>
+  <p>本页基于 R2.2 frozen outputs · R3 增加 FULL CORPUS 重新验证 · v1.0 frozen baseline (<code>3a51ef5</code>) 未修改 · R1 route (<code>59d258e</code>) 保留 · R2.1 frozen (<code>fda2ecb</code>) 保留 · R2.2 frozen (<code>8a5a130</code>) 保留</p>
+  <p><a href="/projects/shuge/research/water-classic/corpus/">R3 完整语料</a> · <a href="/projects/shuge/research/water-classic-evidence-r1/">R1 路由保留</a> · <a href="/projects/shuge/">SHUGE 数字人文研究</a></p>
 </footer>
 
 </div>

@@ -1,0 +1,224 @@
+{
+  "schema_version": "story-retest-r3/1.0",
+  "generated_at": "2026-09-28T14:50:00Z",
+  "work_id": "p124575",
+  "corpus_size": 956,
+  "search_method": "page_ocr.normalized_text LIKE (FTS5 ocr_fts 不可用)",
+  "volume_status": "UNRESOLVED",
+  "no_modern_geography_binding": true,
+  "stories": [
+    {
+      "story_id": "story-1",
+      "title": "江水沿岸的两个县城",
+      "river_label": "江水",
+      "places": [
+        "公安",
+        "華容"
+      ],
+      "linked_claims_r2": [
+        "r2-cl-001"
+      ],
+      "fts_search_used": "page_ocr.normalized_text LIKE (FTS5 ocr_fts empty for this work)",
+      "term_occurrences": {
+        "江水": 78,
+        "公安": 3,
+        "華容": 4
+      },
+      "co_occurrences": {
+        "江水+公安": 1,
+        "江水+華容": 2
+      },
+      "co_occurrence_pages_citation_ids": {
+        "江水+公安": [
+          "SHUGE:p124575:2322"
+        ],
+        "江水+華容": [
+          "SHUGE:p124575:2321",
+          "SHUGE:p124575:2322"
+        ]
+      },
+      "ocr_excerpts_sample": {
+        "江水": [
+          {
+            "canonical_citation_id": "SHUGE:p124575:1518",
+            "excerpt": "K至\n第三十八\n第三十七\n第三十六\n第三十五\n第三十四\n第三十三\n湘水\n資水\n浪水\n夷水\n淹水\n存水\n延江水\n若水\n青衣水\n江水下\n江水中\n江水上\n潼水\n水\n沅水\n油水\n葉榆水\n温水\n沅酉水\n沫水\n水\n水\n水\n国立公文書館\nNational Archives of.Ja"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1519",
+            "excerpt": "去嵩高五萬里地之中也\n昆墟在西北\n水經第一\n水經目錄終\n肉\n天庭是太帝之居\n桐一名板松二日玄圃一名風上日增城一名\n三成為丘昆日之山三级下日樊\n第四十\n第三十九\n鐘水\n河水一\n潮江水\n赣水\n匯水\n添水\n水\n水\n斤江水\n鹰水\n渭水\n漉水\n来水\n深水\n明吴校\n後魏道元注\n漢桑饮撰\n国立公文書館\nNational Archivesof.Ja"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1556",
+            "excerpt": "河水又東洮水注之\n上見長人受黑玉書从斯水上洮水又東北流屈\n水又东經臨洮縣故城北禹治洪水西至洮水之\n又東甘帜耳靡望曲在西南去龍桑二百里泌\n山南城在四山中泌水又东經迷和城北羌名也\n救之羌退聚洮陽即此城也泌水又東經共和\n从臨洮上遣行車将軍馬防興長水校尉耿恭\n有曾城城臨水者也建初二年羌攻南部都尉\n東北派經陽曾城北沙州記日强城东北三百里\n南北三百里中地草是龍而無樵柴水又\n流吐谷中吐谷潭者始是東燕慕容之枝庶因\n水同出一山故知强臺西倾之典名也水東北\n东南流人汉而至藝江故國以马垫江水也\n氏其字以马首類之種也故之野自洮\n海經日白水出蜀郭景纯注云臨洮之西倾山\n水俱出强山山南印垫江源山东洮水源山\n地理志日水出塞外羌"
+          }
+        ]
+      },
+      "story_status_r3_r3_3level": {
+        "text_support": "TEXT_CONFIRMED",
+        "spatial_interpretation": "SPATIAL_UNRESOLVED",
+        "modern_correspondence": "MODERN_UNRESOLVED"
+      },
+      "rationale": {
+        "places_all_present": true,
+        "river_term_pages": 78,
+        "co_occurrence_total_pages": 3,
+        "volume_status": "UNRESOLVED (per Section D)",
+        "note": "full corpus 检索确认 3 个故事在 956 页中均存在文本共现; spatial 仍未确认 (无 volume 重建); modern 统一 MODERN_UNRESOLVED"
+      }
+    },
+    {
+      "story_id": "story-2",
+      "title": "易水流域的三座城邑",
+      "river_label": "易水",
+      "places": [
+        "范陽",
+        "容城",
+        "故安"
+      ],
+      "linked_claims_r2": [
+        "r2-cl-003"
+      ],
+      "fts_search_used": "page_ocr.normalized_text LIKE (FTS5 ocr_fts empty for this work)",
+      "term_occurrences": {
+        "易水": 11,
+        "范陽": 10,
+        "容城": 8,
+        "故安": 9
+      },
+      "co_occurrences": {
+        "易水+范陽": 5,
+        "易水+容城": 4,
+        "易水+故安": 5
+      },
+      "co_occurrence_pages_citation_ids": {
+        "易水+范陽": [
+          "SHUGE:p124575:1657",
+          "SHUGE:p124575:1659",
+          "SHUGE:p124575:1660",
+          "SHUGE:p124575:1661",
+          "SHUGE:p124575:1682"
+        ],
+        "易水+容城": [
+          "SHUGE:p124575:1657",
+          "SHUGE:p124575:1659",
+          "SHUGE:p124575:1661",
+          "SHUGE:p124575:1682"
+        ],
+        "易水+故安": [
+          "SHUGE:p124575:1655",
+          "SHUGE:p124575:1656",
+          "SHUGE:p124575:1657",
+          "SHUGE:p124575:1659",
+          "SHUGE:p124575:1660"
+        ]
+      },
+      "ocr_excerpts_sample": {
+        "易水": [
+          {
+            "canonical_citation_id": "SHUGE:p124575:1514",
+            "excerpt": "条\n第十二\n第十\n第十\n第九\n第八\n第七\n第六\n聖水\n易水\n漳水\n水\n茶\n清水\n濟水\n濟水\n晋水\n原公水\n水\n汾茶\n河水五\n民金\n巨馬水\n水\n清漳水\n水\n沁水\n湛水\n文水\n漯水\n洞\n过水\n水\n国立公文書館\nNational Archives of.Ja"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1655",
+            "excerpt": "腾地口\n香府\n佳久昌亲事\n易水出承郡故安縣間鄉西山\n水經第十一\n王在中鹿葛建者也易水東左興子莊溪水合\n此山故其舊居世以為五大夫城即此岳云五\n王不同王恭之政子典生五子亚避时乱居\n易水出西山中谷東五大夫城南昔北平候\n易水\n遂草文車\n水\n明吴琯校\n後魏翻道元注\n漢冒系撰\n皇家\n国立公文書館"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1656",
+            "excerpt": "才系\n故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽\n陽蓄燕昭王之所城也東西二十里南北十七里\n經今水破城東南隅世又易水马故安河武\n水故安城南外東流即斯水也锈是人事明\n屠嘉為侯國城东西二里南北一里半高锈云易\n東南小城即故安縣之故城也汉文帝封丞相申\n下都擅武陽之名左得濡水枝津故武陽大城\n易自中歷武夫開東出是兼武水之故燕之\n盖太子册馆高潮離處也易水又東經武陽南蓄\n于易水易水又東歷燕之長城又東渐離城南\n出广昌鄉縣之樊石山东流覆金山下東流注\n城西南即燕之長城門也典樊石山水合水源西\n潤東北流注于易之三會口易水又东届開門\n人于易水易水又右會女思谷水水出西南女思\n怡情方外之士尚依舊居取畅林木其水東南\n失二之城潤曲泉清"
+          }
+        ]
+      },
+      "story_status_r3_r3_3level": {
+        "text_support": "TEXT_CONFIRMED",
+        "spatial_interpretation": "SPATIAL_UNRESOLVED",
+        "modern_correspondence": "MODERN_UNRESOLVED"
+      },
+      "rationale": {
+        "places_all_present": true,
+        "river_term_pages": 11,
+        "co_occurrence_total_pages": 14,
+        "volume_status": "UNRESOLVED (per Section D)",
+        "note": "full corpus 检索确认 3 个故事在 956 页中均存在文本共现; spatial 仍未确认 (无 volume 重建); modern 统一 MODERN_UNRESOLVED"
+      }
+    },
+    {
+      "story_id": "story-3",
+      "title": "河水片段中的两个县城",
+      "river_label": "河水",
+      "places": [
+        "野王",
+        "修武"
+      ],
+      "linked_claims_r2": [
+        "r2-cl-002"
+      ],
+      "fts_search_used": "page_ocr.normalized_text LIKE (FTS5 ocr_fts empty for this work)",
+      "term_occurrences": {
+        "河水": 118,
+        "野王": 9,
+        "修武": 7
+      },
+      "co_occurrences": {
+        "河水+野王": 1,
+        "河水+修武": 2
+      },
+      "co_occurrence_pages_citation_ids": {
+        "河水+野王": [
+          "SHUGE:p124575:1892"
+        ],
+        "河水+修武": [
+          "SHUGE:p124575:1968",
+          "SHUGE:p124575:1975"
+        ]
+      },
+      "ocr_excerpts_sample": {
+        "河水": [
+          {
+            "canonical_citation_id": "SHUGE:p124575:1513",
+            "excerpt": "水經目錄\n第五\n第四\n第三\n第二\n第\n河水四\n河水三\n河水二\n河水\n国立公文書館\nNational Archivesof.Japar"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1514",
+            "excerpt": "条\n第十二\n第十\n第十\n第九\n第八\n第七\n第六\n聖水\n易水\n漳水\n水\n茶\n清水\n濟水\n濟水\n晋水\n原公水\n水\n汾茶\n河水五\n民金\n巨馬水\n水\n清漳水\n水\n沁水\n湛水\n文水\n漯水\n洞\n过水\n水\n国立公文書館\nNational Archives of.Ja"
+          },
+          {
+            "canonical_citation_id": "SHUGE:p124575:1519",
+            "excerpt": "去嵩高五萬里地之中也\n昆墟在西北\n水經第一\n水經目錄終\n肉\n天庭是太帝之居\n桐一名板松二日玄圃一名風上日增城一名\n三成為丘昆日之山三级下日樊\n第四十\n第三十九\n鐘水\n河水一\n潮江水\n赣水\n匯水\n添水\n水\n水\n斤江水\n鹰水\n渭水\n漉水\n来水\n深水\n明吴校\n後魏道元注\n漢桑饮撰\n国立公文書館\nNational Archivesof.Ja"
+          }
+        ]
+      },
+      "story_status_r3_r3_3level": {
+        "text_support": "TEXT_CONFIRMED",
+        "spatial_interpretation": "SPATIAL_UNRESOLVED",
+        "modern_correspondence": "MODERN_UNRESOLVED"
+      },
+      "rationale": {
+        "places_all_present": true,
+        "river_term_pages": 118,
+        "co_occurrence_total_pages": 3,
+        "volume_status": "UNRESOLVED (per Section D)",
+        "note": "full corpus 检索确认 3 个故事在 956 页中均存在文本共现; spatial 仍未确认 (无 volume 重建); modern 统一 MODERN_UNRESOLVED"
+      }
+    }
+  ],
+  "summary": {
+    "story_count": 3,
+    "all_text_confirmed": 3,
+    "text_partial": 0,
+    "all_modern_unresolved": true
+  },
+  "research_leads": [
+    {
+      "lead_id": "RL-001",
+      "description": "完整 corpus 中 河水 出现 118 页 — 远超 R2 60-page sample 涵盖范围; 待建立河水 (R3 R2 r2-cl-002) 之外的其他 河水 (R3 河水) 河段叙事文本收集 (RESEARCH_LEAD · not CLAIM)"
+    },
+    {
+      "lead_id": "RL-002",
+      "description": "完整 corpus 中 江水 出现 78 页 — 江水叙事在卷三十三-三十六江水跨多个 volume; 待 document_units 重建后才可确认卷次 (RESEARCH_LEAD)"
+    },
+    {
+      "lead_id": "RL-003",
+      "description": "完整 corpus 中 易水 / 范陽 / 容城 / 故安 分别 11 / 10 / 8 / 9 页 — 卷十一 (易水、滱水) 推断但未在 DB 中确认 (RESEARCH_LEAD)"
+    }
+  ]
+}

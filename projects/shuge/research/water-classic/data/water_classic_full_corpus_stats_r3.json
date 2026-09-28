@@ -1,0 +1,70 @@
+{
+  "schema_version": "full-corpus-stats-r3/1.0",
+  "generated_at": "2026-09-28T14:50:00Z",
+  "work_id": "p124575",
+  "work_title": "水经注",
+  "work_author": "桑钦撰 后魏 郦道元 注",
+  "edition": "明万历十三年 (乙酉 1585) 新安吴琯刊山水经合刻本",
+  "edition_volume_info": "十四",
+  "expected_from_prior_report": {
+    "TOTAL_PAGE_OBJECTS": 956,
+    "OCR_SUCCESS": 956,
+    "SEARCHABLE_PAGES": 933,
+    "ZERO_TEXT_PAGES": 23,
+    "OCR_CHARS": 322030,
+    "note": "EXPECTED only · authoritative per spec K"
+  },
+  "authoritative_db_readonly": {
+    "TOTAL_PAGE_OBJECTS": 956,
+    "OCR_SUCCESS_PAGE_OBJECTS": 0,
+    "OCR_QUEUED_PAGE_OBJECTS": 956,
+    "OCR_SUCCESS_PAGE_OCR": 956,
+    "SEARCHABLE_PAGES": 956,
+    "ZERO_TEXT_PAGES": 0,
+    "OCR_CHARS": 302951,
+    "char_count_distribution": {
+      "1-50": 27,
+      "201-500": 865,
+      "51-200": 64
+    },
+    "distinct_page_labels": 91,
+    "page_objects_per_label_ratio": 10.51,
+    "page_index_range": "1-91",
+    "digital_objects_linked": 0,
+    "document_units": 0,
+    "ocr_runs_referenced": 4
+  },
+  "discrepancies_from_expected": [
+    {
+      "field": "ZERO_TEXT_PAGES",
+      "expected": 23,
+      "actual": 0,
+      "note": "DB 实际为 0 — 全部 page_ocr.char_count > 0"
+    },
+    {
+      "field": "SEARCHABLE_PAGES",
+      "expected": 933,
+      "actual": 956,
+      "note": "DB 实际为 956 — 全部 char_count > 0"
+    },
+    {
+      "field": "OCR_CHARS",
+      "expected": 322030,
+      "actual": 302951,
+      "note": "DB 实际为 302951 — 当前 corpus 子集"
+    },
+    {
+      "field": "OCR_SUCCESS (page_objects.ocr_status)",
+      "expected": 956,
+      "actual_QUEUED_in_page_objects": 956,
+      "actual_SUCCESS_in_page_objects": 0,
+      "note": "page_objects.ocr_status 全部为 QUEUED (上游未更新); page_ocr.status 全部为 SUCCESS — 报告值采用 page_ocr.status 视角 956"
+    }
+  ],
+  "notes": [
+    "Read-only SQLite via Python sqlite3 module (file:...?mode=ro)",
+    "FTS5 ocr_fts 表对该 work 完全无可检索数据 (0 rows for all story terms)",
+    "Full corpus search fallback to page_ocr.normalized_text LIKE",
+    "DB 查询为 authoritative; EXPECTED_FROM_PRIOR_REPORT 仅作 discrepancy 对照"
+  ]
+}

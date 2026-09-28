@@ -1,0 +1,151 @@
+{
+  "version": "v0.5",
+  "generated_at": "2026-09-28T09:48:00+08:00",
+  "schema_version": "1.0",
+  "schema": {
+    "required_fields": [
+      "field_note_id",
+      "place_id",
+      "date",
+      "location_text",
+      "linked_citation_ids",
+      "observation",
+      "verification_status"
+    ],
+    "optional_fields": [
+      "photos_count",
+      "weather",
+      "recording_count",
+      "fieldworker_name",
+      "linked_evidence_card_ids",
+      "linked_research_question_ids",
+      "tags"
+    ],
+    "verification_status_values": [
+      "UNVERIFIED",
+      "VERIFIED",
+      "CONTRADICTED",
+      "NEEDS_REVIEW"
+    ],
+    "field_note_id_format": "FN-YYYYMMDD-<3-digit-seq>",
+    "source": "v0.5 schema design — readonly, no actual photos in v0.5"
+  },
+  "stats": {
+    "total_demo_notes": 4,
+    "by_status": {
+      "VERIFIED": 1,
+      "UNVERIFIED": 2,
+      "NEEDS_REVIEW": 1
+    },
+    "by_place": {
+      "place-sanggan-he": 1,
+      "place-beijing": 2,
+      "place-grand-canal": 1
+    }
+  },
+  "demo_notes": [
+    {
+      "field_note_id": "FN-20260928-001",
+      "place_id": "sangganhe",
+      "date": "2026-09-15",
+      "location_text": "河北省张家口市阳原县桑干河大桥 (示意坐标,实际未现场)",
+      "gps_lat": 40.1036,
+      "gps_lng": 114.1819,
+      "weather": "晴, 微风",
+      "photos_count": 12,
+      "recording_count": 0,
+      "fieldworker_name": "fieldworker-A (anonymized)",
+      "linked_citation_ids": [
+        "SHUGE:p124575:1"
+      ],
+      "linked_evidence_card_ids": [],
+      "linked_research_question_ids": [
+        "rq-ws1-001"
+      ],
+      "observation": "桑干河河床已干涸,与《水经注·河水》记载之'水势浩荡'明显不符。实地观测水位极低,与古籍描述存在差异。",
+      "verification_status": "NEEDS_REVIEW",
+      "tags": [
+        "river-state",
+        "comparison-needed",
+        "v0.5-demo"
+      ]
+    },
+    {
+      "field_note_id": "FN-20260928-002",
+      "place_id": "beijing",
+      "date": "2026-09-20",
+      "location_text": "北京市东城区故宫博物院 太和殿前檐柱 (示意)",
+      "gps_lat": 39.9163,
+      "gps_lng": 116.3972,
+      "weather": "晴",
+      "photos_count": 28,
+      "recording_count": 1,
+      "fieldworker_name": "fieldworker-B (anonymized)",
+      "linked_citation_ids": [
+        "SHUGE:p44159:200"
+      ],
+      "linked_evidence_card_ids": [],
+      "linked_research_question_ids": [
+        "rq-ws2-001"
+      ],
+      "observation": "实测太和殿前檐柱直径约 0.6m,柱顶石(柱础)正心面直径约 0.3m。比例约为 d=2c,与《工程做法》记载相符。但柱径尺寸因部位不同(檐柱/金柱/中柱)而异,需更多数据点。",
+      "verification_status": "VERIFIED",
+      "tags": [
+        "pillar-measurement",
+        "d-equals-2c",
+        "v0.5-demo"
+      ]
+    },
+    {
+      "field_note_id": "FN-20260928-003",
+      "place_id": "beijing",
+      "date": "2026-09-22",
+      "location_text": "北京市海淀区颐和园 长廊亭柱 (示意)",
+      "gps_lat": 39.9989,
+      "gps_lng": 116.2756,
+      "weather": "多云",
+      "photos_count": 14,
+      "recording_count": 0,
+      "fieldworker_name": "fieldworker-A (anonymized)",
+      "linked_citation_ids": [
+        "SHUGE:p168491:30"
+      ],
+      "linked_evidence_card_ids": [],
+      "linked_research_question_ids": [
+        "rq-ws2-002"
+      ],
+      "observation": "颐和园长廊亭柱明显比故宫太和殿檐柱纤细。柱径约 0.25m,正心面约 0.18m,比例接近 d=1.4c,与 d=2c 关系存在差异。园林建筑的柱径标准与宫殿不同,可能遵循不同的营造规范。",
+      "verification_status": "UNVERIFIED",
+      "tags": [
+        "pillar-measurement",
+        "garden-vs-palace",
+        "v0.5-demo"
+      ]
+    },
+    {
+      "field_note_id": "FN-20260928-004",
+      "place_id": "grand_canal",
+      "date": "2026-09-25",
+      "location_text": "北京市通州区大运河森林公园 运河故道 (示意)",
+      "gps_lat": 39.9097,
+      "gps_lng": 116.6574,
+      "weather": "阴",
+      "photos_count": 8,
+      "recording_count": 0,
+      "fieldworker_name": "fieldworker-C (anonymized)",
+      "linked_citation_ids": [
+        "SHUGE:p48341:50"
+      ],
+      "linked_evidence_card_ids": [],
+      "linked_research_question_ids": [
+        "rq-ws1-002"
+      ],
+      "observation": "京杭大运河通州段仍可通航,与《水经注》记载'漕运'水道基本延续。但具体到河道走向与古代相比有所改变,可能需要更多测绘数据比对。",
+      "verification_status": "UNVERIFIED",
+      "tags": [
+        "canal-survey",
+        "v0.5-demo"
+      ]
+    }
+  ]
+}

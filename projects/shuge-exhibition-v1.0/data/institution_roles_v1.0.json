@@ -1,0 +1,134 @@
+{
+  "version": "v1.0",
+  "generated_at": "2026-09-28T10:42:00+08:00",
+  "source": "v0.7 bibliography.json + v1.0 audit",
+  "purpose": "v1.0 critical audit — distinguish source_platform vs original_publisher per spec.",
+  "boundary_note": "书格 (shuge.org) is a digital-photograph hosting platform that catalogs National Diet Library (Japan) and other public-domain scans. It is NOT the original publisher of the classical works it hosts. Original publishers/authorship of pre-modern Chinese classics are usually unknown, anonymous, or pre-print. This file preserves that audit without modifying v0.7 bibliography.json.",
+  "institution_roles": [
+    {
+      "institution_id": "inst-shuge",
+      "name_zh": "书格",
+      "name_en": "Shuge",
+      "role_in_research": "source_platform",
+      "role_in_bibliography_v0.7": "publisher",
+      "role_correction_v1.0": "书格 is a digital-photograph source_platform that hosts scanned page images of pre-modern Chinese classics held by National Diet Library (国立公文書館, Japan) and similar public-domain archives. It is NOT the original publisher of 《水经注》 (Northern Wei / 6th c.) or 《天工开物》 (Song / 1637) or 《工程做法》 (Qing / 1734). The original authorship/publisher of these pre-modern works is unknown or pre-print, and is NOT shuge.org.",
+      "what_shuge_provides": [
+        "OCR text snippets (char_count, mean_confidence per page)",
+        "Page metadata (page_label, page_index, work_id)",
+        "Hosting of scanned page images"
+      ],
+      "what_shuge_does_NOT_provide": [
+        "Original authorship attribution",
+        "Editorial authority over the classical text",
+        "Full-text retrieval access (full_text_unavailable=true)"
+      ],
+      "url": "https://www.shuge.org/",
+      "url_role": "Read-only ID reference. No content fetched. No scraping.",
+      "referenced_in_v1.0_article": true,
+      "referenced_as": "source platform (not publisher)",
+      "audit_status": "CRITICAL CORRECTION — v0.7 typed 'publisher'; v1.0 corrects to 'source_platform' for the v1.0 article and ALL future references.",
+      "audit_warning": "Spec v1.0 §7: 不得把 source platform 错当 publisher. ALL v1.0 article text MUST use '书格' as 'source platform' / 'hosting platform', never 'publisher'."
+    },
+    {
+      "institution_id": "inst-ndl-implicit",
+      "name_zh": "国立公文书馆 (日本)",
+      "name_en": "National Diet Library (Japan)",
+      "role_in_research": "original_holder",
+      "what_it_provides": "The actual physical scanned volumes that shuge.org photographs from. Many work_ids (p124575, p211203, p44159, p48341) are derived from 国立公文書館 scans (visible in text_preview: '国立公文書館', 'Natio', '内阁文库').",
+      "referenced_in_v1.0_article": true,
+      "referenced_as": "archive of origin (where shuge photographs from)",
+      "note": "Not fetched, not linked. ID-only reference."
+    },
+    {
+      "institution_id": "inst-original-implicit",
+      "name_zh": "(original authorship / 历代)",
+      "name_en": "(original authorship / various dynasties)",
+      "role_in_research": "original_creator",
+      "what_it_provides": "The historical authorship of the classical texts (郦道元 / Song Yingxing / Qing 工部). Pre-modern works frequently have unknown or anonymous publishers.",
+      "referenced_in_v1.0_article": true,
+      "referenced_as": "author / era attribution in dynasty field (Northern Wei / Song / Qing)",
+      "note": "v0.7 bibliography captures `dynasty` field per work. v1.0 article uses dynasty for era attribution."
+    }
+  ],
+  "work_origin_audit": [
+    {
+      "work_id": "work-shuge-168491",
+      "shuge_role": "hosting scan only",
+      "likely_original": "Original work uncertain; classified by shuge.org into collection 'arch' (architecture/construction)",
+      "dynasty_in_v0.7_bibliography": "Northern Wei",
+      "v1.0_use": "Era attribution only — not as publisher attribution"
+    },
+    {
+      "work_id": "work-shuge-211203",
+      "shuge_role": "hosting scan only",
+      "likely_original": "《天工开物》 by 宋应星 (Song Yingxing), 1637",
+      "dynasty_in_v0.7_bibliography": "Song",
+      "v1.0_use": "Era attribution only — original author/copyright status public domain; shuge.org is NOT the publisher"
+    },
+    {
+      "work_id": "work-shuge-44159",
+      "shuge_role": "hosting scan only",
+      "likely_original": "《工程做法》 by Qing 工部 (Qing Dynasty Board of Works), ~1734",
+      "dynasty_in_v0.7_bibliography": "Qing",
+      "v1.0_use": "Era attribution only — original institution Qing 工部 (NOT shuge.org)"
+    }
+  ],
+  "stats": {
+    "total_institutions_audited": 3,
+    "critical_corrections_v1_0": 1,
+    "v0_7_bibliography_modified": false,
+    "audit_recorded_only": true
+  },
+  "archive_bridge_invariants_v1_0": [
+    {
+      "rule_id": "inv-pub-v1.0-1",
+      "constraint": "SHALL",
+      "text": "v1.0 article MUST reference 书格 only as 'source platform' / 'digital photograph hosting platform', NEVER as 'publisher'."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-2",
+      "constraint": "SHALL",
+      "text": "v1.0 article MUST use `dynasty` field for era attribution (e.g., 'Northern Wei', 'Song', 'Qing'), NOT for publisher attribution."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-3",
+      "constraint": "SHALL",
+      "text": "v1.0 article MUST cite original authorship where known (e.g., 郦道元 for 《水经注》, 宋应星 for 《天工开物》), without attributing them to shuge.org."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-4",
+      "constraint": "SHALL NOT",
+      "text": "v1.0 article MUST NOT auto-generate historical facts. Every factual claim must have at least one citation_id OR be marked as [Limitation: unverified / not in evidence corpus]."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-5",
+      "constraint": "SHALL NOT",
+      "text": "v1.0 article MUST NOT change any Citation ID. All 6 SHUGE:p<post_id>:<page_seq> IDs preserved verbatim from v0.7."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-6",
+      "constraint": "SHALL NOT",
+      "text": "v1.0 article MUST NOT change provenance. All provenance lines preserved from v0.7 bibliography."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-7",
+      "constraint": "SHALL NOT",
+      "text": "v1.0 article MUST NOT acquire new resources. No new downloads, no OCR runs, no new DB queries."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-8",
+      "constraint": "SHALL NOT",
+      "text": "v1.0 article MUST NOT auto-publish. Final publication_status = REVIEW (not PUBLISHED) unless user explicitly approves."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-9",
+      "constraint": "SHALL",
+      "text": "v1.0 Peer Review demo MUST be explicitly labeled 'SIMULATED WORKFLOW / NOT EXTERNAL PEER REVIEW' in /review/."
+    },
+    {
+      "rule_id": "inv-pub-v1.0-10",
+      "constraint": "SHALL",
+      "text": "v1.0 Evidence Appendix MUST list every claim with its citation_id, page_id, source, and reliability tier (HIGH / MEDIUM / LOW / UNVERIFIED)."
+    }
+  ]
+}

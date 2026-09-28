@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Workspaces · 书格数字人文研究站 · v0.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Research Workspaces · v0.5</h1>
+  <div class="masthead-subtitle">研究工作空间 — 让观众沿着研究问题走,而不只是看证据</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a>
+  </div>
+  <div class="topnav-meta">v0.5 · 2026-09-28 · 3 workspaces · 6 RQ</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Research Workspaces</h1>
+  <div class="hero-lead">v0.5 引入「Research Question」作为第一导览入口。每个 workspace 是一组连贯的研究问题 + 证据 + 地点 + 缺口。</div>
+  <p>从 v0.4 的「Evidence + Place」升级为「Research Question + Place + Fieldwork」。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Workspace</th><th>Collections</th><th>Places</th><th>RQ</th><th>Gaps</th></tr></thead>
+    <tbody id="ws-stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>3 Research Workspaces</h2>
+  <p class="dim">点击卡片展开研究问题、子问、关联集合、地点、引用、证据、缺口。</p>
+  <div id="workspace-grid" class="cards-grid-3"></div>
+</section>
+
+<section>
+  <h2>Cross-Workspace Compare</h2>
+  <p class="dim">3 个 workspace 的 place/citation 重叠分析 — cross-cutting workspace (ws3) 占据最多 unique 资源。</p>
+  <table class="meta-table" id="ws-compare-table">
+    <thead>
+      <tr><th>Workspace</th><th>Places (unique)</th><th>Citations (unique)</th><th>Collections</th><th>Case Studies</th></tr>
+    </thead>
+    <tbody id="ws-compare-body"></tbody>
+  </table>
+  <div class="takeaway" style="margin-top:1rem;">
+    <div class="takeaway-label">Take-away</div>
+    <p>ws3 <span class="mono">ws-cross-hydrology-architecture</span> 引用 <strong>6 places</strong> (最多) + 跨两个 collection,但其 evidence card 数较少 — 反映 cross-cutting 研究的数据稀疏性。这是 v0.5 的核心 gap 之一。</p>
+  </div>
+</section>
+
+<section>
+  <h2>Mapping to Cases & Places</h2>
+  <p class="dim">每个 workspace 都链接到 v0.3 的 case studies + v0.4 的 places。</p>
+  <table class="meta-table" id="ws-mapping-table">
+    <thead><tr><th>Workspace</th><th>Linked Cases</th><th>Linked Places</th></tr></thead>
+    <tbody id="ws-mapping-body"></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/workspaces/</a> — Research Workspaces (本页)</li>
+    <li><a href="../data/research_workspaces.json">data/research_workspaces.json</a> — 完整 workspace schema (7.9 KB)</li>
+    <li><a href="../data/research_questions.json">data/research_questions.json</a> — 6 RQ · all OPEN</li>
+    <li><a href="../field-notes/">/field-notes/</a> — 4 demo field notes (v0.5)</li>
+    <li><a href="../timeline/">/timeline/</a> — 4 timeline layers · 18 events (v0.5)</li>
+    <li><a href="../DESIGN_v0.5.md">DESIGN_v0.5.md</a> — v0.5 设计文档</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.5 · Research Workspaces · 2026-09-28 ·
+  no new acquisition · no DB write · no OCR · Citation IDs unchanged · 
+  sources: P5-D frozen DB + v0.4 places + v0.3 evidence_cards_v3
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderStatsTable(ws) {
+    var host = document.getElementById('ws-stats-body');
+    if (!host) return;
+    var html = '';
+    ws.workspaces.forEach(function (w) {
+      html += '<tr>' +
+        '<td><strong>' + w.title_zh + '</strong><br><span class="dim mono" style="font-size:0.72rem;">' + w.workspace_id + '</span></td>' +
+        '<td>' + w.collection_slugs.map(function (s) { return '<span class="badge">' + s + '</span>'; }).join(' ') + '</td>' +
+        '<td>' + w.stats.places + '</td>' +
+        '<td>' + w.stats.total_questions + '</td>' +
+        '<td>' + w.stats.gaps_open + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderWorkspaceGrid(ws) {
+    var host = document.getElementById('workspace-grid');
+    if (!host) return;
+    var html = '';
+    ws.workspaces.forEach(function (w) {
+      var gapStatus = w.gaps.filter(function (g) { return g.status === 'OPEN'; }).length;
+      var rqOpen = w.research_questions.filter(function (q) { return q.status === 'OPEN'; }).length;
+      html += '<div class="evidence-card workspace-card" data-ws-id="' + w.workspace_id + '">' +
+        '<div class="evidence-card-header">' +
+          '<div class="evidence-card-question">' + w.title_zh + '</div>' +
+          '<div class="evidence-card-meta">' + w.workspace_id + '</div>' +
+        '</div>' +
+        '<p style="font-family:Source Serif 4, serif; font-size:0.92rem; line-height:1.6; margin:0.6rem 0;"><strong>Q:</strong> ' + w.question + '</p>' +
+        '<div class="evidence-card-footer-meta">' +
+          '<span class="ecfm-coll">collections: ' + w.collection_slugs.join(', ') + '</span>' +
+          '<span class="badge mono">' + w.stats.places + ' places</span>' +
+          '<span class="badge mono">' + rqOpen + '/' + w.stats.total_questions + ' RQ open</span>' +
+          '<span class="badge mono">' + gapStatus + ' gaps open</span>' +
+        '</div>' +
+        '<button class="toggle-btn mono" data-target="ws-detail-' + w.workspace_id + '">▶ drilldown</button>' +
+        '<div id="ws-detail-' + w.workspace_id + '" class="workspace-detail" style="display:none;">' +
+          renderDrilldown(w) +
+        '</div>' +
+      '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderDrilldown(w) {
+    var subQHtml = (w.question_subquestions || []).map(function (q, i) {
+      return '<li>' + q + '</li>';
+    }).join('');
+    var collHtml = w.linked_collection_ids.map(function (id) {
+      return '<span class="badge mono">collection_id=' + id + '</span>';
+    }).join(' ');
+    var placeHtml = w.linked_place_ids.map(function (p) {
+      return '<span class="badge mono">' + p + '</span>';
+    }).join(' ');
+    var citeHtml = w.linked_citation_ids.map(function (c) {
+      return '<span class="badge mono">' + c + '</span>';
+    }).join(' ');
+    var rqHtml = w.research_questions.map(function (r) {
+      return '<li>' +
+        '<span class="rq-chip rq-status-' + r.status.toLowerCase() + '">' + r.status + '</span>' +
+        ' <strong>' + r.rq_id + '</strong>: ' + r.text +
+      '</li>';
+    }).join('');
+    var gapHtml = w.gaps.map(function (g) {
+      return '<li>' +
+        '<span class="gap-indicator gap-status-' + g.status.toLowerCase() + '">' + g.status + '</span>' +
+        ' <strong>' + g.gap_id + '</strong>: ' + g.description +
+      '</li>';
+    }).join('');
+
+    return '' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Sub-questions</div>' +
+        '<ol style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + subQHtml + '</ol>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Collections</div>' +
+        '<div>' + collHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Places (' + w.linked_place_ids.length + ')</div>' +
+        '<div>' + placeHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Citations (' + w.linked_citation_ids.length + ')</div>' +
+        '<div>' + citeHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Research Questions (' + w.research_questions.length + ')</div>' +
+        '<ul style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + rqHtml + '</ul>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Gaps (' + w.gaps.length + ')</div>' +
+        '<ul style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + gapHtml + '</ul>' +
+      '</div>';
+  }
+
+  function renderCompareTable(ws) {
+    var host = document.getElementById('ws-compare-body');
+    if (!host) return;
+    var html = '';
+    ws.workspaces.forEach(function (w) {
+      html += '<tr>' +
+        '<td><strong>' + w.title_zh + '</strong></td>' +
+        '<td>' + w.stats.places + '</td>' +
+        '<td>' + w.stats.citations + '</td>' +
+        '<td>' + w.collection_slugs.join(', ') + '</td>' +
+        '<td>' + (w.linked_case_study_ids || []).join(', ') + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderMappingTable(ws) {
+    var host = document.getElementById('ws-mapping-body');
+    if (!host) return;
+    var html = '';
+    ws.workspaces.forEach(function (w) {
+      var cases = (w.linked_case_study_ids || []).map(function (c) { return '<a href="../cases/' + c + '/">' + c + '</a>'; }).join(', ');
+      var places = (w.linked_place_ids || []).map(function (p) { return '<a href="../places/#' + p + '">' + p + '</a>'; }).join(', ');
+      html += '<tr>' +
+        '<td><strong>' + w.title_zh + '</strong></td>' +
+        '<td>' + cases + '</td>' +
+        '<td>' + places + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function bindToggle() {
+    document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tgt = document.getElementById(btn.getAttribute('data-target'));
+        if (tgt) {
+          var isOpen = tgt.style.display === 'block';
+          tgt.style.display = isOpen ? 'none' : 'block';
+          btn.textContent = isOpen ? '▶ drilldown' : '▼ drilldown';
+        }
+      });
+    });
+  }
+
+  fetch('../data/research_workspaces.json').then(function (r) { return r.json(); }).then(function (ws) {
+    renderStatsTable(ws);
+    renderWorkspaceGrid(ws);
+    renderCompareTable(ws);
+    renderMappingTable(ws);
+    bindToggle();
+  }).catch(function (err) {
+    console.error('Workspaces page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

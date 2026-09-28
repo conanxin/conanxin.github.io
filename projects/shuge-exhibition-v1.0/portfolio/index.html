@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Research Portfolio · v0.9</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Research Portfolio — 5 sections · 25 items · projects / articles / exhibitions / methods / infrastructure">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Public Research Portfolio · v0.9</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.9</span>
+    <span class="badge badge-publication">PUBLIC PORTFOLIO</span>
+    <span class="badge disabled-badge">READ-ONLY ID LINK</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../articles/">Articles</a>
+  <a href="../publications/">Publications</a>
+  <a href="../export/">Export</a>
+  <a href="../portfolio/" class="active">Portfolio</a>
+  <a href="../review/">Review</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Research Portfolio</h2>
+  <p class="hero-lead">Public Research Portfolio 是 v0.4 → v1.0 全部静态资源的聚合视图。<strong>5 sections · 25 items + v1.0 candidate article</strong>,所有条目都是 ID 引用,不会自动创建新内容,不会自动 PUBLISHED。v1.0 新增 <a href="../publications/water-classic-digital-life/"><strong>《从〈水经注〉到数字证据》</strong></a> 作为第一篇真实可公开阅读的研究文章 (REVIEW,未 PUBLISHED)。</p>
+  <dl class="meta-table">
+    <dt>version</dt><dd>v1.0 Candidate</dd>
+    <dt>total_sections</dt><dd id="meta-sections">5</dd>
+    <dt>total_items</dt><dd id="meta-items">25</dd>
+    <dt>v1.0_candidate_article</dt><dd><a href="../publications/water-classic-digital-life/">《从〈水经注〉到数字证据》</a> (REVIEW)</dd>
+    <dt>all_items_id_referenced</dt><dd><span class="badge badge-success">TRUE</span></dd>
+    <dt>no_new_resource_downloaded</dt><dd><span class="badge badge-success">TRUE</span></dd>
+    <dt>no_new_tool_introduced</dt><dd><span class="badge badge-success">TRUE</span></dd>
+    <dt>auto_publish</dt><dd><span class="badge badge-danger">FORBIDDEN</span></dd>
+    <dt>shuge_role_v1_0</dt><dd>source_platform (NOT publisher)</dd>
+  </dl>
+</section>
+
+<section class="v1-0-featured-article">
+  <h3>v1.0 Candidate Article · 重点文章</h3>
+  <p>v1.0 把平台从「数据展示」推进到「真实可公开阅读的研究文章」阶段。本文采用 Citation-bound Historical Research 方法论,所有 9 个 claim 均显式绑定 citation_id 或 limitation,数据全部来自 v0.5-v0.9 已冻结证据集,无新下载 / 无新 OCR / 无 embeddings / 不自动 PUBLISHED。</p>
+  <ul class="featured-article-list">
+    <li><strong>📄 主文章</strong> · <a href="../publications/water-classic-digital-life/">《从〈水经注〉到数字证据：一部古籍的数字生命史》</a> · Status: <span class="badge badge-review-review">REVIEW</span> · 8 sections · 9 evidence callouts</li>
+    <li><strong>📋 Evidence Appendix</strong> · <a href="../publications/water-classic-digital-life/evidence/">/publications/water-classic-digital-life/evidence/</a> · claim → citation → page → source → reliability</li>
+    <li><strong>📐 Methods Note</strong> · <a href="../methods/citation-bound-historical-research/">Citation-bound Historical Research</a> · citation-required-per-claim 政策</li>
+    <li><strong>📦 Data Dossier</strong> · <a href="../data/article_water_classic_dossier.json"><code>data/article_water_classic_dossier.json</code></a> · machine-readable 合并证据集</li>
+    <li><strong>🏛 Institution Audit</strong> · <a href="../data/institution_roles_v1.0.json"><code>data/institution_roles_v1.0.json</code></a> · 书格 = source platform (NOT publisher)</li>
+  </ul>
+</section>
+
+<section class="portfolio-section">
+  <h3>1. Projects <small>(3 items)</small></h3>
+  <p class="section-lead">v0.6 建立的 3 个长期研究项目。每个项目承载 1 个 RQ、若干 place、citation、field note 与 gap。</p>
+  <div id="portfolio-projects-list" class="cards-grid-3"></div>
+</section>
+
+<section class="portfolio-section">
+  <h3>2. Articles <small>(6 items: 3 articles + 3 public pages)</small></h3>
+  <p class="section-lead">v0.8 建立的 3 篇 research article + v0.9 建立的 3 个 public article page。</p>
+  <div id="portfolio-articles-list" class="cards-grid-3"></div>
+</section>
+
+<section class="portfolio-section">
+  <h3>3. Exhibitions <small>(7 items)</small></h3>
+  <p class="section-lead">v0.3-v0.4 建立的 5 个数字展览房间 + 5 个 case study + 1 个 evidence explorer(取 7 个代表性条目)。</p>
+  <div id="portfolio-exhibitions-list" class="cards-grid-3"></div>
+</section>
+
+<section class="portfolio-section">
+  <h3>4. Methods <small>(6 items)</small></h3>
+  <p class="section-lead">聚合 v0.4 → v0.8 的方法论层。每个方法独立条目,描述意图与边界,不下载新资源、不引入新工具。</p>
+  <div id="portfolio-methods-list" class="cards-grid-3"></div>
+</section>
+
+<section class="portfolio-section">
+  <h3>5. Infrastructure <small>(6 items)</small></h3>
+  <p class="section-lead">列出 v0.1 → v0.9 已构建的所有页面、JSON 数据文件、设计文档、ID namespaces、边界约束。</p>
+  <div id="portfolio-infrastructure-list" class="cards-grid-3"></div>
+</section>
+
+<section class="portfolio-section">
+  <h3>Boundary Notes</h3>
+  <ul>
+    <li><span class="badge badge-danger">SHALL NOT</span> 自动 PUBLISHED — review_status 维持 DRAFT/REVIEW/REVISED,PUBLISHED 在 v0.9 是 boundary forbidden</li>
+    <li><span class="badge badge-danger">SHALL NOT</span> 自动生成 abstract / methods / limitations 正文 — public page 字段允许,但正文由 v0.7 evidence_paragraphs 派生</li>
+    <li><span class="badge badge-danger">SHALL NOT</span> 自动调动真实人类评审员 — reviewer_id 是 placeholder,scores 是 static demo</li>
+    <li><span class="badge badge-danger">SHALL NOT</span> portfolio 自动汇总 = 聚合视图,非新内容源</li>
+    <li><span class="badge badge-success">SHALL MAY</span> portfolio 引用 v0.4-v0.8 全部 shared namespaces (FN-* / rq-* / gap-* / ws-* / rp-*)</li>
+    <li><span class="badge badge-success">SHALL MAY</span> portfolio 引用 local-only namespaces (article-* / papa-* / draft-* / para-* / cl-* / sec-*)</li>
+  </ul>
+</section>
+
+<section class="further-reading">
+  <h3>Cross-Links</h3>
+  <ul>
+    <li><a href="../projects/">/projects/</a> — Research Projects (v0.6)</li>
+    <li><a href="../articles/">/articles/</a> — Research Articles (v0.8)</li>
+    <li><a href="../research-writing/">/research-writing/</a> — Research Writing (v0.7)</li>
+    <li><a href="../evidence-explorer/">/evidence-explorer/</a> — Evidence Explorer (v0.4)</li>
+    <li><a href="../workspaces/">/workspaces/</a> — Workspaces (v0.5)</li>
+    <li><a href="../review/">/review/</a> — Peer Review Records (v0.9)</li>
+    <li><a href="../archive-bridge/">/archive-bridge/</a> — Conan Xin Archive Bridge</li>
+    <li><a href="../DESIGN_v0.9.md">DESIGN_v0.9.md</a> — v0.9 设计文档</li>
+    <li><a href="../IA_v0.9.md">IA_v0.9.md</a> — v0.9 信息架构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v1.0 Candidate · Public Portfolio · READ-ONLY ID LINK · 不自动 PUBLISHED · 不引入新工具 · 不下载新资源 · <strong>书格 = source platform (NOT publisher)</strong></p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const portfolio = await fetch('../data/research_portfolio.json').then(r => r.json());
+
+  // helper: 渲染单个 item card
+  function renderItem(item) {
+    return '<div class="portfolio-item-card">' +
+      '<div class="portfolio-item-card-head"><code>' + item.id + '</code></div>' +
+      '<h4>' + (item.title_zh || item.name_zh || item.label_zh) + '</h4>' +
+      '<p><em>' + (item.title_en || item.name_en || item.label_en) + '</em></p>' +
+      '<p class="portfolio-item-card-meta">' +
+        Object.entries(item).filter(([k, _]) => !['id', 'title_zh', 'title_en', 'name_zh', 'name_en', 'label_zh', 'label_en'].includes(k))
+          .map(([k, v]) => '<strong>' + k + ':</strong> ' + (Array.isArray(v) ? v.length + ' 项' : (typeof v === 'object' ? JSON.stringify(v) : v)))
+          .join(' · ') +
+      '</p>' +
+      '</div>';
+  }
+
+  // helper: 渲染 single-card (没有 items[] 子结构,只有一层属性)
+  function renderFlat(item, sectionLabel) {
+    let body = '<p>';
+    Object.entries(item).filter(([k, _]) => k !== 'id' && k !== 'section_id').forEach(([k, v]) => {
+      body += '<strong>' + k + ':</strong> ' + (typeof v === 'object' ? JSON.stringify(v) : v) + ' · ';
+    });
+    body = body.replace(/ · $/, '') + '</p>';
+    return '<div class="portfolio-item-card">' +
+      '<div class="portfolio-item-card-head"><code>' + item.id + '</code></div>' +
+      '<h4>' + item.label_zh + '</h4>' +
+      '<p><em>' + item.label_en + '</em></p>' +
+      body +
+      '</div>';
+  }
+
+  document.getElementById('portfolio-projects-list').innerHTML = portfolio.portfolio_sections.find(s => s.section_id === 'sec-portfolio-projects').items.map(renderItem).join('');
+  document.getElementById('portfolio-articles-list').innerHTML = portfolio.portfolio_sections.find(s => s.section_id === 'sec-portfolio-articles').items.map(renderItem).join('');
+  document.getElementById('portfolio-exhibitions-list').innerHTML = portfolio.portfolio_sections.find(s => s.section_id === 'sec-portfolio-exhibitions').items.map(renderItem).join('');
+  document.getElementById('portfolio-methods-list').innerHTML = portfolio.portfolio_sections.find(s => s.section_id === 'sec-portfolio-methods').items.map(renderItem).join('');
+
+  // infrastructure 用 flat renderer
+  document.getElementById('portfolio-infrastructure-list').innerHTML = portfolio.portfolio_sections.find(s => s.section_id === 'sec-portfolio-infrastructure').items.map(item => renderFlat(item)).join('');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Publications · SHUGE DH Research Platform v0.8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Publication workflow hub — DRAFT → REVIEW → REVISED state machine · 5 rubric dimensions · 8 archive bridge invariants">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Publication Hub · Workflow · State Machine · Rubric</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v1.0</span>
+    <span class="badge badge-status">CANDIDATE ARTICLE</span>
+    <span class="badge badge-publication">PUBLISHED forbidden</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../articles/">Articles</a>
+  <a href="../publications/" class="active">Publications</a>
+  <a href="../export/">Export</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Publications</h2>
+  <p class="hero-lead">Publication Workflow Hub — 4-state machine (DRAFT → REVIEW → REVISED → PUBLISHED) · 5 transitions · 5 rubric dimensions · 8 archive bridge invariants。<strong>PUBLISHED 在 v1.0 严格边界内禁止</strong>。v1.0 新增第一篇真实可公开阅读的研究文章 (REVIEW,未 PUBLISHED):</p>
+  <p class="hero-cta">📄 <a href="./water-classic-digital-life/"><strong>《从〈水经注〉到数字证据：一部古籍的数字生命史》</strong></a> · Status: <span class="badge badge-review-review">REVIEW</span> · 8 sections · 9 evidence callouts · 全部 6 个 Citation ID 自 v0.7 保留 verbatim · 书格 = source platform (NOT publisher)</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v1.0 Candidate</dd>
+    <dt>States</dt><dd id="meta-states-count">—</dd>
+    <dt>Transitions</dt><dd id="meta-transitions-count">—</dd>
+    <dt>Rubric Dimensions</dt><dd id="meta-rubric-count">—</dd>
+    <dt>Boundaries</dt><dd>8 invariants · PUBLISHED forbidden · 不自动生成正文</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Publication Dashboard</h3>
+  <p class="section-lead">当前 v0.8 演示:total=3 articles · DRAFT=1 · REVIEW=1 · REVISED=1 · PUBLISHED=0(边界)。</p>
+  <table class="stats-table" id="publication-stats">
+    <thead><tr><th>维度</th><th>数值</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Review Status Distribution</h3>
+  <p class="section-lead">3 articles 的 review_status 分布。PUBLISHED 永远 = 0(边界)。</p>
+  <div id="review-status-bars"></div>
+</section>
+
+<section>
+  <h3>Workflow State Machine</h3>
+  <p class="section-lead">4-state machine: DRAFT → REVIEW → REVISED → (PUBLISHED 边界内禁止)。5 transitions 描述状态转换规则。</p>
+  <div class="workflow-machine" id="workflow-machine"></div>
+</section>
+
+<section>
+  <h3>Rubric Dimensions</h3>
+  <p class="section-lead">5 维度评审打分(0-5)。每个维度有 passing score,reviewer 必须 ≥ passing 才能进入 REVISED。</p>
+  <table class="data-table" id="rubric-table">
+    <thead><tr><th>Dimension</th><th>Description</th><th>Scale</th><th>Passing Score</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h3>3 Article Cards</h3>
+  <p class="section-lead">3 个 research article 的 review_status badge + 关键 stats。</p>
+  <div class="cards-grid-3" id="article-cards"></div>
+</section>
+
+<section>
+  <h3>8 Archive Bridge Invariants (v0.8)</h3>
+  <p class="section-lead">继承 v0.6/v0.7 的 6 个 invariants + v0.8 新增的 3 个边界约束。详见 <a href="../archive-bridge/">/archive-bridge/</a> 与 <a href="../data/publication_invariants.json">publication_invariants.json</a>。</p>
+  <div class="bridge-card-list" id="invariants-list"></div>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../articles/">/articles/</a> — 3 Research Articles(基于 v0.7 drafts)</li>
+    <li><a href="../export/">/export/</a> — Markdown / CSL JSON / BibTeX</li>
+    <li><a href="../archive-bridge/">/archive-bridge/</a> — v0.6 ID-only Bridge(本节为 v0.8 扩展)</li>
+    <li><a href="../DESIGN_v0.8.md">DESIGN_v0.8.md</a> — §3.2 Publication Workflow · §3.4 Bridge</li>
+    <li><a href="../IA_v0.8.md">IA_v0.8.md</a> — §2 /publications/ 原型结构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.8 · Publications · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const workflow = await fetch('../data/publication_workflow.json').then(r => r.json());
+  const articlesData = await fetch('../data/research_articles.json').then(r => r.json());
+  const invariants = await fetch('../data/publication_invariants.json').then(r => r.json());
+
+  // meta
+  document.getElementById('meta-states-count').textContent = workflow.stats.states;
+  document.getElementById('meta-transitions-count').textContent = workflow.stats.transitions;
+  document.getElementById('meta-rubric-count').textContent = workflow.stats.rubric_dimensions;
+
+  // stats table
+  const statsRows = [
+    ['Total Articles', articlesData.total_articles],
+    ['Articles in DRAFT', articlesData.stats.articles_in_draft],
+    ['Articles in REVIEW', articlesData.stats.articles_in_review],
+    ['Articles in REVISED', articlesData.stats.articles_in_revised],
+    ['Articles in PUBLISHED', articlesData.stats.articles_in_published + ' (边界:必须 = 0)'],
+    ['Total Sections', articlesData.stats.total_sections],
+    ['Total Paragraphs', articlesData.stats.total_paragraphs],
+    ['Total Claims', articlesData.stats.total_claims],
+    ['Total Citations', articlesData.stats.total_citations],
+    ['Total Word Count', articlesData.stats.total_word_count + ' 字'],
+    ['Workflow States', workflow.stats.states],
+    ['Workflow Transitions', workflow.stats.transitions],
+    ['Rubric Dimensions', workflow.stats.rubric_dimensions],
+    ['Archive Bridge Invariants', invariants.stats.archive_bridge_invariants_v0_8],
+    ['Schema Additions v0.8', invariants.stats.schema_additions_v0_8]
+  ];
+  document.querySelector('#publication-stats tbody').innerHTML =
+    statsRows.map(([k, v]) => '<tr><td>' + k + '</td><td><code>' + v + '</code></td></tr>').join('');
+
+  // review status distribution
+  const states = ['DRAFT', 'REVIEW', 'REVISED', 'PUBLISHED'];
+  const counts = {
+    'DRAFT': articlesData.stats.articles_in_draft,
+    'REVIEW': articlesData.stats.articles_in_review,
+    'REVISED': articlesData.stats.articles_in_revised,
+    'PUBLISHED': articlesData.stats.articles_in_published
+  };
+  const total = articlesData.total_articles;
+  const stateColors = {
+    'DRAFT': 'var(--rule-gray)',
+    'REVIEW': 'var(--archival-brown)',
+    'REVISED': 'var(--seal-red)',
+    'PUBLISHED': 'var(--status-green)'
+  };
+  const barsHtml = states.map(state => {
+    const count = counts[state];
+    const pct = total > 0 ? Math.round(count / total * 100) : 0;
+    const isBoundary = state === 'PUBLISHED';
+    const stateLabel = isBoundary ? state + ' (边界:必须 = 0)' : state;
+    return '<div class="state-bar-row">' +
+      '<div class="state-bar-label">' + stateLabel + '</div>' +
+      '<div class="state-bar-track"><div class="state-bar-fill" style="width:' + pct + '%; background:' + stateColors[state] + ';"></div></div>' +
+      '<div class="state-bar-count">' + count + ' / ' + total + ' (' + pct + '%)</div>' +
+      '</div>';
+  }).join('');
+  document.getElementById('review-status-bars').innerHTML = barsHtml;
+
+  // workflow state machine (text-based diagram)
+  const machineHtml = workflow.states.map((s, i) => {
+    const transitions = workflow.state_transitions.filter(t => t.from === s.state_id);
+    const transHtml = transitions.map(t =>
+      '<li>' + t.from + ' → <strong>' + t.to + '</strong>: requires ' + JSON.stringify(t.requires) + '</li>'
+    ).join('');
+    return '<div class="state-machine-card">' +
+      '<h4>' + s.state_id + '</h4>' +
+      '<p>' + s.description_zh + '</p>' +
+      '<p><strong>Entry criteria:</strong></p><ol>' +
+      s.entry_criteria.map(c => '<li>' + c + '</li>').join('') +
+      '</ol><p><strong>Exit criteria:</strong></p><ol>' +
+      s.exit_criteria.map(c => '<li>' + c + '</li>').join('') +
+      '</ol><p><strong>Reviewer action:</strong> ' + s.reviewer_action + '</p>' +
+      (transHtml ? '<p><strong>Transitions from this state:</strong></p><ul>' + transHtml + '</ul>' : '') +
+      (s.boundary_note ? '<p class="boundary-note">' + s.boundary_note + '</p>' : '') +
+      '</div>';
+  }).join('');
+  document.getElementById('workflow-machine').innerHTML = machineHtml;
+
+  // rubric table
+  document.querySelector('#rubric-table tbody').innerHTML = workflow.rubric_dimensions.map(r =>
+    '<tr>' +
+    '<td><code>' + r.dimension + '</code></td>' +
+    '<td>' + r.description + '</td>' +
+    '<td>' + r.scale + '</td>' +
+    '<td><code>' + r.passing + '</code></td>' +
+    '</tr>'
+  ).join('');
+
+  // article cards
+  const articleCards = articlesData.articles.map(a => {
+    return '<article class="project-card">' +
+      '<div class="project-card-head">' +
+      '<h4><code>' + a.article_id + '</code></h4>' +
+      '<span class="badge badge-review-' + a.review_status.toLowerCase() + '">' + a.review_status + '</span>' +
+      '</div>' +
+      '<p class="project-card-title">' + a.short_title_zh + '</p>' +
+      '<p class="project-card-meta"><em>' + a.short_title_en + '</em></p>' +
+      '<ul class="project-card-stats">' +
+      '<li>draft: <code>' + a.draft_id + '</code></li>' +
+      '<li>project: <code>' + a.project_id + '</code></li>' +
+      '<li>workspace: <code>' + a.linked_workspace_id + '</code></li>' +
+      '<li>sections/paragraphs/claims: ' + a.stats.sections + '/' + a.stats.paragraphs + '/' + a.stats.claims + '</li>' +
+      '<li>citations/evidence_cards/field_notes: ' + a.stats.citations + '/' + a.stats.evidence_cards + '/' + a.stats.field_notes + '</li>' +
+      '<li>word_count: ' + a.stats.word_count + ' 字</li>' +
+      '<li>archive IDs: FN-' + a.linked_archive_note_ids.length + ' · rq-' + a.linked_archive_rq_ids.length + ' · gap-' + a.linked_archive_gap_ids.length + '</li>' +
+      '</ul>' +
+      '</article>';
+  }).join('');
+  document.getElementById('article-cards').innerHTML = articleCards;
+
+  // 8 invariants
+  const invariantsHtml = invariants.archive_bridge_invariants_v0_8.map(inv =>
+    '<div class="bridge-namespace-card">' +
+    '<div class="bridge-namespace-head"><code>' + inv.rule_id + '</code> · <span class="badge badge-' + (inv.constraint.includes('SHALL NOT') ? 'danger' : 'success') + '">' + inv.constraint + '</span></div>' +
+    '<p>' + inv.description + '</p>' +
+    '<p><em>' + inv.rationale + '</em></p>' +
+    '</div>'
+  ).join('');
+  document.getElementById('invariants-list').innerHTML = invariantsHtml;
+})();
+</script>
+</body>
+</html>

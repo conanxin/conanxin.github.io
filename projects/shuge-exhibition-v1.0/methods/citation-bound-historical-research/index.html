@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methods Note · Citation-bound Historical Research · SHUGE DH v1.0</title>
+<meta name="description" content="Methods Note for citation-bound historical research: how to write a research article using only existing evidence, ID-only references, and citation-required-per-claim discipline.">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+CJK+SC:wght@400;500;700&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="v1-status-banner" style="background:var(--seal-red);color:var(--paper-white);padding:0.5rem 1rem;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.04em;">
+  v1.0 Methods Note · REVIEW · SIMULATED PEER REVIEW · NO AUTO-PUBLISH · 书格 = source platform (NOT publisher)
+</div>
+
+<nav class="topnav" aria-label="Primary">
+  <div class="topnav-inner">
+    <a class="brand" href="../../index.html">SHUGE DH <span class="brand-v">v1.0</span></a>
+    <ul class="topnav-list">
+      <li><a href="../../index.html">概览</a></li>
+      <li><a href="../../rooms/room1/index.html">展厅</a></li>
+      <li><a href="../../cases/case1/index.html">案例</a></li>
+      <li><a href="../../evidence-explorer/index.html">证据</a></li>
+      <li><a href="../../places/index.html">地点</a></li>
+      <li><a href="../../fieldwork/index.html">田野</a></li>
+      <li><a href="../../workspaces/index.html">研究</a></li>
+      <li><a href="../../field-notes/index.html">笔记</a></li>
+      <li><a href="../../timeline/index.html">时间</a></li>
+      <li><a href="../../projects/index.html">项目</a></li>
+      <li><a href="../../research-writing/index.html">写作</a></li>
+      <li><a href="../../drafts/index.html">草稿</a></li>
+      <li><a href="../../bibliography/index.html">文献</a></li>
+      <li><a href="../../articles/index.html">文章</a></li>
+      <li><a href="../../publications/index.html">出版</a></li>
+      <li><a href="../../export/index.html">导出</a></li>
+      <li><a href="../../portfolio/index.html">Portfolio</a></li>
+      <li><a href="../../archive-bridge/index.html">Archive</a></li>
+      <li><a href="../../publications/water-classic-digital-life/index.html">本篇</a></li>
+      <li><a href="./index.html" class="active">Methods</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-meta">v1.0 Candidate · Methods Note · 2026-09-28</div>
+    <h1 class="page-title">Citation-bound Historical Research</h1>
+    <p class="page-subtitle">引用-绑定-式历史研究 · 一种 ID-only,无自动补写,无嵌入数据库的研究方法</p>
+    <p class="page-status-line">
+      <span class="status-badge status-review">REVIEW</span>
+      <span class="status-meta">配套 v1.0 文章 <a href="../../publications/water-classic-digital-life/index.html">《从〈水经注〉到数字证据》</a></span>
+    </p>
+  </div>
+</header>
+
+<main class="container methods-grid">
+
+<aside class="methods-meta">
+  <section class="meta-card">
+    <h2 class="meta-title">方法论核心</h2>
+    <p class="meta-body">Citation-bound Historical Research (引用-绑定-式历史研究) 是本平台 v1.0 推出的研究方法。它要求:</p>
+    <ol class="meta-list-ordered">
+      <li>每一 factual claim <strong>必须</strong>绑定至少一个 citation_id (来自已冻结证据集)</li>
+      <li>无 citation 的事实陈述,显式标记为 <code>[Limitation: ...]</code></li>
+      <li>Citation ID 不变;Provenance 不变</li>
+      <li>无新下载,无新 OCR,无 embeddings,无自动 PUBLISHED</li>
+    </ol>
+  </section>
+
+  <section class="meta-card">
+    <h2 class="meta-title">适用范围</h2>
+    <ul class="meta-list-plain">
+      <li>前现代中文古籍的数字化研究</li>
+      <li>水文、营造、地理等有 visible scan + OCR queue 的领域</li>
+      <li>受限于不下载、不抓取的研究语境</li>
+    </ul>
+  </section>
+
+  <section class="meta-card">
+    <h2 class="meta-title">不适用范围</h2>
+    <ul class="meta-list-plain">
+      <li>需要外部 independent verification 的研究</li>
+      <li>需要完整 full-text retrieval 的研究 (本证据集 <code>full_text_unavailable=true</code>)</li>
+      <li>需要从非书格渠道获取材料的研究 (本方法严格 ID-only)</li>
+    </ul>
+  </section>
+</aside>
+
+<article class="methods-body">
+
+<!-- ===== §1 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§1 · 何为「Citation-bound」</h2>
+  <p class="article-paragraph">在传统历史研究中,「引用」 (citation) 是文章末段的 bibliography 一栏,通常以作者-年份-页码的形式呈现;读者若需核证,需自行查阅原书。然而,在数字时代,当原书以 hosted scan + OCR + ID 形式存在时,「引用」的本质悄然改变:它不再是「指向某本书」的指针,而是「指向某次扫描的特定位置」的固定字符串。</p>
+
+  <p class="article-paragraph">本方法论所称的「Citation-bound」,正是强调这一转变:每一个 factual claim 必须显式地、可机读地绑定到一个具体的 <code>citation_id</code>。这一绑定不是「建议」或「推荐」,而是「必要条件」 — 没有绑定的 claim 必须标记为 Limitation,且不允许进入文章的「主结论」部分。</p>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 Citation-bound 三原则</p>
+    <ol class="methods-box-list">
+      <li><strong>绑定原则 (Binding Principle):</strong> 每一 claim 必须绑定至少一个 citation_id (来自已冻结证据集)。</li>
+      <li><strong>标识原则 (Identification Principle):</strong> Citation ID 是固定字符串 (例如 <code>SHUGE:p168491:68</code>),不随时间/平台变化。</li>
+      <li><strong>限制原则 (Limitation Principle):</strong> 无 citation 的事实陈述必须显式标记 Limitation,且不构成文章核心论据。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== §2 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§2 · 数据来源与角色区分</h2>
+  <p class="article-paragraph">本方法论严格区分「数据来源」 (source)、「托管平台」 (hosting platform)、「原初作者/机构」 (original creator) 三类角色,避免混用 — 尤其是「平台」与「出版机构」的概念,二者截然不同。</p>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 三角色区分表</p>
+    <table class="methods-table">
+      <thead><tr><th>角色</th><th>含义</th><th>v1.0 实例</th><th>常见误标</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><em>Source Platform</em></td>
+          <td>提供 hosted scan + OCR queue + public ID 的数字平台</td>
+          <td>书格 (shuge.org)</td>
+          <td>❌ 误标为 publisher</td>
+        </tr>
+        <tr>
+          <td><em>Original Holder</em></td>
+          <td>提供物理扫描原件的档案馆 / 图书馆</td>
+          <td>国立公文書館 (日本)</td>
+          <td>❌ 误标为 publisher</td>
+        </tr>
+        <tr>
+          <td><em>Original Creator</em></td>
+          <td>古籍原初作者 / 编撰机构</td>
+          <td>郦道元 (北魏) / 宋应星 (明) / 清代工部</td>
+          <td>❌ 误标为 publisher</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="methods-box-footnote">v1.0 §7 明确指出:「书格 = source platform, NOT publisher」。任何 v1.0 文章必须显式区分此三角色,否则视为方法论错误。</p>
+  </div>
+
+  <p class="article-paragraph">详细审计记录于 <a href="../../data/institution_roles_v1.0.json"><code>data/institution_roles_v1.0.json</code></a>。</p>
+</section>
+
+<!-- ===== §3 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§3 · Reliability Tier 标准</h2>
+  <p class="article-paragraph">本方法论引入四档 reliability tier,用于量化 citation 的可信度:</p>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 Reliability Tier 标准</p>
+    <table class="methods-table">
+      <thead><tr><th>Tier</th><th>判定标准</th><th>本证据集实例</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-badge tier-high">HIGH</span></td>
+          <td>完整 OCR + 人工 review + 多 citation 互证</td>
+          <td>(本 v1.0 文章不采用此 tier)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-medium">MEDIUM</span></td>
+          <td>OCR queue 存在但 qa_status=NOT_CHECKED;citation count > 1</td>
+          <td>本 v1.0 文章 6 个 citation 全部此 tier</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-low">LOW</span></td>
+          <td>仅 OCR + single citation</td>
+          <td>(本 v1.0 文章未采用)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-unverified">UNVERIFIED</span></td>
+          <td>不在 OCR queue;或方法论级陈述</td>
+          <td>本 v1.0 文章 §6 方法局限引用</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="article-paragraph">关键观察:本证据集中所有 OCR 状态的 qa_status 均为 <code>NOT_CHECKED</code>,因此<strong>没有任何 citation 可以达到 HIGH tier</strong>。这是一个保守的、可审计的结论 — 它不否认书格 OCR 的潜在 quality,而是强调:在 QA 未完成之前,任何引用都是 MEDIUM,需以「互证」(同一 claim 多 citation) 弥补单点风险。</p>
+</section>
+
+<!-- ===== §4 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§4 · Citation-required-per-claim 工作流</h2>
+  <p class="article-paragraph">Citation-bound Historical Research 的实际工作流可分为五个步骤:</p>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 五步工作流</p>
+    <ol class="methods-box-list">
+      <li><strong>步骤 1 · claim 起草:</strong> 在已冻结证据集 (v0.5-v0.9) 内寻找可支撑的事实,起草 claim;若证据集不支撑,起草 limitation。</li>
+      <li><strong>步骤 2 · citation 绑定:</strong> 每一 claim 绑定至少一个 <code>citation_id</code>;无 citation 的 claim 进入 Limitation 行。</li>
+      <li><strong>步骤 3 · reliability 评级:</strong> 对每一 citation 评 HIGH/MEDIUM/LOW/UNVERIFIED tier,并在 Evidence Appendix 列出。</li>
+      <li><strong>步骤 4 · role 澄清:</strong> 显式区分 source platform / original holder / original creator 三角色,避免把书格错当 publisher。</li>
+      <li><strong>步骤 5 · provenance 不变:</strong> 校验所有 v0.5-v0.9 已冻结数据文件未变 (byte-equal);只 ADD 新文件,不 MODIFY 旧文件。</li>
+    </ol>
+  </div>
+
+  <p class="article-paragraph">这一工作流与传统的「写文章 → 找引用」模式不同:它是「先看证据 → 再写文章」 — 严格说,是「<strong>claim 来自证据,非证据来自 claim</strong>」。这一倒置的逻辑,是 citation-bound 方法论的核心。</p>
+</section>
+
+<!-- ===== §5 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§5 · Limitation 标记的必要性</h2>
+  <p class="article-paragraph">在传统学术写作中,「Limitation」通常只在「方法局限」一节简述。然而,在 citation-bound 方法论下,Limitation 必须出现在<strong>每一处 claim</strong>旁边 — 因为每一个 claim 都面临「未被证据集覆盖」的具体风险,而非一个抽象的「方法局限」。</p>
+
+  <p class="article-paragraph">这一做法借鉴了「provenance per claim」的元数据原则:每一处陈述都附有「出处」与「可信度」,而非仅在文末列出 bibliography。它让读者能在句子级 (sentence-level) 评估可信度,而不是在文章级 (article-level)。</p>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 Limitation 标记示例</p>
+    <table class="methods-table">
+      <thead><tr><th>claim 类别</th><th>典型 limitation 标记</th></tr></thead>
+      <tbody>
+        <tr><td>物理历史链条 (竹简 → 抄本 → 扫描)</td><td>[<Limitation: 不在证据集>]</td></tr>
+        <tr><td>数字统计 (137 条河 / 1252 条支流)</td><td>[<Limitation: 数字未由引文验证>]</td></tr>
+        <tr><td>名称等同 (河水=黄河)</td><td>[<Limitation: 名称等同映射不在证据集>]</td></tr>
+        <tr><td>单次田野观测</td><td>[<Limitation: 单人观测 / NEEDS_REVIEW>]</td></tr>
+        <tr><td>DH 研究空白判断</td><td>[<Limitation: DH 文献综述陈述未直接引用>]</td></tr>
+        <tr><td>方法论层级陈述</td><td>[<Limitation: 方法论;非事实论断>]</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== §6 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§6 · 与传统学术写作的差异</h2>
+
+  <div class="methods-box">
+    <p class="methods-box-headline">📋 传统 vs Citation-bound</p>
+    <table class="methods-table">
+      <thead><tr><th>维度</th><th>传统学术写作</th><th>Citation-bound</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>引用位置</td>
+          <td>文末 bibliography</td>
+          <td>每一 claim 旁</td>
+        </tr>
+        <tr>
+          <td>引用形式</td>
+          <td>作者-年份 (Author-Year)</td>
+          <td>固定 ID 字符串 (例如 <code>SHUGE:p168491:68</code>)</td>
+        </tr>
+        <tr>
+          <td>Limitation</td>
+          <td>文末「方法局限」一节</td>
+          <td>每一 claim 旁的 inline limitation 标记</td>
+        </tr>
+        <tr>
+          <td>可信度评估</td>
+          <td>文章级 (article-level)</td>
+          <td>句子级 (sentence-level)</td>
+        </tr>
+        <tr>
+          <td>来源平台 vs 出版机构</td>
+          <td>通常合并标注</td>
+          <td><strong>严格区分</strong> (source platform / original holder / original creator)</td>
+        </tr>
+        <tr>
+          <td>数据采集</td>
+          <td>自由获取原书 / 数据库 / 实地</td>
+          <td>严格 ID-only,无新下载 / 无新 OCR</td>
+        </tr>
+        <tr>
+          <td>Embeddings / 向量数据库</td>
+          <td>(常使用)</td>
+          <td><strong>明确禁止</strong> (per v1.0 invariant)</td>
+        </tr>
+        <tr>
+          <td>自动 PUBLISHED</td>
+          <td>(期刊流程)</td>
+          <td><strong>明确禁止</strong> (per v1.0 invariant <code>inv-pub-v1.0-8</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== §7 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§7 · 局限与边界</h2>
+  <p class="article-paragraph">Citation-bound Historical Research 并非适用于所有研究语境。其明确不适用范围包括:</p>
+
+  <ul class="methods-list">
+    <li><strong>需要外部 independent verification 的研究</strong> — 本方法严格 ID-only,无法引入外部独立核证。</li>
+    <li><strong>需要完整 full-text retrieval 的研究</strong> — 本证据集 <code>full_text_unavailable=true</code>,无法支持「全文本检索」式研究。</li>
+    <li><strong>需要从非书格渠道获取材料的研究</strong> — 本方法严格 ID-only,不下载新资源,不抓取。</li>
+    <li><strong>需要 embeddings / 向量数据库的研究</strong> — 本方法明确禁止 embeddings。</li>
+    <li><strong>需要自动 PUBLISHED 的研究</strong> — 本方法明确禁止自动 PUBLISHED,REVIEW 状态需用户明确批准。</li>
+  </ul>
+
+  <p class="article-paragraph">这些边界不是「缺陷」,而是「设计选择」:它确保研究的可审计性 (auditability)、可追溯性 (traceability)、可重现性 (reproducibility)。</p>
+</section>
+
+<!-- ===== §8 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§8 · 与 SHUGE DH Research Platform 的关系</h2>
+  <p class="article-paragraph">Citation-bound Historical Research 是 SHUGE DH Research Platform v1.0 的方法论配套。平台的 v0.5-v0.9 数据层提供了 citation_id、works、institutions、field_notes、research_questions、evidence_paragraphs 等结构化数据,而本方法论提供「如何使用这些数据写出可审计文章」的规则集。</p>
+
+  <p class="article-paragraph">具体而言:本方法论的 Citation-required-per-claim 政策,直接对应平台的 v0.7 evidence_paragraphs.json 中的 <code>binding_state</code> 五级 (ANNOTATED / CLAIMS_BOUND / EVIDENCE_BOUND / FIELD_NOTE_BOUND / METADATA_ONLY) — 一个 paragraph 的 binding_state 即表征其 citation 完整度。</p>
+
+  <p class="article-paragraph">本方法论的 source platform vs publisher 区分,直接对应平台的 v1.0 新增 <code>data/institution_roles_v1.0.json</code> 审计文件。</p>
+
+  <p class="article-paragraph">本方法论的 Reliability Tier,与 v0.4 <code>data/evidence_cards_v3.json</code> 中的 <code>support_count</code> / <code>evidence_count</code> 字段相对应 — 互证越多,reliability 越高。</p>
+</section>
+
+<!-- ===== §9 ===== -->
+<section class="article-section">
+  <h2 class="article-section-heading">§9 · 引用本方法论</h2>
+  <p class="article-paragraph">若要在自己的研究中引用本方法论,建议使用以下格式:</p>
+
+  <blockquote class="methods-citation-box">
+    <p>Xin Conan (2026). <em>Citation-bound Historical Research: A Methods Note for ID-only Scholarly Writing.</em> SHUGE DH Research Platform v1.0 Candidate. URL: <a href="./index.html">/methods/citation-bound-historical-research/</a>. Status: REVIEW.</p>
+  </blockquote>
+
+  <p class="article-paragraph">方法论本体在 v1.0 Candidate 状态下,本身处于 REVIEW — 与本平台的所有文章一致,需用户明确批准方可升级。</p>
+</section>
+
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-line">SHUGE DH Research Platform v1.0 Candidate · Public Portfolio · READ-ONLY ID LINK · 不自动 PUBLISHED · Status: REVIEW</p>
+    <p class="footer-line"><a href="../../index.html">回到总览</a> · <a href="../../publications/water-classic-digital-life/index.html">主文章</a> · <a href="../../publications/water-classic-digital-life/evidence/index.html">Evidence Appendix</a> · <a href="../../review/index.html">Peer Review (Simulated)</a></p>
+    <p class="footer-line">book-shelf style · fixed palette · 字体: Source Sans 3 / Source Serif 4 / Noto Serif CJK SC / IBM Plex Mono · <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v1.0" rel="external">GitHub v1.0</a></p>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

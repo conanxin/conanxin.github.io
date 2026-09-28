@@ -1,0 +1,113 @@
+{
+  "version": "v0.9",
+  "generated_at": "2026-09-28T10:27:15+08:00",
+  "source": "derived from data/research_projects.json + data/research_articles.json + data/case_studies.json + data/research_workspaces.json + data/places.json + data/evidence_cards_v3.json + data/bibliography.json",
+  "boundary": "READ-ONLY · portfolio 是 schema 描述 + prototype · 不调取外部资源 · 不引入新方法论",
+  "purpose": "Research Portfolio — 长期研究档案的总览层。聚合 projects / articles / exhibitions / methods / infrastructure 五个面向,把 v0.6 → v0.8 的所有静态数据组装为一个「研究档案」对外呈现。",
+  "schema_template": {
+    "section_id": "string",
+    "section_label_zh": "string",
+    "section_label_en": "string",
+    "section_intent_zh": "string",
+    "items": "array (统一使用 ID 引用 v0.4 → v0.8 的静态资源)",
+    "boundary_warnings": "array"
+  },
+  "portfolio_sections": [
+    {
+      "section_id": "sec-portfolio-projects",
+      "section_label_zh": "研究项目 (Research Projects)",
+      "section_label_en": "Projects",
+      "section_intent_zh": "列出 v0.6 建立的 3 个长期研究项目。每个项目承载 1 个 RQ、若干 place、citation、field note 与 gap。",
+      "items": [
+        {"id": "rp-hydrology-river-distribution", "title_zh": "水经注河水分布研究", "title_en": "River Distribution in 水经注", "linked_ws": "ws-hydrology-river-distribution", "linked_article": "article-hydrology-river-distribution", "linked_places": ["sangganhe", "huanghe", "jiangshui", "grand_canal"], "linked_citations": 6, "linked_notes": 2, "gaps_open": 3, "review_status": "DRAFT"},
+        {"id": "rp-architecture-pillar-diameter", "title_zh": "应县木塔柱径研究", "title_en": "Pillar Diameter of Yingxian Wooden Pagoda", "linked_ws": "ws-architecture-pillar-diameter", "linked_article": "article-architecture-pillar-diameter", "linked_places": ["beijing"], "linked_citations": 6, "linked_notes": 2, "gaps_open": 2, "review_status": "REVIEW"},
+        {"id": "rp-cross-hydrology-architecture", "title_zh": "水文与建筑交叉研究", "title_en": "Hydrology × Architecture Cross-textual", "linked_ws": "ws-cross-hydrology-architecture", "linked_article": "article-cross-hydrology-architecture", "linked_places": ["sangganhe", "beijing", "grand_canal"], "linked_citations": 6, "linked_notes": 2, "gaps_open": 2, "review_status": "REVISED"}
+      ],
+      "boundary_warnings": [
+        "SHALL NOT auto-create new projects",
+        "SHALL NOT change IDs (rp-* / ws-* / ar-* 原样)"
+      ]
+    },
+    {
+      "section_id": "sec-portfolio-articles",
+      "section_label_zh": "研究文章 (Research Articles)",
+      "section_label_en": "Articles",
+      "section_intent_zh": "列出 v0.8 建立的 3 篇 research article。每篇文章由 draft + claims + citations + bibliography 组成,review_status 可视。",
+      "items": [
+        {"id": "article-hydrology-river-distribution", "draft_id": "draft-hydrology-river-distribution", "title_zh": "水经注河水分布研究", "review_status": "DRAFT", "sections": 5, "paragraphs": 9, "claims": 16, "citations": 6, "public_page": "papa-hydrology-river-distribution"},
+        {"id": "article-architecture-pillar-diameter", "draft_id": "draft-architecture-pillar-diameter", "title_zh": "应县木塔柱径研究", "review_status": "REVIEW", "sections": 5, "paragraphs": 9, "claims": 16, "citations": 6, "public_page": "papa-architecture-pillar-diameter"},
+        {"id": "article-cross-hydrology-architecture", "draft_id": "draft-cross-hydrology-architecture", "title_zh": "水文与建筑交叉研究", "review_status": "REVISED", "sections": 5, "paragraphs": 9, "claims": 16, "citations": 6, "public_page": "papa-cross-hydrology-architecture"}
+      ],
+      "boundary_warnings": [
+        "SHALL NOT auto-publish (PUBLISHED forbidden in v0.9)",
+        "SHALL NOT auto-write abstract / methods / limitations"
+      ]
+    },
+    {
+      "section_id": "sec-portfolio-exhibitions",
+      "section_label_zh": "数字展览 (Digital Exhibitions)",
+      "section_label_en": "Exhibitions",
+      "section_intent_zh": "列出 v0.3-v0.4 建立的 5 个数字展览房间 + 5 个 case study + 1 个 evidence explorer。每个展览是 case_studies + room_intros + evidence_cards 的组合。",
+      "items": [
+        {"id": "room-1", "title_zh": "水经注", "title_en": "水经注 (River Classic)", "linked_rooms": 5, "linked_cases": 5, "linked_cards": 12},
+        {"id": "case1", "title_zh": "桑干河与现代桑干河", "title_en": "Sanggan River and Modern Sanggan", "linked_card": "F1", "linked_citations": 1},
+        {"id": "case2", "title_zh": "黄河故道与现代黄河", "title_en": "Yellow River Old Course and Modern Yellow River", "linked_card": "F1", "linked_citations": 1},
+        {"id": "case3", "title_zh": "江水与现代长江", "title_en": "Jiangshui and Modern Yangtze", "linked_card": "F1", "linked_citations": 1},
+        {"id": "case4", "title_zh": "古都临安", "title_en": "Ancient Capital Lin'an", "linked_card": "F1", "linked_citations": 1},
+        {"id": "case5", "title_zh": "运河与古代漕运", "title_en": "Grand Canal and Ancient Canal Transport", "linked_card": "F1", "linked_citations": 1},
+        {"id": "evidence-explorer", "title_zh": "Evidence Explorer", "title_en": "Evidence Explorer", "linked_cards": 12, "linked_citations": 6, "linked_places": 10}
+      ],
+      "boundary_warnings": [
+        "SHALL NOT modify case_studies / room_intros / evidence_cards",
+        "SHALL NOT change Citation ID"
+      ]
+    },
+    {
+      "section_id": "sec-portfolio-methods",
+      "section_label_zh": "研究方法 (Methods)",
+      "section_label_en": "Methods",
+      "section_intent_zh": "聚合 v0.4 → v0.8 的方法论层。每个方法独立条目,描述意图与边界,不下载新资源、不引入新工具。",
+      "items": [
+        {"id": "method-binding-state", "name_zh": "5-Level Binding State", "name_en": "5-Level Binding State", "description_zh": "ANNOTATED / CLAIMS_BOUND / EVIDENCE_BOUND / FIELD_NOTE_BOUND / METADATA_ONLY (v0.7 引入)", "description_en": "5-level paragraph binding quality marker, introduced in v0.7", "used_in": "v0.7 drafts · v0.8 articles · v0.9 peer review"},
+        {"id": "method-evidence-explorer", "name_zh": "Evidence Explorer + Place Layer", "name_en": "Evidence Explorer + Place Layer", "description_zh": "54-node evidence_graph + 19 place-evidence bindings (v0.4 引入)", "description_en": "54-node evidence_graph + 19 place-evidence bindings, introduced in v0.4", "used_in": "v0.4 evidence-explorer · v0.6 places-profile · v0.9 portfolio"},
+        {"id": "method-fieldwork-bridge", "name_zh": "Fieldwork Bridge", "name_en": "Fieldwork Bridge", "description_zh": "field_note_input_spec.json 规范,5 phases 采集 + 6 状态 (v0.6 引入)", "description_en": "field_note_input_spec.json standard, 5 phases + 6 states, introduced in v0.6", "used_in": "v0.6 field-note-input · v0.9 portfolio"},
+        {"id": "method-evidence-backed-paragraph", "name_zh": "Evidence-Backed Paragraph", "name_en": "Evidence-Backed Paragraph", "description_zh": "paragraph ⇆ claims ⇆ citation_ids ⇆ evidence_cards + field_notes (v0.7 引入)", "description_en": "paragraph ⇆ claims ⇆ citation_ids ⇆ evidence_cards + field_notes, introduced in v0.7", "used_in": "v0.7 drafts · v0.8 articles · v0.9 public pages"},
+        {"id": "method-state-machine", "name_zh": "DRAFT/REVIEW/REVISED/PUBLISHED State Machine", "name_en": "DRAFT/REVIEW/REVISED/PUBLISHED State Machine", "description_zh": "5 transitions + 5 rubric dimensions + forbidden_set (v0.8 引入; v0.9 边界禁止 PUBLISHED)", "description_en": "5 transitions + 5 rubric dimensions + forbidden_set, introduced in v0.8; PUBLISHED forbidden in v0.9", "used_in": "v0.8 publication-workflow · v0.9 peer review"},
+        {"id": "method-archive-bridge", "name_zh": "Conan Xin Archive Bridge", "name_en": "Conan Xin Archive Bridge", "description_zh": "READ-ONLY ID link; 不读、不写 Archive (v0.6 引入; v0.7-v0.9 持续)", "description_en": "READ-ONLY ID link; no read, no write to Archive, introduced in v0.6", "used_in": "v0.6 archive-bridge · v0.7 bibliography · v0.8 article links · v0.9 portfolio"}
+      ],
+      "boundary_warnings": [
+        "SHALL NOT introduce new methods requiring external resources",
+        "SHALL NOT auto-summarize or auto-write method descriptions"
+      ]
+    },
+    {
+      "section_id": "sec-portfolio-infrastructure",
+      "section_label_zh": "基础设施 (Infrastructure)",
+      "section_label_en": "Infrastructure",
+      "section_intent_zh": "列出 v0.1 → v0.9 已构建的所有页面、JSON 数据文件、设计文档。基础设施本身不构成新内容,只做 ID 引用。",
+      "items": [
+        {"id": "infra-pages", "label_zh": "18 个一级栏目 HTML", "label_en": "18 hub HTML pages", "count": 18, "examples": ["/index.html", "/articles/", "/export/", "/archive-bridge/"]},
+        {"id": "infra-case-rooms", "label_zh": "5 个展览房间 + 5 个 case study", "label_en": "5 exhibition rooms + 5 case studies", "count": 10},
+        {"id": "infra-json-files", "label_zh": "36+ 个 JSON 数据文件", "label_en": "36+ JSON data files", "count": 40, "size": "≈ 1.6 MB", "sources": ["v0.4 places · evidence_graph · fieldwork_schema", "v0.5 research_workspaces · research_questions · field_notes · timeline_layers", "v0.6 research_projects · place_profiles · field_note_input_spec · archive_bridge", "v0.7 research_drafts · evidence_paragraphs · bibliography · writing_invariants", "v0.8 research_articles · publication_workflow · export_specs · publication_invariants", "v0.9 public_article_pages · peer_review_records · research_portfolio · publication_invariants_v0_9"]},
+        {"id": "infra-design-docs", "label_zh": "2 个 v0.9 设计文档", "label_en": "2 v0.9 design documents", "files": ["DESIGN_v0.9.md", "IA_v0.9.md"]},
+        {"id": "infra-id-namespaces", "label_zh": "5 shared + 4 local-only ID namespaces (v0.8 基础; v0.9 维持)", "label_en": "5 shared + 4 local-only ID namespaces", "namespaces": ["field_note_id (FN-*)", "research_question_id (rq-*)", "gap_id (gap-*)", "workspace_id (ws-*)", "project_id (rp-*)", "article_id (article-*)", "review_id (rev-*)", "rubric_score_id (rubric-*)", "export_record_id (export-*)"]},
+        {"id": "infra-boundaries", "label_zh": "10+ 边界约束 (继承 v0.4 → v0.9)", "label_en": "10+ boundary constraints inherited from v0.4 → v0.9", "examples": ["no new resource download", "no database mutation", "no OCR", "no LLM auto-write", "no embeddings", "no Neo4j", "no auto-publish", "no change Citation ID"]}
+      ],
+      "boundary_warnings": [
+        "SHALL NOT introduce new infrastructure requiring external services",
+        "SHALL NOT change ID namespaces"
+      ]
+    }
+  ],
+  "stats": {
+      "total_sections": 5,
+      "total_projects_listed": 3,
+      "total_articles_listed": 3,
+      "total_exhibitions_listed": 7,
+      "total_methods_listed": 6,
+      "total_infrastructure_items": 6,
+      "all_items_id_referenced": true,
+      "no_new_resource_downloaded": true,
+      "no_new_tool_introduced": true
+    }
+}

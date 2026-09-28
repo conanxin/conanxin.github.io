@@ -1,0 +1,61 @@
+{
+  "description": "地图占位 — 不展示真实瓦片。仅做 collection 来源中心示意。",
+  "bbox_estimate": {
+    "west": 100,
+    "south": 25,
+    "east": 145,
+    "north": 45,
+    "note": "东亚汉字文化圈示意范围"
+  },
+  "centers": [
+    {
+      "label": "水经注 · 郦道元（北魏）",
+      "lon": 113.6,
+      "lat": 35.0,
+      "kind": "origin"
+    },
+    {
+      "label": "工程做法 · 清工部",
+      "lon": 116.4,
+      "lat": 39.9,
+      "kind": "origin"
+    },
+    {
+      "label": "河防一览 · 潘季驯（明）",
+      "lon": 117.3,
+      "lat": 39.0,
+      "kind": "origin"
+    },
+    {
+      "label": "园冶 · 计成（明）",
+      "lon": 118.8,
+      "lat": 32.0,
+      "kind": "origin"
+    },
+    {
+      "label": "天工开物 · 宋应星（明）",
+      "lon": 116.0,
+      "lat": 29.7,
+      "kind": "origin"
+    },
+    {
+      "label": "JDA · 国立国会图书馆",
+      "lon": 139.7,
+      "lat": 35.7,
+      "kind": "archive"
+    },
+    {
+      "label": "BnF Gallica",
+      "lon": 2.35,
+      "lat": 48.85,
+      "kind": "archive"
+    },
+    {
+      "label": "Shuge.org",
+      "lon": 121.5,
+      "lat": 31.2,
+      "kind": "archive"
+    }
+  ],
+  "note": "v0.2 仅展示坐标点，无真实地图瓦片。"
+}

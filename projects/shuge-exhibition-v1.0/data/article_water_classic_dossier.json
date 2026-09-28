@@ -1,0 +1,320 @@
+{
+  "version": "v1.0",
+  "generated_at": "2026-09-28T10:42:30+08:00",
+  "source": "v0.5-v0.9 evidence corpus + v1.0 article outline",
+  "purpose": "Machine-readable consolidated dossier for the v1.0 candidate article. Every claim has at least one citation_id or is marked limitation.",
+  "dossier_id": "dossier-water-classic-digital-life",
+  "article_id_local": "article-water-classic-digital-life-001",
+  "publication_status": "REVIEW",
+  "auto_publish_forbidden": true,
+  "review_status_required_for_publish": "explicit user approval",
+  "title_zh": "《从〈水经注〉到数字证据：一部古籍的数字生命史》",
+  "title_en": "From Shuijing Zhu to Digital Evidence: A Digital Life History of a Classical Text",
+  "short_title_zh": "水经注 · 数字生命史",
+  "short_title_en": "Shuijing Zhu · A Digital Life History",
+  "version_label": "v1.0 Candidate",
+  "linked_draft_id": "draft-hydrology-river-distribution",
+  "linked_project_id": "rp-hydrology-river-distribution",
+  "linked_workspace_id": "ws-hydrology-river-distribution",
+  "linked_research_question_ids": [
+    "rq-ws1-001",
+    "rq-ws1-002"
+  ],
+  "linked_field_note_ids": [
+    "FN-20260928-001",
+    "FN-20260928-004"
+  ],
+  "linked_place_ids": [
+    "sangganhe",
+    "grand_canal"
+  ],
+  "linked_water_classic_work_id": "p124575",
+  "linked_water_classic_pages_count": 60,
+  "citation_ids_used": [
+    "SHUGE:p168491:68",
+    "SHUGE:p211203:1096",
+    "SHUGE:p211203:1178",
+    "SHUGE:p211203:1320",
+    "SHUGE:p211203:1338",
+    "SHUGE:p44159:552"
+  ],
+  "work_ids_used": [
+    "work-shuge-168491",
+    "work-shuge-211203",
+    "work-shuge-44159"
+  ],
+  "institution_roles": {
+    "inst-shuge": {
+      "role_in_v1_0_article": "source_platform",
+      "NOT": "publisher",
+      "correction_of_v0_7": "v0.7 bibliography.json typed inst-shuge as 'publisher'; v1.0 article treats it as digital-photograph source platform only. v0.7 file is preserved unmodified.",
+      "audit_recorded_in": "data/institution_roles_v1.0.json"
+    },
+    "inst-ndl-implicit": {
+      "role_in_v1_0_article": "original_holder",
+      "what_it_provides": "actual scanned volumes that shuge.org photographs from (visible in text_preview: '国立公文書館', 'Natio', '内阁文库')"
+    },
+    "inst-original-implicit": {
+      "role_in_v1_0_article": "original_creator",
+      "what_it_provides": "historical authorship (郦道元 / 宋应星 / Qing 工部). Pre-modern works frequently have unknown or anonymous publishers."
+    }
+  },
+  "sections": [
+    {
+      "section_id": "sec-1-intro",
+      "heading_zh": "引言：从一部古籍说起",
+      "order": 1,
+      "word_target": 150,
+      "claims": [
+        {
+          "claim_id": "cl-1.1",
+          "text": "本研究关注一部 Northern Wei 时期 (6th c.) 的综合性地理著作传统 (在 v0.7 bibliography 中以 post_id 168491 为标识);原始作者归属 (郦道元) 与具体书名 (《水经注》) 来自外部史学共识,不在本证据集范围内。",
+          "citations": [
+            "SHUGE:p168491:68"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "Original authorship attribution (郦道元) is from external scholarly consensus, NOT from shuge.org or our evidence corpus. [Limitation: classical authorship attribution]",
+          "original_text_in_article": "《水经注》是北魏 (Northern Wei, 6th c.) 郦道元所撰的综合性地理著作.",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "SUPPORTED_with_limitation"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-2-physical-life",
+      "heading_zh": "《水经注》的物质生命：从竹简到扫描",
+      "order": 2,
+      "word_target": 250,
+      "claims": [
+        {
+          "claim_id": "cl-2.1",
+          "text": "本证据集并不直接提供 Northern Wei hydrological work profile 的完整物质生命谱系;具体的物理形态链条 (竹简 → 抄本 → 刊刻 → 影印 → 数字化扫描) 不在本证据集范围内,属综述性陈述。",
+          "citations": [
+            "SHUGE:p211203:1096"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "The specific physical-history chain (竹简 → 抄本 → 刊刻 → 影印 → 扫描) is NOT in the evidence corpus. [Limitation: physical-history chain not in evidence corpus]",
+          "original_text_in_article": "《水经注》的早期物质形态包括抄本,后经历多次刊刻,20 世纪以来出现影印本与数字化扫描.",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "METADATA_ONLY_research_gap"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-3-rivers",
+      "heading_zh": "文献中的河流：从经注到现代水系",
+      "order": 3,
+      "word_target": 400,
+      "claims": [
+        {
+          "claim_id": "cl-3.1",
+          "text": "Northern Wei 时期综合性地理著作传统 (本证据集中以 post_id 168491 为代表) 涉及的地理范围被认为覆盖了当时主要河流体系;具体的河流数量统计 (例如「137/1252」) 不在本证据集范围内。",
+          "citations": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1096",
+            "SHUGE:p211203:1178"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "The exact count (137/1252) is NOT in evidence corpus. [Limitation: numerical claims unverified by citations]",
+          "original_text_in_article": "《水经注》记载了主要河流与支流,覆盖今天中国大部分主要水系 (河水/江水 等).",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "SUPPORTED_with_limitation"
+        },
+        {
+          "claim_id": "cl-3.2",
+          "text": "古今水系名称的等同关系 (例如「河水」≈ 黄河、「江水」≈ 长江) 来自外部史学共识,不在本证据集范围内;本文不作考证性论断。",
+          "citations": [
+            "SHUGE:p211203:1178",
+            "SHUGE:p211203:1320",
+            "SHUGE:p211203:1338"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "The specific equivalence (河水=黄河) is NOT in evidence corpus. [Limitation: name-equivalence mapping not in evidence corpus]",
+          "original_text_in_article": "《水经注》记载的河流名称与现代水系名称存在音近/同源关系 (河水=黄河, 江水=长江).",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "METADATA_ONLY_research_gap"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-4-field-observation",
+      "heading_zh": "实地观测：桑干河与运河",
+      "order": 4,
+      "word_target": 350,
+      "claims": [
+        {
+          "claim_id": "cl-4.1",
+          "text": "桑干河 (永定河上游) 在 2026-09-15 的一次实地观测中,河床呈干涸状态;该观察记录在 field_note FN-20260928-001 中 (verification_status=NEEDS_REVIEW)。这一观察与 Northern Wei 时期 hydrological work profile 中描述的水文状态之间的具体关系,不在本证据集直接验证范围内。",
+          "citations": [
+            "FN-20260928-001",
+            "SHUGE:p124575:1"
+          ],
+          "evidence_card_ids": [],
+          "field_note_id": "FN-20260928-001",
+          "limitation": "Field observation by anonymized fieldworker-A; NOT an independent ground-truth. [Limitation: single-observer field note]",
+          "reliability": "MEDIUM",
+          "original_text_in_article": "桑干河 (永定河上游) 在 2026-09 实地观测时河床已干涸,与《水经注》记载之'水势浩荡'明显不符.",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "SUPPORTED_obs_plus_LIMITATION_compared"
+        },
+        {
+          "claim_id": "cl-4.2",
+          "text": "京杭大运河通州段在 2026-09-25 的一次实地观测中被记录为可通航状态 (FN-20260928-004, verification_status=UNVERIFIED);该观察与古代「漕运」水道之间的延续性判断不在本证据集直接验证范围内 (SHUGE:p48341:50 OCR QUEUED, not CHECKED)。",
+          "citations": [
+            "FN-20260928-004",
+            "SHUGE:p48341:50"
+          ],
+          "evidence_card_ids": [],
+          "field_note_id": "FN-20260928-004",
+          "limitation": "Single observation; specific 河防一览 page 50 OCR is QUEUED, not CHECKED. [Limitation: navigation status not independently verified]",
+          "reliability": "LOW",
+          "original_text_in_article": "京杭大运河通州段 2026-09 仍可通航,与《水经注》记载之'漕运'水道基本延续.",
+          "narrowed_in_audit": "audit-claim-support-v1.0",
+          "post_narrowing_support_status": "SUPPORTED_obs_plus_LIMITATION_compared"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-5-discussion",
+      "heading_zh": "与既有研究的位置",
+      "order": 5,
+      "word_target": 250,
+      "claims": [
+        {
+          "claim_id": "cl-5.1",
+          "text": "现有数字人文 (DH) 研究中,对 《水经注》的处理多以文本检索、GIS 标注为主;以「数字生命史」为元视角的研究尚属空白.",
+          "citations": [
+            "SHUGE:p211203:1320",
+            "SHUGE:p211203:1338"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "The 'DH research gap' claim is an observation by the article author, not a citation. [Limitation: DH literature-review claim not directly cited]"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-6-limitations",
+      "heading_zh": "方法局限",
+      "order": 6,
+      "word_target": 200,
+      "claims": [
+        {
+          "claim_id": "cl-6.1",
+          "text": "本研究方法受限于书格 OCR 队列未完成 QA、字段文献未独立获取、田野观测样本量小等.",
+          "citations": [
+            "SHUGE:p44159:552"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "This is a methodological limitation claim, not a factual claim about any specific river. [Limitation: methodological; not a factual assertion]",
+          "reliability": "UNVERIFIED for method-level claims"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-7-ethics",
+      "heading_zh": "数字证据的伦理与边界",
+      "order": 7,
+      "word_target": 300,
+      "claims": [
+        {
+          "claim_id": "cl-7.1",
+          "text": "数字证据的「证据性」与古籍本身的「文本性」存在错位;前者是 hosted scan + OCR + ID,后者是 manuscript + commentary + reader.",
+          "citations": [
+            "SHUGE:p168491:68",
+            "SHUGE:p211203:1320",
+            "SHUGE:p211203:1338"
+          ],
+          "evidence_card_ids": [],
+          "limitation": "This is a conceptual / methodological reflection, not a factual claim about any specific river. [Limitation: conceptual reflection; not an empirical claim]"
+        }
+      ]
+    },
+    {
+      "section_id": "sec-8-closing",
+      "heading_zh": "结语 / 待续",
+      "order": 8,
+      "word_target": 150,
+      "claims": [
+        {
+          "claim_id": "cl-8.1",
+          "text": "本文当前状态: REVIEW (DRAFT → REVIEW 自动;非 PUBLISHED).",
+          "citations": [],
+          "evidence_card_ids": [],
+          "limitation": "Status statement, not a citation-requiring claim. [Status: REVIEW — awaiting explicit user approval for PUBLISHED]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "total_sections": 8,
+    "total_claims": 9,
+    "total_unique_citations_used": 6,
+    "total_unique_field_notes_used": 2,
+    "total_unique_research_questions_used": 2,
+    "all_claims_have_citation_or_limitation": true,
+    "all_citation_ids_preserved_verbatim_from_v0_7": true,
+    "shuge_referenced_as_source_platform_not_publisher": true,
+    "no_auto_publish": true,
+    "no_new_resources_downloaded": true,
+    "no_ocr_run": true,
+    "no_embeddings_introduced": true,
+    "provenance_files_unchanged": true,
+    "peer_review_label_simulated_workflow": true
+  },
+  "stats": {
+    "total_citations": 6,
+    "total_works": 3,
+    "total_field_notes_used": 2,
+    "total_research_questions_used": 2,
+    "total_evidence_paragraphs_reused": 9,
+    "total_claims_with_citation_or_limitation": 9,
+    "total_limitations_marked": 9,
+    "word_target_total": 2050,
+    "article_local_id": "article-water-classic-digital-life-001",
+    "dossier_local_id": "dossier-water-classic-digital-life"
+  },
+  "boundary_compliance": {
+    "no_new_download": true,
+    "no_db_modification": true,
+    "no_ocr_run": true,
+    "citation_id_unchanged": true,
+    "no_auto_publish": true,
+    "no_embeddings": true,
+    "no_auto_generate_historical_facts": true,
+    "shuge_source_platform_not_publisher": true,
+    "peer_review_simulated_workflow_labeled": true,
+    "provenance_unchanged": true
+  },
+  "v0_files_preserved_unchanged": [
+    "data/bibliography.json",
+    "data/research_drafts.json",
+    "data/research_articles.json",
+    "data/research_questions.json",
+    "data/field_notes.json",
+    "data/evidence_paragraphs.json",
+    "data/evidence_cards_v3.json",
+    "data/water_classic_pages.json",
+    "data/citations.json",
+    "data/places.json",
+    "data/research_workspaces.json",
+    "data/research_projects.json",
+    "data/collections.json",
+    "data/architecture_pages.json",
+    "data/hydrology_pages.json"
+  ],
+  "v1_0_files_new": [
+    "data/institution_roles_v1.0.json",
+    "data/article_water_classic_dossier.json",
+    "PUBLICATION_PLAN.md",
+    "EVIDENCE_DOSSIER.md",
+    "ARTICLE_OUTLINE.md",
+    "publications/water-classic-digital-life/index.html",
+    "publications/water-classic-digital-life/evidence/index.html",
+    "methods/citation-bound-historical-research/index.html"
+  ],
+  "narrowing_audit_id": "audit-claim-support-v1.0",
+  "narrowing_audit_path": "data/claim_support_audit_v1.0.json",
+  "narrowing_audit_md_path": "CLAIM_SUPPORT_AUDIT.md",
+  "narrowed_at": "2026-09-28T10:58:00+08:00",
+  "NOT_SUPPORTED_remaining_in_article": 0
+}

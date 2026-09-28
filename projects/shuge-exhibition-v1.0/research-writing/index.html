@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Research Writing · SHUGE DH Research Platform v0.7</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Evidence-backed research writing environment — drafts · paragraphs · bibliography">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Research Writing Environment · Evidence-backed Writing</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.7</span>
+    <span class="badge badge-status">DESIGN_ONLY</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/" class="active">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Research Writing</h2>
+  <p class="hero-lead">Evidence-backed Research Writing Environment — 每个 Research Project 现在承载完整的 Draft:outline → sections → paragraphs (claims + citations + evidence cards + field notes) → bibliography → revision history。</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v0.7</dd>
+    <dt>生成时间</dt><dd id="meta-generated-at">—</dd>
+    <dt>数据来源</dt><dd>v0.6 research_projects.json + v0.7 drafts + bibliography</dd>
+    <dt>边界</dt><dd>STRICTLY READ-ONLY ID LINK · 不引入 LLM · 不引入向量数据库</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Research Dashboard</h3>
+  <p class="section-lead">整个 v0.7 写作环境的总览数据,从 drafts · paragraphs · bibliography 三个文件聚合。</p>
+  <table class="stats-table" id="research-writing-stats">
+    <thead><tr><th>维度</th><th>数值</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Binding State Distribution</h3>
+  <p class="section-lead">每个段落 (paragraph) 的证据绑定强度。FIELD_NOTE_BOUND 是最高强度,需要 citations + evidence cards + field notes 三重支撑。</p>
+  <div id="binding-state-bars"></div>
+</section>
+
+<section>
+  <h3>3 Research Drafts</h3>
+  <p class="section-lead">每个 Draft 由 5 sections × 9 paragraphs 组成,owner = research-team。</p>
+  <div class="cards-grid-3" id="draft-cards"></div>
+</section>
+
+<section>
+  <h3>Conan Xin Archive Bridge (v0.7 扩展)</h3>
+  <p class="section-lead">v0.7 在 v0.6 ID-only 链接边界之上,新增 4 个 local-only namespaces + 4 个 schema additions。草稿/段落/claim/section/revision 全部为 local-only,绝不暴露到 Archive。</p>
+  <div class="bridge-card-list" id="bridge-namespace-list"></div>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../DESIGN_v0.7.md">DESIGN_v0.7.md</a> — v0.7 完整设计文档</li>
+    <li><a href="../IA_v0.7.md">IA_v0.7.md</a> — v0.7 信息架构</li>
+    <li><a href="../drafts/">/drafts/</a> — 3 个 Research Draft 详情</li>
+    <li><a href="../bibliography/">/bibliography/</a> — Works + Institutions + Citations</li>
+    <li><a href="../archive-bridge/">/archive-bridge/</a> — v0.6 ID-only Bridge(本节为 v0.7 扩展)</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.7 · Evidence-backed Writing Environment · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const [drafts, paragraphs, biblio, invariants] = await Promise.all([
+    fetch('../data/research_drafts.json').then(r => r.json()),
+    fetch('../data/evidence_paragraphs.json').then(r => r.json()),
+    fetch('../data/bibliography.json').then(r => r.json()),
+    fetch('../data/writing_invariants.json').then(r => r.json())
+  ]);
+
+  // meta
+  document.getElementById('meta-generated-at').textContent = drafts.generated_at;
+
+  // stats table
+  const stats = drafts.stats;
+  const biblioStats = biblio.stats;
+  const paraStats = paragraphs.stats;
+  const statsRows = [
+    ['Total Drafts', drafts.total_drafts],
+    ['Total Sections (所有 draft)', stats.total_sections],
+    ['Total Paragraphs (所有 draft)', stats.total_paragraphs],
+    ['Total Citation Links (段落级)', paraStats.paragraphs_total_citation_links],
+    ['Total Evidence Card Links (段落级)', paraStats.paragraphs_total_evidence_links],
+    ['Total Field Note Bindings (段落级)', paraStats.paragraphs_total_field_note_links],
+    ['Total Word Count (estimated)', stats.total_word_count + ' 字'],
+    ['Total Revisions', stats.total_revisions],
+    ['Bibliography: Works', biblioStats.works_total],
+    ['Bibliography: Institutions', biblioStats.institutions_total],
+    ['Bibliography: Citations', biblioStats.citations_total],
+    ['Conan Xin Bridge Invariants', invariants.cross_archive_invariants_count]
+  ];
+  document.querySelector('#research-writing-stats tbody').innerHTML =
+    statsRows.map(([k, v]) => `<tr><td>${k}</td><td><code>${v}</code></td></tr>`).join('');
+
+  // binding state distribution
+  const stateCounts = {};
+  paragraphs.paragraphs.forEach(p => {
+    stateCounts[p.binding_state] = (stateCounts[p.binding_state] || 0) + 1;
+  });
+  const total = paragraphs.paragraphs.length;
+  const stateOrder = ['FIELD_NOTE_BOUND', 'EVIDENCE_BOUND', 'CLAIMS_BOUND', 'ANNOTATED', 'METADATA_ONLY'];
+  const stateLabels = {
+    'FIELD_NOTE_BOUND': 'FIELD_NOTE_BOUND · 最高强度(田野 + 文献 + 卡证)',
+    'EVIDENCE_BOUND': 'EVIDENCE_BOUND · 高强度(实证 + 文献)',
+    'CLAIMS_BOUND': 'CLAIMS_BOUND · 中等强度(仅文献)',
+    'ANNOTATED': 'ANNOTATED · 低强度(仅引文标注)',
+    'METADATA_ONLY': 'METADATA_ONLY · 元信息(无 claim)'
+  };
+  const stateColor = {
+    'FIELD_NOTE_BOUND': 'var(--status-green)',
+    'EVIDENCE_BOUND': 'var(--seal-red)',
+    'CLAIMS_BOUND': 'var(--archival-brown)',
+    'ANNOTATED': 'var(--rule-gray)',
+    'METADATA_ONLY': 'var(--rule-gray)'
+  };
+  const barsHtml = stateOrder.map(state => {
+    const count = stateCounts[state] || 0;
+    const pct = total > 0 ? Math.round(count / total * 100) : 0;
+    return `
+      <div class="state-bar-row">
+        <div class="state-bar-label">${stateLabels[state]}</div>
+        <div class="state-bar-track">
+          <div class="state-bar-fill" style="width:${pct}%; background:${stateColor[state]};"></div>
+        </div>
+        <div class="state-bar-count">${count} / ${total} (${pct}%)</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('binding-state-bars').innerHTML = barsHtml;
+
+  // draft cards
+  const draftCards = drafts.drafts.map(d => {
+    const projName = d.draft_title_zh;
+    const sectionsOut = d.stats.sections_outline;
+    const sectionsDr = d.stats.sections_draft;
+    const sectionsRev = d.stats.sections_revised;
+    return `
+      <article class="project-card" data-draft-id="${d.draft_id}">
+        <div class="project-card-head">
+          <h4><code>${d.draft_id}</code></h4>
+          <span class="badge badge-status">${d.status}</span>
+        </div>
+        <p class="project-card-title">${projName}</p>
+        <p class="project-card-meta">project_id: <code>${d.project_id}</code> · language: ${d.language}</p>
+        <ul class="project-card-stats">
+          <li>章节:${d.stats.sections} (大纲 ${sectionsOut} · 草稿 ${sectionsDr} · 修订 ${sectionsRev})</li>
+          <li>段落:${d.stats.paragraphs_total}</li>
+          <li>引用 (unique):${d.stats.citations_unique}</li>
+          <li>证据卡 (unique):${d.stats.evidence_cards_unique}</li>
+          <li>田野笔记 (unique):${d.stats.field_notes_unique}</li>
+          <li>引用拓扑 (evidence_links):${d.stats.evidence_links_total}</li>
+          <li>字数 (估算):${d.stats.word_count_total} 字</li>
+          <li>修订:${d.stats.revisions}</li>
+        </ul>
+        <p class="project-card-meta">last_revised_at: <code>${d.revision_history[d.revision_history.length - 1].at}</code></p>
+        <button class="toggle-btn" data-target="detail-${d.draft_id}">展开 outline + revision history</button>
+        <div class="project-detail" id="detail-${d.draft_id}" hidden>
+          <h5>Outline</h5>
+          <ol>
+            ${d.outline.map(s => `<li><code>${s.section_id}</code> · ${s.heading_zh} / ${s.heading_en} · claims_target=${s.claim_count_target} · paragraphs=${s.paragraph_count_target}</li>`).join('')}
+          </ol>
+          <h5>Revision History</h5>
+          <ol>
+            ${d.revision_history.map(r => `<li><code>${r.revision_id}</code> · ${r.at} · ${r.author} · ${r.summary_zh} · sections_modified=[${r.sections_modified.join(', ')}] · paragraphs_added=${r.paragraphs_added}, revised=${r.paragraphs_revised}</li>`).join('')}
+          </ol>
+          <h5>Linked Archive IDs (READ-ONLY)</h5>
+          <p>archive_note_ids: <code>${JSON.stringify(d.linked_archive_note_ids)}</code></p>
+          <p>archive_rq_ids: <code>${JSON.stringify(d.linked_archive_rq_ids)}</code></p>
+          <p>archive_gap_ids: <code>${JSON.stringify(d.linked_archive_gap_ids)}</code></p>
+        </div>
+      </article>
+    `;
+  }).join('');
+  document.getElementById('draft-cards').innerHTML = draftCards;
+
+  // bridge namespaces
+  const nsHtml = invariants.shared_id_namespaces.map(ns => `
+    <div class="bridge-namespace-card">
+      <div class="bridge-namespace-head">
+        <code>${ns.namespace}</code> · ${ns.archive_synonym ? 'shareable with Archive' : 'local-only'}
+      </div>
+      <p>prefix: <code>${ns.prefix}</code> · owner: ${ns.owner}</p>
+      <p>${ns.invariant}</p>
+    </div>
+  `).join('');
+  document.getElementById('bridge-namespace-list').innerHTML = nsHtml;
+
+  // toggle drilldown
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      const open = !target.hidden;
+      target.hidden = open;
+      btn.textContent = open ? '展开 outline + revision history' : '收起';
+    });
+  });
+})();
+</script>
+</body>
+</html>

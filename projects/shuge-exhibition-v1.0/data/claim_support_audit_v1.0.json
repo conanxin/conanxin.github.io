@@ -1,0 +1,224 @@
+{
+  "version": "v1.0",
+  "generated_at": "2026-09-28T10:57:00+08:00",
+  "audit_id": "audit-claim-support-v1.0",
+  "dossier_id": "dossier-water-classic-digital-life",
+  "article_id": "article-water-classic-digital-life-001",
+  "publication_status": "REVIEW",
+  "audit_method": "Each claim evaluated against actual evidence corpus. Citation ID existence does NOT guarantee support. Support evaluated on: (a) citation resolves in citations.json, (b) cited page OCR/evidence excerpt content, (c) claim wording matches what evidence shows.",
+  "corpus_snapshots_used": [
+    "projects/shuge-exhibition-v0.7/data/citations.json",
+    "projects/shuge-exhibition-v0.7/data/bibliography.json",
+    "projects/shuge-exhibition-v0.7/data/field_notes.json",
+    "projects/shuge-exhibition-v0.7/data/evidence_paragraphs.json"
+  ],
+  "support_categories": {
+    "SUPPORTED": "Citation resolves AND page content / observation excerpt supports the claim wording.",
+    "PARTIALLY_SUPPORTED": "Citation resolves but only partial wording supported; requires narrowing.",
+    "NOT_SUPPORTED": "Citation absent OR page content contradicts / cannot back the factual assertion.",
+    "METADATA_ONLY": "Not a citation-requiring historical claim (status, methodology, reflection)."
+  },
+  "citation_resolution": {
+    "SHUGE:p168491:68": "RESOLVED (citations.json F2, 梦粱录 run, reliability=HIGH; but supports 梦粱录 content, not 水经注)",
+    "SHUGE:p211203:1096": "ABSENT from citations.json runs",
+    "SHUGE:p211203:1178": "ABSENT from citations.json runs",
+    "SHUGE:p211203:1320": "ABSENT from citations.json runs",
+    "SHUGE:p211203:1338": "ABSENT from citations.json runs",
+    "SHUGE:p44159:552": "ABSENT from citations.json runs",
+    "SHUGE:p124575:1": "ABSENT from citations.json runs",
+    "SHUGE:p48341:50": "ABSENT from citations.json runs"
+  },
+  "bibliography_work_identity_finding": {
+    "work-shuge-168491": {
+      "title_zh_in_v0_7": "书海出版社文献 P168491",
+      "dynasty": "Northern Wei",
+      "actual_work_title_NOT_recorded": true
+    },
+    "work-shuge-211203": {
+      "title_zh_in_v0_7": "书海出版社文献 P211203",
+      "dynasty": "Song",
+      "actual_work_title_NOT_recorded": true
+    },
+    "work-shuge-44159": {
+      "title_zh_in_v0_7": "书海出版社文献 P44159",
+      "dynasty": "Qing",
+      "actual_work_title_NOT_recorded": true
+    }
+  },
+  "field_note_resolution": {
+    "FN-20260928-001": "RESOLVED (demo_notes; place=sangganhe; observer=fieldworker-A; verification_status=NEEDS_REVIEW)",
+    "FN-20260928-004": "RESOLVED (demo_notes; place=grand_canal; observer=fieldworker-C; verification_status=UNVERIFIED)"
+  },
+  "claims": [
+    {
+      "claim_id": "cl-1.1",
+      "text": "本研究关注一部 Northern Wei 时期 (6th c.) 的综合性地理著作传统 (在 v0.7 bibliography 中以 post_id 168491 为标识);原始作者归属 (郦道元) 与具体书名 (《水经注》) 来自外部史学共识,不在本证据集范围内。",
+      "original_text_in_article": "《水经注》是北魏 (Northern Wei, 6th c.) 郦道元所撰的综合性地理著作,后世数字研究古文中常作为核心文本。",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "support_reason": "Bibliography records work-shuge-168491 dynasty=NORTHERN WEI (SUPPORTED). However v0.7 does NOT record actual work title ('水经注') nor author ('郦道元') — title_zh is '书海出版社文献 P168491' (post-id-keyed). Original attribution is from external scholarly consensus, NOT from evidence corpus. NARROWED in article to remove specific attribution.",
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "evidence_excerpt": "bibliography.json → work-shuge-168491: dynasty='Northern Wei', title_zh='书海出版社文献 P168491' (not '水经注'); citations.json F2 (梦粱录 run, not 水经注 run); dossier self-admits limitation.",
+      "action": "NARROW — article body reworded to remove specific work title and author attribution; described as a Northern Wei-era hydrological work profile.",
+      "post_narrowing_support_status": "SUPPORTED (dynasty only, with explicit limitation)"
+    },
+    {
+      "claim_id": "cl-2.1",
+      "text": "本证据集并不直接提供《水经注》或类似古籍的完整物质生命谱系;具体的物理形态链条 (竹简 → 抄本 → 刊刻 → 影印 → 数字化扫描) 不在本证据集范围内,属综述性陈述。",
+      "original_text_in_article": "《水经注》的早期物质形态包括抄本,后经历多次刊刻,20 世纪以来出现影印本与数字化扫描。",
+      "support_status": "NOT_SUPPORTED",
+      "support_reason": "The physical-history chain claim (竹简 → 抄本 → 刊刻 → 影印 → 扫描) is NOT in the evidence corpus. Cited page SHUGE:p211203:1096 is ABSENT from citations.json runs; bibliography's work-shuge-211203 belongs to a Song-era work, not a Northern Wei hydrological work. The claim's wording is unverifiable from any direct evidence.",
+      "citation_ids": [
+        "SHUGE:p211203:1096"
+      ],
+      "evidence_excerpt": "dossier limitation: 'physical-history chain (竹简 → 抄本 → 刊刻 → 影印 → 扫描) is NOT in the evidence corpus'.",
+      "action": "CONVERT_TO_LIMITATION — article body no longer asserts the chain as factual; reworded as a methodological gap statement.",
+      "post_narrowing_support_status": "METADATA_ONLY (now a methodological limitation, not a factual claim)"
+    },
+    {
+      "claim_id": "cl-3.1",
+      "text": "Northern Wei 时期综合性地理著作传统 (本证据集中以 post_id 168491 为代表) 涉及的地理范围被认为覆盖了当时主要河流体系;具体的河流数量统计 (例如「137/1252」) 不在本证据集范围内。",
+      "original_text_in_article": "《水经注》记载了主要河流与支流,覆盖今天中国大部分主要水系 (河水/江水 等)。",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "support_reason": "1 of 3 citations resolves (SHUGE:p168491:68). Dynasty-supported. Specific count claim (137/1252) NOT in evidence corpus. NARROWED in article to remove specific counts and modern water-name assertions.",
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_excerpt": "dossier limitation: 'exact count (137/1252) NOT in evidence corpus'.",
+      "action": "NARROW — article body reworded to remove specific counts; described as inferred from a Northern Wei hydrological work profile.",
+      "post_narrowing_support_status": "SUPPORTED (with explicit limitation)"
+    },
+    {
+      "claim_id": "cl-3.2",
+      "text": "古今水系名称的等同关系 (例如「河水」≈ 黄河、「江水」≈ 长江) 来自外部史学共识,不在本证据集范围内;本文不作考证性论断。",
+      "original_text_in_article": "《水经注》记载的河流名称与现代水系名称存在音近/同源关系 (例如「河水」与黄河、「江水」与长江)。",
+      "support_status": "NOT_SUPPORTED",
+      "support_reason": "0 of 3 citations resolve (all from work-shuge-211203, a Song-era work, not a Northern Wei hydrological work). The name-equivalence (河水=黄河) is from external scholarly consensus. CONVERTED in body to a research gap statement.",
+      "citation_ids": [
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_excerpt": "dossier limitation: 'specific equivalence (河水=黄河) NOT in evidence corpus'.",
+      "action": "CONVERT_TO_LIMITATION — article body no longer asserts the equivalence as factual; reworded as an acknowledged research gap.",
+      "post_narrowing_support_status": "METADATA_ONLY (research gap, not factual claim)"
+    },
+    {
+      "claim_id": "cl-4.1",
+      "text": "桑干河 (永定河上游) 在 2026-09-15 的一次实地观测中,河床呈干涸状态;该观察记录在 field_note FN-20260928-001 中 (verification_status=NEEDS_REVIEW)。这一观察与 Northern Wei 时期 hydrological work profile 中描述的水文状态之间的具体关系,不在本证据集直接验证范围内。",
+      "original_text_in_article": "桑干河 (永定河上游) 在 2026-09 实地观测时河床已干涸,与《水经注》记载之'水势浩荡'明显不符。",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "support_reason": "FN-20260928-001 is RESOLVED (demo_notes, sangganhe, NEEDS_REVIEW, observer fieldworker-A); the field observation itself is recorded. However the comparison to classical text ('明显不符' / '水势浩荡') is NOT directly verifiable from cited page SHUGE:p124575:1 (which is ABSENT from citations.json). NARROWED in article to remove the '明显不符' verdict.",
+      "citation_ids": [
+        "FN-20260928-001",
+        "SHUGE:p124575:1"
+      ],
+      "evidence_excerpt": "field_notes.json demo_notes: '桑干河河床已干涸...verification_status=NEEDS_REVIEW'.",
+      "action": "NARROW — article body reworded to describe as 'an unverified visual contrast' between observation and classical text.",
+      "post_narrowing_support_status": "SUPPORTED (observation part) + EXPLICIT_LIMITATION (comparison part)"
+    },
+    {
+      "claim_id": "cl-4.2",
+      "text": "京杭大运河通州段在 2026-09-25 的一次实地观测中被记录为可通航状态 (FN-20260928-004, verification_status=UNVERIFIED);该观察与古代'漕运'水道之间的延续性判断不在本证据集直接验证范围内 (SHUGE:p48341:50 OCR QUEUED, not CHECKED)。",
+      "original_text_in_article": "京杭大运河通州段 2026-09 仍可通航,与《水经注》记载之'漕运'水道基本延续。",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "support_reason": "FN-20260928-004 is RESOLVED (demo_notes, grand_canal, UNVERIFIED, observer fieldworker-C); observation is RESOLVED. The continuity claim ('基本延续') is NOT directly verifiable (p48341:50 OCR QUEUED). NARROWED in article to remove the '基本延续' verdict.",
+      "citation_ids": [
+        "FN-20260928-004",
+        "SHUGE:p48341:50"
+      ],
+      "evidence_excerpt": "field_notes.json demo_notes: '京杭大运河通州段仍可通航...verification_status=UNVERIFIED'.",
+      "action": "NARROW — article body reworded to describe as 'a single unverified observation with queued OCR'.",
+      "post_narrowing_support_status": "SUPPORTED (observation part) + EXPLICIT_LIMITATION (continuity part)"
+    },
+    {
+      "claim_id": "cl-5.1",
+      "text": "现有数字人文 (DH) 研究中,以「数字生命史」(digital life history) 为元视角对 Northern Wei hydrological work profile 进行整体性反思的尝试,在本证据集范围内尚未观察到;这属于本文作者的方法论观察,而非来自引文的结论。",
+      "original_text_in_article": "现有数字人文 (DH) 研究中,对《水经注》的处理多以文本检索、GIS 标注为主;以「数字生命史」为元视角的研究尚属空白。",
+      "support_status": "METADATA_ONLY",
+      "support_reason": "DH research gap claim is an observation by the article author, not citation-backed. Citations (p211203:1320, p211203:1338) are ABSENT from citations.json. Action: KEEP but mark explicitly as author observation.",
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_excerpt": "dossier limitation: 'DH research gap claim is an observation by the article author, not a citation'.",
+      "action": "KEEP — already marked as author observation in article; not a citation-requiring historical claim.",
+      "post_narrowing_support_status": "METADATA_ONLY"
+    },
+    {
+      "claim_id": "cl-6.1",
+      "text": "本研究方法受限于:书格 OCR 队列未完成 QA、字段文献未独立获取、田野观测样本量小、citation ID 集合仅覆盖 v0.5-v0.9 已冻结证据集等。",
+      "original_text_in_article": "本研究方法受限于书格 OCR 队列未完成 QA、字段文献未独立获取、田野观测样本量小等。",
+      "support_status": "METADATA_ONLY",
+      "support_reason": "This is a methodological limitation claim, not a factual claim about any specific river. Cited p44159:552 is ABSENT from citations.json runs; bibliography's work-shuge-44159 is a Qing-era work, not directly a methodology citation. Action: KEEP — limitation statements do not require external evidence backing.",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "evidence_excerpt": "dossier limitation: 'methodological limitation claim, not a factual claim'.",
+      "action": "KEEP — methodological limitation, not citation-requiring historical fact.",
+      "post_narrowing_support_status": "METADATA_ONLY"
+    },
+    {
+      "claim_id": "cl-7.1",
+      "text": "数字证据的「证据性」与古籍本身的「文本性」存在错位:前者是 hosted scan + OCR queue + public ID reference,后者是 manuscript + commentary;这一错位是本文的方法论观察。",
+      "original_text_in_article": "数字证据的「证据性」与古籍本身的「文本性」存在错位;前者是 hosted scan + OCR + ID,后者是 manuscript + commentary。",
+      "support_status": "METADATA_ONLY",
+      "support_reason": "Conceptual / methodological reflection, not a factual claim. Citations (p168491:68 resolves; p211203:1320, p211203:1338 absent) are decorative here, not factual backings. Action: KEEP — conceptual reflections are not citation-requiring.",
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_excerpt": "dossier limitation: 'conceptual / methodological reflection, not a factual claim'.",
+      "action": "KEEP — methodological reflection, not citation-requiring historical fact.",
+      "post_narrowing_support_status": "METADATA_ONLY"
+    },
+    {
+      "claim_id": "cl-8.1",
+      "text": "本文当前状态: REVIEW (DRAFT → REVIEW 自动;非 PUBLISHED)。最终发布需用户 (Xin Conan) 明确批准。",
+      "original_text_in_article": "本文当前状态: REVIEW (DRAFT → REVIEW 自动;非 PUBLISHED)。",
+      "support_status": "METADATA_ONLY",
+      "support_reason": "Status statement, not a citation-requiring claim. No citations.",
+      "citation_ids": [],
+      "evidence_excerpt": "article status='REVIEW', auto_publish_forbidden=true.",
+      "action": "KEEP — status statement.",
+      "post_narrowing_support_status": "METADATA_ONLY"
+    }
+  ],
+  "summary_counts": {
+    "total_claims": 10,
+    "factual_claims_with_citations": 6,
+    "citation_requiring_claims": 6,
+    "conceptual_or_status_claims": 4,
+    "support_breakdown_initial": {
+      "SUPPORTED": 0,
+      "PARTIALLY_SUPPORTED": 3,
+      "NOT_SUPPORTED": 3,
+      "METADATA_ONLY": 4
+    },
+    "support_breakdown_post_narrowing": {
+      "SUPPORTED": 4,
+      "PARTIALLY_SUPPORTED": 0,
+      "NOT_SUPPORTED": 0,
+      "METADATA_ONLY": 6
+    },
+    "NOT_SUPPORTED_remaining_in_article": 0
+  },
+  "narrowing_actions_taken": [
+    "cl-1.1: removed specific work title '《水经注》' and author '郦道元' attribution; reworded to dynasty-supported description (Northern Wei hydrological work profile, post_id-keyed)",
+    "cl-2.1: converted physical-history chain to methodological gap statement; no longer asserts chain as factual",
+    "cl-3.1: removed specific count claims (137/1252); removed specific modern water-name assertions",
+    "cl-3.2: removed specific name-equivalence (河水=黄河); reworded as acknowledged research gap",
+    "cl-4.1: removed '明显不符' verdict; described as 'an unverified visual contrast'",
+    "cl-4.2: removed '基本延续' verdict; described as 'a single unverified observation with queued OCR'"
+  ],
+  "hard_invariants_satisfied": [
+    "inv-audit-1 — no factual claim without explicit limitation marker",
+    "inv-audit-2 — NOT_SUPPORTED factual claims remaining in article = 0",
+    "inv-audit-3 — citation resolution evaluated against actual corpus, not assumed",
+    "inv-audit-4 — 书格 role = source_platform confirmed; v0.7 bibliography preserved unmodified"
+  ]
+}

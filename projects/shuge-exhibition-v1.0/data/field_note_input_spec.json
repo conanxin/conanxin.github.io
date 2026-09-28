@@ -1,0 +1,166 @@
+{
+  "version": "v0.6",
+  "generated_at": "2026-09-28T09:56:00+08:00",
+  "schema_version": "2.0",
+  "schema_note": "v0.6 unified field note schema. Builds on v0.5 schema (16 fields) by adding 4 fields for real input pipeline (input_id, input_metadata, consent, audit_trail).",
+  "boundary": "v0.6 only DOCUMENTS this schema. Real input pipeline (UI form / CLI / API endpoint) is NOT delivered in v0.6. Implementation by P5-E.",
+  "input_pipeline_status": "DESIGN_ONLY",
+  "input_methods_supported_by_design": [
+    "manual_markdown_file (primary, recommended for v0.6 prototyping)",
+    "json_form_submission (planned P5-E)",
+    "csv_batch_import (planned P5-E)"
+  ],
+  "manual_method_filed_p_step": [
+    "Step 1: Fieldworker drafts note in Markdown with YAML frontmatter matching this schema",
+    "Step 2: Fieldworker or curator commits note to /data/field_notes/incoming/ folder",
+    "Step 3: Pipeline script (P5-E only) validates schema, validates place_id, validates citation_ids",
+    "Step 4: On success, note moves to /data/field_notes.json and gets linked to workspace + research_questions",
+    "Step 5: v0.6+ site rebuilds; note appears on /field-notes/ page"
+  ],
+  "schema": {
+    "required_fields": [
+      {
+        "name": "field_note_id",
+        "type": "string",
+        "format": "FN-YYYYMMDD-3-digit-seq",
+        "note": "deterministic ID, server-assigned or manual pre-allocated"
+      },
+      {
+        "name": "place_id",
+        "type": "string",
+        "format": "must match places.json place_id (e.g. sangganhe, beijing, grand_canal)",
+        "note": "canonical v0.4+ style — NO 'place-' prefix"
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "format": "YYYY-MM-DD"
+      },
+      {
+        "name": "location_text",
+        "type": "string",
+        "note": "natural language"
+      },
+      {
+        "name": "linked_citation_ids",
+        "type": "array<string>",
+        "format": "SHUGE:p<post_id>:<page_seq>"
+      },
+      {
+        "name": "observation",
+        "type": "string",
+        "note": "natural language observation"
+      },
+      {
+        "name": "verification_status",
+        "type": "enum",
+        "values": [
+          "UNVERIFIED",
+          "VERIFIED",
+          "CONTRADICTED",
+          "NEEDS_REVIEW"
+        ]
+      }
+    ],
+    "optional_fields": [
+      {
+        "name": "gps_lat",
+        "type": "float",
+        "note": "real GPS; placeholder if null"
+      },
+      {
+        "name": "gps_lng",
+        "type": "float"
+      },
+      {
+        "name": "weather",
+        "type": "string"
+      },
+      {
+        "name": "photos_count",
+        "type": "int",
+        "note": "no actual photo files in v0.6; only count"
+      },
+      {
+        "name": "recording_count",
+        "type": "int"
+      },
+      {
+        "name": "fieldworker_name",
+        "type": "string",
+        "note": "real name OR anonymized alias"
+      },
+      {
+        "name": "linked_evidence_card_ids",
+        "type": "array<string>"
+      },
+      {
+        "name": "linked_research_question_ids",
+        "type": "array<string>"
+      },
+      {
+        "name": "tags",
+        "type": "array<string>"
+      }
+    ],
+    "v0_6_new_fields": [
+      {
+        "name": "input_id",
+        "type": "string",
+        "format": "IN-NNNNNN",
+        "note": "audit trail ID — assigned by input pipeline (P5-E)"
+      },
+      {
+        "name": "input_method",
+        "type": "enum",
+        "values": [
+          "manual_markdown_file",
+          "json_form_submission",
+          "csv_batch_import"
+        ]
+      },
+      {
+        "name": "input_metadata",
+        "type": "object",
+        "note": "raw_input_path, source_hash, encoding"
+      },
+      {
+        "name": "consent",
+        "type": "object",
+        "schema": {
+          "publishable": "bool",
+          "anonymize_fieldworker": "bool",
+          "license": "string"
+        }
+      },
+      {
+        "name": "audit_trail",
+        "type": "object",
+        "schema": {
+          "created_at": "string",
+          "created_by": "string",
+          "modified_at": "string",
+          "modified_by": "string",
+          "review_status": "enum[PENDING|APPROVED|REJECTED]"
+        }
+      }
+    ]
+  },
+  "validation_rules": [
+    "field_note_id must be globally unique across all field_notes.json records",
+    "place_id must exist in places.json (canonical, no prefix)",
+    "all linked_citation_ids must match SHUGE:p<post_id>:<page_seq> format and exist in citations.json",
+    "linked_evidence_card_ids and research_question_ids are optional, but if present must exist",
+    "verification_status must be one of 4 enum values",
+    "photos_count must be integer ≥0; actual photos not stored in v0.6",
+    "gps_lat/gps_lng must be valid WGS84 lat/lng range if provided"
+  ],
+  "yaml_frontmatter_example": "```yaml\n---\nfield_note_id: FN-20261001-001\nplace_id: beijing\ndate: '2026-10-01'\nlocation_text: 北京市东城区故宫博物院 太和殿前檐柱\ngps_lat: 39.9163\ngps_lng: 116.3972\nweather: 晴\nphotos_count: 12\nrecording_count: 1\nfieldworker_name: 张三\nlinked_citation_ids:\n  - SHUGE:p44159:100\n  - SHUGE:p44159:200\nlinked_research_question_ids:\n  - rq-ws2-001\nverification_status: VERIFIED\ntags:\n  - pillar-measurement\n  - d-equals-2c\n---\n\n# 太和殿前檐柱测量\n\n实测太和殿前檐柱直径约 0.6m,柱顶石正心面直径约 0.3m...\n```",
+  "stats": {
+    "total_fields": 16,
+    "required_fields_count": 7,
+    "optional_fields_count": 9,
+    "v0_6_new_fields_count": 5,
+    "validation_rules_count": 7
+  }
+}

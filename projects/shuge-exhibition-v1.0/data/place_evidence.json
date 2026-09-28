@@ -1,0 +1,282 @@
+{
+  "version": "v0.4",
+  "generated_at": "2026-09-28",
+  "schema_version": "1.0",
+  "design_notes": "Place ↔ Evidence Card 双向索引。匹配规则: place_name 字符串 / 别称 / work_id 间接关联。每个 card 可能绑 0-N 个 place。",
+  "constraints": [
+    "all_bindings_from_existing_citations_only",
+    "no_fabricated_place_names",
+    "static_json_readonly"
+  ],
+  "matching_rules": [
+    "place_name_substring_match",
+    "pinyin_case_insensitive_match",
+    "english_name_case_insensitive_match",
+    "work_id_indirect_match (card.work_id == place.related_works)",
+    "alias_match (永定河 -> 桑干河)"
+  ],
+  "total_bindings": 19,
+  "by_place": {
+    "sangganhe": {
+      "place_id": "sangganhe",
+      "name_zh": "桑干河",
+      "evidence_card_ids": [],
+      "citation_ids": [
+        "SHUGE:p124575:1",
+        "SHUGE:p124575:15"
+      ],
+      "binding_count": 0
+    },
+    "huanghe": {
+      "place_id": "huanghe",
+      "name_zh": "黄河",
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1",
+        "F1",
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p48341:1",
+        "SHUGE:p211203:1096"
+      ],
+      "binding_count": 7
+    },
+    "jiangshui": {
+      "place_id": "jiangshui",
+      "name_zh": "江水",
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:200",
+        "SHUGE:p124575:215"
+      ],
+      "binding_count": 1
+    },
+    "linan": {
+      "place_id": "linan",
+      "name_zh": "临安",
+      "evidence_card_ids": [],
+      "citation_ids": [
+        "SHUGE:p205024:1",
+        "SHUGE:p205024:15"
+      ],
+      "binding_count": 0
+    },
+    "beijing": {
+      "place_id": "beijing",
+      "name_zh": "北京",
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p44159:1",
+        "SHUGE:p44159:50"
+      ],
+      "binding_count": 3
+    },
+    "garden": {
+      "place_id": "garden",
+      "name_zh": "园林",
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:1",
+        "SHUGE:p168491:30"
+      ],
+      "binding_count": 2
+    },
+    "palace": {
+      "place_id": "palace",
+      "name_zh": "宫殿",
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p44159:100",
+        "SHUGE:p44159:200"
+      ],
+      "binding_count": 3
+    },
+    "temple": {
+      "place_id": "temple",
+      "name_zh": "寺庙",
+      "evidence_card_ids": [
+        "F1",
+        "F1",
+        "F1"
+      ],
+      "citation_ids": [
+        "SHUGE:p44159:300"
+      ],
+      "binding_count": 3
+    },
+    "ancient_road": {
+      "place_id": "ancient_road",
+      "name_zh": "古道",
+      "evidence_card_ids": [],
+      "citation_ids": [],
+      "binding_count": 0
+    },
+    "grand_canal": {
+      "place_id": "grand_canal",
+      "name_zh": "运河",
+      "evidence_card_ids": [],
+      "citation_ids": [
+        "SHUGE:p48341:50"
+      ],
+      "binding_count": 0
+    }
+  },
+  "by_card": [
+    {
+      "claim_id": "F1",
+      "question": "区块链技术在水经注中的应用",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "河防一览黄河",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1096"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "工程做法纳米材料",
+      "work_id": "p44159",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "place_ids": [
+        "temple",
+        "beijing",
+        "palace"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "工程做法大木",
+      "work_id": "p44159",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "place_ids": [
+        "temple",
+        "beijing",
+        "palace"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "水经注太平洋",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "天工开物砖瓦",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1320"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "天工开物砖瓦",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1320"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "园冶相地",
+      "work_id": "p168491",
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "place_ids": [
+        "garden"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "园冶相地",
+      "work_id": "p168491",
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "place_ids": [
+        "garden"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "工程做法正心",
+      "work_id": "p44159",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "place_ids": [
+        "temple",
+        "beijing",
+        "palace"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "天工开物水利",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "place_ids": [
+        "huanghe"
+      ]
+    },
+    {
+      "claim_id": "F1",
+      "question": "水经注江水",
+      "work_id": "p211203",
+      "citation_ids": [
+        "SHUGE:p211203:1178"
+      ],
+      "place_ids": [
+        "huanghe",
+        "jiangshui"
+      ]
+    }
+  ]
+}

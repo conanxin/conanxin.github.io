@@ -1,0 +1,178 @@
+{
+  "version": "v0.8",
+  "generated_at": "2026-09-28T10:17:00+08:00",
+  "source": "v0.7 research_drafts.json + v0.8 research_articles.json",
+  "states": [
+    {
+      "state_id": "DRAFT",
+      "order": 1,
+      "description_zh": "草稿状态:基于 v0.7 draft + paragraph 集合生成 research_articles 记录。所有 paragraphs 必须有 binding_state (≥ CLAIMS_BOUND)。",
+      "entry_criteria": [
+        "draft_id 存在且 ≥ 5 sections",
+        "每 section 至少有 1 paragraph",
+        "每 paragraphs binding_state ∈ {CLAIMS_BOUND, EVIDENCE_BOUND, FIELD_NOTE_BOUND}",
+        "claims ≥ 1",
+        "linked_archive_note_ids/rq_ids/gap_ids 必须引用 v0.5+ 已建立的 ID"
+      ],
+      "exit_criteria": [
+        "所有 binding_state = CLAIMS_BOUND 段落至少有 1 citation",
+        "所有 FIELD_NOTE_BOUND 段落至少有 1 field_note"
+      ],
+      "reviewer_action": "author self-review",
+      "transition_to": [
+        "REVIEW"
+      ]
+    },
+    {
+      "state_id": "REVIEW",
+      "order": 2,
+      "description_zh": "评审中状态:由 peer reviewers 校验每条 claim 是否 evidence-backed,每段 binding_state 是否合规,每条 citation 是否在 bibliography 中。",
+      "entry_criteria": [
+        "draft 通过 DRAFT exit_criteria",
+        "reviewer_id 已分配",
+        "review_due_date 已设定",
+        "每 reviewer 独立打分(0-5):claims_correctness / citation_coverage / evidence_card_match / binding_state_compliance"
+      ],
+      "exit_criteria": [
+        "所有 reviewer scores ≥ 3",
+        "无 critical review (BLOCKING)"
+      ],
+      "reviewer_action": "peer review with rubric",
+      "transition_to": [
+        "DRAFT",
+        "REVISED"
+      ]
+    },
+    {
+      "state_id": "REVISED",
+      "order": 3,
+      "description_zh": "已修订状态:reviewer 反馈已纳入修订。revision_history 中应至少新增 1 条 revision,标注 \"回应 reviewer-N 反馈\"。",
+      "entry_criteria": [
+        "REVIEW exit_criteria 全部通过",
+        "修订记录已写入 revision_history",
+        "至少 1 段被显式标记为修订(revision_id 出现在文章级 review_notes 中)",
+        "reviewer 评分表 (rubric_scores) 全部 ≥ 4"
+      ],
+      "exit_criteria": [
+        "research_team 决策:是否进入 PUBLISHED"
+      ],
+      "reviewer_action": "author revision + reviewer re-eval",
+      "transition_to": [
+        "PUBLISHED",
+        "DRAFT"
+      ]
+    },
+    {
+      "state_id": "PUBLISHED",
+      "order": 4,
+      "description_zh": "已发布状态:正式发布到公开渠道(本演示不进入此状态 — 严格边界)。",
+      "entry_criteria": [
+        "REVISED exit_criteria 通过",
+        "research_team 决策发布",
+        "publish_channel 已指定 (例如 arXiv / DOI / 站内 / Notion)",
+        "release_date 已设定"
+      ],
+      "exit_criteria": [
+        "无 (终态)"
+      ],
+      "reviewer_action": "release + archive snapshot",
+      "transition_to": [],
+      "boundary_note": "v0.8 严格边界:本演示不进入 PUBLISHED。articles 集合中不存在 review_status=PUBLISHED 的 article,这是设计边界,不是数据缺失。"
+    }
+  ],
+  "state_transitions": [
+    {
+      "from": "DRAFT",
+      "to": "REVIEW",
+      "requires": [
+        "all_paragraphs_have_citation",
+        "all_field_bound_paragraphs_have_field_note"
+      ]
+    },
+    {
+      "from": "REVIEW",
+      "to": "DRAFT",
+      "requires": [
+        "reviewer_blocking = true",
+        "reviewer_scores < 3"
+      ]
+    },
+    {
+      "from": "REVIEW",
+      "to": "REVISED",
+      "requires": [
+        "all_reviewer_scores >= 3",
+        "no_blocking"
+      ]
+    },
+    {
+      "from": "REVISED",
+      "to": "PUBLISHED",
+      "requires": [
+        "research_team_decision = APPROVE",
+        "publish_channel_specified"
+      ]
+    },
+    {
+      "from": "REVISED",
+      "to": "DRAFT",
+      "requires": [
+        "research_team_decision = REVISE_MORE"
+      ]
+    }
+  ],
+  "demo_articles_in_state": {
+    "DRAFT": [
+      "article-hydrology-river-distribution"
+    ],
+    "REVIEW": [
+      "article-architecture-pillar-diameter"
+    ],
+    "REVISED": [
+      "article-cross-hydrology-architecture"
+    ],
+    "PUBLISHED": []
+  },
+  "rubric_dimensions": [
+    {
+      "dimension": "claims_correctness",
+      "description": "每条 claim 是否事实正确",
+      "scale": "0-5",
+      "passing": 4
+    },
+    {
+      "dimension": "citation_coverage",
+      "description": "每条外部 claim 是否引用 citation",
+      "scale": "0-5",
+      "passing": 4
+    },
+    {
+      "dimension": "evidence_card_match",
+      "description": "evidence_card_ids 是否对应正确的 claim",
+      "scale": "0-5",
+      "passing": 4
+    },
+    {
+      "dimension": "binding_state_compliance",
+      "description": "binding_state 字段是否符合 v0.7 定义",
+      "scale": "0-5",
+      "passing": 3
+    },
+    {
+      "dimension": "archive_link_consistency",
+      "description": "linked_archive_* IDs 是否引用 v0.5+ 已建立 ID",
+      "scale": "0-5",
+      "passing": 5
+    }
+  ],
+  "stats": {
+    "states": 4,
+    "transitions": 5,
+    "rubric_dimensions": 5,
+    "articles_in_draft": 1,
+    "articles_in_review": 1,
+    "articles_in_revised": 1,
+    "articles_in_published": 0,
+    "boundary_published_forbidden": true
+  }
+}

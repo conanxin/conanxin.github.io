@@ -1,0 +1,88 @@
+{
+  "version": "v0.9",
+  "generated_at": "2026-09-28T10:27:45+08:00",
+  "source": "derived from data/publication_invariants.json + data/public_article_pages.json + data/peer_review_records.json + data/research_portfolio.json",
+  "bridge_status": "v0.9 维持 v0.6 → v0.8 READ-ONLY ID link 协议;新增 public article pages / peer review / portfolio 三层语义结构,但 ID 与文献契约保持不变。",
+  "boundary": "v0.9 边界: 不自动 PUBLISHED; 不自动生成 abstract / methods / limitations 正文; 不调动人类评审员; 不生成评分; 不下载新资源; 不修改数据库; 不引入 Neo4j / embeddings / 向量数据库 / WebSocket / API server; 不抓取 shuge.org 或 Conan Xin Archive 内容(只引 ID)。",
+  "purpose": "v0.9 Publication Invariants — v0.8 archive_bridge_invariants (8 条) + v0.9 新增 4 条 = 12 条不变约束。每条 invariant 一律说「禁止做什么」或「允许做什么」(MAY ONLY / SHALL NOT / SHALL),不引入新方法。",
+  "shared_id_namespaces_extended": [
+    {"namespace": "field_note_id", "prefix": "FN-*", "source_layer": "v0.5 fieldwork", "status": "SHARED"},
+    {"namespace": "research_question_id", "prefix": "rq-*", "source_layer": "v0.5 research_questions", "status": "SHARED"},
+    {"namespace": "gap_id", "prefix": "gap-*", "source_layer": "v0.5 research_workspaces", "status": "SHARED"},
+    {"namespace": "workspace_id", "prefix": "ws-*", "source_layer": "v0.5 research_workspaces", "status": "SHARED"},
+    {"namespace": "project_id", "prefix": "rp-*", "source_layer": "v0.6 research_projects", "status": "SHARED"}
+  ],
+  "local_only_namespaces_extended": [
+    {"namespace": "article_id", "prefix": "article-*", "source_layer": "v0.8 research_articles", "status": "LOCAL_ONLY", "note": "article-* ID 仅 v0.9 站点内部使用,不入库"},
+    {"namespace": "draft_id", "prefix": "draft-*", "source_layer": "v0.7 research_drafts", "status": "LOCAL_ONLY", "note": "draft-* ID 仅站点内部使用"},
+    {"namespace": "paragraph_id", "prefix": "para-*", "source_layer": "v0.7 evidence_paragraphs", "status": "LOCAL_ONLY"},
+    {"namespace": "claim_id", "prefix": "cl-*", "source_layer": "v0.7 evidence_paragraphs", "status": "LOCAL_ONLY"},
+    {"namespace": "section_id", "prefix": "sec-*", "source_layer": "v0.7 outline / v0.8 article", "status": "LOCAL_ONLY"},
+    {"namespace": "issue_id", "prefix": "papa-*", "source_layer": "v0.9 public_article_pages", "status": "LOCAL_ONLY", "note": "v0.9 NEW; public article page 的内部 issue id,不入库"},
+    {"namespace": "review_id", "prefix": "rev-*", "source_layer": "v0.9 peer_review_records", "status": "LOCAL_ONLY", "note": "v0.9 NEW; review 记录的内部 id,不入库"},
+    {"namespace": "reviewer_id", "prefix": "revr-*", "source_layer": "v0.9 peer_review_records", "status": "LOCAL_ONLY", "note": "v0.9 NEW; reviewer 仅 placeholder,不是真实人物"},
+    {"namespace": "comment_id", "prefix": "cmt-*", "source_layer": "v0.9 peer_review_records", "status": "LOCAL_ONLY"}
+  ],
+  "archive_bridge_invariants_v0_9": [
+    {"rule_id": "inv-pub-v0.9-1", "constraint": "SHALL NOT", "description": "v0.9 public_article_pages SHALL NOT 写入 Conan Xin Archive; 只读 ID link。", "rationale": "继承 v0.6 archive_bridge 边界,严格只读。"},
+    {"rule_id": "inv-pub-v0.9-2", "constraint": "SHALL NOT", "description": "v0.9 public_article_pages SHALL NOT 自动生成 abstract / methods / limitations 正文; 字段允许,但正文由 v0.7 evidence_paragraphs 派生,LLM 自动补全禁止。", "rationale": "v0.9 边界: 不自动生成文章正文。继承 v0.7/v0.8 不自动写作 规则。"},
+    {"rule_id": "inv-pub-v0.9-3", "constraint": "SHALL NOT", "description": "v0.9 peer_review_records SHALL NOT 自动调动真实人类评审员; reviewer_id 是 placeholder,scores 是 static demo。", "rationale": "v0.9 边界: 不引入人工评审调度,不生成评分。"},
+    {"rule_id": "inv-pub-v0.9-4", "constraint": "SHALL NOT", "description": "v0.9 research_portfolio SHALL NOT 自动汇总 projects / articles / exhibitions; 全部条目 ID 引用 v0.4-v0.8 已建立 ID,聚合是 schema 描述,不是新内容。", "rationale": "v0.9 边界: portfolio 是聚合视图,不是新文档源。"},
+    {"rule_id": "inv-pub-v0.9-5", "constraint": "SHALL NOT", "description": "v0.9 articles SHALL NOT 自动进入 PUBLISHED 状态; review_status 维持 DRAFT/REVIEW/REVISED,PUBLISHED 是 v0.9 boundary forbidden。", "rationale": "v0.9 继承 v0.8 边界: PUBLISHED 严格禁止。"},
+    {"rule_id": "inv-pub-v0.9-6", "constraint": "SHALL NOT", "description": "v0.9 public_article_pages SHALL NOT change Citation ID; SHUGE:p<post_id>:<page_seq> 原样保留。", "rationale": "继承自 P5-B2 citation ID 不变约定。"},
+    {"rule_id": "inv-pub-v0.9-7", "constraint": "SHALL NOT", "description": "v0.9 peer_review_records SHALL NOT 暴露 bibliography full_text; 引用 citation_id 而非 full_text。", "rationale": "继承 v0.7 bibliography.full_text_unavailable=true。"},
+    {"rule_id": "inv-pub-v0.9-8", "constraint": "SHALL NOT", "description": "v0.9 portfolio SHALL NOT 下载新资源 / 修改数据库 / 引入 GIS server / Neo4j / embeddings / 向量数据库 / WebSocket / API server。", "rationale": "继承 v0.4-v0.8 全部硬约束,聚合视图不引入新工具。"},
+    {"rule_id": "inv-pub-v0.9-9", "constraint": "SHALL MAY", "description": "v0.9 public_article_pages SHALL MAY 引用 archive 链接 (FN-* / rq-* / gap-*),但仅作为 ID 引用,不读 content。", "rationale": "v0.6 archive bridge 协议扩展到 public page 层。"},
+    {"rule_id": "inv-pub-v0.9-10", "constraint": "SHALL MAY", "description": "v0.9 portfolio SHALL MAY 引用 v0.4-v0.8 全部 ID namespaces,只要 namespace 在 shared 列表内; 引用数量与拓扑由 stats 静态记录。", "rationale": "v0.9 聚合视图允许 ID 跨层引用。"},
+    {"rule_id": "inv-pub-v0.9-11", "constraint": "SHALL", "description": "v0.9 SHALL 在 portfolio footer 显式标注: Generated by SHUGE DH Research Platform v0.9 · Public Portfolio · READ-ONLY ID LINK · 不自动 PUBLISHED。", "rationale": "继承 v0.7/v0.8 footer 标注规则,扩展到 portfolio。"},
+    {"rule_id": "inv-pub-v0.9-12", "constraint": "SHALL", "description": "v0.9 SHALL 在 peer review record footer 显式标注: Peer Review Records are static demos · reviewer_id is placeholder · no auto-scoring · no human scheduling。", "rationale": "v0.9 边界: peer review 不可被误读为真实人类评审。"}
+  ],
+  "schema_additions_v0_9": [
+    {"layer": "public_article_page", "new_fields": ["abstract_zh", "abstract_en", "methods_zh", "methods_en", "limitations_zh", "limitations_en", "bibliography_section"], "reason": "v0.9 引入公共文章页 8 段语义结构(title / abstract / methods / evidence / claims / citations / limitations / bibliography)"},
+    {"layer": "peer_review_record", "new_fields": ["review_id", "reviewer_id", "rubric_dimensions_reviewed", "comments[]", "overall_score", "score_band", "review_status", "decision", "next_state_recommendation"], "reason": "v0.9 引入 peer review schema;review_status 是 PENDING/APPROVED/NEEDS_REVISION/REJECTED,与 article.review_status 分离"},
+    {"layer": "research_portfolio", "new_fields": ["portfolio_sections[]", "section_label_zh", "section_label_en", "section_intent_zh", "items[]"], "reason": "v0.9 引入 portfolio 聚合视图 5 sections(projects / articles / exhibitions / methods / infrastructure)"},
+    {"layer": "boundary_invariants", "new_fields": ["inv-pub-v0.9-1..12"], "reason": "v0.9 新增 4 条边界 (inv-2 自动正文禁止, inv-3 自动评审禁止, inv-4 portfolio 聚合非新内容, inv-9-12 MAY/SHALL 规则)"},
+    {"layer": "id_namespaces", "new_fields": ["issue_id (papa-*)", "review_id (rev-*)", "reviewer_id (revr-*)", "comment_id (cmt-*)"], "reason": "v0.9 新增 4 个 local-only namespaces"},
+    {"layer": "watermark_footer", "new_field": "v0.9 footer with READ-ONLY ID LINK · no auto-PUBLISHED annotation", "reason": "继承 v0.8 footer,扩展 v0.9 portfolio"}
+  ],
+  "demo_articles_invariants_summary": {
+    "DRAFT_article_hydrology": {
+      "review_status": "DRAFT",
+      "next_state_recommendation": "REVIEW",
+      "review_record_id": "rev-hydrology-river-distribution-001",
+      "review_decision": "BLOCK_TRANSITION (NEEDS_REVISION)",
+      "PUBLISHED_forbidden": true,
+      "static_score": 3.75
+    },
+    "REVIEW_article_architecture": {
+      "review_status": "REVIEW",
+      "next_state_recommendation": "REVISED",
+      "review_record_id": "rev-architecture-pillar-diameter-001",
+      "review_decision": "APPROVE_TRANSITION",
+      "PUBLISHED_forbidden": true,
+      "static_score": 4.40
+    },
+    "REVISED_article_cross": {
+      "review_status": "REVISED",
+      "next_state_recommendation": "REVISED (维持,boundary 禁止 PUBLISHED)",
+      "review_record_id": "rev-cross-hydrology-architecture-001",
+      "review_decision": "APPROVE_TRANSITION",
+      "PUBLISHED_forbidden": true,
+      "static_score": 4.20
+    }
+  },
+  "stats": {
+    "shared_id_namespaces_extended": 5,
+    "local_only_namespaces_extended": 4,
+    "archive_bridge_invariants_v0_9": 12,
+    "schema_additions_v0_9": 6,
+    "public_article_pages_total": 3,
+    "peer_review_records_total": 3,
+    "research_portfolio_sections_total": 5,
+    "articles_in_published_forbidden": true,
+    "auto_publish_forbidden_forbidden": true,
+    "auto_writing_forbidden": true,
+    "auto_scoring_forbidden": true,
+    "auto_human_scheduling_forbidden": true
+  }
+}

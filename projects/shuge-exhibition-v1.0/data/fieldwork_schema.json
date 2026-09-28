@@ -1,0 +1,153 @@
+{
+  "version": "v0.4",
+  "generated_at": "2026-09-28",
+  "schema_version": "1.0",
+  "design_notes": "v0.4 Fieldwork Bridge: 把现场田野调查数据(笔记、照片、GPS、访谈)桥接到 Place + Citation + Evidence Card。当前为 schema + mock;实际接入 P5-E。",
+  "constraints": [
+    "no_new_acquisition",
+    "static_schema_only",
+    "no_real_gps_data",
+    "no_real_field_notes_in_v04",
+    "schema_layer_only_no_storage_yet"
+  ],
+  "fieldwork_status_phases": {
+    "PLANNED": "fieldwork is scheduled but not started",
+    "IN_PROGRESS": "fieldworker is on site",
+    "NOTE_COLLECTED": "notes captured, awaiting transcription",
+    "TRANSCRIBED": "notes transcribed, awaiting verification",
+    "VERIFIED": "verified against existing citations",
+    "ARCHIVED": "incorporated into exhibition as new evidence"
+  },
+  "fieldwork_record_schema": {
+    "fieldwork_id": "string (FW-YYYYMMDD-<seq>)",
+    "place_id": "string (must match places.json place_id)",
+    "fieldworker_name": "string (anonymized in v0.4)",
+    "visit_date": "string (YYYY-MM-DD)",
+    "visit_type": "string (site_survey | archive_visit | interview | oral_history)",
+    "gps_lat": "float (placeholder in v0.4; actual GPS in P5-E)",
+    "gps_lng": "float (placeholder in v0.4)",
+    "weather_conditions": "string (optional)",
+    "equipment_used": [
+      "string"
+    ],
+    "raw_notes_path": "string (placeholder; e.g. fieldwork/notes/FW-001.md)",
+    "photo_count": "int",
+    "audio_recording_count": "int",
+    "linked_citation_ids": [
+      "SHUGE:p<post_id>:<page_seq>"
+    ],
+    "linked_evidence_card_ids": [
+      "F1",
+      "F2"
+    ],
+    "new_citation_proposed": [],
+    "verification_status": "VERIFIED | UNVERIFIED | CONTRADICTED",
+    "notes_for_curator": "string (curator-facing annotation)",
+    "next_action": "string (proposed follow-up)"
+  },
+  "v04_demo_records": [
+    {
+      "fieldwork_id": "FW-20260928-001",
+      "place_id": "sangganhe",
+      "fieldworker_name": "X. C. (curator)",
+      "visit_date": "2026-09-28",
+      "visit_type": "archive_visit",
+      "gps_lat": 39.8,
+      "gps_lng": 113.6,
+      "weather_conditions": "N/A (archive)",
+      "equipment_used": [
+        "digital_camera",
+        "scanner"
+      ],
+      "raw_notes_path": "fieldwork/notes/FW-20260928-001.md",
+      "photo_count": 12,
+      "audio_recording_count": 0,
+      "linked_citation_ids": [
+        "SHUGE:p124575:1",
+        "SHUGE:p124575:15"
+      ],
+      "linked_evidence_card_ids": [],
+      "new_citation_proposed": [],
+      "verification_status": "VERIFIED",
+      "notes_for_curator": "Demo record only; P5-E will populate with actual archive visits.",
+      "next_action": "Schedule physical visit to Yanmenguan pass, Shanxi (post-P5-E)"
+    },
+    {
+      "fieldwork_id": "FW-20260928-002",
+      "place_id": "beijing",
+      "fieldworker_name": "X. C. (curator)",
+      "visit_date": "2026-09-28",
+      "visit_type": "site_survey",
+      "gps_lat": 39.916,
+      "gps_lng": 116.397,
+      "weather_conditions": "Clear",
+      "equipment_used": [
+        "phone_camera",
+        "tape_measure"
+      ],
+      "raw_notes_path": "fieldwork/notes/FW-20260928-002.md",
+      "photo_count": 28,
+      "audio_recording_count": 0,
+      "linked_citation_ids": [
+        "SHUGE:p44159:100"
+      ],
+      "linked_evidence_card_ids": [],
+      "new_citation_proposed": [],
+      "verification_status": "VERIFIED",
+      "notes_for_curator": "Demo site survey; for Forbidden City eave details vs 工程做法 records.",
+      "next_action": "Compare photo evidence with 工程做法 eave specifications"
+    }
+  ],
+  "fieldwork_phases": [
+    {
+      "phase": "Phase A: Planning",
+      "duration_weeks": "2-4",
+      "deliverables": [
+        "fieldwork_plan.md",
+        "equipment_list",
+        "permits"
+      ]
+    },
+    {
+      "phase": "Phase B: Site visit",
+      "duration_weeks": "1-2",
+      "deliverables": [
+        "field_notes",
+        "photos",
+        "audio"
+      ]
+    },
+    {
+      "phase": "Phase C: Transcription & matching",
+      "duration_weeks": "2-3",
+      "deliverables": [
+        "transcripts",
+        "place_evidence_bindings",
+        "new_citation_proposals"
+      ]
+    },
+    {
+      "phase": "Phase D: Curator review",
+      "duration_weeks": "1-2",
+      "deliverables": [
+        "verification_status",
+        "exhibition_integration_decisions"
+      ]
+    },
+    {
+      "phase": "Phase E: Archive",
+      "duration_weeks": "1",
+      "deliverables": [
+        "verified_fieldwork_records",
+        "public_release"
+      ]
+    }
+  ],
+  "v0_4_status": "Schema only + 2 demo records; real fieldwork data is post-P5-E.",
+  "integration_points": {
+    "places": "places.json (this version)",
+    "evidence_cards": "evidence_cards_v3.json (this version)",
+    "evidence_graph": "evidence_graph.json (this version, 5-node-type graph)",
+    "collections": "collections.json (P5-C, historical-hydrology + architecture-construction)"
+  }
+}

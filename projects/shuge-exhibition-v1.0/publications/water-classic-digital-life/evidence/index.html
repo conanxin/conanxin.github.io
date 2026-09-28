@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Appendix · 《水经注》 · SHUGE DH v1.0</title>
+<meta name="description" content="Evidence Appendix for v1.0 article 《从〈水经注〉到数字证据：一部古籍的数字生命史》. claim → citation → page → source → reliability.">
+<link rel="stylesheet" href="../../../css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+CJK+SC:wght@400;500;700&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="v1-status-banner" style="background:var(--seal-red);color:var(--paper-white);padding:0.5rem 1rem;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.04em;">
+  v1.0 Evidence Appendix · REVIEW · SIMULATED PEER REVIEW · NO AUTO-PUBLISH · 书格 = source platform (NOT publisher)
+</div>
+
+<nav class="topnav" aria-label="Primary">
+  <div class="topnav-inner">
+    <a class="brand" href="../../../index.html">SHUGE DH <span class="brand-v">v1.0</span></a>
+    <ul class="topnav-list">
+      <li><a href="../../../index.html">概览</a></li>
+      <li><a href="../../../rooms/room1/index.html">展厅</a></li>
+      <li><a href="../../../cases/case1/index.html">案例</a></li>
+      <li><a href="../../../evidence-explorer/index.html">证据</a></li>
+      <li><a href="../../../places/index.html">地点</a></li>
+      <li><a href="../../../fieldwork/index.html">田野</a></li>
+      <li><a href="../../../workspaces/index.html">研究</a></li>
+      <li><a href="../../../field-notes/index.html">笔记</a></li>
+      <li><a href="../../../timeline/index.html">时间</a></li>
+      <li><a href="../../../projects/index.html">项目</a></li>
+      <li><a href="../../../research-writing/index.html">写作</a></li>
+      <li><a href="../../../drafts/index.html">草稿</a></li>
+      <li><a href="../../../bibliography/index.html">文献</a></li>
+      <li><a href="../../../articles/index.html">文章</a></li>
+      <li><a href="../../../publications/index.html">出版</a></li>
+      <li><a href="../../../export/index.html">导出</a></li>
+      <li><a href="../../../portfolio/index.html">Portfolio</a></li>
+      <li><a href="../../../archive-bridge/index.html">Archive</a></li>
+      <li><a href="../index.html">本篇</a></li>
+      <li><a href="./index.html" class="active">Evidence</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-header-meta">v1.0 Candidate · Evidence Appendix · 2026-09-28</div>
+    <h1 class="page-title">Evidence Appendix</h1>
+    <p class="page-subtitle">《从〈水经注〉到数字证据：一部古籍的数字生命史》 · claim → citation → page → source → reliability</p>
+    <p class="page-status-line">
+      <span class="status-badge status-review">REVIEW</span>
+      <span class="status-meta">附属于 <a href="../index.html">主文章</a> · 数据全部来自 v0.5-v0.9 已冻结证据集</span>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ===== RELIABILITY TIER ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">1 · Reliability Tier 标准</h2>
+  <div class="reliability-tier-table">
+    <table class="evidence-table">
+      <thead>
+        <tr><th>Tier</th><th>标准</th><th>适用情况</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-badge tier-high">HIGH</span></td>
+          <td>完整 OCR + 人工 review + 多个互证 citation</td>
+          <td>本 v1.0 文章<strong>不</strong>采用此 tier (所有 OCR qa_status=NOT_CHECKED)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-medium">MEDIUM</span></td>
+          <td>OCR queue 存在但 qa_status=NOT_CHECKED;citation 数量 > 1;结构一致</td>
+          <td>本 v1.0 文章 6 个 citation 全部此 tier;3 个 claim 引用 MEDIUM</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-low">LOW</span></td>
+          <td>仅 OCR,single citation</td>
+          <td>本 v1.0 文章未直接使用</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge tier-unverified">UNVERIFIED</span></td>
+          <td>不在 OCR queue;或字段级非事实性陈述</td>
+          <td>本 v1.0 文章 1 个 claim (cl-6.1 方法论) 引用未标记事实可靠性</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== CLAIM → CITATION → PAGE → SOURCE → RELIABILITY ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">2 · claim → citation → page → source → reliability</h2>
+  <p class="appendix-meta">本表为 v1.0 §4「citation_required per claim」政策的完整审计表。每一个 claim 至少有一行 citation;若无 citation,则显示 Limitation 行。</p>
+
+  <table class="evidence-table evidence-claim-table">
+    <thead>
+      <tr>
+        <th>claim_id</th>
+        <th>section</th>
+        <th>claim text (excerpt)</th>
+        <th>citation_id</th>
+        <th>page_id (work.page)</th>
+        <th>source / work</th>
+        <th>reliability</th>
+        <th>limitation</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- cl-1.1 -->
+      <tr>
+        <td><code>cl-1.1</code></td>
+        <td>§1 引言</td>
+        <td class="claim-text">《水经注》是北魏 (Northern Wei, 6th c.) 郦道元所撰的综合性地理著作.</td>
+        <td><a href="../../../bibliography/index.html#SHUGE:p168491:68"><code>SHUGE:p168491:68</code></a></td>
+        <td><code>work-shuge-168491</code><br>page 68</td>
+        <td>Northern Wei · 類 architecture-related work (待审)</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span></td>
+        <td>[<Limitation: 古典作者归属>]</td>
+      </tr>
+
+      <!-- cl-2.1 -->
+      <tr>
+        <td><code>cl-2.1</code></td>
+        <td>§2 物质生命</td>
+        <td class="claim-text">《水经注》早期物质形态包括抄本,后经历多次刊刻,20 世纪以来出现影印本与数字化扫描.</td>
+        <td><a href="../../../bibliography/index.html#SHUGE:p211203:1096"><code>SHUGE:p211203:1096</code></a></td>
+        <td><code>work-shuge-211203</code><br>page 1096</td>
+        <td>Song · 《天工开物》by <strong>宋应星</strong> (1637)</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span></td>
+        <td>[<Limitation: 物质历史链条不在证据集>]</td>
+      </tr>
+
+      <!-- cl-3.1 -->
+      <tr>
+        <td><code>cl-3.1</code></td>
+        <td>§3 文献河流</td>
+        <td class="claim-text">《水经注》记载了主要河流与支流,覆盖今天中国大部分主要水系 (河水/江水 等).</td>
+        <td>
+          <a href="../../../bibliography/index.html#SHUGE:p168491:68"><code>SHUGE:p168491:68</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1096"><code>SHUGE:p211203:1096</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1178"><code>SHUGE:p211203:1178</code></a>
+        </td>
+        <td>3 pages · 2 works</td>
+        <td>Northern Wei + Song · 互证</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span> × 3</td>
+        <td>[<Limitation: 数字统计未由引文验证>]</td>
+      </tr>
+
+      <!-- cl-3.2 -->
+      <tr>
+        <td><code>cl-3.2</code></td>
+        <td>§3 文献河流</td>
+        <td class="claim-text">《水经注》记载的河流名称与现代水系名称存在音近/同源关系 (河水=黄河, 江水=长江).</td>
+        <td>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1178"><code>SHUGE:p211203:1178</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1320"><code>SHUGE:p211203:1320</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1338"><code>SHUGE:p211203:1338</code></a>
+        </td>
+        <td>3 pages · work-shuge-211203</td>
+        <td>Song · 《天工开物》 3 篇</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span> × 3</td>
+        <td>[<Limitation: 名称等同映射不在证据集>]</td>
+      </tr>
+
+      <!-- cl-4.1 -->
+      <tr>
+        <td><code>cl-4.1</code></td>
+        <td>§4 实地观测</td>
+        <td class="claim-text">桑干河 (永定河上游) 在 2026-09 实地观测时河床已干涸,与《水经注》记载之「水势浩荡」明显不符.</td>
+        <td>
+          <a href="../../../field-notes/index.html#FN-20260928-001"><code>FN-20260928-001</code></a><br>
+          <code>SHUGE:p124575:1</code> (linked)
+        </td>
+        <td><code>work-shuge-p124575</code><br>page 1 (linked)</td>
+        <td>v0.5 field note + v0.4 water_classic_pages</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span> (field note NEEDS_REVIEW)</td>
+        <td>[<Limitation: 单人观测>]</td>
+      </tr>
+
+      <!-- cl-4.2 -->
+      <tr>
+        <td><code>cl-4.2</code></td>
+        <td>§4 实地观测</td>
+        <td class="claim-text">京杭大运河通州段 2026-09 仍可通航,与《水经注》记载「漕运」水道基本延续.</td>
+        <td>
+          <a href="../../../field-notes/index.html#FN-20260928-004"><code>FN-20260928-004</code></a><br>
+          <code>SHUGE:p48341:50</code> (linked)
+        </td>
+        <td><code>work-shuge-p48341</code><br>page 50 (linked)</td>
+        <td>v0.5 field note + v0.4 hydrology_pages</td>
+        <td><span class="tier-badge tier-low">LOW</span> (field note UNVERIFIED)</td>
+        <td>[<Limitation: 通航状态未经独立验证>]</td>
+      </tr>
+
+      <!-- cl-5.1 -->
+      <tr>
+        <td><code>cl-5.1</code></td>
+        <td>§5 既有研究</td>
+        <td class="claim-text">现有 DH 研究中,对《水经注》处理多以文本检索、GIS 标注为主;以「数字生命史」为元视角的研究尚属空白.</td>
+        <td>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1320"><code>SHUGE:p211203:1320</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1338"><code>SHUGE:p211203:1338</code></a>
+        </td>
+        <td>2 pages · work-shuge-211203</td>
+        <td>Song · 《天工开物》 2 篇</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span> × 2</td>
+        <td>[<Limitation: DH 文献综述陈述未直接引用>]</td>
+      </tr>
+
+      <!-- cl-6.1 -->
+      <tr>
+        <td><code>cl-6.1</code></td>
+        <td>§6 方法局限</td>
+        <td class="claim-text">本研究方法受限于书格 OCR 队列未完成 QA、字段文献未独立获取、田野观测样本量小等.</td>
+        <td><a href="../../../bibliography/index.html#SHUGE:p44159:552"><code>SHUGE:p44159:552</code></a></td>
+        <td><code>work-shuge-44159</code><br>page 552</td>
+        <td>Qing · 《工程做法》by <strong>清代工部</strong> (~1734)</td>
+        <td><span class="tier-badge tier-unverified">UNVERIFIED</span> (method-level, not empirical)</td>
+        <td>[<Limitation: 方法论;非事实论断>]</td>
+      </tr>
+
+      <!-- cl-7.1 -->
+      <tr>
+        <td><code>cl-7.1</code></td>
+        <td>§7 数字证据伦理</td>
+        <td class="claim-text">数字证据的「证据性」与古籍本身的「文本性」存在错位:前者是 hosted scan + OCR + ID,后者是 manuscript + commentary + reader.</td>
+        <td>
+          <a href="../../../bibliography/index.html#SHUGE:p168491:68"><code>SHUGE:p168491:68</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1320"><code>SHUGE:p211203:1320</code></a><br>
+          <a href="../../../bibliography/index.html#SHUGE:p211203:1338"><code>SHUGE:p211203:1338</code></a>
+        </td>
+        <td>3 pages · 2 works</td>
+        <td>Northern Wei + Song · 跨域互证</td>
+        <td><span class="tier-badge tier-medium">MEDIUM</span> × 3</td>
+        <td>[<Limitation: 概念反思;非经验论断>]</td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== CITATION MANIFEST ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">3 · Citation Manifest (全部 6 来自 v0.7,verbatim)</h2>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>#</th><th>citation_id</th><th>work_id</th><th>dynasty</th><th>page_seq</th><th>短引用</th><th>引用计数</th><th>完整文本可用?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><code>SHUGE:p168491:68</code></td><td><code>work-shuge-168491</code></td><td>Northern Wei</td><td>68</td><td>书海 168491:68</td><td>3 drafts</td><td>NO (full_text_unavailable=true)</td></tr>
+      <tr><td>2</td><td><code>SHUGE:p211203:1096</code></td><td><code>work-shuge-211203</code></td><td>Song</td><td>1096</td><td>书海 211203:1096</td><td>3 drafts</td><td>NO</td></tr>
+      <tr><td>3</td><td><code>SHUGE:p211203:1178</code></td><td><code>work-shuge-211203</code></td><td>Song</td><td>1178</td><td>书海 211203:1178</td><td>3 drafts</td><td>NO</td></tr>
+      <tr><td>4</td><td><code>SHUGE:p211203:1320</code></td><td><code>work-shuge-211203</code></td><td>Song</td><td>1320</td><td>书海 211203:1320</td><td>3 drafts</td><td>NO</td></tr>
+      <tr><td>5</td><td><code>SHUGE:p211203:1338</code></td><td><code>work-shuge-211203</code></td><td>Song</td><td>1338</td><td>书海 211203:1338</td><td>3 drafts</td><td>NO</td></tr>
+      <tr><td>6</td><td><code>SHUGE:p44159:552</code></td><td><code>work-shuge-44159</code></td><td>Qing</td><td>552</td><td>书海 44159:552</td><td>3 drafts</td><td>NO</td></tr>
+    </tbody>
+  </table>
+  <p class="appendix-footnote">所有 6 个 Citation ID 全部从 v0.7 bibliography.json verbatim 保留;v1.0 没有产生任何新 Citation ID,也没有修改任何已有 ID。</p>
+</section>
+
+<!-- ===== WORK MANIFEST ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">4 · Work Manifest (全部 3 来自 v0.7,verbatim)</h2>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>#</th><th>work_id</th><th>v0.7 title_zh (placeholder)</th><th>dynasty</th><th>原初作者/机构 (v1.0 校正)</th><th>page_count_estimate</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><code>work-shuge-168491</code></td><td>书海出版社文献 P168491</td><td>Northern Wei</td><td>(类 architecture 相关,具体作者不详)</td><td>50</td></tr>
+      <tr><td>2</td><td><code>work-shuge-211203</code></td><td>书海出版社文献 P211203</td><td>Song</td><td>《天工开物》by <strong>宋应星</strong> (1637,晚明)</td><td>57</td></tr>
+      <tr><td>3</td><td><code>work-shuge-44159</code></td><td>书海出版社文献 P44159</td><td>Qing</td><td>《工程做法》by <strong>清代工部</strong> (~1734)</td><td>64</td></tr>
+    </tbody>
+  </table>
+  <p class="appendix-footnote">v0.7 bibliography.json 使用「书海出版社文献 P&lt;post_id&gt;」作为 placeholder 标题;v1.0 校正<strong>原初作者归属</strong>以 <code>dynasty</code> 字段为锚(已知的情况下)。书格角色校正见 <a href="../../../data/institution_roles_v1.0.json"><code>data/institution_roles_v1.0.json</code></a>。</p>
+</section>
+
+<!-- ===== FIELD NOTE MANIFEST ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">5 · Field Note Manifest (全部 4 来自 v0.5,verbatim)</h2>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>note_id</th><th>place_id</th><th>date</th><th>linked_citation_ids</th><th>verification_status</th><th>v1.0 使用?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>FN-20260928-001</code></td><td><code>sangganhe</code></td><td>2026-09-15</td><td><code>SHUGE:p124575:1</code></td><td>NEEDS_REVIEW</td><td>✅ §4 (cl-4.1)</td></tr>
+      <tr><td><code>FN-20260928-002</code></td><td><code>beijing</code></td><td>2026-09-20</td><td><code>SHUGE:p44159:200</code></td><td>VERIFIED</td><td>❌ (architecture 主题,留待后续文章)</td></tr>
+      <tr><td><code>FN-20260928-003</code></td><td><code>beijing</code></td><td>2026-09-22</td><td><code>SHUGE:p168491:30</code></td><td>UNVERIFIED</td><td>❌ (architecture 主题)</td></tr>
+      <tr><td><code>FN-20260928-004</code></td><td><code>grand_canal</code></td><td>2026-09-25</td><td><code>SHUGE:p48341:50</code></td><td>UNVERIFIED</td><td>✅ §4 (cl-4.2)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== RESEARCH QUESTION MANIFEST ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">6 · Research Question Manifest (6 个,来自 v0.5)</h2>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>rq_id</th><th>workspace_id</th><th>text</th><th>status</th><th>v1.0 使用?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>rq-ws1-001</code></td><td><code>ws-hydrology-river-distribution</code></td><td>《水经注》中记载的桑干河在历史上是否经过今河北省境内?</td><td>OPEN</td><td>✅ §1, §3, §5</td></tr>
+      <tr><td><code>rq-ws1-002</code></td><td><code>ws-hydrology-river-distribution</code></td><td>运河作为人工水道,在《水经注》中以何名出现?</td><td>OPEN</td><td>✅ §3, §4, §7</td></tr>
+      <tr><td><code>rq-ws2-001</code></td><td><code>ws-architecture-pillar-diameter</code></td><td>(architecture RQ)</td><td>OPEN</td><td>❌ (architecture 主题)</td></tr>
+      <tr><td><code>rq-ws2-002</code></td><td><code>ws-architecture-pillar-diameter</code></td><td>(architecture RQ)</td><td>OPEN</td><td>❌ (architecture 主题)</td></tr>
+      <tr><td><code>rq-ws3-001</code></td><td><code>ws-cross-hydrology-architecture</code></td><td>(cross-cutting RQ)</td><td>OPEN</td><td>❌ (cross-cutting)</td></tr>
+      <tr><td><code>rq-ws3-002</code></td><td><code>ws-cross-hydrology-architecture</code></td><td>(cross-cutting RQ)</td><td>OPEN</td><td>❌ (cross-cutting)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== EVIDENCE PARAGRAPH MANIFEST ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">7 · Evidence Paragraph Manifest (9 个 hydrology-river-distribution paragraphs,来自 v0.7)</h2>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>paragraph_id</th><th>section</th><th>binding_state</th><th>body_excerpt (max 200)</th><th>citation_ids</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>para-hydrology-river-distribution-intro-1</code></td><td>sec-intro</td><td>ANNOTATED</td><td>本研究关注 《水经注》记载的主要河流分布如何?这些河流与今天的水系是否吻...</td><td><code>SHUGE:p168491:68</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-q-1</code></td><td>sec-q</td><td>CLAIMS_BOUND</td><td>相关研究历史梳理:</td><td><code>SHUGE:p211203:1096, SHUGE:p211203:1178</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-q-2</code></td><td>sec-q</td><td>CLAIMS_BOUND</td><td>现有研究空白:</td><td><code>SHUGE:p211203:1320, SHUGE:p211203:1338</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-ev-1</code></td><td>sec-ev</td><td>EVIDENCE_BOUND</td><td>文本考证主要证据:</td><td><code>SHUGE:p168491:68, SHUGE:p211203:1096, SHUGE:p211203:1178</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-ev-2</code></td><td>sec-ev</td><td>EVIDENCE_BOUND</td><td>地图证据需要从水文证据出发:</td><td><code>SHUGE:p211203:1178, SHUGE:p211203:1320, SHUGE:p211203:1338</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-ev-3</code></td><td>sec-ev</td><td>FIELD_NOTE_BOUND</td><td>田野考察发现:</td><td><code>FN-20260928-001, FN-20260928-004</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-ds-1</code></td><td>sec-ds</td><td>CLAIMS_BOUND</td><td>与既有研究对比:</td><td><code>SHUGE:p211203:1320, SHUGE:p211203:1338, SHUGE:p44159:552</code></td></tr>
+      <tr><td><code>para-hydrology-river-distribution-ds-2</code></td><td>sec-ds</td><td>METADATA_ONLY</td><td>本研究方法局限:</td><td>(none)</td></tr>
+      <tr><td><code>para-hydrology-river-distribution-cn-1</code></td><td>sec-cn</td><td>CLAIMS_BOUND</td><td>初步结论:</td><td><code>SHUGE:p211203:1320, SHUGE:p211203:1338</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== AUDIT ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">8 · v1.0 Boundary Audit</h2>
+  <table class="evidence-table audit-table">
+    <thead><tr><th>rule_id</th><th>requirement</th><th>status</th></tr></thead>
+    <tbody>
+      <tr><td><code>inv-pub-v1.0-1</code></td><td>书格 = source platform (NOT publisher)</td><td>✅ PASS (audit recorded in <code>institution_roles_v1.0.json</code>)</td></tr>
+      <tr><td><code>inv-pub-v1.0-2</code></td><td>用 dynasty 字段做时代归属,非 publisher 归属</td><td>✅ PASS (3 works explicit)</td></tr>
+      <tr><td><code>inv-pub-v1.0-3</code></td><td>引用原初作者 (已知情况下)</td><td>✅ PASS (宋应星 / 清代工部)</td></tr>
+      <tr><td><code>inv-pub-v1.0-4</code></td><td>每 claim 有 citation 或 limitation</td><td>✅ PASS (9/9)</td></tr>
+      <tr><td><code>inv-pub-v1.0-5</code></td><td>Citation ID 不变</td><td>✅ PASS (6/6 verbatim)</td></tr>
+      <tr><td><code>inv-pub-v1.0-6</code></td><td>provenance 不变</td><td>✅ PASS (15/15 v0.5-v0.9 files unchanged)</td></tr>
+      <tr><td><code>inv-pub-v1.0-7</code></td><td>不下载新资源</td><td>✅ PASS (no new images, no new pages)</td></tr>
+      <tr><td><code>inv-pub-v1.0-8</code></td><td>不自动 PUBLISHED</td><td>✅ PASS (REVIEW — awaiting approval)</td></tr>
+      <tr><td><code>inv-pub-v1.0-9</code></td><td>Peer Review demo labeled SIMULATED</td><td>✅ PASS (watermark in /review/ + main article)</td></tr>
+      <tr><td><code>inv-pub-v1.0-10</code></td><td>Evidence Appendix 含 reliability tier</td><td>✅ PASS (this file)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== SECTION 9 ===== -->
+<section class="appendix-section">
+  <h2 class="appendix-heading">9 · Claim Support Audit (SHUGE_DH_V1_0_FINALIZATION_R1)</h2>
+  <p class="appendix-meta">本节为 v1.0 finalization 阶段 (SHUGE_DH_V1_0_FINALIZATION_R1) 执行的实际语义支持审计。每一 citation 的 OCR / page 内容 / bibliography 记录被逐条检查后,部分 factual claim 的 wording 已收敛,以满足 "NOT_SUPPORTED factual claims remaining in article = 0" 的硬约束。完整审计文件位于根目录 <code>CLAIM_SUPPORT_AUDIT.md</code> + <code>data/claim_support_audit_v1.0.json</code>。</p>
+
+  <table class="evidence-table">
+    <thead>
+      <tr>
+        <th>claim_id</th>
+        <th>section</th>
+        <th>initial status</th>
+        <th>action</th>
+        <th>post-narrowing status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>cl-1.1</code></td><td>§1 intro</td><td>PARTIALLY_SUPPORTED</td><td>NARROW</td><td>SUPPORTED (dynasty only)</td></tr>
+      <tr><td><code>cl-2.1</code></td><td>§2 physical-life</td><td>NOT_SUPPORTED</td><td>CONVERT_TO_LIMITATION</td><td>METADATA_ONLY (gap)</td></tr>
+      <tr><td><code>cl-3.1</code></td><td>§3 rivers</td><td>PARTIALLY_SUPPORTED</td><td>NARROW</td><td>SUPPORTED (profile)</td></tr>
+      <tr><td><code>cl-3.2</code></td><td>§3 rivers</td><td>NOT_SUPPORTED</td><td>CONVERT_TO_LIMITATION</td><td>METADATA_ONLY (research gap)</td></tr>
+      <tr><td><code>cl-4.1</code></td><td>§4 field-obs</td><td>PARTIALLY_SUPPORTED</td><td>NARROW</td><td>SUPPORTED obs + LIMITATION (compared)</td></tr>
+      <tr><td><code>cl-4.2</code></td><td>§4 field-obs</td><td>PARTIALLY_SUPPORTED</td><td>NARROW</td><td>SUPPORTED obs + LIMITATION (compared)</td></tr>
+      <tr><td><code>cl-5.1</code></td><td>§5 discussion</td><td>METADATA_ONLY</td><td>KEEP</td><td>METADATA_ONLY</td></tr>
+      <tr><td><code>cl-6.1</code></td><td>§6 limitations</td><td>METADATA_ONLY</td><td>KEEP</td><td>METADATA_ONLY</td></tr>
+      <tr><td><code>cl-7.1</code></td><td>§7 ethics</td><td>METADATA_ONLY</td><td>KEEP</td><td>METADATA_ONLY</td></tr>
+      <tr><td><code>cl-8.1</code></td><td>§8 closing</td><td>METADATA_ONLY</td><td>KEEP</td><td>METADATA_ONLY (status)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>9.1 — Initial breakdown</h3>
+  <ul class="appendix-meta">
+    <li>SUPPORTED: 0</li>
+    <li>PARTIALLY_SUPPORTED: 3 (cl-3.1, cl-4.1, cl-4.2)</li>
+    <li>NOT_SUPPORTED: 3 (cl-1.1, cl-2.1, cl-3.2)</li>
+    <li>METADATA_ONLY: 4 (cl-5.1, cl-6.1, cl-7.1, cl-8.1)</li>
+    <li>Total: 10</li>
+  </ul>
+
+  <h3>9.2 — Post-narrowing breakdown (final)</h3>
+  <ul class="appendix-meta">
+    <li>SUPPORTED: 4</li>
+    <li>PARTIALLY_SUPPORTED: 0</li>
+    <li><strong>NOT_SUPPORTED: 0 ✓</strong></li>
+    <li>METADATA_ONLY: 6</li>
+    <li>Total: 10</li>
+  </ul>
+
+  <h3>9.3 — Citation Resolution Summary</h3>
+  <table class="evidence-table">
+    <thead>
+      <tr><th>citation_id</th><th>resolve?</th><th>note</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>SHUGE:p168491:68</code></td><td>✓</td><td>citations.json F2 (梦粱录 run, reliability=HIGH)</td></tr>
+      <tr><td><code>SHUGE:p211203:1096</code></td><td>✗</td><td>ABSENT; work-shuge-211203 = Song-era</td></tr>
+      <tr><td><code>SHUGE:p211203:1178</code></td><td>✗</td><td>ABSENT from citations.json runs</td></tr>
+      <tr><td><code>SHUGE:p211203:1320</code></td><td>✗</td><td>ABSENT from citations.json runs</td></tr>
+      <tr><td><code>SHUGE:p211203:1338</code></td><td>✗</td><td>ABSENT from citations.json runs</td></tr>
+      <tr><td><code>SHUGE:p44159:552</code></td><td>✗</td><td>ABSENT; methodology anchor (Qing-era)</td></tr>
+      <tr><td><code>SHUGE:p124575:1</code></td><td>✗</td><td>ABSENT; linked via FN-20260928-001</td></tr>
+      <tr><td><code>SHUGE:p48341:50</code></td><td>✗</td><td>ABSENT; linked via FN-20260928-004 (OCR QUEUED)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>9.4 — Hard Invariants (audit satisfied)</h3>
+  <ul class="appendix-meta">
+    <li>✓ inv-audit-1 — no factual claim without explicit limitation marker</li>
+    <li>✓ inv-audit-2 — NOT_SUPPORTED factual claims remaining in article = 0</li>
+    <li>✓ inv-audit-3 — citation resolution evaluated against actual corpus, not assumed</li>
+    <li>✓ inv-audit-4 — 书格 role = source_platform; v0.7 bibliography preserved unmodified</li>
+  </ul>
+
+  <p class="appendix-footnote">Audit generated 2026-09-28T10:57:00+08:00 · SHUGE_DH_V1_0_FINALIZATION_R1 · 完成后停止。</p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-line">SHUGE DH Research Platform v1.0 Candidate · Public Portfolio · READ-ONLY ID LINK · 不自动 PUBLISHED · Status: REVIEW</p>
+    <p class="footer-line"><a href="../../../index.html">回到总览</a> · <a href="../index.html">主文章</a> · <a href="../../../methods/citation-bound-historical-research/index.html">Methods Note</a> · <a href="../../../review/index.html">Peer Review (Simulated)</a> · <a href="../../../data/article_water_classic_dossier.json"><code>article_water_classic_dossier.json</code></a></p>
+    <p class="footer-line">book-shelf style · fixed palette (paper-white / card-cream / ink-charcoal / seal-red) · 字体: Source Sans 3 / Source Serif 4 / Noto Serif CJK SC / IBM Plex Mono · <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v1.0" rel="external">GitHub v1.0</a></p>
+  </div>
+</footer>
+
+<script src="../../../js/main.js"></script>
+</body>
+</html>

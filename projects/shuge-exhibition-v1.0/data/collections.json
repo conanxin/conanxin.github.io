@@ -1,0 +1,256 @@
+{
+  "collections": [
+    {
+      "id": 1,
+      "slug": "historical-hydrology",
+      "title_zh": "历史水利与河防",
+      "title_en": "Historical Hydrology & River Defense",
+      "description": "河流水系、堤防、灌溉、漕运、河工治理 — 以水经注、河防一览为骨干,辅以天工开物相关篇章。",
+      "inclusion_policy": "WORK SEED: 水经注 (p124575) + 河防一览 (p48341) 全文。PAGE: 天工开物 (p211203) 含水利/河工相关字页 (any-match: 河/渠/堤/堰/闸/灌/漕/泗/洪/决/水/黄/汴/淮 等)。",
+      "status": "ACTIVE",
+      "created_at": "2026-09-28T04:33:00+08:00",
+      "updated_at": "2026-09-28T04:33:00+08:00",
+      "definition": {
+        "id": 1,
+        "collection_id": 1,
+        "version": "v1",
+        "rules_json": "{\"description\": \"河流水系、堤防、灌溉、漕运、河工治理、海塘、运河\", \"seed_works\": [\"p124575\", \"p48341\"], \"include_terms\": [\"水\", \"河\", \"江\", \"湖\", \"海\", \"漕\", \"堤\", \"渠\", \"坝\", \"堰\", \"闸\", \"河工\", \"水利\", \"海塘\", \"黄河\", \"运河\", \"漕运\", \"灌溉\", \"河防\"], \"exclude_terms\": [], \"min_confidence\": 0.5, \"note\": \"historical hydrology & river defense — 河水/江水/水利/堤防\"}",
+        "seed_works_json": "[\"p124575\", \"p48341\"]",
+        "include_terms_json": "[\"水\", \"河\", \"江\", \"湖\", \"海\", \"漕\", \"堤\", \"渠\", \"坝\", \"堰\", \"闸\", \"河工\", \"水利\", \"海塘\", \"黄河\", \"运河\", \"漕运\", \"灌溉\", \"河防\"]",
+        "exclude_terms_json": "[]",
+        "min_confidence": 0.5,
+        "created_at": "2026-09-28T07:15:51.842065",
+        "status": "ACTIVE"
+      },
+      "membership_count": 1041,
+      "scope_distribution": {
+        "PAGE": 1039,
+        "WORK": 2
+      },
+      "review_status_distribution": {
+        "MANUAL": 2,
+        "REVIEWED": 1039
+      },
+      "snapshots": [
+        {
+          "id": 1,
+          "collection_id": 1,
+          "definition_version": "v1",
+          "snapshot_id": "snap-1-v1-2026-09-28-eb0f0cf4",
+          "generated_at": "2026-09-28T07:15:51.842065",
+          "corpus_fingerprint": "0d07aa6b604334e5",
+          "membership_count": 65,
+          "membership_hash": "eb0f0cf436bba57d2adb1922e61c3c8128a81f4a1079e069548ea15e37ae2623",
+          "notes": "P5-D initial snapshot; cmset_hash=eb0f0cf436bb"
+        },
+        {
+          "id": 3,
+          "collection_id": 1,
+          "definition_version": "v1",
+          "snapshot_id": "snap-1-v1-2026-09-28-4c777d84",
+          "generated_at": "2026-09-28T07:16:26.268095",
+          "corpus_fingerprint": "0d07aa6b604334e5",
+          "membership_count": 65,
+          "membership_hash": "4c777d8430be68695abaf590096d9588433e98e70deb05feffc54ccc2596d36d",
+          "notes": "manual snapshot; cmset_hash=4c777d8430be; corpus_fp=0d07aa6b604334e5"
+        },
+        {
+          "id": 6,
+          "collection_id": 1,
+          "definition_version": "v1",
+          "snapshot_id": "snap-1-v1-2026-09-28-b62aeed0",
+          "generated_at": "2026-09-28T07:16:44.771930",
+          "corpus_fingerprint": "5c60fbfac1d99b50",
+          "membership_count": 1041,
+          "membership_hash": "b62aeed02d993daa18d572864ad13e7d5b7c60ed46669b94be84cf09b10355af",
+          "notes": "manual snapshot; cmset_hash=b62aeed02d99; corpus_fp=5c60fbfac1d99b50"
+        }
+      ],
+      "audit_trail": [
+        {
+          "id": 1,
+          "collection_id": 1,
+          "action": "DEFINITION_INSERT",
+          "scope": "WORK",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "P5-D Track A: initial definition v1",
+          "actor": "p5d_track_a",
+          "created_at": "2026-09-28T07:15:51.842065"
+        },
+        {
+          "id": 3,
+          "collection_id": 1,
+          "action": "SNAPSHOT_TAKEN",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "snap_id=snap-1-v1-2026-09-28-4c777d84",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:26.268095"
+        },
+        {
+          "id": 5,
+          "collection_id": 1,
+          "action": "REBUILD",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "add=1039 drop=63 keep=0",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:26.868088"
+        },
+        {
+          "id": 6,
+          "collection_id": 1,
+          "action": "REBUILD",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "add=0 drop=0 keep=1039",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:27.470434"
+        },
+        {
+          "id": 10,
+          "collection_id": 1,
+          "action": "SNAPSHOT_TAKEN",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "snap_id=snap-1-v1-2026-09-28-b62aeed0",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:44.771930"
+        }
+      ],
+      "sample_memberships": [],
+      "queries_with_collection": 0
+    },
+    {
+      "id": 2,
+      "slug": "architecture-construction",
+      "title_zh": "建筑营造与工程做法",
+      "title_en": "Architecture & Construction",
+      "description": "宫室、营造、构件、用材 — 以工程做法为骨干,辅以天工开物营造章节、园冶。",
+      "inclusion_policy": "WORK SEED: 工程做法 (p44159) 全文。PAGE: 天工开物 (p211203) 含营造/工程相关字页 (any-match: 柱/梁/斗/拱/材/度/砖/瓦/木/石/营造/厅/殿/楼/房/架/桁/椽/城/宫 等)。",
+      "status": "ACTIVE",
+      "created_at": "2026-09-28T04:33:00+08:00",
+      "updated_at": "2026-09-28T04:33:00+08:00",
+      "definition": {
+        "id": 2,
+        "collection_id": 2,
+        "version": "v1",
+        "rules_json": "{\"description\": \"宫室、营造、构件、用材、工程做法\", \"seed_works\": [\"p44159\", \"p168491\"], \"include_terms\": [\"柱\", \"梁\", \"枋\", \"斗\", \"栱\", \"檐\", \"瓦\", \"砖\", \"石\", \"木\", \"构\", \"架\", \"厅\", \"堂\", \"殿\", \"楼\", \"阁\", \"门\", \"窗\", \"墙\", \"基\", \"阶\", \"径\", \"营造\", \"工程做法\", \"大木\", \"柱径\", \"正心\"], \"exclude_terms\": [], \"min_confidence\": 0.5, \"note\": \"architecture & construction — 柱径/正心/大木/营造\"}",
+        "seed_works_json": "[\"p44159\", \"p168491\"]",
+        "include_terms_json": "[\"柱\", \"梁\", \"枋\", \"斗\", \"栱\", \"檐\", \"瓦\", \"砖\", \"石\", \"木\", \"构\", \"架\", \"厅\", \"堂\", \"殿\", \"楼\", \"阁\", \"门\", \"窗\", \"墙\", \"基\", \"阶\", \"径\", \"营造\", \"工程做法\", \"大木\", \"柱径\", \"正心\"]",
+        "exclude_terms_json": "[]",
+        "min_confidence": 0.5,
+        "created_at": "2026-09-28T07:15:51.842065",
+        "status": "ACTIVE"
+      },
+      "membership_count": 1183,
+      "scope_distribution": {
+        "PAGE": 1181,
+        "WORK": 2
+      },
+      "review_status_distribution": {
+        "MANUAL": 2,
+        "REVIEWED": 1181
+      },
+      "snapshots": [
+        {
+          "id": 2,
+          "collection_id": 2,
+          "definition_version": "v1",
+          "snapshot_id": "snap-2-v1-2026-09-28-d5d9bf0e",
+          "generated_at": "2026-09-28T07:15:51.842065",
+          "corpus_fingerprint": "0d07aa6b604334e5",
+          "membership_count": 218,
+          "membership_hash": "d5d9bf0e793ea19082e01540297b167015070fd2b4720d985de966179d3fcccf",
+          "notes": "P5-D initial snapshot; cmset_hash=d5d9bf0e793e"
+        },
+        {
+          "id": 4,
+          "collection_id": 2,
+          "definition_version": "v1",
+          "snapshot_id": "snap-2-v1-2026-09-28-7e781987",
+          "generated_at": "2026-09-28T07:16:26.573879",
+          "corpus_fingerprint": "0d07aa6b604334e5",
+          "membership_count": 218,
+          "membership_hash": "7e781987a6f785663d758c93029ffa7907e1467f132775ea17f27ea7a144d99a",
+          "notes": "manual snapshot; cmset_hash=7e781987a6f7; corpus_fp=0d07aa6b604334e5"
+        },
+        {
+          "id": 5,
+          "collection_id": 2,
+          "definition_version": "v1",
+          "snapshot_id": "snap-2-v1-2026-09-28-59fa385c",
+          "generated_at": "2026-09-28T07:16:44.440266",
+          "corpus_fingerprint": "5c60fbfac1d99b50",
+          "membership_count": 1183,
+          "membership_hash": "59fa385c7753f6077a14bbc9f37beced9fca248c13cb6b7d3a2385985554a8d0",
+          "notes": "manual snapshot; cmset_hash=59fa385c7753; corpus_fp=5c60fbfac1d99b50"
+        }
+      ],
+      "audit_trail": [
+        {
+          "id": 2,
+          "collection_id": 2,
+          "action": "DEFINITION_INSERT",
+          "scope": "WORK",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "P5-D Track A: initial definition v1",
+          "actor": "p5d_track_a",
+          "created_at": "2026-09-28T07:15:51.842065"
+        },
+        {
+          "id": 4,
+          "collection_id": 2,
+          "action": "SNAPSHOT_TAKEN",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "snap_id=snap-2-v1-2026-09-28-7e781987",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:26.573879"
+        },
+        {
+          "id": 7,
+          "collection_id": 2,
+          "action": "REBUILD",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "add=1181 drop=216 keep=0",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:42.972984"
+        },
+        {
+          "id": 8,
+          "collection_id": 2,
+          "action": "REBUILD",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "add=0 drop=0 keep=1181",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:43.709533"
+        },
+        {
+          "id": 9,
+          "collection_id": 2,
+          "action": "SNAPSHOT_TAKEN",
+          "scope": "COLLECTION",
+          "work_id": null,
+          "page_object_id": null,
+          "reason": "snap_id=snap-2-v1-2026-09-28-59fa385c",
+          "actor": "collections_cli",
+          "created_at": "2026-09-28T07:16:44.440266"
+        }
+      ],
+      "sample_memberships": [],
+      "queries_with_collection": 0
+    }
+  ]
+}

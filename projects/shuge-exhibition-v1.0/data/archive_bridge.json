@@ -1,0 +1,101 @@
+{
+  "version": "v0.6",
+  "generated_at": "2026-09-28T09:56:00+08:00",
+  "boundary": "STRICTLY READ-ONLY SCHEMA. v0.6 defines ID naming conventions and contract fields ONLY. NO actual reading or writing of Conan Xin Archive content.",
+  "archive_reference": {
+    "name": "Conan Xin Archive",
+    "location": "(unknown — Xin Conan private archive, not gated by v0.6)",
+    "format": "JSON / Markdown",
+    "estimated_size": "private",
+    "access_pattern": "xin's discretion; v0.6 has zero read access"
+  },
+  "id_naming_convention": {
+    "field_note_id": {
+      "format": "FN-YYYYMMDD-3-digit-seq",
+      "cross_archive_namespace": true,
+      "note": "Conan Xin Archive may issue its own FN IDs in the same namespace. v0.6 only reads the IDs, not the content.",
+      "example_shared_id": "FN-20261005-001 (could be v0.6 or Archive-issued)"
+    },
+    "research_question_id": {
+      "format": "rq-<topic>-NNN",
+      "cross_archive_namespace": true,
+      "example_shared_id": "rq-ws1-001 (could be v0.6 or Archive-issued)"
+    },
+    "gap_id": {
+      "format": "gap-<topic>-NNN",
+      "cross_archive_namespace": true
+    },
+    "project_id": {
+      "format": "rp-<topic>",
+      "cross_archive_namespace": false,
+      "note": "Project IDs are v0.6+ local; Archive may have its own project IDs in its own namespace"
+    }
+  },
+  "contract_fields": {
+    "linked_archive_rq_ids": {
+      "type": "array<string>",
+      "description": "Array of research question IDs (rq_*) issued by Conan Xin Archive, referenced from v0.6 RQ.",
+      "read_direction": "v0.6 → Archive (citation only)",
+      "write_direction": "none",
+      "example": [
+        "rq-archive-ws-7-001",
+        "rq-archive-ws-7-002"
+      ]
+    },
+    "linked_archive_note_ids": {
+      "type": "array<string>",
+      "description": "Array of field note IDs (FN_*) issued by Conan Xin Archive.",
+      "read_direction": "v0.6 → Archive (citation only)",
+      "write_direction": "none"
+    },
+    "linked_archive_gap_ids": {
+      "type": "array<string>",
+      "description": "Array of gap IDs (gap_*) issued by Conan Xin Archive.",
+      "read_direction": "v0.6 → Archive",
+      "write_direction": "none"
+    }
+  },
+  "cross_archive_invariants": [
+    "v0.6 SHALL NOT read content from Conan Xin Archive (no URL fetch / git clone / API call / iFrame)",
+    "v0.6 SHALL NOT write to Conan Xin Archive (no INSERT / UPDATE / git push)",
+    "v0.6 SHALL NOT introduce submodule / symlink / hardlink to Archive",
+    "v0.6 SHALL NOT introduce Notion / Obsidian / Roam API integration",
+    "v0.6 MAY reference Archive-issued IDs (rq_*, FN_*, gap_*) by string only",
+    "v0.6 SHALL display a 'Pending Archive Link' placeholder for any Archive-issued ID referenced but not resolvable"
+  ],
+  "v0_6_schema_additions": [
+    {
+      "field": "linked_archive_rq_ids",
+      "added_to": "research_questions.json → questions[].linked_archive_rq_ids",
+      "v0_6_status": "field reserved; populated by Archive endpoint (future)",
+      "v0_6_value": "[] (empty array)"
+    },
+    {
+      "field": "linked_archive_note_ids",
+      "added_to": "field_notes.json → demo_notes[].linked_archive_note_ids",
+      "v0_6_status": "field reserved; populated by Archive endpoint (future)",
+      "v0_6_value": "[] (empty array)"
+    }
+  ],
+  "v0_6_bridge_demo": [
+    {
+      "v0_6_id": "rq-ws1-001",
+      "title": "《水经注》中记载的桑干河在历史上是否经过今河北省境内?",
+      "linked_archive_rq_ids": [],
+      "note": "v0.6 has no Archive data. This field is reserved for P5-E+Archive integration."
+    },
+    {
+      "v0_6_id": "rq-ws2-001",
+      "title": "《工程做法》中柱径 d 与正心 c 的比例是否为 d=2c?",
+      "linked_archive_rq_ids": [],
+      "note": "v0.6 has no Archive data. This field is reserved for P5-E+Archive integration."
+    }
+  ],
+  "stats": {
+    "id_types_shared": 3,
+    "contract_fields": 3,
+    "cross_archive_invariants": 6,
+    "schema_additions": 2,
+    "v0_6_bridge_demo_count": 2
+  }
+}

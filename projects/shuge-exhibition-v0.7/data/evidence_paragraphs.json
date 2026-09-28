@@ -1,0 +1,904 @@
+{
+  "version": "v0.7",
+  "generated_at": "2026-09-28T10:05:00+08:00",
+  "source": "v0.6 research_projects.json + research_drafts.json",
+  "total_paragraphs": 27,
+  "stats": {
+    "paragraphs_outline": 9,
+    "paragraphs_draft": 12,
+    "paragraphs_revised": 6,
+    "paragraphs_with_citations": 24,
+    "paragraphs_with_evidence_cards": 17,
+    "paragraphs_with_field_notes": 3,
+    "paragraphs_total_claims": 48,
+    "paragraphs_total_citation_links": 54,
+    "paragraphs_total_evidence_links": 25,
+    "paragraphs_total_field_note_links": 3,
+    "paragraphs_total_word_count": 4155
+  },
+  "binding_states": [
+    "ANNOTATED",
+    "CLAIMS_BOUND",
+    "EVIDENCE_BOUND",
+    "FIELD_NOTE_BOUND",
+    "METADATA_ONLY"
+  ],
+  "paragraphs": [
+    {
+      "paragraph_id": "para-hydrology-river-distribution-intro-1",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-intro",
+      "order": 0,
+      "title_zh": "引言·背景",
+      "body_excerpt": "本研究关注 《水经注》记载的主要河流分布如何?这些河流与今天的水系是否吻...",
+      "claims": [
+        "cl-hydrology-river-distribution-intro-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "ANNOTATED",
+      "word_count": 120,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-q-1",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-q",
+      "order": 1,
+      "title_zh": "研究问题·历史背景",
+      "body_excerpt": "相关研究历史梳理:",
+      "claims": [
+        "cl-hydrology-river-distribution-q1-1",
+        "cl-hydrology-river-distribution-q1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-q-2",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-q",
+      "order": 2,
+      "title_zh": "研究问题·研究空白",
+      "body_excerpt": "现有研究空白:",
+      "claims": [
+        "cl-hydrology-river-distribution-q2-1",
+        "cl-hydrology-river-distribution-q2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-ev-1",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-ev",
+      "order": 3,
+      "title_zh": "证据分析·文本考证",
+      "body_excerpt": "文本考证主要证据:",
+      "claims": [
+        "cl-hydrology-river-distribution-ev1-1",
+        "cl-hydrology-river-distribution-ev1-2",
+        "cl-hydrology-river-distribution-ev1-3"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 190,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-ev-2",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-ev",
+      "order": 4,
+      "title_zh": "证据分析·地图分析",
+      "body_excerpt": "地图证据需要从水文证据出发:",
+      "claims": [
+        "cl-hydrology-river-distribution-ev2-1",
+        "cl-hydrology-river-distribution-ev2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 190,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-ev-3",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-ev",
+      "order": 5,
+      "title_zh": "证据分析·田野笔记",
+      "body_excerpt": "田野考察发现:",
+      "claims": [
+        "cl-hydrology-river-distribution-ev3-1",
+        "cl-hydrology-river-distribution-ev3-2"
+      ],
+      "citation_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-001"
+      ],
+      "owner": "field-team",
+      "status": "DRAFT",
+      "binding_state": "FIELD_NOTE_BOUND",
+      "word_count": 170,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-ds-1",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-ds",
+      "order": 6,
+      "title_zh": "讨论·与既有研究对话",
+      "body_excerpt": "与既有研究对比:",
+      "claims": [
+        "cl-hydrology-river-distribution-ds1-1",
+        "cl-hydrology-river-distribution-ds1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 190,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-ds-2",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-ds",
+      "order": 7,
+      "title_zh": "讨论·方法局限",
+      "body_excerpt": "本研究方法局限:",
+      "claims": [
+        "cl-hydrology-river-distribution-ds2-1"
+      ],
+      "citation_ids": [],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "METADATA_ONLY",
+      "word_count": 100,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-hydrology-river-distribution-cn-1",
+      "draft_id": "draft-hydrology-river-distribution",
+      "section_id": "sec-cn",
+      "order": 8,
+      "title_zh": "结论·初步发现",
+      "body_excerpt": "初步结论:",
+      "claims": [
+        "cl-hydrology-river-distribution-cn-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 170,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-intro-1",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-intro",
+      "order": 0,
+      "title_zh": "引言·背景",
+      "body_excerpt": "本研究关注 《工程做法》中柱径与正心的标准关系是什么?这一标准在不同朝代...",
+      "claims": [
+        "cl-architecture-pillar-diameter-intro-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "ANNOTATED",
+      "word_count": 120,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-q-1",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-q",
+      "order": 1,
+      "title_zh": "研究问题·历史背景",
+      "body_excerpt": "相关研究历史梳理:",
+      "claims": [
+        "cl-architecture-pillar-diameter-q1-1",
+        "cl-architecture-pillar-diameter-q1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-q-2",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-q",
+      "order": 2,
+      "title_zh": "研究问题·研究空白",
+      "body_excerpt": "现有研究空白:",
+      "claims": [
+        "cl-architecture-pillar-diameter-q2-1",
+        "cl-architecture-pillar-diameter-q2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-ev-1",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-ev",
+      "order": 3,
+      "title_zh": "证据分析·文本考证",
+      "body_excerpt": "文本考证主要证据:",
+      "claims": [
+        "cl-architecture-pillar-diameter-ev1-1",
+        "cl-architecture-pillar-diameter-ev1-2",
+        "cl-architecture-pillar-diameter-ev1-3"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 190,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-ev-2",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-ev",
+      "order": 4,
+      "title_zh": "证据分析·地图分析",
+      "body_excerpt": "地图证据需要从水文证据出发:",
+      "claims": [
+        "cl-architecture-pillar-diameter-ev2-1",
+        "cl-architecture-pillar-diameter-ev2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 190,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-ev-3",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-ev",
+      "order": 5,
+      "title_zh": "证据分析·田野笔记",
+      "body_excerpt": "田野考察发现:",
+      "claims": [
+        "cl-architecture-pillar-diameter-ev3-1",
+        "cl-architecture-pillar-diameter-ev3-2"
+      ],
+      "citation_ids": [
+        "FN-20260928-002",
+        "FN-20260928-003"
+      ],
+      "evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-002"
+      ],
+      "owner": "field-team",
+      "status": "DRAFT",
+      "binding_state": "FIELD_NOTE_BOUND",
+      "word_count": 170,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-ds-1",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-ds",
+      "order": 6,
+      "title_zh": "讨论·与既有研究对话",
+      "body_excerpt": "与既有研究对比:",
+      "claims": [
+        "cl-architecture-pillar-diameter-ds1-1",
+        "cl-architecture-pillar-diameter-ds1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 175,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-ds-2",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-ds",
+      "order": 7,
+      "title_zh": "讨论·方法局限",
+      "body_excerpt": "本研究方法局限:",
+      "claims": [
+        "cl-architecture-pillar-diameter-ds2-1"
+      ],
+      "citation_ids": [],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "METADATA_ONLY",
+      "word_count": 100,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-architecture-pillar-diameter-cn-1",
+      "draft_id": "draft-architecture-pillar-diameter",
+      "section_id": "sec-cn",
+      "order": 8,
+      "title_zh": "结论·初步发现",
+      "body_excerpt": "初步结论:",
+      "claims": [
+        "cl-architecture-pillar-diameter-cn-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 140,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-intro-1",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-intro",
+      "order": 0,
+      "title_zh": "引言·背景",
+      "body_excerpt": "本研究关注 营造与水利在历史工程中的相互关系 — 桥梁、堤坝、水闸等兼具...",
+      "claims": [
+        "cl-cross-hydrology-architecture-intro-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "ANNOTATED",
+      "word_count": 120,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-q-1",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-q",
+      "order": 1,
+      "title_zh": "研究问题·历史背景",
+      "body_excerpt": "相关研究历史梳理:",
+      "claims": [
+        "cl-cross-hydrology-architecture-q1-1",
+        "cl-cross-hydrology-architecture-q1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-q-2",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-q",
+      "order": 2,
+      "title_zh": "研究问题·研究空白",
+      "body_excerpt": "现有研究空白:",
+      "claims": [
+        "cl-cross-hydrology-architecture-q2-1",
+        "cl-cross-hydrology-architecture-q2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "DRAFT",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 140,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-ev-1",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-ev",
+      "order": 3,
+      "title_zh": "证据分析·文本考证",
+      "body_excerpt": "文本考证主要证据:",
+      "claims": [
+        "cl-cross-hydrology-architecture-ev1-1",
+        "cl-cross-hydrology-architecture-ev1-2",
+        "cl-cross-hydrology-architecture-ev1-3"
+      ],
+      "citation_ids": [
+        "SHUGE:p168491:68",
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 175,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-ev-2",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-ev",
+      "order": 4,
+      "title_zh": "证据分析·地图分析",
+      "body_excerpt": "地图证据需要从水文证据出发:",
+      "claims": [
+        "cl-cross-hydrology-architecture-ev2-1",
+        "cl-cross-hydrology-architecture-ev2-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "REVISED",
+      "binding_state": "EVIDENCE_BOUND",
+      "word_count": 175,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-ev-3",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-ev",
+      "order": 5,
+      "title_zh": "证据分析·田野笔记",
+      "body_excerpt": "田野考察发现:",
+      "claims": [
+        "cl-cross-hydrology-architecture-ev3-1",
+        "cl-cross-hydrology-architecture-ev3-2"
+      ],
+      "citation_ids": [
+        "FN-20260928-001",
+        "FN-20260928-004"
+      ],
+      "evidence_card_ids": [
+        "F1"
+      ],
+      "field_note_ids": [
+        "FN-20260928-001"
+      ],
+      "owner": "field-team",
+      "status": "DRAFT",
+      "binding_state": "FIELD_NOTE_BOUND",
+      "word_count": 155,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-ds-1",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-ds",
+      "order": 6,
+      "title_zh": "讨论·与既有研究对话",
+      "body_excerpt": "与既有研究对比:",
+      "claims": [
+        "cl-cross-hydrology-architecture-ds1-1",
+        "cl-cross-hydrology-architecture-ds1-2"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338",
+        "SHUGE:p44159:552"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 160,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-ds-2",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-ds",
+      "order": 7,
+      "title_zh": "讨论·方法局限",
+      "body_excerpt": "本研究方法局限:",
+      "claims": [
+        "cl-cross-hydrology-architecture-ds2-1"
+      ],
+      "citation_ids": [],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "METADATA_ONLY",
+      "word_count": 100,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    },
+    {
+      "paragraph_id": "para-cross-hydrology-architecture-cn-1",
+      "draft_id": "draft-cross-hydrology-architecture",
+      "section_id": "sec-cn",
+      "order": 8,
+      "title_zh": "结论·初步发现",
+      "body_excerpt": "初步结论:",
+      "claims": [
+        "cl-cross-hydrology-architecture-cn-1"
+      ],
+      "citation_ids": [
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ],
+      "evidence_card_ids": [],
+      "field_note_ids": [],
+      "owner": "research-team",
+      "status": "OUTLINE",
+      "binding_state": "CLAIMS_BOUND",
+      "word_count": 140,
+      "last_revised_at": "2026-09-28T09:30:00+08:00",
+      "binding_rule": {
+        "claims_required": true,
+        "citation_required_if_claim_external": true,
+        "evidence_card_required_if_empirical": true,
+        "field_note_required_if_fieldwork": false,
+        "orphan_citation_check": true,
+        "no_unsupported_claims": true
+      }
+    }
+  ]
+}

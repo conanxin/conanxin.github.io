@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Note Input Spec · 书格数字人文研究平台 · v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Field Note Input Spec · v0.6</h1>
+  <div class="masthead-subtitle">真实 field note 输入规范 — 16+5 字段 + 7 validation rules + manual 5-step 流程</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a><span class="topnav-divider">·</span>
+    <a href="../projects/">Projects</a><span class="topnav-divider">·</span>
+    <a href="../places-profile/">Place Profiles</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">FN Input</a><span class="topnav-divider">·</span>
+    <a href="../archive-bridge/">Archive</a>
+  </div>
+  <div class="topnav-meta">v0.6 · 2026-09-28 · schema only · DESIGN_ONLY · P5-E 才实装</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Field Note Input Specification</h1>
+  <div class="hero-lead">v0.6 完整 field note 输入规范。<strong>仅 schema + 流程设计</strong>,不实装实际输入管道。</div>
+  <div class="takeaway">
+    <div class="takeaway-label">边界声明 · STRICT</div>
+    <p>本期仅文档化 input spec。<strong>不实装</strong>:input UI · backend API · auto-validator 脚本 · auto-pipeline。所有实装由 P5-E 完成。</p>
+  </div>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Status</th><th>Total Fields</th><th>Required</th><th>Optional</th><th>v0.6 New</th><th>Validation Rules</th></tr></thead>
+    <tbody id="stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Input Pipeline Status</h2>
+  <div class="source-context-block">
+    <div class="source-context-label">Current Status</div>
+    <p><span class="badge badge-status-draft">DESIGN_ONLY</span> — v0.6 only documents this schema.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Supported Input Methods (by design)</h2>
+  <table class="meta-table">
+    <thead><tr><th>Method</th><th>Description</th><th>v0.6 Status</th><th>Future Implementation</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>manual_markdown_file</strong></td>
+        <td>Fieldworker drafts in MD with YAML frontmatter, commits to /data/field_notes/incoming/</td>
+        <td><span class="badge badge-status-reviewed">RECOMMENDED</span></td>
+        <td>P5-E pipeline script</td>
+      </tr>
+      <tr>
+        <td><strong>json_form_submission</strong></td>
+        <td>Web form posts JSON to /api/field_notes</td>
+        <td><span class="badge badge-status-placeholder">PLANNED</span></td>
+        <td>P5-E</td>
+      </tr>
+      <tr>
+        <td><strong>csv_batch_import</strong></td>
+        <td>Batch CSV import for migration / bulk operations</td>
+        <td><span class="badge badge-status-placeholder">PLANNED</span></td>
+        <td>P5-E</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Manual Method · 5-Step Workflow</h2>
+  <ol style="font-size:0.92rem; line-height:1.7; padding-left:1.2rem;">
+    <li><strong>Step 1:</strong> Fieldworker drafts note in Markdown with YAML frontmatter matching this schema.</li>
+    <li><strong>Step 2:</strong> Fieldworker or curator commits note to <span class="mono">/data/field_notes/incoming/</span> folder.</li>
+    <li><strong>Step 3:</strong> Pipeline script (P5-E only) validates schema, validates place_id, validates citation_ids.</li>
+    <li><strong>Step 4:</strong> On success, note moves to <span class="mono">/data/field_notes.json</span> and gets linked to workspace + research_questions.</li>
+    <li><strong>Step 5:</strong> v0.6+ site rebuilds; note appears on <a href="../field-notes/">/field-notes/</a> page.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Required Fields · 7</h2>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Format</th><th>Note</th></tr></thead>
+    <tbody id="required-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Optional Fields · 9</h2>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Note</th></tr></thead>
+    <tbody id="optional-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>v0.6 New Fields · 5</h2>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Note</th></tr></thead>
+    <tbody id="v06new-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Validation Rules · 7</h2>
+  <ol style="font-size:0.92rem; line-height:1.7; padding-left:1.2rem;">
+    <li><strong>Unique ID:</strong> field_note_id must be globally unique across all field_notes.json records.</li>
+    <li><strong>Valid Place:</strong> place_id must exist in places.json (canonical, no <span class="mono">place-</span> prefix).</li>
+    <li><strong>Citation Format:</strong> all linked_citation_ids must match <span class="mono">SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt;</span> format and exist in citations.json.</li>
+    <li><strong>Optional IDs:</strong> linked_evidence_card_ids and research_question_ids are optional, but if present must exist.</li>
+    <li><strong>Enum Status:</strong> verification_status must be one of 4 enum values (UNVERIFIED / VERIFIED / CONTRADICTED / NEEDS_REVIEW).</li>
+    <li><strong>Photo Count:</strong> photos_count must be integer ≥0; actual photos not stored in v0.6.</li>
+    <li><strong>WGS84 Range:</strong> gps_lat/gps_lng must be valid WGS84 lat/lng range if provided.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>YAML Frontmatter Example</h2>
+  <pre class="schema-doc mono" style="background:var(--paper-white); border:1px solid var(--rule-gray); padding:1rem; overflow-x:auto; font-size:0.78rem; line-height:1.5;"><code>---
+field_note_id: FN-20261001-001
+place_id: beijing
+date: '2026-10-01'
+location_text: 北京市东城区故宫博物院 太和殿前檐柱
+gps_lat: 39.9163
+gps_lng: 116.3972
+weather: 晴
+photos_count: 12
+recording_count: 1
+fieldworker_name: 张三
+linked_citation_ids:
+  - SHUGE:p44159:100
+  - SHUGE:p44159:200
+linked_research_question_ids:
+  - rq-ws2-001
+verification_status: VERIFIED
+tags:
+  - pillar-measurement
+  - d-equals-2c
+---
+
+# 太和殿前檐柱测量
+
+实测太和殿前檐柱直径约 0.6m,柱顶石正心面直径约 0.3m...</code></pre>
+</section>
+
+<section>
+  <h2>v0.6 Boundary</h2>
+  <div class="takeaway">
+    <div class="takeaway-label">不做的事</div>
+    <ul style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem; margin-top:0.5rem;">
+      <li>❌ 不实装输入 UI 表单</li>
+      <li>❌ 不实装 backend API endpoint</li>
+      <li>❌ 不实装 auto-validator 脚本</li>
+      <li>❌ 不实装 auto-pipeline (incoming/ → field_notes.json)</li>
+      <li>❌ 不存实际照片文件</li>
+      <li>❌ 不实装 GPS auto-collection</li>
+    </ul>
+  </div>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/field-note-input/</a> — Field Note Input Spec (本页)</li>
+    <li><a href="../data/field_note_input_spec.json">data/field_note_input_spec.json</a> — 完整 schema (5.6 KB)</li>
+    <li><a href="../field-notes/">/field-notes/</a> — 4 demo field notes (v0.5)</li>
+    <li><a href="../archive-bridge/">/archive-bridge/</a> — Archive Bridge schema</li>
+    <li><a href="../DESIGN_v0.6.md">DESIGN_v0.6.md</a> — v0.6 完整设计文档</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Research Platform v0.6 · Field Note Input Spec · 2026-09-28 ·
+  schema only · DESIGN_ONLY · 16 + 5 fields · 7 validation rules · 
+  P5-E 才实装 pipeline · no actual photos · no actual GPS
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderStats(spec) {
+    var host = document.getElementById('stats-body');
+    if (!host) return;
+    host.innerHTML = '<tr>' +
+      '<td><span class="badge badge-status-draft">' + spec.input_pipeline_status + '</span></td>' +
+      '<td>' + spec.stats.total_fields + '</td>' +
+      '<td>' + spec.stats.required_fields_count + '</td>' +
+      '<td>' + spec.stats.optional_fields_count + '</td>' +
+      '<td><span class="badge badge-status-reviewed">' + spec.stats.v0_6_new_fields_count + '</span></td>' +
+      '<td>' + spec.stats.validation_rules_count + '</td>' +
+    '</tr>';
+  }
+
+  function renderFields(hostId, fields) {
+    var host = document.getElementById(hostId);
+    if (!host) return;
+    var html = '';
+    fields.forEach(function (f) {
+      html += '<tr>' +
+        '<td><span class="mono">' + f.name + '</span></td>' +
+        '<td>' + f.type + '</td>' +
+        '<td>' + (f.format || '—') + '</td>' +
+        '<td>' + f.note + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  fetch('../data/field_note_input_spec.json').then(function (r) { return r.json(); }).then(function (spec) {
+    renderStats(spec);
+    renderFields('required-body', spec.schema.required_fields);
+    renderFields('optional-body', spec.schema.optional_fields);
+    renderFields('v06new-body', spec.schema.v0_6_new_fields);
+  }).catch(function (err) {
+    console.error('Field Note Input Spec page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

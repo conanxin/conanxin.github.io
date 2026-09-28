@@ -1,0 +1,499 @@
+{
+  "version": "v0.6",
+  "generated_at": "2026-09-28T09:56:00+08:00",
+  "source": "v0.4 places.json + place_evidence.json + v0.5 field_notes.json (canonical place_ids) + v0.6 research_projects.json + v0.3 evidence_cards_v3.json + citations.json + works.json + collections.json",
+  "total_place_profiles": 10,
+  "stats": {
+    "total_places": 10,
+    "total_citations": 16,
+    "total_works": 0,
+    "total_research_projects": 14,
+    "total_field_notes": 4,
+    "total_bound_evidence_cards": 3,
+    "places_by_category": {
+      "natural_river": 3,
+      "historical_city": 2,
+      "architectural_type": 3,
+      "infrastructure": 1,
+      "waterway": 1
+    }
+  },
+  "place_profiles": [
+    {
+      "place_id": "sangganhe",
+      "slug": "sanggan-he",
+      "name_zh": "桑干河",
+      "name_en": "Sanggan River",
+      "aliases": [],
+      "category": "natural_river",
+      "category_label_zh": "natural_river",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "北魏",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "note": "v0.4 示意坐标;实际坐标待 P5-E 接入 GIS 后回填"
+      },
+      "primary_citations": [
+        "SHUGE:p124575:1",
+        "SHUGE:p124575:15"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "historical-hydrology"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-hydrology-river-distribution",
+          "title_zh": "水经注河水分布研究"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [
+        "FN-20260928-001"
+      ],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "place_name_match (水经注地理实体识别)",
+      "fieldwork_priority": "high",
+      "notes": "v0.4 第一批 Place;后续可扩展至水经注全 40 卷 1252 河名。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 1,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "huanghe",
+      "slug": "huang-he",
+      "name_zh": "黄河",
+      "name_en": "Yellow River",
+      "aliases": [],
+      "category": "natural_river",
+      "category_label_zh": "natural_river",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "先秦",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region"
+      },
+      "primary_citations": [
+        "SHUGE:p48341:1",
+        "SHUGE:p211203:1096"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "historical-hydrology"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-hydrology-river-distribution",
+          "title_zh": "水经注河水分布研究"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [
+        "F1",
+        "F1"
+      ],
+      "extraction_method": "place_name_match + collection_seed",
+      "fieldwork_priority": "high",
+      "notes": "河防一览 p48341 为 collection#1 seed work;此 place 有 8 张 evidence cards 命中。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 0,
+        "evidence_cards": 2
+      }
+    },
+    {
+      "place_id": "jiangshui",
+      "slug": "jiang-shui",
+      "name_zh": "江水",
+      "name_en": "Yangtze Waters",
+      "aliases": [],
+      "category": "natural_river",
+      "category_label_zh": "natural_river",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "北魏",
+        "明"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region"
+      },
+      "primary_citations": [
+        "SHUGE:p124575:200",
+        "SHUGE:p124575:215"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "historical-hydrology"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-hydrology-river-distribution",
+          "title_zh": "水经注河水分布研究"
+        }
+      ],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [
+        "F1"
+      ],
+      "extraction_method": "chapter_title_match (江水篇)",
+      "fieldwork_priority": "medium",
+      "notes": "水经注江水篇为水经注 40 卷中条目最多之一。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 1,
+        "field_notes": 0,
+        "evidence_cards": 1
+      }
+    },
+    {
+      "place_id": "linan",
+      "slug": "lin-an",
+      "name_zh": "临安",
+      "name_en": "Lin'an (Southern Song capital)",
+      "aliases": [],
+      "category": "historical_city",
+      "category_label_zh": "historical_city",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "南宋"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "lat": 30.27,
+        "lng": 120.15
+      },
+      "primary_citations": [
+        "SHUGE:p205024:1",
+        "SHUGE:p205024:15"
+      ],
+      "linked_works": [],
+      "linked_collections": [],
+      "linked_research_projects": [],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "work_topic_match (梦粱录专记临安)",
+      "fieldwork_priority": "medium",
+      "notes": "梦粱录 p205024 为城市史重要素材。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 0,
+        "research_projects": 0,
+        "field_notes": 0,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "beijing",
+      "slug": "bei-jing",
+      "name_zh": "北京",
+      "name_en": "Beijing",
+      "aliases": [],
+      "category": "historical_city",
+      "category_label_zh": "historical_city",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "approximate_region",
+        "lat": 39.9,
+        "lng": 116.4
+      },
+      "primary_citations": [
+        "SHUGE:p44159:1",
+        "SHUGE:p44159:50"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "architecture-construction"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-architecture-pillar-diameter",
+          "title_zh": "工程做法柱径标准"
+        }
+      ],
+      "linked_field_note_ids": [
+        "FN-20260928-002",
+        "FN-20260928-003"
+      ],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "work_geography_match (工程做法默认北京规制)",
+      "fieldwork_priority": "high",
+      "notes": "工程做法 p44159 为 collection#2 seed work。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 1,
+        "field_notes": 2,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "garden",
+      "slug": "yuan-lin",
+      "name_zh": "园林",
+      "name_en": "Classical garden",
+      "aliases": [],
+      "category": "architectural_type",
+      "category_label_zh": "architectural_type",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "园林为类型,非单点坐标"
+      },
+      "primary_citations": [
+        "SHUGE:p168491:1",
+        "SHUGE:p168491:30"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "architecture-construction"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-architecture-pillar-diameter",
+          "title_zh": "工程做法柱径标准"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "category_match (园冶全书专记园林)",
+      "fieldwork_priority": "medium",
+      "notes": "园冶 p168491 为 collection#2 seed work;园林为建筑类型,无单点坐标。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 0,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "palace",
+      "slug": "gong-dian",
+      "name_zh": "宫殿",
+      "name_en": "Imperial palace",
+      "aliases": [],
+      "category": "architectural_type",
+      "category_label_zh": "architectural_type",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "宫殿为类型,代表坐标为北京紫禁城 39.916, 116.397"
+      },
+      "primary_citations": [
+        "SHUGE:p44159:100",
+        "SHUGE:p44159:200"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "architecture-construction"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-architecture-pillar-diameter",
+          "title_zh": "工程做法柱径标准"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "category_match (工程做法涵盖宫殿做法)",
+      "fieldwork_priority": "medium",
+      "notes": "代表实例为北京紫禁城。",
+      "stats": {
+        "citations": 2,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 0,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "temple",
+      "slug": "si-miao",
+      "name_zh": "寺庙",
+      "name_en": "Temple / Monastery",
+      "aliases": [],
+      "category": "architectural_type",
+      "category_label_zh": "architectural_type",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "汉",
+        "唐",
+        "宋",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "寺庙为类型,代表坐标待补"
+      },
+      "primary_citations": [
+        "SHUGE:p44159:300"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "architecture-construction"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-architecture-pillar-diameter",
+          "title_zh": "工程做法柱径标准"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "category_match",
+      "fieldwork_priority": "low",
+      "notes": "工程做法涵盖寺庙做法,具体实例待扩展。",
+      "stats": {
+        "citations": 1,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 0,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "ancient_road",
+      "slug": "gu-dao",
+      "name_zh": "古道",
+      "name_en": "Ancient road",
+      "aliases": [],
+      "category": "infrastructure",
+      "category_label_zh": "infrastructure",
+      "status": "PLACEHOLDER",
+      "dynasty_range": [
+        "先秦",
+        "汉",
+        "唐",
+        "宋",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "category",
+        "note": "古道为线性地理,非单点"
+      },
+      "primary_citations": [],
+      "linked_works": [],
+      "linked_collections": [],
+      "linked_research_projects": [],
+      "linked_field_note_ids": [],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "category_only (v0.4 暂未绑定 citation,待 P5-E 扩展)",
+      "fieldwork_priority": "low",
+      "notes": "v0.4 无现有 citation 绑定,留作 P5-E 实地调查候选。",
+      "stats": {
+        "citations": 0,
+        "works": 0,
+        "collections": 0,
+        "research_projects": 0,
+        "field_notes": 0,
+        "evidence_cards": 0
+      }
+    },
+    {
+      "place_id": "grand_canal",
+      "slug": "yun-he",
+      "name_zh": "运河",
+      "name_en": "Grand Canal",
+      "aliases": [],
+      "category": "waterway",
+      "category_label_zh": "waterway",
+      "status": "DRAFT",
+      "dynasty_range": [
+        "隋",
+        "元",
+        "明",
+        "清"
+      ],
+      "coordinates_placeholder": {
+        "type": "linear_region"
+      },
+      "primary_citations": [
+        "SHUGE:p48341:50"
+      ],
+      "linked_works": [],
+      "linked_collections": [
+        "historical-hydrology"
+      ],
+      "linked_research_projects": [
+        {
+          "project_id": "rp-hydrology-river-distribution",
+          "title_zh": "水经注河水分布研究"
+        },
+        {
+          "project_id": "rp-cross-hydrology-architecture",
+          "title_zh": "营造与水利交叉"
+        }
+      ],
+      "linked_field_note_ids": [
+        "FN-20260928-004"
+      ],
+      "bound_evidence_card_ids": [],
+      "extraction_method": "work_topic_match (河防一览含运河河工)",
+      "fieldwork_priority": "medium",
+      "notes": "河防一览 p48341 含运河河工记录。",
+      "stats": {
+        "citations": 1,
+        "works": 0,
+        "collections": 1,
+        "research_projects": 2,
+        "field_notes": 1,
+        "evidence_cards": 0
+      }
+    }
+  ]
+}

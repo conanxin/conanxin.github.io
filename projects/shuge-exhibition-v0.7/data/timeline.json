@@ -1,0 +1,65 @@
+{
+  "milestones": [
+    {
+      "stage": "P1",
+      "name": "Acquisition pilot",
+      "output": "5 works · OCR",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P2",
+      "name": "Core corpus v1",
+      "output": "水经注 + 工程做法 OCR + FTS5",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P3",
+      "name": "Citation search",
+      "output": "research_search.py + run",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P4",
+      "name": "Case studies",
+      "output": "5 case studies + verified-false",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P5-A",
+      "name": "Core corpus v2 (JDA)",
+      "output": "3 JDA works frozen",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P5-B",
+      "name": "Citations + packs",
+      "output": "23 runs + 378 claims",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P5-C",
+      "name": "Thematic collections",
+      "output": "2 collections + 283 memberships",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "P5-D",
+      "name": "Governance + workspaces",
+      "output": "3 workspaces + 20 QA",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "Exh v0.1",
+      "name": "Prototype site",
+      "output": "4 pages + 6 JSON",
+      "status": "COMPLETE"
+    },
+    {
+      "stage": "Exh v0.2",
+      "name": "5 exhibition rooms",
+      "output": "this prototype",
+      "status": "IN PROGRESS"
+    }
+  ],
+  "generated_at": "2026-09-28T08:59:00+08:00"
+}

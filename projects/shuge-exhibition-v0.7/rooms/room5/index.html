@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 5 · AI-assisted Historical Research</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 5</h1>
+  <p class="masthead-subtitle">AI-assisted Historical Research</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html" class="active">展厅 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../cases/case5/index.html">案例 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.2">v0.2 ↗</a>
+  </div>
+  <div class="topnav-meta">12 evidence cards (v0.3) · 3 workspaces</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>AI-assisted Historical Research</h1>
+    <p class="hero-lead">AI 在本项目中的真实角色 — 是研究助产士,不是替代者。</p>
+    <p>本展厅直接展示 AI 产出的 12 个 evidence cards + 3 个研究工作区,让观众自己判断「AI 做了什么」「人类做了什么」「哪些边界由人类持有」。</p>
+  </section>
+
+  <section class="room-introduction">
+    <h2>Introduction</h2>
+    <p id="intro5"></p>
+  </section>
+
+  <section class="room-objects">
+    <h2>Objects</h2>
+    <div id="objects5" class="objects-grid"></div>
+  </section>
+
+  <section>
+    <h2>Evidence</h2>
+    <h3>12 个 Evidence Cards (v0.3 升级版)</h3>
+    <p>每个 card 带 4 个新字段:<span class="mono">source_context</span> / <span class="mono">citation_path</span> / <span class="mono">collection</span> / <span class="mono">related_workspace</span>。</p>
+    <p class="dim">点击 ▸ 展开 evidence ledger;点击 evidence-ledger-row 弹出 Citation Viewer。</p>
+    <div id="evidence-cards"></div>
+
+    <h3 style="margin-top:1.5rem">3 个研究工作区</h3>
+    <p>P5-D Track C 引入的跨集合研究会话持久化机制。</p>
+    <div id="workspaces-list"></div>
+
+    <h3 style="margin-top:1.5rem">治理指标</h3>
+    <table class="meta-table">
+      <tr><th>OUT_OF_COLLECTION_LEAKAGE</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>VERIFIED_FALSE_REGRESSION</th><td><span class="verified mono">PASS</span> · 2 hits (朝天門 2 pages in 梦粱录) · 全部 out-of-collection</td></tr>
+      <tr><th>ABSTENTION (negative controls)</th><td><span class="verified mono">PASS</span> · 12/12 negative queries correctly INSUFFICIENT_EVIDENCE</td></tr>
+      <tr><th>UNSUPPORTED_CLAIM_SENTENCES</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>CITATION_IDS_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
+      <tr><th>PROVENANCE_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      AI 让 <strong>可规模化的部分</strong> 更便宜(OCR、分词、证据合成),但 <strong>判断与策展</strong> 仍由人类完成 — 0 个 unsupported claim、12/12 negative control abstention、collection governance 重建幂等,这三条纪律是这条边界的具体形态。
+    </div>
+  </section>
+
+  <section class="room-further-reading">
+    <h2>Further Reading</h2>
+    <ul id="further5" class="further-reading"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 5</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+// Room intros
+fetch('../../data/room_intros.json').then(r => r.json()).then(d => {
+  var r = d.rooms.room5;
+  document.getElementById('intro5').textContent = r.introduction;
+  var oHtml = '';
+  r.objects.forEach(function(o) {
+    oHtml += '<article class="object-card">';
+    oHtml += '<div class="object-card-header"><span class="object-card-kind">' + o.kind + '</span></div>';
+    oHtml += '<h3 class="object-card-name">' + o.name + '</h3>';
+    oHtml += '<p class="object-card-desc">' + o.description + '</p>';
+    oHtml += '</article>';
+  });
+  document.getElementById('objects5').innerHTML = oHtml;
+  var fHtml = '';
+  r.further_reading.forEach(function(x) { fHtml += '<li>' + x + '</li>'; });
+  document.getElementById('further5').innerHTML = fHtml;
+});
+
+// v0.3 upgraded evidence cards (all 12)
+fetch('../../data/evidence_cards_v3.json').then(r => r.json()).then(d => {
+  var target = document.getElementById('evidence-cards');
+  d.cards.forEach(function(c) {
+    var html = renderEvidenceCardV3(c);
+    target.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+// Workspaces
+fetch('../../data/workspaces.json').then(r => r.json()).then(d => {
+  var list = document.getElementById('workspaces-list');
+  d.workspaces.forEach(function(w) {
+    var slugs = (w.collection_slugs || []).map(function(s) { return '<span class="badge badge-collection-' + (s === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + s + '</span>'; }).join(' ');
+    var html = '<div class="card">';
+    html += '<div class="card-header">';
+    html += '<h3 class="card-title">' + w.title + '</h3>';
+    html += '<span class="badge badge-status-' + (w.status || 'open').toLowerCase() + '">' + (w.status || 'OPEN') + '</span>';
+    html += '</div>';
+    html += '<p style="font-size:0.92rem"><strong>问题:</strong> ' + w.question + '</p>';
+    html += '<table class="meta-table">';
+    html += '<tr><th>Slug</th><td><span class="mono">' + w.slug + '</span></td></tr>';
+    html += '<tr><th>Collection 绑定</th><td>' + slugs + '</td></tr>';
+    html += '<tr><th>Review Status</th><td>' + (w.review_status || 'PENDING') + '</td></tr>';
+    html += '<tr><th>Workspace Runs</th><td>' + w.workspace_runs_count + '</td></tr>';
+    html += '<tr><th>Created</th><td>' + (w.created_at || '').substring(0, 19) + '</td></tr>';
+    html += '</table>';
+    html += '</div>';
+    list.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1534 @@
+{
+  "runs": [
+    {
+      "id": 2,
+      "question": "《梦粱录》中城门有哪些直接记录?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:31:49Z",
+      "finished_at": "2026-09-26T10:31:52Z",
+      "citations_found": 10,
+      "citations_used": 10,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页29 OCR 文本记载：「…十名亦如之補試中榜␤者三太宗武三學為生具人中省者俊候都堂點␤請覆試不過一冒而已覆試里然後到殿也此科␤夢粱錄卷二␤試三年一次到省士八不下萬餘人集都城鋪席買␤如市俗語云提官生活應一時之需耳␤補未仕官人赴␤每三月上旬應交武官授子弟宗子補者亚赴␤…」",
+          "citation_ids": "[\"SHUGE:p205024:582\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷4] 页71 OCR 文本记载：「…差親王代行禮理朝委皇太子␤充亞其祭服制度按宋朝會要服衮冕垂白珠九␤章大小雙級之衮冕珠薦二九章雙殺表␤夢粱錄卷五␤皇由來若為家法嗣服無疆有道長亞獻禮直官␤再奏駕升殿昊天上帝位前左右二員奉玉册官␤登册而跪上拜跪奠酒玉圭而跪中書舍人讀玉册␤正谓…」",
+          "citation_ids": "[\"SHUGE:p205024:626\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页85 OCR 文本记载：「…三寨軍␤杭城號武林又日塘次背山隋朝特立此郡城␤夢粱卷七␤為南土北土保德北城門名北今在餘杭門处␤杭州␤夢粱錄卷七␤易名早門十有三水門者五城␤衍民物阜蕃非殊方下郡北也␤塘自牧著␤安有號為帘海軍高…」",
+          "citation_ids": "[\"SHUGE:p205024:640\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页35 OCR 文本记载：「夢粱錄卷一␤啼静院明軒溶溶浅對景行乐未易以一言也␤盛之歌叫于市買者然当此之時雕梁燕語槛␤香蘭水仙映山红等花種種奇花者以馬頭竹蓝␤寶相千葉桃桃香梅紫笑長春紫金雀兒笑␤蔷薇金紗玉納球小牡丹海棠錦李徘徊月季粉杜␤……」",
+          "citation_ids": "[\"SHUGE:p205024:588\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷3] 页57 OCR 文本记载：「…九月逢上␤請僧亦皆坐狮子上作佛事杭都无此会也␤都有開寶仁王寺院設狮子會褚佛菩皆子则␤明年预教智市象␤夢粱錄卷五…」",
+          "citation_ids": "[\"SHUGE:p205024:612\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页92 OCR 文本记载：「…走马塘范家村日張娜見橋姚斗門鋪日新塘橋石斗␤涵碧桥和靖林處士故居所日處士橋延祥四里觀␤倚郭城北桥道␤夢粱錄卷七…」",
+          "citation_ids": "[\"SHUGE:p205024:647\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页27 OCR 文本记载：「…青亦是此意右軍王义之蘭亭序␤三月三日上巳之辰曲水流故事起于晋時唐朝␤夢奖錄卷一␤州府得解士人赴省聞␤夢粱錄卷一␤塘自牧著…」",
+          "citation_ids": "[\"SHUGE:p205024:580\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页37 OCR 文本记载：「…殿宴乐未作殿前山␤初八日宰親王南班百官入内起居邀駕過身太后␤御宴同也␤宰執親王南班百官入内上壽賜宴␤夢粱錄卷二…」",
+          "citation_ids": "[\"SHUGE:p205024:590\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:582",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:626",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷4",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:640",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:588",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:647",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:612",
+          "matched_terms": "[\"夢粱錄\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": "卷3",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "《梦粱录》中城门有哪些直接记录?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:33:31Z",
+      "finished_at": "2026-09-26T10:33:33Z",
+      "citations_found": 11,
+      "citations_used": 11,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页85 OCR 文本记载：「…恭此門為御道␤自歸宋␤抱湖川凑␤於貂典南渡於此遂為行在所其地襟江␤平典國年開王納土␤前城中有門者三日朝天門日化門日橋門宋太␤人家門首有青石整是也西城門日水西在雷峰塔␤卒增築羅城闻七十里許有南城門爲龍山東城␤三十六里九十步後武鐵一土發民丁與…」",
+          "citation_ids": "[\"SHUGE:p205024:640\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷7] 页107 OCR 文本记载：「…殿扁日黄庭之殿殿门扁日景福之門安奉太乙十␤八角鎮地建宫奉安遂析延祥觀地爲宫以凉堂建␤請用天聖故事於國城西南别建新宫以顺方向于是␤西太乙宫在西湖孤山淳太史奏太乙梁益分␤小坡山乃杭之主山也␤虚颐集真洞微虚白馆有小圃亭扁武林山在宫後␤殿奉北斗崇…」",
+          "citation_ids": "[\"SHUGE:p205024:662\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页97 OCR 文本记载：「…巷長坊入忠清路以上在大街东西新開坊␤天慶坊即天慶觀巷保安坊元呼巷懷信坊俗呼粒␤仁登平二坊和門外西東壽城坊太南糙料院巷␤巷口字民平易俱在塘縣前右二厢所管坊巷孝␤府前典慶坊結橋對前洋街德化坊舊木子巷在潘␤夢粱卷七…」",
+          "citation_ids": "[\"SHUGE:p205024:652\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页27 OCR 文本记载：「…橋贡院放州府␤三月上旬朝延差知监試主交考試等官并差监␤聖之虔他郡所無也␤者貴家士廣亦設酿恩者酌水花杭城事␤衙奉待香火者皆安排社會結阁迎列于道觀睹␤宫道宇俱設事上祈國泰下保民安軍寨及殿司␤朝于陛前咏洞章陳禮士庶燒香粉集殿庭␤崇麒錄午時朝賀排…」",
+          "citation_ids": "[\"SHUGE:p205024:580\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷3] 页65 OCR 文本记载：「…香又有交脚模頭剑足␤行宫門外立之亦名益天旗也更有含索旗座以百餘␤三四丈之次黄龍旗往太前立若郊能移于青城␤有大旗名益天旗立于麗正門外御路中心又有旗高␤角擎弓刀列後先五十中分六引官袖尽華␤乘興用也法駕卤簿儀仗引者如節幢帶祥烟␤武王時大折柄太公…」",
+          "citation_ids": "[\"SHUGE:p205024:620\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷4] 页73 OCR 文本记载：「行殿以備一日之幸舊东都宜和開用土木益造行殿␤為幕畫艺砌之文旋結城以净明院為行宫建端誠␤千官齊遵从君王今夜幸端誠所青城止以青布␤端誠行殿致峦通天冠寳珠明五雲中警聲萬␤其金象革木四略行幸嘉會門外至郊毫次侧青城␤告回太致裔奏三祖出室第三日自太升玉…」",
+          "citation_ids": "[\"SHUGE:p205024:628\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页76 OCR 文本记载：「廣樂聲上幸端誠殿宰百官拜舞成福臣宜制␤奏禮成導隨法駕返青城音直徹云霍外疑是天␤入端誠百僚拜舞丹下震地仙韶賀禮成前後鏡␤引駕回青城殿受體成贺焰光万明大安寳␤士同以教乐所工在外東門排列奏乐尊␤人此按唐制合用五番官四百五十人服色如␤三唇藤金花御座…」",
+          "citation_ids": "[\"SHUGE:p205024:631\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页93 OCR 文本记载：「…宫巷口␤橋寺西寨前日策選塞橋昭教場西日教場桥教場␤咸淳新建橋日九曲昭慶桥大昭广寺前日昭廣␤觀橋金門外城北水口上日相國西橋九曲小日␤外流福水路桥聚景园前日聚景橋應觀前日應␤日長桥湖門外浴城海子口隅下日清化桥清波門␤小丁家山桥高麾寺侧日惠因橋…」",
+          "citation_ids": "[\"SHUGE:p205024:648\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:640",
+          "matched_terms": "[\"朝天門\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:663",
+          "matched_terms": "[\"城門\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷7",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:662",
+          "matched_terms": "[\"城\", \"門\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷7",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:652",
+          "matched_terms": "[\"城\", \"門\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:631",
+          "matched_terms": "[\"城\", \"門\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:648",
+          "matched_terms": "[\"城\", \"門\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "《梦粱录》中哪些文本同时涉及水或河渠与城市空间?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:33:33Z",
+      "finished_at": "2026-09-26T10:33:35Z",
+      "citations_found": 12,
+      "citations_used": 12,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷6] 页67 OCR 文本记载：「…世父叔父者父之兄弟␤世父␤大父␤曾伯礼␤公先姚渤海李氏␤母夫人墩煌張氏␤母日太原縣君␤父娶陳留太守薛江童女␤父␤大王父␤父娶河南獨孤氏女␤尹劉軍␤崔事裴少␤之兄弟也其子為族祖父其孫為族父其曾孫為族兄弟有祖褪父␤青母例␤清郡王␤書父例␤清河…」",
+          "citation_ids": "[\"SHUGE:p163433:320\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页85 OCR 文本记载：「安水門河通跨浦桥興江相隔耳日保安門俗呼小堰␤其門有鐵窗栅不會開日便門日候潮門日保␤日南水門禁中水此流出注鐵沙河及横河桥下␤遇南郊五从此幸郊路城东南門者七日北水門␤南門者一日嘉會城樓為諾門冠恭此門為御道␤自歸宋␤抱湖川凑␤……」",
+          "citation_ids": "[\"SHUGE:p205024:640\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页54 OCR 文本记载：「…望哭于水␤弄湖之以父母所生之遭投魚龍不測之深渊自␤秋風而益怒乃其俗习于此觀游顾有善泗之徒競作␤我約弄潮交云斗牛之外足越之中惟江濤之最雄乘␤于治平年間郡守蔡端明内翰見其往往有沉者作␤子背弄潮之或有手脚執五小旗浮潮頭而弄向␤色子满竿伺潮出海門…」",
+          "citation_ids": "[\"SHUGE:p205024:607\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷9] 页122 OCR 文本记载：「…歆桓百句不亦各有␤致美于序而簡平篇取經意自歸偉␤行␤抗␤交心雕龍日清那崔瑗交學蔡台樊渠前␤宋書日鲍照河清其序甚工詩有序亦不可␤于學士院試舒州進甘露遂賜及第試尚矣␤龍十五年試稽翠宫甘露宋朝化三年楊億␤而␤手␤者␤之␤送␤唱␤以␤詩␤道␤泷␤…」",
+          "citation_ids": "[\"SHUGE:p163433:461\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷10] 页139 OCR 文本记载：「…以题其␤有詩然變法皆漢␤致题唐古唐簡魏␤意皆人開人古额␤故各於新则可題␤唐正大夫尚書左永孔公墓␤唐故江西觀察使章公基␤國子助教河東薛君墓志␤太原参軍苗君墓␤故中散大夫河南尹杜君墓␤集院校理石君墓铭␤用廣韩文之例焉␤亦之又于李交公柳河東二家…」",
+          "citation_ids": "[\"SHUGE:p163433:504\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷4] 页56 OCR 文本记载：「…河南王屋␤墓銘␤處士虚君墓銘葬墓考功員外郎君␤王墓铭科幽州節度判官蹈給事中张君微墓␤試大理事王君墓铭江南觀察體常侍太原␤四卷…」",
+          "citation_ids": "[\"SHUGE:p163433:290\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页86 OCR 文本记载：「…局橋␤前日榮王府橋常慶坊東北日太和樓橋俗名柴垛富␤真道館前日三聖桥榮王府前口佑聖觀橋浴河看位␤西日通江桥浴大河直至日仙橋次日宗陽宫橋介␤務东日阜民橋不通舟合同場前日過軍橋雜賣場␤曙桥北日黑桥在玉煤所對巷日州桥政府大渠南␤自和門外登平坊内日…」",
+          "citation_ids": "[\"SHUGE:p205024:641\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷8] 页98 OCR 文本记载：「…见其然之光然之色亦自畏避不敢迫褪␤轉蛟龍万怪惶惑而抑遇掩蔽不使自露而人望␤之言耐其不可犯韓子之文如長江大河浩流␤金聲玉耀之人徽一時之聲而其␤前作成贼交史扶其意抽其華置牙間遇事起␤遂于天下者矣故日知之愈難而交之士亦多漁␤且若是沉平未甚聞著者…」",
+          "citation_ids": "[\"SHUGE:p163433:398\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p163433:461",
+          "matched_terms": "[\"河\", \"渠\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷9",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:320",
+          "matched_terms": "[\"江\", \"河\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷6",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:640",
+          "matched_terms": "[\"江\", \"河\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:504",
+          "matched_terms": "[\"江\", \"河\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷10",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:290",
+          "matched_terms": "[\"江\", \"河\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷4",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:641",
+          "matched_terms": "[\"江\", \"河\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "《园冶》中相地与具体构造术语出现在哪里?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:33:36Z",
+      "finished_at": "2026-09-26T10:33:38Z",
+      "citations_found": 8,
+      "citations_used": 8,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷2] 页118 OCR 文本记载：「圈治卷␤不撒裤眼␤阁糖料直␤用斯一料␤十七␤梅花式四␤国立公文書館␤National Archives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:308\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页8 OCR 文本记载：「世口崇祯辛未之枞否道人暇于启冶堂中题␤國治目錄卷之␤典造␤一␤相地␤山林地␤城市地␤村庄地␤郊野地␤傍宅地␤江湖地␤立其␤堂基␤楼阁基␤卷␤ofJa␤国立公文書館␤Archives…」",
+          "citation_ids": "[\"SHUGE:p168491:68\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页13 OCR 文本记载：「一相地␤国基不枸方向地势自有高低涉門成趣得景␤隨形或傍山林欲通河沼探奇近郭遠來往之␤通選腾诺村藉参差之深橱村庄眺野城市␤便家新易平開基秋可裁楊移竹舊園格␤翻造自然古木繁花如方如似偏似曲如長␤而環壁似偏润以铺……」",
+          "citation_ids": "[\"SHUGE:p168491:78\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页64 OCR 文本记载：「…開閣␤花轉心于中␤分做用梅␤柳花風窗宜␤合扇␤扇不碳空處␤上扇仍撑上␤將中扇挂合␤个␤中␤連上宜用␤梅花式␤三截式␤国立公文書館␤National Archives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:166\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页69 OCR 文本记载：「國目绿卷之二␤式␤梅花式␤菜花式␤锦葵式␤套方式␤環式␤筝管式␤卷␤光式␤波微式␤六方␤三方式␤横環式␤雙筝管式␤式␤国立公文書館␤NationalArchives␤of.…」",
+          "citation_ids": "[\"SHUGE:p168491:181\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页61 OCR 文本记载：「如長福欲齊短福装亦宜上下用␤束腰式␤券␤国立公文書館␤National Archives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:157\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页10 OCR 文本记载：「間進量其廣获随曲合方是在主者能抄抄得␤之甚確也故凡造作必先相地立基然後定其␤架是精一梁一柱定不可移俗以無之人呼␤精藝其人量執斧斤者哉若匠准雕是巧排␤之龍平非王人也能主之人也古公輸巧隆雲␤世之造專主鸠匠福不聞三分匠七分主人␤国冶␤四装折␤奥造…」",
+          "citation_ids": "[\"SHUGE:p168491:72\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》页39 OCR 文本记载：「上下用束腰成版或可也␤古之短如長分版位者亦更不亮依␤時遵桥條而且减依式换造便摘用␤園治卷␤短福式␤屏欄楹條式␤空␤腰束␤国立公文書館␤Archives…」",
+          "citation_ids": "[\"SHUGE:p168491:118\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p168491:68",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:78",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:72",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:157",
+          "matched_terms": "[\"束腰\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:118",
+          "matched_terms": "[\"束腰\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:308",
+          "matched_terms": "[\"梅花式\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "《魏氏家藏方》中哪些方剂名称能够稳定检索?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:33:38Z",
+      "finished_at": "2026-09-26T10:33:40Z",
+      "citations_found": 2,
+      "citations_used": 2,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《魏氏家藏方》页12 OCR 文本记载：「自汗␤虚学␤搓汗␤治盗汗␤茯神散␤附子大建中湯␤人参散␤蓉散␤猪骨散␤山蔡窗␤羊肾粥␤天仙藤散␤十八味黄着建中湯␤附子調服法␤延年断汗湯␤大補黄耆湯␤木香黄耆湯␤二十四味大建中湯␤黄鹿角法␤沉附膏␤断汗湯␤青附湯␤無名散␤柏子仁圆␤……」",
+          "citation_ids": "[\"SHUGE:p49594:69\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《魏氏家藏方》页23 OCR 文本记载：「…阜邮␤血妄行␤吐血␤消渴␤狼毒␤通氣␤神功散四市␤止血散␤順氣散␤快氣消塊散␤沉香散␤應聖␤治咯血␤蒲黃散␤解渴飲子␤加料樂今黄芪湯␤清心闻␤水葫卢␤二方␤竹龍散␤治水菜␤卷活散␤椒巴␤内消圆␤餘撞白不␤治血妄行吐血␤固經散二方␤黑聖散␤…」",
+          "citation_ids": "[\"SHUGE:p49594:90\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p49594:90",
+          "matched_terms": "[\"蒲黃散\"]",
+          "match_type": "CORRECTED/VARIANT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p49594:69",
+          "matched_terms": "[\"茯神散\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "哪些作品目前拥有明确卷结构?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:33:40Z",
+      "finished_at": "2026-09-26T10:33:43Z",
+      "citations_found": 27,
+      "citations_used": 27,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页29 OCR 文本记载：「…十名亦如之補試中榜␤者三太宗武三學為生具人中省者俊候都堂點␤請覆試不過一冒而已覆試里然後到殿也此科␤夢粱錄卷二␤試三年一次到省士八不下萬餘人集都城鋪席買␤如市俗語云提官生活應一時之需耳␤補未仕官人赴␤每三月上旬應交武官授子弟宗子補者亚赴␤…」",
+          "citation_ids": "[\"SHUGE:p205024:582\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷2] 页32 OCR 文本记载：「金石␤金石例卷之三␤濟南潘昂香␤景樂␤O码式␤名城字亢宗家于北平临于條山惟公端粹␤國子司业陽城遗愛碍␤和高疑懿醇道德仁明孝愛友薰里開␤布間天下守節真固患難不能其心␤怡性坦厚榮位不足動其們為司義雪␤震␤行為司业愛加于……」",
+          "citation_ids": "[\"SHUGE:p163433:230\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷2] 页131 OCR 文本记载：「武六十␤卷␤国立公文書館␤NationalArchives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:342\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷4] 页71 OCR 文本记载：「…差親王代行禮理朝委皇太子␤充亞其祭服制度按宋朝會要服衮冕垂白珠九␤章大小雙級之衮冕珠薦二九章雙殺表␤夢粱錄卷五␤皇由來若為家法嗣服無疆有道長亞獻禮直官␤再奏駕升殿昊天上帝位前左右二員奉玉册官␤登册而跪上拜跪奠酒玉圭而跪中書舍人讀玉册␤正谓…」",
+          "citation_ids": "[\"SHUGE:p205024:626\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷8] 页93 OCR 文本记载：「…创自昌黎者前批技人未言法而銘章之又不必定是文人故群略之␤之冠引而伸之觸類而長之则前有漢魏微有宋元兼␤金石例卷之八終␤資博采亦存乎其人耳␤金石例卷之九␤濟南␤昂景梁␤古人文字有疵␤前作文各有入門处退之本孟子永叔亦祖孟子故其␤所␤本之器文␤請…」",
+          "citation_ids": "[\"SHUGE:p163433:387\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷4] 页53 OCR 文本记载：「…之夏欧柳子厚␤大抵碑除之刻多附书他人漢碑多门孫故更柳子服␤記先友此则以王涯能房公之理而禽之刻石故亦␤金石例卷之五終␤附之意丽␤漢碑有附記其子第及他人事行者此不可以一律尽␤金石例五之干一…」",
+          "citation_ids": "[\"SHUGE:p163433:284\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷6] 页63 OCR 文本记载：「全后三例␤Kodak Gray Scale␤金石例卷七之卷十␤89101112131415B171819␤Kodak,2007 TM:Kodak…」",
+          "citation_ids": "[\"SHUGE:p163433:309\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页85 OCR 文本记载：「…三寨軍␤杭城號武林又日塘次背山隋朝特立此郡城␤夢粱卷七␤為南土北土保德北城門名北今在餘杭門处␤杭州␤夢粱錄卷七␤易名早門十有三水門者五城␤衍民物阜蕃非殊方下郡北也␤塘自牧著␤安有號為帘海軍高…」",
+          "citation_ids": "[\"SHUGE:p205024:640\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p163433:230",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:387",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷8",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:284",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷4",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:309",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷6",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:317",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷6",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:259",
+          "matched_terms": "[\"金石例卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷3",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "《天工开物》现有语料中有哪些舟车相关术语?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:09Z",
+      "finished_at": "2026-09-26T10:34:09Z",
+      "citations_found": 10,
+      "citations_used": 10,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页34 OCR 文本记载：「…前其社尤盛聞之此幡後殿充脂粉局收管其殿␤無日無之又有者于山行宫獻彩書幡張挂殿␤經者或就殿法音而上壽者舟車道路絡繹往來␤或行鋪万以果名花精巧食呈獻者或僧道␤仲春下浣答赛心或專獻信香者或答重因业柳者␤密以開拓亦腾山梵宫内一小殿耳都城士庶自␤平…」",
+          "citation_ids": "[\"SHUGE:p205024:587\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷2] 页33 OCR 文本记载：「…兹␤漂␤為碣方跌国首其高四尺按郎中品第五以其秋不克偕降而从碍之制其␤州␤盲年六十八乙未骥于路景寅神于舟以某年某月日歸葬于某縣␤菜原␤優累雄其忠食太史關書其功烈就加國子祭酒封武城男食邑一␤故萬年命府君墓碣␤故秘書省校書郎孤君墓码␤韩用␤量經…」",
+          "citation_ids": "[\"SHUGE:p163433:233\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷3] 页198 OCR 文本记载：「…洞庭山石龙水涯椎消夏灣者写␤燕圖遠␤此石最高大為贵惟宜植立轩堂前或點喬松␤水中度奇巧取鉴贯以巨索浮大舟架而出之␤成之彈子窝把之微有聲人携整人␤龍络起抄百遍多坎益因風浪中衡激而␤自一種色青而里一種欲里青其交理横␤最性而润有嵌空穿眼宠轉怪一種…」",
+          "citation_ids": "[\"SHUGE:p168491:518\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《天工开物》页211 OCR 文本记载：「…␤尺寸则不及中榄之伴蓬横亦不散三分之一蘇湖␤六郡運米其多过石橋下無江漠之故栀典␤篷尺术全若湖广江西省舟刚过湖街江無端風浪␤故篷枪必極尽制度而后无患几風篷尺寸其则␤天工開物␤卷中…」",
+          "citation_ids": "[\"SHUGE:p211203:4\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页54 OCR 文本记载：「…上以还␤性命之徒以大旗或小清凉徽红小徽兒各繁繡␤放教賜搞等盖盖因車駕幸禁中觀湖殿庭下視江中␤官于水面舟辑分布左右旗滿船上等舞飞箭分␤随展旗百端呈拽又于水中動鼓吹前面遵引後将␤府節制水军教阁水陣統制部押于湖未來時下水打␤白旗輕不因會翻頭浪争…」",
+          "citation_ids": "[\"SHUGE:p205024:607\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页86 OCR 文本记载：「…道館前日三聖桥榮王府前口佑聖觀橋浴河看位␤西日通江桥浴大河直至日仙橋次日宗陽宫橋介␤務东日阜民橋不通舟合同場前日過軍橋雜賣場␤曙桥北日黑桥在玉煤所對巷日州桥政府大渠南␤自和門外登平坊内日登平次日六部橋郎都点␤天門止存两城壁杭人以門之␤切人…」",
+          "citation_ids": "[\"SHUGE:p205024:641\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页31 OCR 文本记载：「…人城又使童的挑著木鱼␤红霞映水月挂柳稍歌清乐聲亮此時尚未␤天東京金朋池未必如此之佳酒食欢不覺口晚␤龍舟可觀都人不富城而出笙歌鼎沸鼓吹␤宴于湖者舟書舫款款撑駕處行樂此日又有␤盛填塞都門宴于郊者就名园芳奇花木之處␤禮官員士俱出郊省以思時之敬車…」",
+          "citation_ids": "[\"SHUGE:p205024:584\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷3] 页205 OCR 文本记载：「…聲␤秋颐招携曲恍來林月美人却卧雪鹰高士␤悠悠桂子但覺残菊晚應探嶺暖梅先少縣␤那可問凭散圈孟明月自相冉舟天香␤正行白醉顏啤丹枫耽遠高臺搔首青天␤幽湖平無際之浮光山媚可餐之秀色寓目␤芦衣不耐凉新池荷香縮梧葉忽马秋落西草␤碧崔桐環堵翠延薛俯流先…」",
+          "citation_ids": "[\"SHUGE:p168491:537\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:587",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:607",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:233",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:641",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:518",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷3",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:584",
+          "matched_terms": "[\"舟\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "《金石三例》中涉及河渠的文字在哪里?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:10Z",
+      "finished_at": "2026-09-26T10:34:11Z",
+      "citations_found": 2,
+      "citations_used": 2,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷9] 页122 OCR 文本记载：「…歆桓百句不亦各有␤致美于序而簡平篇取經意自歸偉␤行␤抗␤交心雕龍日清那崔瑗交學蔡台樊渠前␤宋書日鲍照河清其序甚工詩有序亦不可␤于學士院試舒州進甘露遂賜及第試尚矣␤龍十五年試稽翠宫甘露宋朝化三年楊億␤而␤手␤者␤之␤送␤唱␤以␤詩␤道␤泷␤…」",
+          "citation_ids": "[\"SHUGE:p163433:461\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页86 OCR 文本记载：「…橋善履坊东日油局橋␤前日榮王府橋常慶坊東北日太和樓橋俗名柴垛富␤真道館前日三聖桥榮王府前口佑聖觀橋浴河看位␤西日通江桥浴大河直至日仙橋次日宗陽宫橋介␤務东日阜民橋不通舟合同場前日過軍橋雜賣場␤曙桥北日黑桥在玉煤所對巷日州桥政府大渠南␤自和…」",
+          "citation_ids": "[\"SHUGE:p205024:641\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p163433:461",
+          "matched_terms": "[\"河\", \"渠\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷9",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:641",
+          "matched_terms": "[\"河\", \"渠\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": "卷5",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "语料中关于银蟾或金盒有哪些直接文本证据?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:12Z",
+      "finished_at": "2026-09-26T10:34:13Z",
+      "citations_found": 1,
+      "citations_used": 1,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页50 OCR 文本记载：「…委佐官就浙江税務設解以享江海鬼神是月瓜桃␤梨盛有頭亦有数品若銀皮子嫩者為佳市中␤叫之聲不中貴戚里多以金盒絡買入禁中如␤宅舍市井欲市者以小新荷业包裹惨以麝香用红小␤索繁之␤八月␤八月上旬丁日太宗武府摩縣學俱行秋丁禮秋␤社日朝廷及州縣差官祭社…」",
+          "citation_ids": "[\"SHUGE:p205024:603\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:603",
+          "matched_terms": "[\"金盒\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "《梦粱录》中关于中秋或观潮有哪些记载?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:14Z",
+      "finished_at": "2026-09-26T10:34:16Z",
+      "citations_found": 1,
+      "citations_used": 1,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》页5 OCR 文本记载：「卷三␤卷四␤僧寺結制␤宰執親王南班百官入内上赐宴␤皇太后聖␤四月␤暮春␤中秋␤士人赴殿試唱名␤五月␤皇帝初九日聖節␤觀潮␤解␤解制日中元附␤七夕␤七月立秋附␤六月␤崔真君誕辰附␤重午附␤蔓粱目錄…」",
+          "citation_ids": "[\"SHUGE:p205024:558\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:558",
+          "matched_terms": "[\"中秋\", \"潮\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "卷或门这类结构词在哪些作品中共同出现?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:16Z",
+      "finished_at": "2026-09-26T10:34:18Z",
+      "citations_found": 10,
+      "citations_used": 10,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷2] 页131 OCR 文本记载：「武六十␤卷␤国立公文書館␤NationalArchives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:342\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页50 OCR 文本记载：「…者或往所拜者禁␤中車馬出攒宫以書朝陵之禮及往王妃等行␤祭享之誠後殿賜差内侍往龍山旅江燈万盏州府␤蔓粱卷四␤委佐官就浙江税務設解以享江海鬼神是月瓜桃␤梨盛有頭亦有数品若銀皮子嫩者為佳市中␤叫之聲不中貴戚里多以金盒絡買入禁中如␤宅舍市井欲市者…」",
+          "citation_ids": "[\"SHUGE:p205024:603\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷2] 页32 OCR 文本记载：「金石␤金石例卷之三␤濟南潘昂香␤景樂␤O码式␤名城字亢宗家于北平临于條山惟公端粹␤國子司业陽城遗愛碍␤和高疑懿醇道德仁明孝愛友薰里開␤布間天下守節真固患難不能其心␤怡性坦厚榮位不足動其們為司義雪␤震␤行為司业愛加于……」",
+          "citation_ids": "[\"SHUGE:p163433:230\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页52 OCR 文本记载：「…定额雨浙運司␤寓試士人一百名取一名有官文武人及登仕即皆␤十人取一人國子試五人取一名太宗武學士人␤夢梁卷四␤五␤約四五人取一名州贡院放榜之際帅臣親往院中␤開折一銀牌親書得解人姓名付提音往報路州郡␤供設鹿宴待士又取程文次者為待補名數無定␤伺來…」",
+          "citation_ids": "[\"SHUGE:p205024:605\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页29 OCR 文本记载：「巡廓事所納卷子經发下封所封卷頭不要試官知␤士人姓名恐其私取故也于每卷上打號頭三場共␤號方發往腾錄所腾錄卷子依字號書具對讀無差␤方納入考試官各房考校如卷子考中发過别房覆考␤如泉意方呈主交御于錄所吊取真卷點對批取␤定……」",
+          "citation_ids": "[\"SHUGE:p205024:582\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷4] 页71 OCR 文本记载：「…代行禮理朝委皇太子␤充亞其祭服制度按宋朝會要服衮冕垂白珠九␤章大小雙級之衮冕珠薦二九章雙殺表␤夢粱錄卷五␤皇由來若為家法嗣服無疆有道長亞獻禮直官␤再奏駕升殿昊天上帝位前左右二員奉玉册官␤登册而跪上拜跪奠酒玉圭而跪中書舍人讀玉册␤正谓玉高擎…」",
+          "citation_ids": "[\"SHUGE:p205024:626\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页91 OCR 文本记载：「…螺蛳␤橋北蟹行日蔡湖橋莲奕軍佑聖殿後日莲奕寨橋橋␤北日安榮橋南路日小蔡湖橋殿司雙寨門前日前軍␤蔓粱錄卷七␤七␤橋东青門外直东日菜市橋選锋軍东日太平桥北日␤端平橋东青門日十善桥次日黄姑桥是山門东日順␤應橋舊名子橋仁和尉司前日無星桥法明寺前日…」",
+          "citation_ids": "[\"SHUGE:p205024:646\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷7] 页109 OCR 文本记载：「…四聖者紫微␤北極大帝之四将號日天蓬天聖负武大元真␤君元是顯仁章太后繪像奉事甚謹朝夕不总香火高␤夢梁錄卷八␤為康邸出使將行見四金甲神人弓創以典␤開慈寫殿出財建觀侍奉遂于孤山古刹徙之為觀次␤年内庭迎四聖聖像奉安此觀觀额復东都延祥舊␤名殿日北四…」",
+          "citation_ids": "[\"SHUGE:p205024:664\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p168491:342",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:603",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:605",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:582",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:626",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷4",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:593",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "《梦粱录》卷十五记载了什么内容?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:18Z",
+      "finished_at": "2026-09-26T10:34:21Z",
+      "citations_found": 11,
+      "citations_used": 11,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》页11 OCR 文本记载：「卷十五␤卷十四␤學校␤外郡行␤東都隨朝桐␤土俗洞␤古神间␤仕賢␤忠節利␤山川神␤利祭␤诸色雜買␤夜市␤天曉人出市␤團行␤都市會␤雨赤縣市鎮␤夢粱目錄…」",
+          "citation_ids": "[\"SHUGE:p205024:564\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《园冶》[卷2] 页131 OCR 文本记载：「武六十␤卷␤国立公文書館␤NationalArchives ofJa…」",
+          "citation_ids": "[\"SHUGE:p168491:342\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷2] 页32 OCR 文本记载：「金石␤金石例卷之三␤濟南潘昂香␤景樂␤O码式␤名城字亢宗家于北平临于條山惟公端粹␤國子司业陽城遗愛碍␤和高疑懿醇道德仁明孝愛友薰里開␤布間天下守節真固患難不能其心␤怡性坦厚榮位不足動其們為司義雪␤震␤行為司业愛加于……」",
+          "citation_ids": "[\"SHUGE:p163433:230\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷2] 页50 OCR 文本记载：「…者或往所拜者禁␤中車馬出攒宫以書朝陵之禮及往王妃等行␤祭享之誠後殿賜差内侍往龍山旅江燈万盏州府␤蔓粱卷四␤委佐官就浙江税務設解以享江海鬼神是月瓜桃␤梨盛有頭亦有数品若銀皮子嫩者為佳市中␤叫之聲不中貴戚里多以金盒絡買入禁中如␤宅舍市井欲市者…」",
+          "citation_ids": "[\"SHUGE:p205024:603\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页29 OCR 文本记载：「巡廓事所納卷子經发下封所封卷頭不要試官知␤士人姓名恐其私取故也于每卷上打號頭三場共␤號方發往腾錄所腾錄卷子依字號書具對讀無差␤方納入考試官各房考校如卷子考中发過别房覆考␤如泉意方呈主交御于錄所吊取真卷點對批取␤定……」",
+          "citation_ids": "[\"SHUGE:p205024:582\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷4] 页71 OCR 文本记载：「…代行禮理朝委皇太子␤充亞其祭服制度按宋朝會要服衮冕垂白珠九␤章大小雙級之衮冕珠薦二九章雙殺表␤夢粱錄卷五␤皇由來若為家法嗣服無疆有道長亞獻禮直官␤再奏駕升殿昊天上帝位前左右二員奉玉册官␤登册而跪上拜跪奠酒玉圭而跪中書舍人讀玉册␤正谓玉高擎…」",
+          "citation_ids": "[\"SHUGE:p205024:626\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷5] 页91 OCR 文本记载：「…螺蛳␤橋北蟹行日蔡湖橋莲奕軍佑聖殿後日莲奕寨橋橋␤北日安榮橋南路日小蔡湖橋殿司雙寨門前日前軍␤蔓粱錄卷七␤七␤橋东青門外直东日菜市橋選锋軍东日太平桥北日␤端平橋东青門日十善桥次日黄姑桥是山門东日順␤應橋舊名子橋仁和尉司前日無星桥法明寺前日…」",
+          "citation_ids": "[\"SHUGE:p205024:646\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷7] 页109 OCR 文本记载：「…四聖者紫微␤北極大帝之四将號日天蓬天聖负武大元真␤君元是顯仁章太后繪像奉事甚謹朝夕不总香火高␤夢梁錄卷八␤為康邸出使將行見四金甲神人弓創以典␤開慈寫殿出財建觀侍奉遂于孤山古刹徙之為觀次␤年内庭迎四聖聖像奉安此觀觀额復东都延祥舊␤名殿日北四…」",
+          "citation_ids": "[\"SHUGE:p205024:664\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:564",
+          "matched_terms": "[\"卷十五\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p168491:342",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:603",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:605",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷2",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:582",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:626",
+          "matched_terms": "[\"卷\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷4",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "《东京梦华录》中记载了哪些节日?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:23Z",
+      "finished_at": "2026-09-26T10:34:25Z",
+      "citations_found": 10,
+      "citations_used": 10,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷1] 页30 OCR 文本记载：「…姓名于門左右以光宗而耀里乞搔酒食␤豁湯會外又以一工干之此其常例也␤清明節␤清明交三月節前雨日谓之寒食京師人冬至後數␤明眼凡官民不小大家子女未冠筑者以此日上頭␤寒食第三日即清明節每禁中命小内侍于門用␤榆木火先進者賜金碗三匹宣賜臣僚巨正所␤燃…」",
+          "citation_ids": "[\"SHUGE:p205024:583\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷7] 页70 OCR 文本记载：「…玄静尚書膳部郎中压資簡四州刺␤典元少尹␤史␤房公␤大父某為刑部侍郎出刺徐相州␤河南少尹␤大父御史中丞京畿探使␤裴君␤大父利真有名玄宗世為御史中丞弹無所避由␤河南分␤是出為陳留守河南道防虑置使␤張君誌␤書除授例␤云元和四年此不当復出年號他銘…」",
+          "citation_ids": "[\"SHUGE:p163433:328\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷10] 页137 OCR 文本记载：「…二十首␤三十三首蘇交忠公九首␤七首␤二十七首␤六十六首␤三十一首␤曾南豊␤李交公␤十八首␤東方花學院京都研究所␤九首␤銘例目錄…」",
+          "citation_ids": "[\"SHUGE:p163433:499\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷8] 页86 OCR 文本记载：「…和四年年四十七二月十四日暴疾卒␤至南海未竟死年五十三␤張君季友字孝權年五十四病卒東都␤年二十九客死于京師␤命且下遂病以卒年若干␤君␤府尹社␤天子篇之能朝三日贈太尉␤長魔二年十二月三日于永崇里第年五十八␤君␤書死而不書死之地例␤書不病而死例…」",
+          "citation_ids": "[\"SHUGE:p163433:369\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F5",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷6] 页66 OCR 文本记载：「…梁␤四世祖␤六代租␤其上租␤少尹房公术␤刺史薛公志␤朝散大夫越州␤刺史薛八␤朝散大夫越州␤東方花學院京都研究所␤金石例七之…」",
+          "citation_ids": "[\"SHUGE:p163433:317\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F6",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《梦粱录》[卷7] 页114 OCR 文本记载：「日虞部日水部一皆所也␤漁捕運漕碾础之事唐制名為四司日工部日屯田␤及天下屯田文武官職田京都苑山澤草木收␤官日此部日司門是也工部之冬官掌工役程式␤發于天庭以其職唐制刑部分為四司日刑部日都␤之益民不問大小生死事體所係四方刑得其平直␤典之重輕民之疑…」",
+          "citation_ids": "[\"SHUGE:p205024:669\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F7",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷8] 页90 OCR 文本记载：「真元十七年九月丁卯西李合葬其皇祖考貝␤年若干而終在官其職夫人姓李西人君在配␤明年八月十四日葬京兆奉先夫人天水道氏耐焉␤嗣子通王属良以其年十月庚寅葬公于開封縣␤其年開三月二十一日弟試太子通事舍人公儀京␤某月二十六日第其妻墓而合葬之在其縣某地␤…」",
+          "citation_ids": "[\"SHUGE:p163433:379\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F8",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷8] 页92 OCR 文本记载：「金行制␤以五月十五日葬于京兆府万年縣少陵原␤其二月某日遂葬于某縣某鄉某原␤樊远既卒且葬␤即葬于其地␤誌␤王公␤以四年二月某日葬于河南某縣先坐之侧␤長慶二年三月某日葬夫人于洛陽北山␤明年七月王寅葬万年縣少陵原␤明年二月甲午葬懷州……」",
+          "citation_ids": "[\"SHUGE:p163433:384\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p205024:583",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷1",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:328",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷7",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:499",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷10",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:369",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷8",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p163433:317",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷6",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p205024:669",
+          "matched_terms": "[\"京\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷7",
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "question": "《天工开物》乃粒篇详细内容是什么?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T10:34:26Z",
+      "finished_at": "2026-09-26T10:34:28Z",
+      "citations_found": 4,
+      "citations_used": 4,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《天工开物》页9 OCR 文本记载：「天工開物序␤天覆地载物数號萬而事亦因之␤曲成而不人力也哉事物而␤既万矣必待口授目成而後之␤其興害何萬事萬物之中其無益␤生人舆有益者各戴其半世…」",
+          "citation_ids": "[\"SHUGE:p211203:2\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=HIGH; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《天工开物》页211 OCR 文本记载：「…下無江漠之故栀典␤篷尺术全若湖广江西省舟刚过湖街江無端風浪␤故篷枪必極尽制度而后无患几風篷尺寸其则␤天工開物␤卷中…」",
+          "citation_ids": "[\"SHUGE:p211203:4\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《天工开物》页380 OCR 文本记载：「天工開物␤入马蓼自然汁三升明磨水和化無魏饭一石人信␤精大推拌信凡翘信必用隹红酒糟禽料無糟␤金中以冷水一沃氣冷再蒸则令極熟矣熟后数石共␤芬甚凡蒸此米成饭初一蒸半生即止不及其熟出雕␤可者月␤无造法用和稻米不狗早晚……」",
+          "citation_ids": "[\"SHUGE:p211203:6\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《天工开物》页106 OCR 文本记载：「天工開物␤以水煮一沸乾成人染家田既放之花色渐入␤所需红花之成红也取者張度與稠其下而承之␤凡概樹十餘年后方生花實花初試木開者日槐蓝绿␤乾者名日紫粉丹青家或报用家则糟柏葉也␤者次之近濟宁路但取染残紅花泽為之值甚盛……」",
+          "citation_ids": "[\"SHUGE:p211203:3\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p211203:2",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p211203:4",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p211203:3",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "question": "《书集传》中关于武成篇的记载有哪些?",
+      "status": "BRIEF_READY",
+      "created_at": "2026-09-26T14:19:22Z",
+      "finished_at": "2026-09-26T14:19:23Z",
+      "citations_found": 4,
+      "citations_used": 4,
+      "unsupported_claims": 0,
+      "claims": [
+        {
+          "claim_id": "F1",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《金石三例》[卷9] 页119 OCR 文本记载：「…州學校也所語瞻如韓退之南海神文␤記之属似之文選止有奏記而無此體古文苑载後␤記者記事之文也西山先生日禹武成金滕命␤也␤又作一册體轉換處不拘古文與今文大界␤多用字␤記直是學書非記體也不可不知␤昌黎新作水門之類用漢碑格式乃具是記體若曾學␤然後福…」",
+          "citation_ids": "[\"SHUGE:p163433:453\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F2",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《书集传》页13 OCR 文本记载：「…␤配春以火配百␤人辰␤仲夏陰木所␤旁死魄␤哉生明␤一時之正而五␤空相版␤命␤哉生明␤命␤召喆␤康喆␤武成␤哉生␤则鬼功皆␤庚午脚␤丙午脚␤既望␤既生魄␤哉生明␤旁死魄␤则分王␤夏以金␤仲␤行␤之…」",
+          "citation_ids": "[\"SHUGE:p64977:857\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=UNKNOWN; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F3",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《书集传》页36 OCR 文本记载：「…梁久矣其肯以冀為都區␤编年之史而今不復見矣通紀事本未後序␤月或歷數年其間崖无事盖必已具於␤百有餘年而武成金瞭篇其所紀理或更␤贵其土產也皆遠於甸而或貢於要荒之服马苟帝王以爲␤以爲國也若夫大路南金犀革象珠月之類非服食器用之物␤之京师京大也師泉…」",
+          "citation_ids": "[\"SHUGE:p64977:880\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=UNKNOWN; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "F4",
+          "claim_type": "DIRECT_OBSERVATION",
+          "claim_text": "《书集传》页50 OCR 文本记载：「…今語而␤衆其言不立具则受施行者弗␤藝文志云書者古之號今號今处␤四篇除九共九篇共卷為十六卷␤訓肆命原命武成同命二十␤之泪␤終前漢儒知孔本五十八篇␤颖達日孔君作传值巫不行␤当␤正也␤製时人之命今␤歌␤作␤九共九篇大禹益稷五子␤故史所本多按␤胤…」",
+          "citation_ids": "[\"SHUGE:p64977:893\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=UNKNOWN; 模板化生成自 evidence ledger"
+        },
+        {
+          "claim_id": "X1",
+          "claim_type": "CROSS_SOURCE_PATTERN",
+          "claim_text": "词「武成」在 2 部作品的检索证据中共同出现(跨作品文本模式): 《金石三例》p119; 《书集传》p13; 《书集传》p36; 《书集传》p50",
+          "citation_ids": "[\"SHUGE:p163433:453\", \"SHUGE:p64977:857\", \"SHUGE:p64977:880\", \"SHUGE:p64977:893\"]",
+          "status": "SUPPORTED",
+          "confidence_reason": "reliability=MEDIUM/UNKNOWN; 模板化生成自 evidence ledger"
+        }
+      ],
+      "evidence": [
+        {
+          "citation_id": "SHUGE:p163433:453",
+          "matched_terms": "[\"武成\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": "卷9",
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p64977:857",
+          "matched_terms": "[\"武成\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p64977:880",
+          "matched_terms": "[\"武成\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        },
+        {
+          "citation_id": "SHUGE:p64977:893",
+          "matched_terms": "[\"武成\"]",
+          "match_type": "EXACT",
+          "review_status": "no",
+          "document_unit": null,
+          "selected_for_brief": 1
+        }
+      ]
+    },
+    {
+      "id": 235,
+      "question": "纳米材料在工程做法中的应用",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:43:13Z",
+      "finished_at": "2026-09-27T20:43:21Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 223,
+      "question": "河防一览堤工",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:41:59Z",
+      "finished_at": "2026-09-27T20:42:03Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 219,
+      "question": "埃菲尔铁塔高度",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:13:11Z",
+      "finished_at": "2026-09-27T20:13:26Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 218,
+      "question": "JSON 发明人",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:12:56Z",
+      "finished_at": "2026-09-27T20:13:11Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 217,
+      "question": "Pizza 起源",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:12:40Z",
+      "finished_at": "2026-09-27T20:12:56Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 216,
+      "question": "SQLite 版本号",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:12:24Z",
+      "finished_at": "2026-09-27T20:12:40Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 215,
+      "question": "相对论 提出时间",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:11:53Z",
+      "finished_at": "2026-09-27T20:12:24Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    },
+    {
+      "id": 214,
+      "question": "埃菲尔铁塔高度",
+      "status": "INSUFFICIENT_EVIDENCE",
+      "created_at": "2026-09-27T20:11:22Z",
+      "finished_at": "2026-09-27T20:11:40Z",
+      "claims": [],
+      "evidence": [],
+      "note": "corpus-bound abstention — no evidence found in OCR-searchable pages"
+    }
+  ]
+}

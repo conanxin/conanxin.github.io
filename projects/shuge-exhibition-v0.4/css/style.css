@@ -1,0 +1,846 @@
+/* SHUGE DH Exhibition v0.3 — Digital Museum × Academic Lab
+   继承 v0.2 全部样式 · 新增 v0.3 组件样式
+   禁用: 渐变 / 圆角 / box-shadow / emoji / neon */
+
+:root {
+  --paper-white: #f7f3eb;
+  --card-cream: #efe9da;
+  --evidence-tint: #e8e0cd;
+  --rule-gray: #c8bfa9;
+  --archival-brown: #6b5944;
+  --ink-charcoal: #1a1a1a;
+  --seal-red: #8b3a2e;
+  --status-green: #2c4a3e;
+  --status-warning: #6b4f1f;
+  --status-evidence: #4a2c3e;
+  --status-searching: #6b5944;
+  --max-width: 820px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', 'Noto Serif CJK SC', -apple-system, sans-serif;
+  background: var(--paper-white);
+  color: var(--ink-charcoal);
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+a { color: var(--seal-red); text-decoration: none; border-bottom: 1px solid var(--rule-gray); }
+a:hover { background: var(--evidence-tint); border-bottom-color: var(--seal-red); }
+
+/* ============================================================
+   MASTHEAD + TOPNAV
+   ============================================================ */
+.masthead {
+  background: var(--card-cream);
+  border-bottom: 2px solid var(--rule-gray);
+  padding: 1.5rem 2rem 1rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.masthead-title {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  letter-spacing: 0.05em;
+}
+.masthead-subtitle {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  color: var(--archival-brown);
+  margin-top: 0.25rem;
+  letter-spacing: 0.03em;
+}
+
+.topnav {
+  background: var(--card-cream);
+  border-bottom: 1px solid var(--rule-gray);
+  padding: 0.5rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+}
+.topnav-links { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.topnav-links a { color: var(--ink-charcoal); border-bottom: none; padding: 0.15rem 0.4rem; }
+.topnav-links a.active, .topnav-links a:hover { background: var(--evidence-tint); border-bottom: none; }
+.topnav-divider { color: var(--rule-gray); }
+.topnav-meta { color: var(--archival-brown); }
+.topnav-meta a { color: var(--archival-brown); }
+
+/* ============================================================
+   BODY MAIN
+   ============================================================ */
+.body {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem;
+}
+section { margin-bottom: 2.5rem; }
+section h2 {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  border-bottom: 1px solid var(--rule-gray);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+section h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero {
+  border-left: 4px solid var(--seal-red);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+.hero h1 {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.5rem;
+}
+.hero-lead {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--archival-brown);
+  margin-bottom: 0.75rem;
+}
+.hero p { font-size: 0.95rem; color: var(--ink-charcoal); }
+
+/* ============================================================
+   META TABLE
+   ============================================================ */
+.meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 0.5rem 0;
+}
+.meta-table th {
+  text-align: left;
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  color: var(--archival-brown);
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--rule-gray);
+  vertical-align: top;
+  width: 30%;
+}
+.meta-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--rule-gray);
+  vertical-align: top;
+}
+.meta-table thead th {
+  background: var(--card-cream);
+  font-family: 'Source Sans 3', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+.mono { font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; }
+.dim { color: var(--archival-brown); opacity: 0.85; font-size: 0.88rem; }
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  margin: 0 0.15rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  border: 1px solid var(--rule-gray);
+  background: var(--paper-white);
+  color: var(--archival-brown);
+  letter-spacing: 0.02em;
+}
+.badge-collection-hydrology { color: var(--status-evidence); border-color: var(--status-evidence); }
+.badge-collection-architecture { color: var(--status-warning); border-color: var(--status-warning); }
+.badge-status-open { color: var(--status-green); border-color: var(--status-green); }
+.badge-status-searching { color: var(--status-searching); border-color: var(--status-searching); }
+.badge-status-archived { color: var(--archival-brown); border-color: var(--rule-gray); }
+.badge-no-collection { color: var(--rule-gray); border-style: dashed; }
+
+/* ============================================================
+   CARDS GRID (3-column)
+   ============================================================ */
+.cards-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.card {
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 1rem;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+.card-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--archival-brown);
+  letter-spacing: 0.05em;
+}
+.card-title {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.25rem;
+}
+.card-title a { color: var(--ink-charcoal); border-bottom: none; }
+.card-title a:hover { color: var(--seal-red); border-bottom: none; }
+.card-en-title {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.85rem;
+  color: var(--archival-brown);
+  font-style: italic;
+  margin-bottom: 0.4rem;
+}
+.card-subtitle {
+  font-size: 0.82rem;
+  color: var(--archival-brown);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+.card-meta {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* ============================================================
+   v0.3 NEW: CASE STUDY HERO + CASE SECTIONS
+   ============================================================ */
+.case-study-hero {
+  border-left: 4px solid var(--seal-red);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+.case-study-hero h1 {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.4rem;
+}
+.case-study-title-en {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--archival-brown);
+  margin-bottom: 0.4rem;
+}
+.case-study-subtitle {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.5rem;
+}
+.case-study-badges {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.case-section {
+  margin-bottom: 2rem;
+  padding-left: 3.5rem;
+  position: relative;
+}
+.section-num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--seal-red);
+  color: var(--paper-white);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+.section-label {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin: 0;
+  border-bottom: 1px solid var(--rule-gray);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.question-text {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-charcoal);
+  line-height: 1.6;
+}
+
+.case-study-back {
+  margin-top: 2rem;
+  font-size: 0.88rem;
+  color: var(--archival-brown);
+}
+
+/* ============================================================
+   v0.3 NEW: OBJECTS GRID + OBJECT CARD
+   ============================================================ */
+.objects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+  margin: 0.75rem 0;
+}
+.object-card {
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 0.8rem;
+}
+.object-card-header { margin-bottom: 0.4rem; }
+.object-card-kind {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--seal-red);
+  border: 1px solid var(--seal-red);
+  padding: 0.1rem 0.3rem;
+  display: inline-block;
+}
+.object-card-name {
+  font-family: 'Noto Serif CJK SC', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  margin-bottom: 0.3rem;
+}
+.object-card-desc {
+  font-size: 0.82rem;
+  color: var(--archival-brown);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   v0.3 NEW: ROOM 5-SECTION
+   ============================================================ */
+.room-introduction p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-charcoal);
+}
+.room-objects { margin-bottom: 2rem; }
+.room-evidence { margin-bottom: 2rem; }
+.room-further-reading { margin-bottom: 2rem; }
+
+.further-reading {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.further-reading li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-charcoal);
+  line-height: 1.6;
+}
+.further-reading li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--seal-red);
+  font-weight: 600;
+}
+
+/* ============================================================
+   TAKE-AWAY
+   ============================================================ */
+.takeaway {
+  border-left: 4px solid var(--seal-red);
+  background: var(--evidence-tint);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.takeaway-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--seal-red);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.takeaway p, .takeaway-text {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 0.98rem;
+  color: var(--ink-charcoal);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   EVIDENCE CARDS (v0.3 UPGRADED)
+   ============================================================ */
+.evidence-card {
+  background: var(--paper-white);
+  border: 1px solid var(--rule-gray);
+  border-left: 4px solid var(--seal-red);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.evidence-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.evidence-card-question {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  flex: 1;
+  min-width: 200px;
+}
+.evidence-card-meta {
+  font-size: 0.78rem;
+  color: var(--archival-brown);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* v0.3 NEW: Source Context */
+.source-context-block {
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+}
+.source-context-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--seal-red);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.source-context-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.82rem;
+}
+.source-context-fields span { color: var(--ink-charcoal); }
+.scf-work { font-weight: 600; }
+.scf-author, .scf-dynasty { color: var(--archival-brown); }
+.scf-page, .scf-ocr { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--seal-red); }
+.source-context-link {
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+}
+.source-context-link a { color: var(--seal-red); }
+.source-context-note {
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--archival-brown);
+  font-style: italic;
+}
+
+/* Claim block */
+.evidence-claim-block {
+  background: var(--evidence-tint);
+  border: 1px solid var(--rule-gray);
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.evidence-claim-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--archival-brown);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+.evidence-claim-text {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 0.92rem;
+  color: var(--ink-charcoal);
+  line-height: 1.55;
+  max-height: 6.5em;
+  overflow: hidden;
+}
+.claim-cite {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--archival-brown);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* v0.3 NEW: Citation Path */
+.citation-path-block {
+  margin-bottom: 0.6rem;
+  background: var(--paper-white);
+  border: 1px solid var(--rule-gray);
+}
+.citation-path-block summary {
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.82rem;
+  color: var(--seal-red);
+  background: var(--card-cream);
+  font-family: 'Source Sans 3', sans-serif;
+}
+.citation-path-block[open] summary { border-bottom: 1px solid var(--rule-gray); }
+.citation-path-list {
+  list-style: decimal inside;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.82rem;
+  color: var(--ink-charcoal);
+}
+.citation-path-list li {
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.cp-step { color: var(--seal-red); font-weight: 600; }
+.cp-action { color: var(--ink-charcoal); }
+.cp-input { font-style: italic; color: var(--archival-brown); }
+.cp-coll { color: var(--seal-red); }
+.cp-cite { color: var(--archival-brown); font-size: 0.78rem; }
+
+/* Ledger toggle */
+.evidence-ledger-toggle {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--seal-red);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.evidence-ledger {
+  display: none;
+  margin-top: 0.4rem;
+  background: var(--evidence-tint);
+  border: 1px solid var(--rule-gray);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+}
+.evidence-ledger.open { display: block; }
+.evidence-ledger-row {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr 1.2fr 0.8fr 0.8fr;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--rule-gray);
+}
+.evidence-ledger-row:hover { background: var(--paper-white); }
+.selected-yes { color: var(--status-green); font-weight: 600; }
+
+/* v0.3 NEW: footer meta (collection + workspace) */
+.evidence-card-footer-meta {
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--rule-gray);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--archival-brown);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.ecfm-coll { padding: 0.15rem 0.4rem; background: var(--card-cream); }
+.evidence-card-workspace {
+  margin-top: 0.3rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--archival-brown);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+/* Citation Viewer */
+.citation-viewer {
+  display: none;
+  background: var(--card-cream);
+  border: 1px solid var(--seal-red);
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  position: relative;
+}
+.citation-viewer.open { display: block; }
+.citation-viewer-close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--seal-red);
+  font-size: 0.85rem;
+}
+.citation-viewer-field {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed var(--rule-gray);
+}
+.citation-viewer-field-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--archival-brown);
+  width: 8rem;
+}
+
+/* ============================================================
+   PAGE VIEWER FRAMEWORK
+   ============================================================ */
+.page-viewer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.8rem;
+  margin: 0.75rem 0;
+}
+.page-viewer {
+  background: var(--paper-white);
+  border: 1px solid var(--rule-gray);
+  padding: 0.5rem;
+}
+.page-viewer-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--card-cream);
+  border: 1px dashed var(--rule-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.page-viewer-frame.framework-only::before {
+  content: 'IIIF canvas placeholder · v0.3 framework — image disabled';
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--archival-brown);
+  text-align: center;
+  padding: 0 0.5rem;
+  line-height: 1.3;
+}
+.page-viewer figcaption {
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--archival-brown);
+  text-align: center;
+}
+
+/* ============================================================
+   WORK ROW (overview page)
+   ============================================================ */
+.work-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr 1.5fr;
+  gap: 0.5rem;
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--rule-gray);
+  font-size: 0.85rem;
+  align-items: center;
+}
+.work-row:nth-child(odd) { background: var(--card-cream); }
+.work-title a { color: var(--ink-charcoal); border-bottom: none; font-weight: 600; }
+.work-title a:hover { color: var(--seal-red); border-bottom: none; }
+.work-author, .work-dynasty { font-size: 0.78rem; color: var(--archival-brown); }
+.work-pages { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--archival-brown); }
+
+/* ============================================================
+   MAP PLACEHOLDER
+   ============================================================ */
+.map-placeholder {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem auto;
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 1rem;
+}
+.map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.map-point {
+  fill: var(--seal-red);
+  cursor: pointer;
+  transition: r 0.15s ease;
+}
+.map-point:hover {
+  r: 1.2;
+  fill: var(--archival-brown);
+}
+.map-tooltip {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--ink-charcoal);
+  color: var(--paper-white);
+  padding: 0.4rem 0.7rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  max-width: 280px;
+}
+
+/* ============================================================
+   VERIFIED
+   ============================================================ */
+.verified {
+  color: var(--status-green);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--card-cream);
+  border-top: 1px solid var(--rule-gray);
+  padding: 1.5rem 2rem;
+  max-width: var(--max-width);
+  margin: 2rem auto 0 auto;
+  font-size: 0.78rem;
+  color: var(--archival-brown);
+  text-align: center;
+  line-height: 1.7;
+}
+footer a { color: var(--archival-brown); border-bottom: 1px solid var(--rule-gray); }
+
+/* ============================================================
+   TIMELINE TABLE
+   ============================================================ */
+#timeline .meta-table th { width: 15%; }
+#timeline .meta-table th:nth-child(2) { width: 15%; }
+#timeline .meta-table th:nth-child(3) { width: 25%; }
+#timeline .meta-table th:nth-child(4) { width: 45%; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  .body { padding: 1rem; }
+  .case-section { padding-left: 2.5rem; }
+  .section-num { width: 1.8rem; height: 1.8rem; font-size: 0.85rem; }
+  .work-row { grid-template-columns: 1fr; }
+  .evidence-ledger-row { grid-template-columns: 1fr; }
+  .evidence-card-header { flex-direction: column; }
+}
+/* ============================================================
+   v0.4 NEW: Place Card + Place Filter Bar + Evidence Graph SVG
+   ============================================================ */
+.place-card { background: var(--card-cream); border: 1px solid var(--rule-gray); padding: 1rem; cursor: pointer; transition: background 0.1s ease; }
+.place-card:hover { background: var(--evidence-tint); }
+
+.place-filter-bar { margin-bottom: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--rule-gray); }
+.place-filter-bar button.badge { background: var(--paper-white); }
+.place-filter-bar button.badge:hover { background: var(--evidence-tint); }
+
+.evidence-graph-svg {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 0.5rem;
+}
+.evidence-graph-svg svg { display: block; max-width: 100%; }
+
+/* ============================================================
+   v0.4 NEW: Fieldwork Timeline + Status Badges
+   ============================================================ */
+.fieldwork-timeline {
+  margin: 1rem 0;
+}
+.fieldwork-record {
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  border-left: 4px solid var(--seal-red);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.fieldwork-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.fieldwork-record-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--seal-red);
+}
+
+/* Status-specific colors */
+.badge-status-draft { color: var(--seal-red); border-color: var(--seal-red); }
+.badge-status-placeholder { color: var(--rule-gray); border-color: var(--rule-gray); border-style: dashed; }
+.badge-status-reviewed { color: var(--status-green); border-color: var(--status-green); }
+.badge-status-archived { color: var(--archival-brown); border-color: var(--rule-gray); }
+
+/* Phase timeline */
+.phase-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.phase-step {
+  background: var(--card-cream);
+  border: 1px solid var(--rule-gray);
+  padding: 0.6rem;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+}
+.phase-step-label { font-weight: 600; color: var(--seal-red); margin-bottom: 0.3rem; }
+.phase-step-duration { color: var(--archival-brown); }
+@media (max-width: 720px) {
+  .phase-timeline { grid-template-columns: 1fr; }
+}

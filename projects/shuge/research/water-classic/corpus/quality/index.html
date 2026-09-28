@@ -403,25 +403,137 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- BLOCK 09 · 技术下载                                              -->
+<!-- BLOCK 09 · R3.2 正文可信度验证                                     -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
     <span class="section-num">BLOCK 09</span>
-    <h2>技术数据下载</h2>
-    <p>本审计所有原始数据可下载(JSON + Markdown):</p>
+    <h2>R3.2 · 《水经注》正文可信度验证(Historical Evidence Gate)</h2>
+    <p>
+      R3.2 在 R3.1 的页面类型分类之上,引入<strong>语义验证门槛</strong>:
+      把 R3.1 的 <code>BODY_TEXT = 827</code> 重新打开,做更细的语义判定;
+      把 R3.1 的 <code>UNKNOWN = 58</code> 全部重审,显式排除扫描头与不可用页。
+      结果是把 R3.1 的 <code>RESEARCH_SEARCHABLE = 866</code> 压缩成
+      <code>RESEARCH_INDEXABLE = 465</code>(<strong>仅 426 历史正文 + 38 标题 + 1 目录</strong>)。
+    </p>
+
+    <h3>9.1 · BODY_TEXT Precision Audit(827 页抽样 90)</h3>
+    <p>从 R3.1 的 827 页 BODY_TEXT 中抽取:</p>
     <ul class="mono">
-      <li><a href="/projects/shuge/research/water-classic/data/water_classic_page_types_r3_1.json">data/water_classic_page_types_r3_1.json</a> — 956 页全分类(398 KB)</li>
+      <li>随机 60 页(seed=42)</li>
+      <li>核心河流共现 30 页(全集实际只有 10 页,自动截断)</li>
+      <li>短正文 / 边界页 20 页(<code>normalized_char_count ≤ 200</code>)</li>
+    </ul>
+    <p>判定规则:</p>
+    <pre class="mono">TRUE_BODY   : strong_marker_count ≥ 1 AND len ≥ 80 AND (title == 0 OR strong ≥ 1)
+TITLE_OR_TOC: 标题/目录词命中(strong ≥ 0)
+HEADER_ONLY : strong == 0 AND noise ≥ 2(国立公文書館 / Kodak / 番號)
+OCR_NOISE   : len &lt; 60 strong==0 OR (strong==0 AND rivers==0 AND len &lt; 400)
+UNCERTAIN   : 60-200 chars strong==0 OR strong + len &lt; 80</pre>
+    <p>全量验证结果:</p>
+    <pre class="mono">TRUE_BODY      = 422  (51.0%)  ← 可作 SUPPORTED 历史证据
+TITLE_OR_TOC   =   7  ( 0.8%)  ← R3.1 误判
+HEADER_ONLY    =   0
+OCR_NOISE      = 392  (47.4%)  ← 短/低质量 OCR
+UNCERTAIN      =   6  ( 0.7%)
+─────────────────────────────
+TOTAL          = 827
+抽样精度:
+  N = 90 (60 random + 10 core-river + 20 short-boundary)
+  TRUE_BODY = 56 / FALSE_POSITIVE = 32 / UNCERTAIN = 2
+  BODY_TEXT_PRECISION = 56 / (56 + 32) = 0.6364</pre>
+    <p>关键发现:R3.1 的 BODY_TEXT=827 中,只有 422 页是真正的历史正文(<strong>51%</strong>)。
+    其余 392 页被判为 OCR_NOISE——它们的 normalized_text 较短(&lt; 400)且无 strong marker,
+    多为扫描残留字符或片假名数字。</p>
+
+    <h3>9.2 · UNKNOWN = 58 全量重审</h3>
+    <pre class="mono">BODY_TEXT              =   4  ( 6.9%)  ← R3.1 漏判
+TITLE_PAGE             =   0
+TABLE_OF_CONTENTS      =   0
+SCAN_HEADER_ONLY       =  49 (84.5%)  ← 多为"国立公文書館"等元数据字符串
+IMAGE_OR_DECORATIVE    =   0
+MIXED                  =   0
+REMAIN_UNKNOWN         =   5  ( 8.6%)  ← 待人工审(RESEARCH_LEAD)
+─────────────────────────────────────
+UNKNOWN_REVIEWED       =  58 (100%)
+UNKNOWN_REMAINING      =   5 ( 8.6%)</pre>
+    <p>5 页 REMAIN_UNKNOWN 共同特征:len 125-401,有部分强标记但被 OCR 异体/错字打断,需要人工二次确认。</p>
+
+    <h3>9.3 · Historical Body Pages 与 Research Indexable Pages</h3>
+    <pre class="mono">HISTORICAL_BODY_PAGES
+  = TRUE_BODY_from_R3_1_BODY_TEXT (422)
+  + UNKNOWN → BODY_TEXT            (4)
+  = 426
+
+TITLE_PAGES    = 38 + 0 = 38
+TOC_PAGES      =  1 + 0 =  1
+─────────────────────────────────
+RESEARCH_INDEXABLE_PAGES
+  = HISTORICAL_BODY + TITLE + TOC
+  = 426 + 38 + 1
+  = 465</pre>
+    <p><strong>RESEARCH_INDEXABLE</strong> 不再混合正文与元数据;只包含可作 SUPPORTED 历史证据或 METADATA 的页。</p>
+
+    <h3>9.4 · Historical Evidence Gate(四等级)</h3>
+    <pre class="mono">┌──────────────────────┬──────────────┬─────────────────┐
+│ 条件                 │ R3.2 等级     │ 用途            │
+├──────────────────────┼──────────────┼─────────────────┤
+│ BODY_TEXT + TRUE_BODY │ SUPPORTED   │ 历史事实声明    │
+│ TITLE / TOC           │ METADATA    │ 版本 / 书目元数据│
+│ HEADER / NOISE / MIXED│ NON_EVIDENCE │ 不可作为证据    │
+│ REMAIN_UNKNOWN(5)     │ RESEARCH_LEAD│ 待人工审        │
+└──────────────────────┴──────────────┴─────────────────┘</pre>
+    <p>任何未来 R4 / R5 的历史研究,必须先过此 gate:
+    <code>page_object_id ∈ HISTORICAL_BODY_PAGES(426)</code> 才有资格作为 SUPPORTED 历史证据。</p>
+
+    <h3>9.5 · 三个故事 · VALIDATED_BODY 重测</h3>
+    <p>7 个故事对 · 全部用 R3.2 严格 426 页子集重测,无新增 claim:</p>
+    <pre class="mono">故事对                ALL_OCR  R3.1  R3.2_VALIDATED  R3.2 评估
+江水 + 公安            1       1        1            TEXT_CONFIRMED
+江水 + 華容            2       1        1            TEXT_CONFIRMED
+易水 + 范陽            5       5        5            TEXT_CONFIRMED
+易水 + 容城            4       4        4            TEXT_CONFIRMED
+易水 + 故安            5       4        4            TEXT_CONFIRMED
+河水 + 野王            1       1        1            TEXT_CONFIRMED
+河水 + 修武            2       2        2            TEXT_CONFIRMED</pre>
+    <p>全部 7 对 ≥ 1,三个故事在严格 VALIDATED_BODY 门槛下仍保持 <code>TEXT_CONFIRMED</code>。</p>
+
+    <p class="note">
+      R3.2 不修改 R3.1 任何文件 / 不创建新历史 claim / 不重跑 OCR / 不下载新资源 / 不写 DB。
+      所有判定基于 R3.1 page_types JSON + SHUGE-RESEARCH-DB 的 read-only 查询。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 10 · 技术下载                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 10</span>
+    <h2>技术数据下载</h2>
+    <p>本审计(R3.1 + R3.2)所有原始数据可下载(JSON + Markdown):</p>
+    <ul class="mono">
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_page_types_r3_1.json">data/water_classic_page_types_r3_1.json</a> — 956 页全分类(398 KB · R3.1)</li>
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_text_layer_stats_r3_1.json">data/water_classic_text_layer_stats_r3_1.json</a> — 5 文本层字符统计</li>
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_fts_audit_r3_1.json">data/water_classic_fts_audit_r3_1.json</a> — FTS5 审计</li>
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_story_counts_body_only_r3_1.json">data/water_classic_story_counts_body_only_r3_1.json</a> — 三个故事 BODY_TEXT-only 计数</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_body_text_validation_r3_2.json">data/water_classic_body_text_validation_r3_2.json</a> — 827 页 BODY_TEXT 6 类验证(R3.2)</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_body_text_sample_r3_2.json">data/water_classic_body_text_sample_r3_2.json</a> — 90 页抽样 + 精度指标</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_unknown_reclassification_r3_2.json">data/water_classic_unknown_reclassification_r3_2.json</a> — 58 页 UNKNOWN 全量重审</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_corpus_metrics_r3_2.json">data/water_classic_corpus_metrics_r3_2.json</a> — R3.2 final corpus metrics</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_story_counts_validated_r3_2.json">data/water_classic_story_counts_validated_r3_2.json</a> — 7 故事对 VALIDATED_BODY 重测</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md">source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md</a> — 12 个语义指标定义</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md">source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md</a> — 933 vs 956 reconciliation</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_FTS_AUDIT_R3_1.md">source/WATER_CLASSIC_FTS_AUDIT_R3_1.md</a> — FTS5 审计</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_BODY_TEXT_PRECISION_R3_2.md">source/WATER_CLASSIC_BODY_TEXT_PRECISION_R3_2.md</a> — BODY_TEXT Precision Audit(R3.2)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_UNKNOWN_REVIEW_R3_2.md">source/WATER_CLASSIC_UNKNOWN_REVIEW_R3_2.md</a> — UNKNOWN = 58 全量重审(R3.2)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_2.md">source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_2.md</a> — Historical Evidence Gate 四等级(R3.2)</li>
     </ul>
     <p class="note">
       所有数据均来自 SHUGE-RESEARCH-DB 的 read-only SQLite 查询。
-      本页面与所有数据文件均继承 R3 baseline(commit <code>9ce93a2</code>),不修改 v1.0 / R1 / R2 / R2.1 / R2.2 / R3 frozen outputs。
+      本页面与所有数据文件均继承 R3 baseline(commit <code>9ce93a2</code>)与 R3.1 baseline(commit <code>8326c62</code>),
+      不修改 v1.0 / R1 / R2 / R2.1 / R2.2 / R3 / R3.1 frozen outputs。
     </p>
   </div>
 </section>

@@ -1,0 +1,41 @@
+{
+  "schema_version": "corpus-metrics-r3.2/1.0",
+  "generated_at": "2026-09-28",
+  "work_id": 124575,
+  "canonical_shuge_work_record": "post_id 124575",
+  "db_path_readonly": "file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro",
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "NEW_HISTORICAL_CLAIMS": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "R3_BASELINE_PRESERVED": true,
+    "R3_1_BASELINE_PRESERVED": true
+  },
+  "corpus_metrics": {
+    "CORPUS_TOTAL": 956,
+    "OCR_SUCCESS_PAGES": 956,
+    "OCR_NONEMPTY_PAGES": 956,
+    "HISTORICAL_BODY_PAGES": 426,
+    "HISTORICAL_BODY_breakdown": {
+      "TRUE_BODY_from_R3_1_BODY_TEXT": 422,
+      "UNKNOWN_to_BODY_TEXT": 4
+    },
+    "TITLE_PAGES": 38,
+    "TOC_PAGES": 1,
+    "RESEARCH_INDEXABLE_PAGES": 465,
+    "RESEARCH_INDEXABLE_definition": "historical body pages + title pages + table of contents",
+    "SCAN_HEADER_ONLY_PAGES": 81,
+    "REMAIN_UNKNOWN_PAGES": 5
+  },
+  "previous_R3_1_metrics_unchanged": {
+    "TOTAL_PAGE_OBJECTS": 956,
+    "OCR_SUCCESS_PAGES": 956,
+    "BODY_TEXT_pages_from_R3_1": 827,
+    "TITLE_PAGE_from_R3_1": 38,
+    "TABLE_OF_CONTENTS_from_R3_1": 1,
+    "SCAN_HEADER_ONLY_from_R3_1": 32,
+    "UNKNOWN_from_R3_1": 58
+  }
+}

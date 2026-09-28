@@ -1,0 +1,920 @@
+{
+  "schema_version": "body-text-sample-r3.2/1.0",
+  "generated_at": "2026-09-28",
+  "sample_strata": {
+    "random_60": 60,
+    "core_river_30": 10,
+    "short_boundary_20": 20
+  },
+  "sample_metrics": {
+    "BODY_TEXT_SAMPLE_N": 90,
+    "TRUE_BODY": 56,
+    "FALSE_POSITIVE": 32,
+    "UNCERTAIN": 2,
+    "MIXED": 0,
+    "BODY_TEXT_PRECISION": 0.6364,
+    "precision_definition": "TRUE_BODY / (TRUE_BODY + FALSE_POSITIVE); UNCERTAIN excluded from denominator"
+  },
+  "sample_pages": [
+    {
+      "page_object_id": 1708,
+      "canonical_citation_id": "SHUGE:p124575:1708",
+      "page_seq": null,
+      "page_label": "p0055",
+      "raw_char_count": 215,
+      "normalized_char_count": 215,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又东至漁陽雍奴縣西入筒满\n籍涓流方成川清泉至所在分流更属微津\n源清泉無下尾盖以高梁微涓浅薄裁足津通\n合濕水東入漁陽所在枝分故俗云高梁无上\n魏氏土地記日清泉河上承桑乾河東流興\n遣张邰乐進圍雍奴即此城矣筒满水之别名也\n漢光武建武二年封川太守冠恂..."
+    },
+    {
+      "page_object_id": 2398,
+      "canonical_citation_id": "SHUGE:p124575:2398",
+      "page_seq": null,
+      "page_label": "p0011",
+      "raw_char_count": 358,
+      "normalized_char_count": 358,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又北過臨湘縣西瀚水縣西北流注\n陵縣西水東注之\n又東北過陰山縣西迷水从东南來注之又北过澧\n焉王莽改號睦故南境之地也秦减楚以長沙\n右經臨湘縣故城西縣治湘水臨川侧故印名\n經麓山東上有故城山北有白露水口湘浦也又\n郡在水東州城南舊治在城中後乃移此湘水..."
+    },
+    {
+      "page_object_id": 1658,
+      "canonical_citation_id": "SHUGE:p124575:1658",
+      "page_seq": null,
+      "page_label": "p0005",
+      "raw_char_count": 383,
+      "normalized_char_count": 383,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "水出石泉固东南隅水广二十許步深三丈固在\n檀山水水道縣西北檀山西南南流興石泉水会\n下東南流人濡水時人之虎眼泉也濡水东合\n女泉濡水又東得白杨水口出道之西山白杨\n里今无水陂内有泉渊而不流際池北侧俗聖\n石堰水處也濡水舊枝分南人城东大陂陂方四\n山南溪..."
+    },
+    {
+      "page_object_id": 2066,
+      "canonical_citation_id": "SHUGE:p124575:2066",
+      "page_seq": null,
+      "page_label": "p0065",
+      "raw_char_count": 328,
+      "normalized_char_count": 328,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東北人海\n又東北过甲下邑入于河\n又东北過利縣西\n成爽氏之乐非君之樂即从是也濟水又東\n薄姑氏又因之而後太公又因之臣以為古若不\n對日昔爽氏始居之季颠因之有逢伯陵因之\n齊景公飲于上日古而不点何樂如之晏平仲\n日胡公徙薄姑城内有高臺春秋昭公二十二年..."
+    },
+    {
+      "page_object_id": 1958,
+      "canonical_citation_id": "SHUGE:p124575:1958",
+      "page_seq": null,
+      "page_label": "p0025",
+      "raw_char_count": 370,
+      "normalized_char_count": 370,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東過砥柱間\n治子於是拔剑之邪行五里逆行三里至于砥\n齊景公渡于江沈之河龙街左没之襄皆惕古\n之三門矣山在琥城東北太陽城东也搜神記\n故日砥柱世三穿既决水流分指状表目亦\n山以通河河水分流包山而過山見水中若杜然\n砥柱山名也昔禹治洪水山陵当水者之故破..."
+    },
+    {
+      "page_object_id": 2225,
+      "canonical_citation_id": "SHUGE:p124575:2225",
+      "page_seq": null,
+      "page_label": "p0022",
+      "raw_char_count": 382,
+      "normalized_char_count": 382,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "淮水又东浮光山北\n南縣取名焉漠高帝十年封為侯國陰劉\n東合慎縣水水出慎陽縣西而东經慎陽縣故城\n田益宗域立东豫州以益宗為刺史淮水又\n前有碑面南又有魏汝南太守程碑魏太和中\n封马援為侯國外城北門内有新息長費彪廓\n息後徙東故加新也王恭之新德也光武十九..."
+    },
+    {
+      "page_object_id": 2407,
+      "canonical_citation_id": "SHUGE:p124575:2407",
+      "page_seq": null,
+      "page_label": "p0020",
+      "raw_char_count": 373,
+      "normalized_char_count": 373,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "邪楷水注之水出縣東南邪山水有别源日巢\n路名涟干水南流注于東之連庚仲初\n之最東类故日东山斯则改装之次其下\n水合水出南康縣凉山连干山即大庚嶺也五\n部立縣東干號日北水水左即东口也\n除始典郡治魏文帝咸熙二年孫皓分桂陽南\n中有碑文日按地理志曲江舊颗也..."
+    },
+    {
+      "page_object_id": 1604,
+      "canonical_citation_id": "SHUGE:p124575:1604",
+      "page_seq": null,
+      "page_label": "p0014",
+      "raw_char_count": 378,
+      "normalized_char_count": 378,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "八里恭京氏之所耳或更有之余所不其水\n廓下以奉蒸當斯言至失益孔因山下追思聖\n太行题棘之言也碑云國孔氏官於洛陽因居\n文亚言仲尼臨河而欢日丘之不濟命也夫是非\n之立献益往時题棘虞也余按諾子書及史籍之\n遂旋車而反及其後也晋人思之於太行嶺南為\n立記焉云..."
+    },
+    {
+      "page_object_id": 1564,
+      "canonical_citation_id": "SHUGE:p124575:1564",
+      "page_seq": null,
+      "page_label": "p0065",
+      "raw_char_count": 323,
+      "normalized_char_count": 323,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東過天水北界\n又東過榆中縣北\n河水又東石城南\n城印阮刷宗勒進文所榆中以南者也\n金城郡之縣也故徐廣史記音義日榆中在金\n昔蒙恬属秦北逐戎人開榆中之地按地理志日\n榆木成林其水自縣北流注干河也\n無水以所執榆鞭地以青羊祈山神泉出\n土荒民将移居抱罕出..."
+    },
+    {
+      "page_object_id": 1721,
+      "canonical_citation_id": "SHUGE:p124575:1721",
+      "page_seq": null,
+      "page_label": "p0011",
+      "raw_char_count": 373,
+      "normalized_char_count": 373,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又南至雍奴縣北屈东人干海\n為漁陽太守治此龍叛光武遣游将軍隆伐\n東朗是縣也屈而东南流路城南世祖拜彭寵\n縣注于鲍丘之水又南路縣故城西王莽之通\n後式焉事見其碑又东南流縣北又东至路\n月十一日刊石立表以紀動烈并記退制度永為\n置豹记之義乃遐慕仁政追成功..."
+    },
+    {
+      "page_object_id": 1918,
+      "canonical_citation_id": "SHUGE:p124575:1918",
+      "page_seq": null,
+      "page_label": "p0058",
+      "raw_char_count": 376,
+      "normalized_char_count": 376,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "水亦无記於南梁是哭王所道之也余按湖\n水南梁水又屈城南應动日縣古小邑也地\n經會國蕃縣故城東俗以南麟於亦之西潮\n遂及百故有雨潇之名焉南梁水自枝渠西南\n求之止自泗川耳盖北逹沂西北於商而接\n睦西南止自是水延之盏以國語云吴王夫差起\n水也戴延之西征記亦..."
+    },
+    {
+      "page_object_id": 1998,
+      "canonical_citation_id": "SHUGE:p124575:1998",
+      "page_seq": null,
+      "page_label": "p0065",
+      "raw_char_count": 291,
+      "normalized_char_count": 291,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "沉注濟\n河水又東分為二水枝津東經甲下城南東南歷常\n注之又东北人于海\n又東北過黎城縣北又东北過甲下邑濟水从西来\n河水又東湮千乘城北\n河水又漯陽縣故城北右\n次河\n北為鹿角津東北經般縣乐陵初鄉丽次縣故南厂\n河水又東北為漯沃津\n又東北過漯陽縣北河水..."
+    },
+    {
+      "page_object_id": 1908,
+      "canonical_citation_id": "SHUGE:p124575:1908",
+      "page_seq": null,
+      "page_label": "p0047",
+      "raw_char_count": 375,
+      "normalized_char_count": 375,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "阳山南须昌城东又南漆溝水注马水出无\n國汶水又西南長直溝水注之水出须昌城东北\n光武改日壽张也建武十五年世祖封樊宏侯\n也縣有壽聚汉日壽良應砌日世祖叔母名良故\n者也汉水西南流壽张縣故城北春秋之良縣\n水又西經洽鄉城南地理志日所無有洽鄉\n慶為東平候即..."
+    },
+    {
+      "page_object_id": 2396,
+      "canonical_citation_id": "SHUGE:p124575:2396",
+      "page_seq": null,
+      "page_label": "p0009",
+      "raw_char_count": 371,
+      "normalized_char_count": 371,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "來注之\n又東北過重安縣東又東北過縣西泰水从東南\n有石鼓高六赤湘水所經鼓则土有兵革之事\n以名郡魏正元二年吴主系亮分長沙東部立縣\n故縣也縣即湘東郡治也郡舊治在湘水東故\n水至湘東臨承縣北東注于湘之承口承\n流至鋪武縣故城南而東北流至重安縣注于承\n名..."
+    },
+    {
+      "page_object_id": 1641,
+      "canonical_citation_id": "SHUGE:p124575:1641",
+      "page_seq": null,
+      "page_label": "p0051",
+      "raw_char_count": 370,
+      "normalized_char_count": 370,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "X\n平十五年更名樂成安帝延光中日安平城内\n新博縣日新博亭光武自蓟至信都是也明帝永\n高帝六年置景帝二年為广川惠王越國王恭更盒\n侯國又东屈北經信都縣故城西信都郡治也漢\n扶都縣故城南世祖建武三十年封寇恂子样属\n之兼失長蘆水又東湮九門波故縣也又东\n..."
+    },
+    {
+      "page_object_id": 2038,
+      "canonical_citation_id": "SHUGE:p124575:2038",
+      "page_seq": null,
+      "page_label": "p0037",
+      "raw_char_count": 368,
+      "normalized_char_count": 368,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "则南清通津川潤是道耳濟水於此又兼邺目春\n而終山崩雍塞劉公於北十里更整故渠通之合\n寧朔将軍遵考仍此渠而漕之始有激湍東注\n伐将通之不果而還義熙十三年到公西征又命\n亦有通否濟水興河潭濤東注晋太和中恒温北\n城水自亭東南流注于濟水今无水宿须在河之\n浦..."
+    },
+    {
+      "page_object_id": 2136,
+      "canonical_citation_id": "SHUGE:p124575:2136",
+      "page_seq": null,
+      "page_label": "p0005",
+      "raw_char_count": 370,
+      "normalized_char_count": 370,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又南陽都縣东入于沂\n世谓之枯水一清南經建陵縣故城東漢景帝八\n縣王恭更之祝其亭也分马二清西南出今无水\n祝會之音盖字承讀类沐水又南經東海厚丘\n之\n祝丘左傳日齊朝欲之漢立马縣王莽更\n春秋之祝丘也相公五年經書齊矣伯如紀城\n至即丘縣注于沐沐水又南經東..."
+    },
+    {
+      "page_object_id": 2006,
+      "canonical_citation_id": "SHUGE:p124575:2006",
+      "page_seq": null,
+      "page_label": "p0005",
+      "raw_char_count": 371,
+      "normalized_char_count": 371,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "東南過晋陽縣東晋水从縣東南流注之\n之很也左右交潤幽深南面大壑俗之狼馬\n以孟丙為孟大夫水又西經狼孟縣故城南王恭\n秋左傅停公二十八年分祈氏七縣為大夫之邑\n新興郡西流洛陰城北又西孟縣故城南春\n汾水汾水又南出山东南流洛陰水注之水出\n十里南奥酸水合水..."
+    },
+    {
+      "page_object_id": 2011,
+      "canonical_citation_id": "SHUGE:p124575:2011",
+      "page_seq": null,
+      "page_label": "p0010",
+      "raw_char_count": 390,
+      "normalized_char_count": 390,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又南霍水入焉水出霍太山發源成潭七十步\n运趙城西南穆王以封造父趟氏自此始也汾水\n霍君奉i晋復机也蓄霍求公之故居也汾水又\n公奔齊晋國大旱上之日霍太山禽崇使趙风召\n霍城東故霍國也昔晋公减霍趙風為御霍求\n經永安縣故城南西南流注于汾水汾水又南運\n邑使..."
+    },
+    {
+      "page_object_id": 2095,
+      "canonical_citation_id": "SHUGE:p124575:2095",
+      "page_seq": null,
+      "page_label": "p0020",
+      "raw_char_count": 364,
+      "normalized_char_count": 364,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "VM\n又東南過其縣南\n流入水水其縣故城南昔舜禅禹禹避商\n城西石溜紫委溯者五涉故亦之五渡水东南\n淄素之士多泛舟昇陟取暢山情其水東流南陽\n潔水中有立石高十餘丈广二十許步上其平整\n不豫是以行者之山下大澤周數里而清深\n唯得飲而已無敢澡盟其中荷不如法..."
+    },
+    {
+      "page_object_id": 2284,
+      "canonical_citation_id": "SHUGE:p124575:2284",
+      "page_seq": null,
+      "page_label": "p0021",
+      "raw_char_count": 341,
+      "normalized_char_count": 341,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "江水又压都安縣\n江水又東别為沱\n又有水人焉\n要是以蜀人早藉以為溉雨则不過其流故記\n在堰官上立水中刻要江神水竭不至足盛不没\n摩江灌江西於玉女房下作三石人於白沙郡郵\n郸江之右也因山水坐致竹木以溉郡又羊\n益州記日江至都安堰其右捡其左其正流遂东\n有..."
+    },
+    {
+      "page_object_id": 1977,
+      "canonical_citation_id": "SHUGE:p124575:1977",
+      "page_seq": null,
+      "page_label": "p0044",
+      "raw_char_count": 366,
+      "normalized_char_count": 366,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又東北元城縣故城西北而至沙丘堰\n故潭又東北經平邑郭西\n故清又東北經昌乐縣故城东\n成者也帝建安中袁貂奥操相御於官渡貂\n雄作日太除之精沙鹿之靈作合於汉配元生\n四世制故日火土相乘而為雄也及崩犬夫楊\n懷年十八人太子宫生成帝為元后满旅道沿\n属舜後土也..."
+    },
+    {
+      "page_object_id": 1642,
+      "canonical_citation_id": "SHUGE:p124575:1642",
+      "page_seq": null,
+      "page_label": "p0052",
+      "raw_char_count": 388,
+      "normalized_char_count": 388,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東北過扶柳縣北又東北過信都縣西\n证H\n桃水东經靖陽亭南故關城也及北流至井腔關\n上承桃水水出乐平郡之上艾縣东流世之日\n斯水首受大白渠大白渠首受蔓水蔓水\n封劉襄為侯國王恭改之日桓分也合斯故\n耳衡漳又东北經桃縣故城北汉高祖十二年\n五十里有梁城故..."
+    },
+    {
+      "page_object_id": 1796,
+      "canonical_citation_id": "SHUGE:p124575:1796",
+      "page_seq": null,
+      "page_label": "p0005",
+      "raw_char_count": 385,
+      "normalized_char_count": 385,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東過业縣北\n廣汉黜子攻处因盗庫兵略吏民衣繡衣自號為\n去地百餘丈民俗名日石鼓石鼓则有兵是\n四十里野雞皆石長丈三尺廣厚略等在肠\n有大石自聲如雷有顷止闻于平襄二百\n擎自则兵起漢成帝鴻嘉三年天水冀南山\n有衣谷水亚南出朱圈山山在梧中聚有石鼓不\n南人..."
+    },
+    {
+      "page_object_id": 2311,
+      "canonical_citation_id": "SHUGE:p124575:2311",
+      "page_seq": null,
+      "page_label": "p0048",
+      "raw_char_count": 311,
+      "normalized_char_count": 311,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "江水又东经故城北\n江水出峡东南流城故州\n江水歷禹江\n山孤秀从江中仰望壁立峻袁崧为郡登之\n所谓睦抗城也城此為墉四面大险江南岸有\n所也\n陵督據此城降晋遣太傅羊枯接援未至為抗\n陵督步所築也孫皓鳯皇元年息間復为西\n故城方洲周略滿故城洲上城周里吴西\n..."
+    },
+    {
+      "page_object_id": 2337,
+      "canonical_citation_id": "SHUGE:p124575:2337",
+      "page_seq": null,
+      "page_label": "p0018",
+      "raw_char_count": 360,
+      "normalized_char_count": 360,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "桓水出蜀部岷山西南行羌中入千南海\n至键為南安縣人于江\n底黑水東限扦今汉中巴郡汶山蜀郡汉嘉江\n潜漢而连江沔故晋地道記日梁州南至桓水西\n桓水出西山更无别流所尊者唯斯水耳浮於\n來言無他道也余按經據書岷山西倾俱有桓水\n倾因桓是來馬融王云西治山唯因桓..."
+    },
+    {
+      "page_object_id": 1922,
+      "canonical_citation_id": "SHUGE:p124575:1922",
+      "page_seq": null,
+      "page_label": "p0062",
+      "raw_char_count": 388,
+      "normalized_char_count": 388,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "K座\n沛宫酒酣歌舞慷慨傷懷日游子思故鄉也泗水\n亭汉祖為泗水亭長即此亭也故亭今有高廓\n水南經小沛縣東縣治故城南坨上東有泗水\n地理志日泡水自平樂縣东北至沛入泗者也泗\n觀布射戟小支中者当各解兵不中可留决關\n布性不熹合翻但熹解翻乃植戟於門布弓日\n之..."
+    },
+    {
+      "page_object_id": 1555,
+      "canonical_citation_id": "SHUGE:p124575:1555",
+      "page_seq": null,
+      "page_label": "p0056",
+      "raw_char_count": 355,
+      "normalized_char_count": 355,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "大河又東經赤岸北\n河水又左南城南\n津亦取名焉\n十三州志日石城西一百四十里有左南城者地\n至袍罕入河\n北流注于河地理志日水出白石縣西塞外東\n又東經袍罕城南又东入潍水水又東北出峡\n津水上承白石川東湮白石城北又東罕开路\n鼠流东北注水潍水又東北左合白..."
+    },
+    {
+      "page_object_id": 2446,
+      "canonical_citation_id": "SHUGE:p124575:2446",
+      "page_seq": null,
+      "page_label": "p0060",
+      "raw_char_count": 380,
+      "normalized_char_count": 380,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "斤江水出交龍縣东北至林镇方縣東注于\n所逼自計不能於是抱毋且號且行虎見其情\n母墓威少失父事册至孝常與毋入山采新為虎\n亭間歷數縣行者難之縣東北上亦有孝子楊威\n孝烈江有马日山洪濤一上波是山勢渝嵊\n水而点縣令度尚使外甥邯郸子禮為碑文以彰\n衣當沈若不..."
+    },
+    {
+      "page_object_id": 1828,
+      "canonical_citation_id": "SHUGE:p124575:1828",
+      "page_seq": null,
+      "page_label": "p0037",
+      "raw_char_count": 392,
+      "normalized_char_count": 392,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "北轉始皇造陵取土其地汗深水成池之鱼\n道源东流後秦始皇葬山北水過而曲行東注\n豐縣故城北東與魚池水會水出丽山東也水本\n又東合沙满水水即符愚之水也南出符石經新\n注之水出南山靈谷而泉北流注于渭水也渭水\n城去潼關三十里灰道各一城渭水又東泥泉水\n又东定..."
+    },
+    {
+      "page_object_id": 2223,
+      "canonical_citation_id": "SHUGE:p124575:2223",
+      "page_seq": null,
+      "page_label": "p0020",
+      "raw_char_count": 386,
+      "normalized_char_count": 386,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "北地都尉山為侯國也有九渡水注之水出雞\n有義陽郡以南陽縣万名汉武帝元光四年封\n縣置义陽郡从安昌城又太康記晋書地道記\n晋大始中割南陽东鄙之安昌平林平氏義陽四\n之水出西南具山東北光淹城东而北青山\n水又东至谷口谷水南出鲜金山北流至瑟水注\n日音育水又..."
+    },
+    {
+      "page_object_id": 2170,
+      "canonical_citation_id": "SHUGE:p124575:2170",
+      "page_seq": null,
+      "page_label": "p0039",
+      "raw_char_count": 334,
+      "normalized_char_count": 334,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又東過城固縣南又东過魏典安陽縣南水出自\n默水又東黑水注之\n汉水又左會文水\n旱山北注之\n圣高相距門水右注汉水之高桥貉口\n水東南流歷平川中之智鄉水日智水川有唐\n谷水出汉北即智水也北发山山下有穴水穴\n故款汉中魏分漢中立魏典郡安陽課焉水出\n常華陽國..."
+    },
+    {
+      "page_object_id": 1551,
+      "canonical_citation_id": "SHUGE:p124575:1551",
+      "page_seq": null,
+      "page_label": "p0051",
+      "raw_char_count": 380,
+      "normalized_char_count": 380,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又东过西河開縣北洮水从東南來流注之\n有黄沙沙南北一百二十里东西七十里西極大杨\n河水右沙州北段國日洗河西南一百七十里\n甚最飾橋在清水川東也\n壓兩俱來相去三丈大材以板横次之施\n十步雨岸累石作基陛節節相次大木横更镇\n沙州記吐谷於河上作橋之河丽長一..."
+    },
+    {
+      "page_object_id": 2156,
+      "canonical_citation_id": "SHUGE:p124575:2156",
+      "page_seq": null,
+      "page_label": "p0025",
+      "raw_char_count": 352,
+      "normalized_char_count": 352,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "淮水出琅邪箕縣\n又北過淳于縣西又東北人于縣\n琅邪山名也越王勾践之故國也勾吴欲霸\n淳于國春秋有公六年冬周公如曹傅日淳于公\n故夏后氏之斟灌國也周武王以封淳于公號日\n泉山上下周二十里餘濱巨海秦王樂之因留\n其上琅邪薹在城東南十里孤立特顯出于\n中國徙..."
+    },
+    {
+      "page_object_id": 2078,
+      "canonical_citation_id": "SHUGE:p124575:2078",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 346,
+      "normalized_char_count": 346,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "東南過其縣儿\n霍陽出在周平城东南者也汝水又東與三屯谷\n麻讀聲近故也汝水又經周平城南京相日\n伊洛之戎潭氏城也俗以為麻解城非也益\n氏氏者也杜日城在河南新城縣之东南\n北故鄉城也之中左傅所單浮餘圍\n汝水自狠阜山東出峡之汝阿也東压麻解城\n者也\n其水南..."
+    },
+    {
+      "page_object_id": 2453,
+      "canonical_citation_id": "SHUGE:p124575:2453",
+      "page_seq": null,
+      "page_label": "p0067",
+      "raw_char_count": 310,
+      "normalized_char_count": 310,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "菏澤在定陶縣東雷澤在濟陰成陽縣西北菏水在\n陶丘在濟陰定陶縣之西南\n羽山在東海祝其縣南也\n澤在吴縣南五十里北江在毗陵北界东入于江\n中江在丹陽燕湖縣南東至會稽陽美縣入于海\n歷陵縣西南彭录澤在豫章彭澤縣北\n之東東陵地在卢江金蘭縣西北敷浅原地在豫童..."
+    },
+    {
+      "page_object_id": 1587,
+      "canonical_citation_id": "SHUGE:p124575:1587",
+      "page_seq": null,
+      "page_label": "p0088",
+      "raw_char_count": 313,
+      "normalized_char_count": 313,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又南過上郡高奴縣東\n河水又南又纳辱水\n河水又南得大蛇水\n河水又南合垫水\n水又右會區水山海經日次四經之首日陰山西\n宜通故谓之孔山也山在莆城西南三十餘里河\n有穴如車輪三所東西相当相去各二丈部南北\n合口水出孔山南歷黔西流注于河孔山之上\n域谷水東啟..."
+    },
+    {
+      "page_object_id": 2218,
+      "canonical_citation_id": "SHUGE:p124575:2218",
+      "page_seq": null,
+      "page_label": "p0015",
+      "raw_char_count": 363,
+      "normalized_char_count": 363,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "H肉\n南來注之\n水出陽东北太胡山东南流經其縣南泄水从\n水又南經會口興水枝津合水又南興澧水\n之以溉田公私引列水流逐断故讀尚存\n成湖益地百之馬仁陂陂水压其縣下西南\n水又會马仁陂水水出无陰北山泉流竟水\n是藻水音药也水又西南歷長同月城北舊\n言藻水在..."
+    },
+    {
+      "page_object_id": 1993,
+      "canonical_citation_id": "SHUGE:p124575:1993",
+      "page_seq": null,
+      "page_label": "p0060",
+      "raw_char_count": 344,
+      "normalized_char_count": 344,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "漯水东南經東朝阳縣故城南\n漯水又東北經著縣故城南又東北經崔氏城北\n漯水又東汉微君伏生墓南\n漯水又东北經漯陰縣故城北\n漯水又东經平縣故城北\n预释地日濟南東朝陽縣西北有崔氏城\n春秋左傅襄公二十七年崔成請老崔氏者也杜\n有鄉侯國舜後姚姓也\n君號日伏..."
+    },
+    {
+      "page_object_id": 2104,
+      "canonical_citation_id": "SHUGE:p124575:2104",
+      "page_seq": null,
+      "page_label": "p0030",
+      "raw_char_count": 382,
+      "normalized_char_count": 382,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "桓公問於史伯日王室多子安逃点乎史伯日\n生六子孕三年啟其左叠三人出焉破其右三\n城南世本日終娶于鬼方氏之妹之女清是\n千有清水又东南流漕水注之消水又东南郁\n武定网東南流皇臺罔下又歷東東南流注\n人出焉其四日求言是马之郁人者鄭是也\n泸黔東北流入浦浦水..."
+    },
+    {
+      "page_object_id": 1948,
+      "canonical_citation_id": "SHUGE:p124575:1948",
+      "page_seq": null,
+      "page_label": "p0015",
+      "raw_char_count": 353,
+      "normalized_char_count": 353,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又东过河北縣南\n河水又东經鄉侯河东奥全潤水合\n河水又東永樂潤水注之\n水北出于薄山南流涇河北縣故城西故魏國也\n縣界湖縣分河蓼水出襄山蓼谷西南流于河\n林在開鄉南谷中其水人北河注于河\n西征赋日咸微名於桃園者也晋太康地記日桃\n其西名桃原古之桃林周武..."
+    },
+    {
+      "page_object_id": 1811,
+      "canonical_citation_id": "SHUGE:p124575:1811",
+      "page_seq": null,
+      "page_label": "p0020",
+      "raw_char_count": 390,
+      "normalized_char_count": 390,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "故縣川又故谷縣有杜陽山山北有杜陽谷有地\n東經杜陽故城东西三百步南北二百步世之\n波压潤俗各大横水也疑郎杜水美其水东南流\n亭川水也水杜陽縣大侧世谓之赤泥公\n神而生炎帝長从姜水水合而东經美陽縣之中\n姓帝王世犯日炎帝神晨氏姜册安登游華陽感\n也岐水又..."
+    },
+    {
+      "page_object_id": 1927,
+      "canonical_citation_id": "SHUGE:p124575:1927",
+      "page_seq": null,
+      "page_label": "p0068",
+      "raw_char_count": 373,
+      "normalized_char_count": 373,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "名之日著善失又東南注于桑泉水桑泉水又东\n武元朔二年封城陽芙王第劉稀为族國王恭更\n世东蒙陰縣注桑泉水又南東卢川水注之水\n豐固水合水有二源雙會東遵一川俗之汶水\n东南蒙陰縣故城北王恭之蒙恩也又東南興\n五亭者是也堂阜水又東南注桑泉水桑泉水人\n之及堂..."
+    },
+    {
+      "page_object_id": 1683,
+      "canonical_citation_id": "SHUGE:p124575:1683",
+      "page_seq": null,
+      "page_label": "p0030",
+      "raw_char_count": 366,
+      "normalized_char_count": 366,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "城西南人巨馬水巨馬水东經益昌縣故城南漢\n城故縣也城南十里淀水又東南經益昌縣故\n王子须為候國地理風俗記日方城南十里有臨\n陂於臨鄉縣故城西東南臨鄉南漢封广陽\n巨马河又東南經益昌縣汉水石注之水上承\n東出為枝满又東注白满白满又南人于巨馬河\n水南廣陽..."
+    },
+    {
+      "page_object_id": 1943,
+      "canonical_citation_id": "SHUGE:p124575:1943",
+      "page_seq": null,
+      "page_label": "p0010",
+      "raw_char_count": 364,
+      "normalized_char_count": 364,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "又南调蒲坂縣西\n馨逸方土之遥最佳酌矣自王公庶友牵拂相\n年排於桑落之辰故酒得其名矣然香之色清\n者宿擅工釀探把河流成芳縣食同枯枝之\n者也今城中有舜魏春州刺史治太平圈都龍\n也皇甫日舜所都也或言蒲坂或言平陽及\n薛注漢書日秦世家以垣爲蒲反然则本非蒲\n..."
+    },
+    {
+      "page_object_id": 2296,
+      "canonical_citation_id": "SHUGE:p124575:2296",
+      "page_seq": null,
+      "page_label": "p0033",
+      "raw_char_count": 253,
+      "normalized_char_count": 253,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "左經石城南\n江水又東得黄華水口\n江水又东臨江縣南\n江水又虎\n又經東望峡东歷平都\n江浦也\n公注井水\n接胸忍縣有官自縣北人井有井管户\n王恭之江縣也華陽記日縣在积東四百里東\n潍水廣大夏断行旅\n四日一會\n款邑矣縣有天師治兼建佛寺其清靈縣有市肆\n江平..."
+    },
+    {
+      "page_object_id": 2329,
+      "canonical_citation_id": "SHUGE:p124575:2329",
+      "page_seq": null,
+      "page_label": "p0010",
+      "raw_char_count": 313,
+      "normalized_char_count": 313,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東過縣南\n江水东若城南\n出北山中江之有武口水上通安之延頭\n東城洲西浦侧有雍伏戌江之左岸東會龍水口\n江水左得湖口水通太湖又东合口水上承沔水\n浦二口江水右迤也又東具此庚仲雍之\n江水东白虎北山臨侧江又东會赤溪夏\n劉毅破柜玄於此洲玄乃挟天子西走江..."
+    },
+    {
+      "page_object_id": 1532,
+      "canonical_citation_id": "SHUGE:p124575:1532",
+      "page_seq": null,
+      "page_label": "p0032",
+      "raw_char_count": 381,
+      "normalized_char_count": 381,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "是海口也氏西城記日大泰一名梨帝康泰扶\n上東向坐也法顯日恒水又東到多摩梨帝國即\n散三女變為老姥不自服佛於尼拘律树下方石\n來試魔王自从南來試菩以足指按地魔兵\n樹下敷吉祥草東向而坐時魔王遣三玉女从北\n五百青雀飞來菩三匝而去菩前到具多\n離三十步天授..."
+    },
+    {
+      "page_object_id": 2349,
+      "canonical_citation_id": "SHUGE:p124575:2349",
+      "page_seq": null,
+      "page_label": "p0030",
+      "raw_char_count": 378,
+      "normalized_char_count": 378,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "周水自西南来注之潭水又東南流奥刚水合水\n水出武陵郡潭城縣玉山东流經林郡潭中縣\n經中留縣南興温水合又東人阿林縣潭水注温\n六十年車同軌書同文至太康元年晋果平吴又\n山縣北郁林郡治也吴子日今以後\n林廣楚縣为郁水又東北方縣北又東布\n淫毋欲縣西毋水出焉..."
+    },
+    {
+      "page_object_id": 1843,
+      "canonical_citation_id": "SHUGE:p124575:1843",
+      "page_seq": null,
+      "page_label": "p0052",
+      "raw_char_count": 204,
+      "normalized_char_count": 204,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "東入千河\n船利者也\n縣名都官三辅黄圖有船官後改為縣王恭之\n所在矣地理志日渭水東至船司空入河服虔日\n云入世品云者水相入也水會即船司空\n像服虔日像也杜日水之喂曲日王兰\n春秋之渭也左傅岗公三年公败犬戎于渭\n北合渭今無水\n故渠又北分為二渠東經虎圈南..."
+    },
+    {
+      "page_object_id": 2025,
+      "canonical_citation_id": "SHUGE:p124575:2025",
+      "page_seq": null,
+      "page_label": "p0024",
+      "raw_char_count": 358,
+      "normalized_char_count": 358,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "東北東人干汾\n文水出大陵縣西山文谷东到其縣屈南到平陶縣\nH肉\n平地一十許沙門释僧光表建二刹泉发於雨\n松飾列栢學唯西侧一處得歷級升陟頂上\n是故山得其名非所详也其山石岸地壁\n右會忆泉口水泉山之上俗云赐雨您時是\n城内南流出郭王恭更日多镶也文水又南..."
+    },
+    {
+      "page_object_id": 1588,
+      "canonical_citation_id": "SHUGE:p124575:1588",
+      "page_seq": null,
+      "page_label": "p0089",
+      "raw_char_count": 381,
+      "normalized_char_count": 381,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "河水又南蒲川石楼山南遥蒲城东\n者也關日蒲城在西北武置其水南出得黄\n也曹林川長津注北流會消有水又有谷水\n破以縣之王恭之利平关民俗語之高樓城\n膏然極明奥膏无典車及水確红其彼方人\n地為满水有肥如肉汁取著器中始黄後黑如凝\n之博物志稀酒泉延夀縣南山出..."
+    },
+    {
+      "page_object_id": 2081,
+      "canonical_citation_id": "SHUGE:p124575:2081",
+      "page_seq": null,
+      "page_label": "p0006",
+      "raw_char_count": 364,
+      "normalized_char_count": 364,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又东南颓川刺縣南\n長湖湖水下入汝古春水也水出叠陽縣北将孤\n湖湖水南北八九十步东西四五百步俗之東\n經水蓼堆东郊城西南流入于汝汝水又右迤盒\n步东西三百步汝水又东扈潤水北出大刘山南\n注汝水汝水又东分為西長湖湖水南北五十餘\n汝水又東與张磨泉合水發北..."
+    },
+    {
+      "page_object_id": 1855,
+      "canonical_citation_id": "SHUGE:p124575:1855",
+      "page_seq": null,
+      "page_label": "p0064",
+      "raw_char_count": 394,
+      "normalized_char_count": 394,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "東屈湮其城南又西歷平洛郡东南屈而南經南\n城南东南入白水白水又南左會東流水東入\n成三溪西南流入于白水白水又東南經白水縣\n部溪东南流东源出郎谷西南合南注白水白水\n白水又东南興南五部水會水有二源西源出五\n水白水又東合空冷水伤溪西南谷郎川源也\n因名..."
+    },
+    {
+      "page_object_id": 1973,
+      "canonical_citation_id": "SHUGE:p124575:1973",
+      "page_seq": null,
+      "page_label": "p0040",
+      "raw_char_count": 359,
+      "normalized_char_count": 359,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "河水又东右滑壹城\n河水又东淇水人焉又東遮害亭南\n妖民属疾三者作而有河清春秋麟不当見而\n水先清京房易傅日河水清天下平天垂翼地吐\n有河清而今有之易乾度日上天将降嘉應河\n東郡濟北平源河水清襄楷上疏日春秋注記未\n其日茂城故東郡治漢書日延熹九年濟陰\n..."
+    },
+    {
+      "page_object_id": 2249,
+      "canonical_citation_id": "SHUGE:p124575:2249",
+      "page_seq": null,
+      "page_label": "p0046",
+      "raw_char_count": 403,
+      "normalized_char_count": 403,
+      "validation_status": "UNCERTAIN",
+      "normalized_text_preview": "搏降之夕陽下遂奉郡國志所谓宛有瓜里\n陽西人破虏将軍劉奉怨漢掠新野拒瓜里上親\n宛道途東出褚陽而道方城建武三年世祖自赭\n是其子及臣吏所樹者也清水又西南經史定伯\n更名郡日前隧縣日南陽劉善日在中國之南而\n將代楚取郢即以此地為南陽郡改縣日宛王恭\n野津..."
+    },
+    {
+      "page_object_id": 2399,
+      "canonical_citation_id": "SHUGE:p124575:2399",
+      "page_seq": null,
+      "page_label": "p0012",
+      "raw_char_count": 384,
+      "normalized_char_count": 384,
+      "validation_status": "OCR_NOISE",
+      "normalized_text_preview": "相承云宿所坐又有大棋樹亦云所植也\n大其状似壶伤有一石容一人坐形流俗\n買宅地中有一井是所整極小而深上下\n诸郡立湘州治此城之内郡西陶侃廓云崔是\n即荆州之域晋懷帝以永嘉元年分荆州湘中\n年封唐姬子發為王都此王莽之鎮郡也於\n年以封吴药爲長沙王是城即芮..."
+    },
+    {
+      "page_object_id": 2164,
+      "canonical_citation_id": "SHUGE:p124575:2164",
+      "page_seq": null,
+      "page_label": "p0033",
+      "raw_char_count": 371,
+      "normalized_char_count": 371,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "沔水又东武侯南又东經沔陽故城南\n沔水又东經白馬成南水入焉\n堂為張治東對白馬城一名陽平關水南流\n有張天師堂于今民事之庚仲雍山為白馬塞\n登陟二里有餘水又南张治东水西山上\n百录西北二面連峰接崖莫究其極从南为盛道\n道用遠城治因嶺周迥五里东谷香然\n道..."
+    },
+    {
+      "page_object_id": 1800,
+      "canonical_citation_id": "SHUGE:p124575:1800",
+      "page_seq": null,
+      "page_label": "p0009",
+      "raw_char_count": 373,
+      "normalized_char_count": 373,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又东過上邦縣\n水門谷水次东得羅城溪水次東得山谷水皆道\n籍水籍水右带五水竹嶺東得乱石溪水次東得\n得小谷水次东有杨反谷水咸自北山注離注\n縣左佩五水东會占溪水次東有大溪水次東\n二源同东北人藉水藉水又次東北人上\n于籍水籍水又东南流典竹嶺水合水出南山..."
+    },
+    {
+      "page_object_id": 1548,
+      "canonical_citation_id": "SHUGE:p124575:1548",
+      "page_seq": null,
+      "page_label": "p0048",
+      "raw_char_count": 360,
+      "normalized_char_count": 360,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "河水又東注于海澤\n河水又東經注城南又東經楼蘭城南而東注\n南龍城故姜之靈胡之大國也蒲海溢覆其\n即經所蒲昌海也水善之東北龍城之西\n盖發田土所屯故城禅國名耳\n西至尉犁二百四十里\n流自西南注也河水又东經墨山國南治墨山城\n于河山海經日敦之水西流注于海..."
+    },
+    {
+      "page_object_id": 1660,
+      "canonical_citation_id": "SHUGE:p124575:1660",
+      "page_seq": null,
+      "page_label": "p0007",
+      "raw_char_count": 386,
+      "normalized_char_count": 386,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "东北入陂陂水北接范陽陂陂在范陽城西十里\n東梁门陂水注之水上承易水梁门东入長城\n门門又之梁門失易水东分马梁門陂易水又\n允汾門與燕燕以葛城武陽與趙印此也亦日分\n分門史記趙世家云孝成十九年趟舆燕易以龍\n城是也俗又水為武途津津北對長城門之\n縣南新城..."
+    },
+    {
+      "page_object_id": 1661,
+      "canonical_citation_id": "SHUGE:p124575:1661",
+      "page_seq": null,
+      "page_label": "p0008",
+      "raw_char_count": 387,
+      "normalized_char_count": 387,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "即所堡也故所興子書云袁氏之攻状若思\n其楼基尚存高一匹餘基上有井世名易京楼\n京以京郭至固令二萬人壤之今者地壁夷平\n易城西四五里越建武四年石虎自西南逹易\n以易地當之故自蓟徙臨易水之易京城在\n蓟下時童證云燕南垂越北際唯有此中可避世\n矣易水又東經易..."
+    },
+    {
+      "page_object_id": 1659,
+      "canonical_citation_id": "SHUGE:p124575:1659",
+      "page_seq": null,
+      "page_label": "p0006",
+      "raw_char_count": 381,
+      "normalized_char_count": 381,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "境坐陵碑出此山谓之石虎山山有所遣\n云中山簡王焉之空也後其葬探承郡山石以樹\n崔言燕昭王求仙處其东之石虎罡范漢書\n崇峻騰云冠高霞翼邮壑冲深合煙罩露者\n昌縣东南郎山东北燕王仙臺东臺有三其属\n合飘日泳郡西界代之易水而是水出代郡广\n容城縣故城北濤东注..."
+    },
+    {
+      "page_object_id": 1968,
+      "canonical_citation_id": "SHUGE:p124575:1968",
+      "page_seq": null,
+      "page_label": "p0035",
+      "raw_char_count": 361,
+      "normalized_char_count": 361,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "河水東經成大伍山下\nK座\n之城西北隅有小城周三里北面列觀臨河茗茗\n牢矣然虎牢之名自此始也泰以為開漢乃縣\n生擒虎而麒之天子命之神畜之東虞是日虎\n掠林有虎在平中天子将至七萃之士高奔戎\n故耳穆天子傅日天子射島獸於鄭命虞人\n公血侯會于咸遂城虎牢以逼..."
+    },
+    {
+      "page_object_id": 1656,
+      "canonical_citation_id": "SHUGE:p124575:1656",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 400,
+      "normalized_char_count": 400,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "才系\n故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽\n陽蓄燕昭王之所城也東西二十里南北十七里\n經今水破城東南隅世又易水马故安河武\n水故安城南外東流即斯水也锈是人事明\n屠嘉為侯國城东西二里南北一里半高锈云易\n東南小城即故安縣之故城也汉文帝封丞相申\n下..."
+    },
+    {
+      "page_object_id": 1682,
+      "canonical_citation_id": "SHUGE:p124575:1682",
+      "page_seq": null,
+      "page_label": "p0029",
+      "raw_char_count": 334,
+      "normalized_char_count": 334,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "又東南過容城縣北\n東過酒縣北\n滕處也其水东南流又名之為亭溝其水又西\n津通猩絡墟匪直田渔之腾可懷信為游神之\n涿之先鄉爱宅其陰西带巨川东翼兹水枝流\n_縣东东南流歷紫渊東余六世i乐浪府君自\n巨馬水又東亭溝水注之水上承督亢满水\n經范陽縣故城北易水注..."
+    },
+    {
+      "page_object_id": 2322,
+      "canonical_citation_id": "SHUGE:p124575:2322",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 281,
+      "normalized_char_count": 281,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "江水又右杨歧北山\n江水又东得故市口\n江水左會高口\n又東經公安縣北\n又東南油水从西南来注之又東右合油口\n江水又南平郡屏陵縣之樂鄉城北\n山抗大江山東有城故華容縣尉舊治地\n水高水通也\n江浦也對黄州\n故侧江有大城相承云會城即印閣也\n澧水及陂湖北是渊..."
+    },
+    {
+      "page_object_id": 1892,
+      "canonical_citation_id": "SHUGE:p124575:1892",
+      "page_seq": null,
+      "page_label": "p0031",
+      "raw_char_count": 351,
+      "normalized_char_count": 351,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "東至濟陰句縣新溝\n弧河故漕又东經句陽之小成陽城北城北侧\n魏都尉治\n千清丘京相日在今東郡濮陽縣東南三十里\n春秋宣公十二年經書楚减晋人宋衛曹同盟\n十里有桃城或之也又東南經清丘北\n春秋傅日分曹地自洮书曹地也今城西南五\n陽縣東有咸城者也是子故漕又东..."
+    },
+    {
+      "page_object_id": 1975,
+      "canonical_citation_id": "SHUGE:p124575:1975",
+      "page_seq": null,
+      "page_label": "p0042",
+      "raw_char_count": 375,
+      "normalized_char_count": 375,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "河水自津東北凉城縣\nML\n河北有般祠孟氏記云祠河中精石為基河水涨\n散入濮水所在决會更相通注以成往復也\n上舊日置源城縣治此白马又东南經濮陽縣\n有白馬塞孟達登之長可於川土妄矣亭\n则山崩注云山在鄭故此鄭也所未详劉澄之云\n白馬山也山上常有白馬行悲河..."
+    },
+    {
+      "page_object_id": 1657,
+      "canonical_citation_id": "SHUGE:p124575:1657",
+      "page_seq": null,
+      "page_label": "p0004",
+      "raw_char_count": 367,
+      "normalized_char_count": 367,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "東過范陽縣南又东過容城縣南\n更属佳觀失其一水東出金毫陂東西六七十步南\n邃岸高深左右百步一毫参差交時超相望\n臺陂一水經故安城西侧城南注易水灰塘崇峻\n之故清南出屈而东轉又分為二一水东注金\n燕都之前故也或言燕之唑斯不然矣其水\n之古老之史籍无文以私..."
+    },
+    {
+      "page_object_id": 2134,
+      "canonical_citation_id": "SHUGE:p124575:2134",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 126,
+      "normalized_char_count": 126,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "昌贴日\n沐水出琅邪东莞縣西北山\n水經第二十六自\n面而不周於南故俗之半城沐水又东南流左\n成川东南流經邵鄭南南去縣八十許里城有三\n大山與小太山连麓而與名也引控流以\n汶水\n水\n澎章文库\n潍水\n巨洋水\n水\n淄水\n明吴琯校\n後魏道元注\n藕圖撰\n韩家\n..."
+    },
+    {
+      "page_object_id": 1844,
+      "canonical_citation_id": "SHUGE:p124575:1844",
+      "page_seq": null,
+      "page_label": "p0053",
+      "raw_char_count": 146,
+      "normalized_char_count": 146,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "漾水出西氏道縣冢山東至武都沮縣爲汉水\n水經第二十\n水經第十九\n出東狼谷沮縣入汉汉中記日冢以東水皆\n西冢山會泉經藍萌入漢始源日沔按沔水\n常華陽國記日汉水有二源东源出武都氏道\n漾山為漾水禹贡道漾東流為汉是也西原出\n漾水丹水\n明吴琯校\n後魏道元注..."
+    },
+    {
+      "page_object_id": 1518,
+      "canonical_citation_id": "SHUGE:p124575:1518",
+      "page_seq": null,
+      "page_label": "p0018",
+      "raw_char_count": 135,
+      "normalized_char_count": 135,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "K至\n第三十八\n第三十七\n第三十六\n第三十五\n第三十四\n第三十三\n湘水\n資水\n浪水\n夷水\n淹水\n存水\n延江水\n若水\n青衣水\n江水下\n江水中\n江水上\n潼水\n水\n沅水\n油水\n葉榆水\n温水\n沅酉水\n沫水\n水\n水\n水\n国立公文書館\nNational..."
+    },
+    {
+      "page_object_id": 2262,
+      "canonical_citation_id": "SHUGE:p124575:2262",
+      "page_seq": null,
+      "page_label": "p0059",
+      "raw_char_count": 44,
+      "normalized_char_count": 44,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "圖贴日\n香府伴\n水經第三十\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 2363,
+      "canonical_citation_id": "SHUGE:p124575:2363",
+      "page_seq": null,
+      "page_label": "p0044",
+      "raw_char_count": 126,
+      "normalized_char_count": 126,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "水經第二十六\n東南至蜻岭縣\n淹水出越逐久縣傲外\n水經第三十七\n縣有偶同山其山神有金马碧難光景忽民多\n吕忱日淹水\n澧水\n淹水\n一日復水也\n沅水\n葉榆水夷水\n浪水\n明吴琯校\n後魏道元注\n漢桑撰\n油水\n国立公文書館\nNationalArchive..."
+    },
+    {
+      "page_object_id": 1713,
+      "canonical_citation_id": "SHUGE:p124575:1713",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 126,
+      "normalized_char_count": 126,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "香府\n餘水出上谷居庸關东\n水經第十四自\n入上谷耿沈迎之於居庸關即是開也其水遵源\n開在沮陽城東南六十里居庸界故關名矣使者\n淇水\n濡水\n濕餘水\n草文\n水\n沽水\n小水\n鲍丘水\n明吴琯校\n後魏道元注\n汉圖柔钦撰\n金家\n国立公文書館\nArchives..."
+    },
+    {
+      "page_object_id": 1514,
+      "canonical_citation_id": "SHUGE:p124575:1514",
+      "page_seq": null,
+      "page_label": "p0014",
+      "raw_char_count": 126,
+      "normalized_char_count": 126,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "条\n第十二\n第十\n第十\n第九\n第八\n第七\n第六\n聖水\n易水\n漳水\n水\n茶\n清水\n濟水\n濟水\n晋水\n原公水\n水\n汾茶\n河水五\n民金\n巨馬水\n水\n清漳水\n水\n沁水\n湛水\n文水\n漯水\n洞\n过水\n水\n国立公文書館\nNational Archives..."
+    },
+    {
+      "page_object_id": 1709,
+      "canonical_citation_id": "SHUGE:p124575:1709",
+      "page_seq": null,
+      "page_label": "p0056",
+      "raw_char_count": 43,
+      "normalized_char_count": 43,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "贴日\n香府米\n水經第十三\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 2074,
+      "canonical_citation_id": "SHUGE:p124575:2074",
+      "page_seq": null,
+      "page_label": "p0073",
+      "raw_char_count": 37,
+      "normalized_char_count": 37,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "水經第人\n系\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 2242,
+      "canonical_citation_id": "SHUGE:p124575:2242",
+      "page_seq": null,
+      "page_label": "p0039",
+      "raw_char_count": 189,
+      "normalized_char_count": 189,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "浊水出南陽睿陽縣西之山\n水經第三十\n水經第三十\n雅白淮别為游水亦枝者也\n溯是清是由出地理志日游水自淮浦北入海爾\n东北人海舊吴之燕岱常泛巨海惮其濤验更\n衡南都赋日奉先帝而追孝立唐祠於克山竞山\n累耀而于縣立克祠龙西山之克山故张\n竞之未系劉累以龍..."
+    },
+    {
+      "page_object_id": 2266,
+      "canonical_citation_id": "SHUGE:p124575:2266",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 132,
+      "normalized_char_count": 132,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "香府光\n渗水出江夏平春縣西\n水經第三十二首\n渗水北出大義山南至鄉西賜水人焉水源东\n潼水\n漳\n泄\n小\n水\n木靳水\n浅草文庫\n夏水\n水\n肥水\n人决水\n羌\n施\n水\n水\n明吴琯校\n後魏道元注\n旗圖春\n韩家\n沮\n水\n水\n水\n撰\n国立公文書館\nNati..."
+    },
+    {
+      "page_object_id": 1593,
+      "canonical_citation_id": "SHUGE:p124575:1593",
+      "page_seq": null,
+      "page_label": "p0003",
+      "raw_char_count": 138,
+      "normalized_char_count": 138,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "固贴日\n香府\n清水出河内修武縣之北黑山\n水經第九凌章文车\n不座\n十餘丈雷扑之聲震動山谷左右壁層深獸不\n泉以成川南流西南屈瀑布岳縣河注壑二\n黑山在縣地白鹿山東清水所出也上承诸陂散\n水\n清水\n汇水\n沁水\n淇水\n明吴校\n後魏翻道元注\n赛圖香撰\n台..."
+    },
+    {
+      "page_object_id": 2000,
+      "canonical_citation_id": "SHUGE:p124575:2000",
+      "page_seq": null,
+      "page_label": "p0067",
+      "raw_char_count": 43,
+      "normalized_char_count": 43,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "昌贴日\n香府米\n水經第五\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 2030,
+      "canonical_citation_id": "SHUGE:p124575:2030",
+      "page_seq": null,
+      "page_label": "p0029",
+      "raw_char_count": 198,
+      "normalized_char_count": 198,
+      "validation_status": "UNCERTAIN",
+      "normalized_text_preview": "又東南当平陰縣之東北南入于河\n又東调母辟邑南\n東過其縣北又东過皮縣之北\n名矣\n湛水又東南湮南流注于河故河濟有津之\n此非头后汉郡國志日河陽縣有湛城是也\n之湛城亦或之限城失日潤城在東言\n經之證耳湛水自向城东南運湛城東时人谓\n源經所注斯乃泪川之所..."
+    },
+    {
+      "page_object_id": 2455,
+      "canonical_citation_id": "SHUGE:p124575:2455",
+      "page_seq": null,
+      "page_label": "p0069",
+      "raw_char_count": 48,
+      "normalized_char_count": 48,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "圖贴日\n春府书\n水經第四十\n上\n国立公文書館\nNational Archivesof.Japar"
+    },
+    {
+      "page_object_id": 2386,
+      "canonical_citation_id": "SHUGE:p124575:2386",
+      "page_seq": null,
+      "page_label": "p0067",
+      "raw_char_count": 57,
+      "normalized_char_count": 57,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "圖贴日\n水經第三十七\n東歷揭陽縣王莽之南海亭而注于海也\n国立公文書館\nNational Archivesof.Ja"
+    },
+    {
+      "page_object_id": 1515,
+      "canonical_citation_id": "SHUGE:p124575:1515",
+      "page_seq": null,
+      "page_label": "p0015",
+      "raw_char_count": 109,
+      "normalized_char_count": 109,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "第二十\n第十九\n第十八\n第十七\n第十六\n第十五\n第十四\n第十三\n渭水下\n渭水中\n渭水上\n泪漆毂\n洛水\n淇水\n水\n水\n濕餘水\n濕水\n水水水\n金\n水\n甘水\n小水\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 1652,
+      "canonical_citation_id": "SHUGE:p124575:1652",
+      "page_seq": null,
+      "page_label": "p0062",
+      "raw_char_count": 43,
+      "normalized_char_count": 43,
+      "validation_status": "TITLE_OR_TOC",
+      "normalized_text_preview": "寄贴日\n香府茶\n水經第十\n国立公文書館\nNational Archives of.Ja"
+    },
+    {
+      "page_object_id": 1517,
+      "canonical_citation_id": "SHUGE:p124575:1517",
+      "page_seq": null,
+      "page_label": "p0017",
+      "raw_char_count": 126,
+      "normalized_char_count": 126,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "第三十\n第三十\n第三十\n第二十九\n羌潼施泄决渗\n滋水\n淮水\n批粉瑞\n沔\n沔水中\n水水水水水水二\n水水水\n水水水\n水\n一房金\n卡\n無灌\n夏\n沮肥批蕲\n清水\n白均\n潜\n水\n水水水水水\n水水\n宋水家\n国立公文書館\nNational Archive..."
+    },
+    {
+      "page_object_id": 2077,
+      "canonical_citation_id": "SHUGE:p124575:2077",
+      "page_seq": null,
+      "page_label": "p0002",
+      "raw_char_count": 142,
+      "normalized_char_count": 142,
+      "validation_status": "TRUE_BODY",
+      "normalized_text_preview": "汝水出河南梁縣勉鄉西天息山\n水經第二十\n太守會上卢下列山川圖以方志参差遂令寻其\n日汝出蔬泉山亚果名也余以永平中蒙除叠陽\n縣之大孟山又言出弘晨处氏縣運歸山博物志\n地理志日出高陵山郎猛山也亦言出南陽陽\n汝水\n濠草文康\n明吴琯校\n後魏翻道元注\n漢..."
+    }
+  ]
+}

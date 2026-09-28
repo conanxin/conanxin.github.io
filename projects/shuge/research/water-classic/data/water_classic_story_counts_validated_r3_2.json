@@ -1,0 +1,72 @@
+{
+  "schema_version": "story-counts-validated-r3.2/1.0",
+  "generated_at": "2026-09-28",
+  "work_id": 124575,
+  "canonical_shuge_work_record": "post_id 124575",
+  "db_path_readonly": "file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro",
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "NEW_HISTORICAL_CLAIMS": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "R3_BASELINE_PRESERVED": true,
+    "R3_1_BASELINE_PRESERVED": true,
+    "R3_2_NO_NEW_CLAIMS": true
+  },
+  "validated_body_filter": {
+    "definition": "TRUE_BODY from Section A (R3.1 BODY_TEXT re-classified) UNION UNKNOWN reclassified to BODY_TEXT from Section B",
+    "count": 426
+  },
+  "story_results": [
+    {
+      "pair": "江水+公安",
+      "ALL_OCR_count": 1,
+      "R3_1_BODY_TEXT_count": 1,
+      "R3_2_VALIDATED_BODY_count": 1,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "江水+華容",
+      "ALL_OCR_count": 2,
+      "R3_1_BODY_TEXT_count": 1,
+      "R3_2_VALIDATED_BODY_count": 1,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "易水+范陽",
+      "ALL_OCR_count": 5,
+      "R3_1_BODY_TEXT_count": 5,
+      "R3_2_VALIDATED_BODY_count": 5,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "易水+容城",
+      "ALL_OCR_count": 4,
+      "R3_1_BODY_TEXT_count": 4,
+      "R3_2_VALIDATED_BODY_count": 4,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "易水+故安",
+      "ALL_OCR_count": 5,
+      "R3_1_BODY_TEXT_count": 4,
+      "R3_2_VALIDATED_BODY_count": 4,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "河水+野王",
+      "ALL_OCR_count": 1,
+      "R3_1_BODY_TEXT_count": 1,
+      "R3_2_VALIDATED_BODY_count": 1,
+      "validation_status": "TEXT_CONFIRMED"
+    },
+    {
+      "pair": "河水+修武",
+      "ALL_OCR_count": 2,
+      "R3_1_BODY_TEXT_count": 2,
+      "R3_2_VALIDATED_BODY_count": 2,
+      "validation_status": "TEXT_CONFIRMED"
+    }
+  ]
+}

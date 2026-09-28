@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>书格数字人文研究站 · v0.2</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-overview">
+<header class="masthead">
+  <h1 class="masthead-title">书格数字人文研究站</h1>
+  <p class="masthead-subtitle">A Digital Humanities Exhibition of the SHUGE Research Database · v0.2</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="index.html" class="active">总览</a>
+    <a href="rooms/room1/index.html">展厅 1</a>
+    <a href="rooms/room2/index.html">展厅 2</a>
+    <a href="rooms/room3/index.html">展厅 3</a>
+    <a href="rooms/room4/index.html">展厅 4</a>
+    <a href="rooms/room5/index.html">展厅 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
+  </div>
+  <div class="topnav-meta">v0.2 · 5 rooms</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>展厅导语</h1>
+    <p class="hero-lead">v0.2 · 2026-09-28 freeze · P5-D 数据底层</p>
+    <p>v0.2 把 v0.1 的四个并列栏目改写为五个策展叙事展厅。每个展厅有自己的入口、主体、收束三段式。</p>
+    <p>本展厅由五个展柜组成：项目基础设施（From Catalogue）、水经注个案（Life of a Book）、历史水利与河防（Hydrology）、建筑营造（Architecture）、AI 与历史研究。展厅数据全部来源于项目数据库的只读快照。</p>
+    <div class="stat-row" id="stat-row">
+      <div class="stat"><span class="stat-value" id="stat-works">…</span><span class="stat-label">Works</span></div>
+      <div class="stat"><span class="stat-value" id="stat-pages">…</span><span class="stat-label">OCR Pages</span></div>
+      <div class="stat"><span class="stat-value" id="stat-coll">…</span><span class="stat-label">Collections</span></div>
+      <div class="stat"><span class="stat-value" id="stat-runs">…</span><span class="stat-label">Runs</span></div>
+      <div class="stat"><span class="stat-value" id="stat-claims">…</span><span class="stat-label">Claims</span></div>
+      <div class="stat"><span class="stat-value" id="stat-ws">…</span><span class="stat-label">Workspaces</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>展厅导览</h2>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">展厅 1 · From Catalogue to Research Infrastructure</h3>
+        <a href="rooms/room1/index.html" class="mono">进入 →</a>
+      </div>
+      <p>一份在 Shuge.org 上浏览的书目列表，如何变成可检索、可引证、可治理的研究基础设施？</p>
+      <p class="dim">P1 → Exh v0.2 · 9 个里程碑时间线</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">展厅 2 · The Life of a Book: 水经注 Case Study</h3>
+        <a href="rooms/room2/index.html" class="mono">进入 →</a>
+      </div>
+      <p>以《水经注》为个案，展示一部古籍在本研究系统中的完整轨迹 — 从 PDF 到 Citation ID。</p>
+      <p class="dim">60 页样本 + Page Image Viewer Framework（v0.2 不暴露图像）</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">展厅 3 · Historical Hydrology & River Defense</h3>
+        <a href="rooms/room3/index.html" class="mono">进入 →</a>
+      </div>
+      <p>「历史水利与河防」专题集合 — 项目第一个策展性研究集合的来龙去脉。</p>
+      <p class="dim">30 页样本 + 集合治理（definition v1 + snapshot chain）</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">展厅 4 · Architecture & Construction Knowledge</h3>
+        <a href="rooms/room4/index.html" class="mono">进入 →</a>
+      </div>
+      <p>「建筑营造与工程做法」专题集合 — 以《工程做法》为骨干，辅以《园冶》《天工开物》。</p>
+      <p class="dim">30 页样本 + 集合治理</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">展厅 5 · AI-assisted Historical Research</h3>
+        <a href="rooms/room5/index.html" class="mono">进入 →</a>
+      </div>
+      <p>AI 在本项目中的真实角色 — 是研究助产士，不是替代者。看 12 个 evidence cards + 3 个工作区。</p>
+      <p class="dim">12 evidence cards + 3 workspaces + 治理指标</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>地图占位（Map Placeholder）</h2>
+    <p>示意范围：东亚汉字文化圈。8 个坐标点 = 5 部作品 origin + 3 个 archive center。</p>
+    <p class="dim">v0.2 不调用任何地图瓦片 API。点为示意坐标。</p>
+    <div class="map-placeholder" id="map">
+      <svg viewBox="100 25 45 20" preserveAspectRatio="xMidYMid meet" id="map-svg">
+        <!-- simplified land outline (rough polygon for East Asia) -->
+        <path d="M 102 30 L 108 28 L 115 27 L 122 28 L 128 27 L 135 29 L 142 30 L 144 33 L 143 38 L 140 41 L 134 43 L 128 44 L 122 43 L 116 42 L 110 40 L 105 36 L 103 33 Z"
+              fill="#efe9da" stroke="#c8bfa9" stroke-width="0.15"/>
+        <!-- Japan (simplified) -->
+        <path d="M 137 36 L 141 33 L 142 36 L 140 41 L 138 38 Z" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.15"/>
+        <!-- Taiwan (small) -->
+        <circle cx="121" cy="32" r="0.4" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.1"/>
+        <!-- archive in Europe (BnF) -->
+        <circle cx="103" cy="42" r="0.4" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.1"/>
+      </svg>
+      <div class="map-placeholder-tooltip"></div>
+      <div class="map-note" id="map-note">载入中…</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>精选作品（v0.2 节选）</h2>
+    <div class="works-grid" id="works-grid"></div>
+  </section>
+
+  <section>
+    <h2>关于 v0.1 / v0.2</h2>
+    <p>v0.1 是 <span class="mono">projects/shuge-exhibition-v0.1/</span> 中的并列栏目原型。v0.2 在其基础上重组为展厅叙事结构，新增 evidence cards、citation viewer、page image viewer framework、map placeholder 四个组件。</p>
+    <p>v0.2 严格保持 v0.1 的视觉规范 — 数字博物馆 × 学术实验室。无渐变、无圆角、无 glassmorphism、无 emoji、无霓虹色。</p>
+    <h3>核心准则（继承）</h3>
+    <p>0 个 unsupported claims · 0 个 out-of-collection leakage · Citation ID 与 provenance 自 P5-B2 起保持不变。</p>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.2</p>
+  <p>数据来源：<a href="https://www.shuge.org/">shuge.org</a> · JDA (digital.archives.go.jp) · BnF Gallica · 本地数据库只读快照</p>
+  <p>数据冻结：<span class="mono" id="footer-time">2026-09-28T08:59:00+08:00</span> · Pipeline 状态：<span class="mono">P5-D COMPLETE</span></p>
+  <p>仓库：<a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.2">conanxin/conanxin.github.io/projects/shuge-exhibition-v0.2</a> · 上一版：<a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1</a></p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+fetch('data/manifest.json').then(r => r.json()).then(d => {
+  document.getElementById('stat-works').textContent = (d.totals.works || 0).toLocaleString();
+  document.getElementById('stat-pages').textContent = (d.totals.pages_ocr || 0).toLocaleString();
+  document.getElementById('stat-coll').textContent = d.totals.collections;
+  document.getElementById('stat-runs').textContent = (d.totals.research_runs_total || 0).toLocaleString();
+  document.getElementById('stat-claims').textContent = (d.totals.research_claims_total || 0).toLocaleString();
+  document.getElementById('stat-ws').textContent = (d.totals.research_workspaces || 0).toLocaleString();
+  document.getElementById('footer-time').textContent = d.generated_at;
+});
+
+fetch('data/works.json').then(r => r.json()).then(d => {
+  var grid = document.getElementById('works-grid');
+  d.featured.forEach(function(w) {
+    var colls = Array.from(new Set((w.in_collections || []).map(function(c) { return c.slug; })));
+    var kindBadge = '<span class="badge badge-' + w.featured_kind.toLowerCase() + '">' + w.featured_kind + '</span>';
+    var collHTML = colls.length > 0 ? '<div style="margin-top:0.5rem;font-family:var(--font-sans);font-size:0.75rem;color:var(--muted-gray)">in: ' + colls.map(function(s) { return '<span class="mono">' + s + '</span>'; }).join(' · ') + '</div>' : '';
+    var html = '<div class="card">';
+    html += '<div class="card-header">';
+    html += '<h3 class="card-title">' + w.title + (w.alternate_title ? ' · <span class="card-en">' + w.alternate_title + '</span>' : '') + '</h3>';
+    html += kindBadge;
+    html += '</div>';
+    if (w.author || w.dynasty_or_date) html += '<p style="margin:0.3rem 0;font-family:var(--font-serif-en);font-size:0.85rem;color:var(--archival-brown)">' + (w.author || '') + ' · ' + (w.dynasty_or_date || '') + '</p>';
+    if (w.description) html += '<p style="font-size:0.92rem;line-height:1.6">' + w.description + '</p>';
+    html += '<table class="meta-table">';
+    html += '<tr><th>Pages</th><td>' + (w.page_count || 0) + '</td></tr>';
+    html += '<tr><th>OCR Pages</th><td>' + (w.ocr_page_count || 0) + '</td></tr>';
+    if (w.editions && w.editions.length > 0) html += '<tr><th>Edition</th><td>' + w.editions[0].edition_text + '</td></tr>';
+    if (w.shuge_url) html += '<tr><th>Source</th><td><a href="' + w.shuge_url + '" target="_blank" class="mono">' + w.shuge_url.replace(/^https?:\/\//, '') + '</a></td></tr>';
+    html += '</table>';
+    html += collHTML;
+    html += '</div>';
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+// Map placeholder — render points from map_placeholder.json
+fetch('data/map_placeholder.json').then(r => r.json()).then(d => {
+  var svg = document.getElementById('map-svg');
+  var note = document.getElementById('map-note');
+  d.centers.forEach(function(c) {
+    // Map real lon/lat to viewBox 100..145, 25..45
+    // Approximate: lon→x (100..145), lat→y (45..25 reversed)
+    var cx = c.lon;
+    var cy = 45 - (c.lat - 25) * (20 / 20);  // direct linear for now
+    // Use raw values within viewBox (viewBox="100 25 45 20" → x from 100..145, y from 25..45)
+    var radius = c.kind === 'archive' ? 0.45 : 0.6;
+    var color = c.kind === 'archive' ? '#6b5944' : '#8b3a2e';
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx);
+    circle.setAttribute('cy', cy);
+    circle.setAttribute('r', radius);
+    circle.setAttribute('fill', color);
+    circle.setAttribute('class', 'map-point');
+    circle.setAttribute('data-label', c.label);
+    circle.setAttribute('data-kind', c.kind);
+    circle.setAttribute('style', 'cursor:crosshair');
+    svg.appendChild(circle);
+  });
+  note.textContent = '共 ' + d.centers.length + ' 个点 · ' + d.note;
+});
+</script>
+</body>
+</html>

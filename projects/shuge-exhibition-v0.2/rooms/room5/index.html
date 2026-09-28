@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 5 · AI-assisted Historical Research</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 5</h1>
+  <p class="masthead-subtitle">AI-assisted Historical Research</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html" class="active">展厅 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
+  </div>
+  <div class="topnav-meta">12 evidence cards · 3 workspaces</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>AI-assisted Historical Research</h1>
+    <p class="hero-lead">AI 在本项目中的真实角色 — 是研究助产士，不是替代者。</p>
+    <p>本展厅直接展示 AI 产出的 12 个 evidence cards 与 3 个研究工作区，让观众自己判断「AI 做了什么」「人类做了什么」「哪些边界由人类持有」。</p>
+  </section>
+
+  <section>
+    <h2>AI 做了什么</h2>
+    <table class="meta-table">
+      <tr><th>OCR</th><td>PP-OCRv4-mobile(onnx) · rapidocr-maxside2000 · 3,553 pages</td></tr>
+      <tr><th>查询分解</th><td>中文分词 + curated allow-list + collection rule</td></tr>
+      <tr><th>FTS5 检索</th><td>page_ocr 表 FTS5 索引 · collection filter 注入</td></tr>
+      <tr><th>证据合成</h4><td>evidence ledger 生成 (matched_terms / match_type / retrieval_score)</td></tr>
+      <tr><th>Claim 抽取</th><td>research_claims 表 · claim_type ∈ {DIRECT_OBSERVATION, INFERENCE, CROSS_REFERENCE}</td></tr>
+      <tr><th>Citation ID 化</th><td>SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt; — 每个 claim 都有稳定引用</td></tr>
+    </table>
+
+    <h3>AI <strong>没</strong>做什么</h3>
+    <ul style="font-family:'Source Sans 3', sans-serif; font-size:0.9rem; margin-left:1.5rem">
+      <li>❌ 不选择研究问题（由人设定 Issue body）</li>
+      <li>❌ 不挑选证据（人审阅 evidence ledger → selected_for_brief）</li>
+      <li>❌ 不下结论（0 个 unsupported claim 是底线）</li>
+      <li>❌ 不写综述（research.py 输出是 brief，不进入任何人类叙事文档）</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>12 个 Evidence Cards</h2>
+    <p>每个 card 展示一个研究问答的产出。点击 ▸ 可展开 evidence ledger。</p>
+    <p class="dim">evidence cards 是 v0.2 新增组件 — 数据来自 P5-C/P5-D 阶段的 BRIEF_READY research_runs。</p>
+    <div id="evidence-cards"></div>
+  </section>
+
+  <section>
+    <h2>3 个研究工作区</h2>
+    <p>P5-D Track C 引入的跨集合研究会话持久化机制。</p>
+    <div id="workspaces-list"></div>
+  </section>
+
+  <section>
+    <h2>治理指标</h2>
+    <table class="meta-table">
+      <tr><th>OUT_OF_COLLECTION_LEAKAGE</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>VERIFIED_FALSE_REGRESSION</th><td><span class="verified mono">PASS</span> · 2 hits (朝天門 2 pages in 梦粱录) · 全部 out-of-collection</td></tr>
+      <tr><th>ABSTENTION (negative controls)</th><td><span class="verified mono">PASS</span> · 12/12 negative queries correctly INSUFFICIENT_EVIDENCE</td></tr>
+      <tr><th>UNSUPPORTED_CLAIM_SENTENCES</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>CITATION_IDS_UNCHANGED</th><td><span class="verified mono">yes</span> · 自 P5-B2 起保持不变</td></tr>
+      <tr><th>PROVENANCE_UNCHANGED</th><td><span class="verified mono">yes</span> · 自 P5-B2 起保持不变</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      AI 让研究「<strong>可规模化的部分</strong>」变得更便宜（OCR、分词、证据合成），但<strong>判断与策展</strong>仍由人类完成 — 0 个 unsupported claim、12/12 negative control abstention、collection governance 重建幂等，这三条纪律是这条边界的具体形态。
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.2 · 展厅 5</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 (P5-D)</a></p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/evidence_cards.json').then(r => r.json()).then(d => {
+  var target = document.getElementById('evidence-cards');
+  d.cards.forEach(function(c) {
+    var slug = c.collection_slug || 'none';
+    var collBadge = slug !== 'none'
+      ? '<span class="badge badge-collection-' + (slug === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + slug + '</span>'
+      : '<span class="badge badge-status-searching">no-collection</span>';
+    var html = '<div class="evidence-card" data-run-id="' + c.run_id + '">';
+    html += '<div class="evidence-card-header">';
+    html += '<div class="evidence-card-question">' + c.question + '</div>';
+    html += '<div class="evidence-card-meta"><span class="run-id">#' + c.run_id + '</span> · ' + collBadge + '</div>';
+    html += '</div>';
+    html += '<div class="evidence-claim-block">';
+    html += '<div class="evidence-claim-meta">' + c.claim_type + ' · ' + c.claim_id + ' · support=' + c.support_count + ' · evidence=' + c.evidence_count + '</div>';
+    html += '<div class="evidence-claim-text">' + c.claim_text + '</div>';
+    if (c.citation_ids && c.citation_ids.length > 0) {
+      html += '<div class="claim-cite">' + c.citation_ids.slice(0, 6).join(', ') + (c.citation_ids.length > 6 ? ' … (+' + (c.citation_ids.length - 6) + ')' : '') + '</div>';
+    }
+    html += '</div>';
+    html += '<div class="evidence-ledger-toggle">▸ show evidence ledger</div>';
+    html += '<div class="evidence-ledger">';
+    c.evidence_preview.forEach(function(e, i) {
+      var sel = e.selected_for_brief ? '<span class="selected-yes">✓</span>' : ' ';
+      html += '<div class="evidence-ledger-row" data-cid="' + e.citation_id + '" data-mtype="' + (e.match_type || '') + '" data-terms="' + (e.matched_terms || '') + '" data-score="' + (e.retrieval_score || 0).toFixed(3) + '" data-reliability="' + (e.text_reliability || '') + '" data-review="' + (e.review_status || '') + '" style="cursor:pointer" onclick="openCitationViewer(\'' + c.claim_id + '\',' + c.run_id + ',' + i + ')">';
+      html += '<span><span class="mono">' + sel + '</span></span>';
+      html += '<span class="mono">' + (e.match_type || '') + '</span>';
+      html += '<span class="mono">' + (e.matched_terms || '') + '</span>';
+      html += '<span class="mono">' + (e.retrieval_score || 0).toFixed(2) + '</span>';
+      html += '<span class="mono">' + (e.text_reliability || '') + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    // Citation viewer panel (per-card, hidden by default)
+    html += '<div class="citation-viewer">';
+    html += '<div class="citation-viewer-close">✕ close</div>';
+    html += '<div style="font-family:IBM Plex Mono,monospace;font-size:0.72rem;color:var(--archival-brown);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem">Citation Viewer</div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">citation_id</span><span class="mono cv-citation-id">—</span></div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">match_type</span><span class="mono cv-match-type">—</span></div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">matched_terms</span><span class="mono cv-terms">—</span></div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">retrieval_score</span><span class="mono cv-score">—</span></div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">text_reliability</span><span class="mono cv-reliability">—</span></div>';
+    html += '<div class="citation-viewer-field"><span class="citation-viewer-field-label">review_status</span><span class="mono cv-review">—</span></div>';
+    html += '</div>';
+    html += '</div>';
+    target.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+fetch('../../data/workspaces.json').then(r => r.json()).then(d => {
+  var list = document.getElementById('workspaces-list');
+  d.workspaces.forEach(function(w) {
+    var slugs = (w.collection_slugs || []).map(function(s) { return '<span class="badge badge-collection-' + (s === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + s + '</span>'; }).join(' ');
+    var html = '<div class="card">';
+    html += '<div class="card-header">';
+    html += '<h3 class="card-title">' + w.title + '</h3>';
+    html += '<span class="badge badge-status-' + (w.status || 'open').toLowerCase() + '">' + (w.status || 'OPEN') + '</span>';
+    html += '</div>';
+    html += '<p style="font-size:0.92rem"><strong>问题:</strong> ' + w.question + '</p>';
+    html += '<table class="meta-table">';
+    html += '<tr><th>Slug</th><td><span class="mono">' + w.slug + '</span></td></tr>';
+    html += '<tr><th>Collection 绑定</th><td>' + slugs + '</td></tr>';
+    html += '<tr><th>Review Status</th><td>' + (w.review_status || 'PENDING') + '</td></tr>';
+    html += '<tr><th>Workspace Runs</th><td>' + w.workspace_runs_count + '</td></tr>';
+    html += '<tr><th>Created</th><td>' + (w.created_at || '').substring(0, 19) + '</td></tr>';
+    html += '</table>';
+    html += '</div>';
+    list.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 1 · From Catalogue to Research Infrastructure</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 1</h1>
+  <p class="masthead-subtitle">From Catalogue to Research Infrastructure</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html" class="active">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html">展厅 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
+  </div>
+  <div class="topnav-meta">9 milestones · P1 → Exh v0.2</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>From Catalogue to Research Infrastructure</h1>
+    <p class="hero-lead">一份在 Shuge.org 上浏览的书目列表，如何变成可检索、可引证、可治理的研究基础设施？</p>
+    <p>这个展厅讲述的是项目方法论本身 — 不是一个研究问题，而是「做研究的装置」本身的设计。</p>
+  </section>
+
+  <section>
+    <h2>九个里程碑</h2>
+    <p>本项目从一份公开的数字古籍目录（Shuge.org）出发，经历九个阶段。每个阶段都有明确的产出与可验证的 acceptance gate。</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section>
+    <h2>研究基础设施的六个层次</h2>
+    <table class="meta-table">
+      <tr><th>1. 采集</th><td>Acquisition · 从公开数据源下载 PDF + 元数据 · JDA + BnF Gallica + Shuge.org</td></tr>
+      <tr><th>2. 消化</th><td>Ingestion · PDF → 图像 → OCR 文本 → FTS5 索引 · 833,202 chars · 3,553 pages</td></tr>
+      <tr><th>3. 检索</th><td>Retrieval · 中文分词 + 引用合成 + claim 抽取 · research_search.py + research.py</td></tr>
+      <tr><th>4. 治理</th><td>Governance · 集合定义 + 快照 + 审计 · 283 memberships rebuild 幂等</td></tr>
+      <tr><th>5. 策展</th><td>Curation · thematic collection · 历史水利/建筑营造 · verified-false 标注</td></tr>
+      <tr><th>6. 展示</th><td>Exhibition · 静态 JSON + 数字博物馆 × 学术实验室风格 · v0.1 / v0.2</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>项目地图</h2>
+    <p>东亚汉字文化圈示意：</p>
+    <div class="map-placeholder" id="map">
+      <svg viewBox="100 25 45 20" preserveAspectRatio="xMidYMid meet" id="map-svg">
+        <path d="M 102 30 L 108 28 L 115 27 L 122 28 L 128 27 L 135 29 L 142 30 L 144 33 L 143 38 L 140 41 L 134 43 L 128 44 L 122 43 L 116 42 L 110 40 L 105 36 L 103 33 Z" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.15"/>
+        <path d="M 137 36 L 141 33 L 142 36 L 140 41 L 138 38 Z" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.15"/>
+        <circle cx="121" cy="32" r="0.4" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.1"/>
+        <circle cx="103" cy="42" r="0.4" fill="#efe9da" stroke="#c8bfa9" stroke-width="0.1"/>
+      </svg>
+      <div class="map-placeholder-tooltip"></div>
+      <div class="map-note" id="map-note">载入中…</div>
+    </div>
+    <p class="dim">5 部作品 origin 位于东亚大陆；2 个 archive center（JDA 日本 / BnF 法国）；Shuge.org 在上海。仅做示意，无真实地图瓦片。</p>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      「研究基础设施」≠ 一个数据库。它包含<strong>采集、消化、检索、治理、策展、展示</strong>六个层次，每一层都需要单独的纪律。本项目把这六个层次分别物化为 GitHub Issues（P1-P5-D + Exh）以保持纪律的可追溯性。
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.2 · 展厅 1</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-research-db">SHUGE-RESEARCH-DB</a></p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/timeline.json').then(r => r.json()).then(d => {
+  var tl = document.getElementById('timeline');
+  d.milestones.forEach(function(m) {
+    var statusClass = m.status === 'COMPLETE' ? 'timeline-status-complete' : 'timeline-status-in-progress';
+    var html = '<div class="timeline-item">';
+    html += '<div class="timeline-stage">' + m.stage + '</div>';
+    html += '<div>';
+    html += '<div class="timeline-name">' + m.name + '</div>';
+    html += '<div class="timeline-output">' + m.output + '</div>';
+    html += '<div class="timeline-status ' + statusClass + '">● ' + m.status + '</div>';
+    html += '</div></div>';
+    tl.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+fetch('../../data/map_placeholder.json').then(r => r.json()).then(d => {
+  var svg = document.getElementById('map-svg');
+  var note = document.getElementById('map-note');
+  d.centers.forEach(function(c) {
+    var cx = c.lon;
+    var cy = 45 - (c.lat - 25);
+    var radius = c.kind === 'archive' ? 0.45 : 0.6;
+    var color = c.kind === 'archive' ? '#6b5944' : '#8b3a2e';
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx);
+    circle.setAttribute('cy', cy);
+    circle.setAttribute('r', radius);
+    circle.setAttribute('fill', color);
+    circle.setAttribute('class', 'map-point');
+    circle.setAttribute('data-label', c.label);
+    circle.setAttribute('data-kind', c.kind);
+    circle.setAttribute('style', 'cursor:crosshair');
+    svg.appendChild(circle);
+  });
+  note.textContent = '共 ' + d.centers.length + ' 个点 · ' + d.note;
+});
+</script>
+</body>
+</html>

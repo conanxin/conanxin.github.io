@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 4 · Architecture & Construction Knowledge</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 4</h1>
+  <p class="masthead-subtitle">Architecture & Construction Knowledge · 建筑营造与工程做法</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html">展厅 1</a>
+    <a href="../room2/index.html">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html" class="active">展厅 4</a>
+    <a href="../room5/index.html">展厅 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
+  </div>
+  <div class="topnav-meta">architecture-construction · 30 page sample</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>Architecture & Construction Knowledge</h1>
+    <p class="hero-lead">「建筑营造与工程做法」专题集合 — 以《工程做法》为骨干，辅以《园冶》《天工开物》。</p>
+    <p>本集合的研究问题：在中国传统建筑营造与构件尺度的语境中，哪些文献页面包含了值得被引证的论述？</p>
+  </section>
+
+  <section>
+    <h2>集合的定义</h2>
+    <div id="coll-detail"></div>
+  </section>
+
+  <section>
+    <h2>30 个高置信度页面样本</h2>
+    <p>按 membership.confidence 降序排列。展示 collection_id=2 的前 30 个 PAGE scope 成员。</p>
+    <p class="dim">完整 PAGE 成员数 = 216（天工开物匹配页）。完整 WORK 成员数 = 2（工程做法 + 园冶）。</p>
+    <div style="max-height:600px;overflow:auto;border:1px solid var(--rule-gray)">
+      <table class="meta-table" id="arch-table" style="margin:0">
+        <thead><tr><th>#</th><th>作品</th><th>页序</th><th>页签</th><th>chars</th><th>conf</th><th>method</th><th>review</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>集合治理</h2>
+    <table class="meta-table">
+      <tr><th>Definition Version</th><td>v1 (active) — P5-C 写入</td></tr>
+      <tr><th>Snapshot Chain</th><td>P5-C + P5-D 两张快照 · membership_hash 稳定</td></tr>
+      <tr><th>Corpus Fingerprint</th><td><span class="mono">0d07aa6b604334e5</span> · 跨 snapshot 不可变</td></tr>
+      <tr><th>Rebuild Idempotent</th><td><span class="verified">PASS</span> · 两次连续重建结果一致</td></tr>
+      <tr><th>Membership Review Status</th><td>MANUAL（2 WORK seeds）+ REVIEWED（216 PAGE auto-rebuilt）</td></tr>
+      <tr><th>Inclusion Method</th><td>TERMS_RULE（28 include terms）+ WORK_SEED（2 WORK 直接收录）</td></tr>
+    </table>
+    <p class="dim">完整治理报告见 <span class="mono">SHUGE-RESEARCH-DB/reports/collection_governance.md</span>。</p>
+  </section>
+
+  <section>
+    <h2>与水利集合的对比</h2>
+    <p>两个集合的并列使得「历史水利」与「营造」成为可比较的研究对象 — 这正是 P5-D Track D (cross-collection compare) 的展览化。</p>
+    <table class="meta-table">
+      <tr><th></th><th>historical-hydrology</th><th>architecture-construction</th></tr>
+      <tr><th>WORK 种子</th><td>水经注 + 河防一览</td><td>工程做法 + 园冶</td></tr>
+      <tr><th>Include terms</th><td>19 个</td><td>28 个</td></tr>
+      <tr><th>PAGE 成员</th><td>63</td><td>216</td></tr>
+      <tr><th>跨集合重复</th><td colspan="2" style="text-align:center">天工开物 1 个 work_id（同时属两 collection） · 0 个 page 重复</td></tr>
+      <tr><th>Cross-Collection Compare</th><td colspan="2" style="text-align:center">evidence 必须分离后再比较，不能先混成一个池</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>研究问答（collection-scoped samples）</h2>
+    <p>从 P5-C/P5-D 阶段产出的 collection-scoped research_runs 抽样。</p>
+    <div id="qa-list"></div>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      两个集合的并列是本项目「<strong>cross-collection compare</strong>」的展示形态：同一问题分别在 historical-hydrology 与 architecture-construction 中执行，evidence 必须分离后再比较。这种「先隔离再合并」的纪律是数字人文研究可信度的底线。
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.2 · 展厅 4</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 (P5-C)</a></p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/collections.json').then(r => r.json()).then(d => {
+  var c = d.collections.find(function(x) { return x.slug === 'architecture-construction'; });
+  if (!c) return;
+  var det = document.getElementById('coll-detail');
+  var html = '<div class="card">';
+  html += '<div class="card-header"><h3 class="card-title">architecture-construction · 建筑营造与工程做法</h3><span class="mono dim">collection_id=2 · v1</span></div>';
+  html += '<p>' + (c.description || '宫室、营造、构件、用材 — 以《工程做法》为骨干，辅以《天工开物》营造章节、《园冶》。') + '</p>';
+  html += '<table class="meta-table">';
+  html += '<tr><th>Slug</th><td><span class="mono">architecture-construction</span></td></tr>';
+  html += '<tr><th>Status</th><td><span class="badge badge-status-open">ACTIVE</span></td></tr>';
+  html += '<tr><th>Definition</th><td><span class="mono">v1</span> (active)</td></tr>';
+  html += '<tr><th>WORK 种子</th><td>工程做法 (p44159) · 园冶 (p168491)</td></tr>';
+  html += '<tr><th>Include Terms</th><td><span class="mono">' + (c.include_terms_count || 28) + ' 个核心术语（柱/梁/枋/斗/栱/檐/瓦/砖/石/木/构/架/厅/堂/殿/楼/阁/门/窗/墙/基/阶/径/营造/工程做法/大木/柱径/正心 等）</span></td></tr>';
+  html += '<tr><th>Min Confidence</th><td><span class="mono">0.5</span></td></tr>';
+  html += '<tr><th>Memberships</th><td>' + c.membership_count.toLocaleString() + ' 条（' + c.scope_distribution.WORK + ' WORK + ' + c.scope_distribution.PAGE + ' PAGE）</td></tr>';
+  html += '<tr><th>Review Status</th><td>MANUAL=' + c.review_status_distribution.MANUAL + ' · REVIEWED=' + c.review_status_distribution.REVIEWED + '</td></tr>';
+  html += '</table></div>';
+  det.insertAdjacentHTML('beforeend', html);
+});
+
+fetch('../../data/architecture_pages.json').then(r => r.json()).then(d => {
+  var tbody = document.querySelector('#arch-table tbody');
+  d.pages.forEach(function(p, i) {
+    var html = '<tr>';
+    html += '<td>' + (i+1) + '</td>';
+    html += '<td>' + p.title + '</td>';
+    html += '<td><span class="mono">' + p.page_index + '</span></td>';
+    html += '<td><span class="mono">' + (p.page_label || '') + '</span></td>';
+    html += '<td>' + p.char_count + '</td>';
+    html += '<td>' + (p.confidence || 0).toFixed(2) + '</td>';
+    html += '<td><span class="mono" style="font-size:0.7rem">' + p.inclusion_method + '</span></td>';
+    html += '<td><span class="mono" style="font-size:0.7rem">' + p.review_status + '</span></td>';
+    html += '</tr>';
+    tbody.insertAdjacentHTML('beforeend', html);
+  });
+});
+
+fetch('../../data/evidence_cards.json').then(r => r.json()).then(d => {
+  var qa = document.getElementById('qa-list');
+  var archCards = d.cards.filter(function(c) { return c.collection_slug === 'architecture-construction'; }).slice(0, 6);
+  if (archCards.length === 0) {
+    qa.innerHTML = '<p class="dim">本次抽样中没有 architecture-construction 命中的 evidence cards。</p>';
+    return;
+  }
+  archCards.forEach(function(c) {
+    var html = '<div class="evidence-card">';
+    html += '<div class="evidence-card-header">';
+    html += '<div class="evidence-card-question">' + c.question + '</div>';
+    html += '<div class="evidence-card-meta">#' + c.run_id + ' · <span class="badge badge-collection-architecture">' + c.collection_slug + '</span></div>';
+    html += '</div>';
+    html += '<div class="evidence-claim-block">';
+    html += '<div class="evidence-claim-meta">' + c.claim_type + ' · ' + c.claim_id + ' · support=' + c.support_count + ' · evidence=' + c.evidence_count + '</div>';
+    html += '<div class="evidence-claim-text">' + c.claim_text + '</div>';
+    html += '</div>';
+    html += '<div class="evidence-ledger-toggle">▸ show evidence ledger</div>';
+    html += '<div class="evidence-ledger">';
+    c.evidence_preview.forEach(function(e) {
+      var sel = e.selected_for_brief ? '<span class="selected-yes">✓</span>' : ' ';
+      html += '<div class="evidence-ledger-row" data-cid="' + e.citation_id + '" data-mtype="' + (e.match_type || '') + '" data-terms="' + (e.matched_terms || '') + '" data-score="' + (e.retrieval_score || 0).toFixed(3) + '" data-reliability="' + (e.text_reliability || '') + '" data-review="' + (e.review_status || '') + '">';
+      html += '<span><span class="mono">' + sel + '</span></span>';
+      html += '<span class="mono">' + (e.match_type || '') + '</span>';
+      html += '<span class="mono">' + (e.matched_terms || '') + '</span>';
+      html += '<span class="mono">' + (e.retrieval_score || 0).toFixed(2) + '</span>';
+      html += '<span class="mono">' + (e.text_reliability || '') + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+    qa.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

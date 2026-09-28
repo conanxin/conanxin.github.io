@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展厅 2 · The Life of a Book: 水经注 Case Study</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-room">
+<header class="masthead">
+  <h1 class="masthead-title">展厅 2</h1>
+  <p class="masthead-subtitle">The Life of a Book · 水经注 Case Study</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <a href="../room1/index.html">展厅 1</a>
+    <a href="../room2/index.html" class="active">展厅 2</a>
+    <a href="../room3/index.html">展厅 3</a>
+    <a href="../room4/index.html">展厅 4</a>
+    <a href="../room5/index.html">展厅 5</a>
+    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
+  </div>
+  <div class="topnav-meta">60 pages · post_id=124575</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>The Life of a Book</h1>
+    <p class="hero-lead">以《水经注》为个案，展示一部古籍在本研究系统中的完整轨迹 — 从 PDF 到 Citation ID。</p>
+    <p>《水经注》是北魏郦道元为《水经》所作的注疏，是中国古代地理学与水文史的奠基之作。本展厅以它为案例，展示它如何从一份静态 PDF 图像变成可被检索、可被引证的研究资源。</p>
+  </section>
+
+  <section>
+    <h2>这份书的基本数据</h2>
+    <table class="meta-table">
+      <tr><th>作品</th><td><span class="mono">水经注 · post_id=124575 · work_id=p124575</span></td></tr>
+      <tr><th>作者 / 时代</th><td>郦道元（北魏）</td></tr>
+      <tr><th>来源</th><td>JDA (国立国会図書館) — BnF Gallica 转录</td></tr>
+      <tr><th>总页数</th><td>956</td></tr>
+      <tr><th>OCR 成功页数</th><td>956</td></tr>
+      <tr><th>字符数</th><td>322,030 chars</td></tr>
+      <tr><th>可搜索页数</th><td>933 (searchable=1)</td></tr>
+      <tr><th>Collection 归属</th><td><span class="badge badge-collection-hydrology">historical-hydrology</span></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>60 页样本（前 60 页）</h2>
+    <p>这是从前 60 页导出的元数据样本：页序号、OCR 状态、字符数、平均置信度、QA 状态、文本预览。</p>
+    <p class="dim">v0.2 不展示完整 956 页 — 仅展示前 60 页作为样本。</p>
+    <div style="max-height:600px;overflow:auto;border:1px solid var(--rule-gray)">
+      <table class="meta-table" id="water-table" style="margin:0">
+        <thead><tr><th>#</th><th>页序</th><th>页签</th><th>OCR</th><th>chars</th><th>conf</th><th>QA</th><th>预览</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Page Image Viewer Framework</h2>
+    <p>v0.2 提供 5 个<strong>框架</strong>（framework-only placeholder），不展示真实图像。框架位置 = 前 5 个页样本的 IIIF canvas 在页面上的视觉位置。</p>
+    <p class="dim">IIIF URL 未导出至 data/。v0.3 可接入（不在 v0.2 范围）。</p>
+    <div class="page-viewer-grid" id="page-viewer-grid"></div>
+  </section>
+
+  <section>
+    <h2>这个书如何被检索</h2>
+    <p>查询示例：「水经注河水」→ 14 个 claim 含 <span class="mono">SHUGE:p124575:1..14</span> 的引用。</p>
+    <p>查询示例：「郦道元 河水注」→ 8 个 claim。</p>
+    <p>查询示例：「河防一览黄河」→ 6 个 claim（跨集合查询，与水经注同时验证）。</p>
+    <p>查询路径（不暴露 SQL）：<span class="mono">question → planner → terms (allow-list) → FTS5 query (collection filter 注入) → evidence ledger → claim synthesis → Citation ID list</span>。</p>
+  </section>
+
+  <section>
+    <div class="takeaway">
+      <div class="takeaway-label">Take-away</div>
+      一部书的「生命」从静态 PDF 图像出发，经 <strong>OCR 文本化 → FTS5 索引化 → collection 成员化 → evidence ledger 化 → claim 合成 → Citation ID 化</strong>。每一个环节都留下可追溯的痕迹 — 字符数、置信度、QA 状态、citation_id。
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.2 · 展厅 2</p>
+  <p>数据来源：<a href="https://www.shuge.org/book-124575/">shuge.org/book-124575/</a> · JDA</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/water_classic_pages.json').then(r => r.json()).then(d => {
+  var tbody = document.querySelector('#water-table tbody');
+  d.pages.forEach(function(p, i) {
+    var textPreview = (p.text_preview || '').replace(/\n/g, ' / ');
+    if (textPreview.length > 60) textPreview = textPreview.substring(0, 60) + '…';
+    var html = '<tr>';
+    html += '<td>' + (i+1) + '</td>';
+    html += '<td><span class="mono">' + p.page_index + '</span></td>';
+    html += '<td><span class="mono">' + (p.page_label || '') + '</span></td>';
+    html += '<td>' + p.ocr_status + '</td>';
+    html += '<td>' + p.char_count + '</td>';
+    html += '<td>' + (p.mean_confidence || 0).toFixed(3) + '</td>';
+    html += '<td>' + p.qa_status + '</td>';
+    html += '<td style="font-family:Source Serif 4,serif;font-size:0.82rem;color:var(--archival-brown)">' + textPreview + '</td>';
+    html += '</tr>';
+    tbody.insertAdjacentHTML('beforeend', html);
+  });
+
+  // Page image viewer framework — first 5 pages
+  var grid = document.getElementById('page-viewer-grid');
+  d.pages.slice(0, 5).forEach(function(p, i) {
+    var html = '<figure class="page-viewer">';
+    html += '<div class="page-viewer-frame framework-only"></div>';
+    html += '<figcaption>';
+    html += '<span class="mono">page_index=' + p.page_index + ' · ' + p.page_label + '</span>';
+    html += 'OCR: ' + p.ocr_status + ' · chars: ' + p.char_count;
+    html += '</figcaption>';
+    html += '</figure>';
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

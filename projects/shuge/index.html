@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHUGE Research · Results Hub</title>
+<link rel="stylesheet" href="/projects/shuge-exhibition-v1.0/css/style.css">
+<style>
+:root {
+  --paper-white: #fafaf7;
+  --card-cream: #f5ead3;
+  --ink-charcoal: #2d2a23;
+  --seal-red: #a8322a;
+}
+body {
+  font-family: 'Source Sans 3', 'Noto Sans CJK SC', sans-serif;
+  background: var(--paper-white);
+  color: var(--ink-charcoal);
+  margin: 0;
+  padding: 0;
+}
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.masthead {
+  background: var(--card-cream);
+  padding: 32px 24px;
+  border-bottom: 3px solid var(--seal-red);
+  text-align: center;
+}
+.masthead h1 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 36px;
+  margin: 0;
+  color: var(--ink-charcoal);
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.subtitle {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  color: #6b6354;
+  margin: 8px 0 0 0;
+  letter-spacing: 1px;
+}
+.masthead-meta {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.badge-hub { background: var(--seal-red); color: var(--paper-white); }
+.badge-preview { background: #d4c5a9; color: var(--ink-charcoal); }
+.badge-stable { background: #2d5a2d; color: var(--paper-white); }
+
+.intro-banner {
+  background: linear-gradient(135deg, #fdf6e3 0%, #f5ead3 100%);
+  border-left: 4px solid var(--seal-red);
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.section {
+  margin: 40px 0;
+  padding: 24px;
+  background: var(--paper-white);
+  border-left: 3px solid var(--seal-red);
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--seal-red);
+  font-weight: 600;
+  margin-right: 8px;
+}
+.section h2 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 24px;
+  margin: 0 0 16px 0;
+  color: var(--ink-charcoal);
+}
+
+.latest-output {
+  background: var(--card-cream);
+  border: 2px solid var(--seal-red);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.latest-output h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 20px;
+  margin: 0 0 12px 0;
+  color: var(--seal-red);
+}
+.latest-output-meta {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #6b6354;
+  margin-bottom: 12px;
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.hub-card {
+  background: var(--card-cream);
+  border: 1px solid #d4c5a9;
+  border-radius: 4px;
+  padding: 16px;
+  transition: background 0.15s;
+}
+.hub-card:hover {
+  background: #f0e5c8;
+}
+.hub-card h3 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 17px;
+  margin: 0 0 8px 0;
+  color: var(--ink-charcoal);
+}
+.hub-card h3 a { color: inherit; text-decoration: none; }
+.hub-card h3 a:hover { color: var(--seal-red); }
+.hub-card p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  color: #4a4234;
+  line-height: 1.5;
+  margin: 6px 0;
+}
+.hub-card .card-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #6b6354;
+  margin-top: 8px;
+}
+
+.version-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+.version-list li {
+  padding: 8px 12px;
+  border-bottom: 1px dashed #d4c5a9;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+.version-list .ver-sha {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #6b6354;
+}
+
+.footer {
+  background: var(--card-cream);
+  padding: 20px;
+  text-align: center;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #6b6354;
+  border-top: 1px solid #d4c5a9;
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <h1><a href="/projects/shuge/">SHUGE Research</a></h1>
+  <p class="subtitle">Results Hub · 数字人文研究平台 · Publications · Evidence Labs · Exhibitions · Methods · Versions</p>
+  <div class="masthead-meta">
+    <span class="badge badge-hub">RESULTS HUB</span>
+    <span class="badge badge-stable">v1.0 frozen at 3a51ef5</span>
+  </div>
+</header>
+
+<div class="intro-banner">
+  <p><strong>SHUGE Research</strong> 是一个数字人文研究平台，把《水经注》《天工开物》《工程做法》《园冶》等古籍作为数字证据来源进行结构化整理、OCR 索引、citation-bound 研究文章发布。</p>
+  <p>本页是 SHUGE Research 的永久 Results Hub · 入口。v1.0 Candidate Article 冻结于 commit <code>3a51ef5</code>。本页面汇总所有 Research Outputs，包括 Latest Output / Publications / Evidence Labs / Exhibitions / Methods / Research Platform Versions。</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">★</span> Latest Output — Water Classic Evidence Reconstruction R1</h2>
+  <div class="latest-output">
+    <h3>Water Classic Evidence Reconstruction R1</h3>
+    <div class="latest-output-meta">
+      <strong>Status:</strong> PREVIEW (not auto-PUBLISHED) · 
+      <strong>v1.0 baseline:</strong> <code>3a51ef5</code> (NOT modified) · 
+      <strong>Canonical《水经注》work_id:</strong> <code>post_id=124575</code>
+    </div>
+    <p>R1 reconstruction surfaces a critical work-id mismatch: v1.0 article cited <code>work-shuge-168491</code> (which is actually <em>《园冶》</em>, Ming garden design by 计成 1635) for 《水经注》 content. Real canonical identity: <strong><code>post_id=124575</code></strong> with citation IDs <code>SHUGE:p124575:&lt;seq&gt;</code>.</p>
+    <p>18 evidence-first claims built from real OCR (14 SUPPORTED / 3 PARTIAL / 1 NOT). 10 river regions tagged. v1.0 work-id mismatch clearly displayed in v1.0 Reconciliation section.</p>
+    <p>
+      <a href="/projects/shuge/research/water-classic-evidence-r1/" style="background: var(--seal-red); color: var(--paper-white); padding: 8px 16px; border-radius: 4px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 8px;">→ View R1 Research Page</a>
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">1</span> Current Research</h2>
+  <div class="hub-grid">
+    <div class="hub-card">
+      <h3>Water Classic Evidence Reconstruction</h3>
+      <p>重建《水经注》真实 page-level evidence 基础，使 future historical claims 直接来自真实 page-level OCR。</p>
+      <p>当前阶段: <strong>R1 PREVIEW</strong> · 18 evidence-first claims · work-id mismatch finding surfaced.</p>
+      <div class="card-status"><a href="/projects/shuge/research/water-classic-evidence-r1/">→ R1 Research Page</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">2</span> Publications</h2>
+  <div class="hub-grid">
+    <div class="hub-card">
+      <h3><a href="/projects/shuge-exhibition-v1.0/publications/water-classic-digital-life/">《从〈水经注〉到数字证据：一部古籍的数字生命史》</a></h3>
+      <p>v1.0 Candidate Article — 第一篇真正可公开阅读的数字人文研究文章。</p>
+      <p>Status: <strong>REVIEW</strong> (not auto-PUBLISHED) · 8 sections · Citation-bound Historical Research methodology.</p>
+      <div class="card-status">v1.0 baseline: 3a51ef5 (frozen)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">3</span> Evidence Labs</h2>
+  <div class="hub-grid">
+    <div class="hub-card">
+      <h3><a href="/projects/shuge/research/water-classic-evidence-r1/">Water Classic Evidence R1</a></h3>
+      <p>60-page manifest · 11 keywords · 10 river regions · 18 evidence-first claims.</p>
+      <p>Real OCR page-level evidence for 《水经注》 with canonical identity correction.</p>
+      <div class="card-status">R1 PREVIEW · post_id=124575</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">4</span> Exhibitions</h2>
+  <div class="hub-grid">
+    <div class="hub-card">
+      <h3><a href="/projects/shuge-exhibition-v1.0/">SHUGE DH Exhibition v1.0</a></h3>
+      <p>水经注等古籍的 Research Writing Environment · Evidence Explorer · Room Navigator · Case Studies.</p>
+      <p>Status: <strong>REVIEW</strong> · Frozen at commit <code>3a51ef5</code>.</p>
+      <div class="card-status">100 files / 2.4 MB / 35 HTML + 43 JSON</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">5</span> Methods</h2>
+  <div class="hub-grid">
+    <div class="hub-card">
+      <h3><a href="/projects/shuge-exhibition-v1.0/methods/citation-bound-historical-research/">Citation-bound Historical Research</a></h3>
+      <p>citation-required-per-claim 政策 · Evidence Appendix 格式 · Provenance 未变更保证 · no auto-PUBLISHED.</p>
+      <div class="card-status">Methods Note · v1.0 frozen</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <h2><span class="section-num">6</span> Research Platform Versions</h2>
+  <ul class="version-list">
+    <li><span><strong>v1.0</strong> · First Real Scholarly Output (Candidate Article)</span><span class="ver-sha"><code>3a51ef5</code></span></li>
+    <li><span>v0.9 · Public Research Portfolio</span><span class="ver-sha"><code>39a6ec1</code></span></li>
+    <li><span>v0.8 · Publication &amp; Scholarly Output</span><span class="ver-sha"><code>7477743</code></span></li>
+    <li><span>v0.7 · Research Writing Environment</span><span class="ver-sha"><code>4fa8802</code></span></li>
+    <li><span>v0.6 · Research Graph &amp; Project Pages</span><span class="ver-sha"><code>fbb5eb3</code></span></li>
+    <li><span>v0.5 · Research Workspace</span><span class="ver-sha"><code>c32cff0</code></span></li>
+    <li><span>v0.4 · Evidence Explorer</span><span class="ver-sha"><code>7abe6ae</code></span></li>
+    <li><span>v0.3 · Rooms + Case Studies</span><span class="ver-sha"><code>c2e6f1d</code></span></li>
+    <li><span>v0.2</span><span class="ver-sha"><code>0a7edc0</code></span></li>
+    <li><span>v0.1</span><span class="ver-sha"><code>11aebc4</code></span></li>
+    <li><span>P5-D · Frozen Research Database</span><span class="ver-sha"><code>f70fd97</code></span></li>
+    <li><span>P5-C</span><span class="ver-sha"><code>a815475</code></span></li>
+  </ul>
+</section>
+
+<footer class="footer">
+  <p>SHUGE Research · Results Hub · Static Page · v1.0 baseline (commit <code>3a51ef5</code>) frozen and not modified.</p>
+  <p>Hub status: <span class="badge badge-preview">PREVIEW (not auto-PUBLISHED)</span></p>
+</footer>
+
+</div>
+</body>
+</html>

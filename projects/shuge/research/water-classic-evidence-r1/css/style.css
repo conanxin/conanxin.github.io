@@ -1,0 +1,233 @@
+/* WATER_CLASSIC_EVIDENCE_RECONSTRUCTION_R1 — additional styles */
+/* Inherits v0.x digital-museum + academic-lab aesthetic */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.metric-card {
+  background: var(--card-cream);
+  border: 1px solid #d4c5a9;
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+.metric-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  color: var(--ink-charcoal);
+  font-weight: 600;
+}
+.metric-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #6b6354;
+  margin-top: 4px;
+}
+
+.v1-section {
+  margin: 40px 0;
+  padding: 24px;
+  background: var(--paper-white);
+  border-left: 3px solid var(--seal-red);
+}
+
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--seal-red);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.article-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-family: 'Source Sans 3', sans-serif;
+}
+.article-meta-table th,
+.article-meta-table td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e8e0cc;
+}
+.article-meta-table th {
+  background: var(--card-cream);
+  font-weight: 600;
+  color: var(--ink-charcoal);
+  width: 30%;
+}
+
+.v1-status-banner {
+  background: linear-gradient(135deg, #fdf6e3 0%, #f5ead3 100%);
+  border: 2px solid var(--seal-red);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.v1-status-banner p {
+  margin: 6px 0;
+}
+
+.provenance-box {
+  background: var(--card-cream);
+  border-left: 3px solid #6b6354;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+}
+
+.tier-badge {
+  background: #fdf6e3;
+  border: 1px dashed #b8a07a;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #6b6354;
+}
+
+.ocr-excerpt {
+  background: #f5ead3;
+  border-left: 2px solid #b8a07a;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.claim-filter {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: var(--paper-white);
+  border: 1px solid #d4c5a9;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--ink-charcoal);
+}
+.filter-btn:hover {
+  background: var(--card-cream);
+}
+.filter-btn.active {
+  background: var(--seal-red);
+  color: var(--paper-white);
+  border-color: var(--seal-red);
+}
+
+.claims-list {
+  display: grid;
+  gap: 16px;
+}
+.claim-card {
+  background: var(--card-cream);
+  border: 1px solid #d4c5a9;
+  border-left: 4px solid var(--seal-red);
+  border-radius: 4px;
+  padding: 14px 18px;
+}
+.claim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.claim-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-charcoal);
+}
+.claim-status {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.claim-status-supported {
+  background: #d4e8d4;
+  color: #2d5a2d;
+}
+.claim-status-partially_supported {
+  background: #f5e8c5;
+  color: #6b5a2d;
+}
+.claim-status-not_supported {
+  background: #f0d4d4;
+  color: #6b2d2d;
+}
+.claim-text {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-charcoal);
+  margin: 8px 0;
+}
+.claim-evidence {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #4a4234;
+  margin-top: 8px;
+}
+.claim-evidence p {
+  margin: 4px 0;
+}
+
+.download-list {
+  list-style: none;
+  padding: 0;
+}
+.download-list li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #d4c5a9;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+}
+.download-list a {
+  color: var(--seal-red);
+  text-decoration: none;
+  font-weight: 600;
+}
+.download-list a:hover {
+  text-decoration: underline;
+}
+
+.masthead-footer {
+  background: var(--card-cream);
+  padding: 20px;
+  text-align: center;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  color: #6b6354;
+  border-top: 1px solid #d4c5a9;
+  margin-top: 40px;
+}
+
+.badge-version {
+  background: #d4c5a9;
+  color: var(--ink-charcoal);
+}
+.badge-status {
+  background: var(--seal-red);
+  color: var(--paper-white);
+}
+.badge-publication {
+  background: #6b6354;
+  color: var(--paper-white);
+}

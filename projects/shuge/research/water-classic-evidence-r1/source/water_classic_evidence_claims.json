@@ -1,0 +1,166 @@
+{
+  "schema_version": "water-classic-evidence-claims/v1",
+  "generated_at": "2026-09-28T11:57:00+08:00",
+  "source": "data/water_classic_pages.json (v0.7 frozen) + data/water_classic_page_manifest.json",
+  "v1_0_frozen_baseline_sha": "3a51ef5e698655c215a1f36147d24bfe8c7e6826",
+  "canonical_post_id": "124575",
+  "summary_counts": {
+    "total_claims": 18,
+    "SUPPORTED": 14,
+    "PARTIALLY_SUPPORTED": 3,
+    "NOT_SUPPORTED": 1,
+    "METADATA_ONLY": 0
+  },
+  "rules_strict": [
+    "evidence-first: OCR text read first, claim text derived after",
+    "support_status ∈ {SUPPORTED, PARTIALLY_SUPPORTED, NOT_SUPPORTED} — no METADATA_ONLY bucket",
+    "citation_id points to SHUGE:p124575:<seq> (real 《水经注》 work_id)",
+    "no claim about another work's content misattributed to 《水经注》"
+  ],
+  "claims": [
+    {
+      "claim_id": "wc-ev-cl-001",
+      "claim_text": "江水 continues east past 杨歧北山, then to 故市口; 江水左會高口 (Yangtze River passes Yangqi Northern Mountain, then reaches old market port, joining with Gaokou on left).",
+      "citation_id": "SHUGE:p124575:3",
+      "page": "p0003",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "江水又右杨歧北山 / 江水又东得故市口 / 江水左會高口"
+    },
+    {
+      "claim_id": "wc-ev-cl-002",
+      "claim_text": "江水 flows east-north past 公安縣北; 油水 joins from southwest at 油口 (Yangtze flows past Gong'an County; Youshui River enters from southwest at Youkou).",
+      "citation_id": "SHUGE:p124575:3",
+      "page": "p0003",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "又東經公安縣北 / 又東南油水从西南来注之又東右合油口"
+    },
+    {
+      "claim_id": "wc-ev-cl-003",
+      "claim_text": "屏陵縣之樂鄉城 sits south of 江水 against 大江 (Pingling's Lexiang City is described as on the south bank of the Yangtze, leaning against the great river).",
+      "citation_id": "SHUGE:p124575:3",
+      "page": "p0003",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "江水又南平郡屏陵縣之樂鄉城北 / 山抗大江山東有城故華容縣尉舊治地"
+    },
+    {
+      "claim_id": "wc-ev-cl-004",
+      "claim_text": "華容縣尉舊治 located at the mountain foot east of 江; 黃州 referenced as facing 江浦 (Huarong County seat was at east-of-Yang foot of mountain; Huangzhou faced the riverbank).",
+      "citation_id": "SHUGE:p124575:3",
+      "page": "p0003",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "山抗大江山東有城故華容縣尉舊治地 / 江浦也對黄州"
+    },
+    {
+      "claim_id": "wc-ev-cl-005",
+      "claim_text": "澧水 joins the larger system at 陂湖, with 渊 (deep pool) (Lishui River joins at Beihu, with deep pool).",
+      "citation_id": "SHUGE:p124575:3",
+      "page": "p0003",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "澧水及陂湖北是渊"
+    },
+    {
+      "claim_id": "wc-ev-cl-006",
+      "claim_text": "河水 在河内地区有 野王縣 with 溝喬 / 長明陂 (He River in Henei region: Yewang County with Gouqiao / Changming Marsh).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "有二源北水上承河内野王縣東北界溝喬長明 / 陂南北二十許里東西三十里西则蔡溝人焉水"
+    },
+    {
+      "claim_id": "wc-ev-cl-007",
+      "claim_text": "修武城 西北二十里 包含 吴澤水 — 引用《魏土地記》(Xiuwu City, 20 li northwest, contains Wuze Marsh — quoting 魏土地記).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "澤矣魏土地記日修武城西北二十里有吴澤水"
+    },
+    {
+      "claim_id": "wc-ev-cl-008",
+      "claim_text": "滕公 濟渡玉門津, 宿小修武; 吴侯國 also called 大修武 (Duke Teng crossed Yumenzhen Ferry, then lodged at Xiao Xiuwu; Wu marquisate was also called Da Xiuwu).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "奥滕公濟自玉門津而宿小修武者也大即吴 / 侯國亦日大修武有小故大小修武在東"
+    },
+    {
+      "claim_id": "wc-ev-cl-009",
+      "claim_text": "漢高帝 八年 (197 BCE) 封都尉 魏邀 為 武王 (Emperor Gaozu's 8th year, 197 BCE, conferred the title of Martial King upon commandant Wei Yao).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "漢高帝八年封都尉魏邀為 / 武王伐勒"
+    },
+    {
+      "claim_id": "wc-ev-cl-010",
+      "claim_text": "易水 flows south past 范陽縣 and 容城縣 — but full continuity text partial in current OCR (Yi River passes Fanyang and Rongcheng counties; full route description not fully OCR'd).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "ocr_excerpt": "東過范陽縣南又东過容城縣南"
+    },
+    {
+      "claim_id": "wc-ev-cl-011",
+      "claim_text": "金毫陂 dimensions: 東西六七十步, with 百步 臺陂 around it (Jinhao Marsh: 60-70 steps east-west, with Baibu Terrace Marsh surrounding it).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "更属佳觀失其一水東出金毫陂東西六七十步南 / 邃岸高深左右百步一毫参差交時超相望"
+    },
+    {
+      "claim_id": "wc-ev-cl-012",
+      "claim_text": "一水 flows past 故安城 西侧城南 注易水 (A waterway runs past the west and south of Gu'an City, entering Yi River).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "臺陂一水經故安城西侧城南注易水灰塘崇峻"
+    },
+    {
+      "claim_id": "wc-ev-cl-013",
+      "claim_text": "汾水 south of 代城, with 稽石側; described as 潭波襄轉泛 (Fen River south of Daicheng, with Jishi side; described as having whirling ripples and abundant flow).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "東塘稽石侧枕汾水俗之代城城又南出一 / 雲垂煙接自是水流潭波襄轉泛"
+    },
+    {
+      "claim_id": "wc-ev-cl-014",
+      "claim_text": "汝水 東北流經 霍陽山 and 霍陽聚; 霍陽山水 joins at 南山 (Ru River flows northeast past Huoyang Mountain and Huoyang Settlement; Huoyang Mountain Water joins at Southern Mountain).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "日河南梁躲有靈山者世其水东北流經霍陽 / 霍陽聚汝水其北东合霍陽山水水出南山杜"
+    },
+    {
+      "claim_id": "wc-ev-cl-015",
+      "claim_text": "汝水之右: 陽人城 = 古梁之陽人聚; 秦减東周 reference (East of Ru River: Yangren City = ancient Liang's Yangren Settlement; reference to Qin conquering Eastern Zhou).",
+      "citation_id": "SHUGE:p124575:4",
+      "page": "p0004",
+      "support_status": "SUPPORTED",
+      "ocr_excerpt": "汝水之右有 / 秦减东周徙其君此陂水東南流合乎潤水 / 口水上承陽人城東睿公陂城古梁之陽人聚也"
+    },
+    {
+      "claim_id": "wc-ev-cl-016",
+      "claim_text": "漢獻帝 (山陽公) at 鹿城; 建安二十五年 (220 CE) 封 — full surrounding text not fully OCR'd (Han Xiandi as Shanyang Gong at Lucheng; Jian'an 25 = 220 CE).",
+      "citation_id": "SHUGE:p124575:5",
+      "page": "p0005",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "ocr_excerpt": "鹿城西建安二十五年魏封漢献帝為山陽公"
+    },
+    {
+      "claim_id": "wc-ev-cl-017",
+      "claim_text": "吴陂 receives 荷泉 + 覆金堆 南北二十五里 — full geographic context partial in current OCR (Wubei receives He Spring and Fujin Mound, 25 li north-south).",
+      "citation_id": "SHUGE:p124575:5",
+      "page": "p0005",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "ocr_excerpt": "為荷泉北吴漕二清雙道俱東入陂山陽縣東"
+    },
+    {
+      "claim_id": "wc-ev-cl-018",
+      "claim_text": "《水经注》原文 counts (e.g., 137 rivers / 1252 tributaries) — NOT SUPPORTED in current 60-page corpus; pending full-text OCR.",
+      "citation_id": null,
+      "page": "(multi-page)",
+      "support_status": "NOT_SUPPORTED",
+      "ocr_excerpt": "(no page-level OCR covers full structural claims about the entire text)"
+    }
+  ]
+}

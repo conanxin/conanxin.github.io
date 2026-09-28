@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Classic Evidence Reconstruction R1 · SHUGE Research</title>
+<link rel="stylesheet" href="/projects/shuge-exhibition-v1.0/css/style.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="/projects/shuge/">SHUGE Research</a></h1>
+    <p class="subtitle">Water Classic Evidence Reconstruction R1 · Static Research Page · PREVIEW (not auto-PUBLISHED)</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">R1</span>
+    <span class="badge badge-status">PREVIEW</span>
+    <span class="badge badge-publication">no auto-PUBLISHED</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="#core-finding">1 · Core Finding</a>
+  <a href="#canonical-identity">2 · Canonical Identity</a>
+  <a href="#corpus-coverage">3 · Corpus Coverage</a>
+  <a href="#term-explorer">4 · Term Explorer</a>
+  <a href="#region-explorer">5 · River Region Explorer</a>
+  <a href="#evidence-claims">6 · Evidence-first Claims</a>
+  <a href="#v10-reconciliation">7 · v1.0 Reconciliation</a>
+  <a href="#evidence-gaps">8 · Evidence Gaps</a>
+  <a href="#download">9 · Source Files</a>
+</nav>
+
+<main class="article-main">
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="core-finding" class="article-section v1-section">
+  <h2><span class="section-num">1</span> Core Finding</h2>
+  <div class="v1-status-banner">
+    <p><strong>《水经注》canonical work_id = <code>post_id=124575</code></strong></p>
+    <p><strong>v1.0 article cited <code>work-shuge-168491</code> — this is actually <em>《园冶》</em> (Ming dynasty garden design by 计成, 1635), NOT 《水经注》.</strong></p>
+  </div>
+  <p>This evidence reconstruction identifies the real 《水经注》 work record as <code>post_id=124575</code>, and surfaces a critical work-id misattribution in the v1.0 Candidate Article (commit <code>7738275</code>, frozen at <code>3a51ef5</code>): the article attributed 《水经注》 content to <code>work-shuge-168491</code>, which <code>data/works.json</code> shows is actually 《园冶》.</p>
+  <p>The v1.0 audit narrowed claim <em>wording</em> but did not correct the underlying work-id mapping. This R1 reconstruction is informational — v1.0 baseline is FROZEN and not modified.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="canonical-identity" class="article-section v1-section">
+  <h2><span class="section-num">2</span> Canonical Identity</h2>
+  <table class="article-meta-table">
+    <tr><th>work_id</th><td><code>p124575</code></td></tr>
+    <tr><th>post_id</th><td><code>124575</code></td></tr>
+    <tr><th>edition_id</th><td>漢書門 内閣文庫</td></tr>
+    <tr><th>institution</th><td>国立公文書館 / 内閣文庫 (Japan's National Archives of Japan / Cabinet Library)</td></tr>
+    <tr><th>digital_object</th><td>Kodak 2007 TM calibration scan</td></tr>
+    <tr><th>page_objects</th><td>60 pages (p0001-p0010, 10 unique page_labels)</td></tr>
+  </table>
+  <p class="provenance-box"><strong>Provenance:</strong> Identity derived from v0.7 frozen <code>data/water_classic_pages.json</code> (sha256 <code>a370721e50f29339...</code>) and <code>data/works.json</code> featured list. v1.0 frozen baseline (commit <code>3a51ef5</code>) NOT modified.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="corpus-coverage" class="article-section v1-section">
+  <h2><span class="section-num">3</span> Corpus Coverage</h2>
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-value">60</div><div class="metric-label">total pages</div></div>
+    <div class="metric-card"><div class="metric-value">53</div><div class="metric-label">body-text pages</div></div>
+    <div class="metric-card"><div class="metric-value">7</div><div class="metric-label">scan-header-only</div></div>
+    <div class="metric-card"><div class="metric-value">QUEUED</div><div class="metric-label">OCR status (60/60)</div></div>
+  </div>
+  <p>Of the 60 pages in <code>data/water_classic_pages.json</code>:</p>
+  <ul>
+    <li>53 pages contain real 《水经注》 body text (after stripping Kodak/national-archive scan headers)</li>
+    <li>7 pages contain only scan-header text (Kodak calibration + 国立公文書館 / 内閣文庫 stamps)</li>
+    <li><strong>All 60 pages carry <code>ocr_status: "QUEUED"</code></strong> — full-page OCR was NOT run during R1 (per strict boundary)</li>
+    <li>Aggregate characters: <code>11,683</code> raw / <code>4,389</code> body-only</li>
+    <li>Unique page_labels: <code>5</code> · Unique citation IDs: <code>5</code></li>
+  </ul>
+  <div class="tier-badge"><strong>OCR Boundary Honored:</strong> No new OCR run during R1. Existing <code>text_preview</code> fields (which mix scan-header + partial body) are the only OCR source.</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="term-explorer" class="article-section v1-section">
+  <h2><span class="section-num">4</span> Term Explorer (11 keywords)</h2>
+  <p>First-batch keyword index across the 60-page corpus (counts from extracted body text after scan-header strip).</p>
+  <table class="article-meta-table">
+    <tr><th>Keyword</th><th>Pages With Hits</th><th>Total Hits</th></tr>
+    <tr><td><code>河</code></td><td>13</td><td>27</td></tr>
+    <tr><td><code>水</code></td><td>43</td><td>236</td></tr>
+    <tr><td><code>江</code></td><td>9</td><td>28</td></tr>
+    <tr><td><code>渠</code></td><td>1</td><td>1</td></tr>
+    <tr><td><code>津</code></td><td>1</td><td>1</td></tr>
+    <tr><td><code>渡</code></td><td>1</td><td>2</td></tr>
+    <tr><td><code>城</code></td><td>25</td><td>61</td></tr>
+    <tr><td><code>山</code></td><td>23</td><td>66</td></tr>
+    <tr><td><code>谷</code></td><td>9</td><td>15</td></tr>
+    <tr><td><code>源</code></td><td>8</td><td>12</td></tr>
+    <tr><td><code>流</code></td><td>18</td><td>34</td></tr>
+  </table>
+  <p class="tier-badge"><strong>Caveat:</strong> 渠/津/渡 appear on only 1 page each (single occurrence in current 60-page corpus). 34 pages are tagged 'unclassified' because extracted body text did not match any of the 9 region hint patterns. Full OCR coverage would expand keyword recall.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="region-explorer" class="article-section v1-section">
+  <h2><span class="section-num">5</span> River Region Explorer (10 regions)</h2>
+  <p>Pages tagged by river-system region based on body content (heuristic pattern match).</p>
+  <table class="article-meta-table">
+    <tr><th>Region</th><th>Pages</th></tr>
+    <tr><td>unclassified</td><td>34</td></tr>
+    <tr><td>no_body_text</td><td>7</td></tr>
+    <tr><td>易水_范陽_容城</td><td>4</td></tr>
+    <tr><td>汝水_霍陽_梁</td><td>3</td></tr>
+    <tr><td>江水_公安_华容</td><td>3</td></tr>
+    <tr><td>渭水_關中</td><td>2</td></tr>
+    <tr><td>河水_野王_修武</td><td>2</td></tr>
+    <tr><td>汾水_代城</td><td>2</td></tr>
+    <tr><td>泗水_魯汶</td><td>1</td></tr>
+    <tr><td>淮水_肥水_芍陂</td><td>1</td></tr>
+    <tr><td>山陽_吴陂_荷泉</td><td>1</td></tr>
+  </table>
+  <h3>Sample body OCR excerpts (real page text after header strip):</h3>
+  <h4>p0003 · 江水_公安_华容</h4>
+  <p class="ocr-excerpt"><code>江水又右杨歧北山 / 江水又东得故市口 / 江水左會高口 / 又東經公安縣北 / 又東南油水从西南来注之又東右合油口 / 江水又南平郡屏陵縣之樂鄉城北 / 山抗大江山東有城故華容縣尉舊治地 / 水高水通也 / 江浦也對黄州 / 故侧江有大城相承云會城即印閣也 / 澧水及陂湖北是渊</code></p>
+  <h4>p0004 · 河水_野王_修武</h4>
+  <p class="ocr-excerpt"><code>有二源北水上承河内野王縣東北界溝喬長明 / 陂南北二十許里東西三十里西则蔡溝人焉水 / 澤矣魏土地記日修武城西北二十里有吴澤水 / 奥滕公濟自玉門津而宿小修武者也大即吴 / 侯國亦日大修武有小故大小修武在東汉祖 / 大還卒於是也漢高帝八年封都尉魏邀為 / 武王伐勒</code></p>
+  <h4>p0004 · 易水_范陽_容城</h4>
+  <p class="ocr-excerpt"><code>東過范陽縣南又东過容城縣南 / 更属佳觀失其一水東出金毫陂東西六七十步南 / 邃岸高深左右百步一毫参差交時超相望 / 臺陂一水經故安城西侧城南注易水灰塘崇峻</code></p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="evidence-claims" class="article-section v1-section">
+  <h2><span class="section-num">6</span> Evidence-first Claims (18)</h2>
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-value">14</div><div class="metric-label">SUPPORTED</div></div>
+    <div class="metric-card"><div class="metric-value">3</div><div class="metric-label">PARTIALLY_SUPPORTED</div></div>
+    <div class="metric-card"><div class="metric-value">1</div><div class="metric-label">NOT_SUPPORTED</div></div>
+    <div class="metric-card"><div class="metric-value">0</div><div class="metric-label">METADATA_ONLY (forbidden)</div></div>
+  </div>
+  <p>Filter claims by support_status:</p>
+  <div class="claim-filter">
+    <button class="filter-btn" data-filter="all">All (18)</button>
+    <button class="filter-btn" data-filter="SUPPORTED">SUPPORTED (14)</button>
+    <button class="filter-btn" data-filter="PARTIALLY_SUPPORTED">PARTIAL (3)</button>
+    <button class="filter-btn" data-filter="NOT_SUPPORTED">NOT_SUPPORTED (1)</button>
+  </div>
+  <div id="claims-list" class="claims-list">
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-001</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">江水 continues east past 杨歧北山, then to 故市口; 江水左會高口 (Yangtze River passes Yangqi Northern Mountain, then reaches old market port, joining with Gaokou on left).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:3</code></p>
+        <p><strong>page:</strong> <code>p0003</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>江水又右杨歧北山 / 江水又东得故市口 / 江水左會高口</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-002</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">江水 flows east-north past 公安縣北; 油水 joins from southwest at 油口 (Yangtze flows past Gong'an County; Youshui River enters from southwest at Youkou).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:3</code></p>
+        <p><strong>page:</strong> <code>p0003</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>又東經公安縣北 / 又東南油水从西南来注之又東右合油口</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-003</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">屏陵縣之樂鄉城 sits south of 江水 against 大江 (Pingling's Lexiang City is described as on the south bank of the Yangtze, leaning against the great river).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:3</code></p>
+        <p><strong>page:</strong> <code>p0003</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>江水又南平郡屏陵縣之樂鄉城北 / 山抗大江山東有城故華容縣尉舊治地</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-004</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">華容縣尉舊治 located at the mountain foot east of 江; 黃州 referenced as facing 江浦 (Huarong County seat was at east-of-Yang foot of mountain; Huangzhou faced the riverbank).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:3</code></p>
+        <p><strong>page:</strong> <code>p0003</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>山抗大江山東有城故華容縣尉舊治地 / 江浦也對黄州</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-005</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">澧水 joins the larger system at 陂湖, with 渊 (deep pool) (Lishui River joins at Beihu, with deep pool).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:3</code></p>
+        <p><strong>page:</strong> <code>p0003</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>澧水及陂湖北是渊</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-006</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">河水 在河内地区有 野王縣 with 溝喬 / 長明陂 (He River in Henei region: Yewang County with Gouqiao / Changming Marsh).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>有二源北水上承河内野王縣東北界溝喬長明 / 陂南北二十許里東西三十里西则蔡溝人焉水</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-007</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">修武城 西北二十里 包含 吴澤水 — 引用《魏土地記》(Xiuwu City, 20 li northwest, contains Wuze Marsh — quoting 魏土地記).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>澤矣魏土地記日修武城西北二十里有吴澤水</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-008</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">滕公 濟渡玉門津, 宿小修武; 吴侯國 also called 大修武 (Duke Teng crossed Yumenzhen Ferry, then lodged at Xiao Xiuwu; Wu marquisate was also called Da Xiuwu).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>奥滕公濟自玉門津而宿小修武者也大即吴 / 侯國亦日大修武有小故大小修武在東</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-009</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">漢高帝 八年 (197 BCE) 封都尉 魏邀 為 武王 (Emperor Gaozu's 8th year, 197 BCE, conferred the title of Martial King upon commandant Wei Yao).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>漢高帝八年封都尉魏邀為 / 武王伐勒</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="PARTIALLY_SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-010</code></span>
+        <span class="claim-status claim-status-partially_supported">PARTIALLY_SUPPORTED</span>
+      </div>
+      <p class="claim-text">易水 flows south past 范陽縣 and 容城縣 — but full continuity text partial in current OCR (Yi River passes Fanyang and Rongcheng counties; full route description not fully OCR'd).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>東過范陽縣南又东過容城縣南</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-011</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">金毫陂 dimensions: 東西六七十步, with 百步 臺陂 around it (Jinhao Marsh: 60-70 steps east-west, with Baibu Terrace Marsh surrounding it).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>更属佳觀失其一水東出金毫陂東西六七十步南 / 邃岸高深左右百步一毫参差交時超相望</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-012</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">一水 flows past 故安城 西侧城南 注易水 (A waterway runs past the west and south of Gu'an City, entering Yi River).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>臺陂一水經故安城西侧城南注易水灰塘崇峻</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-013</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">汾水 south of 代城, with 稽石側; described as 潭波襄轉泛 (Fen River south of Daicheng, with Jishi side; described as having whirling ripples and abundant flow).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>東塘稽石侧枕汾水俗之代城城又南出一 / 雲垂煙接自是水流潭波襄轉泛</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-014</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">汝水 東北流經 霍陽山 and 霍陽聚; 霍陽山水 joins at 南山 (Ru River flows northeast past Huoyang Mountain and Huoyang Settlement; Huoyang Mountain Water joins at Southern Mountain).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>日河南梁躲有靈山者世其水东北流經霍陽 / 霍陽聚汝水其北东合霍陽山水水出南山杜</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-015</code></span>
+        <span class="claim-status claim-status-supported">SUPPORTED</span>
+      </div>
+      <p class="claim-text">汝水之右: 陽人城 = 古梁之陽人聚; 秦减東周 reference (East of Ru River: Yangren City = ancient Liang's Yangren Settlement; reference to Qin conquering Eastern Zhou).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:4</code></p>
+        <p><strong>page:</strong> <code>p0004</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>汝水之右有 / 秦减东周徙其君此陂水東南流合乎潤水 / 口水上承陽人城東睿公陂城古梁之陽人聚也</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="PARTIALLY_SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-016</code></span>
+        <span class="claim-status claim-status-partially_supported">PARTIALLY_SUPPORTED</span>
+      </div>
+      <p class="claim-text">漢獻帝 (山陽公) at 鹿城; 建安二十五年 (220 CE) 封 — full surrounding text not fully OCR'd (Han Xiandi as Shanyang Gong at Lucheng; Jian'an 25 = 220 CE).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:5</code></p>
+        <p><strong>page:</strong> <code>p0005</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>鹿城西建安二十五年魏封漢献帝為山陽公</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="PARTIALLY_SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-017</code></span>
+        <span class="claim-status claim-status-partially_supported">PARTIALLY_SUPPORTED</span>
+      </div>
+      <p class="claim-text">吴陂 receives 荷泉 + 覆金堆 南北二十五里 — full geographic context partial in current OCR (Wubei receives He Spring and Fujin Mound, 25 li north-south).</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>SHUGE:p124575:5</code></p>
+        <p><strong>page:</strong> <code>p0005</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>為荷泉北吴漕二清雙道俱東入陂山陽縣東</code></p>
+      </div>
+    </div>
+    <div class="claim-card" data-status="NOT_SUPPORTED">
+      <div class="claim-header">
+        <span class="claim-id"><code>wc-ev-cl-018</code></span>
+        <span class="claim-status claim-status-not_supported">NOT_SUPPORTED</span>
+      </div>
+      <p class="claim-text">《水经注》原文 counts (e.g., 137 rivers / 1252 tributaries) — NOT SUPPORTED in current 60-page corpus; pending full-text OCR.</p>
+      <div class="claim-evidence">
+        <p><strong>citation_id:</strong> <code>N/A</code></p>
+        <p><strong>page:</strong> <code>(multi-page)</code></p>
+        <p><strong>ocr_excerpt:</strong></p>
+        <p class="ocr-excerpt"><code>(no page-level OCR covers full structural claims about the entire text)</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="v10-reconciliation" class="article-section v1-section">
+  <h2><span class="section-num">7</span> v1.0 Reconciliation</h2>
+  <p>The v1.0 Candidate Article (commit <code>7738275</code>, frozen at <code>3a51ef5</code>) attributed 《水经注》 content to <code>work-shuge-168491</code>. According to <code>data/works.json</code>:</p>
+  <table class="article-meta-table">
+    <tr><th>v1.0 used</th><th>Actually is</th></tr>
+    <tr><td><code>work-shuge-168491</code> / <code>post_id=168491</code></td><td><strong>《园冶》</strong> — Ming dynasty garden design by 计成, 1635</td></tr>
+    <tr><td>Citation IDs <code>SHUGE:p168491:1, :30, :68</code></td><td>Point to <em>《园冶》</em> pages, NOT 《水经注》</td></tr>
+    <tr><td>Real 《水经注》</td><td><code>post_id=124575</code> · citations should be <code>SHUGE:p124575:&lt;seq&gt;</code></td></tr>
+  </table>
+  <p class="provenance-box"><strong>Work-id misattribution surfaced in R1.</strong> v1.0 frozen baseline NOT modified. The fix lives in this R1 publication, not in v1.0.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="evidence-gaps" class="article-section v1-section">
+  <h2><span class="section-num">8</span> Evidence Gaps</h2>
+  <ul>
+    <li><strong>cl-2.1 physical-history chain</strong> — remains unresolved metadata / historiographical gap. River-region OCR claims (cl-001, cl-006, cl-010, cl-013, cl-014) describe individual rivers; they do NOT establish the chain thesis.</li>
+    <li><strong>cl-3.2 河水=黄河 equivalence</strong> — not in current OCR scope; full-page OCR needed to close.</li>
+    <li><strong>cl-4.1 / cl-4.2 visual continuity</strong> — v1.0 cited 《工程做法》 (wrong work); would need re-sourcing from <code>SHUGE:p124575:*</code> for future v2.0.</li>
+    <li><strong>Full OCR coverage</strong> — 60/60 pages still <code>QUEUED</code>; full-page OCR would close many keyword-recall gaps.</li>
+  </ul>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section id="download" class="article-section v1-section">
+  <h2><span class="section-num">9</span> Download / View Source Files</h2>
+  <ul class="download-list">
+    <li><a href="source/WATER_CLASSIC_CANONICAL_IDENTITY.md">WATER_CLASSIC_CANONICAL_IDENTITY.md</a> · canonical 《水经注》 work identity + v1.0 work-id mismatch finding</li>
+    <li><a href="source/WATER_CLASSIC_TERM_AUDIT.md">WATER_CLASSIC_TERM_AUDIT.md</a> · 11 keywords × 60 pages · 10 river regions</li>
+    <li><a href="source/WATER_CLASSIC_ARTICLE_GAP_ANALYSIS.md">WATER_CLASSIC_ARTICLE_GAP_ANALYSIS.md</a> · v1.0 claims vs new evidence · cl-2.1 gap preserved</li>
+    <li><a href="source/water_classic_page_manifest.json">water_classic_page_manifest.json</a> · 60-page manifest (40 KB)</li>
+    <li><a href="source/water_classic_evidence_claims.json">water_classic_evidence_claims.json</a> · 18 evidence-first claims (14 SUPPORTED / 3 PARTIAL / 1 NOT)</li>
+  </ul>
+</section>
+
+</main>
+
+<footer class="masthead-footer">
+  <p>SHUGE Research · Water Classic Evidence Reconstruction R1 · PREVIEW (not auto-PUBLISHED) · v1.0 baseline (commit <code>3a51ef5</code>) frozen and not modified.</p>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.claim-card').forEach(card => {
+      if (filter === 'all' || card.dataset.status === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

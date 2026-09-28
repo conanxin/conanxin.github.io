@@ -1,0 +1,486 @@
+{
+  "schema_version": "r3.4-core-context/1.0",
+  "generated_at": "2026-09-28",
+  "work_id": 124575,
+  "canonical_shuge_work_record": "post_id 124575",
+  "core_supporting_pages_count": 12,
+  "method": "id-order traversal + page_index monotonicity → sequence_group (20 groups); corrected prev/next = same_group siblings with page_index ± 1; status heuristic: shared STRONG markers (15) OR classical-continuation markers (≥ 2 in head/tail 30 chars)",
+  "context_status_count": {
+    "SINGLE_PAGE_SUFFICIENT": 9,
+    "SAME_SEQUENCE_CONTINUED": 0,
+    "CROSS_PAGE_VALID": 3,
+    "CONTEXT_UNRESOLVED": 0
+  },
+  "STRONG_MARKERS": [
+    "易水",
+    "水經",
+    "汝水",
+    "江水",
+    "沔水",
+    "沔江",
+    "河水",
+    "泗水",
+    "洛水",
+    "淮水",
+    "渭水",
+    "湘江",
+    "漳水",
+    "澧水",
+    "濟水"
+  ],
+  "LEGACY_TERM_NOTE": "Prior 'HUMAN_VERIFIED' and 'STRICT_BODY_PRECISION' terminology from R3.3 are preserved in legacy fields only; UI now uses PROXY_REVIEWED and PROXY_REVIEW_AGREEMENT_RATE (R3.4 terminology correction).",
+  "corrected_context_windows": [
+    {
+      "page_object_id": 1655,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 2,
+      "sequence_size": 57,
+      "page_index": 2,
+      "page_label": "p0002",
+      "prev_page_object_id": 1654,
+      "prev_page_index": 1,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1656,
+      "next_page_index": 3,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=1 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+故安",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1501,
+        "r33_next_page_object_id": 1503,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1501→1654 (group WCSEQ-001 → WCSEQ-004), next 1503→1656 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "123456789\nA\nKodak Gray Scale\n水经注#木\nW\n漢書門\n9\n1\n架\n函\n文\n元雨二架\n二三五五號\n鸿\n一四册\nKocak.2007 T...",
+      "current_text_excerpt": "腾地口\n香府\n佳久昌亲事\n易水出承郡故安縣間鄉西山\n水經第十一\n王在中鹿葛建者也易水東左興子莊溪水合\n此山故其舊居世以為五大夫城即此岳云五\n王不同王恭之政子典生...",
+      "next_text_excerpt": "才系\n故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽\n陽蓄燕昭王之所城也東西二十里南北十七里\n經今水破城東南隅世又易水马故安河武\n水故安城南外東流即斯水也锈是人事明\n屠..."
+    },
+    {
+      "page_object_id": 1656,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 3,
+      "sequence_size": 57,
+      "page_index": 3,
+      "page_label": "p0003",
+      "prev_page_object_id": 1655,
+      "prev_page_index": 2,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1657,
+      "next_page_index": 4,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=2 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+故安",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1502,
+        "r33_next_page_object_id": 1504,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1502→1655 (group WCSEQ-001 → WCSEQ-004), next 1504→1657 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "腾地口\n香府\n佳久昌亲事\n易水出承郡故安縣間鄉西山\n水經第十一\n王在中鹿葛建者也易水東左興子莊溪水合\n此山故其舊居世以為五大夫城即此岳云五\n王不同王恭之政子典生...",
+      "current_text_excerpt": "才系\n故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽\n陽蓄燕昭王之所城也東西二十里南北十七里\n經今水破城東南隅世又易水马故安河武\n水故安城南外東流即斯水也锈是人事明\n屠...",
+      "next_text_excerpt": "東過范陽縣南又东過容城縣南\n更属佳觀失其一水東出金毫陂東西六七十步南\n邃岸高深左右百步一毫参差交時超相望\n臺陂一水經故安城西侧城南注易水灰塘崇峻\n之故清南出屈而..."
+    },
+    {
+      "page_object_id": 1657,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 4,
+      "sequence_size": 57,
+      "page_index": 4,
+      "page_label": "p0004",
+      "prev_page_object_id": 1656,
+      "prev_page_index": 3,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1658,
+      "next_page_index": 5,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=3 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+范陽",
+          "VERIFIED"
+        ],
+        [
+          "易水+容城",
+          "VERIFIED"
+        ],
+        [
+          "易水+故安",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1503,
+        "r33_next_page_object_id": 1505,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1503→1656 (group WCSEQ-001 → WCSEQ-004), next 1505→1658 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "才系\n故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽\n陽蓄燕昭王之所城也東西二十里南北十七里\n經今水破城東南隅世又易水马故安河武\n水故安城南外東流即斯水也锈是人事明\n屠...",
+      "current_text_excerpt": "東過范陽縣南又东過容城縣南\n更属佳觀失其一水東出金毫陂東西六七十步南\n邃岸高深左右百步一毫参差交時超相望\n臺陂一水經故安城西侧城南注易水灰塘崇峻\n之故清南出屈而...",
+      "next_text_excerpt": "水出石泉固东南隅水广二十許步深三丈固在\n檀山水水道縣西北檀山西南南流興石泉水会\n下東南流人濡水時人之虎眼泉也濡水东合\n女泉濡水又東得白杨水口出道之西山白杨\n里今..."
+    },
+    {
+      "page_object_id": 1659,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 6,
+      "sequence_size": 57,
+      "page_index": 6,
+      "page_label": "p0006",
+      "prev_page_object_id": 1658,
+      "prev_page_index": 5,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1660,
+      "next_page_index": 7,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "CROSS_PAGE_VALID",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=5, classical_continuation=3",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+范陽",
+          "VERIFIED"
+        ],
+        [
+          "易水+容城",
+          "VERIFIED"
+        ],
+        [
+          "易水+故安",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1505,
+        "r33_next_page_object_id": 1507,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1505→1658 (group WCSEQ-001 → WCSEQ-004), next 1507→1660 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "水出石泉固东南隅水广二十許步深三丈固在\n檀山水水道縣西北檀山西南南流興石泉水会\n下東南流人濡水時人之虎眼泉也濡水东合\n女泉濡水又東得白杨水口出道之西山白杨\n里今...",
+      "current_text_excerpt": "境坐陵碑出此山谓之石虎山山有所遣\n云中山簡王焉之空也後其葬探承郡山石以樹\n崔言燕昭王求仙處其东之石虎罡范漢書\n崇峻騰云冠高霞翼邮壑冲深合煙罩露者\n昌縣东南郎山东...",
+      "next_text_excerpt": "东北入陂陂水北接范陽陂陂在范陽城西十里\n東梁门陂水注之水上承易水梁门东入長城\n门門又之梁門失易水东分马梁門陂易水又\n允汾門與燕燕以葛城武陽與趙印此也亦日分\n分門..."
+    },
+    {
+      "page_object_id": 1660,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 7,
+      "sequence_size": 57,
+      "page_index": 7,
+      "page_label": "p0007",
+      "prev_page_object_id": 1659,
+      "prev_page_index": 6,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1661,
+      "next_page_index": 8,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=6 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+范陽",
+          "VERIFIED"
+        ],
+        [
+          "易水+故安",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1506,
+        "r33_next_page_object_id": 1508,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1506→1659 (group WCSEQ-001 → WCSEQ-004), next 1508→1661 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "境坐陵碑出此山谓之石虎山山有所遣\n云中山簡王焉之空也後其葬探承郡山石以樹\n崔言燕昭王求仙處其东之石虎罡范漢書\n崇峻騰云冠高霞翼邮壑冲深合煙罩露者\n昌縣东南郎山东...",
+      "current_text_excerpt": "东北入陂陂水北接范陽陂陂在范陽城西十里\n東梁门陂水注之水上承易水梁门东入長城\n门門又之梁門失易水东分马梁門陂易水又\n允汾門與燕燕以葛城武陽與趙印此也亦日分\n分門...",
+      "next_text_excerpt": "即所堡也故所興子書云袁氏之攻状若思\n其楼基尚存高一匹餘基上有井世名易京楼\n京以京郭至固令二萬人壤之今者地壁夷平\n易城西四五里越建武四年石虎自西南逹易\n以易地當之..."
+    },
+    {
+      "page_object_id": 1661,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 8,
+      "sequence_size": 57,
+      "page_index": 8,
+      "page_label": "p0008",
+      "prev_page_object_id": 1660,
+      "prev_page_index": 7,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1662,
+      "next_page_index": 9,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "CROSS_PAGE_VALID",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=7, classical_continuation=2",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+范陽",
+          "VERIFIED"
+        ],
+        [
+          "易水+容城",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1507,
+        "r33_next_page_object_id": 1509,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1507→1660 (group WCSEQ-001 → WCSEQ-004), next 1509→1662 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "东北入陂陂水北接范陽陂陂在范陽城西十里\n東梁门陂水注之水上承易水梁门东入長城\n门門又之梁門失易水东分马梁門陂易水又\n允汾門與燕燕以葛城武陽與趙印此也亦日分\n分門...",
+      "current_text_excerpt": "即所堡也故所興子書云袁氏之攻状若思\n其楼基尚存高一匹餘基上有井世名易京楼\n京以京郭至固令二萬人壤之今者地壁夷平\n易城西四五里越建武四年石虎自西南逹易\n以易地當之...",
+      "next_text_excerpt": "水出代郡靈丘縣高氏山\n又東過束州縣南東人千海\n又東過安次縣南\n水又南經日候候塘川名也又東合温泉水水出\n上有石題言冀州北界故世谓之石銘也其\n之山水出焉東流經于河者..."
+    },
+    {
+      "page_object_id": 1682,
+      "sequence_group_id": "WCSEQ-004",
+      "sequence_position": 29,
+      "sequence_size": 57,
+      "page_index": 29,
+      "page_label": "p0029",
+      "prev_page_object_id": 1681,
+      "prev_page_index": 28,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1683,
+      "next_page_index": 30,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "CROSS_PAGE_VALID",
+      "context_reason": "same_group=WCSEQ-004, prev_pi=28, classical_continuation=3",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "易水+范陽",
+          "VERIFIED"
+        ],
+        [
+          "易水+容城",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1528,
+        "r33_next_page_object_id": 1530,
+        "r33_context_status": "CROSS_PAGE",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1528→1681 (group WCSEQ-001 → WCSEQ-004), next 1530→1683 (group WCSEQ-001 → WCSEQ-004)"
+      },
+      "prev_text_excerpt": "河水又南藏刀山下層壁立直長千逹\n水又东南經榆城南又屈經其城东之榆城\n流涇聖人東南城南流注紫石水又南注于水\n聖人城東又东南石會檐車水水出檐車酬東南\n关水出东北西南...",
+      "current_text_excerpt": "又東南過容城縣北\n東過酒縣北\n滕處也其水东南流又名之為亭溝其水又西\n津通猩絡墟匪直田渔之腾可懷信為游神之\n涿之先鄉爱宅其陰西带巨川东翼兹水枝流\n_縣东东南流歷紫...",
+      "next_text_excerpt": "城西南人巨馬水巨馬水东經益昌縣故城南漢\n城故縣也城南十里淀水又東南經益昌縣故\n王子须為候國地理風俗記日方城南十里有臨\n陂於臨鄉縣故城西東南臨鄉南漢封广陽\n巨马河..."
+    },
+    {
+      "page_object_id": 1892,
+      "sequence_group_id": "WCSEQ-008",
+      "sequence_position": 31,
+      "sequence_size": 49,
+      "page_index": 31,
+      "page_label": "p0031",
+      "prev_page_object_id": 1891,
+      "prev_page_index": 30,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1893,
+      "next_page_index": 32,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-008, prev_pi=30 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "河水+野王",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1530,
+        "r33_next_page_object_id": 1532,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1530→1891 (group WCSEQ-001 → WCSEQ-008), next 1532→1893 (group WCSEQ-001 → WCSEQ-008)"
+      },
+      "prev_text_excerpt": "子河出東郡濮陽縣北河\n卒塞子口筑宫其上名日宣房宫水亦\n湛美玉竹林兮樸石畜宣防塞兮萬福來是\n日河湯湯兮激潺溪北渡题兮迅流塞長斐兮\n今愁苦人酱桑浮兮淮泗满久不反兮水...",
+      "current_text_excerpt": "東至濟陰句縣新溝\n弧河故漕又东經句陽之小成陽城北城北侧\n魏都尉治\n千清丘京相日在今東郡濮陽縣東南三十里\n春秋宣公十二年經書楚减晋人宋衛曹同盟\n十里有桃城或之也又...",
+      "next_text_excerpt": "有都關縣今其城在丘城西考地志山陽丘\n東北至都人羊里水者也又按地理志山陽郡\n西而北人河地理志日濮水首受沛於封丘縣\n水枝渠又東北運句陽縣之小成陽縣故東垂亭\n道在濮陽..."
+    },
+    {
+      "page_object_id": 1968,
+      "sequence_group_id": "WCSEQ-011",
+      "sequence_position": 35,
+      "sequence_size": 68,
+      "page_index": 35,
+      "page_label": "p0035",
+      "prev_page_object_id": 1967,
+      "prev_page_index": 34,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1969,
+      "next_page_index": 36,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-011, prev_pi=34 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "河水+修武",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1534,
+        "r33_next_page_object_id": 1536,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1534→1967 (group WCSEQ-001 → WCSEQ-011), next 1536→1969 (group WCSEQ-001 → WCSEQ-011)"
+      },
+      "prev_text_excerpt": "河水又東旋門坂北\n河水又經黄馬坂北\n又東過成縣北濟水从北來注之\n洛水从縣西北流注之\n之黄马關孫登之去陽作書與洛中故人處\n濟水故道之所人镇成阜分河水\n河水自洛口又...",
+      "current_text_excerpt": "河水東經成大伍山下\nK座\n之城西北隅有小城周三里北面列觀臨河茗茗\n牢矣然虎牢之名自此始也泰以為開漢乃縣\n生擒虎而麒之天子命之神畜之東虞是日虎\n掠林有虎在平中天子...",
+      "next_text_excerpt": "河水又东合汇水\n河水南對玉門\n人平\n山至冬则缓故世谓之温泉东北流田鄂谷\n東北流注入于水水下北合水水西出\n最石窟數口存焉而不知所經始世又\n下有滥泉東流浅注有数十石..."
+    },
+    {
+      "page_object_id": 1975,
+      "sequence_group_id": "WCSEQ-011",
+      "sequence_position": 42,
+      "sequence_size": 68,
+      "page_index": 42,
+      "page_label": "p0042",
+      "prev_page_object_id": 1974,
+      "prev_page_index": 41,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 1976,
+      "next_page_index": 43,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-011, prev_pi=41 but no STRONG/continuation overlap",
+      "text_support": "TEXT_PARTIAL",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "河水+修武",
+          "PARTIAL"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1541,
+        "r33_next_page_object_id": 1543,
+        "r33_context_status": "CROSS_PAGE",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1541→1974 (group WCSEQ-001 → WCSEQ-011), next 1543→1976 (group WCSEQ-001 → WCSEQ-011)"
+      },
+      "prev_text_excerpt": "又东北過黎陽縣南\n濟津之東南有白马城衛文公东徙渡河都之故\n走鹿者也濟取名焉故亦日鹿津又日白馬\n尚之鹿臺又之鹿城王玄自滑臺\n地我取积道具鄭鹿鹿即是城也今城内有故\n...",
+      "current_text_excerpt": "河水自津東北凉城縣\nML\n河北有般祠孟氏記云祠河中精石為基河水涨\n散入濮水所在决會更相通注以成往復也\n上舊日置源城縣治此白马又东南經濮陽縣\n有白馬塞孟達登之長可...",
+      "next_text_excerpt": "北經喰安縣故城西\n故清又經繁陽縣故城东\n故清东北運戚城西\n河水又東北万長书津\n河水又東北伍子胥南\n漢武帝元朔五年封魏不疑為侯國\n史記趙将代魏取繁陽者也\n李必為候..."
+    },
+    {
+      "page_object_id": 2321,
+      "sequence_group_id": "WCSEQ-018",
+      "sequence_position": 2,
+      "sequence_size": 68,
+      "page_index": 2,
+      "page_label": "p0002",
+      "prev_page_object_id": 2320,
+      "prev_page_index": 1,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 2322,
+      "next_page_index": 3,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-018, prev_pi=1 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "江水+華容",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1501,
+        "r33_next_page_object_id": 1503,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1501→2320 (group WCSEQ-001 → WCSEQ-018), next 1503→2322 (group WCSEQ-001 → WCSEQ-018)"
+      },
+      "prev_text_excerpt": "A\nKodak Gray Scale\n23456789\n水经注\n自叁拾住至卷拾茶\n澳書門\n三\n九\n二架\n人號\n麺\n13\n14\n文\n阁\n内\n15\n元一二口架\n二三...",
+      "current_text_excerpt": "香府伴\n江水又东涌水注之\n又东至華容縣西夏水出焉\n水經第三十五雨\n座\n東南富華容縣南水出焉\n南派曲而極水曲之地势世之江曲者也\n江水左迤為中夏水右中郎浦出焉江浦右...",
+      "next_text_excerpt": "江水又右杨歧北山\n江水又东得故市口\n江水左會高口\n又東經公安縣北\n又東南油水从西南来注之又東右合油口\n江水又南平郡屏陵縣之樂鄉城北\n山抗大江山東有城故華容縣尉舊..."
+    },
+    {
+      "page_object_id": 2322,
+      "sequence_group_id": "WCSEQ-018",
+      "sequence_position": 3,
+      "sequence_size": 68,
+      "page_index": 3,
+      "page_label": "p0003",
+      "prev_page_object_id": 2321,
+      "prev_page_index": 2,
+      "prev_in_same_group": true,
+      "prev_pi_correct": true,
+      "next_page_object_id": 2323,
+      "next_page_index": 4,
+      "next_in_same_group": true,
+      "next_pi_correct": true,
+      "context_status": "SINGLE_PAGE_SUFFICIENT",
+      "context_reason": "same_group=WCSEQ-018, prev_pi=2 but no STRONG/continuation overlap",
+      "text_support": "TEXT_CONFIRMED",
+      "modern_mapping": "MODERN_UNRESOLVED",
+      "proxy_review_verdicts": [
+        [
+          "江水+公安",
+          "VERIFIED"
+        ],
+        [
+          "江水+華容",
+          "VERIFIED"
+        ]
+      ],
+      "audit_r33": {
+        "r33_prev_page_object_id": 1502,
+        "r33_next_page_object_id": 1504,
+        "r33_context_status": "CONTINUED",
+        "r34_correction": "✗ R3.3 cross-group pollution: prev 1502→2321 (group WCSEQ-001 → WCSEQ-018), next 1504→2323 (group WCSEQ-001 → WCSEQ-018)"
+      },
+      "prev_text_excerpt": "香府伴\n江水又东涌水注之\n又东至華容縣西夏水出焉\n水經第三十五雨\n座\n東南富華容縣南水出焉\n南派曲而極水曲之地势世之江曲者也\n江水左迤為中夏水右中郎浦出焉江浦右...",
+      "current_text_excerpt": "江水又右杨歧北山\n江水又东得故市口\n江水左會高口\n又東經公安縣北\n又東南油水从西南来注之又東右合油口\n江水又南平郡屏陵縣之樂鄉城北\n山抗大江山東有城故華容縣尉舊...",
+      "next_text_excerpt": "大江右石首山北又东赭要\n又东得清揚土二口\n江水自龍巢而東俞口\n大江右得龍穴水口\n江水左得饭筐上口\n大江又东左得水口\n大江又東在合子夏口\n弹鳞掉尾而去焉故水地取名..."
+    }
+  ]
+}

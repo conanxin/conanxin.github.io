@@ -16,9 +16,9 @@
   <p class="subtitle">永久成果入口 · 当前专题与最新研究结论</p>
   <blockquote class="core-statement">
     <strong>当前专题:</strong>《水经注》数字证据研究。<br>
-    <strong>最新研究结论 (R3.3 · 《水经注》核心证据人工验证):</strong>在 R3.2 strict-rule 422 RULE_QUALIFIED_BODY 之上引入<strong>人工验证门槛</strong>:从 422 中抽样 100 页做 OCR-text-domain proxy 复核,得到 <strong>STRICT_BODY_PRECISION = 0.97</strong>(95% CI Wilson [0.9155, 0.9897]);另对 7 对核心 pair (江水+公安 / 江水+華容 / 易水+范陽 / 易水+容城 / 易水+故安 / 河水+野王 / 河水+修武) 的 12 unique supporting pages 全量复核(19 VERIFIED + 1 PARTIAL + 0 REJECTED)。<strong>RULE_QUALIFIED ≠ HUMAN_VERIFIED</strong>:<strong>HUMAN_VERIFIED_BODY_PAGES = 108</strong>(= 97 抽样 + 12 核心 − 1 overlap)。R3.3 起 Evidence Gate v2 严格化 SUPPORTED 条件:canonical page id + RULE_QUALIFIED_BODY + human verification + semantic context reviewed (4 项 AND)。
-    三个核心故事在 R3.3 复核下状态不变(<code>0 REJECTED</code>):Story 1 / Story 2 全部 VERIFIED,Story 3 (河水+修武) 1 PARTIAL 单独标注。
-    空间序列与现代地理对应仍待独立考证 (volume_status = UNRESOLVED)。
+    <strong>最新研究结论 (R3.4 · 《水经注》上下文序列修复):</strong>在 R3.3 PROXY_REVIEWED 108 之上修复 prev/next 跨序列污染:R3.3 的 12 个核心证据页全部映射到错误的 sequence_group (WCSEQ-001),R3.4 以 <code>page_objects.id</code> 顺序 + <code>page_index</code> 单调性建立 <strong>20 个 sequence_group (WCSEQ-001..020)</strong>,12 个核心页分布于 4 个 group (WCSEQ-004/008/011/018)。修复后上下文状态:SAME_SEQUENCE_CONTINUED = 0、CROSS_PAGE_VALID = 3 (1659/1661/1682)、SINGLE_PAGE_SUFFICIENT = 9、CONTEXT_UNRESOLVED = 0。同时正式将「<strong>人工验证/HUMAN_VERIFIED</strong>」改称「<strong>文本代理复核/PROXY_REVIEWED</strong>」(<code>STRICT_BODY_PRECISION</code> → <code>PROXY_REVIEW_AGREEMENT_RATE</code>)。
+    三故事 R3.4 重评估:TEXT_SUPPORTED = 3、CONTEXT_PARTIAL = 3、MODERN_UNRESOLVED = 3。<strong>PROXY_REVIEWED_BODY_PAGES = 108</strong>(= 97 抽样 + 12 核心 − 1 overlap pid 1682)。
+    证据门槛升级到 Gate v3:TEXT_SUPPORTED claim 必须同时满足 4 项 AND(canonical + RULE_QUALIFIED + PROXY_REVIEWED + same-page semantic support);跨页 claim 额外需要 VALID_SEQUENCE_CONTEXT(同 WCSEQ-XXX + page_index ± 1)。空间序列与现代地理对应仍待独立考证 (volume_status = UNRESOLVED)。
   </blockquote>
 </header>
 
@@ -28,7 +28,7 @@
 <!-- 进入专题 (Primary CTA · First Screen Anchor)                     -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <div class="archive-primary">
-  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a></p>
+  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a> · <a href="/projects/shuge/research/water-classic/evidence/">查看核心证据</a></p>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
@@ -49,8 +49,8 @@
     <h3><a href="/projects/shuge/research/water-classic/corpus/">R3 · 完整数字语料</a></h3>
     <p>956 页 FULL CORPUS · canonical Citation 系统 <code>SHUGE:p124575:&lt;page_object_id&gt;</code> · R2 60-page → 完整 corpus 映射 · 3 故事完整 corpus 重新验证。</p>
 
-    <h3><a href="/projects/shuge/research/water-classic/corpus/quality/">R3.3 · 《水经注》核心证据人工验证</a></h3>
-    <p><strong>956</strong> OCR success · <strong>426</strong> 规则筛选正文候选页(R3.2 RULE_QUALIFIED_BODY) · <strong>108</strong> 人工验证证据页(R3.3 HUMAN_VERIFIED_BODY_PAGES) · 100 页抽样精度 0.97(95% CI [0.9155, 0.9897]) · 12 unique core-evidence pages 全量复核 · 19 VERIFIED + 1 PARTIAL + 0 REJECTED · 10 CONTINUED + 2 CROSS_PAGE · Evidence Gate v2(SUPPORTED 必须 4 项 AND:catalog + RULE_QUALIFIED + human + semantic)。</p>
+    <h3><a href="/projects/shuge/research/water-classic/corpus/quality/">R3.4 · 《水经注》上下文序列修复</a></h3>
+    <p><strong>956</strong> OCR success · <strong>422</strong> 规则筛选正文候选页(R3.2 RULE_QUALIFIED_BODY) · <strong>108</strong> 文本代理复核证据页(R3.3+R3.4 PROXY_REVIEWED_BODY_PAGES) · 100 页抽样精度 0.97(95% CI [0.9155, 0.9897]) · 12 unique core-evidence pages 全量复核 · 19 VERIFIED + 1 PARTIAL + 0 REJECTED · 0 CONTEXT_UNRESOLVED (跨组污染已修复) · 3 CROSS_PAGE_VALID + 9 SINGLE_PAGE_SUFFICIENT · Evidence Gate v3(TEXT_SUPPORTED 必须 4 项 AND:catalog + RULE_QUALIFIED + PROXY_REVIEWED + same-page;跨页 + VALID_SEQUENCE_CONTEXT)。</p>
   </div>
 </section>
 
@@ -102,7 +102,8 @@
     <span class="section-num">版本历史</span>
     <h2>版本历史</h2>
     <ul class="version-list">
-      <li><span><strong>R3.3</strong> · 《水经注》核心证据人工验证 · 422 RULE_QUALIFIED + 100-页抽样 0.97 + 12 核心 + 19 VERIFIED + 1 PARTIAL + 108 HUMAN_VERIFIED</span><span class="ver-sha">SPEC RUN</span></li>
+      <li><span><strong>R3.4</strong> · 《水经注》上下文序列修复 · 20 sequence_group (WCSEQ-001..020) + 12 核心页 4 档上下文状态 + Gate v3 + PROXY_REVIEWED 命名修正 + 108 PROXY_REVIEWED_BODY</span><span class="ver-sha">SPEC RUN</span></li>
+      <li><span><strong>R3.3</strong> · 《水经注》核心证据文本代理复核 · 422 RULE_QUALIFIED + 100-页抽样 0.97 + 12 核心 + 19 VERIFIED + 1 PARTIAL + 108 PROXY_REVIEWED</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3.2</strong> · 《水经注》正文可信度验证 · 426 HISTORICAL_BODY + 465 INDEXABLE + 90-页抽样 0.6364 + 58 UNKNOWN 全量重审</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3.1</strong> · 语料质量审计 · 三层 956/956/866 + FTS5 状态</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3</strong> · 完整语料校准 · FULL CORPUS vs AUDITED SAMPLE</span><span class="ver-sha">SPEC RUN</span></li>

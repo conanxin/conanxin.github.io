@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《水经注》核心证据 · SHUGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/shuge/research/water-classic/css/style.css">
+<style>
+.page-card {
+  border: 1px solid #d6cdb6;
+  background: #fbf8f1;
+  padding: 24px 28px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.page-card h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  margin: 0 0 4px 0;
+  color: #2a2a2a;
+}
+.page-card .citation {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: #6a5e44;
+  background: #efe8d8;
+  padding: 2px 6px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.page-card .meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 24px;
+  margin: 16px 0;
+  padding: 12px 16px;
+  background: #f5efde;
+  border-left: 3px solid #b08642;
+  font-size: 14px;
+}
+.page-card .meta-grid dt {
+  font-weight: 600;
+  color: #6a5e44;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.page-card .meta-grid dd {
+  margin: 0 0 6px 0;
+  color: #2a2a2a;
+}
+.page-card .status-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.page-card .section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6a5e44;
+  margin: 14px 0 6px 0;
+  border-bottom: 1px solid #d6cdb6;
+  padding-bottom: 2px;
+}
+.page-card .ocr-excerpt {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 1.8;
+  background: #f9f5e8;
+  padding: 12px 16px;
+  border-left: 3px solid #6a5e44;
+  color: #2a2a2a;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 280px;
+  overflow: auto;
+}
+.page-card .support-list, .page-card .not-support-list {
+  margin: 6px 0 6px 0;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.page-card .support-list li {
+  color: #2d6a4f;
+}
+.page-card .not-support-list li {
+  color: #7c4332;
+}
+details.technical {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #c2b89a;
+}
+details.technical summary {
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: #6a5e44;
+  user-select: none;
+}
+details.technical pre {
+  background: #efe8d8;
+  padding: 10px 14px;
+  border-radius: 2px;
+  font-size: 11px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>《水经注》核心证据</h1>
+  <p class="subtitle">R3.4 · 12 unique supporting pages · 文本代理复核 + 序列组上下文</p>
+  <blockquote class="core-statement">
+    本页面逐页展示 R3.4 经文本代理复核（PROXY_REVIEWED）确认的 <strong>12 个核心证据页</strong>。
+    每页展示：canonical Citation、水系、历史地名、OCR 原文、本页能够支持什么、本页不能支持什么、sequence group、previous/current/next、context status、proxy review status。
+    <strong>默认中文</strong>。技术字段（page_object_id、context_reason 等）可折叠。
+  </blockquote>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">12</div>
+      <div class="stat-label">核心证据页 (CORE_SUPPORTING_PAGES)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">核心故事 (STORIES)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4</div>
+      <div class="stat-label">所在序列组 (SEQUENCE_GROUP)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">108</div>
+      <div class="stat-label">PROXY_REVIEWED_BODY 总数 (R3.3+R3.4)</div>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 20px; font-size: 13px; color: var(--ink-muted);">
+    work_id <code>p124575</code> · canonical SHUGE work record = post_id 124575 ·
+    DB = file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro ·
+    <a href="../">返回主研究页</a> · <a href="../corpus/quality/">语料质量审计</a>
+  </p>
+</header>
+
+<div class="page">
+
+<section class="section"><div class="article-body">
+<h2>Story 1 · 江水-公安-華容</h2>
+<p class="lede">对应 pair: 江水+公安, 江水+華容</p>
+<div class="page-card">
+  <h3>江水 · 華容</h3>
+  <span class="citation">SHUGE:p124575:2321</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">江水+華容 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>江水</dd>
+    <dt>历史地名</dt><dd>華容</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-018</code> · 第 2 / 68 页</dd>
+    <dt>page_index / page_label</dt><dd>2 · <code>p0002</code></dd>
+    <dt>Previous</dt><dd>pid 2320 (page_index 1)</dd>
+    <dt>Current</dt><dd>pid 2321 (page_index 2)</dd>
+    <dt>Next</dt><dd>pid 2322 (page_index 3)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (1 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「江水 流经 華容」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">香府伴
+江水又东涌水注之
+又东至華容縣西夏水出焉
+水經第三十五雨
+座
+東南富華容縣南水出焉
+南派曲而極水曲之地势世之江曲者也
+江水左迤為中夏水右中郎浦出焉江浦右...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 2321
+sequence_group_id: WCSEQ-018
+sequence_position: 2 / 68
+page_index: 2
+page_label: p0002
+prev_page_object_id: 2320    prev_page_index: 1
+next_page_object_id: 2322    next_page_index: 3
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-018, prev_pi=1 but no STRONG/continuation overlap
+pair_verdicts: [('江水+華容', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>江水 · 公安</h3>
+  <span class="citation">SHUGE:p124575:2322</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">江水+公安 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">江水+華容 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>江水</dd>
+    <dt>历史地名</dt><dd>公安 / 華容</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-018</code> · 第 3 / 68 页</dd>
+    <dt>page_index / page_label</dt><dd>3 · <code>p0003</code></dd>
+    <dt>Previous</dt><dd>pid 2321 (page_index 2)</dd>
+    <dt>Current</dt><dd>pid 2322 (page_index 3)</dd>
+    <dt>Next</dt><dd>pid 2323 (page_index 4)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (2 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「江水 流经 公安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「江水 流经 華容」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">江水又右杨歧北山
+江水又东得故市口
+江水左會高口
+又東經公安縣北
+又東南油水从西南来注之又東右合油口
+江水又南平郡屏陵縣之樂鄉城北
+山抗大江山東有城故華容縣尉舊...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 2322
+sequence_group_id: WCSEQ-018
+sequence_position: 3 / 68
+page_index: 3
+page_label: p0003
+prev_page_object_id: 2321    prev_page_index: 2
+next_page_object_id: 2323    next_page_index: 4
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-018, prev_pi=2 but no STRONG/continuation overlap
+pair_verdicts: [('江水+公安', 'VERIFIED'), ('江水+華容', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+</div></section>
+<section class="section"><div class="article-body">
+<h2>Story 2 · 易水-范陽-容城-故安</h2>
+<p class="lede">对应 pair: 易水+范陽, 易水+容城, 易水+故安</p>
+<div class="page-card">
+  <h3>易水 · 故安</h3>
+  <span class="citation">SHUGE:p124575:1655</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+故安 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>故安</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 2 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>2 · <code>p0002</code></dd>
+    <dt>Previous</dt><dd>pid 1654 (page_index 1)</dd>
+    <dt>Current</dt><dd>pid 1655 (page_index 2)</dd>
+    <dt>Next</dt><dd>pid 1656 (page_index 3)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (1 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 故安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">腾地口
+香府
+佳久昌亲事
+易水出承郡故安縣間鄉西山
+水經第十一
+王在中鹿葛建者也易水東左興子莊溪水合
+此山故其舊居世以為五大夫城即此岳云五
+王不同王恭之政子典生...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1655
+sequence_group_id: WCSEQ-004
+sequence_position: 2 / 57
+page_index: 2
+page_label: p0002
+prev_page_object_id: 1654    prev_page_index: 1
+next_page_object_id: 1656    next_page_index: 3
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-004, prev_pi=1 but no STRONG/continuation overlap
+pair_verdicts: [('易水+故安', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 故安</h3>
+  <span class="citation">SHUGE:p124575:1656</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+故安 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>故安</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 3 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>3 · <code>p0003</code></dd>
+    <dt>Previous</dt><dd>pid 1655 (page_index 2)</dd>
+    <dt>Current</dt><dd>pid 1656 (page_index 3)</dd>
+    <dt>Next</dt><dd>pid 1657 (page_index 4)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (1 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 故安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">才系
+故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽
+陽蓄燕昭王之所城也東西二十里南北十七里
+經今水破城東南隅世又易水马故安河武
+水故安城南外東流即斯水也锈是人事明
+屠...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1656
+sequence_group_id: WCSEQ-004
+sequence_position: 3 / 57
+page_index: 3
+page_label: p0003
+prev_page_object_id: 1655    prev_page_index: 2
+next_page_object_id: 1657    next_page_index: 4
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-004, prev_pi=2 but no STRONG/continuation overlap
+pair_verdicts: [('易水+故安', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 范陽</h3>
+  <span class="citation">SHUGE:p124575:1657</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+范陽 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+容城 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+故安 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>容城 / 故安 / 范陽</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 4 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>4 · <code>p0004</code></dd>
+    <dt>Previous</dt><dd>pid 1656 (page_index 3)</dd>
+    <dt>Current</dt><dd>pid 1657 (page_index 4)</dd>
+    <dt>Next</dt><dd>pid 1658 (page_index 5)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (3 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 范陽」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 容城」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 故安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">東過范陽縣南又东過容城縣南
+更属佳觀失其一水東出金毫陂東西六七十步南
+邃岸高深左右百步一毫参差交時超相望
+臺陂一水經故安城西侧城南注易水灰塘崇峻
+之故清南出屈而...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1657
+sequence_group_id: WCSEQ-004
+sequence_position: 4 / 57
+page_index: 4
+page_label: p0004
+prev_page_object_id: 1656    prev_page_index: 3
+next_page_object_id: 1658    next_page_index: 5
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-004, prev_pi=3 but no STRONG/continuation overlap
+pair_verdicts: [('易水+范陽', 'VERIFIED'), ('易水+容城', 'VERIFIED'), ('易水+故安', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 范陽</h3>
+  <span class="citation">SHUGE:p124575:1659</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+范陽 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+容城 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+故安 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>容城 / 故安 / 范陽</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 6 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>6 · <code>p0006</code></dd>
+    <dt>Previous</dt><dd>pid 1658 (page_index 5)</dd>
+    <dt>Current</dt><dd>pid 1659 (page_index 6)</dd>
+    <dt>Next</dt><dd>pid 1660 (page_index 7)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7b9e89">CROSS_PAGE_VALID</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (3 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 范陽」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 容城」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 故安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页双向 STRONG 标记连续性（仅古典续接标记证实 — R3.4 status = CROSS_PAGE_VALID）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">境坐陵碑出此山谓之石虎山山有所遣
+云中山簡王焉之空也後其葬探承郡山石以樹
+崔言燕昭王求仙處其东之石虎罡范漢書
+崇峻騰云冠高霞翼邮壑冲深合煙罩露者
+昌縣东南郎山东...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1659
+sequence_group_id: WCSEQ-004
+sequence_position: 6 / 57
+page_index: 6
+page_label: p0006
+prev_page_object_id: 1658    prev_page_index: 5
+next_page_object_id: 1660    next_page_index: 7
+context_status: CROSS_PAGE_VALID
+context_reason: same_group=WCSEQ-004, prev_pi=5, classical_continuation=3
+pair_verdicts: [('易水+范陽', 'VERIFIED'), ('易水+容城', 'VERIFIED'), ('易水+故安', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 范陽</h3>
+  <span class="citation">SHUGE:p124575:1660</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+范陽 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+故安 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>故安 / 范陽</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 7 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>7 · <code>p0007</code></dd>
+    <dt>Previous</dt><dd>pid 1659 (page_index 6)</dd>
+    <dt>Current</dt><dd>pid 1660 (page_index 7)</dd>
+    <dt>Next</dt><dd>pid 1661 (page_index 8)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (2 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 范陽」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 故安」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">东北入陂陂水北接范陽陂陂在范陽城西十里
+東梁门陂水注之水上承易水梁门东入長城
+门門又之梁門失易水东分马梁門陂易水又
+允汾門與燕燕以葛城武陽與趙印此也亦日分
+分門...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1660
+sequence_group_id: WCSEQ-004
+sequence_position: 7 / 57
+page_index: 7
+page_label: p0007
+prev_page_object_id: 1659    prev_page_index: 6
+next_page_object_id: 1661    next_page_index: 8
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-004, prev_pi=6 but no STRONG/continuation overlap
+pair_verdicts: [('易水+范陽', 'VERIFIED'), ('易水+故安', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 范陽</h3>
+  <span class="citation">SHUGE:p124575:1661</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+范陽 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+容城 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>容城 / 范陽</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 8 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>8 · <code>p0008</code></dd>
+    <dt>Previous</dt><dd>pid 1660 (page_index 7)</dd>
+    <dt>Current</dt><dd>pid 1661 (page_index 8)</dd>
+    <dt>Next</dt><dd>pid 1662 (page_index 9)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7b9e89">CROSS_PAGE_VALID</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (2 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 范陽」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 容城」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页双向 STRONG 标记连续性（仅古典续接标记证实 — R3.4 status = CROSS_PAGE_VALID）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">即所堡也故所興子書云袁氏之攻状若思
+其楼基尚存高一匹餘基上有井世名易京楼
+京以京郭至固令二萬人壤之今者地壁夷平
+易城西四五里越建武四年石虎自西南逹易
+以易地當之...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1661
+sequence_group_id: WCSEQ-004
+sequence_position: 8 / 57
+page_index: 8
+page_label: p0008
+prev_page_object_id: 1660    prev_page_index: 7
+next_page_object_id: 1662    next_page_index: 9
+context_status: CROSS_PAGE_VALID
+context_reason: same_group=WCSEQ-004, prev_pi=7, classical_continuation=2
+pair_verdicts: [('易水+范陽', 'VERIFIED'), ('易水+容城', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>易水 · 范陽</h3>
+  <span class="citation">SHUGE:p124575:1682</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">易水+范陽 · VERIFIED</span> <span class="status-pill" style="background:#2d6a4f">易水+容城 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>易水</dd>
+    <dt>历史地名</dt><dd>容城 / 范陽</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-004</code> · 第 29 / 57 页</dd>
+    <dt>page_index / page_label</dt><dd>29 · <code>p0029</code></dd>
+    <dt>Previous</dt><dd>pid 1681 (page_index 28)</dd>
+    <dt>Current</dt><dd>pid 1682 (page_index 29)</dd>
+    <dt>Next</dt><dd>pid 1683 (page_index 30)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7b9e89">CROSS_PAGE_VALID</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (2 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「易水 流经 范陽」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+    <li>同页 OCR 文本可证实「易水 流经 容城」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页双向 STRONG 标记连续性（仅古典续接标记证实 — R3.4 status = CROSS_PAGE_VALID）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">又東南過容城縣北
+東過酒縣北
+滕處也其水东南流又名之為亭溝其水又西
+津通猩絡墟匪直田渔之腾可懷信為游神之
+涿之先鄉爱宅其陰西带巨川东翼兹水枝流
+_縣东东南流歷紫...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1682
+sequence_group_id: WCSEQ-004
+sequence_position: 29 / 57
+page_index: 29
+page_label: p0029
+prev_page_object_id: 1681    prev_page_index: 28
+next_page_object_id: 1683    next_page_index: 30
+context_status: CROSS_PAGE_VALID
+context_reason: same_group=WCSEQ-004, prev_pi=28, classical_continuation=3
+pair_verdicts: [('易水+范陽', 'VERIFIED'), ('易水+容城', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+</div></section>
+<section class="section"><div class="article-body">
+<h2>Story 3 · 河水-野王-修武</h2>
+<p class="lede">对应 pair: 河水+野王, 河水+修武</p>
+<div class="page-card">
+  <h3>河水 · 野王</h3>
+  <span class="citation">SHUGE:p124575:1892</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">河水+野王 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>河水</dd>
+    <dt>历史地名</dt><dd>野王</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-008</code> · 第 31 / 49 页</dd>
+    <dt>page_index / page_label</dt><dd>31 · <code>p0031</code></dd>
+    <dt>Previous</dt><dd>pid 1891 (page_index 30)</dd>
+    <dt>Current</dt><dd>pid 1892 (page_index 31)</dd>
+    <dt>Next</dt><dd>pid 1893 (page_index 32)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (1 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「河水 流经 野王」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">東至濟陰句縣新溝
+弧河故漕又东經句陽之小成陽城北城北侧
+魏都尉治
+千清丘京相日在今東郡濮陽縣東南三十里
+春秋宣公十二年經書楚减晋人宋衛曹同盟
+十里有桃城或之也又...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1892
+sequence_group_id: WCSEQ-008
+sequence_position: 31 / 49
+page_index: 31
+page_label: p0031
+prev_page_object_id: 1891    prev_page_index: 30
+next_page_object_id: 1893    next_page_index: 32
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-008, prev_pi=30 but no STRONG/continuation overlap
+pair_verdicts: [('河水+野王', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>河水 · 修武</h3>
+  <span class="citation">SHUGE:p124575:1968</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#2d6a4f">河水+修武 · VERIFIED</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>河水</dd>
+    <dt>历史地名</dt><dd>修武</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-011</code> · 第 35 / 68 页</dd>
+    <dt>page_index / page_label</dt><dd>35 · <code>p0035</code></dd>
+    <dt>Previous</dt><dd>pid 1967 (page_index 34)</dd>
+    <dt>Current</dt><dd>pid 1968 (page_index 35)</dd>
+    <dt>Next</dt><dd>pid 1969 (page_index 36)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_CONFIRMED (1 VERIFIED + 0 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本可证实「河水 流经 修武」：STRONG 标记 + 叙事字符密度 ≥ 5（同页 ±30 字窗口内）</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">河水東經成大伍山下
+K座
+之城西北隅有小城周三里北面列觀臨河茗茗
+牢矣然虎牢之名自此始也泰以為開漢乃縣
+生擒虎而麒之天子命之神畜之東虞是日虎
+掠林有虎在平中天子...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1968
+sequence_group_id: WCSEQ-011
+sequence_position: 35 / 68
+page_index: 35
+page_label: p0035
+prev_page_object_id: 1967    prev_page_index: 34
+next_page_object_id: 1969    next_page_index: 36
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-011, prev_pi=34 but no STRONG/continuation overlap
+pair_verdicts: [('河水+修武', 'VERIFIED')]
+text_support: TEXT_CONFIRMED
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+<div class="page-card">
+  <h3>河水 · 修武</h3>
+  <span class="citation">SHUGE:p124575:1975</span>
+  <div style="margin-top: 8px"><span class="status-pill" style="background:#b08642">河水+修武 · PARTIAL</span></div>
+  <dl class="meta-grid">
+    <dt>水系</dt><dd>河水</dd>
+    <dt>历史地名</dt><dd>修武</dd>
+    <dt>Sequence Group</dt><dd><code>WCSEQ-011</code> · 第 42 / 68 页</dd>
+    <dt>page_index / page_label</dt><dd>42 · <code>p0042</code></dd>
+    <dt>Previous</dt><dd>pid 1974 (page_index 41)</dd>
+    <dt>Current</dt><dd>pid 1975 (page_index 42)</dd>
+    <dt>Next</dt><dd>pid 1976 (page_index 43)</dd>
+    <dt>Context Status</dt><dd><span class="status-pill" style="background:#7c6f57">SINGLE_PAGE_SUFFICIENT</span></dd>
+    <dt>Proxy Review Status</dt><dd>TEXT_PARTIAL (0 VERIFIED + 1 PARTIAL)</dd>
+  </dl>
+  <div class="section-title">本页能够支持什么</div>
+  <ul class="support-list">
+    <li>同页 OCR 文本部分证实「河水 与 修武」：两词距离 &gt; 300 chars，启发式 v2 判为松关联</li>
+  </ul>
+  <div class="section-title">本页不能支持什么</div>
+  <ul class="not-support-list">
+    <li>跨页叙事衔接的 STRONG 标记（15 水系）双向连续证实（除非 context_status = SAME_SEQUENCE_CONTINUED）</li>
+    <li>现代地理对应（MODERN_MAPPING = MODERN_UNRESOLVED；未做独立考证）</li>
+    <li>卷次归属（sequence_group ≠ volume；WCSEQ-XXX 仅识别同 scan 序列，不声明对应原书第 X 卷）</li>
+    <li>字面意义上的人类眼-页-图复核（仅 AI OCR-text-domain proxy review；UI 标签已统一改为「文本代理复核」）</li>
+    <li>跨页 STRONG 标记连续性（同序列相邻但文本层未可证 — R3.4 status = SINGLE_PAGE_SUFFICIENT）</li>
+  </ul>
+  <div class="section-title">OCR 原文（同页）</div>
+  <div class="ocr-excerpt">河水自津東北凉城縣
+ML
+河北有般祠孟氏記云祠河中精石為基河水涨
+散入濮水所在决會更相通注以成往復也
+上舊日置源城縣治此白马又东南經濮陽縣
+有白馬塞孟達登之長可...</div>
+  <details class="technical">
+    <summary>技术字段 (technical · 可折叠)</summary>
+    <pre>page_object_id: 1975
+sequence_group_id: WCSEQ-011
+sequence_position: 42 / 68
+page_index: 42
+page_label: p0042
+prev_page_object_id: 1974    prev_page_index: 41
+next_page_object_id: 1976    next_page_index: 43
+context_status: SINGLE_PAGE_SUFFICIENT
+context_reason: same_group=WCSEQ-011, prev_pi=41 but no STRONG/continuation overlap
+pair_verdicts: [('河水+修武', 'PARTIAL')]
+text_support: TEXT_PARTIAL
+modern_mapping: MODERN_UNRESOLVED
+prev_in_same_group: True    prev_pi_correct: True
+next_in_same_group: True    next_pi_correct: True</pre>
+  </details>
+</div>
+</div></section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- Reviewer honesty disclosure                                       -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">R3.4</span>
+    <h2>文本代理复核 · 诚实声明</h2>
+    <p>
+      本页所列 12 个核心证据页的"复核"由 AI agent 以 OCR-text-domain proxy reviewer 身份执行，依赖：
+    </p>
+    <ul>
+      <li><strong>物理相邻性</strong> = <code>page_objects.id</code> 顺序 + <code>page_index</code> 单调性（DB query，无 OCR 重跑）</li>
+      <li><strong>同页文本支持</strong> = 河名 + 历史地名同页 ±30 字窗口 · 叙事字符密度（38 字符级）≥ 5</li>
+      <li><strong>跨页连接</strong> = STRONG 标记（15 水系）单/双向 + 古文连续标记（6 字）fallback</li>
+    </ul>
+    <p>
+      「PROXY_REVIEWED」与「文本代理复核」明确非字面意义上的 human-eye-on-page-image 复核。
+      真实人眼复核可能产生额外边界案例；R3.4 的 0 CONTEXT_UNRESOLVED 反映物理相邻性修复（非跨页叙事 100% 人工确认）。
+    </p>
+    <p>
+      <strong>历史证据的最终确认仍需独立学术考据。</strong>任何 historical claim 的现代地理对应（MODERN_MAPPING）均标记为 MODERN_UNRESOLVED。
+    </p>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>

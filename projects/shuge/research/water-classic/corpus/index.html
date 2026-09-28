@@ -13,10 +13,10 @@
 
 <header class="hero">
   <h1>《水经注》完整数字语料</h1>
-  <p class="subtitle">FULL CORPUS · 956 页 · R3.3 核心证据人工验证</p>
+  <p class="subtitle">FULL CORPUS · 956 页 · R3.4 核心证据文本代理复核</p>
   <blockquote class="core-statement">
-    R3 将 R2 公开研究使用的 60-page sample 重新连接到 SHUGE-RESEARCH-DB 中已存在的完整《水经注》corpus。R3.1 三层 page_objects / OCR non-empty / research-searchable body pages 已经分级,R3.2 引入 strict-rule BODY_TEXT 验证与 426 规则筛选正文候选页,R3.3 对其中 100 页抽样人工复核 + 7 对核心 pair 共 12 unique supporting pages 全量复核,得到 <strong>108</strong> 人工验证证据页。<br>
-    <strong>R3.3 起不再把 426 称作"已验证正文页"</strong>——只有进入 HUMAN_VERIFIED_BODY_PAGES (108) 的页才允许作为 SUPPORTED 历史证据。
+    R3 将 R2 公开研究使用的 60-page sample 重新连接到 SHUGE-RESEARCH-DB 中已存在的完整《水经注》corpus。R3.1 三层 page_objects / OCR non-empty / research-searchable body pages 已经分级,R3.2 引入 strict-rule BODY_TEXT 验证与 426 规则筛选正文候选页,R3.3 对其中 100 页抽样文本代理复核 + 7 对核心 pair 共 12 unique supporting pages 全量复核,得到 <strong>108</strong> 文本代理复核证据页。R3.4 修复 R3.3 的 12/12 跨序列上下文污染,引入 sequence_group (WCSEQ-001..020) + 上下文 4 档判定。<br>
+    <strong>R3.4 起不再把 426 称作"已验证正文页"</strong>——只有进入 PROXY_REVIEWED_BODY_PAGES (108) 的页才允许作为 TEXT_SUPPORTED 历史证据。
   </blockquote>
   <div class="stats">
     <div class="stat">
@@ -29,12 +29,12 @@
     </div>
     <div class="stat">
       <div class="stat-number">108</div>
-      <div class="stat-label">人工验证证据页 (R3.3)</div>
+      <div class="stat-label">文本代理复核证据页 (R3.3+R3.4 PROXY_REVIEWED)</div>
     </div>
   </div>
   <p class="subtitle" style="margin-top: 24px; font-size: 14px;">
-    <strong>FULL CORPUS · R3.3 三层</strong> · 956 OCR success / <strong>426 规则筛选正文候选页</strong>(= RULE_QUALIFIED_BODY 422 + UNKNOWN→BODY 4)/ <strong>108 人工验证证据页</strong>(= HUMAN_VERIFIED_BODY_PAGES 108) · 322030 chars · R3.3 严格 RULE_QUALIFIED ≠ HUMAN_VERIFIED。<br>
-    <strong>证据门槛</strong>(R3.3 Historical Evidence Gate v2):任何 SUPPORTED 历史声明必须 page_object_id ∈ HUMAN_VERIFIED_BODY_PAGES(108) + 4 项 AND 条件(canonical + RULE_QUALIFIED + human verification + semantic context reviewed)。<a href="quality/">查看语料质量审计</a>
+    <strong>FULL CORPUS · R3.4 三层</strong> · 956 OCR success / <strong>426 规则筛选正文候选页</strong>(= RULE_QUALIFIED_BODY 422 + UNKNOWN→BODY 4)/ <strong>108 文本代理复核证据页</strong>(= PROXY_REVIEWED_BODY_PAGES 108 = R3.3 抽样 97 + R3.4 核心 12 − 1 overlap) · 322030 chars · R3.4 严格 RULE_QUALIFIED ≠ PROXY_REVIEWED。<br>
+    <strong>证据门槛</strong>(R3.4 Historical Evidence Gate v3):任何 TEXT_SUPPORTED 历史声明必须 page_object_id ∈ PROXY_REVIEWED_BODY_PAGES(108) + 4 项 AND 条件(canonical + RULE_QUALIFIED + PROXY_REVIEWED + same-page semantic support);跨页 claim 额外需要 VALID_SEQUENCE_CONTEXT (同一 WCSEQ-XXX + page_index ± 1)。<a href="quality/">查看语料质量审计</a> · <a href="../evidence/">查看核心证据</a>
   </p>
 </header>
 

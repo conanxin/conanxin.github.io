@@ -506,15 +506,15 @@ RESEARCH_INDEXABLE_PAGES
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- BLOCK 10 · R3.3 人工证据验证 (Evidence Manual Validation)       -->
+<!-- BLOCK 10 · R3.3 文本代理复核 (Evidence Manual Validation)         -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
     <span class="section-num">BLOCK 10</span>
-    <h2>R3.3 · 《水经注》核心证据人工验证(Evidence Gate v2)</h2>
-    <p class="lede">将 R3.2 strict-rule 自动分类的 422 RULE_QUALIFIED_BODY 提升为 human-verified 证据门槛;逐页阅读 100 页抽样 + 7 对核心 pair 共 12 unique supporting pages。</p>
+    <h2>R3.3 · 《水经注》核心证据文本代理复核 (Evidence Gate v2)</h2>
+    <p class="lede">将 R3.2 strict-rule 自动分类的 422 RULE_QUALIFIED_BODY 提升为 PROXY_REVIEWED 证据门槛;逐页 OCR-text-domain 复核 100 页抽样 + 7 对核心 pair 共 12 unique supporting pages。<strong>注:R3.4 起 UI 统一称「文本代理复核」(PROXY_REVIEWED),不再用「人工验证」(HUMAN_VERIFIED)。</strong></p>
 
-    <h3>10.1 · 概念分离:RULE_QUALIFIED ≠ HUMAN_VERIFIED</h3>
+    <h3>10.1 · 概念分离:RULE_QUALIFIED ≠ PROXY_REVIEWED</h3>
     <p>
       R3.2 报告的 <strong>TRUE_BODY = 422</strong> 在 R3.3 改称 <strong>RULE_QUALIFIED_BODY</strong>(strict-rule 命中,未经人工复核)。本任务不做 OCR,也不引入新历史 claim,只对核对的页进行 proxy 人工复核。
     </p>
@@ -524,8 +524,8 @@ RESEARCH_INDEXABLE_PAGES
         <tr><td>RULE_QUALIFIED_BODY</td><td>422</td><td>strict-rule 通过 (strong ≥ 1 + len ≥ 80 + 非纯 TOC/noise)</td></tr>
         <tr><td>UNKNOWN_TO_BODY_CANDIDATES</td><td>4</td><td>UNKNOWN 重审后升 BODY_TEXT</td></tr>
         <tr><td>BODY_CANDIDATES_TOTAL</td><td>426</td><td>RULE_QUALIFIED 422 + UNKNOWN→BODY 4</td></tr>
-        <tr><td>HUMAN_VERIFIED_BODY_PAGES</td><td><strong>108</strong></td><td>经人工/视觉 proxy 复核通过(本任务实绩)</td></tr>
-        <tr><td>HUMAN_VERIFIED_BODY(extrapolated)</td><td>≈ 408</td><td>422 × 0.97 = 全名 = R3.3 估计(95% CI Wilson [387, 419])</td></tr>
+        <tr><td>PROXY_REVIEWED_BODY_PAGES</td><td><strong>108</strong></td><td>经 OCR-text-domain proxy 复核通过(本任务实绩)</td></tr>
+        <tr><td>PROXY_REVIEWED_BODY(extrapolated)</td><td>≈ 408</td><td>422 × 0.97 = 全名 = R3.3 估计(95% CI Wilson [387, 419])</td></tr>
       </tbody>
     </table>
 
@@ -588,7 +588,7 @@ RESEARCH_INDEXABLE_PAGES
         <tr><td><strong>PARTIAL</strong></td><td><strong>1 pair result (pid 1975)</strong></td><td>可引用,需注明 PARTIAL</td></tr>
         <tr><td><strong>REJECTED</strong></td><td><strong>0</strong></td><td>—</td></tr>
         <tr><td>HUMAN_CONFIRMED_BODY (Section B 抽样)</td><td><strong>97 unique pages</strong></td><td>strict-rule precision 通过 proxy 复核</td></tr>
-        <tr><td><strong>HUMAN_VERIFIED_BODY_PAGES (合计 unique)</strong></td><td><strong>108</strong></td><td>97 (B) ∪ 12 (C) − 1 overlap (pid 1682)</td></tr>
+        <tr><td><strong>PROXY_REVIEWED_BODY_PAGES (合计 unique)</strong></td><td><strong>108</strong></td><td>97 (B) ∪ 12 (C) − 1 overlap (pid 1682)</td></tr>
       </tbody>
     </table>
 
@@ -613,8 +613,8 @@ RESEARCH_INDEXABLE_PAGES
       <li><strong>semantic context reviewed</strong>:context_window(prev/curr/next)显示 narrative 一致性</li>
     </ol>
     <p>
-      <strong>强约束</strong>:R4 不得新增历史 claim。所有新 claim 必须映射到现有 <strong>HUMAN_VERIFIED_BODY_PAGES = 108</strong>。
-      如需扩展 SUPPORTED 集合,必须先回到 R3.3 流程(不运行新 OCR、不下载新资源,仅对现有 422 中未复核页进行人工/视觉复核,复核通过后 HUMAN_VERIFIED_BODY_PAGES 才扩)。
+      <strong>强约束</strong>:R4 不得新增历史 claim。所有新 claim 必须映射到现有 <strong>PROXY_REVIEWED_BODY_PAGES = 108</strong>。
+      如需扩展 SUPPORTED 集合,必须先回到 R3.3/R3.4 流程(不运行新 OCR、不下载新资源,仅对现有 422 中未复核页进行文本代理复核,复核通过后 PROXY_REVIEWED_BODY_PAGES 才扩)。
     </p>
     <p class="note">
       R3.3 不修改 R3.2 / R3.1 / R3 / R2.2 / R2.1 / R2 / R1 / v1.0 任何文件;所有判定基于 SHUGE-RESEARCH-DB 的 read-only 查询 + 已发布数据文件。
@@ -623,11 +623,67 @@ RESEARCH_INDEXABLE_PAGES
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- BLOCK 11 · 技术下载                                              -->
+<!-- BLOCK 11 · R3.4 上下文序列修复 (Context Sequence Repair)          -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
     <span class="section-num">BLOCK 11</span>
+    <h2>R3.4 · 《水经注》上下文序列修复 (Evidence Gate v3)</h2>
+    <p class="lede">R3.4 修复 R3.3 核心证据页 prev/next 上下文的跨序列污染：12 / 12 core supporting pages 的 prev/next 原先都从错误的 sequence_group (WCSEQ-001) 选取。R3.4 以 <code>page_objects.id</code> 顺序 + <code>page_index</code> 单调性建立 20 个 sequence_group (WCSEQ-001..020)，并基于 STRONG 标记 (15 水系) + 古文连续标记 (6 字) 重建 4 档上下文状态。同时正式将「人工验证/HUMAN_VERIFIED」改称「文本代理复核/PROXY_REVIEWED」。</p>
+
+    <h3>11.1 · 命名修正(R3.3 → R3.4)</h3>
+    <table class="mono">
+      <tr><th>旧 (R3.3)</th><th>新 (R3.4)</th></tr>
+      <tr><td><code>HUMAN_VERIFIED_BODY_PAGES</code></td><td><code>PROXY_REVIEWED_BODY_PAGES</code></td></tr>
+      <tr><td><code>STRICT_BODY_PRECISION</code></td><td><code>PROXY_REVIEW_AGREEMENT_RATE</code></td></tr>
+      <tr><td>人工验证 (UI 标签)</td><td>文本代理复核</td></tr>
+    </table>
+
+    <h3>11.2 · 序列组检测</h3>
+    <p>对 p124575 共 956 个 page_objects 按 id 顺序遍历，遇 <code>page_index = 1</code> 启动新组，连续 <code>page_index + 1</code> 延续，断点结束。检测结果：</p>
+    <pre class="mono">sequence_group_count = 20 (WCSEQ-001 .. WCSEQ-020)
+total_pages           = 956
+group_size_distribution = 11..74 pages
+12 core supporting pids 分布于 4 个 sequence_group:
+  WCSEQ-004 (7 pids: 1655, 1656, 1657, 1659, 1660, 1661, 1682)
+  WCSEQ-008 (1 pid:  1892)
+  WCSEQ-011 (2 pids: 1968, 1975)
+  WCSEQ-018 (2 pids: 2321, 2322)</pre>
+
+    <h3>11.3 · 上下文状态分布(12 core supporting pages)</h3>
+    <pre class="mono">SAME_SEQUENCE_CONTINUED = 0  (无 STRONG 标记双向重叠)
+CROSS_PAGE_VALID        = 3  (1659, 1661, 1682；古典续接标记证实)
+SINGLE_PAGE_SUFFICIENT  = 9  (同序列相邻但文本层未可证)
+CONTEXT_UNRESOLVED      = 0  (R3.3 跨组污染已全部修复)</pre>
+
+    <h3>11.4 · 证据门槛 v3(R3.4 取代 v2)</h3>
+    <p><strong>TEXT_SUPPORTED claim</strong> 必须同时满足 4 项 AND：</p>
+    <ol>
+      <li>canonical citation (SHUGE:p124575:<page_object_id>)</li>
+      <li>RULE_QUALIFIED_BODY (R3.2 strict-rule 命中)</li>
+      <li>PROXY_REVIEWED (R3.3/R3.4 OCR-text-domain 复核通过)</li>
+      <li>same-page semantic support (河名 + 历史地名 ±30 字，叙事密度 ≥ 5)</li>
+    </ol>
+    <p>跨页 claim 额外需要：</p>
+    <ol start="5">
+      <li>VALID_SEQUENCE_CONTEXT (prev/curr/next 同 WCSEQ-XXX + page_index ± 1 + STRONG/古典续接标记)</li>
+    </ol>
+
+    <h3>11.5 · 三故事重评估</h3>
+    <pre class="mono">Story 1 江水-公安-華容          TEXT_SUPPORTED   CONTEXT_PARTIAL   MODERN_UNRESOLVED
+Story 2 易水-范陽-容城-故安    TEXT_SUPPORTED   CONTEXT_PARTIAL   MODERN_UNRESOLVED
+Story 3 河水-野王-修武          TEXT_SUPPORTED   CONTEXT_PARTIAL   MODERN_UNRESOLVED</pre>
+
+    <h3>11.6 · 中文核心证据页</h3>
+    <p>12 个 unique supporting pages 已建中文核心证据页，逐页展示 canonical Citation、水系、历史地名、OCR 原文、本页能够支持什么、本页不能支持什么、sequence group、previous/current/next、context status、proxy review status。<a href="../evidence/">查看《水经注》核心证据</a></p>
+  </div>
+</section>
+
+<!-- BLOCK 12 · 技术下载                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 12</span>
     <h2>技术数据下载</h2>
     <p>本审计(R3.1 + R3.2)所有原始数据可下载(JSON + Markdown):</p>
     <ul class="mono">
@@ -640,12 +696,23 @@ RESEARCH_INDEXABLE_PAGES
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_unknown_reclassification_r3_2.json">data/water_classic_unknown_reclassification_r3_2.json</a> — 58 页 UNKNOWN 全量重审</li>
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_corpus_metrics_r3_2.json">data/water_classic_corpus_metrics_r3_2.json</a> — R3.2 final corpus metrics</li>
       <li><a href="/projects/shuge/research/water-classic/data/water_classic_story_counts_validated_r3_2.json">data/water_classic_story_counts_validated_r3_2.json</a> — 7 故事对 VALIDATED_BODY 重测</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_strict_body_validation_r3_3.json">data/water_classic_strict_body_validation_r3_3.json</a> — 100 页抽样精度(R3.3)</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_core_evidence_verified_r3_3.json">data/water_classic_core_evidence_verified_r3_3.json</a> — 12 unique core-evidence pages(R3.3)</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_sequence_groups_r3_4.json">data/water_classic_sequence_groups_r3_4.json</a> — 956 页 × 20 sequence_group(R3.4)</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_core_context_r3_4.json">data/water_classic_core_context_r3_4.json</a> — 12 核心证据页 R3.4 修正上下文</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_stories_r3_4.json">data/water_classic_stories_r3_4.json</a> — 三故事重评估(R3.4)</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md">source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md</a> — 12 个语义指标定义</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md">source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md</a> — 933 vs 956 reconciliation</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_FTS_AUDIT_R3_1.md">source/WATER_CLASSIC_FTS_AUDIT_R3_1.md</a> — FTS5 审计</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_BODY_TEXT_PRECISION_R3_2.md">source/WATER_CLASSIC_BODY_TEXT_PRECISION_R3_2.md</a> — BODY_TEXT Precision Audit(R3.2)</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_UNKNOWN_REVIEW_R3_2.md">source/WATER_CLASSIC_UNKNOWN_REVIEW_R3_2.md</a> — UNKNOWN = 58 全量重审(R3.2)</li>
       <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_2.md">source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_2.md</a> — Historical Evidence Gate 四等级(R3.2)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_STRICT_BODY_VALIDATION_R3_3.md">source/WATER_CLASSIC_STRICT_BODY_VALIDATION_R3_3.md</a> — 100 页抽样精度(R3.3)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_CORE_EVIDENCE_REVIEW_R3_3.md">source/WATER_CLASSIC_CORE_EVIDENCE_REVIEW_R3_3.md</a> — 12 unique core-evidence pages(R3.3)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_3.md">source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_3.md</a> — Evidence Gate v2(R3.3)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_CONTEXT_WINDOW_AUDIT_R3_4.md">source/WATER_CLASSIC_CONTEXT_WINDOW_AUDIT_R3_4.md</a> — R3.3 跨组污染审计(R3.4)</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_CORE_CONTEXT_REVIEW_R3_4.md">source/WATER_CLASSIC_CORE_CONTEXT_REVIEW_R3_4.md</a> — R3.4 上下文复核</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_4.md">source/WATER_CLASSIC_HISTORICAL_EVIDENCE_GATE_R3_4.md</a> — Evidence Gate v3(R3.4)</li>
     </ul>
     <p class="note">
       所有数据均来自 SHUGE-RESEARCH-DB 的 read-only SQLite 查询。

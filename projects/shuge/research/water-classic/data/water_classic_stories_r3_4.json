@@ -1,0 +1,319 @@
+{
+  "schema_version": "r3.4-stories-re-evaluation/1.0",
+  "generated_at": "2026-09-28",
+  "work_id": 124575,
+  "canonical_shuge_work_record": "post_id 124575",
+  "method": "Per-page R3.4 context_status + per-pair R3.3 verdicts → story-level TEXT_SUPPORT / CONTEXT_SUPPORT / MODERN_MAPPING",
+  "renamed_from_R33": {
+    "HUMAN_VERIFIED_BODY": "PROXY_REVIEWED_BODY",
+    "STRICT_BODY_PRECISION": "PROXY_REVIEW_AGREEMENT_RATE",
+    "manual_validation": "文本代理复核"
+  },
+  "aggregate_counts": {
+    "TEXT_CONFIRMED_STORIES": 3,
+    "TEXT_PARTIAL_STORIES": 0,
+    "CONTEXT_CONFIRMED_STORIES": 0,
+    "CONTEXT_PARTIAL_STORIES": 3,
+    "CONTEXT_UNRESOLVED_STORIES": 0,
+    "MODERN_UNRESOLVED_STORIES": 3
+  },
+  "stories": [
+    {
+      "story_id": "Story",
+      "story_name": "Story 1 江水-公安-華容",
+      "pairs": [
+        "江水+公安",
+        "江水+華容"
+      ],
+      "supporting_pages": [
+        2321,
+        2322
+      ],
+      "supporting_pages_count": 2,
+      "TEXT_SUPPORT": "TEXT_CONFIRMED",
+      "CONTEXT_SUPPORT": "CONTEXT_PARTIAL",
+      "MODERN_MAPPING": "MODERN_UNRESOLVED",
+      "pages_detail": [
+        {
+          "page_object_id": 2321,
+          "sequence_group_id": "WCSEQ-018",
+          "page_index": 2,
+          "page_label": "p0002",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "江水+華容",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 2320,
+          "next_page_object_id": 2322
+        },
+        {
+          "page_object_id": 2322,
+          "sequence_group_id": "WCSEQ-018",
+          "page_index": 3,
+          "page_label": "p0003",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "江水+公安",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "江水+華容",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 2321,
+          "next_page_object_id": 2323
+        }
+      ]
+    },
+    {
+      "story_id": "Story",
+      "story_name": "Story 2 易水-范陽-容城-故安",
+      "pairs": [
+        "易水+范陽",
+        "易水+容城",
+        "易水+故安"
+      ],
+      "supporting_pages": [
+        1655,
+        1656,
+        1657,
+        1659,
+        1660,
+        1661,
+        1682
+      ],
+      "supporting_pages_count": 7,
+      "TEXT_SUPPORT": "TEXT_CONFIRMED",
+      "CONTEXT_SUPPORT": "CONTEXT_PARTIAL",
+      "MODERN_MAPPING": "MODERN_UNRESOLVED",
+      "pages_detail": [
+        {
+          "page_object_id": 1655,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 2,
+          "page_label": "p0002",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+故安",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1654,
+          "next_page_object_id": 1656
+        },
+        {
+          "page_object_id": 1656,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 3,
+          "page_label": "p0003",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+故安",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1655,
+          "next_page_object_id": 1657
+        },
+        {
+          "page_object_id": 1657,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 4,
+          "page_label": "p0004",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+范陽",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+容城",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+故安",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1656,
+          "next_page_object_id": 1658
+        },
+        {
+          "page_object_id": 1659,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 6,
+          "page_label": "p0006",
+          "context_status": "CROSS_PAGE_VALID",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+范陽",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+容城",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+故安",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1658,
+          "next_page_object_id": 1660
+        },
+        {
+          "page_object_id": 1660,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 7,
+          "page_label": "p0007",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+范陽",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+故安",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1659,
+          "next_page_object_id": 1661
+        },
+        {
+          "page_object_id": 1661,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 8,
+          "page_label": "p0008",
+          "context_status": "CROSS_PAGE_VALID",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+范陽",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+容城",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1660,
+          "next_page_object_id": 1662
+        },
+        {
+          "page_object_id": 1682,
+          "sequence_group_id": "WCSEQ-004",
+          "page_index": 29,
+          "page_label": "p0029",
+          "context_status": "CROSS_PAGE_VALID",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "易水+范陽",
+              "status": "VERIFIED"
+            },
+            {
+              "pair": "易水+容城",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1681,
+          "next_page_object_id": 1683
+        }
+      ]
+    },
+    {
+      "story_id": "Story",
+      "story_name": "Story 3 河水-野王-修武",
+      "pairs": [
+        "河水+野王",
+        "河水+修武"
+      ],
+      "supporting_pages": [
+        1892,
+        1968,
+        1975
+      ],
+      "supporting_pages_count": 3,
+      "TEXT_SUPPORT": "TEXT_CONFIRMED",
+      "CONTEXT_SUPPORT": "CONTEXT_PARTIAL",
+      "MODERN_MAPPING": "MODERN_UNRESOLVED",
+      "pages_detail": [
+        {
+          "page_object_id": 1892,
+          "sequence_group_id": "WCSEQ-008",
+          "page_index": 31,
+          "page_label": "p0031",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "河水+野王",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1891,
+          "next_page_object_id": 1893
+        },
+        {
+          "page_object_id": 1968,
+          "sequence_group_id": "WCSEQ-011",
+          "page_index": 35,
+          "page_label": "p0035",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_CONFIRMED",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "河水+修武",
+              "status": "VERIFIED"
+            }
+          ],
+          "prev_page_object_id": 1967,
+          "next_page_object_id": 1969
+        },
+        {
+          "page_object_id": 1975,
+          "sequence_group_id": "WCSEQ-011",
+          "page_index": 42,
+          "page_label": "p0042",
+          "context_status": "SINGLE_PAGE_SUFFICIENT",
+          "text_support": "TEXT_PARTIAL",
+          "modern_mapping": "MODERN_UNRESOLVED",
+          "pair_verdicts": [
+            {
+              "pair": "河水+修武",
+              "status": "PARTIAL"
+            }
+          ],
+          "prev_page_object_id": 1974,
+          "next_page_object_id": 1976
+        }
+      ]
+    }
+  ]
+}

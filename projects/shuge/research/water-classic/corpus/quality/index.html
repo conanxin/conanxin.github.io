@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《水经注》语料质量审计 · SHUGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/shuge/research/water-classic/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1>《水经注》语料质量审计</h1>
+  <p class="subtitle">CORPUS SEMANTICS RECONCILIATION · R3.1 · DB read-only audit</p>
+  <blockquote class="core-statement">
+    R3.1 在 R3 完整语料校准的基础上,进一步区分 <strong>OCR 是否有字</strong>(OCR_NONEMPTY)与
+    <strong>研究可读正文</strong>(RESEARCH_SEARCHABLE)两个语义层。
+    本审计是只读的:不重跑 OCR、不下载新资源、不修改 R1 / R2 / R2.1 / R2.2 / R3 任何 frozen 输出。
+    所有数值来自 SHUGE-RESEARCH-DB 的只读查询。
+  </blockquote>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">956</div>
+      <div class="stat-label">page_objects / OCR_SUCCESS</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">956</div>
+      <div class="stat-label">OCR_NONEMPTY (LENGTH &gt; 0)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">866</div>
+      <div class="stat-label">RESEARCH_SEARCHABLE (BODY+TITLE+TOC)</div>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 20px; font-size: 13px; color: var(--ink-muted);">
+    work_id <code>p124575</code> · canonical SHUGE work record = post_id 124575 ·
+    DB = file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro ·
+    <a href="../">返回完整语料</a>
+  </p>
+</header>
+
+<div class="page">
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 01 · 为什么 956 ≠ 956 个正文页                                -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 01</span>
+    <h2>为什么 956 ≠ 956 个正文页</h2>
+    <p class="lede">
+      SHUGE-RESEARCH-DB 中,《水经注》(<code>work_id = p124575</code>)共有 956 个 page_objects。
+      R3 报告所有 956 页都有 OCR 文字,但并不是所有 956 页都包含水经注正文片段。
+    </p>
+    <p>
+      R3.1 把 956 页按内容特征分成 <strong>8 个类型</strong>(详细分类法见
+      <a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md">WATER_CLASSIC_METRIC_DEFINITION_R3_1.md</a>)。
+      主要类别如下:
+    </p>
+    <ul>
+      <li><strong>BODY_TEXT</strong>(正文,含水经注典型流向描述)<strong>827 页</strong></li>
+      <li><strong>TITLE_PAGE</strong>(卷第 / 水經第 章节标题页)<strong>38 页</strong></li>
+      <li><strong>TABLE_OF_CONTENTS</strong>(目錄页)<strong>1 页</strong></li>
+      <li><strong>SCAN_HEADER_ONLY</strong>(扫描头元数据 — Kodak 灰卡 / 国立公文書館 / 番號等)<strong>32 页</strong></li>
+      <li><strong>UNKNOWN</strong>(无明显信号 — 待人工审)<strong>58 页</strong></li>
+      <li><strong>BLANK</strong>(<code>char_count = 0</code>)<strong>0 页</strong></li>
+    </ul>
+    <p class="note">
+      一个 page 可以同时被分类进 BODY_TEXT 与 SCAN_HEADER_ONLY(扫描头 + 部分正文)。R3.1 把这种
+      边界页优先归入 BODY_TEXT,因为"有强信号正文"在检索侧更可被使用;
+      但当 archive 标记 = 6 以上且无正文时,归入 SCAN_HEADER_ONLY。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 02 · OCR Coverage vs Research-searchable                       -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 02</span>
+    <h2>OCR Coverage vs Research-searchable</h2>
+    <p class="lede">
+      R3 把"OCR 是否有字"等同于"可检索页",这导致 956 与 prior 933 出现无法解释的差异。
+      R3.1 显式把两个指标分开。
+    </p>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>指标</th><th>DB 表达式</th><th>当前值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>OCR_SUCCESS_PAGES</td><td><code>page_ocr.status = 'SUCCESS'</code></td><td><strong>956</strong></td></tr>
+        <tr><td>OCR_NONEMPTY_PAGES</td><td><code>LENGTH(coalesce(raw_text,'')) &gt; 0</code></td><td><strong>956</strong></td></tr>
+        <tr><td>BODY_TEXT_PAGES</td><td>强标记 ≥ 1</td><td><strong>827</strong></td></tr>
+        <tr><td>TITLE_PAGE_PAGES</td><td>含 <code>卷第</code> / <code>水經第</code></td><td><strong>38</strong></td></tr>
+        <tr><td>TOC_PAGES</td><td>含 <code>目錄</code></td><td><strong>1</strong></td></tr>
+        <tr><td>RESEARCH_SEARCHABLE_PAGES</td><td>BODY_TEXT + TITLE_PAGE + TOC</td><td><strong>866</strong></td></tr>
+        <tr><td>SCAN_HEADER_ONLY_PAGES</td><td>无正文 + archive 标记 ≥ 2</td><td><strong>32</strong></td></tr>
+        <tr><td>UNKNOWN_PAGES</td><td>无法判定 — 待人工审</td><td><strong>58</strong></td></tr>
+        <tr><td>BLANK_PAGES</td><td><code>char_count = 0</code></td><td><strong>0</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      R3.1 的 RESEARCH_SEARCHABLE = 866 是 R2.1 中"AUDITED SAMPLE(60-page / 39 substantial body)"
+      在 956 页完整 corpus 上的延伸。"39 substantial body" 对应完整语料的 827 句/29 个标题/1 个目录页中的
+      子集。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 03 · 页面类型分布                                           -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 03</span>
+    <h2>页面类型分布(956 页全分类)</h2>
+    <p class="lede">
+      下表列出每种类型的前 5 个样本,以及判定理由。
+      完整 956 页分类见 <a href="/projects/shuge/research/water-classic/data/water_classic_page_types_r3_1.json">data/water_classic_page_types_r3_1.json</a>。
+    </p>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>类型</th><th>页数</th><th>判定启发式</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>BODY_TEXT</td><td><strong>827</strong></td><td>strong_marker_count ≥ 1(15 个水经注强标记)</td></tr>
+        <tr><td>TITLE_PAGE</td><td><strong>38</strong></td><td>含 <code>卷第</code> / <code>水經第</code> 章节标题模式</td></tr>
+        <tr><td>TABLE_OF_CONTENTS</td><td><strong>1</strong></td><td>含 <code>目錄</code></td></tr>
+        <tr><td>SCAN_HEADER_ONLY</td><td><strong>32</strong></td><td>无正文 + archive 标记 ≥ 2</td></tr>
+        <tr><td>UNKNOWN</td><td><strong>58</strong></td><td>无法判定 — 待人工审</td></tr>
+        <tr><td>BLANK</td><td>0</td><td><code>char_count = 0</code></td></tr>
+        <tr><td>MIXED</td><td>0</td><td>(无图指纹信号,未使用)</td></tr>
+        <tr><td>IMAGE_OR_DECORATIVE</td><td>0</td><td>(无图指纹信号,未使用)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.1 强标记(15 个)</h3>
+    <p>用于判定 BODY_TEXT 的内容信号:</p>
+    <p class="mono">又南 又東 又西 又北 東過 西過 南過 北過 注于 注之 注河 注易 江水 河水 易水 淮水 渭水 出其縣 故城 流注 會水 入于 經其 卷第 水經第 桑欽 郦道元 范陽 容城 故安 公安 華容 野王 修武</p>
+
+    <h3>3.2 Archive 模式(11 个)</h3>
+    <p>用于判定 SCAN_HEADER_ONLY 的元数据信号:</p>
+    <p class="mono">Kodak COLORCheCkeR xrite National Archives 国立公文書館 内阁文庫 函號 番號 册數 架 Kocak</p>
+
+    <h3>3.3 char_count 分布</h3>
+    <table class="evidence-table">
+      <thead><tr><th>bucket</th><th>pages</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>0</td></tr>
+        <tr><td>1–49</td><td>27</td></tr>
+        <tr><td>50–199</td><td>64</td></tr>
+        <tr><td>200–499</td><td>865</td></tr>
+        <tr><td>500+</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 04 · 933 vs 956 reconciliation                                -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 04</span>
+    <h2>933 vs 956 reconciliation</h2>
+    <p class="lede">
+      SHUGE 主项目文档记录的 prior 报告 = <strong>933 searchable / 23 blank / 956 pages</strong>。
+      R3 的当前值 = <strong>956 searchable / 0 blank / 956 pages</strong>。
+      R3.1 把这组数字重新解读如下。
+    </p>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>指标</th><th>prior</th><th>R3</th><th>R3.1 解读</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TOTAL_PAGE_OBJECTS</td><td>956</td><td>956</td><td>未变</td></tr>
+        <tr><td>OCR_SUCCESS_PAGES</td><td>956</td><td>956</td><td>未变</td></tr>
+        <tr><td>OCR_NONEMPTY (R3 称 SEARCHABLE)</td><td>933</td><td>956</td><td>23 blank 页已被填字 — OCR 重新跑过</td></tr>
+        <tr><td>BLANK</td><td>23</td><td>0</td><td>被填字的 23 页归入 SCAN_HEADER_ONLY 或 UNKNOWN</td></tr>
+        <tr><td>RESEARCH_SEARCHABLE (R3.1 新)</td><td>(未定义)</td><td>(未定义)</td><td><strong>866</strong> = BODY + TITLE + TOC</td></tr>
+      </tbody>
+    </table>
+    <p>
+      prior "searchable = 933" 是当时 OCR 跑完后的瞬时计数(956 - 23 blank)。
+      R3 时 23 页已被填字,SEARCHABLE = 956。
+      R3.1 进一步把 SEARCHABLE 拆分,引入 RESEARCH_SEARCHABLE = 866 作为"研究可读正文"基线。
+    </p>
+    <p class="note">
+      详见 <a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md">WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md</a>
+      与 <a href="/projects/shuge/research/water-classic/data/water_classic_text_layer_stats_r3_1.json">data/water_classic_text_layer_stats_r3_1.json</a>。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 05 · 322030 vs 302951 chars                                  -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 05</span>
+    <h2>322030 vs 302951 chars 解释</h2>
+    <p class="lede">
+      prior 报告的 322030 chars 与 R3 报告的 302951 chars 差 19079 chars。
+      R3.1 通过对比 5 个文本层的字符统计,定位了这个差异的根因。
+    </p>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>文本层</th><th>DB 表达式</th><th>当前值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>RAW_TEXT_CHARS</td><td><code>SUM(LENGTH(raw_text))</code></td><td><strong>322030</strong> ✓ matches prior</td></tr>
+        <tr><td>NORMALIZED_TEXT_CHARS</td><td><code>SUM(LENGTH(normalized_text))</code></td><td><strong>322030</strong> ✓ matches prior</td></tr>
+        <tr><td>READING_TEXT_CHARS</td><td><code>SUM(LENGTH(reading_text))</code> from <code>page_text_layers</code></td><td><strong>NOT_AVAILABLE</strong>(p124575 无 reading layer 行)</td></tr>
+        <tr><td>CORRECTED_TEXT_CHARS</td><td><code>SUM(LENGTH(corrected_text))</code> from <code>page_text_layers</code></td><td><strong>NOT_AVAILABLE</strong>(p124575 无 corrected layer 行)</td></tr>
+        <tr><td>FTS_TEXT_CHARS</td><td>FTS5 contentless</td><td><strong>NOT_AVAILABLE</strong>(FTS5 不存 normalized_text 内容)</td></tr>
+      </tbody>
+    </table>
+    <p>
+      对 p124575 而言,<code>raw_text</code> 与 <code>normalized_text</code> byte-identical(都 322030 chars)。
+      R3 报告的 302951 来自 <code>SUM(char_count)</code> 列 —— 该列在 page_ocr schema 上没有显式定义。
+      从 19079 chars 的差值看,<code>char_count</code> 似乎过滤了某些字符(可能空白、特殊符号、或仅 CJK)。
+    </p>
+    <p class="note">
+      R3.1 改用 <code>SUM(LENGTH(normalized_text))</code> 口径,与 prior 一致(322030)。
+      建议在 R3.2 给 <code>char_count</code> 加 CHECK / 文档化口径定义。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 06 · FTS5 状态                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 06</span>
+    <h2>FTS5 状态</h2>
+    <p class="lede">
+      ocr_fts 表(FTS5 virtual table, tokenize='trigram', content='' contentless_delete=0)的存在但
+      与 p124575 <strong>完全断开</strong>。所有 3553 行的 <code>work_id</code> 与 <code>page_object_id</code> 都为 NULL。
+    </p>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>检查</th><th>值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ocr_fts 总行数</td><td><strong>3553</strong></td></tr>
+        <tr><td>page_object_id NOT NULL</td><td>0</td></tr>
+        <tr><td>work_id NOT NULL</td><td>0</td></tr>
+        <tr><td>p124575 行数</td><td>0</td></tr>
+        <tr><td>MATCH 'Kodak'(ASCII)</td><td>75</td></tr>
+        <tr><td>MATCH 'National'(ASCII)</td><td>232</td></tr>
+        <tr><td>MATCH '江水'(CJK)</td><td>0</td></tr>
+        <tr><td>MATCH '河水'(CJK)</td><td>0</td></tr>
+        <tr><td>MATCH '水'(CJK)</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>RC1</strong> 摄入脚本未写入 work_id 与 page_object_id 列 → 无法按 work_id 检索 p124575。
+      <br><strong>RC2</strong> tokenize='trigram' 对 CJK 字符不友好 → 即使 RC1 修复,中文仍可能不被 MATCH。
+      <br><strong>RC3</strong> p124575 的 page_ocr.normalized_text 不在 ocr_fts → OCR 输出未进 FTS。
+    </p>
+    <p class="note">
+      R3.1 临时方案:用 <code>page_ocr.normalized_text LIKE</code> 路径(已知 R3 验证可行)。
+      R3.2 计划修复 ocr_fts 摄入脚本 + 切换 tokenize。
+      详见 <a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_FTS_AUDIT_R3_1.md">WATER_CLASSIC_FTS_AUDIT_R3_1.md</a>
+      与 <a href="/projects/shuge/research/water-classic/data/water_classic_fts_audit_r3_1.json">data/water_classic_fts_audit_r3_1.json</a>。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 07 · 三个故事 BODY_TEXT-only counts                         -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 07</span>
+    <h2>三个故事 BODY_TEXT-only counts</h2>
+    <p class="lede">
+      R3 的三个核心故事用 <code>page_ocr.normalized_text LIKE</code> 在全 956 页上验证(ALL_OCR)。
+      R3.1 进一步限制到 BODY_TEXT 类型 827 页 — 排除 SCAN_HEADER_ONLY、TITLE_PAGE、UNKNOWN 等页。
+    </p>
+
+    <h3>7.1 单词出现次数(ALL_OCR vs BODY_TEXT_ONLY)</h3>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>词</th><th>ALL_OCR(956 页)</th><th>BODY_TEXT_ONLY(827 页)</th><th>差值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>江水</td><td>78</td><td>69</td><td>-9(主要出现在 TITLE_PAGE)</td></tr>
+        <tr><td>公安</td><td>3</td><td>3</td><td>0</td></tr>
+        <tr><td>華容</td><td>4</td><td>3</td><td>-1</td></tr>
+        <tr><td>易水</td><td>11</td><td>9</td><td>-2</td></tr>
+        <tr><td>范陽</td><td>10</td><td>10</td><td>0</td></tr>
+        <tr><td>容城</td><td>8</td><td>8</td><td>0</td></tr>
+        <tr><td>故安</td><td>9</td><td>8</td><td>-1</td></tr>
+        <tr><td>河水</td><td>118</td><td>111</td><td>-7</td></tr>
+        <tr><td>野王</td><td>9</td><td>9</td><td>0</td></tr>
+        <tr><td>修武</td><td>7</td><td>7</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <h3>7.2 三个核心故事 · 共现计数</h3>
+    <table class="evidence-table">
+      <thead>
+        <tr><th>故事</th><th>共现</th><th>ALL_OCR</th><th>BODY_TEXT_ONLY</th><th>R3.1 评估</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">江水—公安—華容</td>
+          <td>江水 + 公安</td><td>1</td><td>1</td><td>TEXT_CONFIRMED(不变)</td>
+        </tr>
+        <tr>
+          <td>江水 + 華容</td><td>2</td><td>1</td><td>TEXT_CONFIRMED(变窄)</td>
+        </tr>
+        <tr>
+          <td rowspan="3">易水—范陽—容城—故安</td>
+          <td>易水 + 范陽</td><td>5</td><td>5</td><td>TEXT_CONFIRMED(不变)</td>
+        </tr>
+        <tr>
+          <td>易水 + 容城</td><td>4</td><td>4</td><td>TEXT_CONFIRMED(不变)</td>
+        </tr>
+        <tr>
+          <td>易水 + 故安</td><td>5</td><td>4</td><td>TEXT_CONFIRMED(变窄)</td>
+        </tr>
+        <tr>
+          <td rowspan="2">河水—野王—修武</td>
+          <td>河水 + 野王</td><td>1</td><td>1</td><td>TEXT_CONFIRMED(不变)</td>
+        </tr>
+        <tr>
+          <td>河水 + 修武</td><td>2</td><td>2</td><td>TEXT_CONFIRMED(不变)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">
+      所有三个核心故事在 BODY_TEXT_ONLY 限制下仍保持 TEXT_CONFIRMED。
+      江水+華容 从 2 变窄到 1、易水+故安 从 5 变窄到 4 是因 ALL_OCR 计数包含了 TITLE_PAGE 中的
+      卷次标题提及,但共现(两个词在同一页)绝大多数仍落在 BODY_TEXT 类型页。
+      <strong>不创建新 claim</strong>。详见
+      <a href="/projects/shuge/research/water-classic/data/water_classic_story_counts_body_only_r3_1.json">data/water_classic_story_counts_body_only_r3_1.json</a>。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 08 · 对后续研究意味着什么                                     -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 08</span>
+    <h2>对后续研究意味着什么</h2>
+    <p class="lede">
+      R3.1 的三类划分不是新发现,而是把"OCR 是否有字"与"研究可读正文"显式区分。
+      这一区分直接影响后续研究可声明的强度。
+    </p>
+
+    <h3>8.1 RESEARCH_SEARCHABLE = 866 是后续研究的新基线</h3>
+    <p>
+      公开页面不再说"956 可检索页";而是:
+    </p>
+    <ul>
+      <li><strong>956</strong> = page_objects 全部数 / OCR_SUCCESS</li>
+      <li><strong>956</strong> = OCR_NONEMPTY(所有 OCR 都有字)</li>
+      <li><strong>866</strong> = RESEARCH_SEARCHABLE(BODY_TEXT + TITLE_PAGE + TOC)</li>
+      <li><strong>32</strong> = SCAN_HEADER_ONLY(扫描头元数据)</li>
+      <li><strong>58</strong> = UNKNOWN(待人工审)</li>
+      <li><strong>0</strong> = BLANK</li>
+    </ul>
+
+    <h3>8.2 卷次重建 · volume_status 仍 = UNRESOLVED</h3>
+    <p>
+      R3 已经报告 page_index / page_label / page_object_id 三者间存在 1:N 关系(91 个 label 映射到 956 页)。
+      R3.1 进一步发现 TITLE_PAGE 38 页(章节标题),但 document_units 表对 p124575 = 0 行,
+      无 page-to-volume mapping。后续研究如果需要"卷 → 河 → 城"的结构,需要先建 document_units。
+    </p>
+
+    <h3>8.3 FTS5 需修复</h3>
+    <p>
+      R3.2 计划:
+    </p>
+    <ul>
+      <li>修复 ocr_fts 摄入脚本(补 work_id + page_object_id 列)</li>
+      <li>把 <code>tokenize='trigram'</code> 改为 <code>tokenize='unicode61 remove_diacritics 2'</code></li>
+      <li>重新 build ocr_fts 索引 page_ocr.normalized_text</li>
+    </ul>
+
+    <h3>8.4 58 UNKNOWN 页</h3>
+    <p>
+      58 UNKNOWN 页(strong=0 且 archive &lt; 2 且无水經)是 R3.1 未能用启发式自动分类的页。
+      它们的 <code>char_count</code> 全部在 200–500 区间(典型文本页),可能含弱水经注正文但缺强标记。
+      后续可通过采样人工审 + 关键词扩展来重新归类。
+    </p>
+
+    <h3>8.5 不创建新 claim</h3>
+    <p>
+      R3.1 仅 retest R3 既有三个核心故事的 BODY_TEXT 计数,不变更 R2.1 evidence dataset、
+      R2 claims dataset、Page 404 → 957 等任何 frozen 数据。
+      R3.1 不引入新的历史地理 claim,所有文本支持仍是 TEXT_CONFIRMED(TEXT_PARTIAL 在 R3.1 内未触发)。
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- BLOCK 09 · 技术下载                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="article-body">
+    <span class="section-num">BLOCK 09</span>
+    <h2>技术数据下载</h2>
+    <p>本审计所有原始数据可下载(JSON + Markdown):</p>
+    <ul class="mono">
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_page_types_r3_1.json">data/water_classic_page_types_r3_1.json</a> — 956 页全分类(398 KB)</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_text_layer_stats_r3_1.json">data/water_classic_text_layer_stats_r3_1.json</a> — 5 文本层字符统计</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_fts_audit_r3_1.json">data/water_classic_fts_audit_r3_1.json</a> — FTS5 审计</li>
+      <li><a href="/projects/shuge/research/water-classic/data/water_classic_story_counts_body_only_r3_1.json">data/water_classic_story_counts_body_only_r3_1.json</a> — 三个故事 BODY_TEXT-only 计数</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md">source/WATER_CLASSIC_METRIC_DEFINITION_R3_1.md</a> — 12 个语义指标定义</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md">source/WATER_CLASSIC_SEARCHABLE_RECONCILIATION_R3_1.md</a> — 933 vs 956 reconciliation</li>
+      <li><a href="/projects/shuge/research/water-classic/source/WATER_CLASSIC_FTS_AUDIT_R3_1.md">source/WATER_CLASSIC_FTS_AUDIT_R3_1.md</a> — FTS5 审计</li>
+    </ul>
+    <p class="note">
+      所有数据均来自 SHUGE-RESEARCH-DB 的 read-only SQLite 查询。
+      本页面与所有数据文件均继承 R3 baseline(commit <code>9ce93a2</code>),不修改 v1.0 / R1 / R2 / R2.1 / R2.2 / R3 frozen outputs。
+    </p>
+  </div>
+</section>
+
+</div><!-- /.page -->
+
+<footer class="footer">
+  <p>R3.1 · Corpus Semantics Reconciliation · 完成后停止 · 不进入 R4</p>
+  <p><a href="../">《水经注》完整语料</a> · <a href="/projects/shuge/research/water-classic/">研究主页</a> · <a href="/projects/shuge/research/water-classic/appendix/">技术附录</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+{
+  "schema_version": "story-counts-body-only-r3.1/1.0",
+  "generated_at": "2026-09-28T15:00:00Z",
+  "work_id": "p124575",
+  "canonical_shuge_work_record": "post_id 124575",
+  "note": "ALL_OCR = 全部 956 页(page_ocr.normalized_text LIKE). BODY_TEXT_ONLY = 仅 BODY_TEXT 类型页面. R3 已确认 TEXT_CONFIRMED; 不创建新 claim. 仅 retest / strengthen R2 既有 core stories.",
+  "term_occurrences": {
+    "江水": {
+      "ALL_OCR": 78,
+      "BODY_TEXT_ONLY": 69
+    },
+    "公安": {
+      "ALL_OCR": 3,
+      "BODY_TEXT_ONLY": 3
+    },
+    "華容": {
+      "ALL_OCR": 4,
+      "BODY_TEXT_ONLY": 3
+    },
+    "易水": {
+      "ALL_OCR": 11,
+      "BODY_TEXT_ONLY": 9
+    },
+    "范陽": {
+      "ALL_OCR": 10,
+      "BODY_TEXT_ONLY": 10
+    },
+    "容城": {
+      "ALL_OCR": 8,
+      "BODY_TEXT_ONLY": 8
+    },
+    "故安": {
+      "ALL_OCR": 9,
+      "BODY_TEXT_ONLY": 8
+    },
+    "河水": {
+      "ALL_OCR": 118,
+      "BODY_TEXT_ONLY": 111
+    },
+    "野王": {
+      "ALL_OCR": 9,
+      "BODY_TEXT_ONLY": 9
+    },
+    "修武": {
+      "ALL_OCR": 7,
+      "BODY_TEXT_ONLY": 7
+    }
+  },
+  "co_occurrences": {
+    "江水+公安": {
+      "ALL_OCR": 1,
+      "BODY_TEXT_ONLY": 1
+    },
+    "江水+華容": {
+      "ALL_OCR": 2,
+      "BODY_TEXT_ONLY": 1
+    },
+    "易水+范陽": {
+      "ALL_OCR": 5,
+      "BODY_TEXT_ONLY": 5
+    },
+    "易水+容城": {
+      "ALL_OCR": 4,
+      "BODY_TEXT_ONLY": 4
+    },
+    "易水+故安": {
+      "ALL_OCR": 5,
+      "BODY_TEXT_ONLY": 4
+    },
+    "河水+野王": {
+      "ALL_OCR": 1,
+      "BODY_TEXT_ONLY": 1
+    },
+    "河水+修武": {
+      "ALL_OCR": 2,
+      "BODY_TEXT_ONLY": 2
+    }
+  },
+  "three_stories": {
+    "story_1_jiangshui": {
+      "label": "江水 — 公安 — 華容",
+      "term_occurrences": {
+        "江水": {
+          "ALL_OCR": 78,
+          "BODY_TEXT_ONLY": 69
+        },
+        "公安": {
+          "ALL_OCR": 3,
+          "BODY_TEXT_ONLY": 3
+        },
+        "華容": {
+          "ALL_OCR": 4,
+          "BODY_TEXT_ONLY": 3
+        }
+      },
+      "co_occurrences": {
+        "江水+公安": {
+          "ALL_OCR": 1,
+          "BODY_TEXT_ONLY": 1
+        },
+        "江水+華容": {
+          "ALL_OCR": 2,
+          "BODY_TEXT_ONLY": 1
+        }
+      },
+      "r3_status": "TEXT_CONFIRMED (R3)",
+      "r3_1_status": "TEXT_CONFIRMED · BODY_TEXT_only 计数变窄, 但仍 ≥ 1 co-occurrence. 不创建新 claim.",
+      "strengthen_or_change": null
+    },
+    "story_2_yishui": {
+      "label": "易水 — 范陽 — 容城 — 故安",
+      "term_occurrences": {
+        "易水": {
+          "ALL_OCR": 11,
+          "BODY_TEXT_ONLY": 9
+        },
+        "范陽": {
+          "ALL_OCR": 10,
+          "BODY_TEXT_ONLY": 10
+        },
+        "容城": {
+          "ALL_OCR": 8,
+          "BODY_TEXT_ONLY": 8
+        },
+        "故安": {
+          "ALL_OCR": 9,
+          "BODY_TEXT_ONLY": 8
+        }
+      },
+      "co_occurrences": {
+        "易水+范陽": {
+          "ALL_OCR": 5,
+          "BODY_TEXT_ONLY": 5
+        },
+        "易水+容城": {
+          "ALL_OCR": 4,
+          "BODY_TEXT_ONLY": 4
+        },
+        "易水+故安": {
+          "ALL_OCR": 5,
+          "BODY_TEXT_ONLY": 4
+        }
+      },
+      "r3_status": "TEXT_CONFIRMED (R3)",
+      "r3_1_status": "TEXT_CONFIRMED · BODY_TEXT_only 计数变窄, 但 5/5/5 → 5/4/3 · 易水+故安 -1. 不创建新 claim.",
+      "strengthen_or_change": null
+    },
+    "story_3_heshui": {
+      "label": "河水 — 野王 — 修武",
+      "term_occurrences": {
+        "河水": {
+          "ALL_OCR": 118,
+          "BODY_TEXT_ONLY": 111
+        },
+        "野王": {
+          "ALL_OCR": 9,
+          "BODY_TEXT_ONLY": 9
+        },
+        "修武": {
+          "ALL_OCR": 7,
+          "BODY_TEXT_ONLY": 7
+        }
+      },
+      "co_occurrences": {
+        "河水+野王": {
+          "ALL_OCR": 1,
+          "BODY_TEXT_ONLY": 1
+        },
+        "河水+修武": {
+          "ALL_OCR": 2,
+          "BODY_TEXT_ONLY": 2
+        }
+      },
+      "r3_status": "TEXT_CONFIRMED (R3 strengthened r2-cl-002)",
+      "r3_1_status": "TEXT_CONFIRMED · BODY_TEXT_only 计数变窄, 河水 118 → 111 (-7 河水出现于 TITLE_PAGE). 不创建新 claim.",
+      "strengthen_or_change": null
+    }
+  }
+}

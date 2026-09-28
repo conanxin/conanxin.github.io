@@ -1,0 +1,90 @@
+{
+  "schema_version": "fts-audit-r3.1/1.0",
+  "generated_at": "2026-09-28T15:00:00Z",
+  "work_id": "p124575",
+  "canonical_shuge_work_record": "post_id 124575",
+  "db_path_readonly": "file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro",
+  "hard_boundaries": {
+    "DB_WRITES": 0,
+    "FTS_REBUILT": false
+  },
+  "ocr_fts_schema": {
+    "type": "FTS5 virtual table",
+    "definition": "CREATE VIRTUAL TABLE ocr_fts USING fts5(title, author, institution, normalized_text, page_object_id UNINDEXED, work_id UNINDEXED, tokenize='trigram', content='', contentless_delete=0)",
+    "columns": ["title", "author", "institution", "normalized_text", "page_object_id (UNINDEXED)", "work_id (UNINDEXED)"],
+    "internal_tables": ["ocr_fts_data", "ocr_fts_idx", "ocr_fts_docsize", "ocr_fts_config"],
+    "key_observation": "content='' contentless_delete=0 表明这是一个 contentless FTS5 表:FTS 索引存在,但 normalized_text 内容未持久化在 SQLite 中。MATCH 查询仍然可用(基于索引的 trigram),但 SELECT normalized_text FROM ocr_fts 会返回 NULL。"
+  },
+  "ocr_fts_state": {
+    "total_rows": 3553,
+    "rows_with_page_object_id_NOT_NULL": 0,
+    "rows_with_page_object_id_NULL": 3553,
+    "rows_with_work_id_NOT_NULL": 0,
+    "rows_with_work_id_NULL": 3553,
+    "rows_for_p124575": 0,
+    "rows_for_other_works": 0,
+    "conclusion": "ocr_fts 表里有 3553 行, 但所有行的 page_object_id 与 work_id 列都为 NULL。换言之, FTS 索引与 page_objects 完全没有 rowid 关联。"
+  },
+  "ocr_fts_match_tests": {
+    "Kodak": 75,
+    "National": 232,
+    "水": 0,
+    "江": 0,
+    "河": 0,
+    "江水": 0,
+    "河水": 0,
+    "易水": 0,
+    "A": 0,
+    "interpretation": "MATCH 'Kodak' 返回 75, MATCH 'National' 返回 232, 但所有中文字符 ('水'/'江'/'河'/'江水'/'河水') 与 ASCII 单字符 'A' 都返回 0。这强烈提示 FTS5 索引的内容主要来自 ASCII 扫描头元数据 (Kodak 灰卡 / National Archives 标签等), 中文与日文档案号未被 tokenize='trigram' 切分到足够长度,索引无法命中。"
+  },
+  "rowid_relation": {
+    "ocr_fts_rowid": "每个 FTS5 row 对应一个 ocr_fts_data.id (INTEGER PRIMARY KEY)",
+    "ocr_fts_rowid_to_page_objects": "ocr_fts.page_object_id (UNINDEXED) 列本应是与 page_objects.id 的外键, 但当前所有 3553 行的 page_object_id 均为 NULL, 无法 join 回 page_objects",
+    "ocr_fts_rowid_to_page_ocr": "无直接 rowid 关联, 需通过 page_objects.id + work_id 关联, 但 page_object_id 为 NULL, 关联失败"
+  },
+  "work_id_filtering_path": {
+    "expected_path": "ocr_fts.work_id = 'p124575'",
+    "actual": "ocr_fts.work_id IS NULL (全部 3553 行)",
+    "result": "work_id 过滤返回 0 行, FTS5 不能作为 p124575 的检索路径"
+  },
+  "root_causes": [
+    {
+      "id": "RC1",
+      "title": "ocr_fts 写入时未设置 work_id 与 page_object_id",
+      "description": "3553 行的 work_id 与 page_object_id 均为 NULL。这说明 ocr_fts 的内容是在某个时刻批量写入的, 但写入时这两个 UNINDEXED 列没有被填充。可能是早期 ocr_fts 摄入脚本只填了 normalized_text, 没填这两列。",
+      "evidence": "all 3553 rows: page_object_id=NULL, work_id=NULL"
+    },
+    {
+      "id": "RC2",
+      "title": "tokenize='trigram' 对 CJK 字符不友好",
+      "description": "FTS5 的 trigram 分词器按 3-字符滑动窗口建立索引。中文与日文字符不在 ASCII trigram 路径上, 即使文本里有 '江水', 索引命中数仍可能为 0 (取决于 unicode trigram 实现)。",
+      "evidence": "MATCH 'Kodak' (ASCII) 命中 75; MATCH '江水' (CJK) 命中 0"
+    },
+    {
+      "id": "RC3",
+      "title": "p124575 的 OCR 输出在 ocr_fts 之外",
+      "description": "p124575 的 956 页 OCR 输出存在 page_ocr.normalized_text(已写入),但 ocr_fts 表并未接收这些数据。这是摄入管线 gap,而非 OCR 缺失。",
+      "evidence": "page_ocr.normalized_text LENGTH 总和 = 322030 (p124575 全文), 但 ocr_fts 中无对应 row。"
+    }
+  ],
+  "prior_report_discrepancy_explanation": {
+    "prior_value": "FTS5 healthy = 3553 (R3 之前的某份报告)",
+    "r3_value": "p124575 FTS lookup = 0",
+    "explanation": "prior 报告中的 'FTS5 healthy = 3553' 是 ocr_fts 的总行数。'healthy' 指的是 FTS 索引存在且不报错, 与能否检索到 p124575 是两回事。当前 ocr_fts 中没有任何一行与 p124575 关联(因为 work_id 与 page_object_id 全为 NULL),因此 FTS5 对 p124575 而言 **不可用**。R3 的 'FTS lookup = 0' 是 RC1+RC3 的结果,不是检索 bug。",
+    "FTS_DISCREPANCY_EXPLAINED": true
+  },
+  "recommendations": {
+    "short_term": "在 R3.1 / R3.2 阶段, 不要使用 ocr_fts 做 p124575 检索。改用 page_ocr.normalized_text 的 LIKE 路径(已知 R3 验证可行: 江水 78p / 河水 118p)。",
+    "medium_term": "修复 ocr_fts 摄入脚本, 把 work_id 与 page_object_id 写入 FTS row。修复 trigram tokenize 或切换到 unicode61 以支持 CJK。",
+    "long_term": "建立 ocr_fts integrity check: work_id NOT NULL + page_object_id NOT NULL + rowid JOIN page_objects.id 完整性测试。"
+  },
+  "summary": {
+    "ocr_fts_total_rows": 3553,
+    "ocr_fts_p124575_rows": 0,
+    "ocr_fts_p124575_with_page_obj_id": 0,
+    "ocr_fts_work_id_NULL_count": 3553,
+    "ocr_fts_page_object_id_NULL_count": 3553,
+    "FTS_DISCREPANCY_EXPLAINED": true,
+    "explanation_one_liner": "FTS5 表存在 3553 行, 但所有行 work_id=NULL + page_object_id=NULL, 因此对 p124575 而言 FTS 检索路径 = 0 行。这是摄入管线 gap, 不是数据缺失。"
+  }
+}

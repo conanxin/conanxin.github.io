@@ -20,20 +20,20 @@
   <div class="stats">
     <div class="stat">
       <div class="stat-number">956</div>
-      <div class="stat-label">完整 corpus 页数</div>
+      <div class="stat-label">page_objects / OCR_SUCCESS</div>
     </div>
     <div class="stat">
       <div class="stat-number">956</div>
-      <div class="stat-label">可检索页数 (FULL CORPUS)</div>
+      <div class="stat-label">OCR_NONEMPTY (LENGTH &gt; 0)</div>
     </div>
     <div class="stat">
-      <div class="stat-number">60</div>
-      <div class="stat-label">人工审计样本页数 (AUDITED SAMPLE)</div>
+      <div class="stat-number">866</div>
+      <div class="stat-label">RESEARCH_SEARCHABLE (BODY+TITLE+TOC)</div>
     </div>
   </div>
   <p class="subtitle" style="margin-top: 24px; font-size: 14px;">
-    <strong>FULL CORPUS</strong>(956 页 / 956 searchable / 0 zero-text / 302951 chars)<br>
-    <strong>AUDITED SAMPLE</strong>(R2 60-page sample / 39 substantial body OCR · R2.1 锁定)
+    <strong>FULL CORPUS · R3.1 三层</strong> · 956 page_objects / 956 OCR non-empty / 866 research-searchable body pages · 322030 chars · 32 SCAN_HEADER_ONLY · 58 UNKNOWN · 0 BLANK<br>
+    <strong>AUDITED SAMPLE</strong>(R2 60-page sample / 39 substantial body OCR · R2.1 锁定) · <a href="quality/">查看语料质量审计</a>
   </p>
 </header>
 
@@ -68,10 +68,10 @@
         <tr><td>OCR_SUCCESS</td><td>956</td><td>956 (via page_ocr.status)</td><td>page_objects.ocr_status 仍为 QUEUED (上游未更新)</td></tr>
         <tr><td>SEARCHABLE_PAGES</td><td>933</td><td>956</td><td>+23 页 ⚠</td></tr>
         <tr><td>ZERO_TEXT_PAGES</td><td>23</td><td>0</td><td>-23 页 ⚠</td></tr>
-        <tr><td>OCR_CHARS</td><td>322030</td><td>302951</td><td>-19079 chars ⚠</td></tr>
+        <tr><td>OCR_CHARS</td><td>322030</td><td>302951 <span class="note">(R3 用 SUM(char_count) · R3.1 改回 SUM(LENGTH(normalized_text)) = 322030)</span></td><td>-19079 chars ⚠</td></tr>
       </tbody>
     </table>
-    <p class="note">DB authoritative 报告与 EXPECTED_FROM_PRIOR_REPORT 不一致。本页面如实报告,不作修正。三处 ⚠ discrepancy 是 corpus 真实状态。</p>
+    <p class="note">DB authoritative 报告与 EXPECTED_FROM_PRIOR_REPORT 不一致。本页面如实报告,不作修正。三处 ⚠ discrepancy 在 R3.1 语料质量审计中已显式拆为 <strong>956 page_objects / 956 OCR_NONEMPTY / 866 RESEARCH_SEARCHABLE</strong> 三层(详见 <a href="quality/">corpus/quality/</a>)。</p>
 
     <h3>1.3 char_count 分布</h3>
     <table class="evidence-table">

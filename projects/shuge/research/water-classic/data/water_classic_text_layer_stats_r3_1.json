@@ -1,0 +1,65 @@
+{
+  "schema_version": "text-layer-stats-r3.1/1.0",
+  "generated_at": "2026-09-28T15:00:00Z",
+  "work_id": "p124575",
+  "canonical_shuge_work_record": "post_id 124575",
+  "db_path_readonly": "file:/home/conanxin/shuge-research-db/data/shuge.db?mode=ro",
+  "hard_boundaries": {
+    "NEW_OCR": 0,
+    "NEW_ACQUISITION": 0,
+    "NEW_HISTORICAL_CLAIMS": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0
+  },
+  "text_layer_totals": {
+    "RAW_TEXT_CHARS": {
+      "value": 322030,
+      "db_expression": "SUM(LENGTH(raw_text)) FROM page_ocr JOIN page_objects ON page_objects.id=page_ocr.page_object_id WHERE work_id='p124575'",
+      "matches_prior_report": true,
+      "prior_value": 322030,
+      "discrepancy": 0,
+      "note": "R3 报告的 302951 是 char_count 列的 SUM,与 LENGTH(raw_text) 不同(差 19079 chars)。本指标采用 LENGTH(raw_text) 以匹配 prior。"
+    },
+    "NORMALIZED_TEXT_CHARS": {
+      "value": 322030,
+      "db_expression": "SUM(LENGTH(normalized_text)) FROM page_ocr JOIN page_objects ON page_objects.id=page_ocr.page_object_id WHERE work_id='p124575'",
+      "matches_prior_report": true,
+      "prior_value": 322030,
+      "discrepancy": 0,
+      "note": "对 p124575 而言, normalized_text 与 raw_text byte-identical(都是 322030 chars)。当前 OCR 流程未做字符级 normalization。"
+    },
+    "READING_TEXT_CHARS": {
+      "value": null,
+      "db_expression": "SUM(LENGTH(reading_text)) FROM page_text_layers JOIN page_objects ON page_objects.id=page_text_layers.page_object_id WHERE work_id='p124575'",
+      "status": "NOT_AVAILABLE",
+      "reason": "page_text_layers 表存在并有 reading_text 列, 但 p124575 的 956 个 page_object 没有任何一个进入 page_text_layers (0 行)。当前 corpus 没有 reading-order 阶段的字符层。"
+    },
+    "CORRECTED_TEXT_CHARS": {
+      "value": null,
+      "db_expression": "SUM(LENGTH(corrected_text)) FROM page_text_layers JOIN page_objects ON page_objects.id=page_text_layers.page_object_id WHERE work_id='p124575'",
+      "status": "NOT_AVAILABLE",
+      "reason": "page_text_layers 表存在并有 corrected_text 列, 但 p124575 的 956 个 page_object 没有任何一个进入 page_text_layers (0 行)。当前 corpus 没有任何人工校正。"
+    },
+    "FTS_TEXT_CHARS": {
+      "value": null,
+      "db_expression": "SUM(LENGTH(normalized_text)) FROM ocr_fts WHERE page_object_id IN (SELECT id FROM page_objects WHERE work_id='p124575')",
+      "status": "NOT_AVAILABLE",
+      "reason": "ocr_fts 是 contentless FTS5 (content='' contentless_delete=0)。3553 行 page_object_id 全部为 NULL,无任何 row 对应 p124575。FTS5 字符层不可计算。"
+    }
+  },
+  "char_count_column_note": {
+    "r3_reported_value": 302951,
+    "db_expression_used_in_r3": "SUM(char_count) FROM page_ocr ...",
+    "vs_LENGTH_normalized_text": -19079,
+    "interpretation": "char_count 列在 page_ocr schema 上没有显式定义。从 19079 chars 的差值看, char_count 可能排除空白 / 特殊符号 / 仅统计 CJK。schema 文档缺失,建议在后续 sprint 给 char_count 加 CHECK / 文档化口径。"
+  },
+  "summary": {
+    "RAW_TEXT_CHARS": 322030,
+    "NORMALIZED_TEXT_CHARS": 322030,
+    "READING_TEXT_CHARS": "NOT_AVAILABLE",
+    "CORRECTED_TEXT_CHARS": "NOT_AVAILABLE",
+    "FTS_TEXT_CHARS": "NOT_AVAILABLE",
+    "PRIOR_CHARS_322030_EXPLAINED": true,
+    "explanation": "prior 322030 = SUM(LENGTH(raw_text)) = SUM(LENGTH(normalized_text)) (二者对 p124 而言 byte-identical); R3 报告的 302951 = SUM(char_count),因 char_count 列语义未定义,差 19079 chars。R3.1 改回 LENGTH 口径,与 prior 一致。"
+  }
+}

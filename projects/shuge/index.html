@@ -16,8 +16,8 @@
   <p class="subtitle">永久成果入口 · 当前专题与最新研究结论</p>
   <blockquote class="core-statement">
     <strong>当前专题:</strong>《水经注》数字证据研究。<br>
-    <strong>最新研究结论 (R3 · 完整语料校准):</strong>基于完整 corpus 956 页与 AUDITED SAMPLE 60-page,
-    三个核心故事均得到文本支持确认(<strong>江水—公安—華容</strong> 78+3+4 页 · <strong>易水—范陽—容城—故安</strong> 11+10+8+9 页 · <strong>河水—野王—修武</strong> 118+9+7 页)。
+    <strong>最新研究结论 (R3.1 · 语料质量审计):</strong>将 R3 报告的"956 searchable"显式拆为 <strong>956 page_objects</strong> · <strong>956 OCR non-empty</strong> · <strong>866 research-searchable body pages</strong> 三层。
+    三个核心故事在 BODY_TEXT_ONLY 限制下仍保持 TEXT_CONFIRMED。
     空间序列与现代地理对应仍待独立考证 (volume_status = UNRESOLVED)。
   </blockquote>
 </header>
@@ -28,7 +28,7 @@
 <!-- 进入专题 (Primary CTA · First Screen Anchor)                     -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <div class="archive-primary">
-  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a></p>
+  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a></p>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
@@ -47,7 +47,10 @@
     <p>60 evidence_refs · 9 river groups · 9 historical places · 60-page audit · R2.2 三层证据状态矩阵。</p>
 
     <h3><a href="/projects/shuge/research/water-classic/corpus/">R3 · 完整数字语料</a></h3>
-    <p>956 页 FULL CORPUS · 956 searchable · canonical Citation 系统 <code>SHUGE:p124575:&lt;page_object_id&gt;</code> · R2 60-page → 完整 corpus 映射 · 3 故事完整 corpus 重新验证。</p>
+    <p>956 页 FULL CORPUS · canonical Citation 系统 <code>SHUGE:p124575:&lt;page_object_id&gt;</code> · R2 60-page → 完整 corpus 映射 · 3 故事完整 corpus 重新验证。</p>
+
+    <h3><a href="/projects/shuge/research/water-classic/corpus/quality/">R3.1 · 语料质量审计</a></h3>
+    <p>956 page_objects / 956 OCR non-empty / <strong>866</strong> research-searchable body pages · 322030 chars · 三个核心故事 BODY_TEXT_ONLY retest · FTS5 状态 · 933/956 reconciliation · 12 指标定义。</p>
   </div>
 </section>
 
@@ -99,6 +102,7 @@
     <span class="section-num">版本历史</span>
     <h2>版本历史</h2>
     <ul class="version-list">
+      <li><span><strong>R3.1</strong> · 语料质量审计 · 三层 956/956/866 + FTS5 状态</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span><strong>R3</strong> · 完整语料校准 · FULL CORPUS vs AUDITED SAMPLE</span><span class="ver-sha">SPEC RUN</span></li>
       <li><span>R2.2 · Editorial Epistemic Clarity + 三层证据状态</span><span class="ver-sha"><code>8a5a130</code></span></li>
       <li><span>R2.1 · Evidence Identity + zh-CN focused interface</span><span class="ver-sha"><code>fda2ecb</code></span></li>

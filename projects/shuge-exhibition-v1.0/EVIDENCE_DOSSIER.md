@@ -183,7 +183,7 @@ All 6 v1.0 citations are **MEDIUM**: OCR exists, qa_status is NOT_CHECKED, but t
 | 6.1 | yes (SHUGE:p44159:552 — anchor) | yes | ✅ |
 | 7.1 | yes (3x SHUGE:...) | yes | ✅ |
 
-**All 9 claims pass v1.0 §4.** No auto-generated facts without citations.
+**All 10 claims pass v1.0 §4.** No auto-generated facts without citations.
 
 ---
 

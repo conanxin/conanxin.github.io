@@ -190,7 +190,7 @@
 | Field notes used | 2 (FN-001 + FN-004) |
 | Evidence paragraphs reused | 9 |
 | Limitations marked | 9 (one per claim) |
-| citation density | 6 unique citations / 9 claims = 0.67 (every claim has at least one citation OR marked limitation) |
+| citation density | 6 unique citations / 10 claims = 0.60 (every claim has at least one citation OR marked limitation) |
 
 ---
 

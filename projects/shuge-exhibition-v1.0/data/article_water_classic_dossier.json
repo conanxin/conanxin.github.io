@@ -247,7 +247,7 @@
   ],
   "audit": {
     "total_sections": 8,
-    "total_claims": 9,
+    "total_claims": 10,
     "total_unique_citations_used": 6,
     "total_unique_field_notes_used": 2,
     "total_unique_research_questions_used": 2,
@@ -267,8 +267,8 @@
     "total_field_notes_used": 2,
     "total_research_questions_used": 2,
     "total_evidence_paragraphs_reused": 9,
-    "total_claims_with_citation_or_limitation": 9,
-    "total_limitations_marked": 9,
+    "total_claims_with_citation_or_limitation": 10,
+    "total_limitations_marked": 10,
     "word_target_total": 2050,
     "article_local_id": "article-water-classic-digital-life-001",
     "dossier_local_id": "dossier-water-classic-digital-life"

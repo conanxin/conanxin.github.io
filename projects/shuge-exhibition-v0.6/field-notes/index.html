@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notebook · 书格数字人文研究站 · v0.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Field Notebook · v0.5</h1>
+  <div class="masthead-subtitle">实地调查笔记 schema — 链接 place × citation × observation × verification</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a>
+  </div>
+  <div class="topnav-meta">v0.5 · 2026-09-28 · schema + 4 demo notes</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Field Notebook</h1>
+  <div class="hero-lead">v0.5 实装田野笔记 schema — 16 字段,4 status: UNVERIFIED / VERIFIED / CONTRADICTED / NEEDS_REVIEW</div>
+  <p>本期只交付 <strong>schema + 4 个 demo notes</strong>。真实数据接入待 P5-E。本期 <strong>不存实际照片</strong>,GPS 全部为 placeholder。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Total Notes</th><th>VERIFIED</th><th>UNVERIFIED</th><th>NEEDS_REVIEW</th><th>CONTRADICTED</th><th>By Place</th></tr></thead>
+    <tbody id="hero-stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Schema · 16 字段</h2>
+  <p class="dim">全部定义于 <span class="mono">data/field_notes.json → schema</span>。v0.5 仅展示 schema,真实数据接入待 P5-E。</p>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><span class="mono">field_note_id</span></td><td>string</td><td>yes</td><td>FN-YYYYMMDD-3-digit-seq</td></tr>
+      <tr><td><span class="mono">place_id</span></td><td>string</td><td>yes</td><td>must match places.json place_id</td></tr>
+      <tr><td><span class="mono">date</span></td><td>string (YYYY-MM-DD)</td><td>yes</td><td>—</td></tr>
+      <tr><td><span class="mono">location_text</span></td><td>string</td><td>yes</td><td>自然语言位置描述</td></tr>
+      <tr><td><span class="mono">gps_lat</span></td><td>float</td><td>no</td><td>placeholder in v0.5; P5-E 才接入</td></tr>
+      <tr><td><span class="mono">gps_lng</span></td><td>float</td><td>no</td><td>placeholder in v0.5</td></tr>
+      <tr><td><span class="mono">weather</span></td><td>string</td><td>no</td><td>—</td></tr>
+      <tr><td><span class="mono">photos_count</span></td><td>int</td><td>no</td><td>不存实际照片,只记数</td></tr>
+      <tr><td><span class="mono">recording_count</span></td><td>int</td><td>no</td><td>—</td></tr>
+      <tr><td><span class="mono">fieldworker_name</span></td><td>string</td><td>no</td><td>v0.5 匿名化为 A/B/C</td></tr>
+      <tr><td><span class="mono">linked_citation_ids</span></td><td>array[string]</td><td>yes</td><td>SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt;</td></tr>
+      <tr><td><span class="mono">linked_evidence_card_ids</span></td><td>array[string]</td><td>no</td><td>claim_id</td></tr>
+      <tr><td><span class="mono">linked_research_question_ids</span></td><td>array[string]</td><td>no</td><td>rq_id (跨 workspace)</td></tr>
+      <tr><td><span class="mono">observation</span></td><td>string</td><td>yes</td><td>自然语言观察记录</td></tr>
+      <tr><td><span class="mono">verification_status</span></td><td>enum</td><td>yes</td><td>UNVERIFIED / VERIFIED / CONTRADICTED / NEEDS_REVIEW</td></tr>
+      <tr><td><span class="mono">tags</span></td><td>array[string]</td><td>no</td><td>—</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Verification Status Legend · 4 类型</h2>
+  <table class="meta-table">
+    <thead><tr><th>Status</th><th>Meaning</th><th>v0.5 count</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-status-archived">VERIFIED</span></td><td>已与 citation 核实,实地观察与古籍一致</td><td>1</td></tr>
+      <tr><td><span class="badge badge-status-open">UNVERIFIED</span></td><td>已记录但未核实</td><td>2</td></tr>
+      <tr><td><span class="badge badge-status-searching">NEEDS_REVIEW</span></td><td>观察到与古籍不一致,需进一步评估</td><td>1</td></tr>
+      <tr><td><span class="badge badge-no-collection">CONTRADICTED</span></td><td>实地与古籍明确矛盾</td><td>0 (本期无)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>4 Demo Notes</h2>
+  <p class="dim">点击卡片展开 16 字段详情。</p>
+  <div id="notes-grid" class="cards-grid-3"></div>
+</section>
+
+<section>
+  <h2>Cross-Note Distribution</h2>
+  <table class="meta-table" id="distribution-table">
+    <thead><tr><th>By Place</th><th>Notes Count</th><th>By Status</th><th>Count</th></tr></thead>
+    <tbody id="distribution-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Linking Map · Notes → RQ → Workspaces</h2>
+  <p class="dim">每条 note 链接到 RQ → 跨 workspace 的 research questions。</p>
+  <table class="meta-table" id="linkmap-table">
+    <thead><tr><th>Note</th><th>Linked RQ</th><th>Workspace</th></tr></thead>
+    <tbody id="linkmap-body"></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/field-notes/</a> — Field Notebook (本页)</li>
+    <li><a href="../data/field_notes.json">data/field_notes.json</a> — schema + 4 demo notes (4.7 KB)</li>
+    <li><a href="../workspaces/">/workspaces/</a> — 3 Research Workspaces</li>
+    <li><a href="../fieldwork/">/fieldwork/</a> — v0.4 Fieldwork Bridge (schema-only)</li>
+    <li><a href="../DESIGN_v0.5.md">DESIGN_v0.5.md</a> — Field Notebook 完整设计</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.5 · Field Notebook · 2026-09-28 ·
+  schema + 4 demo notes · no actual photos in v0.5 · GPS placeholder · P5-E 才接入真实数据
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function statusBadge(s) {
+    return '<span class="badge badge-status-' + s.toLowerCase() + '">' + s + '</span>';
+  }
+
+  function renderHeroStats(fn) {
+    var host = document.getElementById('hero-stats-body');
+    if (!host) return;
+    var s = fn.stats;
+    host.innerHTML = '<tr>' +
+      '<td><strong>' + s.total_demo_notes + '</strong></td>' +
+      '<td><span class="badge badge-status-archived">' + (s.by_status.VERIFIED || 0) + '</span></td>' +
+      '<td><span class="badge badge-status-open">' + (s.by_status.UNVERIFIED || 0) + '</span></td>' +
+      '<td><span class="badge badge-status-searching">' + (s.by_status.NEEDS_REVIEW || 0) + '</span></td>' +
+      '<td><span class="badge badge-no-collection">' + (s.by_status.CONTRADICTED || 0) + '</span></td>' +
+      '<td>' + Object.keys(s.by_place).length + ' places</td>' +
+    '</tr>';
+  }
+
+  function renderNotes(fn) {
+    var host = document.getElementById('notes-grid');
+    if (!host) return;
+    var html = '';
+    fn.demo_notes.forEach(function (n) {
+      var linkedCite = (n.linked_citation_ids || []).map(function (c) { return '<span class="badge mono">' + c + '</span>'; }).join(' ');
+      var linkedRq = (n.linked_research_question_ids || []).map(function (r) { return '<span class="rq-chip">' + r + '</span>'; }).join(' ');
+      var tags = (n.tags || []).map(function (t) { return '<span class="badge mono" style="font-size:0.62rem;">' + t + '</span>'; }).join(' ');
+      html += '<div class="evidence-card field-note-card" data-fn-id="' + n.field_note_id + '">' +
+        '<div class="evidence-card-header">' +
+          '<div class="evidence-card-question">' + n.field_note_id + '</div>' +
+          '<div class="evidence-card-meta">' + n.date + '</div>' +
+        '</div>' +
+        '<div class="field-note-place mono" style="font-size:0.78rem; color:var(--archival-brown); margin:0.3rem 0;">@ ' + n.place_id + '</div>' +
+        '<p style="font-family:Source Serif 4, serif; font-size:0.85rem; line-height:1.6; margin:0.4rem 0;"><em>' + n.observation + '</em></p>' +
+        '<div class="evidence-card-footer-meta">' +
+          '<span class="ecfm-coll">' + statusBadge(n.verification_status) + '</span>' +
+          '<span class="badge mono">' + n.photos_count + ' photos</span>' +
+          '<span class="badge mono">' + n.recording_count + ' rec</span>' +
+        '</div>' +
+        '<button class="toggle-btn mono" data-target="fn-detail-' + n.field_note_id + '">▶ drilldown</button>' +
+        '<div id="fn-detail-' + n.field_note_id + '" class="workspace-detail" style="display:none;">' +
+          '<div class="source-context-block">' +
+            '<div class="source-context-label">Location</div>' +
+            '<p style="font-size:0.85rem;margin:0.3rem 0;">' + n.location_text + '</p>' +
+            '<p class="mono" style="font-size:0.72rem;margin-top:0.4rem;">GPS: ' + n.gps_lat + ', ' + n.gps_lng + ' (placeholder)</p>' +
+          '</div>' +
+          '<div class="source-context-block">' +
+            '<div class="source-context-label">Fieldworker + Weather</div>' +
+            '<p style="font-size:0.85rem;margin:0.3rem 0;">' + n.fieldworker_name + ' · ' + n.weather + '</p>' +
+          '</div>' +
+          '<div class="source-context-block">' +
+            '<div class="source-context-label">Linked Citations (' + n.linked_citation_ids.length + ')</div>' +
+            '<div>' + linkedCite + '</div>' +
+          '</div>' +
+          '<div class="source-context-block">' +
+            '<div class="source-context-label">Linked Research Questions (' + n.linked_research_question_ids.length + ')</div>' +
+            '<div>' + linkedRq + '</div>' +
+          '</div>' +
+          '<div class="source-context-block">' +
+            '<div class="source-context-label">Tags</div>' +
+            '<div>' + tags + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderDistribution(fn) {
+    var host = document.getElementById('distribution-body');
+    if (!host) return;
+    var places = fn.stats.by_place;
+    var statuses = fn.stats.by_status;
+    var maxRows = Math.max(Object.keys(places).length, Object.keys(statuses).length);
+    var html = '';
+    var placeKeys = Object.keys(places);
+    var statusKeys = Object.keys(statuses);
+    for (var i = 0; i < maxRows; i++) {
+      var placeCell = i < placeKeys.length ? '<span class="mono">' + placeKeys[i] + '</span>' : '';
+      var placeCnt = i < placeKeys.length ? places[placeKeys[i]] : '';
+      var statusCell = i < statusKeys.length ? '<span class="mono">' + statusKeys[i] + '</span>' : '';
+      var statusCnt = i < statusKeys.length ? statuses[statusKeys[i]] : '';
+      html += '<tr>' +
+        '<td>' + placeCell + '</td>' +
+        '<td>' + placeCnt + '</td>' +
+        '<td>' + statusCell + '</td>' +
+        '<td>' + statusCnt + '</td>' +
+      '</tr>';
+    }
+    host.innerHTML = html;
+  }
+
+  function renderLinkMap(fn) {
+    var host = document.getElementById('linkmap-body');
+    if (!host) return;
+    var html = '';
+    fn.demo_notes.forEach(function (n) {
+      var rqList = n.linked_research_question_ids || [];
+      var rqHtml = rqList.length ? rqList.map(function (r) { return '<a href="../workspaces/#' + r + '">' + r + '</a>'; }).join(', ') : '<span class="dim">—</span>';
+      var wsHtml = '<span class="dim">(via data/research_workspaces.json)</span>';
+      html += '<tr>' +
+        '<td><strong>' + n.field_note_id + '</strong></td>' +
+        '<td>' + rqHtml + '</td>' +
+        '<td>' + wsHtml + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function bindToggle() {
+    document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tgt = document.getElementById(btn.getAttribute('data-target'));
+        if (tgt) {
+          var isOpen = tgt.style.display === 'block';
+          tgt.style.display = isOpen ? 'none' : 'block';
+          btn.textContent = isOpen ? '▶ drilldown' : '▼ drilldown';
+        }
+      });
+    });
+  }
+
+  fetch('../data/field_notes.json').then(function (r) { return r.json(); }).then(function (fn) {
+    renderHeroStats(fn);
+    renderNotes(fn);
+    renderDistribution(fn);
+    renderLinkMap(fn);
+    bindToggle();
+  }).catch(function (err) {
+    console.error('Field notes page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

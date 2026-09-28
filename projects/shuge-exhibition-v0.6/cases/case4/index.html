@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例 4 · 乃粒跨文本互证</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-case">
+<header class="masthead">
+  <h1 class="masthead-title">案例 4</h1>
+  <p class="masthead-subtitle">乃粒跨文本互证 · Na-li (Grain) Cross-textual Verification</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <span class="topnav-divider">·</span>
+    <a href="../case1/index.html">案例 1</a>
+    <a href="../case2/index.html">案例 2</a>
+    <a href="../case3/index.html">案例 3</a>
+    <a href="../case5/index.html">案例 5</a>
+  </div>
+  <div class="topnav-meta">5 works × 12 terms</div>
+</nav>
+
+<main class="body">
+  <header class="case-study-hero">
+    <div class="case-study-badges">
+      <span class="badge badge-collection-hydrology">historical-hydrology</span>
+      <span class="badge badge-collection-architecture">architecture-construction</span>
+      <span class="badge badge-no-collection">跨集合</span>
+    </div>
+    <h1>乃粒跨文本互证</h1>
+    <p class="case-study-title-en">Na-li (Grain) — A Cross-textual Verification Across 5 Works</p>
+    <p class="case-study-subtitle">稻/粟/麦/黍/稷/耕/农/灌溉/田/畊 — 当一个主题散布在 5 部古籍中</p>
+  </header>
+
+  <section class="case-section">
+    <div class="section-num">1</div>
+    <h2 class="section-label">Question</h2>
+    <p id="q4" class="question-text"></p>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">2</div>
+    <h2 class="section-label">Source</h2>
+    <div id="s4"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">3</div>
+    <h2 class="section-label">Evidence</h2>
+    <div id="e4"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">4</div>
+    <h2 class="section-label">Citation</h2>
+    <div id="c4"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">5</div>
+    <h2 class="section-label">Interpretation Boundary</h2>
+    <div id="i4"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">6</div>
+    <h2 class="section-label">Further Research</h2>
+    <ul id="f4" class="further-reading"></ul>
+  </section>
+
+  <section class="case-section">
+    <div class="takeaway" id="tk4"></div>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 4</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
+  var c = d.case_studies[3];
+  document.getElementById('q4').textContent = c.question;
+  var s = c.source;
+  var sHtml = '<h3 style="font-size:1rem">Primary Work</h3>';
+  sHtml += '<table class="meta-table">';
+  sHtml += '<tr><th>作品</th><td>' + s.primary_work.work_title + ' · <span class="mono">' + s.primary_work.work_id + '</span></td></tr>';
+  sHtml += '<tr><th>作者 / 时代</th><td>' + s.primary_work.author + '</td></tr>';
+  sHtml += '<tr><th>章节</th><td>' + s.primary_work.chapter + '</td></tr>';
+  sHtml += '<tr><th>Chapter Pages</th><td>' + s.primary_work.chapter_pages + '</td></tr>';
+  sHtml += '<tr><th>Shuge URL</th><td><a href="' + s.primary_work.shuge_url + '">' + s.primary_work.shuge_url + '</a></td></tr>';
+  sHtml += '</table>';
+  sHtml += '<h3 style="font-size:1rem;margin-top:1rem">Secondary Works (跨文本)</h3>';
+  sHtml += '<ul style="margin-left:1.5rem;font-size:0.9rem">';
+  s.secondary_works.forEach(function(w) { sHtml += '<li><span class="mono">' + w.work_id + '</span> · ' + w.work_title + ' — relevance: ' + w.relevance + '</li>'; });
+  sHtml += '</ul>';
+  sHtml += '<h3 style="font-size:1rem;margin-top:1rem">Terms Probed</h3>';
+  sHtml += '<p>' + s.terms_probed.map(function(t) { return '<span class="mono">' + t + '</span>'; }).join(' · ') + '</p>';
+  sHtml += '<p class="dim" style="margin-top:0.5rem">' + s.note + '</p>';
+  document.getElementById('s4').innerHTML = sHtml;
+  var e = c.evidence;
+  var xc = e.cross_textual_examples;
+  var eHtml = '<p>' + e.summary + '</p>';
+  eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Cross-textual Grid</h3>';
+  eHtml += '<p class="dim" style="font-size:0.82rem">summary: ' + xc.summary.total_terms_probed + ' terms probed · ' + xc.summary.terms_with_cross_work_hits + ' with cross-work hits</p>';
+  if (xc.terms && Object.keys(xc.terms).length) {
+    eHtml += '<table class="meta-table"><thead><tr><th>term</th><th>cross-work hit count</th><th>示例</th></tr></thead><tbody>';
+    Object.keys(xc.terms).forEach(function(term) {
+      var t = xc.terms[term];
+      var ex = t.examples[0] || {};
+      eHtml += '<tr><td><span class="mono">' + term + '</span></td><td><span class="mono">' + t.total_hits_sample + '</span></td><td>' + ex.work_title + ' · <span class="mono">' + ex.citation_id + '</span> · «' + ex.excerpt + '»</td></tr>';
+    });
+    eHtml += '</tbody></table>';
+  } else {
+    eHtml += '<p class="dim" style="font-size:0.85rem">当前 cross-textual 查询样本为 0 hits (5 个 works 的 page_text_layers 中 12 个农业术语未命中 LIKE pattern — 详细 trace 见 <span class="mono">data/na_li_cross_textual.json</span>)。这是 <strong>v0.3 已知边界</strong> — 完整跨文本研究需要 document_units 表完整化(后续 v0.4+ 工作)。</p>';
+  }
+  document.getElementById('e4').innerHTML = eHtml;
+  var cit = c.citation;
+  var cHtml = '<p>引用格式:<span class="mono">' + cit.format + '</span></p>';
+  cHtml += '<p>Unique work_ids:<span class="mono">' + cit.unique_work_ids.join(', ') + '</span></p>';
+  cHtml += '<p>Citation ID immutable:<span class="verified mono">' + cit.citation_id_immutable + '</span></p>';
+  document.getElementById('c4').innerHTML = cHtml;
+  var ib = c.interpretation_boundary;
+  var iHtml = '<h3 style="font-size:1rem">限制</h3><ul>';
+  ib.limitations.forEach(function(l) { iHtml += '<li>' + l + '</li>'; });
+  iHtml += '</ul><h3 style="font-size:1rem;margin-top:1rem">回归门禁</h3><ul>';
+  ib.regression_gates.forEach(function(g) { iHtml += '<li><span class="verified mono">' + g + '</span></li>'; });
+  iHtml += '</ul>';
+  document.getElementById('i4').innerHTML = iHtml;
+  var f = c.further_research;
+  var fHtml = '';
+  f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
+  document.getElementById('f4').innerHTML = fHtml;
+  var tk = '<div class="takeaway-label">Take-away</div>';
+  tk += '「乃粒」作为 <strong>主题</strong> 散布在 5 部古籍中,但作为 <strong>展品</strong> 它证明了一个边界:跨文本 cite 不形成 graph,而是 <strong>先隔离再并列</strong>。';
+  document.getElementById('tk4').innerHTML = tk;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline · 书格数字人文研究站 · v0.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Timeline Layer · v0.5</h1>
+  <div class="masthead-subtitle">4 条平行时间轨道 — 文本 / 证据 / 空间 / 集合 — 时间跨度 BCE 1100 - CE 2026</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Timeline</a>
+  </div>
+  <div class="topnav-meta">v0.5 · 2026-09-28 · 4 layers · 18 events</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Timeline Layer</h1>
+  <div class="hero-lead">4 层平行轨道展示 SHUGE 展览的时间脉络,从北魏《水经注》到 v0.5 研究工作空间。</div>
+  <p>每条 layer 有独立的颜色变量与事件 marker,跨 layer 的相同 date 可叠加显示。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Layer</th><th>Type</th><th>Color</th><th>Events</th></tr></thead>
+    <tbody id="hero-stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Layer Filter Bar</h2>
+  <p class="dim">点击按钮过滤显示对应 layer 的事件 (default = all)。</p>
+  <div id="layer-filter-bar" class="place-filter-bar"></div>
+</section>
+
+<section>
+  <h2>Multi-Track Timeline</h2>
+  <p class="dim">每条 layer 独立轨道,event marker 按 date_year 定位。点击 marker 展开详情。</p>
+  <div id="timeline-tracks" class="timeline-tracks"></div>
+</section>
+
+<section>
+  <h2>Event Detail</h2>
+  <p class="dim">点击 timeline 上的 marker 后,在此区查看完整 event 详情。</p>
+  <div id="event-detail-panel"></div>
+</section>
+
+<section>
+  <h2>Cross-Layer Compare</h2>
+  <p class="dim">跨 4 layers 的事件时间分布。</p>
+  <table class="meta-table" id="crosslayer-table">
+    <thead><tr><th>Layer</th><th>Events</th><th>Time Span</th><th>Sample Event</th></tr></thead>
+    <tbody id="crosslayer-body"></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/timeline/</a> — Timeline Layer (本页)</li>
+    <li><a href="../data/timeline_layers.json">data/timeline_layers.json</a> — 4 layers · 18 events (6.2 KB)</li>
+    <li><a href="../workspaces/">/workspaces/</a> — Research Workspaces</li>
+    <li><a href="../field-notes/">/field-notes/</a> — Field Notebook</li>
+    <li><a href="../DESIGN_v0.5.md">DESIGN_v0.5.md</a> — Timeline 完整设计</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.5 · Timeline Layer · 2026-09-28 ·
+  4 layers · 18 events · BCE 1100 - CE 2026 · 
+  sources: P5-D + v0.3 + v0.4 + v0.5 demo data
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderHeroStats(tl) {
+    var host = document.getElementById('hero-stats-body');
+    if (!host) return;
+    var html = '';
+    tl.layers.forEach(function (layer) {
+      html += '<tr>' +
+        '<td><strong>' + layer.layer_name_zh + '</strong></td>' +
+        '<td><span class="badge mono">' + layer.layer_type + '</span></td>' +
+        '<td><span class="badge mono" style="border-color:' + layer.color_hint + ';">' + layer.color_hint + '</span></td>' +
+        '<td>' + layer.events.length + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderFilterBar(tl) {
+    var host = document.getElementById('layer-filter-bar');
+    if (!host) return;
+    var html = '<button class="badge mono active" data-layer="all">all (' + tl.stats.total_events + ')</button>';
+    tl.layers.forEach(function (layer) {
+      html += '<button class="badge mono" data-layer="' + layer.layer_id + '">' + layer.layer_name_zh + ' (' + layer.events.length + ')</button>';
+    });
+    host.innerHTML = html;
+
+    host.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        host.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderTracks(tl, btn.getAttribute('data-layer'));
+      });
+    });
+  }
+
+  function renderTracks(tl, filter) {
+    var host = document.getElementById('timeline-tracks');
+    if (!host) return;
+    var html = '';
+    tl.layers.forEach(function (layer) {
+      if (filter !== 'all' && filter !== layer.layer_id) return;
+      html += '<div class="timeline-layer" id="track-' + layer.layer_id + '" style="margin-bottom:1.5rem;">' +
+        '<h3 class="mono" style="font-size:0.95rem; color:' + layer.color_hint + '; border-left:4px solid ' + layer.color_hint + '; padding-left:0.6rem; margin-bottom:0.6rem;">' +
+        layer.layer_name_zh +
+        '</h3>' +
+        '<p class="dim" style="font-size:0.82rem; margin-bottom:0.6rem;">' + layer.description + '</p>' +
+        '<div class="timeline-events">';
+      layer.events.forEach(function (evt) {
+        html += '<div class="timeline-event evidence-card" data-evt-id="' + evt.event_id + '" style="border-left:4px solid ' + layer.color_hint + '; padding:0.6rem; margin-bottom:0.5rem; cursor:pointer;">' +
+          '<div style="display:flex; justify-content:space-between; align-items:baseline;">' +
+            '<span class="mono" style="font-size:0.85rem; font-weight:600;">' + evt.title + '</span>' +
+            '<span class="badge mono">' + evt.date_label + ' (' + evt.date_year + ')</span>' +
+          '</div>' +
+          '<p style="font-size:0.78rem; line-height:1.5; margin:0.3rem 0; color:var(--archival-brown);">' + evt.description + '</p>' +
+          (evt.citation_id ? '<div class="mono" style="font-size:0.72rem;">cite: ' + evt.citation_id + '</div>' : '') +
+        '</div>';
+      });
+      html += '</div></div>';
+    });
+    host.innerHTML = html;
+
+    host.querySelectorAll('.timeline-event').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var evtId = el.getAttribute('data-evt-id');
+        showEventDetail(tl, evtId);
+        host.querySelectorAll('.timeline-event').forEach(function (e) { e.style.background = ''; });
+        el.style.background = 'var(--evidence-tint)';
+      });
+    });
+  }
+
+  function showEventDetail(tl, evtId) {
+    var host = document.getElementById('event-detail-panel');
+    if (!host) return;
+    var found = null, foundLayer = null;
+    tl.layers.forEach(function (layer) {
+      layer.events.forEach(function (evt) {
+        if (evt.event_id === evtId) {
+          found = evt;
+          foundLayer = layer;
+        }
+      });
+    });
+    if (!found) {
+      host.innerHTML = '';
+      return;
+    }
+    host.innerHTML = '<div class="evidence-card" style="border-left:4px solid ' + foundLayer.color_hint + ';">' +
+      '<div class="evidence-card-header">' +
+        '<div class="evidence-card-question">' + found.title + '</div>' +
+        '<div class="evidence-card-meta">' + found.date_label + ' (' + found.date_year + ')</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Layer</div>' +
+        '<p style="font-size:0.85rem; margin:0.3rem 0;">' + foundLayer.layer_name_zh + ' · <span class="mono">' + foundLayer.layer_type + '</span></p>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Description</div>' +
+        '<p style="font-size:0.85rem; line-height:1.6; margin:0.3rem 0;">' + found.description + '</p>' +
+      '</div>' +
+      (found.citation_id ? '<div class="source-context-block">' +
+        '<div class="source-context-label">Citation</div>' +
+        '<p class="mono" style="font-size:0.85rem; margin:0.3rem 0;">' + found.citation_id + '</p>' +
+        '</div>' : '') +
+      (found.work_id ? '<div class="source-context-block">' +
+        '<div class="source-context-label">Work</div>' +
+        '<p class="mono" style="font-size:0.85rem; margin:0.3rem 0;">' + found.work_id + '</p>' +
+        '</div>' : '') +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Event ID</div>' +
+        '<p class="mono" style="font-size:0.85rem; margin:0.3rem 0;">' + found.event_id + '</p>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderCrossLayer(tl) {
+    var host = document.getElementById('crosslayer-body');
+    if (!host) return;
+    var html = '';
+    tl.layers.forEach(function (layer) {
+      var years = layer.events.map(function (e) { return e.date_year; });
+      var minYear = Math.min.apply(null, years);
+      var maxYear = Math.max.apply(null, years);
+      var firstEvt = layer.events[0];
+      var sampleTitle = firstEvt ? firstEvt.title : '—';
+      html += '<tr>' +
+        '<td><strong>' + layer.layer_name_zh + '</strong></td>' +
+        '<td>' + layer.events.length + '</td>' +
+        '<td>' + minYear + ' → ' + maxYear + '</td>' +
+        '<td>' + sampleTitle + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  fetch('../data/timeline_layers.json').then(function (r) { return r.json(); }).then(function (tl) {
+    renderHeroStats(tl);
+    renderFilterBar(tl);
+    renderTracks(tl, 'all');
+    renderCrossLayer(tl);
+  }).catch(function (err) {
+    console.error('Timeline page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

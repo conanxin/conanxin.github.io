@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive Bridge · 书格数字人文研究平台 · v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Conan Xin Archive Bridge · v0.6</h1>
+  <div class="masthead-subtitle">Archive Bridge Schema — 3 ID namespaces · 3 contract fields · 6 invariants · 严格只读 schema,不读不写</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a><span class="topnav-divider">·</span>
+    <a href="../projects/">Projects</a><span class="topnav-divider">·</span>
+    <a href="../places-profile/">Place Profiles</a><span class="topnav-divider">·</span>
+    <a href="../field-note-input/">FN Input</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Archive</a>
+  </div>
+  <div class="topnav-meta">v0.6 · 2026-09-28 · STRICTLY READ-ONLY · 6 invariants</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Conan Xin Archive Bridge</h1>
+  <div class="hero-lead">v0.6 定义跨 archive 链接规范 — 严格只读 schema。<strong>不读</strong> Archive 内容,<strong>不写</strong> Archive 内容。</div>
+  <div class="takeaway">
+    <div class="takeaway-label">边界声明 · STRICT</div>
+    <p>本期仅文档化 bridge contract fields 与 ID naming conventions。所有 6 条 invariants 在 v0.6 完整执行。</p>
+  </div>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>ID Types Shared</th><th>Contract Fields</th><th>Invariants</th><th>v0.6 Schema Additions</th><th>Bridge Demo</th></tr></thead>
+    <tbody id="stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Boundary Statement</h2>
+  <div class="source-context-block">
+    <div class="source-context-label">STRICTLY READ-ONLY SCHEMA</div>
+    <p>v0.6 defines ID naming conventions and contract fields ONLY. NO actual reading or writing of Conan Xin Archive content.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Archive Reference</h2>
+  <table class="meta-table">
+    <tbody>
+      <tr><td><strong>Name</strong></td><td><span class="mono">Conan Xin Archive</span></td></tr>
+      <tr><td><strong>Location</strong></td><td>(unknown — Xin Conan private archive, not gated by v0.6)</td></tr>
+      <tr><td><strong>Format</strong></td><td>JSON / Markdown</td></tr>
+      <tr><td><strong>Estimated Size</strong></td><td>private</td></tr>
+      <tr><td><strong>Access Pattern</strong></td><td>xin's discretion; v0.6 has zero read access</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>ID Naming Convention · 4 Types</h2>
+  <table class="meta-table">
+    <thead><tr><th>ID Type</th><th>Format</th><th>Cross-Archive Namespace</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="mono">field_note_id</span></td>
+        <td><span class="mono">FN-YYYYMMDD-NNN</span></td>
+        <td><span class="badge badge-status-reviewed">SHARED</span></td>
+        <td><span class="mono">FN-20261005-001</span> (could be v0.6 or Archive-issued)</td>
+      </tr>
+      <tr>
+        <td><span class="mono">research_question_id</span></td>
+        <td><span class="mono">rq-&lt;topic&gt;-NNN</span></td>
+        <td><span class="badge badge-status-reviewed">SHARED</span></td>
+        <td><span class="mono">rq-ws1-001</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">gap_id</span></td>
+        <td><span class="mono">gap-&lt;topic&gt;-NNN</span></td>
+        <td><span class="badge badge-status-reviewed">SHARED</span></td>
+        <td><span class="mono">gap-ws1-001</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">project_id</span></td>
+        <td><span class="mono">rp-&lt;topic&gt;</span></td>
+        <td><span class="badge badge-status-draft">LOCAL ONLY</span></td>
+        <td><span class="mono">rp-hydrology-river-distribution</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Contract Fields · 3</h2>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Type</th><th>Read Direction</th><th>Write Direction</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="mono">linked_archive_rq_ids</span></td>
+        <td><span class="mono">array&lt;string&gt;</span></td>
+        <td>v0.6 → Archive (citation only)</td>
+        <td><span class="badge badge-status-archived">NONE</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">linked_archive_note_ids</span></td>
+        <td><span class="mono">array&lt;string&gt;</span></td>
+        <td>v0.6 → Archive (citation only)</td>
+        <td><span class="badge badge-status-archived">NONE</span></td>
+      </tr>
+      <tr>
+        <td><span class="mono">linked_archive_gap_ids</span></td>
+        <td><span class="mono">array&lt;string&gt;</span></td>
+        <td>v0.6 → Archive</td>
+        <td><span class="badge badge-status-archived">NONE</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Cross-Archive Invariants · 6</h2>
+  <ol style="font-size:0.92rem; line-height:1.7; padding-left:1.2rem;">
+    <li>v0.6 SHALL NOT read content from Conan Xin Archive (no URL fetch / git clone / API call / iFrame).</li>
+    <li>v0.6 SHALL NOT write to Conan Xin Archive (no INSERT / UPDATE / git push).</li>
+    <li>v0.6 SHALL NOT introduce submodule / symlink / hardlink to Archive.</li>
+    <li>v0.6 SHALL NOT introduce Notion / Obsidian / Roam API integration.</li>
+    <li>v0.6 MAY reference Archive-issued IDs (rq-*, FN-*, gap-*) by string only.</li>
+    <li>v0.6 SHALL display 'Pending Archive Link' placeholder for any Archive-issued ID referenced but not resolvable.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>v0.6 Schema Additions · 2</h2>
+  <table class="meta-table">
+    <thead><tr><th>Field</th><th>Added To</th><th>v0.6 Status</th><th>v0.6 Value</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="mono">linked_archive_rq_ids</span></td>
+        <td><span class="mono">research_questions.json → questions[].linked_archive_rq_ids</span></td>
+        <td>field reserved; populated by Archive endpoint (future)</td>
+        <td><span class="badge mono">[]</span> (empty array)</td>
+      </tr>
+      <tr>
+        <td><span class="mono">linked_archive_note_ids</span></td>
+        <td><span class="mono">field_notes.json → demo_notes[].linked_archive_note_ids</span></td>
+        <td>field reserved; populated by Archive endpoint (future)</td>
+        <td><span class="badge mono">[]</span> (empty array)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>v0.6 Bridge Demo · 2 RQ</h2>
+  <p class="dim">v0.6 has no actual Archive data. These fields are reserved for P5-E+Archive integration.</p>
+  <table class="meta-table" id="demo-table">
+    <thead><tr><th>v0.6 ID</th><th>Title</th><th>linked_archive_rq_ids</th><th>Note</th></tr></thead>
+    <tbody id="demo-body"></tbody>
+  </table>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/archive-bridge/</a> — Archive Bridge (本页)</li>
+    <li><a href="../data/archive_bridge.json">data/archive_bridge.json</a> — 完整 bridge schema (4.0 KB)</li>
+    <li><a href="../field-note-input/">/field-note-input/</a> — Field Note Input Spec</li>
+    <li><a href="../DESIGN_v0.6.md">DESIGN_v0.6.md</a> — v0.6 完整设计文档</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Research Platform v0.6 · Archive Bridge · 2026-09-28 ·
+  STRICTLY READ-ONLY · 6 invariants · 3 ID namespaces · 3 contract fields ·
+  no read · no write · schema only
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderStats(bridge) {
+    var host = document.getElementById('stats-body');
+    if (!host) return;
+    host.innerHTML = '<tr>' +
+      '<td>' + bridge.stats.id_types_shared + ' (3 shared + 1 local)</td>' +
+      '<td>' + bridge.stats.contract_fields + '</td>' +
+      '<td><strong>' + bridge.stats.cross_archive_invariants + '</strong></td>' +
+      '<td>' + bridge.stats.schema_additions + '</td>' +
+      '<td>' + bridge.stats.v0_6_bridge_demo_count + '</td>' +
+    '</tr>';
+  }
+
+  function renderDemo(bridge) {
+    var host = document.getElementById('demo-body');
+    if (!host) return;
+    var html = '';
+    bridge.v0_6_bridge_demo.forEach(function (d) {
+      html += '<tr>' +
+        '<td><span class="mono">' + d.v0_6_id + '</span></td>' +
+        '<td>' + d.title + '</td>' +
+        '<td><span class="badge mono">' + JSON.stringify(d.linked_archive_rq_ids) + '</span></td>' +
+        '<td class="dim" style="font-size:0.78rem;">' + d.note + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  fetch('../data/archive_bridge.json').then(function (r) { return r.json(); }).then(function (bridge) {
+    renderStats(bridge);
+    renderDemo(bridge);
+  }).catch(function (err) {
+    console.error('Archive Bridge page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

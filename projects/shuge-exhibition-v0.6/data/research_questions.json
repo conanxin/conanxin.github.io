@@ -1,0 +1,109 @@
+{
+  "version": "v0.5",
+  "generated_at": "2026-09-28T09:48:00+08:00",
+  "total_questions": 6,
+  "stats": {
+    "open": 6,
+    "answered": 0,
+    "deferred": 0
+  },
+  "questions": [
+    {
+      "rq_id": "rq-ws1-001",
+      "workspace_id": "ws-hydrology-river-distribution",
+      "text_zh": "《水经注》中记载的桑干河在历史上是否经过今河北省境内?",
+      "category": "geographical-historical",
+      "primary_collection_slug": "historical-hydrology",
+      "linked_place_ids": [
+        "place-sanggan-he"
+      ],
+      "linked_citation_ids": [
+        "SHUGE:p124575:1",
+        "SHUGE:p124575:15"
+      ],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    },
+    {
+      "rq_id": "rq-ws1-002",
+      "workspace_id": "ws-hydrology-river-distribution",
+      "text_zh": "运河作为人工水道,在《水经注》中以何名出现?",
+      "category": "terminology-historical",
+      "primary_collection_slug": "historical-hydrology",
+      "linked_place_ids": [
+        "place-grand-canal"
+      ],
+      "linked_citation_ids": [
+        "SHUGE:p48341:50"
+      ],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    },
+    {
+      "rq_id": "rq-ws2-001",
+      "workspace_id": "ws-architecture-pillar-diameter",
+      "text_zh": "《工程做法》中柱径 d 与正心 c 的比例是否为 d=2c?",
+      "category": "technical-standard",
+      "primary_collection_slug": "architecture-construction",
+      "linked_place_ids": [
+        "place-palace"
+      ],
+      "linked_citation_ids": [
+        "SHUGE:p44159:100",
+        "SHUGE:p44159:200"
+      ],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    },
+    {
+      "rq_id": "rq-ws2-002",
+      "workspace_id": "ws-architecture-pillar-diameter",
+      "text_zh": "园林建筑是否同样适用 d=2c 比例?",
+      "category": "comparative-architecture",
+      "primary_collection_slug": "architecture-construction",
+      "linked_place_ids": [
+        "place-garden"
+      ],
+      "linked_citation_ids": [
+        "SHUGE:p168491:1",
+        "SHUGE:p168491:30"
+      ],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    },
+    {
+      "rq_id": "rq-ws3-001",
+      "workspace_id": "ws-cross-hydrology-architecture",
+      "text_zh": "桥梁工程应当归入 hydrology 还是 architecture collection?",
+      "category": "boundary-classification",
+      "primary_collection_slug": "cross-cutting",
+      "linked_place_ids": [],
+      "linked_citation_ids": [],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    },
+    {
+      "rq_id": "rq-ws3-002",
+      "workspace_id": "ws-cross-hydrology-architecture",
+      "text_zh": "《水经注》中提到的桥梁,与《工程做法》中的桥梁描述如何对应?",
+      "category": "cross-textual-mapping",
+      "primary_collection_slug": "cross-cutting",
+      "linked_place_ids": [],
+      "linked_citation_ids": [],
+      "linked_evidence_card_ids": [],
+      "field_notes": [],
+      "status": "OPEN",
+      "created_at": "2026-09-28T09:48:00+08:00"
+    }
+  ]
+}

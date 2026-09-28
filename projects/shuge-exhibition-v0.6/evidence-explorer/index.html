@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Explorer · 书格数字人文研究站 · v0.4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Evidence Explorer · v0.4</h1>
+  <div class="masthead-subtitle">交互式证据浏览器 — 从 Question 追溯到 Place · Work · Collection · Fieldwork</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a>
+  </div>
+  <div class="topnav-meta">v0.4 · 2026-09-28 · read-only P5-D snapshot</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Evidence Explorer</h1>
+  <div class="hero-lead">从单一问题出发,沿证据链追溯到地理空间、原始文本、田野调查</div>
+  <p>v0.4 引入三层结构:Evidence (旧 v0.3) / Place (新) / Fieldwork (新)。本页把 12 张 evidence cards 与 10 个 places 编织成可视化的双向索引。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Item</th><th>Count</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Evidence Cards</td><td>12</td><td>data/evidence_cards_v3.json</td></tr>
+      <tr><td>Place Entities</td><td>10</td><td>data/places.json</td></tr>
+      <tr><td>Place ↔ Card Bindings</td><td>19</td><td>data/place_evidence.json</td></tr>
+      <tr><td>Graph Nodes</td><td>54</td><td>data/evidence_graph.json</td></tr>
+      <tr><td>Graph Edges</td><td>2310</td><td>data/evidence_graph.json</td></tr>
+      <tr><td>Citations Referenced</td><td>21 unique IDs</td><td>SHUGE:p&lt;post_id&gt;:&lt;page_seq&gt; (P5-D)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>三层证据结构 (Layered Evidence)</h2>
+  <table class="meta-table">
+    <thead><tr><th>Layer</th><th>Type</th><th>Source</th><th>Static?</th></tr></thead>
+    <tbody>
+      <tr><td>A. Evidence</td><td>evidence card (12)</td><td>P5-D evidence_cards_v3.json</td><td>read-only JSON</td></tr>
+      <tr><td>B. Place</td><td>place entity (10)</td><td>v0.4 places.json</td><td>read-only JSON</td></tr>
+      <tr><td>C. Fieldwork</td><td>fieldwork record (schema)</td><td>v0.4 fieldwork_schema.json</td><td>schema + 2 demo records</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Evidence Ledger · 12 Cards</h2>
+  <p class="dim">点击卡片查看 source_context · citation_path · related_place bindings。</p>
+  <div id="evidence-ledger" class="cards-grid-3"></div>
+</section>
+
+<section>
+  <h2>Place ↔ Card Cross-Reference</h2>
+  <p class="dim">10 places 中,7 个 (黄河/江水/北京/园林/宫殿/寺庙/古道_PLACEHOLDER) 已绑定到至少 1 张 evidence card。</p>
+  <div id="place-card-bridge"></div>
+</section>
+
+<section>
+  <h2>Citation Path Examples · 4 Cards</h2>
+  <p class="dim">展开查看每个 evidence card 的 citation_path (4-step retrieval + citation_id 分配过程)。</p>
+  <div id="citation-paths"></div>
+</section>
+
+<section>
+  <h2>Evidence Graph · Static Snapshot</h2>
+  <p class="dim">5 类节点 (place / work / citation / collection / evidence_card) + 7 类边。无 graph DB,纯静态 JSON 引用。</p>
+  <div class="evidence-graph-svg" id="evidence-graph-svg"></div>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Node Type</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>place</td><td>10</td></tr>
+      <tr><td>work</td><td>9</td></tr>
+      <tr><td>collection</td><td>2</td></tr>
+      <tr><td>citation</td><td>21</td></tr>
+      <tr><td>evidence_card</td><td>12</td></tr>
+    </tbody>
+  </table>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Edge Type</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>place_bound_to_citation</td><td>16</td></tr>
+      <tr><td>place_related_to_work</td><td>10</td></tr>
+      <tr><td>place_related_to_collection</td><td>8</td></tr>
+      <tr><td>citation_belongs_to_work</td><td>21</td></tr>
+      <tr><td>work_in_collection</td><td>2224</td></tr>
+      <tr><td>evidence_card_about_citation</td><td>12</td></tr>
+      <tr><td>evidence_card_about_place</td><td>19</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="takeaway">
+  <div class="takeaway-label">Take-away</div>
+  <p>三层结构让 evidence 从单维文本扩展为:文本 (Evidence) + 空间 (Place) + 现场 (Fieldwork)。三层通过 <span class="mono">citation_id</span> 唯一锁定,无 vector DB / 无 embeddings / 无 graph DB——纯静态 JSON 关联。</p>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/evidence-explorer/</a> — Evidence Explorer 主页 (本页)</li>
+    <li><a href="../places/">/places/</a> — 10 个 Place entities</li>
+    <li><a href="../fieldwork/">/fieldwork/</a> — Fieldwork Bridge schema</li>
+    <li><a href="../data/evidence_graph.json">data/evidence_graph.json</a> — 完整 graph snapshot (366 KB)</li>
+    <li><a href="../data/place_evidence.json">data/place_evidence.json</a> — Place ↔ Card 双向索引</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Exhibition v0.4 · Evidence Explorer · 2026-09-28 · 
+  数据: P5-D 终态 (DB 45,989,888 bytes) · 
+  边界: no new acquisition · no OCR · no citation ID change · no embeddings · no Neo4j · no graph DB
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// v0.4 Evidence Explorer — load JSON, render ledger, citation paths, graph
+(function () {
+  'use strict';
+  var siteRoot = '..';
+
+  function loadJSON(path, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', siteRoot + '/' + path, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try { cb(JSON.parse(xhr.responseText)); } catch (e) { cb(null); }
+      } else { cb(null); }
+    };
+    xhr.send();
+  }
+
+  // Render evidence ledger (12 cards)
+  function renderEvidenceLedger(cards) {
+    var host = document.getElementById('evidence-ledger');
+    if (!host) return;
+    cards.forEach(function (c) {
+      var card = document.createElement('div');
+      card.className = 'card';
+      var collectionBadge = '';
+      if (c.collection === 'historical-hydrology') {
+        collectionBadge = '<span class="badge badge-collection-hydrology">historical-hydrology</span>';
+      } else if (c.collection === 'architecture-construction') {
+        collectionBadge = '<span class="badge badge-collection-architecture">architecture-construction</span>';
+      } else {
+        collectionBadge = '<span class="badge badge-no-collection">no-collection</span>';
+      }
+      var sc = c.source_context || {};
+      var claimExcerpt = (c.claim_text || '').slice(0, 80) + '...';
+      card.innerHTML =
+        '<div class="card-header"><span class="card-num">' + c.claim_id + '</span>' + collectionBadge + '</div>' +
+        '<div class="card-title">' + ((c.question || '').slice(0, 60)) + '</div>' +
+        '<div class="card-subtitle dim">' + claimExcerpt + '</div>' +
+        '<div class="card-meta"><span class="mono">' + (sc.work_id || '—') + '</span> · ' + (sc.dynasty || '—') + '</div>';
+      host.appendChild(card);
+    });
+  }
+
+  // Render place ↔ card bridge table
+  function renderPlaceBridge(placeEvidence, places) {
+    var host = document.getElementById('place-card-bridge');
+    if (!host) return;
+    var placeMap = {};
+    places.forEach(function (p) { placeMap[p.place_id] = p; });
+    var html = '<table class="meta-table"><thead><tr><th>Place</th><th>Category</th><th>Status</th><th>Bound Cards</th><th>Citation IDs</th></tr></thead><tbody>';
+    places.forEach(function (p) {
+      var binding = placeEvidence.by_place[p.place_id];
+      var cardList = (binding && binding.evidence_card_ids.length) ? binding.evidence_card_ids.join(', ') : '<span class="dim">—</span>';
+      var citeList = (p.primary_citations && p.primary_citations.length) ? p.primary_citations.map(function (c) { return '<span class="mono">' + c + '</span>'; }).join(', ') : '<span class="dim">—</span>';
+      var catBadge = '<span class="badge badge-status-searching">' + p.category + '</span>';
+      var statusBadge = '<span class="badge badge-status-' + p.status.toLowerCase() + '">' + p.status + '</span>';
+      html += '<tr>' +
+        '<td><strong>' + p.name_zh + '</strong> <span class="dim mono">' + p.name_pinyin + '</span></td>' +
+        '<td>' + catBadge + '</td>' +
+        '<td>' + statusBadge + '</td>' +
+        '<td>' + cardList + '</td>' +
+        '<td>' + citeList + '</td>' +
+      '</tr>';
+    });
+    html += '</tbody></table>';
+    host.innerHTML = html;
+  }
+
+  // Render citation path examples (first 4 cards)
+  function renderCitationPaths(cards) {
+    var host = document.getElementById('citation-paths');
+    if (!host) return;
+    cards.slice(0, 4).forEach(function (c) {
+      var path = c.citation_path || [];
+      var pathHTML = '<ol class="citation-path-list">';
+      path.forEach(function (step) {
+        pathHTML += '<li>' +
+          '<span class="cp-step">[step ' + step.step + ']</span> ' +
+          '<span class="cp-action">' + step.action + '</span>' +
+          (step.input ? ' <span class="cp-input">input="' + step.input + '"</span>' : '') +
+          (step.mode ? ' <span class="cp-coll">mode=' + step.mode + '</span>' : '') +
+          (step.support_count !== undefined ? ' support=' + step.support_count : '') +
+          (step.evidence_count !== undefined ? ' evidence=' + step.evidence_count : '') +
+          (step.citation_ids ? ' <span class="cp-cite">cite=' + step.citation_ids.join(',') + '</span>' : '') +
+        '</li>';
+      });
+      pathHTML += '</ol>';
+      var block = document.createElement('details');
+      block.className = 'citation-path-block';
+      block.innerHTML = '<summary>card ' + c.claim_id + ' — ' + ((c.question || '').slice(0, 60)) + '</summary>' + pathHTML;
+      host.appendChild(block);
+    });
+  }
+
+  // Render evidence graph (static SVG, simplified node sample)
+  function renderEvidenceGraph(graph) {
+    var host = document.getElementById('evidence-graph-svg');
+    if (!host) return;
+    // Group nodes by type
+    var byType = { place: [], work: [], collection: [], citation: [], evidence_card: [] };
+    graph.nodes.forEach(function (n) { if (byType[n.type]) byType[n.type].push(n); });
+    // SVG positions: 5 columns × 11 rows
+    var W = 800, H = 480;
+    var cols = { place: 80, work: 240, citation: 400, collection: 560, evidence_card: 720 };
+    var colorMap = {
+      place: '#8b3a2e',
+      work: '#6b5944',
+      citation: '#2c4a3e',
+      collection: '#4a2c3e',
+      evidence_card: '#6b4f1f'
+    };
+    var svg = '<svg class="map-svg" viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg">';
+    // Column headers
+    Object.keys(cols).forEach(function (t) {
+      svg += '<text x="' + cols[t] + '" y="20" font-family="IBM Plex Mono" font-size="10" fill="#6b5944">' + t + ' (' + byType[t].length + ')</text>';
+    });
+    // Draw nodes (limited to 10 per type for readability)
+    var positions = {};
+    Object.keys(byType).forEach(function (t) {
+      var col_x = cols[t];
+      var nodes = byType[t].slice(0, 10);
+      nodes.forEach(function (n, i) {
+        var y = 50 + i * 38;
+        positions[n.id] = { x: col_x, y: y };
+        svg += '<circle class="map-point" cx="' + col_x + '" cy="' + y + '" r="4" fill="' + colorMap[t] + '" data-name="' + n.label_zh + '" data-type="' + t + '"><title>' + n.label_zh + '</title></circle>';
+      });
+    });
+    // Draw sample edges
+    var edgeCount = 0;
+    graph.edges.forEach(function (e) {
+      if (edgeCount >= 30) return; // limit for SVG
+      var src = positions[e.source];
+      var dst = positions[e.target];
+      if (!src || !dst) return;
+      svg += '<line x1="' + src.x + '" y1="' + src.y + '" x2="' + dst.x + '" y2="' + dst.y + '" stroke="#c8bfa9" stroke-width="0.5" opacity="0.6"/>';
+      edgeCount++;
+    });
+    svg += '</svg>';
+    svg += '<div class="dim" style="text-align:center;margin-top:0.5rem;">静态 SVG 预览 · 每类节点最多 10 个 · 总边数 2310,此处仅显示 30</div>';
+    host.innerHTML = svg;
+  }
+
+  // Load all 3 data files in parallel
+  Promise.all([
+    fetch('../data/evidence_cards_v3.json').then(function (r) { return r.json(); }),
+    fetch('../data/place_evidence.json').then(function (r) { return r.json(); }),
+    fetch('../data/places.json').then(function (r) { return r.json(); }),
+    fetch('../data/evidence_graph.json').then(function (r) { return r.json(); })
+  ]).then(function (results) {
+    var cards = results[0].cards;
+    var placeEvidence = results[1];
+    var places = results[2].places;
+    var graph = results[3];
+    renderEvidenceLedger(cards);
+    renderPlaceBridge(placeEvidence, places);
+    renderCitationPaths(cards);
+    renderEvidenceGraph(graph);
+  }).catch(function (err) {
+    console.error('Evidence Explorer load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+{
+  "version": "v0.5",
+  "generated_at": "2026-09-28T09:48:00+08:00",
+  "stats": {
+    "total_layers": 4,
+    "total_events": 18,
+    "time_span": {
+      "min_bce_year": -1100,
+      "max_ce_year": 1900
+    }
+  },
+  "layers": [
+    {
+      "layer_id": "layer-textual",
+      "layer_name_zh": "文本层 · 古典文献",
+      "layer_name_en": "Textual Layer — Classical Sources",
+      "layer_type": "TEXT",
+      "description": "古籍原文引文,按朝代排列。所有引用均来自 P5-D frozen DB。",
+      "color_hint": "var(--seal-red)",
+      "events": [
+        {
+          "event_id": "evt-text-001",
+          "date_label": "北魏",
+          "date_year": 515,
+          "title": "《水经注》成书",
+          "description": "郦道元著《水经注》,记录古代水系",
+          "citation_id": "SHUGE:p124575:1",
+          "work_id": "p124575"
+        },
+        {
+          "event_id": "evt-text-002",
+          "date_label": "宋",
+          "date_year": 1275,
+          "title": "《河防一览》编纂",
+          "description": "明代万历时期河防技术总结",
+          "citation_id": "SHUGE:p48341:1",
+          "work_id": "p48341"
+        },
+        {
+          "event_id": "evt-text-003",
+          "date_label": "清雍正",
+          "date_year": 1734,
+          "title": "《工程做法》颁行",
+          "description": "清工部颁布营造规范",
+          "citation_id": "SHUGE:p44159:1",
+          "work_id": "p44159"
+        },
+        {
+          "event_id": "evt-text-004",
+          "date_label": "明末",
+          "date_year": 1635,
+          "title": "《园冶》出版",
+          "description": "计成著《园冶》,中国第一本园林专著",
+          "citation_id": "SHUGE:p168491:1",
+          "work_id": "p168491"
+        },
+        {
+          "event_id": "evt-text-005",
+          "date_label": "宋",
+          "date_year": 1274,
+          "title": "《梦粱录》成书",
+          "description": "吴自牧著《梦粱录》,记录南宋临安府",
+          "citation_id": "SHUGE:p205024:1",
+          "work_id": "p205024"
+        }
+      ]
+    },
+    {
+      "layer_id": "layer-evidence",
+      "layer_name_zh": "证据层 · 数字证据卡",
+      "layer_name_en": "Evidence Layer — Digital Evidence Cards",
+      "layer_type": "EVIDENCE",
+      "description": "v0.3 12 evidence cards,按主题分组。",
+      "color_hint": "var(--status-green)",
+      "events": [
+        {
+          "event_id": "evt-ev-001",
+          "date_label": "v0.3",
+          "date_year": 2026,
+          "title": "水经注数字生命史 5 cards",
+          "description": "case1 包含的 5 个 claim_id"
+        },
+        {
+          "event_id": "evt-ev-002",
+          "date_label": "v0.3",
+          "date_year": 2026,
+          "title": "古代水利与河防 3 cards",
+          "description": "case2 包含的 3 个 claim_id"
+        },
+        {
+          "event_id": "evt-ev-003",
+          "date_label": "v0.3",
+          "date_year": 2026,
+          "title": "建筑营造知识 4 cards",
+          "description": "case3 包含的 4 个 claim_id"
+        }
+      ]
+    },
+    {
+      "layer_id": "layer-place",
+      "layer_name_zh": "空间层 · 实地锚点",
+      "layer_name_en": "Place Layer — Field Anchors",
+      "layer_type": "PLACE",
+      "description": "v0.4 10 place entities,所有 GPS 仅为 placeholder。",
+      "color_hint": "var(--archival-brown)",
+      "events": [
+        {
+          "event_id": "evt-place-001",
+          "date_label": "实地",
+          "date_year": 2026,
+          "title": "桑干河 (张家口)",
+          "description": "FN-20260928-001 · 河床干涸"
+        },
+        {
+          "event_id": "evt-place-002",
+          "date_label": "实地",
+          "date_year": 2026,
+          "title": "北京 (故宫)",
+          "description": "FN-20260928-002 · 柱径 d=2c 已核实"
+        },
+        {
+          "event_id": "evt-place-003",
+          "date_label": "实地",
+          "date_year": 2026,
+          "title": "北京 (颐和园)",
+          "description": "FN-20260928-003 · 柱径比例与宫殿不同"
+        },
+        {
+          "event_id": "evt-place-004",
+          "date_label": "实地",
+          "date_year": 2026,
+          "title": "运河 (通州)",
+          "description": "FN-20260928-004 · 大运河通州段仍可通航"
+        }
+      ]
+    },
+    {
+      "layer_id": "layer-collection",
+      "layer_name_zh": "集合层 · 主题策展",
+      "layer_name_en": "Collection Layer — Thematic Curation",
+      "layer_type": "COLLECTION",
+      "description": "P5-C 主题集合,v0.5 与 research workspaces 对齐。",
+      "color_hint": "var(--ink-charcoal)",
+      "events": [
+        {
+          "event_id": "evt-coll-001",
+          "date_label": "P5-C",
+          "date_year": 2026,
+          "title": "historical-hydrology 集合",
+          "description": "4 WORK + 279 PAGE memberships · 水经注/河防一览/天工开物"
+        },
+        {
+          "event_id": "evt-coll-002",
+          "date_label": "P5-C",
+          "date_year": 2026,
+          "title": "architecture-construction 集合",
+          "description": "4 WORK + 216 PAGE memberships · 工程做法/园冶/天工开物"
+        },
+        {
+          "event_id": "evt-coll-003",
+          "date_label": "v0.5",
+          "date_year": 2026,
+          "title": "research workspace 1",
+          "description": "水经注河水分布研究"
+        },
+        {
+          "event_id": "evt-coll-004",
+          "date_label": "v0.5",
+          "date_year": 2026,
+          "title": "research workspace 2",
+          "description": "工程做法柱径标准"
+        },
+        {
+          "event_id": "evt-coll-005",
+          "date_label": "v0.5",
+          "date_year": 2026,
+          "title": "research workspace 3 (cross)",
+          "description": "营造与水利交叉"
+        },
+        {
+          "event_id": "evt-coll-006",
+          "date_label": "v0.5",
+          "date_year": 2026,
+          "title": "Conan Xin Archive 入口",
+          "description": "cross-archive linking — 见 v0.5 设计文档"
+        }
+      ]
+    }
+  ]
+}

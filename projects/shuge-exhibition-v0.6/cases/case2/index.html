@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例 2 · 古代水利与河防</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-case">
+<header class="masthead">
+  <h1 class="masthead-title">案例 2</h1>
+  <p class="masthead-subtitle">古代水利与河防 · Ancient Hydrology & River Defense</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <span class="topnav-divider">·</span>
+    <a href="../case1/index.html">案例 1</a>
+    <a href="../case3/index.html">案例 3</a>
+    <a href="../case4/index.html">案例 4</a>
+    <a href="../case5/index.html">案例 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../rooms/room3/index.html">展厅 3</a>
+  </div>
+  <div class="topnav-meta"><a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 ↗</a></div>
+</nav>
+
+<main class="body">
+  <header class="case-study-hero">
+    <div class="case-study-badges">
+      <span class="badge badge-collection-hydrology">historical-hydrology</span>
+      <span class="badge">collection_id=1</span>
+    </div>
+    <h1>古代水利与河防</h1>
+    <p class="case-study-title-en">Ancient Hydrology & River Defense</p>
+    <p class="case-study-subtitle">A curated collection with deterministic governance</p>
+  </header>
+
+  <section class="case-section">
+    <div class="section-num">1</div>
+    <h2 class="section-label">Question</h2>
+    <p id="q2" class="question-text"></p>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">2</div>
+    <h2 class="section-label">Source</h2>
+    <div id="s2"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">3</div>
+    <h2 class="section-label">Evidence</h2>
+    <div id="e2"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">4</div>
+    <h2 class="section-label">Citation</h2>
+    <div id="c2"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">5</div>
+    <h2 class="section-label">Interpretation Boundary</h2>
+    <div id="i2"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">6</div>
+    <h2 class="section-label">Further Research</h2>
+    <ul id="f2" class="further-reading"></ul>
+  </section>
+
+  <section class="case-section">
+    <div class="takeaway" id="tk2"></div>
+  </section>
+
+  <p class="case-study-back"><a href="../../rooms/room3/index.html">← 返回展厅 3 (Historical Hydrology & River Defense)</a></p>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 2</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
+  var c = d.case_studies[1];
+  document.getElementById('q2').textContent = c.question;
+  var s = c.source;
+  var sHtml = '<table class="meta-table">';
+  sHtml += '<tr><th>Collection</th><td><span class="mono">' + s.collection_slug + '</span> · ' + s.collection_title_zh + ' / ' + s.collection_title_en + '</td></tr>';
+  sHtml += '<tr><th>Definition Version</th><td><span class="mono">' + s.definition_version + '</span> (' + s.definition_status + ')</td></tr>';
+  sHtml += '<tr><th>Corpus Fingerprint</th><td><span class="mono">' + s.corpus_fingerprint + '</span></td></tr>';
+  sHtml += '<tr><th>Snapshot Chain</th><td>' + s.membership_hash_chain.join(' → ') + '</td></tr>';
+  sHtml += '<tr><th>WORK 种子</th><td>';
+  s.work_seeds.forEach(function(w) { sHtml += '<span class="badge badge-collection-hydrology">' + w.work_id + ' · ' + w.work_title + '</span> '; });
+  sHtml += '</td></tr>';
+  sHtml += '<tr><th>Include Terms</th><td><span class="mono">' + s.include_terms_count + '</span> 个核心术语(示例: ' + s.include_terms_sample.join(' / ') + ' …)</td></tr>';
+  sHtml += '<tr><th>Min Confidence</th><td><span class="mono">' + s.min_confidence + '</span></td></tr>';
+  sHtml += '</table>';
+  document.getElementById('s2').innerHTML = sHtml;
+  var e = c.evidence;
+  var eHtml = '<p>' + e.summary + '</p>';
+  eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Membership 分布</h3>';
+  eHtml += '<table class="meta-table"><tr><th>WORK</th><td><span class="mono">' + e.membership_distribution.WORK + '</span></td></tr><tr><th>PAGE</th><td><span class="mono">' + e.membership_distribution.PAGE + '</span></td></tr><tr><th>Total</th><td><span class="mono">' + e.membership_distribution.total + '</span></td></tr></table>';
+  eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Rebuild Test</h3>';
+  eHtml += '<p>' + e.rebuild_test.iterations + ' 次连续重建,一致性:<span class="verified mono">' + e.rebuild_test.all_consistent + '</span> · ' + e.rebuild_test.membership_hash + '</p>';
+  document.getElementById('e2').innerHTML = eHtml;
+  var cit = c.citation;
+  var cHtml = '<p>总引用数:<span class="mono">' + cit.total_citations + '</span> · works_in_collection:<span class="mono">' + cit.works_in_collection + '</span></p>';
+  cHtml += '<h3 style="font-size:1rem;margin-top:1rem">样本 citations</h3><ul style="font-family:IBM Plex Mono,monospace;font-size:0.85rem;margin-left:1.5rem">';
+  cit.sample_citation_ids.forEach(function(id) { cHtml += '<li>' + id + '</li>'; });
+  cHtml += '</ul>';
+  document.getElementById('c2').innerHTML = cHtml;
+  var ib = c.interpretation_boundary;
+  var iHtml = '<h3 style="font-size:1rem">限制</h3><ul>';
+  ib.limitations.forEach(function(l) { iHtml += '<li>' + l + '</li>'; });
+  iHtml += '</ul><h3 style="font-size:1rem;margin-top:1rem">回归门禁</h3><ul>';
+  ib.regression_gates.forEach(function(g) { iHtml += '<li><span class="verified mono">' + g + '</span></li>'; });
+  iHtml += '</ul>';
+  document.getElementById('i2').innerHTML = iHtml;
+  var f = c.further_research;
+  var fHtml = '';
+  f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
+  document.getElementById('f2').innerHTML = fHtml;
+  var tk = '<div class="takeaway-label">Take-away</div>';
+  tk += '一个 collection 不是「一堆页面」,而是 <strong>研究问题 + curated terms + 可治理的成员清单 + 审计链</strong>。重建幂等意味着任何未来研究者拿到规则都能重建出完全一致的成员集合。';
+  document.getElementById('tk2').innerHTML = tk;
+});
+</script>
+</body>
+</html>

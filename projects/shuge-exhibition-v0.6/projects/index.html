@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Projects · 书格数字人文研究平台 · v0.6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Noto+Serif+CJK+SC:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="masthead">
+  <h1 class="masthead-title">Research Projects · v0.6</h1>
+  <div class="masthead-subtitle">完整研究项目页面 — 从 question 到 gaps,9-section 完整结构,跨 question × place × citation × evidence × field note × timeline</div>
+</div>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../">Overview</a><span class="topnav-divider">·</span>
+    <a href="../rooms/room1/">Rooms</a><span class="topnav-divider">·</span>
+    <a href="../cases/case1/">Cases</a><span class="topnav-divider">·</span>
+    <a href="../evidence-explorer/">Evidence Explorer</a><span class="topnav-divider">·</span>
+    <a href="../places/">Places</a><span class="topnav-divider">·</span>
+    <a href="../fieldwork/">Fieldwork</a><span class="topnav-divider">·</span>
+    <a href="../workspaces/">Workspaces</a><span class="topnav-divider">·</span>
+    <a href="../field-notes/">Field Notes</a><span class="topnav-divider">·</span>
+    <a href="../timeline/">Timeline</a><span class="topnav-divider">·</span>
+    <a href="./" class="active">Projects</a><span class="topnav-divider">·</span>
+    <a href="../places-profile/">Place Profiles</a><span class="topnav-divider">·</span>
+    <a href="../field-note-input/">FN Input</a><span class="topnav-divider">·</span>
+    <a href="../archive-bridge/">Archive</a>
+  </div>
+  <div class="topnav-meta">v0.6 · 2026-09-28 · 3 projects · 6 RQ · 18 citations · 4 notes</div>
+</nav>
+
+<main class="body">
+
+<section class="hero">
+  <h1>Research Projects</h1>
+  <div class="hero-lead">v0.6 完整研究项目页面 — 每个 project 包含 9 个 section,跨 question × place × citation × evidence × field note × timeline × gap。</div>
+  <p>从 v0.5 「workspaces 列表」升级为 v0.6 「完整 project page」。</p>
+  <table class="meta-table" style="margin-top:1rem;">
+    <thead><tr><th>Project</th><th>Collections</th><th>Places</th><th>Citations</th><th>Notes</th><th>RQ</th><th>Gaps</th></tr></thead>
+    <tbody id="stats-body"></tbody>
+  </table>
+</section>
+
+<section>
+  <h2>3 Research Projects</h2>
+  <p class="dim">点击卡片展开 9-section 完整 project detail。</p>
+  <div id="project-grid" class="cards-grid-3"></div>
+</section>
+
+<section>
+  <h2>Cross-Project Compare</h2>
+  <table class="meta-table" id="compare-table">
+    <thead>
+      <tr><th>Project</th><th>Sub-questions</th><th>RQ (open/total)</th><th>Places</th><th>Citations</th><th>Notes</th><th>Evidence Cards</th><th>Gaps</th></tr>
+    </thead>
+    <tbody id="compare-body"></tbody>
+  </table>
+  <div class="takeaway" style="margin-top:1rem;">
+    <div class="takeaway-label">Take-away</div>
+    <p>3 个 project 总共覆盖 <strong>6 RQ (全部 OPEN)</strong> · <strong>18 citations</strong> · <strong>4 field notes</strong> · <strong>7 gaps</strong>。<span class="mono">rp-architecture-pillar-diameter</span> 拥有 2 个 field notes (故宫 + 颐和园实测),是 v0.6 数据密度最高的 project。</p>
+  </div>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="./">/projects/</a> — Research Projects (本页)</li>
+    <li><a href="../data/research_projects.json">data/research_projects.json</a> — 完整 schema (8.4 KB · 3 projects)</li>
+    <li><a href="../workspaces/">/workspaces/</a> — v0.5 Research Workspaces (上一层)</li>
+    <li><a href="../places-profile/">/places-profile/</a> — 10 个 Place Profiles (v0.6 NEW)</li>
+    <li><a href="../DESIGN_v0.6.md">DESIGN_v0.6.md</a> — v0.6 完整设计文档</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  SHUGE DH Research Platform v0.6 · Research Projects · 2026-09-28 ·
+  3 projects · 6 RQ · 18 citations · 4 notes · 7 gaps ·
+  sources: P5-D + v0.5 + v0.4 + v0.3 · no new acquisition · Citation IDs unchanged
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function renderStatsTable(rp) {
+    var host = document.getElementById('stats-body');
+    if (!host) return;
+    var html = '';
+    rp.projects.forEach(function (p) {
+      html += '<tr>' +
+        '<td><strong>' + p.title_zh + '</strong><br><span class="dim mono" style="font-size:0.72rem;">' + p.project_id + '</span></td>' +
+        '<td>' + p.collection_slugs.map(function (s) { return '<span class="badge">' + s + '</span>'; }).join(' ') + '</td>' +
+        '<td>' + p.stats.places + '</td>' +
+        '<td>' + p.stats.citations + '</td>' +
+        '<td>' + p.stats.field_notes + '</td>' +
+        '<td>' + p.stats.research_questions + '</td>' +
+        '<td>' + p.stats.gaps_open + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderProjectGrid(p) {
+    var host = document.getElementById('project-grid');
+    if (!host) return;
+    var html = '';
+    p.projects.forEach(function (proj) {
+      html += '<div class="evidence-card project-card" data-proj-id="' + proj.project_id + '">' +
+        '<div class="evidence-card-header">' +
+          '<div class="evidence-card-question">' + proj.title_zh + '</div>' +
+          '<div class="evidence-card-meta">' + proj.project_id + '</div>' +
+        '</div>' +
+        '<p style="font-family:Source Serif 4, serif; font-size:0.92rem; line-height:1.6; margin:0.6rem 0;"><strong>Q:</strong> ' + proj.research_question + '</p>' +
+        '<div class="evidence-card-footer-meta">' +
+          '<span class="ecfm-coll">collections: ' + proj.collection_slugs.join(', ') + '</span>' +
+          '<span class="badge mono">' + proj.stats.places + ' places</span>' +
+          '<span class="badge mono">' + proj.stats.citations + ' citations</span>' +
+          '<span class="badge mono">' + proj.stats.field_notes + ' notes</span>' +
+          '<span class="badge mono">' + proj.stats.gaps_open + ' gaps</span>' +
+        '</div>' +
+        '<button class="toggle-btn mono" data-target="proj-detail-' + proj.project_id + '">▶ 9-section drilldown</button>' +
+        '<div id="proj-detail-' + proj.project_id + '" class="project-detail" style="display:none;">' +
+          renderDrilldown(proj) +
+        '</div>' +
+      '</div>';
+    });
+    host.innerHTML = html;
+  }
+
+  function renderDrilldown(p) {
+    var subQ = (p.sub_questions || []).map(function (q) { return '<li>' + q + '</li>'; }).join('');
+    var rqHtml = p.research_questions.map(function (r) {
+      return '<li><span class="rq-chip rq-status-' + r.status.toLowerCase() + '">' + r.status + '</span> <strong>' + r.rq_id + '</strong>: ' + r.text + '</li>';
+    }).join('');
+    var placeHtml = p.linked_place_ids.map(function (pid) {
+      return '<a href="../places-profile/#' + pid + '" class="badge mono">' + pid + '</a>';
+    }).join(' ');
+    var citeHtml = p.linked_citation_ids.map(function (c) {
+      return '<span class="badge mono">' + c + '</span>';
+    }).join(' ');
+    var cardHtml = p.linked_evidence_card_ids.map(function (c) {
+      return '<span class="badge mono">' + c + '</span>';
+    }).join(' ') || '<span class="dim">—</span>';
+    var noteHtml = p.linked_field_note_ids.map(function (n) {
+      return '<a href="../field-notes/#' + n + '" class="badge mono">' + n + '</a>';
+    }).join(' ') || '<span class="dim">—</span>';
+    var timelineHtml = p.linked_timeline_event_ids.map(function (t) {
+      return '<a href="../timeline/#' + t + '" class="badge mono">' + t + '</a>';
+    }).join(' ') || '<span class="dim">—</span>';
+    var gapHtml = p.gaps.map(function (g) {
+      return '<li><span class="gap-indicator gap-status-' + g.status.toLowerCase() + '">' + g.status + '</span> <strong>' + g.gap_id + '</strong>: ' + g.description + '</li>';
+    }).join('');
+
+    return '' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Sub-questions (' + p.sub_questions.length + ')</div>' +
+        '<ol style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + subQ + '</ol>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Research Questions (' + p.research_questions.length + ')</div>' +
+        '<ul style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + rqHtml + '</ul>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Collections</div>' +
+        '<p style="font-size:0.85rem;margin:0.3rem 0;">' + p.linked_collections.join(', ') + '</p>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Places (' + p.linked_place_ids.length + ')</div>' +
+        '<div>' + placeHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Citations (' + p.linked_citation_ids.length + ')</div>' +
+        '<div>' + citeHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Evidence Cards (' + p.linked_evidence_card_ids.length + ')</div>' +
+        '<div>' + cardHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Field Notes (' + p.linked_field_note_ids.length + ')</div>' +
+        '<div>' + noteHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Linked Timeline Events (' + p.linked_timeline_event_ids.length + ')</div>' +
+        '<div>' + timelineHtml + '</div>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Gaps (' + p.gaps.length + ')</div>' +
+        '<ul style="font-size:0.85rem; line-height:1.6; padding-left:1.2rem;">' + gapHtml + '</ul>' +
+      '</div>' +
+      '<div class="source-context-block">' +
+        '<div class="source-context-label">Stats (9 fields)</div>' +
+        '<div class="evidence-card-mono-grid">' +
+          '<span>sub_questions: ' + p.stats.sub_questions + '</span>' +
+          '<span>research_questions: ' + p.stats.research_questions + '</span>' +
+          '<span>open_questions: ' + p.stats.open_questions + '</span>' +
+          '<span>places: ' + p.stats.places + '</span>' +
+          '<span>citations: ' + p.stats.citations + '</span>' +
+          '<span>evidence_cards: ' + p.stats.evidence_cards + '</span>' +
+          '<span>field_notes: ' + p.stats.field_notes + '</span>' +
+          '<span>timeline_events: ' + p.stats.timeline_events + '</span>' +
+          '<span>gaps_open: ' + p.stats.gaps_open + '</span>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function renderCompareTable(rp) {
+    var host = document.getElementById('compare-body');
+    if (!host) return;
+    var html = '';
+    rp.projects.forEach(function (p) {
+      html += '<tr>' +
+        '<td><strong>' + p.title_zh + '</strong></td>' +
+        '<td>' + p.stats.sub_questions + '</td>' +
+        '<td>' + p.stats.open_questions + '/' + p.stats.research_questions + '</td>' +
+        '<td>' + p.stats.places + '</td>' +
+        '<td>' + p.stats.citations + '</td>' +
+        '<td>' + p.stats.field_notes + '</td>' +
+        '<td>' + p.stats.evidence_cards + '</td>' +
+        '<td>' + p.stats.gaps_open + '</td>' +
+      '</tr>';
+    });
+    host.innerHTML = html;
+  }
+
+  function bindToggle() {
+    document.querySelectorAll('.toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tgt = document.getElementById(btn.getAttribute('data-target'));
+        if (tgt) {
+          var isOpen = tgt.style.display === 'block';
+          tgt.style.display = isOpen ? 'none' : 'block';
+          btn.textContent = isOpen ? '▶ 9-section drilldown' : '▼ 9-section drilldown';
+        }
+      });
+    });
+  }
+
+  fetch('../data/research_projects.json').then(function (r) { return r.json(); }).then(function (rp) {
+    renderStatsTable(rp);
+    renderProjectGrid(rp);
+    renderCompareTable(rp);
+    bindToggle();
+  }).catch(function (err) {
+    console.error('Projects page load failed:', err);
+  });
+})();
+</script>
+
+</body>
+</html>

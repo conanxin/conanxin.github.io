@@ -11,16 +11,15 @@
 </head>
 <body>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- HERO  (D — title + subtitle + core statement + 3 numbers)        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
 <header class="hero">
   <h1>《水经注》数字证据研究</h1>
-  <p class="subtitle">从页级文本重新观察河流、城邑与历史空间</p>
-  <p class="core-statement">
-    我们首先纠正了<strong>《水经注》的数字对象身份</strong>,
-    并从现有文本片段中识别出<strong>三组值得继续研究的河流—城邑空间关系</strong>。
-  </p>
+  <p class="subtitle">从文本片段观察河流、城邑与历史空间</p>
+  <blockquote class="core-statement">
+    当前证据表明,《水经注》的现有 OCR 片段中可以识别出多组"水系—城邑"共现关系,
+    其中<strong>江水 — 公安 — 华容</strong>、
+    <strong>易水 — 范阳 — 容城 — 故安</strong>、
+    <strong>河水 — 野王 — 修武</strong>最值得继续研究。
+  </blockquote>
   <div class="stats">
     <div class="stat">
       <div class="stat-number">39</div>
@@ -28,11 +27,11 @@
     </div>
     <div class="stat">
       <div class="stat-number">3</div>
-      <div class="stat-label">核心历史地理问题</div>
+      <div class="stat-label">核心研究故事</div>
     </div>
     <div class="stat">
       <div class="stat-number">6</div>
-      <div class="stat-label">R2 evidence-first claims</div>
+      <div class="stat-label">证据论断</div>
     </div>
   </div>
 </header>
@@ -40,160 +39,182 @@
 <div class="page">
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 01 — 核心发现                                                  -->
+<!-- BLOCK 01 · 研究结论                                              -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
-    <span class="section-num">§ 01</span>
-    <h2>核心发现</h2>
-    <p class="lede">本研究的起点,不是某个文本解读,而是一个数字对象身份的纠正。</p>
-
-    <p>此前版本的 v1.0 文章把《水经注》的数字对象错引为 <code>work-shuge-168491</code>。但 <code>post_id=168491</code> 实际是 <strong>《园冶》</strong>(Ming garden design by 计成, 1635),与《水经注》无关。真正的《水经注》 canonical post_id 是 <code>124575</code>,来自<strong>国立公文書館 / 内閣文庫</strong>(Japan's National Archives, Cabinet Library 数字化版本)。</p>
-
-    <p>这一校正之后,所有 60-page sample 的页级证据才真正指向《水经注》文本片段。我们随后发现:60 个 page_id 共享 5 个 unique page_label (<code>p0001</code>–<code>p0005</code>);每个 page_seq 值出现在 12–14 个不同 page_id 中。换言之,既有的 legacy citation 格式 <code>SHUGE:p124575:&lt;seq&gt;</code> <strong>无法唯一标识实际 page</strong>。R2.1 阶段为此新增了研究展示层唯一 evidence_ref <code>WC124575:PAGE&lt;page_id&gt;</code>,其与 page_id 一一对应,collision_count = 0。</p>
-
-    <p>基于这个更可靠的身份层,R2 从 R1 已冻结的 60-page sample + 18 evidence-first claims,进入真实历史地理证据组织阶段,提出三个核心问题、识别三组代表证据,并明确当前可以确认与不能确认的研究结论。</p>
+    <span class="section-num">BLOCK 01</span>
+    <h2>研究结论</h2>
+    <p class="lede">
+      基于 60-page sample,其中 39 页具有足够正文片段,可用于当前证据分析。
+      每一个"可以确认"都来自真实可追溯的 body OCR;每一个"尚不能确认"都对应一个具体的方法学缺口。
+    </p>
+    <p>
+      为了让公开页面的"研究表达强度"严格匹配"证据支持强度",本页面为每个核心故事标注三层证据状态:
+    </p>
+    <ul class="level-intro">
+      <li><strong>文本支持</strong> — 已确认 / 部分确认 (TEXT_CONFIRMED · TEXT_PARTIAL)</li>
+      <li><strong>空间解释</strong> — 初步支持 / 待确认 (SPATIAL_PRELIMINARY · SPATIAL_UNRESOLVED)</li>
+      <li><strong>现代对应</strong> — 未确认 (MODERN_UNRESOLVED)</li>
+    </ul>
+    <p class="note">现代水系对应关系待独立考证。本页面不直接将江水等同于现代长江,不将河水等同于现代黄河。</p>
   </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 02 — 三个研究问题                                             -->
+<!-- BLOCK 02 · 三组核心证据                                            -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
-    <span class="section-num">§ 02</span>
-    <h2>三个研究问题</h2>
-    <p class="lede">围绕 60-page sample 中的真实文本片段,本研究提出三个核心历史地理问题。每个问题都来自真实 body OCR 中可识别、可定位的城邑与水系关系。</p>
+    <span class="section-num">BLOCK 02</span>
+    <h2>三组核心证据</h2>
+    <p class="lede">
+      以下三个故事来自 60-page sample 中真实可追溯的 body OCR 片段。
+      每个故事展示一段典型文本、目前可以确认的内容、还不能确认的内容,以及三层证据状态。
+      技术 ID 默认折叠。
+    </p>
 
-    <h3>RQ1 · 江水沿岸的 公安 与 華容</h3>
-    <p>长江(江水)在《水经注》中的描述是否同时覆盖 公安縣 与 華容 两个沿岸城邑?两县在文本上呈何种接续关系?</p>
-
-    <h3>RQ2 · 河水叙事中的 野王 与 修武</h3>
-    <p>黄河(河水)叙事中,野王縣 与 修武 是否共享同一水文地理片段?清水、吴澤 等水系在两县之间扮演什么角色?</p>
-
-    <h3>RQ3 · 易水流域的 范陽 / 容城 / 故安</h3>
-    <p>易水流域中,范陽 / 容城 / 故安城 三地名是否同时出现在《水经注》文本中?三地的空间序列如何分布?</p>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 03 — 三组代表证据                                             -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">§ 03</span>
-    <h2>三组代表证据</h2>
-    <p class="lede">以下三组证据来自 R1 substantial pages 的真实 body OCR 片段。每个故事都展示一段典型文本、涉及地点、当前解释、支持状态与唯一 evidence_ref。技术细节默认隐藏,点击"查看证据详情"展开。</p>
-
-    <!-- ─── Story 1 ─── -->
+    <!-- ─── Story 1 · 江水 — 公安 — 華容 ─── -->
     <article class="story">
       <h3 class="story-title">江水沿岸的两个县城</h3>
       <p class="story-river-line">江水<span class="sep">→</span>公安<span class="sep">→</span>華容</p>
 
-      <p class="story-section-label">研究问题</p>
-      <p>江水(长江)沿岸的 公安縣 与 華容 是否同时出现在《水经注》文本中?</p>
-
-      <p class="story-section-label">OCR 原文 (page_id=2322)</p>
+      <p class="story-section-label">OCR 原文</p>
       <blockquote class="excerpt">
-        江水又右杨歧北山。江水又东得故市口。江水左會高口。又東經公安縣北。又東南油水从西南来注之又東右合油口。江水又南平郡屏陵縣之樂鄉城北。山抗大江山東有城故華容縣尉舊治地。
+        江水又右楊歧北山。江水又東得故市口。江水左會高口。又東經公安縣北。
+        又東南油水从西南来注之又東右合油口。江水又南平郡屏陵縣之樂鄉城北。
+        山抗大江山東有城故華容縣尉舊治地。
       </blockquote>
 
-      <p class="story-section-label">涉及地点</p>
-      <p>公安縣 · 華容</p>
+      <p class="story-section-label">目前可以确认</p>
+      <p>公安縣、華容 出现在同一段江水相关文本中。文本片段同时出现两县名称,显示江水叙事覆盖这一河段。</p>
 
-      <p class="story-section-label">当前解释</p>
-      <p class="current-explanation">江水(长江) 自西向东经 公安縣北,继而南下,经 華容縣 故治地。两县在文本上呈"江水—城邑"接续关系。同一段落同时出现两县名称,说明江水叙事覆盖这一连续河段。</p>
+      <p class="story-section-label">还不能确认</p>
+      <p>江水与现代长江的等同关系。两县具体的上下游空间序列。江水沿岸其他城邑。</p>
 
-      <p class="story-section-label">支持状态</p>
-      <p class="status-line"><span class="pill-supported">已支持</span><span class="en-machine">SUPPORTED</span> · 3 页 · r2-cl-001 · RQ1</p>
+      <div class="status-triad">
+        <div class="status-row">
+          <span class="status-key">文本支持</span>
+          <span class="status-value-confirmed">已确认</span>
+          <span class="en-machine">TEXT_CONFIRMED</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">空间解释</span>
+          <span class="status-value-preliminary">初步支持</span>
+          <span class="en-machine">SPATIAL_PRELIMINARY</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">现代对应</span>
+          <span class="status-value-unresolved">未确认</span>
+          <span class="en-machine">MODERN_UNRESOLVED</span>
+        </div>
+      </div>
 
       <details class="tech">
-        <summary>查看证据详情</summary>
+        <summary>查看技术 ID</summary>
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE2321 · WC124575:PAGE2322 · WC124575:PAGE2323</dd>
-            <dt>page_id</dt><dd>2321 · 2322 · 2323</dd>
-            <dt>legacy_citation_id</dt><dd>SHUGE:p124575:2 · SHUGE:p124575:3 · SHUGE:p124575:4</dd>
-            <dt>page_object_id</dt><dd>p124575:p2 · p124575:p3 · p124575:p4</dd>
-            <dt>page_label</dt><dd>p0002 · p0003 · p0004</dd>
-            <dt>OCR reliability</dt><dd>BODY_TEXT (×2) · MIXED_PARTIAL_BODY (×1)</dd>
-            <dt>limitations</dt><dd>江水与沿岸城邑的具体空间描述需全页 OCR;现代坐标绑定 UNRESOLVED。</dd>
+            <dt>linked_claim</dt><dd>r2-cl-001</dd>
+            <dt>pages</dt><dd>3 substantial body OCR</dd>
           </dl>
         </div>
       </details>
     </article>
 
-    <!-- ─── Story 2 ─── -->
+    <!-- ─── Story 2 · 易水 — 范陽 — 容城 — 故安 ─── -->
     <article class="story">
       <h3 class="story-title">易水流域的三座城邑</h3>
       <p class="story-river-line">易水<span class="sep">→</span>范陽<span class="sep">→</span>容城<span class="sep">→</span>故安</p>
 
-      <p class="story-section-label">研究问题</p>
-      <p>易水流域中,范陽 / 容城 / 故安城 三地名是否同时出现在《水经注》文本中?</p>
-
-      <p class="story-section-label">OCR 原文 (page_id=1657)</p>
+      <p class="story-section-label">OCR 原文</p>
       <blockquote class="excerpt">
-        東過范陽縣南又东過容城縣南。更属佳觀失其一水東出金毫陂東西六七十步南。邃岸高深左右百步一毫参差交時超相望。臺陂一水經故安城西侧城南注易水。灰塘崇峻之故清南出屈而东轉又分為二一水东注金。
+        東過范陽縣南又東過容城縣南。更属佳觀失其一水東出金毫陂東西六七十步南。
+        邃岸高深左右百步一毫参差交時超相望。臺陂一水經故安城西侧城南注易水。
+        灰塘崇峻之故清南出屈而東轉又分為二一水東注金。
       </blockquote>
 
-      <p class="story-section-label">涉及地点</p>
-      <p>范陽 · 容城 · 故安城</p>
+      <p class="story-section-label">目前可以确认</p>
+      <p>范陽、容城、故安 出现在同一组易水相关文本片段中,并伴随"东过""城西""城南""注易水"等方向描述。</p>
 
-      <p class="story-section-label">当前解释</p>
-      <p class="current-explanation">易水 东过 范陽縣南,又东过 容城縣南;同时 臺陂一水 经 故安城 西侧城南 注易水。三地在同一水文叙事中构成上下游—支流接续关系,体现了易水作为河北水系的结构。</p>
+      <p class="story-section-label">还不能确认</p>
+      <p>三地完整的空间序列。三地与现代河北水系的对应关系。其余易水支流的结构。</p>
 
-      <p class="story-section-label">支持状态</p>
-      <p class="status-line"><span class="pill-supported">已支持</span><span class="en-machine">SUPPORTED</span> · 4 页 · r2-cl-003 · RQ3</p>
+      <div class="status-triad">
+        <div class="status-row">
+          <span class="status-key">文本支持</span>
+          <span class="status-value-confirmed">已确认</span>
+          <span class="en-machine">TEXT_CONFIRMED</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">空间解释</span>
+          <span class="status-value-unresolved">待确认</span>
+          <span class="en-machine">SPATIAL_UNRESOLVED</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">现代对应</span>
+          <span class="status-value-unresolved">未确认</span>
+          <span class="en-machine">MODERN_UNRESOLVED</span>
+        </div>
+      </div>
+      <p class="story-note">其完整空间序列仍需全页 OCR 与卷次重建确认。</p>
 
       <details class="tech">
-        <summary>查看证据详情</summary>
+        <summary>查看技术 ID</summary>
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE1655 · WC124575:PAGE1656 · WC124575:PAGE1657 · WC124575:PAGE1865</dd>
-            <dt>page_id</dt><dd>1655 · 1656 · 1657 · 1865</dd>
-            <dt>legacy_citation_id</dt><dd>SHUGE:p124575:2 · SHUGE:p124575:3 · SHUGE:p124575:4 · SHUGE:p124575:4</dd>
-            <dt>page_object_id</dt><dd>p124575:p2 · p124575:p3 · p124575:p4 · p124575:p4</dd>
-            <dt>page_label</dt><dd>p0002 · p0003 · p0004 · p0004</dd>
-            <dt>OCR reliability</dt><dd>BODY_TEXT (×4)</dd>
-            <dt>limitations</dt><dd>三地文本序列(先后顺序、段落分布)需要按 page_seq 排序并读全页 OCR;现代坐标绑定 UNRESOLVED。</dd>
+            <dt>linked_claim</dt><dd>r2-cl-003</dd>
+            <dt>pages</dt><dd>4 substantial body OCR</dd>
           </dl>
         </div>
       </details>
     </article>
 
-    <!-- ─── Story 3 ─── -->
+    <!-- ─── Story 3 · 河水 — 野王 — 修武 ─── -->
     <article class="story">
       <h3 class="story-title">河水片段中的两个县城</h3>
       <p class="story-river-line">河水<span class="sep">→</span>野王<span class="sep">→</span>修武</p>
 
-      <p class="story-section-label">研究问题</p>
-      <p>河水(黄河)叙事中,野王縣 与 修武 是否共享同一水文地理片段?</p>
-
-      <p class="story-section-label">OCR 原文 (page_id=1594)</p>
+      <p class="story-section-label">OCR 原文</p>
       <blockquote class="excerpt">
-        有二源北水上承河内野王縣東北界溝喬長明。陂南北二十許里東西三十里西则蔡溝人焉。澤矣魏土地記日修武城西北二十里有吴澤水。奥滕公濟自玉門津而宿小修武者也。大即吴侯國亦日大修武有小故大小修武在東。
+        有二源北水上承河内野王縣東北界溝喬長明。
+        陂南北二十許里東西三十里西則蔡溝人焉。
+        澤矣魏土地記曰修武城西北二十里有吴澤水。
+        奥滕公濟自玉門津而宿小修武者也。大即吴侯國亦曰大修武有小故大小修武在東。
       </blockquote>
 
-      <p class="story-section-label">涉及地点</p>
-      <p>野王縣 · 修武</p>
+      <p class="story-section-label">目前可以确认</p>
+      <p>野王、修武 出现在同一段水文叙事中,且与"河内""蔡溝""吴澤"等水文元素共现。</p>
 
-      <p class="story-section-label">当前解释</p>
-      <p class="current-explanation">一段以"河内野王縣東北界"开始的水文描述,通过 蔡溝 等水系连接到"修武城西北二十里有吴澤水"。两县在文本上呈"河内—水文"接续关系。但两县具体的空间关系(上下游、距离)需要全页 OCR 才能精确描述,因此本组证据当前为"部分支持"。</p>
+      <p class="story-section-label">还不能确认</p>
+      <p>河水与现代黄河的等同关系。两县具体的上下游与距离关系。本组证据仅有 2 页 substantial body OCR,样本量不足以建立空间序列论断。</p>
 
-      <p class="story-section-label">支持状态</p>
-      <p class="status-line"><span class="pill-partial">部分支持</span><span class="en-machine">PARTIALLY_SUPPORTED</span> · 2 页 · r2-cl-002 · RQ2</p>
+      <div class="status-triad">
+        <div class="status-row">
+          <span class="status-key">文本支持</span>
+          <span class="status-value-partial">部分确认</span>
+          <span class="en-machine">TEXT_PARTIAL</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">空间解释</span>
+          <span class="status-value-unresolved">待确认</span>
+          <span class="en-machine">SPATIAL_UNRESOLVED</span>
+        </div>
+        <div class="status-row">
+          <span class="status-key">现代对应</span>
+          <span class="status-value-unresolved">未确认</span>
+          <span class="en-machine">MODERN_UNRESOLVED</span>
+        </div>
+      </div>
 
       <details class="tech">
-        <summary>查看证据详情</summary>
+        <summary>查看技术 ID</summary>
         <div class="tech-body">
           <dl>
             <dt>evidence_ref</dt><dd>WC124575:PAGE1593 · WC124575:PAGE1594</dd>
-            <dt>page_id</dt><dd>1593 · 1594</dd>
-            <dt>legacy_citation_id</dt><dd>SHUGE:p124575:3 · SHUGE:p124575:4</dd>
-            <dt>page_object_id</dt><dd>p124575:p3 · p124575:p4</dd>
-            <dt>page_label</dt><dd>p0003 · p0004</dd>
-            <dt>OCR reliability</dt><dd>BODY_TEXT (×2)</dd>
-            <dt>limitations</dt><dd>空间关系(上下游、距离)需要全页 OCR 才能精确描述;现代坐标绑定 UNRESOLVED;只有 2 页 substantial body OCR。</dd>
+            <dt>linked_claim</dt><dd>r2-cl-002</dd>
+            <dt>pages</dt><dd>2 substantial body OCR (样本量不足)</dd>
           </dl>
         </div>
       </details>
@@ -202,115 +223,59 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 04 — 当前可以确认                                              -->
+<!-- BLOCK 03 · 可以确认 / 尚不能确认 (左 / 右)                          -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
-    <span class="section-num">§ 04</span>
-    <h2>当前可以确认</h2>
-    <p class="lede">以下 4 条 evidence-first claims 在 R1 substantial pages 中得到真实 body OCR 文本的支持。每条 claim 都附带 evidence_ref,可独立追溯。</p>
+    <span class="section-num">BLOCK 03</span>
+    <h2>可以确认 / 尚不能确认</h2>
+    <p class="lede">基于当前 corpus 真实证据,以下区分本页可以负责任地说出的内容,以及当前不能确认的内容。</p>
 
-    <ul>
-      <li><strong>江水 + 公安 / 華容</strong> · 3 页 · <code>r2-cl-001</code> · RQ1 · <code>WC124575:PAGE2321/2322/2323</code></li>
-      <li><strong>易水 + 范陽 / 容城 / 故安城</strong> · 4 页 · <code>r2-cl-003</code> · RQ3 · <code>WC124575:PAGE1655/1656/1657/1865</code></li>
-      <li><strong>汾水 + 代城</strong> · 2 页 · <code>r2-cl-004</code> · BONUS · <code>WC124575:PAGE2004/2005</code></li>
-      <li><strong>汝水 + 霍陽山 / 梁</strong> · 3 页 · <code>r2-cl-005</code> · BONUS · <code>WC124575:PAGE2077/2078/2079</code></li>
-    </ul>
-
-    <p>这 4 条 claims 共同支撑了一个核心判断:在《水经注》60-page sample 的真实文本片段中,长江、易水、汾水、汝水四水系都能找到可定位、可追溯的城邑证据;且这种"水—城"关系在文本中以"水文叙事"方式呈现。</p>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 05 — 当前不能确认                                              -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">§ 05</span>
-    <h2>当前不能确认</h2>
-    <p class="lede">以下 2 条 evidence-first claims 仅得到部分支持:文本片段出现,但空间关系未能从现有 body_excerpt 中确认。同时,本研究存在 4 个无法回避的方法学缺口,这些缺口在 R2.1 阶段仍未关闭。</p>
-
-    <h3>5.1 部分支持的 claims</h3>
-    <ul>
-      <li><strong>河水 + 野王 / 修武</strong> · 2 页 · <code>r2-cl-002</code> · RQ2 · <code>WC124575:PAGE1593/1594</code> · 部分支持</li>
-      <li><strong>渭水 + 關中</strong> · 2 页 · <code>r2-cl-006</code> · BONUS · <code>WC124575:PAGE1793/1795</code> · 部分支持</li>
-    </ul>
-
-    <h3>5.2 研究缺口</h3>
-    <div class="gap-list">
-      <div class="gap-item">
-        <h3>卷次身份 UNRESOLVED</h3>
-        <p>60-page sample 中 5 个 unique page_label (<code>p0001</code>–<code>p0005</code>) 各对应 12–14 个 page_id。在 source platform (国立公文書館 / 内閣文庫) 提供 scan run metadata 之前,《水经注》卷次无法确认。本研究不虚构卷次。</p>
+    <div class="two-column">
+      <div class="col col-yes">
+        <h3>目前可以确认</h3>
+        <ul>
+          <li><strong>canonical SHUGE work record</strong> = <code>post_id 124575</code></li>
+          <li><strong>公安 / 華容</strong> 与 <strong>江水</strong> 文本共现</li>
+          <li><strong>范陽 / 容城 / 故安</strong> 与 <strong>易水</strong> 相关文本共现</li>
+          <li><strong>野王 / 修武</strong> 出现在同组水文文本</li>
+        </ul>
       </div>
-      <div class="gap-item">
-        <h3>扫描序列映射 UNRESOLVED</h3>
-        <p>每个 page_seq 值 (1–5) 出现在 12–14 个不同 page_id 中。page_id → scan_run 映射缺乏元数据。无法判断 page_id=2323 与 page_id=2391 是否来自同一扫描批次。</p>
-      </div>
-      <div class="gap-item">
-        <h3>现代坐标绑定 UNRESOLVED</h3>
-        <p>9 个 spec-required 历史地名 (公安縣 / 華容 / 野王縣 / 修武 / 范陽 / 容城 / 故安城 / 代城 / 霍陽山) 的现代坐标绑定需要外部历史地理参考工作。本研究不绑定现代坐标。</p>
-      </div>
-      <div class="gap-item">
-        <h3>cl-2.1 physical-history chain UNRESOLVED (继承自 R1)</h3>
-        <p>R1 阶段已确认: <code>cl-2.1</code> (physical-history chain) 不得被 river-region OCR claims 视为已支持。<code>cl-2.1</code> = unresolved metadata / historiographical gap。</p>
+
+      <div class="col col-no">
+        <h3>尚不能确认</h3>
+        <ul>
+          <li>江水 = 现代长江</li>
+          <li>河水 = 现代黄河</li>
+          <li>完整上下游拓扑</li>
+          <li>卷次结构</li>
+          <li>scan sequence</li>
+          <li>现代坐标绑定</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ════════════════════════════════════════════════════════════════ -->
-<!-- § 06 — 研究档案                                                  -->
+<!-- BLOCK 04 · 深入研究                                                -->
 <!-- ════════════════════════════════════════════════════════════════ -->
 <section class="section">
   <div class="article-body">
-    <span class="section-num">§ 06</span>
-    <h2>研究档案</h2>
-    <p class="lede">所有技术细节 (9 个 river groups、9 个 historical places、60-page audit、volume/scan sequence 分析、所有 6 条 claims、machine IDs、source downloads、R1/R2 版本历史) 已移至技术附录。主页面保持研究成果页的简洁结构。</p>
-
+    <span class="section-num">BLOCK 04</span>
+    <h2>深入研究</h2>
+    <p class="lede">
+      本页面刻意保持简洁:核心发现技术史、三个研究问题的内部编号、9 个 river groups、9 个 historical places、60-page audit、scan sequence 分析、所有 6 条 claims、machine IDs、source downloads、版本历史,均移至技术附录。
+    </p>
     <div class="archive-primary">
       <p>→ <a href="appendix/">进入技术附录</a></p>
-    </div>
-
-    <div class="archive-grid">
-      <div class="archive-card">
-        <h3><a href="appendix/#rivers">9 个 River Groups</a></h3>
-        <p>江水 / 河水 / 易水 / 汾水 / 汝水 + 渭水 / 泗水 / 淮水 / 山陽</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#places">9 个 Historical Places</a></h3>
-        <p>公安縣 / 華容 / 野王縣 / 修武 / 范陽 / 容城 / 故安城 / 代城 / 霍陽山</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#page-audit">60-Page Audit</a></h3>
-        <p>39 substantial · 19 blank · 2 unclassified · volume_status UNRESOLVED</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#evidence-identity">Evidence Identity</a></h3>
-        <p>60 unique evidence_refs · collision_count = 0</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#all-claims">全部 6 条 Claims</a></h3>
-        <p>4 SUPPORTED + 2 PARTIALLY_SUPPORTED + 0 NOT + 0 METADATA_ONLY</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#machine-ids">Machine IDs</a></h3>
-        <p>post_id=124575 · evidence_ref=WC124575:PAGE&lt;page_id&gt;</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#source-downloads">Source Downloads</a></h3>
-        <p>5 JSON + 3 Markdown · raw GitHub access</p>
-      </div>
-      <div class="archive-card">
-        <h3><a href="appendix/#version-history">R1/R2 版本历史</a></h3>
-        <p>v1.0 frozen · R1 published · R2 published · R2.1 focused</p>
-      </div>
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <p>《水经注》数字证据研究 · SHUGE Research</p>
-  <p>本页基于 R2 frozen outputs · v1.0 frozen baseline (3a51ef5) 未修改</p>
+  <p>本页基于 R2.1 frozen outputs · v1.0 frozen baseline (<code>3a51ef5</code>) 未修改 · R1 route (<code>59d258e</code>) 保留</p>
   <p><a href="/projects/shuge/research/water-classic-evidence-r1/">R1 路由保留</a> · <a href="/projects/shuge/">SHUGE 数字人文研究</a></p>
 </footer>
 

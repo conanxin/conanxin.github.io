@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Peer Review Records · v0.9</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Peer Review Records — 3 review records · 15 comments · 5 rubric_dimensions · static demo">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Peer Review Records · v0.9</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.9</span>
+    <span class="badge badge-publication">STATIC DEMO</span>
+    <span class="badge disabled-badge">NO AUTO-SCORING</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../articles/">Articles</a>
+  <a href="../publications/">Publications</a>
+  <a href="../export/">Export</a>
+  <a href="../portfolio/">Portfolio</a>
+  <a href="../review/" class="active">Review</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Peer Review Records</h2>
+  <p class="hero-lead">3 篇 article 的同行评审记录。每条 review 包含 review_id · reviewer_id (placeholder) · 5 个 rubric 维度 · comments · overall_score · decision · next_state_recommendation。<strong>所有评分与决策均为 schema 静态演示,非自动生成</strong>。</p>
+  <dl class="meta-table">
+    <dt>version</dt><dd>v0.9</dd>
+    <dt>total_review_records</dt><dd id="meta-total">—</dd>
+    <dt>reviews_in_APPROVED</dt><dd id="meta-approved">—</dd>
+    <dt>reviews_in_NEEDS_REVISION</dt><dd id="meta-needs">—</dd>
+    <dt>total_comments</dt><dd id="meta-comments">—</dd>
+    <dt>rubric_dimensions</dt><dd>5</dd>
+    <dt>avg_overall_score</dt><dd id="meta-avg-score">—</dd>
+    <dt>auto-publish</dt><dd><span class="badge badge-danger">FORBIDDEN</span></dd>
+    <dt>auto-scoring</dt><dd><span class="badge badge-danger">FORBIDDEN</span></dd>
+    <dt>human-scheduling</dt><dd><span class="badge badge-danger">FORBIDDEN</span></dd>
+  </dl>
+</section>
+
+<section class="review-footer-disclaimer">
+  <p><strong>⚠ Demo-only warning.</strong> Peer review records on this page are static schema demos. <code>reviewer_id</code> is a placeholder (e.g. <code>revr-team-internal-01</code>), not a real person. Scores (<code>overall_score</code> · <code>score_band</code>) and decisions (<code>decision</code> · <code>next_state_recommendation</code>) are statically rendered from JSON, not auto-generated or computed by AI.</p>
+</section>
+
+<section>
+  <h3>3 Review Records</h3>
+  <div id="review-cards-list"></div>
+</section>
+
+<section>
+  <h3>Rubric Dimensions · 5</h3>
+  <div class="data-table-wrapper">
+    <table class="data-table">
+      <thead><tr><th>dimension_id</th><th>weight</th><th>description</th></tr></thead>
+      <tbody id="rubric-table"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="further-reading">
+  <h3>Cross-Links</h3>
+  <ul>
+    <li><a href="../articles/">/articles/</a> — 文章列表</li>
+    <li><a href="../publications/">/publications/</a> — Publication Workflow</li>
+    <li><a href="../portfolio/">/portfolio/</a> — Research Portfolio</li>
+    <li><a href="../export/">/export/</a> — Export Layer</li>
+    <li><a href="../drafts/">/drafts/</a> — Drafts (v0.7)</li>
+    <li><a href="../DESIGN_v0.9.md">DESIGN_v0.9.md</a> — §3 Peer Review Record Schema</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.9 · Peer Review Records · Static Demo · reviewer_id is placeholder · no auto-scoring · no human scheduling · PUBLISHED forbidden</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const reviews = await fetch('../data/peer_review_records.json').then(r => r.json());
+
+  // meta
+  document.getElementById('meta-total').textContent = reviews.stats.total_review_records;
+  document.getElementById('meta-approved').textContent = reviews.stats.reviews_in_APPROVED;
+  document.getElementById('meta-needs').textContent = reviews.stats.reviews_in_NEEDS_REVISION;
+  document.getElementById('meta-comments').textContent = reviews.stats.total_comments;
+  document.getElementById('meta-avg-score').textContent = reviews.stats.avg_overall_score;
+
+  // rubric dimensions (from schema_template comments structure)
+  const rubricDims = [
+    {id: 'claims_correctness', weight: '0.25', desc: 'claim 表述的清晰度与时间状语无歧义'},
+    {id: 'citation_coverage', weight: '0.20', desc: 'SHUGE citation 在每个 paragraph 的覆盖完整度'},
+    {id: 'evidence_card_match', weight: '0.20', desc: 'evidence_card 与 paragraph 字段绑定完整度'},
+    {id: 'binding_state_compliance', weight: '0.20', desc: 'binding_state 5-level 在所有 paragraph 的覆盖'},
+    {id: 'archive_link_consistency', weight: '0.15', desc: 'FN-* / rq-* / gap-* ID 引用一致性'}
+  ];
+  document.getElementById('rubric-table').innerHTML = rubricDims.map(r =>
+    '<tr><td><code>' + r.id + '</code></td><td>' + r.weight + '</td><td>' + r.desc + '</td></tr>'
+  ).join('');
+
+  // review cards
+  document.getElementById('review-cards-list').innerHTML = reviews.peer_review_records.map((rev, idx) => {
+    const articleShort = rev.article_id.replace('article-', '');
+    const decisionClass = rev.decision === 'APPROVE_TRANSITION' ? 'badge-success' : 'badge-danger';
+    const scoreBandClass = {
+        'BLOCKED': 'badge-danger',
+        'NEEDS_REVISION': 'badge-review-draft',
+        'ACCEPTABLE': 'badge-review-review',
+        'STRONG': 'badge-success',
+        'EXEMPLARY': 'badge-success'
+      }[rev.score_band] || 'badge-review-draft';
+    const commentsHtml = rev.comments.map(c =>
+      '<div class="rubric-comment">' +
+      '<div class="rubric-comment-head"><code>' + c.rubric_dimension + '</code> · score <strong>' + c.score + '</strong>/5 · weight=' + c.weight + (c.blocker ? ' · <span class="badge badge-danger">BLOCKER</span>' : '') + '</div>' +
+      '<p>' + c.comment_zh + '</p>' +
+      '<p><em>' + c.comment_en + '</em></p>' +
+      '<p class="rubric-comment-meta">paragraph_ids: ' + (c.linked_paragraph_ids.length > 0 ? c.linked_paragraph_ids.map(x => '<code>' + x + '</code>').join(' · ') : '(none)') + '</p>' +
+      '</div>'
+    ).join('');
+    const linksHtml = '<p>notes: ' + rev.linked_archive_note_ids.map(x => '<code>' + x + '</code>').join(' · ') + '</p>' +
+      '<p>rqs: ' + rev.linked_archive_rq_ids.map(x => '<code>' + x + '</code>').join(' · ') + '</p>' +
+      '<p>gaps: ' + rev.linked_archive_gap_ids.map(x => '<code>' + x + '</code>').join(' · ') + '</p>';
+    return '<div class="review-card">' +
+      '<div class="review-card-head">' +
+      '<h4>' + rev.review_id + '</h4>' +
+      '<div>' +
+      '<span class="badge ' + decisionClass + '">' + rev.decision + '</span> ' +
+      '<span class="badge ' + scoreBandClass + '">' + rev.score_band + '</span> ' +
+      '<span class="badge badge-review-review">round ' + rev.round + '</span>' +
+      '</div></div>' +
+      '<div class="review-card-meta">' +
+      '<p><strong>article:</strong> <code>' + rev.article_id + '</code> · <strong>draft:</strong> <code>' + rev.draft_id + '</code></p>' +
+      '<p><strong>reviewer:</strong> <code>' + rev.reviewer_id + '</code> (placeholder)</p>' +
+      '<p><strong>started:</strong> ' + rev.review_started_at + ' · <strong>submitted:</strong> ' + rev.review_submitted_at + '</p>' +
+      '<p><strong>overall_score:</strong> <strong>' + rev.overall_score + '</strong>/5.0 · <strong>next_state_recommendation:</strong> <code>' + rev.next_state_recommendation + '</code> (PUBLISHED forbidden)</p>' +
+      '</div>' +
+      '<div class="review-tabs">' +
+      '<button class="format-tab-btn active" data-tab="summary-' + idx + '">Summary</button>' +
+      '<button class="format-tab-btn" data-tab="comments-' + idx + '">Comments (5)</button>' +
+      '<button class="format-tab-btn" data-tab="links-' + idx + '">Archive Links</button>' +
+      '<button class="format-tab-btn" data-tab="warnings-' + idx + '">Boundary Warnings</button>' +
+      '</div>' +
+      '<div class="review-tab-pane" data-pane="summary-' + idx + '">' +
+      '<p>review_status: <code>' + rev.review_status + '</code></p>' +
+      '<p>rubric_dimensions_reviewed: ' + rev.rubric_dimensions_reviewed.map(x => '<code>' + x + '</code>').join(' · ') + '</p>' +
+      '<p>decision: <span class="badge ' + decisionClass + '">' + rev.decision + '</span></p>' +
+      '<p>next_state_recommendation: <code>' + rev.next_state_recommendation + '</code></p>' +
+      '</div>' +
+      '<div class="review-tab-pane" data-pane="comments-' + idx + '" style="display:none">' + commentsHtml + '</div>' +
+      '<div class="review-tab-pane" data-pane="links-' + idx + '" style="display:none">' + linksHtml + '</div>' +
+      '<div class="review-tab-pane" data-pane="warnings-' + idx + '" style="display:none"><ul>' + rev.boundary_warnings.map(w => '<li><span class="badge badge-danger">SHALL NOT</span> ' + w + '</li>').join('') + '</ul></div>' +
+      '</div>';
+  }).join('');
+
+  // tab switching
+  document.querySelectorAll('.review-tabs').forEach(tabs => {
+    tabs.querySelectorAll('.format-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        const card = tabs.parentElement;
+        tabs.querySelectorAll('.format-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        card.querySelectorAll('.review-tab-pane').forEach(p => {
+          p.style.display = p.dataset.pane === tab ? '' : 'none';
+        });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

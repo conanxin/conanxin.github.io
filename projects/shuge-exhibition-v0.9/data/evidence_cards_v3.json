@@ -1,0 +1,1102 @@
+{
+  "version": "v0.3",
+  "total": 12,
+  "cards": [
+    {
+      "run_id": 234,
+      "question": "区块链技术在水经注中的应用",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页380 OCR 文本记载：「天工開物␤入马蓼自然汁三升明磨水和化無魏饭一石人信␤精大推拌信凡翘信必用隹红酒糟禽料無糟␤金中以冷水一沃氣冷再蒸则令極熟矣熟后数石共␤芬甚几蒸此米成饭初一蒸半生即止不及其熟出雕␤可者月␤无造法用私稻米不狗早晚春极其精水浸一元␤著之中……」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1289",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.259,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1359",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.258,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:992",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.256,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": false
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "区块链技术在水经注中的应用",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1338"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 233,
+      "question": "河防一览黄河",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页137 OCR 文本记载：「井省蜀␤天工開物␤河小␤小河␤井圖␤竹身␤券␤轉没井放同␤下井牛刚左族␤竹同長丈␤利␤场富燃薪␤無火井虚␤卤井␤曲竹␤小河␤井火…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1096"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1096",
+          "matched_terms": "[\"河\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.271,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"河\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"河\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1289",
+          "matched_terms": "[\"河\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.259,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1359",
+          "matched_terms": "[\"河\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.258,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "河防一览黄河",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1096"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 232,
+      "question": "工程做法纳米材料",
+      "claim_id": "F1",
+      "claim_text": "《工程做法》页1 OCR 文本记载：「1234567891␤A␤KODAK Gray Scale␤工程做法␤colorchecker␤5␤6␤目錄奏␤12␤13␤14␤15␤18␤3␤内阁文␤强潢␤14088␤册␤数␤76（␤函␤112␤国立公文書館…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "support_count": 1,
+      "evidence_count": 1,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p44159:552",
+          "matched_terms": "[\"工程做法\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.271,
+          "text_reliability": "HIGH",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p44159",
+        "work_title": "工程做法",
+        "author": "工部 允礼等纂修",
+        "dynasty": "清代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/工程做法/",
+        "collection_slugs": [
+          "architecture-construction"
+        ],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "工程做法纳米材料",
+          "mode": "collection_scoped"
+        },
+        {
+          "step": 2,
+          "action": "collection_filter",
+          "collection_slug": "architecture-construction",
+          "filter_injected_before_synthesis": true
+        },
+        {
+          "step": 3,
+          "action": "fts5_query",
+          "collection_exists_subquery": true
+        },
+        {
+          "step": 4,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 1
+        },
+        {
+          "step": 5,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p44159:552"
+          ]
+        }
+      ],
+      "collection": "architecture-construction",
+      "related_workspace": [
+        "工程做法柱径标准"
+      ]
+    },
+    {
+      "run_id": 231,
+      "question": "工程做法大木",
+      "claim_id": "F1",
+      "claim_text": "《工程做法》页1 OCR 文本记载：「1234567891␤A␤KODAK Gray Scale␤工程做法␤colorchecker␤5␤6␤目錄奏␤12␤13␤14␤15␤18␤3␤内阁文␤强潢␤14088␤册␤数␤76（␤函␤112␤国立公文書館…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "support_count": 1,
+      "evidence_count": 1,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p44159:552",
+          "matched_terms": "[\"工程做法\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.271,
+          "text_reliability": "HIGH",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p44159",
+        "work_title": "工程做法",
+        "author": "工部 允礼等纂修",
+        "dynasty": "清代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/工程做法/",
+        "collection_slugs": [
+          "architecture-construction"
+        ],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "工程做法大木",
+          "mode": "collection_scoped"
+        },
+        {
+          "step": 2,
+          "action": "collection_filter",
+          "collection_slug": "architecture-construction",
+          "filter_injected_before_synthesis": true
+        },
+        {
+          "step": 3,
+          "action": "fts5_query",
+          "collection_exists_subquery": true
+        },
+        {
+          "step": 4,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 1
+        },
+        {
+          "step": 5,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p44159:552"
+          ]
+        }
+      ],
+      "collection": "architecture-construction",
+      "related_workspace": [
+        "工程做法柱径标准"
+      ]
+    },
+    {
+      "run_id": 230,
+      "question": "水经注太平洋",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页380 OCR 文本记载：「天工開物␤入马蓼自然汁三升明磨水和化無魏饭一石人信␤精大推拌信凡翘信必用隹红酒糟禽料無糟␤金中以冷水一沃氣冷再蒸则令極熟矣熟后数石共␤芬甚几蒸此米成饭初一蒸半生即止不及其熟出雕␤可者月␤无造法用私稻米不狗早晚春极其精水浸一元␤著之中……」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1289",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.259,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1359",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.258,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:992",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.256,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "水经注太平洋",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1338"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 229,
+      "question": "天工开物砖瓦",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页362 OCR 文本记载：「…墨而大號彰萬卷横␤静火紅而至黑孕其中水銀白而至紅呈其造化␤宗子同斯文千古之不也注玄尚白其功貌興京哉␤天工开物␤朱␤册青第十六卷␤卷下…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1320"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1320",
+          "matched_terms": "[\"天工开物\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.261,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:4",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.28,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1065",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.267,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "天工开物砖瓦",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1320"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 228,
+      "question": "天工开物砖瓦",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页362 OCR 文本记载：「…墨而大號彰萬卷横␤静火紅而至黑孕其中水銀白而至紅呈其造化␤宗子同斯文千古之不也注玄尚白其功貌興京哉␤天工开物␤朱␤册青第十六卷␤卷下…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1320"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1320",
+          "matched_terms": "[\"天工开物\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.261,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:4",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.28,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1065",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.267,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"天工開物\"]",
+          "match_type": "VARIANT",
+          "retrieval_score": 1.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "天工开物砖瓦",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1320"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 227,
+      "question": "园冶相地",
+      "claim_id": "F1",
+      "claim_text": "《园冶》页8 OCR 文本记载：「世口崇祯辛未之枞否道人暇于启冶堂中题␤國治目錄卷之␤典造␤一␤相地␤山林地␤城市地␤村庄地␤郊野地␤傍宅地␤江湖地␤立其␤堂基␤楼阁基␤卷␤ofJa␤国立公文書館␤Archives…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "support_count": 1,
+      "evidence_count": 3,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p168491:68",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.362,
+          "text_reliability": "HIGH",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p168491:78",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.351,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p168491:72",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.249,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p168491",
+        "work_title": "园冶",
+        "author": "计成 著",
+        "dynasty": "明代",
+        "page_label": "園冶２:p68",
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/园冶/",
+        "collection_slugs": [
+          "architecture-construction"
+        ],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "园冶相地",
+          "mode": "collection_scoped"
+        },
+        {
+          "step": 2,
+          "action": "collection_filter",
+          "collection_slug": "architecture-construction",
+          "filter_injected_before_synthesis": true
+        },
+        {
+          "step": 3,
+          "action": "fts5_query",
+          "collection_exists_subquery": true
+        },
+        {
+          "step": 4,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 3
+        },
+        {
+          "step": 5,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p168491:68"
+          ]
+        }
+      ],
+      "collection": "architecture-construction",
+      "related_workspace": [
+        "工程做法柱径标准"
+      ]
+    },
+    {
+      "run_id": 226,
+      "question": "园冶相地",
+      "claim_id": "F1",
+      "claim_text": "《园冶》页8 OCR 文本记载：「世口崇祯辛未之枞否道人暇于启冶堂中题␤國治目錄卷之␤典造␤一␤相地␤山林地␤城市地␤村庄地␤郊野地␤傍宅地␤江湖地␤立其␤堂基␤楼阁基␤卷␤ofJa␤国立公文書館␤Archives…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p168491:68"
+      ],
+      "support_count": 1,
+      "evidence_count": 3,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p168491:68",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.362,
+          "text_reliability": "HIGH",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p168491:78",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.351,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p168491:72",
+          "matched_terms": "[\"相地\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.249,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p168491",
+        "work_title": "园冶",
+        "author": "计成 著",
+        "dynasty": "明代",
+        "page_label": "園冶２:p68",
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/园冶/",
+        "collection_slugs": [
+          "architecture-construction"
+        ],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "园冶相地",
+          "mode": "collection_scoped"
+        },
+        {
+          "step": 2,
+          "action": "collection_filter",
+          "collection_slug": "architecture-construction",
+          "filter_injected_before_synthesis": true
+        },
+        {
+          "step": 3,
+          "action": "fts5_query",
+          "collection_exists_subquery": true
+        },
+        {
+          "step": 4,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 3
+        },
+        {
+          "step": 5,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p168491:68"
+          ]
+        }
+      ],
+      "collection": "architecture-construction",
+      "related_workspace": [
+        "工程做法柱径标准"
+      ]
+    },
+    {
+      "run_id": 225,
+      "question": "工程做法正心",
+      "claim_id": "F1",
+      "claim_text": "《工程做法》页1 OCR 文本记载：「1234567891␤A␤KODAK Gray Scale␤工程做法␤colorchecker␤5␤6␤目錄奏␤12␤13␤14␤15␤18␤3␤内阁文␤强潢␤14088␤册␤数␤76（␤函␤112␤国立公文書館…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p44159:552"
+      ],
+      "support_count": 1,
+      "evidence_count": 1,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p44159:552",
+          "matched_terms": "[\"工程做法\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 3.271,
+          "text_reliability": "HIGH",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p44159",
+        "work_title": "工程做法",
+        "author": "工部 允礼等纂修",
+        "dynasty": "清代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/工程做法/",
+        "collection_slugs": [
+          "architecture-construction"
+        ],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "工程做法正心",
+          "mode": "collection_scoped"
+        },
+        {
+          "step": 2,
+          "action": "collection_filter",
+          "collection_slug": "architecture-construction",
+          "filter_injected_before_synthesis": true
+        },
+        {
+          "step": 3,
+          "action": "fts5_query",
+          "collection_exists_subquery": true
+        },
+        {
+          "step": 4,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 1
+        },
+        {
+          "step": 5,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p44159:552"
+          ]
+        }
+      ],
+      "collection": "architecture-construction",
+      "related_workspace": [
+        "工程做法柱径标准"
+      ]
+    },
+    {
+      "run_id": 224,
+      "question": "天工开物水利",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页380 OCR 文本记载：「天工開物␤入马蓼自然汁三升明磨水和化無魏饭一石人信␤精大推拌信凡翘信必用隹红酒糟禽料無糟␤金中以冷水一沃氣冷再蒸则令極熟矣熟后数石共␤芬甚几蒸此米成饭初一蒸半生即止不及其熟出雕␤可者月␤无造法用私稻米不狗早晚春极其精水浸一元␤著之中……」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1338"
+      ],
+      "support_count": 1,
+      "evidence_count": 10,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1338",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.266,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:6",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.265,
+          "text_reliability": "MEDIUM",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1289",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.259,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1359",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.258,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:992",
+          "matched_terms": "[\"水\"]",
+          "match_type": "EXACT",
+          "retrieval_score": 2.256,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "天工开物水利",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 10
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1338"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    },
+    {
+      "run_id": 222,
+      "question": "水经注江水",
+      "claim_id": "F1",
+      "claim_text": "《天工开物》页220 OCR 文本记载：「…走或特童至于風篷刚小席如掌所不特也␤而不經也浪行力在稍后巨槽全枝两三人推前␤百里则人开河安穗路矣至長江上流风浪则淀世游␤镇汇一横渡侯風静淡词又渡青江浦进黄河浅水␤丈許绵索張带初马布帆者原因盛塘有潮急特易␤更無他涉舟制箸蓬如捲觀為上盖布為帆…」",
+      "claim_type": "DIRECT_OBSERVATION",
+      "citation_ids": [
+        "SHUGE:p211203:1178"
+      ],
+      "support_count": 1,
+      "evidence_count": 8,
+      "evidence_preview": [
+        {
+          "citation_id": "SHUGE:p211203:1178",
+          "matched_terms": "[\"水\", \"江\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "retrieval_score": 4.74,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1071",
+          "matched_terms": "[\"水\", \"江\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "retrieval_score": 4.736,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1179",
+          "matched_terms": "[\"水\", \"江\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "retrieval_score": 4.735,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1180",
+          "matched_terms": "[\"水\", \"江\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "retrieval_score": 4.733,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        },
+        {
+          "citation_id": "SHUGE:p211203:1167",
+          "matched_terms": "[\"水\", \"江\"]",
+          "match_type": "EXACT/PROXIMITY",
+          "retrieval_score": 4.73,
+          "text_reliability": "UNKNOWN",
+          "review_status": "no",
+          "selected_for_brief": true
+        }
+      ],
+      "source_context": {
+        "work_id": "p211203",
+        "work_title": "天工开物",
+        "author": "宋应星 著",
+        "dynasty": "明代",
+        "page_label": null,
+        "ocr_engine": "rapidocr",
+        "ocr_model": "PP-OCRv4-mobile(onnx)",
+        "shuge_url": "https://www.shuge.org/view/天工开物/",
+        "collection_slugs": [],
+        "note": "shuge.org 不暴露具体页 URL; 只暴露到 work 级别"
+      },
+      "citation_path": [
+        {
+          "step": 1,
+          "action": "question_parse",
+          "input": "水经注江水",
+          "mode": "no_collection"
+        },
+        {
+          "step": 2,
+          "action": "fts5_query",
+          "mode": "no_collection"
+        },
+        {
+          "step": 3,
+          "action": "evidence_synthesis",
+          "support_count": 1,
+          "evidence_count": 8
+        },
+        {
+          "step": 4,
+          "action": "citation_id_assignment",
+          "citation_ids": [
+            "SHUGE:p211203:1178"
+          ]
+        }
+      ],
+      "collection": null,
+      "related_workspace": []
+    }
+  ],
+  "generated_at": "2026-09-28T09:05:00+08:00",
+  "note": "v0.3 在 v0.2 evidence_cards 上加 4 个新字段: source_context / citation_path / collection / related_workspace"
+}

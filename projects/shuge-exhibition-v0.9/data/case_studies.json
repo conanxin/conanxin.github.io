@@ -1,0 +1,475 @@
+{
+  "version": "v0.3",
+  "total": 5,
+  "case_studies": [
+    {
+      "id": 1,
+      "slug": "water-classic-digital-life",
+      "title_zh": "水经注数字生命史",
+      "title_en": "Digital Life History of Water Classic",
+      "subtitle": "From a static PDF to a research-grade citation ID",
+      "room_id": "room2",
+      "room_link": "../rooms/room2/index.html",
+      "question": "一部 956 页、322,030 字的古籍,如何从静态 PDF 图像变成可被检索、可被引证的研究资源?",
+      "source": {
+        "work_id": "p124575",
+        "work_title": "水经注",
+        "author": "郦道元 (北魏)",
+        "dynasty": "汉代成书 / 北魏注",
+        "shuge_url": "https://www.shuge.org/view/shui_jing_zhu/",
+        "shuge_post_id": 124575,
+        "page_count": 956,
+        "ocr_engine": "PaddleOCR/PP-OCRv4-mobile",
+        "ocr_model": "rapidocr-maxside2000",
+        "ocr_chars": 322030,
+        "searchable_pages": 933,
+        "zero_text_pages": 7,
+        "collections": [
+          "historical-hydrology"
+        ],
+        "workspace": "水经注河水分布研究"
+      },
+      "evidence": {
+        "summary": "从 956 页 PDF 经过 4 个数据层 (PDF → 图像 → OCR 文本 → FTS5 索引 → collection 成员 → claim 合成) 转化为多条 claim.",
+        "evidence_cards": [],
+        "evidence_ledger_samples": [
+          {
+            "citation_id": "SHUGE:p124575:14",
+            "matched_terms": "[\"河水\"]",
+            "retrieval_score": 4.5,
+            "text_reliability": "HIGH"
+          },
+          {
+            "citation_id": "SHUGE:p124575:42",
+            "matched_terms": "[\"河水\",\"注\"]",
+            "retrieval_score": 4.2,
+            "text_reliability": "HIGH"
+          },
+          {
+            "citation_id": "SHUGE:p124575:108",
+            "matched_terms": "[\"汾水\"]",
+            "retrieval_score": 3.8,
+            "text_reliability": "MEDIUM"
+          }
+        ],
+        "page_viewer_samples": [
+          {
+            "page_index": 14,
+            "page_label": "p0014",
+            "framework_status": "v0.3 framework only"
+          },
+          {
+            "page_index": 42,
+            "page_label": "p0042",
+            "framework_status": "v0.3 framework only"
+          }
+        ]
+      },
+      "citation": {
+        "total_citations": 0,
+        "unique_work_ids": [
+          "p124575"
+        ],
+        "sample_citation_ids": [
+          "SHUGE:p124575:14",
+          "SHUGE:p124575:42",
+          "SHUGE:p124575:108"
+        ],
+        "citation_format": "SHUGE:p<post_id>:<page_index> (例如 SHUGE:p124575:14)",
+        "immutable_since": "P5-B2 (Issue #4)"
+      },
+      "interpretation_boundary": {
+        "limitations": [
+          "OCR 文本不暴露完整原文 (v0.3 仍只展示 ~120 字预览)",
+          "OCR confidence 字段为 HIGH/MEDIUM/UNKNOWN 三档 — UNKNOWN 的页面必须人工核验",
+          "zero_text pages (7 页) 不进入检索池 (searchable_count=933)",
+          "不暴露 IIIF image URL — v0.3 仍为 Page Image Viewer Framework only",
+          "不暴露 database SQL — 0 个 SELECT 返回表结构"
+        ],
+        "regression_gates": [
+          "UNSUPPORTED_CLAIM_SENTENCES=0 (硬规则)",
+          "VERIFIED_FALSE_REGRESSION=PASS",
+          "OUT_OF_COLLECTION_LEAKAGE=0",
+          "CITATION_IDS_UNCHANGED=yes (自 P5-B2 起)"
+        ]
+      },
+      "further_research": [
+        "PP-OCRv5 二次 OCR (天工开物 POOR 9 页 + 水经注 POOR 3 页) — 在 v0.4 后展开",
+        "Harvard 浏览器路径整合 (OpenTOK / Wayback) — 用于交叉验证同一版本",
+        "梦粱录 (p205024) 与水经注 河水 关系的纵向研究",
+        "水经注 版本比较 (明万历 vs 武英殿聚珍本) — 需要新 edition 数字化"
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "ancient-hydrology-river-defense",
+      "title_zh": "古代水利与河防",
+      "title_en": "Ancient Hydrology & River Defense",
+      "subtitle": "A curated collection with deterministic governance",
+      "room_id": "room3",
+      "room_link": "../rooms/room3/index.html",
+      "question": "在中国古代水利史与河防工程史的语境中,哪些文献页面包含了值得被引证的论述?",
+      "source": {
+        "collection_id": 1,
+        "collection_slug": "historical-hydrology",
+        "collection_title_zh": "历史水利与河防",
+        "collection_title_en": "Historical Hydrology & River Defense",
+        "definition_version": "v1",
+        "definition_status": "ACTIVE",
+        "corpus_fingerprint": "0d07aa6b604334e5",
+        "work_seeds": [
+          {
+            "work_id": "p124575",
+            "work_title": "水经注",
+            "scope": "WORK",
+            "review_status": "MANUAL"
+          },
+          {
+            "work_id": "p48341",
+            "work_title": "河防一览",
+            "scope": "WORK",
+            "review_status": "MANUAL"
+          }
+        ],
+        "include_terms_count": 19,
+        "include_terms_sample": [
+          "水",
+          "河",
+          "江",
+          "湖",
+          "海",
+          "漕",
+          "堤",
+          "渠",
+          "坝",
+          "堰"
+        ],
+        "min_confidence": 0.5
+      },
+      "evidence": {
+        "summary": "collection 内 memberships (2 WORK + 1039 PAGE) · 重建幂等 PASS · 与 architecture-construction 比较时 evidence 必须分离.",
+        "evidence_cards": [],
+        "membership_distribution": {
+          "WORK": 2,
+          "PAGE": 1039,
+          "total": 1041
+        },
+        "rebuild_test": {
+          "iterations": 3,
+          "all_consistent": true,
+          "membership_hash": "stable across 3 rebuilds"
+        }
+      },
+      "citation": {
+        "total_citations": 0,
+        "sample_citation_ids": [
+          "SHUGE:p124575:14",
+          "SHUGE:p48341:5"
+        ],
+        "works_in_collection": 3
+      },
+      "interpretation_boundary": {
+        "limitations": [
+          "cross-collection compare 时 evidence 必须先分离再比较 — 不可先混池",
+          "include_terms 是 curated allow-list — 不允许无约束单字 term 自动生成",
+          "manual memberships (2 WORK seeds) 必须保留,不可被 auto-rebuild 覆盖",
+          "snapshot diff 只对比 membership_hash,不对比 source corpus",
+          "collection 不暴露 database — 仅做 research_search.py 的内部 filter"
+        ],
+        "regression_gates": [
+          "OUT_OF_COLLECTION_LEAKAGE=0 (P5-D Track B 12/12 negative controls PASS)",
+          "REBUILD_IDEMPOTENT=PASS (3 次重建结果一致)",
+          "MANUAL_REVIEW_PRESERVATION=PASS (2 WORK seeds 保留)"
+        ]
+      },
+      "further_research": [
+        "天工开物 (p211203) 单独抽离为 grain-farming subcollection (不新增第三个一级 collection)",
+        "河防一览 (p48341) 版本比较 — 现仅一种 edition",
+        "水经注 + 河防一览 双向引用图 (不进入 graph DB, 仅作展品)"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "architecture-construction",
+      "title_zh": "建筑营造知识",
+      "title_en": "Architecture & Construction Knowledge",
+      "subtitle": "柱/梁/枋/斗/栱 — how the framework rules structure knowledge",
+      "room_id": "room4",
+      "room_link": "../rooms/room4/index.html",
+      "question": "在中国传统建筑营造与构件尺度的语境中,哪些文献页面包含了值得被引证的论述?",
+      "source": {
+        "collection_id": 2,
+        "collection_slug": "architecture-construction",
+        "collection_title_zh": "建筑营造与工程做法",
+        "collection_title_en": "Architecture & Construction",
+        "definition_version": "v1",
+        "definition_status": "ACTIVE",
+        "corpus_fingerprint": "0d07aa6b604334e5",
+        "work_seeds": [
+          {
+            "work_id": "p44159",
+            "work_title": "工程做法",
+            "scope": "WORK",
+            "review_status": "MANUAL"
+          },
+          {
+            "work_id": "p168491",
+            "work_title": "园冶",
+            "scope": "WORK",
+            "review_status": "MANUAL"
+          }
+        ],
+        "include_terms_count": 28,
+        "include_terms_sample": [
+          "柱",
+          "梁",
+          "枋",
+          "斗",
+          "栱",
+          "檐",
+          "瓦",
+          "砖",
+          "石",
+          "木"
+        ],
+        "min_confidence": 0.5
+      },
+      "evidence": {
+        "summary": "collection 内 memberships (2 WORK + 216 PAGE in 天工开物) — 重建幂等 PASS.",
+        "evidence_cards": [
+          232,
+          231,
+          227,
+          226
+        ],
+        "membership_distribution": {
+          "WORK": 2,
+          "PAGE": 1039,
+          "total": 1041
+        },
+        "cross_collection_overlap": {
+          "shared_work": "p211203 (天工开物)",
+          "shared_pages": 0,
+          "note": "同一 work 可被两 collection 引用 (PAGE 成员按 page_index 不会跨集合)"
+        }
+      },
+      "citation": {
+        "total_citations": 4,
+        "sample_citation_ids": [
+          "SHUGE:p44159:5",
+          "SHUGE:p168491:12"
+        ],
+        "works_in_collection": 3
+      },
+      "interpretation_boundary": {
+        "limitations": [
+          "仅含清代营造尺度术语 (柱径/正心 等); 宋代/明代 营造术语需要新 collection",
+          "园冶 (p168491) 文本主要是园林美学, 仅 ~30% 命中营造术语",
+          "OCR 文本不暴露 (只展示 ~120 字 excerpt)"
+        ],
+        "regression_gates": [
+          "OUT_OF_COLLECTION_LEAKAGE=0",
+          "REBUILD_IDEMPOTENT=PASS",
+          "CROSS_COLLECTION_NO_LEAK=PASS"
+        ]
+      },
+      "further_research": [
+        "宋代《营造法式》数字化 — 不在 v0.3 范围",
+        "清代 柱径 / 斗口 尺寸对照表生成 — 需要新 SQL view",
+        "园冶 山水美学与营造的横向比较 — 需要新 subworkspace"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "na-li-cross-textual",
+      "title_zh": "乃粒跨文本互证",
+      "title_en": "Na-li (Grain) — A Cross-textual Verification Across 5 Works",
+      "subtitle": "稻/粟/麦/黍/稷/耕/农/灌溉/田/畊 — 当一个主题散布在 5 部古籍中",
+      "room_id": null,
+      "room_link": null,
+      "question": "天工开物「乃粒」章 (粮食栽培) 中所述农业知识,与水经注/河防一览/工程做法/园冶 中的相关记述,是否能形成跨文本互证?",
+      "source": {
+        "primary_work": {
+          "work_id": "p211203",
+          "work_title": "天工开物",
+          "author": "宋应星 (明)",
+          "chapter": "乃粒 (卷上, 第一章)",
+          "chapter_pages": "p0001 — p0009 (待 v0.4 后根据 document_units 详细定位)",
+          "shuge_url": "https://www.shuge.org/view/tiangong_kaiwu/"
+        },
+        "secondary_works": [
+          {
+            "work_id": "p124575",
+            "work_title": "水经注",
+            "relevance": "水系/灌溉/漕运"
+          },
+          {
+            "work_id": "p48341",
+            "work_title": "河防一览",
+            "relevance": "河防/堤防/农田防护"
+          },
+          {
+            "work_id": "p44159",
+            "work_title": "工程做法",
+            "relevance": "仓廪/仓房 营造"
+          },
+          {
+            "work_id": "p168491",
+            "work_title": "园冶",
+            "relevance": "田园/相地/农业景观"
+          }
+        ],
+        "terms_probed": [],
+        "note": "v0.3 不新增第三个 collection — 乃粒互证作为展品级 case study 而非 collection 治理单元"
+      },
+      "evidence": {
+        "summary": "在 12 个农业术语中, 0 个跨 works 命中. 每个 term 提供最多 5 个 cross-work excerpt 样本.",
+        "cross_textual_examples": {
+          "terms": {},
+          "summary": {
+            "total_terms_probed": 12,
+            "terms_with_cross_work_hits": 0,
+            "note": "乃粒 (天工开物 chapter 1) 跨文本互证 — 在水经注/工程做法/河防一览/园冶/天工开物 中检索 稻/粟/麦/黍/稷/耕/农/灌溉/田/畊/耒/耜 等农业术语"
+          }
+        },
+        "sample_citation_pairs": [
+          {
+            "primary": "SHUGE:p211203:5",
+            "matched_term": "稻",
+            "secondary_hit": null
+          }
+        ]
+      },
+      "citation": {
+        "format": "SHUGE:p<work_id>:<page_index>",
+        "unique_work_ids": [
+          "p124575",
+          "p48341",
+          "p44159",
+          "p168491",
+          "p211203"
+        ],
+        "citation_id_immutable": true
+      },
+      "interpretation_boundary": {
+        "limitations": [
+          "不进入第三个 collection — 仍归 historical-hydrology + architecture-construction 联合展示",
+          "跨文本 cite 不形成 \"graph\" — 仅作并列样本",
+          "OCR 文本不全 — 乃粒 chapter 在 p211203 的精确 page range 待 v0.4 后才能确定",
+          "0 个 unsupported claim 是底线 — 跨文本互证的 claim 必须有 page-level 支持"
+        ],
+        "regression_gates": [
+          "CITATION_IDS_UNCHANGED=yes",
+          "PROVENANCE_UNCHANGED=yes",
+          "UNSUPPORTED_CLAIM_SENTENCES=0",
+          "NOT_THIRD_COLLECTION (硬规则)"
+        ]
+      },
+      "further_research": [
+        "document_units 表补全天工开物 乃粒 chapter 完整 page range",
+        "园冶 农业景观与水经注 灌溉记述的纵向年代对照",
+        "天工开物 乃粒 与 梦粱录 (p205024) 市井记述 的对照研究"
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "ai-assisted-historical-research",
+      "title_zh": "AI-assisted Historical Research",
+      "title_en": "AI-assisted Historical Research",
+      "subtitle": "AI 在本项目中的真实角色 — research midwife, not replacer",
+      "room_id": "room5",
+      "room_link": "../rooms/room5/index.html",
+      "question": "AI 在这部数字人文展览中扮演什么角色? 它的边界由谁持有?",
+      "source": {
+        "system_layers": [
+          {
+            "layer": 1,
+            "name": "OCR",
+            "tool": "PaddleOCR PP-OCRv4-mobile + rapidocr-maxside2000",
+            "pages": 3553,
+            "chars": 833202
+          },
+          {
+            "layer": 2,
+            "name": "FTS5 index",
+            "tool": "SQLite FTS5 unicode61",
+            "rows": 3553
+          },
+          {
+            "layer": 3,
+            "name": "collection governance",
+            "tool": "collections.py (Python) v1.0",
+            "memberships": 283
+          },
+          {
+            "layer": 4,
+            "name": "research runs",
+            "tool": "research.py + research_search.py",
+            "runs": 23,
+            "claims": 378
+          },
+          {
+            "layer": 5,
+            "name": "workspaces",
+            "tool": "workspaces.py + workspace_runs",
+            "workspaces": 3
+          },
+          {
+            "layer": 6,
+            "name": "exhibition site",
+            "tool": "conanxin.github.io (static HTML + JSON)",
+            "pages": 22
+          }
+        ],
+        "ai_does_not_do": [
+          "选研究问题 (human defined in GitHub Issue)",
+          "选证据 (human reviews evidence ledger, sets selected_for_brief)",
+          "下结论 (UNSUPPORTED_CLAIM_SENTENCES=0 hard rule)",
+          "写综述 (research.py 输出 brief, 不进入任何人类叙事文档)"
+        ]
+      },
+      "evidence": {
+        "summary": "12 个 evidence_cards_v3 全部带 source_context / citation_path / collection / related_workspace 四个新字段.",
+        "governance_metrics": {
+          "OUT_OF_COLLECTION_LEAKAGE": 0,
+          "VERIFIED_FALSE_REGRESSION": "PASS",
+          "ABSTENTION": "PASS (12/12 negative controls)",
+          "UNSUPPORTED_CLAIM_SENTENCES": 0,
+          "CITATION_IDS_UNCHANGED": "yes (since P5-B2)",
+          "PROVENANCE_UNCHANGED": "yes (since P5-B2)"
+        },
+        "evidence_card_count": 12
+      },
+      "citation": {
+        "all_evidence_cards_have_v3_fields": true,
+        "citation_id_format": "SHUGE:p<post_id>:<page_seq>",
+        "citation_ids_unchanged_since": "P5-B2"
+      },
+      "interpretation_boundary": {
+        "limitations": [
+          "v0.3 不引入 embeddings / vector DB / Neo4j",
+          "v0.3 不暴露 IIIF image URL (Page Image Viewer Framework only)",
+          "v0.3 不暴露数据库 schema / SQL / 表名",
+          "v0.3 不改 raw OCR (只读 SELECT)",
+          "v0.3 不改 Citation ID (immutable since P5-B2)",
+          "v0.3 不暴露完整 OCR 文本 (每个 card 最多 ~120 字 excerpt)"
+        ],
+        "human_held_boundaries": [
+          "研究问题设定 (human writes GitHub Issue body)",
+          "evidence ledger 人工审核 (selected_for_brief 由人设置)",
+          "interpretation boundary 撰写 (人类持边界)",
+          "curation system 文档撰写 (DESIGN.md / IA.md 由人写)"
+        ]
+      },
+      "further_research": [
+        "embedding-based retrieval (下一研究阶段, 不在 v0.3)",
+        "Harvard 浏览器路径整合 (OpenTOK / Wayback)",
+        "PP-OCRv5 二次 OCR",
+        "Notion 同步 (需要 notion_token, 在 v0.3 不展开)",
+        "Neo4j 引用图 (明确排除 — 不在 v0.3, 也不在 P5-D 范围)"
+      ]
+    }
+  ],
+  "generated_at": "2026-09-28T09:05:00+08:00",
+  "note": "v0.3 新增 — 5 个完整 case study, 每个 6 个 section: Question / Source / Evidence / Citation / Interpretation boundary / Further research"
+}

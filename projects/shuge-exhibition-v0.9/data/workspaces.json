@@ -1,0 +1,349 @@
+{
+  "workspaces": [
+    {
+      "id": 1,
+      "slug": "水经注河水分布研究",
+      "title": "水经注河水分布研究",
+      "question": "水经注中记载的主要河流分布如何？",
+      "collection_slugs_json": "[\"historical-hydrology\"]",
+      "status": "OPEN",
+      "search_plan_json": null,
+      "evidence_ledger_json": null,
+      "evidence_packs_json": null,
+      "citations_json": null,
+      "gaps_json": null,
+      "user_notes": null,
+      "review_status": "PENDING",
+      "created_at": "2026-09-28T07:18:54.561519",
+      "updated_at": "2026-09-28T07:18:54.561519",
+      "collection_slugs": [
+        "historical-hydrology"
+      ],
+      "workspace_runs_count": 0
+    },
+    {
+      "id": 2,
+      "slug": "工程做法柱径标准",
+      "title": "工程做法柱径标准",
+      "question": "工程做法中柱径与正心的标准关系是什么？",
+      "collection_slugs_json": "[\"architecture-construction\"]",
+      "status": "OPEN",
+      "search_plan_json": null,
+      "evidence_ledger_json": null,
+      "evidence_packs_json": null,
+      "citations_json": null,
+      "gaps_json": null,
+      "user_notes": null,
+      "review_status": "PENDING",
+      "created_at": "2026-09-28T07:18:54.872418",
+      "updated_at": "2026-09-28T07:18:54.872418",
+      "collection_slugs": [
+        "architecture-construction"
+      ],
+      "workspace_runs_count": 0
+    },
+    {
+      "id": 3,
+      "slug": "营造与水利交叉",
+      "title": "营造与水利交叉",
+      "question": "营造与水利在历史工程中的相互关系",
+      "collection_slugs_json": "[\"historical-hydrology\"]",
+      "status": "OPEN",
+      "search_plan_json": null,
+      "evidence_ledger_json": null,
+      "evidence_packs_json": null,
+      "citations_json": null,
+      "gaps_json": null,
+      "user_notes": null,
+      "review_status": "PENDING",
+      "created_at": "2026-09-28T07:18:55.134106",
+      "updated_at": "2026-09-28T07:18:55.134106",
+      "collection_slugs": [
+        "historical-hydrology"
+      ],
+      "workspace_runs_count": 0
+    }
+  ],
+  "p5d_qa_sample": [
+    {
+      "p5d_qa_id": 1,
+      "kind": "negative",
+      "collection": null,
+      "question": "太平洋在历史地理中的记载",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "太平洋在历史地理中的记载"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 2,
+      "kind": "negative",
+      "collection": null,
+      "question": "区块链技术在古代工程中的应用",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "区块链技术在古代工程中的应用"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 3,
+      "kind": "negative",
+      "collection": null,
+      "question": "纳米材料在工程做法中的应用",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "纳米材料在工程做法中的应用"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 4,
+      "kind": "negative",
+      "collection": null,
+      "question": "人工智能在园冶中的体现",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "人工智能在园冶中的体现"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 5,
+      "kind": "negative",
+      "collection": null,
+      "question": "量子计算在天工开物中的论述",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "量子计算在天工开物中的论述"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 6,
+      "kind": "negative",
+      "collection": null,
+      "question": "基因编辑在水经注中的应用",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "基因编辑在水经注中的应用",
+        "水"
+      ],
+      "hits_total": 1545,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 7,
+      "kind": "negative",
+      "collection": null,
+      "question": "互联网在园冶中的应用",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "互联网在园冶中的应用"
+      ],
+      "hits_total": 0,
+      "modern_absent_detected": true
+    },
+    {
+      "p5d_qa_id": 8,
+      "kind": "negative",
+      "collection": null,
+      "question": "大数据在水经注中的应用",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": "INSUFFICIENT_EVIDENCE",
+      "correct": true,
+      "kept_terms": [
+        "大数据在水经注中的应用",
+        "水"
+      ],
+      "hits_total": 1545,
+      "modern_absent_detected": true
+    }
+  ],
+  "negative_controls": {
+    "negative_controls": [
+      {
+        "q": "太平洋",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "区块链技术",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [
+          "区块链技术"
+        ],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "纳米材料",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "人工智能",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "量子计算",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "基因编辑",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "互联网",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "大数据",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "5G",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "云计算",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [
+          "云"
+        ],
+        "hits": 570,
+        "ok": true
+      },
+      {
+        "q": "物联网",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      },
+      {
+        "q": "机器学习",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [],
+        "hits": 0,
+        "ok": true
+      }
+    ],
+    "positive_queries": [
+      {
+        "q": "水经注中黄河的记载",
+        "verdict": "OK",
+        "kept": [
+          "水经注中黄河的记载",
+          "水",
+          "河"
+        ],
+        "hits": 2149,
+        "ok": true
+      },
+      {
+        "q": "工程做法柱径",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [
+          "工程做法柱径"
+        ],
+        "hits": 0,
+        "ok": false
+      },
+      {
+        "q": "园冶相地",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [
+          "园冶相地"
+        ],
+        "hits": 0,
+        "ok": false
+      },
+      {
+        "q": "天工开物水利",
+        "verdict": "OK",
+        "kept": [
+          "天工开物水利",
+          "水"
+        ],
+        "hits": 1545,
+        "ok": true
+      },
+      {
+        "q": "天工开物砖瓦",
+        "verdict": "INSUFFICIENT_EVIDENCE",
+        "kept": [
+          "天工开物砖瓦"
+        ],
+        "hits": 0,
+        "ok": false
+      },
+      {
+        "q": "河防一览堤工",
+        "verdict": "OK",
+        "kept": [
+          "河防一览堤工",
+          "河"
+        ],
+        "hits": 604,
+        "ok": true
+      }
+    ],
+    "neg_pass": 12,
+    "pos_pass": 3,
+    "gate_threshold_neg": 6,
+    "gate_threshold_pos": 1,
+    "gate_neg": "PASS",
+    "gate_pos": "PASS",
+    "evaluated_at": "2026-09-28T07:18:00+08:00"
+  },
+  "summary": {
+    "total_workspaces": 3,
+    "p5d_qa_count": 20,
+    "negative_count": 9,
+    "verified_false_total": 2,
+    "verified_false_in_collection": 0
+  }
+}

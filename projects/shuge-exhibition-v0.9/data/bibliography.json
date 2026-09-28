@@ -1,0 +1,152 @@
+{
+  "version": "v0.7",
+  "generated_at": "2026-09-28T10:05:00+08:00",
+  "source": "v0.6 research_drafts.json + citations.json ID format",
+  "total_works": 3,
+  "total_institutions": 1,
+  "total_citations": 6,
+  "stats": {
+    "works_total": 3,
+    "institutions_total": 1,
+    "citations_total": 6,
+    "citations_cited_once": 0,
+    "citations_cited_multiple": 6,
+    "max_citation_count": 3,
+    "total_drafts_referenced": 3,
+    "institutions_deduped": true
+  },
+  "works": [
+    {
+      "work_id": "work-shuge-168491",
+      "title_zh": "书海出版社文献 P168491",
+      "title_en": "Shuge Press Work P168491",
+      "collection_slug": "hist-hyd",
+      "institution_id": "inst-shuge",
+      "language": "zh-CN",
+      "dynasty": "Northern Wei",
+      "page_count_estimate": 50
+    },
+    {
+      "work_id": "work-shuge-211203",
+      "title_zh": "书海出版社文献 P211203",
+      "title_en": "Shuge Press Work P211203",
+      "collection_slug": "arch",
+      "institution_id": "inst-shuge",
+      "language": "zh-CN",
+      "dynasty": "Song",
+      "page_count_estimate": 57
+    },
+    {
+      "work_id": "work-shuge-44159",
+      "title_zh": "书海出版社文献 P44159",
+      "title_en": "Shuge Press Work P44159",
+      "collection_slug": "hist-hyd",
+      "institution_id": "inst-shuge",
+      "language": "zh-CN",
+      "dynasty": "Qing",
+      "page_count_estimate": 64
+    }
+  ],
+  "institutions": [
+    {
+      "institution_id": "inst-shuge",
+      "name_zh": "书海出版社",
+      "name_en": "Shuge Press",
+      "type": "publisher",
+      "url": "https://www.shuge.org/",
+      "note": "Read-only ID reference only. No archive content fetched."
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "SHUGE:p168491:68",
+      "work_id": "work-shuge-168491",
+      "page_seq": "68",
+      "short_form_zh": "书海 168491:68",
+      "short_form_en": "Shuge 168491:68",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1096",
+      "work_id": "work-shuge-211203",
+      "page_seq": "1096",
+      "short_form_zh": "书海 211203:1096",
+      "short_form_en": "Shuge 211203:1096",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1178",
+      "work_id": "work-shuge-211203",
+      "page_seq": "1178",
+      "short_form_zh": "书海 211203:1178",
+      "short_form_en": "Shuge 211203:1178",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1320",
+      "work_id": "work-shuge-211203",
+      "page_seq": "1320",
+      "short_form_zh": "书海 211203:1320",
+      "short_form_en": "Shuge 211203:1320",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1338",
+      "work_id": "work-shuge-211203",
+      "page_seq": "1338",
+      "short_form_zh": "书海 211203:1338",
+      "short_form_en": "Shuge 211203:1338",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    },
+    {
+      "citation_id": "SHUGE:p44159:552",
+      "work_id": "work-shuge-44159",
+      "page_seq": "552",
+      "short_form_zh": "书海 44159:552",
+      "short_form_en": "Shuge 44159:552",
+      "cited_in_drafts": [
+        "draft-hydrology-river-distribution",
+        "draft-architecture-pillar-diameter",
+        "draft-cross-hydrology-architecture"
+      ],
+      "cited_count": 3,
+      "full_text_unavailable": true,
+      "text_source": "P5-D snapshot only (citation ID preserved)"
+    }
+  ]
+}

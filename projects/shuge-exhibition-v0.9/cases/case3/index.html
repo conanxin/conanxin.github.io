@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例 3 · 建筑营造知识</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="page-case">
+<header class="masthead">
+  <h1 class="masthead-title">案例 3</h1>
+  <p class="masthead-subtitle">建筑营造知识 · Architecture & Construction Knowledge</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../../index.html">总览</a>
+    <span class="topnav-divider">·</span>
+    <a href="../case1/index.html">案例 1</a>
+    <a href="../case2/index.html">案例 2</a>
+    <a href="../case4/index.html">案例 4</a>
+    <a href="../case5/index.html">案例 5</a>
+    <span class="topnav-divider">·</span>
+    <a href="../../rooms/room4/index.html">展厅 4</a>
+  </div>
+  <div class="topnav-meta"><a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 ↗</a></div>
+</nav>
+
+<main class="body">
+  <header class="case-study-hero">
+    <div class="case-study-badges">
+      <span class="badge badge-collection-architecture">architecture-construction</span>
+      <span class="badge">collection_id=2</span>
+    </div>
+    <h1>建筑营造知识</h1>
+    <p class="case-study-title-en">Architecture & Construction Knowledge</p>
+    <p class="case-study-subtitle">柱/梁/枋/斗/栱 — how the framework rules structure knowledge</p>
+  </header>
+
+  <section class="case-section">
+    <div class="section-num">1</div>
+    <h2 class="section-label">Question</h2>
+    <p id="q3" class="question-text"></p>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">2</div>
+    <h2 class="section-label">Source</h2>
+    <div id="s3"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">3</div>
+    <h2 class="section-label">Evidence</h2>
+    <div id="e3"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">4</div>
+    <h2 class="section-label">Citation</h2>
+    <div id="c3"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">5</div>
+    <h2 class="section-label">Interpretation Boundary</h2>
+    <div id="i3"></div>
+  </section>
+
+  <section class="case-section">
+    <div class="section-num">6</div>
+    <h2 class="section-label">Further Research</h2>
+    <ul id="f3" class="further-reading"></ul>
+  </section>
+
+  <section class="case-section">
+    <div class="takeaway" id="tk3"></div>
+  </section>
+
+  <p class="case-study-back"><a href="../../rooms/room4/index.html">← 返回展厅 4 (Architecture & Construction Knowledge)</a></p>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 3</p>
+</footer>
+
+<script src="../../js/main.js"></script>
+<script>
+fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
+  var c = d.case_studies[2];
+  document.getElementById('q3').textContent = c.question;
+  var s = c.source;
+  var sHtml = '<table class="meta-table">';
+  sHtml += '<tr><th>Collection</th><td><span class="mono">' + s.collection_slug + '</span> · ' + s.collection_title_zh + ' / ' + s.collection_title_en + '</td></tr>';
+  sHtml += '<tr><th>Definition Version</th><td><span class="mono">' + s.definition_version + '</span> (' + s.definition_status + ')</td></tr>';
+  sHtml += '<tr><th>Corpus Fingerprint</th><td><span class="mono">' + s.corpus_fingerprint + '</span></td></tr>';
+  sHtml += '<tr><th>WORK 种子</th><td>';
+  s.work_seeds.forEach(function(w) { sHtml += '<span class="badge badge-collection-architecture">' + w.work_id + ' · ' + w.work_title + '</span> '; });
+  sHtml += '</td></tr>';
+  sHtml += '<tr><th>Include Terms</th><td><span class="mono">' + s.include_terms_count + '</span> 个核心术语(示例: ' + s.include_terms_sample.join(' / ') + ' …)</td></tr>';
+  sHtml += '<tr><th>Min Confidence</th><td><span class="mono">' + s.min_confidence + '</span></td></tr>';
+  sHtml += '</table>';
+  document.getElementById('s3').innerHTML = sHtml;
+  var e = c.evidence;
+  var eHtml = '<p>' + e.summary + '</p>';
+  eHtml += '<h3 style="font-size:1rem;margin-top:1rem">Cross-Collection Overlap</h3>';
+  eHtml += '<p>共享 work:<span class="mono">' + e.cross_collection_overlap.shared_work + '</span> · 共享 pages:<span class="mono">' + e.cross_collection_overlap.shared_pages + '</span><br><span class="dim">' + e.cross_collection_overlap.note + '</span></p>';
+  document.getElementById('e3').innerHTML = eHtml;
+  var cit = c.citation;
+  var cHtml = '<p>总引用数:<span class="mono">' + cit.total_citations + '</span> · works_in_collection:<span class="mono">' + cit.works_in_collection + '</span></p>';
+  cHtml += '<h3 style="font-size:1rem;margin-top:1rem">样本 citations</h3><ul style="font-family:IBM Plex Mono,monospace;font-size:0.85rem;margin-left:1.5rem">';
+  cit.sample_citation_ids.forEach(function(id) { cHtml += '<li>' + id + '</li>'; });
+  cHtml += '</ul>';
+  document.getElementById('c3').innerHTML = cHtml;
+  var ib = c.interpretation_boundary;
+  var iHtml = '<h3 style="font-size:1rem">限制</h3><ul>';
+  ib.limitations.forEach(function(l) { iHtml += '<li>' + l + '</li>'; });
+  iHtml += '</ul><h3 style="font-size:1rem;margin-top:1rem">回归门禁</h3><ul>';
+  ib.regression_gates.forEach(function(g) { iHtml += '<li><span class="verified mono">' + g + '</span></li>'; });
+  iHtml += '</ul>';
+  document.getElementById('i3').innerHTML = iHtml;
+  var f = c.further_research;
+  var fHtml = '';
+  f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
+  document.getElementById('f3').innerHTML = fHtml;
+  var tk = '<div class="takeaway-label">Take-away</div>';
+  tk += '柱/梁/枋/斗/栱 等术语定义了「建筑营造」的边界。<strong>同一部书(p211203 天工开物)可同时归属两 collection</strong> — 但 PAGE 成员按 page_index 计算不会跨集合重复。';
+  document.getElementById('tk3').innerHTML = tk;
+});
+</script>
+</body>
+</html>

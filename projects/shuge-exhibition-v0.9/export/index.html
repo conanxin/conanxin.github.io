@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Export Layer · SHUGE DH Research Platform v0.8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Export Layer — Markdown · CSL JSON · BibTeX · 5 boundary invariants · 5-step workflow">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="../index.html">SHUGE DH Research Platform</a></h1>
+    <p class="subtitle">数字人文研究平台 · Export Layer · Markdown / CSL JSON / BibTeX</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="badge badge-version">v0.8</span>
+    <span class="badge badge-status">DESIGN_ONLY</span>
+    <span class="badge badge-publication">STRICTLY READ-ONLY</span>
+  </div>
+</header>
+
+<nav class="topnav">
+  <a href="../index.html">总览</a>
+  <a href="../projects/">Projects</a>
+  <a href="../places-profile/">Place Profiles</a>
+  <a href="../field-note-input/">Field Note Input</a>
+  <a href="../archive-bridge/">Archive Bridge</a>
+  <a href="../research-writing/">Research Writing</a>
+  <a href="../drafts/">Drafts</a>
+  <a href="../bibliography/">Bibliography</a>
+  <a href="../articles/">Articles</a>
+  <a href="../publications/">Publications</a>
+  <a href="../export/" class="active">Export</a>
+  <a href="../evidence-explorer/">Evidence Explorer</a>
+  <a href="../places/">Places</a>
+  <a href="../fieldwork/">Fieldwork</a>
+  <a href="../workspaces/">Workspaces</a>
+  <a href="../field-notes/">Field Notes</a>
+  <a href="../timeline/">Timeline</a>
+</nav>
+
+<main>
+<section class="hero">
+  <h2>Export Layer</h2>
+  <p class="hero-lead">Export Layer 把 v0.8 articles 导出为 3 种学界接受的格式:<strong>Markdown</strong>(本地编辑/预览)、<strong>CSL JSON</strong>(Zotero / Mendeley / Pandoc)、<strong>BibTeX</strong>(LaTeX 参考文献)。所有 export 必须遵守 5 条边界规则。</p>
+  <dl class="meta-table">
+    <dt>版本</dt><dd>v0.8</dd>
+    <dt>Formats</dt><dd id="meta-formats-count">—</dd>
+    <dt>Boundary Invariants</dt><dd id="meta-boundary-count">—</dd>
+    <dt>Demo Article</dt><dd id="meta-demo-article">—</dd>
+    <dt>Boundaries</dt><dd>不自动生成正文 · 不改变 Citation ID · 不暴露 full_text · 含 v0.8 footer · body_excerpt ≤ 200</dd>
+  </dl>
+</section>
+
+<section>
+  <h3>Format Tabs</h3>
+  <p class="section-lead">3 种导出格式。每个格式有独立 spec + demo。</p>
+  <div class="format-tabs">
+    <button class="format-tab-btn active" data-format="markdown">Markdown</button>
+    <button class="format-tab-btn" data-format="csl_json">CSL JSON</button>
+    <button class="format-tab-btn" data-format="bibtex">BibTeX</button>
+  </div>
+</section>
+
+<section id="format-spec-section">
+  <h3>Format Specification</h3>
+  <div id="format-spec-content"></div>
+</section>
+
+<section id="format-demo-section">
+  <h3>Format Demo · <span id="format-demo-title">Markdown</span></h3>
+  <p class="section-lead">demo 基于 <code id="format-demo-article-id">—</code>(review_status: <code id="format-demo-status">—</code>)。这是 v0.8 export_specs.json 中保存的 demo 内容。</p>
+  <div id="format-demo-content"></div>
+</section>
+
+<section>
+  <h3>5 Boundary Invariants</h3>
+  <p class="section-lead">所有 export 输出必须遵守以下边界。每条 invariant 显式说明禁止内容 + 理由。</p>
+  <div class="bridge-card-list" id="boundary-invariants-list"></div>
+</section>
+
+<section>
+  <h3>5-Step Export Workflow</h3>
+  <p class="section-lead">export 工作流由 5 个手动步骤组成,无 API、无 webhook。</p>
+  <ol id="export-workflow-list"></ol>
+</section>
+
+<section class="further-reading">
+  <h3>Further Reading</h3>
+  <ul>
+    <li><a href="../articles/">/articles/</a> — 3 Research Articles (export 来源)</li>
+    <li><a href="../publications/">/publications/</a> — Publication Workflow Hub</li>
+    <li><a href="../bibliography/">/bibliography/</a> — Works + Institutions + Citations</li>
+    <li><a href="../DESIGN_v0.8.md">DESIGN_v0.8.md</a> — §3.3 Export Layer · §5 boundaries</li>
+    <li><a href="../IA_v0.8.md">IA_v0.8.md</a> — §3 /export/ 原型结构</li>
+  </ul>
+</section>
+</main>
+
+<footer class="site-footer">
+  <p>SHUGE DH Research Platform v0.8 · Export Layer · 完成后停止</p>
+</footer>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+(async function() {
+  const exportSpecs = await fetch('../data/export_specs.json').then(r => r.json());
+
+  // meta
+  document.getElementById('meta-formats-count').textContent = exportSpecs.stats.formats;
+  document.getElementById('meta-boundary-count').textContent = exportSpecs.stats.boundary_invariants;
+  document.getElementById('meta-demo-article').textContent = exportSpecs.formats[0].demo_article_id + ' (' + exportSpecs.formats[0].demo_article_review_status + ')';
+
+  // format tabs
+  document.querySelectorAll('.format-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const format = btn.dataset.format;
+      document.querySelectorAll('.format-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderFormat(format);
+    });
+  });
+
+  function renderFormat(formatId) {
+    const fmt = exportSpecs.formats.find(f => f.format_id === formatId);
+    if (!fmt) return;
+    
+    document.getElementById('format-demo-title').textContent = fmt.name_en;
+    document.getElementById('format-demo-article-id').textContent = fmt.demo_article_id || 'demo_single_entry';
+    document.getElementById('format-demo-status').textContent = fmt.demo_article_review_status || '—';
+    
+    document.getElementById('format-spec-content').innerHTML = `
+      <h4>${fmt.name_zh} · ${fmt.name_en}</h4>
+      <table class="data-table">
+        <thead><tr><th>字段</th><th>值</th></tr></thead>
+        <tbody>
+          <tr><td>format_id</td><td><code>${fmt.format_id}</code></td></tr>
+          <tr><td>mime_type</td><td><code>${fmt.mime_type}</code></td></tr>
+          <tr><td>file_extension</td><td><code>${fmt.file_extension}</code></td></tr>
+          <tr><td>description_zh</td><td>${fmt.description_zh}</td></tr>
+          <tr><td>description_en</td><td><em>${fmt.description_en}</em></td></tr>
+          <tr><td>export_includes</td><td>${fmt.export_includes.map(x => '<code>' + x + '</code>').join(' · ')}</td></tr>
+          <tr><td>export_excludes</td><td>${fmt.export_excludes.map(x => '<code>' + x + '</code>').join(' · ')}</td></tr>
+        </tbody>
+      </table>
+    `;
+    
+    let demoContent = '';
+    if (formatId === 'markdown') {
+      demoContent = '<pre class="code-block">' + escapeHtml(fmt.demo_content_excerpt) + '</pre>';
+    } else if (formatId === 'csl_json') {
+      demoContent = '<pre class="code-block">' + escapeHtml(JSON.stringify(fmt.demo_single_entry, null, 2)) + '</pre>';
+    } else if (formatId === 'bibtex') {
+      demoContent = '<pre class="code-block">' + escapeHtml(fmt.demo_single_entry) + '</pre>';
+    }
+    document.getElementById('format-demo-content').innerHTML = demoContent;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // initial render: markdown
+  renderFormat('markdown');
+
+  // boundary invariants
+  document.getElementById('boundary-invariants-list').innerHTML = exportSpecs.boundary_invariants.map((inv, i) =>
+    '<div class="bridge-namespace-card">' +
+    '<div class="bridge-namespace-head"><code>inv-boundary-' + (i + 1) + '</code></div>' +
+    '<p>' + inv + '</p>' +
+    '</div>'
+  ).join('');
+
+  // workflow
+  const workflow = exportSpecs.export_workflow;
+  document.getElementById('export-workflow-list').innerHTML = Object.entries(workflow).map(([k, v], i) =>
+    '<li><strong>Step ' + (i + 1) + ' · ' + k + ':</strong> ' + v + '</li>'
+  ).join('');
+})();
+</script>
+</body>
+</html>

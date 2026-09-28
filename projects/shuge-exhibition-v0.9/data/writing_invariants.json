@@ -1,0 +1,138 @@
+{
+  "version": "v0.7",
+  "generated_at": "2026-09-28T10:05:00+08:00",
+  "source": "v0.6 archive_bridge.json + v0.7 research_drafts.json + v0.5/v0.6 field_notes.json",
+  "bridge_status": "DESIGN_ONLY",
+  "boundary": "STRICTLY READ-ONLY ID LINK",
+  "purpose": "Research Writing Environment 维持与 Conan Xin Archive 的 ID-only 链接边界。草稿、段落、claim 不向 Archive 写入任何数据,仅引用其 ID。",
+  "shared_id_namespaces": [
+    {
+      "namespace": "draft_id",
+      "prefix": "draft-",
+      "owner": "v0.7 (local)",
+      "archive_synonym": null,
+      "invariant": "local-only; v0.7 独有命名空间"
+    },
+    {
+      "namespace": "field_note_id",
+      "prefix": "FN-",
+      "owner": "v0.5+ (shared)",
+      "archive_synonym": "archive_field_note_id (potential future, read-only)",
+      "invariant": "v0.5/v0.6 已有; v0.7 仅引用,永不重命名"
+    },
+    {
+      "namespace": "research_question_id",
+      "prefix": "rq-",
+      "owner": "v0.5+ (shared)",
+      "archive_synonym": "archive_rq_id (potential future, read-only)",
+      "invariant": "v0.5/v0.6 已有; v0.7 draft.research_questions 字段即此 ID 列表"
+    },
+    {
+      "namespace": "gap_id",
+      "prefix": "gap-",
+      "owner": "v0.5+ (shared)",
+      "archive_synonym": "archive_gap_id (potential future, read-only)",
+      "invariant": "v0.5/v0.6 已有; v0.7 draft 记录但不修改"
+    }
+  ],
+  "local_only_namespaces": [
+    {
+      "namespace": "paragraph_id",
+      "prefix": "para-",
+      "owner": "v0.7 (local)",
+      "invariant": "草稿段落 local ID; 不暴露到 archive"
+    },
+    {
+      "namespace": "claim_id",
+      "prefix": "cl-",
+      "owner": "v0.7 (local)",
+      "invariant": "段落中具体 claim 的 local ID; 不暴露到 archive"
+    },
+    {
+      "namespace": "section_id",
+      "prefix": "sec-",
+      "owner": "v0.7 (local)",
+      "invariant": "草稿章节 local ID"
+    },
+    {
+      "namespace": "revision_id",
+      "prefix": "rev-",
+      "owner": "v0.7 (local)",
+      "invariant": "草稿修订记录 local ID"
+    }
+  ],
+  "archive_bridge_invariants": [
+    {
+      "rule_id": "inv-1",
+      "constraint": "SHALL NOT",
+      "description": "v0.7 草稿 SHALL NOT 写入 Conan Xin Archive 任何文件、字段或属性。",
+      "rationale": "边界: 严格只读 ID link。Archive 内容由 Archive 独立管理,v0.7 仅消费 ID 引用。"
+    },
+    {
+      "rule_id": "inv-2",
+      "constraint": "SHALL NOT",
+      "description": "v0.7 SHALL NOT 通过 HTTP/curl/submodule/API key 读取 Conan Xin Archive 任何内容。",
+      "rationale": "边界: 不抓取 shuge.org,不抓取 Archive 内容。"
+    },
+    {
+      "rule_id": "inv-3",
+      "constraint": "SHALL NOT",
+      "description": "v0.7 SHALL NOT 重新分配、重新生成、或修改 Citation ID 格式 (SHUGE:p<post_id>:<page_seq>)。",
+      "rationale": "边界: 不改变 Citation ID 自 P5-B2 起保持不变。"
+    },
+    {
+      "rule_id": "inv-4",
+      "constraint": "SHALL NOT",
+      "description": "v0.7 SHALL NOT 引入 LLM/embedding/向量数据库自动改写或补充段落。",
+      "rationale": "边界: 不引入 LLM 自动写作。写作完全由人类 research team 进行,evidence_paragraphs.json 是描述层,不是生成层。"
+    },
+    {
+      "rule_id": "inv-5",
+      "constraint": "MAY",
+      "description": "v0.7 MAY 在 draft 中以 linked_archive_note_ids / linked_archive_rq_ids / linked_archive_gap_ids 字段引用 Archive ID,字段值为 ID 字符串列表。",
+      "rationale": "允许的边界: 仅 ID 引用,不涉及 Archive 内容。"
+    },
+    {
+      "rule_id": "inv-6",
+      "constraint": "SHALL",
+      "description": "v0.7 SHALL 在每条 draft 的 linked_archive_* 字段前保留空字符串或 [PENDING] 占位符,标识「Archive 链接待实现」。",
+      "rationale": "透明性: 当前所有 linked_archive_* 字段均为空或 [PENDING],文档显式说明 ID link 仅是 schema,无实际 Archive 链接。"
+    }
+  ],
+  "schema_additions_v0_7": [
+    {
+      "field": "research_drafts.json → drafts[].linked_archive_note_ids",
+      "type": "array<string>",
+      "default": "[]",
+      "note": "v0.7 草稿引用 v0.5/v0.6 field_note_id 列表(已实现)。"
+    },
+    {
+      "field": "research_drafts.json → drafts[].linked_archive_rq_ids",
+      "type": "array<string>",
+      "default": "[]",
+      "note": "v0.7 草稿引用 v0.5/v0.6 research_question_id 列表(已实现)。"
+    },
+    {
+      "field": "research_drafts.json → drafts[].linked_archive_gap_ids",
+      "type": "array<string>",
+      "default": "[]",
+      "note": "v0.7 草稿引用 v0.5/v0.6 gap_id 列表(已实现)。"
+    },
+    {
+      "field": "evidence_paragraphs.json → paragraphs[].field_note_ids",
+      "type": "array<string>",
+      "default": "[]",
+      "note": "段落级别 field_note 绑定,标识该段由田野证据支持。"
+    }
+  ],
+  "cross_archive_invariants_count": 6,
+  "schema_additions_count": 4,
+  "stats": {
+    "shared_id_namespaces": 4,
+    "local_only_namespaces": 4,
+    "archive_bridge_invariants": 6,
+    "schema_additions": 4,
+    "drafts_with_archive_links": 3,
+    "paragraphs_with_field_note_bindings": 0
+  }
+}

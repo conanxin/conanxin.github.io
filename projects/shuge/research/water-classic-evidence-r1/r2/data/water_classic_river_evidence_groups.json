@@ -1,0 +1,411 @@
+{
+  "schema_version": "river-evidence-groups-r2/1.0",
+  "generated_at": "2026-09-28T05:43:46.228211+00:00",
+  "canonical_work": {
+    "post_id": "124575",
+    "institution": "国立公文書館 / 内閣文庫",
+    "v1_0_frozen_baseline_sha": "3a51ef5e698655c215a1f36147d24bfe8c7e6826"
+  },
+  "scope": "≥5 river groups (江水/河水/易水/汾水/汝水 + bonus 渭水/泗水/淮水/山陽)",
+  "river_group_count": 9,
+  "support_status_summary": {
+    "SUPPORTED": 3,
+    "PARTIALLY_SUPPORTED": 3,
+    "NOT_SUPPORTED": 3
+  },
+  "river_groups": [
+    {
+      "river_id": "R-jian-shui-gongan-huarong",
+      "name": "江水",
+      "subregion": "公安 / 華容",
+      "region_key": "江水_公安_华容",
+      "explanation": "江水 (Yangtze River) segment described around 公安縣 / 華容 (modern Hubei 江陵 / 監利 region).",
+      "page_ids": [
+        2321,
+        2322,
+        2323
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:2",
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:2",
+          "page_id": 2321,
+          "body_chars": 95,
+          "body_excerpt": "香府伴 | 江水又东涌水注之 | 又东至華容縣西夏水出焉 | 水經第三十五雨 | 座 | 東南富華容縣南水出焉 | 南派曲而極水曲之地势世之江曲者也 | 江水左迤為中夏水右中郎浦出焉江浦右迤 | 江水三 | 浅草文库 | 明吴琯校 | 後魏道元注 | 漢桑撰 | 钙家"
+        },
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2322,
+          "body_chars": 110,
+          "body_excerpt": "江水又右杨歧北山 | 江水又东得故市口 | 江水左會高口 | 又東經公安縣北 | 又東南油水从西南来注之又東右合油口 | 江水又南平郡屏陵縣之樂鄉城北 | 山抗大江山東有城故華容縣尉舊治地 | 水高水通也 | 江浦也對黄州 | 故侧江有大城相承云會城即印閣也 | 澧水及陂湖北是渊"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 2323,
+          "body_chars": 110,
+          "body_excerpt": "大江右石首山北又东赭要 | 又东得清揚土二口 | 江水自龍巢而東俞口 | 大江右得龍穴水口 | 江水左得饭筐上口 | 大江又东左得水口 | 大江又東在合子夏口 | 弹鳞掉尾而去焉故水地取名矣 | 命於天竭力養民生成命也何龍於是二龍 | 禹南濟江黄龍灰舟舟人五色無主禹笑日吾受"
+        }
+      ],
+      "aggregate_excerpt": "香府伴 | 江水又东涌水注之 | 又东至華容縣西夏水出焉 | 水經第三十五雨 | 座 | 東南富華容縣南水出焉 | 南派曲而極水曲之地势世之江曲者也 | 江水左 | 江水又右杨歧北山 | 江水又东得故市口 | 江水左會高口 | 又東經公安縣北 | 又東南油水从西南来注之又東右合油口 | 江水又南平郡屏陵縣之樂鄉城北 | 山抗 | 大江右石首山北又东赭要 | 又东得清揚土二口 | 江水自龍巢而東俞口 | 大江右得龍穴水口 | 江水左得饭筐上口 | 大江又东左得水口 | 大江又東在合子夏口 ",
+      "places_detected": [
+        "公安",
+        "華容"
+      ],
+      "page_count": 3,
+      "total_body_chars": 315,
+      "avg_body_chars": 105.0,
+      "support_status": "SUPPORTED",
+      "limitations": [],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-he-shui-yewang-xiuwu",
+      "name": "河水",
+      "subregion": "野王 / 修武",
+      "region_key": "河水_野王_修武",
+      "explanation": "河水 (Yellow River) segment around 野王縣 / 修武 (modern Henan 沁陽 / 修武 region).",
+      "page_ids": [
+        1593,
+        1594
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 1593,
+          "body_chars": 104,
+          "body_excerpt": "固贴日 | 香府 | 清水出河内修武縣之北黑山 | 水經第九凌章文车 | 不座 | 十餘丈雷扑之聲震動山谷左右壁層深獸不 | 泉以成川南流西南屈瀑布岳縣河注壑二 | 黑山在縣地白鹿山東清水所出也上承诸陂散 | 水 | 清水 | 汇水 | 沁水 | 淇水 | 明吴校 | 後魏翻道元注 | 赛圖香撰 | 台"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1594,
+          "body_chars": 114,
+          "body_excerpt": "有二源北水上承河内野王縣東北界溝喬長明 | 陂南北二十許里東西三十里西则蔡溝人焉水 | 澤矣魏土地記日修武城西北二十里有吴澤水 | 奥滕公濟自玉門津而宿小修武者也大即吴 | 侯國亦日大修武有小故大小修武在東汉祖 | 大還卒於是也漢高帝八年封都尉魏邀為 | 武王伐勒"
+        }
+      ],
+      "aggregate_excerpt": "固贴日 | 香府 | 清水出河内修武縣之北黑山 | 水經第九凌章文车 | 不座 | 十餘丈雷扑之聲震動山谷左右壁層深獸不 | 泉以成川南流西南屈瀑布岳縣河注壑二 | 有二源北水上承河内野王縣東北界溝喬長明 | 陂南北二十許里東西三十里西则蔡溝人焉水 | 澤矣魏土地記日修武城西北二十里有吴澤水 | 奥滕公濟自玉門津而宿小修武者",
+      "places_detected": [
+        "野王",
+        "修武"
+      ],
+      "page_count": 2,
+      "total_body_chars": 218,
+      "avg_body_chars": 109.0,
+      "support_status": "PARTIALLY_SUPPORTED",
+      "limitations": [
+        "Only 2 substantial pages in this region."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-yi-shui-fanyang-rongcheng",
+      "name": "易水",
+      "subregion": "范陽 / 容城 / 故安城",
+      "region_key": "易水_范陽_容城",
+      "explanation": "易水 (Yi River) segment around 范陽 / 容城 / 故安城 (modern Hebei region).",
+      "page_ids": [
+        1655,
+        1656,
+        1657,
+        1865
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:2",
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:2",
+          "page_id": 1655,
+          "body_chars": 108,
+          "body_excerpt": "腾地口 | 香府 | 佳久昌亲事 | 易水出承郡故安縣間鄉西山 | 水經第十一 | 王在中鹿葛建者也易水東左興子莊溪水合 | 此山故其舊居世以為五大夫城即此岳云五 | 王不同王恭之政子典生五子亚避时乱居 | 易水出西山中谷東五大夫城南昔北平候 | 易水 | 遂草文車 | 水 | 明吴琯校"
+        },
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 1656,
+          "body_chars": 113,
+          "body_excerpt": "才系 | 故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽 | 陽蓄燕昭王之所城也東西二十里南北十七里 | 經今水破城東南隅世又易水马故安河武 | 水故安城南外東流即斯水也锈是人事明 | 屠嘉為侯國城东西二里南北一里半高锈云易 | 東南小城即故安縣之故城也汉文帝封丞相申 | 下"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1657,
+          "body_chars": 114,
+          "body_excerpt": "東過范陽縣南又东過容城縣南 | 更属佳觀失其一水東出金毫陂東西六七十步南 | 邃岸高深左右百步一毫参差交時超相望 | 臺陂一水經故安城西侧城南注易水灰塘崇峻 | 之故清南出屈而东轉又分為二一水东注金 | 燕都之前故也或言燕之唑斯不然矣其水 | 之古老之史籍无文以私"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1865,
+          "body_chars": 113,
+          "body_excerpt": "有晋中散大夫胡均碑元康八年立水之北有 | 杜预日陳國武平西南有鹿邑亭是也城南十里 | 經鹿邑城北世朗之虎鄉城非也春秋之鹿矣 | 棘鄉故安平縣也士人敦春易以御過水又東 | 存過水又东經安平縣故城北陳留風俗傅日大 | 大 | 御人鄭故見獲焉後其地為楚莊所故圈日 | 邑有蛇"
+        }
+      ],
+      "aggregate_excerpt": "腾地口 | 香府 | 佳久昌亲事 | 易水出承郡故安縣間鄉西山 | 水經第十一 | 王在中鹿葛建者也易水東左興子莊溪水合 | 此山故其舊居世以為五大夫城即此岳云 | 才系 | 故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽 | 陽蓄燕昭王之所城也東西二十里南北十七里 | 經今水破城東南隅世又易水马故安河武 | 水故安城南外東流即斯水 | 東過范陽縣南又东過容城縣南 | 更属佳觀失其一水東出金毫陂東西六七十步南 | 邃岸高深左右百步一毫参差交時超相望 | 臺陂一水經故安城西侧城南注易水灰塘崇峻 |",
+      "places_detected": [
+        "范陽",
+        "容城",
+        "故安"
+      ],
+      "page_count": 4,
+      "total_body_chars": 448,
+      "avg_body_chars": 112.0,
+      "support_status": "SUPPORTED",
+      "limitations": [],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-fen-shui-daicheng",
+      "name": "汾水",
+      "subregion": "代城",
+      "region_key": "汾水_代城",
+      "explanation": "汾水 (Fen River) segment around 代城 (modern Hebei 蔚縣 region).",
+      "page_ids": [
+        2004,
+        2005
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2004,
+          "body_chars": 101,
+          "body_excerpt": "寄鸣 | 一 | 香府 | 汾水出太原汾陽縣北管山 | 水經第六自 | 马而流注于河十三州志日出武州之燕京山亦 | 其名日管之山其上無草木而下多玉汾水出 | 山海經日北次二經之首在河之东其东首枕汾 | 原公水 | 汾水 | 洞水晋水 | 繪水 | 爆章文車 | 水 | 明吴 | 後道元注 | 汉撰"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 2005,
+          "body_chars": 114,
+          "body_excerpt": "東塘稽石侧枕汾水俗之代城城又南出一 | 雲垂煙接自是水流潭波襄轉泛又南一城 | 西温合水出右近聲流翼注水上樹交 | 時五色也後曜逐為胡王美汾水又南與東 | 非常背有銘日神服御除衆毒曜途服之隨 | 剑一口置前再拜而去以视之剑長二尺光澤 | 有二童子入跪日管王使小臣奉"
+        }
+      ],
+      "aggregate_excerpt": "寄鸣 | 一 | 香府 | 汾水出太原汾陽縣北管山 | 水經第六自 | 马而流注于河十三州志日出武州之燕京山亦 | 其名日管之山其上無草木而下多玉汾水出 | 山 | 東塘稽石侧枕汾水俗之代城城又南出一 | 雲垂煙接自是水流潭波襄轉泛又南一城 | 西温合水出右近聲流翼注水上樹交 | 時五色也後曜逐為胡王美汾水又南與東 | 非常",
+      "places_detected": [
+        "代城"
+      ],
+      "page_count": 2,
+      "total_body_chars": 215,
+      "avg_body_chars": 107.5,
+      "support_status": "PARTIALLY_SUPPORTED",
+      "limitations": [
+        "Only 2 substantial pages in this region."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-ru-shui-huoyang",
+      "name": "汝水",
+      "subregion": "霍陽山 / 梁",
+      "region_key": "汝水_霍陽_梁",
+      "explanation": "汝水 (Ru River) segment around 霍陽山 / 梁 (modern Henan 汝南 / 寶豐 region).",
+      "page_ids": [
+        2077,
+        2078,
+        2079
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:2",
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:2",
+          "page_id": 2077,
+          "body_chars": 110,
+          "body_excerpt": "汝水出河南梁縣勉鄉西天息山 | 水經第二十 | 太守會上卢下列山川圖以方志参差遂令寻其 | 日汝出蔬泉山亚果名也余以永平中蒙除叠陽 | 縣之大孟山又言出弘晨处氏縣運歸山博物志 | 地理志日出高陵山郎猛山也亦言出南陽陽 | 汝水 | 濠草文康 | 明吴琯校 | 後魏翻道元注 | 漢"
+        },
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2078,
+          "body_chars": 112,
+          "body_excerpt": "東南過其縣儿 | 霍陽出在周平城东南者也汝水又東與三屯谷 | 麻讀聲近故也汝水又經周平城南京相日 | 伊洛之戎潭氏城也俗以為麻解城非也益 | 氏氏者也杜日城在河南新城縣之东南 | 北故鄉城也之中左傅所單浮餘圍 | 汝水自狠阜山東出峡之汝阿也東压麻解城 | 者也 | 其水南"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 2079,
+          "body_chars": 114,
+          "body_excerpt": "日河南梁躲有靈山者世其水东北流經霍陽 | 霍陽聚汝水其北东合霍陽山水水出南山杜 | 出北山南流注之又流注于汝水汝水之右有 | 秦减东周徙其君此陂水東南流合乎潤水水 | 口水上承陽人城東睿公陂城古梁之陽人聚也 | 澤水澤水又東南入于汝水汝水又東得睿公水 | 沼錯落其"
+        }
+      ],
+      "aggregate_excerpt": "汝水出河南梁縣勉鄉西天息山 | 水經第二十 | 太守會上卢下列山川圖以方志参差遂令寻其 | 日汝出蔬泉山亚果名也余以永平中蒙除叠陽 | 縣之大孟山又言出弘晨处氏 | 東南過其縣儿 | 霍陽出在周平城东南者也汝水又東與三屯谷 | 麻讀聲近故也汝水又經周平城南京相日 | 伊洛之戎潭氏城也俗以為麻解城非也益 | 氏氏者也杜日城在河 | 日河南梁躲有靈山者世其水东北流經霍陽 | 霍陽聚汝水其北东合霍陽山水水出南山杜 | 出北山南流注之又流注于汝水汝水之右有 | 秦减东周徙其君此陂水東南流合乎潤水",
+      "places_detected": [
+        "霍陽"
+      ],
+      "page_count": 3,
+      "total_body_chars": 336,
+      "avg_body_chars": 112.0,
+      "support_status": "SUPPORTED",
+      "limitations": [],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-wei-shui-guanzhong",
+      "name": "渭水",
+      "subregion": "關中",
+      "region_key": "渭水_關中",
+      "explanation": "渭水 (Wei River) segment in 關中 (modern Shaanxi).",
+      "page_ids": [
+        1793,
+        1795
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:2",
+        "SHUGE:p124575:4"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:2",
+          "page_id": 1793,
+          "body_chars": 110,
+          "body_excerpt": "香府 | 渭水出西首陽縣渭谷亭南島鼠山 | 水經第十七自 | 南島鼠山渭水出谷尚書禹贡所渭出島鼠者 | 焉三川合注东北流經首陽縣西興别源合水出 | 西北此縣有高城嶺镇上有城號渭源城渭水出 | 渭水出首陽縣首陽山渭首亭南谷山在鼠山 | 渭水上 | 浅草文库 | 明吴琯校 | 後魏道"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1795,
+          "body_chars": 111,
+          "body_excerpt": "水俱出北山南流人渭左则有温谷次东有故城 | 峡左右六水交注左则武陽溪水東門得土門谷 | 攻之擒子純右平渭水自落門東至黑水 | 门聚昔果攻落門未拔而建武十年來歙又 | 三府谷水注之三川統一東北流注于渭水有落 | 北丘川参差注渭水渭水又東奥落門西山东流 | 又东"
+        }
+      ],
+      "aggregate_excerpt": "香府 | 渭水出西首陽縣渭谷亭南島鼠山 | 水經第十七自 | 南島鼠山渭水出谷尚書禹贡所渭出島鼠者 | 焉三川合注东北流經首陽縣西興别源合水出 | 西北此縣有高 | 水俱出北山南流人渭左则有温谷次东有故城 | 峡左右六水交注左则武陽溪水東門得土門谷 | 攻之擒子純右平渭水自落門東至黑水 | 门聚昔果攻落門未拔而建武十年來歙又",
+      "places_detected": [
+        "渭水"
+      ],
+      "page_count": 2,
+      "total_body_chars": 221,
+      "avg_body_chars": 110.5,
+      "support_status": "PARTIALLY_SUPPORTED",
+      "limitations": [
+        "Only 2 substantial pages in this region."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-si-shui-lu-bin",
+      "name": "泗水",
+      "subregion": "魯 / 汶",
+      "region_key": "泗水_魯汶",
+      "explanation": "泗水 (Si River) segment around 魯 / 汶 (modern Shandong region).",
+      "page_ids": [
+        2134
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:3"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2134,
+          "body_chars": 103,
+          "body_excerpt": "昌贴日 | 沐水出琅邪东莞縣西北山 | 水經第二十六自 | 面而不周於南故俗之半城沐水又东南流左 | 成川东南流經邵鄭南南去縣八十許里城有三 | 大山與小太山连麓而與名也引控流以 | 汶水 | 水 | 澎章文库 | 潍水 | 巨洋水 | 水 | 淄水 | 明吴琯校 | 後魏道元注 | 藕圖撰 | 韩家"
+        }
+      ],
+      "aggregate_excerpt": "昌贴日 | 沐水出琅邪东莞縣西北山 | 水經第二十六自 | 面而不周於南故俗之半城沐水又东南流左 | 成川东南流經邵鄭南南去縣八十許里城有三 | 大山與小太山连",
+      "places_detected": [
+        "汶"
+      ],
+      "page_count": 1,
+      "total_body_chars": 103,
+      "avg_body_chars": 103.0,
+      "support_status": "NOT_SUPPORTED",
+      "limitations": [
+        "Insufficient substantial body text to confirm 泗水 segment narrative."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-huai-shui-feishui-shaobei",
+      "name": "淮水",
+      "subregion": "肥水 / 芍陂",
+      "region_key": "淮水_肥水_芍陂",
+      "explanation": "淮水 (Huai River) and 肥水 segment around 芍陂 irrigation (modern Anhui region).",
+      "page_ids": [
+        2266
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:3"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2266,
+          "body_chars": 81,
+          "body_excerpt": "香府光 | 渗水出江夏平春縣西 | 水經第三十二首 | 渗水北出大義山南至鄉西賜水人焉水源东 | 潼水 | 漳 | 泄 | 小 | 水 | 木靳水 | 浅草文庫 | 夏水 | 水 | 肥水 | 人决水 | 羌 | 施 | 水 | 水 | 明吴琯校 | 後魏道元注 | 旗圖春 | 韩家 | 沮 | 水 | 水 | 水 | 撰"
+        }
+      ],
+      "aggregate_excerpt": "香府光 | 渗水出江夏平春縣西 | 水經第三十二首 | 渗水北出大義山南至鄉西賜水人焉水源东 | 潼水 | 漳 | 泄 | 小 | 水 | 木靳水 | 浅草文庫",
+      "places_detected": [
+        "肥水"
+      ],
+      "page_count": 1,
+      "total_body_chars": 81,
+      "avg_body_chars": 81.0,
+      "support_status": "NOT_SUPPORTED",
+      "limitations": [
+        "Insufficient substantial body text to confirm 淮水 segment narrative."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    },
+    {
+      "river_id": "R-shanyang-wubei-hequan",
+      "name": "山陽",
+      "subregion": "吴陂 / 荷泉",
+      "region_key": "山陽_吴陂_荷泉",
+      "explanation": "山陽 region with 吴陂 (Wu Bei reservoir) and 荷泉 (He Spring).",
+      "page_ids": [
+        1595
+      ],
+      "citation_ids": [
+        "SHUGE:p124575:5"
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:5",
+          "page_id": 1595,
+          "body_chars": 114,
+          "body_excerpt": "鹿城西建安二十五年魏封漢献帝為山陽公潤 | 有二泉相去四五里参差合次南注于陵泉在 | 合注于吴陂也次真阜之东北得覆金堆堆南 | 北二十五里有具阜南有皇母馬二泉東南 | 為荷泉北吴漕二清雙道俱東入陂山陽縣東 | 出山陽縣故修武城西南同源分派裂為二水南 | 縣之具亭北"
+        }
+      ],
+      "aggregate_excerpt": "鹿城西建安二十五年魏封漢献帝為山陽公潤 | 有二泉相去四五里参差合次南注于陵泉在 | 合注于吴陂也次真阜之东北得覆金堆堆南 | 北二十五里有具阜南有皇母馬二泉東",
+      "places_detected": [
+        "修武",
+        "吴陂",
+        "荷泉",
+        "山陽"
+      ],
+      "page_count": 1,
+      "total_body_chars": 114,
+      "avg_body_chars": 114.0,
+      "support_status": "NOT_SUPPORTED",
+      "limitations": [
+        "Insufficient substantial body text to confirm 山陽 segment narrative."
+      ],
+      "ocr_status_overall": "QUEUED (60/60 pages — body_excerpt is partial preview)",
+      "modern_equivalent_status": "UNRESOLVED (not bound to modern coordinates)"
+    }
+  ],
+  "notes": [
+    "All OCR excerpts from R1 page manifest (body_excerpt after stripping scan headers).",
+    "Modern equivalent coordinates NOT bound — modern_equivalent_status = UNRESOLVED.",
+    "All page_ocr_status = QUEUED — no full OCR run for R2.",
+    "Page_id <-> scan_sequence mapping UNRESOLVED — see page_structure_r2.json."
+  ]
+}

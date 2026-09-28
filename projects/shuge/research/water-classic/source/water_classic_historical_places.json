@@ -1,0 +1,301 @@
+{
+  "schema_version": "historical-places-r2/1.0",
+  "generated_at": "2026-09-28T05:43:46.228941+00:00",
+  "canonical_work": {
+    "post_id": "124575",
+    "institution": "国立公文書館 / 内閣文庫",
+    "v1_0_frozen_baseline_sha": "3a51ef5e698655c215a1f36147d24bfe8c7e6826"
+  },
+  "scope": "Real historical place names from R1 OCR body_excerpt",
+  "places_count": 9,
+  "support_status_summary": {
+    "SUPPORTED": 9
+  },
+  "modern_equivalent_default": "UNRESOLVED",
+  "places": [
+    {
+      "place_name_original": "公安縣",
+      "place_description_zh": "Gong'an county (江水)",
+      "river_group_id": "R-jian-shui-gongan-huarong",
+      "citation_ids": [
+        "SHUGE:p124575:3"
+      ],
+      "page_ids": [
+        2322
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2322,
+          "page_label": "p0003",
+          "body_excerpt": "江水又右杨歧北山 | 江水又东得故市口 | 江水左會高口 | 又東經公安縣北 | 又東南油水从西南来注之又東右合油口 | 江水又南平郡屏陵縣之樂鄉城北 | 山抗大江山東有城故華容縣尉舊治地 | 水高水通也 | 江浦也對黄州 | 故侧江有大城相承云會城即印閣也 | 澧水及陂湖北是渊",
+          "region": "江水_公安_华容"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "華容",
+      "place_description_zh": "Huarong (江水)",
+      "river_group_id": "R-jian-shui-gongan-huarong",
+      "citation_ids": [
+        "SHUGE:p124575:2",
+        "SHUGE:p124575:3"
+      ],
+      "page_ids": [
+        2321,
+        2322
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:2",
+          "page_id": 2321,
+          "page_label": "p0002",
+          "body_excerpt": "香府伴 | 江水又东涌水注之 | 又东至華容縣西夏水出焉 | 水經第三十五雨 | 座 | 東南富華容縣南水出焉 | 南派曲而極水曲之地势世之江曲者也 | 江水左迤為中夏水右中郎浦出焉江浦右迤 | 江水三 | 浅草文库 | 明吴琯校 | 後魏道元注 | 漢桑撰 | 钙家",
+          "region": "江水_公安_华容"
+        },
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 2322,
+          "page_label": "p0003",
+          "body_excerpt": "江水又右杨歧北山 | 江水又东得故市口 | 江水左會高口 | 又東經公安縣北 | 又東南油水从西南来注之又東右合油口 | 江水又南平郡屏陵縣之樂鄉城北 | 山抗大江山東有城故華容縣尉舊治地 | 水高水通也 | 江浦也對黄州 | 故侧江有大城相承云會城即印閣也 | 澧水及陂湖北是渊",
+          "region": "江水_公安_华容"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 2 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "野王縣",
+      "place_description_zh": "Yewang county (河水)",
+      "river_group_id": "R-he-shui-yewang-xiuwu",
+      "citation_ids": [
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        1594
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1594,
+          "page_label": "p0004",
+          "body_excerpt": "有二源北水上承河内野王縣東北界溝喬長明 | 陂南北二十許里東西三十里西则蔡溝人焉水 | 澤矣魏土地記日修武城西北二十里有吴澤水 | 奥滕公濟自玉門津而宿小修武者也大即吴 | 侯國亦日大修武有小故大小修武在東汉祖 | 大還卒於是也漢高帝八年封都尉魏邀為 | 武王伐勒",
+          "region": "河水_野王_修武"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "修武",
+      "place_description_zh": "Xiuwu (河水)",
+      "river_group_id": "R-he-shui-yewang-xiuwu",
+      "citation_ids": [
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4",
+        "SHUGE:p124575:5"
+      ],
+      "page_ids": [
+        1593,
+        1594,
+        1595
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 1593,
+          "page_label": "p0003",
+          "body_excerpt": "固贴日 | 香府 | 清水出河内修武縣之北黑山 | 水經第九凌章文车 | 不座 | 十餘丈雷扑之聲震動山谷左右壁層深獸不 | 泉以成川南流西南屈瀑布岳縣河注壑二 | 黑山在縣地白鹿山東清水所出也上承诸陂散 | 水 | 清水 | 汇水 | 沁水 | 淇水 | 明吴校 | 後魏翻道元注 | 赛圖香撰 | 台",
+          "region": "河水_野王_修武"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1594,
+          "page_label": "p0004",
+          "body_excerpt": "有二源北水上承河内野王縣東北界溝喬長明 | 陂南北二十許里東西三十里西则蔡溝人焉水 | 澤矣魏土地記日修武城西北二十里有吴澤水 | 奥滕公濟自玉門津而宿小修武者也大即吴 | 侯國亦日大修武有小故大小修武在東汉祖 | 大還卒於是也漢高帝八年封都尉魏邀為 | 武王伐勒",
+          "region": "河水_野王_修武"
+        },
+        {
+          "citation_id": "SHUGE:p124575:5",
+          "page_id": 1595,
+          "page_label": "p0005",
+          "body_excerpt": "鹿城西建安二十五年魏封漢献帝為山陽公潤 | 有二泉相去四五里参差合次南注于陵泉在 | 合注于吴陂也次真阜之东北得覆金堆堆南 | 北二十五里有具阜南有皇母馬二泉東南 | 為荷泉北吴漕二清雙道俱東入陂山陽縣東 | 出山陽縣故修武城西南同源分派裂為二水南 | 縣之具亭北",
+          "region": "山陽_吴陂_荷泉"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 3 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "范陽",
+      "place_description_zh": "Fanyang (易水)",
+      "river_group_id": "R-yi-shui-fanyang-rongcheng",
+      "citation_ids": [
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        1657
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1657,
+          "page_label": "p0004",
+          "body_excerpt": "東過范陽縣南又东過容城縣南 | 更属佳觀失其一水東出金毫陂東西六七十步南 | 邃岸高深左右百步一毫参差交時超相望 | 臺陂一水經故安城西侧城南注易水灰塘崇峻 | 之故清南出屈而东轉又分為二一水东注金 | 燕都之前故也或言燕之唑斯不然矣其水 | 之古老之史籍无文以私",
+          "region": "易水_范陽_容城"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "容城",
+      "place_description_zh": "Rongcheng (易水)",
+      "river_group_id": "R-yi-shui-fanyang-rongcheng",
+      "citation_ids": [
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        1657
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1657,
+          "page_label": "p0004",
+          "body_excerpt": "東過范陽縣南又东過容城縣南 | 更属佳觀失其一水東出金毫陂東西六七十步南 | 邃岸高深左右百步一毫参差交時超相望 | 臺陂一水經故安城西侧城南注易水灰塘崇峻 | 之故清南出屈而东轉又分為二一水东注金 | 燕都之前故也或言燕之唑斯不然矣其水 | 之古老之史籍无文以私",
+          "region": "易水_范陽_容城"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "故安城",
+      "place_description_zh": "Gu'an city (易水)",
+      "river_group_id": "R-yi-shui-fanyang-rongcheng",
+      "citation_ids": [
+        "SHUGE:p124575:3",
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        1656,
+        1657
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:3",
+          "page_id": 1656,
+          "page_label": "p0003",
+          "body_excerpt": "才系 | 故傅逮远游赋日出北蓟歷良鄉登金臺觀武陽 | 陽蓄燕昭王之所城也東西二十里南北十七里 | 經今水破城東南隅世又易水马故安河武 | 水故安城南外東流即斯水也锈是人事明 | 屠嘉為侯國城东西二里南北一里半高锈云易 | 東南小城即故安縣之故城也汉文帝封丞相申 | 下",
+          "region": "易水_范陽_容城"
+        },
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 1657,
+          "page_label": "p0004",
+          "body_excerpt": "東過范陽縣南又东過容城縣南 | 更属佳觀失其一水東出金毫陂東西六七十步南 | 邃岸高深左右百步一毫参差交時超相望 | 臺陂一水經故安城西侧城南注易水灰塘崇峻 | 之故清南出屈而东轉又分為二一水东注金 | 燕都之前故也或言燕之唑斯不然矣其水 | 之古老之史籍无文以私",
+          "region": "易水_范陽_容城"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 2 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "代城",
+      "place_description_zh": "Daicheng (汾水)",
+      "river_group_id": "R-fen-shui-daicheng",
+      "citation_ids": [
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        2005
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 2005,
+          "page_label": "p0004",
+          "body_excerpt": "東塘稽石侧枕汾水俗之代城城又南出一 | 雲垂煙接自是水流潭波襄轉泛又南一城 | 西温合水出右近聲流翼注水上樹交 | 時五色也後曜逐為胡王美汾水又南與東 | 非常背有銘日神服御除衆毒曜途服之隨 | 剑一口置前再拜而去以视之剑長二尺光澤 | 有二童子入跪日管王使小臣奉",
+          "region": "汾水_代城"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    },
+    {
+      "place_name_original": "霍陽山",
+      "place_description_zh": "Huoyang mountain (汝水)",
+      "river_group_id": "R-ru-shui-huoyang",
+      "citation_ids": [
+        "SHUGE:p124575:4"
+      ],
+      "page_ids": [
+        2079
+      ],
+      "ocr_excerpts": [
+        {
+          "citation_id": "SHUGE:p124575:4",
+          "page_id": 2079,
+          "page_label": "p0004",
+          "body_excerpt": "日河南梁躲有靈山者世其水东北流經霍陽 | 霍陽聚汝水其北东合霍陽山水水出南山杜 | 出北山南流注之又流注于汝水汝水之右有 | 秦减东周徙其君此陂水東南流合乎潤水水 | 口水上承陽人城東睿公陂城古梁之陽人聚也 | 澤水澤水又東南入于汝水汝水又東得睿公水 | 沼錯落其",
+          "region": "汝水_霍陽_梁"
+        }
+      ],
+      "support_status": "SUPPORTED",
+      "modern_equivalent_status": "UNRESOLVED",
+      "modern_equivalent_note": "Default per spec. Historical place names from《水经注》OCR text; modern coordinate binding is OUT OF SCOPE for R2 and would require external historical geography reference work.",
+      "limitations": [
+        "Place name found in 1 substantial page(s) but exact context (地理描述 vs 戰爭敘事 vs 其他) requires full OCR review.",
+        "Modern coordinate binding NOT attempted."
+      ]
+    }
+  ],
+  "notes": [
+    "All places sourced from real R1 body_excerpt (no fabrication).",
+    "Modern equivalent coordinates NOT bound — modern_equivalent_status = UNRESOLVED per spec.",
+    "Spec-required places: 公安縣 / 華容 / 野王縣 / 修武 / 范陽 / 容城 / 故安城 / 代城 / 霍陽山."
+  ]
+}

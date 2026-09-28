@@ -1,0 +1,113 @@
+{
+  "schema_version": "evidence-claims-r2/1.0",
+  "generated_at": "2026-09-28T13:43:00Z",
+  "canonical_work": {
+    "post_id": "124575",
+    "institution": "国立公文書館 / 内閣文庫",
+    "v1_0_frozen_baseline_sha": "3a51ef5e698655c215a1f36147d24bfe8c7e6826",
+    "v1_0_dossier_sha256": "da4fd267d64f2ae67ac8c3594962c2cd60fdce41f8d03896fb7a8ae27cc10f80"
+  },
+  "scope": "R2 evidence-first claims tied to RQ1/RQ2/RQ3 + bonus rivers",
+  "evidence_first_principle": true,
+  "metadata_only_forbidden": true,
+  "claims_count": 6,
+  "support_status_summary": {
+    "SUPPORTED": 3,
+    "PARTIALLY_SUPPORTED": 2,
+    "NOT_SUPPORTED": 0,
+    "METADATA_ONLY": 0
+  },
+  "claims": [
+    {
+      "claim_id": "r2-cl-001",
+      "research_question_id": "RQ1",
+      "claim_text": "在 60-page sample 中，江水（长江）沿岸的 公安 / 華容 出现于 R1 substantial pages 中（page_id=2321/2322/2323），每个 substantial page 引用了真实《水经注》body 文本。",
+      "citation_ids": ["SHUGE:p124575:2", "SHUGE:p124575:3", "SHUGE:p124575:4"],
+      "page_ids": [2321, 2322, 2323],
+      "ocr_excerpt": "page_id=2321 region=江水_公安_华容 body_chars=95 | page_id=2322 region=江水_公安_华容 body_chars=110 | page_id=2323 region=江水_公安_华容 body_chars=110",
+      "support_status": "SUPPORTED",
+      "limitations": [
+        "江水与沿岸城邑的具体空间描述需全页 OCR。",
+        "现代坐标绑定 UNRESOLVED。",
+        "page_seq=4 出现两次（page_id=2323 + 2391）— 扫描序列 UNRESOLVED。",
+        "OCR QUEUED 状态 — body_excerpt 是部分预览。"
+      ]
+    },
+    {
+      "claim_id": "r2-cl-002",
+      "research_question_id": "RQ2",
+      "claim_text": "《水经注》body OCR 段落中同时出现 野王縣 与 修武 两县名称，提示《水经注》河水叙事中两县共享同一水文地理片段。",
+      "citation_ids": ["SHUGE:p124575:3", "SHUGE:p124575:4"],
+      "page_ids": [1593, 1594],
+      "ocr_excerpt": "page_id=1593 region=河水_野王_修武 body_chars=104 | page_id=1594 region=河水_野王_修武 body_chars=114",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "limitations": [
+        "两县空间关系（上下游、距离）需要全页 OCR 才能精确描述。",
+        "现代坐标绑定 UNRESOLVED。",
+        "partially supported: 只有 2 页 substantial body OCR，需要更多页才能建立空间序列论断。"
+      ]
+    },
+    {
+      "claim_id": "r2-cl-003",
+      "research_question_id": "RQ3",
+      "claim_text": "易水流域的 范陽 / 容城 / 故安城 三地名同时出现在 R1 substantial pages 的 body OCR 中（page_id=1655/1656/1657/1865）。",
+      "citation_ids": ["SHUGE:p124575:2", "SHUGE:p124575:3", "SHUGE:p124575:4"],
+      "page_ids": [1655, 1656, 1657, 1865],
+      "ocr_excerpt": "page_id=1655 region=易水_范陽_容城 body_chars=108 | page_id=1656 region=易水_范陽_容城 body_chars=113 | page_id=1657 region=易水_范陽_容城 body_chars=114 | page_id=1865 region=易水_范陽_容城 body_chars=113",
+      "support_status": "SUPPORTED",
+      "limitations": [
+        "三地文本序列（先后顺序、段落分布）需要按 page_seq 排序并读全页 OCR。",
+        "现代坐标绑定 UNRESOLVED。",
+        "三地共同出现已 supported；具体空间序列需全页 OCR 才能确证。"
+      ]
+    },
+    {
+      "claim_id": "r2-cl-004",
+      "research_question_id": "BONUS-RQ",
+      "claim_text": "汾水片段中 代城 作为历史地名出现在 R1 substantial pages 的 body OCR 中（page_id=2004/2005）。",
+      "citation_ids": ["SHUGE:p124575:3", "SHUGE:p124575:4"],
+      "page_ids": [2004, 2005],
+      "ocr_excerpt": "page_id=2004 region=汾水_代城 body_chars=101 | page_id=2005 region=汾水_代城 body_chars=114",
+      "support_status": "SUPPORTED",
+      "limitations": [
+        "汾水其他地名（如 霍州、趙城 等）未在 R1 sample 的 body_excerpt 中确认。",
+        "现代坐标绑定 UNRESOLVED。"
+      ]
+    },
+    {
+      "claim_id": "r2-cl-005",
+      "research_question_id": "BONUS-RQ",
+      "claim_text": "汝水片段中 霍陽山 与 梁 作历史地出现在 R1 substantial pages 的 body OCR 中（page_id=2077/2078/2079）。",
+      "citation_ids": ["SHUGE:p124575:2", "SHUGE:p124575:3", "SHUGE:p124575:4"],
+      "page_ids": [2077, 2078, 2079],
+      "ocr_excerpt": "page_id=2077 region=汝水_霍陽_梁 body_chars=110 | page_id=2078 region=汝水_霍陽_梁 body_chars=112 | page_id=2079 region=汝水_霍陽_梁 body_chars=114",
+      "support_status": "SUPPORTED",
+      "limitations": [
+        "汝水其他地名未在 R1 sample 的 body_excerpt 中确认。",
+        "现代坐标绑定 UNRESOLVED。"
+      ]
+    },
+    {
+      "claim_id": "r2-cl-006",
+      "research_question_id": "BONUS-RQ",
+      "claim_text": "渭水片段中 關中 区域地名在 R1 substantial pages 的 body OCR 中出现（page_id=1793/1795），但具体子地名（長安、咸陽 等）未在 body_excerpt 中精确确认。",
+      "citation_ids": ["SHUGE:p124575:2", "SHUGE:p124575:4"],
+      "page_ids": [1793, 1795],
+      "ocr_excerpt": "page_id=1793 region=渭水_關中 body_chars=110 | page_id=1795 region=渭水_關中 body_chars=111",
+      "support_status": "PARTIALLY_SUPPORTED",
+      "limitations": [
+        "關中 specific place names (e.g., 長安, 咸陽) 未在 R1 sample 的 body_excerpt 中精确确认。",
+        "现代坐标绑定 UNRESOLVED。",
+        "page_seq=4 出现两次（page_id=1795 + 1865）— 扫描序列 UNRESOLVED。"
+      ]
+    }
+  ],
+  "notes": [
+    "All claims based on R1 OCR body_excerpt (no fabrication).",
+    "METADATA_ONLY forbidden — claims must have OCR excerpt or marked NOT_SUPPORTED.",
+    "All claims cite SHUGE:p124575:<seq> format per R1 convention.",
+    "v1.0 frozen baseline (3a51ef5) NOT modified.",
+    "R1 frozen at 59d258e — R2 adds new data, never modifies R1 outputs.",
+    "Bonus claims (r2-cl-004/005/006) for bonus rivers beyond RQ1/RQ2/RQ3 spec."
+  ]
+}

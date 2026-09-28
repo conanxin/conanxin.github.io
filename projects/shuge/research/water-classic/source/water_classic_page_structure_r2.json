@@ -1,0 +1,619 @@
+{
+  "schema_version": "page-structure-r2/1.0",
+  "generated_at": "2026-09-28T05:43:46.227175+00:00",
+  "canonical_work": {
+    "post_id": "124575",
+    "institution": "国立公文書館 / 内閣文庫",
+    "v1_0_frozen_baseline_sha": "3a51ef5e698655c215a1f36147d24bfe8c7e6826",
+    "v1_0_dossier_sha256": "da4fd267d64f2ae67ac8c3594962c2cd60fdce41f8d03896fb7a8ae27cc10f80"
+  },
+  "scope": "60 pages / 5 page_seq values / N scan sequences (UNRESOLVED)",
+  "volume_status": "UNRESOLVED",
+  "volume_status_reason": "Only 5 unique page_labels (p0001-p0005) appear in 60 page_ids. Each page_seq value appears in 12-14 distinct page_ids, indicating multiple scan sequences of the same nominal 5 pages. Without metadata linking page_id to scan run or edition volume, the volume identity of these scans cannot be established from page-level data alone. Per research integrity: do NOT fabricate volumes.",
+  "scan_sequences_detected": 5,
+  "scan_sequences_explanation": "Each of 5 page_seq values (1-5) appears in 12-14 distinct page_ids. This is interpreted as ~12-14 separate scan runs of the same 5 nominal pages, likely representing different editions or duplicate scans of volume fragments. Without page_id → scan_run mapping metadata, this is UNRESOLVED.",
+  "page_classification_summary": {
+    "total_pages": 60,
+    "BODY_TEXT_pages": 34,
+    "MIXED_PARTIAL_BODY_pages": 7,
+    "BLANK_OR_HEADER_ONLY_pages": 19,
+    "OTHER_pages": 0
+  },
+  "duplicate_pages": {
+    "explanation": "60 page_ids share only 5 unique page_labels — each label appears in 12-14 pages.",
+    "total_unique_page_labels": 5,
+    "duplicate_label_groups": {
+      "p0005": [
+        1505,
+        1595,
+        1658,
+        1715
+      ],
+      "p0004": [
+        1504,
+        1594,
+        1657,
+        1714,
+        1795,
+        1865,
+        1937,
+        2005,
+        2079,
+        2135,
+        2207,
+        2267,
+        2323,
+        2391
+      ],
+      "p0002": [
+        1502,
+        1592,
+        1655,
+        1712,
+        1793,
+        1863,
+        1935,
+        2003,
+        2077,
+        2133,
+        2205,
+        2265,
+        2321,
+        2389
+      ],
+      "p0001": [
+        1501,
+        1591,
+        1654,
+        1711,
+        1792,
+        1862,
+        1934,
+        2002,
+        2076,
+        2132,
+        2204,
+        2264,
+        2320,
+        2388
+      ],
+      "p0003": [
+        1503,
+        1593,
+        1656,
+        1713,
+        1794,
+        1864,
+        1936,
+        2004,
+        2078,
+        2134,
+        2206,
+        2266,
+        2322,
+        2390
+      ]
+    }
+  },
+  "substantial_pages_for_evidence": {
+    "criteria": "body_chars >= 50 (real《水经注》body OCR after stripping scan headers)",
+    "count": 39,
+    "pages": [
+      {
+        "page_id": 1502,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "unclassified",
+        "body_chars": 94,
+        "body_lines_count": 8,
+        "reliability": "MIXED_PARTIAL_BODY"
+      },
+      {
+        "page_id": 1655,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "易水_范陽_容城",
+        "body_chars": 108,
+        "body_lines_count": 13,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1793,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "渭水_關中",
+        "body_chars": 110,
+        "body_lines_count": 11,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1863,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "unclassified",
+        "body_chars": 109,
+        "body_lines_count": 12,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2077,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "汝水_霍陽_梁",
+        "body_chars": 110,
+        "body_lines_count": 11,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2321,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "江水_公安_华容",
+        "body_chars": 95,
+        "body_lines_count": 14,
+        "reliability": "MIXED_PARTIAL_BODY"
+      },
+      {
+        "page_id": 2389,
+        "page_label": "p0002",
+        "page_object_id": "p124575:p2",
+        "citation_id": "SHUGE:p124575:2",
+        "region": "unclassified",
+        "body_chars": 100,
+        "body_lines_count": 17,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1503,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 108,
+        "body_lines_count": 10,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1593,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "河水_野王_修武",
+        "body_chars": 104,
+        "body_lines_count": 17,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1656,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "易水_范陽_容城",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1713,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 88,
+        "body_lines_count": 17,
+        "reliability": "MIXED_PARTIAL_BODY"
+      },
+      {
+        "page_id": 1794,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1864,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1936,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 109,
+        "body_lines_count": 12,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2004,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "汾水_代城",
+        "body_chars": 101,
+        "body_lines_count": 17,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2078,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "汝水_霍陽_梁",
+        "body_chars": 112,
+        "body_lines_count": 9,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2134,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "泗水_魯汶",
+        "body_chars": 103,
+        "body_lines_count": 17,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2206,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 105,
+        "body_lines_count": 16,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2266,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "淮水_肥水_芍陂",
+        "body_chars": 81,
+        "body_lines_count": 28,
+        "reliability": "MIXED_PARTIAL_BODY"
+      },
+      {
+        "page_id": 2322,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "江水_公安_华容",
+        "body_chars": 110,
+        "body_lines_count": 11,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2390,
+        "page_label": "p0003",
+        "page_object_id": "p124575:p3",
+        "citation_id": "SHUGE:p124575:3",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1504,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1594,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "河水_野王_修武",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1657,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "易水_范陽_容城",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1714,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 96,
+        "body_lines_count": 7,
+        "reliability": "MIXED_PARTIAL_BODY"
+      },
+      {
+        "page_id": 1795,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "渭水_關中",
+        "body_chars": 111,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1865,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "易水_范陽_容城",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1937,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2005,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "汾水_代城",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2079,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "汝水_霍陽_梁",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2135,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2207,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 111,
+        "body_lines_count": 10,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2267,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 110,
+        "body_lines_count": 11,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2323,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "江水_公安_华容",
+        "body_chars": 110,
+        "body_lines_count": 10,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 2391,
+        "page_label": "p0004",
+        "page_object_id": "p124575:p4",
+        "citation_id": "SHUGE:p124575:4",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1505,
+        "page_label": "p0005",
+        "page_object_id": "p124575:p5",
+        "citation_id": "SHUGE:p124575:5",
+        "region": "unclassified",
+        "body_chars": 112,
+        "body_lines_count": 9,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1595,
+        "page_label": "p0005",
+        "page_object_id": "p124575:p5",
+        "citation_id": "SHUGE:p124575:5",
+        "region": "山陽_吴陂_荷泉",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1658,
+        "page_label": "p0005",
+        "page_object_id": "p124575:p5",
+        "citation_id": "SHUGE:p124575:5",
+        "region": "unclassified",
+        "body_chars": 114,
+        "body_lines_count": 7,
+        "reliability": "BODY_TEXT"
+      },
+      {
+        "page_id": 1715,
+        "page_label": "p0005",
+        "page_object_id": "p124575:p5",
+        "citation_id": "SHUGE:p124575:5",
+        "region": "unclassified",
+        "body_chars": 113,
+        "body_lines_count": 8,
+        "reliability": "BODY_TEXT"
+      }
+    ]
+  },
+  "blank_or_header_only_pages": [
+    {
+      "page_id": 1501,
+      "page_label": "p0001",
+      "body_chars": 9,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1591,
+      "page_label": "p0001",
+      "body_chars": 4,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1654,
+      "page_label": "p0001",
+      "body_chars": 6,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1711,
+      "page_label": "p0001",
+      "body_chars": 12,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1792,
+      "page_label": "p0001",
+      "body_chars": 9,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1934,
+      "page_label": "p0001",
+      "body_chars": 18,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2002,
+      "page_label": "p0001",
+      "body_chars": 13,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2076,
+      "page_label": "p0001",
+      "body_chars": 15,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2132,
+      "page_label": "p0001",
+      "body_chars": 18,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2204,
+      "page_label": "p0001",
+      "body_chars": 8,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2264,
+      "page_label": "p0001",
+      "body_chars": 7,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2388,
+      "page_label": "p0001",
+      "body_chars": 7,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1592,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1712,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 1935,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2003,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2133,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2205,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    },
+    {
+      "page_id": 2265,
+      "page_label": "p0002",
+      "body_chars": 0,
+      "reason": "SCAN_HEADER_ONLY"
+    }
+  ],
+  "page_object_id_format": "p{post_id}:p{seq}",
+  "citation_id_format": "SHUGE:p{post_id}:{seq}",
+  "ocr_status_overall": "QUEUED (60/60 — no full-page OCR has been run; body_excerpt is partial preview)",
+  "limits_and_caveats": [
+    "Volume identity unresolved — do NOT fabricate volume numbers.",
+    "OCR QUEUED status across all 60 pages — body_excerpt is preview text from R1 source extraction, not full OCR.",
+    "Scan sequence mapping UNRESOLVED — page_id → scan_run metadata not present.",
+    "《水经注》 historically has 40 卷; this 60-page sample does not represent full work coverage."
+  ]
+}

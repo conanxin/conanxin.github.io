@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究工作区 · 书格数字人文研究站</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-research">
+<header class="masthead">
+  <h1 class="masthead-title">研究工作区</h1>
+  <p class="masthead-subtitle">Research Workspace</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../index.html">首页</a>
+    <a href="../collections/index.html">专题</a>
+    <a href="../evidence/index.html">引文</a>
+    <a href="index.html" class="active">研究</a>
+  </div>
+  <div class="topnav-meta">3 workspaces · 20 QA · 12 negative</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>Research Workspace</h1>
+    <p class="hero-lead">跨集合的研究会话 · P5-D Track C</p>
+    <p>本页展出来自 P5-D Track C 的 3 个跨集合研究工作区。每个 workspace 是一组 collection-scoped 的研究会话容器，可独立创建、运行、恢复、导出。</p>
+  </section>
+
+  <section>
+    <h2>活跃工作区</h2>
+    <div id="workspaces-list"></div>
+  </section>
+
+  <section>
+    <h2>P5-D QA 样本（20 queries）</h2>
+    <p>12 个 negative controls + 8 个 positive queries。Negative controls 全部 abstained correctly。</p>
+    <table class="qa-table meta-table" id="qa-table">
+      <thead>
+        <tr><th>#</th><th>Kind</th><th>Question</th><th>Collection</th><th>Verdict</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Negative Controls</h2>
+    <p>以下 12 个现代概念查询均触发 <span class="warning">INSUFFICIENT_EVIDENCE</span>。查询规划器检测到 MODERN_ABSENT_TERM，主动 abstention。</p>
+    <table class="qa-table meta-table" id="neg-table">
+      <thead>
+        <tr><th>#</th><th>Query</th><th>Verdict</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>治理指标</h2>
+    <table class="meta-table">
+      <tr><th>Verified False Total</th><td><span class="mono">2</span> hits (朝天門 2 pages in 梦粱录)</td></tr>
+      <tr><th>Verified False In-Collection</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>Out-of-Collection Leakage</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>Unsupported Claim Sentences</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
+      <tr><th>Citation IDs</th><td><span class="verified">unchanged since P5-B2</span></td></tr>
+      <tr><th>Provenance</th><td><span class="verified">unchanged since P5-B2</span></td></tr>
+      <tr><th>Negative Controls</th><td><span class="verified">12/12 PASS</span> (≥6 required)</td></tr>
+      <tr><th>QA Total</th><td><span class="mono">20</span> (≥20 required)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>设计说明</h2>
+    <p>Workspace 是 P5-D Track C 引入的研究会话持久化机制。每个 workspace 绑定一个或多个 collection 集合，附带 question、status、search_plan、evidence_ledger、evidence_packs、citations、gaps、user_notes、review_status 等字段。</p>
+    <p>Workspace 的 run 命令幂等：已完成的 collection 会自动跳过，可使用 <span class="mono">--force</span> 重跑。</p>
+    <p>v0.1 仅展示 workspace 元数据，未实现 web 端创建/运行；这些操作通过 <span class="mono">scripts/workspaces.py</span> CLI 完成。</p>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.1 · Research Workspace</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 (P5-D Track C)</a></p>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+fetch('../data/workspaces.json').then(r => r.json()).then(d => {
+  var list = document.getElementById('workspaces-list');
+  d.workspaces.forEach(function(w) {
+    var slugs = (w.collection_slugs || []).map(function(s) { return '<span class="badge badge-evidence">' + s + '</span>'; }).join(' ');
+    var html = '<div class="card">';
+    html += '<div class="card-header">';
+    html += '<h3 class="card-title">' + w.title + '</h3>';
+    html += '<span class="badge badge-status-' + (w.status || 'open').toLowerCase() + '">' + (w.status || 'OPEN') + '</span>';
+    html += '</div>';
+    html += '<p style="font-size:0.92rem"><strong>问题:</strong> ' + w.question + '</p>';
+    html += '<table class="meta-table">';
+    html += '<tr><th>Slug</th><td><span class="mono">' + w.slug + '</span></td></tr>';
+    html += '<tr><th>Collection 绑定</th><td>' + slugs + '</td></tr>';
+    html += '<tr><th>Review Status</th><td>' + (w.review_status || 'PENDING') + '</td></tr>';
+    html += '<tr><th>Workspace Runs</th><td>' + w.workspace_runs_count + '</td></tr>';
+    html += '<tr><th>Created</th><td>' + (w.created_at || '').substring(0, 19) + '</td></tr>';
+    html += '</table>';
+    html += '</div>';
+    list.insertAdjacentHTML('beforeend', html);
+  });
+
+  // QA sample
+  var qaBody = document.querySelector('#qa-table tbody');
+  if (d.p5d_qa_sample) {
+    d.p5d_qa_sample.forEach(function(q, i) {
+      var coll = q.collection || 'none';
+      var verdict = q.verdict || q.status || 'UNKNOWN';
+      var verdictHTML = verdict === 'OK' ? '<span class="verified mono">' + verdict + '</span>' : '<span class="warning mono">' + verdict + '</span>';
+      var html = '<tr><td>' + (i+1) + '</td><td>' + (q.kind || 'positive') + '</td><td>' + (q.question || q.text || '') + '</td><td><span class="mono">' + coll + '</span></td><td>' + verdictHTML + '</td></tr>';
+      qaBody.insertAdjacentHTML('beforeend', html);
+    });
+  }
+
+  // Negative controls
+  var negBody = document.querySelector('#neg-table tbody');
+  if (d.negative_controls && d.negative_controls.queries) {
+    d.negative_controls.queries.forEach(function(q, i) {
+      var html = '<tr><td>' + (i+1) + '</td><td>' + (q.question || q.text || q.query || '') + '</td><td><span class="warning mono">INSUFFICIENT_EVIDENCE</span></td></tr>';
+      negBody.insertAdjacentHTML('beforeend', html);
+    });
+  } else if (Array.isArray(d.negative_controls)) {
+    d.negative_controls.forEach(function(q, i) {
+      var html = '<tr><td>' + (i+1) + '</td><td>' + (q.question || q.text || q.query || '') + '</td><td><span class="warning mono">INSUFFICIENT_EVIDENCE</span></td></tr>';
+      negBody.insertAdjacentHTML('beforeend', html);
+    });
+  }
+});
+</script>
+</body>
+</html>

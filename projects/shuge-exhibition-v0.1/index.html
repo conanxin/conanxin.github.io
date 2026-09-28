@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>书格数字人文研究站 · SHUGE DH Exhibition</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-overview">
+<header class="masthead">
+  <h1 class="masthead-title">书格数字人文研究站</h1>
+  <p class="masthead-subtitle">A Digital Humanities Exhibition of the SHUGE Research Database</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="index.html" class="active">首页</a>
+    <a href="collections/index.html">专题</a>
+    <a href="evidence/index.html">引文</a>
+    <a href="research/index.html">研究</a>
+  </div>
+  <div class="topnav-meta">v0.1 · P5-D frozen</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>展厅导语</h1>
+    <p class="hero-lead">v0.1 · 2026-09-28 freeze</p>
+    <p>本展厅基于 <span class="mono">SHUGE-RESEARCH-DB</span> 的 P5-D 终态呈现。</p>
+    <p>展厅由四个展柜组成：语料库（Corpus）、专题集合（Collections）、引文证据（Evidence）、研究工作区（Workspace）。所有展示内容来源于项目数据库的只读快照，未引入任何新资源、未改动原始 OCR、未修改 Citation ID。</p>
+    <div class="stat-row" id="stat-row">
+      <div class="stat"><span class="stat-value" id="stat-works">…</span><span class="stat-label">Works</span></div>
+      <div class="stat"><span class="stat-value" id="stat-pages">…</span><span class="stat-label">OCR Pages</span></div>
+      <div class="stat"><span class="stat-value" id="stat-coll">…</span><span class="stat-label">Collections</span></div>
+      <div class="stat"><span class="stat-value" id="stat-runs">…</span><span class="stat-label">Runs</span></div>
+      <div class="stat"><span class="stat-value" id="stat-claims">…</span><span class="stat-label">Claims</span></div>
+      <div class="stat"><span class="stat-value" id="stat-ws">…</span><span class="stat-label">Workspaces</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>展厅章节</h2>
+    <h3>1 · 语料库 (Corpus)</h3>
+    <p>三部 JDA 核心古籍：水经注（956 页 / 322,030 字）、工程做法（1,456 页 / 277,723 字）、河防一览（122 页 / 29,278 字）。所有页面已完成 OCR 并进入 FTS5 索引；总计 3,553 页可搜索文本。辅以天工开物、园冶、梦粱录等周边古籍。</p>
+    <h3>2 · 专题集合 (Collections)</h3>
+    <p>两个策展性研究集合：<a href="collections/index.html"><span class="mono">historical-hydrology</span></a>（历史水利与河防）与 <a href="collections/index.html"><span class="mono">architecture-construction</span></a>（建筑营造与工程做法）。每个集合含 WORK 种子 + 自动扩展的 PAGE 成员，共 2,224 条 memberships。</p>
+    <h3>3 · 引文证据 (Evidence)</h3>
+    <p>234 个研究问答（65 BRIEF_READY + 60 INSUFFICIENT_EVIDENCE + 109 SEARCHING），378 条 claim 全部带 Citation ID 引用，无 0 unsupported sentence。证据在合成前过滤出 out-of-collection 文档。<a href="evidence/index.html">→ 进入引文检索</a></p>
+    <h3>4 · 研究工作区 (Workspace)</h3>
+    <p>3 个跨集合研究工作区（水经注河水分布研究、工程做法柱径标准、营造与水利交叉），状态 OPEN。20 个 P5-D QA queries 全部入库（12 个 negative controls 全部 abstained correctly）。<a href="research/index.html">→ 进入工作区</a></p>
+  </section>
+
+  <section>
+    <h2>精选作品</h2>
+    <p>以下九部作品按 JDA 核心 · 证据页 · 主题亮点三类编排。<a href="collections/index.html">专题展柜另见。</a></p>
+    <div class="works-grid" id="works-grid"></div>
+  </section>
+
+  <section>
+    <h2>项目说明</h2>
+    <p>本项目从 <span class="mono">shuge.org</span> 的开放古籍目录出发，经 P1–P5-A 完成语料消化、P5-B2 完成 JDA 核心冻结、P5-C 完成专题集合、P5-D 完成集合治理 + 检索精度 + 工作区。每阶段均以 GitHub Issue 为唯一任务书与 acceptance gate。</p>
+    <h3>核心准则</h3>
+    <p>0 个 unsupported claims · 0 个 out-of-collection leakage · 2 个 verified-false 命中但全部 out-of-collection · Citation ID 与 provenance 自 P5-B2 起保持不变。</p>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.1 prototype</p>
+  <p>数据来源：<a href="https://www.shuge.org/">shuge.org</a> · JDA (digital.archives.go.jp) · 本地数据库只读快照</p>
+  <p>数据冻结：<span class="mono" id="footer-time">2026-09-28T08:54:00+08:00</span> · Pipeline 状态：<span class="mono">P5-D COMPLETE</span></p>
+  <p>仓库：<a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">conanxin/conanxin.github.io</a></p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+fetch('data/manifest.json').then(r => r.json()).then(d => {
+  document.getElementById('stat-works').textContent = d.totals.works.toLocaleString();
+  document.getElementById('stat-pages').textContent = d.totals.pages_ocr.toLocaleString();
+  document.getElementById('stat-coll').textContent = d.totals.collections;
+  document.getElementById('stat-runs').textContent = d.totals.research_runs_total;
+  document.getElementById('stat-claims').textContent = d.totals.research_claims_total;
+  document.getElementById('stat-ws').textContent = d.totals.research_workspaces;
+  document.getElementById('footer-time').textContent = d.generated_at;
+});
+
+fetch('data/works.json').then(r => r.json()).then(d => {
+  var grid = document.getElementById('works-grid');
+  d.featured.forEach(function(w) {
+    var colls = (w.in_collections || []).map(function(c) { return c.slug; });
+    var unique = Array.from(new Set(colls));
+    var kindBadge = '<span class="badge badge-' + w.featured_kind.toLowerCase() + '">' + w.featured_kind + '</span>';
+    var collHTML = unique.length > 0 ? '<div style="margin-top:0.5rem;font-family:var(--font-sans);font-size:0.75rem;color:var(--muted-gray)">in: ' + unique.map(function(s) { return '<span class="mono">' + s + '</span>'; }).join(' · ') + '</div>' : '';
+    var html = '<div class="card">';
+    html += '<div class="card-header">';
+    html += '<h3 class="card-title">' + w.title + (w.alternate_title ? ' · <span class="card-en">' + w.alternate_title + '</span>' : '') + '</h3>';
+    html += kindBadge;
+    html += '</div>';
+    html += '<p style="margin:0.3rem 0;font-family:var(--font-serif-en);font-size:0.85rem;color:var(--archival-brown)">' + (w.author || '') + ' · ' + (w.dynasty_or_date || '') + '</p>';
+    if (w.description) html += '<p style="font-size:0.92rem;line-height:1.6">' + w.description + '</p>';
+    html += '<table class="meta-table">';
+    html += '<tr><th>Pages</th><td>' + (w.page_count || 0) + '</td></tr>';
+    html += '<tr><th>OCR Pages</th><td>' + (w.ocr_page_count || 0) + '</td></tr>';
+    if (w.editions && w.editions.length > 0) {
+      html += '<tr><th>Edition</th><td>' + w.editions[0].edition_text + '</td></tr>';
+    }
+    if (w.shuge_url) html += '<tr><th>Source</th><td><a href="' + w.shuge_url + '" target="_blank" class="mono">' + w.shuge_url.replace(/^https?:\/\//, '') + '</a></td></tr>';
+    html += '</table>';
+    html += collHTML;
+    html += '</div>';
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+});
+</script>
+</body>
+</html>

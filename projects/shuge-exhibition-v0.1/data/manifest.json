@@ -1,0 +1,36 @@
+{
+  "project": "SHUGE Digital Humanities Exhibition",
+  "subtitle": "书格数字人文研究站",
+  "subtitle_en": "A Digital Humanities Exhibition of the SHUGE Research Database",
+  "version": "v0.1",
+  "generated_at": "2026-09-28T08:52:30+08:00",
+  "pipeline_status": "P5-D COMPLETE",
+  "database_size_bytes": 45989888,
+  "totals": {
+    "works": 756,
+    "institutions": 82,
+    "pages_ocr": 3553,
+    "collections": 2,
+    "collection_memberships": 2224,
+    "research_workspaces": 3,
+    "research_runs_total": 234,
+    "research_runs_brief_ready": 65,
+    "research_runs_insufficient": 60,
+    "research_claims_total": 378,
+    "research_evidence_total": 440,
+    "editions": 618,
+    "tags": 3614
+  },
+  "phase_markers": {
+    "phase_1_to_5a": "Ingestion & OCR complete",
+    "p5b2": "JDA core frozen (Issue #7 closed)",
+    "p5c": "Thematic research collections (Issue #8 closed)",
+    "p5d": "Collection governance + retrieval precision + workspaces (Issue #9 closed)"
+  },
+  "sources": {
+    "shuge_website": "https://www.shuge.org/",
+    "jda": "JDA (digital.archives.go.jp)",
+    "repo": "https://github.com/conanxin/conanxin.github.io"
+  },
+  "featured_count": 9
+}

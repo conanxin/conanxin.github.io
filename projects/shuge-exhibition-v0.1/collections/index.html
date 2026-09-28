@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专题展览 · 书格数字人文研究站</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-collections">
+<header class="masthead">
+  <h1 class="masthead-title">专题展览</h1>
+  <p class="masthead-subtitle">Thematic Research Collections</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../index.html">首页</a>
+    <a href="index.html" class="active">专题</a>
+    <a href="../evidence/index.html">引文</a>
+    <a href="../research/index.html">研究</a>
+  </div>
+  <div class="topnav-meta">2 collections · 2,224 memberships</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>两个专题研究集合</h1>
+    <p class="hero-lead">来自 P5-C + P5-D 终态</p>
+    <p>本页展出来自 P5-C（Thematic Research Collections）与 P5-D（Collection Governance）的两件策展性研究集合。每一集合由 WORK 种子作品 + 自动扩展的 PAGE 成员构成，并配有独立 definition 版本、snapshot 链与 audit trail。</p>
+  </section>
+
+  <section>
+    <h2>集合一：历史水利与河防</h2>
+    <div class="card collection-detail">
+      <div class="card-header">
+        <h3 class="card-title">historical-hydrology · 历史水利与河防</h3>
+        <span class="mono dim">collection_id=1 · v1</span>
+      </div>
+      <p>河流水系、堤防、灌溉、漕运、河工治理 — 以《水经注》《河防一览》为骨干，辅以《天工开物》相关篇章。</p>
+      <table class="meta-table">
+        <tr><th>Slug</th><td><span class="mono">historical-hydrology</span></td></tr>
+        <tr><th>Status</th><td><span class="badge badge-status-open">ACTIVE</span></td></tr>
+        <tr><th>Definition</th><td><span class="mono">v1</span> (active)</td></tr>
+        <tr><th>WORK 种子</th><td>水经注 (p124575) · 河防一览 (p48341)</td></tr>
+        <tr><th>Include Terms</th><td><span class="mono">水 / 河 / 江 / 湖 / 海 / 漕 / 堤 / 渠 / 坝 / 堰 / 闸 / 河工 / 水利 / 海塘 / 黄河 / 运河 / 漕运 / 灌溉 / 河防</span> (19 terms)</td></tr>
+        <tr><th>Min Confidence</th><td><span class="mono">0.5</span></td></tr>
+        <tr><th>Memberships</th><td id="hyd-memberships">…</td></tr>
+        <tr><th>Scope 分布</th><td id="hyd-scope">…</td></tr>
+        <tr><th>Review Status</th><td id="hyd-review">…</td></tr>
+        <tr><th>Snapshots</th><td id="hyd-snapshots">…</td></tr>
+      </table>
+      <div style="margin-top:0.8rem">
+        <a href="../evidence/index.html" class="mono">→ 在 Citation Explorer 中按 collection=historical-hydrology 过滤</a>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem">快照链</h3>
+    <div id="hyd-snap-list"></div>
+  </section>
+
+  <section>
+    <h2>集合二：建筑营造与工程做法</h2>
+    <div class="card collection-detail">
+      <div class="card-header">
+        <h3 class="card-title">architecture-construction · 建筑营造与工程做法</h3>
+        <span class="mono dim">collection_id=2 · v1</span>
+      </div>
+      <p>宫室、营造、构件、用材 — 以《工程做法》为骨干，辅以《天工开物》营造章节、《园冶》。</p>
+      <table class="meta-table">
+        <tr><th>Slug</th><td><span class="mono">architecture-construction</span></td></tr>
+        <tr><th>Status</th><td><span class="badge badge-status-open">ACTIVE</span></td></tr>
+        <tr><th>Definition</th><td><span class="mono">v1</span> (active)</td></tr>
+        <tr><th>WORK 种子</th><td>工程做法 (p44159) · 园冶 (p168491)</td></tr>
+        <tr><th>Include Terms</th><td><span class="mono">柱 / 梁 / 枋 / 斗 / 栱 / 檐 / 瓦 / 砖 / 石 / 木 / 构 / 架 / 厅 / 堂 / 殿 / 楼 / 阁 / 门 / 窗 / 墙 / 基 / 阶 / 径 / 营造 / 工程做法 / 大木 / 柱径 / 正心</span> (28 terms)</td></tr>
+        <tr><th>Min Confidence</th><td><span class="mono">0.5</span></td></tr>
+        <tr><th>Memberships</th><td id="arch-memberships">…</td></tr>
+        <tr><th>Scope 分布</th><td id="arch-scope">…</td></tr>
+        <tr><th>Review Status</th><td id="arch-review">…</td></tr>
+        <tr><th>Snapshots</th><td id="arch-snapshots">…</td></tr>
+      </table>
+      <div style="margin-top:0.8rem">
+        <a href="../evidence/index.html" class="mono">→ 在 Citation Explorer 中按 collection=architecture-construction 过滤</a>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem">快照链</h3>
+    <div id="arch-snap-list"></div>
+  </section>
+
+  <section>
+    <h2>集合治理（Governance）</h2>
+    <p>每个集合在 P5-D 阶段获得完整的治理链条：定义 (definition) → 快照 (snapshot) → 审计 (audit) → 可重建 (rebuild idempotent) → 可比较 (diff)。</p>
+    <table class="meta-table">
+      <tr><th>Schema</th><td><span class="mono">collection_definitions</span> · <span class="mono">collection_snapshots</span> · <span class="mono">collection_membership_audit</span></td></tr>
+      <tr><th>Membership Review Status</th><td>MANUAL (4 WORK seeds) + REVIEWED (auto-rebuilt PAGE members)</td></tr>
+      <tr><th>Rebuild Idempotent</th><td><span class="verified">PASS</span> · 两次连续重建结果一致</td></tr>
+      <tr><th>Determinism</th><td><span class="mono">corpus_fingerprint=0d07aa6b604334e5</span> · membership_hash 计算稳定</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>设计说明</h2>
+    <p>v0.1 只展示两个集合。后续版本可加入 document_unit scope 的成员注入，或在 v0.2 引入 UI 搜索过滤。</p>
+    <p>更多治理细节请参见仓库内 <span class="mono">reports/collection_governance.md</span>。</p>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.1 · 专题展览</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 (P5-C)</a> · <a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 (P5-D)</a></p>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+fetch('../data/collections.json').then(r => r.json()).then(d => {
+  d.collections.forEach(function(c) {
+    var prefix = c.slug === 'historical-hydrology' ? 'hyd' : 'arch';
+    document.getElementById(prefix + '-memberships').textContent = c.membership_count.toLocaleString() + ' 条';
+    document.getElementById(prefix + '-scope').textContent = Object.entries(c.scope_distribution).map(function(e) { return e[0] + '=' + e[1]; }).join(' · ');
+    document.getElementById(prefix + '-review').textContent = Object.entries(c.review_status_distribution).map(function(e) { return e[0] + '=' + e[1]; }).join(' · ');
+    document.getElementById(prefix + '-snapshots').textContent = c.snapshots.length + ' 张';
+
+    var snapList = document.getElementById(prefix + '-snap-list');
+    c.snapshots.forEach(function(s) {
+      var html = '<div class="card" style="margin:0.5rem 0;padding:0.7rem 1rem">';
+      html += '<div style="display:flex;justify-content:space-between;align-items:baseline">';
+      html += '<span class="mono" style="font-size:0.85rem">' + s.snapshot_id + '</span>';
+      html += '<span class="mono dim" style="font-size:0.75rem">' + s.membership_count + ' members · hash=' + s.membership_hash.substring(0, 12) + '</span>';
+      html += '</div>';
+      html += '<div class="mono dim" style="font-size:0.72rem;margin-top:0.2rem">' + s.notes + ' · ' + s.generated_at + '</div>';
+      html += '</div>';
+      snapList.insertAdjacentHTML('beforeend', html);
+    });
+  });
+});
+</script>
+</body>
+</html>

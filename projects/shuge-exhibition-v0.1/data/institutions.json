@@ -1,0 +1,305 @@
+{
+  "institutions": [
+    {
+      "id": 50,
+      "name_zh": "日本内阁文库",
+      "name_en": "Naikaku Bunko (Cabinet Library, Japan)",
+      "country_or_region": "日本",
+      "website": "https://digital.archives.go.jp",
+      "works_count": 95,
+      "aliases": []
+    },
+    {
+      "id": 30,
+      "name_zh": "哈佛大学图书馆",
+      "name_en": "Harvard University Library",
+      "country_or_region": "美国",
+      "website": "https://id.lib.harvard.edu",
+      "works_count": 58,
+      "aliases": [
+        "哈佛大学大学图书馆"
+      ]
+    },
+    {
+      "id": 10,
+      "name_zh": "中国国家图书馆",
+      "name_en": "National Library of China",
+      "country_or_region": "中国",
+      "website": "https://read.nlc.cn",
+      "works_count": 43,
+      "aliases": []
+    },
+    {
+      "id": 72,
+      "name_zh": "美国国会图书馆",
+      "name_en": "Library of Congress",
+      "country_or_region": "美国",
+      "website": "https://loc.gov",
+      "works_count": 38,
+      "aliases": [
+        "美国国会图书馆藏",
+        "国国会图书馆"
+      ]
+    },
+    {
+      "id": 28,
+      "name_zh": "台北故宫博物院",
+      "name_en": "National Palace Museum",
+      "country_or_region": "中国台湾",
+      "website": "https://rbk-doc.npm.edu.tw",
+      "works_count": 31,
+      "aliases": [
+        "台北故宫博物院藏（贈善 003410-003425）",
+        "台北故宫博物院藏（故觀 009793-009794）"
+      ]
+    },
+    {
+      "id": 41,
+      "name_zh": "宫内厅书陵部",
+      "name_en": "Imperial Household Agency, Shoryobu Department",
+      "country_or_region": "日本",
+      "website": "https://db.sido.keio.ac.jp",
+      "works_count": 22,
+      "aliases": [
+        "日本宫内厅书陵部"
+      ]
+    },
+    {
+      "id": 12,
+      "name_zh": "京都大学人文科学研究所",
+      "name_en": "Institute for Research in Humanities, Kyoto University",
+      "country_or_region": "日本",
+      "website": "https://kanji.zinbun.kyoto-u.ac.jp",
+      "works_count": 19,
+      "aliases": [
+        "京都大学东方文化研究所"
+      ]
+    },
+    {
+      "id": 81,
+      "name_zh": "香港中文大学图书馆",
+      "name_en": "Chinese University of Hong Kong Library",
+      "country_or_region": "中国香港",
+      "website": "https://repository.lib.cuhk.edu.hk",
+      "works_count": 16,
+      "aliases": []
+    },
+    {
+      "id": 44,
+      "name_zh": "庆应义塾大学图书馆",
+      "name_en": "Keio University Library",
+      "country_or_region": "日本",
+      "website": "https://dcollections.lib.keio.ac.jp",
+      "works_count": 14,
+      "aliases": [
+        "庆应义塾图书馆",
+        "慶應義塾大学图书馆",
+        "日本庆应义塾大学图书馆"
+      ]
+    },
+    {
+      "id": 13,
+      "name_zh": "京都大学图书馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://rmda.kulib.kyoto-u.ac.jp",
+      "works_count": 8,
+      "aliases": [
+        "京都大学附属图书馆"
+      ]
+    },
+    {
+      "id": 37,
+      "name_zh": "天津图书馆",
+      "name_en": null,
+      "country_or_region": "中国",
+      "website": "https://read.nlc.cn",
+      "works_count": 8,
+      "aliases": []
+    },
+    {
+      "id": 54,
+      "name_zh": "日本国立国会图书馆",
+      "name_en": "National Diet Library",
+      "country_or_region": "日本",
+      "website": "https://dl.ndl.go.jp",
+      "works_count": 8,
+      "aliases": []
+    },
+    {
+      "id": 62,
+      "name_zh": "法国国家图书馆",
+      "name_en": "Bibliothèque nationale de France",
+      "country_or_region": "法国",
+      "website": "https://gallica.bnf.fr",
+      "works_count": 8,
+      "aliases": []
+    },
+    {
+      "id": 8,
+      "name_zh": "东京艺术大学附属图书馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://kotenseki.nijl.ac.jp",
+      "works_count": 7,
+      "aliases": []
+    },
+    {
+      "id": 9,
+      "name_zh": "东洋文库",
+      "name_en": "The Toyo Bunko",
+      "country_or_region": "日本",
+      "website": "https://app.toyobunko-lab.jp",
+      "works_count": 7,
+      "aliases": [
+        "日本东洋文库",
+        "東洋文庫"
+      ]
+    },
+    {
+      "id": 58,
+      "name_zh": "普林斯顿大学图书馆",
+      "name_en": "Princeton University Library",
+      "country_or_region": "美国",
+      "website": "https://dpul.princeton.edu",
+      "works_count": 6,
+      "aliases": []
+    },
+    {
+      "id": 4,
+      "name_zh": "东京国立博物馆",
+      "name_en": "Tokyo National Museum",
+      "country_or_region": "日本",
+      "website": "https://webarchives.tnm.jp",
+      "works_count": 5,
+      "aliases": []
+    },
+    {
+      "id": 19,
+      "name_zh": "凤凰集团",
+      "name_en": null,
+      "country_or_region": null,
+      "website": "https://gyl.fhcbs.com",
+      "works_count": 5,
+      "aliases": []
+    },
+    {
+      "id": 18,
+      "name_zh": "关西大学图书馆",
+      "name_en": "Kansai University Library",
+      "country_or_region": "日本",
+      "website": "https://iiif.ku-orcas.kansai-u.ac.jp",
+      "works_count": 4,
+      "aliases": []
+    },
+    {
+      "id": 27,
+      "name_zh": "台北国家图书馆",
+      "name_en": "National Central Library (Taipei)",
+      "country_or_region": "中国台湾",
+      "website": "https://rbook2.ncl.edu.tw",
+      "works_count": 4,
+      "aliases": []
+    },
+    {
+      "id": 43,
+      "name_zh": "山口大学图书馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://knowledge.lib.yamaguchi-u.ac.jp",
+      "works_count": 4,
+      "aliases": []
+    },
+    {
+      "id": 68,
+      "name_zh": "牛津大学博德利图书馆",
+      "name_en": "Bodleian Library, University of Oxford",
+      "country_or_region": "英国",
+      "website": "https://iiif.bodleian.ox.ac.uk",
+      "works_count": 4,
+      "aliases": []
+    },
+    {
+      "id": 17,
+      "name_zh": "俄罗斯国立图书馆",
+      "name_en": "Russian State Library",
+      "country_or_region": "俄罗斯",
+      "website": "https://search.rsl.ru",
+      "works_count": 3,
+      "aliases": []
+    },
+    {
+      "id": 52,
+      "name_zh": "日本国文学研究资料馆",
+      "name_en": "National Institute of Japanese Literature",
+      "country_or_region": "日本",
+      "website": "https://kotenseki.nijl.ac.jp",
+      "works_count": 3,
+      "aliases": [
+        "日本国文学研究资料馆藏",
+        "日本国文研藏本"
+      ]
+    },
+    {
+      "id": 53,
+      "name_zh": "日本国立历史民俗博物馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://khirin-a.rekihaku.ac.jp",
+      "works_count": 3,
+      "aliases": [
+        "日本历史民俗博物馆"
+      ]
+    },
+    {
+      "id": 57,
+      "name_zh": "早稻田大学图书馆",
+      "name_en": "Waseda University Library",
+      "country_or_region": "日本",
+      "website": "https://wul.waseda.ac.jp",
+      "works_count": 3,
+      "aliases": [
+        "日本早稻田大学图书馆"
+      ]
+    },
+    {
+      "id": 2,
+      "name_zh": "上海图书馆",
+      "name_en": null,
+      "country_or_region": "中国",
+      "website": "https://guji.nlc.cn",
+      "works_count": 2,
+      "aliases": []
+    },
+    {
+      "id": 6,
+      "name_zh": "东京大学综合图书馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://iiif.dl.itc.u-tokyo.ac.jp",
+      "works_count": 2,
+      "aliases": [
+        "东京大学图书馆"
+      ]
+    },
+    {
+      "id": 15,
+      "name_zh": "京都府立大学附属图书馆",
+      "name_en": null,
+      "country_or_region": "日本",
+      "website": "https://archives.kyoto.jp",
+      "works_count": 2,
+      "aliases": []
+    },
+    {
+      "id": 24,
+      "name_zh": "华盛顿大学图书馆",
+      "name_en": "University of Washington Libraries",
+      "country_or_region": null,
+      "website": "https://catalog.hathitrust.org",
+      "works_count": 2,
+      "aliases": []
+    }
+  ],
+  "total_in_db": 82
+}

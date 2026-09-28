@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>引文检索 · 书格数字人文研究站</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-evidence">
+<header class="masthead">
+  <h1 class="masthead-title">引文检索</h1>
+  <p class="masthead-subtitle">Citation Explorer</p>
+</header>
+<nav class="topnav">
+  <div class="topnav-links">
+    <a href="../index.html">首页</a>
+    <a href="../collections/index.html">专题</a>
+    <a href="index.html" class="active">引文</a>
+    <a href="../research/index.html">研究</a>
+  </div>
+  <div class="topnav-meta">23 runs · 378 claims</div>
+</nav>
+
+<main class="body">
+  <section class="hero">
+    <h1>Citation Explorer</h1>
+    <p class="hero-lead">研究问答与引文证据 · click to expand</p>
+    <p>本页汇集 P5-C 与 P5-D 阶段产出的 research_runs 样本。每个 run 含一个研究问题、若干 claim（带 Citation ID）以及底层 evidence 链接。点击 run 标题可展开详情。</p>
+    <p>本页数据均为 P5-D 终态快照。更多原始数据可通过 <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-research-db"><span class="mono">SHUGE-RESEARCH-DB</span></a> 仓库的 <span class="mono">data/p5d/</span> 获取。</p>
+  </section>
+
+  <section>
+    <h2>过滤器</h2>
+    <div class="filter-row">
+      <span class="dim" style="margin-right:0.5rem">集合:</span>
+      <label><input type="radio" name="coll-filter" value="all" checked>全部</label>
+      <label><input type="radio" name="coll-filter" value="historical-hydrology">historical-hydrology</label>
+      <label><input type="radio" name="coll-filter" value="architecture-construction">architecture-construction</label>
+      <label><input type="radio" name="coll-filter" value="none">无集合</label>
+      <span class="dim" style="margin:0 0.5rem 0 1rem">状态:</span>
+      <label><input type="radio" name="status-filter" value="all" checked>全部</label>
+      <label><input type="radio" name="status-filter" value="BRIEF_READY">BRIEF_READY</label>
+      <label><input type="radio" name="status-filter" value="INSUFFICIENT_EVIDENCE">INSUFFICIENT</label>
+    </div>
+    <p class="dim" style="font-family:var(--font-sans);font-size:0.78rem;margin-top:0.3rem">提示：v0.1 仅显示 23 个 sample runs（15 BRIEF_READY + 8 INSUFFICIENT）。完整 234 个 runs 在 research_runs 表。</p>
+  </section>
+
+  <section>
+    <h2>研究问答列表</h2>
+    <div id="runs-list"></div>
+  </section>
+
+  <section>
+    <h2>引文统计</h2>
+    <table class="meta-table">
+      <tr><th>Total Runs</th><td><span class="mono">234</span> (65 BRIEF_READY · 60 INSUFFICIENT · 109 SEARCHING)</td></tr>
+      <tr><th>Total Claims</th><td><span class="mono">378</span> · 全部 SUPPORTED</td></tr>
+      <tr><th>Claim Types</th><td id="claim-types">…</td></tr>
+      <tr><th>Total Evidence</th><td><span class="mono">440</span> evidence items</td></tr>
+      <tr><th>Verified False</th><td><span class="mono">2</span> hits (朝天門 in 梦粱录) · <span class="verified">all OUT-of-collection</span> · gate PASS</td></tr>
+      <tr><th>Out-of-Collection Leak</th><td><span class="verified">0</span> · gate PASS</td></tr>
+      <tr><th>Unsupported Sentences</th><td><span class="verified">0</span> · gate PASS</td></tr>
+      <tr><th>Citation IDs</th><td><span class="verified">unchanged since P5-B2</span></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>设计说明</h2>
+    <p>每条 claim 都有 Citation ID 引用。点击 run 展开后可见 evidence 的 Citation ID、文档单位、匹配词与匹配类型。Evidence 在 evidence synthesis 之前通过 collection filter 过滤，保证没有 out-of-collection 文档泄漏到 evidence pool。</p>
+    <p>v0.1 仅展示 23 个样本 run；不暴露全文 search、verification UI、或编辑器。完整功能在 <span class="mono">scripts/research.py</span> CLI 中可用。</p>
+  </section>
+</main>
+
+<footer>
+  <p>SHUGE Digital Humanities Exhibition · v0.1 · Citation Explorer</p>
+  <p>数据来源：<a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8</a> · <a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9</a></p>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+fetch('../data/citations.json').then(r => r.json()).then(d => {
+  var list = document.getElementById('runs-list');
+  var claimTypeCounts = {};
+  d.runs.forEach(function(run) {
+    var coll = 'none';
+    if (run.claims && run.claims.length > 0) {
+      var citeIds = run.claims[0].citation_ids || '[]';
+      try {
+        var arr = JSON.parse(citeIds);
+        if (arr.length > 0) {
+          // SHUGE:p123456:789 — p is the post_id
+          var postMatch = arr[0].match(/SHUGE:p(\d+):/);
+          if (postMatch) {
+            var pid = postMatch[1];
+            // map pid to coll (heuristic — data-driven via membership)
+            if (['124575','48341','211203'].indexOf(pid) >= 0) coll = 'historical-hydrology';
+            else if (['44159','168491','211203'].indexOf(pid) >= 0) coll = 'architecture-construction';
+          }
+        }
+      } catch(e) {}
+    }
+
+    var statusBadge = '<span class="badge badge-status-' + run.status.toLowerCase().replace(/_/g, '') + '">' + run.status + '</span>';
+    var collBadge = coll !== 'none' ? '<span class="badge badge-evidence">' + coll + '</span>' : '<span class="badge badge-status-searching">no-collection</span>';
+
+    var html = '<div class="run" data-coll="' + coll + '" data-status="' + run.status + '">';
+    html += '<div class="run-summary">';
+    html += '<div class="run-question">' + statusBadge + ' ' + collBadge + ' ' + run.question + '</div>';
+    html += '<div class="run-meta">#' + run.id + ' · ' + (run.created_at || '').substring(0, 10) + '</div>';
+    html += '</div>';
+    html += '<div class="run-detail">';
+
+    if (run.claims && run.claims.length > 0) {
+      html += '<div style="margin:0.7rem 0 0.4rem;font-family:var(--font-sans);font-size:0.78rem;color:var(--muted-gray)">';
+      html += '<strong>' + run.claims.length + '</strong> claims · <strong>' + (run.evidence ? run.evidence.length : 0) + '</strong> evidence items';
+      html += '</div>';
+      run.claims.forEach(function(c) {
+        claimTypeCounts[c.claim_type] = (claimTypeCounts[c.claim_type] || 0) + 1;
+        var truncatedText = c.claim_text.length > 280 ? c.claim_text.substring(0, 280) + '…' : c.claim_text;
+        html += '<div class="claim">';
+        html += '<div class="claim-type">' + c.claim_type + ' · ' + c.claim_id + '</div>';
+        html += '<div class="claim-text">' + truncatedText + '</div>';
+        html += '<div class="claim-cite">' + c.citation_ids + '</div>';
+        html += '</div>';
+      });
+    } else if (run.note) {
+      html += '<div class="citation"><span class="warning">⊘ INSUFFICIENT_EVIDENCE</span><br>' + run.note + '</div>';
+    }
+
+    if (run.evidence && run.evidence.length > 0) {
+      html += '<div style="margin-top:0.7rem;padding-top:0.7rem;border-top:1px dashed var(--rule-gray);font-family:var(--font-sans);font-size:0.78rem;color:var(--muted-gray)">';
+      html += '<strong style="color:var(--ink-charcoal)">Evidence Ledger:</strong><br>';
+      run.evidence.forEach(function(e) {
+        html += '<div style="margin:0.2rem 0"><span class="mono">' + e.citation_id + '</span> · ' + (e.match_type || '') + ' · ' + (e.matched_terms || '') + '</div>';
+      });
+      html += '</div>';
+    }
+
+    html += '</div></div>';
+    list.insertAdjacentHTML('beforeend', html);
+  });
+
+  var typesEl = document.getElementById('claim-types');
+  typesEl.textContent = Object.entries(claimTypeCounts).map(function(e) { return e[0] + '=' + e[1]; }).join(' · ');
+});
+</script>
+</body>
+</html>

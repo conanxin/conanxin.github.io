@@ -12,7 +12,8 @@
   "metadata_only_forbidden": true,
   "claims_count": 6,
   "support_status_summary": {
-    "SUPPORTED": 3,
+    "TOTAL": 6,
+    "SUPPORTED": 4,
     "PARTIALLY_SUPPORTED": 2,
     "NOT_SUPPORTED": 0,
     "METADATA_ONLY": 0
@@ -108,6 +109,8 @@
     "All claims cite SHUGE:p124575:<seq> format per R1 convention.",
     "v1.0 frozen baseline (3a51ef5) NOT modified.",
     "R1 frozen at 59d258e — R2 adds new data, never modifies R1 outputs.",
-    "Bonus claims (r2-cl-004/005/006) for bonus rivers beyond RQ1/RQ2/RQ3 spec."
+    "Bonus claims (r2-cl-004/005/006) for bonus rivers beyond RQ1/RQ2/RQ3 spec.",
+    "support_status_summary distribution: TOTAL=6 / SUPPORTED=4 / PARTIALLY_SUPPORTED=2 / NOT_SUPPORTED=0 — reconciled in R2.1 (was previously recorded as 3/2/0/0; individual claim status fields were already correct).",
+    "r2-cl-001 SUPPORTED, r2-cl-002 PARTIALLY_SUPPORTED, r2-cl-003 SUPPORTED, r2-cl-004 SUPPORTED, r2-cl-005 SUPPORTED, r2-cl-006 PARTIALLY_SUPPORTED — count confirmed by inspection."
   ]
 }

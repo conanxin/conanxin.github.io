@@ -1,7 +1,9 @@
 /* ============================================================
-   SHUGE Water Classic Research — Paper / Archive / Museum
-   Visual rules: 1180px max, 720-780px body, no gradient,
-   no glassmorphism, no cyberpunk.
+   SHUGE Water Classic Research — Magazine / Museum Style
+   Main page = research findings (clean, hierarchy-driven)
+   Appendix = technical archive (tables, code, JSON)
+   Visual rules: paper / archive / museum
+   No gradient · no glassmorphism · no cyberpunk · no emoji
    ============================================================ */
 
 :root {
@@ -24,8 +26,10 @@ html, body {
   background: var(--paper-white);
   color: var(--ink-charcoal);
   font-family: 'Source Sans 3', 'Noto Sans CJK SC', -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -35,6 +39,12 @@ a {
 }
 a:hover { background: var(--card-cream); }
 
+code, .mono {
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  color: var(--ink-charcoal);
+}
+
 /* === Layout === */
 .page {
   max-width: 1180px;
@@ -43,7 +53,7 @@ a:hover { background: var(--card-cream); }
 }
 
 .article-body {
-  max-width: 760px;
+  max-width: 740px;
   margin: 0 auto;
 }
 
@@ -52,184 +62,313 @@ a:hover { background: var(--card-cream); }
   overflow-x: auto;
 }
 
-/* === Masthead === */
-.masthead {
-  background: var(--card-cream);
-  padding: 40px 24px 32px;
-  border-bottom: 3px solid var(--seal-red);
+/* ============================================================
+   HERO — Main page first screen
+   ============================================================ */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  border-bottom: 1px solid var(--rule-faint);
 }
-.masthead h1 {
+.hero h1 {
   font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 20px;
+  color: var(--ink-charcoal);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+}
+.hero .subtitle {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin: 0 0 36px;
+  letter-spacing: 0.3px;
+}
+.hero .core-statement {
+  max-width: 740px;
+  margin: 0 auto 40px;
+  font-size: 19px;
+  line-height: 1.75;
   color: var(--ink-charcoal);
 }
-.masthead h1 .zh { font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif; }
-.masthead .subtitle {
-  font-size: 15px;
-  color: var(--ink-muted);
-  margin: 8px 0 16px;
-  letter-spacing: 0.5px;
-}
-.masthead-meta {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
+.hero .core-statement strong { color: var(--seal-red); }
 
-/* === Badges === */
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 3px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
+.hero .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 760px;
+  margin: 0 auto;
 }
-.badge-preview { background: #d4c5a9; color: var(--ink-charcoal); }
-.badge-review { background: #8a6d20; color: var(--paper-white); }
-.badge-frozen { background: var(--support-green); color: var(--paper-white); }
-.badge-supported { background: var(--support-green); color: var(--paper-white); }
-.badge-partial { background: var(--support-yellow); color: var(--paper-white); }
-.badge-not { background: var(--ink-muted); color: var(--paper-white); }
-.badge-meta { background: var(--rule-faint); color: var(--ink-charcoal); }
-
-/* === Banner === */
-.intro-banner {
-  background: var(--card-cream);
-  border-left: 4px solid var(--seal-red);
-  padding: 18px 22px;
-  margin: 28px 0;
+.hero .stat { text-align: center; }
+.hero .stat-number {
   font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 16px;
-  line-height: 1.75;
-}
-.intro-banner p { margin: 6px 0; }
-.intro-banner strong { color: var(--seal-red); }
-
-/* === Sections === */
-.section {
-  margin: 48px 0;
-}
-.section-num {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--seal-red);
+  font-size: 64px;
   font-weight: 600;
-  font-size: 14px;
-  margin-right: 10px;
-  letter-spacing: 1px;
+  color: var(--seal-red);
+  line-height: 1;
 }
+.hero .stat-label {
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   SECTIONS — Main page 6-section research narrative
+   ============================================================ */
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.section:last-child { border-bottom: none; }
+
 .section h2 {
   font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 600;
-  margin: 0 0 18px;
+  margin: 0 0 12px;
   color: var(--ink-charcoal);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--seal-red);
+  letter-spacing: -0.3px;
+}
+.section .section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--seal-red);
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 12px;
 }
 .section h3 {
   font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
-  margin: 20px 0 10px;
+  margin: 32px 0 12px;
   color: var(--ink-charcoal);
 }
-.section p { margin: 12px 0; }
+.section .lede {
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--ink-charcoal);
+  margin: 0 0 32px;
+  max-width: 740px;
+}
+.section p {
+  margin: 16px 0;
+  max-width: 740px;
+}
+.section ul {
+  margin: 16px 0;
+  padding-left: 24px;
+  max-width: 740px;
+}
+.section li { margin: 8px 0; }
 
-.section .en-meta {
+/* ============================================================
+   RESEARCH STORIES — Section 3 (3 representative evidence groups)
+   ============================================================ */
+.story {
+  margin: 40px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule-faint);
+}
+.story:first-of-type { border-top: none; padding-top: 0; }
+
+.story-title {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--ink-charcoal);
+  letter-spacing: -0.2px;
+}
+.story-river-line {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 16px;
+  color: var(--seal-red);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.story-river-line .sep {
+  color: var(--ink-muted);
+  margin: 0 8px;
+}
+
+.story p { margin: 12px 0; }
+
+.story .story-section-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   color: var(--ink-muted);
-  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+  margin: 20px 0 4px;
+  text-transform: uppercase;
+}
+
+.story .excerpt {
+  background: var(--card-cream);
+  padding: 18px 22px;
+  margin: 12px 0 16px;
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink-charcoal);
+  font-style: normal;
+  border-left: 3px solid var(--seal-red);
+}
+
+.story .current-explanation {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  margin: 16px 0;
+}
+
+.story .status-line {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+/* Status pills (Chinese primary, English as small secondary metadata) */
+.status-line .pill-supported { color: var(--support-green); font-weight: 600; }
+.status-line .pill-partial   { color: var(--support-yellow); font-weight: 600; }
+.status-line .pill-not       { color: var(--support-grey);   font-weight: 600; }
+
+.status-line .pill-supported::after { content: ' · 已支持'; }
+.status-line .pill-partial::after   { content: ' · 部分支持'; }
+.status-line .pill-not::after       { content: ' · 暂不支持'; }
+
+.status-line .en-machine {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-left: 6px;
   letter-spacing: 0.5px;
 }
 
-/* === Two-column layout === */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 16px 0;
+/* ============================================================
+   TECHNICAL DETAILS TOGGLE — Hidden by default, click to expand
+   ============================================================ */
+details.tech {
+  margin: 16px 0 8px;
+  max-width: 740px;
 }
-
-@media (max-width: 768px) {
-  .two-col { grid-template-columns: 1fr; }
-  .masthead h1 { font-size: 28px; }
-  .section h2 { font-size: 22px; }
-  .page { padding: 0 16px; }
-}
-
-/* === Cards === */
-.card {
-  background: var(--paper-white);
-  border: 1px solid var(--rule-faint);
-  border-left: 3px solid var(--seal-red);
-  padding: 16px 18px;
-  margin: 12px 0;
-}
-.card h3 {
-  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 17px;
-  margin: 0 0 8px;
-}
-.card p { margin: 6px 0; font-size: 14px; }
-.card .card-meta {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--ink-muted);
-  margin-top: 8px;
-}
-
-/* === Hub grid === */
-.hub-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin: 16px 0;
-}
-.hub-card {
-  background: var(--card-cream);
-  border: 1px solid var(--rule-faint);
-  border-left: 3px solid var(--seal-red);
-  padding: 16px;
-}
-.hub-card h3 {
-  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 17px;
-  margin: 0 0 8px;
-}
-.hub-card h3 a { color: var(--ink-charcoal); }
-.hub-card p {
+details.tech summary {
+  cursor: pointer;
   font-size: 14px;
-  color: var(--ink-charcoal);
-  margin: 6px 0;
+  color: var(--seal-red);
+  list-style: none;
+  padding: 6px 0;
+  user-select: none;
 }
-.hub-card .card-status {
+details.tech summary::-webkit-details-marker { display: none; }
+details.tech summary::before {
+  content: '▸ ';
+  display: inline-block;
+  margin-right: 4px;
+  transition: transform 0.1s;
+}
+details.tech[open] summary::before { content: '▾ '; }
+
+details.tech .tech-body {
+  background: var(--card-cream);
+  padding: 16px 20px;
+  margin-top: 8px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--ink-muted);
+  font-size: 12.5px;
+  color: var(--ink-charcoal);
+  line-height: 1.75;
+  border-left: 3px solid var(--rule-faint);
+}
+details.tech .tech-body dl { margin: 0; }
+details.tech .tech-body dt {
+  font-weight: 600;
+  color: var(--seal-red);
   margin-top: 8px;
 }
+details.tech .tech-body dd {
+  margin: 4px 0 0 16px;
+  color: var(--ink-charcoal);
+}
 
-/* === Evidence table === */
+/* ============================================================
+   GAP BOX — Section 5 (research gaps)
+   ============================================================ */
+.gap-list {
+  margin: 16px 0;
+  max-width: 740px;
+}
+.gap-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.gap-item:last-child { border-bottom: none; }
+.gap-item h3 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: var(--ink-charcoal);
+}
+.gap-item p { margin: 6px 0; }
+
+/* ============================================================
+   ARCHIVE LIST — Section 6 (research archive pointer to appendix)
+   ============================================================ */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+.archive-card {
+  padding: 16px 0;
+  border-top: 2px solid var(--seal-red);
+}
+.archive-card h3 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 17px;
+  margin: 0 0 6px;
+}
+.archive-card h3 a { color: var(--ink-charcoal); }
+.archive-card p { font-size: 14px; margin: 4px 0; }
+
+.archive-primary {
+  background: var(--card-cream);
+  padding: 28px 32px;
+  margin: 24px 0;
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 18px;
+  line-height: 1.75;
+  text-align: center;
+  border-top: 3px solid var(--seal-red);
+  border-bottom: 3px solid var(--seal-red);
+}
+.archive-primary a {
+  font-weight: 600;
+  border-bottom: 1px solid var(--seal-red);
+}
+
+/* ============================================================
+   APPENDIX — Technical content (tables, JSON, code)
+   ============================================================ */
 .evidence-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
   margin: 16px 0;
+  font-family: 'IBM Plex Mono', monospace;
 }
 .evidence-table th {
   background: var(--card-cream);
   text-align: left;
   padding: 8px 10px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.5px;
   color: var(--ink-charcoal);
   border-bottom: 2px solid var(--seal-red);
 }
@@ -238,27 +377,37 @@ a:hover { background: var(--card-cream); }
   border-bottom: 1px solid var(--rule-faint);
   vertical-align: top;
 }
-.evidence-table tr:hover td {
-  background: var(--card-cream);
-}
-.evidence-table code {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--ink-muted);
-}
+.evidence-table tr:hover td { background: var(--card-cream); }
 
-/* === Version timeline === */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.hub-card {
+  background: var(--card-cream);
+  border-left: 3px solid var(--seal-red);
+  padding: 14px 16px;
+}
+.hub-card h3 {
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+.hub-card h3 a { color: var(--ink-charcoal); }
+.hub-card p { font-size: 13px; margin: 4px 0; }
+
 .version-list {
   list-style: none;
   padding: 0;
   margin: 16px 0;
 }
 .version-list li {
-  padding: 8px 12px;
+  padding: 8px 0;
   border-bottom: 1px dashed var(--rule-faint);
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
   gap: 8px;
 }
@@ -268,55 +417,50 @@ a:hover { background: var(--card-cream); }
   color: var(--ink-muted);
 }
 
-/* === Filter chips === */
-.filter-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 12px 0;
-}
-.filter-chip {
-  padding: 4px 10px;
-  border: 1px solid var(--rule-faint);
-  border-radius: 3px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  background: var(--paper-white);
-  cursor: pointer;
-}
-.filter-chip.active {
-  background: var(--seal-red);
-  color: var(--paper-white);
-  border-color: var(--seal-red);
+/* === Banners (only used for legacy R1 page compatibility) === */
+.banner-archive {
+  background: var(--card-cream);
+  border-left: 4px solid var(--seal-red);
+  padding: 16px 22px;
+  margin: 24px 0;
+  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 /* === Footer === */
 .footer {
-  background: var(--card-cream);
-  padding: 24px;
+  padding: 32px 24px;
   text-align: center;
   font-size: 13px;
   color: var(--ink-muted);
   border-top: 1px solid var(--rule-faint);
-  margin-top: 48px;
+  margin-top: 32px;
 }
 .footer p { margin: 6px 0; }
 
-/* === OCR excerpt blockquote === */
-.ocr-excerpt {
-  background: var(--card-cream);
-  border-left: 3px solid var(--seal-red);
-  padding: 12px 16px;
-  margin: 12px 0;
-  font-family: 'Source Serif 4', 'Noto Serif CJK SC', serif;
-  font-size: 15px;
-  font-style: normal;
-  color: var(--ink-charcoal);
-  line-height: 1.8;
+/* === Mobile responsive === */
+@media (max-width: 768px) {
+  .page { padding: 0 16px; }
+  .hero h1 { font-size: 32px; line-height: 1.2; }
+  .hero .subtitle { font-size: 17px; }
+  .hero .core-statement { font-size: 17px; }
+  .hero .stat-number { font-size: 44px; }
+  .hero .stats { grid-template-columns: 1fr; gap: 20px; }
+  .section h2 { font-size: 24px; }
+  .section h3 { font-size: 18px; }
+  .story-title { font-size: 22px; }
+  .section { padding: 40px 0; }
+  .hero { padding: 48px 16px 40px; }
+}
+
+@media (max-width: 480px) {
+  .hero .stat-number { font-size: 40px; }
 }
 
 /* === Print rules (for archival) === */
 @media print {
-  .masthead, .footer { background: var(--paper-white); }
   body { font-size: 11pt; }
+  .hero .stats { grid-template-columns: repeat(3, 1fr); }
+  details.tech .tech-body { display: block !important; }
 }

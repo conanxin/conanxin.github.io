@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术附录 · 《水经注》数字证据研究 · SHUGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/projects/shuge/research/water-classic/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <h1>技术附录</h1>
+  <p class="subtitle">《水经注》数字证据研究 · R2.1 完整技术档案</p>
+  <p class="core-statement">
+    本附录汇总 R2.1 阶段产生的所有技术细节:
+    <strong>evidence identity · 9 river groups · 9 places · 60-page audit · scan sequence · 6 claims · machine IDs · source downloads · version history</strong>。
+    主页面仅展示研究结论;本附录供追溯。
+  </p>
+  <div class="stats">
+    <div class="stat"><div class="stat-number">9</div><div class="stat-label">River Groups</div></div>
+    <div class="stat"><div class="stat-number">9</div><div class="stat-label">Historical Places</div></div>
+    <div class="stat"><div class="stat-number">60</div><div class="stat-label">Evidence Refs (collision 0)</div></div>
+  </div>
+</header>
+
+<div class="page">
+
+<nav class="banner-archive">
+  <p><strong>附录目录:</strong></p>
+  <p>
+    <a href="#evidence-identity">§ 01 Evidence Identity</a> ·
+    <a href="#rivers">§ 02 River Groups</a> ·
+    <a href="#places">§ 03 Historical Places</a> ·
+    <a href="#page-audit">§ 04 60-Page Audit</a> ·
+    <a href="#volume-scan">§ 05 Volume / Scan Sequence</a> ·
+    <a href="#all-claims">§ 06 All 6 Claims</a> ·
+    <a href="#machine-ids">§ 07 Machine IDs</a> ·
+    <a href="#source-downloads">§ 08 Source Downloads</a> ·
+    <a href="#version-history">§ 09 Version History</a>
+  </p>
+  <p><a href="/projects/shuge/research/water-classic/">← 返回主页面</a></p>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 01 — Evidence Identity (60 evidence_refs)                    -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="evidence-identity">
+  <div class="article-body">
+    <span class="section-num">§ 01</span>
+    <h2>Evidence Identity · 60 个唯一 evidence_ref</h2>
+    <p>R2.1 引入研究展示层唯一 evidence_ref <code>WC124575:PAGE&lt;page_id&gt;</code>,与 page_id 一一对应,collision_count = 0。Legacy citation_id <code>SHUGE:p124575:&lt;seq&gt;</code> 保留为次级 pointer。</p>
+    <ul>
+      <li>total_page_ids = <strong>60</strong></li>
+      <li>unique_evidence_refs = <strong>60</strong></li>
+      <li>collision_count = <strong>0</strong> ✓</li>
+      <li>unique_legacy_citation_ids = <strong>5</strong> (因 seq 仅 1-5)</li>
+      <li>max_pages_per_legacy_citation = <strong>14</strong> (seq=1/2/3/4)</li>
+    </ul>
+
+    <div class="evidence-table-wrap">
+    <table class="evidence-table">
+      <thead>
+        <tr><th>evidence_ref</th><th>page_id</th><th>legacy_citation_id</th><th>page_label</th><th>reliability</th><th>body_chars</th><th>region</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>WC124575:PAGE1501</code></td><td>1501</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>9</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1502</code></td><td>1502</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>MIXED_PARTIAL_BODY</td><td>94</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1503</code></td><td>1503</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>108</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1504</code></td><td>1504</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1505</code></td><td>1505</td><td><code>SHUGE:p124575:5</code></td><td>p0005</td><td>BODY_TEXT</td><td>112</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1591</code></td><td>1591</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>4</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1592</code></td><td>1592</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1593</code></td><td>1593</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>104</td><td>河水_野王_修武</td></tr>
+        <tr><td><code>WC124575:PAGE1594</code></td><td>1594</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>114</td><td>河水_野王_修武</td></tr>
+        <tr><td><code>WC124575:PAGE1595</code></td><td>1595</td><td><code>SHUGE:p124575:5</code></td><td>p0005</td><td>BODY_TEXT</td><td>114</td><td>山陽_吴陂_荷泉</td></tr>
+        <tr><td><code>WC124575:PAGE1654</code></td><td>1654</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>6</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1655</code></td><td>1655</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>108</td><td>易水_范陽_容城</td></tr>
+        <tr><td><code>WC124575:PAGE1656</code></td><td>1656</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>113</td><td>易水_范陽_容城</td></tr>
+        <tr><td><code>WC124575:PAGE1657</code></td><td>1657</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>114</td><td>易水_范陽_容城</td></tr>
+        <tr><td><code>WC124575:PAGE1658</code></td><td>1658</td><td><code>SHUGE:p124575:5</code></td><td>p0005</td><td>BODY_TEXT</td><td>114</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1711</code></td><td>1711</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>12</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1712</code></td><td>1712</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1713</code></td><td>1713</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>MIXED_PARTIAL_BODY</td><td>88</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1714</code></td><td>1714</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>MIXED_PARTIAL_BODY</td><td>96</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1715</code></td><td>1715</td><td><code>SHUGE:p124575:5</code></td><td>p0005</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1792</code></td><td>1792</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>9</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1793</code></td><td>1793</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>110</td><td>渭水_關中</td></tr>
+        <tr><td><code>WC124575:PAGE1794</code></td><td>1794</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1795</code></td><td>1795</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>111</td><td>渭水_關中</td></tr>
+        <tr><td><code>WC124575:PAGE1862</code></td><td>1862</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>UNCLASSIFIED</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1863</code></td><td>1863</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>109</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1864</code></td><td>1864</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1865</code></td><td>1865</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>113</td><td>易水_范陽_容城</td></tr>
+        <tr><td><code>WC124575:PAGE1934</code></td><td>1934</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>18</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1935</code></td><td>1935</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1936</code></td><td>1936</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>109</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE1937</code></td><td>1937</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2002</code></td><td>2002</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>13</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2003</code></td><td>2003</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2004</code></td><td>2004</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>101</td><td>汾水_代城</td></tr>
+        <tr><td><code>WC124575:PAGE2005</code></td><td>2005</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>114</td><td>汾水_代城</td></tr>
+        <tr><td><code>WC124575:PAGE2076</code></td><td>2076</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>15</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2077</code></td><td>2077</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>110</td><td>汝水_霍陽_梁</td></tr>
+        <tr><td><code>WC124575:PAGE2078</code></td><td>2078</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>112</td><td>汝水_霍陽_梁</td></tr>
+        <tr><td><code>WC124575:PAGE2079</code></td><td>2079</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>114</td><td>汝水_霍陽_梁</td></tr>
+        <tr><td><code>WC124575:PAGE2132</code></td><td>2132</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>18</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2133</code></td><td>2133</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2134</code></td><td>2134</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>103</td><td>泗水_魯汶</td></tr>
+        <tr><td><code>WC124575:PAGE2135</code></td><td>2135</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2204</code></td><td>2204</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>8</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2205</code></td><td>2205</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2206</code></td><td>2206</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>105</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2207</code></td><td>2207</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>111</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2264</code></td><td>2264</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>7</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2265</code></td><td>2265</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BLANK_OR_HEADER_ONLY</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2266</code></td><td>2266</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>81</td><td>淮水_肥水_芍陂</td></tr>
+        <tr><td><code>WC124575:PAGE2267</code></td><td>2267</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>110</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2320</code></td><td>2320</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>UNCLASSIFIED</td><td>0</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2321</code></td><td>2321</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>95</td><td>江水_公安_华容</td></tr>
+        <tr><td><code>WC124575:PAGE2322</code></td><td>2322</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>110</td><td>江水_公安_华容</td></tr>
+        <tr><td><code>WC124575:PAGE2323</code></td><td>2323</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>110</td><td>江水_公安_华容</td></tr>
+        <tr><td><code>WC124575:PAGE2388</code></td><td>2388</td><td><code>SHUGE:p124575:1</code></td><td>p0001</td><td>BLANK_OR_HEADER_ONLY</td><td>7</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2389</code></td><td>2389</td><td><code>SHUGE:p124575:2</code></td><td>p0002</td><td>BODY_TEXT</td><td>100</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2390</code></td><td>2390</td><td><code>SHUGE:p124575:3</code></td><td>p0003</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+        <tr><td><code>WC124575:PAGE2391</code></td><td>2391</td><td><code>SHUGE:p124575:4</code></td><td>p0004</td><td>BODY_TEXT</td><td>113</td><td>unclassified</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>1.1 Reliability 分布</h3>
+    <ul>
+      <li>BODY_TEXT: <strong>36</strong></li>
+      <li>MIXED_PARTIAL_BODY: <strong>3</strong></li>
+      <li>BLANK_OR_HEADER_ONLY: <strong>19</strong></li>
+      <li>UNCLASSIFIED: <strong>2</strong> (page_id=1862, 2320 — duplicate_pages 中列出, 未明确分类)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 02 — River Groups                                             -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="rivers">
+  <div class="article-body">
+    <span class="section-num">§ 02</span>
+    <h2>9 个 River Evidence Groups</h2>
+    <p>基于 R1 substantial pages 的 body OCR 文本,建立 9 个 river evidence groups (spec 要求 ≥ 5):</p>
+
+    <div class="evidence-table-wrap">
+    <table class="evidence-table">
+      <thead>
+        <tr><th>name</th><th>subregion</th><th>page_ids</th><th>evidence_refs</th><th>support_status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>江水</td><td>公安 / 華容</td><td>2321, 2322, 2323</td><td>WC124575:PAGE2321/2322/2323</td><td>SUPPORTED · 已支持</td></tr>
+        <tr><td>河水</td><td>野王 / 修武</td><td>1593, 1594</td><td>WC124575:PAGE1593/1594</td><td>PARTIALLY_SUPPORTED · 部分支持</td></tr>
+        <tr><td>易水</td><td>范陽 / 容城 / 故安城</td><td>1655, 1656, 1657, 1865</td><td>WC124575:PAGE1655/1656/1657/1865</td><td>SUPPORTED · 已支持</td></tr>
+        <tr><td>汾水</td><td>代城</td><td>2004, 2005</td><td>WC124575:PAGE2004/2005</td><td>SUPPORTED · 已支持</td></tr>
+        <tr><td>汝水</td><td>霍陽山 / 梁</td><td>2077, 2078, 2079</td><td>WC124575:PAGE2077/2078/2079</td><td>SUPPORTED · 已支持</td></tr>
+        <tr><td>渭水</td><td>關中</td><td>1793, 1795</td><td>WC124575:PAGE1793/1795</td><td>PARTIALLY_SUPPORTED · 部分支持</td></tr>
+        <tr><td>泗水</td><td>魯 / 汶</td><td>2134</td><td>WC124575:PAGE2134</td><td>NOT_SUPPORTED · 暂不支持</td></tr>
+        <tr><td>淮水</td><td>肥水 / 芍陂</td><td>2266</td><td>WC124575:PAGE2266</td><td>NOT_SUPPORTED · 暂不支持</td></tr>
+        <tr><td>山陽</td><td>吴陂 / 荷泉</td><td>1595</td><td>WC124575:PAGE1595</td><td>NOT_SUPPORTED · 暂不支持</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>river_group_count = 9 · 3 SUPPORTED + 3 PARTIALLY_SUPPORTED + 3 NOT_SUPPORTED。</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 03 — Historical Places                                       -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="places">
+  <div class="article-body">
+    <span class="section-num">§ 03</span>
+    <h2>9 个 Historical Places</h2>
+    <p>spec-required 9 个历史地名,在 substantial pages body OCR 中均得到 SUPPORTED 确认。<code>modern_equivalent_status = UNRESOLVED</code>。</p>
+
+    <div class="hub-grid">
+      <div class="hub-card">
+        <h3>公安縣</h3>
+        <p>江水 · 公安 / 華容</p>
+        <p>evidence_ref: WC124575:PAGE2322</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+      <div class="hub-card">
+        <h3>華容</h3>
+        <p>江水 · 公安 / 華容</p>
+        <p>evidence_ref: WC124575:PAGE2321/2322</p>
+        <p>SUPPORTED · 2 citations</p>
+      </div>
+      <div class="hub-card">
+        <h3>野王縣</h3>
+        <p>河水 · 野王 / 修武</p>
+        <p>evidence_ref: WC124575:PAGE1594</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+      <div class="hub-card">
+        <h3>修武</h3>
+        <p>河水 · 野王 / 修武</p>
+        <p>evidence_ref: WC124575:PAGE1593/1594/1595</p>
+        <p>SUPPORTED · 3 citations</p>
+      </div>
+      <div class="hub-card">
+        <h3>范陽</h3>
+        <p>易水 · 范陽 / 容城 / 故安城</p>
+        <p>evidence_ref: WC124575:PAGE1657</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+      <div class="hub-card">
+        <h3>容城</h3>
+        <p>易水 · 范陽 / 容城 / 故安城</p>
+        <p>evidence_ref: WC124575:PAGE1657</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+      <div class="hub-card">
+        <h3>故安城</h3>
+        <p>易水 · 范陽 / 容城 / 故安城</p>
+        <p>evidence_ref: WC124575:PAGE1656/1657</p>
+        <p>SUPPORTED · 2 citations</p>
+      </div>
+      <div class="hub-card">
+        <h3>代城</h3>
+        <p>汾水 · 代城</p>
+        <p>evidence_ref: WC124575:PAGE2005</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+      <div class="hub-card">
+        <h3>霍陽山</h3>
+        <p>汝水 · 霍陽山 / 梁</p>
+        <p>evidence_ref: WC124575:PAGE2079</p>
+        <p>SUPPORTED · 1 citation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 04 — 60-Page Audit                                            -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="page-audit">
+  <div class="article-body">
+    <span class="section-num">§ 04</span>
+    <h2>60-Page Audit</h2>
+    <p>R2 阶段对 60-page sample 进行的页级结构审计结果:</p>
+
+    <div class="evidence-table-wrap">
+    <table class="evidence-table">
+      <thead><tr><th>指标</th><th>数值</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>总 page_id</td><td>60</td><td><code>total_pages=60</code></td></tr>
+        <tr><td>unique page_label</td><td>5 (p0001–p0005)</td><td>duplicates UNRESOLVED</td></tr>
+        <tr><td>page_seq 值</td><td>5 (seq 1–5)</td><td>每个 seq 12–14 个 page_id</td></tr>
+        <tr><td>BODY_TEXT pages</td><td>36</td><td>real body OCR</td></tr>
+        <tr><td>MIXED_PARTIAL_BODY pages</td><td>3</td><td>scan header + partial body</td></tr>
+        <tr><td>BLANK_OR_HEADER_ONLY pages</td><td>19</td><td>scan headers only</td></tr>
+        <tr><td>UNCLASSIFIED pages</td><td>2</td><td>page_id=1862, 2320 (未明确分类)</td></tr>
+        <tr><td>substantial pages (≥50 body chars)</td><td>39</td><td>evidence-eligible</td></tr>
+        <tr><td>OCR 状态</td><td>QUEUED (60/60)</td><td>no full-page OCR run</td></tr>
+        <tr><td>volume_status</td><td>UNRESOLVED</td><td>不虚构卷次</td></tr>
+        <tr><td>modern_equivalent_status</td><td>UNRESOLVED</td><td>不绑定现代坐标</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 05 — Volume / Scan Sequence                                   -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="volume-scan">
+  <div class="article-body">
+    <span class="section-num">§ 05</span>
+    <h2>Volume / Scan Sequence 分析</h2>
+
+    <h3>5.1 卷次身份 UNRESOLVED</h3>
+    <p>60 个 page_id 共享 5 个 unique page_label (p0001–p0005)。每个 page_seq 值出现在 12–14 个不同 page_id 中。按研究完整性原则:<strong>不虚构卷次</strong>。source platform (国立公文書館 / 内閣文庫) 未提供 page_id → scan_run metadata。</p>
+
+    <h3>5.2 扫描序列映射 UNRESOLVED</h3>
+    <p>每个 page_seq 值 (1–5) 出现在 12–14 个不同 page_id 中。例如 <code>SHUGE:p124575:4</code> 同时指向:</p>
+    <ul>
+      <li><code>WC124575:PAGE1504</code></li>
+      <li><code>WC124575:PAGE1594</code> · 河水_野王_修武 (r2-cl-002)</li>
+      <li><code>WC124575:PAGE1657</code> · 易水_范陽_容城 (r2-cl-003)</li>
+      <li><code>WC124575:PAGE1714</code></li>
+      <li><code>WC124575:PAGE1795</code> · 渭水_關中 (r2-cl-006)</li>
+      <li><code>WC124575:PAGE1865</code> · 易水_范陽_容城 (r2-cl-003)</li>
+      <li><code>WC124575:PAGE1937</code></li>
+      <li><code>WC124575:PAGE2005</code> · 汾水_代城 (r2-cl-004)</li>
+      <li><code>WC124575:PAGE2079</code> · 汝水_霍陽_梁 (r2-cl-005)</li>
+      <li><code>WC124575:PAGE2135</code></li>
+      <li><code>WC124575:PAGE2207</code></li>
+      <li><code>WC124575:PAGE2267</code></li>
+      <li><code>WC124575:PAGE2323</code> · 江水_公安_华容 (r2-cl-001)</li>
+      <li><code>WC124575:PAGE2391</code></li>
+    </ul>
+    <p>page_id → scan_run 映射缺乏元数据。无法判断 page_id=2323 与 page_id=2391 是否来自同一扫描批次。</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 06 — All 6 Claims                                             -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="all-claims">
+  <div class="article-body">
+    <span class="section-num">§ 06</span>
+    <h2>全部 6 条 Evidence-first Claims</h2>
+    <p>R2 阶段共 6 条 evidence-first claims,分布 (R2.1 修正):</p>
+    <ul>
+      <li>TOTAL = <strong>6</strong></li>
+      <li>SUPPORTED = <strong>4</strong> · 已支持 (r2-cl-001, r2-cl-003, r2-cl-004, r2-cl-005)</li>
+      <li>PARTIALLY_SUPPORTED = <strong>2</strong> · 部分支持 (r2-cl-002, r2-cl-006)</li>
+      <li>NOT_SUPPORTED = <strong>0</strong> · 暂不支持</li>
+      <li>METADATA_ONLY = <strong>0</strong> · 禁止进入</li>
+    </ul>
+
+    <h3>r2-cl-001 · RQ1 · 江水 + 公安 / 華容</h3>
+    <p>support_status: <strong>SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE2321 · WC124575:PAGE2322 · WC124575:PAGE2323</p>
+    <p>citation_ids: SHUGE:p124575:2 · SHUGE:p124575:3 · SHUGE:p124575:4</p>
+    <p>page_ids: 2321, 2322, 2323</p>
+
+    <h3>r2-cl-002 · RQ2 · 河水 + 野王 / 修武</h3>
+    <p>support_status: <strong>PARTIALLY_SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE1593 · WC124575:PAGE1594</p>
+    <p>citation_ids: SHUGE:p124575:3 · SHUGE:p124575:4</p>
+    <p>page_ids: 1593, 1594</p>
+
+    <h3>r2-cl-003 · RQ3 · 易水 + 范陽 / 容城 / 故安城</h3>
+    <p>support_status: <strong>SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE1655 · WC124575:PAGE1656 · WC124575:PAGE1657 · WC124575:PAGE1865</p>
+    <p>citation_ids: SHUGE:p124575:2 · SHUGE:p124575:3 · SHUGE:p124575:4 · SHUGE:p124575:4</p>
+    <p>page_ids: 1655, 1656, 1657, 1865</p>
+
+    <h3>r2-cl-004 · BONUS · 汾水 + 代城</h3>
+    <p>support_status: <strong>SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE2004 · WC124575:PAGE2005</p>
+    <p>citation_ids: SHUGE:p124575:3 · SHUGE:p124575:4</p>
+    <p>page_ids: 2004, 2005</p>
+
+    <h3>r2-cl-005 · BONUS · 汝水 + 霍陽山 / 梁</h3>
+    <p>support_status: <strong>SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE2077 · WC124575:PAGE2078 · WC124575:PAGE2079</p>
+    <p>citation_ids: SHUGE:p124575:2 · SHUGE:p124575:3 · SHUGE:p124575:4</p>
+    <p>page_ids: 2077, 2078, 2079</p>
+
+    <h3>r2-cl-006 · BONUS · 渭水 + 關中</h3>
+    <p>support_status: <strong>PARTIALLY_SUPPORTED</strong></p>
+    <p>evidence_ref: WC124575:PAGE1793 · WC124575:PAGE1795</p>
+    <p>citation_ids: SHUGE:p124575:2 · SHUGE:p124575:4</p>
+    <p>page_ids: 1793, 1795</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 07 — Machine IDs                                              -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="machine-ids">
+  <div class="article-body">
+    <span class="section-num">§ 07</span>
+    <h2>Machine IDs 参考</h2>
+
+    <h3>7.1 Canonical Work IDs</h3>
+    <ul>
+      <li><code>post_id</code> = <code>124575</code> (国立公文書館 / 内閣文庫)</li>
+      <li><code>work_id</code> 错配: <code>168491</code> = 《园冶》 (Ming garden design by 计成, 1635) — v1.0 article 引用此为《水经注》,已纠正</li>
+      <li><code>institution</code> = <strong>国立公文書館 / 内閣文庫</strong> (Japan's National Archives, Cabinet Library 数字化)</li>
+      <li><code>digital_object_type</code> = scanned volume</li>
+    </ul>
+
+    <h3>7.2 引用 ID 格式</h3>
+    <ul>
+      <li><strong>evidence_ref</strong> (R2.1 新主级) = <code>WC124575:PAGE&lt;page_id&gt;</code> · 例: <code>WC124575:PAGE2321</code></li>
+      <li><strong>citation_id</strong> (legacy, R1 contract) = <code>SHUGE:p124575:&lt;seq&gt;</code> · 例: <code>SHUGE:p124575:3</code></li>
+      <li><strong>page_object_id</strong> (legacy) = <code>p124575:p&lt;seq&gt;</code> · 例: <code>p124575:p3</code></li>
+      <li><strong>page_label</strong> = <code>p000N</code> · 例: <code>p0003</code></li>
+      <li><strong>support_status</strong> (machine code) = <code>SUPPORTED</code> / <code>PARTIALLY_SUPPORTED</code> / <code>NOT_SUPPORTED</code></li>
+    </ul>
+
+    <h3>7.3 JSON Schema</h3>
+    <ul>
+      <li><code>page-structure-r2/1.0</code> — water_classic_page_structure_r2.json</li>
+      <li><code>evidence-claims-r2/1.0</code> — water_classic_evidence_claims_r2.json</li>
+      <li><code>river-evidence-groups-r2/1.0</code> — water_classic_river_evidence_groups.json</li>
+      <li><code>historical-places-r2/1.0</code> — water_classic_historical_places.json</li>
+      <li><code>evidence-identity-r2_1/1.0</code> — water_classic_evidence_identity_r2_1.json (新增)</li>
+    </ul>
+
+    <h3>7.4 Frozen Baseline SHA</h3>
+    <ul>
+      <li><code>v1.0_frozen_baseline_sha</code> = <code>3a51ef5e698655c215a1f36147d24bfe8c7e6826</code> (NOT modified in R2 / R2.1)</li>
+      <li><code>v1.0_dossier_sha256</code> = <code>da4fd267d64f2ae67ac8c3594962c2cd60fdce41f8d03896fb7a8ae27cc10f80</code> (verified unchanged)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 08 — Source Downloads                                         -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="source-downloads">
+  <div class="article-body">
+    <span class="section-num">§ 08</span>
+    <h2>Source Downloads</h2>
+    <p>所有源文件均可通过 raw GitHub URL 下载。R1 frozen outputs 与 R2.1 新增 outputs 分开列出。</p>
+
+    <h3>8.1 R2.1 新增</h3>
+    <ul>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/data/water_classic_evidence_identity_r2_1.json">water_classic_evidence_identity_r2_1.json</a> · evidence identity (60 refs, collision 0)</li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/EVIDENCE_IDENTITY_AUDIT_R2_1.md">EVIDENCE_IDENTITY_AUDIT_R2_1.md</a> · audit markdown</li>
+    </ul>
+
+    <h3>8.2 R2 frozen outputs (frozen at 3883455b)</h3>
+    <ul>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/water_classic_page_structure_r2.json">water_classic_page_structure_r2.json</a></li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/water_classic_evidence_claims_r2.json">water_classic_evidence_claims_r2.json</a></li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/water_classic_river_evidence_groups.json">water_classic_river_evidence_groups.json</a></li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/water_classic_historical_places.json">water_classic_historical_places.json</a></li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/WATER_CLASSIC_PAGE_STRUCTURE_R2.md">WATER_CLASSIC_PAGE_STRUCTURE_R2.md</a></li>
+      <li><a href="https://raw.githubusercontent.com/conanxin/conanxin.github.io/main/projects/shuge/research/water-classic/source/WATER_CLASSIC_R2_RESEARCH_QUESTIONS.md">WATER_CLASSIC_R2_RESEARCH_QUESTIONS.md</a></li>
+    </ul>
+
+    <h3>8.3 R1 frozen outputs (frozen at 59d258e, 不可修改)</h3>
+    <p>R1 页面:<a href="/projects/shuge/research/water-classic-evidence-r1/">/projects/shuge/research/water-classic-evidence-r1/</a> · R1 路由保留</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- § 09 — Version History                                          -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<section class="section" id="version-history">
+  <div class="article-body">
+    <span class="section-num">§ 09</span>
+    <h2>R1 / R2 / R2.1 版本历史</h2>
+
+    <ul class="version-list">
+      <li><span><strong>R2.1</strong> · 《水经注》数字证据研究 · Evidence Identity + zh-CN focused interface</span><span class="ver-sha">SPEC RUN</span></li>
+      <li><span>R2 · 《水经注》数字证据研究 · Page Structure + River Groups + Places + Claims</span><span class="ver-sha"><code>3883455b</code></span></li>
+      <li><span>R1 · Water Classic Evidence Reconstruction Publication</span><span class="ver-sha"><code>59d258e</code></span></li>
+      <li><span>v1.0 Cleanup R1 · Metadata reconciliation + PROVENANCE_AUDIT</span><span class="ver-sha"><code>3a51ef5</code></span></li>
+      <li><span>v1.0 Candidate · First Real Scholarly Output</span><span class="ver-sha"><code>7738275</code></span></li>
+      <li><span>v0.9 Public Research Portfolio</span><span class="ver-sha"><code>39a6ec1</code></span></li>
+      <li><span>v0.8 Publication &amp; Scholarly Output</span><span class="ver-sha"><code>7477743</code></span></li>
+      <li><span>v0.7 Research Writing Environment</span><span class="ver-sha"><code>4fa8802</code></span></li>
+      <li><span>v0.6 Research Graph &amp; Project Pages</span><span class="ver-sha"><code>fbb5eb3</code></span></li>
+      <li><span>v0.5 Research Workspace</span><span class="ver-sha"><code>c32cff0</code></span></li>
+      <li><span>v0.4 Evidence Explorer</span><span class="ver-sha"><code>7abe6ae</code></span></li>
+      <li><span>v0.3 Rooms + Case Studies</span><span class="ver-sha"><code>c2e6f1d</code></span></li>
+      <li><span>P5-D · Frozen Research Database</span><span class="ver-sha"><code>f70fd97</code></span></li>
+      <li><span>P5-C</span><span class="ver-sha"><code>a815475</code></span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>技术附录 · 《水经注》数字证据研究 · SHUGE Research</p>
+  <p><a href="/projects/shuge/research/water-classic/">← 返回主页面</a></p>
+  <p>v1.0 frozen baseline (3a51ef5) 未修改 · R1 route (59d258e) preserved · R2 frozen (3883455b)</p>
+</footer>
+
+</div>
+</body>
+</html>

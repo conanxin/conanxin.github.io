@@ -1,0 +1,138 @@
+{
+  "schema_version": "r4.4-yishui-article-errata/1.0",
+  "task": "WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE",
+  "stage_A_errata_basis": "Stage A limited evidence errata (do not re-run prior QA; only resolve three known issues plus one independent research clue)",
+
+  "frozen_research_files_preserved": {
+    "R4_yishui_image_review_json": "data/yishui_image_review_r4.json (R4 frozen 582c852, sha256 preserved)",
+    "R4.1_yishui_claims_json": "data/yishui_claims_r4_1.json (R4.1 frozen 2b17354, sha256 preserved)",
+    "R4.1_yishui_claim_citations_json": "data/yishui_claim_citations_r4_1.json (R4.1 frozen)",
+    "R4.1_yishui_evidence_appendix_json": "data/yishui_evidence_appendix_r4_1.json (R4.1 frozen)",
+    "R4.2_yishui_passage_verification_json": "data/yishui_passage_verification_r4_2.json (R4.2 frozen 04db695)",
+    "R4.2_yishui_passage_verification_md": "source/YISHUI_PASSAGE_VERIFICATION_R4_2.md (R4.2 frozen)",
+    "R4.3_yishui_passage_comparison_json": "data/yishui_passage_comparison_r4_3.json (R4.3 frozen 69c396d, md5=0a7474c0e8a0288832b4218d2d5d2afb)",
+    "R4.3_yishui_claim_corrections_json": "data/yishui_claim_corrections_r4_3.json (R4.3 frozen)",
+    "R4.3A_yishui_passage_comparison_errata_json": "data/yishui_passage_comparison_errata_r4_3a.json (R4.3A frozen a98db0b)"
+  },
+
+  "erratum_A1_pid1661_enfeoffment_location": {
+    "issue_id": "A1_pid1661_enfeoffment_location_conflation",
+    "description": "Existing R4 image review records and online texts list '深泽' (Shenze) as the enfeoffment location for the Zhao general Ye (夜/夕). R4.3A Cabinet Library AI vision reading of pid1661 (明 吳琯 校《水經注》卷之十一) instead reads '漢高帝六年封趙將夜於容城皆為侯國王莽更名深澤'. This conflation must be corrected before the article is published.",
+    "R4_record_attestation": "R4 image review JSON records '深泽' as the enfeoffment location for the Zhao general, conflating the original enfeoffment location with the later Wang Mang (王莽) rename.",
+    "Cabinet_Library_pid1661_visual_reading_R4_3A": "「漢高帝六年封趙將夜於容城皆為侯國王莽更名深澤」 (Han Gaodi 6th year, enfeoffed Zhao general Ye at Rongcheng, all became marquis states, Wang Mang renamed it Shenze)",
+    "article_correction": "受封地点 = 容城 (Rongcheng, the original enfeoffment site). 王莽更名深澤 is a separate later historical fact, not the enfeoffment location. The article body and the simplified spatial diagram must display '容城 → 深澤 (王莽更名)' as two sequential historical facts, not as a single enfeoffment at 深泽.",
+    "canonical_citation": "[ANCIENT-RECORD-pid1661]",
+    "evidence_status": "古籍直接记载 (Cabinet Library pid1661, 明 吳琯 校《水經注》卷之十一, AI vision read, non-expert审定 disclosed)",
+    "AI_VISION_DISCLOSED": true,
+    "claim_id_affected": "R4-YSH-012 (overlaid)",
+    "overlays_existing_claim": true,
+    "claim_text_revised": false
+  },
+
+  "erratum_A2_fanyang_vs_rongcheng_event_separation": {
+    "issue_id": "A2_fanyang_rongcheng_events_must_be_separated",
+    "description": "R4.3 records group the Han enfeoffment events into separate passage groups (p04a_fanyang_enfeoffment_timing for 范阳 and p04b_rongcheng_enfeoffment_xululu for 容城). However, the underlying Cabinet Library pid1661 text mixes two events in close proximity. The R4.3 synthetic excerpt template '漢高帝六年，封趙將X于深澤，景帝中X年，以封匈奴降王X于容城' must not cause the article to assign 容城段纪年 to 范阳 or vice versa.",
+    "R4_3_passage_groups_used": {
+      "p04a_fanyang_enfeoffment_timing": "Records R4.3-PC-010/011/012 (n=3: 1 CORROBORATES + 2 VARIANT) — only 范阳段 datable event",
+      "p04b_rongcheng_enfeoffment_xululu": "Records R4.3-PC-013/014/015 (n=3: 1 CORROBORATES + 2 VARIANT) — only 容城段 datable events"
+    },
+    "article_rule": "Two distinct Han enfeoffment events are recorded separately:\n  Event FANYANG (范阳): '漢景帝中X年封匈奴降王X爲侯國' — only records the 范阳 enfeoffment\n  Event RONGCHENG (容城): '漢高帝六年封趙將夜於容城皆為侯國' (enfeoffment location per erratum_A1) AND '匈奴降王X於容城' (V04 follow-on)\nThe 范阳 event has its own dating (V01 中二年/中元三年) and its own enfeoffed person (V02 代/信). The 容城 events have different personages (V03 夜/夕/某 for the Zhao general; V04 唯/攜/撅徐盧 for the Xiongnu prince).",
+    "canonical_citation": "[R4.3-PC-019]",
+    "evidence_status": "研究者文本推论 (R4.3 group separation + Cabinet Library pid1661 cross-reference)",
+    "claim_id_affected": "R4-YSH-012 (overlaid)",
+    "overlays_existing_claim": true
+  },
+
+  "erratum_A3_subgroup_statistics_recomputed": {
+    "issue_id": "A3_subgroup_statistics_must_agree_with_total",
+    "description": "R4.3 records[] must be re-aggregated by passage group so that subgroup statistics sum to the overall ground truth (10 CORROBORATES + 5 VARIANT + 3 INCONCLUSIVE_DIRECTION = 18).",
+    "recomputed_subgroup_statistics": [
+      {
+        "passage_group": "p01_yishui_origin",
+        "anchors": ["pid1655"],
+        "subject": "易水出涿郡故安縣閻鄉西山",
+        "n_records": 3,
+        "CORROBORATES": 3,
+        "VARIANT": 0,
+        "INCONCLUSIVE_DIRECTION": 0
+      },
+      {
+        "passage_group": "p02_fanyang_rongcheng_section_header",
+        "anchors": ["pid1657"],
+        "subject": "東過范陽縣南，又東過容城縣南",
+        "n_records": 3,
+        "CORROBORATES": 3,
+        "VARIANT": 0,
+        "INCONCLUSIVE_DIRECTION": 0
+      },
+      {
+        "passage_group": "p03_daliting_jumaxshui_huxie_tongcheng",
+        "anchors": ["pid1659"],
+        "subject": "大利亭 / 合易水而注巨馬水 / 互攝通稱",
+        "n_records": 3,
+        "CORROBORATES": 2,
+        "VARIANT": 1,
+        "INCONCLUSIVE_DIRECTION": 0
+      },
+      {
+        "passage_group": "p04a_fanyang_enfeoffment_timing",
+        "anchors": ["pid1661"],
+        "subject": "漢景帝中X年封匈奴降王X為侯國 (範陽段, 與容城段分開記錄)",
+        "n_records": 3,
+        "CORROBORATES": 1,
+        "VARIANT": 2,
+        "INCONCLUSIVE_DIRECTION": 0
+      },
+      {
+        "passage_group": "p04b_rongcheng_enfeoffment_xululu",
+        "anchors": ["pid1661"],
+        "subject": "漢高帝六年封趙將夜於容城 (受封地点 erratum_A1) + 匈奴降王X於容城 (容城段, 與範陽段分開記錄)",
+        "n_records": 3,
+        "CORROBORATES": 1,
+        "VARIANT": 2,
+        "INCONCLUSIVE_DIRECTION": 0
+      },
+      {
+        "passage_group": "p04c_yijing_position",
+        "anchors": ["pid1661"],
+        "subject": "易水又東逕易京南 / 易京城在易城西四五里",
+        "n_records": 3,
+        "CORROBORATES": 0,
+        "VARIANT": 0,
+        "INCONCLUSIVE_DIRECTION": 3
+      }
+    ],
+    "subgroup_total": {
+      "n_records": 18,
+      "CORROBORATES": 10,
+      "VARIANT": 5,
+      "INCONCLUSIVE_DIRECTION": 3,
+      "TOTAL": 18,
+      "agrees_with_R4_3A_ground_truth": true
+    },
+    "canonical_citation": "[R4.3-RECORDS-AGGREGATED]",
+    "evidence_status": "研究者文本推论 (R4.3 records[] re-aggregation)",
+    "claim_id_affected": "none (methodology correction)"
+  },
+
+  "erratum_A4_shuijingshuzhu_gaodi_year_8vs6_research_clue": {
+    "issue_id": "A4_shuijingshuzhu_year_discrepancy_open_variant",
+    "description": "Some editions of 《水經注疏》 (e.g., 楊守敬/熊會貞 《水經注疏》 1957/1989 排印本; 段熙仲 校 1984; 陳橋驛 《水經注校證》 2007 中華書局) record the Zhao general Ye (夜) as enfeoffed in Han Gaodi's 'eighth year (高帝八年)' rather than the 'sixth year (六年)' recorded by other versions. This discrepancy is not a confirmed verified variant — it is recorded here as an OPEN research clue only.",
+    "recorded_status": "OPEN_VARIANT_NOT_VERIFIED",
+    "evidence_status": "尚待独立确认的历史事实 (not VERIFIED_VARIANT)",
+    "reason_status_open": "No verifiable original text from 《水經注疏》 (1957/1989 排印 or 2007 中華書局標點本) has been obtained and read in this research project. R4.4 spec explicitly requires: 'only after obtaining and reading verifiable original text can it be marked as VERIFIED_VARIANT'.",
+    "article_treatment": "The article body will list this discrepancy in the '汉代封侯记录及版本异文' section as an OPEN variant, not as a final textual conclusion. The article will explicitly state that this is an independent research clue pending verification by reading a paper copy of 《水經注疏》.",
+    "canonical_citation": "[OPEN-CLUE-A4]",
+    "claim_id_affected": "R4-YSH-012 (open clue, not overlay)",
+    "overlays_existing_claim": false
+  },
+
+  "errata_summary": {
+    "errata_total": 4,
+    "errata_overlay_only": 3,
+    "errata_open_clue": 1,
+    "claim_text_revised_in_frozen_R4_1": false,
+    "frozen_research_files_modified": false,
+    "article_status": "DRAFT_REVIEW"
+  }
+}

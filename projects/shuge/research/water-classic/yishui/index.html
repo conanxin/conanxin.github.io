@@ -83,7 +83,8 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   <a href="#sec-claims">Claims</a>
   <a href="#sec-uncertainty">不確定性</a>
   <a href="#sec-sources">來源</a>
-  <a href="./sources/">R4.3A 勘誤 + R4.3 文本核驗 + R4.2 歷史阻斷</a>
+  <a href="./sources/">R4.3A 勘誤 + R4.3 文本核驗 + R4.2 歷史阻斷</a> ·
+    <a href="./article/">R4.4 中文研究文章 (DRAFT_REVIEW)</a>
   <a href="../">返回專題</a>
 </nav>
 
@@ -674,6 +675,42 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   </ul>
   <div class="wc-disclosure verified" style="margin-top: 0.75rem;">
     <strong>R4.3 狀態披露 ·</strong> 本輪用 R4.3 spec §A 提供的 3 個更正 URL 成功訪問, 寫入 18 條 records (CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2); Claim 011 方向性誤讀修正 (R4.3 overlay 建議「易京在易水之北」, 暫列 INCONCLUSIVE 待紙本景印校驗); Claim 012 四組 VERSION_VARIANT_CANDIDATES 已登記, 不作最終裁判. PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描). R4 frozen / R4.1 / R4.2 數據結構未被覆寫. 詳見 <a href="./sources/">R4.3 公開頁</a>.
+
+    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px dashed var(--wc-line);">
+
+    <h3 class="wc-h3">R4.4 中文研究文章 (research-article)</h3>
+    <p class="wc-meta"><strong>任務 ID：</strong><span class="wc-cite">WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE</span></p>
+    <p><strong>目標：</strong>完成第一篇真正面向中文讀者的《水經注》易水專題研究文章, 並提供可以線上閱讀的網頁. 整合 R4 / R4.1 / R4.2 / R4.3 / R4.3A 五層成果, 以內閣文庫藏明吳琯校《水經注》卷之十一底本影像為核心證據.</p>
+    <p><strong>R4.4 限定性證據勘誤 (Stage A):</strong></p>
+    <ol style="margin-left: 1.2rem;">
+      <li><strong>A1 受封地點校正：</strong>R4 image review 將「封趙將夜於容城」誤判為「深澤」受封. Cabinet Library pid1661 字面 = 「封趙將夜於<strong>容城</strong>皆為侯國王莽更名深澤」. 受封地點 = 容城, 深澤為王莽更名. <strong>不得混為一談</strong>.</li>
+      <li><strong>A2 範陽 vs 容城分離：</strong>兩個封侯事件須分開記錄, 不得將容城段紀年誤歸於範陽, 亦不得將王莽更名「深澤」誤認為受封地點.</li>
+      <li><strong>A3 分組統計重計：</strong>R4.3 records[] 按 passage group 重新聚合, 6 個 group (p01/p02/p03/p04a/p04b/p04c) 總計 CORROBORATES=10 + VARIANT=5 + INCONCLUSIVE_DIRECTION=3 = 18.</li>
+      <li><strong>A4 獨立研究線索 (OPEN_VARIANT_NOT_VERIFIED):</strong>《水經注疏》記載趙將夜受封於「高帝八年」vs 主流版本「六年」之差異, <strong>未取得可核驗原文前不得標記為 VERIFIED_VARIANT</strong>.</li>
+    </ol>
+    <p><strong>R4.4 文章交付 (Stage B-D):</strong></p>
+    <ul style="margin-left: 1.2rem;">
+      <li><a href="./article/">R4.4 中文研究文章首頁</a> · 43308 B · 9 h2 sections · 19 h3 subsections · 5811 漢字</li>
+      <li>20 條 canonical citations (<span class="wc-cite">[CITE-1]</span> 至 <span class="wc-cite">[CITE-20]</span>) · 4 層歸因 (古籍直接記載 / 研究者文本推論 / 版本校勘結果 / 尚待獨立確認的歷史事實)</li>
+      <li>1 張內嵌 SVG 簡化空間關係圖 (圖 1: 易水流域範陽—容城—故安文本空間) — 所有邊均指向真實底本影像 (pid1655/pid1657/pid1659/pid1661)</li>
+      <li>1 個版本異文彙總表 (V01-V04: 中二年/中元三年, 代/信, 夜/夕/某, 唯/攜/撅徐盧)</li>
+      <li>1 個證據附錄子目錄: <a href="./article/evidence/"><code>./article/evidence/</code></a> (含 R4.4 勘誤 JSON 9095 B)</li>
+      <li><a href="./article/data/yishui_article_errata_r4_4.json"><code>data/yishui_article_errata_r4_4.json</code></a> (9095 B · schema <span class="wc-cite">r4.4-yishui-article-errata/1.0</span>) · <strong>R4–R4.3A 全部原始檔案未覆寫</strong></li>
+    </ul>
+    <p><strong>R4.4 完成回執 (Stage E):</strong></p>
+    <ul style="margin-left: 1.2rem;">
+      <li>ARTICLE_WORD_COUNT = 5811 漢字 (body 5770 漢字)</li>
+      <li>ARTICLE_SECTIONS = 9 (摘要 + 一, 研究問題 + 二, 易水文本空間 + 三, 範陽容城故安空間 + 四, 易京武陽大利亭 + 五, 漢代封侯版本異文 + 六, 文本空間界限 + 七, 研究結論 + 引文)</li>
+      <li>CITATIONS_RESOLVED = 20</li>
+      <li>SUPPORTED_CLAIMS_USED = 7 (R4-YSH-001, 002, 005, 007, 008, 009, 010)</li>
+      <li>PARTIAL_CLAIMS_DISCLOSED = 5 (R4-YSH-003, 004, 006, 011 [R4.3A 方向修正 overlay], 012 [4 組候選 overlay])</li>
+      <li>UNSUPPORTED_CLAIMS = 0</li>
+      <li>OPEN_VARIANTS = 5 (V01 中二/中元三 + V02 代/信 + V03 夜/夕/某 + V04 唯/攜/撅 + A4 高帝八/六年)</li>
+      <li>ARTICLE_URL = <a href="./article/">https://conanxin.github.io/projects/shuge/research/water-classic/yishui/article/</a></li>
+      <li>GIT_COMMIT = R4.4 (TBD)</li>
+      <li>HTTP_STATUS = (待驗證)</li>
+    </ul>
+    <p><strong>R4.4 邊界遵守：</strong>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4–R4.3A 凍結 preserved · AI 視覺明確披露 · 文章狀態 DRAFT_REVIEW (不作為正式學術發表). <strong>完成 R4.4 後停止, 不進入 R5.</strong></p>
   </div>
   <div class="wc-disclosure blocked" style="margin-top: 0.75rem;">
     <strong>R4.2 狀態披露 ·</strong> 本輪 3 個 real-URL 來源（Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196）在 web_fetch 階段全部 ACCESS_BLOCKED；PASSAGE_VERIFIED_SOURCES = 0，PASSAGES_COMPARED = 0，CORROBORATES / VARIANTS / CONTRADICTIONS = 0，未對 R4.1 任何 claim 做修訂。R4 frozen 與 R4.1 數據結構未被覆寫。詳見 <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>。

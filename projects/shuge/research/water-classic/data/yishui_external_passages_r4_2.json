@@ -1,0 +1,174 @@
+{
+  "schema_version": "r4.2-yishui-external-passages-verification/1.0",
+  "generated_at": "2026-10-10T18:18:00+08:00",
+  "task": "WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION",
+  "section": "R4.2 · 外部版本逐句核验（passage-level verification overlay on R4.1）",
+  "basis": "R4 frozen commit 582c852; R4.1 commit 2b17354 — R4.2 是 R4.1 之上的方法学审计层，不改 R4 frozen JSON、不改 R4.1 数据结构",
+  "reviewer_honesty_disclosure": "本轮 (R4.2) 三个外部 real-URL 来源 (Wikisource 水經注 卷11、ctext 水經注 node=600306、ctext 楊守敬水經注疏 res=644196) 在 web_fetch 阶段全部 ACCESS_BLOCKED；未真正打开任何资料并核验到对应句子，因此 PASSAGE_VERIFIED_SOURCES 仍为 0，PASSAGES_COMPARED 为 0。本 JSON 记录阻断事实 + 未来应核验的具体句段清单，不虚构引文、不提高证据等级、不把古籍文本当成现代地理事实。",
+  "spec_discrepancy_recorded": {
+    "field": "remote_main",
+    "spec_value": "d54aec2 (含三个 Research Terminal 提交)",
+    "actual_remote_value": "2b17354fea7d1fa4159eea7ecae2e8258a7f79ae (与本地 HEAD 一致)",
+    "ahead_count": 0,
+    "behind_count": 0,
+    "implication": "spec 描述的 '3 个 Research Terminal 提交' 在远程不存在；本地工作区与远程 main 已完全同步。无需 fast-forward。"
+  },
+  "boundaries_observed": {
+    "NEW_OCR": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "R4_FROZEN_OVERWRITTEN": false,
+    "R41_DATA_MODIFIED": false,
+    "FORCE_PUSH": false,
+    "GIT_RESET": false,
+    "FORCE_PULL": false,
+    "R5_ENTERED": false
+  },
+  "verification_summary": {
+    "external_sources_total": 6,
+    "primary_sources": 1,
+    "passage_verified_sources": 0,
+    "passages_compared": 0,
+    "corroborates": 0,
+    "variants": 0,
+    "contradictions": 0,
+    "inconclusive": 3,
+    "claims_revised": 0
+  },
+  "verification_status_distribution": {
+    "PRIMARY_LOCATED": 1,
+    "ACCESS_BLOCKED": 3,
+    "ACCESSED_real_URL_passage_unverified_in_R42": 0,
+    "IDENTIFIED_placeholder_URL_only": 3
+  },
+  "records": [
+    {
+      "record_id": "R4.2-EXT-WIKI-001",
+      "source_id": "EXT-WIKI-001",
+      "source_title": "《水經注》卷十一 易水（Wikisource 維基文庫）",
+      "verified_url": "https://zh.wikisource.org/wiki/%E6%B0%B4%E7%B6%93%E6%B3%A8/%E5%8D%B711",
+      "url_status_attempt_1": "HTTP 404 — 页面存在但 '此页面目前没有内容'",
+      "url_status_attempt_2_variant": "https://zh.wikisource.org/wiki/%E6%B0%B4%E7%B6%93%E6%B3%A8/%E5%8D%B7%E5%8D%81%E4%B8%80 → HTTP 404，'此页面目前没有内容'",
+      "url_status_attempt_3_root_toc": "https://zh.wikisource.org/wiki/%E6%B0%B4%E7%B6%93%E6%B3%A8 → HTTP 200 但仅返回目录列表（卷一…卷四十），未含正文",
+      "verification_status": "ACCESS_BLOCKED",
+      "primary_pids_targeted": ["1655", "1657", "1659", "1661"],
+      "would_need_to_verify_passages": [
+        {
+          "pid": "1655",
+          "primary_excerpt": "易水出涿郡故安縣閻鄉西山",
+          "expected_wikisource_locator": "Wikisource 水經注 卷11 易水篇首段",
+          "expected_phrase_to_find": "易水出涿郡故安縣閻鄉西山"
+        },
+        {
+          "pid": "1657",
+          "primary_excerpt": "東過范陽縣南又东過容城縣南",
+          "expected_wikisource_locator": "Wikisource 水經注 卷11 易水篇 '東過' 段",
+          "expected_phrase_to_find": "東過范陽縣南，又東過容城縣南"
+        },
+        {
+          "pid": "1659",
+          "primary_excerpt": "互攝 / 大利亭 / 故安水東南合易水而注巨馬水",
+          "expected_wikisource_locator": "Wikisource 水經注 卷11 濡水 / 巨馬水段",
+          "expected_phrase_to_find": "大利亭 / 故安水東南合易水而注巨馬水"
+        },
+        {
+          "pid": "1661",
+          "primary_excerpt": "易京城在易水之南；範陽、容城、深澤漢代封國",
+          "expected_wikisource_locator": "Wikisource 水經注 卷11 易水篇 公孫瓚段 + 漢代封國段",
+          "expected_phrase_to_find": "易京城 + 範陽封國 + 容城封國 + 深澤封國"
+        }
+      ],
+      "comparison_result": null,
+      "uncertainty": "ACCESS_BLOCKED — 未能打开资料；维基文库该卷页面尚无正文（社区尚未完成录入），无法验证"
+    },
+    {
+      "record_id": "R4.2-EXT-CTEXT-001",
+      "source_id": "EXT-CTEXT-001",
+      "source_title": "中國哲學書電子化計劃 ctext.org 水經注 卷十一",
+      "verified_url": "https://ctext.org/text.pl?node=600306&if=zh",
+      "url_status_attempt_1": "HTTP 200 但返回 Cloudflare 反爬页面: 'you do not have authorization to scrape this page'",
+      "url_status_attempt_2_no_if_param": "https://ctext.org/text.pl?node=600306 → HTTP 200 同样 Cloudflare 反爬页面",
+      "verification_status": "ACCESS_BLOCKED",
+      "primary_pids_targeted": ["1655", "1657", "1659", "1661", "1662"],
+      "would_need_to_verify_passages": [
+        {
+          "pid": "1662",
+          "primary_excerpt": "景帝中元三年封匈奴降王（信 / 攜徐盧）為侯國",
+          "expected_ctext_locator": "ctext 600306 卷十一 容城 / 深澤段",
+          "expected_phrase_to_find": "景帝中元三年封匈奴降王 + 攜徐盧/撅徐盧 異文"
+        }
+      ],
+      "comparison_result": null,
+      "uncertainty": "ACCESS_BLOCKED — ctext.org 对所有 web_fetch 调用返回 Cloudflare 反爬页面，明确 'you do not have authorization to scrape this page'。该平台建议订阅机构账户使用 JSON API / Python 模块，非个人 web 抓取路径。"
+    },
+    {
+      "record_id": "R4.2-EXT-YANG-1905",
+      "source_id": "EXT-YANG-1905",
+      "source_title": "楊守敬《水經注疏》(1905 影印本, ctext.org 數位化)",
+      "verified_url": "https://ctext.org/wiki.pl?if=zh&res=644196",
+      "url_status_attempt_1": "fetch failed | other side closed | UND_ERR_SOCKET",
+      "verification_status": "ACCESS_BLOCKED",
+      "primary_pids_targeted": ["1655", "1657", "1661"],
+      "would_need_to_verify_passages": [
+        {
+          "pid": "1657",
+          "primary_excerpt": "東過范陽縣南，又東過容城縣南",
+          "expected_yang_locator": "楊守敬《水經注疏》卷十一 易水 '東過' 段 酈注 + 守敬按語",
+          "expected_phrase_to_find": "酈道元注 + 楊守敬疏（如：'守敬按：范陽在易水之北'）"
+        },
+        {
+          "pid": "1661",
+          "primary_excerpt": "易京城在易水之南；公孫瓚遷都",
+          "expected_yang_locator": "楊守敬《水經注疏》卷十一 易京 / 公孫瓚段",
+          "expected_phrase_to_find": "酈注 + 楊疏對易京方位之考證"
+        }
+      ],
+      "comparison_result": null,
+      "uncertainty": "ACCESS_BLOCKED — socket 错误（other side closed），网络层未建立连接；无法读任何正文"
+    },
+    {
+      "record_id": "R4.2-EXT-NII-DIGITAL",
+      "source_id": "EXT-NII-DIGITAL",
+      "source_title": "國立公文書館藏《水經注》明吳琯校本（卷十一 易水/滱水）",
+      "verification_status": "PRIMARY_LOCATED",
+      "note": "本轮 R4.2 未对 PRIMARY 做新的逐句核验（R4 阶段已 OCR 入 primary_corpus_r4.json，pid1655 等 11 个 pid 的 rapidocr OCR 文本已落库）。PRIMARY 校勘以 R4 frozen 文本为基线，R4.1 已对 12 条 claim 做了基于 PRIMARY 的支持度审计。"
+    },
+    {
+      "record_id": "R4.2-EXT-CHEN-2007",
+      "source_id": "EXT-CHEN-2007",
+      "source_title": "陳橋驛《水經注校證》(2007)",
+      "verification_status": "IDENTIFIED_placeholder_URL_only",
+      "note": "R4.1 已记录 placeholder URL (zhihu.com/question/...)，R4.2 未取到具体原文，按 R34 §B '不得虚构引文或标为已核验'，保持 IDENTIFIED 状态，不标 PASSAGE_VERIFIED。"
+    },
+    {
+      "record_id": "R4.2-EXT-WANG-1956",
+      "source_id": "EXT-WANG-1956",
+      "source_title": "王國維《水經注校》(1956 重印本)",
+      "verification_status": "IDENTIFIED_placeholder_URL_only",
+      "note": "R4.1 已记录 placeholder URL，本轮未取到具体原文，保持 IDENTIFIED。"
+    },
+    {
+      "record_id": "R4.2-EXT-ZHONGHUA-2013",
+      "source_id": "EXT-ZHONGHUA-2013",
+      "source_title": "中華書局《水經注》標點本 (2013)",
+      "verification_status": "IDENTIFIED_placeholder_URL_only",
+      "note": "R4.1 已记录 placeholder URL (zhbc.com/...)，本轮未取到具体原文，保持 IDENTIFIED。"
+    }
+  ],
+  "claim_revisions_R42": [],
+  "next_attempt_protocol": {
+    "trigger": "When one of the three ACCESS_BLOCKED sources becomes reachable (Wikisource 卷11 正文完成录入 / ctext 机构订阅 / 杨守敬水经注疏 644196 镜像可用)",
+    "step_1": "Re-fetch the blocked URL with web_fetch (short timeout ≤ 12s)",
+    "step_2": "Extract the specific phrases listed in records[].would_need_to_verify_passages[] using grep/regex over the extracted text",
+    "step_3": "Compare against R4 frozen OCR primary_excerpt for each pid",
+    "step_4": "Record CORROBORATES / VARIANT / CONTRADICTION / INCONCLUSIVE per pid per source",
+    "step_5": "If VARIANT found (e.g., 攜徐盧 vs 撅徐盧), update yishui_claims_r4_2.json with claim_text_variant_observed",
+    "step_6": "If CONTRADICTION found, do NOT raise evidence level — keep as PARTIALLY_SUPPORTED or downgrade per R34 spec §D '不得为了增加 SUPPORTED 数量而提高证据等级'",
+    "step_7": "Do NOT interpret ancient textual geography as modern geographic fact (R34 spec §D explicit boundary)"
+  },
+  "deliverables_added": [
+    "data/yishui_external_passages_r4_2.json (this file)",
+    "source/YISHUI_EXTERNAL_PASSAGE_VERIFICATION_R4_2.md",
+    "yishui/sources/index.html (public Chinese page showing ACCESS_BLOCKED state)"
+  ]
+}

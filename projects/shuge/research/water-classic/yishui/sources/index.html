@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>易水專題研究 · R4.2 外部校勘逐句核驗 — 《水經注》易水版本對照</title>
+<meta name="description" content="WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION · 對 R4.1 已 ACCESSED 但未逐句核驗的 3 個外部 real-URL 版本（Wikisource 卷11、ctext 水經注 node 600306、楊守敬水經注疏 res 644196）做真實打開與逐句比對。本頁面誠實展示 ACCESS_BLOCKED 狀態。">
+<link rel="stylesheet" href="../../style.css">
+<style>
+:root {
+  --wc-bg: #fdfaf3;
+  --wc-ink: #2a2620;
+  --wc-accent: #b85c38;
+  --wc-warm: #d4a017;
+  --wc-cool: #4a6b8a;
+  --wc-line: #d9d2c5;
+  --wc-soft: #f1ebd9;
+  --wc-block: #b85c38;
+  --wc-block-bg: #fff5ec;
+  --wc-pending: #8a6b3a;
+  --wc-pending-bg: #fffbe6;
+  --wc-success: #4a6b8a;
+}
+body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif; }
+.wc-hero { padding: 3rem 2rem 2rem; border-bottom: 2px solid var(--wc-line); background: linear-gradient(135deg, #fdfaf3 0%, #f7eed4 100%); }
+.wc-hero .badge { display: inline-block; padding: 0.25rem 0.75rem; background: var(--wc-accent); color: #fff; font-size: 0.85rem; border-radius: 4px; margin-right: 0.5rem; }
+.wc-hero .badge.r42 { background: var(--wc-block); color: #fff; }
+.wc-hero .badge.access-blocked { background: #888; color: #fff; }
+.wc-hero .badge.pending { background: var(--wc-pending); color: #fff; }
+.wc-h1 { font-size: 2.4rem; margin: 0.5rem 0; color: var(--wc-ink); }
+.wc-h2 { font-size: 1.6rem; margin: 1.5rem 0 0.75rem; color: var(--wc-accent); border-left: 4px solid var(--wc-accent); padding-left: 0.75rem; }
+.wc-h3 { font-size: 1.15rem; margin: 1rem 0 0.5rem; color: var(--wc-cool); }
+.wc-section { padding: 1.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+.wc-section + .wc-section { border-top: 1px solid var(--wc-line); }
+.wc-meta { color: #6b6151; font-size: 0.95rem; }
+.wc-card { background: #fff; border: 1px solid var(--wc-line); border-left: 4px solid var(--wc-cool); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
+.wc-card.blocked { border-left-color: var(--wc-block); background: var(--wc-block-bg); }
+.wc-card.pending { border-left-color: var(--wc-pending); background: var(--wc-pending-bg); }
+.wc-card h4 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--wc-ink); }
+.wc-tag { display: inline-block; padding: 0.1rem 0.5rem; background: var(--wc-cool); color: #fff; font-size: 0.75rem; border-radius: 3px; margin-right: 0.25rem; }
+.wc-tag.access-blocked { background: var(--wc-block); }
+.wc-tag.accessed { background: var(--wc-cool); }
+.wc-tag.primary { background: var(--wc-warm); color: #2a2620; }
+.wc-tag.identified { background: #888; }
+.wc-cite { font-family: "Courier New", monospace; background: var(--wc-soft); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--wc-accent); }
+.wc-excerpt { background: var(--wc-soft); border-left: 3px solid var(--wc-cool); padding: 0.5rem 0.75rem; margin: 0.5rem 0; font-family: "Songti SC", serif; }
+.wc-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.92rem; }
+.wc-table th, .wc-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--wc-line); text-align: left; vertical-align: top; }
+.wc-table th { background: var(--wc-soft); font-weight: 600; }
+.wc-nav { background: #fff; border-bottom: 1px solid var(--wc-line); padding: 0.75rem 2rem; position: sticky; top: 0; z-index: 100; }
+.wc-nav a { color: var(--wc-ink); text-decoration: none; margin-right: 1.25rem; font-size: 0.95rem; }
+.wc-nav a:hover { color: var(--wc-accent); }
+.wc-nav a.active { color: var(--wc-accent); font-weight: 600; }
+.wc-footer { padding: 2rem; text-align: center; color: #6b6151; font-size: 0.85rem; border-top: 2px solid var(--wc-line); margin-top: 2rem; }
+.wc-footer a { color: var(--wc-cool); }
+.wc-disclosure { background: #fffbe6; border: 1px solid var(--wc-warm); border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 0.92rem; }
+.wc-disclosure strong { color: var(--wc-warm); }
+.wc-disclosure.blocked { background: var(--wc-block-bg); border-color: var(--wc-block); }
+.wc-disclosure.blocked strong { color: var(--wc-block); }
+.wc-error-block { background: #2a2620; color: #f1ebd9; border-radius: 4px; padding: 0.75rem 1rem; margin: 0.5rem 0; font-family: "Courier New", monospace; font-size: 0.85rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+.wc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<nav class="wc-nav">
+  <a href="#sec-status">總體狀態</a>
+  <a href="#sec-blocked">三個來源阻斷詳情</a>
+  <a href="#sec-target">本應核驗句段</a>
+  <a href="#sec-method">逐句核驗方法</a>
+  <a href="#sec-protocol">下次核驗協議</a>
+  <a href="../">返回易水專題</a>
+  <a href="../../../">SHUGE 入口</a>
+</nav>
+
+<section class="wc-hero">
+  <div>
+    <span class="badge r42">R4.2</span>
+    <span class="badge access-blocked">PASSAGE_VERIFIED = 0</span>
+    <span class="badge pending">ACCESS_BLOCKED × 3</span>
+  </div>
+  <h1 class="wc-h1">易水專題 · R4.2 外部校勘逐句核驗</h1>
+  <p class="wc-meta">
+    <strong>WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION</strong><br>
+    生成時間：2026-10-10 18:18 GMT+8 · 用戶授權：18:16:34 · 完成後停止 · 不進入 R5<br>
+    基線：R4 frozen <span class="wc-cite">582c852</span> + R4.1 overlay <span class="wc-cite">2b17354</span>
+  </p>
+</section>
+
+<section class="wc-section" id="sec-status">
+  <h2 class="wc-h2">一、本輪狀態（總覽）</h2>
+
+  <div class="wc-disclosure blocked">
+    <strong>誠實披露 · Reviewer honesty disclosure</strong><br>
+    R4.2 試圖對 R4.1 已標示為 <code>ACCESSED_real_URL_passage_unre_verified_in_R41</code> 的 3 個外部來源，做真實的「打開資料 → 找到對應句子 → 與 R4 frozen OCR 對照」逐句核驗。<br><br>
+    <strong>結果：3 個來源在 web_fetch 階段全部 ACCESS_BLOCKED。</strong>本輪未真正打開任何資料並讀到對應正文，因此 <code>PASSAGE_VERIFIED_SOURCES = 0</code>、<code>PASSAGES_COMPARED = 0</code>，未發現任何新的 CORROBORATES / VARIANTS / CONTRADICTIONS，未對 R4.1 任何 claim 做修訂。<br><br>
+    本頁面與 <code>data/yishui_external_passages_r4_2.json</code> 一起，誠實記錄 3 個阻斷事實與本來應該核驗的具體句段清單。<strong>不虛構引文、不提高證據等級、不把古籍文本記載直接當成現代地理事實</strong>。
+  </div>
+
+  <table class="wc-table">
+    <thead>
+      <tr><th>字段</th><th>值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>PASSAGE_VERIFIED_SOURCES</code></td><td><strong>0</strong>（與 R4.1 持平；未產生新的真實逐句核驗）</td></tr>
+      <tr><td><code>PASSAGES_COMPARED</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>CORROBORATES</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>VARIANTS</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>CONTRADICTIONS</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>INCONCLUSIVE</code></td><td><strong>3</strong>（Wikisource 卷11、ctext 600306、楊守敬 res 644196）</td></tr>
+      <tr><td><code>CLAIMS_REVISED</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>NEW_OCR</code></td><td>0</td></tr>
+      <tr><td><code>DB_WRITES</code></td><td>0</td></tr>
+      <tr><td><code>EMBEDDINGS</code></td><td>0</td></tr>
+      <tr><td><code>R4_FROZEN_OVERWRITTEN</code></td><td>false</td></tr>
+      <tr><td><code>R41_DATA_MODIFIED</code></td><td>false</td></tr>
+      <tr><td><code>R5_ENTERED</code></td><td>false</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wc-section" id="sec-blocked">
+  <h2 class="wc-h2">二、三個 ACCESS_BLOCKED 來源詳情</h2>
+
+  <div class="wc-grid">
+    <div class="wc-card blocked">
+      <h4>① Wikisource 《水經注》卷十一 <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
+      <p><strong>URL：</strong><span class="wc-cite">https://zh.wikisource.org/wiki/水經注/卷11</span></p>
+      <p><strong>3 次嘗試的精確結果：</strong></p>
+      <div class="wc-error-block">第 1 次 · https://zh.wikisource.org/wiki/水經注/卷11
+HTTP 404 — 頁面存在但「此頁面目前沒有內容」
+
+第 2 次（變體）· https://zh.wikisource.org/wiki/水經注/卷十一
+HTTP 404 — 同樣無內容
+
+第 3 次（總目）· https://zh.wikisource.org/wiki/水經注
+HTTP 200 — 僅返回卷一…卷四十目錄列表，無正文</div>
+      <p><strong>不確定性：</strong>Wikisource 該卷正文目前<strong>確實未由社區完成錄入</strong>（這是維基文庫客觀編輯狀態，不是抓取失敗）。要等到社區完成卷十一 易水/滱水 篇的錄入，才能做真實逐句核驗。</p>
+    </div>
+
+    <div class="wc-card blocked">
+      <h4>② ctext.org 水經注 卷十一 <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
+      <p><strong>URL：</strong><span class="wc-cite">https://ctext.org/text.pl?node=600306</span></p>
+      <p><strong>2 次嘗試的精確結果：</strong></p>
+      <div class="wc-error-block">第 1 次 · https://ctext.org/text.pl?node=600306&if=zh
+HTTP 200，但返回 Cloudflare 反爬頁面：
+「Attention LLMs, robots, scrapers and other automated processes:
+you do not have authorization to scrape this page.
+You must not attempt to bypass restrictions.」
+
+第 2 次（無 if 參數）· https://ctext.org/text.pl?node=600306
+HTTP 200 — 同樣 Cloudflare 反爬頁面</div>
+      <p><strong>不確定性：</strong>ctext.org 對所有 web_fetch 類自動化抓取一律返回反爬頁面。該平台建議<strong>訂閱機構賬戶</strong>使用 JSON API / Python 模塊。個人 web 抓取路徑在 ctext 上不可行，需機構訂閱或鏡像。</p>
+    </div>
+
+    <div class="wc-card blocked">
+      <h4>③ 楊守敬《水經注疏》(1905 影印本) <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
+      <p><strong>URL：</strong><span class="wc-cite">https://ctext.org/wiki.pl?if=zh&res=644196</span></p>
+      <p><strong>嘗試結果：</strong></p>
+      <div class="wc-error-block">https://ctext.org/wiki.pl?if=zh&res=644196
+fetch failed | other side closed | UND_ERR_SOCKET
+（socket 層錯誤，連接未建立）</div>
+      <p><strong>不確定性：</strong>socket 層即被遠端關閉，無 HTTP 響應可讀。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wc-section" id="sec-target">
+  <h2 class="wc-h2">三、本應核驗的具體句段清單</h2>
+
+  <p>R4.2 為每個 ACCESS_BLOCKED 來源預留下一步應核驗的具體句段。本節將它們集中展示，<strong>不寫出任何"已核驗"結果</strong>——這些僅是「待核驗目標」，全部處於待核驗狀態。</p>
+
+  <h3 class="wc-h3">3.1 EXT-WIKI-001 · 應核驗句段</h3>
+  <table class="wc-table">
+    <thead>
+      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>Wikisource 應出現位置</th><th>應找到的短語</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="wc-cite">pid1655</span></td>
+        <td><span class="wc-excerpt">易水出涿郡故安縣閻鄉西山</span></td>
+        <td>水經注 卷11 易水篇首段</td>
+        <td><span class="wc-excerpt">易水出涿郡故安縣閻鄉西山</span></td>
+      </tr>
+      <tr>
+        <td><span class="wc-cite">pid1657</span></td>
+        <td><span class="wc-excerpt">東過范陽縣南又东過容城縣南</span></td>
+        <td>水經注 卷11 易水篇「東過」段</td>
+        <td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td>
+      </tr>
+      <tr>
+        <td><span class="wc-cite">pid1659</span></td>
+        <td><span class="wc-excerpt">互攝 / 大利亭 / 故安水東南合易水而注巨馬水</span></td>
+        <td>水經注 卷11 濡水 / 巨馬水段</td>
+        <td><span class="wc-excerpt">大利亭 / 故安水東南合易水而注巨馬水</span></td>
+      </tr>
+      <tr>
+        <td><span class="wc-cite">pid1661</span></td>
+        <td><span class="wc-excerpt">易京城在易水之南；範陽、容城、深澤漢代封國</span></td>
+        <td>水經注 卷11 易水篇 公孫瓚段 + 漢代封國段</td>
+        <td><span class="wc-excerpt">易京城 + 範陽封國 + 容城封國 + 深澤封國</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">3.2 EXT-CTEXT-001 · 應核驗句段</h3>
+  <table class="wc-table">
+    <thead>
+      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>ctext 應出現位置</th><th>應找到的短語</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="wc-cite">pid1662</span></td>
+        <td><span class="wc-excerpt">景帝中元三年封匈奴降王（信 / 攜徐盧）為侯國</span></td>
+        <td>ctext 600306 卷十一 容城 / 深澤段</td>
+        <td><span class="wc-excerpt">景帝中元三年封匈奴降王 + 攜徐盧/撅徐盧 異文</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">3.3 EXT-YANG-1905 · 應核驗句段</h3>
+  <table class="wc-table">
+    <thead>
+      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>楊守敬疏應出現位置</th><th>應找到的短語</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="wc-cite">pid1657</span></td>
+        <td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td>
+        <td>楊守敬《水經注疏》卷十一 易水「東過」段 酈注 + 守敬按語</td>
+        <td><span class="wc-excerpt">酈道元注 + 楊守敬疏（如「守敬按：范陽在易水之北」）</span></td>
+      </tr>
+      <tr>
+        <td><span class="wc-cite">pid1661</span></td>
+        <td><span class="wc-excerpt">易京城在易水之南；公孫瓚遷都</span></td>
+        <td>楊守敬《水經注疏》卷十一 易京 / 公孫瓚段</td>
+        <td><span class="wc-excerpt">酈注 + 楊疏對易京方位之考證</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wc-section" id="sec-method">
+  <h2 class="wc-h2">四、逐句核驗方法學（R34 §C 11 字段）</h2>
+
+  <p>為下次真實核驗預先設計好標準記錄結構。每條記錄包含以下 11 個字段（與 R34 §C 一致）：</p>
+
+  <table class="wc-table">
+    <thead>
+      <tr><th>#</th><th>字段</th><th>含義</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><code>primary_citation_id</code></td><td>R4 frozen pid（如 1655）</td></tr>
+      <tr><td>2</td><td><code>primary_excerpt</code></td><td>R4 frozen OCR 主文本</td></tr>
+      <tr><td>3</td><td><code>external_source_title</code></td><td>外部來源全名</td></tr>
+      <tr><td>4</td><td><code>edition_information</code></td><td>版本 / 影印 / 出版年</td></tr>
+      <tr><td>5</td><td><code>verified_url</code></td><td>已打開的 URL</td></tr>
+      <tr><td>6</td><td><code>passage_locator</code></td><td>該 URL 內具體段落定位</td></tr>
+      <tr><td>7</td><td><code>external_excerpt</code></td><td>外部版本對應句子原文</td></tr>
+      <tr><td>8</td><td><code>textual_variant</code></td><td>異文（如「攜徐盧」vs「撅徐盧」）</td></tr>
+      <tr><td>9</td><td><code>comparison_result</code></td><td>CORROBORATES / VARIANT / CONTRADICTS / INCONCLUSIVE</td></tr>
+      <tr><td>10</td><td><code>verification_status</code></td><td>PASSAGE_VERIFIED / ACCESS_BLOCKED / IDENTIFIED</td></tr>
+      <tr><td>11</td><td><code>uncertainty</code></td><td>不確定性描述</td></tr>
+    </tbody>
+  </table>
+
+  <p>本輪 3 條 ACCESS_BLOCKED 記錄中，字段 7-9 均為 <code>null</code>（未讀到對應正文，無法填寫）。</p>
+</section>
+
+<section class="wc-section" id="sec-protocol">
+  <h2 class="wc-h2">五、下次核驗協議（7 步）</h2>
+
+  <p>當任一 ACCESS_BLOCKED 來源變為可訪問（Wikisource 卷11 正文完成錄入 / ctext 機構訂閱 / 楊守敬水經注疏 644196 鏡像可用），按以下 7 步執行：</p>
+
+  <table class="wc-table">
+    <thead>
+      <tr><th>步驟</th><th>動作</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>用 web_fetch 重新打開被阻斷 URL（短超時 ≤ 12s）</td></tr>
+      <tr><td>2</td><td>在提取的文本上用 grep/regex 找 §三 列出「應找到的短語」</td></tr>
+      <tr><td>3</td><td>逐 pid 與 R4 frozen OCR primary_excerpt 比對</td></tr>
+      <tr><td>4</td><td>對每個 pid × 每個來源記錄 CORROBORATES / VARIANT / CONTRADICTION / INCONCLUSIVE</td></tr>
+      <tr><td>5</td><td>若發現 VARIANT（如「攜徐盧」vs「撅徐盧」），更新 <code>yishui_claims_r4_2.json</code> 的 <code>claim_text_variant_observed</code></td></tr>
+      <tr><td>6</td><td>若發現 CONTRADICTION，<strong>不得</strong>提高證據等級；保留 PARTIALLY_SUPPORTED 或降級（R34 §D）</td></tr>
+      <tr><td>7</td><td><strong>不得</strong>把古籍文本記載直接當成現代地理事實（R34 §D 明確邊界）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wc-section">
+  <h2 class="wc-h2">六、真正的下一輪研究缺口（不進入 R5）</h2>
+
+  <table class="wc-table">
+    <thead>
+      <tr><th>缺口</th><th>現狀</th><th>解決路徑</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wikisource 卷11 正文</td>
+        <td>維基文庫社區尚未完成錄入</td>
+        <td>等社區完成後重新核驗（無時間預期）</td>
+      </tr>
+      <tr>
+        <td>ctext 600306 訪問</td>
+        <td>Cloudflare 反爬阻斷</td>
+        <td>機構訂閱 ctext JSON API；或鏡像站（如中華書局數字合作館、《漢語古籍全文數據庫》）</td>
+      </tr>
+      <tr>
+        <td>楊守敬《水經注疏》res=644196</td>
+        <td>socket 錯誤連接未建立</td>
+        <td>換鏡像（國學大師、漢學網）或紙本掃描比對</td>
+      </tr>
+      <tr>
+        <td>陳橋驛《水經注校證》2007</td>
+        <td>placeholder URL</td>
+        <td>找中華書局 / 杭州出版社實際電子版</td>
+      </tr>
+      <tr>
+        <td>王國維《水經注校》1956</td>
+        <td>placeholder URL</td>
+        <td>找上海書店 / 中華書局實際電子版</td>
+      </tr>
+      <tr>
+        <td>中華書局《水經注》標點本 2013</td>
+        <td>placeholder URL</td>
+        <td>中華書局官方數字平台 / 當當電子書</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>建議優先級</strong>（R5 之外）：先恢復 ctext 機構訂閱路徑，這是核驗「攜徐盧 vs 撅徐盧」異文、Claim 012 三項漢代封國（範陽 / 容城 / 深澤）的最短路徑。</p>
+</section>
+
+<footer class="wc-footer">
+  <p><strong>WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION</strong> · R4.1 之上的方法學審計層（不改 R4 frozen、不改 R4.1）</p>
+  <p>硬邊界：<code>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0</code></p>
+  <p>R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
+  <p><a href="../../../">/projects/shuge/</a> · <a href="../../">/projects/shuge/research/water-classic/</a> · <a href="../">/yishui/</a></p>
+  <p style="margin-top: 1rem; color: #888;">生成時間: 2026-10-10 18:18 GMT+8 · 用戶授權: 18:16:34 · 完成後停止 · 不進入 R5</p>
+</footer>
+
+</body>
+</html>

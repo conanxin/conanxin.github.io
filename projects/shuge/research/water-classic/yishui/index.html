@@ -711,6 +711,40 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
       <li>HTTP_STATUS = (待驗證)</li>
     </ul>
     <p><strong>R4.4 邊界遵守：</strong>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4–R4.3A 凍結 preserved · AI 視覺明確披露 · 文章狀態 DRAFT_REVIEW (不作為正式學術發表). <strong>完成 R4.4 後停止, 不進入 R5.</strong></p>
+
+    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px dashed var(--wc-line);">
+
+    <h3 class="wc-h3">R4.4A 中文文章關鍵勘誤 (publication-critical-corrections)</h3>
+    <p class="wc-meta"><strong>任務 ID：</strong><span class="wc-cite">WATER_CLASSIC_R4_4A_PUBLICATION_CRITICAL_CORRECTIONS</span></p>
+    <p><strong>目標：</strong>針對 R4.4 中文研究文章已發現的關鍵史料誤讀、空間方向錯誤和引用定位問題進行定點修訂. <strong>不重做研究系統, 不覆寫 R4.4 文章主體, 僅在原文基礎上訂正已知錯誤</strong>.</p>
+    <p><strong>R4.4A 勘誤 (Stage A):</strong></p>
+    <ol style="margin-left: 1.2rem;">
+      <li><strong>CE-01 / A1 撒銷：</strong>R4.4 A1 斷言「趙將夜受封於<strong>容城</strong>, 深澤為王莽更名」錯誤. R4.4A 交叉核對 Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw 四個獨立可達文本源 + Cabinet Library pid1655/pid1656/pid1661 三張底本影像 AI 視覺複核, <strong>四源一致讀作「封趙將夜/夕於深澤」</strong>. Cabinet Library pid1661 受封地點處字跡模糊, <strong>無法從單一掃描確證「於容城」或「於深澤」</strong>; R4.3A AI 視覺「於容城」讀作屬單源誤讀, 本文撒銷該結論. <strong>三項歷史事件必須分開記錄：</strong> (a) 高帝六年(或八年)封趙將夜/夕<strong>於深澤</strong> (高帝事件); (b) 景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧<strong>於容城</strong> (景帝事件); (c) 王莽<strong>將容城</strong>改名為<strong>深澤</strong> (王莽改名事件).</li>
+      <li><strong>CE-02 / CITE-15 修正：</strong>Cabinet Library 武陽段實際位於 <strong>pid1656</strong>, 不是 pid1661. R4.4 初稿誤指 pid1661. pid1655 = 序文 + 易水起源 + 五大夫城; pid1656 = 武陽段; pid1657 = 範陽容城雙行標題; pid1659 = 大利亭互攝通稱; pid1661 = 容城封侯 + 易京方位.</li>
+      <li><strong>CE-03 / 版本身份修正：</strong>Wikisource 四部叢刊本「明抄本」標記無實證, R4.4A 撒銷. 該頁校勘記 (〈案近刻訛作〉) 似清乾隆武英殿聚珍版/叢書集成簡編系列, <strong>需紙本校驗確認底本</strong>.</li>
+      <li><strong>CE-04 / A2 callout 重寫：</strong>R4.4 A2 callout 中「容城段記錄『漢高帝六年封趙將夜於容城』」錯誤 (應為「於深澤」). R4.4A 已重寫為「三項事件」描述.</li>
+      <li><strong>CE-05 / 結論 #3 重寫：</strong>R4.4 結論 #3 「不得將王莽更名『深澤』誤認為受封地點」與 R4.4 自身 A1 邏輯自相矛盾. R4.4A 重寫為「三事件分離」.</li>
+    </ol>
+    <p><strong>R4.4A 文章定點修訂 (Stage B-E):</strong></p>
+    <ul style="margin-left: 1.2rem;">
+      <li>8 處 article 直接修訂 (不覆寫, 不重新生成): 頂部 R4.4A 重要修訂披露塊 + §1.6 對照版本 (明抄本 → 版本來源待核驗) + §3.2 A2 callout + §5.2 blockquote + §5.2 V03 + §5.2 A1 callout (撒銷重寫) + §5.3 A4 callout + §5.4 異文彙總表 (新增 V05 受封地 + V06 紀年) + §7 結論 #3 + CITE-3/CITE-15/CITE-17/CITE-18/CITE-19</li>
+      <li>21 條 canonical citations (CITE-1 至 CITE-21): R4.4 原有 20 條 + R4.4A 新增 CITE-21 (ab.newdu.com 國學典籍網 現代標點完整版)</li>
+      <li><a href="./article/">R4.4A 修改後的中文研究文章</a> · 52297 B (從 43308 B 增加) · 470 行 (從 444 行增加) · 7331 漢字 (從 5811 增加)</li>
+      <li><a href="./article/evidence/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (evidence/)</a> · 11133 B · schema <span class="wc-cite">r4.4a-yishui-publication-critical-corrections/1.0</span></li>
+      <li><a href="../../../../../research/water-classic/data/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (data/)</a> · 11133 B · 與 evidence/ 同步</li>
+    </ul>
+    <p><strong>R4.4A 完成回執 (Stage E):</strong></p>
+    <ul style="margin-left: 1.2rem;">
+      <li>CRITICAL_ERRORS_FOUND = 5 (CE-01 至 CE-05)</li>
+      <li>CRITICAL_ERRORS_CORRECTED = 5 (全部 5 處 article 直接修訂)</li>
+      <li>CLAIM_012_STATUS = RECHECKED_3_EVENTS_SEPARATED (高帝深澤事件 + 景帝容城事件 + 王莽改名事件, 三項必須分開記錄)</li>
+      <li>SPATIAL_DIRECTION_CORRECTED = ALREADY_CORRECT (R4.4 §2.2 + §4.1 + SVG 圖均已正確區分水流相對城邑方位與城邑相對水流方位, 無需修改)</li>
+      <li>CANONICAL_CITATIONS_MAPPED = 21 (R4.4 原有 20 + R4.4A 新增 1)</li>
+      <li>EDITION_IDENTITY_STATUS = WIKISOURCE_SIBU_CONGKAN_REVISIONED (Wikisource 四部叢刊本 版本來源待核驗, 不預設為明抄本; ab.newdu.com 已新增為第 5 個獨立對照版本)</li>
+      <li>ARTICLE_STATUS = DRAFT_REVIEW (不作為正式學術發表)</li>
+      <li>A4 線索狀態升級 = OPEN_VARIANT_NOT_VERIFIED → <strong>PARTIALLY_VERIFIED</strong> (ab.newdu.com 國學典籍網 獨立驗證「漢高帝八年」讀法)</li>
+    </ul>
+    <p><strong>R4.4A 邊界遵守：</strong>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4–R4.4 凍結 preserved · AI 視覺明確披露 (R4.4A 重新聲明) · 文章狀態 DRAFT_REVIEW (不作為正式學術發表). <strong>完成 R4.4A 後停止, 不進入 R5.</strong></p>
   </div>
   <div class="wc-disclosure blocked" style="margin-top: 0.75rem;">
     <strong>R4.2 狀態披露 ·</strong> 本輪 3 個 real-URL 來源（Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196）在 web_fetch 階段全部 ACCESS_BLOCKED；PASSAGE_VERIFIED_SOURCES = 0，PASSAGES_COMPARED = 0，CORROBORATES / VARIANTS / CONTRADICTIONS = 0，未對 R4.1 任何 claim 做修訂。R4 frozen 與 R4.1 數據結構未被覆寫。詳見 <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>。

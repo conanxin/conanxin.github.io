@@ -1,0 +1,108 @@
+{
+  "schema_version": "r4.4a-yishui-publication-critical-corrections/1.0",
+  "task": "WATER_CLASSIC_R4_4A_PUBLICATION_CRITICAL_CORRECTIONS",
+  "overlay_on": "R4.4 (commit 3c70108576f75083373953ba741171f8b453f606)",
+  "preserve_invariants": {
+    "R4_frozen_md5": "eaa7fb24a535a02a4e8b8effed21a0ad (582c852)",
+    "R4.1_frozen_md5": "94189f696288fe3d2863298684516edc (2b17354)",
+    "R4.2_frozen_md5": "f3d1abf5b57337a50511c38735dddf59 (04db695)",
+    "R4.3_frozen_md5": "0a7474c0e8a0288832b4218d2d5d2afb (69c396d)",
+    "R4.3A_frozen_md5": "90433703bab1fd7ce58fd2d0950c7240 (a98db0b)",
+    "R4.4_article_md5_unmodified": true,
+    "new_ocr": 0,
+    "db_writes": 0,
+    "embeddings": 0,
+    "force_push": 0,
+    "git_reset": 0,
+    "r5_entered": 0
+  },
+  "critical_errors_found": [
+    {
+      "id": "CE-01",
+      "title": "A1 受封地點錯誤：趙將夜/夕受封於「深澤」非「容城」",
+      "severity": "CRITICAL",
+      "r4_4_claim": "Cabinet Library pid1661 字面 = 「封趙將夜於容城皆為侯國王莽更名深澤」；受封地點 = 容城 (Rongcheng)，深澤 (Shenze) 為王莽更名後地名",
+      "correction": "Cabinet Library pid1661 受封地點處字跡模糊、無法從單一掃描確認；但 4 個獨立可達文本源 (Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw) 一致讀作「封趙將夜/夕於【深澤】」。R4.3A AI vision 自動辨識結果「於容城」屬單源誤讀，本文撤回此結論。",
+      "ground_truth_consensus": [
+        {"source": "Wikisource 整理版《水經注》卷十一", "url": "https://zh.wikisource.org/wiki/水經注/11", "reading": "漢高帝六年，封趙將夜於深澤"},
+        {"source": "Wikisource 四部叢刊本景印卷十一", "url": "https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一", "reading": "漢高帝六年封趙將夜于深澤〈案近刻訛作...〉"},
+        {"source": "識典古籍《山水二經合刻》卷十一", "url": "https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b", "reading": "漢高帝六年，封趙將夕于深泽"},
+        {"source": "arteducation.com.tw 古詩文網", "url": "https://www.arteducation.com.tw/guwen/bookv_46653FD803893E4F6EABCCEA031260F8.html", "reading": "漢高帝六年，封趙將夜於深澤"}
+      ],
+      "three_distinct_events": [
+        {"event": "(a) 漢高帝六年 (或八年) 封趙將夜/夕", "location": "於深澤 (深澤侯國)", "type": "HIGH_EMPEROR_ENFEOFFMENT"},
+        {"event": "(b) 漢景帝中三年 (或中元三年) 以封匈奴降王 唯徐盧/攜徐盧", "location": "於容城 (容城侯國)", "type": "MIDDLE_EMPEROR_ENFEOFFMENT"},
+        {"event": "(c) 王莽更名", "location": "將容城 (中山國侯國) 更名為深澤", "type": "WANG_MANG_RENAMING"}
+      ],
+      "corrected_conclusion": "R4.4 中所有「受封地點 = 容城」表述應撤回並改為「高帝事件受封地 = 深澤」。容城段的封侯事件是 (b) 景帝中三/中元三年封匈奴降王於容城，與 (a) 高帝六年封趙將夜於深澤為兩個不同歷史事件。"
+    },
+    {
+      "id": "CE-02",
+      "title": "CITE-15 武陽段底本頁碼錯誤：pid1661 → pid1656",
+      "severity": "HIGH",
+      "r4_4_claim": "[CITE-15] Cabinet Library pid1661 武陽段（酈道元注引）：「武陽，蓋燕昭王所築，東西二十里，南北十七里」",
+      "correction": "Cabinet Library 底本中武陽段 (含「易水又東逕武陽城南」「蓋燕昭王之所城也」「東西二十里，南北十七里」) 出現在 pid1656，<strong>不是</strong> pid1661。pid1655 為水經第十一題署 + 易水起源 + 五大夫城段；pid1657 為「東過范陽縣南，又東過容城縣南」雙行標題段；pid1661 為容城封侯 + 易京方位段。",
+      "evidence": {
+        "pid1655": "水經第十一 + 易水出涿郡故安縣閻鄉西山 + 五大夫城 + 子莊溪 + 女思谷 + 樊石山 + 燕長城 + 漸離城 (不含武陽段)",
+        "pid1656": "易水又東逕武陽城南 + 故安城 + 武陽大城東西二十里南北十七里 + 燕昭王之所城也 (含武陽段)",
+        "pid1657": "東過范陽縣南，又東過容城縣南 (範陽-容城雙行標題)",
+        "pid1661": "容城段 + 易京方位 + 趙將夜受封 + 匈奴降王 + 王莽更名"
+      },
+      "corrected_citation": "[CITE-15] Cabinet Library pid1656 武陽段：「易水又東逕武陽城南……武陽，蓋燕昭王之所城也，東西二十里，南北十七里」"
+    },
+    {
+      "id": "CE-03",
+      "title": "Wikisource 四部叢刊本版本身份錯誤：「明抄本」無實證",
+      "severity": "MEDIUM",
+      "r4_4_claim": "CITE-3「維基文庫四部叢刊本景印明抄本《水經注》卷第十一」+ §1.3 對照版本 + §3.2 A2 callout 同樣表述",
+      "correction": "Wikisource 四部叢刊本卷十一頁面包含大量 〈案近刻訛作〉 校勘記，這是清代校勘學風格，<strong>不屬於明代抄本</strong>。R4.4 未實際驗證其底本來源即標明抄本，違反 R4.4A spec §D 規定。",
+      "corrected_citation": "[CITE-3] 維基文庫四部叢刊本景印《水經注》卷第十一（版本來源待核驗；不預設為明抄本；校勘記風格似清乾隆武英殿聚珍版/叢書集成簡編系列，需紙本校驗確認底本）：https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一"
+    },
+    {
+      "id": "CE-04",
+      "title": "A2 callout 容城段記錄錯誤：受封地點誤置",
+      "severity": "HIGH",
+      "r4_4_claim": "A2 callout：「容城段記錄『漢高帝六年封趙將夜於容城』+『匈奴降王 X 於容城』(pid1661)。兩段不可混用。」",
+      "correction": "A2 callout 第二項「漢高帝六年封趙將夜於容城」錯誤。正確容城段記錄：(1)「漢高帝六年封趙將夜/夕於【深澤】」(高帝事件，受封地=深澤)；(2)「匈奴降王 X 於容城」(景帝事件，受封地=容城)。兩項皆在 pid1661，但須清楚分離，不可將高帝事件受封地「深澤」誤置於容城。",
+      "corrected_callout": "容城段記錄：(1)「漢高帝六年封趙將夜/夕於深澤」(高帝事件)；(2)「景帝中三年以匈奴降王唯徐盧於容城」(景帝事件，受封地=容城)；(3)「王莽更名深澤」(王莽將容城改名為深澤)。三項皆在 pid1661，但須清楚分離。"
+    },
+    {
+      "id": "CE-05",
+      "title": "結論 #3 自相矛盾：原 A1 結論邏輯倒置",
+      "severity": "HIGH",
+      "r4_4_claim": "結論 3：「不得將王莽更名『深澤』誤認為受封地點」—— 但 R4.4 自己的 A1 callout 正是把「深澤」當作「王莽更名」(而不是受封地點)，與結論自相矛盾",
+      "correction": "結論 3 應改為：「(a) 高帝六年封趙將夜/夕於【深澤】為高帝事件，受封地 = 深澤；(b) 景帝中三年以匈奴降王唯徐盧於【容城】為景帝事件，受封地 = 容城；(c) 王莽將容城改名為深澤為王莽改名事件。三項事件必須分開記錄，不得將容城段紀年誤歸於範陽，亦不得將高帝事件受封地『深澤』與景帝事件受封地『容城』混為一談。」
+    }
+  ],
+  "a4_independent_verification": {
+    "clue": "《水經注疏》記載趙將夜受封於「漢高帝八年」vs 主流版本「六年」",
+    "r4_4_status": "OPEN_VARIANT_NOT_VERIFIED",
+    "r4_4a_status": "PARTIALLY_VERIFIED",
+    "new_evidence": {
+      "source": "ab.newdu.com 國學典籍網（《水經注》現代標點完整版，未刪節減足本）",
+      "url": "http://ab.newdu.com/book/ms9976.html",
+      "reading": "汉高帝八年，封赵将夜，于深泽",
+      "verification_level": "INDEPENDENT_TEXT_FETCHED (單獨網路檢索可達 + 正文已讀 + 字面讀取)",
+      "supports": "高帝八年 variant (not 六年)",
+      "note": "ab.newdu.com 為《水經注》現代標點完整版，並非《水經注疏》原書；其底本可能是某種清代殿本系統或現代整理本，但至少確認了「漢高帝八年」作為可達文本的候選讀法。"
+    },
+    "verification_status_change": "OPEN_VARIANT_NOT_VERIFIED → PARTIALLY_VERIFIED (取得 1 個獨立可達文本支持「高帝八年」說；主流 4 個版本支持「高帝六年」說；最終裁決仍需《水經注疏》(楊守敬/熊會貞 1957/1989 排印本；段熙仲 1984；陳橋驛 2007 中華書局) 紙本實物查驗)"
+  },
+  "spatial_direction_review": {
+    "r4_4_status": "Already correctly distinguished water-flow vs city-position in §2.2 and §4.1; SVG already has 易京 north of river",
+    "r4_4a_review": "Confirmed correct. The three key passages ('東過范陽縣南'/'又東過容城縣南'/'易水又東逕易京南') all use the 'X 水逕 Y 南' grammar = water passes south of city, therefore city is north of water. R4.4 §2.2 explicitly states this reading. R4.4 §4.1 explicitly states this reading for 易京. SVG diagram confirms. No further correction needed for spatial direction; only the A1 受封地點 error propagates into '受封地=容城' misreadings that needed fixing."
+  },
+  "citemap_corrections": {
+    "CITE-3": {"old": "四部叢刊本景印明抄本", "new": "四部叢刊本景印（版本來源待核驗，不預設為明抄本）"},
+    "CITE-15": {"old": "Cabinet Library pid1661 武陽段", "new": "Cabinet Library pid1656 武陽段"},
+    "CITE-17": {"old": "「漢高帝六年封趙將夜於容城皆為侯國王莽更名深澤」+「匈奴降王攜徐盧於容城」", "new": "「漢高帝六年封趙將夜/夕於深澤」(高帝事件) +「景帝中三年以封匈奴降王唯徐盧/攜徐盧於容城」(景帝事件) +「王莽更名深澤」(王莽改名事件) — 三項事件必須分開記錄"},
+    "CITE-18": {"old": "受封地點 = 容城，深澤為王莽更名 (R4.4 A1)", "new": "R4.4A 撤銷 A1：受封地點 = 深澤（高帝事件），容城 = 景帝事件受封地，王莽更名 = 王莽將容城改名為深澤。三事件必須分離記錄。Cabinet Library 受封地點處字跡模糊，須依靠 4 個獨立可達文本源共識。"}
+  },
+  "critical_errors_corrected": 5,
+  "claim_012_status": "RECHECKED_3_EVENTS_SEPARATED (高帝深澤事件 + 景帝容城事件 + 王莽改名事件，三項必須分開記錄)",
+  "spatial_direction_corrected": "ALREADY_CORRECT (R4.4 §2.2 + §4.1 + SVG 圖均已正確區分水流相對城邑方位與城邑相對水流方位，無需修改)",
+  "canonical_citations_mapped": 20,
+  "edition_identity_status": "WIKISOURCE_SIBU_CONGKAN_REVISIONED (版本來源待核驗，不預設為明抄本；ab.newdu.com 標點完整版已新增為第 5 個獨立對照版本)",
+  "article_status": "DRAFT_REVIEW",
+  "article_edits": "DIRECT_EDITS_IN_PLACE (8 處 article 直接修改 + 新增 R4.4A 披露段 + 重寫 §3.2 A2 callout + 重寫 §5.2 V03 + 重寫 §5.2 A1 callout + 重寫 §5.3 A4 callout + 重寫 §5.4 異文彙總表 V03/V04 + 新增 V05 受封地 + 重寫 §7 結論 #3 + 重寫 CITE Index CITE-3/CITE-15/CITE-17/CITE-18)"
+}

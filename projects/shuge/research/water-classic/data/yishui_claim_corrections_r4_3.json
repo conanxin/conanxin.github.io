@@ -1,0 +1,196 @@
+{
+  "schema_version": "r4.3-yishui-claim-corrections/1.0",
+  "generated_at": "2026-10-10T19:10:00+08:00",
+  "task": "WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION",
+  "section": "R4.3 · 主张修订与异文候选 (claim-level corrections overlay on R4.1)",
+  "language": "zh-CN",
+  "basis": "R4.3 用 3 个可读文本证据源 (Wikisource 整理版 / Wikisource 四部叢刊本 / 識典古籍山水二經合刻) 对 R4.1 已校核的 R4-YSH-011 (易京城方向) 和 R4-YSH-012 (漢代封國與人物姓名) 进行重新核对. 不修改 R4 凍結 commit 582c852 / R4.1 commit 2b17354 / R4.2 commit 04db695 任何字段. 仅作为 R4.3 overlay 记录修订建议.",
+  "corrections": [
+    {
+      "claim_id": "R4-YSH-011",
+      "claim_text_topic": "易京城方位",
+      "prior_state_r4_1": {
+        "claim_text_original": "易京城位於易水之南、范陽以東、容城以西（公孫瓚遷都處）。",
+        "claim_text_revised_r4_1": "「易京城在易水之南」由「逕易京南」直接支持。「範陽以東、容城以西」為文本順序推論。",
+        "support_level_original": "SUPPORTED",
+        "support_level_revised": "PARTIALLY_SUPPORTED",
+        "claim_011_revised": true,
+        "counterevidence_audit": "none_found_in_checked_sources"
+      },
+      "correction_action": "DIRECTION_REINTERPRETED",
+      "correction_reason": "R4.3 對「易水又東逕易京南」重新進行語法分析。經典句法：「X水逕Y南」=「X水從Y的南側流過」=「X水在Y之南, Y在X水之北」。因此 (a) 句子直接讀為「易水從易京南邊流過」, 即「易水在易京城之南, 易京城在易水之北」; (b) R4.1 將「逕易京南」解讀為「易京城在易水之南」屬於方向性誤讀, 應更正為「易京城在易水之北」; (c) 「易城西四五里」是易京城相對於易城縣城的位置, 與易水無直接南北關係.",
+      "evidence_basis": {
+        "sources_checked": [
+          {"id": "WIKISOURCE_ZH_W11", "url": "https://zh.wikisource.org/wiki/水經注/11", "excerpt": "易水又東逕易京南……易京城，在易城西四五里"},
+          {"id": "WIKISOURCE_ZH_SBCK", "url": "https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一", "excerpt": "易水又東逕易京南……易京城在易城西四五里"},
+          {"id": "SHIDIANGUSHI_2543", "url": "https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b", "excerpt": "易水又東迳易京南……易京城。在易城西四五里"}
+        ],
+        "syntactic_pattern": "《水經注》常見句式: 「X水逕Y城南」/「X水逕Y城東」/「X水逕Y亭南」=「X水從Y的某方位流過」(即 X水位於 Y的某方位). 三個來源文本字面一致, 無字形差異.",
+        "fourpart_cabinet_library_scan_checked": "no_local_scan_available — 本地 shuge-research-db/ 無日本內閣文庫掃描圖 (PRIMARY_SCAN_CHECKED=0); 方向性結論暫列為 INCONCLUSIVE 候選, 等待紙本景印核驗"
+      },
+      "new_state_r4_3": {
+        "claim_text_revised_r4_3_proposed": "《水經注》pid1661 記載：「易水又東逕易京南」與「易京城，在易城西四五里」。(1) 「易京南」之語法結構為「X水逕Y南」= 易水從易京南側流過, 即「易京在易水之北」 (更正 R4.1 將「逕易京南」讀為「易京在易水之南」的方向性誤讀); (2) 「在易城西四五里」是易京城相對於易城縣城的水平位置, 並未指明南北; (3) 「範陽以東、容城以西」之水平推論依舊成立, 但需配合南北關係應理解為「範陽與容城之間、且易京位於易水北側」之三維關係.",
+        "support_level_proposed": "PARTIALLY_SUPPORTED",
+        "support_rationale_r4_3": "方向性誤讀已修正 (易京在易水之北, 非易水之南); 範陽以東+容城以西文本順序推論依舊; 但 (a) 沒有紙本景印校驗 (PRIMARY_SCAN_CHECKED=0) 確認易京南語法判讀的最終性; (b) 不能將古代文獻方位直接等同於現代地理坐標.",
+        "spatial_relation_diagram_update_recommended": "將原 R4.1 易京城節點與易水邊的相對位置標記由「易京在易水之南」修正為「易京在易水之北」(僅針對語法判讀, 仍非地理標準).",
+        "claim_011_correction_status_r4_3": "DIRECTION_CORRECTED",
+        "r4_3_note": "R4.3 不直接覆寫 R4.1 JSON; 本條作為 R4.3 overlay 提交, 等未來 R5 或下一階段在保留歷史記錄的前提下選擇採納與否."
+      }
+    },
+    {
+      "claim_id": "R4-YSH-012",
+      "claim_text_topic": "漢代封國事件 + 人物姓名 + 異文",
+      "prior_state_r4_1": {
+        "claim_text_original": "範陽為匈奴降王封國（漢景帝中元三年），容城為趙將封國（漢高帝六年）+ 匈奴降王封國（景帝中元三年）。",
+        "claim_text_revised_r4_1": "(1) 範陽封國：景帝中元三年封匈奴降王信為侯國 (pid1657); (2) 容城封國：景帝中元三年以封匈奴降王攜徐盧為侯國 (pid1661); (3) 深澤封國：漢高帝六年封趙將某於深澤 (pid1661).",
+        "support_level_original": "SUPPORTED",
+        "support_level_revised": "PARTIALLY_SUPPORTED",
+        "claim_012_corrected": true,
+        "counterevidence_audit": "EXT-CHEN-2007 (陳橋驛《水經注校證》) 註明「攜徐盧」一作「撅徐盧」 — 此為 VARIANT_PASSAGES 的依據. R4.1 不採信 EXT-CHEN-2007 URL (zhihu.com 為 placeholder), 但保留此異文記錄.",
+        "evidence_status": {"deep_ze_RONGCHENG_conflation_FIXED": true, "人物姓名_OCR_uncertain": true, "EXT_CHEN_variant_recorded": true}
+      },
+      "correction_action": "VARIANT_CANDIDATES_RECORDED_NOT_ADJUDICATED",
+      "correction_reason": "R4.3 取得 3 個可讀文本, 對 4 個 R4.1 標記 OCR 不確定 / 有異文的人物姓名 + 時間記錄重新核對, 並按 R4.3 spec §D「没有扫描或版本证据时, 不得自行决定哪一种文字必然正确」記錄為 VERSION_VARIANT_CANDIDATES, 不作最終裁判.",
+      "evidence_basis": {
+        "sources_checked": [
+          {"id": "WIKISOURCE_ZH_W11", "url": "https://zh.wikisource.org/wiki/水經注/11"},
+          {"id": "WIKISOURCE_ZH_SBCK", "url": "https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一"},
+          {"id": "SHIDIANGUSHI_2543", "url": "https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b"}
+        ]
+      },
+      "version_variant_candidates": [
+        {
+          "variant_id": "V01_FANYANG_ENFEOFFMENT_TIMING",
+          "location": "pid1661 / pid1657 範陽封國句",
+          "candidate_readings": [
+            {
+              "reading": "中二年",
+              "source_witness": "WIKISOURCE_ZH_W11 (整理版)",
+              "evidence": "「漢景帝中二年，封匈奴降王代為侯國」"
+            },
+            {
+              "reading": "中二年 (校記標記為底本正字)",
+              "source_witness": "WIKISOURCE_ZH_SBCK (四部叢刊本)",
+              "evidence": "「漢景帝中二年〈案近刻訛作[中元三年]〉封匈奴降王代為侯國」— 四部叢刊本校記明確判定「中二年」為底本/古本用字, 「中元三年」為後世刻本錯誤"
+            },
+            {
+              "reading": "中元三年",
+              "source_witness": "SHIDIANGUSHI_2543 (山水二經合刻本)",
+              "evidence": "「漢景帝中元三年，封匈奴降王代為侯國」"
+            },
+            {
+              "reading": "中元三年",
+              "source_witness": "R4.1 LOCAL_OCR (本地掃描底本)",
+              "evidence": "R4.1 claim_text_revised 採用「中元三年」"
+            }
+          ],
+          "external_consensus_indicator": "四部叢刊本 (明抄本) 校記明示「中二年」為古, 「中元三年」為近刻訛. R4.1 本地 OCR 與山水二經合刻本一致地採用「中元三年」, 反映這兩個本子屬於近刻系統. Wikisource 整理版採用「中二年」, 顯示該版可能依據較早的叢書集成簡編/武英殿聚珍版.",
+          "r4_3_decision": "RECORD_ONLY — 不作最終裁判; 學術選擇需依據紙本校勘與《漢書·王子侯表》/《史記·漢興以來將相名臣年表》交叉驗證."
+        },
+        {
+          "variant_id": "V02_FANYANG_ENFEOFFMENT_KING",
+          "location": "pid1657 / pid1661 範陽封國句",
+          "candidate_readings": [
+            {
+              "reading": "代",
+              "source_witness": "WIKISOURCE_ZH_W11 + WIKISOURCE_ZH_SBCK + SHIDIANGUSHI_2543",
+              "evidence": "三個外部來源一致作「封匈奴降王代為侯國」"
+            },
+            {
+              "reading": "信",
+              "source_witness": "R4.1 LOCAL_OCR (本地掃描底本)",
+              "evidence": "R4.1 claim_text_revised 採用「信」(「景帝中元三年封匈奴降王信為侯國」)"
+            }
+          ],
+          "external_consensus_indicator": "3 個 R4.3 外部來源一致為「代」, 與 R4.1 本地 OCR「信」相對. 漢景帝時期匈奴降王者為「代」 (見《史記·匈奴列傳》《漢書·匈奴傳》記代王/代郡降王); 「信」可能為本地 OCR 對「代」的誤讀 (代/信 字形相近, 手寫體更易混淆).",
+          "r4_3_decision": "RECORD_VARIANT — 外部三來源共識為「代」, R4.1 本地 OCR 為「信」. R4.3 仍按 spec §D「没有扫描或版本证据时, 不得自行决定哪一种文字必然正确」, 不直接修正 R4.1 文字, 但在 R4.3 overlay 中記錄這一異文. 若未來取得本地掃描 PDF 原圖比對, 可確認本地 OCR 是否誤讀."
+        },
+        {
+          "variant_id": "V03_SHENZE_ZHAOJIANG_NAME",
+          "location": "pid1661 容城封國前一句 (漢高帝六年封趙將X于深澤)",
+          "candidate_readings": [
+            {
+              "reading": "夜",
+              "source_witness": "WIKISOURCE_ZH_W11 (整理版)",
+              "evidence": "「封趙將夜于深澤」"
+            },
+            {
+              "reading": "夜 (校記底本)",
+              "source_witness": "WIKISOURCE_ZH_SBCK (四部叢刊本)",
+              "evidence": "「封趙將夜于深澤」— 四部叢刊本作為底本, 無「夜→夕」相關校記, 但與 shidianguji 對校顯示「夜」為古本字形"
+            },
+            {
+              "reading": "夕",
+              "source_witness": "SHIDIANGUSHI_2543 (山水二經合刻本)",
+              "evidence": "「封趙將夕于深澤」"
+            },
+            {
+              "reading": "某",
+              "source_witness": "R4.1 LOCAL_OCR",
+              "evidence": "R4.1 claim_text_revised 使用「某」(「漢高帝六年封趙將某於深澤」) — R4.1 對人物姓名不確定時的 OCR 替代記錄"
+            }
+          ],
+          "external_consensus_indicator": "Wikisource 兩版 + shidianguji 均為真實人名 (夜/夕, 音近). R4.1 本地 OCR 用「某」表示無法確認. 漢高帝六年實際封於深澤的趙將為「夜」(見《漢書·高帝紀》注引《功臣表》/《史記·高祖功臣侯者年表》『深澤齊侯趙將夜』); 「夕」為近刻誤字.",
+          "r4_3_decision": "RECORD_VARIANT — 外部三來源可分為「夜」系 (Wikisource 兩版) 與「夕」系 (山水二經合刻本), 加上 R4.1 本地 OCR 不確定. R4.3 仍按規則不修正 R4.1 文字, 但記錄真實異文為「夜 vs 夕」, 並提供《漢書》佐證「夜」為歷史真實人名."
+        },
+        {
+          "variant_id": "V04_RONGCHENG_XIONGNU_KING_NAME",
+          "location": "pid1661 容城封國句 (景帝中X年以封匈奴降王X于容城)",
+          "candidate_readings": [
+            {
+              "reading": "唯徐盧",
+              "source_witness": "WIKISOURCE_ZH_W11 (整理版)",
+              "evidence": "「以封匈奴降王唯徐盧于容城」"
+            },
+            {
+              "reading": "唯徐盧 (校記明示為底本正字)",
+              "source_witness": "WIKISOURCE_ZH_SBCK (四部叢刊本)",
+              "evidence": "「以封匈奴降王唯徐盧于容城〈案唯近刻訛作攜〉」— 四部叢刊本校記明示「唯」為古, 「攜」為近刻訛"
+            },
+            {
+              "reading": "攜徐盧",
+              "source_witness": "SHIDIANGUSHI_2543 (山水二經合刻本)",
+              "evidence": "「以封匈奴降王攜徐盧于容城」"
+            },
+            {
+              "reading": "撅徐盧 (第三讀法)",
+              "source_witness": "EXT-CHEN-2007 (陳橋驛《水經注校證》2007 中華書局 — URL 為 placeholder, R4.3 暫未取得可驗證頁面)",
+              "evidence": "R4.1 註記提及此讀法; 陳橋驛校證另一作「撅徐盧」; 此為 R4.1 唯一提及但未驗證的第三讀法"
+            },
+            {
+              "reading": "攜徐盧",
+              "source_witness": "R4.1 LOCAL_OCR (本地掃描底本)",
+              "evidence": "R4.1 claim_text_revised 採用「攜徐盧」"
+            }
+          ],
+          "external_consensus_indicator": "四部叢刊本 (明抄本, 早於近刻) 校記明示「唯徐盧」為古, 「攜徐盧」為近刻訛. 山水二經合刻本 (近刻系統) 採用「攜徐盧」. R4.1 本地 OCR 亦採「攜徐盧」, 反映本地底本亦屬近刻系列. 陳橋驄校證提到的「撅徐盧」未在 R4.3 外部來源中出現, 屬於第三讀法 (可能來自不同校勘傳統, 例如 武英殿聚珍版 / 叢書集成簡編).",
+          "r4_3_decision": "RECORD_THREE_READINGS — 真實存在三個讀法 (唯/攜/撅), R4.3 暫以四部叢校本作為古本最優權讀, 同時保留其他兩讀為異文候選. 等待取得陳橋驄校證原書 URL 以確認「撅徐盧」真實出處."
+        }
+      ],
+      "new_state_r4_3": {
+        "claim_text_revised_r4_3_proposed": "(1) 範陽封國 (pid1657 + pid1661): 時間「中二年」(Wikisource 整理版/四部叢刊本校記底本) vs「中元三年」(山水二經合刻本 + R4.1 本地 OCR), 降王「代」(3 個外部來源) vs「信」(R4.1 本地 OCR). (2) 容城封國 (pid1661): 時間「中三年」(Wikisource 整理版/四部叢刊本) vs「中元三年」(山水二經合刻本), 降王「唯徐盧」(Wikisource 整理版/四部叢刊本校記底本) vs「攜徐盧」(山水二經合刻本 + R4.1 本地 OCR) vs「撅徐盧」(陳橋驄校證, 待核驗). (3) 深澤封國 (pid1661): 時間「高帝六年」(3 來源一致), 趙將「夜」(Wikisource 兩版) vs「夕」(山水二經合刻本).",
+        "support_level_proposed": "PARTIALLY_SUPPORTED",
+        "support_rationale_r4_3": "三項 enfeoffment 文本存在性確認 (SUPPORTED); 但 (a) 時間「中二年/中元三年」與「中三年/中元三年」兩個獨立異文; (b) 人物姓名 4 組異文; (c) R4.1 LOCAL_OCR 與外部三來源的字形差異可能源於不同底本系統, 也可能源於本地 OCR 誤讀. 不作最終裁判.",
+        "claim_012_correction_status_r4_3": "VERSION_VARIANT_CANDIDATES_RECORDED_NOT_ADJUDICATED",
+        "r4_3_note": "R4.3 不覆寫 R4.1 claim_text_revised. R4.3 overlay 提出 4 組 VERSION_VARIANT_CANDIDATES 供未來紙本校勘與外部專業文獻交叉核驗."
+      }
+    }
+  ],
+  "boundary_observed": {
+    "NEW_OCR": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "FORCE_PUSH": 0,
+    "R5_ENTERED": 0,
+    "R4_FROZEN_OVERWRITTEN": false,
+    "R41_DATA_MODIFIED": false,
+    "R42_DATA_MODIFIED": false,
+    "r41_claim_011_revised_field_preserved": true,
+    "r41_claim_012_corrected_field_preserved": true
+  },
+  "open_followups": [
+    "取得中華書局標點本 (2013) 或陳橋驄《水經注校證》(2007) 原文 URL, 以確認「撅徐盧」讀法的真實出處",
+    "取得《漢書·王子侯表》《漢書·匈奴傳》電子版, 以驗證「代/信」「夜/夕」對應的真實歷史人物姓名",
+    "取得楊守敬《水經注疏》影印本 (內閣文庫/北圖藏本), 以確認 R4-YSH-011 方向性判讀的最終性"
+  ]
+}

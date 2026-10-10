@@ -83,7 +83,7 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   <a href="#sec-claims">Claims</a>
   <a href="#sec-uncertainty">不確定性</a>
   <a href="#sec-sources">來源</a>
-  <a href="./sources/">R4.2 外部核驗</a>
+  <a href="./sources/">R4.3 文本核驗 + R4.2 歷史阻斷</a>
   <a href="../">返回專題</a>
 </nav>
 
@@ -428,13 +428,19 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   </div>
 
   <div class="wc-card partial">
-    <h4>R4-YSH-011 · HISTORICAL_INTERPRETATION <small>(方位推論)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_011_REVISED=true</strong></h4>
+    <h4>R4-YSH-011 · HISTORICAL_INTERPRETATION <small>(方位推論)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_011_REVISED=true</strong> &nbsp; <strong style="color: var(--wc-r43);">CLAIM_011_DIRECTION_CORRECTED=R4.3_OVERLAY</strong></h4>
+    <div class="wc-disclosure verified" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
+      <strong>R4.3 方向性誤讀修正 ·</strong> 經典句法「X水逕Y南」=「X水從Y的南側流過」=「X水位於Y之南, Y位於X水之北」. 因此「易水又東逕易京南」= <strong>易水從易京南邊流過 = 易京在易水之北</strong>. R4.1 將「逕易京南」解讀為「易京城在易水之南」屬方向性誤讀. 3 個 R4.3 來源字面均支持此判讀 (Wikisource 兩版 + 識典古籍 山水二經合刻本). 因 PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描圖), 方向性結論暫列 INCONCLUSIVE, 待楊守敬《水經注疏》紙本景印校驗最終性. 完整記錄見 <a href="./sources/#sec-r43-claim011">R4.3 公開頁 §四</a>.
+    </div>
     <p>「易京城在易水之南」由「易水又東逕易京南」直接支持；「範陽以東、容城以西」並非 pid1661 直接陳述，而是基於 pid1657 大字標題之文本順序推論。</p>
     <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657+1661</span></p>
   </div>
 
   <div class="wc-card partial">
-    <h4>R4-YSH-012 · HISTORICAL_INTERPRETATION <small>(封國修正)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_012_CORRECTED=true</strong></h4>
+    <h4>R4-YSH-012 · HISTORICAL_INTERPRETATION <small>(封國修正)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_012_CORRECTED=true</strong> &nbsp; <strong style="color: var(--wc-r43);">CLAIM_012_RECHECKED=4_VARIANT_CANDIDATES_R4.3</strong></h4>
+    <div class="wc-disclosure verified" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
+      <strong>R4.3 四組 VERSION_VARIANT_CANDIDATES ·</strong> (V01) 範陽封國時間 中二年(Wikisource 兩版) vs 中元三年(山水二經合刻本 + R4.1 LOCAL_OCR); 四部叻刊本校記明示「中二年」為古, 「中元三年」為近刻訛. (V02) 範陽降王 代(3 外部來源共識) vs 信(R4.1 LOCAL_OCR). (V03) 深澤趙將 夜(Wikisource 兩版) vs 夕(山水二經合刻本). (V04) 容城降王 唯徐盧(Wikisource 兩版) vs 攜徐盧(山水二經合刻本 + R4.1 LOCAL_OCR) vs 撅徐盧(陳橋驛校證, 待核驗); 四部友刊本校記明示「唯」為古, 「攜」為近刻訛. 按 R4.3 spec §D「没有扫描或版本证据时, 不得自行决定哪一种文字必然正确」, R4.3 <strong>不作最終裁判</strong>. 完整記錄見 <a href="./sources/#sec-r43-claim012">R4.3 公開頁 §五</a>.
+    </div>
     <p>原 R4 將「趙將某於深澤」誤歸屬容城封國；R4.1 已將三項 enfeoffment 拆分為範陽封國、容城封國、深澤封國。</p>
     <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657+1661</span></p>
   </div>
@@ -628,7 +634,8 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
       <tr><td>R3.4</td><td><span class="wc-cite">b37202a</span></td></tr>
       <tr><td><strong>R4</strong></td><td><span class="wc-cite"><strong>582c852</strong></span> ← frozen as research baseline</td></tr>
       <tr><td><strong>R4.1</strong></td><td><span class="wc-cite">audit overlay only</span></td></tr>
-      <tr><td><strong>R4.2</strong></td><td><span class="wc-cite">passage-verification overlay</span> ← <a href="./sources/">見 R4.2 頁</a>（PASSAGE_VERIFIED=0；ACCESS_BLOCKED×3）</td></tr>
+      <tr><td><strong>R4.2</strong></td><td><span class="wc-cite">passage-verification overlay</span> ← <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>（PASSAGE_VERIFIED=0；ACCESS_BLOCKED×3）</td></tr>
+      <tr><td><strong>R4.3</strong></td><td><span class="wc-cite">textual-witness-verification overlay</span> ← <a href="./sources/">見 R4.3 頁</a>（PASSAGE_VERIFIED=2 source identities · SOURCE_WITNESSES=3 · 18 records · CLAIM_011_CORRECTED=true · CLAIM_012_RECHECKED=true）</td></tr>
     </tbody>
   </table>
 
@@ -643,14 +650,24 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     <li><code>yishui/index.html</code>（R4.1 audit-version public page · 本文）</li>
   </ul>
 
+  <h3 class="wc-h3">R4.3 輸出清單（textual-witness-verification overlay）</h3>
+  <ul style="line-height: 2;">
+    <li><code>data/yishui_passage_comparison_r4_3.json</code>（21748 B · 18 records · CORROBORATES=8 · VARIANTS=8 · INCONCLUSIVE=2）</li>
+    <li><code>data/yishui_claim_corrections_r4_3.json</code>（16095 B · R4-YSH-011 方向性誤讀修正 + R4-YSH-012 4 組 VERSION_VARIANT_CANDIDATES）</li>
+    <li><code>source/YISHUI_TEXTUAL_WITNESS_AUDIT_R4_3.md</code>（10006 B · 7 段審計記錄）</li>
+    <li><code>yishui/sources/index.html</code>（36012 B · R4.3 + R4.2 歷史阻斷保留）</li>
+  </ul>
   <h3 class="wc-h3">R4.2 輸出清單（passage-verification overlay）</h3>
   <ul style="line-height: 2;">
     <li><code>data/yishui_external_passages_r4_2.json</code>（9936 B · 7 個 records · 3 ACCESS_BLOCKED · 0 PASSAGE_VERIFIED · spec_discrepancy_recorded）</li>
     <li><code>source/YISHUI_EXTERNAL_PASSAGE_VERIFICATION_R4_2.md</code>（7932 B · 6 段 · 阻斷詳情 + 下次核驗 7 步協議）</li>
     <li><code>yishui/sources/index.html</code>（19703 B · 中文公開頁 · 誠實展示 ACCESS_BLOCKED 狀態）</li>
   </ul>
+  <div class="wc-disclosure verified" style="margin-top: 0.75rem;">
+    <strong>R4.3 狀態披露 ·</strong> 本輪用 R4.3 spec §A 提供的 3 個更正 URL 成功訪問, 寫入 18 條 records (CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2); Claim 011 方向性誤讀修正 (R4.3 overlay 建議「易京在易水之北」, 暫列 INCONCLUSIVE 待紙本景印校驗); Claim 012 四組 VERSION_VARIANT_CANDIDATES 已登記, 不作最終裁判. PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描). R4 frozen / R4.1 / R4.2 數據結構未被覆寫. 詳見 <a href="./sources/">R4.3 公開頁</a>.
+  </div>
   <div class="wc-disclosure blocked" style="margin-top: 0.75rem;">
-    <strong>R4.2 狀態披露 ·</strong> 本輪 3 個 real-URL 來源（Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196）在 web_fetch 階段全部 ACCESS_BLOCKED；PASSAGE_VERIFIED_SOURCES = 0，PASSAGES_COMPARED = 0，CORROBORATES / VARIANTS / CONTRADICTIONS = 0，未對 R4.1 任何 claim 做修訂。R4 frozen 與 R4.1 數據結構未被覆寫。詳見 <a href="./sources/">R4.2 公開頁</a>。
+    <strong>R4.2 狀態披露 ·</strong> 本輪 3 個 real-URL 來源（Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196）在 web_fetch 階段全部 ACCESS_BLOCKED；PASSAGE_VERIFIED_SOURCES = 0，PASSAGES_COMPARED = 0，CORROBORATES / VARIANTS / CONTRADICTIONS = 0，未對 R4.1 任何 claim 做修訂。R4 frozen 與 R4.1 數據結構未被覆寫。詳見 <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>。
   </div>
 </section>
 

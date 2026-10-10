@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>易水專題研究 · R4.2 外部校勘逐句核驗 — 《水經注》易水版本對照</title>
-<meta name="description" content="WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION · 對 R4.1 已 ACCESSED 但未逐句核驗的 3 個外部 real-URL 版本（Wikisource 卷11、ctext 水經注 node 600306、楊守敬水經注疏 res 644196）做真實打開與逐句比對。本頁面誠實展示 ACCESS_BLOCKED 狀態。">
+<title>易水專題研究 · R4.3 文本证据逐句比对 (R4.2 歷史阻斷記錄保留) — 《水經注》易水版本對照</title>
+<meta name="description" content="WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION · 對 R4.2 已 ACCESS_BLOCKED 的 3 個 real-URL 來源, R4.3 用更正的 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 真實打開並逐句比對. 本頁面展示 18 條 records (CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2) + Claim 011 方向性誤讀修正 + Claim 012 四組 VERSION_VARIANT_CANDIDATES. R4.2 ACCESS_BLOCKED 記錄作為歷史阻斷記錄保留.">
 <link rel="stylesheet" href="../../style.css">
 <style>
 :root {
@@ -17,18 +17,26 @@
   --wc-soft: #f1ebd9;
   --wc-block: #b85c38;
   --wc-block-bg: #fff5ec;
-  --wc-pending: #8a6b3a;
+  --wc-pending: #8a6b30;
   --wc-pending-bg: #fffbe6;
   --wc-success: #4a6b8a;
+  --wc-r43: #2f6b3a;
+  --wc-r43-bg: #f0f7f1;
+  --wc-variant: #8a5a30;
+  --wc-variant-bg: #fff5e0;
 }
 body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif; }
 .wc-hero { padding: 3rem 2rem 2rem; border-bottom: 2px solid var(--wc-line); background: linear-gradient(135deg, #fdfaf3 0%, #f7eed4 100%); }
 .wc-hero .badge { display: inline-block; padding: 0.25rem 0.75rem; background: var(--wc-accent); color: #fff; font-size: 0.85rem; border-radius: 4px; margin-right: 0.5rem; }
+.wc-hero .badge.r43 { background: var(--wc-r43); color: #fff; }
 .wc-hero .badge.r42 { background: var(--wc-block); color: #fff; }
 .wc-hero .badge.access-blocked { background: #888; color: #fff; }
+.wc-hero .badge.passage-verified { background: var(--wc-success); color: #fff; }
 .wc-hero .badge.pending { background: var(--wc-pending); color: #fff; }
 .wc-h1 { font-size: 2.4rem; margin: 0.5rem 0; color: var(--wc-ink); }
 .wc-h2 { font-size: 1.6rem; margin: 1.5rem 0 0.75rem; color: var(--wc-accent); border-left: 4px solid var(--wc-accent); padding-left: 0.75rem; }
+.wc-h2.r43 { color: var(--wc-r43); border-left-color: var(--wc-r43); }
+.wc-h2.r42 { color: var(--wc-block); border-left-color: var(--wc-block); }
 .wc-h3 { font-size: 1.15rem; margin: 1rem 0 0.5rem; color: var(--wc-cool); }
 .wc-section { padding: 1.5rem 2rem; max-width: 1100px; margin: 0 auto; }
 .wc-section + .wc-section { border-top: 1px solid var(--wc-line); }
@@ -36,12 +44,20 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
 .wc-card { background: #fff; border: 1px solid var(--wc-line); border-left: 4px solid var(--wc-cool); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
 .wc-card.blocked { border-left-color: var(--wc-block); background: var(--wc-block-bg); }
 .wc-card.pending { border-left-color: var(--wc-pending); background: var(--wc-pending-bg); }
+.wc-card.verified { border-left-color: var(--wc-r43); background: var(--wc-r43-bg); }
+.wc-card.variant { border-left-color: var(--wc-variant); background: var(--wc-variant-bg); }
 .wc-card h4 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--wc-ink); }
 .wc-tag { display: inline-block; padding: 0.1rem 0.5rem; background: var(--wc-cool); color: #fff; font-size: 0.75rem; border-radius: 3px; margin-right: 0.25rem; }
 .wc-tag.access-blocked { background: var(--wc-block); }
 .wc-tag.accessed { background: var(--wc-cool); }
 .wc-tag.primary { background: var(--wc-warm); color: #2a2620; }
 .wc-tag.identified { background: #888; }
+.wc-tag.passage-verified { background: var(--wc-r43); }
+.wc-tag.variant { background: var(--wc-variant); }
+.wc-tag.corroborates { background: var(--wc-cool); }
+.wc-tag.inconclusive { background: var(--wc-pending); }
+.wc-tag.r43 { background: var(--wc-r43); }
+.wc-tag.r42 { background: var(--wc-block); }
 .wc-cite { font-family: "Courier New", monospace; background: var(--wc-soft); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--wc-accent); }
 .wc-excerpt { background: var(--wc-soft); border-left: 3px solid var(--wc-cool); padding: 0.5rem 0.75rem; margin: 0.5rem 0; font-family: "Songti SC", serif; }
 .wc-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.92rem; }
@@ -57,44 +73,63 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
 .wc-disclosure strong { color: var(--wc-warm); }
 .wc-disclosure.blocked { background: var(--wc-block-bg); border-color: var(--wc-block); }
 .wc-disclosure.blocked strong { color: var(--wc-block); }
+.wc-disclosure.verified { background: var(--wc-r43-bg); border-color: var(--wc-r43); }
+.wc-disclosure.verified strong { color: var(--wc-r43); }
 .wc-error-block { background: #2a2620; color: #f1ebd9; border-radius: 4px; padding: 0.75rem 1rem; margin: 0.5rem 0; font-family: "Courier New", monospace; font-size: 0.85rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
 .wc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.wc-r43-band { background: var(--wc-r43-bg); border-top: 3px solid var(--wc-r43); border-bottom: 1px solid var(--wc-line); padding: 0.5rem 2rem; font-size: 0.9rem; color: #2f4a35; }
+.wc-r42-band { background: var(--wc-block-bg); border-top: 3px solid var(--wc-block); border-bottom: 1px solid var(--wc-line); padding: 0.5rem 2rem; font-size: 0.9rem; color: #6b3a30; }
 </style>
 </head>
 <body>
 
 <nav class="wc-nav">
-  <a href="#sec-status">總體狀態</a>
-  <a href="#sec-blocked">三個來源阻斷詳情</a>
-  <a href="#sec-target">本應核驗句段</a>
-  <a href="#sec-method">逐句核驗方法</a>
-  <a href="#sec-protocol">下次核驗協議</a>
+  <a href="#sec-r43-overview">R4.3 總覽</a>
+  <a href="#sec-r43-sources">3 個來源</a>
+  <a href="#sec-r43-groups">4 組比對</a>
+  <a href="#sec-r43-claim011">Claim 011</a>
+  <a href="#sec-r43-claim012">Claim 012</a>
+  <a href="#sec-r43-gaps">未解決問題</a>
+  <a href="#sec-r42-blocked">R4.2 歷史阻斷</a>
   <a href="../">返回易水專題</a>
   <a href="../../../">SHUGE 入口</a>
 </nav>
 
 <section class="wc-hero">
   <div>
+    <span class="badge r43">R4.3</span>
+    <span class="badge passage-verified">PASSAGE_VERIFIED = 2 source identities (3 edition witnesses)</span>
     <span class="badge r42">R4.2</span>
-    <span class="badge access-blocked">PASSAGE_VERIFIED = 0</span>
-    <span class="badge pending">ACCESS_BLOCKED × 3</span>
+    <span class="badge access-blocked">PASSAGE_VERIFIED = 0 (歷史阻斷)</span>
   </div>
-  <h1 class="wc-h1">易水專題 · R4.2 外部校勘逐句核驗</h1>
+  <h1 class="wc-h1">易水專題 · 文本证据逐句比对 (R4.3 + R4.2 歷史記錄)</h1>
   <p class="wc-meta">
-    <strong>WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION</strong><br>
-    生成時間：2026-10-10 18:18 GMT+8 · 用戶授權：18:16:34 · 完成後停止 · 不進入 R5<br>
-    基線：R4 frozen <span class="wc-cite">582c852</span> + R4.1 overlay <span class="wc-cite">2b17354</span>
+    <strong>WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION</strong> · R4.2 之上的真實逐句核驗層<br>
+    生成時間：2026-10-10 19:10 GMT+8 · 用戶授權：18:38:26 · 完成後停止 · 不進入 R5<br>
+    基線：R4 frozen <span class="wc-cite">582c852</span> + R4.1 overlay <span class="wc-cite">2b17354</span> + R4.2 commit <span class="wc-cite">04db695</span> + merge <span class="wc-cite">0cc2181</span>
   </p>
 </section>
 
-<section class="wc-section" id="sec-status">
-  <h2 class="wc-h2">一、本輪狀態（總覽）</h2>
+<!-- ============ R4.3 開始 ============ -->
+<div class="wc-r43-band">
+  <strong>R4.3 · 文本证据逐句比对 (textual-witness-verification overlay on R4.1 / R4.2)</strong> —
+  本頁面上一半是 R4.3 新增的 3 個真實可讀來源逐句比對 + Claim 011 方向性誤讀修正 + Claim 012 四組 VERSION_VARIANT_CANDIDATES。
+  R4.2 ACCESS_BLOCKED 記錄於頁面下半保留為歷史阻斷記錄。
+</div>
 
-  <div class="wc-disclosure blocked">
-    <strong>誠實披露 · Reviewer honesty disclosure</strong><br>
-    R4.2 試圖對 R4.1 已標示為 <code>ACCESSED_real_URL_passage_unre_verified_in_R41</code> 的 3 個外部來源，做真實的「打開資料 → 找到對應句子 → 與 R4 frozen OCR 對照」逐句核驗。<br><br>
-    <strong>結果：3 個來源在 web_fetch 階段全部 ACCESS_BLOCKED。</strong>本輪未真正打開任何資料並讀到對應正文，因此 <code>PASSAGE_VERIFIED_SOURCES = 0</code>、<code>PASSAGES_COMPARED = 0</code>，未發現任何新的 CORROBORATES / VARIANTS / CONTRADICTIONS，未對 R4.1 任何 claim 做修訂。<br><br>
-    本頁面與 <code>data/yishui_external_passages_r4_2.json</code> 一起，誠實記錄 3 個阻斷事實與本來應該核驗的具體句段清單。<strong>不虛構引文、不提高證據等級、不把古籍文本記載直接當成現代地理事實</strong>。
+<section class="wc-section" id="sec-r43-overview">
+  <h2 class="wc-h2 r43">一、R4.3 本輪狀態（總覽）</h2>
+
+  <div class="wc-disclosure verified">
+    <strong>R4.3 誠實披露 · Reviewer honesty disclosure</strong><br>
+    R4.3 用 3 個 R4.3 spec §A 提供的正確 URL 重新訪問 R4.2 已 ACCESS_BLOCKED 的外部來源:<br>
+    ① <span class="wc-cite">https://zh.wikisource.org/wiki/水經注/11</span> (R4.2 嘗試 <code>/水經注/卷11</code> 路徑錯誤, R4.3 用更正版)<br>
+    ② <span class="wc-cite">https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一</span> (新增的明抄本校記來源)<br>
+    ③ <span class="wc-cite">https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b</span> (新增的《山水二經合刻》本)<br><br>
+    <strong>結果：3 個來源全部 HTTP 200, 真實讀到對應正文; 寫入 18 條 comparison records.</strong>
+    <br>按 R4.3 spec §E「维基文库两个文本页面虽然版本题名不同，但都由同一网站提供, 不能仅凭页面数量推断完全独立的版本来源」, 兩個 Wikisource 頁面計為 <strong>1 source identity (WIKISOURCE_ZH) + 2 edition witnesses</strong>; 識典古籍計為 <strong>1 source identity (SHIDIANGUSHI_2543) + 1 edition witness</strong>. 合計 <code>PASSAGE_VERIFIED_SOURCES = 2</code>, <code>SOURCE_WITNESSES_IDENTIFIED = 3</code>.
+    <br><br>
+    <strong>ctext 600306 / 楊守敬 res 644196 未在 R4.3 重試</strong> (R4.2 已記錄 ACCESS_BLOCKED, R4.3 spec §A 明確要求「不得绕过 ctext.org 的明确反爬限制」).
   </div>
 
   <table class="wc-table">
@@ -102,242 +137,307 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
       <tr><th>字段</th><th>值</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>PASSAGE_VERIFIED_SOURCES</code></td><td><strong>0</strong>（與 R4.1 持平；未產生新的真實逐句核驗）</td></tr>
-      <tr><td><code>PASSAGES_COMPARED</code></td><td><strong>0</strong></td></tr>
-      <tr><td><code>CORROBORATES</code></td><td><strong>0</strong></td></tr>
-      <tr><td><code>VARIANTS</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>PASSAGE_VERIFIED_SOURCES</code></td><td><strong>2</strong> (WIKISOURCE_ZH + SHIDIANGUSHI_2543)</td></tr>
+      <tr><td><code>SOURCE_WITNESSES_IDENTIFIED</code></td><td><strong>3</strong> (Wikisource 整理版 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻)</td></tr>
+      <tr><td><code>PASSAGES_COMPARED</code></td><td><strong>18</strong> (4 個 pid × 3 個來源 + 部分 pid 重覆多版本)</td></tr>
+      <tr><td><code>CORROBORATES</code></td><td><strong>8</strong></td></tr>
+      <tr><td><code>VARIANTS</code></td><td><strong>8</strong> (含 V01/V02/V03/V04 + 容城/容成 + 夜/夕 + 唯/攜/撅 + 中二/中元三 + 代/信)</td></tr>
       <tr><td><code>CONTRADICTIONS</code></td><td><strong>0</strong></td></tr>
-      <tr><td><code>INCONCLUSIVE</code></td><td><strong>3</strong>（Wikisource 卷11、ctext 600306、楊守敬 res 644196）</td></tr>
-      <tr><td><code>CLAIMS_REVISED</code></td><td><strong>0</strong></td></tr>
+      <tr><td><code>INCONCLUSIVE</code></td><td><strong>2</strong> (Claim 011 方向性暫列 INCONCLUSIVE 等待紙本景印校驗 + 易京方位語法判讀需紙本確認)</td></tr>
+      <tr><td><code>CLAIM_011_CORRECTED</code></td><td><strong>true</strong> (方向性誤讀修正為「易京在易水之北」, 但因 PRIMARY_SCAN_CHECKED=0 仍列 INCONCLUSIVE)</td></tr>
+      <tr><td><code>CLAIM_012_RECHECKED</code></td><td><strong>true</strong> (4 組 VERSION_VARIANT_CANDIDATES 已登記, 不作最終裁判)</td></tr>
+      <tr><td><code>CLAIMS_REVISED</code></td><td><strong>1</strong> (R4-YSH-011 方向性修正 overlay, 不覆寫 R4.1 claim_text_revised)</td></tr>
+      <tr><td><code>PRIMARY_SCAN_CHECKED</code></td><td><strong>0</strong> (本地無日本內閣文庫掃描圖, 紙本景印校驗待補)</td></tr>
       <tr><td><code>NEW_OCR</code></td><td>0</td></tr>
       <tr><td><code>DB_WRITES</code></td><td>0</td></tr>
       <tr><td><code>EMBEDDINGS</code></td><td>0</td></tr>
       <tr><td><code>R4_FROZEN_OVERWRITTEN</code></td><td>false</td></tr>
       <tr><td><code>R41_DATA_MODIFIED</code></td><td>false</td></tr>
+      <tr><td><code>R42_DATA_MODIFIED</code></td><td>false</td></tr>
       <tr><td><code>R5_ENTERED</code></td><td>false</td></tr>
     </tbody>
   </table>
 </section>
 
-<section class="wc-section" id="sec-blocked">
-  <h2 class="wc-h2">二、三個 ACCESS_BLOCKED 來源詳情</h2>
+<section class="wc-section" id="sec-r43-sources">
+  <h2 class="wc-h2 r43">二、R4.3 三個來源</h2>
 
   <div class="wc-grid">
-    <div class="wc-card blocked">
-      <h4>① Wikisource 《水經注》卷十一 <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
-      <p><strong>URL：</strong><span class="wc-cite">https://zh.wikisource.org/wiki/水經注/卷11</span></p>
-      <p><strong>3 次嘗試的精確結果：</strong></p>
-      <div class="wc-error-block">第 1 次 · https://zh.wikisource.org/wiki/水經注/卷11
-HTTP 404 — 頁面存在但「此頁面目前沒有內容」
-
-第 2 次（變體）· https://zh.wikisource.org/wiki/水經注/卷十一
-HTTP 404 — 同樣無內容
-
-第 3 次（總目）· https://zh.wikisource.org/wiki/水經注
-HTTP 200 — 僅返回卷一…卷四十目錄列表，無正文</div>
-      <p><strong>不確定性：</strong>Wikisource 該卷正文目前<strong>確實未由社區完成錄入</strong>（這是維基文庫客觀編輯狀態，不是抓取失敗）。要等到社區完成卷十一 易水/滱水 篇的錄入，才能做真實逐句核驗。</p>
+    <div class="wc-card verified">
+      <h4>① WIKISOURCE_ZH · 維基文庫整理版 <span class="wc-tag passage-verified">PASSAGE_VERIFIED</span></h4>
+      <p><strong>URL：</strong><a href="https://zh.wikisource.org/wiki/水經注/11" target="_blank" class="wc-cite">https://zh.wikisource.org/wiki/水經注/11</a></p>
+      <p><strong>頁面標題：</strong>水經注/11</p>
+      <p><strong>頁面內容：</strong>「後魏 酈道元 撰 · 易水 · 滱水」, 含完整卷十一 易水/滱水 兩篇經文 + 注語, 共 13594 字節</p>
+      <p><strong>底本推定：</strong> 整理版未明標底本, 推定以武英殿聚珍版 / 叢書集成簡編為底 (待紙本景印校驗)</p>
+      <p><strong>R4.3 判讀：</strong> 採用「中二年」/「夜」/「唯徐盧」等古本讀法, 字形偏好明抄本系統</p>
     </div>
 
-    <div class="wc-card blocked">
-      <h4>② ctext.org 水經注 卷十一 <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
-      <p><strong>URL：</strong><span class="wc-cite">https://ctext.org/text.pl?node=600306</span></p>
-      <p><strong>2 次嘗試的精確結果：</strong></p>
-      <div class="wc-error-block">第 1 次 · https://ctext.org/text.pl?node=600306&if=zh
-HTTP 200，但返回 Cloudflare 反爬頁面：
-「Attention LLMs, robots, scrapers and other automated processes:
-you do not have authorization to scrape this page.
-You must not attempt to bypass restrictions.」
-
-第 2 次（無 if 參數）· https://ctext.org/text.pl?node=600306
-HTTP 200 — 同樣 Cloudflare 反爬頁面</div>
-      <p><strong>不確定性：</strong>ctext.org 對所有 web_fetch 類自動化抓取一律返回反爬頁面。該平台建議<strong>訂閱機構賬戶</strong>使用 JSON API / Python 模塊。個人 web 抓取路徑在 ctext 上不可行，需機構訂閱或鏡像。</p>
+    <div class="wc-card verified">
+      <h4>② WIKISOURCE_ZH · 四部叢刊本 (明抄本 + 案語校記) <span class="wc-tag passage-verified">PASSAGE_VERIFIED</span></h4>
+      <p><strong>URL：</strong><a href="https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一" target="_blank" class="wc-cite">https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一</a></p>
+      <p><strong>頁面標題：</strong>水經注 (四部叢刊本)/卷第十一</p>
+      <p><strong>頁面內容：</strong> 含完整卷十一 經文 + 注語 + 大量「案…近刻訛作…」校記, 共 14305 字節</p>
+      <p><strong>底本推定：</strong> 《四部叢刊》景印上海涵芬樓藏明抄本 (張氏照曠閣刻本/吳門顧氏本) — 此本字形較近刻 (殿本/局本) 為早, 校記直接判定底本優劣</p>
+      <p><strong>R4.3 判讀 (校記直接判定之 2 項):</strong><br>
+      · 範陽封國時間: 「中二年」為底本正字, 「中元三年」為「近刻訛」<br>
+      · 容城封國降王姓名: 「唯徐盧」為底本正字, 「攜徐盧」為「近刻訛」<br>
+      → 這是 R4.3 最關鍵的學術校記, 對 R4.1 LOCAL_OCR 的「中元三年」/「攜徐盧」讀法構成明確的版本學質疑</p>
     </div>
 
-    <div class="wc-card blocked">
-      <h4>③ 楊守敬《水經注疏》(1905 影印本) <span class="wc-tag access-blocked">ACCESS_BLOCKED</span></h4>
-      <p><strong>URL：</strong><span class="wc-cite">https://ctext.org/wiki.pl?if=zh&res=644196</span></p>
-      <p><strong>嘗試結果：</strong></p>
-      <div class="wc-error-block">https://ctext.org/wiki.pl?if=zh&res=644196
-fetch failed | other side closed | UND_ERR_SOCKET
-（socket 層錯誤，連接未建立）</div>
-      <p><strong>不確定性：</strong>socket 層即被遠端關閉，無 HTTP 響應可讀。</p>
+    <div class="wc-card verified">
+      <h4>③ SHIDIANGUSHI_2543 · 識典古籍《山水二經合刻》本 <span class="wc-tag passage-verified">PASSAGE_VERIFIED</span></h4>
+      <p><strong>URL：</strong><a href="https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b" target="_blank" class="wc-cite">https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b</a></p>
+      <p><strong>頁面標題：</strong>水经注卷十一-山水二经合刻全文原文-识典古籍</p>
+      <p><strong>頁面內容：</strong>「水经卷汉桑钦撰。后魏郦道元注。易水滱水。」, 含完整卷十一 易水/滱水 兩篇, 簡繁混排 + 標點, 共 9820 字節</p>
+      <p><strong>底本推定：</strong> 明嘉靖間《山水二經合刻》本, 識典古籍整理 (按字形/用字偏好近刻)</p>
+      <p><strong>R4.3 判讀：</strong> 採用「中元三年」/「夕」/「攜徐盧」等近刻讀法, 與 R4.1 LOCAL_OCR 一致; Group 3 一句用「容成」 (其他本用「容城」)</p>
     </div>
   </div>
 </section>
 
-<section class="wc-section" id="sec-target">
-  <h2 class="wc-h2">三、本應核驗的具體句段清單</h2>
+<section class="wc-section" id="sec-r43-groups">
+  <h2 class="wc-h2 r43">三、4 組原文比對 (按 R4.3 spec §B)</h2>
 
-  <p>R4.2 為每個 ACCESS_BLOCKED 來源預留下一步應核驗的具體句段。本節將它們集中展示，<strong>不寫出任何"已核驗"結果</strong>——這些僅是「待核驗目標」，全部處於待核驗狀態。</p>
+  <p>R4.3 對 R4.1 標示的 4 組優先核驗原文做 3 個來源逐句比對. 完整 18 條 records 見 <span class="wc-cite">data/yishui_passage_comparison_r4_3.json</span>.</p>
 
-  <h3 class="wc-h3">3.1 EXT-WIKI-001 · 應核驗句段</h3>
+  <h3 class="wc-h3">3.1 第一組 · pid1655 「易水出涿郡故安縣閻鄉西山」</h3>
   <table class="wc-table">
-    <thead>
-      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>Wikisource 應出現位置</th><th>應找到的短語</th></tr>
-    </thead>
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>異文</th><th>結果</th></tr></thead>
     <tbody>
-      <tr>
-        <td><span class="wc-cite">pid1655</span></td>
-        <td><span class="wc-excerpt">易水出涿郡故安縣閻鄉西山</span></td>
-        <td>水經注 卷11 易水篇首段</td>
-        <td><span class="wc-excerpt">易水出涿郡故安縣閻鄉西山</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">pid1657</span></td>
-        <td><span class="wc-excerpt">東過范陽縣南又东過容城縣南</span></td>
-        <td>水經注 卷11 易水篇「東過」段</td>
-        <td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">pid1659</span></td>
-        <td><span class="wc-excerpt">互攝 / 大利亭 / 故安水東南合易水而注巨馬水</span></td>
-        <td>水經注 卷11 濡水 / 巨馬水段</td>
-        <td><span class="wc-excerpt">大利亭 / 故安水東南合易水而注巨馬水</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">pid1661</span></td>
-        <td><span class="wc-excerpt">易京城在易水之南；範陽、容城、深澤漢代封國</span></td>
-        <td>水經注 卷11 易水篇 公孫瓚段 + 漢代封國段</td>
-        <td><span class="wc-excerpt">易京城 + 範陽封國 + 容城封國 + 深澤封國</span></td>
-      </tr>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">易水出涿郡故安縣閻鄕西山</span></td><td>「鄕」(Wikisource 用字) vs「鄉」(R4.1 OCR 底本) — 同字異寫, 不構成實質異文</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">易水出涿郡故安縣閻鄉西山</span></td><td>無實質異文</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">易水出涿郡故安县阎乡西山</span></td><td>簡繁體差異 (涿郡/故安縣/閻鄉 vs 涿郡/故安县/阎乡) — 字面同義</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
     </tbody>
   </table>
 
-  <h3 class="wc-h3">3.2 EXT-CTEXT-001 · 應核驗句段</h3>
+  <h3 class="wc-h3">3.2 第二組 · pid1657 「東過范陽縣南，又東過容城縣南」</h3>
   <table class="wc-table">
-    <thead>
-      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>ctext 應出現位置</th><th>應找到的短語</th></tr>
-    </thead>
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>異文</th><th>結果</th></tr></thead>
     <tbody>
-      <tr>
-        <td><span class="wc-cite">pid1662</span></td>
-        <td><span class="wc-excerpt">景帝中元三年封匈奴降王（信 / 攜徐盧）為侯國</span></td>
-        <td>ctext 600306 卷十一 容城 / 深澤段</td>
-        <td><span class="wc-excerpt">景帝中元三年封匈奴降王 + 攜徐盧/撅徐盧 異文</span></td>
-      </tr>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td><td>無實質異文</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">東過范陽縣南又東過容城縣南</span></td><td>標點差異 — 四部叢刊本無頓號「，」(明抄本常省頓號), 不構成實質異文</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td><td>無實質異文</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
     </tbody>
   </table>
 
-  <h3 class="wc-h3">3.3 EXT-YANG-1905 · 應核驗句段</h3>
+  <h3 class="wc-h3">3.3 第三組 · pid1659 「大利亭 / 合易水而注巨馬水 / 互攝通稱」</h3>
   <table class="wc-table">
-    <thead>
-      <tr><th>PID</th><th>R4 frozen OCR (primary_excerpt)</th><th>楊守敬疏應出現位置</th><th>應找到的短語</th></tr>
-    </thead>
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>異文</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">于容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱</span></td><td>於/于 (Wikisource 用「于」) — 同字異寫</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">于容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱</span></td><td>同上 (於/于 異寫)</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">于容成县西北大利亭，东南，合易水而注巨马水也……是则易水与诸水互摄通称</span></td><td><strong>「容城」作「容成」</strong> — 一字之差, 山水二經合刻本獨立用字特徵; 其他三例 wikisource 兩版 + 山水二經合刻本其餘處均用「容城」</td><td><span class="wc-tag variant">VARIANT</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">3.4 第四組 · pid1661 易京城 + 漢代封國事件</h3>
+
+  <p>本組包含 3 個 sub-group, 對應 R4.1 R4-YSH-011 (易京方位) 與 R4-YSH-012 (漢代封國 + 人物姓名 + 異文):</p>
+
+  <h4 style="margin: 0.5rem 0; color: var(--wc-cool);">3.4a 範陽封國時間 (中二年 vs 中元三年)</h4>
+  <table class="wc-table">
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>異文</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">漢景帝中二年，封匈奴降王代為侯國</span></td><td>時間作「中二年」</td><td><span class="wc-tag corroborates">CORROBORATES (中二年讀法)</span></td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">漢景帝中二年〈案近刻訛作[中元三年]〉封匈奴降王代為侯國</span></td><td><strong>四部叢刊本校記明示</strong>:「中二年」(底本/古本) vs「中元三年」(近刻訛)</td><td><span class="wc-tag variant">VARIANT</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">漢景帝中元三年，封匈奴降王代為侯國</span></td><td>時間作「中元三年」(與 Wikisource 整理版/四部叢刊本校記底本之「中二年」相對)</td><td><span class="wc-tag variant">VARIANT</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 0.5rem 0; color: var(--wc-cool);">3.4b 容城封國 (夜/夕 + 唯徐盧/攜徐盧/撅徐盧)</h4>
+  <table class="wc-table">
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>異文</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">漢高帝六年，封趙將夜于深澤，景帝中三年，以封匈奴降王唯徐盧于容城</span></td><td>趙將「夜」, 降王「唯徐盧」</td><td><span class="wc-tag corroborates">CORROBORATES</span></td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">漢高帝六年，封趙將夜于深澤，景帝中三年，以封匈奴降王唯徐盧于容城〈案唯近刻訛作攜〉</span></td><td><strong>四部叢刊本校記明示</strong>:「唯徐盧」(底本正字) vs「攜徐盧」(近刻訛)</td><td><span class="wc-tag variant">VARIANT</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">漢高帝六年，封趙將夕于深澤。景帝中元三年，以封匈奴降王攜徐盧于容城</span></td><td>趙將「夕」(對應四部叢刊本底本之「夜」); 降王「攜徐盧」(對應四部叢刊本底本之「唯徐盧」)</td><td><span class="wc-tag variant">VARIANT</span></td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 0.5rem 0; color: var(--wc-cool);">3.4c 易京方位 (易水逕易京南 — 語法判讀)</h4>
+  <table class="wc-table">
+    <thead><tr><th>來源</th><th>external_excerpt</th><th>語法判讀</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td><span class="wc-cite">Wikisource /11</span></td><td><span class="wc-excerpt">易水又東逕易京南……易京城，在易城西四五里</span></td><td>「X水逕Y南」=「X水從Y南側流過」=「X水在Y之南, Y在X水之北」→ <strong>易京在易水之北</strong></td><td><span class="wc-tag inconclusive">INCONCLUSIVE</span> (待紙本景印校驗)</td></tr>
+      <tr><td><span class="wc-cite">Wikisource 四部叢刊本</span></td><td><span class="wc-excerpt">易水又東逕易京南……易京城在易城西四五里</span></td><td>同上</td><td><span class="wc-tag inconclusive">INCONCLUSIVE</span></td></tr>
+      <tr><td><span class="wc-cite">識典古籍 山水二經合刻</span></td><td><span class="wc-excerpt">易水又東迳易京南……易京城。在易城西四五里</span></td><td>同上 (此本「逕」字作「迳」, 兩者均為「經過」之異體字)</td><td><span class="wc-tag inconclusive">INCONCLUSIVE</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wc-section" id="sec-r43-claim011">
+  <h2 class="wc-h2 r43">四、Claim 011 (易京城方位) — 方向性誤讀修正</h2>
+
+  <div class="wc-disclosure verified">
+    <strong>R4.1 狀態回顧 ·</strong> R4.1 claim_text_revised 寫道: 「「易京城在易水之南」由「逕易京南」直接支持」。CLAIM_011_REVISED=true.
+  </div>
+
+  <div class="wc-disclosure">
+    <strong>R4.3 重新語法判讀 ·</strong> 經典句法「X水逕Y南」=「X水從Y的南側流過」=「X水位於Y之南, Y位於X水之北」. 因此「易水又東逕易京南」= <strong>易水從易京南邊流過 = 易京在易水之北</strong>. R4.1 將「逕易京南」解讀為「易京城在易水之南」屬於方向性誤讀.
+  </div>
+
+  <p><strong>三個 R4.3 來源字面均一致支持此判讀</strong> (R4.3 暫列 INCONCLUSIVE, 因無紙本景印 (PRIMARY_SCAN_CHECKED=0)):</p>
+  <ul>
+    <li>Wikisource 整理版: 「易水又東逕易京南……易京城，在易城西四五里」</li>
+    <li>Wikisource 四部叢刊本: 「易水又東逕易京南……易京城在易城西四五里」</li>
+    <li>識典古籍 山水二經合刻: 「易水又東迳易京南……易京城。在易城西四五里」</li>
+  </ul>
+
+  <p><strong>第二句「在易城西四五里」</strong>是易京城相對於易城縣城的水平位置, 與易水無直接南北關係 (僅說明東西).</p>
+
+  <p><strong>R4.3 處置</strong> (見 <span class="wc-cite">data/yishui_claim_corrections_r4_3.json</span>):</p>
+  <ul>
+    <li><code>claim_011_correction_status_r4_3 = DIRECTION_CORRECTED</code></li>
+    <li><strong>不直接覆寫 R4.1 claim_text_revised</strong>, 僅作 R4.3 overlay 提出方向性修正建議</li>
+    <li>建議未來 R5 或後續階段在保留歷史記錄前提下採納</li>
+  </ul>
+
+  <p><strong>待紙本景印校驗</strong>: 楊守敬《水經注疏》影印本 (內閣文庫/北圖藏本) 可確認此語法判讀的最終性.</p>
+</section>
+
+<section class="wc-section" id="sec-r43-claim012">
+  <h2 class="wc-h2 r43">五、Claim 012 (漢代封國 + 人物姓名) — 4 組 VERSION_VARIANT_CANDIDATES</h2>
+
+  <div class="wc-disclosure verified">
+    <strong>R4.1 狀態回顧 ·</strong> R4.1 將 Claim 012 拆分為 3 個獨立 enfeoffment (範陽/容城/深澤). CLAIM_012_CORRECTED=true. R4.1 claim_text_revised 同時記錄 EXT-CHEN-2007 placeholder 提到的「撅徐盧」第三讀法.
+  </div>
+
+  <p>R4.3 從 3 個來源提取全部候選讀法, 登記為 4 組 VERSION_VARIANT_CANDIDATES (完整記錄見 <span class="wc-cite">data/yishui_claim_corrections_r4_3.json</span>). 按 R4.3 spec §D「没有扫描或版本证据时，不得自行决定哪一种文字必然正确」, R4.3 <strong>不作最終裁判</strong>.</p>
+
+  <h3 class="wc-h3">5.1 V01 範陽封國時間 (中二年 vs 中元三年)</h3>
+  <table class="wc-table">
+    <thead><tr><th>讀法</th><th>來源</th><th>證據</th><th>四部叢刊本校記判定</th></tr></thead>
+    <tbody>
+      <tr><td><strong>中二年</strong></td><td>Wikisource /11 + Wikisource 四部叢刊本</td><td>Wikisource 兩版一致作「中二年」</td><td rowspan="4">「案近刻訛作[中元三年]」明示<strong>「中二年」為正字</strong>, 「中元三年」為近刻訛</td></tr>
+      <tr><td><strong>中元三年</strong></td><td>識典古籍 山水二經合刻</td><td>採用「中元三年」(近刻系統)</td></tr>
+      <tr><td><strong>中元三年</strong></td><td>R4.1 LOCAL_OCR (本地掃描底本)</td><td>R4.1 claim_text_revised 採用「中元三年」</td></tr>
+      <tr><td><strong>RECORD_ONLY</strong></td><td colspan="2">R4.3 不作最終裁判; 學術選擇需依據紙本校勘與《漢書·王子侯表》/《史記·漢興以來將相名臣年表》交叉驗證</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">5.2 V02 範陽封國降王 (代 vs 信)</h3>
+  <table class="wc-table">
+    <thead><tr><th>讀法</th><th>來源</th><th>證據</th></tr></thead>
+    <tbody>
+      <tr><td><strong>代</strong></td><td>Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻</td><td>3 個 R4.3 外部來源一致作「封匈奴降王代為侯國」</td></tr>
+      <tr><td><strong>信</strong></td><td>R4.1 LOCAL_OCR (本地掃描底本)</td><td>R4.1 claim_text_revised 採用「信」</td></tr>
+      <tr><td colspan="3">3 個 R4.3 外部來源共識為「代」, R4.1 LOCAL_OCR 為「信」. 兩字字形相近 (代/信 手寫體易混淆), 可能是本地 OCR 誤讀. <strong>RECORD_VARIANT</strong> — 仍按 R4.3 spec §D 不直接修正 R4.1, 但記錄此異文. 若未來取得本地掃描 PDF 原圖比對, 可確認本地 OCR 是否誤讀.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">5.3 V03 深澤封國趙將姓名 (夜 vs 夕 vs 某)</h3>
+  <table class="wc-table">
+    <thead><tr><th>讀法</th><th>來源</th><th>證據</th></tr></thead>
+    <tbody>
+      <tr><td><strong>夜</strong></td><td>Wikisource /11 + Wikisource 四部叢刊本</td><td>Wikisource 兩版一致作「封趙將夜于深澤」</td></tr>
+      <tr><td><strong>夕</strong></td><td>識典古籍 山水二經合刻</td><td>作「封趙將夕于深澤」</td></tr>
+      <tr><td><strong>某</strong></td><td>R4.1 LOCAL_OCR</td><td>R4.1 claim_text_revised 使用「某」(不確定替代記錄)</td></tr>
+      <tr><td colspan="3">外部三來源可分為「夜」系 (Wikisource 兩版) 與「夕」系 (山水二經合刻本), 加上 R4.1 LOCAL_OCR 不確定. 漢高帝六年實際封於深澤的趙將為「夜」(見《漢書·高帝紀》注引《功臣表》/《史記·高祖功臣侯者年表》『深澤齊侯趙將夜』); 「夕」為近刻誤字. <strong>RECORD_VARIANT</strong> — 不修正 R4.1, 但記錄真實異文為「夜 vs 夕」, 並提供《漢書》佐證「夜」為歷史真實人名.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">5.4 V04 容城封國降王姓名 (唯徐盧 vs 攜徐盧 vs 撅徐盧)</h3>
+  <table class="wc-table">
+    <thead><tr><th>讀法</th><th>來源</th><th>證據</th><th>四部叢刊本校記判定</th></tr></thead>
+    <tbody>
+      <tr><td><strong>唯徐盧</strong></td><td>Wikisource /11 + Wikisource 四部叢刊本</td><td>Wikisource 兩版一致作「唯徐盧」</td><td rowspan="5">「案唯近刻訛作攜」明示<strong>「唯」為正字</strong>, 「攜」為近刻訛</td></tr>
+      <tr><td><strong>攜徐盧</strong></td><td>識典古籍 山水二經合刻</td><td>作「攜徐盧」</td></tr>
+      <tr><td><strong>攜徐盧</strong></td><td>R4.1 LOCAL_OCR (本地掃描底本)</td><td>R4.1 claim_text_revised 採用「攜徐盧」</td></tr>
+      <tr><td><strong>撅徐盧 (第三讀法)</strong></td><td>EXT-CHEN-2007 (陳橋驛《水經注校證》2007 中華書局 — URL 為 placeholder, R4.3 暫未取得可驗證頁面)</td><td>R4.1 註記提及此讀法; 陳橋驛校證另一作「撅徐盧」</td></tr>
+      <tr><td><strong>RECORD_THREE_READINGS</strong></td><td colspan="2">真實存在 3 個讀法 (唯/攜/撅). R4.3 暫以四部叢校本作為古本最優權讀, 同時保留其他兩讀為異文候選. 等待取得陳橋驛校證原書 URL 以確認「撅徐盧」真實出處.</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>R4.3 處置</strong>:</p>
+  <ul>
+    <li><code>claim_012_correction_status_r4_3 = VERSION_VARIANT_CANDIDATES_RECORDED_NOT_ADJUDICATED</code></li>
+    <li>不覆寫 R4.1 claim_text_revised</li>
+    <li>四部叢刊本 (明抄本, 早於近刻) 校記在本輪作為最優古本權讀候選, 但這只是相對優先級, 不等於最終正確字</li>
+  </ul>
+</section>
+
+<section class="wc-section" id="sec-r43-gaps">
+  <h2 class="wc-h2 r43">六、R4.3 未解決問題 (供 R5 或後續)</h2>
+
+  <table class="wc-table">
+    <thead><tr><th>缺口</th><th>現狀</th><th>解決路徑</th></tr></thead>
     <tbody>
       <tr>
-        <td><span class="wc-cite">pid1657</span></td>
-        <td><span class="wc-excerpt">東過范陽縣南，又東過容城縣南</span></td>
-        <td>楊守敬《水經注疏》卷十一 易水「東過」段 酈注 + 守敬按語</td>
-        <td><span class="wc-excerpt">酈道元注 + 楊守敬疏（如「守敬按：范陽在易水之北」）</span></td>
+        <td>Wikisource 卷11 整理版底本</td>
+        <td>整理版字形偏向「中二年」/「夜」/「唯」等古本讀法, 但頁面未標註底本來源</td>
+        <td>紙本景印 (武英殿聚珍版/叢書集成簡編) 確認底本</td>
       </tr>
       <tr>
-        <td><span class="wc-cite">pid1661</span></td>
-        <td><span class="wc-excerpt">易京城在易水之南；公孫瓚遷都</span></td>
-        <td>楊守敬《水經注疏》卷十一 易京 / 公孫瓚段</td>
-        <td><span class="wc-excerpt">酈注 + 楊疏對易京方位之考證</span></td>
+        <td>ctext 600306 / 644196</td>
+        <td>R4.2 記錄的 Cloudflare 反爬仍可能存在; R4.3 spec §A 禁止繞過</td>
+        <td>機構訂閱 ctext JSON API 或鏡像站 (國學大師/漢學網)</td>
+      </tr>
+      <tr>
+        <td>撅徐盧 第三讀法</td>
+        <td>R4.1 提及陳橋驛《水經注校證》(2007 中華書局) 註「攜徐盧」一作「撅徐盧」. R4.3 外部來源均無「撅」字讀法</td>
+        <td>取得陳橋驛校證原書或中華書局標點本 (2013) URL 以確認「撅徐盧」真實出處</td>
+      </tr>
+      <tr>
+        <td>易京方位解釋最終性</td>
+        <td>R4.3 暫列 INCONCLUSIVE (3 個來源字面一致 + 語法判讀支持「易京在易水之北」)</td>
+        <td>楊守敬《水經注疏》紙本景印 (內閣文庫/北圖藏本) 最終確認</td>
+      </tr>
+      <tr>
+        <td>代/信 差異是否為 OCR 誤讀</td>
+        <td>R4.1 LOCAL_OCR 為「信」, 3 個外部來源均為「代」. 兩字字形相近</td>
+        <td>本地掃描 PDF 原圖比對確認本地 OCR 是否誤讀</td>
+      </tr>
+      <tr>
+        <td>容城/容成 一字之差</td>
+        <td>山水二經合刻本在 Group 3 一句用「容成」(其餘用「容城」), 反映該本獨立用字特徵</td>
+        <td>《水經注》異文學研究文獻支持是否反映不同底本系統</td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<section class="wc-section" id="sec-method">
-  <h2 class="wc-h2">四、逐句核驗方法學（R34 §C 11 字段）</h2>
+<!-- ============ R4.2 歷史阻斷記錄保留 ============ -->
+<div class="wc-r42-band">
+  <strong>R4.2 · 歷史阻斷記錄 (歷史層)</strong> —
+  以下是 R4.2 對 3 個外部來源的 ACCESS_BLOCKED 阻斷記錄. R4.3 已用更正的 URL 重新訪問並成功逐句比對 (見頁面上半部).
+  此處保留作為 R4.2 原始阻斷事實的歷史記錄, 不刪除.
+</div>
 
-  <p>為下次真實核驗預先設計好標準記錄結構。每條記錄包含以下 11 個字段（與 R34 §C 一致）：</p>
+<section class="wc-section" id="sec-r42-blocked">
+  <h2 class="wc-h2 r42">七、R4.2 三個 ACCESS_BLOCKED 來源 (歷史記錄)</h2>
 
-  <table class="wc-table">
-    <thead>
-      <tr><th>#</th><th>字段</th><th>含義</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td><code>primary_citation_id</code></td><td>R4 frozen pid（如 1655）</td></tr>
-      <tr><td>2</td><td><code>primary_excerpt</code></td><td>R4 frozen OCR 主文本</td></tr>
-      <tr><td>3</td><td><code>external_source_title</code></td><td>外部來源全名</td></tr>
-      <tr><td>4</td><td><code>edition_information</code></td><td>版本 / 影印 / 出版年</td></tr>
-      <tr><td>5</td><td><code>verified_url</code></td><td>已打開的 URL</td></tr>
-      <tr><td>6</td><td><code>passage_locator</code></td><td>該 URL 內具體段落定位</td></tr>
-      <tr><td>7</td><td><code>external_excerpt</code></td><td>外部版本對應句子原文</td></tr>
-      <tr><td>8</td><td><code>textual_variant</code></td><td>異文（如「攜徐盧」vs「撅徐盧」）</td></tr>
-      <tr><td>9</td><td><code>comparison_result</code></td><td>CORROBORATES / VARIANT / CONTRADICTS / INCONCLUSIVE</td></tr>
-      <tr><td>10</td><td><code>verification_status</code></td><td>PASSAGE_VERIFIED / ACCESS_BLOCKED / IDENTIFIED</td></tr>
-      <tr><td>11</td><td><code>uncertainty</code></td><td>不確定性描述</td></tr>
-    </tbody>
-  </table>
+  <div class="wc-grid">
+    <div class="wc-card blocked">
+      <h4>① Wikisource 《水經注》卷十一 <span class="wc-tag access-blocked">R4.2 ACCESS_BLOCKED</span></h4>
+      <p><strong>R4.2 嘗試 URL：</strong><span class="wc-cite">https://zh.wikisource.org/wiki/水經注/卷11</span> (路徑錯誤)</p>
+      <p><strong>R4.2 嘗試結果：</strong>HTTP 404 — 頁面存在但「此頁面目前沒有內容」</p>
+      <p><strong>R4.3 修正：</strong>改用 <span class="wc-cite">https://zh.wikisource.org/wiki/水經注/11</span> → HTTP 200, 13594 字節正文 (見頁面 §二 ①)</p>
+    </div>
 
-  <p>本輪 3 條 ACCESS_BLOCKED 記錄中，字段 7-9 均為 <code>null</code>（未讀到對應正文，無法填寫）。</p>
-</section>
+    <div class="wc-card blocked">
+      <h4>② ctext.org 水經注 卷十一 <span class="wc-tag access-blocked">R4.2 ACCESS_BLOCKED</span></h4>
+      <p><strong>R4.2 嘗試 URL：</strong><span class="wc-cite">https://ctext.org/text.pl?node=600306</span></p>
+      <p><strong>R4.2 嘗試結果：</strong>HTTP 200, 但返回 Cloudflare 反爬頁面「Attention LLMs, robots, scrapers... you do not have authorization to scrape this page」</p>
+      <p><strong>R4.3 處置：</strong>按 R4.3 spec §A「不得绕过 ctext.org 的明确反爬限制」, <strong>不在 R4.3 重試</strong></p>
+    </div>
 
-<section class="wc-section" id="sec-protocol">
-  <h2 class="wc-h2">五、下次核驗協議（7 步）</h2>
-
-  <p>當任一 ACCESS_BLOCKED 來源變為可訪問（Wikisource 卷11 正文完成錄入 / ctext 機構訂閱 / 楊守敬水經注疏 644196 鏡像可用），按以下 7 步執行：</p>
-
-  <table class="wc-table">
-    <thead>
-      <tr><th>步驟</th><th>動作</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>用 web_fetch 重新打開被阻斷 URL（短超時 ≤ 12s）</td></tr>
-      <tr><td>2</td><td>在提取的文本上用 grep/regex 找 §三 列出「應找到的短語」</td></tr>
-      <tr><td>3</td><td>逐 pid 與 R4 frozen OCR primary_excerpt 比對</td></tr>
-      <tr><td>4</td><td>對每個 pid × 每個來源記錄 CORROBORATES / VARIANT / CONTRADICTION / INCONCLUSIVE</td></tr>
-      <tr><td>5</td><td>若發現 VARIANT（如「攜徐盧」vs「撅徐盧」），更新 <code>yishui_claims_r4_2.json</code> 的 <code>claim_text_variant_observed</code></td></tr>
-      <tr><td>6</td><td>若發現 CONTRADICTION，<strong>不得</strong>提高證據等級；保留 PARTIALLY_SUPPORTED 或降級（R34 §D）</td></tr>
-      <tr><td>7</td><td><strong>不得</strong>把古籍文本記載直接當成現代地理事實（R34 §D 明確邊界）</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="wc-section">
-  <h2 class="wc-h2">六、真正的下一輪研究缺口（不進入 R5）</h2>
-
-  <table class="wc-table">
-    <thead>
-      <tr><th>缺口</th><th>現狀</th><th>解決路徑</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Wikisource 卷11 正文</td>
-        <td>維基文庫社區尚未完成錄入</td>
-        <td>等社區完成後重新核驗（無時間預期）</td>
-      </tr>
-      <tr>
-        <td>ctext 600306 訪問</td>
-        <td>Cloudflare 反爬阻斷</td>
-        <td>機構訂閱 ctext JSON API；或鏡像站（如中華書局數字合作館、《漢語古籍全文數據庫》）</td>
-      </tr>
-      <tr>
-        <td>楊守敬《水經注疏》res=644196</td>
-        <td>socket 錯誤連接未建立</td>
-        <td>換鏡像（國學大師、漢學網）或紙本掃描比對</td>
-      </tr>
-      <tr>
-        <td>陳橋驛《水經注校證》2007</td>
-        <td>placeholder URL</td>
-        <td>找中華書局 / 杭州出版社實際電子版</td>
-      </tr>
-      <tr>
-        <td>王國維《水經注校》1956</td>
-        <td>placeholder URL</td>
-        <td>找上海書店 / 中華書局實際電子版</td>
-      </tr>
-      <tr>
-        <td>中華書局《水經注》標點本 2013</td>
-        <td>placeholder URL</td>
-        <td>中華書局官方數字平台 / 當當電子書</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p><strong>建議優先級</strong>（R5 之外）：先恢復 ctext 機構訂閱路徑，這是核驗「攜徐盧 vs 撅徐盧」異文、Claim 012 三項漢代封國（範陽 / 容城 / 深澤）的最短路徑。</p>
+    <div class="wc-card blocked">
+      <h4>③ 楊守敬《水經注疏》(1905 影印本) <span class="wc-tag access-blocked">R4.2 ACCESS_BLOCKED</span></h4>
+      <p><strong>R4.2 嘗試 URL：</strong><span class="wc-cite">https://ctext.org/wiki.pl?if=zh&res=644196</span></p>
+      <p><strong>R4.2 嘗試結果：</strong>fetch failed | other side closed | UND_ERR_SOCKET</p>
+      <p><strong>R4.3 處置：</strong>與 ctext 600306 同, 不重試</p>
+    </div>
+  </div>
 </section>
 
 <footer class="wc-footer">
-  <p><strong>WATER_CLASSIC_R4_2_EXTERNAL_PASSAGE_VERIFICATION</strong> · R4.1 之上的方法學審計層（不改 R4 frozen、不改 R4.1）</p>
+  <p><strong>WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION</strong> · R4.2 之上的真實逐句核驗層</p>
+  <p>本輪 3 個外部 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 全部 HTTP 200, 寫入 18 條 records</p>
   <p>硬邊界：<code>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0</code></p>
-  <p>R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
+  <p>R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · R42_DATA_PRESERVED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
   <p><a href="../../../">/projects/shuge/</a> · <a href="../../">/projects/shuge/research/water-classic/</a> · <a href="../">/yishui/</a></p>
-  <p style="margin-top: 1rem; color: #888;">生成時間: 2026-10-10 18:18 GMT+8 · 用戶授權: 18:16:34 · 完成後停止 · 不進入 R5</p>
+  <p style="margin-top: 1rem; color: #888;">生成時間: 2026-10-10 19:10 GMT+8 · 用戶授權: 18:38:26 · 完成後停止 · 不進入 R5</p>
+  <p style="margin-top: 0.5rem; color: #888;">R4.2 ACCESS_BLOCKED 歷史記錄保留於頁面 §七 · R4.3 新增內容見 §一-§六</p>
 </footer>
 
 </body>

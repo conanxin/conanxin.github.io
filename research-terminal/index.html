@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conan Xin Research Terminal</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:920px;margin:42px auto;padding:0 20px;color:#171717;background:#fafafa}
+.card{background:#fff;border:1px solid #ddd;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05);margin-bottom:18px}
+button{padding:11px 16px;border:0;border-radius:10px;cursor:pointer;background:#111;color:#fff;font-size:14px;margin:4px 8px 4px 0}
+.secondary{background:#eee;color:#111}
+code{background:#f3f3f3;padding:2px 6px;border-radius:6px;word-break:break-all}
+.muted{color:#666}.ok{color:#087b32}.error{color:#b00020}.pill{display:inline-block;background:#f3f3f3;border-radius:8px;padding:2px 7px;margin-left:6px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:720px){.grid{grid-template-columns:1fr}}li{margin:7px 0}
+</style>
+</head>
+<body>
+<h1>Conan Xin Research Terminal</h1>
+<p class="muted">Evidence Graph · Epistemic Ledger · Research Gates · OAuth MCP</p>
+<div id="app" class="card">正在检查登录状态…</div>
+<div class="card">
+<strong>MCP endpoint</strong>
+<p><code>https://tkjuomnvossigbuvzbbq.supabase.co/functions/v1/research-terminal-mcp-oauth</code></p>
+<p class="muted">支持 OAuth 2.1 protected-resource discovery，可被兼容 MCP 客户端自动连接。</p>
+</div>
+<script>
+const BASE='https://conanxin.github.io/research-terminal';
+const CLIENT='28a4a7c6-0dbe-4d0e-9dc2-00cc1221ae61';
+const SUPABASE='https://tkjuomnvossigbuvzbbq.supabase.co';
+const MCP='https://tkjuomnvossigbuvzbbq.supabase.co/functions/v1/research-terminal-mcp-oauth';
+const app=document.getElementById('app');
+const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const b64url=b=>btoa(String.fromCharCode(...b)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function startOAuth(){
+  const raw=crypto.getRandomValues(new Uint8Array(64));
+  const verifier=b64url(raw);
+  const digest=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(verifier)));
+  const challenge=b64url(digest);
+  const state=b64url(crypto.getRandomValues(new Uint8Array(24)));
+  sessionStorage.setItem('rt_web_verifier',verifier);
+  sessionStorage.setItem('rt_web_state',state);
+  const u=new URL(SUPABASE+'/auth/v1/oauth/authorize');
+  u.searchParams.set('client_id',CLIENT);
+  u.searchParams.set('redirect_uri',BASE+'/oauth/callback/');
+  u.searchParams.set('response_type','code');
+  u.searchParams.set('scope','email profile offline_access');
+  u.searchParams.set('code_challenge',challenge);
+  u.searchParams.set('code_challenge_method','S256');
+  u.searchParams.set('state',state);
+  location.href=u.toString();
+}
+async function refreshToken(){
+  const rt=sessionStorage.getItem('rt_web_refresh');
+  if(!rt)return false;
+  const r=await fetch(SUPABASE+'/auth/v1/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'refresh_token',refresh_token:rt,client_id:CLIENT})});
+  if(!r.ok)return false;
+  const t=await r.json();
+  sessionStorage.setItem('rt_web_access',t.access_token);
+  if(t.refresh_token)sessionStorage.setItem('rt_web_refresh',t.refresh_token);
+  sessionStorage.setItem('rt_web_expires_at',String(Date.now()+Number(t.expires_in||3600)*1000));
+  return true;
+}
+async function getToken(){
+  const t=sessionStorage.getItem('rt_web_access');
+  const exp=Number(sessionStorage.getItem('rt_web_expires_at')||0);
+  if(t&&Date.now()<exp-60000)return t;
+  if(await refreshToken())return sessionStorage.getItem('rt_web_access');
+  return null;
+}
+async function mcp(name,args,id){
+  const t=await getToken();
+  if(!t)throw new Error('需要重新登录');
+  const r=await fetch(MCP,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream','Authorization':'Bearer '+t},body:JSON.stringify({jsonrpc:'2.0',id,method:'tools/call',params:{name,arguments:args}})});
+  const tx=await r.text();
+  if(!r.ok)throw new Error('MCP '+r.status+': '+tx);
+  const line=tx.split(/\r?\n/).find(x=>x.startsWith('data: '));
+  const msg=JSON.parse(line?line.slice(6):tx);
+  if(msg.result&&msg.result.isError)throw new Error((msg.result.content&&msg.result.content[0]&&msg.result.content[0].text)||'MCP error');
+  return (msg.result&&msg.result.structuredContent&&msg.result.structuredContent.data)||(msg.result&&msg.result.structuredContent)||JSON.parse((msg.result&&msg.result.content&&msg.result.content[0]&&msg.result.content[0].text)||'null');
+}
+async function dashboard(){
+  const t=await getToken();
+  if(!t){
+    app.innerHTML='<h2>进入 Research Terminal</h2><p>使用 Supabase OAuth 2.1 登录你的个人研究终端。</p><button id="login">OAuth 登录</button>';
+    document.getElementById('login').onclick=startOAuth;
+    return;
+  }
+  try{
+    const who=await mcp('whoami',{},1);
+    const ps=await mcp('search_projects',{query:'庆林寺塔'},2);
+    const p=(ps.projects||[])[0];
+    if(!p)throw new Error('未找到 operational project');
+    const all=await Promise.all([
+      mcp('list_open_gates',{project_id:p.id},3),
+      mcp('search_entities',{query:'',limit:20},4),
+      mcp('search_claims',{query:'',limit:20},5)
+    ]);
+    const gates=all[0].gates||[];
+    const ents=all[1].entities||[];
+    const claims=all[2].claims||[];
+    app.innerHTML='<div class="ok"><strong>Research Terminal Online</strong></div>'+
+      '<h2>'+esc(p.title)+'</h2>'+
+      '<p>Permission <span class="pill">'+esc(who.permission)+'</span> Stage <span class="pill">'+esc(p.stage||'')+'</span> Open Gates <span class="pill">'+gates.length+'</span></p>'+
+      '<div class="grid"><div><h3>Open Gates</h3><ol>'+gates.map(x=>'<li>'+esc(x.question)+' <span class="pill">'+esc(x.gate_type||'')+'</span></li>').join('')+'</ol></div>'+
+      '<div><h3>Entities</h3><ul>'+ents.map(x=>'<li>'+esc(x.canonical_name)+' <span class="pill">'+esc(x.entity_type)+'</span></li>').join('')+'</ul></div></div>'+
+      '<h3>Claims</h3><ul>'+claims.map(x=>'<li>'+esc(x.claim_text)+' <span class="pill">'+esc(x.current_status_cache||'NO_ASSESSMENT')+'</span></li>').join('')+'</ul>'+
+      '<button id="reload">刷新</button><button class="secondary" id="logout">退出本次会话</button>';
+    document.getElementById('reload').onclick=dashboard;
+    document.getElementById('logout').onclick=()=>{sessionStorage.clear();dashboard();};
+  }catch(e){
+    app.innerHTML='<div class="error"><strong>加载失败</strong><pre>'+esc(e.message||String(e))+'</pre></div><button id="login">重新 OAuth 登录</button>';
+    document.getElementById('login').onclick=startOAuth;
+  }
+}
+dashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Terminal OAuth Consent</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;color:#171717}
+.card{border:1px solid #ddd;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+input{width:100%;box-sizing:border-box;padding:12px;margin:6px 0 10px;border:1px solid #ccc;border-radius:10px}
+button{padding:11px 16px;border:0;border-radius:10px;cursor:pointer;margin-right:8px;background:#111;color:#fff}
+.secondary{background:#eee;color:#111}.danger{background:#fee;color:#900}
+code{background:#f6f6f6;padding:2px 6px;border-radius:6px;word-break:break-all}.muted{color:#666}.error{color:#b00020}
+</style>
+</head>
+<body>
+<h1>Research Terminal OAuth</h1>
+<p class="muted">授权第三方 MCP / AI 客户端访问你的 Research Terminal。</p>
+<div id="box" class="card">正在加载…</div>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL='https://tkjuomnvossigbuvzbbq.supabase.co';
+const KEY='sb_publishable_4oC61W0KZJSF6RfDebpD8g_FBCaPns1';
+const supabase=createClient(SUPABASE_URL,KEY);
+const box=document.getElementById('box');
+const aid=new URLSearchParams(location.search).get('authorization_id');
+const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fail=e=>box.innerHTML='<div class="error">'+esc((e&&e.message)||e)+'</div>';
+async function renderLogin(){
+  box.innerHTML='<h2>登录</h2><p class="muted">登录后返回当前 OAuth 授权请求。</p><input id="email" type="email" placeholder="Email"><input id="password" type="password" placeholder="Password"><button id="signin">登录</button><button class="secondary" id="magic">发送 Magic Link</button><p id="msg" class="muted"></p>';
+  const msg=document.getElementById('msg');
+  const email=()=>document.getElementById('email').value.trim();
+  const password=()=>document.getElementById('password').value;
+  document.getElementById('signin').onclick=async()=>{
+    msg.textContent='登录中…';
+    const {error}=await supabase.auth.signInWithPassword({email:email(),password:password()});
+    if(error)return msg.textContent=error.message;
+    main();
+  };
+  document.getElementById('magic').onclick=async()=>{
+    msg.textContent='发送中…';
+    const {error}=await supabase.auth.signInWithOtp({email:email(),options:{emailRedirectTo:location.href}});
+    msg.textContent=error?error.message:'Magic Link 已发送';
+  };
+}
+async function renderConsent(){
+  if(!aid)return fail('缺少 authorization_id，请从 OAuth 客户端发起授权。');
+  const {data,error}=await supabase.auth.oauth.getAuthorizationDetails(aid);
+  if(error)return fail(error);
+  if(!data)return fail('无法读取授权详情');
+  if(!('authorization_id' in data)&&data.redirect_url){location.href=data.redirect_url;return;}
+  const scopes=(data.scope||'').split(' ').filter(Boolean);
+  box.innerHTML='<h2>授权 '+esc((data.client&&data.client.name)||'OAuth Client')+'</h2>'+
+    '<p>该客户端请求以你的身份访问 Research Terminal。</p>'+
+    '<p><strong>Redirect URI</strong><br><code>'+esc(data.redirect_uri||'')+'</code></p>'+
+    '<h3>Requested scopes</h3><ul>'+scopes.map(s=>'<li><code>'+esc(s)+'</code></li>').join('')+'</ul>'+
+    '<button id="approve">Approve</button><button class="danger" id="deny">Deny</button><button class="secondary" id="signout">退出登录</button><p id="msg" class="muted"></p>';
+  const msg=document.getElementById('msg');
+  document.getElementById('approve').onclick=async()=>{
+    msg.textContent='正在批准…';
+    const {data:out,error:err}=await supabase.auth.oauth.approveAuthorization(aid);
+    if(err)return msg.textContent=err.message;
+    location.href=out.redirect_url;
+  };
+  document.getElementById('deny').onclick=async()=>{
+    const {data:out,error:err}=await supabase.auth.oauth.denyAuthorization(aid);
+    if(err)return msg.textContent=err.message;
+    location.href=out.redirect_url;
+  };
+  document.getElementById('signout').onclick=async()=>{await supabase.auth.signOut();main();};
+}
+async function main(){
+  const {data:{user}}=await supabase.auth.getUser();
+  if(!user)return renderLogin();
+  return renderConsent();
+}
+main().catch(fail);
+</script>
+</body>
+</html>

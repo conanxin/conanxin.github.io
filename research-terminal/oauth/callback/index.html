@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Terminal OAuth Callback</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;color:#171717}
+.card{border:1px solid #ddd;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.ok{color:#087b32}.error{color:#b00020}pre{white-space:pre-wrap;word-break:break-word;background:#f6f6f6;padding:12px;border-radius:8px}
+</style>
+</head>
+<body>
+<h1>Research Terminal OAuth Callback</h1>
+<div id="box" class="card">正在完成 OAuth 2.1 PKCE token exchange…</div>
+<script>
+const BASE='https://conanxin.github.io/research-terminal';
+const CLIENT='28a4a7c6-0dbe-4d0e-9dc2-00cc1221ae61';
+const SUPABASE='https://tkjuomnvossigbuvzbbq.supabase.co';
+const p=new URLSearchParams(location.search);
+const box=document.getElementById('box');
+const code=p.get('code'),state=p.get('state'),error=p.get('error');
+const esc=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function go(){
+  if(error)throw new Error(error+': '+(p.get('error_description')||''));
+  const verifier=sessionStorage.getItem('rt_web_verifier');
+  const expected=sessionStorage.getItem('rt_web_state');
+  if(!code||!verifier||!state||state!==expected)throw new Error('OAuth callback/state/PKCE verifier 不完整');
+  const r=await fetch(SUPABASE+'/auth/v1/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'authorization_code',code,client_id:CLIENT,redirect_uri:BASE+'/oauth/callback/',code_verifier:verifier})});
+  const t=await r.json();
+  if(!r.ok)throw new Error(t.error_description||t.msg||JSON.stringify(t));
+  sessionStorage.setItem('rt_web_access',t.access_token);
+  if(t.refresh_token)sessionStorage.setItem('rt_web_refresh',t.refresh_token);
+  sessionStorage.setItem('rt_web_expires_at',String(Date.now()+Number(t.expires_in||3600)*1000));
+  sessionStorage.removeItem('rt_web_verifier');
+  sessionStorage.removeItem('rt_web_state');
+  box.innerHTML='<div class="ok"><strong>OAuth 登录成功</strong></div><p>正在进入 Research Terminal…</p>';
+  setTimeout(()=>location.href=BASE+'/',400);
+}
+go().catch(e=>box.innerHTML='<div class="error"><strong>OAuth callback 失败</strong><pre>'+esc(e.message||String(e))+'</pre></div>');
+</script>
+</body>
+</html>

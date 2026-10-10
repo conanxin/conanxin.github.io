@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>易水專題研究 · R4.3 文本证据逐句比对 (R4.2 歷史阻斷記錄保留) — 《水經注》易水版本對照</title>
-<meta name="description" content="WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION · 對 R4.2 已 ACCESS_BLOCKED 的 3 個 real-URL 來源, R4.3 用更正的 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 真實打開並逐句比對. 本頁面展示 18 條 records (CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2) + Claim 011 方向性誤讀修正 + Claim 012 四組 VERSION_VARIANT_CANDIDATES. R4.2 ACCESS_BLOCKED 記錄作為歷史阻斷記錄保留.">
+<meta name="description" content="WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION · 對 R4.2 已 ACCESS_BLOCKED 的 3 個 real-URL 來源, R4.3 用更正的 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 真實打開並逐句比對. 本頁面展示 18 條 records (R4.3A 勘誤後 ground truth: CORROBORATES=10, VARIANT=5, INCONCLUSIVE_DIRECTION=3) + Claim 011 方向性誤讀修正 + Claim 012 四組 VERSION_VARIANT_CANDIDATES. R4.3A 新增 12 頁 Cabinet Library / 內閣文庫 / 明 吳琯 校 底本影像 AI 多模態視覺辨識結果 (PRIMARY_IMAGES_LOCATED=12, REVIEWED=4). R4.2 ACCESS_BLOCKED 記錄作為歷史阻斷記錄保留.">
 <link rel="stylesheet" href="../../style.css">
 <style>
 :root {
@@ -430,14 +430,120 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   </div>
 </section>
 
+<!-- ============ R4.3A 勘誤開始 ============ -->
+<section class="wc-section wc-r43a-band" id="sec-r43a-errata">
+  <h2 class="wc-h2 r43a">八、R4.3A 統計勘誤 + 底本影像定位 (errata overlay)</h2>
+
+  <div class="wc-disclosure">
+    <strong>R4.3A 任務：</strong>纠正 R4.3 摘要區塊統計 + 找回已有 Cabinet Library 掃描圖 + Claim 011/012 最新證據狀態。<br>
+    <strong>R4.3A overlay 立場：</strong>R4.3 凍結 JSON (<code>69c396d</code>) <strong>未修改</strong>; 本節以独立 overlay 形式呈現勘誤結果。
+  </div>
+
+  <h3 class="wc-h3">8.1 統計勘誤（records[] 重新聚合）</h3>
+  <table class="wc-table">
+    <thead>
+      <tr><th>字段</th><th>R4.3 上報值</th><th>R4.3A ground truth</th><th>差異</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>PASSAGES_COMPARED</code></td><td>18</td><td>18</td><td>✓ 一致</td></tr>
+      <tr><td><code>CORROBORATES</code></td><td>8</td><td><strong>10</strong></td><td>-2</td></tr>
+      <tr><td><code>VARIANT</code> / <code>VARIANTS</code></td><td>8</td><td><strong>5</strong></td><td>-3</td></tr>
+      <tr><td><code>CONTRADICTIONS</code></td><td>0</td><td>0</td><td>✓ 一致</td></tr>
+      <tr><td><code>INCONCLUSIVE</code> / <code>INCONCLUSIVE_DIRECTION</code></td><td>2</td><td><strong>3</strong></td><td>-1</td></tr>
+      <tr><td>合計</td><td>18</td><td>18</td><td>✓ 數量級正確</td></tr>
+    </tbody>
+  </table>
+  <p>R4.3 <code>verification_summary</code> 使用 <code>VARIANTS=8</code> + <code>INCONCLUSIVE=2</code> 的加總分組; R4.3 <code>records[]</code> 實際使用單數 <code>VARIANT</code> 與長籥名 <code>INCONCLUSIVE_DIRECTION</code>。R4.3A 採用 literal key 重新分組為 ground truth。</p>
+
+  <h3 class="wc-h3">8.2 底本影像定位（PRIMARY_IMAGES_LOCATED）</h3>
+  <p>R4 影像審查記錄 (<code>data/yishui_image_review_r4.json</code>, R4 frozen <code>582c852</code>) 列出 12 個 page_object_id 影像, 位於 <code>/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1654.jpg</code> ~ <code>pid1683.jpg</code>。R4.3A 精確路徑檢查:</p>
+  <ul>
+    <li><strong>PRIMARY_IMAGES_LOCATED = 12</strong> (全部 pid1654-pid1662 + pid1681-pid1683 存在, 252K-368K bytes each, 2026-09-28 mtimes)</li>
+    <li><strong>底本身份</strong> (依 R4 image review JSON <code>source_metadata</code>):
+      <ul>
+        <li>機構: 国立公文書館 (National Archives of Japan, 内閣文庫)</li>
+        <li>索書號: 漢2355 / 函291 / 冊14(5)</li>
+        <li>版本: <strong>明 吳琯 校《水經注》卷之十一</strong> (Wu Guan collated edition)</li>
+        <li>序文題署 (AI 視覺確認): 「漢桑欽撰　後魏酈道元注　明吳琯校」</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3 class="wc-h3">8.3 AI 影像複核（PRIMARY_IMAGES_REVIEWED = 4）</h3>
+  <div class="wc-disclosure">
+    <strong>AI 視覺披露：</strong>本小節所有影像辨識結果均由 OpenClaw 多模態視覺 (view_image 工具) 自動辨識, <strong>非人眼專家审定</strong>。可能受印本漫漶、異字異形、繁簡差異、AI 幻覺影響。不確定字皆以 <code>?</code> 標記或於 NOTES 中明列。
+  </div>
+
+  <table class="wc-table">
+    <thead>
+      <tr><th>pid</th><th>AI 視覺確認字面</th><th>異文候選含義</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pid1655</code></td>
+        <td>「易水出涿郡故安縣<strong>閻</strong>鄉西山」</td>
+        <td>CORROBORATES (閻字清晰, 與外部三源一致)</td>
+      </tr>
+      <tr>
+        <td><code>pid1657</code></td>
+        <td>大字標題「東過范陽縣南, 又東過<strong>容城</strong>縣南」; 正文「漢景帝中元年封匈奴降王<strong>代</strong>爲侯國」</td>
+        <td>CORROBORATES + <strong>V02 代 (V not 信)</strong></td>
+      </tr>
+      <tr>
+        <td><code>pid1659</code></td>
+        <td>「又東合易水而注巨馬水」+ 「易水與諸水<strong>互攝通稱</strong>」+ 「容城縣西北<strong>大利亭</strong>」</td>
+        <td>CORROBORATES (三術語全確認)</td>
+      </tr>
+      <tr>
+        <td><code>pid1661</code></td>
+        <td>易京城方位「<strong>在易城西四五里</strong>」; 深澤「封趙將<strong>夜</strong>於容城皆為侯國」; 容城「匈奴降王<strong>攜徐盧</strong>於容城」; 「景帝<strong>中元三年</strong>」</td>
+        <td>易京方位 CORROBORATES (跨句一致: 易京在易水之北); <strong>V01 中元三年 (V not 中二年)</strong>; <strong>V03 夜 (V not 夕/某)</strong>; <strong>V04 攜徐盧 (Cabinet Library 用此; Wikisource 校記「唯」為古)</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="wc-h3">8.4 Claim 011 / Claim 012 最新證據狀態</h3>
+  <p><strong>Claim 011 (易京方向):</strong> 語法層「逕Y南」+ Cabinet Library 影像「在易城西四五里」跨句一致指向「<strong>易京在易水之北</strong>」. R4.3A 仍列 INCONCLUSIVE_DIRECTION (因 AI 多模態視覺 ≠ 人眼專家审定). 不寫「易京位於易水之南」.</p>
+  <p><strong>Claim 012 (四組 VERSION_VARIANT_CANDIDATES):</strong> Cabinet Library 影像 + 外部三源 + 校記優先級全部登記, <strong>不作最終裁判</strong>。R4.3A spec §C「沒有足够證據時保留異文並列, 不作最終裁判」。</p>
+
+  <h3 class="wc-h3">8.5 R4.3A 新增檔案</h3>
+  <ul>
+    <li><span class="wc-cite">data/yishui_passage_comparison_errata_r4_3a.json</span> (10060 B · R4.3 frozen JSON overlay, NOT overwrite)</li>
+    <li><span class="wc-cite">source/YISHUI_TEXTUAL_WITNESS_ERRATA_R4_3A.md</span> (13434 B · 7 段勘誤記錄)</li>
+  </ul>
+
+  <h3 class="wc-h3">8.6 R4.3A 完成門檻</h3>
+  <table class="wc-table">
+    <tbody>
+      <tr><td><code>PASSAGE_VERIFIED_SOURCES</code></td><td>2</td></tr>
+      <tr><td><code>SOURCE_WITNESSES_IDENTIFIED</code></td><td>3 (R4.3) + 1 (Cabinet Library) = <strong>4</strong></td></tr>
+      <tr><td><code>PASSAGES_COMPARED</code></td><td>18</td></tr>
+      <tr><td><code>CORROBORATES</code></td><td><strong>10</strong> (R4.3A ground truth)</td></tr>
+      <tr><td><code>VARIANTS</code></td><td><strong>5</strong> (R4.3A ground truth)</td></tr>
+      <tr><td><code>CONTRADICTIONS</code></td><td>0</td></tr>
+      <tr><td><code>INCONCLUSIVE</code></td><td><strong>3</strong> (R4.3A ground truth)</td></tr>
+      <tr><td><code>CLAIM_011_CORRECTED</code></td><td><strong>DIRECTION_CORRECTED</strong> (overlay, 未覆寫 R4.1)</td></tr>
+      <tr><td><code>CLAIM_012_RECHECKED</code></td><td><strong>4_VERSION_VARIANT_CANDIDATES_R4_3A</strong></td></tr>
+      <tr><td><code>PRIMARY_IMAGES_LOCATED</code></td><td><strong>12</strong> (R4 image review JSON)</td></tr>
+      <tr><td><code>PRIMARY_IMAGES_REVIEWED</code></td><td><strong>4</strong> (AI vision: pid1655/1657/1659/1661)</td></tr>
+      <tr><td><code>CLAIMS_CHANGED</code></td><td>0 (R4.3A 不覆寫 R4.1 claim_text_revised, 仅作 overlay)</td></tr>
+      <tr><td><code>REAL_WORLD_LOCATION</code></td><td>UNRESOLVED (古籍文本記載 ≠ 現代地理事實)</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>硬邊界：</strong><code>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0</code></p>
+  <p><strong>R4.3 凍結 preserved:</strong> R4.3 JSON md5 = <code>0a7474c0e8a0288832b4218d2d5d2afb</code> (21748 bytes, 未變更)</p>
+</section>
+<!-- ============ R4.3A 勘誤結束 ============ -->
+
 <footer class="wc-footer">
-  <p><strong>WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION</strong> · R4.2 之上的真實逐句核驗層</p>
-  <p>本輪 3 個外部 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 全部 HTTP 200, 寫入 18 條 records</p>
+  <p><strong>WATER_CLASSIC_R4_3_TEXTUAL_WITNESS_VERIFICATION</strong> + <strong>R4.3A_EVIDENCE_RECONCILIATION</strong> · R4.2 之上的真實逐句核驗層 + R4.3 之上的勘誤 overlay</p>
+  <p>R4.3: 3 個外部 URL (Wikisource /11 + Wikisource 四部叢刊本 + 識典古籍 山水二經合刻) 全部 HTTP 200, 寫入 18 條 records · R4.3A: 統計勘誤 + Cabinet Library 影像 AI 視覺複核 4 頁 (pid1655/1657/1659/1661)</p>
   <p>硬邊界：<code>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0</code></p>
-  <p>R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · R42_DATA_PRESERVED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
+  <p>R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · R42_DATA_PRESERVED=true · R43_FROZEN_OVERWRITTEN=false · R43A_AI_DISCLOSED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
   <p><a href="../../../">/projects/shuge/</a> · <a href="../../">/projects/shuge/research/water-classic/</a> · <a href="../">/yishui/</a></p>
-  <p style="margin-top: 1rem; color: #888;">生成時間: 2026-10-10 19:10 GMT+8 · 用戶授權: 18:38:26 · 完成後停止 · 不進入 R5</p>
-  <p style="margin-top: 0.5rem; color: #888;">R4.2 ACCESS_BLOCKED 歷史記錄保留於頁面 §七 · R4.3 新增內容見 §一-§六</p>
+  <p style="margin-top: 1rem; color: #888;">生成時間: R4.3 = 2026-10-10 19:10 GMT+8 · R4.3A = 2026-10-10 19:25 GMT+8 · 完成後停止 · 不進入 R5</p>
+  <p style="margin-top: 0.5rem; color: #888;">R4.2 ACCESS_BLOCKED 歷史記錄保留於頁面 §七 · R4.3 新增內容見 §一-§六 · R4.3A 勘誤見 §八</p>
 </footer>
 
 </body>

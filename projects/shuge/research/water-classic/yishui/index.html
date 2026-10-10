@@ -83,7 +83,7 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   <a href="#sec-claims">Claims</a>
   <a href="#sec-uncertainty">不確定性</a>
   <a href="#sec-sources">來源</a>
-  <a href="./sources/">R4.3 文本核驗 + R4.2 歷史阻斷</a>
+  <a href="./sources/">R4.3A 勘誤 + R4.3 文本核驗 + R4.2 歷史阻斷</a>
   <a href="../">返回專題</a>
 </nav>
 
@@ -98,6 +98,7 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
   <p class="wc-meta">
     任務: <span class="wc-cite">WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT</span>
     &nbsp;|&nbsp; 階段: <strong>R4.1 · publication-level scholarly audit</strong>
+    <span class="badge r43a">R4.3A 勘誤</span>
     &nbsp;|&nbsp; 生成: 2026-09-28 18:05 GMT+8
     &nbsp;|&nbsp; <a href="../">/projects/shuge/research/water-classic/</a> →
     <a href="./">/yishui/</a>
@@ -146,6 +147,7 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
       <h4><span class="num">2</span>範陽-容城「東過」連續動詞</h4>
       <span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span>
       <p>pid1657 大字標題「<em>東過范陽縣南又東過容城縣南</em>」明確將兩縣串連；同樣結構亦出現於 pid1682 巨馬水章大字標題（不同水系）。<br><small>→ R4-YSH-001 · SHUGE:p124575:1657</small></p>
+      <p class="wc-meta-r43a"><strong>R4.3A 補強：</strong> Cabinet Library / 內閣文庫 / 明 吳琯 校 底本影像 (pid1657) AI 視覺確認大字標題 = 「東過范陽縣南, 又東過<strong>容城</strong>縣南」(容城, 不是容成); 正文「漢景帝中元年封匈奴降王<strong>代</strong>爲侯國」— V02 (代/信) 底本影像字面 = <strong>代</strong>。詳見 <a href="./sources/#sec-r43a-errata">yishui/sources §八</a>。</p>
     </div>
 
     <div class="wc-finding">
@@ -164,6 +166,7 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
       <h4><span class="num">5</span>易京城位置：部分文本推論</h4>
       <span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span>
       <p>「易京城在易水之南」由 pid1661「<em>易水又東逕易京南</em>」直接支持；但「範陽以東、容城以西」並非 pid1661 直接陳述，而是基於 pid1657 大字標題之文本順序推論。<br><small>→ R4-YSH-011 (CLAIM_011_REVISED=true)</small></p>
+      <p class="wc-meta-r43a"><strong>R4.3A 方向性修正 (overlay, 未覆寫 R4.1):</strong> 「易水又東逕易京南」句法 = 易水從易京南側流過 = <strong>易京在易水之北</strong>. Cabinet Library 影像 pid1661 跨句一致指向「易京城<strong>在易城西四五里</strong>」. R4.1 將「逕易京南」解讀為「易京城在易水之南」屬方向性誤讀。R4.3A 不寫「易京位於易水之南」。CLAIM_011_CORRECTED = DIRECTION_CORRECTED. REAL_WORLD_LOCATION = UNRESOLVED.</p>
     </div>
   </div>
 
@@ -353,6 +356,12 @@ body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-fa
     <span class="wc-tag text-reports">TEXT_REPORTS</span>
     <div class="wc-excerpt">易水東逕容城縣故城南，漢高帝六年封趙將夕於<strong>深澤</strong>，景帝中元三年以封匈奴降王攜徐盧於<strong>容城</strong>，皆爲侯國，王莽更名深澤。</div>
     <p><span class="wc-cite">SHUGE:p124575:1661</span> &nbsp;|&nbsp; <small>→ R4-YSH-012 (CLAIM_012_CORRECTED=true) · <strong>深澤 ≠ 容城</strong></small></p>
+      <p class="wc-meta-r43a"><strong>R4.3A 四組 VERSION_VARIANT_CANDIDATES (overlay, 未作最終裁判):</strong><br>
+      V01 範陽封國時間: 中二年 (Wikisource 整理版 + 四部叢刊本明抄校記為正) vs 中元三年 (山水二經合刻 + R4.1 LOCAL_OCR + Cabinet Library pid1661 後半)<br>
+      V02 範陽受封降王: <strong>代</strong> (Cabinet Library pid1657 + 3 外部源全共識) vs 信 (R4.1 LOCAL_OCR, 疑 OCR 誤讀)<br>
+      V03 深澤趙將姓名: <strong>夜</strong> (Cabinet Library pid1661 + Wikisource 兩版 + 《漢書》佐證) vs 夕 (山水二經合刻) vs 某 (R4.1 LOCAL_OCR 不確定替代)<br>
+      V04 容城降王姓名: 唯徐盧 (Wikisource 整理版 + 四部叢刊本明抄校記為正) vs 攜徐盧 (Cabinet Library pid1661 + 山水二經合刻 + R4.1 LOCAL_OCR) vs 撅徐盧 (陳橋驛校證 2007, R4.3A 暫未驗證)<br>
+      <strong>CLAIM_012_RECHECKED = 4_VERSION_VARIANT_CANDIDATES_R4_3A</strong>. 詳見 <a href="./sources/#sec-r43a-errata">yishui/sources §八.4</a>.</p>
   </div>
 </section>
 

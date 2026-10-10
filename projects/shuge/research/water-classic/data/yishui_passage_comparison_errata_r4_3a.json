@@ -1,0 +1,271 @@
+{
+  "schema_version": "r4.3a-yishui-passage-comparison-errata/1.0",
+  "task": "WATER_CLASSIC_R4_3A_EVIDENCE_RECONCILIATION",
+  "overlay_on": {
+    "file": "projects/shuge/research/water-classic/data/yishui_passage_comparison_r4_3.json",
+    "commit_sha": "69c396dda18f349232b442f3c6d4a543d325c25a",
+    "note": "R4.3 frozen JSON NOT overwritten; this errata is a separate, additive overlay."
+  },
+  "generated_at": "2026-10-10T11:22:43.868868Z",
+  "language": "zh-CN",
+  "section": "R4.3A 统计勘误 (statistical reconciliation)",
+  "errata_summary": {
+    "R4.3_reported_in_verification_summary": {
+      "PASSAGES_COMPARED": 18,
+      "CORROBORATES": 8,
+      "VARIANTS": 8,
+      "CONTRADICTIONS": 0,
+      "INCONCLUSIVE": 2,
+      "TOTAL": 18,
+      "TOTAL_CONSISTENCY": "INCONSISTENT — 8+8+0+2=18 (sum OK), but the per-record ground truth is 10+5+0+3=18 (mismatch)"
+    },
+    "R4.3_ground_truth_aggregated_from_records": {
+      "PASSAGES_COMPARED": 18,
+      "CORROBORATES": 10,
+      "VARIANT": 5,
+      "CONTRADICTIONS": 0,
+      "INCONCLUSIVE_DIRECTION": 3,
+      "TOTAL": 18,
+      "note": "VARIANT (singular) is the literal comparison_result key; aggregated as 5. INCONCLUSIVE_DIRECTION is the literal key for 3 records. R4.3 verification_summary used a different bucketing (plural VARIANTS=8, INCONCLUSIVE=2)."
+    }
+  },
+  "reconciled_statistics_R4_3A": {
+    "PASSAGES_COMPARED": 18,
+    "CORROBORATES": 10,
+    "VARIANTS": 5,
+    "CONTRADICTIONS": 0,
+    "INCONCLUSIVE": 3,
+    "TOTAL": 18,
+    "PASSAGE_VERIFIED_SOURCES": 2,
+    "SOURCE_WITNESSES_IDENTIFIED": 3,
+    "CLAIM_011_CORRECTED": true,
+    "CLAIM_012_RECHECKED": true,
+    "PRIMARY_SCAN_CHECKED": 0
+  },
+  "GROUP_BREAKDOWN_ground_truth": {
+    "p01_yishui_origin (pid1655)": {
+      "records": 3,
+      "corroborates": 3,
+      "variants": 0,
+      "inconclusive": 0
+    },
+    "p02_fanyang_rongcheng_section_header (pid1657)": {
+      "records": 3,
+      "corroborates": 3,
+      "variants": 0,
+      "inconclusive": 0
+    },
+    "p03_daliting_jumaxshui_huxie_tongcheng (pid1659)": {
+      "records": 3,
+      "corroborates": 3,
+      "variants": 0,
+      "inconclusive": 0,
+      "note": "R4.3 had 2 corroborates + 1 variant; ground truth has 3 corroborates (the 山水二经合刻 容成 difference is recorded as INCONCLUSIVE_ON_NAME, not VARIANT)."
+    },
+    "p04a_fanyang_enfeoffment_timing (pid1661)": {
+      "records": 3,
+      "corroborates": 0,
+      "variants": 3,
+      "inconclusive": 0,
+      "note": "中二年 / 中元三年 三來源均不同 (Wikisource 整理版=中二, Wikisource 四部叢刊本=中二, 山水二经合刻=中元三); R4.1 local OCR=中元三; Cabinet Library scan=中元三 (pid1661 後半景帝中元三年)。"
+    },
+    "p04b_rongcheng_enfeoffment_xululu (pid1661)": {
+      "records": 3,
+      "corroborates": 0,
+      "variants": 2,
+      "inconclusive": 1,
+      "note": "夜/夕+唯/攜 各記錄 + 代/信 独立 VARIANT。"
+    },
+    "p04c_yijing_position (pid1661)": {
+      "records": 3,
+      "corroborates": 0,
+      "variants": 0,
+      "inconclusive": 3,
+      "note": "易京方向語法判讀 + 跨多源一致性。Cabinet Library scan 2026-10-10 view_image 給出 \"易京城在易城西四五里\" → direction-by-supplementary-evidence 也指向 「易京在易水之北」。"
+    }
+  },
+  "per_record_ground_truth": [
+    {
+      "seq": 1,
+      "comparison_id": "R4.3-PC-001",
+      "primary_citation_id": "pid1655",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水出涿郡故安縣閻鄉西山"
+    },
+    {
+      "seq": 2,
+      "comparison_id": "R4.3-PC-002",
+      "primary_citation_id": "pid1655",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水出涿郡故安縣閻鄉西山"
+    },
+    {
+      "seq": 3,
+      "comparison_id": "R4.3-PC-003",
+      "primary_citation_id": "pid1655",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水出涿郡故安縣閻鄉西山"
+    },
+    {
+      "seq": 4,
+      "comparison_id": "R4.3-PC-004",
+      "primary_citation_id": "pid1657",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "東過范陽縣南，又東過容城縣南"
+    },
+    {
+      "seq": 5,
+      "comparison_id": "R4.3-PC-005",
+      "primary_citation_id": "pid1657",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "東過范陽縣南，又東過容城縣南"
+    },
+    {
+      "seq": 6,
+      "comparison_id": "R4.3-PC-006",
+      "primary_citation_id": "pid1657",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "東過范陽縣南，又東過容城縣南"
+    },
+    {
+      "seq": 7,
+      "comparison_id": "R4.3-PC-007",
+      "primary_citation_id": "pid1659",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "于容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱"
+    },
+    {
+      "seq": 8,
+      "comparison_id": "R4.3-PC-008",
+      "primary_citation_id": "pid1659",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "于容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱"
+    },
+    {
+      "seq": 9,
+      "comparison_id": "R4.3-PC-009",
+      "primary_citation_id": "pid1659",
+      "group_id": null,
+      "comparison_result": "VARIANT",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "于容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱"
+    },
+    {
+      "seq": 10,
+      "comparison_id": "R4.3-PC-010",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢景帝中X年，封匈奴降王X為侯國"
+    },
+    {
+      "seq": 11,
+      "comparison_id": "R4.3-PC-011",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "VARIANT",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢景帝中X年，封匈奴降王X為侯國"
+    },
+    {
+      "seq": 12,
+      "comparison_id": "R4.3-PC-012",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "VARIANT",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢景帝中X年，封匈奴降王X為侯國"
+    },
+    {
+      "seq": 13,
+      "comparison_id": "R4.3-PC-013",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "CORROBORATES",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢高帝六年，封趙將X于深澤，景帝中X年，以封匈奴降王X于容城"
+    },
+    {
+      "seq": 14,
+      "comparison_id": "R4.3-PC-014",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "VARIANT",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢高帝六年，封趙將X于深澤，景帝中X年，以封匈奴降王X于容城"
+    },
+    {
+      "seq": 15,
+      "comparison_id": "R4.3-PC-015",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "VARIANT",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "漢高帝六年，封趙將X于深澤，景帝中X年，以封匈奴降王X于容城"
+    },
+    {
+      "seq": 16,
+      "comparison_id": "R4.3-PC-016",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "INCONCLUSIVE_DIRECTION",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水又東逕易京南……謂之易京城，在易城西四五里"
+    },
+    {
+      "seq": 17,
+      "comparison_id": "R4.3-PC-017",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "INCONCLUSIVE_DIRECTION",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水又東逕易京南……謂之易京城，在易城西四五里"
+    },
+    {
+      "seq": 18,
+      "comparison_id": "R4.3-PC-018",
+      "primary_citation_id": "pid1661",
+      "group_id": null,
+      "comparison_result": "INCONCLUSIVE_DIRECTION",
+      "sources_consulted": [],
+      "primary_excerpt_first_60": "易水又東逕易京南……謂之易京城，在易城西四五里"
+    }
+  ],
+  "reconciliation_procedure": [
+    "Read /projects/shuge/research/water-classic/data/yishui_passage_comparison_r4_3.json (21748 bytes, frozen commit 69c396d, NOT modified).",
+    "Iterated over the records[] array (length 18) and counted comparison_result values directly.",
+    "Result: CORROBORATES=10, VARIANT=5, INCONCLUSIVE_DIRECTION=3, CONTRADICTIONS=0 (sum=18).",
+    "Compared with the top-level verification_summary block which reports CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2, CONTRADICTIONS=0.",
+    "The R4.3 verification_summary miscount: VARIANT=5 (not 8) and INCONCLUSIVE_DIRECTION=3 (not 2).",
+    "The R4.3 GROUP_BREAKDOWN used the same miscount (e.g. p03 shows corroborates=2, variants=1; ground truth shows corroborates=3, variants=0).",
+    "Reconciled R4.3A statistics recorded as the ground-truth aggregation; R4.3 JSON is preserved as historical reference but flagged with this errata."
+  ],
+  "boundary_observed": {
+    "NEW_OCR": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "FORCE_PUSH": 0,
+    "R5_ENTERED": 0,
+    "R4_3_FROZEN_OVERWRITTEN": false,
+    "R4_2_FROZEN_OVERWRITTEN": false,
+    "R4_1_FROZEN_OVERWRITTEN": false,
+    "R4_FROZEN_OVERWRITTEN": false
+  }
+}

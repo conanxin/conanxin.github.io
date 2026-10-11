@@ -132,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/']
           result=[]
           for path in paths:
               error=None
@@ -142,7 +142,16 @@ jobs:
                       with urllib.request.urlopen(request,timeout=25) as response:
                           body=response.read().decode('utf-8')
                           assert response.status==200
-                          assert 'data-site-theme="unified-v1"' in body,'reader theme not in public response'
+                          native=(path=='/projects/wbw-spacex-mars-cn/')
+                          theme='project-native' if native else 'unified-v1'
+                          assert 'data-site-theme="'+theme+'"' in body,'reader theme not in public response'
+                          if native:
+                              assert 'data-theme="deep-space"' in body,'Mars HTML native theme missing'
+                              assert 'href="#main"' in body,'Mars skip link missing'
+                              assert not re.search(r'<body\b[^>]*\bsite-unified\b',body),'Mars global theme leaked'
+                          if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
+                              assert 'TEMPLATE_' not in body,'template placeholder published'
+                              assert 'id="evidence"' in body and 'id="citation"' in body,'evidence structure missing
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.4 (2026-10-11，Stage 2D 已经完成并生产验收)
+> **版本**: 1.5 (2026-10-12，Stage 2E 外部候选来源对照与索引边界)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -231,3 +231,16 @@
 ## 13. Stage 2E 的设计边界（未执行）
 
 下一阶段若扩大自动发现范围，应优先完善已有页面的明确分类字段、路径收录边界及来源质量标签。搜索目前仅覆盖本地公开 HTML 的**标题与简介**，不能将 `/content-index/` 称为全文搜索、研究数据库或文献可靠性裁决服务。旧版 `posts/index.html`、`projects/index.html` 的手工内容未在 Stage 2D 重写；将来如调整，须独立 PR 核对筛选与导航行为。冻结的 SHUGE v0.7 JSON 不应被自动索引步骤修订、推断正式作品名或补录未经核实的作者/年份。
+
+
+---
+
+## 14. Stage 2E · 外部书格候选来源与内容索引准入规则
+
+> 本节的代码与页面首先通过独立 PR 检验，**只有合并到 main 并收到 Pages 正式验收回执后才算上线**。
+
+- `projects/site-design-lab/shuge-source-crosswalk/index.html` 是新建的 `reference` 分类公开读者页，配套 `crosswalk.json` 记录 3 条 work_id 的状态，而非修改冻结书目。
+- VERIFIED / UNVERIFIED / NOT_FOUND 是**逐层证据状态**：外部书格作品网页的存在不自动验证 numeric ID 一对一对应关系；本轮没找到直接 ID 映射不代表不存在；馆藏机构自身目录记录仍待核。
+- `scripts/content_index.py` 继续以已成功构建的公开页面作为候选；除了已有 `public_route()` 外，在精选索引准入环节追加**路径硬拒绝**：`drafts/`、`future/`、`src/`、`connections/`、`research-terminal/`、`source/`、`sources/`、`work/`、`works/`、`reports/`、`backups/`、历史 `projects/shuge-exhibition-v0.*`。即使页面 meta 标有 `site-index-kind` 也不会自动晋级为精选内容。
+- 这个拒绝机制只控制 `/content-index/` 和关联 JSON 的收录，不删除已有历史页面、也不改变原 GitHub Pages 对源文件路径的发布行为。
+- 公共索引是**发现导航**，不是新的全文搜索、自动版本鉴定或研究成果审核工具。若日后确需收录更多长尾研究内容，先建立来源与草稿排除的允许列表，再提交独立 PR。

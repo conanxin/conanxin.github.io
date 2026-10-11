@@ -210,10 +210,11 @@ def transform(html, path):
     if re.match(r'projects/shuge-exhibition-v0\.',path):
         history='<p class="site-snapshot-note">历史展览版本：保留原阶段内容与数据。<a href="/projects/shuge-exhibition-v1.0/">查看当前展览</a></p>'
     anchor='' if kind=='special' else '<div id="site-main-start" tabindex="-1"></div>'
-    top=nav_header(path)+crumbs+anchor+heading+history
+    catalog_shortcut=('<p class="site-catalog-shortcut"><a class="site-link" href="/content-index/">查看自动内容索引 →</a></p>' if path in {'posts/index.html','projects/index.html'} else '')
+    top=nav_header(path)+crumbs+anchor+heading+history+catalog_shortcut
     if kind=='utility':top+='<div class="site-utility-body">'
     footer=('<div class="site-footer"><div class="site-footer__inner"><span>Xin Conan · 记录思考与实验</span><div class="site-footer__links">'
-      '<a href="/site-map/">站点目录</a><a href="/feed.xml">RSS 订阅</a><a href="mailto:hello@xin-conan.me">联系</a><a href="https://github.com/conanxin/conanxin.github.io">GitHub</a></div></div></div>')
+      '<a href="/site-map/">站点目录</a><a href="/content-index/">内容索引</a><a href="/feed.xml">RSS 订阅</a><a href="mailto:hello@xin-conan.me">联系</a><a href="https://github.com/conanxin/conanxin.github.io">GitHub</a></div></div></div>')
     if kind=='utility':footer='</div>'+footer
     # The SpaceX long-form reader owns its theme, layout and reading modes.
     # Keep the shared brand chrome and identity, but avoid site-unified's
@@ -259,7 +260,7 @@ def build(root,output):
     for p in files:
         rel=p.relative_to(root)
         if p.is_symlink() or any(x in {'.git','.github','.cursor','.site-build','node_modules','__pycache__','templates'} for x in rel.parts) or output in p.parents:continue
-        if rel.as_posix() in {'scripts/build_site.py','scripts/verify_site_browser.py'}:continue
+        if rel.as_posix() in {'scripts/build_site.py','scripts/verify_site_browser.py','scripts/content_index.py'}:continue
         dest=output/rel
         if not output.exists(): output.mkdir(parents=True, exist_ok=True)
         dest.parent.mkdir(parents=True, exist_ok=True)

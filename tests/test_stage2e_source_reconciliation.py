@@ -66,7 +66,7 @@ class SourceReconciliationTests(unittest.TestCase):
         self.assertIn("0/3", self.crosswalk["conclusions"])
 
     def test_status_is_scoped_not_propagated_to_original_scan(self):
-        self.assertIn("不能", self.crosswalk["status_definitions"]["NOT_FOUND"])
+        self.assertIn("不等于", self.crosswalk["status_definitions"]["NOT_FOUND"])
         for row in self.crosswalk["rows"]:
             self.assertNotEqual(row["institution_catalog_item"]["status"], "VERIFIED")
             self.assertNotEqual(row["snapshot_consistency"]["status"], "VERIFIED")

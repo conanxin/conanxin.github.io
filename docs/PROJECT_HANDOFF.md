@@ -20,15 +20,15 @@
 
 - **Stage 2B 工作分支**：`review/stage2b-mars-theme-isolation`，目标为修复 `projects/wbw-spacex-mars-cn/index.html` 的原生深空/火星沙阅读主题被全站 `site-unified` 强制覆盖的问题。
 - 修改 `scripts/build_site.py`：只对该精确入口使用 `special` / `project-native`，不注入 `site-unified`，但保留共享品牌导航、跳过链接、面包屑、页脚和身份规范化；表格保持专题原始结构。
-- `assets/site/design.css` 仅新增外围共享导航的专题焦点样式和脚注长 URL 断行（手机横向溢出修复），不修改全站 token，也不改任何原始 URL。
+- `assets/site/design.css` 仅新增外围共享导航焦点样式及专题内容长 URL 断行：包括 `.footnote-body`、`.main a[href^="http://"]`、`.main a[href^="https://"]`。修复手机横向溢出，不改全站 token、原文或任何原始 URL。
 - `tests/test_spacex_theme.py` 与 `scripts/verify_site_browser.py` 分别覆盖构建不变式和两种配色/阅读模式的 1440px/390px 浏览器交互。
 - 更新 `docs/SPACEX_BROWSER_AUDIT.md`、`docs/SITE_DESIGN.md`、`AGENTS.md`，消除 Stage 2A 前的过时操作说明。
 - **不修改** `projects/wbw-spacex-mars-cn/` 目录内正文、代码、样式、图像，或专题 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`。
 
 ## 4. 验收 Gate
 
-1. 开独立 PR 指向 `main`，等待 `pr-checks`：全量 Python unittest + build/personalize + Playwright。
-2. 查看 `pr-check-screenshots`（桌面 1440 / 手机 390）中深空主题；确认切换火星沙/深空、沉浸/注释正常，页面无破损或 JS 错误。
+1. **PR #12 已打开**：`https://github.com/conanxin/conanxin.github.io/pull/12`，基于独立分支。代码版本 `b8ca9a17` 的 Actions Run `38141749146` 全绿：19/19 Python unittest、32/32 Playwright，其他网站样例无异常。
+2. **截图和交互已核查**：`pr-check-screenshots` 的 1440px / 390px 火星专题首屏保持原生深空风格；深空↔火星沙、沉浸↔注释正常，JS 错误为 0。移动端 scrollWidth 从 724px 降到 395px（390px 视口，5px 容差内）；后续文档提交须等待最新版 PR checks 完成。
 3. 仅在 PR 通过并审阅后合并；**本交接文档的分支工作状态不等同于生产上线**。
 4. 合并后再验证 `main` 的正式 Pages 工作流与公网页面。
 

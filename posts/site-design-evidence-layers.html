@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究网站为何需要分开正文、证据与技术日志 · Conan Xin</title>
+<meta name="description" content="基于 Conan Xin 数字花园的真实改造记录，讨论统一设计、来源可追溯性与技术执行记录的分层方法。">
+<style>
+/* 局部样式：仅作用于本页 article 元素, 不影响全局。*/
+main article.template-article { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-article > section { margin-block: 28px; }
+main article.template-article .evidence-list { background: #f1f0e9; border: 1px solid var(--site-line); padding: 14px 20px; border-radius: 4px; }
+main article.template-article .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+main article.template-article .citation-list li { margin-block: 6px; }
+main article.template-article .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+main article.template-article .tech-log summary { color: var(--site-muted); }
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-article">
+<h1>研究网站为何需要分开正文、证据与技术日志</h1>
+<p class="site-heading-lead">一则基于 2026 年 10 月 11 日实际 GitHub 提交与验收记录的方法笔记。</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">简介</h2>
+<p>数字研究网站不只有浏览体验，还承担保存来源、说明推断和复现技术过程的责任。Conan Xin 数字花园在 2026 年 10 月 11 日完成了跨 Agent 设计规范、四类模板和一个独立专题的兼容改造。这篇文章记录已经执行的工程事实，不把网页排版或 CI 通过当作学术结论已经得到证实。</p>
+</section>
+
+<section id="body" aria-labelledby="body-heading">
+<h2 id="body-heading">正文</h2>
+<p>第一层是正文：让读者知道这篇文章试图回答什么、为什么重要，以及哪些内容属于作者的解释。第二层是证据：把可核查的文献、网页、提交记录与对应说法放在一起，避免将系统运行结果直接当作历史事实。第三层是技术记录：只记录构建方式、变更范围和测试结果，让未来的自己或其他 Agent 既能复现页面，也能辨别研究解释与工程验证的边界。三个层次应当相互链接，但不互相替代。</p>
+<blockquote cite="https://github.com/conanxin/conanxin.github.io/blob/main/docs/SITE_DESIGN.md">
+设计约束之一：不改动已有研究数据、引文、文章正文、专业交互与图像。保留研究资产，比追求一次性全站统一更重要。
+</blockquote>
+<p>2026 年 10 月的具体做法是：以 <code>assets/site/design.css</code> 为视觉 token 来源，以 <code>scripts/build_site.py</code> 为发布时共享导航与样式的注入点，以 <code>templates/site/</code> 提供文章、项目、展览和文献四类页面骨架。SpaceX 火星长文原本拥有独立的深空与火星沙阅读界面，Stage 2B 因而没有删除其本地设计，而是把唯一专题入口从全站强制样式中隔离，并保留品牌、无障碍与身份规范化。有关实际开发步骤见 <a href="/projects/site-design-lab/">网站设计工程档案</a>。</p>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-heading">
+<h2 id="evidence-heading">证据</h2>
+<details class="evidence-list">
+<summary>证据 1 · PR #10 / #11 · 规范与模板</summary>
+<p><a href="https://github.com/conanxin/conanxin.github.io/pull/10">PR #10</a> 建立跨 Agent 的设计规范入口；<a href="https://github.com/conanxin/conanxin.github.io/pull/11">PR #11</a> 提交四类完整 HTML 模板、模板发布排除和公开 <a href="/site-guide/">设计样板页</a>。这些是可独立查验的代码与合并记录。</p>
+</details>
+<details class="evidence-list">
+<summary>证据 2 · PR #12 · 原生专题兼容与发布</summary>
+<p><a href="https://github.com/conanxin/conanxin.github.io/pull/12">PR #12</a> 保留火星专题独立主题，增加移动端长网址自动断行和双视口回归检测。合并提交为 <a href="https://github.com/conanxin/conanxin.github.io/commit/3e3c9295a34b93ee62a2c361234a57f866740ce0"><code>3e3c929</code></a>；正式发布的 <a href="https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340">GitHub Actions Run</a> 显示构建与公开读者页面验证通过。工程验收并不能独立验证历史材料的可靠性。</p>
+</details>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li>Conan Xin，<a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/SITE_DESIGN.md"><em>SITE_DESIGN.md — 数字花园设计规范</em></a>，2026-10-11。</li>
+<li>Conan Xin，<a href="https://github.com/conanxin/conanxin.github.io/pull/11">PR #11</a>；<a href="https://github.com/conanxin/conanxin.github.io/pull/12">PR #12</a>，GitHub 代码审阅与部署记录，2026-10-11。</li>
+</ol>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>本文以 Stage 2C 的完整 article 模板构建；源码独立存在，不覆盖任何历史研究文章。</li>
+<li>内容来源限定为仓库中的设计规范、PR #10—#12、部署工作流记录。新增文章的发布状态以对应 PR 合并后的 GitHub Pages 为准。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

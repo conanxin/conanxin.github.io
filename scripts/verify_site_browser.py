@@ -8,7 +8,7 @@ out=Path(os.environ.get('RUNNER_TEMP',tempfile.gettempdir()))/'site-ui-check'
 out.mkdir(parents=True,exist_ok=True)
 server=subprocess.Popen([sys.executable,'-m','http.server','8765','--directory',str(root)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 base='http://127.0.0.1:8765'
-paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/']
+paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/']
 results=[]
 try:
  time.sleep(.6)
@@ -37,7 +37,7 @@ try:
     assert metrics['text']>100,(path,'empty content')
     assert 'hello@xin-conan.me' not in page.locator('body').inner_text(),(path,'old contact')
     assert page.locator('.site-footer a[href="mailto:conanxin@gmail.com"]').count()==1,(path,'footer contact')
-    if path in ('/','/projects/','/posts/','/about.html','/site-map/'):
+    if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
      assert metrics['scroll']<=width+5,(path,width,'horizontal overflow',metrics)
     interaction=None
     if path=='/':
@@ -103,6 +103,15 @@ try:
      page.locator('button.tool-btn[data-reading-mode="immersive"]').click()
      assert page.evaluate("document.documentElement.dataset.readingMode")=='immersive'
      interaction='native deep-space -> mars-sand -> deep-space; immersive -> annotated -> immersive'
+    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
+     klass='template-article' if path.startswith('/posts/') else 'template-project'
+     assert page.locator(f'article.{klass}').count()==1,(path,'missing real template article')
+     for section in ('intro','evidence','citation'):
+      assert page.locator(f'#{section}').count()==1,(path,'missing evidence section',section)
+     details=page.locator('details.evidence-list' if klass=='template-article' else 'details.work-log').first
+     details.locator('summary').click()
+     assert details.get_attribute('open') is not None,(path,'details interaction failed')
+     interaction='template article -> real citations -> expandable evidence'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None
@@ -113,7 +122,10 @@ try:
      d.locator('summary').click();assert d.get_attribute('open') is not None
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
-    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/'):
+    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
+     page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
+     page.wait_for_timeout(100)
+    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
     results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors})
     page.close()

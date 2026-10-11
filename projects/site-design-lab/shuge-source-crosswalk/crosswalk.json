@@ -1,40 +1,49 @@
 {
-  "schema": "stage2e-source-reconciliation-v1",
+  "schema": "stage2e-source-reconciliation-v2",
   "checked_on": "2026-10-12",
   "task_id": "CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION",
+  "source_priority": "先以 repo 冻结 bibliography.json 保存原样，再以同仓库 works.json 的 post_id/title/shuge_url 直接记录核对，并以书格公开页面核对作品信息；原馆藏号、书影、OCR 必须另验。",
   "status_definitions": {
-    "VERIFIED": "已直接核对该层级的公开页面或快照证据；不自动传递到另一个层级。",
-    "UNVERIFIED": "线索存在但不具备足够证据确立具体 ID、版本、扫描或作者的同一关系。",
-    "NOT_FOUND": "仅在明确说明的本次检索范围内尚未找到直接证据；不能据此断言全网或馆藏无记录。"
+    "VERIFIED": "指定层级可直接从现存档案字段或外部公开网页核对；不自动传递到馆藏原件/扫描的下一层。",
+    "UNVERIFIED": "冻结字段存在歧义或原始藏品、具体版本/扫描、引文语义仍无独立一一对应的核查。",
+    "NOT_FOUND": "仅在明示的本轮在线 numeric permalink 检索范围未找到可再次确认的直接条目；不等于档案内部 works.json 映射不存在。"
   },
-  "conclusions": "3/3 外部候选作品页面可确认存在；0/3 冻结 work_id 与候选作品完成一对一验证。禁止用候选页替换冻结 v0.7 书目。",
+  "conclusions": "3/3 在仓库 works.json 中直接有 post_id→作品题名/书格 URL 对照，三个公开作品页亦已查阅；0/3 取得独立的原藏机构目录 ID 与扫描页比对。旧 v0.7 bibliography 的题名和部分年代字段不可靠，冻结 JSON 保持不改。",
+  "frozen_metadata_warning": "bibliography.json 只保留 work-shuge-168491 等临时标签，dynasty 字段与同仓库 works.json 存在矛盾。应在独立审计层更正理解，不反写冻结数据。",
+  "corrected_prior_inference": {
+    "wrong_candidate": "曾因 Northern Wei 年代而把 work-shuge-168491 疑为《水经注》",
+    "corrected": "作品对照表中 p168491 对应《园冶》；《水经注》的 works.json post_id 为 124575",
+    "evidence_file": "projects/shuge-exhibition-v1.0/data/works.json",
+    "related_post_id": 124575,
+    "related_title": "水经注",
+    "related_shuge_url": "https://www.shuge.org/view/shui_jing_zhu/"
+  },
   "evidence_sources": [
     {
-      "kind": "frozen_snapshot",
+      "kind": "frozen_bibliography",
       "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json"
+    },
+    {
+      "kind": "archived_post_records",
+      "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json"
     },
     {
       "kind": "claim_audit",
       "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md"
     },
     {
-      "kind": "institution_role_audit",
-      "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/institution_roles_v1.0.json"
+      "kind": "external_work_page",
+      "url": "https://www.shuge.org/view/yuan_ye/"
     },
     {
-      "kind": "source_platform_candidate",
-      "url": "https://www.shuge.org/view/shui_jing_zhu/"
-    },
-    {
-      "kind": "source_platform_candidate",
+      "kind": "external_work_page",
       "url": "https://www.shuge.org/view/tian_gong_kai_wu/"
     },
     {
-      "kind": "source_platform_candidate",
+      "kind": "external_work_page",
       "url": "https://www.shuge.org/view/gong_cheng_zuo_fa/"
     }
   ],
-  "lookup_method": "读取冻结 v0.7 work_id / title_zh / dynasty 与 v1.0 claim-support 审计；查阅三份书格作品描述，并尝试 exact numeric ID / WordPress 公开入口检索。页面内陈述的馆藏信息尚未与原馆目录逐项比对。",
   "rows": [
     {
       "work_id": "work-shuge-168491",
@@ -47,33 +56,44 @@
         "collection_slug": "hist-hyd",
         "page_count_estimate": 50
       },
-      "external_candidate": {
+      "archived_post_record": {
         "status": "VERIFIED",
-        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
-        "title": "水经注",
-        "url": "https://www.shuge.org/view/shui_jing_zhu/",
-        "edition_as_stated": "明万历十三年（1585）吴琯校刊本",
-        "era_as_stated": "北魏郦道元注；所示版本为明刊",
-        "creator_as_stated": "漢桑欽撰，後魏酈道元注，明吳琯校",
-        "holding_as_stated": "日本内阁文库藏（书格页面陈述）"
+        "source_file": "projects/shuge-exhibition-v1.0/data/works.json",
+        "post_id": 168491,
+        "work_id_text": "p168491",
+        "title": "园冶",
+        "author": "计成 著",
+        "era": "明代",
+        "shuge_url": "https://www.shuge.org/view/yuan_ye/",
+        "edition_description": "明崇祯七年（甲戌 1634）刊本",
+        "meaning": "同一仓库另一份既存 works.json 中直接保存 post_id、title、shuge_url 的对应；未改原档。"
       },
-      "numeric_id_to_candidate": {
+      "external_page_observation": {
+        "status": "VERIFIED",
+        "url": "https://www.shuge.org/view/yuan_ye/",
+        "title": "园冶",
+        "edition_as_stated": "明崇祯七年（甲戌 1634）刊本",
+        "creator_as_stated": "计成 著",
+        "holding_as_stated": "日本内阁文库藏（书格公开《园冶》页面陈述）",
+        "meaning": "已查看对应书格公开作品页，其题名/版本描述与 works.json 所载相符；不意味着独立复核了原藏机构实体书影。"
+      },
+      "snapshot_consistency": {
         "status": "UNVERIFIED",
-        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
-        "caution": "本条快照的 Northern Wei 时代标签可描述注者时代，不能据此确定扫描版本或直接证明 P168491 对应该书。"
+        "has_conflicting_era": true,
+        "note": "冻结 bibliography.json 年代为 Northern Wei，但同仓库 works.json 的相同 post_id=168491 作品为园冶（明代）。不能以冻结年代字段替代书格作品元数据。"
       },
-      "direct_id_lookup": {
+      "direct_online_numeric_endpoint": {
         "status": "NOT_FOUND",
-        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+        "scope": "本轮直接数字 ID 公开入口/精确搜索没有返回足以再次独立证实 WordPress numeric permalink 的结果；但是 works.json 已提供可检查的历史 post_id→URL 映射，故不能再说原研究库缺乏任何内部映射。"
       },
       "institution_catalog_item": {
         "status": "UNVERIFIED",
-        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+        "scope": "尚未单独取得馆藏机构自身的稳定 catalog ID / IIIF manifest / 原扫描书影并比对版心、刊记和页序。"
       },
       "next_required_evidence": [
-        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
-        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
-        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+        "馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID",
+        "扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应",
+        "从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持"
       ]
     },
     {
@@ -87,33 +107,44 @@
         "collection_slug": "arch",
         "page_count_estimate": 57
       },
-      "external_candidate": {
+      "archived_post_record": {
         "status": "VERIFIED",
-        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
+        "source_file": "projects/shuge-exhibition-v1.0/data/works.json",
+        "post_id": 211203,
+        "work_id_text": "p211203",
         "title": "天工开物",
+        "author": "宋应星 著",
+        "era": "明代",
+        "shuge_url": "https://www.shuge.org/view/tian_gong_kai_wu/",
+        "edition_description": "明崇祯十年（丁丑 1637）涂绍煃刊本",
+        "meaning": "同一仓库另一份既存 works.json 中直接保存 post_id、title、shuge_url 的对应；未改原档。"
+      },
+      "external_page_observation": {
+        "status": "VERIFIED",
         "url": "https://www.shuge.org/view/tian_gong_kai_wu/",
-        "edition_as_stated": "明崇祯十年（1637）涂绍煃刊本",
-        "era_as_stated": "明代宋应星著",
-        "creator_as_stated": "明代宋应星著",
-        "holding_as_stated": "法国国家图书馆藏（书格页面陈述）"
+        "title": "天工开物",
+        "edition_as_stated": "明崇祯十年（丁丑 1637）涂绍煃刊本",
+        "creator_as_stated": "宋应星 著",
+        "holding_as_stated": "法国国家图书馆藏（书格公开《天工开物》页面陈述）",
+        "meaning": "已查看对应书格公开作品页，其题名/版本描述与 works.json 所载相符；不意味着独立复核了原藏机构实体书影。"
       },
-      "numeric_id_to_candidate": {
+      "snapshot_consistency": {
         "status": "UNVERIFIED",
-        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
-        "caution": "快照 dynasty=Song 与书格对候选作品的明代描述明显不一致；该冲突必须由原始 ID 与馆藏扫描核对，不能自动纠正。"
+        "has_conflicting_era": true,
+        "note": "冻结 bibliography.json 年代为 Song，但同仓库 works.json 的相同 post_id=211203 作品为天工开物（明代）。不能以冻结年代字段替代书格作品元数据。"
       },
-      "direct_id_lookup": {
+      "direct_online_numeric_endpoint": {
         "status": "NOT_FOUND",
-        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+        "scope": "本轮直接数字 ID 公开入口/精确搜索没有返回足以再次独立证实 WordPress numeric permalink 的结果；但是 works.json 已提供可检查的历史 post_id→URL 映射，故不能再说原研究库缺乏任何内部映射。"
       },
       "institution_catalog_item": {
         "status": "UNVERIFIED",
-        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+        "scope": "尚未单独取得馆藏机构自身的稳定 catalog ID / IIIF manifest / 原扫描书影并比对版心、刊记和页序。"
       },
       "next_required_evidence": [
-        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
-        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
-        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+        "馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID",
+        "扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应",
+        "从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持"
       ]
     },
     {
@@ -127,35 +158,46 @@
         "collection_slug": "hist-hyd",
         "page_count_estimate": 64
       },
-      "external_candidate": {
+      "archived_post_record": {
         "status": "VERIFIED",
-        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
+        "source_file": "projects/shuge-exhibition-v1.0/data/works.json",
+        "post_id": 44159,
+        "work_id_text": "p44159",
         "title": "工程做法",
+        "author": "工部 允礼等纂修",
+        "era": "清代",
+        "shuge_url": "https://www.shuge.org/view/gong_cheng_zuo_fa/",
+        "edition_description": "清雍正十二年（甲寅 1734）武英殿刊本",
+        "meaning": "同一仓库另一份既存 works.json 中直接保存 post_id、title、shuge_url 的对应；未改原档。"
+      },
+      "external_page_observation": {
+        "status": "VERIFIED",
         "url": "https://www.shuge.org/view/gong_cheng_zuo_fa/",
-        "edition_as_stated": "清雍正十二年（1734）武英殿刊本",
-        "era_as_stated": "清代工部允礼等纂修",
-        "creator_as_stated": "清代工部允礼等纂修",
-        "holding_as_stated": "日本内阁文库藏（书格页面陈述）"
+        "title": "工程做法",
+        "edition_as_stated": "清雍正十二年（甲寅 1734）武英殿刊本",
+        "creator_as_stated": "工部 允礼等纂修",
+        "holding_as_stated": "日本内阁文库藏（书格公开《工程做法》页面陈述）",
+        "meaning": "已查看对应书格公开作品页，其题名/版本描述与 works.json 所载相符；不意味着独立复核了原藏机构实体书影。"
       },
-      "numeric_id_to_candidate": {
+      "snapshot_consistency": {
         "status": "UNVERIFIED",
-        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
-        "caution": "快照 Qing 与候选页时代表述大体相容，但没有核实 P44159→候选页的一对一 ID 映射及实物数字对象。"
+        "has_conflicting_era": false,
+        "note": "冻结 bibliography.json 只有临时题名；年代字段 Qing 与 works.json 的时代 清代 大体相容，但仍不等于刊本/馆藏目录已审核。"
       },
-      "direct_id_lookup": {
+      "direct_online_numeric_endpoint": {
         "status": "NOT_FOUND",
-        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+        "scope": "本轮直接数字 ID 公开入口/精确搜索没有返回足以再次独立证实 WordPress numeric permalink 的结果；但是 works.json 已提供可检查的历史 post_id→URL 映射，故不能再说原研究库缺乏任何内部映射。"
       },
       "institution_catalog_item": {
         "status": "UNVERIFIED",
-        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+        "scope": "尚未单独取得馆藏机构自身的稳定 catalog ID / IIIF manifest / 原扫描书影并比对版心、刊记和页序。"
       },
       "next_required_evidence": [
-        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
-        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
-        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+        "馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID",
+        "扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应",
+        "从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持"
       ]
     }
   ],
-  "next_work": "优先取得数字 ID 直接映射、稳定馆藏目录记录及扫描书影后，才能将 numeric_id_to_candidate.status 改为 VERIFIED。"
+  "next_work": "先取得每条作品的原藏机构稳定目录 ID 与书影，再将 institution_catalog_item 从 UNVERIFIED 升级；本轮不能用作品页面替换冻结 bibliography.json 的历史字段。"
 }

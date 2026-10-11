@@ -47,3 +47,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify public reader pages
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python3 - <<'PY'
+          import json, os, time, urllib.request
+          base=os.environ['SITE_URL'].rstrip('/')
+          paths=['/','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/site-map/']
+          result=[]
+          for path in paths:
+              error=None
+              for attempt in range(3):
+                  try:
+                      request=urllib.request.Request(base+path+'?build='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache','User-Agent':'Xin-Conan-Reader-Check'})
+                      with urllib.request.urlopen(request,timeout=25) as response:
+                          body=response.read().decode('utf-8')
+                          assert response.status==200
+                          assert 'data-site-theme="unified-v1"' in body,'reader theme not in public response'
+                          assert '/assets/site/design.css' in body,'shared stylesheet missing'
+                          row={'url':base+path,'http':response.status,'theme':'unified-v1'}
+                          result.append(row)
+                          print(json.dumps(row,ensure_ascii=False),flush=True)
+                      error=None
+                      break
+                  except Exception as exc:
+                      error=exc
+                      if attempt<2: time.sleep(8)
+              if error: raise RuntimeError(f'{path}: {error}')
+          print('PUBLIC_THEME_VERIFICATION=PASS',len(result))
+          PY

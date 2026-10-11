@@ -165,9 +165,11 @@ try:
      assert response_json.status==200,(path,'crosswalk json unreachable')
      crosswalk=response_json.json()
      assert len(crosswalk['rows'])==3
-     assert all(r['numeric_id_to_candidate']['status']=='UNVERIFIED' for r in crosswalk['rows'])
-     assert all(r['external_candidate']['status']=='VERIFIED' for r in crosswalk['rows'])
-     interaction='three candidate pages -> three unverified ID links -> expand evidence'
+     assert all(r['archived_post_record']['status']=='VERIFIED' for r in crosswalk['rows'])
+     assert all(r['external_page_observation']['status']=='VERIFIED' for r in crosswalk['rows'])
+     assert all(r['institution_catalog_item']['status']=='UNVERIFIED' for r in crosswalk['rows'])
+     assert crosswalk['corrected_prior_inference']['related_post_id']==124575
+     interaction='three archived ID-to-URL matches -> archive holder unverified -> evidence expanded'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None

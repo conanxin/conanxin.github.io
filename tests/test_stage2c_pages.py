@@ -83,6 +83,20 @@ class Stage2CPublicationTests(unittest.TestCase):
         self.assertIn("PR #12", article)
         self.assertIn("PR #12", project)
 
+    def test_post_deployment_python_heredoc_compiles(self):
+        """PR checks do not execute main-only public verification, but must parse it."""
+        workflow = document(".github/workflows/pages.yml")
+        marker = "          python3 - <<'PY'\n"
+        self.assertEqual(workflow.count(marker), 1)
+        script = workflow.split(marker, 1)[1].split("\n          PY", 1)[0]
+        python_source = "\n".join(
+            line[10:] if line.startswith("          ") else line
+            for line in script.splitlines()
+        )
+        compile(python_source, "pages.yml:Verify public reader pages", "exec")
+        self.assertIn("/projects/wbw-spacex-mars-cn/", python_source)
+        self.assertIn("/projects/site-design-lab/", python_source)
+
     def test_no_existing_research_text_is_required_for_pilot(self):
         for path in PUBLIC:
             source = document(path)

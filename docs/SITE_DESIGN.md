@@ -228,7 +228,7 @@
 
 ---
 
-## 13. Stage 2E 的设计边界（未执行）
+## 13. Stage 2E 接续前的设计边界（Stage 2D 基线）
 
 下一阶段若扩大自动发现范围，应优先完善已有页面的明确分类字段、路径收录边界及来源质量标签。搜索目前仅覆盖本地公开 HTML 的**标题与简介**，不能将 `/content-index/` 称为全文搜索、研究数据库或文献可靠性裁决服务。旧版 `posts/index.html`、`projects/index.html` 的手工内容未在 Stage 2D 重写；将来如调整，须独立 PR 核对筛选与导航行为。冻结的 SHUGE v0.7 JSON 不应被自动索引步骤修订、推断正式作品名或补录未经核实的作者/年份。
 
@@ -240,7 +240,7 @@
 > 本节的代码与页面首先通过独立 PR 检验，**只有合并到 main 并收到 Pages 正式验收回执后才算上线**。
 
 - `projects/site-design-lab/shuge-source-crosswalk/index.html` 是新建的 `reference` 分类公开读者页，配套 `crosswalk.json` 记录 3 条 work_id 的状态，而非修改冻结书目。
-- VERIFIED / UNVERIFIED / NOT_FOUND 是**逐层证据状态**：外部书格作品网页的存在不自动验证 numeric ID 一对一对应关系；本轮没找到直接 ID 映射不代表不存在；馆藏机构自身目录记录仍待核。
+- VERIFIED / UNVERIFIED / NOT_FOUND 是**逐层证据状态**：本轮进一步查得仓库已有 `works.json` 的 `post_id/title/shuge_url` 直接映射——P168491=《园冶》，P211203=《天工开物》，P44159=《工程做法》，P124575=《水经注》；这些是 **VERIFIED as archived mapping**。书格公开作品页也能直接核对。但冻结书目 P168491/P211203 的时代字段冲突、原藏机构目录编号与扫描版心仍 **UNVERIFIED**；在线单独 numeric permalink 查询中未找到更多记录（NOT_FOUND）不能抹去仓库内已有映射。
 - `scripts/content_index.py` 继续以已成功构建的公开页面作为候选；除了已有 `public_route()` 外，在精选索引准入环节追加**路径硬拒绝**：`drafts/`、`future/`、`src/`、`connections/`、`research-terminal/`、`source/`、`sources/`、`work/`、`works/`、`reports/`、`backups/`、历史 `projects/shuge-exhibition-v0.*`。即使页面 meta 标有 `site-index-kind` 也不会自动晋级为精选内容。
 - 这个拒绝机制只控制 `/content-index/` 和关联 JSON 的收录，不删除已有历史页面、也不改变原 GitHub Pages 对源文件路径的发布行为。
 - 公共索引是**发现导航**，不是新的全文搜索、自动版本鉴定或研究成果审核工具。若日后确需收录更多长尾研究内容，先建立来源与草稿排除的允许列表，再提交独立 PR。

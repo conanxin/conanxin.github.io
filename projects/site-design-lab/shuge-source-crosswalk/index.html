@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="site-index-kind" content="reference">
-<meta name="description" content="SHUGE 三条冻结 work_id 与真实书格作品页面的分层来源核验：页面已证、ID 映射未证、检索未找到的证据单独记录。">
-<title>SHUGE 作品来源对照与未证记录 · Conan Xin</title>
+<meta name="description" content="SHUGE 三条冻结书目的 ID 纠错：利用既存 works.json 与书格作品页核对《园冶》《天工开物》《工程做法》，原藏机构实物版本仍待验。">
+<title>SHUGE 来源核对：冻结 ID、真实作品与待核馆藏 · Conan Xin</title>
 <style>
 main.source-crosswalk{max-width:980px;margin:0 auto;padding:34px 22px 70px}
 .source-crosswalk h1{margin-bottom:16px}
@@ -26,77 +25,80 @@ main.source-crosswalk{max-width:980px;margin:0 auto;padding:34px 22px 70px}
 .source-crosswalk summary{cursor:pointer;color:var(--site-green);font-weight:600}
 .source-crosswalk a{overflow-wrap:anywhere}
 @media(max-width:560px){main.source-crosswalk{padding:24px 18px 56px}.source-crosswalk .work-card{padding:16px}.source-crosswalk dl{grid-template-columns:minmax(0,1fr)}}
-</style>
-</head>
-<body>
+</style></head><body>
 <main class="site-home source-crosswalk">
-<header>
-<h1>SHUGE 来源对照：找到作品，不等于找到同一份扫描件</h1>
-<p class="lead">Stage 2E 的目标是将三个冻结 work_id 与公开作品页面分别建立候选关系，同时严守作品身份、版本、馆藏记录和 Citation ID 四层证据边界。</p>
-</header>
+<header><h1>SHUGE 来源核对：找到 ID，不等于核实原件</h1>
+<p class="lead">Stage 2E 发现，同仓库较早的 <code>works.json</code> 已保存 <code>post_id</code>、题名和 <code>shuge_url</code>，可以纠正部分冻结书目的年代与作品身份误导；馆藏目录号、同一份扫描件和引用页仍需独立证据。</p></header>
 <section class="summary" id="overview" aria-labelledby="overview-heading">
-<h2 id="overview-heading">本轮结论</h2>
-<p><strong>3/3</strong> 个候选书格作品页面可直接查阅；<strong>0/3</strong> 个冻结 work_id 已有可复核的一对一网页绑定。没有核实的作者、版本、馆藏条目和扫描页，均不能由题名或相似时代自动填入原研究数据库。</p>
-<p>状态含义：<strong>VERIFIED</strong> = 仅当前陈述所指定的网页/档案层得到核对；<strong>UNVERIFIED</strong> = 尚不能证明两项资料是同一对象；<strong>NOT_FOUND</strong> = 本轮限定检索未找到直接证据，<em>不是断言此物不存在</em>。</p>
-<p><a href="/projects/site-design-lab/shuge-source-register/">返回 Stage 2D 冻结书目索引</a> · <a href="/projects/shuge-exhibition-v1.0/bibliography/">原 SHUGE 文献浏览页</a> · <a href="/content-index/">查看内容索引</a></p>
+<h2 id="overview-heading">可核实的发现与尚未证实的部分</h2>
+<p><strong>3/3</strong> 个数字 ID 在仓库 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json">works.json</a> 中有直接的作品名称与 URL 对照；<strong>3/3</strong> 对应书格作品网页可查阅；<strong>0/3</strong> 已独立取得原藏机构馆藏号并完成扫描书影/页序一致性核验。</p>
+<p><strong>重要更正：</strong>原先根据 Northern Wei 年代怀疑 P168491 对应《水经注》并不正确：works.json 的 <code>P168491 = 《园冶》</code>，而 <code>P124575 = 《水经注》</code>。原冻结 <code>bibliography.json</code> 不修改，错误对应关系单独保存于本审计。</p>
+<p>状态分层：<strong>VERIFIED</strong> 只表示指定的内部档案映射或书格页面陈述可核；<strong>UNVERIFIED</strong> 表示馆藏或扫描实物仍未独立比对；<strong>NOT_FOUND</strong> 是本轮特定查询范围未找到额外数字入口，不代表馆藏对象不存在。</p>
+<p><a href="/projects/site-design-lab/shuge-source-register/">原冻结书目索引</a> · <a href="/projects/shuge-exhibition-v1.0/bibliography/">SHUGE 原版书目浏览</a> · <a href="/content-index/">网站内容索引</a></p>
 </section>
-<section id="candidates" aria-labelledby="candidates-heading">
-<h2 id="candidates-heading">逐条对照</h2>
-<div class="work-grid"><section class="work-card" id="work-168491" aria-labelledby="heading-168491">
- <p class="overline">冻结记录 1 / 3 · <code>work-shuge-168491</code></p>
- <h2 id="heading-168491">书海出版社文献 P168491</h2>
- <p>冻结字段：<code>Northern Wei</code> · 候选网页：<a href="https://www.shuge.org/view/shui_jing_zhu/" target="_blank" rel="noopener">水经注 ↗</a></p>
- <p class="status-line"><strong>外部作品页面：VERIFIED</strong>（仅网页及其中的描述） · <strong>work_id 匹配：UNVERIFIED</strong> · <strong>直接 ID 证据：NOT_FOUND</strong>（限本轮检索）</p>
+<section id="candidates" aria-labelledby="candidate-heading">
+<h2 id="candidate-heading">三条作品对照</h2>
+<div class="work-grid"><section class="work-card" id="post-168491" aria-labelledby="work-heading-168491">
+ <p class="overline">冻结条目 1 / 3 · <code>work-shuge-168491</code></p>
+ <h2 id="work-heading-168491">园冶 <small>· post_id=168491</small></h2>
+ <p>v0.7 冻结题名：<code>书海出版社文献 P168491</code>；冻结年代：<code>Northern Wei</code></p>
+ <p class="status-line"><strong>既存作品 ID 对照：VERIFIED</strong>（works.json） · <strong>书格页面：VERIFIED</strong> · <strong>藏机构原件比对：UNVERIFIED</strong></p>
  <dl>
- <div><dt>书格页面所述版本</dt><dd>明万历十三年（1585）吴琯校刊本</dd></div>
- <div><dt>书格页面所述责任人</dt><dd>漢桑欽撰，後魏酈道元注，明吳琯校</dd></div>
- <div><dt>书格页面所述馆藏</dt><dd>日本内阁文库藏（书格页面陈述）</dd></div>
- <div><dt>未完成的馆藏目录验证</dt><dd>UNVERIFIED · 尚无稳定条目号与扫描页对应关系</dd></div>
+ <div><dt>既存作品表 `works.json`</dt><dd><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json"><code>p168491</code> → 园冶</a></dd></div>
+ <div><dt>书格公开作品页</dt><dd><a href="https://www.shuge.org/view/yuan_ye/" target="_blank" rel="noopener">园冶 ↗</a></dd></div>
+ <div><dt>该页面所述刊本</dt><dd>明崇祯七年（甲戌 1634）刊本</dd></div>
+ <div><dt>页面所述责任人</dt><dd>计成 著</dd></div>
+ <div><dt>页面所述馆藏</dt><dd>日本内阁文库藏（书格公开《园冶》页面陈述）</dd></div>
+ <div><dt>原藏机构目录号 / 图像页</dt><dd>UNVERIFIED · 尚未一对一校验</dd></div>
  </dl>
- <p class="caution">本条快照的 Northern Wei 时代标签可描述注者时代，不能据此确定扫描版本或直接证明 P168491 对应该书。</p>
- <details><summary>展开：此 work_id 要变成 VERIFIED 还需要什么证据？</summary>
- <ol><li>书格或旧版目录的原始 numeric post_id → 正式 URL 映射</li><li>持有机构目录的稳定 catalog ID 或 IIIF manifest</li><li>该扫描件书影中的题名、版式、刊记/序页与页序一一核对</li></ol>
- <p>本轮没有找到直接映射并不表示不存在；上述 <code>NOT_FOUND</code> 只针对本次检查的公开来源。</p>
- </details></section>
-<section class="work-card" id="work-211203" aria-labelledby="heading-211203">
- <p class="overline">冻结记录 2 / 3 · <code>work-shuge-211203</code></p>
- <h2 id="heading-211203">书海出版社文献 P211203</h2>
- <p>冻结字段：<code>Song</code> · 候选网页：<a href="https://www.shuge.org/view/tian_gong_kai_wu/" target="_blank" rel="noopener">天工开物 ↗</a></p>
- <p class="status-line"><strong>外部作品页面：VERIFIED</strong>（仅网页及其中的描述） · <strong>work_id 匹配：UNVERIFIED</strong> · <strong>直接 ID 证据：NOT_FOUND</strong>（限本轮检索）</p>
+ <p class="caution">冻结 bibliography.json 年代为 Northern Wei，但同仓库 works.json 的相同 post_id=168491 作品为园冶（明代）。不能以冻结年代字段替代书格作品元数据。</p>
+ <details><summary>展开：尚未取得的原始版本证据</summary>
+ <p><code>NOT_FOUND</code> 仅表示本轮未取得单独的在线 numeric permalink 检索证明，<strong>不否认 works.json 已有直接 ID/URL 记录</strong>。</p>
+ <ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol>
+ </details>
+ </section>
+<section class="work-card" id="post-211203" aria-labelledby="work-heading-211203">
+ <p class="overline">冻结条目 2 / 3 · <code>work-shuge-211203</code></p>
+ <h2 id="work-heading-211203">天工开物 <small>· post_id=211203</small></h2>
+ <p>v0.7 冻结题名：<code>书海出版社文献 P211203</code>；冻结年代：<code>Song</code></p>
+ <p class="status-line"><strong>既存作品 ID 对照：VERIFIED</strong>（works.json） · <strong>书格页面：VERIFIED</strong> · <strong>藏机构原件比对：UNVERIFIED</strong></p>
  <dl>
- <div><dt>书格页面所述版本</dt><dd>明崇祯十年（1637）涂绍煃刊本</dd></div>
- <div><dt>书格页面所述责任人</dt><dd>明代宋应星著</dd></div>
- <div><dt>书格页面所述馆藏</dt><dd>法国国家图书馆藏（书格页面陈述）</dd></div>
- <div><dt>未完成的馆藏目录验证</dt><dd>UNVERIFIED · 尚无稳定条目号与扫描页对应关系</dd></div>
+ <div><dt>既存作品表 `works.json`</dt><dd><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json"><code>p211203</code> → 天工开物</a></dd></div>
+ <div><dt>书格公开作品页</dt><dd><a href="https://www.shuge.org/view/tian_gong_kai_wu/" target="_blank" rel="noopener">天工开物 ↗</a></dd></div>
+ <div><dt>该页面所述刊本</dt><dd>明崇祯十年（丁丑 1637）涂绍煃刊本</dd></div>
+ <div><dt>页面所述责任人</dt><dd>宋应星 著</dd></div>
+ <div><dt>页面所述馆藏</dt><dd>法国国家图书馆藏（书格公开《天工开物》页面陈述）</dd></div>
+ <div><dt>原藏机构目录号 / 图像页</dt><dd>UNVERIFIED · 尚未一对一校验</dd></div>
  </dl>
- <p class="caution">快照 dynasty=Song 与书格对候选作品的明代描述明显不一致；该冲突必须由原始 ID 与馆藏扫描核对，不能自动纠正。</p>
- <details><summary>展开：此 work_id 要变成 VERIFIED 还需要什么证据？</summary>
- <ol><li>书格或旧版目录的原始 numeric post_id → 正式 URL 映射</li><li>持有机构目录的稳定 catalog ID 或 IIIF manifest</li><li>该扫描件书影中的题名、版式、刊记/序页与页序一一核对</li></ol>
- <p>本轮没有找到直接映射并不表示不存在；上述 <code>NOT_FOUND</code> 只针对本次检查的公开来源。</p>
- </details></section>
-<section class="work-card" id="work-44159" aria-labelledby="heading-44159">
- <p class="overline">冻结记录 3 / 3 · <code>work-shuge-44159</code></p>
- <h2 id="heading-44159">书海出版社文献 P44159</h2>
- <p>冻结字段：<code>Qing</code> · 候选网页：<a href="https://www.shuge.org/view/gong_cheng_zuo_fa/" target="_blank" rel="noopener">工程做法 ↗</a></p>
- <p class="status-line"><strong>外部作品页面：VERIFIED</strong>（仅网页及其中的描述） · <strong>work_id 匹配：UNVERIFIED</strong> · <strong>直接 ID 证据：NOT_FOUND</strong>（限本轮检索）</p>
+ <p class="caution">冻结 bibliography.json 年代为 Song，但同仓库 works.json 的相同 post_id=211203 作品为天工开物（明代）。不能以冻结年代字段替代书格作品元数据。</p>
+ <details><summary>展开：尚未取得的原始版本证据</summary>
+ <p><code>NOT_FOUND</code> 仅表示本轮未取得单独的在线 numeric permalink 检索证明，<strong>不否认 works.json 已有直接 ID/URL 记录</strong>。</p>
+ <ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol>
+ </details>
+ </section>
+<section class="work-card" id="post-44159" aria-labelledby="work-heading-44159">
+ <p class="overline">冻结条目 3 / 3 · <code>work-shuge-44159</code></p>
+ <h2 id="work-heading-44159">工程做法 <small>· post_id=44159</small></h2>
+ <p>v0.7 冻结题名：<code>书海出版社文献 P44159</code>；冻结年代：<code>Qing</code></p>
+ <p class="status-line"><strong>既存作品 ID 对照：VERIFIED</strong>（works.json） · <strong>书格页面：VERIFIED</strong> · <strong>藏机构原件比对：UNVERIFIED</strong></p>
  <dl>
- <div><dt>书格页面所述版本</dt><dd>清雍正十二年（1734）武英殿刊本</dd></div>
- <div><dt>书格页面所述责任人</dt><dd>清代工部允礼等纂修</dd></div>
- <div><dt>书格页面所述馆藏</dt><dd>日本内阁文库藏（书格页面陈述）</dd></div>
- <div><dt>未完成的馆藏目录验证</dt><dd>UNVERIFIED · 尚无稳定条目号与扫描页对应关系</dd></div>
+ <div><dt>既存作品表 `works.json`</dt><dd><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json"><code>p44159</code> → 工程做法</a></dd></div>
+ <div><dt>书格公开作品页</dt><dd><a href="https://www.shuge.org/view/gong_cheng_zuo_fa/" target="_blank" rel="noopener">工程做法 ↗</a></dd></div>
+ <div><dt>该页面所述刊本</dt><dd>清雍正十二年（甲寅 1734）武英殿刊本</dd></div>
+ <div><dt>页面所述责任人</dt><dd>工部 允礼等纂修</dd></div>
+ <div><dt>页面所述馆藏</dt><dd>日本内阁文库藏（书格公开《工程做法》页面陈述）</dd></div>
+ <div><dt>原藏机构目录号 / 图像页</dt><dd>UNVERIFIED · 尚未一对一校验</dd></div>
  </dl>
- <p class="caution">快照 Qing 与候选页时代表述大体相容，但没有核实 P44159→候选页的一对一 ID 映射及实物数字对象。</p>
- <details><summary>展开：此 work_id 要变成 VERIFIED 还需要什么证据？</summary>
- <ol><li>书格或旧版目录的原始 numeric post_id → 正式 URL 映射</li><li>持有机构目录的稳定 catalog ID 或 IIIF manifest</li><li>该扫描件书影中的题名、版式、刊记/序页与页序一一核对</li></ol>
- <p>本轮没有找到直接映射并不表示不存在；上述 <code>NOT_FOUND</code> 只针对本次检查的公开来源。</p>
- </details></section></div>
+ <p class="caution">冻结 bibliography.json 只有临时题名；年代字段 Qing 与 works.json 的时代 清代 大体相容，但仍不等于刊本/馆藏目录已审核。</p>
+ <details><summary>展开：尚未取得的原始版本证据</summary>
+ <p><code>NOT_FOUND</code> 仅表示本轮未取得单独的在线 numeric permalink 检索证明，<strong>不否认 works.json 已有直接 ID/URL 记录</strong>。</p>
+ <ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol>
+ </details>
+ </section></div>
 </section>
 <section id="limits" aria-labelledby="limits-heading">
-<h2 id="limits-heading">审计边界与下一步</h2>
-<p>本轮仅阅读 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">v0.7 冻结书目</a>、<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">Claim Support Audit</a> 及三个书格候选页。官方书格页面所述的馆藏信息还不是本次独立取得的馆藏机构目录号；已经证实的书格作品页面与未证实的数字 ID 映射不能合并为一条「已验书目」。</p>
-<p>下一轮应优先取得原 WordPress numeric ID 对应 URL 的直接证据，其次取得持有机构目录记录、馆藏号和扫描页，再逐页对照版心、序跋和刊记。本轮明确<strong>没有</strong>修改冻结的 bibliography.json、citations.json、OCR、影像或任何 SHUGE 展厅。</p>
-<p><a href="./crosswalk.json">查看机器可读对照表（crosswalk.json）</a> · <a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/STAGE2E_SOURCE_RECONCILIATION.md">核查方法与问题清单</a></p>
-</section>
-</main>
-</body>
-</html>
+<h2 id="limits-heading">源文献边界与下一步</h2>
+<p>本轮依据仓库冻结 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">bibliography.json</a>、既有 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json">works.json</a>、<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">Claim Support Audit</a> 和三份书格作品页面。不把书格所述馆藏直接当作原藏机构自己签发的馆藏目录号，也不利用题名一致推导原始 Citation ID 所指扫描页。</p>
+<p>下轮应获得原藏机构稳定 catalog ID / IIIF 或数字扫描定位，逐页确认题名、卷册、刊记、书口、序跋和 OCR/Citation ID 的关联，再独立核实研究论断的语义依据。本轮未修改冻结研究库、SHUGE 展厅、OCR、图像或历史引文。</p>
+<p><a href="./crosswalk.json">查看机器可读 crosswalk.json</a> · <a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/STAGE2E_SOURCE_RECONCILIATION.md">核对方法与证据分层</a></p>
+</section></main></body></html>

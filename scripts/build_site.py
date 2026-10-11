@@ -134,10 +134,18 @@ def nav_header(path):
     return '<a class="site-skip" href="#site-main-start">跳到正文</a><header class="site-header"><div class="site-header__inner"><a class="site-brand" href="/">'+BRAND+'<small>研究 · 文章 · 技术实践</small></a><nav class="site-nav" aria-label="全站导航">'+''.join(items)+'</nav></div></header>'
 
 def transform(html, path):
-    if 'data-site-theme="unified-v1"' in html: return html, {'path':path,'status':'already'}
     parser=Structure(html)
     body=next((n for n in parser.nodes if n.tag=='body'),None)
     head=next((n for n in parser.nodes if n.tag=='head'),None)
+    # Already-themed check: only the REAL body element's data-site-theme
+    # attribute counts. A raw substring scan would falsely match the literal
+    # text inside a <pre><code> code example (site-guide/index.html contains
+    # exactly such an example, which is why a previous version of this check
+    # silently skipped /site-guide/ for three consecutive CI runs).
+    if body is not None and 'data-site-theme' in body.attrs:
+        titles=[text(n) for n in parser.nodes if n.tag=='title']
+        title=clean_title(titles[0] if titles else Path(path).stem)
+        return html, {'path':path,'status':'already','title':title}
     if body is None or head is None or head.close_start is None:
         return html, {'path':path,'status':'fragment-unmodified'}
     kind=classify(path)

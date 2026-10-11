@@ -73,27 +73,20 @@ class TemplateExclusionTests(unittest.TestCase):
     """Stage 2A: templates/ source files must never reach .site-build."""
 
     def setUp(self):
+        # Each test gets its own uniquely-named output directory. The uuid +
+        # monotonic counter guarantee no two calls in one process (or across
+        # concurrent test processes) ever pick the same path, so this test
+        # owns self.output and only self.output. Other concurrent tests own
+        # their own .test-build-* directories; we must NEVER touch them, or
+        # we will race with their cleanup and break their builds.
         self.output = _unique_output_path()
         # Defensive cleanup of any pre-existing path with this exact name
-        # (extremely unlikely now that names are uuid-based, but cheap insurance).
+        # (only happens if a previous interrupted run left the SAME uuid
+        # behind, which is astronomically unlikely, but cheap insurance
+        # for the path WE own).
         if self.output.exists():
             shutil.rmtree(self.output, ignore_errors=True)
-        # Defensive sweep: remove any leftover .test-build-* from previous
-        # interrupted runs in the SAME test process — these are real,
-        # separate outputs that may otherwise collide with subsequent builds
-        # when the next test sees the old directory still on disk and
-        # build_site.py refuses to overwrite it.
-        for stale in REPO.glob('.test-build-*'):
-            if stale == self.output:
-                continue
-            shutil.rmtree(stale, ignore_errors=True)
         self.addCleanup(shutil.rmtree, str(self.output), True)
-        # Also register a final sweep to remove any *new* .test-build-*
-        # directories this test created, even if the cleanup() above bailed.
-        def _final_sweep():
-            for leftover in REPO.glob('.test-build-*'):
-                shutil.rmtree(leftover, ignore_errors=True)
-        self.addCleanup(_final_sweep)
 
     def test_templates_in_excludes_set_in_builder(self):
         """scripts/build_site.py must reference 'templates' in its excludes set."""
@@ -168,6 +161,87 @@ class TemplateExclusionTests(unittest.TestCase):
             "inline script body must survive transform (script preservation invariant)")
         self.assertIn('class="site-header"', content,
             "site-header must still be injected for non-home pages")
+
+    def test_site_guide_with_code_block_example_is_themed(self):
+        """Regression: site-guide/index.html contains the literal text
+        `data-site-theme="unified-v1"` inside a <pre><code> code example
+        (a sample HTML snippet shown to readers). The previous whole-string
+        scan in transform() matched that literal text and silently skipped
+        theme injection for the entire page — three CI runs in a row failed
+        with AssertionError: ('/site-guide/', 'no theme').
+
+        The structured body.attrs check must NOT be fooled by attribute-like
+        text inside code samples; the page must still receive site-unified
+        on its real <body> element.
+        """
+        # Confirm the source actually contains the offending literal so this
+        # test stays meaningful if the code example is ever rewritten.
+        source = (REPO / 'site-guide' / 'index.html').read_text(encoding='utf-8')
+        self.assertIn(
+            'data-site-theme="unified-v1"', source,
+            "site-guide source must contain the literal data-site-theme attribute "
+            "inside its <pre><code> example for this regression test to be valid",
+        )
+        _run_build(self.output)
+        target = self.output / 'site-guide' / 'index.html'
+        self.assertTrue(target.exists(),
+            "site-guide/index.html must exist in build output")
+        content = target.read_text(encoding='utf-8')
+        # The substring scan would match ANY occurrence, including the code
+        # example text. To prove the real <body> element was themed (not just
+        # the document content) we must locate the actual <body ...> opening tag.
+        import re
+        body_open_match = re.search(r'<body\b[^>]*>', content)
+        self.assertIsNotNone(body_open_match,
+            "site-guide output must have a <body> opening tag")
+        body_open = body_open_match.group(0)
+        self.assertIn('data-site-theme="unified-v1"', body_open,
+            "site-guide <body> opening tag must carry data-site-theme=\"unified-v1\" "
+            "(structured check, not a raw substring scan of the document text)")
+        self.assertRegex(body_open, r'class="[^"]*\bsite-unified\b[^"]*"',
+            "site-guide <body> opening tag must carry the site-unified class")
+        # And the source code example must STILL be present (we must not have
+        # accidentally rewritten the user-authored text inside <pre><code>).
+        # The source escapes only `<` and `>` to entities; double-quotes
+        # around the example attribute values stay as plain `"`.
+        self.assertIn('&lt;body class="site-unified"', content,
+            "site-guide output must still contain the literal code example "
+            "showing the unified body markup (the example text inside "
+            "<pre><code> must survive transform() untouched)")
+
+    def test_build_is_idempotent(self):
+        """Running build_site.py twice on the same source must produce
+        identical HTML output for every HTML page.
+
+        The second build must NOT duplicate theme injection, leak the
+        previously-injected attributes back into the source view, or rewrite
+        any content. This protects against regressions where the
+        'already-themed' short-circuit becomes destructive.
+        """
+        output_a = _unique_output_path()
+        output_b = _unique_output_path()
+        # Both outputs are owned by this test; clean them up only here.
+        self.addCleanup(shutil.rmtree, str(output_a), True)
+        self.addCleanup(shutil.rmtree, str(output_b), True)
+        _run_build(output_a)
+        _run_build(output_b)
+        # Compare every HTML file in both outputs, keyed by relative path.
+        def _read_htmls(root: Path) -> dict:
+            out = {}
+            for p in root.rglob('*.html'):
+                rel = p.relative_to(root)
+                out[rel.as_posix()] = p.read_text(encoding='utf-8')
+            return out
+        a_html = _read_htmls(output_a)
+        b_html = _read_htmls(output_b)
+        self.assertEqual(set(a_html.keys()), set(b_html.keys()),
+            f"Second build created a different set of HTML files than first "
+            f"build.\nOnly in A: {sorted(set(a_html)-set(b_html))}\n"
+            f"Only in B: {sorted(set(b_html)-set(a_html))}")
+        diffs = sorted(rel for rel in a_html if a_html[rel] != b_html[rel])
+        self.assertEqual(diffs, [],
+            f"Second build produced different content for {len(diffs)} HTML "
+            f"file(s); first vs second must be byte-identical:\n{diffs}")
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build unified reading interface
         run: |
-          python3 -m unittest discover -s tests -p test_site_identity.py -v
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
           python3 scripts/build_site.py --output .site-build
           python3 scripts/personalize_site.py .site-build
       - name: Browser checks for site-wide changes

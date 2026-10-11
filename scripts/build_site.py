@@ -240,7 +240,7 @@ def build(root,output):
     records=[];assets=0
     for p in files:
         rel=p.relative_to(root)
-        if p.is_symlink() or any(x in {'.git','.github','.cursor','.site-build','node_modules','__pycache__'} for x in rel.parts) or output in p.parents:continue
+        if p.is_symlink() or any(x in {'.git','.github','.cursor','.site-build','node_modules','__pycache__','templates'} for x in rel.parts) or output in p.parents:continue
         if rel.as_posix() in {'scripts/build_site.py','scripts/verify_site_browser.py'}:continue
         dest=output/rel;dest.parent.mkdir(parents=True,exist_ok=True)
         if p.suffix.lower() in {'.html','.htm'} and not any(x.startswith('_') for x in rel.parts):

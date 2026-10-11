@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMPLATE_ARTICLE_PLACEHOLDER_TITLE · Xin Conan</title>
+<meta name="description" content="TEMPLATE_ARTICLE_PLACEHOLDER_DESCRIPTION">
+<style>
+/* 局部样式：仅作用于本页 article 元素, 不影响全局。*/
+article.template-article main > section { margin-block: 28px; }
+article.template-article .evidence-list { background: #f1f0e9; border: 1px solid var(--site-line); padding: 14px 20px; border-radius: 4px; }
+article.template-article .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+article.template-article .citation-list li { margin-block: 6px; }
+article.template-article .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+article.template-article .tech-log summary { color: var(--site-muted); }
+</style>
+</head>
+<body>
+<article class="template-article">
+<main>
+<h1>TEMPLATE_ARTICLE_PLACEHOLDER_H1</h1>
+<p class="site-heading-lead">TEMPLATE_ARTICLE_PLACEHOLDER_LEAD</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">简介</h2>
+<p>TEMPLATE_ARTICLE_PLACEHOLDER_INTRO_PARAGRAPH</p>
+</section>
+
+<section id="body" aria-labelledby="body-heading">
+<h2 id="body-heading">正文</h2>
+<p>TEMPLATE_ARTICLE_PLACEHOLDER_BODY_PARAGRAPH_1</p>
+<blockquote cite="TEMPLATE_ARTICLE_PLACEHOLDER_QUOTE_SOURCE">
+TEMPLATE_ARTICLE_PLACEHOLDER_QUOTE_TEXT
+</blockquote>
+<p>TEMPLATE_ARTICLE_PLACEHOLDER_BODY_PARAGRAPH_2</p>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-heading">
+<h2 id="evidence-heading">证据</h2>
+<details class="evidence-list">
+<summary>证据 1 · TEMPLATE_ARTICLE_PLACEHOLDER_EVIDENCE_TITLE</summary>
+<p>TEMPLATE_ARTICLE_PLACEHOLDER_EVIDENCE_BODY</p>
+</details>
+<details class="evidence-list">
+<summary>证据 2 · TEMPLATE_ARTICLE_PLACEHOLDER_EVIDENCE_TITLE_2</summary>
+<p>TEMPLATE_ARTICLE_PLACEHOLDER_EVIDENCE_BODY_2</p>
+</details>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li>TEMPLATE_ARTICLE_PLACEHOLDER_CITATION_1</li>
+<li>TEMPLATE_ARTICLE_PLACEHOLDER_CITATION_2</li>
+</ol>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>TEMPLATE_ARTICLE_PLACEHOLDER_TECH_NOTE_VERSION</li>
+<li>TEMPLATE_ARTICLE_PLACEHOLDER_TECH_NOTE_DRAFT</li>
+</ul>
+</details>
+</main>
+</article>
+</body>
+</html>

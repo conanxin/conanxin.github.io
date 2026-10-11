@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMPLATE_EXHIBITION_PLACEHOLDER_TITLE · Xin Conan</title>
+<meta name="description" content="TEMPLATE_EXHIBITION_PLACEHOLDER_DESCRIPTION">
+<style>
+/* 局部样式：仅作用于本页 exhibition 元素, 不影响全局。*/
+article.template-exhibition main > section { margin-block: 28px; }
+article.template-exhibition .object-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+article.template-exhibition .object-card { background: #fff; border: 1px solid var(--site-line); border-radius: 4px; padding: 18px 20px; }
+article.template-exhibition .object-card h3 { font: 600 18px/1.6 var(--site-serif); margin: 0 0 8px; }
+article.template-exhibition .object-card p { font: 14px/1.85 var(--site-sans); color: #59685e; margin: 0; }
+article.template-exhibition .evidence-callout { background: #f1f0e9; border-left: 3px solid var(--site-green); padding: 14px 20px; border-radius: 0 4px 4px 0; }
+article.template-exhibition .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+article.template-exhibition .citation-list li { margin-block: 6px; }
+article.template-exhibition .boundary { background: #f1f0e9; color: #465a49; border: 1px solid #d7d4c7; padding: 14px 20px; border-radius: 4px; }
+article.template-exhibition .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<article class="template-exhibition">
+<main>
+<h1>TEMPLATE_EXHIBITION_PLACEHOLDER_H1</h1>
+<p class="site-heading-lead">TEMPLATE_EXHIBITION_PLACEHOLDER_LEAD</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">展厅简介</h2>
+<p>TEMPLATE_EXHIBITION_PLACEHOLDER_INTRO_PARAGRAPH</p>
+</section>
+
+<section id="objects" aria-labelledby="objects-heading">
+<h2 id="objects-heading">展品</h2>
+<div class="object-grid">
+<div class="object-card">
+<h3>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_TITLE_1</h3>
+<p>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_BODY_1</p>
+</div>
+<div class="object-card">
+<h3>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_TITLE_2</h3>
+<p>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_BODY_2</p>
+</div>
+<div class="object-card">
+<h3>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_TITLE_3</h3>
+<p>TEMPLATE_EXHIBITION_PLACEHOLDER_OBJECT_BODY_3</p>
+</div>
+</div>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-heading">
+<h2 id="evidence-heading">证据</h2>
+<p class="evidence-callout">TEMPLATE_EXHIBITION_PLACEHOLDER_EVIDENCE_CALLOUT</p>
+<details>
+<summary>证据 1 · TEMPLATE_EXHIBITION_PLACEHOLDER_EVIDENCE_TITLE_1</summary>
+<p>TEMPLATE_EXHIBITION_PLACEHOLDER_EVIDENCE_BODY_1</p>
+</details>
+</section>
+
+<section id="boundary" aria-labelledby="boundary-heading">
+<h2 id="boundary-heading">解读边界</h2>
+<p class="boundary">TEMPLATE_EXHIBITION_PLACEHOLDER_BOUNDARY_TEXT</p>
+</section>
+
+<section id="further-research" aria-labelledby="further-research-heading">
+<h2 id="further-research-heading">后续研究</h2>
+<ul>
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_FURTHER_1</li>
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_FURTHER_2</li>
+</ul>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_CITATION_1</li>
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_CITATION_2</li>
+</ol>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_TECH_NOTE_VERSION</li>
+<li>TEMPLATE_EXHIBITION_PLACEHOLDER_TECH_NOTE_PEER_REVIEW</li>
+</ul>
+</details>
+</main>
+</article>
+</body>
+</html>

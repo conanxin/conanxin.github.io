@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="site-index-kind" content="reference">
+<title>SHUGE 冻结书目与引文核验索引 · Conan Xin</title>
+<meta name="description" content="带证据限制的 SHUGE v0.7 三条 work_id 暂定书目及 citation_id 核验说明；不把项目临时题名转换为古籍作品身份。">
+<style>
+/* 局部样式：仅作用于本页 reference 元素, 不影响全局。*/
+main article.template-reference { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-reference > section { margin-block: 28px; }
+main article.template-reference .source-table { width: 100%; border-collapse: collapse; font: 13px/1.8 var(--site-sans); color: #39483e; }
+main article.template-reference .source-table th, main article.template-reference .source-table td { padding: 12px 14px; border-bottom: 1px solid #e6e6de; text-align: left; vertical-align: top; }
+main article.template-reference .source-table th { background: #f1f2eb; color: #3c503f; }
+main article.template-reference .citation-format { background: #222f29; color: #e5ede7; padding: 18px 22px; border-radius: 4px; font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-x: auto; }
+main article.template-reference .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+main article.template-reference .citation-list li { margin-block: 6px; }
+main article.template-reference .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-reference">
+<h1>SHUGE 来源索引：作品身份与引文核验</h1>
+<p class="site-heading-lead">三条 work_id 记录 · v0.7 冻结数据 · 不将临时书名当作正式编目。</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">文献来源</h2>
+<p>本索引以 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">bibliography.json</a> 中实际存在的 <code>work_id</code> 为主键，连到 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">语义支持审计</a>。下表的标题严格保留原字段的临时值；<strong>作者、出版年份及原始馆藏出处并未由该冻结文件直接提供</strong>，因此不作作品身份确证。</p>
+</section>
+
+<section id="source" aria-labelledby="source-heading">
+<h2 id="source-heading">来源</h2>
+<table class="source-table">
+<thead>
+<tr><th scope="col">作者</th><th scope="col">标题</th><th scope="col">年份</th><th scope="col">出处</th></tr>
+</thead>
+<tbody>
+<tr><td>原始作者未记录</td><td>书海出版社文献 P168491（临时字段）</td><td>原刊年份未记录</td><td>work-shuge-168491 · v0.7 快照（非出版者核实）</td></tr>
+<tr><td>原始作者未记录</td><td>书海出版社文献 P211203（临时字段）</td><td>原刊年份未记录</td><td>work-shuge-211203 · v0.7 快照（非出版者核实）</td></tr>
+<tr><td>原始作者未记录</td><td>书海出版社文献 P44159（临时字段）</td><td>原刊年份未记录</td><td>work-shuge-44159 · v0.7 快照（非出版者核实）</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="format" aria-labelledby="format-heading">
+<h2 id="format-heading">引用格式</h2>
+<p>下面仅展示<strong>可回溯数据键的写法</strong>，不是已经审定的版本学书目或可以独立引证的正式 BibTeX。</p>
+<pre class="citation-format"><code>@misc{shuge_work_168491,\n  title = {Unverified work record P168491},\n  note = {work_id=work-shuge-168491; provisional dataset label only}\n}</code></pre>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">SHUGE DH v0.7, bibliography.json</a>（2026-09-28 项目数据快照；临时书目标签，不作为作品原刊引证）。</li>
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">SHUGE DH v1.0, CLAIM_SUPPORT_AUDIT.md</a>（引文解析与事实语义支持边界）；参见 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/PROVENANCE_AUDIT_v1.0.md">Provenance Audit</a>。</li>
+</ol>
+</section>
+
+<section id="note" aria-labelledby="note-heading">
+<h2 id="note-heading">备注</h2>
+<p>第三条记录 <code>work-shuge-44159</code> 的临时题名是「书海出版社文献 P44159」，同样没有在 v0.7 快照中确证作者/原刊书名。<strong>引用解析说明：</strong>候选审计涉及 <code>SHUGE:p168491:68</code>、<code>SHUGE:p211203:1096</code>、<code>SHUGE:p211203:1178</code>、<code>SHUGE:p211203:1320</code>、<code>SHUGE:p211203:1338</code>、<code>SHUGE:p44159:552</code> 等 ID；审计认为仅 <code>SHUGE:p168491:68</code> 在所检查的 citations 运行记录里可以解析，但对应的是《梦粱录》检索运行，<strong>不能支持对《水经注》的归属断言</strong>。其他示例 ID 不应仅凭存在于 bibliography.json 就标记为已核引文。<a href="/projects/site-design-lab/shuge-evidence-exhibition/">返回相关展览导览</a>。</p>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 2D · reference 模板试点。来源只读：bibliography.json（v0.7）与 CLAIM_SUPPORT_AUDIT.md（v1.0）。</li>
+<li>截至 Stage 2D 本轮，该页未执行外部书目核验，不新增作者、年份、校本或原始出版社断言。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

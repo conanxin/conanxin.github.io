@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.5 (2026-10-12，Stage 2E 外部候选来源对照与索引边界)
+> **版本**: 1.6 (2026-10-12，Stage 2E 来源对照已生产验收)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -237,10 +237,21 @@
 
 ## 14. Stage 2E · 外部书格候选来源与内容索引准入规则
 
-> 本节的代码与页面首先通过独立 PR 检验，**只有合并到 main 并收到 Pages 正式验收回执后才算上线**。
+> **已正式发布并验收**：[PR #17](https://github.com/conanxin/conanxin.github.io/pull/17) 已合并（`17ba656e3c1695624058ce00750b0cb1f7650734`）；[GitHub Pages Run 38184465542](https://github.com/conanxin/conanxin.github.io/actions/runs/38184465542) 完成 38/38 unittest、44/44 Playwright、16/16 公网路径（包括来源对照与 JSON），JS 错误为 0。
 
-- `projects/site-design-lab/shuge-source-crosswalk/index.html` 是新建的 `reference` 分类公开读者页，配套 `crosswalk.json` 记录 3 条 work_id 的状态，而非修改冻结书目。
+- `projects/site-design-lab/shuge-source-crosswalk/index.html` 是**完整使用** `<main class="site-home"><article class="template-reference">…</article></main>` 的新 `reference` 分类页面，配套公开 JSON 记录 3 条 work_id 的分层状态，不修改冻结书目。Codex P1 评审曾指出第一稿脱离共享参考模板，现已修复、增加 DOM 测试并验收。
 - VERIFIED / UNVERIFIED / NOT_FOUND 是**逐层证据状态**：本轮进一步查得仓库已有 `works.json` 的 `post_id/title/shuge_url` 直接映射——P168491=《园冶》，P211203=《天工开物》，P44159=《工程做法》，P124575=《水经注》；这些是 **VERIFIED as archived mapping**。书格公开作品页也能直接核对。但冻结书目 P168491/P211203 的时代字段冲突、原藏机构目录编号与扫描版心仍 **UNVERIFIED**；在线单独 numeric permalink 查询中未找到更多记录（NOT_FOUND）不能抹去仓库内已有映射。
 - `scripts/content_index.py` 继续以已成功构建的公开页面作为候选；除了已有 `public_route()` 外，在精选索引准入环节追加**路径硬拒绝**：`drafts/`、`future/`、`src/`、`connections/`、`research-terminal/`、`source/`、`sources/`、`work/`、`works/`、`reports/`、`backups/`、历史 `projects/shuge-exhibition-v0.*`。即使页面 meta 标有 `site-index-kind` 也不会自动晋级为精选内容。
 - 这个拒绝机制只控制 `/content-index/` 和关联 JSON 的收录，不删除已有历史页面、也不改变原 GitHub Pages 对源文件路径的发布行为。
 - 公共索引是**发现导航**，不是新的全文搜索、自动版本鉴定或研究成果审核工具。若日后确需收录更多长尾研究内容，先建立来源与草稿排除的允许列表，再提交独立 PR。
+
+
+---
+
+## 15. Stage 2F · 原藏机构身份与书影核验（未执行）
+
+Stage 2E 取得的是同仓库既有 `works.json` **post_id→title→shuge_url** 映射，以及公开书格作品页的可查描述。不得用它们冒充原馆自有的 stable catalog ID、原始版本同一性或逐页 Citation ID/OCR 比对。
+
+Stage 2F 首先检索**持有机构自己的**目录/IIIF/数字藏品号，对《园冶》（P168491）、《天工开物》（P211203）、《工程做法》（P44159）逐条建立：原馆藏条目 URL/ID、作品版次及扫描位置、馆藏责任机构、影像书口和刊记证据、未决冲突。每一层可独立为 VERIFIED / UNVERIFIED / NOT_FOUND，未取得的层级绝不因上一层已核而自动升级。冻结的 SHUGE v0.7 数据和全部原研究资产继续只读。
+
+现有 `/content-index/` 只支持已发布页面标题/简介的发现、分类过滤；Stage 2E 仅收紧了敏感/历史路径的收录，不是新的学术事实核验服务或全文搜索。

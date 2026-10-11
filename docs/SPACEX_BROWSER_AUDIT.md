@@ -121,7 +121,7 @@ projects/wbw-spacex-mars-cn/
 - **保留统一外壳**：继续注入品牌导航、面包屑、页脚、公共 CSS 与身份规范化。专题的跳转正文链接直达源文件自有的 `<main id="main">`。全站 CSS 仅对专题外围导航增加适配色和可见焦点样式。
 - **保留专题资产**：不改 `projects/wbw-spacex-mars-cn/` 下的任何文件，包括 `index.html`、`styles.css`、`app.js`、图像、正文与翻译数据；不改 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc` 的 `globs`。专题现有表格不再被统一表格容器包裹。
 - **单元回归**：`tests/test_spacex_theme.py` 核对精确路由、原生主题、原始脚本与控件、共享导航、其他页面的统一主题与幂等。
-- **浏览器回归**：`scripts/verify_site_browser.py` 将火星专题纳入 1440px / 390px 的两视口测试，核对深空背景、Starfield/Hero、深空↔火星沙和沉浸↔注释交互，保留截图，并且将 390px 横向溢出列为阻断条件。首轮 CI 曾通过原有检查，但诊断发现手机文档滚动宽度为 724px（目标 390px），主要由脚注中原始长 URL 无断行引起，个别链接右边界达 907px；随后仅在共享 CSS 的 `project-native` 作用域追加 `.footnote-body` 链接换行规则，保持链接与原文内容完全不变。该新增断言必须通过新一轮 CI 才可验收。
+- **浏览器回归与真实修复**：`scripts/verify_site_browser.py` 将火星专题纳入 1440px / 390px 两视口测试，核对深空背景、Starfield/Hero、深空↔火星沙与沉浸↔注释交互，并将横向溢出超过 5px 列为阻断条件。第一轮检测出手机文档滚动宽度 724px（视口 390px），一部分来自脚注 `footnote-body`，另一部分是直接嵌在译文 HTML 中的长网址裸 `<a>`（个别外部链接右边界超过 700px）；修复仅在共享 CSS 的 `project-native` 作用域为 `.footnote-body` 和专题正文 `.main a[href^="http://"]` / `.main a[href^="https://"]` 增加自动断行，**完全不改原文、引文或链接 href**。代码修复在 PR #12 的 GitHub Actions Run `38141749146` 验证：**19/19 unittest、32/32 Playwright、脚本错误 0；手机滚动宽度 395px（390px 视口，允许偏差 5px）**。
 
 **验收状态**：源代码已提交独立分支，浏览器验收以 Stage 2B PR 的 GitHub Actions `pr-checks` 真实结果为准；在合并前不得称此项已在正式生产生效。此前主分支的部署成功只证明 Stage 2A 页面通过，并未覆盖火星专题。
 

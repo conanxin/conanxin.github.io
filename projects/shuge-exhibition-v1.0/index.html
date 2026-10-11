@@ -1,245 +1,130 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>书格数字人文研究站 · v1.0 Candidate First Real Scholarly Output</title>
-<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="SHUGE 数字人文展览：从古籍目录、扫描图像与文字识读，走向可追溯的历史研究。浏览五个展厅、五项研究案例与《水经注》研究文章。">
+<title>SHUGE 数字人文展览｜从古籍到历史证据</title>
+<style>
+:root{--bg:#f8f7f4;--paper:#fff;--ink:#282c29;--muted:#626b65;--line:#dddcd5;--accent:#a15c39;--green:#294b40;--soft:#f3f0e9;--serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;--sans:"Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none;text-underline-offset:4px}a:hover{color:var(--accent)}a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.skip{position:absolute;left:-9999px;top:0;padding:11px;background:var(--ink);color:#fff;z-index:10}.skip:focus{left:12px;top:8px}
+.top{background:#fff;border-bottom:1px solid var(--line)}.top-inner{max-width:1080px;margin:auto;padding:17px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font:700 22px/1.4 var(--serif);letter-spacing:.04em}.brand small{font:13px/1.4 var(--sans);letter-spacing:0;font-weight:400;color:var(--muted);margin-left:8px}.top nav{display:flex;gap:24px;flex-wrap:wrap;justify-content:flex-end;font-size:13px;color:var(--muted)}
+.container{width:min(100% - 48px,1024px);margin:0 auto}.hero{padding:80px 0 58px;border-bottom:1px solid var(--line)}.crumb{font-size:12px;color:var(--muted);margin-bottom:25px}.eyebrow{font-size:12px;font-weight:650;color:var(--accent);letter-spacing:.13em;margin:0 0 12px}.hero h1{font:600 clamp(32px,4.7vw,51px)/1.42 var(--serif);max-width:850px;letter-spacing:.01em;margin:0 0 24px}.hero-lead{font-size:17px;line-height:1.95;color:#535b56;max-width:775px;margin:0}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-top:27px}.primary{display:inline-flex;gap:14px;align-items:center;background:var(--green);color:#fff!important;font-weight:600;font-size:14px;padding:12px 20px;border-radius:3px}.primary:hover{background:#42685a}.secondary{color:var(--accent);font-size:14px;font-weight:600}
+.section{padding:60px 0;border-bottom:1px solid var(--line)}.section-head{margin-bottom:28px}.section-head h2{font:600 29px/1.45 var(--serif);margin:0}.section-head p:last-child{font-size:14px;color:var(--muted);margin:12px 0 0;max-width:760px}
+.main-feature{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);border:1px solid var(--line);border-radius:5px;background:#fff}.feature-copy{padding:39px 43px}.feature-copy .meta{font-size:12px;color:var(--muted);display:block;margin-bottom:15px}.feature-copy h3{font:600 clamp(23px,3vw,32px)/1.55 var(--serif);margin:0 0 12px}.feature-copy p{color:#58605b;margin:0;font-size:15px;line-height:1.95}.feature-aside{background:#fcfaf5;border-left:1px solid var(--line);padding:38px 29px}.feature-aside span{font-size:12px;color:var(--muted);letter-spacing:.06em}.feature-aside ol{list-style:none;padding:0;margin:17px 0 0}.feature-aside li{font:500 17px/1.65 var(--serif);padding:10px 0;border-bottom:1px solid #e8e4da}.feature-aside li:last-child{border-bottom:0}.feature-aside p{font-size:12px;color:var(--muted);line-height:1.85;margin:17px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.room-card{display:flex;flex-direction:column;align-items:flex-start;padding:27px 28px;border:1px solid var(--line);border-radius:5px;background:#fff;min-height:234px}.card-index{font-size:12px;color:var(--accent);font-weight:650;letter-spacing:.06em}.room-card h3{font:600 21px/1.5 var(--serif);margin:16px 0 10px}.room-card p{margin:0;color:#5d655f;font-size:14px;line-height:1.9;flex:1}.card-go{color:var(--accent);font-size:13px;font-weight:600;margin-top:20px}.room-card:hover,.case-item:hover,.essay:hover{border-color:#b9aa9b;box-shadow:0 4px 16px rgba(43,35,20,.045)}
+.case-list{background:#fff;border:1px solid var(--line);border-radius:5px}.case-item{display:grid;grid-template-columns:58px minmax(0,1fr) 18px;gap:15px;padding:22px 27px;align-items:center;border-bottom:1px solid var(--line)}.case-item:last-child{border-bottom:0}.case-no{color:#a19f97;font:14px/1.4 var(--serif)}.case-body{display:flex;flex-direction:column}.case-type{font-size:11px;color:var(--muted);margin-bottom:4px}.case-body strong{font:600 19px/1.5 var(--serif)}.case-body small{font:13px/1.75 var(--sans);color:#5c655f;margin-top:5px}.case-go{font-size:18px;color:var(--accent)}
+.reading-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.essay{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:5px;padding:25px}.essay .tag{font-size:12px;color:var(--accent);letter-spacing:.05em}.essay h3{font:600 19px/1.55 var(--serif);margin:14px 0 10px}.essay p{font-size:13px;line-height:1.9;color:#5d635e;margin:0 0 22px;flex:1}.essay .read{font-size:13px;color:var(--accent);font-weight:600}
+.two-cols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:24px;align-items:start}.method-copy{font-size:15px;line-height:2;color:#505751;margin:0 0 20px}.method-links{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:14px;font-weight:600;color:var(--accent)}.aside-quiet{padding:25px;background:#f1eee7;border:1px solid var(--line);font-size:13px;line-height:1.95;color:#515a54}.aside-quiet strong{display:block;font:600 16px/1.55 var(--serif);margin-bottom:8px;color:var(--ink)}.aside-quiet p{margin:0}
+.archive{background:#fff;border:1px solid var(--line);padding:21px 25px;border-radius:5px;margin-top:27px}.archive summary{cursor:pointer;font-weight:600;font-size:14px}.archive summary::marker{color:var(--accent)}.archive-body{padding-top:12px}.archive-body p{font-size:13px;color:var(--muted);margin:0 0 10px}.archive-links{display:flex;flex-wrap:wrap;gap:10px 23px;font-size:13px}.archive-links a{color:var(--accent);text-decoration:underline}
+.worklist{list-style:none;margin:16px 0 4px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:26px}.worklist li{border-bottom:1px solid var(--line);padding:10px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}.worklist li a{font:600 14px/1.6 var(--serif);color:#3b4e47}.worklist li span{font:12px/1.7 var(--sans);color:var(--muted)}
+footer{background:#fff}.footer-inner{max-width:1080px;margin:auto;padding:27px 28px 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:12px;color:var(--muted)}
+@media(max-width:820px){.main-feature,.two-cols{grid-template-columns:1fr}.feature-aside{border-left:0;border-top:1px solid var(--line)}.grid,.reading-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:570px){body{font-size:15px}.container{width:min(100% - 36px,1024px)}.top-inner{display:block;padding:15px 18px}.top nav{margin-top:13px;justify-content:flex-start;gap:12px 19px}.brand{font-size:20px}.hero{padding:53px 0 46px}.hero h1{font-size:31px}.hero-lead{font-size:15px}.section{padding:42px 0}.section-head h2{font-size:25px}.feature-copy{padding:26px 24px}.feature-aside{padding:25px}.grid,.reading-grid,.worklist{grid-template-columns:1fr}.room-card{min-height:0;padding:24px}.case-item{grid-template-columns:34px minmax(0,1fr) 16px;gap:10px;padding:19px 17px}.case-body strong{font-size:17px}.archive{padding:18px}.footer-inner{padding:25px 18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="page-overview">
-<header class="masthead">
-  <h1 class="masthead-title">书格数字人文研究站</h1>
-  <p class="masthead-subtitle">v1.0 Candidate · First Real Scholarly Output · 《从〈水经注〉到数字证据》</p>
-</header>
-<nav class="topnav">
-  <div class="topnav-links">
-    <a href="index.html" class="active">总览</a>
-    <span class="topnav-divider">·</span>
-    <a href="rooms/room1/index.html">展厅 1</a>
-    <a href="rooms/room2/index.html">展厅 2</a>
-    <a href="rooms/room3/index.html">展厅 3</a>
-    <a href="rooms/room4/index.html">展厅 4</a>
-    <a href="rooms/room5/index.html">展厅 5</a>
-    <span class="topnav-divider">·</span>
-    <a href="cases/case1/index.html">案例 1</a>
-    <a href="cases/case2/index.html">案例 2</a>
-    <a href="cases/case3/index.html">案例 3</a>
-    <a href="cases/case4/index.html">案例 4</a>
-    <a href="cases/case5/index.html">案例 5</a>
-  </div>
-  <div class="topnav-meta">
-    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.3">v0.3 ↗</a>
-    <span class="topnav-divider">·</span>
-    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.1">v0.1 ↗</a>
-    <span class="topnav-divider">·</span>
-    <a href="https://github.com/conanxin/conanxin.github.io/tree/main/projects/shuge-exhibition-v0.2">v0.2 ↗</a>
-    <span class="topnav-divider">·</span>
-    <a href="portfolio/">Portfolio</a>
-    <span class="topnav-divider">·</span>
-    <a href="publications/water-classic-digital-life/">v1.0 本篇</a>
-    <span class="topnav-divider">·</span>
-    <a href="methods/citation-bound-historical-research/">Methods</a>
-    <span class="topnav-divider">·</span>
-    <a href="review/">Peer Review (SIM)</a>
-  </div>
+<body>
+<a class="skip" href="#main">跳转到展览内容</a>
+<header class="top"><div class="top-inner">
+<a class="brand" href="index.html">SHUGE <small>数字人文展览</small></a>
+<nav aria-label="主导航">
+<a href="#rooms">展览导览</a>
+<a href="#cases">研究案例</a>
+<a href="#reading">专题阅读</a>
+<a href="#methods">研究方法</a>
 </nav>
-
-<main class="body">
-  <section class="hero">
-    <h1>First Real Scholarly Output · v1.0 Candidate</h1>
-    <p class="hero-lead">v1.0 把 v0.9 「Public Research Portfolio」推进为「First Real Scholarly Output」—— 第一篇真实可公开阅读的数字人文研究文章:《<a href="publications/water-classic-digital-life/">从〈水经注〉到数字证据：一部古籍的数字生命史</a>》。Status: REVIEW (不自动 PUBLISHED)。</p>
-    <p>本站展示 SHUGE-RESEARCH-DB 在 P5-C + P5-D + v0.1-v0.9 阶段产出的研究成果。所有数据来自只读 JSON 快照,所有 Citation ID 自 P5-B2 起保持不变。v1.0 边界:<strong>不下载新资源</strong>,<strong>不运行 OCR</strong>,<strong>不引入 embeddings</strong>,<strong>不自动 PUBLISHED</strong>,<strong>不自动补写历史事实</strong>。书格 = source platform (NOT publisher)。</p>
-    <p class="hero-cta-row">📄 <a href="publications/water-classic-digital-life/"><strong>主文章</strong></a> · 📋 <a href="publications/water-classic-digital-life/evidence/"><strong>Evidence Appendix</strong></a> · 📐 <a href="methods/citation-bound-historical-research/"><strong>Methods Note</strong></a> · 🎯 <a href="portfolio/"><strong>Portfolio</strong></a> · ⚠️ <a href="review/"><strong>Peer Review (SIMULATED)</strong></a></p>
-  </section>
-
-  <section>
-    <h2>v0.9 新增资源 (New Resources)</h2>
-    <p>3 个 public article pages + peer review records + research portfolio。</p>
-    <div class="cards-grid-3">
-      <article class="card">
-        <div class="card-header"><span class="card-num">public #1</span></div>
-        <h3 class="card-title"><a href="articles/hydrology-river-distribution/index.html">水经注河水分布</a></h3>
-        <p class="card-en-title">River Distribution in 水经注</p>
-        <p class="dim" style="font-size:0.78rem">Public Article Page · 8 段语义结构 · review_status:DRAFT</p>
-      </article>
-      <article class="card">
-        <div class="card-header"><span class="card-num">public #2</span></div>
-        <h3 class="card-title"><a href="articles/architecture-pillar-diameter/index.html">应县木塔柱径</a></h3>
-        <p class="card-en-title">Pillar Diameter of Yingxian Wooden Pagoda</p>
-        <p class="dim" style="font-size:0.78rem">Public Article Page · 8 段语义结构 · review_status:REVIEW</p>
-      </article>
-      <article class="card">
-        <div class="card-header"><span class="card-num">public #3</span></div>
-        <h3 class="card-title"><a href="articles/cross-hydrology-architecture/index.html">水文×建筑</a></h3>
-        <p class="card-en-title">Hydrology × Architecture Cross-textual</p>
-        <p class="dim" style="font-size:0.78rem">Public Article Page · 8 段语义结构 · review_status:REVISED</p>
-      </article>
-      <article class="card">
-        <div class="card-header"><span class="card-num">peer review</span></div>
-        <h3 class="card-title"><a href="review/">同行评审记录</a></h3>
-        <p class="card-en-title">Peer Review Records</p>
-        <p class="dim" style="font-size:0.78rem">3 review records · 15 comments · 5 rubric · static demo</p>
-      </article>
-      <article class="card">
-        <div class="card-header"><span class="card-num">portfolio</span></div>
-        <h3 class="card-title"><a href="portfolio/">研究档案</a></h3>
-        <p class="card-en-title">Research Portfolio</p>
-        <p class="dim" style="font-size:0.78rem">5 sections · 25 items · aggregation only</p>
-      </article>
-      <article class="card">
-        <div class="card-header"><span class="card-num">v0.9 docs</span></div>
-        <h3 class="card-title"><a href="DESIGN_v0.9.md">DESIGN_v0.9</a> · <a href="IA_v0.9.md">IA_v0.9</a></h3>
-        <p class="card-en-title">v0.9 Design Documents</p>
-        <p class="dim" style="font-size:0.78rem">2 design docs · 12 invariants · 9 ID namespaces</p>
-      </article>
-    </div>
-  </section>
-
-  <section>
-    <h2>治理指标</h2>
-    <p>六项研究系统治理指标。</p>
-    <table class="meta-table">
-      <tr><th>OUT_OF_COLLECTION_LEAKAGE</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
-      <tr><th>VERIFIED_FALSE_REGRESSION</th><td><span class="verified mono">PASS</span> · 2 hits 全部 out-of-collection</td></tr>
-      <tr><th>ABSTENTION (negative controls)</th><td><span class="verified mono">PASS</span> · 12/12 negative queries correctly INSUFFICIENT_EVIDENCE</td></tr>
-      <tr><th>UNSUPPORTED_CLAIM_SENTENCES</th><td><span class="verified mono">0</span> · gate PASS</td></tr>
-      <tr><th>CITATION_IDS_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
-      <tr><th>PROVENANCE_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2>5 个研究案例(Case Studies)</h2>
-    <p>v0.3 新增 — 每个案例含 6 个 section:Question / Source / Evidence / Citation / Interpretation boundary / Further research。</p>
-    <div id="cases-grid" class="cards-grid-3"></div>
-  </section>
-
-  <section>
-    <h2>5 个策展展厅(Exhibition Rooms)</h2>
-    <p>v0.3 升级 — 每个展厅含 5 个 section:Introduction / Objects / Evidence / Take-away / Further Reading。</p>
-    <div id="rooms-grid" class="cards-grid-3"></div>
-  </section>
-
-  <section>
-    <h2>9 部 featured works</h2>
-    <p>9 部古籍是本研究系统的骨干资源。</p>
-    <div id="works-list"></div>
-  </section>
-
-  <section>
-    <h2>Map Placeholder</h2>
-    <p class="dim">v0.3 仍为 framework only — 简化东亚大陆轮廓 + 8 个坐标点。无 Mapbox / Leaflet 依赖。</p>
-    <div class="map-placeholder" id="map-placeholder"></div>
-  </section>
-
-  <section>
-    <div class="takeaway">
-      <div class="takeaway-label">Take-away</div>
-      v0.9 从 v0.8 「Evidence-backed Research Publication」升级为「Public Research Portfolio」:3 个 <strong>Public Article Pages</strong> 提供对外 8 段语义结构(title / abstract / methods / evidence / claims / citations / limitations / bibliography);3 条 <strong>Peer Review Records</strong> 静态演示 review_id + comments + score(无真实评审调度);<strong>Research Portfolio</strong> 聚合 5 sections · 25 items,所有条目都是 ID 引用,不会自动创建新内容,不会自动 PUBLISHED。
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>SHUGE DH Research Platform · v0.9 · Public Research Portfolio · READ-ONLY ID LINK · 不自动 PUBLISHED</p>
-  <p>数据来源:<a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 (P5-C)</a> · <a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 (P5-D)</a></p>
-</footer>
-
-<script src="js/main.js"></script>
-<script>
-// Render 5 case study cards
-fetch('data/case_studies.json').then(r => r.json()).then(d => {
-  var grid = document.getElementById('cases-grid');
-  d.case_studies.forEach(function(c, i) {
-    var html = '<article class="card case-card">';
-    html += '<div class="card-header">';
-    html += '<span class="card-num">案例 ' + (i+1) + '</span>';
-    html += '</div>';
-    html += '<h3 class="card-title"><a href="cases/case' + (i+1) + '/index.html">' + c.title_zh + '</a></h3>';
-    html += '<p class="card-en-title">' + c.title_en + '</p>';
-    html += '<p class="card-subtitle">' + c.subtitle + '</p>';
-    html += '<div class="card-meta">';
-    if (c.source && c.source.collection_slug) {
-      html += '<span class="badge badge-collection-' + (c.source.collection_slug === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + c.source.collection_slug + '</span>';
-    } else if (c.collection && c.collection !== 'none') {
-      html += '<span class="badge badge-collection-' + (c.collection === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + c.collection + '</span>';
-    }
-    html += '</div>';
-    html += '</article>';
-    grid.insertAdjacentHTML('beforeend', html);
-  });
-});
-
-// Render 5 rooms grid
-fetch('data/room_intros.json').then(r => r.json()).then(d => {
-  var grid = document.getElementById('rooms-grid');
-  var roomOrder = ['room1', 'room2', 'room3', 'room4', 'room5'];
-  roomOrder.forEach(function(id, i) {
-    var r = d.rooms[id];
-    if (!r) return;
-    var html = '<article class="card room-card">';
-    html += '<div class="card-header">';
-    html += '<span class="card-num">展厅 ' + (i+1) + '</span>';
-    html += '</div>';
-    html += '<h3 class="card-title"><a href="rooms/' + id + '/index.html">' + r.title_zh + '</a></h3>';
-    html += '<p style="font-size:0.85rem;color:var(--archival-brown);line-height:1.55">' + r.introduction.substring(0, 120) + '…</p>';
-    html += '<p class="dim" style="font-size:0.78rem;margin-top:0.5rem">' + r.objects.length + ' objects · ' + r.further_reading.length + ' further reading</p>';
-    html += '</article>';
-    grid.insertAdjacentHTML('beforeend', html);
-  });
-});
-
-// Render 9 works list
-fetch('data/works.json').then(r => r.json()).then(d => {
-  var list = document.getElementById('works-list');
-  d.featured.forEach(function(w) {
-    var html = '<div class="work-row">';
-    html += '<span class="work-title"><a href="' + w.shuge_url + '">' + w.title + '</a></span>';
-    html += '<span class="work-author">' + (w.author || '佚名') + '</span>';
-    html += '<span class="work-dynasty">' + (w.dynasty_or_date || '') + '</span>';
-    html += '<span class="work-pages">' + w.page_count + ' 页 · OCR ' + w.ocr_page_count + '</span>';
-    if (w.in_collections && w.in_collections.length > 0) {
-      w.in_collections.forEach(function(c) {
-        html += '<span class="badge badge-collection-' + (c.slug === 'historical-hydrology' ? 'hydrology' : 'architecture') + '">' + c.slug + '</span>';
-      });
-    }
-    html += '</div>';
-    list.insertAdjacentHTML('beforeend', html);
-  });
-});
-
-// Map placeholder (inherited from v0.2)
-fetch('data/map_placeholder.json').then(r => r.json()).then(d => {
-  var container = document.getElementById('map-placeholder');
-  container.innerHTML = '<svg viewBox="100 25 45 20" xmlns="http://www.w3.org/2000/svg" class="map-svg">'
-    + '<rect x="100" y="25" width="45" height="20" fill="#efe9da" stroke="#c8bfa9"/>'
-    + '<path d="M 102 30 L 110 28 L 118 29 L 125 27 L 132 28 L 140 26 L 142 28 L 144 32 L 142 36 L 138 38 L 132 39 L 128 41 L 124 42 L 120 41 L 116 40 L 112 38 L 108 36 L 105 33 Z" fill="#c8bfa9" stroke="#6b5944" stroke-width="0.2"/>'
-    + '</svg>';
-  var svg = container.querySelector('svg');
-  d.centers.forEach(function(pt) {
-    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    c.setAttribute('cx', pt.x);
-    c.setAttribute('cy', pt.y);
-    c.setAttribute('r', '0.6');
-    c.setAttribute('class', 'map-point');
-    c.setAttribute('data-name', pt.name);
-    c.setAttribute('data-note', pt.note);
-    svg.appendChild(c);
-  });
-  // Tooltip on hover
-  var tooltip = document.createElement('div');
-  tooltip.className = 'map-tooltip';
-  container.appendChild(tooltip);
-  svg.querySelectorAll('.map-point').forEach(function(pt) {
-    pt.addEventListener('mouseenter', function(e) {
-      tooltip.textContent = pt.getAttribute('data-name') + ' — ' + pt.getAttribute('data-note');
-      tooltip.style.opacity = '1';
-    });
-    pt.addEventListener('mouseleave', function() {
-      tooltip.style.opacity = '0';
-    });
-  });
-});
-</script>
-</body>
-</html>
+</div></header>
+<main id="main"><div class="container">
+<section class="hero" aria-labelledby="hero-title">
+<div class="crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　数字人文展览</div>
+<p class="eyebrow">数字展览 · 古籍文献 · 历史研究</p>
+<h1 id="hero-title">一本古籍，如何成为可检验的研究证据？</h1>
+<p class="hero-lead">古籍从图像转为可阅读的文字，还要经过整理、检索、校勘与引用，才可能成为历史研究的一部分。这场数字展览以《水经注》为核心，并延伸至古代水利、河防、建筑营造和跨文本比较，呈现文献证据如何形成，以及哪些判断仍需要由研究者负责。</p>
+<div class="actions">
+<a class="primary" href="#rooms">从五个展厅开始 <span aria-hidden="true">↗</span></a>
+<a class="secondary" href="publications/water-classic-digital-life/">阅读《水经注》的数字生命史 →</a>
+</div>
+</section>
+<section class="section" id="featured" aria-labelledby="featured-title">
+<div class="section-head"><p class="eyebrow">重点文章</p><h2 id="featured-title">从《水经注》到数字证据</h2><p>一次关于古籍数字化、文献阅读与史料可追溯性的研究尝试。</p></div>
+<article class="main-feature">
+<div class="feature-copy">
+<span class="meta">研究文章 · 中文 · 审阅稿</span>
+<h3>《从〈水经注〉到数字证据：一部古籍的数字生命史》</h3>
+<p>以《水经注》为线索，追问一部古籍如何从纸本文献和数字影像进入研究系统，以及当阅读、检索与引用方式改变时，我们应当如何理解证据和解释的边界。</p>
+<div class="actions"><a class="primary" href="publications/water-classic-digital-life/">阅读完整文章 <span aria-hidden="true">↗</span></a><a class="secondary" href="publications/water-classic-digital-life/evidence/">查看证据附录 →</a></div>
+</div>
+<aside class="feature-aside">
+<span>从文献到研究</span>
+<ol><li>古籍目录与扫描影像</li><li>文字识读与内容检索</li><li>可追溯的引文依据</li><li>历史解释与证据限度</li></ol>
+<p>这里展示的是研究过程中的不同层次，而不是声称数字化已经消除了所有版本和识读问题。</p>
+</aside>
+</article>
+</section>
+<section class="section" id="rooms" aria-labelledby="rooms-title">
+<div class="section-head"><p class="eyebrow">展览导览</p><h2 id="rooms-title">走进五个主题展厅</h2><p>从古籍目录和数字影像开始，逐步进入水利、营造、研究方法与人工智能辅助阅读。</p></div>
+<div class="grid"><a class="room-card" href="rooms/room1/index.html"><span class="card-index">展厅 1</span><h3>从目录到研究基础设施</h3><p>从古籍目录出发，了解图像、文字识读、索引和可追溯引用如何逐步成为研究基础。</p><span class="card-go">进入展厅 <span aria-hidden="true">↗</span></span></a>
+<a class="room-card" href="rooms/room2/index.html"><span class="card-index">展厅 2</span><h3>一部书的生命: 水经注个案</h3><p>跟随《水经注》，观察一部古籍从扫描影像走向可检索、可引用的文献资源。</p><span class="card-go">进入展厅 <span aria-hidden="true">↗</span></span></a>
+<a class="room-card" href="rooms/room3/index.html"><span class="card-index">展厅 3</span><h3>历史水利与河防</h3><p>以水利与河防文献为线索，认识水道、工程知识与专题文献整理。</p><span class="card-go">进入展厅 <span aria-hidden="true">↗</span></span></a>
+<a class="room-card" href="rooms/room4/index.html"><span class="card-index">展厅 4</span><h3>建筑营造与工程做法</h3><p>从《工程做法》《园冶》《天工开物》出发，比较古代建筑营造中的构件与尺度知识。</p><span class="card-go">进入展厅 <span aria-hidden="true">↗</span></span></a>
+<a class="room-card" href="rooms/room5/index.html"><span class="card-index">展厅 5</span><h3>人工智能辅助历史研究</h3><p>展示人工智能辅助整理与检索的作用，同时说明证据选择和历史解释为何仍需谨慎。</p><span class="card-go">进入展厅 <span aria-hidden="true">↗</span></span></a></div>
+</section>
+<section class="section" id="cases" aria-labelledby="cases-title">
+<div class="section-head"><p class="eyebrow">研究案例</p><h2 id="cases-title">五个问题，五条研究路径</h2><p>案例呈现研究问题、文献来源、证据与解释边界。部分比较仍处于探索阶段，不应视为已经得到证实的学术结论。</p></div>
+<div class="case-list"><a class="case-item" href="cases/case1/index.html"><span class="case-no">01</span><span class="case-body"><span class="case-type">文献数字化</span><strong>水经注数字生命史</strong><small>从静态扫描到可检索文本，追踪一部古籍在数字研究中的使用方式。</small></span><span class="case-go" aria-hidden="true">↗</span></a>
+<a class="case-item" href="cases/case2/index.html"><span class="case-no">02</span><span class="case-body"><span class="case-type">历史水利</span><strong>古代水利与河防</strong><small>以水利史和河防工程文献为例，考察哪些文字可以成为可靠的研究材料。</small></span><span class="case-go" aria-hidden="true">↗</span></a>
+<a class="case-item" href="cases/case3/index.html"><span class="case-no">03</span><span class="case-body"><span class="case-type">工程营造</span><strong>建筑营造知识</strong><small>围绕柱、梁、枋、斗栱等术语，整理古代营造知识及其文献出处。</small></span><span class="case-go" aria-hidden="true">↗</span></a>
+<a class="case-item" href="cases/case4/index.html"><span class="case-no">04</span><span class="case-body"><span class="case-type">跨文本探索</span><strong>乃粒跨文本互证</strong><small>从《天工开物》“乃粒”出发，探索农业知识跨书比较的可能性与限制。</small></span><span class="case-go" aria-hidden="true">↗</span></a>
+<a class="case-item" href="cases/case5/index.html"><span class="case-no">05</span><span class="case-body"><span class="case-type">研究方法</span><strong>人工智能辅助历史研究</strong><small>讨论人工智能、引文证据和研究者判断之间的分工与责任。</small></span><span class="case-go" aria-hidden="true">↗</span></a></div>
+</section>
+<section class="section" id="reading" aria-labelledby="reading-title">
+<div class="section-head"><p class="eyebrow">延伸阅读</p><h2 id="reading-title">更多专题研究</h2><p>由数字文献继续进入水系、建筑与跨学科的具体问题。</p></div>
+<div class="reading-grid">
+<a class="essay" href="articles/hydrology-river-distribution/index.html"><span class="tag">历史水利</span><h3>《水经注》河水分布研究</h3><p>围绕《水经注》中的河水记载，探索古籍检索与水道研究的证据组织方式。</p><span class="read">阅读专题 →</span></a>
+<a class="essay" href="articles/architecture-pillar-diameter/index.html"><span class="tag">建筑营造</span><h3>应县木塔柱径研究</h3><p>从构件尺度出发，了解如何整理和比较传统木构建筑相关的文献证据。</p><span class="read">阅读专题 →</span></a>
+<a class="essay" href="articles/cross-hydrology-architecture/index.html"><span class="tag">交叉研究</span><h3>水文与建筑的跨文本比较</h3><p>将不同主题的古籍并置，讨论跨领域检索可以提出什么问题，以及不能直接证明什么。</p><span class="read">阅读专题 →</span></a>
+</div>
+</section>
+<section class="section" id="methods" aria-labelledby="methods-title">
+<div class="section-head"><p class="eyebrow">方法与档案</p><h2 id="methods-title">让每一项解释都能返回证据</h2></div>
+<div class="two-cols">
+<div>
+<p class="method-copy">数字人文并不只是把古书变成可搜索的文字。扫描图像可能模糊，机器识读可能出错，不同版本可能存在异文，研究者也可能对同一句话作出不同解释。因此，这个项目强调引文定位、资料来源以及结论适用范围：哪些是文献直接记载，哪些是研究者推论，哪些问题仍需要新的原件或史料核实。</p>
+<div class="method-links">
+<a href="methods/citation-bound-historical-research/">阅读证据引用方法 →</a>
+<a href="portfolio/">浏览研究档案 →</a>
+<a href="/projects/shuge/research/water-classic/yishui/article/">阅读更新的易水历史研究 →</a>
+</div>
+</div>
+<aside class="aside-quiet"><strong>关于展览的研究状态</strong><p>部分专题文章与策展页面属于研究草稿或结构演示，尚非经过外部专家评审的正式学术发表。“同行评审记录”页面是模拟流程，不能视为真实的外部同行评审结果。</p></aside>
+</div>
+<details class="archive">
+<summary>古籍资源、模拟评审与项目版本档案</summary>
+<div class="archive-body">
+<p>下列资料面向希望深入复核资源与研究过程的读者。书格提供古籍来源信息，但本研究展览及观点不代表书格官方发表。</p>
+<div class="archive-links">
+<a href="review/">模拟同行评审流程（非真实评审）</a>
+<a href="portfolio/">完整研究档案</a>
+<a href="https://github.com/conanxin/conanxin.github.io/commits/main/projects/shuge-exhibition-v1.0/" target="_blank" rel="noopener">GitHub 版本历史</a>
+<a href="https://github.com/conanxin/conanxin.github.io/blob/c822936b423d7d9822843afd61932fae40ffd7e7/projects/shuge-exhibition-v1.0/index.html" target="_blank" rel="noopener">原版展览入口存档</a>
+</div>
+<details class="archive" style="margin-top:16px">
+<summary>查看展览涉及的九部古籍</summary>
+<ul class="worklist"><li><a href="https://www.shuge.org/view/shui_jing_zhu/" target="_blank" rel="noopener">《水经注》</a><span>桑钦撰 后魏 郦道元 注 · 汉代</span></li>
+<li><a href="https://www.shuge.org/view/gong_cheng_zuo_fa/" target="_blank" rel="noopener">《工程做法》</a><span>工部 允礼等纂修 · 清代</span></li>
+<li><a href="https://www.shuge.org/view/he_fang_yi_lan/" target="_blank" rel="noopener">《河防一览》</a><span>潘季驯 著 · 明代</span></li>
+<li><a href="https://www.shuge.org/view/tian_gong_kai_wu/" target="_blank" rel="noopener">《天工开物》</a><span>宋应星 著 · 明代</span></li>
+<li><a href="https://www.shuge.org/view/yuan_ye/" target="_blank" rel="noopener">《园冶》</a><span>计成 著 · 明代</span></li>
+<li><a href="https://www.shuge.org/view/meng_liang_lu/" target="_blank" rel="noopener">《梦粱录》</a><span>吴自牧 撰 · 南宋</span></li>
+<li><a href="https://www.shuge.org/view/zi_jing_bian/" target="_blank" rel="noopener">《自警编》</a><span>赵善璙 辑编 · 宋代</span></li>
+<li><a href="https://www.shuge.org/view/ji_zhi_wen_gao/" target="_blank" rel="noopener">《祭侄文稿》</a><span>颜真卿 行书 · 唐代</span></li>
+<li><a href="https://www.shuge.org/view/chang_duan_jing/" target="_blank" rel="noopener">《长短经》</a><span>赵蕤 撰 · 唐代</span></li></ul>
+</details>
+</div>
+</details>
+</section>
+</div></main>
+<footer><div class="footer-inner"><span>SHUGE · 数字人文展览</span><span>阅读古籍 · 追溯证据 · 审慎解释</span></div></footer>
+</body></html>

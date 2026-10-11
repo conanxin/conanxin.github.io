@@ -151,7 +151,7 @@ jobs:
                               assert not re.search(r'<body\b[^>]*\bsite-unified\b',body),'Mars global theme leaked'
                           if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
                               assert 'TEMPLATE_' not in body,'template placeholder published'
-                              assert 'id="evidence"' in body and 'id="citation"' in body,'evidence structure missing
+                              assert 'id="evidence"' in body and 'id="citation"' in body,'evidence structure missing'
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

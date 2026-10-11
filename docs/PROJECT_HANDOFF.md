@@ -20,7 +20,7 @@
 
 - **Stage 2B 工作分支**：`review/stage2b-mars-theme-isolation`，目标为修复 `projects/wbw-spacex-mars-cn/index.html` 的原生深空/火星沙阅读主题被全站 `site-unified` 强制覆盖的问题。
 - 修改 `scripts/build_site.py`：只对该精确入口使用 `special` / `project-native`，不注入 `site-unified`，但保留共享品牌导航、跳过链接、面包屑、页脚和身份规范化；表格保持专题原始结构。
-- `assets/site/design.css` 仅新增外围共享导航的专题焦点样式，不修改全站 token。
+- `assets/site/design.css` 仅新增外围共享导航的专题焦点样式和脚注长 URL 断行（手机横向溢出修复），不修改全站 token，也不改任何原始 URL。
 - `tests/test_spacex_theme.py` 与 `scripts/verify_site_browser.py` 分别覆盖构建不变式和两种配色/阅读模式的 1440px/390px 浏览器交互。
 - 更新 `docs/SPACEX_BROWSER_AUDIT.md`、`docs/SITE_DESIGN.md`、`AGENTS.md`，消除 Stage 2A 前的过时操作说明。
 - **不修改** `projects/wbw-spacex-mars-cn/` 目录内正文、代码、样式、图像，或专题 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`。

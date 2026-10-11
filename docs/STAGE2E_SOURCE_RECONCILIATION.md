@@ -1,44 +1,58 @@
-# Stage 2E — SHUGE 临时 work_id 与公开作品来源核验（第一轮）
+# Stage 2E — SHUGE 冻结书目与作品 ID 对照（纠错版）
 
-> TASK_ID: `CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION`  
-> 核查日期：2026-10-12 · 本文是**新的外部候选对照研究**，不是对冻结的 SHUGE v0.7 数据集的修正。
+> 2026-10-12 · `CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION`  
+> 新增的审计层。**不覆写** v0.7 `bibliography.json`、原展厅、OCR、引文或原始图片。
 
-## 1. 证据层级与状态定义
+## 1. 核验顺序与真正的突破
 
-| 层级 | 已完成工作 | 结论 |
-|---|---|---|
-| A. 冻结书目 | 直接读取 `projects/shuge-exhibition-v1.0/data/bibliography.json` 的 3 个 `work_id` | VERIFIED：确有此三条**内部记录** |
-| B. 对照作品网页 | 分别读取公开书格作品介绍和其中的版本/责任人/所述馆藏 | VERIFIED：**独立作品网页存在且页面如此陈述** |
-| C. 冻结 ID → 对照网页 | 检索数字 ID/查询 Shuge WordPress 公开路径，未取得稳定 ID→作品页绑定 | UNVERIFIED：**不能把候选书格作品页等同于冻结 work_id** |
-| D. 本轮精确 ID 检索 | 精确标识 `168491`、`211203`、`44159` 与公开书格页面匹配结果未找到足够直接证据 | NOT_FOUND：**仅是本轮检索未取得；不能认定页面不存在** |
-| E. 最终馆藏目录/具体扫描 | 未取得与冻结 ID 对应的一对一、可交叉验证的持有机构 catalog ID / IIIF / 扫描版心 | UNVERIFIED：不得声称已经验明原刊、同一版本或馆藏号 |
+第一轮只依据三张可打开的书格公开作品页面，尚无法绑定冻结 `work_id`；随后进一步检查**同一仓库现存的** `projects/shuge-exhibition-v1.0/data/works.json`，发现该文件 `featured[]` 已经同时保留了 **post_id、title、author、dynasty_or_date、shuge_url、editions[]**。这是一组可直接追溯的**内部归档 ID→URL 映射**，证据强于题名相近或年代猜测。
 
-`VERIFIED` 只对所指定层级成立，不自动跨层继承；`NOT_FOUND` 是限定范围的查找结果，不是全网不存在。机器对照文件：`projects/site-design-lab/shuge-source-crosswalk/crosswalk.json`，前端入口：`/projects/site-design-lab/shuge-source-crosswalk/`。
-
-## 2. 三个可查的候选作品页面（并非 ID 映射）
-
-| 冻结 work_id | v0.7 临时标题 | 书格候选作品页 | 书格页面描述的版本/来源 | 数字 ID 与网页关系 |
+| post_id | works.json 的真实标题 | works.json 的时代 | frozen bibliography.json 的年代 | 书格公开页面 |
 |---|---|---|---|---|
-| `work-shuge-168491` | 书海出版社文献 P168491 | [《水经注》](https://www.shuge.org/view/shui_jing_zhu/) | 明万历十三年（1585）吴琯校刊本；日本内阁文库藏 | **UNVERIFIED** |
-| `work-shuge-211203` | 书海出版社文献 P211203 | [《天工开物》](https://www.shuge.org/view/tian_gong_kai_wu/) | 明崇祯十年（1637）涂绍煃刊本；法国国家图书馆藏 | **UNVERIFIED**，冻结 `dynasty=Song` 与候选页明代时代不一致 |
-| `work-shuge-44159` | 书海出版社文献 P44159 | [《工程做法》](https://www.shuge.org/view/gong_cheng_zuo_fa/) | 清雍正十二年（1734）武英殿刊本；日本内阁文库藏 | **UNVERIFIED**，同属清代也不足以绑定 ID |
+| `168491` | **《园冶》**，计成著 | 明代 | **Northern Wei（冲突）** | [园冶](https://www.shuge.org/view/yuan_ye/) |
+| `211203` | **《天工开物》**，宋应星著 | 明代 | **Song（冲突）** | [天工开物](https://www.shuge.org/view/tian_gong_kai_wu/) |
+| `44159` | **《工程做法》**，清工部允礼等纂修 | 清代 | Qing（时代大体相符，仍非原件鉴定） | [工程做法](https://www.shuge.org/view/gong_cheng_zuo_fa/) |
+| `124575` | **《水经注》**，汉桑钦撰、北魏郦道元注 | works.json 标记「汉代」 | **不在上述三条冻结书目内** | [水经注](https://www.shuge.org/view/shui_jing_zhu/) |
 
-重要：以上「版本与馆藏」是**书格公开页面的陈述**，没有再次从法国国家图书馆或日本国立公文书馆内部目录取得对应的馆藏条目号。也没有在扫描书影中对刊记、牌记和序跋页实施逐页核验，因此不得用这些版本信息覆写冻结 `bibliography.json`。
+**关键纠错：P168491 并不是《水经注》，而是《园冶》。** 不得把冻结书目中的 Northern Wei 朝代字段作为该 numeric ID 的书名或版次识别依据。P211203 也是如此：作者姓「宋」不代表宋代作品，《天工开物》公开页与 works.json 均标明代。
 
-## 3. 不能越过的冲突
+## 2. VERIFIED / UNVERIFIED / NOT_FOUND 的三层含义
 
-1. v0.7 的 `title_zh` 是 post_id 临时占位，不是原刊版本学书名；`inst-shuge` 曾误标为 `publisher`，v1.0 `institution_roles_v1.0.json` 已指出书格的角色应为数字资源平台而非原刊出版社。
-2. `work-shuge-211203` 的 `dynasty=Song` 不得与《天工开物》作者宋应星的姓氏混淆。书格的候选页列为**明代**；这一冲突进一步表明缺少可证明一致性的数字 ID 映射。
-3. `CLAIM_SUPPORT_AUDIT.md` 中仅某个 Citation ID 在被检查的运行记录里可以 resolve，也**不能推定**它能语义支持目标候选史学论断。ID 存在 ≠ 实物作品身份、印本、引文都得到了验证。
-4. 任何 `REVIEW` 研究文章或 OCR 片段，都不能因为候选作品网页存在而升级到 `PUBLISHED` 或 `VERIFIED`。
+| 证据层 | 当前状态 | 严格含义 |
+|---|---|---|
+| v0.7 冻结三条书目字段 | **VERIFIED as snapshot** | 确实存在这些 work_id、临时 title_zh、朝代标签；**不保证标签正确**。 |
+| works.json 的 post_id → title / shuge_url | **VERIFIED as archived mapping** | 内部现存数据包含直接的一对一字段对应；不等于已登录原藏机构系统、核对实物扫描。 |
+| 书格当前公开作品页面 | **VERIFIED as public page** | 页面可读，作品、时代及刊印信息为网站上当前可见的陈述。 |
+| 原馆目录 stable ID + 扫描书影 | **UNVERIFIED** | 尚没有完成对日本内阁文库/法国国家图书馆独立馆藏条目号、扫描页序、原刊记与本地 OCR 的一一对照。 |
+| 本轮 WordPress numeric permalink 的额外直接在线查询 | **NOT_FOUND (scoped)** | 限本轮精确查询未额外获得可独立打开的 numeric permalink；不能否定 works.json 的历史 ID→URL 映射，更不能说作品不存在。 |
+| v0.7 的错误时代标签作为版本凭证 | **UNVERIFIED** | 至少 P168491、P211203 与内部作品记录时代冲突，须在独立审计层标记而非静默改写。 |
 
-## 4. 下一阶段取证任务（此轮未完成）
+**结论**：**3/3** 冻结 numeric ID 已能从仓库 `works.json` 找到作品题名及 URL；**3/3** 作品页可查；但**0/3** 完成独立的原藏机构目录 ID + 同一扫描页/版本比对。这是两个不同的研究门槛。
 
-- 逐一找到**原始 Shuge numeric post ID** → 正式作品页 URL 的可查链接、WordPress 对象或旧目录快照。搜索结果不够时，允许以 NOT_FOUND 记录本次范围，不推断不存在。
-- 对确立了 ID 映射的对象，追踪官方原藏机构的稳定馆藏号/目录 URL、IIIF manifest 或数字藏品页，并比对书影封面、书口、题签、序、刊记和卷册组织。
-- 在一份新的补充审计中记录 `source_url`、`catalog_id`、`scan_locator`、核验者/日期；只有一一对应且没有未解释冲突时才将**映射状态**标为 VERIFIED。
-- 在本轮之前不得编辑原冻结 `bibliography.json`、`citations.json`、OCR、图片、SHUGE 展览源页面与发布状态。
+## 3. 版本与馆藏线索（仅记录书格网页陈述）
 
-## 5. 内容索引范围（不扩大）
+- P168491 → 《园冶》，计成，明崇祯七年（1634）刊本。书格页面称日本内阁文库藏；尚未取得对应该 numeric ID 的独立馆藏条目和图像校验。
+- P211203 → 《天工开物》，宋应星，明崇祯十年（1637）涂绍煃刊本。书格页面称法国国家图书馆藏；还未单独核实 Gallica 稳定资源号与仓库记录对应。
+- P44159 → 《工程做法》，清工部允礼等纂修，清雍正十二年（1734）武英殿刊本。书格页面称日本内阁文库藏；尚未单独取得日本国立公文书馆自己的作品条目号。
+- P124575 → 《水经注》为独立另一个数字 ID，不应混用到 P168491 的冻结书目内。
 
-Stage 2D 自动索引仅收录已生成、具有公开路由的根级文章、一级项目入口，以及显式声明为 `reference` / `exhibition` 的新导览。Stage 2E 对入口范围进行防护性检查，但不将 `drafts/`、`src/`、`source/`、`work/`、`reports/`、历史 `shuge-exhibition-v0.*` 公开为精选研究结果。索引是导航功能，不证明历史来源可靠性，也不改写旧手工文章/项目目录。
+上述信息以书格公开页面和已保存的 `works.json` 为依据。作品网页所陈述的「馆藏」是**线索**，并非这轮直接从原藏机构读到的馆藏证明。
+
+## 4. 旧审计与本轮对照的职责划分
+
+`CLAIM_SUPPORT_AUDIT.md` 检查的是**具体引用能否真正支持候选论文论断**，而非简单的作品网页是否存在。即使某 `SHUGE:p...:page` 能在一项检索运行中解析，仍须确认它指向该件正确的扫描、OCR 和语义论证。存在一份真实书格网页也不能把审核状态从 `REVIEW` 升级为 `PUBLISHED`。
+
+另见 `projects/shuge-exhibition-v1.0/data/institution_roles_v1.0.json`：书格为数字资源展示平台，**不是**古籍的原始出版社。原研究档案中平台/出版社角色及作品时代的错配在新增审计文件说明，冻结原件不更改。
+
+机器可读交叉对照：`projects/site-design-lab/shuge-source-crosswalk/crosswalk.json`。公开导览：`/projects/site-design-lab/shuge-source-crosswalk/`。
+
+## 5. 下一步要取得的缺失证据
+
+1. 以 `works.json` 的 `post_id` / `shuge_url` 为检索锚点，取得原藏机构自己的可长期访问的目录号（而非仅馆藏机构首页）、馆藏卷册索引与 IIIF / 数字图像标识。
+2. 将扫描书影中的题名、序、刊记、牌记和版心页与 `editions[]` 相互比对，确定是否**同一版本与同一数字对象**。
+3. 再连接 `SHUGE:p<post_id>:<page_seq>` 的实际 OCR/页序，逐条人工核对史学 claim 及其引用是否成立。
+4. 新证据仍进入独立审计，不自动覆盖冻结 `bibliography.json`、`citations.json`，不改变旧 SHUGE 展厅的任何正文、图像及交互。
+
+## 6. 内容索引范围
+
+Stage 2E 新加的是一页 `reference` 类研究导览，不是对所有历史页面的自动收录。已有的根级文章、一级项目入口及显式批准的研究导览继续可被发现；`drafts/`、`future/`、`src/`、`source/`、`work/`、`reports/` 和历史 `shuge-exhibition-v0.*` 等即使误加 `site-index-kind` 也不能进入精选索引。本文所述的 VERIFIED 不能用于文献真伪评分。

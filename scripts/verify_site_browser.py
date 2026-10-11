@@ -141,7 +141,8 @@ try:
      assert page.locator('[data-index-card]:not([hidden])').count()==count
      interaction='auto-index kinds -> search zero -> restored'
     if path in ('/projects/site-design-lab/shuge-evidence-exhibition/',
-                '/projects/site-design-lab/shuge-source-register/'):
+                '/projects/site-design-lab/shuge-source-register/',
+                '/projects/site-design-lab/shuge-source-crosswalk/'):
      kind='exhibition' if 'exhibition' in path else 'reference'
      assert page.locator(f'article.template-{kind}').count()==1,(path,'missing real template')
      sections=('intro','evidence','citation') if kind=='exhibition' else ('intro','source','citation')
@@ -158,9 +159,7 @@ try:
      assert page.locator('main a[href^="https://www.shuge.org/view/"]').count()==3
      assert page.locator('main .status-line').count()==3
      assert 'UNVERIFIED' in page.locator('main .status-line').first.inner_text()
-     details=page.locator('main .work-card details').first
-     details.locator('summary').click()
-     assert details.get_attribute('open') is not None,(path,'source evidence details not opened')
+     assert page.locator('main .work-card details').first.get_attribute('open') is not None,(path,'standard template detail interaction did not open')
      response_json=page.request.get(base+path+'crosswalk.json')
      assert response_json.status==200,(path,'crosswalk json unreachable')
      crosswalk=response_json.json()

@@ -94,7 +94,7 @@ fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
   sHtml += '<tr><th>Collection</th><td><span class="mono">' + s.collection_slug + '</span> · ' + s.collection_title_zh + ' / ' + s.collection_title_en + '</td></tr>';
   sHtml += '<tr><th>Definition Version</th><td><span class="mono">' + s.definition_version + '</span> (' + s.definition_status + ')</td></tr>';
   sHtml += '<tr><th>Corpus Fingerprint</th><td><span class="mono">' + s.corpus_fingerprint + '</span></td></tr>';
-  sHtml += '<tr><th>Snapshot Chain</th><td>' + s.membership_hash_chain.join(' → ') + '</td></tr>';
+  sHtml += '<tr><th>Snapshot Chain</th><td>' + (Array.isArray(s.membership_hash_chain) && s.membership_hash_chain.length ? s.membership_hash_chain.join(' → ') : '此案例快照尚未提供完整链记录') + '</td></tr>';
   sHtml += '<tr><th>WORK 种子</th><td>';
   s.work_seeds.forEach(function(w) { sHtml += '<span class="badge badge-collection-hydrology">' + w.work_id + ' · ' + w.work_title + '</span> '; });
   sHtml += '</td></tr>';

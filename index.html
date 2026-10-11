@@ -1,243 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xin Conan | 数字花园</title>
-    <meta name="description" content="探索本地 AI、终端工具与人机交互的数字花园">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Xin Conan">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Xin Conan 的数字花园：历史文献与数字人文研究、AI 技术实践、阅读文章、播客与创意项目。">
+<title>Xin Conan｜研究、文章与技术实践</title>
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Xin Conan">
 </head>
 <body>
-    <div class="terminal-container">
-        <div class="status-bar">
-            <div class="status-left">
-                <span class="status-dot"></span>
-                <span>STATUS // ONLINE</span>
-            </div>
-            <div class="status-right">
-                <span>XIN_CONAN</span>
-                <span class="separator">|</span>
-                <span>v1.0</span>
-                <span class="separator">|</span>
-                <span id="datetime">--</span>
-            </div>
-        </div>
-        <header class="terminal-header">
-            <div class="logo">
-                <span class="prompt">></span>
-                <span class="logo-text">xin-conan</span>
-                <span class="cursor blink">_</span>
-            </div>
-            <p class="tagline">// 在 WSL 里种 AI，在终端里写文章</p>
-        </header>
-        <nav class="terminal-nav">
-            <a href="/" class="nav-item active">
-                <span class="nav-num">01.</span>
-                <span>HOME</span>
-            </a>
-            <a href="/posts/" class="nav-item">
-                <span class="nav-num">02.</span>
-                <span>POSTS</span>
-            </a>
-            <a href="/podcast/" class="nav-item">
-                <span class="nav-num">02.5</span>
-                <span>PODCAST</span>
-            </a>
-            <a href="/projects/" class="nav-item">
-                <span class="nav-num">03.</span>
-                <span>PROJECTS</span>
-            </a>
-            <a href="/about.html" class="nav-item">
-                <span class="nav-num">04.</span>
-                <span>ABOUT</span>
-            </a>
-            <a href="/feed.xml" class="nav-item">
-                <span class="nav-num">05.</span>
-                <span>RSS</span>
-            </a>
-        </nav>
-        <main class="terminal-main">
-
-            <!-- Intro -->
-            <section class="intro-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">cat ./about.txt</span>
-                </div>
-                <div class="section-content">
-                    <p>我在 <span class="highlight">WSL2 Ubuntu</span> 上探索本地大语言模型，研究如何用 AI 增强而非替代人的思考。这个网站记录我的实验、失败和偶尔的成功。</p>
-                </div>
-            </section>
-
-            <!-- 导览入口 -->
-            <section class="featured-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">ls ./</span>
-                </div>
-                <div class="section-content">
-                    <div class="featured-grid">
-                        <a class="featured-item" href="/posts/" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">RESEARCH + ESSAY</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">文章</h3>
-                            <p class="featured-excerpt">技术研究、读书笔记、观点文章 · 62 篇</p>
-                        </a>
-                        <a class="featured-item" href="/podcast/" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">PODCAST</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">播客</h3>
-                            <p class="featured-excerpt">AI 生成音频、文章改编、播客小说与个人电台实验</p>
-                        </a>
-                        <a class="featured-item" href="/projects/" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">PROJECTS</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">项目</h3>
-                            <p class="featured-excerpt">AI 生态系统、播客改编小说、工具开发</p>
-                        </a>
-                        <a class="featured-item" href="/about.html" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">ABOUT</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">关于</h3>
-                            <p class="featured-excerpt">我是谁、在做什么、如何联系</p>
-                        </a>
-                        <a class="featured-item" href="/feed.xml" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">RSS</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">订阅</h3>
-                            <p class="featured-excerpt">RSS Feed · Atom · 订阅更新</p>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 最新内容 -->
-            <section class="posts-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">ls -la ./posts/ | head -3</span>
-                </div>
-                <div class="posts-list">
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-05-12</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">ESSAY</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/chinese-ai-silicon-valley-power.html">硅谷的隐形权力层：华人 AI 工程师的地缘政治微观史</a>
-                        </h2>
-                    </article>
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-05-11</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">ESSAY</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/leverage-os-local-ai-personal-os.html">我搭建了一套本地化 AI 个人操作系统</a>
-                        </h2>
-                    </article>
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-04-18</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">RESEARCH</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/inside-notion.html">Inside Notion：为什么 Notion 的 AI 转型更像一次组织重写，而不只是功能升级</a>
-                        </h2>
-                    </article>
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-04-18</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">RESEARCH</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/factory-missions-architecture.html">Factory Missions：为什么多智能体系统必须围绕上下文与验证来设计</a>
-                        </h2>
-                    </article>
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-04-02</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">RESEARCH</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/acemoglu-knowledge-collapse-analysis.html">Acemoglu《知识崩溃》: AI 时代的人类专业危机</a>
-                        </h2>
-                    </article>
-                    <article class="post-item">
-                        <div class="post-meta">
-                            <span class="post-date">2026-04-01</span>
-                            <span class="separator">//</span>
-                            <span class="post-tag">ESSAY</span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/posts/consistency-is-primitive.html">一致性是原始的：当AI成为基础设施</a>
-                        </h2>
-                    </article>
-                </div>
-                <div style="margin-top:1rem;text-align:right;">
-                    <a href="/posts/" style="color:#8b949e;text-decoration:none;font-size:0.85rem;">查看全部 → /posts/</a>
-                </div>
-            </section>
-
-            <!-- 精选项目 -->
-            <section class="featured-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">ls ./projects/ | head -1</span>
-                </div>
-                <div class="section-content">
-                    <div class="featured-grid" style="grid-template-columns: 1fr;">
-                        <a class="featured-item" href="/podcast/lagan-girlfriend-chaos/" style="text-decoration:none;display:block;">
-                            <div class="featured-meta">
-                                <span class="featured-tag">PODCAST NOVEL</span>
-                                <span class="separator">//</span>
-                                <span style="color:#3fb950;">已完成 V2</span>
-                            </div>
-                            <h3 class="featured-title" style="color:#f0f6fc;">会演的人</h3>
-                            <p class="featured-excerpt">改编自「情感收录社」EP04 · 一个认真过头的人遇上了一个善于利用热情的人 · 楔子 + 八章 + 后记</p>
-                        </a>
-                    </div>
-                </div>
-                <div style="margin-top:1rem;text-align:right;">
-                    <a href="/projects/" style="color:#8b949e;text-decoration:none;font-size:0.85rem;">更多项目 → /projects/</a>
-                </div>
-            </section>
-
-        </main>
-        <footer class="terminal-footer">
-            <div class="footer-content" style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.85rem;">
-                <span><span class="label" style="color:#8b949e;">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></span>
-                <span><span class="label" style="color:#8b949e;">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></span>
-                <span><span class="label" style="color:#8b949e;">GITHUB:</span> <a href="https://github.com/conanxin" class="link">@conanxin</a></span>
-            </div>
-            <div class="footer-bottom" style="margin-top:1rem;font-size:0.75rem;color:#6e7681;">
-                # Built with plain HTML/CSS in WSL2 <span class="separator">|</span> © 2026 Xin Conan
-            </div>
-        </footer>
-    </div>
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
-            document.getElementById('datetime').textContent = timeStr;
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+<main class="site-home">
+<section class="home-hero">
+<h1>在文献与技术之间，<br>记录思考与实验。</h1>
+<p>我是 Xin Conan。这里记录我对人工智能、数字工具与历史文献的探索：从阅读、写作和本地 AI 实验，到古籍整理、数字人文研究，以及声音与叙事的创作。</p>
+<div class="home-actions"><a class="site-button" href="/posts/">阅读文章 <span aria-hidden="true">↗</span></a><a class="site-link" href="/projects/">浏览全部项目 →</a></div>
+</section>
+<section class="home-section" aria-labelledby="research-heading">
+<div class="home-section-head"><h2 id="research-heading">正在展开的研究</h2><a class="site-link" href="/projects/shuge/">进入文献研究 →</a></div>
+<article class="home-feature">
+<div class="home-feature__main"><span class="home-feature__meta">《水经注》易水专题 · 中文研究稿</span><h3>河流如何连接古城，<br>文字又能告诉我们什么？</h3><p>从《水经注》卷十一中的故安、范阳、容城与易京出发，辨析河流路线、城邑记载与版本异文。保留原始证据，也保留仍需考证的问题。</p><div class="home-actions"><a class="site-button" href="/projects/shuge/research/water-classic/yishui/article/">阅读易水研究 <span aria-hidden="true">↗</span></a><a class="site-link" href="/projects/shuge-exhibition-v1.0/">参观数字展览 →</a></div></div>
+<aside class="home-feature__aside"><p>“東過范陽縣南，<br>又東過容城縣南。”</p><small>《水经注》卷十一<br>先理解古籍的空间叙述，再讨论真实的地理位置。</small></aside>
+</article>
+</section>
+<section class="home-section" aria-labelledby="writing-heading">
+<div class="home-section-head"><h2 id="writing-heading">文章与思考</h2><a class="site-link" href="/posts/">查看全部文章 →</a></div>
+<div class="home-rows">
+<a class="home-row" href="/posts/chinese-ai-silicon-valley-power.html"><time datetime="2026-05-12">2026 · 05 · 12</time><h3>硅谷的隐形权力层：华人 AI 工程师的地缘政治微观史</h3><span aria-hidden="true">↗</span></a>
+<a class="home-row" href="/posts/leverage-os-local-ai-personal-os.html"><time datetime="2026-05-11">2026 · 05 · 11</time><h3>我搭建了一套本地化 AI 个人操作系统</h3><span aria-hidden="true">↗</span></a>
+<a class="home-row" href="/posts/inside-notion.html"><time datetime="2026-04-18">2026 · 04 · 18</time><h3>Inside Notion：AI 转型为什么更像一次组织重写</h3><span aria-hidden="true">↗</span></a>
+<a class="home-row" href="/posts/factory-missions-architecture.html"><time datetime="2026-04-18">2026 · 04 · 18</time><h3>Factory Missions：多智能体系统中的上下文与验证</h3><span aria-hidden="true">↗</span></a>
+<a class="home-row" href="/posts/acemoglu-knowledge-collapse-analysis.html"><time datetime="2026-04-02">2026 · 04 · 02</time><h3>Acemoglu《知识崩溃》：AI 时代的人类专业危机</h3><span aria-hidden="true">↗</span></a>
+<a class="home-row" href="/posts/consistency-is-primitive.html"><time datetime="2026-04-01">2026 · 04 · 01</time><h3>一致性是原始的：当 AI 成为基础设施</h3><span aria-hidden="true">↗</span></a>
+</div>
+</section>
+<section class="home-section" aria-labelledby="projects-heading">
+<div class="home-section-head"><h2 id="projects-heading">项目、声音与实践</h2><a class="site-link" href="/projects/">全部项目 →</a></div>
+<div class="home-portals">
+<a class="home-portal" href="/projects/"><h3>AI 与工具实验</h3><p>本地模型、Agent 工作流、交互工具与创意实验。从实际使用的问题出发，记录方法与过程。</p><span>浏览项目目录 →</span></a>
+<a class="home-portal" href="/podcast/"><h3>播客与声音</h3><p>AI 生成音频、文章改编、播客小说与个人电台实验，探索文字之外的表达。</p><span>进入播客 →</span></a>
+<a class="home-portal" href="/podcast/lagan-girlfriend-chaos/"><h3>播客小说《会演的人》</h3><p>改编自「情感收录社」EP04：一个认真过头的人，遇上了一个善于利用热情的人。</p><span>阅读与收听 →</span></a>
+</div>
+</section>
+<section class="home-section" aria-labelledby="about-heading">
+<div class="home-section-head"><h2 id="about-heading">关于这个数字花园</h2><a class="site-link" href="/about.html">更多关于我 →</a></div>
+<p style="max-width:770px;color:#65716a">我关心如何用技术增强而非替代人的思考。这里既有完成的文章，也有仍在生长的研究和工具；有关史料的解释、机器识读与模拟演示，都会保留各自的适用范围。</p>
+<div class="home-actions"><a class="site-link" href="/feed.xml">RSS 订阅 →</a><a class="site-link" href="mailto:hello@xin-conan.me">联系我 →</a><a class="site-link" href="https://github.com/conanxin">GitHub →</a></div>
+</section>
+</main>
 </body>
 </html>

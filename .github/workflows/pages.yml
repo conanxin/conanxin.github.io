@@ -1,20 +1,15 @@
-# 简单的静态网站部署
 name: Deploy to GitHub Pages
-
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
-
 jobs:
   deploy:
     environment:
@@ -24,15 +19,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+      - name: Build unified reading interface
+        run: python3 scripts/build_site.py --output .site-build
+      - name: Browser checks for site-wide changes
+        if: contains(github.event.head_commit.message, 'site-wide') || github.event_name == 'workflow_dispatch'
+        run: |
+          python3 -m pip install --quiet playwright==1.57.0
+          if ! command -v google-chrome && ! command -v chromium; then
+            python3 -m playwright install --with-deps chromium
+          fi
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+          python3 scripts/verify_site_browser.py .site-build
+      - name: Keep browser check evidence
+        if: always() && (contains(github.event.head_commit.message, 'site-wide') || github.event_name == 'workflow_dispatch')
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-ui-check
+          path: ${{ runner.temp }}/site-ui-check
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'  # 部署根目录所有文件
-          
+          path: .site-build
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

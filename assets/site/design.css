@@ -116,3 +116,7 @@ body[data-site-theme="project-native"] .main a[href^="https://"]{
   word-break:break-all;
   white-space:normal;
 }
+
+/* Stage 2D: discoverability shortcut injected only on legacy listing pages. */
+.site-catalog-shortcut{width:min(100% - 48px,1120px);margin:8px auto 18px;font:14px/1.8 var(--site-sans)}
+@media(max-width:560px){.site-catalog-shortcut{width:calc(100% - 36px)}}

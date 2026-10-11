@@ -90,7 +90,7 @@ push to main
 - ❌ 引入独立类前缀(`sd-*` `theme-*` `custom-*`)。
 - ❌ 引入 web 字体(走系统字体栈,见 `CLAUDE.md`)。
 - ❌ 重设全站 `body` / 标题 / 导航 / 按钮 / 正文宽度(用 `.site-<hash>` 局部作用域)。
-- ❌ 把 `<header class="site-header">` / `<footer class="site-footer">` / `<link>` / `.site-skip` / `.site-breadcrumb` / `.site-heading` 与占位身份手写进新页面 — build_site 会自动注入并清理遗留 chrome。
+- ❌ 把 `<header class="site-header">` / `<footer class="site-footer">` / `<link>` / `.site-skip` / `.site-breadcrumb` / `.site-heading` 手写进新页面 — build_site 会自动注入并清理遗留 chrome。新页面的源码直接使用 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`;**不要**主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位——`scripts/personalize_site.py` 仅承担历史页面兼容,不负责新页面身份规范化。
 - ❌ 提交内容片段作为公开页(会被 build_site 标 `fragment-unmodified`,但仍在 `.site-build` 中)。
 - ❌ 改动已有研究数据、引文、文章正文、专业交互和图像(由 `tests/test_site_identity.py` 强制保护)。
 - ❌ 不经用户允许直接 push `main` 或 force push(详见 `CLAUDE.md`)。
@@ -100,7 +100,7 @@ push to main
 ## 7. 专题例外与规则优先级(已确认范围)
 
 - **全站规则**(本文件 + `CLAUDE.md` + `docs/SITE_DESIGN.md` + `assets/site/design.css` + `.cursor/rules/site-design.mdc`)始终生效:**站点品牌身份、基本无障碍、引用与数据保护**。
-- **经过确认的特殊专题**(目前仅 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其他 Agent 加载到此规则时,需先识别其 `globs` 范围再决定是否应用。
+- **经过确认的特殊专题**(目前仅 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其他 Agent 加载到此规则时,需先识别其 `globs` 范围再决定是否应用。**专题规则描述"设计允许",并不等同于"实际渲染已验证"**: `body.site-unified` 由 `scripts/build_site.py` 自动注入,可能覆盖 `projects/wbw-spacex-mars-cn/` 期望的深色背景与标题样式。**这是 Stage 2 需要验证的视觉兼容问题**,本 Stage 1 不修改 CSS、不调整注入策略。
 - **冲突处理**:不同 Agent 同时加载全局规则与项目级专题规则时,必须**识别适用范围**;发生冲突,**报告并请求用户裁决**,不擅自覆盖已有设计。
 - **不假定** 加载器对规则的优先级保证(不声称 "globs 越具体越优先" 由工具强制)。
 

@@ -25,7 +25,7 @@ alwaysApply: true
 2. **复用 `.site-*` 组件类** — 全站导航、页脚、面包屑、跳过链接、按钮、链接、表头等都有现成的 `.site-header` `.site-nav` `.site-brand` `.site-breadcrumb` `.site-footer` `.site-skip` `.site-button` `.site-link` `.site-table-scroll` `.site-section-label` `.site-heading` `.home-hero` `.home-feature` `.home-rows` `.home-portals` `.archive`;**不要手写**等价的 HTML + CSS。
 3. **走 `body.site-unified`** — 由 `scripts/build_site.py transform()` 自动加到 `<body>` 上;同时注入 `data-site-theme="unified-v1"` `data-site-kind="<kind>"`。不要试图在源码里 `body` 写这套属性。
 4. **完整 HTML** — 新增正式网页是包含 `<head>` 与 `<body>` 的完整 HTML 文档。`transform()` 在缺失时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified` 与共享 chrome;**当前不存在自动包装内容片段的构建流程**。
-5. **不要手写全站 chrome** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<nav class="site-breadcrumb">` / `<footer class="site-footer">` / 占位身份(`Xin Conan` `hello@xin-conan.me` `https://github.com/xin-conan`)都由构建器处理。
+5. **不要手写全站 chrome,但也不要写假占位身份** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<nav class="site-breadcrumb">` / `<footer class="site-footer">` 由构建器注入。新页面的源码应**直接使用现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`**;不要主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位。`scripts/personalize_site.py` 仅承担**历史页面兼容**,不负责新页面身份规范化。
 6. **不要创建第二套样式系统** — 不新建 `/design-system/`、`/styles/site.css`、`/theme/`、独立 `:root` 块;不引入 `sd-*` `theme-*` `custom-*` 类前缀。
 7. **不引入 web 字体** — 用系统字体栈(`Noto Sans CJK SC` `Noto Serif CJK SC` `PingFang SC` `Microsoft YaHei`)。
 
@@ -64,14 +64,12 @@ alwaysApply: true
 
 ---
 
-## 4. Rationing(全站每页)
+## 4. 装饰性强调的密度原则(非变量计数)
 
-| 变量 | 单页使用处上限 |
-|---|---|
-| `var(--site-green)` | ≤ 4 |
-| `var(--site-accent)` | = 1 |
-
-超出会破坏视觉稀缺性;超出前必须先与用户确认。
+- `var(--site-green)` 用于链接、焦点、active 状态;链接 / 焦点 / 无障碍样式 **不受装饰密度约束**——这些是全站通用视觉契约。
+- `var(--site-accent)` 用于装饰性强调;同一页面同一区域内装饰性强调应保持稀疏,以保留主次视觉节奏。
+- 不以"变量出现次数"为硬性指标;按视觉密度自评:一处强调色与另一处装饰若在视觉上抢夺焦点,保留主要的、收敛其余。
+- 交互元素(`.site-button` `.site-link` `:focus-visible` `.site-skip`)按组件类默认呈现,不被装饰密度原则覆盖。
 
 ---
 
@@ -80,9 +78,9 @@ alwaysApply: true
 > **不假定** Cursor / 其他 Agent 加载器对规则的优先级保证。本节只是声明意图与冲突处理流程。
 
 - **本规则**(`alwaysApply: true`,`globs` 覆盖 `**/*.html` `**/*.md` `**/*.css` `**/*.scss` `scripts/**/*.py` `tests/**/*.py`)作为**全站默认**,适用于**全站身份 / 基本无障碍 / 引用与数据保护 / 共享样式来源**。
-- **项目级专题规则**(如 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其适用范围由其自身 `globs` 字段声明。
+- **项目级专题规则**(如 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其适用范围由其自身 `globs` 字段声明。**专题规则描述"设计允许",并不等同于"实际渲染已验证"**:`body.site-unified` 由 `scripts/build_site.py` 自动注入到每个被处理的 HTML 的 `<body>` 上,其全局规则可能覆盖专题期望的深色背景与标题样式。这是 Stage 2 需要验证的视觉兼容问题;本 Stage 1 不修改 CSS、不调整注入优先级。
 - **冲突处理**:不同 Agent 同时加载本规则与项目级专题规则时,必须**先识别适用路径**;
-  - 在 `projects/wbw-spacex-mars-cn/**` 内,项目级规则覆盖本规则的视觉细节(深色 + 玻璃效果 + 字体大标题);
+  - 在 `projects/wbw-spacex-mars-cn/**` 内,项目级规则**允许**覆盖本规则的视觉细节(深色 + 玻璃效果 + 字体大标题);但实际渲染是否如预期呈现,需在 Stage 2 视觉兼容验证后再确认。
   - 但**站点品牌身份**(`Conan Xin` `conanxin@gmail.com` `data-site-identity="conan-xin-v1"`)、**基本无障碍**(`:focus-visible` `.site-skip`)、**引用与数据保护**(`scripts/personalize_site.py` + `tests/test_site_identity.py`)在任何路径都生效,不能被项目级规则绕过;
   - 发生冲突,**报告并请求用户裁决**,不擅自覆盖已有设计。
 

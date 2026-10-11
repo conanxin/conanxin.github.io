@@ -37,12 +37,12 @@
 
 `body.site-unified` 还会展开一组内部别名(`--bg-primary`、`--accent-green`、`--ink-charcoal`、`--paper-white` 等)供旧规则引用,但**所有新规则必须直接使用 `--site-*`**。
 
-**Rationing**(全站每页):
+**装饰性强调的密度原则**(不是 CSS 变量出现处计数):
 
-| 变量 | 单页使用处上限 | 用途 |
-|---|---|---|
-| `--site-green` | ≤ 4 | 链接 / 焦点(active state) / 主题装饰 |
-| `--site-accent` | = 1 | 印章红 / 焦点轮廓 / 强调 |
+- 主色 `--site-green` 用于链接、焦点轮廓、交互 active 状态;链接 / 焦点 / 无障碍样式**不受任何装饰密度约束**——这些是全站通用视觉契约,必须保持一致。
+- 强调色 `--site-accent` 用于装饰性强调(印章红 / hover / 章节装饰);同一页面同一区域内,装饰性强调应保持稀疏,**不喧宾夺主**,以保留主次视觉节奏。
+- 不以"变量出现次数"作为硬性指标;按视觉密度自评:若一处强调色与另一处装饰在视觉上抢夺焦点,则保留主要的一处、收敛其余。
+- 链接、按钮、焦点轮廓等交互元素按 `.site-*` 组件类默认呈现,不被装饰密度原则覆盖。
 
 ---
 
@@ -89,7 +89,7 @@
    - `<header class="site-header">` / `<footer class="site-footer">`(自动注入 + 折叠遗留 chrome)
    - `<nav class="site-breadcrumb">`(自动注入到 `<body>` 第一个 `<main>` / `<article>` 之后)
    - `class="site-unified"` `data-site-theme="unified-v1"` `data-site-kind="<kind>"`(自动加到 `<body>`)
-4. **不要预填占位身份**:`Xin Conan` `hello@xin-conan.me` `https://github.com/xin-conan` 等由 `personalize_site.py` 替换为 `Conan Xin` `conanxin@gmail.com` `https://github.com/conanxin`;源码写旧值即可,不要写"假值"。
+4. **新页面的源码直接使用 `Conan Xin` 与真实联系方式**:`Conan Xin`、`conanxin@gmail.com`、`https://github.com/conanxin`、`<a class="site-brand">Conan Xin</a>` 等直接写入源码。`scripts/personalize_site.py` **不承担**新页面的身份规范化;它仅承担**历史页面兼容**(把遗留的 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 替换为现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`),保证历史文章 / 项目 / 研究页面的展示一致。
 
 **模板来源说明**:
 
@@ -120,7 +120,7 @@
 5. 在 `<a class="site-brand">` 里写入 `Conan Xin`。
 6. `test_idempotence` 保证二次运行结果稳定。
 
-`public_route(path)` 决定哪些页面被构建器当作"读者页面"(`articles/` `posts/` `projects/` `drafts/` `connections/` 等),哪些排除(`src/` `projects/wbw-spacex-mars-cn/source/` `drafts/x/backups/` `projects/yarvin-moldbug-cn/work/` 等)。
+`public_route(path)` 决定哪些路径会出现在**阅读目录**(站点导航 / 面包屑 / 收录列表)中(`articles/` `posts/` `projects/` `drafts/` `connections/` 等),哪些路径不进入阅读目录(`src/` `projects/wbw-spacex-mars-cn/source/` `drafts/x/backups/` `projects/yarvin-moldbug-cn/work/` 等)。**`public_route()` 不负责**全部 HTML 的构建与发布——文件筛选、HTML 转换、统一外壳注入(导航 / 页脚 / 共享 CSS / `body.site-unified`)全部由 `scripts/build_site.py` 的 `transform()` 完成;被 `public_route()` 排除的路径仍可能被 `transform()` 处理(以 `fragment-unmodified` 或 `themed` 状态出现在 `.site-build/`),只是不会出现在阅读目录里。
 
 ---
 
@@ -169,8 +169,9 @@
 
 - **全站规则**(本文件 + `AGENTS.md` + `CLAUDE.md` + `.cursor/rules/site-design.mdc`)始终生效:**站点品牌身份、基本无障碍、引用与数据保护**。
 - **经过确认的特殊专题**(目前仅 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其他 Agent 加载到此规则时,需先识别其 `globs` 范围再决定是否应用。
+- **专题例外区分"设计允许"与"实际渲染已验证"**:`.cursor/rules/wbw-spacex-mars-cn-taste.mdc` 描述的是"允许做什么"的设计意图,**并不等同于**这些设计意图已经在最终渲染中得到验证。`body.site-unified` 的全局规则可能在 `projects/wbw-spacex-mars-cn/` 上**覆盖其深色背景与标题样式**——`body.site-unified` 由 `scripts/build_site.py` 自动注入,优先级高于专题自身的内联 `<style>` 与同特异性外层规则,实际渲染可能与项目级专题规则预期不符。**这是 Stage 2 需要验证的视觉兼容问题**,本 Stage 1 不修改 CSS、不调整注入策略;实际渲染验证留待 Stage 2 在 `assets/site/design.css` 中专题化样式注入机制完成后再做。
 - **冲突处理**:不同 Agent 同时加载全局规则与项目级专题规则时,必须**识别适用范围**;发生冲突,**报告并请求用户裁决**,不擅自覆盖已有设计。
-- **不假定** 加载器对规则的优先级保证(不声称 "globs 越具体越优先" 由 Cursor / 其他工具强制)。
+- **不假定** 加载器对规则的优先级保证(不声称 "globs 越具体越优先" 由工具强制)。
 
 ---
 

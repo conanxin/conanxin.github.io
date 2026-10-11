@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展厅 2 · The Life of a Book: 水经注 Case Study</title>
+<title>一部书的生命：《水经注》｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-room">
+<body class="page-room shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">展厅 2</h1>
   <p class="masthead-subtitle">The Life of a Book · 水经注 Case Study</p>
@@ -26,7 +27,7 @@
   <div class="topnav-meta">60 pages · post_id=124575</div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　展厅 2</div><p class="reader-kicker">展厅 2 / 5</p><h1>一部书的生命：《水经注》</h1><p class="reader-lead">以北魏郦道元《水经注》为个案,展示一部古籍如何从静态 PDF 图像变成可被检索、可被引证的研究资源。956 页、322,030 字、933 页可搜索 — 这些数字定义了这部书在研究系统中的「重量」。</p><div class="reader-actions"><a href="../../index.html#rooms">全部展厅 →</a><a href="../../cases/case1/index.html">相关案例 →</a></div></div>
   <section class="hero">
     <h1>The Life of a Book</h1>
     <p class="hero-lead">以《水经注》为个案，展示一部古籍在本研究系统中的完整轨迹 — 从 PDF 到 Citation ID。</p>
@@ -34,17 +35,17 @@
   </section>
 
   <section class="room-introduction">
-    <h2>Introduction</h2>
-    <p id="intro2"></p>
+    <h2>展厅导读</h2>
+    <p id="intro2">以北魏郦道元《水经注》为个案,展示一部古籍如何从静态 PDF 图像变成可被检索、可被引证的研究资源。956 页、322,030 字、933 页可搜索 — 这些数字定义了这部书在研究系统中的「重量」。</p>
   </section>
 
   <section class="room-objects">
-    <h2>Objects</h2>
+    <h2>展厅内容</h2>
     <div id="objects2" class="objects-grid"></div>
   </section>
 
-  <section>
-    <h2>Evidence</h2>
+  <details class="reader-details"><summary>展开原始证据、研究表格与演示组件</summary><div class="reader-detail-inner"><section>
+    <h2>证据与研究样本</h2>
     <h3>这份书的基本数据</h3>
     <table class="meta-table">
       <tr><th>作品</th><td><span class="mono">水经注 · post_id=124575 · work_id=p124575</span></td></tr>
@@ -66,24 +67,24 @@
       </table>
     </div>
 
-    <h3 style="margin-top:1.5rem">Page Image Viewer Framework</h3>
+    <h3 style="margin-top:1.5rem">图像查看器占位演示</h3>
     <p>v0.3 提供 5 个<strong>框架</strong>（framework-only placeholder），不展示真实图像。</p>
     <p class="dim">IIIF URL 未导出至 data/。v0.4+ 可接入（不在 v0.3 范围）。</p>
     <div class="page-viewer-grid" id="page-viewer-grid"></div>
-  </section>
+  </section></div></details>
 
   <section>
     <div class="takeaway">
-      <div class="takeaway-label">Take-away</div>
+      <div class="takeaway-label">展厅要点</div>
       一部书的「生命」从静态 PDF 图像出发，经 <strong>OCR 文本化 → FTS5 索引化 → collection 成员化 → evidence ledger 化 → claim 合成 → Citation ID 化</strong>。每一个环节都留下可追溯的痕迹。
     </div>
   </section>
 
   <section class="room-further-reading">
-    <h2>Further Reading</h2>
+    <h2>延伸阅读</h2>
     <ul id="further2" class="further-reading"></ul>
   </section>
-</main>
+</main><div class="reader-related"><a href="../../rooms/room1/index.html">← 上一展厅</a><a href="../../index.html">返回展览总览 ↑</a><a href="../../rooms/room3/index.html">下一展厅 →</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 2</p>
@@ -139,5 +140,5 @@ fetch('../../data/water_classic_pages.json').then(r => r.json()).then(d => {
   });
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展厅 1 · From Catalogue to Research Infrastructure</title>
+<title>从目录到研究基础设施｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-room">
+<body class="page-room shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">展厅 1</h1>
   <p class="masthead-subtitle">From Catalogue to Research Infrastructure · 从目录到研究基础设施</p>
@@ -28,7 +29,7 @@
   <div class="topnav-meta">9 milestones · 6 layers</div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　展厅 1</div><p class="reader-kicker">展厅 1 / 5</p><h1>从目录到研究基础设施</h1><p class="reader-lead">本展厅呈现一个数字人文研究基础设施是如何从一份简单的古籍目录开始,逐层构建为可被研究、可被引证、可被治理的系统。9 个里程碑标记了这条演化路径的关键转折点。</p><div class="reader-actions"><a href="../../index.html#rooms">全部展厅 →</a><a href="../../cases/case1/index.html">相关案例 →</a></div></div>
   <section class="hero">
     <h1>From Catalogue to Research Infrastructure</h1>
     <p class="hero-lead">一个数字人文研究基础设施是如何从一份简单的古籍目录开始的。</p>
@@ -37,19 +38,19 @@
 
   <!-- v0.3 NEW: Introduction -->
   <section class="room-introduction">
-    <h2>Introduction</h2>
-    <p id="intro1"></p>
+    <h2>展厅导读</h2>
+    <p id="intro1">本展厅呈现一个数字人文研究基础设施是如何从一份简单的古籍目录开始,逐层构建为可被研究、可被引证、可被治理的系统。9 个里程碑标记了这条演化路径的关键转折点。</p>
   </section>
 
   <!-- v0.3 NEW: Objects -->
   <section class="room-objects">
-    <h2>Objects</h2>
+    <h2>展厅内容</h2>
     <div id="objects1" class="objects-grid"></div>
   </section>
 
   <!-- v0.3 Evidence (existing) -->
-  <section>
-    <h2>Evidence</h2>
+  <details class="reader-details"><summary>展开原始证据、研究表格与演示组件</summary><div class="reader-detail-inner"><section>
+    <h2>证据与研究样本</h2>
     <h3>9 个里程碑</h3>
     <div id="timeline"></div>
     <h3 style="margin-top:1.5rem">6 个研究系统层</h3>
@@ -61,25 +62,25 @@
       <tr><th>Layer 5</th><td>Research Workspaces · 3 个 · 20 QA</td></tr>
       <tr><th>Layer 6</th><td>Public Exhibition (v0.1 → v0.2 → v0.3)</td></tr>
     </table>
-    <h3 style="margin-top:1.5rem">Map Placeholder</h3>
+    <h3 style="margin-top:1.5rem">地图占位演示</h3>
     <p class="dim">v0.3 仍为 framework only — 简化东亚大陆轮廓 + 8 个坐标点。</p>
     <div class="map-placeholder" id="map-placeholder"></div>
-  </section>
+  </section></div></details>
 
   <!-- v0.3 Take-away (existing) -->
   <section>
     <div class="takeaway">
-      <div class="takeaway-label">Take-away</div>
+      <div class="takeaway-label">展厅要点</div>
       一份目录变成研究基础设施的轨迹,是 <strong>9 个里程碑 + 6 个研究系统层</strong> 的累积结果 — 每一个里程碑都不是孤立的功能,而是下一个层的基础。
     </div>
   </section>
 
   <!-- v0.3 NEW: Further Reading -->
   <section class="room-further-reading">
-    <h2>Further Reading</h2>
+    <h2>延伸阅读</h2>
     <ul id="further1" class="further-reading"></ul>
   </section>
-</main>
+</main><div class="reader-related"><a href="../../index.html">返回展览总览 ↑</a><a href="../../rooms/room2/index.html">下一展厅 →</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 1</p>
@@ -146,5 +147,5 @@ fetch('../../data/map_placeholder.json').then(r => r.json()).then(d => {
   });
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

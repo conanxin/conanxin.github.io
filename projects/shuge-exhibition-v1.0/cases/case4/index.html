@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>案例 4 · 乃粒跨文本互证</title>
+<title>乃粒跨文本互证｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-case">
+<body class="page-case shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">案例 4</h1>
   <p class="masthead-subtitle">乃粒跨文本互证 · Na-li (Grain) Cross-textual Verification</p>
@@ -23,7 +24,7 @@
   <div class="topnav-meta">5 works × 12 terms</div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　案例 4</div><p class="reader-kicker">案例 4 / 5</p><h1>乃粒跨文本互证</h1><p class="reader-lead">天工开物「乃粒」章 (粮食栽培) 中所述农业知识,与水经注/河防一览/工程做法/园冶 中的相关记述,是否能形成跨文本互证?</p><div class="reader-actions"><a href="../../index.html#cases">全部案例 →</a></div></div>
   <header class="case-study-hero">
     <div class="case-study-badges">
       <span class="badge badge-collection-hydrology">historical-hydrology</span>
@@ -35,46 +36,46 @@
     <p class="case-study-subtitle">稻/粟/麦/黍/稷/耕/农/灌溉/田/畊 — 当一个主题散布在 5 部古籍中</p>
   </header>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开研究证据与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">1</div>
-    <h2 class="section-label">Question</h2>
-    <p id="q4" class="question-text"></p>
+    <h2 class="section-label">研究问题</h2>
+    <p id="q4" class="question-text">天工开物「乃粒」章 (粮食栽培) 中所述农业知识,与水经注/河防一览/工程做法/园冶 中的相关记述,是否能形成跨文本互证?</p>
   </section>
 
   <section class="case-section">
     <div class="section-num">2</div>
-    <h2 class="section-label">Source</h2>
+    <h2 class="section-label">文献来源</h2>
     <div id="s4"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">3</div>
-    <h2 class="section-label">Evidence</h2>
+    <h2 class="section-label">研究证据</h2>
     <div id="e4"></div>
-  </section>
+  </section></div></details>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开引用与出处与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">4</div>
-    <h2 class="section-label">Citation</h2>
+    <h2 class="section-label">引用与出处</h2>
     <div id="c4"></div>
-  </section>
+  </section></div></details>
 
   <section class="case-section">
     <div class="section-num">5</div>
-    <h2 class="section-label">Interpretation Boundary</h2>
+    <h2 class="section-label">解释边界</h2>
     <div id="i4"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">6</div>
-    <h2 class="section-label">Further Research</h2>
+    <h2 class="section-label">后续研究</h2>
     <ul id="f4" class="further-reading"></ul>
   </section>
 
   <section class="case-section">
     <div class="takeaway" id="tk4"></div>
   </section>
-</main>
+</main><div class="reader-related"><a href="../../cases/case3/index.html">← 上一案例</a><a href="../../index.html">返回展览总览 ↑</a><a href="../../cases/case5/index.html">下一案例 →</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 4</p>
@@ -135,10 +136,10 @@ fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
   var fHtml = '';
   f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
   document.getElementById('f4').innerHTML = fHtml;
-  var tk = '<div class="takeaway-label">Take-away</div>';
+  var tk = '<div class="takeaway-label">案例要点</div>';
   tk += '「乃粒」作为 <strong>主题</strong> 散布在 5 部古籍中,但作为 <strong>展品</strong> 它证明了一个边界:跨文本 cite 不形成 graph,而是 <strong>先隔离再并列</strong>。';
   document.getElementById('tk4').innerHTML = tk;
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

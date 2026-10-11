@@ -1,0 +1,51 @@
+
+/* SHUGE exhibition reader layer. Preserves existing content and scripts. */
+body.shuge-reader{--paper-white:#fff;--card-cream:#f7f5f0;--evidence-tint:#f2f0e9;--rule-gray:#dfddd6;--archival-brown:#626860;--ink-charcoal:#2a302a;--seal-red:#9a593b;background:#f8f7f4!important;color:#2a302a!important;font:16px/1.9 "Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif!important;margin:0!important;max-width:none!important}
+body.shuge-reader *{box-sizing:border-box}body.shuge-reader a{color:inherit;text-underline-offset:4px}body.shuge-reader a:hover{color:#9a593b}body.shuge-reader a:focus-visible,body.shuge-reader summary:focus-visible{outline:2px solid #9a593b;outline-offset:4px}
+body.shuge-reader>.masthead,body.shuge-reader .page>.masthead,body.shuge-reader .topnav,body.shuge-reader>.v1-status-banner,body.shuge-reader .page>.simulated-workflow-banner,body.shuge-reader>footer:not(.reader-footer),body.shuge-reader .page>footer,body.shuge-reader footer.site-footer{display:none!important}
+.reader-global{background:#fff;border-bottom:1px solid #dedbd4;position:relative;z-index:2}
+.reader-global-inner{max-width:1070px;margin:auto;padding:17px 27px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.reader-brand{font:700 21px/1.45 "Noto Serif SC","Songti SC",serif!important;letter-spacing:.04em;text-decoration:none!important}
+.reader-brand small{font:12px/1.4 "Noto Sans SC","Microsoft YaHei",sans-serif;font-weight:400;color:#777d76;margin-left:8px;letter-spacing:0}
+.reader-global nav{display:flex;gap:12px 24px;flex-wrap:wrap}.reader-global nav a{font:13px/1.5 "Noto Sans SC","Microsoft YaHei",sans-serif!important;color:#626b63!important;text-decoration:none!important}
+body.shuge-reader .page,body.shuge-reader .body{max-width:none!important;width:auto!important;background:transparent!important;margin:0!important;padding:0!important;box-shadow:none!important}
+body.shuge-reader main.body,body.shuge-reader .page>main,body.shuge-reader main.container,body.shuge-reader main.methods-grid,body.shuge-reader main.article-grid{max-width:1010px!important;width:min(calc(100% - 48px),1010px)!important;margin:0 auto!important;padding:0 0 65px!important;background:transparent!important;min-height:0!important}
+.reader-hero{padding:55px 0 37px;border-bottom:1px solid #dedbd4;margin-bottom:28px}
+.reader-crumb{font:12px/1.65 "Noto Sans SC",sans-serif;color:#7b7e76;margin:0 0 19px}.reader-crumb a{text-decoration:none!important;color:#626c62!important}
+.reader-kicker{font:650 12px/1.7 "Noto Sans SC",sans-serif;color:#9a593b;letter-spacing:.11em;margin:0 0 12px}
+.reader-hero h1{font:600 clamp(29px,4vw,42px)/1.45 "Noto Serif SC","Source Han Serif SC","Songti SC",serif!important;color:#29302a!important;border:0!important;margin:0 0 17px!important;padding:0!important;letter-spacing:0!important}
+.reader-lead{font:16px/1.94 "Noto Sans SC","Microsoft YaHei",sans-serif!important;color:#505a52!important;max-width:770px;margin:0!important}
+.reader-actions{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:19px}
+.reader-actions a{font:600 13px/1.7 "Noto Sans SC",sans-serif!important;color:#9a593b!important;text-decoration:none!important}
+.reader-notice{padding:15px 19px!important;margin:19px 0!important;background:#f1eee7!important;border:0!important;border-left:3px solid #a87c62!important;font:13px/1.85 "Noto Sans SC",sans-serif!important;color:#505950!important}
+body.shuge-reader main>section.hero,body.shuge-reader main>header.case-study-hero,body.shuge-reader main>header.hero{display:none!important}
+body.shuge-reader main>section,body.shuge-reader main>article,body.shuge-reader main>.reader-panel{background:#fff!important;border:1px solid #dedbd4!important;padding:28px 33px!important;margin:23px 0!important;max-width:none!important;border-radius:4px!important;box-shadow:none!important}
+body.shuge-reader main h2{font:600 23px/1.55 "Noto Serif SC","Songti SC",serif!important;color:#333c34!important;border:0!important;border-bottom:1px solid #e3e1da!important;padding:0 0 10px!important;margin:0 0 19px!important;letter-spacing:0!important}
+body.shuge-reader main h3{font:600 18px/1.55 "Noto Serif SC","Songti SC",serif!important;color:#394439!important;margin:20px 0 12px!important}
+body.shuge-reader main p{font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.9;color:#525c54}
+body.shuge-reader main .dim,body.shuge-reader main small{color:#6e766f}
+body.shuge-reader main .objects-grid,body.shuge-reader main .cards-grid-3{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important}
+body.shuge-reader main .object-card,body.shuge-reader main .card,body.shuge-reader main .public-page-block{background:#fcfbf8!important;border:1px solid #e4e0d8!important;border-radius:3px!important;box-shadow:none!important;padding:19px 21px!important;min-width:0}
+body.shuge-reader main .object-card-name,body.shuge-reader main .card-title{font:600 17px/1.6 "Noto Serif SC","Songti SC",serif!important;color:#333c33!important}
+body.shuge-reader main .object-card-desc{font:14px/1.85 "Noto Sans SC",sans-serif;color:#58635a}
+body.shuge-reader main .case-section .section-num{font:12px/1.4 sans-serif;color:#9a593b!important}
+body.shuge-reader main .question-text{font:500 18px/1.9 "Noto Serif SC","Songti SC",serif!important}
+body.shuge-reader main .takeaway{background:#f2efe8!important;color:#485248!important;border:0!important;border-left:3px solid #b49c88!important;box-shadow:none!important;padding:19px 23px!important}
+body.shuge-reader main .takeaway-label{color:#9a593b!important;font:650 12px/1.6 sans-serif!important}
+body.shuge-reader main table,body.shuge-reader main .meta-table,body.shuge-reader main .data-table,body.shuge-reader main .evidence-table{border-collapse:collapse!important;width:100%!important;color:#3c443d!important;font:13px/1.75 "Noto Sans SC",sans-serif!important;background:#fff!important}
+body.shuge-reader main th,body.shuge-reader main td{padding:10px 12px!important;border:0!important;border-bottom:1px solid #e5e1d9!important;text-align:left!important;vertical-align:top!important;overflow-wrap:anywhere}
+body.shuge-reader main th{background:#f3f1ea!important;font-weight:650!important}
+body.shuge-reader main .data-table-wrapper,body.shuge-reader main .table-wrapper,body.shuge-reader main .reliability-tier-table{max-width:100%;overflow-x:auto!important}
+body.shuge-reader main .badge,body.shuge-reader main .status-badge,body.shuge-reader main [class*="badge-"]{font:11px/1.45 "Noto Sans SC",sans-serif!important;padding:3px 7px!important;border-radius:3px!important;box-shadow:none!important}
+.reader-details{background:#fff!important;border:1px solid #dedbd4!important;border-radius:4px!important;margin:23px 0!important;max-width:none!important;padding:0!important}
+.reader-details>summary{font:600 14px/1.8 "Noto Sans SC",sans-serif!important;color:#4d5a4f!important;cursor:pointer;padding:16px 22px;list-style:auto}
+.reader-details>summary::marker{color:#9a593b}.reader-details[open]>summary{border-bottom:1px solid #e6e3db}
+.reader-detail-inner{padding:20px 22px;overflow-x:auto;max-width:100%}
+body.shuge-reader main .reader-details section{margin:0!important;padding:12px 0!important;border:0!important;box-shadow:none!important;background:#fff!important;max-width:none!important}
+.reader-related{max-width:1010px;width:min(calc(100% - 48px),1010px);margin:0 auto 50px;display:flex;gap:12px 22px;flex-wrap:wrap}
+.reader-related a{font:600 13px/1.6 "Noto Sans SC",sans-serif!important;color:#995a3b!important}
+.reader-footer{background:#fff!important;border-top:1px solid #dedbd4!important;color:#717972!important;font:12px/1.8 "Noto Sans SC",sans-serif!important;text-align:center;padding:24px!important}
+.reader-footer a{color:#536b5a!important}body.shuge-reader code,body.shuge-reader .mono{overflow-wrap:anywhere}
+body.shuge-reader main .map-placeholder,body.shuge-reader main .page-viewer-frame.framework-only{opacity:.65;border-style:dashed!important}
+@media(max-width:770px){.reader-global-inner{display:block;padding:16px 20px}.reader-global nav{margin-top:12px;gap:10px 18px}.reader-hero{padding:41px 0 29px}.reader-hero h1{font-size:30px!important}body.shuge-reader main.body,body.shuge-reader .page>main,body.shuge-reader main.container,body.shuge-reader main.methods-grid,body.shuge-reader main.article-grid{width:min(calc(100% - 32px),1010px)!important}body.shuge-reader main>section,body.shuge-reader main>article{padding:23px 20px!important}body.shuge-reader main .objects-grid,body.shuge-reader main .cards-grid-3{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>案例 3 · 建筑营造知识</title>
+<title>建筑营造知识｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-case">
+<body class="page-case shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">案例 3</h1>
   <p class="masthead-subtitle">建筑营造知识 · Architecture & Construction Knowledge</p>
@@ -25,7 +26,7 @@
   <div class="topnav-meta"><a href="https://github.com/conanxin/conanxin.github.io/issues/8">Issue #8 ↗</a></div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　案例 3</div><p class="reader-kicker">案例 3 / 5</p><h1>建筑营造知识</h1><p class="reader-lead">在中国传统建筑营造与构件尺度的语境中,哪些文献页面包含了值得被引证的论述?</p><div class="reader-actions"><a href="../../index.html#cases">全部案例 →</a><a href="../../rooms/room4/index.html">相关展厅 →</a></div></div>
   <header class="case-study-hero">
     <div class="case-study-badges">
       <span class="badge badge-collection-architecture">architecture-construction</span>
@@ -36,39 +37,39 @@
     <p class="case-study-subtitle">柱/梁/枋/斗/栱 — how the framework rules structure knowledge</p>
   </header>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开研究证据与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">1</div>
-    <h2 class="section-label">Question</h2>
-    <p id="q3" class="question-text"></p>
+    <h2 class="section-label">研究问题</h2>
+    <p id="q3" class="question-text">在中国传统建筑营造与构件尺度的语境中,哪些文献页面包含了值得被引证的论述?</p>
   </section>
 
   <section class="case-section">
     <div class="section-num">2</div>
-    <h2 class="section-label">Source</h2>
+    <h2 class="section-label">文献来源</h2>
     <div id="s3"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">3</div>
-    <h2 class="section-label">Evidence</h2>
+    <h2 class="section-label">研究证据</h2>
     <div id="e3"></div>
-  </section>
+  </section></div></details>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开引用与出处与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">4</div>
-    <h2 class="section-label">Citation</h2>
+    <h2 class="section-label">引用与出处</h2>
     <div id="c3"></div>
-  </section>
+  </section></div></details>
 
   <section class="case-section">
     <div class="section-num">5</div>
-    <h2 class="section-label">Interpretation Boundary</h2>
+    <h2 class="section-label">解释边界</h2>
     <div id="i3"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">6</div>
-    <h2 class="section-label">Further Research</h2>
+    <h2 class="section-label">后续研究</h2>
     <ul id="f3" class="further-reading"></ul>
   </section>
 
@@ -77,7 +78,7 @@
   </section>
 
   <p class="case-study-back"><a href="../../rooms/room4/index.html">← 返回展厅 4 (Architecture & Construction Knowledge)</a></p>
-</main>
+</main><div class="reader-related"><a href="../../cases/case2/index.html">← 上一案例</a><a href="../../index.html">返回展览总览 ↑</a><a href="../../cases/case4/index.html">下一案例 →</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 3</p>
@@ -122,10 +123,10 @@ fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
   var fHtml = '';
   f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
   document.getElementById('f3').innerHTML = fHtml;
-  var tk = '<div class="takeaway-label">Take-away</div>';
+  var tk = '<div class="takeaway-label">案例要点</div>';
   tk += '柱/梁/枋/斗/栱 等术语定义了「建筑营造」的边界。<strong>同一部书(p211203 天工开物)可同时归属两 collection</strong> — 但 PAGE 成员按 page_index 计算不会跨集合重复。';
   document.getElementById('tk3').innerHTML = tk;
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

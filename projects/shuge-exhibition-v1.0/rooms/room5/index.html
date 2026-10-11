@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展厅 5 · AI-assisted Historical Research</title>
+<title>人工智能辅助历史研究｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-room">
+<body class="page-room shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">展厅 5</h1>
   <p class="masthead-subtitle">AI-assisted Historical Research</p>
@@ -26,7 +27,7 @@
   <div class="topnav-meta">12 evidence cards (v0.3) · 3 workspaces</div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　展厅 5</div><p class="reader-kicker">展厅 5 / 5</p><h1>人工智能辅助历史研究</h1><p class="reader-lead">AI 在本项目中的真实角色 — 是研究助产士,不是替代者。本展厅直接展示 AI 产出的 12 个 evidence cards + 3 个研究工作区,让观众自己判断「AI 做了什么」「人类做了什么」「哪些边界由人类持有」。</p><div class="reader-actions"><a href="../../index.html#rooms">全部展厅 →</a><a href="../../cases/case5/index.html">相关案例 →</a></div></div>
   <section class="hero">
     <h1>AI-assisted Historical Research</h1>
     <p class="hero-lead">AI 在本项目中的真实角色 — 是研究助产士,不是替代者。</p>
@@ -34,17 +35,17 @@
   </section>
 
   <section class="room-introduction">
-    <h2>Introduction</h2>
-    <p id="intro5"></p>
+    <h2>展厅导读</h2>
+    <p id="intro5">AI 在本项目中的真实角色 — 是研究助产士,不是替代者。本展厅直接展示 AI 产出的 12 个 evidence cards + 3 个研究工作区,让观众自己判断「AI 做了什么」「人类做了什么」「哪些边界由人类持有」。</p>
   </section>
 
   <section class="room-objects">
-    <h2>Objects</h2>
+    <h2>展厅内容</h2>
     <div id="objects5" class="objects-grid"></div>
   </section>
 
-  <section>
-    <h2>Evidence</h2>
+  <details class="reader-details"><summary>展开原始证据、研究表格与演示组件</summary><div class="reader-detail-inner"><section>
+    <h2>证据与研究样本</h2>
     <h3>12 个 Evidence Cards (v0.3 升级版)</h3>
     <p>每个 card 带 4 个新字段:<span class="mono">source_context</span> / <span class="mono">citation_path</span> / <span class="mono">collection</span> / <span class="mono">related_workspace</span>。</p>
     <p class="dim">点击 ▸ 展开 evidence ledger;点击 evidence-ledger-row 弹出 Citation Viewer。</p>
@@ -63,20 +64,20 @@
       <tr><th>CITATION_IDS_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
       <tr><th>PROVENANCE_UNCHANGED</th><td><span class="verified mono">yes</span> · since P5-B2</td></tr>
     </table>
-  </section>
+  </section></div></details>
 
   <section>
     <div class="takeaway">
-      <div class="takeaway-label">Take-away</div>
+      <div class="takeaway-label">展厅要点</div>
       AI 让 <strong>可规模化的部分</strong> 更便宜(OCR、分词、证据合成),但 <strong>判断与策展</strong> 仍由人类完成 — 0 个 unsupported claim、12/12 negative control abstention、collection governance 重建幂等,这三条纪律是这条边界的具体形态。
     </div>
   </section>
 
   <section class="room-further-reading">
-    <h2>Further Reading</h2>
+    <h2>延伸阅读</h2>
     <ul id="further5" class="further-reading"></ul>
   </section>
-</main>
+</main><div class="reader-related"><a href="../../rooms/room4/index.html">← 上一展厅</a><a href="../../index.html">返回展览总览 ↑</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 5</p>
@@ -134,5 +135,5 @@ fetch('../../data/workspaces.json').then(r => r.json()).then(d => {
   });
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

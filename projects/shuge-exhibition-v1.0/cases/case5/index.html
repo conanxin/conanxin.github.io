@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>案例 5 · AI-assisted Historical Research</title>
+<title>人工智能辅助历史研究｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-case">
+<body class="page-case shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">案例 5</h1>
   <p class="masthead-subtitle">AI-assisted Historical Research</p>
@@ -25,7 +26,7 @@
   <div class="topnav-meta"><a href="https://github.com/conanxin/conanxin.github.io/issues/9">Issue #9 ↗</a></div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　案例 5</div><p class="reader-kicker">案例 5 / 5</p><h1>人工智能辅助历史研究</h1><p class="reader-lead">AI 在这部数字人文展览中扮演什么角色? 它的边界由谁持有?</p><div class="reader-actions"><a href="../../index.html#cases">全部案例 →</a><a href="../../rooms/room5/index.html">相关展厅 →</a></div></div>
   <header class="case-study-hero">
     <div class="case-study-badges">
       <span class="badge">6 layers</span>
@@ -36,39 +37,39 @@
     <p class="case-study-subtitle">AI 在本项目中的真实角色 — research midwife, not replacer</p>
   </header>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开研究证据与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">1</div>
-    <h2 class="section-label">Question</h2>
-    <p id="q5" class="question-text"></p>
+    <h2 class="section-label">研究问题</h2>
+    <p id="q5" class="question-text">AI 在这部数字人文展览中扮演什么角色? 它的边界由谁持有?</p>
   </section>
 
   <section class="case-section">
     <div class="section-num">2</div>
-    <h2 class="section-label">Source</h2>
+    <h2 class="section-label">文献来源</h2>
     <div id="s5"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">3</div>
-    <h2 class="section-label">Evidence</h2>
+    <h2 class="section-label">研究证据</h2>
     <div id="e5"></div>
-  </section>
+  </section></div></details>
 
-  <section class="case-section">
+  <details class="reader-details"><summary>展开引用与出处与详细记录</summary><div class="reader-detail-inner"><section class="case-section">
     <div class="section-num">4</div>
-    <h2 class="section-label">Citation</h2>
+    <h2 class="section-label">引用与出处</h2>
     <div id="c5"></div>
-  </section>
+  </section></div></details>
 
   <section class="case-section">
     <div class="section-num">5</div>
-    <h2 class="section-label">Interpretation Boundary</h2>
+    <h2 class="section-label">解释边界</h2>
     <div id="i5"></div>
   </section>
 
   <section class="case-section">
     <div class="section-num">6</div>
-    <h2 class="section-label">Further Research</h2>
+    <h2 class="section-label">后续研究</h2>
     <ul id="f5" class="further-reading"></ul>
   </section>
 
@@ -77,7 +78,7 @@
   </section>
 
   <p class="case-study-back"><a href="../../rooms/room5/index.html">← 返回展厅 5 (AI-assisted Historical Research)</a></p>
-</main>
+</main><div class="reader-related"><a href="../../cases/case4/index.html">← 上一案例</a><a href="../../index.html">返回展览总览 ↑</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 案例 5</p>
@@ -134,10 +135,10 @@ fetch('../../data/case_studies.json').then(r => r.json()).then(d => {
   var fHtml = '';
   f.forEach(function(r, i) { fHtml += '<li>' + r + '</li>'; });
   document.getElementById('f5').innerHTML = fHtml;
-  var tk = '<div class="takeaway-label">Take-away</div>';
+  var tk = '<div class="takeaway-label">案例要点</div>';
   tk += 'AI 让 <strong>可规模化的部分</strong> 更便宜(OCR、分词、证据合成),但 <strong>判断与策展</strong> 仍由人类完成。<strong>0 个 unsupported claim</strong>、<strong>12/12 negative control abstention</strong>、<strong>collection governance 重建幂等</strong> — 这三条是边界的具体形态。';
   document.getElementById('tk5').innerHTML = tk;
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

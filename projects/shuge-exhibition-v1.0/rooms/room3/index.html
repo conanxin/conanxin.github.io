@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展厅 3 · Historical Hydrology & River Defense</title>
+<title>历史水利与河防｜SHUGE 数字人文展览</title>
 <link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/reader.css">
 </head>
-<body class="page-room">
+<body class="page-room shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../../index.html#rooms">展厅</a><a href="../../index.html#cases">研究案例</a><a href="../../index.html#reading">专题阅读</a><a href="../../index.html#methods">研究方法</a></nav></div></header>
 <header class="masthead">
   <h1 class="masthead-title">展厅 3</h1>
   <p class="masthead-subtitle">Historical Hydrology & River Defense · 历史水利与河防</p>
@@ -26,7 +27,7 @@
   <div class="topnav-meta">historical-hydrology · 30 page sample</div>
 </nav>
 
-<main class="body">
+<main class="body"><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../../index.html">数字展览</a>　/　展厅 3</div><p class="reader-kicker">展厅 3 / 5</p><h1>历史水利与河防</h1><p class="reader-lead">「历史水利与河防」专题集合 — 项目第一个策展性研究集合。本展厅呈现这个集合如何被定义、如何被治理、如何被审计。</p><div class="reader-actions"><a href="../../index.html#rooms">全部展厅 →</a><a href="../../cases/case2/index.html">相关案例 →</a></div></div>
   <section class="hero">
     <h1>Historical Hydrology & River Defense</h1>
     <p class="hero-lead">「历史水利与河防」专题集合 — 项目第一个策展性研究集合。</p>
@@ -34,17 +35,17 @@
   </section>
 
   <section class="room-introduction">
-    <h2>Introduction</h2>
-    <p id="intro3"></p>
+    <h2>展厅导读</h2>
+    <p id="intro3">「历史水利与河防」专题集合 — 项目第一个策展性研究集合。本展厅呈现这个集合如何被定义、如何被治理、如何被审计。</p>
   </section>
 
   <section class="room-objects">
-    <h2>Objects</h2>
+    <h2>展厅内容</h2>
     <div id="objects3" class="objects-grid"></div>
   </section>
 
-  <section>
-    <h2>Evidence</h2>
+  <details class="reader-details"><summary>展开原始证据、研究表格与演示组件</summary><div class="reader-detail-inner"><section>
+    <h2>证据与研究样本</h2>
     <h3>集合的定义</h3>
     <div id="coll-detail"></div>
 
@@ -70,20 +71,20 @@
     <h3 style="margin-top:1.5rem">研究问答（6 个 collection-scoped samples · v0.3 升级）</h3>
     <p>v0.3 展示使用 evidence_cards_v3.json — 每个 card 带 source_context / citation_path / collection / related_workspace 四字段。</p>
     <div id="qa-list"></div>
-  </section>
+  </section></div></details>
 
   <section>
     <div class="takeaway">
-      <div class="takeaway-label">Take-away</div>
+      <div class="takeaway-label">展厅要点</div>
       一个集合不仅是「一堆页面」，而是「<strong>一个研究问题 + 一组术语规则 + 一份可治理的成员清单 + 一条审计链</strong>」。重建幂等（rebuild idempotent）是这条纪律的核心。
     </div>
   </section>
 
   <section class="room-further-reading">
-    <h2>Further Reading</h2>
+    <h2>延伸阅读</h2>
     <ul id="further3" class="further-reading"></ul>
   </section>
-</main>
+</main><div class="reader-related"><a href="../../rooms/room2/index.html">← 上一展厅</a><a href="../../index.html">返回展览总览 ↑</a><a href="../../rooms/room4/index.html">下一展厅 →</a></div>
 
 <footer>
   <p>SHUGE Digital Humanities Exhibition · v0.3 · 展厅 3</p>
@@ -162,5 +163,5 @@ fetch('../../data/evidence_cards_v3.json').then(r => r.json()).then(d => {
   });
 });
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../../index.html">返回展览首页</a>　·　<a href="/projects/shuge/">SHUGE 研究中心</a></footer></body>
 </html>

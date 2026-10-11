@@ -1,494 +1,160 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《水經注》易水敘事中的范陽、容城與故安——河流空間、城邑記載與版本異文 | R4.4 易水專題研究文章</title>
-<meta name="description" content="R4.4 · 《水經注》易水專題中文研究文章。整合 R4 / R4.1 / R4.2 / R4.3 / R4.3A 五層成果，以內閣文庫藏明吳琯校《水經注》卷之十一底本影像為核心證據，系統討論易水流域範陽、容城、故安的空間關係、易京方位、漢代封侯事件及四組版本異文。文章狀態：DRAFT_REVIEW。">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="article_status" content="DRAFT_REVIEW">
-<meta name="task_id" content="WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE">
-<meta name="frozen_research_preserved" content="R4=582c852 · R4.1=2b17354 · R4.2=04db695 · R4.3=69c396d · R4.3A=a98db0b">
+<title>《水经注》易水叙事中的范阳、容城与故安——河流空间、城邑记载与版本异文</title>
+<meta name="description" content="《水经注》卷十一易水专题研究：河流空间、古代城邑、历史叙述与版本异文。">
 <style>
-  body { font-family: "Noto Serif SC", "Source Han Serif", "STSong", "宋体", serif; max-width: 880px; margin: 2.5rem auto; padding: 0 1.5rem; line-height: 1.85; color: #222; background: #fafaf7; }
-  h1.wc-art-h1 { font-size: 1.75rem; border-bottom: 3px double #5a3e2b; padding-bottom: 0.6rem; margin-bottom: 0.4rem; color: #3a2a1a; }
-  h2.wc-art-h2 { font-size: 1.3rem; margin-top: 2.2rem; border-left: 6px solid #5a3e2b; padding-left: 0.7rem; color: #3a2a1a; }
-  h3.wc-art-h3 { font-size: 1.1rem; margin-top: 1.6rem; color: #4a3a2a; border-bottom: 1px dotted #aaa; padding-bottom: 0.2rem; }
-  p { margin: 0.85rem 0; text-align: justify; }
-  .wc-art-meta { font-size: 0.88rem; color: #555; background: #f0ece3; padding: 0.6rem 0.9rem; border-radius: 4px; margin: 1rem 0 1.5rem 0; }
-  .wc-art-status { display: inline-block; background: #fff3cd; color: #6b5400; padding: 2px 8px; border-radius: 3px; font-size: 0.85rem; margin-left: 0.5rem; }
-  .wc-art-keywords { background: #eef3f7; padding: 0.6rem 0.9rem; border-radius: 4px; font-size: 0.9rem; margin: 1rem 0; }
-  .wc-cite { font-family: "Noto Sans Mono", "Courier New", monospace; background: #f4f0e6; padding: 1px 5px; border-radius: 2px; font-size: 0.9em; }
-  .wc-art-callout { border-left: 4px solid #b08968; padding: 0.7rem 1rem; margin: 1.2rem 0; background: #fdf6ec; font-size: 0.93rem; }
-  .wc-art-callout-errata { border-left-color: #c66; background: #fdf0ee; }
-  .wc-art-callout-open { border-left-color: #d8a000; background: #fdfaef; }
-  .wc-art-table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; font-size: 0.9rem; }
-  .wc-art-table th, .wc-art-table td { border: 1px solid #ccc; padding: 6px 9px; text-align: left; }
-  .wc-art-table th { background: #ece5d4; font-weight: 600; }
-  .wc-art-attr-1 { color: #2c5e2c; font-weight: 600; }
-  .wc-art-attr-2 { color: #2a4e8a; font-weight: 600; }
-  .wc-art-attr-3 { color: #7a3e9a; font-weight: 600; }
-  .wc-art-attr-4 { color: #9a6b2e; font-weight: 600; }
-  .wc-art-fig { text-align: center; margin: 1.5rem 0; }
-  .wc-art-fig-caption { font-size: 0.85rem; color: #666; margin-top: 0.4rem; }
-  .wc-art-nav { background: #f4f0e6; padding: 0.7rem 1rem; border-radius: 4px; margin: 1rem 0; font-size: 0.92rem; }
-  .wc-art-nav a { margin-right: 1rem; }
-  .wc-art-refs { font-size: 0.88rem; line-height: 1.7; }
-  .wc-art-foot { font-size: 0.82rem; color: #777; border-top: 1px solid #ccc; margin-top: 2.5rem; padding-top: 0.8rem; }
-  .wc-art-disclosure { background: #fff8e1; border: 1px dashed #c8a000; padding: 0.7rem 1rem; margin: 1rem 0; font-size: 0.88rem; }
-  blockquote { border-left: 4px solid #888; padding-left: 1rem; margin-left: 0; color: #444; font-size: 0.95rem; }
-  svg text { font-family: "Noto Serif SC", "宋体", serif; }
+:root{--ink:#2a2927;--muted:#65625d;--border:#dcd8cf;--blue:#365b79;--bg:#faf9f6}*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.96 "Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif}
+a{color:var(--blue);text-underline-offset:3px}
+.top{background:#fff;border-bottom:1px solid var(--border);padding:13px 23px;font:13px/1.5 "Microsoft YaHei",sans-serif}
+.top-inner{max-width:860px;margin:auto;display:flex;justify-content:space-between;gap:10px}
+.top a{text-decoration:none}
+main{max-width:860px;margin:auto;background:white;min-height:100vh;padding:59px 68px 80px}
+.overline{text-align:center;color:var(--muted);font:12px/1.6 sans-serif;letter-spacing:.12em}
+h1{text-align:center;font-size:31px;line-height:1.5;font-weight:650;margin:17px auto 3px}
+.subtitle{text-align:center;font-size:18px;color:var(--muted);margin:0 0 11px}
+.meta{text-align:center;font:13px/1.65 sans-serif;color:var(--muted);margin:0 0 42px}
+.abstract{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fcfbf8;padding:22px 26px;margin-bottom:35px}
+.abstract h2{border:0;font:600 15px/1.5 sans-serif;margin:0 0 8px;padding:0}
+.abstract p{font-size:15px;margin:0;text-indent:0}
+.abstract .key{margin-top:10px;color:var(--muted);font:13px/1.9 sans-serif}
+.toc{background:#f6f3ee;margin:32px 0 44px;padding:20px 26px;font:14px/1.9 sans-serif}
+.toc ol{margin:7px 0 0;padding-left:23px;columns:2}
+.toc li{break-inside:avoid}
+.toc a{text-decoration:none}
+section{margin:52px 0 0}
+section>h2{font-size:23px;line-height:1.5;margin:0 0 22px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+h3{font-size:18px;line-height:1.6;font-weight:650;margin:27px 0 11px}
+p{margin:0 0 17px;text-align:justify}
+blockquote{margin:20px 0;padding:13px 22px;border-left:2px solid #8e8980;background:#fbfaf7}
+sup{font:12px/1 sans-serif;padding-left:2px}
+sup a{text-decoration:none}
+figure{margin:25px 0;border:1px solid var(--border);background:#fcfbf8;padding:22px}
+.flow{display:flex;align-items:center;gap:10px}
+.flow .node{flex:1;text-align:center;background:white;border:1px solid #c3bfb6;padding:13px 8px;font:14px/1.7 sans-serif}
+.flow small{display:block;color:var(--muted);font-size:12px}
+figcaption{margin-top:14px;color:var(--muted);text-align:center;font:12px/1.7 sans-serif}
+.tablebox{overflow:auto;margin:24px 0}
+table{border-collapse:collapse;min-width:640px;width:100%;font:13px/1.8 sans-serif}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--border);padding:12px}
+th{background:#f6f3ee}
+.endnotes{font-size:14px;line-height:1.9}
+.endnotes ol{padding-left:24px}
+.endnotes li{margin-bottom:11px;overflow-wrap:anywhere}
+.endnotes code{font:12px/1.8 monospace}
+.smallprint{font:13px/1.9 sans-serif;color:var(--muted);border-top:1px solid var(--border);padding-top:15px;margin-top:34px}
+.footer{text-align:center;color:var(--muted);font:12px/1.7 sans-serif;padding:24px}
+@media(max-width:650px){body{font-size:16px}main{padding:33px 21px 60px}h1{font-size:25px}.subtitle{font-size:16px}.toc ol{columns:1}.flow{flex-direction:column}.flow .node{width:100%}.flow .arr{transform:rotate(90deg)}}
+@media print{body{background:white}main{max-width:none;padding:0}.top,.toc,.footer{display:none}}
 </style>
 </head>
 <body>
-
-<h1 class="wc-art-h1">《水經注》易水敘事中的范陽、容城與故安——河流空間、城邑記載與版本異文</h1>
-
-<p class="wc-art-meta">
-  任務編號：<span class="wc-cite">WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE</span> &nbsp;|&nbsp;
-  版本狀態：<span class="wc-art-status">DRAFT_REVIEW</span><br>
-  整合基線：R4 <span class="wc-cite">582c852</span> · R4.1 <span class="wc-cite">2b17354</span> · R4.2 <span class="wc-cite">04db695</span> · R4.3 <span class="wc-cite">69c396d</span> · R4.3A <span class="wc-cite">a98db0b</span><br>
-  底本影像：內閣文庫藏明吳琯校《水經注》卷之十一（pid1654–pid1683，共 12 張已定位，4 張經 AI 多模態視覺複核）<br>
-  凍結聲明：R4–R4.3A 全部原始檔案未覆寫；R4.4 為 evidence-reconciliation + 中文公開文章 overlay
+<nav class="top"><div class="top-inner"><a href="/projects/shuge/">SHUGE 历史文献研究</a><a href="../">返回易水专题</a></div></nav>
+<main>
+<header>
+<div class="overline">历史地理 · 文献与版本研究</div>
+<h1>《水经注》易水叙事中的范阳、容城与故安</h1>
+<p class="subtitle">——河流空间、城邑记载与版本异文</p>
+<p class="meta">易水专题研究　｜　研究稿</p>
+</header>
+<div class="abstract">
+<h2>摘要</h2>
+<p>《水经注》卷十一以河道为叙述线索，将水源、城邑和历史掌故联结为连续的空间文本。本文以日本内阁文库藏明吴琯校《水经注》卷十一的扫描影像为主要材料，参照不同在线整理文本，分析故安、范阳与容城的空间关系，以及武阳、易京和大利亭承载的历史记忆。研究认为，“出”“东过”“径”“合”“注”等词可支持对河流行进顺序和相对方位的分析，却不能单独确定古城的现代坐标。汉代封侯记载又显示，深泽与容城以及王莽改名的三种叙事需要分开理解，部分纪年与人名存在版本差异。辨别原书直述、前人转引、地方传闻和校勘异文，是利用《水经注》研究易水流域历史地理的必要前提。</p>
+<p class="key"><strong>关键词：</strong>《水经注》；易水；范阳；容城；故安；历史地理；文本空间；版本异文</p>
 </div>
-
-<div class="wc-art-keywords">
-<strong>關鍵詞：</strong>《水經注》 &nbsp;|&nbsp; 易水 &nbsp;|&nbsp; 範陽 &nbsp;|&nbsp; 容城 &nbsp;|&nbsp; 故安 &nbsp;|&nbsp; 易京 &nbsp;|&nbsp; 漢代封侯 &nbsp;|&nbsp; 版本異文 &nbsp;|&nbsp; 明吳琯校 &nbsp;|&nbsp; 內閣文庫
-</div>
-
-<div class="wc-art-nav">
-<strong>相關頁面：</strong>
-<a href="../">易水專題主頁</a> ·
-<a href="../sources/">R4.3 文本證據 + R4.3A 勘誤</a> ·
-<a href="../../../../../">SHUGE 入口</a> ·
-<a href="./evidence/">證據附錄</a>
-</div>
-
-<div class="wc-art-disclosure">
-<strong>AI 視覺披露：</strong>本文引用的所有「Cabinet Library 內閣文庫藏明吳琯校《水經注》卷之十一」底本影像字面識別結果，皆由 view_image 多模態視覺工具自動辨識，<strong>非人眼版本學/古文獻學專家审定</strong>。所有「真實字形」結論須有至少一位人類專家人眼複核方可作為最終版本學判斷依據。
-</div>
-
-<div class="wc-art-disclosure" style="border-color:#c66; background:#fdf0ee;">
-<strong>R4.4A 重要修訂披露（2026-10-10）：</strong>本文初稿 R4.4 將 A1 斷言為「趙將夜受封於容城，深澤為王莽更名」（基於 R4.3A Cabinet Library pid1661 AI 視覺單源誤讀）。經 R4.4A 重新交叉核對 Wikisource 整理版、Wikisource 四部叢刊本、山水二經合刻、arteducation.com.tw、ab.newdu.com 等多個獨立可達文本源，並對 Cabinet Library pid1655 / pid1656 / pid1661 三張底本影像重新做 view_image AI 視覺複核，<strong>確認 R4.4 A1 斷言錯誤</strong>：
-<ul style="margin-top:0.4rem;">
-<li>4 個獨立可達文本源（Wikisource 整理版、Wikisource 四部叢刊本景印卷十一、山水二經合刻、arteducation.com.tw）一致讀作「封趙將夜/夕<strong>於深澤</strong>」（受封地 = 深澤）</li>
-<li>Cabinet Library pid1661 重新 AI 視覺複核：受封地點處字跡<strong>模糊，無法從單一掃描確證「於容城」或「於深澤」</strong>；「王莽更名深澤」字形較清晰</li>
-<li>三項歷史事件必須分開記錄：(a) 高帝六年（或八年）封趙將夜/夕<strong>於深澤</strong>（高帝事件）；(b) 景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧<strong>於容城</strong>（景帝事件）；(c) 王莽<strong>將容城</strong>改名為<strong>深澤</strong>（王莽改名事件）</li>
-<li>R4.4 A1 callout、A2 callout、結論 #3、V03 異文表、CITE-15（pid1661 → pid1656 武陽段映射）、CITE-17（容城段三事件重寫）、CITE-18（受封地點改為深澤）、Wikisource 四部叢刊本版本身份（「明抄本」→「版本來源待核驗」）等 8 處已直接修訂</li>
-<li>A4 線索「高帝八/六年」取得 ab.newdu.com 國學典籍網（http://ab.newdu.com/book/ms9976.html）獨立可達文本讀作「汉高帝八年，封赵将夜，于深泽」，狀態由 OPEN_VARIANT_NOT_VERIFIED 升級為 PARTIALLY_VERIFIED</li>
-</ul>
-詳見 R4.4A 勘誤文件 <code>data/yishui_article_critical_corrections_r4_4a.json</code>（schema <span class="wc-cite">r4.4a-yishui-publication-critical-corrections/1.0</span>，11133 bytes）。
-</div>
-
-<h2 class="wc-art-h2">摘要</h2>
-
-<p>本文以日本內閣文庫藏明吳琯校《水經注》卷之十一（Cabinet Library / 国立公文書館，漢二三五五 / 函二九一 / 冊一四（5））底本影像為核心證據，<strong>整合 R4（地理空間基線）/ R4.1（學術審計）/ R4.2（外部核驗）/ R4.3（文本證據比對）/ R4.3A（統計勘誤與影像複核）共五層研究成果</strong>，系統討論《水經注》卷十一易水章中范陽、容城與故安三個城邑的空間關係、易京的相對方位、以及兩項漢代封侯事件的版本異文。</p>
-
-<p>研究確認三項基本事實：（一）易水出涿郡故安縣閻鄉西山，東過范陽縣南，又東過容城縣南；（二）「易水又東逕易京南」句法上表達的是易水流經易京南側，與 Cabinet Library 影像跨句一致的「易京城在易城西四五里」共同指向<strong>易京位於易水之北</strong>，而非之南；（三）容城段的漢代封侯事件應與范陽段分開記錄，不可將容城段紀年誤歸於范陽，亦不可將王莽更名「深澤」誤認為受封地點。</p>
-
-<p>研究同時記錄四組尚待獨立確認的版本異文：範陽封侯時間（中二年/中元三年）、範陽受封降王姓名（代/信）、趙將姓名（夜/夕/某）、容城受封降王姓名（唯徐盧/攜徐盧/撅徐盧），以及一項獨立研究線索——《水經注疏》記載趙將夜受封於「高帝八年」而非「六年」——均列為 <span class="wc-art-attr-4">尚待獨立確認的歷史事實</span>，本文不作最終裁決。</p>
-
-<p><strong>文章狀態：DRAFT_REVIEW。</strong>本文不作為正式學術發表，所有「古籍直接記載」之結論須以原始影像或紙本景印複核，所有「研究者文本推論」須明示推論依據，所有「版本異文」均獨立標示並保留所有候選讀法。</p>
-
-<h2 class="wc-art-h2">一、研究問題與文獻版本</h2>
-
-<h3 class="wc-art-h3">1.1 三個研究問題</h3>
-
-<p>本研究圍繞三個層次遞進的問題展開。第一，<strong>文本層</strong>：《水經注》卷十一易水章如何敘述易水流域的空間結構？三個主要城邑——故安、范陽、容城——在酈道元的敘事中如何被定位？第二，<strong>事件層</strong>：漢代范陽段與容城段各自的封侯事件如何記錄？受封時間、受封者姓名與受封地點在不同版本中是否存在差異？第三，<strong>空間—歷史層</strong>：《水經注》文本所描述的「易京城」相對於易水的方位為何？文本記載與現代河北易縣一帶的考古地理事實之間存在怎樣的界線？</p>
-
-<h3 class="wc-art-h3">1.2 核心底本：內閣文庫藏明吳琯校《水經注》卷之十一</h3>
-
-<p>本研究的底本為日本國立公文書館（內閣文庫）藏<strong>明吳琯校《水經注》卷之十一</strong>（Cabinet Library，編目：漢二三五五 / 函二九一 / 冊一四（5）），亦即 R4 image review JSON 中記錄的 12 張 Cabinet Library 掃描影像（pid1654 至 pid1683）。底本身份由 R4 image review JSON 的 <code>source_metadata</code> 與 R4.3A AI 多模態視覺對 pid1655 序文題署的自動辨識共同確認：「漢桑欽撰　後魏酈道元注　明吳琯校」<span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-1]</span>。</p>
-
-<h3 class="wc-art-h3">1.3 對照版本</h3>
-
-<p>本研究使用的對照版本包括：</p>
-
-<ul>
-  <li><strong>維基文庫整理版《水經注》卷十一</strong>：<a href="https://zh.wikisource.org/wiki/水經注/11" target="_blank" rel="noopener">zh.wikisource.org/wiki/水經注/11</a> <span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-2]</span></li>
-  <li><strong>維基文庫四部叢刊本景印《水經注》卷第十一</strong>（版本來源待核驗；R4.4 初稿誤標為「明抄本」，已撤銷；該頁校勘記風格（〈案近刻訛作〉）似清乾隆武英殿聚珍版/叢書集成簡編系列，需紙本校驗確認底本）：<a href="https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一" target="_blank" rel="noopener">zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一</a> <span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-3]</span></li>
-  <li><strong>國學典籍網（ab.newdu.com）《水經注》現代標點完整版（未刪節減足本）</strong>：<a href="http://ab.newdu.com/book/ms9976.html" target="_blank" rel="noopener">ab.newdu.com/book/ms9976.html</a> — R4.4A 新增獨立對照版本，本版讀作「<strong>漢高帝八年，封趙將夜，於深澤</strong>」，是 A4 線索「高帝八/六年」的首個獨立可達文本驗證 <span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-21]</span></li>
-  <li><strong>識典古籍《山水二經合刻》卷十一</strong>：<a href="https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b" target="_blank" rel="noopener">shidianguji.com/book/HY2543/chapter/1kpc1688da42b</a> <span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-4]</span></li>
-</ul>
-
-<p>兩個維基文庫頁面雖版本題名不同，但由同一網站提供，不計入獨立來源。R4.3 共識別出 2 個獨立來源身份（<span class="wc-cite">WIKISOURCE_ZH</span> + <span class="wc-cite">SHIDIANGUSHI_2543</span>），3 個版本證人（wikisource 整理版 + wikisource 四部叢刊本 + 識典古籍山水二經合刻）<span class="wc-art-attr-2">[研究者文本推論]</span> <span class="wc-cite">[CITE-5]</span>。</p>
-
-<h3 class="wc-art-h3">1.4 學術審計基線：R4.1 的 12 條歷史論斷</h3>
-
-<p>R4.1 在 R4 基礎上對易水章 12 條歷史論斷進行學術審計，結果為：<strong>7 條 SUPPORTED、5 條 PARTIALLY_SUPPORTED、0 條 NOT_SUPPORTED</strong>。12 條論斷按真值範圍分類為：7 條 TEXT_REPORTS（文本直接記載）、5 條 TEXTUAL_INFERENCE（文本推論）、0 條 HISTORICAL_CORROBORATED（歷史事實經外部佐證）、0 條 MODERN_MAPPING（現代地理映射）<span class="wc-art-attr-2">[研究者文本推論]</span> <span class="wc-cite">[CITE-6]</span>。這一分布揭示了 R4.1 的核心發現：本研究 12 條論斷中，沒有任何一條達到「歷史事實經外部佐證」等級，所有論斷皆停留在《水經注》文本內部，<strong>古籍文本記載不可直接等同於現代地理事實</strong>。本文以此基線展開，並疊加 R4.3 / R4.3A 的版本比對結果。</p>
-
-<h2 class="wc-art-h2">二、易水的文本空間敘述</h2>
-
-<h3 class="wc-art-h3">2.1 易水起源：pid1655 正文首段</h3>
-
-<p>Cabinet Library 底本 pid1655 正文首行大字記載易水的起源：</p>
-
-<blockquote>
-「易水出涿郡故安縣閻鄉西山」
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-7]</span>。此句由三個地理節點構成：<strong>涿郡</strong>（郡級行政區）、<strong>故安縣</strong>（易水所出之縣）、<strong>閻鄉西山</strong>（易水所出之山）。三個節點構成自上而下的空間縮放：郡—縣—鄉—山。維基文庫整理版作「閻鄕」（異體字「鄉」），Wikisource 四部叢刊本與 Cabinet Library 底本皆作「閻鄉」（正體字）<span class="wc-art-attr-3">[版本校勘結果]</span> <span class="wc-cite">[CITE-8]</span>。此處「鄕/鄉」為同字異寫，<strong>不構成實質異文</strong>。</p>
-
-<h3 class="wc-art-h3">2.2 範陽—容城段：pid1657 大字雙行標題</h3>
-
-<p>Cabinet Library 底本 pid1657 大字雙行標題記載易水東流過程中的兩個關鍵城邑：</p>
-
-<blockquote>
-「東過范陽縣南，又東過容城縣南」
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-9]</span>。此句由「東過…縣南」動詞結構串聯兩個城邑，揭示三層空間信息：（一）<strong>方位（文本河流路線敘述）</strong>：《水經注》以「東過范陽縣南，又東過容城縣南」描述易水流經兩縣的南側，句法「X 水逕 Y 南」表達「水流經過城邑的南側外側」；這是文本中的河流路線敘述，<strong>不能據此推出兩縣全部地域的絕對方位，亦不能直接映射為現代地理方位</strong>。本文保留「南易水／北易水」不同水系的辨析空間（南北易水屬獨立研究問題）；（二）<strong>序列</strong>：範陽在西、容城在東（「又東過」表達易水自西向東的流路）；（三）<strong>語法</strong>：「南」字標誌易水與城邑的相對位置，而非城邑的絕對方位<span class="wc-art-attr-2">[研究者文本推論]</span>。<span class="wc-art-callout wc-art-callout-r44b"> <strong>R4.4B 修訂：</strong>原 R4.4 §2.2 「兩個城邑皆位於易水之南側」表述可能誤讀為「兩城位於河之南」。R4.4B 統一改為「《水經注》描述易水流經兩縣的南側」並明示這是文本中的河流路線敘述，不能直接映射為現代地理方位。</span></p>
-
-<p>識典古籍《山水二經合刻》同句作「容城」<span class="wc-cite">[CITE-4]</span>；《山水二經合刻》本另有一句作「容成」（「成」字），R4.3A 標記為「容城/容成」一字之差，但 Cabinet Library 底本影像作「容城」（清晰可辨，「城」字左半土字旁完整）<span class="wc-art-attr-3">[版本校勘結果]</span> <span class="wc-cite">[CITE-10]</span>。本文判讀採「容城」為正。</p>
-
-<h3 class="wc-art-h3">2.3 大利亭與巨馬水：pid1659 互攝通稱段</h3>
-
-<p>Cabinet Library 底本 pid1659 記載容城段的水系互攝現象：</p>
-
-<blockquote>
-「南流於容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱」
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-11]</span>。此句包含三個關鍵地理術語：（一）<strong>大利亭</strong>：容城縣西北的一個聚落節點，作為水系匯流的地理標誌；（二）<strong>合易水而注巨馬水</strong>：故安水（自容城西北）東南匯入易水，再向東注入巨馬水；（三）<strong>互攝通稱</strong>：易水、故安水、巨馬水、濡水、淶水於涿郡範陽縣一帶會流，各水名稱在不同語境下可互換使用<span class="wc-art-attr-2">[研究者文本推論]</span>。R4-YSH-007（大利亭節點）與 R4-YSH-006（互攝通稱水系關係）對應此段文本，兩條均歸入 PARTIALLY_SUPPORTED，等級提升需外部水文地理佐證。</p>
-
-<h2 class="wc-art-h2">三、範陽、容城與故安的空間關係</h2>
-
-<h3 class="wc-art-h3">3.1 由底本影像重建的文本空間序列</h3>
-
-<p>綜合 pid1655、pid1657、pid1659 三段底本影像的文本內容，易水流域在《水經注》卷十一中的空間序列可整理如下（圖示為簡化核心空間關係圖，所有邊均指向真實底本影像）：</p>
-
-<div class="wc-art-fig">
-<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; background: #fafaf3; border: 1px solid #ccc;">
-  <!-- arrows -->
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a3e2b"/>
-    </marker>
-  </defs>
-  <!-- River line -->
-  <line x1="60" y1="180" x2="720" y2="180" stroke="#3a6ea5" stroke-width="4"/>
-  <text x="380" y="172" text-anchor="middle" font-size="14" fill="#3a6ea5">易水 (Yi-shui, flowing east →)</text>
-  <!-- Cities (all "south of river" per text) -->
-  <circle cx="180" cy="230" r="32" fill="#fdf6ec" stroke="#5a3e2b" stroke-width="2"/>
-  <text x="180" y="228" text-anchor="middle" font-size="14" font-weight="600" fill="#3a2a1a">故安</text>
-  <text x="180" y="246" text-anchor="middle" font-size="10" fill="#666">Gu'an</text>
-  <text x="180" y="285" text-anchor="middle" font-size="10" fill="#5a3e2b">[pid1655]</text>
-
-  <circle cx="370" cy="230" r="32" fill="#fdf6ec" stroke="#5a3e2b" stroke-width="2"/>
-  <text x="370" y="228" text-anchor="middle" font-size="14" font-weight="600" fill="#3a2a1a">範陽</text>
-  <text x="370" y="246" text-anchor="middle" font-size="10" fill="#666">Fanyang</text>
-  <text x="370" y="285" text-anchor="middle" font-size="10" fill="#5a3e2b">[pid1657]</text>
-
-  <circle cx="560" cy="230" r="32" fill="#fdf6ec" stroke="#5a3e2b" stroke-width="2"/>
-  <text x="560" y="228" text-anchor="middle" font-size="14" font-weight="600" fill="#3a2a1a">容城</text>
-  <text x="560" y="246" text-anchor="middle" font-size="10" fill="#666">Rongcheng</text>
-  <text x="560" y="285" text-anchor="middle" font-size="10" fill="#5a3e2b">[pid1657]</text>
-
-  <!-- Yijing (north of river) -->
-  <circle cx="660" cy="100" r="30" fill="#eef3f7" stroke="#2a4e8a" stroke-width="2" stroke-dasharray="4,2"/>
-  <text x="660" y="98" text-anchor="middle" font-size="13" font-weight="600" fill="#2a4e8a">易京</text>
-  <text x="660" y="115" text-anchor="middle" font-size="10" fill="#666">Yijing (north)</text>
-  <text x="660" y="62" text-anchor="middle" font-size="10" fill="#2a4e8a">[pid1661 R4.3A overlay]</text>
-
-  <!-- Daliting -->
-  <circle cx="500" cy="290" r="22" fill="#f0ece3" stroke="#7a6e4e" stroke-width="1.5"/>
-  <text x="500" y="288" text-anchor="middle" font-size="11" font-weight="600" fill="#5a3e2b">大利亭</text>
-  <text x="500" y="320" text-anchor="middle" font-size="10" fill="#5a3e2b">[pid1659]</text>
-
-  <!-- Arrows from river through cities -->
-  <line x1="180" y1="198" x2="180" y2="205" stroke="#5a3e2b" stroke-width="1" marker-end="url(#arrow)"/>
-  <line x1="370" y1="198" x2="370" y2="205" stroke="#5a3e2b" stroke-width="1" marker-end="url(#arrow)"/>
-  <line x1="560" y1="198" x2="560" y2="205" stroke="#5a3e2b" stroke-width="1" marker-end="url(#arrow)"/>
-  <text x="190" y="218" font-size="9" fill="#666">「縣南」(south of)</text>
-
-  <!-- Yijing north of river indicator -->
-  <line x1="660" y1="130" x2="660" y2="170" stroke="#2a4e8a" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="3,2"/>
-  <text x="670" y="155" font-size="10" fill="#2a4e8a">R4.3A: 易京位於易水之北</text>
-  <text x="670" y="168" font-size="9" fill="#666">(舊讀誤作「之南」)</text>
-
-  <!-- Daliting arrow to river -->
-  <line x1="510" y1="270" x2="540" y2="200" stroke="#7a6e4e" stroke-width="1" marker-end="url(#arrow)"/>
-  <text x="455" y="240" font-size="9" fill="#5a3e2b">故安水→易水</text>
-
-  <!-- Legend -->
-  <rect x="20" y="20" width="220" height="80" fill="#fff" stroke="#999" stroke-width="1" opacity="0.95"/>
-  <text x="30" y="38" font-size="11" font-weight="600">圖例</text>
-  <text x="30" y="55" font-size="10">━━━━ 易水 (Cabinet Library pid1655)</text>
-  <text x="30" y="72" font-size="10">○ 文本直接城邑 (pid1657)</text>
-  <text x="30" y="89" font-size="10">┄┄ 易京方位 (R4.3A overlay)</text>
-</svg>
-<div class="wc-art-fig-caption">圖 1：易水流域範陽—容城—故安文本空間關係簡圖。所有邊均指向真實底本影像（Cabinet Library pid1655 / pid1657 / pid1659 / pid1661）。易京相對易水的方位採 R4.3A 修正後的方向（北），原 R4.1 讀作「南」屬方向性誤讀，已於本文標記為 Claim 011 方向修正。<span class="wc-art-attr-2">[研究者文本推論]</span></div>
-</div>
-
-<h3 class="wc-art-h3">3.2 範陽 vs 容城：受封事件必須分開記錄</h3>
-
-<div class="wc-art-callout wc-art-callout-errata">
-<strong>R4.4A 修訂 A2：</strong>R4.3 records[] 已將範陽段與容城段封侯事件分為兩個獨立 passage group（<span class="wc-cite">p04a_fanyang_enfeoffment_timing</span> + <span class="wc-cite">p04b_rongcheng_enfeoffment_xululu</span>），R4.4 初稿 callout 內容於 R4.4A 撤銷並重寫。R4.4A 確認三項歷史事件必須清楚分離，不可將容城段紀年誤歸於範陽：
-<ul style="margin-top:0.4rem;">
-<li><strong>(a) 高帝事件（pid1661 上半）</strong>：「漢高帝六年封趙將夜/夕<strong>於深澤</strong>」——受封地 = 深澤侯國（Wikisource 整理版 / 四部叢刊本 / 山水二經合刻 / arteducation.com.tw 4 源共識；Cabinet Library pid1661 受封地點處字跡模糊無法單源確證）</li>
-<li><strong>(b) 景帝事件（pid1661 中段）</strong>：「景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧<strong>於容城</strong>」——受封地 = 容城侯國（4 源共識）</li>
-<li><strong>(c) 王莽改名事件（pid1661 末段）</strong>：「王莽<strong>更名深澤</strong>」——王莽將中山國容城改名為深澤（4 源共識）</li>
-</ul>
-本文僅依底本 pid1661 文字記錄 (a) + (b) + (c) 三項，<strong>不得將「於深澤」誤置於容城段，亦不得將「於容城」誤置於深澤段</strong>。
-</div>
-
-<p><span class="wc-art-attr-2">[研究者文本推論]</span> <span class="wc-cite">[CITE-12]</span>。</p>
-
-<h2 class="wc-art-h2">四、易京、武陽與大利亭的歷史敘述</h2>
-
-<h3 class="wc-art-h3">4.1 易京方位：Claim 011 方向性誤讀的修正</h3>
-
-<p>Cabinet Library 底本 pid1661 記載易京的相對方位：</p>
-
-<blockquote>
-「易水又東逕易京南……謂之易京城，在易城西四五里」
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-13]</span>。R4.1 曾將「易水又東逕易京南」解讀為「易京城位於易水之南」，並以此推論「範陽以東、容城以西」的空間位置。R4.3 + R4.3A 重新檢視後確認此句法應解讀為：<strong>易水從易京的南側流過</strong>（即易京在易水之北），而非易京在水之南。Cabinet Library 影像同段「易京城在易城西四五里」跨句一致支持「易京在易水之北」的判讀（易城亦在易水之北）<span class="wc-art-attr-2">[研究者文本推論]</span> <span class="wc-cite">[CITE-14]</span>。</p>
-
-<div class="wc-art-callout wc-art-callout-errata">
-<strong>R4.4 聲明：</strong>本文不採用「易京城位於易水之南」之表述。R4.1 的 PARTIALLY_SUPPORTED 結論「易京城位於易水之南、範陽以東、容城以西」中，第一部分（南/北方位）為方向性誤讀，第二部分（範陽以東、容城以西）為基於 pid1657 大字標題序列的推論。本文採 R4.3A 修正方向（北），並標記 R4-YSH-011 為方向修正後的 PARTIALLY_SUPPORTED。REAL_WORLD_LOCATION（現代地理事實）仍為 <span class="wc-art-attr-4">尚待獨立確認的歷史事實</span>——古籍文本記載不可直接等同於考古地理事實。
-</div>
-
-<p>需注意：本文使用「在易水之北」是基於文本內部句法推論，<strong>並非指現代河北易縣一帶考古地理意義上的具體經緯度</strong>。易京（公孫瓚遷都處）的考古定位屬另一獨立研究問題，本文不涉入<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>。</p>
-
-<h3 class="wc-art-h3">4.2 武陽與燕下都</h3>
-
-<p>Cabinet Library 底本（同 pid1661 段後）記載武陽為燕下都舊址，引酈道元注：「武陽，蓋燕昭王所築，東西二十里，南北十七里」<span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-15]</span>。此段對應 R4-YSH-009，原列為 SUPPORTED。武陽與範陽、易京均屬易水章中的歷史地名，但三者在文本空間中未必位於同一地理節點；現代考古學界一般將燕下都定位於河北易縣東南三十里左右的<strong>易縣城東</strong>一帶，與本文所討論的「易京方位」屬不同問題，本文不混為一談<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>。</p>
-
-<h3 class="wc-art-h3">4.3 大利亭：水系互攝通稱段的樞紐節點</h3>
-
-<p>如 §2.3 所述，大利亭為容城縣西北的水系匯流節點，故安水於此東南匯入易水而注巨馬水。此節點對應 R4-YSH-007，原列為 SUPPORTED。現代河北省容城縣西北一帶是否有同名「大利亭」古地名可考？本文無考古地理事實佐證，<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>。</p>
-
-<h2 class="wc-art-h2">五、漢代封侯記錄及版本異文</h2>
-
-<h3 class="wc-art-h3">5.1 範陽段封侯事件</h3>
-
-<p>Cabinet Library 底本 pid1657 記載範陽段漢代封侯：</p>
-
-<blockquote>
-「漢景帝中元年封匈奴降王代為侯國」（Wikisource 整理版讀作「中元年」；pid1661 段後另作「景帝中元三年」）
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-16]</span>。此處涉及兩組版本異文：</p>
-
-<p><strong>V01 範陽封侯時間：</strong></p>
-<ul>
-  <li>Wikisource 整理版 + Wikisource 四部叢刊本明抄校記 = <strong>「中二年」</strong>（校記明示「中二年」為底本正字，「中元三年」為近刻訛）<span class="wc-art-attr-3">[版本校勘結果]</span></li>
-  <li>Cabinet Library 底本 pid1661 段 + 山水二經合刻 + R4.1 LOCAL_OCR = <strong>「中元三年」</strong></li>
-</ul>
-
-<p><strong>V02 範陽受封降王姓名：</strong></p>
-<ul>
-  <li>Cabinet Library 底本 pid1657 + 3 個外部源全部共識 = <strong>「代」</strong>（Cabinet Library 字面清晰：「漢景帝中元年封匈奴降王<strong>代</strong>為侯國」）</li>
-  <li>R4.1 LOCAL_OCR = <strong>「信」</strong>（疑為本地 OCR 誤讀，待本地 PDF 原圖比對確認）<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span></li>
-</ul>
-
-<h3 class="wc-art-h3">5.2 容城段封侯事件</h3>
-
-<p>Cabinet Library 底本 pid1661 記載容城段漢代封侯，<strong>R4.4A 確認為三項獨立事件</strong>（非兩項）：</p>
-
-<blockquote>
-「漢高帝六年封趙將夜／夕<strong>於深澤</strong>，景帝中三／中元三年，以封匈奴降王唯徐盧／攜徐盧<strong>於容城</strong>。皆為侯國，王莽更名深澤也。」
-</blockquote>
-
-<p><span class="wc-art-attr-1">[古籍直接記載]</span> <span class="wc-cite">[CITE-17]</span>。此句包含三項獨立歷史事件，<strong>必須分開記錄</strong>：</p>
-
-<ol>
-  <li><strong>(a) 高帝六年封趙將夜／夕於深澤</strong>（高帝事件，受封地 = 深澤侯國）</li>
-  <li><strong>(b) 景帝中三／中元三年以匈奴降王唯徐盧／攜徐盧於容城</strong>（景帝事件，受封地 = 容城侯國）</li>
-  <li><strong>(c) 王莽更名深澤</strong>（王莽將中山國容城侯國改名為深澤侯國；西漢原本即有深澤侯國，新莽同名重複）</li>
+<nav class="toc" aria-label="目录"><strong>目　录</strong><ol>
+<li><a href="#s1">材料、问题与方法</a></li>
+<li><a href="#s2">易水叙事的空间结构</a></li>
+<li><a href="#s3">城邑与历史记忆</a></li>
+<li><a href="#s4">汉代封侯与深泽、容城</a></li>
+<li><a href="#s5">版本异文与校勘</a></li>
+<li><a href="#s6">从文本到历史地理</a></li>
+<li><a href="#s7">结论</a></li>
+</ol></nav>
+
+<section id="s1"><h2>一、材料、问题与方法</h2>
+<p>郦道元《水经注》以水道贯穿不同层级的地名和历史旧事。研究易水一章，首先需要回答的并不是古今地名是否能够立即对号入座，而是文献自身如何陈述空间关系：某水从何处出发，沿途经过哪些故城，何处汇流，以及河流与城邑处于何种相对位置。文本空间与真实地理相联系，却不能未经验证便视为同一回事。</p>
+<p>本文主要依据日本国立公文书馆内阁文库藏明吴琯校《水经注》卷十一扫描影像。卷首题署包含“漢桑欽撰”“後魏酈道元注”“明吳琯校”等字。此次讨论的关键页涉及易水起源、武阳、范阳—容城、大利亭及易京。相关影像曾经多模态视觉辅助识读，但这不等于古文献学者的人眼终校；涉及模糊字形时，本文保留不同传本的读法，不以单次机器辨读作最终依据。<sup><a href="#n1">[1]</a></sup></p>
+<p>对照材料包括维基文库《水经注》卷十一整理页、该站署名“四部丛刊本”的卷十一页面，以及识典古籍所录《山水二经合刻》卷十一。它们能够提供可检索的在线文字见证，但多个网页不必然意味着多个独立的底本；其中“四部丛刊本”页面的实际版本来源尤其有待考证。<sup><a href="#n2">[2]</a></sup><sup><a href="#n3">[3]</a></sup><sup><a href="#n4">[4]</a></sup></p>
+<p>本文将原书直接陈述的河流路线、郦道元转引的前人说法或耆旧传闻、后世版本的异文以及研究者的解释分层讨论。这样的区分有助于还原文本所组织的地理知识，也避免将文献叙述直接当作现代测绘或考古结论。</p></section>
+
+<section id="s2"><h2>二、易水叙事的空间结构</h2>
+<h3>（一）从水源到故安：层级地名的组织方式</h3>
+<p>卷十一开篇以一句简洁的经文标记易水的发源位置：</p>
+<blockquote>「易水出涿郡故安縣閻鄉西山。」</blockquote>
+<p>这句话将水源依次置于郡、县、乡和山地的层级中。故安首先是行政地理范围，而非现代地图上的某一个固定点位。后续关于故安城南以及“故安河”名称的叙述，又提示同一地名可能分别指县域、故城与地方水名。若不辨上下文便把不同指称合并为一个位置，就会损失原书的信息层次。<sup><a href="#n5">[5]</a></sup></p>
+<h3>（二）范阳—容城与“东过”句式</h3>
+<p>易水顺流向东，文本记载：</p>
+<blockquote>「東過范陽縣南，又東過容城縣南。」</blockquote>
+<p>两个“东过”将范阳与容城连接为连续的水道叙述。这里的“县南”是说易水流经所述县城的南侧，而不是说县城位于易水的南侧，更不能据此断定两县全部辖境的绝对位置。此句能够较为明确地支持文本中的河流行进顺序和相对方向；古河道与不同时期故城的真实位置，仍需另行核证。<sup><a href="#n6">[6]</a></sup></p>
+<figure><div class="flow"><div class="node"><b>故安县阎乡西山</b><small>易水所出</small></div><span class="arr">→</span><div class="node"><b>范阳县南</b><small>东过</small></div><span class="arr">→</span><div class="node"><b>容城县南</b><small>又东过</small></div></div><figcaption>图1　易水章节的文本顺序示意。此图不是按比例绘制的地理地图，也不表示现代河道或故城坐标。</figcaption></figure>
+<h3>（三）大利亭与“互摄通称”</h3>
+<p>容城附近的水系叙述还出现“大利亭”“合易水而注巨馬水”等语，并提到易水与诸水“互摄通称”。大利亭由此成为水道交会的参照地名，水名之间的交叠则提示古籍记述并非始终使用彼此排斥的水系名称。<sup><a href="#n7">[7]</a></sup></p>
+<p>“互摄通称”的意义，在于提醒研究者细读不同河流段落中的主语、方向及“合”“入”“注”等动词，而不是立即推演出唯一确定的现代水系图。易水、濡水、巨马水和涞水之间的关系，需要按章节与句段分别确认，不宜将不同叙述混为同一股水流。</p></section>
+
+<section id="s3"><h2>三、城邑与历史记忆</h2>
+<h3>（一）范阳与“范水之阳”</h3>
+<p>《水经注》在范阳故城附近引应劭之说，称其为“范水之阳”。传统山川方位语中，水之北通常称阳；该解释有助于理解古人如何以水道说明地名，却不能因此认定古城在任何时代都与同一条河保持不变的相对位置。应劭之说属于原书记录的历史解释，而不是本研究独立确证的地名起源。<sup><a href="#n8">[8]</a></sup></p>
+<h3>（二）武阳、燕下都与燕昭王</h3>
+<p>武阳段有“武陽蓋燕昭王之所城也，東西二十里，南北十七里”等文字。其“盖”字使叙述保留了承述与推断的语气；有关城邑规模的里数是古文献中的说法，不能未经换算、核址和考古测量便当作现代实测结果。武阳与燕下都的联系，首先是值得考察的历史记忆线索。<sup><a href="#n9">[9]</a></sup></p>
+<p>范阳附近的金台、兰马台还与燕昭王礼贤以及郭隗、乐毅等人物相连。相关段落提到访问耆旧所获得的说法，显示部分材料属于地方传闻。这些传说能够反映历史地点如何被后人理解和纪念，却不能单独确定台址的建造年代与地理坐标。</p>
+<h3>（三）易京与公孙瓒</h3>
+<blockquote>「易水又東逕易京南……謂之易京城，在易城西四五里。」</blockquote>
+<p>依“水径某地南”的通常句法，这里描述的是易水流经易京南侧，即文本中的易京位于相应河段北侧；“在易城西四五里”则属于易京与易城之间的东西位置关系。不能单凭后一条东西方位信息来证明前一条南北关系。<sup><a href="#n10">[10]</a></sup></p>
+<p>此段将易京与汉末公孙瓒的活动相连。原书记刘虞遇害于“蓟下”，随后才叙述公孙瓒迁临易水与易京城兴废。因此不宜把易京直接称作刘虞被害地点。易京在现代地表上的具体位置，还需要综合史书、地名变迁和考古调查，本文不作坐标推定。</p></section>
+
+<section id="s4"><h2>四、汉代封侯与深泽、容城的区别</h2>
+<p>关于汉代封侯的文字，是易水章节中最容易因为地名相近而被误读的一组材料。范阳段涉及景帝时期的匈奴降王封侯；容城故城附近又依次出现汉高帝时期的赵将封侯、景帝时期匈奴降王受封及王莽改名的叙述。它们并非同一事件的不同说法。<sup><a href="#n11">[11]</a></sup></p>
+<p>结合现有可读传本，至少应区分三个层次。第一，文本有汉高帝时期封赵将夜或夕于深泽的记载，受封者名字与年份存在异读。第二，景帝时期另有匈奴降王在容城受封的叙述。第三，“王莽更名深泽”属于新莽时期的地名变化，不能倒过来把前一条赵将的受封地“深泽”改写成“容城”。</p>
+<p>当前内阁文库扫描页中相关小字局部不清，但多个在线文本均将赵将的受封地写作“深泽”。因此本文对深泽与容城采用分述方式，而不因王莽改名的记载便认定两者在所有历史阶段指同一个地点。要判定两处深泽县的沿革关系，还需要与《汉书》侯表、地方志及《水经注疏》进一步互证。<sup><a href="#n12">[12]</a></sup></p>
+<p>范阳封侯的纪年和人物也须单独讨论，不能从紧邻的容城段落中借用景帝纪年。严格地区分事件，既是解释这些材料的前提，也是进一步追索古代城邑位置的前提。</p></section>
+
+<section id="s5"><h2>五、版本异文及其解释限度</h2>
+<p>《水经注》在长期抄刻、校订及现代数字化过程中，留下了若干纪年、人名与地名读法上的差异。不过，传本异文、字形辨读问题和自动文字识别产生的误字，不能都算作同一类现象。表1列出目前能够追踪的主要候选读法。<sup><a href="#n13">[13]</a></sup></p>
+<div class="tablebox"><table><thead><tr><th>问题</th><th>所见读法</th><th>解释与限制</th></tr></thead><tbody>
+<tr><td>范阳封侯纪年</td><td>“中二年”“中元三年”等</td><td>须先核对同一具体句段和底本，不应以容城段纪年代替范阳段。</td></tr>
+<tr><td>范阳降王姓名</td><td>“代”；早期自动识读为“信”</td><td>现有底本视觉复核和多种在线文本支持“代”；“信”暂按疑似识别误字处理。</td></tr>
+<tr><td>赵将姓名</td><td>“夜”“夕”；早期占位记为“某”</td><td>“夜／夕”值得作版本比对，“某”只是未识字占位，并非传本文字。</td></tr>
+<tr><td>容城降王姓名</td><td>“唯徐盧”“攜徐盧”，另有“撅徐盧”线索</td><td>前两种见在线文本；第三种尚待原校勘本证实。</td></tr>
+<tr><td>高帝封侯纪年</td><td>“六年”“八年”</td><td>在线文本有异读，“八年”版本的确切来源尚未查定。</td></tr>
+<tr><td>城邑名称</td><td>“容城”“容成”</td><td>应结合具体句段、字形与传本系统判断，不能只看一字差别。</td></tr>
+</tbody></table></div>
+<p>值得强调的是，“代／信”可能是机器识别差异，“某”更是研究过程中的占位字，不能因此增加两个未经证明的传本异文。同样，“唯徐卢／携徐卢”与“撅徐卢”目前的证据强度并不相同。把这些读法未经区分地列为同等可靠的异文，会遮蔽校勘研究真正需要解决的问题。</p>
+<p>高帝封侯“六年／八年”的区别也应谨慎处理。一处在线整理文本作“八年”，而其他若干整理文本作“六年”；由于前者没有明确交代具体纸本版本，不能把它直接归于杨守敬、熊会贞《水经注疏》的某一版次。维基文库署名“四部丛刊本”的页面虽包含“案近刻讹作”等校记，在原书版本未定之前，这些校记仍应作为待进一步核查的意见。<sup><a href="#n14">[14]</a></sup></p>
+<p>文字异读的重要性不止于个别字词：纪年与人名关系到封侯事件的辨识，地名区分影响城邑演变的解释，方位词更直接决定水道文本如何被理解。版本问题因此是历史地理判断的基础，而不是文章末尾的技术附注。</p></section>
+
+<section id="s6"><h2>六、从文本空间到历史地理</h2>
+<p>《水经注》能提供沿河展开的空间叙述，现代历史地理研究却需要在此之外建立另一套证据链。“易水又东径易京南”的句法能够支持文本中的南北关系，考古意义上的易京遗址位置则还须通过历史地图、地志、遗址调查与地貌证据判断。文本推论与实际定位的证据层次不同，不能相互代替。</p>
+<p>同样，古代范阳、容城、故安与今天的行政区之间，不应只因地名相同就直接划等号。南易水、北易水以及与巨马水等水系的分合，在不同时代可能经历复杂变化。若把古书中的“东过”“径南”直接绘成现代地图上的固定线段，再以这张图反过来证明原文，很容易形成循环论证。</p>
+<p>更稳妥的研究次序是先校读原文，列出水名、故城和方位词之间的关系；再对照不同传本与历代地志；最后才结合历史地图、遥感、考古发掘和田野调查提出位置方案。本文的示意图属于文本关系图，而非河道复原图。</p></section>
+
+<section id="s7"><h2>七、结论</h2>
+<p>《水经注》卷十一将易水的自然水道与故安、范阳、容城等城邑的历史地理信息组织在一起。原书所用的“出”“东过”“径”“合”“注”等词，既构成可追踪的空间线索，也使燕下都、金台与易京等历史记忆进入河流叙述之中。</p>
+<p>从现有文字能够较稳妥地说明，易水被记为出于故安县阎乡西山，向东经过范阳县南、容城县南；“径易京南”表示河流从易京南侧流过，“易京在易城西四五里”另记东西距离。至于这些地点的现代位置，本文并未作独立确认。对于大利亭和诸水“互摄通称”的文字，也只能据此讨论原书水系关系，不能直接替代历史水文复原。</p>
+<p>版本比较进一步提示，汉代封侯文字必须分辨范阳、深泽和容城各自的语境，不应把赵将受封、匈奴降王受封及王莽改名混为一事。部分人名、纪年和地名仍有待依据清晰的原始图像与可靠校勘本辨明。将文本记载、历史传闻、版本异文和现代地理证据分层，才能使《水经注》作为可复核的历史地理史料得到更充分的利用。</p></section>
+
+<section class="endnotes" id="endnotes"><h2>注释与主要参考资料</h2><ol>
+<li id="n1">日本国立公文书馆内阁文库藏明吴琯校《水经注》卷十一。相关研究影像索引包括 <code>SHUGE:p124575:1655</code>、<code>1656</code>、<code>1657</code>、<code>1659</code>、<code>1661</code>。影像字形的 AI 辅助识读不是人眼专家终校。</li>
+<li id="n2">维基文库：《<a href="https://zh.wikisource.org/wiki/水經注/11" target="_blank" rel="noopener">水经注》卷十一</a>，整理本底本未明。</li>
+<li id="n3">维基文库：《<a href="https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一" target="_blank" rel="noopener">水经注（四部丛刊本）／卷第十一</a>》。网页题名沿用网站标示，具体所据印本尚待考证。</li>
+<li id="n4">识典古籍：《<a href="https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b" target="_blank" rel="noopener">山水二经合刻》所收《水经注》卷十一</a>。</li>
+<li id="n5">《水经注》卷十一易水发源段，<code>SHUGE:p124575:1655</code>。</li>
+<li id="n6">《水经注》卷十一“东过范阳县南，又东过容城县南”，<code>SHUGE:p124575:1657</code>。</li>
+<li id="n7">《水经注》卷十一大利亭及“互摄通称”段，<code>SHUGE:p124575:1659</code>。</li>
+<li id="n8">《水经注》卷十一“范水之阳”段，<code>SHUGE:p124575:1661</code>。应劭之说是原书所记的前人解释。</li>
+<li id="n9">《水经注》卷十一武阳及燕下都段，<code>SHUGE:p124575:1656</code>；金台、兰马台记述参见 <code>SHUGE:p124575:1657</code>。</li>
+<li id="n10">《水经注》卷十一易京段，<code>SHUGE:p124575:1661</code>。“在易城西四五里”不能独立证明南北方向。</li>
+<li id="n11">范阳封侯段，<code>SHUGE:p124575:1657</code>；容城、深泽及王莽改名段，<code>SHUGE:p124575:1661</code>。</li>
+<li id="n12">深泽与容城文字对照参注2—4。内阁文库影像 <code>SHUGE:p124575:1661</code> 的局部小字仍须高清复核。</li>
+<li id="n13">表1据既有在线文字对照整理，可查阅<a href="../sources/" target="_blank" rel="noopener">易水专题文本证据材料</a>；候选读法不等于已由纸本文献终校的异文。</li>
+<li id="n14">国学典籍网：《<a href="http://ab.newdu.com/book/ms9976.html" target="_blank" rel="noopener">水经注</a>》在线整理页出现“高帝八年”一读。具体底本及其与《水经注疏》的关系尚未确定。</li>
 </ol>
-
-<p><strong>V03 深澤趙將姓名（受封地點 = 深澤，已校正）：</strong></p>
-<ul>
-  <li>Wikisource 整理版 + Wikisource 四部叢刊本 + arteducation.com.tw + ab.newdu.com = <strong>「夜」</strong></li>
-  <li>山水二經合刻 = <strong>「夕」</strong></li>
-  <li>R4.1 LOCAL_OCR = <strong>「某」</strong>（不確定替代記錄）<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span></li>
-</ul>
-
-<div class="wc-art-callout wc-art-callout-errata">
-<strong>R4.4A 撤銷 R4.4 勘誤 A1：</strong>R4.4 初稿 A1 將受封地點斷言為「容城」依據的是 R4.3A Cabinet Library pid1661 AI 視覺單源辨識結果。R4.4A 重新交叉核對 Wikisource 整理版（zh.wikisource.org/wiki/水經注/11）、Wikisource 四部叢刊本景印卷十一、識典古籍《山水二經合刻》卷十一、arteducation.com.tw 古詩文網等四個獨立可達文本源，<strong>四源一致讀作「封趙將夜／夕於【深澤】」</strong>。Cabinet Library pid1661 重新 view_image 視覺複核：受封地點處字跡<strong>模糊，無法從單一掃描確證「於容城」或「於深澤」</strong>，僅「王莽更名深澤」字形較清晰。R4.3A AI 視覺「於容城」讀作屬單源誤讀，本文<strong>撤銷該結論</strong>。<br>
-<strong>正確讀法：</strong>高帝六年封趙將夜／夕<strong>於深澤</strong>（高帝事件），受封地 = 深澤；景帝中三／中元三年以匈奴降王唯徐盧／攜徐盧<strong>於容城</strong>（景帝事件），受封地 = 容城；王莽<strong>將容城</strong>改名為<strong>深澤</strong>（王莽改名事件）。三項事件必須清楚分離，<strong>不得將高帝事件受封地「深澤」與景帝事件受封地「容城」混為一談</strong>。
-</div>
-
-<p><span class="wc-art-attr-2">[研究者文本推論]</span> <span class="wc-cite">[CITE-18]</span>。</p>
-
-<p><strong>V04 容城受封降王姓名：</strong></p>
-<ul>
-  <li>Wikisource 整理版 + Wikisource 四部叢刊本明抄校記 = <strong>「唯徐盧」</strong>（校記明示「唯」為底本正字，「攜」為近刻訛）<span class="wc-art-attr-3">[版本校勘結果]</span></li>
-  <li>Cabinet Library 底本 pid1661 + 山水二經合刻 + R4.1 LOCAL_OCR = <strong>「攜徐盧」</strong></li>
-  <li>陳橋驛《水經注校證》（2007 中華書局）第三方讀法 = <strong>「撅徐盧」</strong><span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span></li>
-</ul>
-
-<h3 class="wc-art-h3">5.3 一項獨立研究線索：《水經注疏》「高帝八年」vs「六年」</h3>
-
-<div class="wc-art-callout wc-art-callout-open">
-<strong>R4.4A 獨立研究線索 A4（PARTIALLY_VERIFIED，R4.4 為 OPEN_VARIANT_NOT_VERIFIED）：</strong>部分版本《水經注疏》（楊守敬/熊會貞 1957/1989 排印本；陳橋驛《水經注校證》2007 中華書局）記載趙將夜受封於「漢高帝八年」，而非主流版本（Cabinet Library 底本 + Wikisource 兩版 + 山水二經合刻 + R4.1 LOCAL_OCR + arteducation.com.tw）所記之「漢高帝六年」。<strong>R4.4A 取得 ab.newdu.com 國學典籍網（http://ab.newdu.com/book/ms9976.html，《水經注》現代標點完整版，未刪節減足本）獨立可達文本</strong>，其正文讀作「<strong>汉高帝八年，封赵将夜，于深泽</strong>」，是「漢高帝八年」讀法的首個獨立驗證。狀態由 OPEN_VARIANT_NOT_VERIFIED 升級為 <strong>PARTIALLY_VERIFIED</strong>：取得 1 個獨立可達文本支持「高帝八年」說；主流 4 個版本支持「高帝六年」說；最終裁決仍需《水經注疏》紙本實物查驗。
-</div>
-
-<p><span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span> <span class="wc-cite">[CITE-19]</span> <span class="wc-cite">[CITE-21]</span>。此項線索的最終確認路徑：取得《水經注疏》（任一權威排印本）紙本實物或可信電子版（中華書局官方授權電子版 / 國學大師 / 漢學網等），逐字核對 V01 紀年、「高帝 X 年」與「封趙將夜於深澤」之文段順序。</p>
-
-<h3 class="wc-art-h3">5.4 版本異文彙總表</h3>
-
-<table class="wc-art-table">
-<thead>
-<tr>
-  <th>異文組</th>
-  <th>候選讀法</th>
-  <th>Cabinet Library pid1657/1661</th>
-  <th>Wikisource 整理版</th>
-  <th>Wikisource 四部叢刊本</th>
-  <th>山水二經合刻</th>
-  <th>R4.1 LOCAL_OCR</th>
-  <th>arteducation.com.tw</th>
-  <th>ab.newdu.com</th>
-  <th>本文採讀</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>V01 範陽紀年</td><td>中二年／中元三年</td><td>中元三</td><td>中二</td><td>中二 (校記為正)</td><td>中元三</td><td>中元三</td><td>中三</td><td>中三</td><td><span class="wc-art-attr-4">並列保留</span></td></tr>
-<tr><td>V02 範陽降王</td><td>代／信</td><td>代 (清晰)</td><td>代</td><td>代</td><td>代</td><td>信</td><td>代</td><td>代</td><td><strong>代</strong> (5 源共識 + Cabinet Library)</td></tr>
-<tr><td>V03 深澤趙將</td><td>夜／夕／某</td><td>夜 (字跡清晰)</td><td>夜</td><td>夜</td><td>夕</td><td>某</td><td>夜</td><td>夜</td><td><strong>夜</strong> (5 源共識：Wikisource 兩版 + arteducation + ab.newdu + Cabinet Library)</td></tr>
-<tr><td>V04 容城降王</td><td>唯／攜／撅徐盧</td><td>攜徐盧</td><td>唯徐盧</td><td>唯徐盧 (校記為正)</td><td>攜徐盧</td><td>攜徐盧</td><td>唯徐盧</td><td>唯徐盧</td><td><span class="wc-art-attr-4">並列保留</span> (Wikisource 校記優先級僅作學術參考)</td></tr>
-<tr style="background:#fdf0ee;"><td>V05 (R4.4A 新增) 受封地</td><td>深澤 (高帝事件) ／ 容城 (景帝事件)</td><td>受封地字跡模糊</td><td>於深澤</td><td>于深澤</td><td>于深泽</td><td>深澤</td><td>於深澤</td><td>于深泽</td><td><strong>深澤 (高帝事件受封地)</strong>，<strong>容城 (景帝事件受封地)</strong>。不得混為一談。<br><span class="wc-art-attr-3">[版本校勘結果]</span></td></tr>
-<tr style="background:#fdfaef;"><td>V06 (R4.4A 新增) 紀年</td><td>高帝六年／高帝八年</td><td>六年 (字跡較清晰)</td><td>六年</td><td>六年</td><td>六年</td><td>六年</td><td>六年</td><td><strong>八年</strong></td><td><span class="wc-art-attr-4">PARTIALLY_VERIFIED</span>：ab.newdu.com 獨立驗證「八年」讀法為可達文本之一。主流 4 源支持「六年」。最終裁決需《水經注疏》紙本實物查驗。</td></tr>
-</tbody>
-</table>
-
-<h2 class="wc-art-h2">六、文本空間與實際歷史地理的界限</h2>
-
-<p>本文所有結論皆基於《水經注》卷十一的<strong>文本內部證據</strong>——Cabinet Library 內閣文庫藏明吳琯校底本影像（pid1655 / pid1657 / pid1659 / pid1661），以及三個外部對照版本（Wikisource 整理版、四部叢刊本景印明抄本、山水二經合刻）。本文<strong>不作</strong>下列推論：</p>
-
-<ul>
-  <li>不將「易京在易水之北」等同於現代河北易縣考古地理意義上的具體經緯度（公孫瓚遷都處的考古定位屬獨立研究問題）。</li>
-  <li>不將「容城」等同於現代河北容城縣城關鎮的精確位置（古今地名變遷屬獨立研究問題）。</li>
-  <li>不將「範陽」等同於河北涿州或北京房山一帶的精確位置（《水經注》範陽在歷史上有多種地理位置候選）。</li>
-  <li>不將四組版本異文的任一候選讀法作為「最終版本學結論」，除非取得中華書局標點本（2013）或《水經注校證》（陳橋驛 2007）等權威排印本紙本實物查驗。</li>
-  <li>不將 Cabinet Library AI 多模態視覺自動辨識結果等同於人眼版本學/古文獻學專家审定結論。</li>
-</ul>
-
-<p><span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span> <span class="wc-cite">[CITE-20]</span>。此邊界為 R4.1 學術審計的核心結論（0 條 HISTORICAL_CORROBORATED、0 條 MODERN_MAPPING），本文維持此邊界。</p>
-
-<h2 class="wc-art-h2">七、研究結論</h2>
-
-<p>綜合 R4 / R4.1 / R4.2 / R4.3 / R4.3A 五層研究成果，本文得出以下七項結論：</p>
-
-<ol>
-  <li><strong>空間序列結論（SUPPORTED，R4.4B 限定）</strong>：易水出涿郡故安縣閻鄉西山，東過范陽縣南，又東過容城縣南——三個城邑在文本空間中由西向東排列；《水經注》以「東過范陽縣南，又東過容城縣南」描述易水流經兩縣的南側（pid1655 + pid1657）。<strong>這是文本中的河流路線敘述，不能直接映射為現代地理方位；亦不據此推出兩縣全部地域的絕對方位</strong><span class="wc-art-attr-1">[古籍直接記載]</span> + <span class="wc-art-attr-2">[研究者文本推論]</span>。<span class="wc-art-callout wc-art-callout-r44b"> <strong>R4.4B 限定：</strong>原 R4.4 結論 #2 末段「皆位於易水之南側」被部分讀者誤讀為「兩城邑絕對位於易水南側」；R4.4B 統一改為「《水經注》描述易水流經兩縣的南側」並明示不能直接映射為現代地理。</span></li>
-  <li><strong>易京方位結論（Claim 011 方向修正後 PARTIALLY_SUPPORTED，R4.4B 限定）</strong>：「易水又東逕易京南」句法上表達易水從易京南側流過（pid1661 + R4.3A overlay）。「易京城在易城西四五里」是另一組<strong>東西</strong>方位關係（=易京在易城之西四五里），<strong>不能單憑這組東西方位關係獨立證明易京位於易水北側</strong>；南北方位主要依據「X 水逕 Y 南」句法推論「Y 在 X 水之北」<span class="wc-art-attr-2">[研究者文本推論]</span>。<span class="wc-art-callout wc-art-callout-r44b"> <strong>R4.4B 限定：</strong>原 R4.4 結論 #2 「跨句一致指向...（易城亦在易水之北）」將東西方位關係誤用作南北方位的獨立證據；R4.4B 改為「東西方位關係不可單獨證明易京位於易水北側」，南北方位結論僅依據「X 水逕 Y 南」句法。</span></li>
-  <li><strong>範陽—容城—三事件分離結論（R4.4A 升級為 SUPPORTED）</strong>：Cabinet Library pid1661 容城段文字記錄三項獨立歷史事件，須分開記錄：(a) <strong>漢高帝六年（或八年）封趙將夜/夕於【深澤】</strong>（高帝事件，受封地 = 深澤侯國）；(b) <strong>漢景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧於【容城】</strong>（景帝事件，受封地 = 容城侯國）；(c) <strong>王莽將容城改名為【深澤】</strong>（王莽改名事件）。<strong>不得將容城段紀年誤歸於範陽，亦不得將高帝事件受封地「深澤」與景帝事件受封地「容城」混為一談</strong>（R4.4A 勘誤 A1 撒銷重寫 + A2 重寫 + V05 新增）<span class="wc-art-attr-2">[研究者文本推論]</span>。</li>
-  <li><strong>大利亭樞紐結論（SUPPORTED）</strong>：大利亭為容城縣西北的水系匯流節點，故安水於此東南匯入易水而注巨馬水（pid1659）<span class="wc-art-attr-1">[古籍直接記載]</span>。</li>
-  <li><strong>水系互攝通稱結論（PARTIALLY_SUPPORTED）</strong>：易水、故安水、巨馬水、濡水、淶水於涿郡範陽縣一帶會流，「互攝通稱」表達各水在不同語境下可互換使用（pid1659）<span class="wc-art-attr-2">[研究者文本推論]</span>。</li>
-  <li><strong>四組版本異文結論（OPEN_VARIANT）</strong>：V01（中二年／中元三年）、V02（代／信）、V03（夜／夕／某）、V04（唯／攜／撅徐盧）四組異文，本文<strong>不作最終裁判</strong>；Wikisource 校記優先級僅作學術參考<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>。</li>
-  <li><strong>獨立研究線索結論（OPEN_VARIANT_NOT_VERIFIED）</strong>：《水經注疏》記載「高帝八年」vs 主流版本「六年」之差異，<strong>未取得可核驗原文前不得標記為 VERIFIED_VARIANT</strong>；本文列為 <span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>（R4.4 線索 A4）<span class="wc-art-attr-4">[尚待獨立確認的歷史事實]</span>。</li>
-</ol>
-
-<p>本研究的<strong>邊界自覺</strong>：12 條 R4.1 論斷中，沒有任何一條達到 HISTORICAL_CORROBORATED 等級；本文維持此邊界，並明確披露 Cabinet Library 影像字面識別為 AI 多模態視覺結果（view_image tool），<strong>非人眼版本學/古文獻學專家审定</strong>。所有「真實字形」結論須有至少一位人類專家人眼複核方可作為最終版本學判斷依據。</p>
-
-<h2 class="wc-art-h2">引文、注釋、參考文獻與證據附錄</h2>
-
-<h3 class="wc-art-h3">引文（Citation Index）</h3>
-
-<div class="wc-art-refs">
-<p><strong>[CITE-1]</strong> Cabinet Library 內閣文庫藏明吳琯校《水經注》卷之十一，pid1655 序文題署「漢桑欽撰　後魏酈道元注　明吳琯校」。底本編目：漢二三五五 / 函二九一 / 冊一四（5）。底本影像存於 <code>/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1655.jpg</code>（252K-368K bytes）。AI 視覺披露：view_image tool 自動辨識，非人眼專家审定。</p>
-
-<p><strong>[CITE-2]</strong> 維基文庫整理版《水經注》卷十一：<a href="https://zh.wikisource.org/wiki/水經注/11" target="_blank" rel="noopener">https://zh.wikisource.org/wiki/水經注/11</a>。R4.3 實測可達。</p>
-
-<p><strong>[CITE-3]</strong> 維基文庫四部叢刊本景印《水經注》卷第十一（<strong>R4.4A 撤銷「明抄本」標記</strong>，版本來源待核驗；該頁校勘記（〈案近刻訛作〉）似清乾隆武英殿聚珍版/叢書集成簡編系列，需紙本校驗確認底本）：<a href="https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一" target="_blank" rel="noopener">https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一</a>。R4.3 + R4.4A 實測可達。</p>
-
-<p><strong>[CITE-4]</strong> 識典古籍《山水二經合刻》卷十一：<a href="https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b" target="_blank" rel="noopener">https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b</a>。R4.3 實測可達。</p>
-
-<p><strong>[CITE-5]</strong> R4.3 來源身份與版本證人識別：2 source identities (WIKISOURCE_ZH + SHIDIANGUSHI_2543) + 3 edition witnesses。詳見 <a href="../sources/">R4.3 文本證據頁</a>。</p>
-
-<p><strong>[CITE-6]</strong> R4.1 學術審計：12 條歷史論斷，{SUPPORTED:7, PARTIALLY_SUPPORTED:5, NOT_SUPPORTED:0}；{TEXT_REPORTS:7, TEXTUAL_INFERENCE:5, HISTORICAL_CORROBORATED:0, MODERN_MAPPING:0}。詳見 <code>data/yishui_claims_r4_1.json</code>（21241 bytes，R4.1 commit <span class="wc-cite">2b17354</span>，sha256 preserved）。</p>
-
-<p><strong>[CITE-7]</strong> Cabinet Library pid1655 正文首行：「易水出涿郡故安縣閻鄉西山」。</p>
-
-<p><strong>[CITE-8]</strong> 「閻鄕/閻鄉」異體字差異：Wikisource 整理版作「閻鄕」（「鄕」），Cabinet Library + Wikisource 四部叢刊本作「閻鄉」（正）。同字異寫，不構成實質異文。</p>
-
-<p><strong>[CITE-9]</strong> Cabinet Library pid1657 大字雙行標題：「東過范陽縣南，又東過容城縣南」。</p>
-
-<p><strong>[CITE-10]</strong> 「容城/容成」一字之差：山水二經合刻本一句作「容成」，其餘作「容城」。Cabinet Library 影像作「容城」（「城」字土字旁完整可辨）。本文採「容城」為正。</p>
-
-<p><strong>[CITE-11]</strong> Cabinet Library pid1659 互攝通稱段：「南流於容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱」。</p>
-
-<p><strong>[CITE-12]</strong> R4.3 records[] 的 6 個 passage group 分區：<span class="wc-cite">p01_yishui_origin</span> (3) + <span class="wc-cite">p02_fanyang_rongcheng_section_header</span> (3) + <span class="wc-cite">p03_daliting_jumaxshui_huxie_tongcheng</span> (3) + <span class="wc-cite">p04a_fanyang_enfeoffment_timing</span> (3) + <span class="wc-cite">p04b_rongcheng_enfeoffment_xululu</span> (3) + <span class="wc-cite">p04c_yijing_position</span> (3) = 18 records，總計 CORROBORATES=10 + VARIANT=5 + INCONCLUSIVE_DIRECTION=3。</p>
-
-<p><strong>[CITE-13]</strong> Cabinet Library pid1661 易京方位段：「易水又東逕易京南……謂之易京城，在易城西四五里」。</p>
-
-<p><strong>[CITE-14]</strong> Claim 011 方向性誤讀修正：句法「X 水逕 Y 南」= Y 在 X 水之北；Cabinet Library 跨句一致指向「易京城在易城西四五里」（易城亦在易水之北）。R4.3A overlay 不覆寫 R4.1 claim_text_revised，僅作方向修正。</p>
-
-<p><strong>[CITE-15]</strong> Cabinet Library pid1656 武陽段（酈道元注引，<strong>R4.4A 修正為 pid1656</strong>；R4.4 初稿誤指 pid1661）：「易水又東逕武陽城南……武陽，蓋燕昭王之所城也，東西二十里，南北十七里」。Cabinet Library pid1655 = 易水出都頁+起源+五大夫城+子莊溪+女思谷+樊石山+燕長城+漸離城；pid1656 = 武陽城段；pid1657 = 東過范陽縣南雙行標題；pid1659 = 大利亭互攝通稱段；pid1661 = 容城封侯+易京方位段。對應 R4-YSH-009。</p>
-
-<p><strong>[CITE-16]</strong> Cabinet Library pid1657 範陽段封侯：「漢景帝中元年封匈奴降王<strong>代</strong>為侯國」。</p>
-
-<p><strong>[CITE-17]</strong> Cabinet Library pid1661 容城段<strong>三項獨立事件</strong>（R4.4A 撤銷 R4.4 兩項說）：(1)「<strong>漢高帝六年封趙將夜／夕於深澤</strong>」（高帝事件，受封地 = 深澤侯國；4 源共識：Wikisource 整理版 / 四部叢刊本 / 山水二經合刻 / arteducation.com.tw；Cabinet Library 受封地點處字跡模糊無法單源確證）；(2)「<strong>景帝中三／中元三年以封匈奴降王唯徐盧／攜徐盧於容城</strong>」（景帝事件，受封地 = 容城侯國；4 源共識）；(3)「<strong>王莽更名深澤</strong>」（王莽將中山國容城改名為深澤）。三項事件必須分開記錄，<strong>不得將高帝事件受封地「深澤」與景帝事件受封地「容城」混為一談</strong>。</p>
-
-<p><strong>[CITE-18]</strong> R4.4A 撤銷 R4.4 勘誤 A1：R4.4 初稿 A1 將受封地點斷言為「容城」（依據 R4.3A Cabinet Library pid1661 AI 視覺單源辨識結果）。R4.4A 重新交叉核對 4 個獨立可達文本源 + 3 張 Cabinet Library 底本影像 AI 視覺複核，<strong>確認 R4.4 A1 斷言錯誤</strong>。<strong>正確讀法：</strong>高帝六年（或八年）封趙將夜／夕<strong>於深澤</strong>（高帝事件，受封地 = 深澤）；景帝中三／中元三年以匈奴降王唯徐盧／攜徐盧<strong>於容城</strong>（景帝事件，受封地 = 容城）；王莽<strong>將容城</strong>改名為<strong>深澤</strong>（王莽改名事件）。詳見 R4.4 + R4.4A 勘誤文件：(a) <code>data/yishui_article_errata_r4_4.json</code>（9095 bytes，schema <span class="wc-cite">r4.4-yishui-article-errata/1.0</span>）+ (b) <code>data/yishui_article_critical_corrections_r4_4a.json</code>（11133 bytes，schema <span class="wc-cite">r4.4a-yishui-publication-critical-corrections/1.0</span>）。</p>
-
-<p><strong>[CITE-19]</strong> R4.4A 線索 A4（PARTIALLY_VERIFIED，R4.4 為 OPEN_VARIANT_NOT_VERIFIED）：《水經注疏》記載趙將夜受封於「漢高帝八年」vs 主流版本「六年」。R4.4A 取得 ab.newdu.com 國學典籍網獨立可達文本讀作「汉高帝八年，封赵将夜，于深泽」，是「漢高帝八年」讀法的首個獨立驗證。</p>
-
-<p><strong>[CITE-20]</strong> R4.1 學術審計邊界：0 條 HISTORICAL_CORROBORATED、0 條 MODERN_MAPPING。古籍文本記載不可直接等同於現代地理事實。本文維持此邊界。</p>
-</div>
-
-<div class="wc-art-callout wc-art-callout-r44c">
-<p><strong>[CITE-MAP · R4.4C 重計]</strong> R4.4C 從文章實際 21 條注釋正文重新聚合，<strong>廢除 R4.4B 硬編碼 13/5/3 拆分</strong>，改為五類證據類型（依實際注釋內容分類，非依注釋順序推測）：</p>
-<ul>
-  <li><strong>PRIMARY_SCAN</strong>（7 條）：CITE-1/7/9/11/13/15/16 → <code>SHUGE:p124575:&lt;page_object_id&gt;</code>（Cabinet Library / 國立公文書館 / 內閣文庫 / 漢二三五五 / 函二九一 / 冊一四（5）/ 明 吳琯 校《水經注》卷之十一；canonical ID 格式：<code>SHUGE:p124575:[0-9]+</code>，bare integer 不含 pid 前綴）</li>
-  <li><strong>EXTERNAL_TEXT_WITNESS</strong>（4 條）：CITE-2/3/4/21 → source URL + edition/witness + passage locator（CITE-21 ab.newdu.com 為<strong>在線文本見證 ONLINE_TEXT_WITNESS_ONLY</strong>，<strong>不作為《水經注疏》特定版本裁決</strong>；同平台多頁只算 1 個獨立底本）</li>
-  <li><strong>INTERNAL_RESEARCH_RECORD</strong>（4 條）：CITE-5/6/12/20 → 內部研究記錄（R4.3 records[] / R4.1 claims[] / R4.1 邊界），引用 R4–R4.4A 凍結檔案 + commit_sha + sha256</li>
-  <li><strong>RESEARCH_INFERENCE</strong>（2 條）：CITE-14/18 → supporting_citations + inference_status（VERIFIED / PARTIALLY_VERIFIED / R4.4A_REVOKED_R4.4_A1）</li>
-  <li><strong>MIXED_EVIDENCE</strong>（4 條）：CITE-8/10/17/19 → evidence_refs 顯式列出多源（CITE-8 跨 3 源、CITE-10 跨 2 源、CITE-17 跨 5 源、CITE-19 跨 4 源；不強行歸入單一底本頁）</li>
-</ul>
-<p><strong>重點修正紀錄：</strong></p>
-<ul>
-  <li>CITE-3：Wikisource 四部叢刊本「明抄本」→「版本來源待核驗」（R4.4A 修正）</li>
-  <li>CITE-15：武陽段底本頁碼 pid1661 → pid1656（R4.4A 修正）</li>
-  <li>CITE-17：受封地點由「兩項說」改為「三事件分離」(a)高帝深澤/(b)景帝容城/(c)王莽改名（R4.4A 修正）</li>
-  <li>CITE-18：受封地點 = 容城 → 深澤（R4.4A 撤銷 A1）</li>
-  <li>CITE-19：A4 線索由 OPEN_VARIANT_NOT_VERIFIED 升級為 PARTIALLY_VERIFIED（ab.newdu.com 獨立驗證）</li>
-  <li>CITE-13/20：「易京城在易城西四五里」是<strong>東西</strong>方位關係，不可單獨證明易京位於易水北側（R4.4B 限定）</li>
-  <li>CITE-21：ab.newdu.com 標識為「在線文本見證」，不作為《水經注疏》特定版本裁決（R4.4B 限定）</li>
-</ul>
-<p><strong>映射文件：</strong><code>data/yishui_article_citation_mapping_r4_4c.json</code>（31842 bytes，schema <span class="wc-cite">r4.4c-yishui-citation-mapping-hotfix/1.0</span>；SHA-256 <code>62ff1e2274c7034dec257d61cc01e9fd44ccd31f727745045f123cfb1e5698a7</code>）+ 同步副本 <code>./evidence/yishui_article_citation_mapping_r4_4c.json</code>。</p>
-<p><strong>平台 collapse 規則：</strong>同一平台 (域名相同) 的多個頁面只算 1 個獨立來源底本 (例：Wikisource 整理版 + Wikisource 四部叢刊本 = 同平台 zh.wikisource.org 但不同整理版本；ab.newdu.com 多個頁面 = 1 個獨立底本)。</p>
-</div>
-
-<h3 class="wc-art-h3">參考文獻（References）</h3>
-
-<div class="wc-art-refs">
-<ul>
-  <li>（明）吳琯校：《水經注》卷之十一，日本國立公文書館（內閣文庫）藏明刻本，編目：漢二三五五 / 函二九一 / 冊一四（5）。底本影像：pid1654-pid1683（R4 image review JSON, R4 commit <span class="wc-cite">582c852</span>）。</li>
-  <li>（後魏）酈道元注，楊守敬／熊會貞疏：《水經注疏》，1957/1989 排印本；段熙仲點校，1984；陳橋驛《水經注校證》，北京：中華書局，2007。R4.4 A4 線索相關版本。</li>
-  <li>（東漢）班固：《漢書·高帝紀》注引《功臣表》。</li>
-  <li>R4 凍結檔案：<code>projects/shuge/research/water-classic/data/yishui_image_review_r4.json</code>（R4 commit <span class="wc-cite">582c852</span>）。</li>
-  <li>R4.1 凍結檔案：<code>projects/shuge/research/water-classic/data/yishui_claims_r4_1.json</code>（R4.1 commit <span class="wc-cite">2b17354</span>，21241 bytes）。</li>
-  <li>R4.2 凍結檔案：<code>projects/shuge/research/water-classic/data/yishui_passage_verification_r4_2.json</code>（R4.2 commit <span class="wc-cite">04db695</span>）。</li>
-  <li>R4.3 凍結檔案：<code>projects/shuge/research/water-classic/data/yishui_passage_comparison_r4_3.json</code>（R4.3 commit <span class="wc-cite">69c396d</span>，md5 <span class="wc-cite">0a7474c0e8a0288832b4218d2d5d2afb</span>，21748 bytes）。</li>
-  <li>R4.3A 凍結檔案：<code>projects/shuge/research/water-classic/data/yishui_passage_comparison_errata_r4_3a.json</code>（R4.3A commit <span class="wc-cite">a98db0b</span>）；勘誤 MD：<code>source/YISHUI_TEXTUAL_WITNESS_ERRATA_R4_3A.md</code>（13434 bytes）。</li>
-  <li>R4.4 勘誤檔案：<code>data/yishui_article_errata_r4_4.json</code>（R4.4 commit，schema <span class="wc-cite">r4.4-yishui-article-errata/1.0</span>，9095 bytes）。</li>
-</ul>
-</div>
-
-<h3 class="wc-art-h3">證據附錄（Evidence Appendix）</h3>
-
-<p>本文證據附錄獨立存放於 <a href="./evidence/"><code>./evidence/</code></a> 子目錄，包含：</p>
-
-<ul>
-  <li>R4.4 勘誤 JSON：<code>./evidence/yishui_article_errata_r4_4.json</code>（9095 bytes，schema <span class="wc-cite">r4.4-yishui-article-errata/1.0</span>）</li>
-  <li>12 張 Cabinet Library 底本影像定位清單（pid1654-pid1683）</li>
-  <li>R4.3 records[] 6 個 passage group 統計表</li>
-  <li>四組版本異文候選讀法彙總表（V01-V04）</li>
-  <li>AI 多模態視覺識別結果與人眼專家审定之差距說明</li>
-</ul>
-
-<p>所有證據附錄可在 <a href="../sources/">R4.3 文本證據頁</a> 與 <a href="../../../../../">SHUGE 入口</a> 對應位置獨立驗證。</p>
-
-<div class="wc-art-foot">
-<strong>文章狀態：DRAFT_REVIEW</strong> · 本文不作為正式學術發表 · 所有「古籍直接記載」結論須以原始影像或紙本景印複核 · 所有「研究者文本推論」明示推論依據 · 所有「版本異文」獨立標示並保留所有候選讀法 · AI 視覺識別明確披露 · R4–R4.3A 全部原始檔案未覆寫<br>
-任務編號：<span class="wc-cite">WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE</span> · 提交 commit：<span class="wc-cite">R4.4</span> · 整合基線：R4 <span class="wc-cite">582c852</span> · R4.1 <span class="wc-cite">2b17354</span> · R4.2 <span class="wc-cite">04db695</span> · R4.3 <span class="wc-cite">69c396d</span> · R4.3A <span class="wc-cite">a98db0b</span><br>
-© 2026 conanxin · <a href="../../../../../">SHUGE Research</a>
-</div>
-
-</body>
-</html>
+<h3>主要文献</h3><ul><li>（北魏）郦道元注：《水经注》卷十一，内阁文库藏明吴琯校本扫描影像。</li><li>《水经注》卷十一维基文库整理文本、署名“四部丛刊本”的在线文本及识典古籍《山水二经合刻》本。</li><li>杨守敬、熊会贞：《水经注疏》；陈桥驿：《水经注校证》。本文尚未依据相关著作的纸本实物对所有异文作终校。</li></ul>
+<p class="smallprint">本文为研究稿；正文统一使用简体中文，古籍直接引文尽量保留传本字形。旧稿的修订记录与技术验收材料已移出正文，保存在<a href="./evidence/">前期研究证据档案</a>和<a href="https://github.com/conanxin/conanxin.github.io/commits/main/projects/shuge/research/water-classic/yishui/article/index.html" target="_blank" rel="noopener">Git 历史</a>中。</p>
+</section></main><div class="footer">SHUGE 数字人文研究 · <a href="../">返回易水专题</a></div>
+</body></html>

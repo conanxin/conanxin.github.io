@@ -86,6 +86,8 @@ class CatalogPathBoundaryTests(unittest.TestCase):
                      "research-terminal/index.html", "projects/demo/source/index.html",
                      "projects/demo/sources/index.html", "projects/demo/works/index.html",
                      "projects/demo/reports/index.html",
+                     "projects/demo/drafts/index.html",
+                     "projects/demo/src/index.html",
                      "projects/shuge-exhibition-v0.9/index.html")
         for path in forbidden:
             with self.subTest(path=path):

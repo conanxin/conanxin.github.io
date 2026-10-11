@@ -2,12 +2,13 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>Peer Review Records · v0.9</title>
+<title>模拟同行评审记录｜SHUGE 数字人文展览</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Peer Review Records — 3 review records · 15 comments · 5 rubric_dimensions · static demo">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/reader.css">
 </head>
-<body>
+<body class="shuge-reader"><header class="reader-global"><div class="reader-global-inner"><a class="reader-brand" href="../index.html">SHUGE <small>数字人文展览</small></a><nav aria-label="展览导航"><a href="../index.html#rooms">展厅</a><a href="../index.html#cases">研究案例</a><a href="../index.html#reading">专题阅读</a><a href="../index.html#methods">研究方法</a></nav></div></header>
 <div class="page">
 
 <!-- v1.0 SIMULATED WORKFLOW banner (per spec v1.0 §8: 必须明确标记) -->
@@ -51,9 +52,9 @@
   <a href="../timeline/">Timeline</a>
 </nav>
 
-<main>
+<main><div class="reader-hero"><div class="reader-crumb"><a href="/projects/shuge/">SHUGE 研究首页</a>　/　<a href="../index.html">数字展览</a>　/　工作流程演示 · 非真实外部评审</div><p class="reader-kicker">工作流程演示 · 非真实外部评审</p><h1>模拟同行评审记录</h1><p class="reader-lead">展示评审记录、意见与评议维度的静态样例。页面中的评分、评论和评审者标识均为模拟数据，不构成真实同行评审。</p><div class="reader-actions"><a href="../index.html">返回展览首页 →</a><a href="../methods/citation-bound-historical-research/">研究方法 →</a></div><p class="reader-notice" role="note"><strong>模拟流程说明：</strong>这里展示的评审者、分数和意见为静态样例，不是真实外部同行评审；本页面不会自动发起评审或发布文章。</p></div>
 <section class="hero">
-  <h2>Peer Review Records</h2>
+  <h2>模拟评审记录</h2>
   <p class="hero-lead">3 篇 article 的同行评审记录。每条 review 包含 review_id · reviewer_id (placeholder) · 5 个 rubric 维度 · comments · overall_score · decision · next_state_recommendation。<strong>所有评分与决策均为 schema 静态演示,非自动生成</strong>。</p>
   <dl class="meta-table">
     <dt>version</dt><dd>v0.9</dd>
@@ -74,12 +75,12 @@
 </section>
 
 <section>
-  <h3>3 Review Records</h3>
+  <h3>三份模拟评审记录</h3>
   <div id="review-cards-list"></div>
 </section>
 
 <section>
-  <h3>Rubric Dimensions · 5</h3>
+  <h3>五项评议维度</h3>
   <div class="data-table-wrapper">
     <table class="data-table">
       <thead><tr><th>dimension_id</th><th>weight</th><th>description</th></tr></thead>
@@ -89,7 +90,7 @@
 </section>
 
 <section class="further-reading">
-  <h3>Cross-Links</h3>
+  <h3>相关资料</h3>
   <ul>
     <li><a href="../articles/">/articles/</a> — 文章列表</li>
     <li><a href="../publications/">/publications/</a> — Publication Workflow</li>
@@ -99,10 +100,10 @@
     <li><a href="../DESIGN_v0.9.md">DESIGN_v0.9.md</a> — §3 Peer Review Record Schema</li>
   </ul>
 </section>
-</main>
+</main><div class="reader-related"><a href="../index.html">← 返回展览总览</a><a href="/projects/shuge/">SHUGE 研究中心 ↗</a></div>
 
 <footer class="site-footer">
-  <p>SHUGE DH Research Platform v1.0 Candidate · Peer Review Records · <strong>SIMULATED WORKFLOW / NOT EXTERNAL PEER REVIEW</strong> · reviewer_id is placeholder · no auto-scoring · no human scheduling · PUBLISHED forbidden · 不自动 PUBLISHED</p></newText>
+  <p>SHUGE DH Research Platform v1.0 Candidate · Peer Review Records · <strong>SIMULATED WORKFLOW / NOT EXTERNAL PEER REVIEW</strong> · reviewer_id is placeholder · no auto-scoring · no human scheduling · PUBLISHED forbidden · 不自动 PUBLISHED</p>
 </footer>
 </div>
 
@@ -200,5 +201,5 @@
   });
 })();
 </script>
-</body>
+<footer class="reader-footer">SHUGE 数字人文展览　·　<a href="../index.html">展览首页</a>　·　<a href="/projects/shuge/">研究中心</a></footer></body>
 </html>

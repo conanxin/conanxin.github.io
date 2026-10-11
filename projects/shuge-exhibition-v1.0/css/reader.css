@@ -49,3 +49,21 @@ body.shuge-reader main .reader-details section{margin:0!important;padding:12px 0
 body.shuge-reader main .map-placeholder,body.shuge-reader main .page-viewer-frame.framework-only{opacity:.65;border-style:dashed!important}
 @media(max-width:770px){.reader-global-inner{display:block;padding:16px 20px}.reader-global nav{margin-top:12px;gap:10px 18px}.reader-hero{padding:41px 0 29px}.reader-hero h1{font-size:30px!important}body.shuge-reader main.body,body.shuge-reader .page>main,body.shuge-reader main.container,body.shuge-reader main.methods-grid,body.shuge-reader main.article-grid{width:min(calc(100% - 32px),1010px)!important}body.shuge-reader main>section,body.shuge-reader main>article{padding:23px 20px!important}body.shuge-reader main .objects-grid,body.shuge-reader main .cards-grid-3{grid-template-columns:1fr!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Supplemental long-form and archive layout */
+body.shuge-reader main.article-grid,body.shuge-reader main.methods-grid{display:flex!important;flex-direction:column!important;gap:0!important}
+body.shuge-reader main.article-grid>.reader-hero,body.shuge-reader main.methods-grid>.reader-hero{order:0!important}
+body.shuge-reader main.article-grid>.article-body,body.shuge-reader main.methods-grid>.methods-body{order:1!important;display:block!important;width:100%!important;max-width:none!important;background:#fff!important;border:1px solid #dedbd4!important;border-radius:4px!important;margin:24px 0!important;padding:30px 35px!important}
+body.shuge-reader main.article-grid>.reader-info,body.shuge-reader main.methods-grid>.reader-info{order:2!important;margin:20px 0 24px!important}
+body.shuge-reader main .article-meta,body.shuge-reader main .methods-meta{display:block!important;width:100%!important;max-width:none!important;grid-area:auto!important;margin:0!important;border:0!important}
+body.shuge-reader main .article-section,body.shuge-reader main .methods-body .article-section{background:#fff!important;border:0!important;border-bottom:1px solid #e8e5de!important;padding:0 0 24px!important;margin:0 0 29px!important;box-shadow:none!important}
+body.shuge-reader main .article-body h1,body.shuge-reader main .methods-body h1{font:600 28px/1.5 "Noto Serif SC","Songti SC",serif!important;color:#293029!important}
+body.shuge-reader main .article-paragraph{font:16px/1.98 "Noto Serif SC","Songti SC",serif!important;color:#353e36!important}
+body.shuge-reader main .meta-card{background:#fbfaf7!important;border:1px solid #e5e1d8!important;border-radius:3px!important;box-shadow:none!important;padding:17px 19px!important;margin:12px 0!important}
+body.shuge-reader main .simulated-workflow-box,body.shuge-reader main .review-footer-disclaimer{background:#f2efe8!important;border:1px solid #d4c8b9!important;color:#534b41!important;border-radius:3px!important;padding:20px!important;box-shadow:none!important}
+body.shuge-reader main .simulated-workflow-headline{color:#895e3b!important}
+body.shuge-reader main .public-page-section{background:#fff!important;margin:23px 0!important;padding:25px 30px!important;border:1px solid #dedbd4!important}
+body.shuge-reader main .evidence-table{min-width:690px!important}
+body.shuge-reader main .reliability-tier-table{overflow-x:auto!important}
+body.shuge-reader main .article-grid{display:block!important}
+@media(max-width:770px){body.shuge-reader main.article-grid>.article-body,body.shuge-reader main.methods-grid>.methods-body{padding:23px 20px!important}body.shuge-reader main .public-page-section{padding:22px 19px!important}}

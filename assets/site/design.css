@@ -120,3 +120,6 @@ body[data-site-theme="project-native"] .main a[href^="https://"]{
 /* Stage 2D: discoverability shortcut injected only on legacy listing pages. */
 .site-catalog-shortcut{width:min(100% - 48px,1120px);margin:8px auto 18px;font:14px/1.8 var(--site-sans)}
 @media(max-width:560px){.site-catalog-shortcut{width:calc(100% - 36px)}}
+
+/* Shared screen-reader-only label utility (keeps labels accessible without occupying layout). */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}

@@ -1,0 +1,161 @@
+{
+  "schema": "stage2e-source-reconciliation-v1",
+  "checked_on": "2026-10-12",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION",
+  "status_definitions": {
+    "VERIFIED": "已直接核对该层级的公开页面或快照证据；不自动传递到另一个层级。",
+    "UNVERIFIED": "线索存在但不具备足够证据确立具体 ID、版本、扫描或作者的同一关系。",
+    "NOT_FOUND": "仅在明确说明的本次检索范围内尚未找到直接证据；不能据此断言全网或馆藏无记录。"
+  },
+  "conclusions": "3/3 外部候选作品页面可确认存在；0/3 冻结 work_id 与候选作品完成一对一验证。禁止用候选页替换冻结 v0.7 书目。",
+  "evidence_sources": [
+    {
+      "kind": "frozen_snapshot",
+      "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json"
+    },
+    {
+      "kind": "claim_audit",
+      "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md"
+    },
+    {
+      "kind": "institution_role_audit",
+      "url": "https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/institution_roles_v1.0.json"
+    },
+    {
+      "kind": "source_platform_candidate",
+      "url": "https://www.shuge.org/view/shui_jing_zhu/"
+    },
+    {
+      "kind": "source_platform_candidate",
+      "url": "https://www.shuge.org/view/tian_gong_kai_wu/"
+    },
+    {
+      "kind": "source_platform_candidate",
+      "url": "https://www.shuge.org/view/gong_cheng_zuo_fa/"
+    }
+  ],
+  "lookup_method": "读取冻结 v0.7 work_id / title_zh / dynasty 与 v1.0 claim-support 审计；查阅三份书格作品描述，并尝试 exact numeric ID / WordPress 公开入口检索。页面内陈述的馆藏信息尚未与原馆目录逐项比对。",
+  "rows": [
+    {
+      "work_id": "work-shuge-168491",
+      "shuge_numeric_id": "168491",
+      "frozen_snapshot": {
+        "source_file": "projects/shuge-exhibition-v1.0/data/bibliography.json",
+        "version": "v0.7",
+        "title_zh": "书海出版社文献 P168491",
+        "dynasty_label": "Northern Wei",
+        "collection_slug": "hist-hyd",
+        "page_count_estimate": 50
+      },
+      "external_candidate": {
+        "status": "VERIFIED",
+        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
+        "title": "水经注",
+        "url": "https://www.shuge.org/view/shui_jing_zhu/",
+        "edition_as_stated": "明万历十三年（1585）吴琯校刊本",
+        "era_as_stated": "北魏郦道元注；所示版本为明刊",
+        "creator_as_stated": "漢桑欽撰，後魏酈道元注，明吳琯校",
+        "holding_as_stated": "日本内阁文库藏（书格页面陈述）"
+      },
+      "numeric_id_to_candidate": {
+        "status": "UNVERIFIED",
+        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
+        "caution": "本条快照的 Northern Wei 时代标签可描述注者时代，不能据此确定扫描版本或直接证明 P168491 对应该书。"
+      },
+      "direct_id_lookup": {
+        "status": "NOT_FOUND",
+        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+      },
+      "institution_catalog_item": {
+        "status": "UNVERIFIED",
+        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+      },
+      "next_required_evidence": [
+        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
+        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
+        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+      ]
+    },
+    {
+      "work_id": "work-shuge-211203",
+      "shuge_numeric_id": "211203",
+      "frozen_snapshot": {
+        "source_file": "projects/shuge-exhibition-v1.0/data/bibliography.json",
+        "version": "v0.7",
+        "title_zh": "书海出版社文献 P211203",
+        "dynasty_label": "Song",
+        "collection_slug": "arch",
+        "page_count_estimate": 57
+      },
+      "external_candidate": {
+        "status": "VERIFIED",
+        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
+        "title": "天工开物",
+        "url": "https://www.shuge.org/view/tian_gong_kai_wu/",
+        "edition_as_stated": "明崇祯十年（1637）涂绍煃刊本",
+        "era_as_stated": "明代宋应星著",
+        "creator_as_stated": "明代宋应星著",
+        "holding_as_stated": "法国国家图书馆藏（书格页面陈述）"
+      },
+      "numeric_id_to_candidate": {
+        "status": "UNVERIFIED",
+        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
+        "caution": "快照 dynasty=Song 与书格对候选作品的明代描述明显不一致；该冲突必须由原始 ID 与馆藏扫描核对，不能自动纠正。"
+      },
+      "direct_id_lookup": {
+        "status": "NOT_FOUND",
+        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+      },
+      "institution_catalog_item": {
+        "status": "UNVERIFIED",
+        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+      },
+      "next_required_evidence": [
+        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
+        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
+        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+      ]
+    },
+    {
+      "work_id": "work-shuge-44159",
+      "shuge_numeric_id": "44159",
+      "frozen_snapshot": {
+        "source_file": "projects/shuge-exhibition-v1.0/data/bibliography.json",
+        "version": "v0.7",
+        "title_zh": "书海出版社文献 P44159",
+        "dynasty_label": "Qing",
+        "collection_slug": "hist-hyd",
+        "page_count_estimate": 64
+      },
+      "external_candidate": {
+        "status": "VERIFIED",
+        "meaning": "确认书格公开页面存在且列出下列信息；不是确认此页与 work_id 对应，也不是馆藏机构原件核验",
+        "title": "工程做法",
+        "url": "https://www.shuge.org/view/gong_cheng_zuo_fa/",
+        "edition_as_stated": "清雍正十二年（1734）武英殿刊本",
+        "era_as_stated": "清代工部允礼等纂修",
+        "creator_as_stated": "清代工部允礼等纂修",
+        "holding_as_stated": "日本内阁文库藏（书格页面陈述）"
+      },
+      "numeric_id_to_candidate": {
+        "status": "UNVERIFIED",
+        "evidence": "本轮未得到将冻结数字 ID 与此书格网页直接绑定的可复核记录；题名或朝代相近不足以证明相同扫描版本。",
+        "caution": "快照 Qing 与候选页时代表述大体相容，但没有核实 P44159→候选页的一对一 ID 映射及实物数字对象。"
+      },
+      "direct_id_lookup": {
+        "status": "NOT_FOUND",
+        "scope": "本轮公开搜索对该数字 ID 的精确检索未返回能核实 ID↔候选页关系的结果；并不表示对象不存在或已被删除。"
+      },
+      "institution_catalog_item": {
+        "status": "UNVERIFIED",
+        "scope": "尚未确认馆藏机构自身的稳定条目号、卷册/扫描页、版心/牌记和此 work_id 的对应关系。"
+      },
+      "next_required_evidence": [
+        "书格或旧版目录的原始 numeric post_id → 正式 URL 映射",
+        "持有机构目录的稳定 catalog ID 或 IIIF manifest",
+        "该扫描件书影中的题名、版式、刊记/序页与页序一一核对"
+      ]
+    }
+  ],
+  "next_work": "优先取得数字 ID 直接映射、稳定馆藏目录记录及扫描书影后，才能将 numeric_id_to_candidate.status 改为 VERIFIED。"
+}

@@ -1,138 +1,238 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHUGE 数字人文研究 · 成果入口</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/projects/shuge/research/water-classic/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="SHUGE 数字人文研究：从《水经注》等古籍出发，探索文献证据、历史地理与数字校勘。阅读易水研究文章，浏览数字语料和史料档案。">
+  <title>SHUGE 数字人文研究｜古籍、历史地理与文献证据</title>
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --paper: #fff;
+      --ink: #252a29;
+      --muted: #68706d;
+      --line: #dfded8;
+      --accent: #9a5839;
+      --quiet: #f2f0ea;
+      --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+      --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.8 var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; text-underline-offset: 4px; }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: #fff; padding: 10px; z-index: 5; }
+    .skip:focus { left: 12px; top: 8px; }
+    .site-header { background: #fff; border-bottom: 1px solid var(--line); }
+    .header-inner { max-width: 1080px; margin: auto; padding: 19px 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { display: flex; gap: 12px; align-items: baseline; font-family: var(--serif); font-size: 24px; font-weight: 700; letter-spacing: .045em; line-height: 1.3; }
+    .brand span { font: 13px/1.5 var(--sans); color: var(--muted); font-weight: 400; letter-spacing: normal; }
+    .top-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 26px; font-size: 13px; color: var(--muted); }
+    .top-nav a:hover, .plain-link:hover, .text-link:hover { color: var(--accent); }
+    .container { width: min(100% - 48px, 1024px); margin-inline: auto; }
+    .hero { padding: 86px 0 62px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 15px; color: var(--accent); font-size: 12px; font-weight: 650; letter-spacing: .13em; }
+    .hero h1 { margin: 0; max-width: 850px; font: 600 clamp(31px, 4.8vw, 50px)/1.42 var(--serif); letter-spacing: .015em; }
+    .hero p.lead { margin: 25px 0 0; max-width: 740px; font-size: 17px; line-height: 1.9; color: #545b57; }
+    .section { padding: 60px 0; border-bottom: 1px solid var(--line); }
+    .section-heading { margin-bottom: 26px; }
+    .section-heading .eyebrow { margin-bottom: 8px; }
+    .section-heading h2 { margin: 0; font: 600 28px/1.5 var(--serif); }
+    .section-heading p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+    .featured { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(250px, .8fr); }
+    .featured-main { padding: 39px 43px 42px; }
+    .feature-status { color: var(--muted); font: 12px/1.5 var(--sans); margin: 0 0 13px; }
+    .featured h3 { margin: 0 0 7px; font: 600 clamp(24px, 3.25vw, 34px)/1.53 var(--serif); letter-spacing: .01em; }
+    .subtitle { color: #666965; font: 17px/1.8 var(--serif); margin: 0 0 24px; }
+    .feature-intro { color: #505753; line-height: 1.95; margin: 0; max-width: 570px; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 29px; }
+    .primary-link { display: inline-flex; gap: 12px; align-items: center; padding: 11px 17px; background: #243d39; color: #fff; border-radius: 3px; font-size: 14px; font-weight: 550; }
+    .primary-link:hover { background: #34534c; }
+    .plain-link { font-size: 14px; color: var(--accent); font-weight: 550; }
+    .feature-aside { border-left: 1px solid var(--line); padding: 43px 29px; background: #fbfaf7; }
+    .aside-label { display: block; color: var(--muted); font-size: 12px; letter-spacing: .1em; margin-bottom: 17px; }
+    .feature-aside blockquote { margin: 0; padding: 0; font: 500 19px/1.9 var(--serif); }
+    .feature-aside small { display: block; color: var(--muted); font-size: 12px; margin-top: 17px; line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .resource { padding: 27px 25px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 5px; display: flex; flex-direction: column; align-items: flex-start; }
+    .resource .number { color: #a3a39e; font: 12px/1 var(--sans); margin-bottom: 19px; }
+    .resource h3 { margin: 0 0 11px; font: 600 20px/1.5 var(--serif); }
+    .resource p { margin: 0 0 23px; color: #5c625d; font-size: 14px; line-height: 1.85; flex: 1; }
+    .text-link { color: var(--accent); font: 600 13px/1.6 var(--sans); }
+    .secondary-note { margin: 18px 0 0; color: var(--muted); font-size: 13px; }
+    .secondary-note a { text-decoration: underline; }
+    .reading-list { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .reading-item { display: grid; grid-template-columns: 120px minmax(0, 1fr) 22px; gap: 24px; align-items: center; padding: 23px 10px; border-bottom: 1px solid var(--line); }
+    .reading-item:last-child { border-bottom: 0; }
+    .reading-item .category { color: var(--muted); font-size: 13px; }
+    .reading-item h3 { margin: 0; font: 600 17px/1.6 var(--serif); }
+    .reading-item p { margin: 5px 0 0; font-size: 13px; color: var(--muted); }
+    .reading-item .arrow { color: var(--accent); font-size: 19px; }
+    .reading-item:hover h3 { color: var(--accent); }
+    .method-note { margin: 0 0 22px; max-width: 790px; line-height: 1.95; color: #535955; }
+    .archive { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 18px 24px; }
+    .archive summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+    .archive summary::marker { color: var(--accent); }
+    .archive p { font-size: 13px; color: var(--muted); margin: 12px 0 10px; }
+    .archive-links { display: flex; flex-wrap: wrap; gap: 11px 26px; font-size: 13px; }
+    .archive-links a { color: var(--accent); text-decoration: underline; }
+    footer { background: #fff; }
+    .footer-inner { max-width: 1080px; margin: auto; padding: 27px 28px 36px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 12px; }
+    @media(max-width:780px) {
+      .featured { grid-template-columns: 1fr; }
+      .feature-aside { border-left: none; border-top: 1px solid var(--line); padding: 23px 30px; }
+      .featured-main { padding: 30px; }
+      .grid { grid-template-columns: 1fr; }
+      .resource { padding: 22px 24px; }
+      .resource .number { margin-bottom: 10px; }
+    }
+    @media(max-width:540px) {
+      body { font-size: 15px; }
+      .container { width: min(100% - 36px, 1024px); }
+      .header-inner { padding: 16px 18px; display: block; }
+      .brand { font-size: 22px; }
+      .brand span { font-size: 12px; }
+      .top-nav { margin-top: 13px; justify-content: flex-start; gap: 12px 20px; }
+      .hero { padding: 54px 0 48px; }
+      .hero h1 { font-size: 31px; }
+      .hero p.lead { font-size: 15px; }
+      .section { padding: 43px 0; }
+      .section-heading h2 { font-size: 25px; }
+      .featured-main { padding: 25px 22px 28px; }
+      .featured h3 { font-size: 25px; }
+      .feature-aside { padding: 22px; }
+      .reading-item { grid-template-columns: 1fr 16px; gap: 10px; padding: 18px 3px; }
+      .reading-item .category { grid-column: 1 / -1; }
+      .reading-item h3 { font-size: 16px; }
+      .reading-item .arrow { grid-column: 2; grid-row: 2; }
+      .archive { padding: 16px 18px; }
+      .footer-inner { padding: 26px 18px; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } }
+  </style>
 </head>
 <body>
-
-<header class="hero">
-  <h1>SHUGE 数字人文研究</h1>
-  <p class="subtitle">永久成果入口 · 当前专题与最新研究结论</p>
-  <blockquote class="core-statement">
-    <strong>当前专题:</strong>《水经注》数字证据研究。<br>
-    <strong>最新研究结论 (R4.1 · 《水经注》易水专题学术审计):</strong>R4 之上的 <strong>publication-level scholarly audit layer</strong>(不改 R4 frozen JSON)。<strong>R4.1 成果:</strong>(1) 为 R4 12 條 historical claims 增加 <code>truth_scope</code>(TEXT_REPORTS / TEXTUAL_INFERENCE / HISTORICAL_CORROBORATED / MODERN_MAPPING;后者 R4.1 禁止)并重判 <code>support_level</code>(SUPPORTED / PARTIALLY_SUPPORTED / NOT_SUPPORTED);<strong>从 R4 的 12/12 SUPPORTED 修正为 7 SUPPORTED + 5 PARTIALLY_SUPPORTED</strong>(降級理由:文本順序推論或 frame 需修正);<strong>CLAIM_011_REVISED=true</strong>(R4-YSH-011 「範陽以東、容城以西」属 TEXTUAL_INFERENCE,而非直接引文);<strong>CLAIM_012_CORRECTED=true</strong>(R4-YSH-012 拆分三項獨立 enfeoffment:範陽封國 + 容城封國 + <strong>深澤封國</strong>,原 R4 將「趙將某於深澤」誤归容城);(2) 为 7 份外部校核资料重新標示 <code>source_role</code> + <code>verification_status</code>;PRIMARY_SOURCES = 1(國立公文書館 scan,從 EXTERNAL count 移除);EXTERNAL_SOURCES = 6;PASSAGE_VERIFIED_SOURCES = 0;CORROBORATING_PASSAGES = 6;VARIANT_PASSAGES = 1(陳橋驛「攜徐盧/撅徐盧」);BACKGROUND_ONLY = 1;3 個 placeholder URL(zhihu/.../zhbc/.../https://...)降级為 IDENTIFIED;(3) 拆 textual topology 為 <strong>CORE_TOPOLOGY</strong>(9 節點 / 15 邊 + claim-to-edge binding)+ <strong>FULL_TOPOLOGY</strong>(72 節點 / 29 邊,R4 frozen 不變);修正 R4 SVG layout bug(原 17 節點重疊 cy=380)。<strong>R4 范围边界:</strong>本阶段不以现代地图匹配为目标 (REAL_WORLD_LOCATION = UNRESOLVED);PROXY_REVIEW ≠ human-eye-on-page-image review(已披露)。R1–R4 数据与 QA 阶段全部 frozen 为 research baseline,不再修改。<a href="/projects/shuge/research/water-classic/yishui/">进入易水专题</a>。
-  </blockquote>
+<a class="skip" href="#main">跳转到研究内容</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/projects/shuge/" aria-label="SHUGE 数字人文研究首页">SHUGE <span>数字人文研究</span></a>
+    <nav class="top-nav" aria-label="主导航">
+      <a href="#featured">研究文章</a>
+      <a href="#resources">文献资料</a>
+      <a href="#other-work">其他成果</a>
+      <a href="#about">关于研究</a>
+    </nav>
+  </div>
 </header>
-
-<div class="page">
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- 进入专题 (Primary CTA · First Screen Anchor)                     -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<div class="archive-primary">
-  <p>→ <a href="/projects/shuge/research/water-classic/">进入研究</a> · <a href="/projects/shuge/research/water-classic/corpus/">查看完整语料</a> · <a href="/projects/shuge/research/water-classic/corpus/quality/">查看语料质量</a> · <a href="/projects/shuge/research/water-classic/evidence/">查看核心证据</a> · <a href="/projects/shuge/research/water-classic/yishui/">易水专题</a></p>
-</div>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- 当前专题                                                        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">当前专题</span>
-    <h2>《水经注》数字证据研究</h2>
-    <p class="lede">基于页级 OCR、Citation 与证据审计的历史地理研究。R2.2 引入三层证据状态,让"研究表达强度"严格匹配"证据支持强度"。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/">进入专题</a></h3>
-    <p>6 evidence-first claims · 4 已支持 / 2 部分支持 / 0 暂不支持 · 39 substantial body OCR · 60 evidence_refs (collision_count = 0)。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/appendix/">技术附录</a></h3>
-    <p>60 evidence_refs · 9 river groups · 9 historical places · 60-page audit · R2.2 三层证据状态矩阵。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/corpus/">R3 · 完整数字语料</a></h3>
-    <p>956 页 FULL CORPUS · canonical Citation 系统 <code>SHUGE:p124575:&lt;page_object_id&gt;</code> · R2 60-page → 完整 corpus 映射 · 3 故事完整 corpus 重新验证。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/corpus/quality/">R3.4 · 《水经注》上下文序列修复</a></h3>
-    <p><strong>956</strong> OCR success · <strong>422</strong> 规则筛选正文候选页(R3.2 RULE_QUALIFIED_BODY) · <strong>108</strong> 文本代理复核证据页(R3.3+R3.4 PROXY_REVIEWED_BODY_PAGES) · 100 页抽样精度 0.97(95% CI [0.9155, 0.9897]) · 12 unique core-evidence pages 全量复核 · 19 VERIFIED + 1 PARTIAL + 0 REJECTED · 0 CONTEXT_UNRESOLVED (跨组污染已修复) · 3 CROSS_PAGE_VALID + 9 SINGLE_PAGE_SUFFICIENT · Evidence Gate v3(TEXT_SUPPORTED 必须 4 项 AND:catalog + RULE_QUALIFIED + PROXY_REVIEWED + same-page;跨页 + VALID_SEQUENCE_CONTEXT)。</p>
+<main id="main">
+  <div class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">古籍 · 历史地理 · 文献证据</p>
+      <h1 id="hero-title">从古籍文本，走向可以核验的历史研究。</h1>
+      <p class="lead">SHUGE 关注古籍的数字化整理与历史问题研究。我们从原始图像、不同版本和文献中的具体记载出发，理解古代的河流、城邑与人的生活，并保留每一项解释的证据与限度。</p>
+    </section>
+    <section class="section" id="featured" aria-labelledby="featured-title">
+      <div class="section-heading">
+        <p class="eyebrow">重点研究</p>
+        <h2 id="featured-title">《水经注》易水专题</h2>
+        <p>沿着河流重新阅读地名、古城与历史记忆。</p>
+      </div>
+      <article class="featured">
+        <div class="featured-main">
+          <p class="feature-status">研究文章 · 中文 · 审阅稿</p>
+          <h3>《水经注》易水叙事中的范阳、容城与故安</h3>
+          <p class="subtitle">河流空间、城邑记载与版本异文</p>
+          <p class="feature-intro">以《水经注》卷十一为中心，探讨易水如何连接故安、范阳、容城、易京与燕下都。文章结合扫描影像及不同传本，辨析古代空间表达、汉代封侯记载和有待考证的文字差异。</p>
+          <div class="actions">
+            <a class="primary-link" href="/projects/shuge/research/water-classic/yishui/article/">阅读研究文章 <span aria-hidden="true">↗</span></a>
+            <a class="plain-link" href="/projects/shuge/research/water-classic/yishui/">进入完整专题 →</a>
+          </div>
+        </div>
+        <aside class="feature-aside" aria-label="古籍原文摘录">
+          <span class="aside-label">《水经注》卷十一</span>
+          <blockquote>“東過范陽縣南，又東過容城縣南。”</blockquote>
+          <small>这是一段关于河流行进路线的记载；实际故城位置仍须结合历史地理资料判断。</small>
+        </aside>
+      </article>
+    </section>
+    <section class="section" id="resources" aria-labelledby="resources-title">
+      <div class="section-heading">
+        <p class="eyebrow">研究资料</p>
+        <h2 id="resources-title">从原文到证据</h2>
+        <p>阅读文章之外，也可以沿着文献记录查看研究依据。</p>
+      </div>
+      <div class="grid">
+        <article class="resource">
+          <span class="number">01 / 文本</span>
+          <h3>数字语料</h3>
+          <p>浏览《水经注》的分页文本、数字化语料和原始页码索引。OCR 是研究辅助材料，不等于全面人工校订。</p>
+          <a class="text-link" href="/projects/shuge/research/water-classic/corpus/">浏览数字语料 →</a>
+        </article>
+        <article class="resource">
+          <span class="number">02 / 证据</span>
+          <h3>原始史料与引文</h3>
+          <p>追溯研究中的关键原文、扫描页标识与引用出处，区分直接记载、文本推论及尚待确认的历史事实。</p>
+          <a class="text-link" href="/projects/shuge/research/water-classic/evidence/">查看核心证据 →</a>
+        </article>
+        <article class="resource">
+          <span class="number">03 / 校勘</span>
+          <h3>版本对照</h3>
+          <p>查阅易水章节中人名、纪年和地名的异读，了解不同在线文本支持的读法与仍有争议的字形。</p>
+          <a class="text-link" href="/projects/shuge/research/water-classic/yishui/sources/">阅读版本对照 →</a>
+        </article>
+      </div>
+      <p class="secondary-note">需要了解机器识读与文本边界？可查阅<a href="/projects/shuge/research/water-classic/corpus/quality/">语料质量说明</a>。</p>
+    </section>
+    <section class="section" id="other-work" aria-labelledby="other-work-title">
+      <div class="section-heading">
+        <p class="eyebrow">延伸阅读</p>
+        <h2 id="other-work-title">其他研究成果</h2>
+        <p>围绕古籍数字化、史料呈现与研究方法的探索。</p>
+      </div>
+      <div class="reading-list">
+        <a class="reading-item" href="/projects/shuge-exhibition-v1.0/publications/water-classic-digital-life/">
+          <span class="category">研究文章</span>
+          <div><h3>从《水经注》到数字证据：一部古籍的数字生命史</h3><p>探讨古籍数字化如何改变文献的读取、引用与研究方式。</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="reading-item" href="/projects/shuge-exhibition-v1.0/">
+          <span class="category">数字展览</span>
+          <div><h3>SHUGE 数字人文展览</h3><p>以互动页面组织古籍、证据、案例和研究线索。</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="reading-item" href="/projects/shuge-exhibition-v1.0/methods/citation-bound-historical-research/">
+          <span class="category">研究方法</span>
+          <div><h3>以证据为基础的历史研究方法</h3><p>关于引文定位、证据可追溯性和研究结论表达边界的说明。</p></div>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="eyebrow">研究原则</p>
+        <h2 id="about-title">公开成果与研究档案</h2>
+      </div>
+      <p class="method-note">SHUGE 的公开文章以可阅读的历史论述为主，原始证据、图像辨读、版本异文和研究修订记录保留在独立档案中。部分结论尚待纸本原件、高清扫描或考古资料进一步核实；研究稿不应被视为已经完成专家终审的学术发表。</p>
+      <details class="archive">
+        <summary>查看技术附录与版本记录</summary>
+        <p>供需要复核研究过程的读者查阅；不影响普通读者阅读文章与专题。</p>
+        <div class="archive-links">
+          <a href="/projects/shuge/research/water-classic/appendix/">研究技术附录</a>
+          <a href="/projects/shuge/research/water-classic/">完整研究专题入口</a>
+          <a href="https://github.com/conanxin/conanxin.github.io/commits/main/projects/shuge/" target="_blank" rel="noopener">GitHub 修订历史</a>
+          <a href="https://github.com/conanxin/conanxin.github.io/blob/6f7cfccc368506dd21715612ce093d5bd311867f/projects/shuge/index.html" target="_blank" rel="noopener">旧版成果入口存档</a>
+        </div>
+      </details>
+    </section>
   </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- 其他成果                                                        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">研究文章 · 数字展览 · 研究方法</span>
-    <h2>其他成果</h2>
-    <p class="lede">围绕古籍数字证据组织的研究文章、展览与方法论。</p>
-
-    <h3><a href="/projects/shuge-exhibition-v1.0/publications/water-classic-digital-life/">研究文章 · 《从〈水经注〉到数字证据》</a></h3>
-    <p>v1.0 Candidate Article — 第一篇真正可公开阅读的数字人文研究文章。Citation-bound Historiography 框架 + evidence callout。状态:REVIEW (非自动 PUBLISHED)。</p>
-
-    <h3><a href="/projects/shuge-exhibition-v1.0/">数字展览 · SHUGE DH 展览 v1.0</a></h3>
-    <p>《水经注》等古籍的 Research Writing Environment · Evidence Explorer · Room Navigator · Case Studies。冻结于 commit 3a51ef5 · 100 文件 / 2.4 MB。</p>
-
-    <h3><a href="/projects/shuge-exhibition-v1.0/methods/citation-bound-historical-research/">研究方法 · Citation-bound Historical Research</a></h3>
-    <p>citation-required-per-claim 政策 · Evidence Appendix 格式 · Provenance 未变更保证 · no auto-PUBLISHED。</p>
+</main>
+<footer>
+  <div class="footer-inner">
+    <span>SHUGE · 数字人文研究</span>
+    <span>阅读 · 考证 · 追溯</span>
   </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- 研究档案                                                        -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">研究档案</span>
-    <h2>研究档案</h2>
-    <p class="lede">所有研究输出文件 (JSON + Markdown) 均可下载。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/appendix/">《水经注》技术附录</a></h3>
-    <p>R2.1 完整技术档案: 60 evidence_refs、9 river groups、9 historical places、60-page audit、scan sequence 分析、所有 6 claims、machine IDs、source downloads。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/source/water_classic_page_structure_r2.json">Page Structure Audit (R2)</a></h3>
-    <p>60 页 / 5 unique labels / 39 substantial pages · volume_status UNRESOLVED。</p>
-
-    <h3><a href="/projects/shuge/research/water-classic/data/water_classic_evidence_identity_r2_1.json">Evidence Identity (R2.1)</a></h3>
-    <p>60 evidence_refs · collision_count = 0 · WC124575:PAGE&lt;page_id&gt; 格式。</p>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- 版本历史 (页面底部)                                              -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-<section class="section">
-  <div class="article-body">
-    <span class="section-num">版本历史</span>
-    <h2>版本历史</h2>
-    <ul class="version-list">
-      <li><span><strong>R4.2</strong> · 《水经注》易水专题外部校勘逐句核验 · R4.1 之上的 passage-verification overlay (不改 R4 frozen、不改 R4.1) · <strong>3 個 real-URL 來源 (Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196) 在 web_fetch 階段全部 ACCESS_BLOCKED</strong> · PASSAGE_VERIFIED_SOURCES=0 (与 R4.1 持平) · PASSAGES_COMPARED=0 · CORROBORATES=0 · VARIANTS=0 · CONTRADICTIONS=0 · INCONCLUSIVE=3 · CLAIMS_REVISED=0 · 硬边界 NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · R5_ENTERED=0 · <a href="/projects/shuge/research/water-classic/yishui/sources/">公開頁</a> · <a href="/projects/shuge/research/water-classic/source/YISHUI_EXTERNAL_PASSAGE_VERIFICATION_R4_2.md">審計 MD</a> · <a href="/projects/shuge/research/water-classic/data/yishui_external_passages_r4_2.json">數據 JSON</a></span><span class="ver-sha">SPEC RUN</span></li><li><span><strong>R4.3</strong> · 《水经注》易水专题文本证据逐句比对 · R4.2 之上的 textual-witness-verification overlay (不改 R4 frozen、不改 R4.1、不改 R4.2) · <strong>用 R4.3 spec §A 提供的 3 個更正 URL 成功訪問 (Wikisource /11 + Wikisource 四部叢刊本卷第十一 + 識典古籍《山水二經合刻》)</strong> · PASSAGE_VERIFIED_SOURCES=2 (WIKISOURCE_ZH + SHIDIANGUSHI_2543 兩個 source identities) · SOURCE_WITNESSES_IDENTIFIED=3 (3 個 edition witnesses) · PASSAGES_COMPARED=18 · CORROBORATES=8 · VARIANTS=8 · CONTRADICTIONS=0 · INCONCLUSIVE=2 · CLAIMS_REVISED=1 (R4-YSH-011 方向性誤讀修正 overlay) · CLAIM_012_RECHECKED=true (4 組 VERSION_VARIANT_CANDIDATES 已登記, 不作最終裁判) · PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描) · 硬边界 NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · R5_ENTERED=0 · R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · R42_DATA_PRESERVED=true · <a href="/projects/shuge/research/water-classic/yishui/sources/">公開頁 (R4.3 + R4.2 歷史阻斷記錄保留)</a> · <a href="/projects/shuge/research/water-classic/source/YISHUI_TEXTUAL_WITNESS_AUDIT_R4_3.md">審計 MD</a> · <a href="/projects/shuge/research/water-classic/data/yishui_passage_comparison_r4_3.json">比對 JSON</a> · <a href="/projects/shuge/research/water-classic/data/yishui_claim_corrections_r4_3.json">修訂 JSON</a></span><span class="ver-sha">SPEC RUN</span></li><li><span><strong>R4.3A</strong> · 《水经注》易水专题文本证据统计勘误 + 底本影像定位 · R4.3 之上的 evidence-reconciliation overlay (不改 R4 frozen、不改 R4.1、不改 R4.2、不改 R4.3 凍結) · <strong>修正 R4.3 verification_summary 统计: ground truth = CORROBORATES=10 (vs R4.3 上报 8), VARIANT=5 (vs R4.3 上报 8), INCONCLUSIVE_DIRECTION=3 (vs R4.3 上报 2), PASSAGES_COMPARED=18 不变</strong> · <strong>PRIMARY_IMAGES_LOCATED=12</strong> (R4 image review JSON 列于 /home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1654.jpg ~ pid1683.jpg, Cabinet Library / 国立公文書館 / 內閣文庫 / 漢2355/函291/冊14(5) / <strong>明 吳琯 校《水經注》卷之十一</strong>) · <strong>PRIMARY_IMAGES_REVIEWED=4</strong> (AI 多模態視覺, 非人眼專家审定, 已披露: pid1655 閻鄉 / pid1657 範陽容城段 + V02 代 / pid1659 互攝大利亭巨馬水 / pid1661 易京方位 + V01 中元三 + V03 夜 + V04 攜徐盧) · CLAIM_011_CORRECTED = DIRECTION_CORRECTED (overlay, 未覆寫 R4.1) · CLAIM_012_RECHECKED = 4_VERSION_VARIANT_CANDIDATES_R4_3A (Cabinet Library + 外部三源 + 校記優先級全部登記, 不作最終裁判) · CLAIMS_CHANGED = 0 (R4.3A 不覆寫 R4.1 claim_text_revised) · 硬边界 NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R43_FROZEN_OVERWRITTEN=false (R4.3 JSON md5 0a7474c0e8a0288832b4218d2d5d2afb preserved) · R4_FROZEN_PRESERVED=true · R41_DATA_PRESERVED=true · R42_DATA_PRESERVED=true · <a href="/projects/shuge/research/water-classic/yishui/sources/#sec-r43a-errata">公開頁 §八</a> · <a href="/projects/shuge/research/water-classic/source/YISHUI_TEXTUAL_WITNESS_ERRATA_R4_3A.md">勘誤 MD</a> · <a href="/projects/shuge/research/water-classic/data/yishui_passage_comparison_errata_r4_3a.json">勘誤 JSON</a></span><span class="ver-sha">SPEC RUN</span></li><li><span><strong>R4.4</strong> · 《水经注》易水专题中文研究文章 (面向中文读者的第一篇整合性研究文章) · R4.3A 之上的 research-article overlay (不改 R4 frozen、不改 R4.1、不改 R4.2、不改 R4.3 凍結、不改 R4.3A 凍結) · <strong>整合 R4 / R4.1 / R4.2 / R4.3 / R4.3A 五層成果</strong> · <strong>Stage A 限定性證據勘誤：</strong> (A1) pid1661 受封地點校正 (Cabinet Library 字面「封趙將夜於容城皆為侯國王莽更名深澤」, <strong>受封地點 = 容城, 深澤為王莽更名</strong>, 不得混為一談) + (A2) 範陽 vs 容城封侯事件分離記錄 + (A3) 6 passage group 分組統計重計 (p01/p02/p03/p04a/p04b/p04c 總計 10/5/3 = 18) + (A4) 《水經注疏》「高帝八年」vs「六年」記為 OPEN_VARIANT_NOT_VERIFIED (未取得可核驗原文前不得標記為 VERIFIED_VARIANT) · <strong>Stage B-D 中文公開文章：</strong> <a href="/projects/shuge/research/water-classic/yishui/article/">公開文章</a> (43308 B · 5811 漢字 body · 9 h2 sections · 19 h3 subsections · 20 canonical citations [CITE-1] 至 [CITE-20] · 4 層歸因: 古籍直接記載 / 研究者文本推論 / 版本校勘結果 / 尚待獨立確認的歷史事實 · 1 張內嵌 SVG 簡化空間關係圖, 所有邊均指向 Cabinet Library 底本 pid1655/pid1657/pid1659/pid1661 · 1 個版本異文彙總表 V01-V04) · <a href="/projects/shuge/research/water-classic/yishui/article/evidence/yishui_article_errata_r4_4.json">勘誤 JSON</a> (9095 B · schema <span class="ver-sha">r4.4-yishui-article-errata/1.0</span>) · <a href="/projects/shuge/research/water-classic/data/yishui_article_errata_r4_4.json">R4.4 勘誤 JSON (data/)</a> · SUPPORTED_CLAIMS_USED=7 (R4-YSH-001/002/005/007/008/009/010) · PARTIAL_CLAIMS_DISCLOSED=5 (R4-YSH-003/004/006/011 [R4.3A 方向修正 overlay] / 012 [4 組候選 overlay]) · UNSUPPORTED_CLAIMS=0 · OPEN_VARIANTS=5 (V01 中二/中元三 + V02 代/信 + V03 夜/夕/某 + V04 唯/攜/撅徐盧 + A4 高帝八/六年) · <strong>文章狀態：DRAFT_REVIEW</strong> (不作為正式學術發表) · 硬边界 NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4_FROZEN_PRESERVED=true (582c852) · R41_DATA_PRESERVED=true (2b17354) · R42_DATA_PRESERVED=true (04db695) · R43_FROZEN_OVERWRITTEN=false (69c396d md5 preserved) · R43A_FROZEN_OVERWRITTEN=false (a98db0b 5 R4.3A files preserved) · AI_VISION_DISCLOSED=true · ctext_bypass_attempted=false · <strong>完成 R4.4 後停止, 不進入 R5</strong></span><span class="ver-sha">SPEC RUN</span></li><li><span><strong>R4.4A</strong> · 《水经注》易水专题中文文章关键勘误 (publication-critical-corrections) · R4.4 之上的 critical-corrections overlay (不改 R4–R4.4 任何凍結檔案, <strong>不重新生成文章, 僅定點修訂</strong>) · <strong>5 處關鍵錯誤修正：</strong> <strong>CE-01 / A1 撒銷：</strong>R4.4 A1 斷言「趙將夜受封於容城」錯誤. R4.4A 交叉核對 Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw 四個獨立可達文本源 + Cabinet Library pid1655/pid1656/pid1661 三張底本影像 AI 視覺複核, <strong>四源一致讀作「封趙將夜/夕於深澤」</strong>. Cabinet Library pid1661 受封地點處字跡模糊, <strong>無法從單一掃描確證「於容城」或「於深澤」</strong>. <strong>三項歷史事件必須分開記錄：</strong> (a) 高帝六年(或八年)封趙將夜/夕<strong>於深澤</strong> (高帝事件); (b) 景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧<strong>於容城</strong> (景帝事件); (c) 王莽<strong>將容城</strong>改名為<strong>深澤</strong> (王莽改名事件). + <strong>CE-02 / CITE-15 修正：</strong>Cabinet Library 武陽段實際位於 <strong>pid1656</strong>, 不是 pid1661 + <strong>CE-03 / 版本身份修正：</strong>Wikisource 四部叢刊本「明抄本」標記無實證, 撒銷, 改為「版本來源待核驗」 + <strong>CE-04 / A2 callout 重寫：</strong>R4.4 A2 callout 中「漢高帝六年封趙將夜於容城」應為「於深澤」 + <strong>CE-05 / 結論 #3 重寫：</strong>原結論與自身 A1 邏輯自相矛盾, 重寫為「三事件分離」. · <strong>article 定點修訂 (8 處直接 edit, 不覆寫):</strong> 頂部 R4.4A 重要修訂披露塊 + §1.6 對照版本 (明抄本 → 版本來源待核驗) + §3.2 A2 callout + §5.2 blockquote + §5.2 V03 + §5.2 A1 callout (撒銷重寫) + §5.3 A4 callout + §5.4 異文彙總表 (新增 V05 受封地 + V06 紀年) + §7 結論 #3 + CITE-3/CITE-15/CITE-17/CITE-18/CITE-19. <strong>21 條 canonical citations</strong> (R4.4 原有 20 + R4.4A 新增 CITE-21 ab.newdu.com). · <strong>A4 線索狀態升級</strong>：OPEN_VARIANT_NOT_VERIFIED → <strong>PARTIALLY_VERIFIED</strong> (ab.newdu.com 國學典籍網 獨立驗證「漢高帝八年」讀法, URL http://ab.newdu.com/book/ms9976.html). · <strong>R4.4A 交付：</strong> <a href="/projects/shuge/research/water-classic/yishui/article/">R4.4A 修改後的中文研究文章</a> · 52297 B (從 43308 B 增加) · 470 行 (從 444 行增加) · 7331 漢字 (從 5811 增加) · <a href="/projects/shuge/research/water-classic/yishui/article/evidence/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (evidence/)</a> (11133 B · schema <span class="ver-sha">r4.4a-yishui-publication-critical-corrections/1.0</span>) · <a href="/projects/shuge/research/water-classic/data/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (data/)</a> · CRITICAL_ERRORS_FOUND=5 · CRITICAL_ERRORS_CORRECTED=5 · CLAIM_012_STATUS=RECHECKED_3_EVENTS_SEPARATED · SPATIAL_DIRECTION_CORRECTED=ALREADY_CORRECT (R4.4 §2.2 + §4.1 + SVG 圖均已正確, 無需修改) · CANONICAL_CITATIONS_MAPPED=21 · EDITION_IDENTITY_STATUS=WIKISOURCE_SIBU_CONGKAN_REVISIONED (Wikisource 四部叢刊本「明抄本」撒銷; ab.newdu.com 新增為第 5 個獨立對照版本). · <strong>文章狀態：DRAFT_REVIEW</strong> · 硬边界 NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4_FROZEN_PRESERVED=true (582c852) · R41_DATA_PRESERVED=true (2b17354) · R42_DATA_PRESERVED=true (04db695) · R43_FROZEN_OVERWRITTEN=false (69c396d md5 preserved) · R43A_FROZEN_OVERWRITTEN=false (a98db0b md5 preserved) · R44_FROZEN_OVERWRITTEN=false (3c70108 md5 preserved) · AI_VISION_DISCLOSED=true (R4.4A 重新聲明) · ctext_bypass_attempted=false · <strong>完成 R4.4A 後停止, 不進入 R5</strong></span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R4.1</strong> · 《水经注》易水专题学术审计 · publication-level scholarly audit layer over R4 (582c852) · R4 frozen JSON 完整保留 · <strong>12 claims 重判:7 SUPPORTED + 5 PARTIALLY_SUPPORTED</strong> · CLAIM_011_REVISED + CLAIM_012_CORRECTED (深澤 vs 容城 拆分) · PRIMARY_SOURCES=1 · EXTERNAL_SOURCES=6 · PASSAGE_VERIFIED_SOURCES=0 · VARIANT_PASSAGES=1 · CORE_TOPOLOGY=9 nodes / 15 edges · FULL_TOPOLOGY preserved (72/29) · 修正 R4 SVG cy=380 衝突 · 硬边界 NEW_OCR=0 · NEW_PRIMARY_ACQUISITION=0 · DB_WRITES=0 · EMBEDDINGS=0 · R4_BASELINE_PRESERVED=true</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R4</strong> · 《水经注》易水叙事研究 · textual spatial topology + 7 核心页(WCSEQ-004) + 96 spatial relations + 72 nodes / 29 edges + 12 SUPPORTED claims + 7 外部学术校核 + 易水专题入口 · <strong>首轮允许 NEW_HISTORICAL_CLAIMS &gt; 0</strong> · REAL_WORLD_LOCATION = UNRESOLVED</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R3.4</strong> · 《水经注》上下文序列修复 · 20 sequence_group (WCSEQ-001..020) + 12 核心页 4 档上下文状态 + Gate v3 + PROXY_REVIEWED 命名修正 + 108 PROXY_REVIEWED_BODY</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R3.3</strong> · 《水经注》核心证据文本代理复核 · 422 RULE_QUALIFIED + 100-页抽样 0.97 + 12 核心 + 19 VERIFIED + 1 PARTIAL + 108 PROXY_REVIEWED</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R3.2</strong> · 《水经注》正文可信度验证 · 426 HISTORICAL_BODY + 465 INDEXABLE + 90-页抽样 0.6364 + 58 UNKNOWN 全量重审</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R3.1</strong> · 语料质量审计 · 三层 956/956/866 + FTS5 状态</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span><strong>R3</strong> · 完整语料校准 · FULL CORPUS vs AUDITED SAMPLE</span><span class="ver-sha">SPEC RUN</span></li>
-      <li><span>R2.2 · Editorial Epistemic Clarity + 三层证据状态</span><span class="ver-sha"><code>8a5a130</code></span></li>
-      <li><span>R2.1 · Evidence Identity + zh-CN focused interface</span><span class="ver-sha"><code>fda2ecb</code></span></li>
-      <li><span>R2 · 《水经注》数字证据研究 + zh-CN Results Hub</span><span class="ver-sha"><code>3883455b</code></span></li>
-      <li><span>R1 · Water Classic Evidence Reconstruction Publication</span><span class="ver-sha"><code>59d258e</code></span></li>
-      <li><span>v1.0 Cleanup R1 · Metadata reconciliation + PROVENANCE_AUDIT</span><span class="ver-sha"><code>3a51ef5</code></span></li>
-      <li><span>v1.0 Candidate · First Real Scholarly Output</span><span class="ver-sha"><code>7738275</code></span></li>
-      <li><span>v0.9 Public Research Portfolio</span><span class="ver-sha"><code>39a6ec1</code></span></li>
-      <li><span>v0.8 Publication &amp; Scholarly Output</span><span class="ver-sha"><code>7477743</code></span></li>
-      <li><span>v0.7 Research Writing Environment</span><span class="ver-sha"><code>4fa8802</code></span></li>
-      <li><span>v0.6 Research Graph &amp; Project Pages</span><span class="ver-sha"><code>fbb5eb3</code></span></li>
-      <li><span>v0.5 Research Workspace</span><span class="ver-sha"><code>c32cff0</code></span></li>
-      <li><span>v0.4 Evidence Explorer</span><span class="ver-sha"><code>7abe6ae</code></span></li>
-      <li><span>v0.3 Rooms + Case Studies</span><span class="ver-sha"><code>c2e6f1d</code></span></li>
-      <li><span>P5-D · Frozen Research Database</span><span class="ver-sha"><code>f70fd97</code></span></li>
-      <li><span>P5-C</span><span class="ver-sha"><code>a815475</code></span></li>
-    </ul>
-  </div>
-</section>
-
-<footer class="footer">
-  <p>SHUGE 数字人文研究 · 永久成果入口</p>
-  <p>v1.0 frozen baseline (<code>3a51ef5</code>) untouched · R1 route (<code>59d258e</code>) preserved · R2 frozen (<code>3883455b</code>) · R2.1 frozen (<code>fda2ecb</code>)</p>
-  <p><a href="/projects/shuge/research/water-classic/">进入《水经注》数字证据研究专题</a></p>
 </footer>
-
-</div>
 </body>
 </html>

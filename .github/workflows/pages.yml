@@ -162,11 +162,13 @@ jobs:
                               assert 'id="index-search"' in body and 'id="index-kind"' in body,'catalog filter missing'
                               assert '/projects/site-design-lab/shuge-evidence-exhibition/' in body,'exhibition not indexed'
                               assert '/projects/site-design-lab/shuge-source-register/' in body,'reference not indexed'
+                              assert '/projects/site-design-lab/shuge-source-crosswalk/' in body,'stage2e source crosswalk not indexed'
                               with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
                                   catalog=json.loads(data_response.read().decode('utf-8'))
                                   assert catalog['total']>15,'empty content index'
                                   assert catalog['counts']['exhibition']>=1 and catalog['counts']['reference']>=1,'missing catalog categories'
                                   assert not any('/source/' in item['url'] for item in catalog['items']),'source paths leaked to catalog'
+                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2e reader not uniquely indexed'
                           if path=='/projects/site-design-lab/shuge-source-crosswalk/':
                               assert 'work-shuge-168491' in body and 'work-shuge-211203' in body and 'work-shuge-44159' in body,'crosswalk rows missing'
                               assert 'UNVERIFIED' in body and 'NOT_FOUND' in body,'crosswalk status labels missing'

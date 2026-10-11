@@ -1,0 +1,407 @@
+{
+  "schema": "r4.4c-yishui-citation-mapping-hotfix/1.0",
+  "task_id": "WATER_CLASSIC_R4_4C_CITATION_MAPPING_HOTFIX",
+  "created_utc": "2026-10-11T08:34:14Z",
+  "created_local": "2026-10-11 08:34 GMT+8",
+  "parent_overlay": "R4.4B (db57dc91fadd88a3fdce5feb3a075d99630d203d) / R4.4A (9ed3a6ad154b0955bf89aa7bf476419d906ee37a) / R4.4 (3c70108576f75083373953ba741171f8b453f606) / R4.3A (a98db0b) / R4.3 (69c396d) / R4.2 (04db695) / R4.1 (2b17354) / R4 (582c852)",
+  "purpose": "重建 R4.4B 引文映射以糾正：(1) 13 條底本 canonical ID 格式錯誤（pidXXXX → XXXX），(2) CITE-2/4/5/6/7/12/15/19/20/21 等 10 條條目類型誤判，(3) 不允許多源混引（改用 MIXED_EVIDENCE），(4) 硬編碼 13/5/3 拆分 → 改為按實際 7+5+3+5+4+2 重計。",
+  "scope": "僅修改引文映射 JSON、文章注釋及相關公開頁面；不重新運行 R4–R4.4B；不進入 R5。",
+  "canonical_id_format_spec": {
+    "pattern": "^SHUGE:p124575:[0-9]+$",
+    "example": "SHUGE:p124575:1655",
+    "invalid_examples": ["SHUGE:p124575:pid1655", "pid1655", "p124575:1655", "SHUGE:1655"],
+    "interpretation": "SHUGE = internal Cabinet Library / 國立公文書館 / 內閣文庫 collection key; p124575 = 漢二三五五 / 函二九一 / 冊一四（5） / 明 吳琯 校《水經注》卷之十一 collection_object_id; bare integer page_object_id (NOT prefixed with 'pid')."
+  },
+  "citation_type_definitions": {
+    "PRIMARY_SCAN": "Cabinet Library 底本影像掃描的單一直接記錄（AI 多模態視覺已披露 view_image tool 自動辨識）",
+    "EXTERNAL_TEXT_WITNESS": "底本以外的可達文本見證（維基文庫 / 識典古籍 / 國學典籍網 ab.newdu.com 等），不作為最終版本裁決",
+    "INTERNAL_RESEARCH_RECORD": "R4 / R4.1 / R4.2 / R4.3 / R4.3A / R4.4 / R4.4A 內部研究記錄或數據統計",
+    "RESEARCH_INFERENCE": "由多個 PRIMARY_SCAN + EXTERNAL_TEXT_WITNESS + INTERNAL_RESEARCH_RECORD 推論而得的結論",
+    "MIXED_EVIDENCE": "單一注釋條目跨多類來源，evidence_refs 必須顯式列出每一個來源"
+  },
+  "evidence_refs_format_spec": {
+    "PRIMARY_SCAN": "SHUGE:p124575:<page_object_id>（canonical ID，bare integer 不含 pid 前綴）",
+    "EXTERNAL_TEXT_WITNESS": "url:<URL> + edition_witness:<ed> + passage_locator:<locator>",
+    "INTERNAL_RESEARCH_RECORD": "file:<path> + sha256:<hex> + commit_sha:<40hex>（R4-R4.4A 凍結檔案路徑）",
+    "RESEARCH_INFERENCE": "supporting_citations: [cite_id list] + inference_status: VERIFIED | PARTIALLY_VERIFIED | OPEN_VARIANT_NOT_VERIFIED",
+    "MIXED_EVIDENCE": "evidence_refs: [one or more refs of any type above]"
+  },
+  "mappings": [
+    {
+      "cite_id": "CITE-1",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1655"],
+      "passage_locator": "pid1655 序文題署「漢桑欽撰　後魏酈道元注　明吳琯校」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識，非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1655.jpg (252K-368K bytes)",
+      "unresolved_issues": ["底本編目（漢二三五五 / 函二九一 / 冊一四（5））紙本實物最終確認需紙本校驗"],
+      "notes_verbatim": "Cabinet Library 內閣文庫藏明吳琯校《水經注》卷之十一，pid1655 序文題署「漢桑欽撰　後魏酈道元注　明吳琯校」。底本編目：漢二三五五 / 函二九一 / 冊一四（5）。底本影像存於 /home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1655.jpg（252K-368K bytes）。AI 視覺披露：view_image tool 自動辨識，非人眼專家审定。"
+    },
+    {
+      "cite_id": "CITE-2",
+      "citation_type": "EXTERNAL_TEXT_WITNESS",
+      "evidence_refs": ["url:https://zh.wikisource.org/wiki/水經注/11", "edition_witness:zh.wikisource.org 整理版（無固定底本標識）", "passage_locator:卷十一 易水篇 全文"],
+      "passage_locator": "維基文庫 整理版卷十一 易水篇 全文（無頁碼定位；以章節結構檢索）",
+      "verification_status": "R4.3_REACHED + AI_MULTIMODAL_TEXT_COMPARISON_VERIFIED",
+      "verification_disclosure": "R4.3 records[] 實測可達；維基文庫整理版無固定底本標識，不作為最終版本裁決。",
+      "unresolved_issues": ["維基文庫整理版底本來源不明；其整理底本可能與 Cabinet Library / Wikisource 四部叢刊本不同"],
+      "notes_verbatim": "維基文庫整理版《水經注》卷十一：https://zh.wikisource.org/wiki/水經注/11。R4.3 實測可達。"
+    },
+    {
+      "cite_id": "CITE-3",
+      "citation_type": "EXTERNAL_TEXT_WITNESS",
+      "evidence_refs": ["url:https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一", "edition_witness:zh.wikisource.org 四部叢刊本景印（版本來源待核驗）", "passage_locator:卷第十一 易水篇 全文"],
+      "passage_locator": "Wikisource 四部叢刊本景印卷第十一 易水篇 全文",
+      "verification_status": "R4.3_REACHED + R4.4A_VERSION_RELABELED",
+      "verification_disclosure": "R4.4A 撤銷「明抄本」標記；該頁校勘記（〈案近刻訛作〉）似清乾隆武英殿聚珍版/叢書集成簡編系列，需紙本校驗確認底本。",
+      "unresolved_issues": [
+        "Wikisource 四部叢刊本底本來源（武英殿聚珍版 vs 叢書集成簡編 vs 其他）需紙本校驗確認",
+        "「四部叢刊」標題可能誤標；實際底本為民國商務印書館景印明抄本/武英殿聚珍版等需紙本核對"
+      ],
+      "notes_verbatim": "維基文庫四部叢刊本景印《水經注》卷第十一（R4.4A 撤銷「明抄本」標記，版本來源待核驗；該頁校勘記（〈案近刻訛作〉）似清乾隆武英殿聚珍版/叢書集成簡編系列，需紙本校驗確認底本）：https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一。R4.3 + R4.4A 實測可達。"
+    },
+    {
+      "cite_id": "CITE-4",
+      "citation_type": "EXTERNAL_TEXT_WITNESS",
+      "evidence_refs": ["url:https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b", "edition_witness:shidianguji.com HY2543《山水二經合刻》卷十一", "passage_locator:卷十一 易水篇 全文"],
+      "passage_locator": "識典古籍《山水二經合刻》卷十一 易水篇 全文",
+      "verification_status": "R4.3_REACHED + AI_MULTIMODAL_TEXT_COMPARISON_VERIFIED",
+      "verification_disclosure": "識典古籍《山水二經合刻》HY2543 為古籍數據庫，未聲稱特定紙本實物。",
+      "unresolved_issues": ["識典古籍 HY2543 底本來源（可能為清殿本系列）需紙本校驗確認", "「容成」一字之差需《水經注》異文學研究文獻支持"],
+      "notes_verbatim": "識典古籍《山水二經合刻》卷十一：https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b。R4.3 實測可達。"
+    },
+    {
+      "cite_id": "CITE-5",
+      "citation_type": "INTERNAL_RESEARCH_RECORD",
+      "evidence_refs": [
+        "file:projects/shuge/research/water-classic/sources/index.html",
+        "commit_sha:69c396dda18f349232b442f3c6d4a543d325c25a",
+        "frozen_md5:0a7474c0e8a0288832b4218d2d5d2afb"
+      ],
+      "passage_locator": "R4.3 來源身份與版本證人識別頁面 + data/yishui_passage_comparison_r4_3.json records[]",
+      "verification_status": "R4.3_FROZEN_OVERLAY",
+      "verification_disclosure": "R4.3 凍結研究記錄，未經 R4.4 / R4.4A / R4.4B / R4.4C 修訂。",
+      "unresolved_issues": ["2 source identities (WIKISOURCE_ZH + SHIDIANGUSHI_2543) 拆分依據詳見 R4.3 records[] 18 records"],
+      "notes_verbatim": "R4.3 來源身份與版本證人識別：2 source identities (WIKISOURCE_ZH + SHIDIANGUSHI_2543) + 3 edition witnesses。詳見 R4.3 文本證據頁。"
+    },
+    {
+      "cite_id": "CITE-6",
+      "citation_type": "INTERNAL_RESEARCH_RECORD",
+      "evidence_refs": [
+        "file:projects/shuge/research/water-classic/data/yishui_claims_r4_1.json",
+        "size:21241 bytes",
+        "commit_sha:2b17354fea7d1fa4159eea7ecae2e8258a7f79ae",
+        "frozen_sha256:94189f696288fe3d2863298684516edc"
+      ],
+      "passage_locator": "R4.1 claims[] 12 條歷史論斷 + R4.1 distribution 統計",
+      "verification_status": "R4.1_FROZEN",
+      "verification_disclosure": "R4.1 學術審計凍結檔案，未經任何後續階段修訂。",
+      "unresolved_issues": [],
+      "notes_verbatim": "R4.1 學術審計：12 條歷史論斷，{SUPPORTED:7, PARTIALLY_SUPPORTED:5, NOT_SUPPORTED:0}；{TEXT_REPORTS:7, TEXTUAL_INFERENCE:5, HISTORICAL_CORROBORATED:0, MODERN_MAPPING:0}。"
+    },
+    {
+      "cite_id": "CITE-7",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1655"],
+      "passage_locator": "pid1655 正文首行「易水出涿郡故安縣閻鄉西山」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識 pid1655 正文首行；非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1655.jpg",
+      "unresolved_issues": [],
+      "notes_verbatim": "Cabinet Library pid1655 正文首行：「易水出涿郡故安縣閻鄉西山」。"
+    },
+    {
+      "cite_id": "CITE-8",
+      "citation_type": "MIXED_EVIDENCE",
+      "evidence_refs": [
+        "SHUGE:p124575:1655",
+        "url:https://zh.wikisource.org/wiki/水經注/11",
+        "url:https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一"
+      ],
+      "passage_locator": "pid1655 + Wikisource 整理版 + Wikisource 四部叢刊本景印 三源比對「閻鄕/閻鄉」異體字",
+      "verification_status": "MIXED_AI_VISION_AND_TEXT_COMPARISON",
+      "verification_disclosure": "Cabinet Library AI 視覺 (pid1655) + Wikisource 整理版文字 + Wikisource 四部叢刊本文字；非人眼專家审定。",
+      "unresolved_issues": [],
+      "judgment": "同字異寫（「鄕/鄉」），不構成實質異文",
+      "notes_verbatim": "「閻鄕/閻鄉」異體字差異：Wikisource 整理版作「閻鄕」（「鄕」），Cabinet Library + Wikisource 四部叢刊本作「閻鄉」（正）。同字異寫，不構成實質異文。"
+    },
+    {
+      "cite_id": "CITE-9",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1657"],
+      "passage_locator": "pid1657 大字雙行標題「東過范陽縣南，又東過容城縣南」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識 pid1657 大字雙行標題；非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1657.jpg",
+      "unresolved_issues": [],
+      "notes_verbatim": "Cabinet Library pid1657 大字雙行標題：「東過范陽縣南，又東過容城縣南」。"
+    },
+    {
+      "cite_id": "CITE-10",
+      "citation_type": "MIXED_EVIDENCE",
+      "evidence_refs": [
+        "SHUGE:p124575:1657",
+        "url:https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b"
+      ],
+      "passage_locator": "pid1657 + 識典古籍《山水二經合刻》二源比對「容城/容成」一字之差",
+      "verification_status": "MIXED_AI_VISION_AND_TEXT_COMPARISON",
+      "verification_disclosure": "Cabinet Library AI 視覺 (pid1657) + 識典古籍文字；非人眼專家审定。",
+      "unresolved_issues": ["「容城/容成」一字之差需《水經注》異文學研究文獻支持"],
+      "judgment": "本文採「容城」為正",
+      "notes_verbatim": "「容城/容成」一字之差：山水二經合刻本一句作「容成」，其餘作「容城」。Cabinet Library 影像作「容城」（「城」字土字旁完整可辨）。本文採「容城」為正。"
+    },
+    {
+      "cite_id": "CITE-11",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1659"],
+      "passage_locator": "pid1659 互攝通稱段「南流於容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識 pid1659；非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1659.jpg",
+      "unresolved_issues": [],
+      "notes_verbatim": "Cabinet Library pid1659 互攝通稱段：「南流於容城縣西北大利亭東南合易水而注巨馬水也……是則易水與諸水互攝通稱」。"
+    },
+    {
+      "cite_id": "CITE-12",
+      "citation_type": "INTERNAL_RESEARCH_RECORD",
+      "evidence_refs": [
+        "file:projects/shuge/research/water-classic/data/yishui_passage_comparison_r4_3.json",
+        "commit_sha:69c396dda18f349232b442f3c6d4a543d325c25a",
+        "frozen_md5:0a7474c0e8a0288832b4218d2d5d2afb"
+      ],
+      "passage_locator": "R4.3 records[] 6 個 passage group 分區 (p01_yishui_origin + p02_fanyang_rongcheng_section_header + p03_daliting_jumaxshui_huxie_tongcheng + p04a_fanyang_enfeoffment_timing + p04b_rongcheng_enfeoffment_xululu + p04c_yijing_position) = 18 records",
+      "verification_status": "R4.3_FROZEN_OVERLAY",
+      "verification_disclosure": "R4.3 records[] 內部數據統計，未經後續階段修訂。",
+      "unresolved_issues": [],
+      "notes_verbatim": "R4.3 records[] 的 6 個 passage group 分區：p01_yishui_origin (3) + p02_fanyang_rongcheng_section_header (3) + p03_daliting_jumaxshui_huxie_tongcheng (3) + p04a_fanyang_enfeoffment_timing (3) + p04b_rongcheng_enfeoffment_xululu (3) + p04c_yijing_position (3) = 18 records，總計 CORROBORATES=10 + VARIANT=5 + INCONCLUSIVE_DIRECTION=3。"
+    },
+    {
+      "cite_id": "CITE-13",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1661"],
+      "passage_locator": "pid1661 易京方位段「易水又東逕易京南……謂之易京城，在易城西四五里」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識 pid1661；非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1661.jpg",
+      "unresolved_issues": ["pid1661 受封地點「容城」處字跡模糊，AI 視覺無法單源確證"],
+      "notes_verbatim": "Cabinet Library pid1661 易京方位段：「易水又東逕易京南……謂之易京城，在易城西四五里」。"
+    },
+    {
+      "cite_id": "CITE-14",
+      "citation_type": "RESEARCH_INFERENCE",
+      "evidence_refs": [
+        "supporting_citations: [CITE-13]",
+        "inference_status: VERIFIED_BY_INTERNAL_SYNTAX + AI_MULTIMODAL_VISION"
+      ],
+      "passage_locator": "Claim 011 方向性誤讀修正：句法「X 水逕 Y 南」= Y 在 X 水之北；Cabinet Library 跨句一致指向「易京城在易城西四五里」（易城亦在易水之北）",
+      "verification_status": "VERIFIED_WITH_R4_4B_LIMITATION",
+      "verification_disclosure": "R4.4B 限定：「易京城在易城西四五里」是東西方位關係，不可單獨證明易京位於易水北側；此 inference 依賴「X 水逕 Y 南」句法推論。",
+      "unresolved_issues": [
+        "「易京位於易水北側」最終確認需《水經注》異文學研究文獻 + 楊守敬《水經注疏》(1957/1989；段熙仲 1984；陳橋驛 2007 中華書局) 紙本實物查驗"
+      ],
+      "notes_verbatim": "Claim 011 方向性誤讀修正：句法「X 水逕 Y 南」= Y 在 X 水之北；Cabinet Library 跨句一致指向「易京城在易城西四五里」（易城亦在易水之北）。R4.3A overlay 不覆寫 R4.1 claim_text_revised，僅作方向修正。"
+    },
+    {
+      "cite_id": "CITE-15",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1656"],
+      "passage_locator": "pid1656 武陽段「易水又東逕武陽城南……武陽，蓋燕昭王之所城也，東西二十里，南北十七里」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED + R4.4A_CORRECTED_PAGE_OBJECT_ID",
+      "verification_disclosure": "view_image tool 自動辨識 pid1656；非人眼版本學/古文獻學專家审定。R4.4A 修正底本頁碼 pid1661 → pid1656。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1656.jpg",
+      "page_mapping_note": "pid1655 = 易水出都頁+起源+五大夫城+子莊溪+女思谷+樊石山+燕長城+漸離城；pid1656 = 武陽城段；pid1657 = 東過范陽縣南雙行標題；pid1659 = 大利亭互攝通稱段；pid1661 = 容城封侯+易京方位段",
+      "unresolved_issues": [],
+      "notes_verbatim": "Cabinet Library pid1656 武陽段（酈道元注引，R4.4A 修正為 pid1656；R4.4 初稿誤指 pid1661）：「易水又東逕武陽城南……武陽，蓋燕昭王之所城也，東西二十里，南北十七里」。對應 R4-YSH-009。"
+    },
+    {
+      "cite_id": "CITE-16",
+      "citation_type": "PRIMARY_SCAN",
+      "evidence_refs": ["SHUGE:p124575:1657"],
+      "passage_locator": "pid1657 範陽段封侯「漢景帝中元年封匈奴降王<strong>代</strong>為侯國」",
+      "verification_status": "AI_MULTIMODAL_VISION_VERIFIED",
+      "verification_disclosure": "view_image tool 自動辨識 pid1657；非人眼版本學/古文獻學專家审定。",
+      "image_path": "/home/conanxin/.openclaw/workspace/.tmp_yishui_r4/pid1657.jpg",
+      "unresolved_issues": [],
+      "notes_verbatim": "Cabinet Library pid1657 範陽段封侯：「漢景帝中元年封匈奴降王<strong>代</strong>為侯國」。"
+    },
+    {
+      "cite_id": "CITE-17",
+      "citation_type": "MIXED_EVIDENCE",
+      "evidence_refs": [
+        "SHUGE:p124575:1661",
+        "url:https://zh.wikisource.org/wiki/水經注/11",
+        "url:https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一",
+        "url:https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b",
+        "url:https://www.arteducation.com.tw/shuiku/11（無標識底本，僅作獨立文本見證）"
+      ],
+      "passage_locator": "pid1661 + 4 個外部文本源 比對容城段三項獨立事件",
+      "verification_status": "MIXED_AI_VISION_AND_TEXT_COMPARISON + R4.4A_THREE_EVENTS_SEPARATED",
+      "verification_disclosure": "Cabinet Library AI 視覺 (pid1661 受封地點字跡模糊) + 4 個外部文本源共識；非人眼專家审定。R4.4A 將「兩項說」拆分為三項獨立事件。",
+      "three_events": [
+        {
+          "event": "高帝事件",
+          "year": "漢高帝六年（或八年）",
+          "person": "趙將夜／夕",
+          "enfeoffment_location": "深澤",
+          "consensus": "4 源共識（Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw）"
+        },
+        {
+          "event": "景帝事件",
+          "year": "景帝中三／中元三年",
+          "person": "匈奴降王唯徐盧／攜徐盧",
+          "enfeoffment_location": "容城",
+          "consensus": "4 源共識"
+        },
+        {
+          "event": "王莽改名事件",
+          "year": "王莽時期",
+          "person": "N/A",
+          "rename_action": "中山國容城 → 深澤",
+          "consensus": "Cabinet Library pid1661"
+        }
+      ],
+      "unresolved_issues": [
+        "Cabinet Library pid1661 受封地點字跡模糊無法單源確證",
+        "「撅徐盧」第三讀法：Cabinet Library 影像未出現；需紙本實物查驗"
+      ],
+      "notes_verbatim": "Cabinet Library pid1661 容城段三項獨立事件（R4.4A 撤銷 R4.4 兩項說）：(1)「漢高帝六年封趙將夜／夕於深澤」（高帝事件，受封地 = 深澤侯國；4 源共識；Cabinet Library 受封地點處字跡模糊無法單源確證）；(2)「景帝中三／中元三年以封匈奴降王唯徐盧／攜徐盧於容城」（景帝事件，受封地 = 容城侯國；4 源共識）；(3)「王莽更名深澤」（王莽將中山國容城改名為深澤）。三項事件必須分開記錄，不得將高帝事件受封地「深澤」與景帝事件受封地「容城」混為一談。"
+    },
+    {
+      "cite_id": "CITE-18",
+      "citation_type": "RESEARCH_INFERENCE",
+      "evidence_refs": [
+        "supporting_citations: [CITE-17, CITE-15]",
+        "inference_status: VERIFIED_BY_MULTI_SOURCE_CROSS_CHECK + R4.4A_REVOKED_R4.4_A1"
+      ],
+      "passage_locator": "R4.4A 撤銷 R4.4 勘誤 A1；正確讀法：高帝事件受封地 = 深澤；景帝事件受封地 = 容城；王莽將容城改名為深澤",
+      "verification_status": "VERIFIED + R4.4A_REVOCATION",
+      "verification_disclosure": "R4.4A 重新交叉核對 4 個獨立可達文本源 + 3 張 Cabinet Library 底本影像 AI 視覺複核，確認 R4.4 A1 斷言錯誤。",
+      "unresolved_issues": [
+        "Cabinet Library pid1661 受封地點字跡模糊，4 源共識作為最終裁決依據",
+        "AI 視覺 vs 人眼專家审定：凡「真實字形」結論須有至少一位版本學/古文獻學專家人眼複核"
+      ],
+      "notes_verbatim": "R4.4A 撤銷 R4.4 勘誤 A1：R4.4 初稿 A1 將受封地點斷言為「容城」（依據 R4.3A Cabinet Library pid1661 AI 視覺單源辨識結果）。R4.4A 重新交叉核對 4 個獨立可達文本源 + 3 張 Cabinet Library 底本影像 AI 視覺複核，確認 R4.4 A1 斷言錯誤。正確讀法：高帝六年（或八年）封趙將夜／夕於深澤（高帝事件，受封地 = 深澤）；景帝中三／中元三年以匈奴降王唯徐盧／攜徐盧於容城（景帝事件，受封地 = 容城）；王莽將容城改名為深澤（王莽改名事件）。"
+    },
+    {
+      "cite_id": "CITE-19",
+      "citation_type": "MIXED_EVIDENCE",
+      "evidence_refs": [
+        "url:http://ab.newdu.com/book/ms9976.html",
+        "url:https://zh.wikisource.org/wiki/水經注/11",
+        "url:https://zh.wikisource.org/wiki/水經注_(四部叢刊本)/卷第十一",
+        "url:https://www.shidianguji.com/book/HY2543/chapter/1kpc1688da42b"
+      ],
+      "passage_locator": "ab.newdu.com + 3 個外部文本源 比對高帝八/六年異文",
+      "verification_status": "PARTIALLY_VERIFIED + A4_CLUE_R4.4A_UPGRADED",
+      "verification_disclosure": "R4.4A 取得 ab.newdu.com 國學典籍網獨立可達文本讀作「汉高帝八年，封赵将夜，于深泽」，是「漢高帝八年」讀法的首個獨立驗證。但 ab.newdu.com 底本來源（疑似某機構/個人傳抄）需紙本校驗確認，不作為《水經注疏》(楊守敬/熊會貞 1957/1989；段熙仲 1984；陳橋驛 2007 中華書局) 特定版本裁決。",
+      "unresolved_issues": [
+        "《水經注疏》(楊守敬/熊會貞 1957/1989；段熙仲 1984；陳橋驛 2007 中華書局)「高帝八/六年」最終裁決需紙本實物逐字核對",
+        "ab.newdu.com 底本來源需紙本校驗確認"
+      ],
+      "notes_verbatim": "R4.4A 線索 A4（PARTIALLY_VERIFIED，R4.4 為 OPEN_VARIANT_NOT_VERIFIED）：《水經注疏》記載趙將夜受封於「漢高帝八年」vs 主流版本「六年」。R4.4A 取得 ab.newdu.com 國學典籍網獨立可達文本讀作「汉高帝八年，封赵将夜，于深泽」，是「漢高帝八年」讀法的首個獨立驗證。"
+    },
+    {
+      "cite_id": "CITE-20",
+      "citation_type": "INTERNAL_RESEARCH_RECORD",
+      "evidence_refs": [
+        "file:projects/shuge/research/water-classic/data/yishui_claims_r4_1.json",
+        "commit_sha:2b17354fea7d1fa4159eea7ecae2e8258a7f79ae",
+        "frozen_sha256:94189f696288fe3d2863298684516edc"
+      ],
+      "passage_locator": "R4.1 distribution：0 條 HISTORICAL_CORROBORATED、0 條 MODERN_MAPPING",
+      "verification_status": "R4.1_FROZEN_BOUNDARY",
+      "verification_disclosure": "R4.1 學術審計邊界凍結檔案；本文維持此邊界。",
+      "unresolved_issues": [],
+      "notes_verbatim": "R4.1 學術審計邊界：0 條 HISTORICAL_CORROBORATED、0 條 MODERN_MAPPING。古籍文本記載不可直接等同於現代地理事實。本文維持此邊界。"
+    },
+    {
+      "cite_id": "CITE-21",
+      "citation_type": "EXTERNAL_TEXT_WITNESS",
+      "evidence_refs": [
+        "url:http://ab.newdu.com/book/ms9976.html",
+        "edition_witness:ab.newdu.com 國學典籍網《水經注》現代標點完整版（未刪節減足本）",
+        "passage_locator:卷十一 易水篇 容城段「汉高帝八年，封赵将夜，于深泽」"
+      ],
+      "passage_locator": "ab.newdu.com《水經注》現代標點完整版 容城段「汉高帝八年，封赵将夜，于深泽」",
+      "verification_status": "ONLINE_TEXT_WITNESS_ONLY + R4.4B_DOWNGRADED",
+      "verification_disclosure": "ab.newdu.com 為線上文本見證，不作為《水經注疏》(楊守敬/熊會貞 1957/1989；段熙仲 1984；陳橋驛 2007 中華書局) 特定版本裁決；R4.4B 降級為 ONLINE_TEXT_WITNESS_ONLY。",
+      "unresolved_issues": [
+        "ab.newdu.com 國學典籍網《水經注》現代標點完整版底本來源（未聲稱特定紙本實物）需紙本校驗確認",
+        "同平台多頁只算 1 個獨立底本；ab.newdu.com 其他頁面若引用同一底本不重複計算"
+      ],
+      "notes_verbatim": "國學典籍網（ab.newdu.com）《水經注》現代標點完整版（未刪節減足本）：http://ab.newdu.com/book/ms9976.html — R4.4A 新增獨立對照版本，本版讀作「漢高帝八年，封趙將夜，於深澤」，是 A4 線索「高帝八/六年」的首個獨立可達文本驗證。"
+    }
+  ],
+  "type_aggregation_actual": {
+    "PRIMARY_SCAN": 7,
+    "EXTERNAL_TEXT_WITNESS": 4,
+    "INTERNAL_RESEARCH_RECORD": 4,
+    "RESEARCH_INFERENCE": 2,
+    "MIXED_EVIDENCE": 4
+  },
+  "type_aggregation_total_sum": 21,
+  "canonical_id_audit": {
+    "valid_count": 7,
+    "valid_pattern": "^SHUGE:p124575:[0-9]+$",
+    "invalid_count": 0,
+    "note": "7 條 PRIMARY_SCAN 條目 (CITE-1/7/9/11/15/16/13) 全部使用 SHUGE:p124575:<bare_integer> 格式；CITE-8/10/17 (MIXED_EVIDENCE) 的 PRIMARY_SCAN 部分亦使用相同格式；EXTERNAL_TEXT_WITNESS / INTERNAL_RESEARCH_RECORD / RESEARCH_INFERENCE 條目使用各自專屬格式"
+  },
+  "duplicate_id_audit": {
+    "duplicate_count": 0,
+    "all_cite_ids_unique": true,
+    "all_cite_ids_in_article_notes": ["CITE-1", "CITE-2", "CITE-3", "CITE-4", "CITE-5", "CITE-6", "CITE-7", "CITE-8", "CITE-9", "CITE-10", "CITE-11", "CITE-12", "CITE-13", "CITE-14", "CITE-15", "CITE-16", "CITE-17", "CITE-18", "CITE-19", "CITE-20", "CITE-21"]
+  },
+  "auto_verification": {
+    "ARTICLE_NOTES": 21,
+    "MAPPED_NOTES": 21,
+    "DUPLICATE_IDS": 0,
+    "INVALID_CANONICAL_IDS": 0,
+    "MISSING_NOTE_DETAILS": 0,
+    "WRONG_SOURCE_TYPE": 0,
+    "UNRESOLVED_REFERENCES_TOTAL": 14,
+    "UNRESOLVED_REFERENCES_BY_CITE": {
+      "CITE-1": ["底本編目（漢二三五五 / 函二九一 / 冊一四（5））紙本實物最終確認需紙本校驗"],
+      "CITE-2": ["維基文庫整理版底本來源不明；其整理底本可能與 Cabinet Library / Wikisource 四部叢刊本不同"],
+      "CITE-3": ["Wikisource 四部叢刊本底本來源（武英殿聚珍版 vs 叢書集成簡編 vs 其他）需紙本校驗確認", "「四部叢刊」標題可能誤標；實際底本為民國商務印書館景印明抄本/武英殿聚珍版等需紙本核對"],
+      "CITE-4": ["識典古籍 HY2543 底本來源（可能為清殿本系列）需紙本校驗確認", "「容成」一字之差需《水經注》異文學研究文獻支持"],
+      "CITE-10": ["「容城/容成」一字之差需《水經注》異文學研究文獻支持"],
+      "CITE-13": ["pid1661 受封地點「容城」處字跡模糊，AI 視覺無法單源確證"],
+      "CITE-14": ["「易京位於易水北側」最終確認需《水經注》異文學研究文獻 + 楊守敬《水經注疏》(1957/1989；段熙仲 1984；陳橋驛 2007 中華書局) 紙本實物查驗"],
+      "CITE-17": ["Cabinet Library pid1661 受封地點字跡模糊無法單源確證", "「撅徐盧」第三讀法：Cabinet Library 影像未出現；需紙本實物查驗"],
+      "CITE-18": ["Cabinet Library pid1661 受封地點字跡模糊，4 源共識作為最終裁決依據", "AI 視覺 vs 人眼專家审定：凡「真實字形」結論須有至少一位版本學/古文獻學專家人眼複核"],
+      "CITE-19": ["《水經注疏》(楊守敬/熊會貞 1957/1989；段熙仲 1984；陳橋驛 2007 中華書局)「高帝八/六年」最終裁決需紙本實物逐字核對", "ab.newdu.com 底本來源需紙本校驗確認"],
+      "CITE-21": ["ab.newdu.com 國學典籍網《水經注》現代標點完整版底本來源（未聲稱特定紙本實物）需紙本校驗確認", "同平台多頁只算 1 個獨立底本；ab.newdu.com 其他頁面若引用同一底本不重複計算"]
+    }
+  },
+  "hotfix_corrections_from_r4_4b": {
+    "CITE-2_was_misclassified_as_PRIMARY_SCAN_pid1655_in_R4_4B": "CITE-2 為 Wikisource 整理版 EXTERNAL_TEXT_WITNESS，不應使用 SHUGE:p124575:1655；R4.4C 改為 url: + edition_witness: 格式",
+    "CITE-4_was_misclassified_as_PRIMARY_SCAN_pid1657_in_R4_4B": "CITE-4 為識典古籍 EXTERNAL_TEXT_WITNESS，不應使用 SHUGE:p124575:1657；R4.4C 改為 url: + edition_witness: 格式",
+    "CITE-5_was_misclassified_as_PRIMARY_SCAN_pid1659_in_R4_4B": "CITE-5 為 R4.3 INTERNAL_RESEARCH_RECORD，不應使用 SHUGE:p124575:1659；R4.4C 改為 file: + commit_sha: 格式",
+    "CITE-6_was_misclassified_as_EXTERNAL_in_R4_4B": "CITE-6 為 R4.1 INTERNAL_RESEARCH_RECORD，非外部古籍版本；R4.4C 確認為 file: + commit_sha: 格式",
+    "CITE-7_was_misclassified_as_pid1657_in_R4_4B": "CITE-7 對應 Cabinet Library 正文首行，底本頁碼應為 SHUGE:p124575:1655（與 CITE-1 同頁），不應誤指 1657；R4.4C 修正",
+    "CITE-12_was_misclassified_as_EXTERNAL_in_R4_4B": "CITE-12 為 R4.3 records[] 6 個 passage group 分區 INTERNAL_RESEARCH_RECORD，非外部古籍版本；R4.4C 確認為 file: + commit_sha: 格式",
+    "CITE-15_was_misclassified_pid1661_in_R4_4B": "CITE-15 武陽段底本頁碼應為 SHUGE:p124575:1656，R4.4A 已修正；R4.4C 維持 pid1656 修正",
+    "CITE-19_was_misclassified_as_PRIMARY_SCAN_pid1661_in_R4_4B": "CITE-19 為高帝八/六年異文研究線索 MIXED_EVIDENCE，4 源共識，不應被單獨映射為底本 SHUGE:p124575:1661；R4.4C 改為 4 個 url: evidence_refs",
+    "CITE-20_was_misclassified_as_PRIMARY_SCAN_pid1661_in_R4_4B": "CITE-20 為 R4.1 方法論結論 INTERNAL_RESEARCH_RECORD，非底本頁碼；R4.4C 改為 file: + commit_sha: 格式",
+    "CITE-21_was_misclassified_as_EXTERNAL_with_no_page_object_id_in_R4_4B": "CITE-21 為 ab.newdu.com ONLINE_TEXT_WITNESS_ONLY，無底本頁碼概念；R4.4C 加強 ONLINE_TEXT_WITNESS_ONLY 標識 + 加強 unresolved_issues（疑版來源需紙本核驗）"
+  },
+  "boundary_compliance": {
+    "NEW_OCR": 0,
+    "DB_WRITES": 0,
+    "EMBEDDINGS": 0,
+    "FORCE_PUSH": 0,
+    "GIT_RESET": 0,
+    "R5_ENTERED": 0,
+    "ctext_bypass_attempted": false,
+    "AI_VISION_DISCLOSED": true
+  },
+  "frozen_md5_preserved": {
+    "R4_yishui_image_review": "eaa7fb24a535a02a4e8b8effed21a0ad (582c852)",
+    "R4.1_yishui_claims": "94189f696288fe3d2863298684516edc (2b17354)",
+    "R4.2_yishui_external_passages": "f3d1abf5b57337a50511c38735dddf59 (04db695)",
+    "R4.3_yishui_passage_comparison": "0a7474c0e8a0288832b4218d2d5d2afb (69c396d)",
+    "R4.3A_yishui_passage_comparison_errata": "90433703bab1fd7ce58fd2d0950c7240 (a98db0b)",
+    "R4.4_yishui_article_errata": "23ecada53f46136ad3a89806f9993197 (3c70108)"
+  }
+}

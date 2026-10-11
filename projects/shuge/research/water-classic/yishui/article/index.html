@@ -431,12 +431,14 @@
 <p><strong>[CITE-20]</strong> R4.1 學術審計邊界：0 條 HISTORICAL_CORROBORATED、0 條 MODERN_MAPPING。古籍文本記載不可直接等同於現代地理事實。本文維持此邊界。</p>
 </div>
 
-<div class="wc-art-callout wc-art-callout-r44b">
-<p><strong>[CITE-MAP · R4.4B 新增]</strong> R4.4B 為本文 21 條註釋建立可核驗映射文件，明確區分三類證據類型（<strong>不聲稱所有 21 個條目都屬於 SHUGE canonical citations</strong>）：</p>
+<div class="wc-art-callout wc-art-callout-r44c">
+<p><strong>[CITE-MAP · R4.4C 重計]</strong> R4.4C 從文章實際 21 條注釋正文重新聚合，<strong>廢除 R4.4B 硬編碼 13/5/3 拆分</strong>，改為五類證據類型（依實際注釋內容分類，非依注釋順序推測）：</p>
 <ul>
-  <li><strong>底本證據</strong>（13 條）：CITE-1/2/4/5/7/8/9/11/13/15/16/19/20 → <code>SHUGE:p124575:&lt;page_object_id&gt;</code>（Cabinet Library / 國立公文書館 / 內閣文庫 / 漢二三五五 / 函二九一 / 冊一四（5）/ 明 吳琯 校《水經注》卷之十一）</li>
-  <li><strong>外部版本</strong>（5 條）：CITE-3/6/10/12/21 → source URL + edition/witness + passage locator（其中 CITE-21 ab.newdu.com 為在線文本見證，<strong>不作為《水經注疏》特定版本裁決</strong>）</li>
-  <li><strong>研究推論</strong>（3 條）：CITE-14/17/18 → supporting citations + inference status（VERIFIED / PARTIALLY_VERIFIED / 等級明示）</li>
+  <li><strong>PRIMARY_SCAN</strong>（7 條）：CITE-1/7/9/11/13/15/16 → <code>SHUGE:p124575:&lt;page_object_id&gt;</code>（Cabinet Library / 國立公文書館 / 內閣文庫 / 漢二三五五 / 函二九一 / 冊一四（5）/ 明 吳琯 校《水經注》卷之十一；canonical ID 格式：<code>SHUGE:p124575:[0-9]+</code>，bare integer 不含 pid 前綴）</li>
+  <li><strong>EXTERNAL_TEXT_WITNESS</strong>（4 條）：CITE-2/3/4/21 → source URL + edition/witness + passage locator（CITE-21 ab.newdu.com 為<strong>在線文本見證 ONLINE_TEXT_WITNESS_ONLY</strong>，<strong>不作為《水經注疏》特定版本裁決</strong>；同平台多頁只算 1 個獨立底本）</li>
+  <li><strong>INTERNAL_RESEARCH_RECORD</strong>（4 條）：CITE-5/6/12/20 → 內部研究記錄（R4.3 records[] / R4.1 claims[] / R4.1 邊界），引用 R4–R4.4A 凍結檔案 + commit_sha + sha256</li>
+  <li><strong>RESEARCH_INFERENCE</strong>（2 條）：CITE-14/18 → supporting_citations + inference_status（VERIFIED / PARTIALLY_VERIFIED / R4.4A_REVOKED_R4.4_A1）</li>
+  <li><strong>MIXED_EVIDENCE</strong>（4 條）：CITE-8/10/17/19 → evidence_refs 顯式列出多源（CITE-8 跨 3 源、CITE-10 跨 2 源、CITE-17 跨 5 源、CITE-19 跨 4 源；不強行歸入單一底本頁）</li>
 </ul>
 <p><strong>重點修正紀錄：</strong></p>
 <ul>
@@ -448,7 +450,7 @@
   <li>CITE-13/20：「易京城在易城西四五里」是<strong>東西</strong>方位關係，不可單獨證明易京位於易水北側（R4.4B 限定）</li>
   <li>CITE-21：ab.newdu.com 標識為「在線文本見證」，不作為《水經注疏》特定版本裁決（R4.4B 限定）</li>
 </ul>
-<p><strong>映射文件：</strong><code>data/yishui_article_citation_mapping_r4_4b.json</code>（10006 bytes，schema <span class="wc-cite">r4.4b-yishui-citation-mapping/1.0</span>；SHA-256 <code>06be2a4c4c92e941a48ddf6e438adc57dcfdc6f28967f17aac4a4cc1469cceb2</code>）+ 同步副本 <code>./evidence/yishui_article_citation_mapping_r4_4b.json</code>。</p>
+<p><strong>映射文件：</strong><code>data/yishui_article_citation_mapping_r4_4c.json</code>（31842 bytes，schema <span class="wc-cite">r4.4c-yishui-citation-mapping-hotfix/1.0</span>；SHA-256 <code>62ff1e2274c7034dec257d61cc01e9fd44ccd31f727745045f123cfb1e5698a7</code>）+ 同步副本 <code>./evidence/yishui_article_citation_mapping_r4_4c.json</code>。</p>
 <p><strong>平台 collapse 規則：</strong>同一平台 (域名相同) 的多個頁面只算 1 個獨立來源底本 (例：Wikisource 整理版 + Wikisource 四部叢刊本 = 同平台 zh.wikisource.org 但不同整理版本；ab.newdu.com 多個頁面 = 1 個獨立底本)。</p>
 </div>
 

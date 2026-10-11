@@ -1,64 +1,65 @@
 # Conan Xin 数字花园 — 项目交接入口
 
-> 更新：2026-10-11（UTC+8）· 接续入口：TASK_ID=CONANXIN_SITE_DESIGN_STAGE2D_CONTINUATION
-> 本文件记录已完成的真实状态。以 GitHub 仓库、合并提交、Actions 日志与公网响应作为验收权威，不把待办写成已发布。
+> 更新：2026-10-11（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION`  
+> 先核对 GitHub `main` 当前 SHA、PR 和 Pages Actions，不能把本交接文件中记录的历史 SHA 当作永远最新的主分支状态。
 
-## 1. 项目目的与不可突破的边界
+## 1. 项目目标与边界
 
-让文章、项目、展览、文献研究页共享品牌、导航、设计 token 和无障碍基础，同时允许已批准的特殊专题保留原生交互与阅读主题。
+在文章、项目、展览和文献资料之间建立统一、可读、可访问的网站，同时保持可追溯研究证据和特殊专题的独立体验。
 
-- 视觉权威：`assets/site/design.css`；工程权威：`scripts/build_site.py`、`scripts/personalize_site.py`、`.github/workflows/pages.yml`。
-- Agent 规则入口：`AGENTS.md`、`CLAUDE.md`、`docs/SITE_DESIGN.md`、`.cursor/rules/site-design.mdc`。
-- 原有研究正文、数据、引文、图像、专业交互与保全分支原则上只读；新改动使用独立 PR，不能直接覆盖历史资产。
+- 唯一视觉权威：`assets/site/design.css`；构建与发布：`scripts/build_site.py`、`scripts/personalize_site.py`、`.github/workflows/pages.yml`。
+- Agent 入口：`AGENTS.md`、`CLAUDE.md`、`docs/SITE_DESIGN.md`、`.cursor/rules/site-design.mdc`。
+- 历史研究正文、原始图片、OCR、引文、JSON、交互及保全分支保持不变；任何新开发需独立分支、PR、真实测试和审阅，不直接改写 `main`。
 
-## 2. 已完成并通过生产验收的阶段
+## 2. 已合并阶段
 
-| 阶段 | PR | 合并提交 | 完成事项 |
+| 阶段 | PR | 合并 SHA | 实际交付 |
 |---|---|---|---|
-| Stage 1 | [#10](https://github.com/conanxin/conanxin.github.io/pull/10) | — | 统一设计规则、跨 Agent 入口 |
-| Stage 2A | [#11](https://github.com/conanxin/conanxin.github.io/pull/11) | `00fa798` | 四类完整模板、排除 `templates/` 发布、`/site-guide/`、PR CI |
-| Stage 2B | [#12](https://github.com/conanxin/conanxin.github.io/pull/12) | `3e3c929` | SpaceX 原生主题例外、长网址移动端换行、双视口测试、CLAUDE/Cursor 规则更新 |
-| Stage 2C | [#13](https://github.com/conanxin/conanxin.github.io/pull/13) | `5d76e6f` | 两个真实内容试点、四模板 HTML 嵌套修复、补全公网验收和生产脚本语法测试 |
+| Stage 1 | [#10](https://github.com/conanxin/conanxin.github.io/pull/10) | 见 PR | 跨 Agent 设计规范 |
+| Stage 2A | [#11](https://github.com/conanxin/conanxin.github.io/pull/11) | `00fa798` | 四类完整模板、模板排除发布、`/site-guide/`、PR CI |
+| Stage 2B | [#12](https://github.com/conanxin/conanxin.github.io/pull/12) | `3e3c929` | SpaceX 原生主题例外、手机断行、双视口回归、工程规则同步 |
+| Stage 2C | [#13](https://github.com/conanxin/conanxin.github.io/pull/13) | `5d76e6f` | 两个真实文章/项目模板、四模板标签修复、发布后检查 |
+| Stage 2C 文档 | [#14](https://github.com/conanxin/conanxin.github.io/pull/14) | `d8b0445` | 持久交接与设计规范 v1.2 |
+| **Stage 2D** | [#15](https://github.com/conanxin/conanxin.github.io/pull/15) | **`671c31270aecdea3aee0930c260f29078b9c0bf4`** | SHUGE 展览/文献实页、自动内容索引、可验证来源边界 |
 
-Stage 2B 正式部署：[Run 38142644340](https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340)，19/19 unittest、32/32 Playwright、9/9 公网阅读路径。
+生产验收证据：
+- Stage 2B [Run 38142644340](https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340)：19 Python 测试、32 浏览器检查、9 公网路径。
+- Stage 2C [Run 38143831596](https://github.com/conanxin/conanxin.github.io/actions/runs/38143831596)：24 Python 测试、36 浏览器检查、12 公网路径。
+- **Stage 2D [Run 38146608834](https://github.com/conanxin/conanxin.github.io/actions/runs/38146608834)：31/31 Python 测试、42/42 Playwright、15/15 真实公网路径（HTTP 200），JS 错误 0；自动索引 JSON 核验通过。**
 
-Stage 2C 正式部署：[Run 38143831596](https://github.com/conanxin/conanxin.github.io/actions/runs/38143831596)，**24/24 unittest、36/36 Playwright、12/12 公网阅读路径**，包含火星原生主题和两条新增页面，JavaScript 报错为 0。当前 `main` 生产发布合并 SHA 为 `5d76e6fe15f20944eebcef7fb571a5199e0e0c96`（若后续新 PR 合并，须重新核对）。
+## 3. 已发布真实内容与索引
 
-## 3. 现有真实页面与模板
+### Stage 2C
 
-- 文章：<https://conanxin.github.io/posts/site-design-evidence-layers.html> — 模板来自 `templates/site/article/index.html`，研究正文 / 证据 / 技术日志的分层方法，以 PR #10—#12 和设计规范作为可核实来源。
-- 项目：<https://conanxin.github.io/projects/site-design-lab/> — 模板来自 `templates/site/project/index.html`，展示设计工程的实施、工作日志、证据、技术栈、引用和资源。两个页面彼此链接。
-- `templates/site/{article,project,exhibition,reference}/index.html` 均为 **完整 HTML**，Stage 2C 修复了 `</article></main>` 闭合顺序，并复用 `.site-home` 阅读容器；**模板原件全部排除发布**，不能当作公网页面。
-- <https://conanxin.github.io/site-guide/> 提供共享风格样板；火星专题 `projects/wbw-spacex-mars-cn/index.html` 是唯一 `project-native` 精确例外。其它完整页面默认 `unified-v1`。
+- [研究网站的正文、证据与技术日志](/posts/site-design-evidence-layers.html) — article 模板，证据限于真实设计规范、PR、Actions。
+- [数字花园设计工程档案](/projects/site-design-lab/) — project 模板，阶段与技术记录可回溯。
 
-## 4. 下次恢复时先做什么（Stage 2D）
+### Stage 2D
 
-1. 阅读本文件与 `docs/SITE_DESIGN.md`，确认 `main` 最新 SHA 和 Actions 部署状态；**不要重做 #10—#13**。
-2. 根据已有、可核查的真实档案选择一项展览和一份文献索引，把剩余 `exhibition`、`reference` 模板增量用于真正内容；没有出处就先研究，不以假展品、假文献充数。
-3. 独立分支小范围开发；保持来源/证据/解读边界/技术记录清晰，新增双视口浏览器检查与公开路径核验；原研究内容继续只读。
-4. 当前两条新增页面会进入自动生成的 `/site-map/`，**尚未添加到旧版 `posts/index.html` 与 `projects/index.html` 的手工条目/计数中**。下一阶段可单独评估如何建立自动内容索引，避免直接修改既有目录数据。
-5. PR 审查与 CI 全绿后再合并。历史研究真实性仍需要来源比对，不由 CI 代替学术审校。
+- [SHUGE 数字生命展览导览](/projects/site-design-lab/shuge-evidence-exhibition/) — exhibition 模板：既有 SHUGE 展厅 2、页目数据及证据审计，不声称三个数字研究对象为已鉴定实体展品。
+- [SHUGE 来源与引用核验索引](/projects/site-design-lab/shuge-source-register/) — reference 模板：保留三个 `work_id`、临时 `title_zh` 与未记录的作者/年份；不把候选 Citation ID 当作已经人工验过的原始引文。
+- [自动内容索引](/content-index/) 与 [/assets/site/content-index.json](/assets/site/content-index.json)：从已成功构建、具有公开路由的页面生成。首次 Stage 2D 生产索引为 **72 篇文章 + 39 项项目 + 1 项展览 + 1 项文献 = 113 条入口**；随以后发布自动变化，并非固定目标数。只搜索标题/简介，不是全文检索；不按假定发布日期排序。
+- 通过 `/site-map/`、旧 `/posts/` 和 `/projects/` 的共享外壳与全站页脚进入自动索引。**没有修改旧手工列表源文件或计数**。
 
-## 5. 已确认的教训
+四种模板位于 `templates/site/{article,project,exhibition,reference}/index.html`，均为完整 HTML、不会进入公开构建；真实页面各有应用。唯一原生主题例外仍是 `projects/wbw-spacex-mars-cn/index.html`（`project-native`），其余完整页面默认 `unified-v1`。
 
-- 构建脚本输出与真实 DOM 不总一致：`/site-guide/` 曾被代码示例误触发主题判断，现已改为解析真实 body 属性。
-- Stage 2B 首轮测试虽通过，却遗漏火星手机端 724px 横向溢出；现为该专题加入溢出阻断条件及原生主题交互。
-- Stage 2C 曾因部署后的内联 Python 断言少一个引号而被 Codex P1 审查拦截。现已修正，并以 `tests/test_stage2c_pages.py` 在 PR 阶段编译主分支专用公网验证脚本。
-- 对话可以结束，**但代码决策、未完成事项与证据应持久化**在 PR、测试和这份交接文件中。
+## 4. SHUGE 史料状态与纠错边界
 
+既有 `projects/shuge-exhibition-v1.0/data/bibliography.json` v0.7 中 `work-shuge-168491`、`work-shuge-211203`、`work-shuge-44159` 的 `title_zh` 是 **post_id 临时标签**。部分 Citation ID 在 `CLAIM_SUPPORT_AUDIT.md` 所检查的运行记录中未能解析，个别虽有解析记录却无法语义支持候选历史主张。因此：
+- 不用这些临时标签证明《水经注》《天工开物》等原始作品身份、版本、作者或原刊年份；
+- 不把 `REVIEW` 文章记为 `PUBLISHED`，不将 SHUGE OCR/索引状态等同于原件核验；
+- 继续保留原版数据、引文、图像和项目级脚本，不静默修改研究资产。
 
-## 6. Stage 2D · 正在独立 PR 实施（并非已上线）
+## 5. Stage 2E 下一步（尚未执行）
 
-**TASK_ID=CONANXIN_SITE_DESIGN_STAGE2D_CONTINUATION**。
+1. 先查看最新主分支与本文件，再选取真正可查的馆藏记录、图像页和原书版权页/版本信息，为 SHUGE 临时 work_id 建立 **可区分 VERIFIED / UNVERIFIED / NOT_FOUND 的外部出处对照**。必要时另起研究档案，而不是覆盖冻结 JSON。
+2. 评估自动索引发现能力：现有仅包括根级文章/一级项目入口及显式标记的展览/文献试点；如要扩大覆盖，需有清晰的目录分级和去重策略，避免误公开 `source`、`work`、草稿或历史快照。
+3. 如果确需替代旧 `posts/index.html` 和 `projects/index.html` 的手工计数，先规划兼容旧功能和搜索交互的迁移方式，再在独立 PR 实施；**Stage 2D 只增加新入口，没有改写旧目录**。
+4. 保持 CI 的移动端横向溢出、全文未修改断言、站点目录和生产公网校验。重要决策更新本文件，避免聊天达到长度上限时丢失项目上下文。
 
-- 工作分支：`review/stage2d-shuge-exhibition-reference-index`，直接建立在已经生产验收的 `main`（`d8b0445`）上；Stage 1 至 2C 已合并，不重做。
-- 展览真实试点：`projects/site-design-lab/shuge-evidence-exhibition/index.html`。连接 SHUGE 现有第 2 展厅、页目样本与 `CLAIM_SUPPORT_AUDIT.md`，不改变原件或研究资料。
-- 文献真实试点：`projects/site-design-lab/shuge-source-register/index.html`。保留 v0.7 `bibliography.json` 的三个 `work_id`、post_id 临时题名及未核字段；缺失的作者、原刊年份与 Citation ID 解析均保持未证状态。
-- 自动内容索引：`scripts/content_index.py` 读取发布 manifest，生成 `/content-index/` 和 `/assets/site/content-index.json`；搜索仅针对公开页面标题/简介，按文章、项目、展览、文献分类，不修改原有人工目录。
-- 入口：生成的 `/site-map/`、旧 `/posts/` / `/projects/` 页面共享外壳、全站页脚。无新字体、无第二套设计 token。
-- 测试：`tests/test_stage2d_content_index.py` 的真实性／幂等／路径排除断言、Playwright 双视口交互与产线的公网路由/JSON 验证。
-- **当前状态**：上述内容仍在独立分支，不代表生产部署。必须先 PR 绿灯、审查、合并，再分别核查 GitHub Pages 生产 Run 与公网身份/内容响应。未来交接要更新本文件的真实 SHA、PR 和运行号。
+## 6. 实际经验
 
-### 本阶段特别保留的证据限制
-
-`projects/shuge-exhibition-v1.0/data/bibliography.json` v0.7 仅包含 3 条临时 work_id 书目标签，尚非经版本学核实的作品目录。`CLAIM_SUPPORT_AUDIT.md` 对候选研究引文区分了已解析、未解析和语义支持程度。Stage 2D 不自行推断真实古籍身份，更不将 `REVIEW` 文章标记为 `PUBLISHED`。
+- HTML 字符串检测不能替代真实 DOM；`site-guide` 的主题识别已因此修复。
+- CI 全绿不一定代表手机无横向溢出；Stage 2B 和 2D 都在浏览器检查中增加了滚动宽度断言，并修复来源 URL、索引网格溢出。
+- Stage 2C 曾在部署后内联 Python 中漏引号，现由 PR 单元测试先编译生产专用脚本。
+- Stage 2D 的 Codex P2 建议要求共享 `.visually-hidden` 样式与真正换行的 BibTeX 示例，已修复并验收。代码、PR 讨论、Actions 和本文件应共同成为下一轮 Agent 的恢复入口。

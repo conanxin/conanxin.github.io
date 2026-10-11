@@ -81,6 +81,17 @@ try:
      assert page.locator('header.hero').count()==1,(path,'hero missing')
      assert page.locator('#starfield').count()==1,(path,'starfield missing')
      assert page.locator('body.site-unified').count()==0,(path,'global overrides leaked')
+     if width==390 and metrics['scroll']>width+5:
+      offenders=page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
+        .map(el => ({el, rect:el.getBoundingClientRect()}))
+        .filter(({rect}) => rect.width>0 && rect.right>innerWidth+8 && rect.left>=-5)
+        .sort((a,b) => b.rect.right-a.rect.right)
+        .slice(0,24)
+        .map(({el,rect}) => ({tag:el.tagName, cls:String(el.className).slice(0,70),
+          id:el.id, left:Math.round(rect.left), right:Math.round(rect.right),
+          width:Math.round(rect.width), scroll:el.scrollWidth,
+          text:(el.innerText||'').slice(0,40)}))""")
+      print('MARS_MOBILE_OVERFLOW_DIAG='+json.dumps(offenders,ensure_ascii=False),flush=True)
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
      page.locator('button.tool-btn[data-theme="mars-sand"]').click()
      assert page.evaluate("document.documentElement.dataset.theme")=='mars-sand'

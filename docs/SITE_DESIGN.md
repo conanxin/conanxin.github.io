@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.1 (2026-10-11，Stage 2B 专题主题隔离)
+> **版本**: 1.2 (2026-10-11，Stage 2C 真实模板落地)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -190,3 +190,21 @@
 - 把 `docs/taste-rules.md` 或 `wbw-spacex-mars-cn-taste.mdc` 当作全站默认传递(它们是项目级专题)
 - 把 `_config.yml` `Gemfile` 当作当前发布机制传递(Jekyll OFF)
 - 把 `styles/main.css` `styles/post.css` 当作视觉依据(过渡期旧主题)
+---
+
+## 11. Stage 2C 实际模板使用与验收（2026-10-11）
+
+已合并 [PR #13](https://github.com/conanxin/conanxin.github.io/pull/13)，并经 [GitHub Pages Run 38143831596](https://github.com/conanxin/conanxin.github.io/actions/runs/38143831596) **24/24 unittest、36/36 Playwright、12/12 公网路径**通过。
+
+| 正式 URL | 模板 | 可核实内容 |
+|---|---|---|
+| [正文／证据／技术记录方法文章](/posts/site-design-evidence-layers.html) | `templates/site/article/index.html` | 设计规范、PR #10—#12、部署实测；正文、证据、引用、技术记录分层 |
+| [数字花园设计工程与证据记录](/projects/site-design-lab/) | `templates/site/project/index.html` | 项目阶段、工作日志、技术栈、引用和资源，可回溯 GitHub |
+
+### 复制模板的实际约束
+
+1. 四类模板源文件均应是 **完整 HTML**：`<main class="site-home"><article class="template-*"> ... </article></main>`；Stage 2C 已修正历史错误的 `</main></article>` 闭合顺序。
+2. 将模板复制到正式 URL 并填充 **确有来源的内容**；不能把 `TEMPLATE_*_PLACEHOLDER_*` 字符串发布为真实文章。模板源文件本身留在被构建排除的 `templates/`。
+3. 新页只使用 `assets/site/design.css` 现有 token、共享导航与已批准的模板局部样式，不重写原有研究文章。
+4. 真实页需验证桌面和移动端的布局、证据折叠区、引用链接及 `data-site-identity`；公开发布后的 HTTP 响应由 Pages workflow 单独核验。
+5. `exhibition` 与 `reference` 模板目前只完成结构修复，**尚未落地新的真实内容页面**；待有可核实展品、文献、出处时进入 Stage 2D，不虚构研究材料。

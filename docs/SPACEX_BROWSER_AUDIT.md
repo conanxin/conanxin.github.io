@@ -126,3 +126,15 @@ projects/wbw-spacex-mars-cn/
 **验收状态**：源代码已提交独立分支，浏览器验收以 Stage 2B PR 的 GitHub Actions `pr-checks` 真实结果为准；在合并前不得称此项已在正式生产生效。此前主分支的部署成功只证明 Stage 2A 页面通过，并未覆盖火星专题。
 
 后续建议：Stage 2B 专题兼容稳定后，再开展四类模板在真实页面上的低风险落地（复制模板制作新页面，不改写原研究文章），并扩大页面级视觉回归样本。
+
+---
+
+## 十、合并与正式公网验收（2026-10-11）
+
+前八节为 Stage 2A 的**静态历史审计**；第九节记录 Stage 2B 开发中的待发布状态。以下最终合并与上线回执优先于历史“未合并”说明：
+
+- [PR #12](https://github.com/conanxin/conanxin.github.io/pull/12) 已合并，SHA `3e3c9295a34b93ee62a2c361234a57f866740ce0`。正式 [Run 38142644340](https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340) 成功；原生主题通过 Playwright 的 1440/390 双视口检查。
+- [PR #13](https://github.com/conanxin/conanxin.github.io/pull/13) 已合并，SHA `5d76e6fe15f20944eebcef7fb571a5199e0e0c96`。正式 [Run 38143831596](https://github.com/conanxin/conanxin.github.io/actions/runs/38143831596) 新增火星专题的**公网** `project-native` 主题断言；12 条页面全部返回 HTTP 200 并通过身份与样式检查。
+- 保留 `projects/wbw-spacex-mars-cn/` 下原有 HTML、CSS、JS、中文译文、插图、`source/` 和 Cursor 专题规则，不将它们改成统一暖白主题。
+
+**状态：Stage 2B 兼容问题关闭（基于上述 GitHub CI 和公网探针）**。这些测试不等于对 143 幅原始插图或每段译文内容的学术核验。

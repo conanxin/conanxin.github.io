@@ -176,8 +176,10 @@ jobs:
                               with urllib.request.urlopen(base+path+'crosswalk.json?build='+os.environ['GITHUB_SHA'],timeout=25) as source_response:
                                   data=json.loads(source_response.read().decode('utf-8'))
                                   assert len(data['rows'])==3,'crosswalk must contain three frozen records'
-                                  assert all(r['numeric_id_to_candidate']['status']=='UNVERIFIED' for r in data['rows']),'unproven binding promoted to verified'
-                                  assert all(r['external_candidate']['status']=='VERIFIED' for r in data['rows']),'public Shuge candidate check missing'
+                                  assert all(r['archived_post_record']['status']=='VERIFIED' for r in data['rows']),'archive ID-to-URL evidence missing'
+                                  assert all(r['external_page_observation']['status']=='VERIFIED' for r in data['rows']),'public Shuge works not checked'
+                                  assert all(r['institution_catalog_item']['status']=='UNVERIFIED' for r in data['rows']),'unverified archive holder promoted to verified'
+                                  assert data['corrected_prior_inference']['related_post_id']==124575,'Water Classic numeric ID correction missing'
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

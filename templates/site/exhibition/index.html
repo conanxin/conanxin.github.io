@@ -7,6 +7,7 @@
 <meta name="description" content="TEMPLATE_EXHIBITION_PLACEHOLDER_DESCRIPTION">
 <style>
 /* 局部样式：仅作用于本页 exhibition 元素, 不影响全局。*/
+main article.template-exhibition { max-width: 960px; margin: 36px auto 64px; padding-inline: 8px; }
 main article.template-exhibition > section { margin-block: 28px; }
 main article.template-exhibition .object-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
 main article.template-exhibition .object-card { background: #fff; border: 1px solid var(--site-line); border-radius: 4px; padding: 18px 20px; }
@@ -20,7 +21,7 @@ main article.template-exhibition .tech-log { font: 13px/1.8 var(--site-sans); co
 </style>
 </head>
 <body>
-<main>
+<main class="site-home">
 <article class="template-exhibition">
 <h1>TEMPLATE_EXHIBITION_PLACEHOLDER_H1</h1>
 <p class="site-heading-lead">TEMPLATE_EXHIBITION_PLACEHOLDER_LEAD</p>
@@ -85,7 +86,7 @@ main article.template-exhibition .tech-log { font: 13px/1.8 var(--site-sans); co
 <li>TEMPLATE_EXHIBITION_PLACEHOLDER_TECH_NOTE_PEER_REVIEW</li>
 </ul>
 </details>
-</main>
 </article>
+</main>
 </body>
 </html>

@@ -52,6 +52,8 @@ class Stage2DResearchTests(unittest.TestCase):
         original = json.loads((SHUGE / "data/bibliography.json").read_text(encoding="utf-8"))
         self.assertEqual(original["total_works"], 3)
         page = source(REFERENCE)
+        self.assertIn("@misc{shuge_work_168491,\n  title", page)
+        self.assertNotIn(r"@misc{shuge_work_168491,\n", page)
         for row in original["works"]:
             self.assertIn(row["work_id"], page)
             self.assertIn(row["title_zh"], page)
@@ -122,6 +124,13 @@ class Stage2DCatalogTests(unittest.TestCase):
         self.assertNotIn("TEMPLATE_", built)
         for entry in data["items"]:
             self.assertIn('href="'+entry["url"]+'"', built)
+
+    def test_shared_screen_reader_labels_have_styles(self):
+        stylesheet = source("assets/site/design.css")
+        self.assertIn(".visually-hidden{", stylesheet)
+        html = (self.output / "content-index/index.html")
+        publish_index(self.output, self.manifest)
+        self.assertIn('class="visually-hidden"', html.read_text(encoding="utf-8"))
 
     def test_deterministic_republish(self):
         publish_index(self.output, self.manifest)

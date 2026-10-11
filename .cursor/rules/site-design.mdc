@@ -1,0 +1,127 @@
+---
+description: Conan Xin · 数字花园 全站阅读设计 + 发布架构规范 — 新增 / 修改任何页面、组件、模板、脚本、测试时, 必须遵守 docs/SITE_DESIGN.md 的 token 与组件用法, 复用 assets/site/design.css 的现有样式, 通过 scripts/build_site.py + .github/workflows/pages.yml 发布。这是 conanxin/conanxin.github.io 仓库跨 Agent / 跨模型的唯一依据。
+globs:
+  - "**/*.html"
+  - "**/*.md"
+  - "**/*.css"
+  - "**/*.scss"
+  - "scripts/**/*.py"
+  - "tests/**/*.py"
+alwaysApply: true
+---
+
+# Site Design — Conan Xin · 数字花园
+
+> **唯一权威设计规范**: [`docs/SITE_DESIGN.md`](../../docs/SITE_DESIGN.md)
+> **Agent 主入口**: [`AGENTS.md`](../../AGENTS.md)
+> **工程性约束**: [`CLAUDE.md`](../../CLAUDE.md)
+> **视觉权威源**: `assets/site/design.css`
+
+---
+
+## 1. 默认行为
+
+1. **复用 `:root` token,不改名** — 颜色 / 字体只用 `assets/site/design.css` 的 `--site-bg` `--site-paper` `--site-ink` `--site-muted` `--site-line` `--site-green` `--site-accent` `--site-sans` `--site-serif`;新 token 写进同一个 `:root`。
+2. **复用 `.site-*` 组件类** — 全站导航、页脚、面包屑、跳过链接、按钮、链接、表头等都有现成的 `.site-header` `.site-nav` `.site-brand` `.site-breadcrumb` `.site-footer` `.site-skip` `.site-button` `.site-link` `.site-table-scroll` `.site-section-label` `.site-heading` `.home-hero` `.home-feature` `.home-rows` `.home-portals` `.archive`;**不要手写**等价的 HTML + CSS。
+3. **走 `body.site-unified`** — 由 `scripts/build_site.py transform()` 自动加到 `<body>` 上;同时注入 `data-site-theme="unified-v1"` `data-site-kind="<kind>"`。不要试图在源码里 `body` 写这套属性。
+4. **完整 HTML** — 新增正式网页是包含 `<head>` 与 `<body>` 的完整 HTML 文档。`transform()` 在缺失时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified` 与共享 chrome;**当前不存在自动包装内容片段的构建流程**。
+5. **不要手写全站 chrome** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<nav class="site-breadcrumb">` / `<footer class="site-footer">` / 占位身份(`Xin Conan` `hello@xin-conan.me` `https://github.com/xin-conan`)都由构建器处理。
+6. **不要创建第二套样式系统** — 不新建 `/design-system/`、`/styles/site.css`、`/theme/`、独立 `:root` 块;不引入 `sd-*` `theme-*` `custom-*` 类前缀。
+7. **不引入 web 字体** — 用系统字体栈(`Noto Sans CJK SC` `Noto Serif CJK SC` `PingFang SC` `Microsoft YaHei`)。
+
+---
+
+## 2. 必须用
+
+- `var(--site-bg)` `var(--site-paper)` `var(--site-ink)` `var(--site-muted)` `var(--site-line)` `var(--site-green)` `var(--site-accent)` `var(--site-sans)` `var(--site-serif)`
+- `.site-header` `.site-nav` `.site-brand` `.site-breadcrumb` `.site-footer` `.site-skip` `.site-button` `.site-link` `.site-table-scroll` `.site-section-label` `.site-heading` `.home-hero` `.home-feature` `.home-rows` `.home-portals` `.archive`
+- `body.site-unified` 的全局规则(字体 / 行高 / 颜色 / 焦点轮廓 / 响应式标题)
+- 居中容器:`width: min(100% - 48px, 1120px); margin: 0 auto`
+- 长文排版:`.post-article` + `.post-content`(`font: 17px/1.95 var(--site-serif)`)
+- 等宽:`ui-monospace, SFMono-Regular, Consolas, monospace`(`<pre>` `<code>` `<kbd>` `<samp>` `.mono`)
+- 焦点轮廓:`:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 4px; }`
+- 跳过链接:`.site-skip { position: absolute; left: -9999px; } .site-skip:focus { left: 10px; }`
+
+---
+
+## 3. 显式禁止
+
+- ❌ 重新设计站点配色 / 版式
+- ❌ 引入与 `docs/SITE_DESIGN.md` 冲突的颜色 / 字体 / 装饰 / 导航
+- ❌ 创建 `/design-system/` `/styles/site.css` `/theme/` 等第二套全局样式目录
+- ❌ 引入独立类前缀(`sd-*` `theme-*` `custom-*`)
+- ❌ 修改 `styles/main.css` / `styles/post.css` 现有 token(过渡期旧主题保留)
+- ❌ 修改 `assets/site/design.css` 的 `:root` token 名(只允许追加工具类)
+- ❌ 重设全站 `body` / 标题 / 导航 / 按钮 / 正文宽度
+- ❌ 手写 `<header class="site-header">` / `<footer class="site-footer">` / `<link>` / `.site-skip` / `.site-breadcrumb` / `.site-heading` / 占位身份
+- ❌ 提交内容片段作为公开页
+- ❌ 改动已有研究数据 / 引文 / 文章正文 / 专业交互 / 图像
+- ❌ 引入 web 字体(Google Fonts / 自托管)
+- ❌ 独立主题 / 装饰性渐变 / 玻璃效果 / 霓虹色 / 终端式首页
+- ❌ `git add .` / `git add -A`(per-file)
+- ❌ 直接 push `main` / force push(除非用户明确同意)
+- ❌ `outline: none` / `outline: 0`(除非有同等替代)
+
+---
+
+## 4. Rationing(全站每页)
+
+| 变量 | 单页使用处上限 |
+|---|---|
+| `var(--site-green)` | ≤ 4 |
+| `var(--site-accent)` | = 1 |
+
+超出会破坏视觉稀缺性;超出前必须先与用户确认。
+
+---
+
+## 5. 与项目级 Cursor 规则的优先级
+
+> **不假定** Cursor / 其他 Agent 加载器对规则的优先级保证。本节只是声明意图与冲突处理流程。
+
+- **本规则**(`alwaysApply: true`,`globs` 覆盖 `**/*.html` `**/*.md` `**/*.css` `**/*.scss` `scripts/**/*.py` `tests/**/*.py`)作为**全站默认**,适用于**全站身份 / 基本无障碍 / 引用与数据保护 / 共享样式来源**。
+- **项目级专题规则**(如 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其适用范围由其自身 `globs` 字段声明。
+- **冲突处理**:不同 Agent 同时加载本规则与项目级专题规则时,必须**先识别适用路径**;
+  - 在 `projects/wbw-spacex-mars-cn/**` 内,项目级规则覆盖本规则的视觉细节(深色 + 玻璃效果 + 字体大标题);
+  - 但**站点品牌身份**(`Conan Xin` `conanxin@gmail.com` `data-site-identity="conan-xin-v1"`)、**基本无障碍**(`:focus-visible` `.site-skip`)、**引用与数据保护**(`scripts/personalize_site.py` + `tests/test_site_identity.py`)在任何路径都生效,不能被项目级规则绕过;
+  - 发生冲突,**报告并请求用户裁决**,不擅自覆盖已有设计。
+
+---
+
+## 6. 模板(`templates/site/<kind>/`)
+
+> ⚠ **当前不存在自动包装内容片段的构建流程**。`scripts/build_site.py` 不识别内容片段,只处理完整 HTML;`templates/` 目录不会被自动排除(`build_site.py:243` 的 excludes 只有 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}`)。
+
+若未来加入 `templates/site/article/`, `templates/site/project/`, `templates/site/exhibition/`, `templates/site/data/`,每个模板**必须是完整 HTML 文档**(包含 `<head>` 与 `<body>`),不要只放 `<h1>` + 内容片段;build_site.py 会处理它们,身份 / 导航 / 页脚 / CSS 都自动注入。
+
+`scripts/build_site.py` 的 `transform()` 步骤(摘要,详见 `build_site.py:115-227`):
+
+1. 解析 `<head>` 与 `<body>`;若缺失 → `fragment-unmodified`
+2. `classify(path)` → `data-site-kind`(`home` `listing` `article` `content` `utility`)
+3. 折叠遗留 chrome(`<header>` `<nav>` `<footer>` `<div>` 含 `CHROME_CLASSES`)
+4. `</head>` 前注入 `<link rel="stylesheet" href="/assets/site/design.css">`
+5. `<body>` 后注入 `<a class="site-skip">` + `<header class="site-header">` + `<nav class="site-nav">`
+6. 第一个 `<main>` / `<article>` 之后注入 `<nav class="site-breadcrumb">`
+7. `</body>` 前注入 `<footer class="site-footer">`
+8. 给 `<body>` 加 `class="site-unified"` + `data-site-theme="unified-v1"` + `data-site-kind="<kind>"`
+
+`scripts/personalize_site.py personalize_html(source + path)` 步骤(详见 `personalize_site.py:41-90`):
+
+1. `IdentityEditor` 仅改写可见文本 + `href` / `src` 中的身份字段
+2. PROTECTED tag(`script` `style` `pre` `code` `textarea` `kbd` `samp`)内文本不动
+3. 仅 `path ∈ {'index.html', 'about.html', 'src/index.html', 'src/about.html'}` 时注入 Person JSON-LD
+4. `<body>` 加 `data-site-identity="conan-xin-v1"` + `<a class="site-brand">` 写 `Conan Xin`
+
+---
+
+## 7. 不要改的资产
+
+- `articles/` `posts/` `projects/` `research/` `drafts/` `future/` `research-terminal/` 下的研究 / 文章 / 项目内容
+- `assets/audio/` `assets/images/` 下的原始音频与图像
+- `_config.yml`(Jekyll 元数据,本阶段不改)
+- `Gemfile`(Jekyll 依赖,本阶段不改)
+- `docs/taste-rules.md`(项目级专题,过时但保留作历史说明,**不**作全站默认)
+- `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`(项目级专题,globs 限定 `projects/wbw-spacex-mars-cn/**`,**不**作全站默认)
+- `styles/main.css` `styles/post.css`(过渡期旧主题)
+- `assets/site/design.css` 的 `:root` token 名(只允许追加工具类)
+- `scripts/build_site.py` `scripts/personalize_site.py` `scripts/verify_site_browser.py` `tests/test_site_identity.py` `.github/workflows/pages.yml`(本阶段不改)

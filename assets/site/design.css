@@ -103,3 +103,7 @@ body[data-site-theme="project-native"] > .site-breadcrumb a{color:var(--link)}
 body[data-site-theme="project-native"] > .site-breadcrumb summary{color:var(--text-dim)}
 body[data-site-theme="project-native"] :is(.site-header,.site-breadcrumb,.site-footer) a:focus-visible,
 body[data-site-theme="project-native"] > .site-skip:focus-visible{outline:2px solid var(--site-accent);outline-offset:4px}
+
+/* Native SpaceX footnotes contain long source URLs; wrap without editing links. */
+body[data-site-theme="project-native"] .footnote-body,
+body[data-site-theme="project-native"] .footnote-body a{overflow-wrap:anywhere;word-break:break-word}

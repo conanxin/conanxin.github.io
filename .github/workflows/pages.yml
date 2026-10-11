@@ -20,7 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build unified reading interface
-        run: python3 scripts/build_site.py --output .site-build
+        run: |
+          python3 -m unittest discover -s tests -p test_site_identity.py -v
+          python3 scripts/build_site.py --output .site-build
+          python3 scripts/personalize_site.py .site-build
       - name: Browser checks for site-wide changes
         if: contains(github.event.head_commit.message, 'site-wide') || github.event_name == 'workflow_dispatch'
         run: |
@@ -52,28 +55,34 @@ jobs:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           python3 - <<'PY'
-          import json, os, time, urllib.request
+          import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/site-map/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/']
           result=[]
           for path in paths:
               error=None
-              for attempt in range(3):
+              for attempt in range(4):
                   try:
-                      request=urllib.request.Request(base+path+'?build='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache','User-Agent':'Xin-Conan-Reader-Check'})
+                      request=urllib.request.Request(base+path+'?build='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache','User-Agent':'Conan-Xin-Reader-Check'})
                       with urllib.request.urlopen(request,timeout=25) as response:
                           body=response.read().decode('utf-8')
                           assert response.status==200
                           assert 'data-site-theme="unified-v1"' in body,'reader theme not in public response'
+                          assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
+                          assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
+                          assert 'mailto:conanxin@gmail.com' in body,'public contact missing'
                           assert '/assets/site/design.css' in body,'shared stylesheet missing'
-                          row={'url':base+path,'http':response.status,'theme':'unified-v1'}
+                          if path=='/about.html':
+                              assert '工程师、独立研究者与数字工具实践者' in body
+                              assert 'Windows 10' not in body and 'coming soon' not in body
+                          row={'url':base+path,'http':response.status,'identity':'Conan Xin'}
                           result.append(row)
                           print(json.dumps(row,ensure_ascii=False),flush=True)
                       error=None
                       break
                   except Exception as exc:
                       error=exc
-                      if attempt<2: time.sleep(8)
+                      if attempt<3: time.sleep(10)
               if error: raise RuntimeError(f'{path}: {error}')
-          print('PUBLIC_THEME_VERIFICATION=PASS',len(result))
+          print('PUBLIC_IDENTITY_VERIFICATION=PASS',len(result))
           PY

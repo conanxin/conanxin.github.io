@@ -1,31 +1,21 @@
-# 数字花园 - GitHub Pages 配置
-title: 数字花园
-description: 一个持续演进的思维空间，记录 AI 研究、技术探索和思考过程
-author: Xin Conan
+# Conan Xin - GitHub Pages metadata and legacy Jekyll configuration
+# Active publication uses .github/workflows/pages.yml and the reader build.
+title: Conan Xin
+description: 以工程实践连接历史文献、数字档案、文化田野与人工智能，记录研究、阅读和创造性实验
+author: Conan Xin
 email: conanxin@gmail.com
-
-# GitHub Pages 主题
 theme: jekyll-theme-minimal
-# 或者使用其他主题：minimal, cayman, slate, hacker, midnight, merlot, tactile, architect
-
-# 网站配置
-baseurl: ""  # 仓库名为 conanxin.github.io，部署在根路径
+baseurl: ""
 url: "https://conanxin.github.io"
-
-# 构建设置
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
   hard_wrap: false
-
-# 插件
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# 排除文件
 exclude:
   - README.md
   - SESSION-*.md
@@ -35,29 +25,21 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-
-# 导航
 nav:
   - title: 首页
     url: /
-  - title: 研究
-    url: /research/
   - title: 文章
-    url: /articles/
-  - title: 工具
-    url: /tools/
+    url: /posts/
+  - title: 项目
+    url: /projects/
+  - title: 文献研究
+    url: /projects/shuge/
+  - title: 播客
+    url: /podcast/
   - title: 关于
-    url: /about/
-
-# 社交链接
+    url: /about.html
 social:
   github: conanxin
-  # twitter: your_twitter
-  # linkedin: your_linkedin
-
-# 版权
+  twitter: porco7161
 license: "CC BY-SA 4.0"
 license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
-
-# 搜索引擎验证（可选）
-# google_site_verification: your_verification_code

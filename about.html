@@ -1,182 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于 | Xin Conan</title>
-    <meta name="description" content="关于 Xin Conan 的数字花园">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles/main.css">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="认识 Conan Xin：具有机械设计与物流工程背景的工程师、独立研究者与数字工具实践者，关注历史文献、古建筑、地理田野、数字档案与人工智能。">
+<meta name="author" content="Conan Xin">
+<meta property="og:title" content="关于 Conan Xin｜工程、研究与田野">
+<meta property="og:description" content="以工程方法处理复杂问题，以文献和现场理解历史，以数字工具扩展个人研究与创造。">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://conanxin.github.io/about.html">
+<link rel="canonical" href="https://conanxin.github.io/about.html">
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Conan Xin">
+<title>关于 Conan Xin｜工程、研究与田野</title>
 </head>
 <body>
-    <div class="terminal-container">
-        <!-- Status Bar -->
-        <div class="status-bar">
-            <div class="status-left">
-                <span class="status-dot"></span>
-                <span>STATUS // ONLINE</span>
-            </div>
-            <div class="status-right">
-                <span>XIN_CONAN</span>
-                <span class="separator">|</span>
-                <span>v1.0</span>
-                <span class="separator">|</span>
-                <span id="datetime">--</span>
-            </div>
-        </div>
-
-        <!-- Header -->
-        <header class="terminal-header">
-            <div class="logo">
-                <span class="prompt">></span>
-                <span class="logo-text">xin-conan</span>
-                <span class="cursor">_</span>
-            </div>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="terminal-nav">
-            <a href="/" class="nav-item">
-                <span class="nav-num">01.</span>
-                <span>HOME</span>
-            </a>
-            <a href="/posts/" class="nav-item">
-                <span class="nav-num">02.</span>
-                <span>POSTS</span>
-            </a>
-            <a href="/projects/" class="nav-item">
-                <span class="nav-num">03.</span>
-                <span>PROJECTS</span>
-            </a>
-            <a href="/about.html" class="nav-item active">
-                <span class="nav-num">04.</span>
-                <span>ABOUT</span>
-            </a>
-            <a href="/feed.xml" class="nav-item">
-                <span class="nav-num">05.</span>
-                <span>RSS</span>
-            </a>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="terminal-main">
-            <section class="about-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">whoami</span>
-                </div>
-                <div class="section-content">
-                    <p>我是 Xin Conan，一个在 <span class="highlight">WSL2 Ubuntu</span> 里探索本地 AI 的终端用户。</p>
-                    <p>这个网站是我的<span class="highlight">数字花园</span>——不是精心修剪的展示橱窗，而是持续生长的实验田。</p>
-                </div>
-            </section>
-
-            <section class="stack-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">neofetch</span>
-                </div>
-                <div class="section-content">
-                    <div class="info-block">
-                        <p><span class="label">OS:</span> WSL2 Ubuntu 22.04</p>
-                        <p><span class="label">Host:</span> Windows 10</p>
-                        <p><span class="label">Kernel:</span> 5.15.0</p>
-                        <p><span class="label">Shell:</span> zsh 5.8</p>
-                        <p><span class="label">CPU:</span> Intel i7-6700 (8) @ 3.400GHz</p>
-                        <p><span class="label">Memory:</span> 8GB</p>
-                        <p><span class="label">Terminal:</span> Windows Terminal</p>
-                        <p><span class="label">Editor:</span> VS Code / nano</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="interests-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">cat ./interests.txt</span>
-                </div>
-                <div class="section-content">
-                    <ul class="now-list">
-                        <li><span class="bullet">◆</span> <strong>本地 LLM</strong> — 在消费级硬件上运行大模型</li>
-                        <li><span class="bullet">◆</span> <strong>终端工具</strong> — CLI 优先的工作流</li>
-                        <li><span class="bullet">◆</span> <strong>数字花园</strong> — 拥有数据的个人网站</li>
-                        <li><span class="bullet">◆</span> <strong>Hermes Agent</strong> — AI 辅助编程与自动化</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="principles-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">cat ./principles.md</span>
-                </div>
-                <div class="section-content">
-                    <p>受到 <a href="https://henry.codes/writing/a-website-to-destroy-all-websites/" class="link">Henry</a> 的启发，我相信：</p>
-                    
-                    <ul>
-                        <li>个人网站是抵抗平台异化的最小可行方案</li>
-                        <li>技术应该增强人的自主性，而非驯化人适应它的逻辑</li>
-                        <li>本地优先、所有权明确、可离线使用</li>
-                    </ul>
-
-                    <p>受到 <a href="https://www.joanwestenberg.com/communities-are-not-fungible/" class="link">Joan Westenberg</a> 的启发，我理解：</p>
-                    
-                    <ul>
-                        <li>社区不是可替代的资源</li>
-                        <li>特定的关系网络无法被重建</li>
-                        <li>积累的社会资本需要时间沉积</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="contact-section">
-                <div class="section-header">
-                    <span class="cmd">$</span>
-                    <span class="cmd-text">cat ./contact.txt</span>
-                </div>
-                <div class="section-content">
-                    <p><span class="label">EMAIL:</span> <a href="mailto:hello@xin-conan.me" class="link">hello@xin-conan.me</a></p>
-                    <p><span class="label">GITHUB:</span> <a href="#" class="link">@xin-conan</a> (coming soon)</p>
-                    <p><span class="label">RSS:</span> <a href="/feed.xml" class="link">/feed.xml</a></p>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="terminal-footer">
-            <div class="footer-line">
-                <span class="comment"># 返回首页</span>
-            </div>
-            <div class="footer-content">
-                <p>
-                    <a href="/" class="nav-back">
-                        <span class="arrow">←</span>
-                        <span>cd /home</span>
-                    </a>
-                </p>
-            </div>
-            <div class="footer-bottom">
-                <span class="comment"># Built with plain HTML/CSS in WSL2</span>
-                <span class="separator">|</span>
-                <span>© 2026 Xin Conan</span>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            const timeStr = now.toISOString().slice(0, 19).replace('T', ' ');
-            document.getElementById('datetime').textContent = timeStr;
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+<main class="site-home">
+<section class="home-hero" aria-labelledby="profile-heading">
+<h1 id="profile-heading">关于 Conan Xin</h1>
+<p>工程师、独立研究者与数字工具实践者。</p>
+<p style="margin-top:20px">我具有机械设计与物流工程背景，长期从事工程设计相关工作。工作之外，我持续研究历史文献、古建筑与地理空间，也开发用于阅读、检索、档案整理和创作的 AI 工具。</p>
+<div class="home-actions"><a class="site-button" href="mailto:conanxin@gmail.com">与我联系 <span aria-hidden="true">↗</span></a><a class="site-link" href="/projects/">看看我在做什么 →</a></div>
+</section>
+<section class="home-section" aria-labelledby="interests-heading">
+<div class="home-section-head"><h2 id="interests-heading">我关注什么</h2></div>
+<div class="home-portals">
+<div class="home-portal"><h3>历史文献与数字档案</h3><p>从古籍、老照片、地图与图录出发，追踪人物、地点、作品和文物的历史。关心版本差异、出版传播，以及一条说法究竟依据什么材料。</p><a class="site-link" href="/projects/shuge/">阅读文献研究 →</a></div>
+<div class="home-portal"><h3>古建筑、地理与文化田野</h3><p>沿着古道、城邑、寺庙和河流走进具体地点，把文献中的记载与现场的建筑、地形和遗迹相互对照，记录观察，也记录疑问。</p><a class="site-link" href="/projects/shuge-exhibition-v1.0/fieldwork/">查看田野方法与记录 →</a></div>
+<div class="home-portal"><h3>人工智能与个人创造</h3><p>探索本地模型、Agent 协作、图书发现、文档处理、影像重建与声音叙事。工具的价值，在于帮助个人更好地理解、研究和创造。</p><a class="site-link" href="https://ai.conanxin.com/">进入 Conan Xin AI Lab ↗</a></div>
+</div>
+</section>
+<section class="home-section" aria-labelledby="practice-heading">
+<div class="home-section-head"><h2 id="practice-heading">我如何开展研究</h2></div>
+<div style="max-width:780px">
+<p><strong>从具体问题出发。</strong>一张旧照片、一座古建筑、一段难以解释的记载，都可能成为起点。先把问题说清楚，再寻找能够回答它的材料。</p>
+<p><strong>让证据与解释保持联系。</strong>尽可能回到原始文献和图像，区分材料直接记载了什么、可以据此推断什么，以及哪些问题仍然没有答案。</p>
+<p><strong>在屏幕与现场之间往返。</strong>将阅读、地图、影像与实地观察结合起来。数字化不只是保存文件，也是在建立可重新阅读和继续研究的联系。</p>
+<p><strong>把工具做成可使用的作品。</strong>用工程实践中的拆解、试验和迭代方法，探索个人能够维护的检索工具、数字展览、研究界面与叙事作品。</p>
+</div>
+</section>
+<section class="home-section" aria-labelledby="work-heading">
+<div class="home-section-head"><h2 id="work-heading">从这些入口开始</h2><a class="site-link" href="/projects/">全部项目 →</a></div>
+<div class="home-portals">
+<a class="home-portal" href="https://books.conanxin.com/"><h3>Book ID Search</h3><p>为阅读与研究寻找图书线索的书目检索工具。</p><span>检索图书 ↗</span></a>
+<a class="home-portal" href="/projects/shuge/research/water-classic/yishui/article/"><h3>《水经注》易水研究</h3><p>围绕河流、古城与文本异文展开的历史地理研究。</p><span>阅读研究文章 →</span></a>
+<a class="home-portal" href="/projects/shuge-exhibition-v1.0/"><h3>数字人文展览</h3><p>连接古籍、证据、地点与研究方法的阅读空间。</p><span>进入展览 →</span></a>
+</div>
+</section>
+<section class="home-section" aria-labelledby="site-heading">
+<div class="home-section-head"><h2 id="site-heading">关于这个网站</h2></div>
+<div style="max-width:780px"><p>这里是我的个人研究与写作网站，整理文章、项目、阅读与声音作品。Conan Xin AI Lab 则汇集持续发展的 AI 工具、数字档案、田野研究与创造性实验；两者是同一份个人实践的不同入口。</p><p>我希望技术增强而不是替代人的思考。这里既有完成的作品，也有持续推进的研究。文章中的史料、作者观点、推断与实验结果，应当能够被区分、追溯和讨论。</p></div>
+</section>
+<section class="home-section" id="contact" aria-labelledby="contact-heading">
+<div class="home-section-head"><h2 id="contact-heading">联系与其他入口</h2></div>
+<p>欢迎交流历史文献、古建筑与田野线索、数字档案，以及个人 AI 工具的实践。</p>
+<div class="home-actions"><a class="site-link" href="mailto:conanxin@gmail.com">conanxin@gmail.com</a><a class="site-link" href="https://github.com/conanxin">GitHub · conanxin ↗</a><a class="site-link" href="https://x.com/porco7161">X · @porco7161 ↗</a><a class="site-link" href="https://ai.conanxin.com/">Conan Xin AI Lab ↗</a><a class="site-link" href="/feed.xml">RSS 订阅 →</a></div>
+</section>
+</main>
 </body>
 </html>

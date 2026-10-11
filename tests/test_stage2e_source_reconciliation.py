@@ -8,7 +8,7 @@ import unittest
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-from build_site import transform
+from build_site import Structure, transform
 from content_index import collect_items, is_catalog_safe_path
 from personalize_site import personalize_html
 
@@ -75,7 +75,17 @@ class SourceReconciliationTests(unittest.TestCase):
     def test_published_reader_matches_corrected_crosswalk(self):
         html = read(CROSSWALK + "/index.html")
         self.assertIn('name="site-index-kind" content="reference"', html)
+        self.assertIn('<main class="site-home">', html)
+        self.assertIn('<article class="template-reference">', html)
+        self.assertIn('</article>\n</main>', html)
         self.assertNotIn("TEMPLATE_", html)
+        parser = Structure(html)
+        main = next(n for n in parser.nodes if n.tag == "main")
+        article = next(n for n in parser.nodes if n.tag == "article")
+        self.assertIs(parser.nodes[article.parent], main)
+        ids = {n.attrs.get("id") for n in parser.nodes if n.attrs.get("id")}
+        for label in ("intro", "source", "format", "citation", "note", "overview"):
+            self.assertIn(label, ids)
         for row in self.crosswalk["rows"]:
             self.assertIn(row["work_id"], html)
             self.assertIn(row["archived_post_record"]["title"], html)

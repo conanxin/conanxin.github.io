@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.3 (2026-10-11，Stage 2D 展览／文献试点及自动内容索引)
+> **版本**: 1.4 (2026-10-11，Stage 2D 已经完成并生产验收)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -207,14 +207,14 @@
 2. 将模板复制到正式 URL 并填充 **确有来源的内容**；不能把 `TEMPLATE_*_PLACEHOLDER_*` 字符串发布为真实文章。模板源文件本身留在被构建排除的 `templates/`。
 3. 新页只使用 `assets/site/design.css` 现有 token、共享导航与已批准的模板局部样式，不重写原有研究文章。
 4. 真实页需验证桌面和移动端的布局、证据折叠区、引用链接及 `data-site-identity`；公开发布后的 HTTP 响应由 Pages workflow 单独核验。
-5. `exhibition` 与 `reference` 模板目前只完成结构修复，**尚未落地新的真实内容页面**；待有可核实展品、文献、出处时进入 Stage 2D，不虚构研究材料。
+5. Stage 2D 已将 `exhibition` 与 `reference` 模板用于两个真实 SHUGE 证据导览页面；它们是数字研究对象与临时文献记录的导览，**不是**未经原件验证的实体展品与正式版本学书目。
 
 
 ---
 
 ## 12. Stage 2D · 展览、文献真实页面与自动内容索引
 
-> 本节记录独立 PR 实施方案；**是否正式发布必须以 Stage 2D PR 合并和 GitHub Pages 生产部署回执为准**。原 SHUGE 展览数据及研究档案保持不变。
+> **已正式发布并验收**：[PR #15](https://github.com/conanxin/conanxin.github.io/pull/15) 已合并（`671c31270aecdea3aee0930c260f29078b9c0bf4`），[GitHub Pages Run 38146608834](https://github.com/conanxin/conanxin.github.io/actions/runs/38146608834) 通过 31/31 单元测试、42/42 浏览器检查、15/15 公网路径与自动索引 JSON 检查。原 SHUGE 展览数据及研究档案保持不变。
 
 - `projects/site-design-lab/shuge-evidence-exhibition/index.html` 使用已有的 `exhibition` 模板，导览 SHUGE 既有第 2 展厅的数字研究对象。它链接原展厅、`room_intros.json`、`water_classic_pages.json` 及原始审计文档，并强调 Citation ID 不代表学术论断获得支持。
 - `projects/site-design-lab/shuge-source-register/index.html` 使用已有 `reference` 模板，只收录 v0.7 `bibliography.json` 真实存在的三个 `work_id`；临时题名、未知作者/年份、引文解析缺口明确标示，**不把临时题名升级为正式古籍版本信息**。
@@ -223,4 +223,11 @@
 - 索引只提供标题和简介的浏览器本地搜索、类型筛选与真实计数，不声称全文搜索、不制造发表日期、不修改 `posts/index.html` 或 `projects/index.html` 中的旧条目。
 - 站点目录、旧文章/项目列表的共享外壳与全站页脚提供自动索引入口；不需要重写历史研究正文。
 
-**验收条件**：四类模板全部有真实应用，标签无占位泄漏；自动索引 HTML/JSON 一致且幂等；1440px 与 390px 双视口交互通过；正式发布后新三条公网路由及 JSON 检查通过。学术史实仍须另行证据校读。
+**验收结果（已通过）**：四类模板均有真实应用；无未填充模板泄漏；自动索引 HTML/JSON 数量一致且重复生成稳定；1440px 与 390px 双视口下搜索、筛选、来源链接、折叠及滚动宽度验收通过；新三条公网路由和 JSON 均已通过生产检查。首轮索引为 72 文章、39 项目、1 展览、1 文献，合计 113 个条目（将随内容变动而变化）。**这不等同于学术来源已经校勘通过。**
+
+
+---
+
+## 13. Stage 2E 的设计边界（未执行）
+
+下一阶段若扩大自动发现范围，应优先完善已有页面的明确分类字段、路径收录边界及来源质量标签。搜索目前仅覆盖本地公开 HTML 的**标题与简介**，不能将 `/content-index/` 称为全文搜索、研究数据库或文献可靠性裁决服务。旧版 `posts/index.html`、`projects/index.html` 的手工内容未在 Stage 2D 重写；将来如调整，须独立 PR 核对筛选与导航行为。冻结的 SHUGE v0.7 JSON 不应被自动索引步骤修订、推断正式作品名或补录未经核实的作者/年份。

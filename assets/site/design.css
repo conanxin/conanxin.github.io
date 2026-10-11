@@ -107,3 +107,12 @@ body[data-site-theme="project-native"] > .site-skip:focus-visible{outline:2px so
 /* Native SpaceX footnotes contain long source URLs; wrap without editing links. */
 body[data-site-theme="project-native"] .footnote-body,
 body[data-site-theme="project-native"] .footnote-body a{overflow-wrap:anywhere;word-break:break-word}
+
+/* Some source URLs are bare anchors in the translated article (not footnote-body).
+   Keep their href/text byte-for-byte; allow them to wrap at narrow viewports. */
+body[data-site-theme="project-native"] .main a[href^="http://"],
+body[data-site-theme="project-native"] .main a[href^="https://"]{
+  overflow-wrap:anywhere;
+  word-break:break-all;
+  white-space:normal;
+}

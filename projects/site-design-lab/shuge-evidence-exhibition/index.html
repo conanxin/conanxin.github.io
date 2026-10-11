@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="site-index-kind" content="exhibition">
+<title>SHUGE 展厅 2：古籍数字生命的证据边界 · Conan Xin</title>
+<meta name="description" content="基于 SHUGE v1.0 现有展厅和语义证据审计的一页数字策展记录，区别页面演示、原始来源与未经核实的历史结论。">
+<style>
+/* 局部样式：仅作用于本页 exhibition 元素, 不影响全局。*/
+main article.template-exhibition { max-width: 960px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-exhibition > section { margin-block: 28px; }
+main article.template-exhibition .object-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 18px; }
+main article.template-exhibition .object-card { background: #fff; border: 1px solid var(--site-line); border-radius: 4px; padding: 18px 20px; }
+main article.template-exhibition .object-card h3 { font: 600 18px/1.6 var(--site-serif); margin: 0 0 8px; }
+main article.template-exhibition .object-card p { font: 14px/1.85 var(--site-sans); color: #59685e; margin: 0; }
+main article.template-exhibition .evidence-callout { background: #f1f0e9; border-left: 3px solid var(--site-green); padding: 14px 20px; border-radius: 0 4px 4px 0; }
+main article.template-exhibition .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+main article.template-exhibition .citation-list li { margin-block: 6px; }
+main article.template-exhibition .boundary { background: #f1f0e9; color: #465a49; border: 1px solid #d7d4c7; padding: 14px 20px; border-radius: 4px; }
+main article.template-exhibition .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-exhibition">
+<h1>一部书的数字生命：展厅与证据边界</h1>
+<p class="site-heading-lead">SHUGE 展厅 2 的独立策展导览 · 来源可回溯，未核事项保留原状态。</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">展厅简介</h2>
+<p>本页依据既有 <a href="/projects/shuge-exhibition-v1.0/rooms/room2/">SHUGE 第 2 展厅「一部书的生命」</a>及其可读的来源数据制作；展示的是一个古籍数字化研究流程的<strong>对象与证据结构</strong>，不是对展厅中全部历史断言的再次认证。展示对象与原始馆藏实物应当区分。</p>
+</section>
+
+<section id="objects" aria-labelledby="objects-heading">
+<h2 id="objects-heading">展品</h2>
+<div class="object-grid">
+<div class="object-card">
+<h3>研究对象 A · 第 2 展厅</h3>
+<p><a href="/projects/shuge-exhibition-v1.0/rooms/room2/">打开现有展厅</a>。页面以《水经注》作为阅读案例，包含导读、研究表格和图像查看器框架；页面仍保留原设计、交互与原文内容。</p>
+</div>
+<div class="object-card">
+<h3>研究对象 B · 数字页目样本</h3>
+<p><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/water_classic_pages.json">源数据 water_classic_pages.json</a>。现有展厅使用此文件展示页序、页签、OCR 与 QA 字段；展示框架不等同于原始扫描页的独立人工核验。</p>
+</div>
+<div class="object-card">
+<h3>研究对象 C · 语义支持审计</h3>
+<p><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">CLAIM_SUPPORT_AUDIT.md</a> 对候选文章的 claim、citation 与证据内容逐项核对；其 REVIEW 状态不能被理解为已发表或学术结论已获证实。</p>
+</div>
+</div>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-heading">
+<h2 id="evidence-heading">证据</h2>
+<p class="evidence-callout">审计中的关键边界：Citation ID 格式存在 ≠ 引文证据确实支持某项历史论断；部分候选引用在既有 citations 运行记录中无法解析。</p>
+<details>
+<summary>证据 1 · 来源链与审计结论</summary>
+<p>数据入口：<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/room_intros.json">展厅导读 JSON</a>、<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/water_classic_pages.json">页目样本 JSON</a>；审计入口：<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/EVIDENCE_DOSSIER.md">EVIDENCE_DOSSIER.md</a> 与 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">CLAIM_SUPPORT_AUDIT.md</a>。原审计明确指出 v0.7 书目记录使用 post_id 临时题名，未完成原始作品身份确证。</p>
+</details>
+</section>
+
+<section id="boundary" aria-labelledby="boundary-heading">
+<h2 id="boundary-heading">解读边界</h2>
+<p class="boundary">本页所示展厅对象是站内数字研究对象，不是三件已经核实来源的馆藏文物。展厅旧页出现的书名、年代、页数、OCR 统计属于项目快照内容，不能由本页重新推定为原件版本鉴定结果。候选文章在 v1.0 审计中标记 REVIEW；未核 OCR、原始作品名和馆藏来源需要后续原件对照。</p>
+</section>
+
+<section id="further-research" aria-labelledby="further-research-heading">
+<h2 id="further-research-heading">后续研究</h2>
+<ul>
+<li>前往 <a href="/projects/site-design-lab/shuge-source-register/">SHUGE 文献来源核验索引</a>，按 work_id 查看临时题名与引文解析状况。</li>
+<li>继续比对 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/PROVENANCE_AUDIT_v1.0.md">PROVENANCE_AUDIT_v1.0.md</a> 的冻结数据说明，并核实 <a href="/projects/shuge-exhibition-v1.0/bibliography/">原站文献目录</a>。</li>
+</ul>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li>SHUGE 数字人文展览 v1.0，<a href="/projects/shuge-exhibition-v1.0/rooms/room2/">「一部书的生命」</a>，既有展厅（研究展示页面）。</li>
+<li>SHUGE DH v1.0，<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">Claim Support Audit</a>、<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/PROVENANCE_AUDIT_v1.0.md">Provenance Audit</a>（2026-09-28 项目审计记录）。</li>
+</ol>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 2D · exhibition 模板新增独立导览；既有 SHUGE 源文件、研究正文、JSON、展厅脚本不改。</li>
+<li>该页面只验证现有文件和审计记录的关系，未执行新 OCR、史料校勘或出版认证；未核状态保留。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

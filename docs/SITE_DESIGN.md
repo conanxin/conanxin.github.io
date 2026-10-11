@@ -87,7 +87,7 @@
    - `<link rel="stylesheet" href="/assets/site/design.css">`(自动注入到 `</head>` 前)
    - `<a class="site-skip">`(自动插入到 `<body>` 后)
    - `<header class="site-header">` / `<footer class="site-footer">`(自动注入 + 折叠遗留 chrome)
-   - `<nav class="site-breadcrumb">`(自动注入到 `<body>` 第一个 `<main>` / `<article>` 之后)
+   - `<div class="site-breadcrumb">`(自动注入到 `<body>` 第一个 `<main>` / `<article>` 之后)
    - `class="site-unified"` `data-site-theme="unified-v1"` `data-site-kind="<kind>"`(自动加到 `<body>`)
 4. **新页面的源码直接使用 `Conan Xin` 与真实联系方式**:`Conan Xin`、`conanxin@gmail.com`、`https://github.com/conanxin`、`<a class="site-brand">Conan Xin</a>` 等直接写入源码。`scripts/personalize_site.py` **不承担**新页面的身份规范化;它仅承担**历史页面兼容**(把遗留的 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 替换为现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`),保证历史文章 / 项目 / 研究页面的展示一致。
 
@@ -95,6 +95,7 @@
 
 - 本仓库**当前不存在** `templates/site/<kind>/index.html` 等内容片段模板;**当前不存在自动包装内容片段的构建流程**。
 - 若未来需要模板,推荐位置:`templates/site/<kind>/<file>.html`(必须是完整 HTML,不是内容片段),globs 在 `.cursor/rules/site-design.mdc` 里覆盖,不要放在 `/design-system/` `/styles/site.css` `/theme/` 等第二套全局样式目录。
+- **当前 `scripts/build_site.py` 不具备非发布目录排除机制**(`excludes` 只有 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}`):在构建器具备可靠的非发布目录排除机制之前,**不允许提交可直接访问的未填充模板文件**;占位 HTML 也会被 `transform()` 处理并复制到 `.site-build/` 公开。
 
 ---
 
@@ -107,7 +108,7 @@
 3. 折叠遗留 chrome — 任何 `<header>` / `<nav>` / `<footer>` / `<div>` 含 `CHROME_CLASSES`(`site-header` `site-nav` `site-footer` 等)且不在 `<main>` / `<article>` 之后,标记 `data-site-chrome="legacy"`,在 CSS 里 `display:none`。
 4. 在 `</head>` 前注入 `<link rel="stylesheet" href="/assets/site/design.css">` + `<meta name="viewport">`(若缺失)。
 5. 在 `<body>` 后注入 `<a class="site-skip">` + `<header class="site-header">` + `<nav class="site-nav">`。
-6. 在第一个 `<main>` / `<article>` 之后注入 `<nav class="site-breadcrumb">`。
+6. 在第一个 `<main>` / `<article>` 之后注入 `<div class="site-breadcrumb">`。
 7. 在 `</body>` 前注入 `<footer class="site-footer">`。
 8. 给 `<body>` 加 `class="site-unified"` + `data-site-theme="unified-v1"` + `data-site-kind="<kind>"`。
 
@@ -133,8 +134,8 @@
 | `assets/site/design.css` (97 L) | **当前唯一视觉权威**,`:root` token 与 `.site-*` 组件类的真实来源 |
 | `docs/taste-rules.md` (7438 B) | 项目级历史专题规范(`projects/wbw-spacex-mars-cn/`);**不**作全站默认 |
 | `.cursor/rules/wbw-spacex-mars-cn-taste.mdc` (5001 B) | 项目级历史专题 Cursor 规则,`globs: projects/wbw-spacex-mars-cn/**`;**不**作全站默认 |
-| `_config.yml` (1051 B) | Jekyll 时代元数据 + 主题 `jekyll-theme-minimal` + 三插件;根目录有 `.nojekyll`,Jekyll 不运行;本阶段不修改 |
-| `Gemfile` (155 B) | Jekyll 依赖(`github-pages` gem);不参与当前发布;本阶段不修改 |
+| `_config.yml` (1051 B) | Jekyll 时代元数据 + 主题 `jekyll-theme-minimal` + 三插件;根目录有 `.nojekyll`,Jekyll 不运行;**当前发布链路不读取它**(发布由 `.github/workflows/pages.yml` 定义,与 Jekyll 无关);**不声称正在生成 RSS 或 sitemap**;本阶段不修改 |
+| `Gemfile` (155 B) | Jekyll 依赖(`github-pages` gem);**当前发布链路不读取它**;**不声称正在生成 RSS 或 sitemap**;本阶段不修改 |
 
 ---
 

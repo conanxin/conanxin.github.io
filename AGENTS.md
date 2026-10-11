@@ -35,7 +35,7 @@
 3. **本地校验** — `python3 -m unittest discover -s tests -p test_site_identity.py -v`(CI 也会跑)。
 4. **per-file `git add` + 推送** — 触发 `pages.yml` 自动构建 `.site-build/` 并部署。
 
-> ⚠ **当前不存在自动包装内容片段的构建流程。** `scripts/build_site.py` 的 `transform()` 严格要求完整 HTML(`<head>` 与 `<body>` 必须存在);不满足时会返回 `fragment-unmodified`,页面不会获得 `body.site-unified`、导航、面包屑、页脚或共享 CSS。换言之:**新增正式网页仍必须形成包含 `<head>` / `<body>` 的完整 HTML**;不能直接提交内容片段。本仓库目前没有 wrapper 替片段自动补全外壳。
+> ⚠ **当前不存在自动包装内容片段的构建流程。** `scripts/build_site.py` 的 `transform()` 严格要求完整 HTML(`<head>` 与 `<body>` 必须存在);不满足时会返回 `fragment-unmodified`,页面不会获得 `body.site-unified`、导航、面包屑、页脚或共享 CSS。换言之:**新增正式网页必须自行包含完整 HTML、`<head>` 与 `<body>`**;不能直接提交内容片段;**但不得重复手写全站导航、页脚、面包屑和公共 CSS 引用** — 这些由 `scripts/build_site.py` 自动注入;源码中重复会出现两套 chrome。本仓库目前没有 wrapper 替片段自动补全外壳。
 
 ---
 
@@ -45,7 +45,7 @@
 
 - `<link rel="stylesheet" href="/assets/site/design.css">`
 - `<a class="site-skip">`、`<header class="site-header">` (含 `.site-brand` + `.site-nav`)
-- `<nav class="site-breadcrumb">`
+- `<div class="site-breadcrumb">`
 - `<footer class="site-footer">`
 - `body` 上添加 `class="site-unified"` + `data-site-theme="unified-v1"` + `data-site-kind="<kind>"` (`classify()` 决定)
 
@@ -74,9 +74,9 @@ push to main
 6) deploy-pages
 ```
 
-- **`_config.yml`** 与 **`Gemfile`** 仍是 Jekyll 时代遗留(主题 `jekyll-theme-minimal` + `jekyll-feed` / `jekyll-sitemap` / `jekyll-seo-tag`),但根目录有 `.nojekyll`,Jekyll 不运行;它们只影响 RSS / sitemap 等元数据,**不参与**当前发布。本阶段不修改它们。
+- **`_config.yml`** 与 **`Gemfile`** 是 Jekyll 时代遗留(主题 `jekyll-theme-minimal` + `jekyll-feed` / `jekyll-sitemap` / `jekyll-seo-tag`);根目录有 `.nojekyll`,Jekyll 不运行。**当前发布链路不读取它们**(发布链路由 `.github/workflows/pages.yml` 定义的 `tests → build_site.py → personalize_site.py → verify_site_browser.py → deploy-pages` 构成,与 Jekyll 无关);**不声称它们正在生成 RSS 或 sitemap**。本阶段不修改它们。
 - **`scripts/build_site.py` 不只转换 `posts/` 或 `articles/`** — 它会遍历仓库里所有 `.html`,除 `{'.git, '.github, '.cursor, '.site-build, 'node_modules, '__pycache__}` 之外的目录都会被处理(`classify()` 按路径返回 kind,默认 `'content'`)。
-- **内容片段 / 模板目录不会被构建器自动排除** — `templates/` 与 `design-system/` 不在排除列表里;一旦推上 main,会被复制到 `.site-build/` 并以 `fragment-unmodified` 或 `themed` 状态公开。本阶段不创建 `templates/` 或 `design-system/` 目录,也不把它们放进 `.gitignore`。
+- **内容片段 / 模板目录不会被构建器自动排除** — `templates/` 与 `design-system/` 不在排除列表里;一旦推上 main,会被复制到 `.site-build/` 并以 `fragment-unmodified` 或 `themed` 状态公开。**因此,在 `scripts/build_site.py` 具备可靠的非发布目录排除机制之前, 不允许提交可直接访问的未填充模板文件** — 占位 HTML 也会被 `transform()` 处理并复制到 `.site-build/` 公开。本阶段不创建 `templates/` 或 `design-system/` 目录,也不把它们放进 `.gitignore`。
 
 ---
 
@@ -92,7 +92,7 @@ push to main
 - ❌ 重设全站 `body` / 标题 / 导航 / 按钮 / 正文宽度(用 `.site-<hash>` 局部作用域)。
 - ❌ 把 `<header class="site-header">` / `<footer class="site-footer">` / `<link>` / `.site-skip` / `.site-breadcrumb` / `.site-heading` 手写进新页面 — build_site 会自动注入并清理遗留 chrome。新页面的源码直接使用 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`;**不要**主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位——`scripts/personalize_site.py` 仅承担历史页面兼容,不负责新页面身份规范化。
 - ❌ 提交内容片段作为公开页(会被 build_site 标 `fragment-unmodified`,但仍在 `.site-build` 中)。
-- ❌ 改动已有研究数据、引文、文章正文、专业交互和图像(由 `tests/test_site_identity.py` 强制保护)。
+- ❌ 改动已有研究数据、引文、文章正文、专业交互和图像(由现有 7 项 unittest 提供有限覆盖;研究资产的实际修改需走 PR 审阅与人工核对,单元测试不全面验证所有研究正文与数据)。
 - ❌ 不经用户允许直接 push `main` 或 force push(详见 `CLAUDE.md`)。
 
 ---

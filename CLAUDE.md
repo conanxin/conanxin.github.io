@@ -13,11 +13,11 @@
 1. **Per-file `git add`** — 永远不要 `git add .` 或 `git add -A`。本仓库 `projects/` `drafts/` `research-terminal/` 等目录下有大量子项目,选择性暂存避免误带无关改动。
 2. **不引入 web 字体** — 系统字体栈 (`Noto Sans CJK SC`, `Noto Serif CJK SC`, `PingFang SC`, `Microsoft YaHei`) 是中文优先内容站点的正确选择;不提议 Google Fonts 或自托管 web 字体。
 3. **不重设全站 `body` / 标题 / 导航 / 按钮 / 正文宽度** — 走 [`assets/site/design.css`](assets/site/design.css) 的 `.site-*` 共享类与 `body.site-unified` 全局规则。需要特殊布局时用**局部作用域**(页内 `<style>` 或局部 class 前缀),不污染其他页面。
-4. **新增正式网页 = 完整 HTML 文档**(必须包含 `<head>` 与 `<body>`) — `scripts/build_site.py` 的 `transform()` 在缺失 `<head>` / `<body>` 时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified`、nav、面包屑、页脚或共享 CSS。**当前不存在自动包装内容片段的构建流程**;不能提交内容片段作为公开页。
+4. **新增正式网页必须自行包含完整 HTML、`<head>` 与 `<body>`** — `scripts/build_site.py` 的 `transform()` 在缺失 `<head>` / `<body>` 时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified`、nav、面包屑、页脚或共享 CSS。**当前不存在自动包装内容片段的构建流程**;不能提交内容片段作为公开页。**但不要重复手写全站导航、页脚、面包屑和公共 CSS 引用** — 这些由 `scripts/build_site.py` 自动注入;源码中重复会出现两套 chrome。
 5. **不要手写全站结构** — `<header class="site-header">` / `<footer class="site-footer">` / `<link rel="stylesheet" href="/assets/site/design.css">` / `.site-skip` / `.site-breadcrumb` / `.site-heading` 由 `scripts/build_site.py` 自动注入,源码中重复会出现两套 chrome。**不要**主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位身份——新页面的源码直接使用 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`;`scripts/personalize_site.py` 仅承担历史页面兼容。
 6. **不要创建第二套全站样式系统** — 不新建 `/design-system/`、`/styles/site.css`、独立的 `:root` 块、不引入 `sd-*` `theme-*` `custom-*` 类前缀。
 7. **不要修改 `styles/main.css` / `styles/post.css` 现有 token**(过渡期旧主题保留,新页面走 `body.site-unified`)。
-8. **不要改动已有研究数据 / 引文 / 文章正文 / 专业交互 / 图像** — `tests/test_site_identity.py` 的 `test_research_titles_dates_and_links_unchanged` 等会强制保护。
+8. **不要改动已有研究数据 / 引文 / 文章正文 / 专业交互 / 图像** — 现有 7 项 unittest(`test_brand_and_contact` `test_code_and_scripts_are_not_rewritten` `test_research_titles_dates_and_links_unchanged` `test_old_logo_text_and_placeholder_account` `test_metadata_person_only_on_profile_pages` `test_idempotence` `test_navigation_excludes_technical_copies`)只提供**有限单元测试覆盖**(`personalize_site.py` 的身份规范化 + 几条样本断言);研究资产的实际修改需走 **PR 审阅 + 人工核对**;单元测试不全面验证所有研究正文与数据。
 9. **不要直接 push `main` 或 force push**(除非用户明确同意);see 5.
 
 ---
@@ -36,9 +36,9 @@
 6) deploy-pages
 ```
 
-- **`scripts/build_site.py` 不只转换 `posts/` 或 `articles/`** — 它遍历仓库所有 `.html`,除 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}` 之外都会被 `transform()` 处理(默认 `kind: 'content'`)。**内容片段 / `templates/` / `design-system/` 等目录不会被构建器自动排除**;一旦推上 main,就会被复制到 `.site-build/` 并以某种状态公开(可能是 `themed` 也可能是 `fragment-unmodified`)。
+- **`scripts/build_site.py` 不只转换 `posts/` 或 `articles/`** — 它遍历仓库所有 `.html`,除 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}` 之外都会被 `transform()` 处理(默认 `kind: 'content'`)。**内容片段 / `templates/` / `design-system/` 等目录不会被构建器自动排除**;一旦推上 main,就会被复制到 `.site-build/` 并以某种状态公开(可能是 `themed` 也可能是 `fragment-unmodified`)。**因此,在 `scripts/build_site.py` 具备可靠的非发布目录排除机制之前, 不允许提交可直接访问的未填充模板文件** — 占位 HTML 也会被 `transform()` 处理并复制到 `.site-build/` 公开。
 - **`scripts/personalize_site.py` 的 Person JSON-LD 只在指定路径注入** — 当前规则:`{'index.html', 'about.html', 'src/index.html', 'src/about.html'}`;其他路径不会注入 `<script type="application/ld+json" id="site-person">`(见 `personalize_site.py:85`)。
-- **`_config.yml` 与 `Gemfile`** 是 Jekyll 时代遗留(主题 `jekyll-theme-minimal` + 三个插件 + `github-pages` gem);根目录有 `.nojekyll`(0 字节,Mar 31 2026),Jekyll 不运行。它们只影响 RSS / sitemap 等元数据,**不参与**当前发布。本阶段不修改它们。
+- **`_config.yml` 与 `Gemfile`** 是 Jekyll 时代遗留(主题 `jekyll-theme-minimal` + 三个插件 + `github-pages` gem);根目录有 `.nojekyll`(0 字节,Mar 31 2026),Jekyll 不运行。**当前发布链路不读取它们**(发布链路由 `.github/workflows/pages.yml` 定义,与 Jekyll 无关);**不声称它们正在生成 RSS 或 sitemap**。本阶段不修改它们。
 
 ---
 

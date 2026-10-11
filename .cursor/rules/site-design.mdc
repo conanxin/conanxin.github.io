@@ -25,7 +25,7 @@ alwaysApply: true
 2. **复用 `.site-*` 组件类** — 全站导航、页脚、面包屑、跳过链接、按钮、链接、表头等都有现成的 `.site-header` `.site-nav` `.site-brand` `.site-breadcrumb` `.site-footer` `.site-skip` `.site-button` `.site-link` `.site-table-scroll` `.site-section-label` `.site-heading` `.home-hero` `.home-feature` `.home-rows` `.home-portals` `.archive`;**不要手写**等价的 HTML + CSS。
 3. **走 `body.site-unified`** — 由 `scripts/build_site.py transform()` 自动加到 `<body>` 上;同时注入 `data-site-theme="unified-v1"` `data-site-kind="<kind>"`。不要试图在源码里 `body` 写这套属性。
 4. **完整 HTML** — 新增正式网页是包含 `<head>` 与 `<body>` 的完整 HTML 文档。`transform()` 在缺失时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified` 与共享 chrome;**当前不存在自动包装内容片段的构建流程**。
-5. **不要手写全站 chrome,但也不要写假占位身份** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<nav class="site-breadcrumb">` / `<footer class="site-footer">` 由构建器注入。新页面的源码应**直接使用现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`**;不要主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位。`scripts/personalize_site.py` 仅承担**历史页面兼容**,不负责新页面身份规范化。
+5. **不要手写全站 chrome,但也不要写假占位身份** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<div class="site-breadcrumb">` / `<footer class="site-footer">` 由构建器注入。新页面的源码应**直接使用现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`**;不要主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位。`scripts/personalize_site.py` 仅承担**历史页面兼容**,不负责新页面身份规范化。
 6. **不要创建第二套样式系统** — 不新建 `/design-system/`、`/styles/site.css`、`/theme/`、独立 `:root` 块;不引入 `sd-*` `theme-*` `custom-*` 类前缀。
 7. **不引入 web 字体** — 用系统字体栈(`Noto Sans CJK SC` `Noto Serif CJK SC` `PingFang SC` `Microsoft YaHei`)。
 
@@ -88,7 +88,7 @@ alwaysApply: true
 
 ## 6. 模板(`templates/site/<kind>/`)
 
-> ⚠ **当前不存在自动包装内容片段的构建流程**。`scripts/build_site.py` 不识别内容片段,只处理完整 HTML;`templates/` 目录不会被自动排除(`build_site.py:243` 的 excludes 只有 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}`)。
+> ⚠ **当前不存在自动包装内容片段的构建流程**。`scripts/build_site.py` 不识别内容片段,只处理完整 HTML;`templates/` 目录不会被自动排除(`build_site.py:243` 的 excludes 只有 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}`)。**在构建器具备可靠的非发布目录排除机制之前, 不允许提交可直接访问的未填充模板文件** — 占位 HTML 也会被 `transform()` 处理并复制到 `.site-build/` 公开。
 
 若未来加入 `templates/site/article/`, `templates/site/project/`, `templates/site/exhibition/`, `templates/site/data/`,每个模板**必须是完整 HTML 文档**(包含 `<head>` 与 `<body>`),不要只放 `<h1>` + 内容片段;build_site.py 会处理它们,身份 / 导航 / 页脚 / CSS 都自动注入。
 
@@ -99,7 +99,7 @@ alwaysApply: true
 3. 折叠遗留 chrome(`<header>` `<nav>` `<footer>` `<div>` 含 `CHROME_CLASSES`)
 4. `</head>` 前注入 `<link rel="stylesheet" href="/assets/site/design.css">`
 5. `<body>` 后注入 `<a class="site-skip">` + `<header class="site-header">` + `<nav class="site-nav">`
-6. 第一个 `<main>` / `<article>` 之后注入 `<nav class="site-breadcrumb">`
+6. 第一个 `<main>` / `<article>` 之后注入 `<div class="site-breadcrumb">`
 7. `</body>` 前注入 `<footer class="site-footer">`
 8. 给 `<body>` 加 `class="site-unified"` + `data-site-theme="unified-v1"` + `data-site-kind="<kind>"`
 
@@ -116,8 +116,8 @@ alwaysApply: true
 
 - `articles/` `posts/` `projects/` `research/` `drafts/` `future/` `research-terminal/` 下的研究 / 文章 / 项目内容
 - `assets/audio/` `assets/images/` 下的原始音频与图像
-- `_config.yml`(Jekyll 元数据,本阶段不改)
-- `Gemfile`(Jekyll 依赖,本阶段不改)
+- `_config.yml`(Jekyll 元数据,**当前发布链路不读取**;**不声称正在生成 RSS 或 sitemap**;本阶段不改)
+- `Gemfile`(Jekyll 依赖,**当前发布链路不读取**;**不声称正在生成 RSS 或 sitemap**;本阶段不改)
 - `docs/taste-rules.md`(项目级专题,过时但保留作历史说明,**不**作全站默认)
 - `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`(项目级专题,globs 限定 `projects/wbw-spacex-mars-cn/**`,**不**作全站默认)
 - `styles/main.css` `styles/post.css`(过渡期旧主题)

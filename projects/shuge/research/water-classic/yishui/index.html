@@ -3,812 +3,218 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>易水專題研究 · R4.1 學術審計 — 《水經注》易水敘事中的范陽、容城與故安</title>
-<meta name="description" content="WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT · 對 R4 十二條歷史 claim、外部校核、文本空間拓撲的學術審計層。">
-<link rel="stylesheet" href="../style.css">
+<meta name="color-scheme" content="light">
+<title>易水专题｜《水经注》中的河流、古城与历史记忆 · SHUGE</title>
+<meta name="description" content="从《水经注》卷十一出发，阅读易水与故安、范阳、容城、易京及燕下都的历史记载。浏览中文研究文章、原始史料和版本对照。">
 <style>
 :root {
-  --wc-bg: #fdfaf3;
-  --wc-ink: #2a2620;
-  --wc-accent: #b85c38;
-  --wc-warm: #d4a017;
-  --wc-cool: #4a6b8a;
-  --wc-line: #d9d2c5;
-  --wc-soft: #f1ebd9;
-  --wc-support: #4a6b8a;
-  --wc-partial: #b85c38;
-  --wc-uncertain: #8a6b3a;
+  --bg:#f8f7f4;--paper:#fff;--ink:#272b29;--muted:#6b706c;--line:#dfded8;
+  --accent:#9a5839;--green:#2d4d43;--soft:#f3f1eb;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;
+  --sans:"Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
 }
-body { background: var(--wc-bg); color: var(--wc-ink); line-height: 1.7; font-family: "Noto Serif SC", "Songti SC", "Source Han Serif SC", serif; }
-.wc-hero { padding: 3rem 2rem 2rem; border-bottom: 2px solid var(--wc-line); background: linear-gradient(135deg, #fdfaf3 0%, #f7eed4 100%); }
-.wc-hero .badge { display: inline-block; padding: 0.25rem 0.75rem; background: var(--wc-accent); color: #fff; font-size: 0.85rem; border-radius: 4px; margin-right: 0.5rem; }
-.wc-hero .badge.r41 { background: var(--wc-warm); color: #2a2620; }
-.wc-h1 { font-size: 2.4rem; margin: 0.5rem 0; color: var(--wc-ink); }
-.wc-h2 { font-size: 1.6rem; margin: 1.5rem 0 0.75rem; color: var(--wc-accent); border-left: 4px solid var(--wc-accent); padding-left: 0.75rem; }
-.wc-h3 { font-size: 1.15rem; margin: 1rem 0 0.5rem; color: var(--wc-cool); }
-.wc-section { padding: 1.5rem 2rem; max-width: 1100px; margin: 0 auto; }
-.wc-section + .wc-section { border-top: 1px solid var(--wc-line); }
-.wc-meta { color: #6b6151; font-size: 0.95rem; }
-.wc-card { background: #fff; border: 1px solid var(--wc-line); border-left: 4px solid var(--wc-cool); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
-.wc-card.partial { border-left-color: var(--wc-partial); }
-.wc-card.uncertain { border-left-color: var(--wc-uncertain); }
-.wc-card.support { border-left-color: var(--wc-support); }
-.wc-card.correction { border-left-color: var(--wc-warm); background: #fffaeb; }
-.wc-card h4 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--wc-ink); }
-.wc-tag { display: inline-block; padding: 0.1rem 0.5rem; background: var(--wc-cool); color: #fff; font-size: 0.75rem; border-radius: 3px; margin-right: 0.25rem; }
-.wc-tag.text-reports { background: var(--wc-support); }
-.wc-tag.textual-inference { background: var(--wc-partial); }
-.wc-tag.supported { background: var(--wc-support); }
-.wc-tag.partially { background: var(--wc-partial); }
-.wc-tag.uncertain { background: var(--wc-uncertain); }
-.wc-tag.identified { background: var(--wc-uncertain); }
-.wc-tag.accessed { background: var(--wc-cool); }
-.wc-tag.primary { background: var(--wc-warm); color: #2a2620; }
-.wc-tag.not-verified { background: #888; }
-.wc-cite { font-family: "Courier New", monospace; background: var(--wc-soft); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.85rem; color: var(--wc-accent); }
-.wc-excerpt { background: var(--wc-soft); border-left: 3px solid var(--wc-cool); padding: 0.5rem 0.75rem; margin: 0.5rem 0; font-family: "Songti SC", serif; }
-.wc-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.92rem; }
-.wc-table th, .wc-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--wc-line); text-align: left; }
-.wc-table th { background: var(--wc-soft); font-weight: 600; }
-.wc-table tr:hover td { background: #fbf6e8; }
-.wc-svg-wrap { background: #fff; border: 1px solid var(--wc-line); border-radius: 6px; padding: 1rem; margin: 1rem 0; overflow-x: auto; }
-.wc-svg-wrap svg { display: block; }
-.wc-node-circle { transition: opacity 0.2s, stroke-width 0.2s; cursor: pointer; }
-.wc-node-circle:hover { stroke-width: 3; }
-.wc-edge-line { transition: stroke-width 0.2s; }
-.wc-edge-line:hover { stroke-width: 3; }
-.wc-nav { background: #fff; border-bottom: 1px solid var(--wc-line); padding: 0.75rem 2rem; position: sticky; top: 0; z-index: 100; }
-.wc-nav a { color: var(--wc-ink); text-decoration: none; margin-right: 1.25rem; font-size: 0.95rem; }
-.wc-nav a:hover { color: var(--wc-accent); }
-.wc-nav a.active { color: var(--wc-accent); font-weight: 600; }
-.wc-footer { padding: 2rem; text-align: center; color: #6b6151; font-size: 0.85rem; border-top: 2px solid var(--wc-line); margin-top: 2rem; }
-.wc-footer a { color: var(--wc-cool); }
-.wc-disclosure { background: #fffbe6; border: 1px solid var(--wc-warm); border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; font-size: 0.92rem; }
-.wc-disclosure strong { color: var(--wc-warm); }
-.wc-details { background: #f6f1e3; border: 1px solid var(--wc-line); border-radius: 6px; padding: 0.75rem 1rem; margin: 0.75rem 0; }
-.wc-details summary { cursor: pointer; font-weight: 600; color: var(--wc-cool); }
-.wc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
-.wc-finding { background: #fff; border: 1px solid var(--wc-line); border-radius: 6px; padding: 1rem 1.25rem; }
-.wc-finding h4 { margin: 0 0 0.5rem; color: var(--wc-accent); font-size: 1rem; }
-.wc-finding .num { display: inline-block; width: 1.75rem; height: 1.75rem; background: var(--wc-accent); color: #fff; border-radius: 50%; text-align: center; line-height: 1.75rem; margin-right: 0.5rem; font-size: 0.9rem; }
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.9 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;text-underline-offset:4px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+a:hover{color:var(--accent)}
+.skip{position:absolute;left:-9999px;top:0;padding:10px;background:var(--ink);color:white;z-index:10}.skip:focus{left:12px;top:8px}
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1070px;margin:auto;padding:18px 27px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{font:700 21px/1.4 var(--serif);letter-spacing:.04em}
+.brand small{font:13px/1.5 var(--sans);color:var(--muted);letter-spacing:0;margin-left:9px}
+.top nav{display:flex;gap:25px;justify-content:flex-end;flex-wrap:wrap;font-size:13px;color:#626964}
+.wrap{width:min(100% - 48px,1020px);margin-inline:auto}
+.hero{padding:76px 0 65px;border-bottom:1px solid var(--line)}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:22px}
+.crumb a{color:var(--muted)}
+.label{font-size:12px;font-weight:650;letter-spacing:.13em;color:var(--accent);margin:0 0 12px}
+h1{font:600 clamp(32px,4.4vw,47px)/1.42 var(--serif);letter-spacing:.01em;max-width:850px;margin:0 0 12px}
+.hero-lead{max-width:730px;color:#535a55;font-size:17px;line-height:1.95;margin:21px 0 0}
+.reading-cta{background:white;border:1px solid var(--line);border-radius:6px;margin-top:31px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.8fr)}
+.reading-main{padding:32px 37px}
+.reading-main small{display:block;color:var(--muted);font-size:12px;margin-bottom:10px}
+.reading-main h2{font:600 clamp(22px,2.7vw,29px)/1.55 var(--serif);margin:0 0 9px}
+.reading-main p{font-size:14px;color:#5a605c;margin:0;line-height:1.9}
+.reading-actions{display:flex;flex-wrap:wrap;gap:17px;align-items:center;margin-top:23px}
+.button{display:inline-flex;align-items:center;gap:11px;padding:10px 17px;border-radius:3px;color:white!important;background:var(--green);font-size:14px;font-weight:600}
+.button:hover{background:#41685b}
+.text-link{color:var(--accent);font-size:14px;font-weight:600}
+.reading-quote{padding:31px 27px;border-left:1px solid var(--line);background:#fbfaf7}
+.reading-quote span{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.reading-quote p{font:500 20px/1.85 var(--serif);margin:14px 0}
+.reading-quote small{font-size:12px;color:var(--muted);line-height:1.8}
+.section{padding:58px 0;border-bottom:1px solid var(--line)}
+.section-heading{margin-bottom:25px}
+.section-heading h2{font:600 28px/1.5 var(--serif);margin:0}
+.section-heading p{font-size:14px;color:var(--muted);margin:9px 0 0}
+.findings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.finding{background:white;border:1px solid var(--line);border-radius:5px;padding:27px 29px}
+.finding .num{color:var(--accent);font-size:12px;letter-spacing:.08em}
+.finding h3{font:600 20px/1.55 var(--serif);margin:11px 0 11px}
+.finding p{color:#5c625e;font-size:14px;margin:0;line-height:1.95}
+.finding cite{display:block;font:12px/1.75 var(--sans);font-style:normal;color:#858780;margin-top:14px}
+.diagram{border:1px solid var(--line);background:#fff;border-radius:5px;padding:27px 28px;margin:0 0 16px}
+.route{display:flex;gap:11px;align-items:center}
+.stop{background:#faf9f6;border:1px solid #c9c6bd;padding:17px 12px;flex:1;text-align:center;min-width:0}
+.stop strong{display:block;font:600 16px/1.6 var(--serif)}
+.stop span{display:block;font-size:12px;color:var(--muted)}
+.arr{font-size:21px;color:#8b918b;line-height:1}
+.caption{font-size:12px;color:var(--muted);margin:20px 0 0;text-align:center}
+.prose{max-width:760px;font-size:15px;line-height:2;color:#505652;margin:0}
+.sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:23px}
+.source{background:white;border:1px solid var(--line);border-radius:5px;padding:25px;display:flex;flex-direction:column;align-items:start}
+.source .icon{font:600 12px/1.5 var(--sans);letter-spacing:.07em;color:#878a83}
+.source h3{font:600 19px/1.5 var(--serif);margin:14px 0 9px}
+.source p{font-size:13px;color:#646a65;line-height:1.9;margin:0 0 20px;flex:1}
+.source a{font-size:13px;color:var(--accent);font-weight:600}
+.vtable{overflow-x:auto;border-top:1px solid #c6c5bd;border-bottom:1px solid #c6c5bd;background:white}
+table{border-collapse:collapse;width:100%;min-width:660px;text-align:left;font:13px/1.8 var(--sans)}
+th,td{padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f3f1ea;font-weight:650}tbody tr:last-child td{border:0}
+.table-note{font-size:12px;color:var(--muted);margin:14px 0 0}
+.boundary{display:flex;gap:18px;padding:24px 27px;background:#f1efe9;border-radius:4px}
+.boundary .mark{font:600 28px/1 var(--serif);color:var(--accent)}
+.boundary p{margin:0;color:#505852;font-size:14px;line-height:2}
+.archive{margin-top:25px;border:1px solid var(--line);background:white;padding:19px 23px;border-radius:4px}
+.archive summary{font-size:14px;cursor:pointer;font-weight:650}
+.archive summary::marker{color:var(--accent)}
+.archive p{font-size:13px;color:var(--muted);margin:13px 0}
+.archive-links{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px}
+.archive-links a{color:var(--accent);text-decoration:underline}
+footer{background:#fff}
+.footer-inner{max-width:1070px;margin:auto;padding:30px 27px 38px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12px;color:var(--muted)}
+@media(max-width:760px){
+ .reading-cta{grid-template-columns:1fr}
+ .reading-quote{border-left:0;border-top:1px solid var(--line)}
+ .findings{grid-template-columns:1fr}
+ .sources{grid-template-columns:1fr}
+ .source{padding:21px 23px}
+}
+@media(max-width:540px){
+ body{font-size:15px}
+ .wrap{width:min(100% - 36px,1020px)}
+ .top-inner{padding:16px 18px;display:block}
+ .top nav{justify-content:flex-start;margin-top:13px;gap:11px 17px}
+ .brand{font-size:19px}
+ .hero{padding:49px 0 45px}
+ h1{font-size:32px}
+ .hero-lead{font-size:15px}
+ .section{padding:42px 0}
+ .reading-main{padding:26px 23px}
+ .reading-quote{padding:23px}
+ .finding{padding:23px}
+ .route{flex-direction:column}
+ .stop{width:100%}
+ .arr{transform:rotate(90deg)}
+ .diagram{padding:20px}
+ .boundary{padding:21px}
+ .section-heading h2{font-size:25px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
-<nav class="wc-nav">
-  <a href="#sec-rq">研究問題</a>
-  <a href="#sec-findings">核心發現</a>
-  <a href="#sec-topology">空間拓撲</a>
-  <a href="#sec-text">關鍵原文</a>
-  <a href="#sec-claims">Claims</a>
-  <a href="#sec-uncertainty">不確定性</a>
-  <a href="#sec-sources">來源</a>
-  <a href="./sources/">R4.3A 勘誤 + R4.3 文本核驗 + R4.2 歷史阻斷</a> ·
-    <a href="./article/">R4.4 中文研究文章 (DRAFT_REVIEW)</a>
-  <a href="../">返回專題</a>
-</nav>
-
-<header class="wc-hero">
-  <div>
-    <span class="badge">R4</span><span class="badge r41">R4.1 學術審計</span>
-  </div>
-  <h1 class="wc-h1">易水專題研究</h1>
-  <h2 style="font-size: 1.25rem; font-weight: 400; margin: 0.25rem 0; color: #6b6151;">
-    《水經注》易水敘事中的范陽、容城與故安
-  </h2>
-  <p class="wc-meta">
-    任務: <span class="wc-cite">WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT</span>
-    &nbsp;|&nbsp; 階段: <strong>R4.1 · publication-level scholarly audit</strong>
-    <span class="badge r43a">R4.3A 勘誤</span>
-    &nbsp;|&nbsp; 生成: 2026-09-28 18:05 GMT+8
-    &nbsp;|&nbsp; <a href="../">/projects/shuge/research/water-classic/</a> →
-    <a href="./">/yishui/</a>
-  </p>
-  <p class="wc-meta" style="margin-top: 0.5rem;">
-    R4 frozen: <span class="wc-cite">582c852</span> &nbsp;|&nbsp;
-    R3.4 frozen: <span class="wc-cite">b37202a</span> &nbsp;|&nbsp;
-    R3.3 frozen: <span class="wc-cite">d8d970f</span> &nbsp;|&nbsp;
-    R2.1 audit: <span class="wc-cite">5683 B</span>
-  </p>
+<a class="skip" href="#content">跳转到正文</a>
+<header class="top">
+ <div class="top-inner">
+   <a class="brand" href="/projects/shuge/">SHUGE <small>数字人文研究</small></a>
+   <nav aria-label="专题导航">
+     <a href="#findings">核心发现</a>
+     <a href="#geography">文本空间</a>
+     <a href="#variants">版本异文</a>
+     <a href="#materials">研究资料</a>
+   </nav>
+ </div>
 </header>
-
-<section class="wc-section" id="sec-rq">
-  <h2 class="wc-h2">研究問題 (Research Questions)</h2>
-
-  <div class="wc-disclosure">
-    <strong>R4.1 審計範圍聲明：</strong>本頁面為 R4 之上的審計層 (audit overlay)，不改動 R4 frozen JSON。<br>
-    R4.1 對 12 條 R4 historical claims 重新分類 <code>truth_scope</code> 並重判 <code>support_level</code>；
-    對外部校核資料重新標示 <code>verification_status</code>；對 textual topology 拆分為 CORE / FULL 兩層並做 claim-to-edge binding。
-    硬邊界：<code>NEW_OCR=0 · NEW_PRIMARY_ACQUISITION=0 · DB_WRITES=0 · EMBEDDINGS=0 · R4_BASELINE_PRESERVED=true</code>。
-  </div>
-
-  <h3 class="wc-h3">RQ1 · 空間語言結構</h3>
-  <p>《水經注》卷十一易水章中，<strong>范陽、容城、故安</strong> 三個地名如何透過 <em>出 / 流 / 過 / 經 / 注 / 合 / 會 / 入 / 城南 / 城西</em> 等空間動詞被組織？「範陽先於容城出現」與「由『東過』動詞串聯」是否屬於同一層級的文本事實？</p>
-
-  <h3 class="wc-h3">RQ2 · 文本空間拓撲</h3>
-  <p>易水、濡水、巨馬水、淶水在 pid1659 之「互攝通稱」語境中呈現的水系結構為何？哪些節點（故安/范陽/容城/濡水/巨馬水/大利亭/武陽/易京）構成核心拓撲，哪些屬於次級節點？</p>
-
-  <h3 class="wc-h3">RQ3 · 證據等級與外部校核</h3>
-  <p>12 條 R4 historical claims 中，哪些可由《水經注》文本<strong>直接支持</strong>（TEXT_REPORTS），哪些僅屬<strong>文本順序推論</strong>（TEXTUAL_INFERENCE）？哪些已由<strong>外部史料獨立校核</strong>（HISTORICAL_CORROBORATED），哪些仍待考證？R4-YSH-012 對「深澤封國 vs 容城封國」的處理是否需要修正？</p>
-</section>
-
-<section class="wc-section" id="sec-findings">
-  <h2 class="wc-h2">五個核心發現 (Core Findings)</h2>
-
-  <p class="wc-meta">從 R4 12 條 claims 中提煉之核心發現，按 R4.1 審計結果分為 SUPPORTED / PARTIALLY_SUPPORTED 兩層。</p>
-
-  <div class="wc-grid">
-    <div class="wc-finding">
-      <h4><span class="num">1</span>易水源於故安縣閻鄉西山</h4>
-      <span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span>
-      <p>《水經注》pid1655 正文首段直接記錄：「<em>易水出涿郡故安縣閻鄉西山</em>」。OCR 校正後（DB「承郡」「間鄉」→「涿郡」「閻鄉」）無誤。<br><small>→ R4-YSH-002 · SHUGE:p124575:1655</small></p>
+<main id="content">
+ <div class="wrap">
+  <section class="hero">
+    <div class="crumb"><a href="/projects/shuge/">研究首页</a>　/　<a href="/projects/shuge/research/water-classic/">《水经注》</a>　/　易水专题</div>
+    <p class="label">《水经注》卷十一 · 历史地理研究</p>
+    <h1>沿着易水，重读古代的河流与城邑</h1>
+    <p class="hero-lead">故安、范阳、容城、武阳与易京，如何出现在一条古代河流的叙述中？本专题从原始文献、河道方位与历史记忆入手，比较不同版本的文字，辨别《水经注》所记述的空间秩序与尚待考证的地理事实。</p>
+    <article class="reading-cta">
+      <div class="reading-main">
+        <small>专题研究论文 · 简体中文 · 审阅稿</small>
+        <h2>《水经注》易水叙事中的范阳、容城与故安</h2>
+        <p>从河流的“出”“东过”“径”“合”“注”，讨论城邑的相对位置、易京与燕下都的历史叙述，以及汉代封侯文字中的版本异同。</p>
+        <div class="reading-actions">
+          <a class="button" href="./article/">阅读完整文章 <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="./sources/">浏览原始文本对照 →</a>
+        </div>
+      </div>
+      <aside class="reading-quote">
+        <span>《水经注》卷十一</span>
+        <p>“東過范陽縣南，又東過容城縣南。”</p>
+        <small>原文描述河流经过两县城南侧，不代表现代位置或实际河道的精确测绘。</small>
+      </aside>
+    </article>
+  </section>
+  <section class="section" id="findings">
+   <div class="section-heading"><p class="label">核心发现</p><h2>从五组记载理解易水</h2><p>以下是对现有文献可以作出的主要判断，而非古今地理位置的最终复原。</p></div>
+   <div class="findings">
+    <article class="finding"><span class="num">01 / 水源</span><h3>故安与阎乡西山</h3><p>易水被记为出于涿郡故安县阎乡西山。郡、县、乡与山地共同构成了古书定位水源的层级关系。</p><cite>《水经注》卷十一 · SHUGE:p124575:1655</cite></article>
+    <article class="finding"><span class="num">02 / 方位</span><h3>范阳、容城的“东过”</h3><p>“东过范阳县南，又东过容城县南”叙述河流依次经过两处城邑的南侧；不能把水流方向误读为两城位于河流南侧。</p><cite>经文大字标题 · SHUGE:p124575:1657</cite></article>
+    <article class="finding"><span class="num">03 / 水系</span><h3>大利亭与诸水“互摄通称”</h3><p>大利亭及易水与诸水的合流记述提示水名之间存在交汇、借称或叙述范围重合；具体历史河道仍待校核。</p><cite>河道交汇段 · SHUGE:p124575:1659</cite></article>
+    <article class="finding"><span class="num">04 / 城邑</span><h3>易京与燕下都的历史记忆</h3><p>易京的方位应从“易水又东径易京南”理解；武阳与燕下都的联系则是古籍保存的历史叙述，尚不能代替考古测定。</p><cite>武阳、易京段 · SHUGE:p124575:1656、1661</cite></article>
+    <article class="finding"><span class="num">05 / 校勘</span><h3>深泽与容城不能混为一事</h3><p>赵将在深泽受封、匈奴降王在容城受封，以及王莽改名是不同历史语境。人名、纪年与具体传本仍有异读。</p><cite>封侯记载 · SHUGE:p124575:1657、1661</cite></article>
+   </div>
+  </section>
+  <section class="section" id="geography">
+   <div class="section-heading"><p class="label">文本空间</p><h2>古书怎样组织一条河流？</h2><p>先理解文献里的路线，再研究它与真实遗址及现代地形的对应关系。</p></div>
+   <figure class="diagram">
+    <div class="route" role="img" aria-label="文字路线：易水出故安县阎乡西山，东过范阳县南，又东过容城县南">
+      <div class="stop"><strong>故安县阎乡西山</strong><span>易水所出</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="stop"><strong>范阳县南</strong><span>东过</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="stop"><strong>容城县南</strong><span>又东过</span></div>
     </div>
-
-    <div class="wc-finding">
-      <h4><span class="num">2</span>範陽-容城「東過」連續動詞</h4>
-      <span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span>
-      <p>pid1657 大字標題「<em>東過范陽縣南又東過容城縣南</em>」明確將兩縣串連；同樣結構亦出現於 pid1682 巨馬水章大字標題（不同水系）。<br><small>→ R4-YSH-001 · SHUGE:p124575:1657</small></p>
-      <p class="wc-meta-r43a"><strong>R4.3A 補強：</strong> Cabinet Library / 內閣文庫 / 明 吳琯 校 底本影像 (pid1657) AI 視覺確認大字標題 = 「東過范陽縣南, 又東過<strong>容城</strong>縣南」(容城, 不是容成); 正文「漢景帝中元年封匈奴降王<strong>代</strong>爲侯國」— V02 (代/信) 底本影像字面 = <strong>代</strong>。詳見 <a href="./sources/#sec-r43a-errata">yishui/sources §八</a>。</p>
-    </div>
-
-    <div class="wc-finding">
-      <h4><span class="num">3</span>易水/濡水/巨馬水/淶水「互攝通稱」</h4>
-      <span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span>
-      <p>pid1659「<em>是則易水與諸水互攝，通稱東逕容城縣故城北</em>」為原書直接用語；「四水分類」為研究者歸納。<br><small>→ R4-YSH-006 · SHUGE:p124575:1659+1682</small></p>
-    </div>
-
-    <div class="wc-finding">
-      <h4><span class="num">4</span>武陽 = 燕下都（酈道元記錄）</h4>
-      <span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span>
-      <p>pid1656「<em>武陽蓋燕昭王之所城也，東西二十里，南北十七里</em>」。R4.1 明確標示：此為酈道元於六世紀之記錄，非二十世紀考古結論。<br><small>→ R4-YSH-009 · SHUGE:p124575:1656</small></p>
-    </div>
-
-    <div class="wc-finding">
-      <h4><span class="num">5</span>易京城位置：部分文本推論</h4>
-      <span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span>
-      <p><span class="wc-art-tag-superseded">[SUPERSEDED / 已撤回 by R4.3A direction correction overlay]</span> 「易京城在易水之南」由 pid1661「<em>易水又東逕易京南</em>」直接支持；但「範陽以東、容城以西」並非 pid1661 直接陳述，而是基於 pid1657 大字標題之文本順序推論。<br><small>→ R4-YSH-011 (CLAIM_011_REVISED=true)；<strong>本行 R4.1 原始表述歷史保留作 audit 紀錄，不再作為當前有效研究結論</strong>；當前有效結論：易京在易水之北（據「X 水逕 Y 南」句法 + Cabinet Library 跨句影像一致）；範陽／容城絕對方位不可由 pid1657 大字標題直接映射為現代地理。</small></p>
-      <p class="wc-meta-r43a"><strong>R4.3A 方向性修正 (overlay, 未覆寫 R4.1):</strong> 「易水又東逕易京南」句法 = 易水從易京南側流過 = <strong>易京在易水之北</strong>. Cabinet Library 影像 pid1661 跨句一致指向「易京城<strong>在易城西四五里</strong>」. R4.1 將「逕易京南」解讀為「易京城在易水之南」屬方向性誤讀。R4.3A 不寫「易京位於易水之南」。CLAIM_011_CORRECTED = DIRECTION_CORRECTED. REAL_WORLD_LOCATION = UNRESOLVED.</p>
-    </div>
-  </div>
-
-  <div class="wc-disclosure">
-    <strong>為何是 5 個而非 7 個 SUPPORTED：</strong>R4 報告「12/12 SUPPORTED」；R4.1 審計後 7 條 SUPPORTED + 5 條 PARTIALLY_SUPPORTED。降級理由見 <a href="#sec-claims">Claims 分類</a> 與 <code>source/YISHUI_CLAIM_AUDIT_R4_1.md</code>。
-  </div>
-</section>
-
-<section class="wc-section" id="sec-topology">
-  <h2 class="wc-h2">簡化文本空間拓撲 (CORE Topology)</h2>
-
-  <p class="wc-meta">R4 frozen FULL_TOPOLOGY（72 節點 / 29 邊）完整保留於 <code>data/yishui_textual_topology_r4.json</code>；R4.1 在公開頁面以 9 節點 / 15 邊的 CORE 層呈現，每條邊皆已綁定對應的 R4 claim。</p>
-
-  <h3 class="wc-h3">CORE 節點（9 個）</h3>
-  <table class="wc-table">
-    <thead><tr><th>ID</th><th>名稱</th><th>類型</th><th>核心角色</th></tr></thead>
-    <tbody>
-      <tr><td><span class="wc-cite">cn_01</span></td><td>易水</td><td>river</td><td>中央水流</td></tr>
-      <tr><td><span class="wc-cite">cn_02</span></td><td>故安</td><td>historical_place</td><td>易水水源</td></tr>
-      <tr><td><span class="wc-cite">cn_03</span></td><td>范陽</td><td>historical_place</td><td>易水 + 巨馬水交匯</td></tr>
-      <tr><td><span class="wc-cite">cn_04</span></td><td>容城</td><td>historical_place</td><td>易水 + 巨馬水東端</td></tr>
-      <tr><td><span class="wc-cite">cn_05</span></td><td>濡水</td><td>river</td><td>北側水系</td></tr>
-      <tr><td><span class="wc-cite">cn_06</span></td><td>巨馬水</td><td>river</td><td>南側水系</td></tr>
-      <tr><td><span class="wc-cite">cn_07</span></td><td>大利亭</td><td>historical_place</td><td>三水交會地理節點</td></tr>
-      <tr><td><span class="wc-cite">cn_08</span></td><td>武陽</td><td>historical_place</td><td>燕下都（R4-YSH-009）</td></tr>
-      <tr><td><span class="wc-cite">cn_09</span></td><td>易京</td><td>historical_place</td><td>公孫瓚遷都處（R4-YSH-011）</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="wc-h3">CORE 拓撲圖（互動式）</h3>
-  <div class="wc-svg-wrap">
-    <svg viewBox="0 0 700 700" width="100%" height="auto" style="max-height: 600px;">
-      <defs>
-        <marker id="arrow-brown" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6 z" fill="#8b6b3a"/>
-        </marker>
-        <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6 z" fill="#b85c38"/>
-        </marker>
-        <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L6,3 L0,6 z" fill="#4a6b8a"/>
-        </marker>
-      </defs>
-
-      <!-- Edges (drawn first, below nodes) -->
-      <!-- ce_001 故安 → 易水 (TEXT_REPORTS) -->
-      <line x1="115" y1="265" x2="240" y2="345" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_002 故安 → 易水 城南外東流 (TEXTUAL_INFERENCE) -->
-      <line x1="120" y1="290" x2="225" y2="335" class="wc-edge-line" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-red)"/>
-      <!-- ce_003 故安 → 濡水 (TEXTUAL_INFERENCE) -->
-      <line x1="140" y1="245" x2="240" y2="170" class="wc-edge-line" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-red)"/>
-      <!-- ce_004 故安 → 大利亭 (TEXT_REPORTS) -->
-      <line x1="135" y1="285" x2="335" y2="485" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_005 大利亭 → 巨馬水 (TEXT_REPORTS) -->
-      <line x1="355" y1="500" x2="275" y2="535" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_006 易水 → 武陽 (TEXT_REPORTS) -->
-      <line x1="225" y1="365" x2="115" y2="445" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_008 易水 → 范陽 (TEXT_REPORTS) -->
-      <line x1="265" y1="345" x2="385" y2="345" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_009 易水 → 容城 (TEXT_REPORTS) -->
-      <line x1="405" y1="345" x2="485" y2="345" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_010 易水 → 容城 (互攝通稱, TEXT_REPORTS) -->
-      <line x1="265" y1="325" x2="485" y2="320" class="wc-edge-line" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-      <!-- ce_011 易水 → 濡水 (互攝, TEXTUAL_INFERENCE) -->
-      <line x1="245" y1="315" x2="245" y2="200" class="wc-edge-line" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-red)"/>
-      <!-- ce_012 易水 → 易京 (TEXT_REPORTS + TEXTUAL_INFERENCE partial) -->
-      <line x1="280" y1="335" x2="535" y2="255" class="wc-edge-line" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-red)"/>
-      <!-- ce_013 巨馬水 → 范陽 (TEXT_REPORTS) -->
-      <line x1="245" y1="525" x2="385" y2="375" class="wc-edge-line" stroke="#4a6b8a" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-      <!-- ce_014 易水 → 巨馬水 (TEXTUAL_INFERENCE) -->
-      <line x1="255" y1="375" x2="245" y2="515" class="wc-edge-line" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-red)"/>
-      <!-- ce_015 巨馬水 → 容城 (TEXT_REPORTS) -->
-      <line x1="275" y1="535" x2="485" y2="375" class="wc-edge-line" stroke="#4a6b8a" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-      <!-- ce_007 武陽 self-loop (燕下都, R4-YSH-009) -->
-      <path d="M 95 480 Q 65 510 95 510 Q 130 510 110 470" fill="none" stroke="#8b6b3a" stroke-width="1.5" marker-end="url(#arrow-brown)"/>
-
-      <!-- Nodes (drawn last, on top) -->
-      <g font-family="'Noto Sans SC', sans-serif" font-size="14" text-anchor="middle">
-        <!-- cn_01 易水 -->
-        <circle cx="250" cy="350" r="28" fill="#fff9e6" stroke="#b85c38" stroke-width="2.5" class="wc-node-circle"/>
-        <text x="250" y="355" fill="#2a2620">易水</text>
-        <!-- cn_02 故安 -->
-        <circle cx="100" cy="250" r="22" fill="#fff" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="100" y="255" fill="#2a2620">故安</text>
-        <!-- cn_03 范陽 -->
-        <circle cx="400" cy="350" r="22" fill="#fff" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="400" y="355" fill="#2a2620">范陽</text>
-        <!-- cn_04 容城 -->
-        <circle cx="500" cy="350" r="22" fill="#fff" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="500" y="355" fill="#2a2620">容城</text>
-        <!-- cn_05 濡水 -->
-        <circle cx="250" cy="150" r="22" fill="#dde9f3" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="250" y="155" fill="#2a2620">濡水</text>
-        <!-- cn_06 巨馬水 -->
-        <circle cx="250" cy="550" r="22" fill="#dde9f3" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="250" y="555" fill="#2a2620">巨馬水</text>
-        <!-- cn_07 大利亭 -->
-        <circle cx="350" cy="500" r="22" fill="#fff" stroke="#4a6b8a" stroke-width="2" class="wc-node-circle"/>
-        <text x="350" y="505" fill="#2a2620">大利亭</text>
-        <!-- cn_08 武陽 -->
-        <circle cx="100" cy="450" r="22" fill="#fff9e6" stroke="#b85c38" stroke-width="2" class="wc-node-circle"/>
-        <text x="100" y="455" fill="#2a2620">武陽</text>
-        <!-- cn_09 易京 -->
-        <circle cx="550" cy="250" r="22" fill="#fff9e6" stroke="#b85c38" stroke-width="2" class="wc-node-circle"/>
-        <text x="550" y="255" fill="#2a2620">易京</text>
-      </g>
-
-      <!-- Edge legend -->
-      <g font-family="'Noto Sans SC', sans-serif" font-size="11" fill="#6b6151">
-        <line x1="20" y1="620" x2="50" y2="620" stroke="#8b6b3a" stroke-width="1.5"/>
-        <text x="55" y="624">TEXT_REPORTS 直接引文</text>
-        <line x1="200" y1="620" x2="230" y2="620" stroke="#b85c38" stroke-width="1.5" stroke-dasharray="3,3"/>
-        <text x="235" y="624">TEXTUAL_INFERENCE 推論</text>
-        <line x1="400" y1="620" x2="430" y2="620" stroke="#4a6b8a" stroke-width="1.5"/>
-        <text x="435" y="624">巨馬水章</text>
-      </g>
-    </svg>
-  </div>
-
-  <h3 class="wc-h3">Claim-to-Edge 綁定（15 條）</h3>
-  <table class="wc-table">
-    <thead><tr><th>Edge</th><th>Subject</th><th>Predicate</th><th>Object</th><th>Claim</th><th>PID</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr><td><span class="wc-cite">ce_001</span></td><td>故安</td><td>易水出於</td><td>易水</td><td>R4-YSH-002</td><td>1655</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_002</span></td><td>故安</td><td>易水逕城南外東流</td><td>易水</td><td>R4-YSH-003</td><td>1656</td><td><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span></td></tr>
-      <tr><td><span class="wc-cite">ce_003</span></td><td>故安</td><td>位於濡水之南</td><td>濡水</td><td>R4-YSH-003</td><td>1659</td><td><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span></td></tr>
-      <tr><td><span class="wc-cite">ce_004</span></td><td>故安</td><td>故安水東南至大利亭</td><td>大利亭</td><td>R4-YSH-007</td><td>1659</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_005</span></td><td>大利亭</td><td>合易水注巨馬水</td><td>巨馬水</td><td>R4-YSH-007</td><td>1659</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_006</span></td><td>易水</td><td>逕武陽南</td><td>武陽</td><td>R4-YSH-009</td><td>1656</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_007</span></td><td>武陽</td><td>酈道元記為燕下都</td><td>武陽 (self)</td><td>R4-YSH-009</td><td>1656</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_008</span></td><td>易水</td><td>東過范陽縣南</td><td>范陽</td><td>R4-YSH-001</td><td>1657</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_009</span></td><td>易水</td><td>又東過容城縣南</td><td>容城</td><td>R4-YSH-001</td><td>1657</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_010</span></td><td>易水</td><td>通稱東逕容城縣故城北</td><td>容城</td><td>R4-YSH-006</td><td>1659</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_011</span></td><td>易水</td><td>同入濡水</td><td>濡水</td><td>R4-YSH-006</td><td>1659</td><td><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span></td></tr>
-      <tr><td><span class="wc-cite">ce_012</span></td><td>易水</td><td>東逕易京南</td><td>易京</td><td>R4-YSH-011</td><td>1661</td><td><span class="wc-tag partially">PARTIAL (見 ce_012 註)</span></td></tr>
-      <tr><td><span class="wc-cite">ce_013</span></td><td>巨馬水</td><td>東南逕范陽縣故城北</td><td>范陽</td><td>R4-YSH-004</td><td>1682</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-      <tr><td><span class="wc-cite">ce_014</span></td><td>易水</td><td>注於巨馬水</td><td>巨馬水</td><td>R4-YSH-006</td><td>1682</td><td><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span></td></tr>
-      <tr><td><span class="wc-cite">ce_015</span></td><td>巨馬水</td><td>又東南過容城縣北</td><td>容城</td><td>R4-YSH-004</td><td>1682</td><td><span class="wc-tag text-reports">TEXT_REPORTS</span></td></tr>
-    </tbody>
-  </table>
-
-  <details class="wc-details">
-    <summary>FULL_TOPOLOGY（72 節點 / 29 邊）— R4 frozen 完整保留</summary>
-    <p style="margin-top: 0.5rem;">R4 FULL_TOPOLOGY JSON <code>data/yishui_textual_topology_r4.json</code>（19257 B）完整保留，不做任何修改。<br>
-    R4.1 公開頁面僅呈現 CORE 9 節點 / 15 邊；FULL 數據可從 R4 frozen JSON 直接讀取，<br>
-    或參見 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge/research/water-classic/data/yishui_textual_topology_r4.json"><code>github.com/conanxin/conanxin.github.io/blob/main/projects/shuge/research/water-classic/data/yishui_textual_topology_r4.json</code></a>。</p>
-    <p>FULL 統計：節點類型 = historical_place / lake / mountain / river / tributary（5 種）；<br>
-    邊關係類型 = origin_from / flow_east / flows_into / passes_south_of / passes_north_of / historical_relation / south_of_city_east_flow / confluences_with / enters_into / passes_east_of / location_in（11 種）。</p>
-  </details>
-</section>
-
-<section class="wc-section" id="sec-text">
-  <h2 class="wc-h2">關鍵原文 (Key Primary Text)</h2>
-
-  <p class="wc-meta">以下引文均直接取自 <strong>國立公文書館藏《水經注》明吳琯校本</strong>（卷十一 易水/滱水），由 R4 AI multimodal vision (view_image tool) 視覺校核後確認。</p>
-
-  <div class="wc-card support">
-    <h4>① pid1655 p0002 · 易水起源</h4>
-    <span class="wc-tag text-reports">TEXT_REPORTS</span>
-    <div class="wc-excerpt">易水出涿郡故安縣閻鄉西山。</div>
-    <p><span class="wc-cite">SHUGE:p124575:1655</span> &nbsp;|&nbsp; <small>→ R4-YSH-002 · core_001</small></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>② pid1657 p0004 · 易水章大字標題</h4>
-    <span class="wc-tag text-reports">TEXT_REPORTS</span>
-    <div class="wc-excerpt">東過范陽縣南又東過容城縣南</div>
-    <p><span class="wc-cite">SHUGE:p124575:1657</span> &nbsp;|&nbsp; <small>→ R4-YSH-001 · core_008+core_009</small></p>
-  </div>
-
-  <div class="wc-card partial">
-    <h4>③ pid1659 · 易水與諸水互攝</h4>
-    <span class="wc-tag text-reports">TEXT_REPORTS</span>
-    <div class="wc-excerpt">北濡又並亂流入淶，是則易水與諸水互攝，通稱東逕容城縣故城北，渾濤東注，至勃海平舒縣與易水合。</div>
-    <p><span class="wc-cite">SHUGE:p124575:1659</span> &nbsp;|&nbsp; <small>→ R4-YSH-006 · core_010+core_011</small></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>④ pid1661 · 范陽=范水之陽（應劭解釋）</h4>
-    <span class="wc-tag text-reports">TEXT_REPORTS</span>
-    <div class="wc-excerpt">易水自下有范水通目，又東逕范陽縣故城南，即應劭所謂范水之陽也。</div>
-    <p><span class="wc-cite">SHUGE:p124575:1661</span> &nbsp;|&nbsp; <small>→ R4-YSH-008 · 此為酈道元所引應劭《風俗通》之說</small></p>
-  </div>
-
-  <div class="wc-card correction">
-    <h4>⑤ pid1661 · 三項獨立漢代封國（R4.1 修正）</h4>
-    <span class="wc-tag text-reports">TEXT_REPORTS</span>
-    <div class="wc-excerpt">易水東逕容城縣故城南，漢高帝六年封趙將夕於<strong>深澤</strong>，景帝中元三年以封匈奴降王攜徐盧於<strong>容城</strong>，皆爲侯國，王莽更名深澤。</div>
-    <p><span class="wc-cite">SHUGE:p124575:1661</span> &nbsp;|&nbsp; <small>→ R4-YSH-012 (CLAIM_012_CORRECTED=true) · <strong>深澤 ≠ 容城</strong></small></p>
-      <p class="wc-meta-r43a"><strong>R4.3A 四組 VERSION_VARIANT_CANDIDATES (overlay, 未作最終裁判):</strong><br>
-      V01 範陽封國時間: 中二年 (Wikisource 整理版 + 四部叢刊本明抄校記為正) vs 中元三年 (山水二經合刻 + R4.1 LOCAL_OCR + Cabinet Library pid1661 後半)<br>
-      V02 範陽受封降王: <strong>代</strong> (Cabinet Library pid1657 + 3 外部源全共識) vs 信 (R4.1 LOCAL_OCR, 疑 OCR 誤讀)<br>
-      V03 深澤趙將姓名: <strong>夜</strong> (Cabinet Library pid1661 + Wikisource 兩版 + 《漢書》佐證) vs 夕 (山水二經合刻) vs 某 (R4.1 LOCAL_OCR 不確定替代)<br>
-      V04 容城降王姓名: 唯徐盧 (Wikisource 整理版 + 四部叢刊本明抄校記為正) vs 攜徐盧 (Cabinet Library pid1661 + 山水二經合刻 + R4.1 LOCAL_OCR) vs 撅徐盧 (陳橋驛校證 2007, R4.3A 暫未驗證)<br>
-      <strong>CLAIM_012_RECHECKED = 4_VERSION_VARIANT_CANDIDATES_R4_3A</strong>. 詳見 <a href="./sources/#sec-r43a-errata">yishui/sources §八.4</a>.</p>
-  </div>
-</section>
-
-<section class="wc-section" id="sec-claims">
-  <h2 class="wc-h2">Claims 分類（12 條）</h2>
-
-  <p class="wc-meta">R4.1 將 12 條 claims 按 <strong>證據等級 × 證據類型</strong> 分為四類。完整審計見 <code>source/YISHUI_CLAIM_AUDIT_R4_1.md</code>。</p>
-
-  <h3 class="wc-h3" style="color: var(--wc-support);">一、文本可以直接支持（TEXT_REPORTS + SUPPORTED · 7 條）</h3>
-  <p>這些 claim 可由《水經注》原書文字直接驗證，無需讀者做文本順序推論。</p>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-001 · TEXTUAL_ORDER</h4>
-    <p>《水經注》pid1657 大字標題「東過范陽縣南又東過容城縣南」直接記錄範陽-容城之順序與「東過」動詞串聯。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-002 · TEXTUAL_ORDER</h4>
-    <p>《水經注》pid1655 正文首段「易水出涿郡故安縣閻鄉西山」。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1655</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-005 · SPATIAL_LANGUAGE</h4>
-    <p>《水經注》易水章中「城南/城北/城東/城西」方位詞反覆出現於多個 pid，可由 spatial_relations JSON 驗證。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1656+1657+1659+1661+1682</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-007 · HYDROLOGICAL_RELATION</h4>
-    <p>pid1659「其水又東南流於容城縣西北大利亭東南，合易水而注巨馬水也」直接記錄大利亭作為三水交會地理節點。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1659</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-008 · HISTORICAL_INTERPRETATION <small>(酈道元引應劭)</small></h4>
-    <p>pid1661「即應劭所謂范水之陽也」。「範陽=范水之陽」為酈道元所引應劭《風俗通》之解釋，並非現代獨立考證。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1661</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-009 · HISTORICAL_INTERPRETATION <small>(酈道元記錄)</small></h4>
-    <p>pid1656「武陽蓋燕昭王之所城也，東西二十里，南北十七里」「故燕之下都擅武陽之名」。此為酈道元於六世紀之記錄，非二十世紀考古結論。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1656</span></p>
-  </div>
-
-  <div class="wc-card support">
-    <h4>R4-YSH-010 · HISTORICAL_INTERPRETATION <small>(酈道元引耆舊)</small></h4>
-    <p>pid1657「金毫陂西畔有蘭馬臺」「訪諸耆舊，咸言昭王禮賓，廣延方士，至如郭隗、樂毅之徒」。金臺、蘭馬臺與燕昭王禮賓郭隗之關係引自耆舊傳聞，非現代考古實證。</p>
-    <p><span class="wc-tag text-reports">TEXT_REPORTS</span><span class="wc-tag supported">SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657</span></p>
-  </div>
-
-  <h3 class="wc-h3" style="color: var(--wc-partial);">二、文本推論（TEXTUAL_INFERENCE + PARTIALLY_SUPPORTED · 5 條）</h3>
-  <p>這些 claim 需要讀者基於文本順序做推論；個別引文可能存在，但 claim 整體屬於研究者歸納。</p>
-
-  <div class="wc-card partial">
-    <h4>R4-YSH-003 · SPATIAL_LANGUAGE <small>(研究者三型框架)</small></h4>
-    <p>個別引文為 TEXT_REPORTS；但「故安-易水關係三型分類」屬於研究者歸納框架，原書並未明確標示此分類。</p>
-    <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1655+1656</span></p>
-  </div>
-
-  <div class="wc-card partial">
-    <h4>R4-YSH-004 · SPATIAL_LANGUAGE <small>(跨水系)</small></h4>
-    <p>pid1657 易水章與 pid1682 巨馬水章均出現「東過 + 縣南」結構，但二者屬不同水系；R4.1 明確警示不應混稱為「同一水流的連續動詞」。</p>
-    <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657+1682</span></p>
-  </div>
-
-  <div class="wc-card partial">
-    <h4>R4-YSH-006 · HYDROLOGICAL_RELATION <small>(四水分類)</small></h4>
-    <p>「互攝」「通稱」可由 pid1659 直接引文支持；但「易水/濡水/巨馬水/淶水」四水分類屬歸納性，且現代水系驗證非本階段任務。</p>
-    <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1659+1682</span></p>
-  </div>
-
-  <div class="wc-card partial">
-    <h4>R4-YSH-011 · HISTORICAL_INTERPRETATION <small>(方位推論)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_011_REVISED=true</strong> &nbsp; <strong style="color: var(--wc-r43);">CLAIM_011_DIRECTION_CORRECTED=R4.3_OVERLAY</strong></h4>
-    <div class="wc-disclosure verified" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
-      <strong>R4.3 方向性誤讀修正 ·</strong> 經典句法「X水逕Y南」=「X水從Y的南側流過」=「X水位於Y之南, Y位於X水之北」. 因此「易水又東逕易京南」= <strong>易水從易京南邊流過 = 易京在易水之北</strong>. R4.1 將「逕易京南」解讀為「易京城在易水之南」屬方向性誤讀. 3 個 R4.3 來源字面均支持此判讀 (Wikisource 兩版 + 識典古籍 山水二經合刻本). 因 PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描圖), 方向性結論暫列 INCONCLUSIVE, 待楊守敬《水經注疏》紙本景印校驗最終性. 完整記錄見 <a href="./sources/#sec-r43-claim011">R4.3 公開頁 §四</a>.
-    </div>
-    <p><span class="wc-art-tag-superseded">[SUPERSEDED / 已撤回 by R4.3A direction correction overlay]</span> 「易京城在易水之南」由「易水又東逕易京南」直接支持；「範陽以東、容城以西」並非 pid1661 直接陳述，而是基於 pid1657 大字標題之文本順序推論。<br><small>本行 R4.1 原始表述歷史保留作 audit 紀錄，<strong>不再作為當前有效研究結論</strong>；當前有效結論：易京在易水之北（據「X 水逕 Y 南」句法 + Cabinet Library 跨句影像一致）。</small></p>
-    <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657+1661</span></p>
-  </div>
-
-  <div class="wc-card partial">
-    <h4>R4-YSH-012 · HISTORICAL_INTERPRETATION <small>(封國修正)</small> &nbsp; <strong style="color: var(--wc-warm);">CLAIM_012_CORRECTED=true</strong> &nbsp; <strong style="color: var(--wc-r43);">CLAIM_012_RECHECKED=4_VARIANT_CANDIDATES_R4.3</strong></h4>
-    <div class="wc-disclosure verified" style="margin-top: 0.4rem; margin-bottom: 0.4rem;">
-      <strong>R4.3 四組 VERSION_VARIANT_CANDIDATES ·</strong> (V01) 範陽封國時間 中二年(Wikisource 兩版) vs 中元三年(山水二經合刻本 + R4.1 LOCAL_OCR); 四部叻刊本校記明示「中二年」為古, 「中元三年」為近刻訛. (V02) 範陽降王 代(3 外部來源共識) vs 信(R4.1 LOCAL_OCR). (V03) 深澤趙將 夜(Wikisource 兩版) vs 夕(山水二經合刻本). (V04) 容城降王 唯徐盧(Wikisource 兩版) vs 攜徐盧(山水二經合刻本 + R4.1 LOCAL_OCR) vs 撅徐盧(陳橋驛校證, 待核驗); 四部友刊本校記明示「唯」為古, 「攜」為近刻訛. 按 R4.3 spec §D「没有扫描或版本证据时, 不得自行决定哪一种文字必然正确」, R4.3 <strong>不作最終裁判</strong>. 完整記錄見 <a href="./sources/#sec-r43-claim012">R4.3 公開頁 §五</a>.
-    </div>
-    <p>原 R4 將「趙將某於深澤」誤歸屬容城封國；R4.1 已將三項 enfeoffment 拆分為範陽封國、容城封國、深澤封國。</p>
-    <p><span class="wc-tag textual-inference">TEXTUAL_INFERENCE</span><span class="wc-tag partially">PARTIALLY_SUPPORTED</span><span class="wc-cite">SHUGE:p124575:1657+1661</span></p>
-  </div>
-
-  <h3 class="wc-h3" style="color: var(--wc-cool);">三、外部資料已校核（HISTORICAL_CORROBORATED · 0 條）</h3>
-  <p>本階段所有 claim 皆基於《水經注》文本與其內部引用（應劭、耆舊、班固《地理志》、闞駰等）；未由<strong>外部獨立史料</strong>（如《漢書》紀傳、考古報告、實測地圖）做獨立校核。<br>
-  R4.1 已對 EXT-WIKI-001、EXT-CTEXT-001、EXT-YANG-1905 三個外部 source 標示 verification_status=ACCESSED，但 PASSAGE_VERIFIED_SOURCES=0（未獨立逐句比對）。</p>
-
-  <h3 class="wc-h3" style="color: var(--wc-uncertain);">四、仍待考證（counterevidence / 修正 · R4.1 新增）</h3>
-  <div class="wc-card uncertain">
-    <h4>R4-YSH-012 · 深澤 ≠ 容城（封國事件拆分）</h4>
-    <p>pid1661 引文「漢高帝六年封趙將某於<strong>深澤</strong>」與「景帝中元三年以封匈奴降王攜徐盧於<strong>容城</strong>」明確區分兩個獨立封國事件。原 R4 將「趙將某」誤歸容城；R4.1 拆分為獨立 deep-澤 enfeoffment。</p>
-  </div>
-  <div class="wc-card uncertain">
-    <h4>R4-YSH-011 · 「範陽以東、容城以西」屬文本順序推論</h4>
-    <p>原 R4 claim_text 將「易水之南」「範陽以東」「容城以西」三項並列為 SUPPORTED。R4.1 修正：僅「易水之南」由 pid1661 直接引文支持；「範陽以東、容城以西」屬 TEXTUAL_INFERENCE，依賴讀者接受 pid1657 大字標題「東過范陽縣南又東過容城縣南」之順序。</p>
-  </div>
-  <div class="wc-card uncertain">
-    <h4>EXT-CHEN-2007 異文「攜徐盧 / 撅徐盧」</h4>
-    <p>陳橋驛《水經注校證》(2007) 註明「攜徐盧」一作「撅徐盧」。R4.1 不採信 EXT-CHEN-2007 URL（zhihu.com/question/... 為 placeholder），但保留此異文記錄為 VARIANT_PASSAGES=1。</p>
-  </div>
-</section>
-
-<section class="wc-section" id="sec-uncertainty">
-  <h2 class="wc-h2">不確定性 (Uncertainty)</h2>
-
-  <h3 class="wc-h3">已識別的不確定性</h3>
-  <table class="wc-table">
-    <thead><tr><th>類型</th><th>詳情</th><th>R4.1 處理</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>OCR 不確定字符</td>
-        <td>40 個不確定字符（記錄於 <code>data/yishui_image_review_r4.json</code>）</td>
-        <td>已在 controlled transcription 中標示 □ 或 〔未识〕；不直接填補</td>
-      </tr>
-      <tr>
-        <td>OCR 校正</td>
-        <td>30 條 OCR 校正（DB OCR → 視覺確認），如「承郡」→「涿郡」、「間鄉」→「閻鄉」</td>
-        <td>已記錄於 image review；R4.1 引用時使用校正後文本</td>
-      </tr>
-      <tr>
-        <td>深澤/容城混淆</td>
-        <td>R4-YSH-012 原 claim 將「趙將某於深澤」誤歸容城封國</td>
-        <td><strong>CLAIM_012_CORRECTED=true</strong>：拆分為三項獨立 enfeoffment</td>
-      </tr>
-      <tr>
-        <td>R4-YSH-011 推論範圍</td>
-        <td>「範陽以東、容城以西」並非 pid1661 直接陳述</td>
-        <td><strong>CLAIM_011_REVISED=true</strong>：明示屬 TEXTUAL_INFERENCE</td>
-      </tr>
-      <tr>
-        <td>EXT-CHEN-2007 異文</td>
-        <td>「攜徐盧」/「撅徐盧」（陳橋驛《水經注校證》2007）</td>
-        <td>保留為 VARIANT_PASSAGES=1；URL 為 placeholder，不採信</td>
-      </tr>
-      <tr>
-        <td>外部 URL 狀態</td>
-        <td>3 個 placeholder URL（zhihu/.../zhbc/.../https://...）</td>
-        <td>降級為 IDENTIFIED；不計入 CORROBORATES</td>
-      </tr>
-      <tr>
-        <td>REAL_WORLD_LOCATION</td>
-        <td>現代地圖匹配</td>
-        <td>UNRESOLVED — 本階段不以現代地圖匹配為目標</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3 class="wc-h3">Reviewer Honesty Disclosure</h3>
-  <div class="wc-disclosure">
-    <strong>PROXY_REVIEW ≠ human-eye-on-page-image review.</strong>
-    R4 對 12 頁的「視覺確認」皆透過 openclaw AI multimodal vision（view_image 工具）對 workspace-copied JPEG bytes 進行；這<strong>不是</strong>真實的人眼對原書掃描頁的確認。
-    對話層級如下：<br>
-    - DB OCR (rapidocr PP-OCRv4-mobile) → 原始 <code>raw_ocr_layer</code>；<br>
-    - openclaw AI vision (view_image) → <code>image_checked_transcription_layer</code>；<br>
-    - 手動正規化（套用 OCR 校正 + 過濾）→ <code>normalized_research_reading_layer</code>。
-  </div>
-</section>
-
-<section class="wc-section" id="sec-sources">
-  <h2 class="wc-h2">來源 (Sources)</h2>
-
-  <p class="wc-meta">外部校核資料按 <strong>source_role</strong> 與 <strong>verification_status</strong> 重新標示。完整審計見 <code>source/YISHUI_SOURCE_AUDIT_R4_1.md</code>。</p>
-
-  <h3 class="wc-h3">Source-level 統計</h3>
-  <table class="wc-table">
-    <thead><tr><th>層級</th><th>數值</th></tr></thead>
-    <tbody>
-      <tr><td><strong>PRIMARY_SOURCES</strong></td><td>1（國立公文書館 scan，不計入 external count）</td></tr>
-      <tr><td><strong>EXTERNAL_SOURCES</strong></td><td>6</td></tr>
-      <tr><td><strong>PASSAGE_VERIFIED_SOURCES</strong></td><td>0（R4.1 未獨立逐句比對）</td></tr>
-      <tr><td><strong>CORROBORATING_PASSAGES</strong></td><td>6（僅 ACCESSED 之 3 sources）</td></tr>
-      <tr><td><strong>VARIANT_PASSAGES</strong></td><td>1（CHEN-2007 「攜徐盧」/「撅徐盧」，URL placeholder）</td></tr>
-      <tr><td><strong>CONTRADICTING_PASSAGES</strong></td><td>0</td></tr>
-      <tr><td><strong>BACKGROUND_ONLY</strong></td><td>1（王國維《水經注校》）</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="wc-h3">7 個來源詳表</h3>
-  <table class="wc-table">
-    <thead><tr><th>source_id</th><th>source_role</th><th>verification_status</th><th>URL 狀態</th><th>relation</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><span class="wc-cite">EXT-NII-DIGITAL</span></td>
-        <td><span class="wc-tag primary">PRIMARY</span></td>
-        <td><span class="wc-tag accessed">LOCATED</span></td>
-        <td>真實 IIIF URL（國立公文書館）</td>
-        <td>SELF（PRIMARY）</td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-WIKI-001</span></td>
-        <td><span class="wc-tag accessed">DIGITAL_TEXT</span></td>
-        <td><span class="wc-tag accessed">ACCESSED</span></td>
-        <td>真實 Wikisource URL</td>
-        <td><span style="color: var(--wc-support);">CORROBORATES</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-CTEXT-001</span></td>
-        <td><span class="wc-tag accessed">DIGITAL_TEXT</span></td>
-        <td><span class="wc-tag accessed">ACCESSED</span></td>
-        <td>真實 ctext.org URL</td>
-        <td><span style="color: var(--wc-support);">CORROBORATES</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-YANG-1905</span></td>
-        <td><span class="wc-tag accessed">SCHOLARLY_EDITION</span></td>
-        <td><span class="wc-tag accessed">ACCESSED</span></td>
-        <td>真實 ctext.org wiki URL（楊守敬《水經注疏》1905）</td>
-        <td><span style="color: var(--wc-support);">CORROBORATES</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-CHEN-2007</span></td>
-        <td><span class="wc-tag accessed">SCHOLARLY_EDITION</span></td>
-        <td><span class="wc-tag identified">IDENTIFIED</span></td>
-        <td><strong style="color: var(--wc-uncertain);">zhihu.com/question/... placeholder</strong></td>
-        <td><span style="color: var(--wc-uncertain);">CLAIMED_BUT_NOT_VERIFIED（降級自 CORROBORATES）</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-WANG-1956</span></td>
-        <td><span class="wc-tag accessed">SCHOLARLY_EDITION</span></td>
-        <td><span class="wc-tag identified">IDENTIFIED</span></td>
-        <td><strong style="color: var(--wc-uncertain);">https://... placeholder</strong></td>
-        <td><span style="color: var(--wc-uncertain);">BACKGROUND_ONLY</span></td>
-      </tr>
-      <tr>
-        <td><span class="wc-cite">EXT-ZHONGHUA-2013</span></td>
-        <td><span class="wc-tag accessed">SCHOLARLY_EDITION</span></td>
-        <td><span class="wc-tag identified">IDENTIFIED</span></td>
-        <td><strong style="color: var(--wc-uncertain);">zhbc.com/... placeholder</strong></td>
-        <td><span style="color: var(--wc-uncertain);">CLAIMED_BUT_NOT_VERIFIED（降級自 CORROBORATES）</span></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="wc-disclosure">
-    <strong>R4 → R4.1 降級記錄：</strong>3 個 placeholder-URL sources（CHEN-2007、ZHONGHUA-2013、WANG-1956）從「CORROBORATES / BACKGROUND_ONLY」降級為「CLAIMED_BUT_NOT_VERIFIED / IDENTIFIED」。<br>
-    PRIMARY source（EXT-NII-DIGITAL）從 EXTERNAL_SOURCES 列表中<strong>移除</strong>，獨立標示為 PRIMARY。
-  </div>
-</section>
-
-<section class="wc-section" id="sec-method">
-  <h2 class="wc-h2">方法論邊界 (Methodology & Boundaries)</h2>
-
-  <h3 class="wc-h3">硬邊界 (Hard Boundaries) · 全部 ✓</h3>
-  <table class="wc-table">
-    <thead><tr><th>約束</th><th>值</th><th>R4.1 狀態</th></tr></thead>
-    <tbody>
-      <tr><td>NEW_OCR</td><td>0</td><td>✓</td></tr>
-      <tr><td>NEW_PRIMARY_ACQUISITION</td><td>0</td><td>✓</td></tr>
-      <tr><td>DB_WRITES</td><td>0</td><td>✓</td></tr>
-      <tr><td>EMBEDDINGS</td><td>0</td><td>✓</td></tr>
-      <tr><td>MODERN_MAPPING_CLAIMS</td><td>0</td><td>✓（R4.1 禁止）</td></tr>
-      <tr><td>R4_BASELINE_PRESERVED</td><td>true</td><td>✓（R4 frozen JSON 不被覆寫）</td></tr>
-      <tr><td>FULL_TOPOLOGY_PRESERVED</td><td>true</td><td>✓（72 nodes / 29 edges 完整保留）</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="wc-h3">Frozen Infrastructure</h3>
-  <table class="wc-table">
-    <thead><tr><th>階段</th><th>Commit</th></tr></thead>
-    <tbody>
-      <tr><td>v1.0</td><td><span class="wc-cite">3a51ef5</span></td></tr>
-      <tr><td>R1</td><td><span class="wc-cite">59d258e</span></td></tr>
-      <tr><td>R2</td><td><span class="wc-cite">3883455b</span></td></tr>
-      <tr><td>R2.1</td><td><span class="wc-cite">fda2ecb</span></td></tr>
-      <tr><td>R2.2</td><td><span class="wc-cite">8a5a130</span></td></tr>
-      <tr><td>R3</td><td><span class="wc-cite">9ce93a2</span></td></tr>
-      <tr><td>R3.1</td><td><span class="wc-cite">8326c62</span></td></tr>
-      <tr><td>R3.2</td><td><span class="wc-cite">7ae2ccf</span></td></tr>
-      <tr><td>R3.3</td><td><span class="wc-cite">d8d970f</span></td></tr>
-      <tr><td>R3.4</td><td><span class="wc-cite">b37202a</span></td></tr>
-      <tr><td><strong>R4</strong></td><td><span class="wc-cite"><strong>582c852</strong></span> ← frozen as research baseline</td></tr>
-      <tr><td><strong>R4.1</strong></td><td><span class="wc-cite">audit overlay only</span></td></tr>
-      <tr><td><strong>R4.2</strong></td><td><span class="wc-cite">passage-verification overlay</span> ← <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>（PASSAGE_VERIFIED=0；ACCESS_BLOCKED×3）</td></tr>
-      <tr><td><strong>R4.3</strong></td><td><span class="wc-cite">textual-witness-verification overlay</span> ← <a href="./sources/">見 R4.3 頁</a>（PASSAGE_VERIFIED=2 source identities · SOURCE_WITNESSES=3 · 18 records · CLAIM_011_CORRECTED=true · CLAIM_012_RECHECKED=true）</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="wc-h3">R4.1 輸出清單</h3>
-  <ul style="line-height: 2;">
-    <li><code>data/yishui_claims_r4_1.json</code>（21241 B · 12 claims with truth_scope + revised support）</li>
-    <li><code>data/yishui_external_sources_r4_1.json</code>（13217 B · 7 sources with source_role + verification_status）</li>
-    <li><code>data/yishui_core_topology_r4_1.json</code>（10613 B · 9 core nodes + 15 core edges + claim-to-edge binding）</li>
-    <li><code>source/YISHUI_CLAIM_AUDIT_R4_1.md</code>（17607 B · per-claim analysis）</li>
-    <li><code>source/YISHUI_SOURCE_AUDIT_R4_1.md</code>（9551 B · per-source provenance audit）</li>
-    <li><code>source/YISHUI_TOPOLOGY_AUDIT_R4_1.md</code>（6755 B · layout bug fix + CORE/FULL split）</li>
-    <li><code>yishui/index.html</code>（R4.1 audit-version public page · 本文）</li>
-  </ul>
-
-  <h3 class="wc-h3">R4.3 輸出清單（textual-witness-verification overlay）</h3>
-  <ul style="line-height: 2;">
-    <li><code>data/yishui_passage_comparison_r4_3.json</code>（21748 B · 18 records · CORROBORATES=8 · VARIANTS=8 · INCONCLUSIVE=2）</li>
-    <li><code>data/yishui_claim_corrections_r4_3.json</code>（16095 B · R4-YSH-011 方向性誤讀修正 + R4-YSH-012 4 組 VERSION_VARIANT_CANDIDATES）</li>
-    <li><code>source/YISHUI_TEXTUAL_WITNESS_AUDIT_R4_3.md</code>（10006 B · 7 段審計記錄）</li>
-    <li><code>yishui/sources/index.html</code>（36012 B · R4.3 + R4.2 歷史阻斷保留）</li>
-  </ul>
-  <h3 class="wc-h3">R4.2 輸出清單（passage-verification overlay）</h3>
-  <ul style="line-height: 2;">
-    <li><code>data/yishui_external_passages_r4_2.json</code>（9936 B · 7 個 records · 3 ACCESS_BLOCKED · 0 PASSAGE_VERIFIED · spec_discrepancy_recorded）</li>
-    <li><code>source/YISHUI_EXTERNAL_PASSAGE_VERIFICATION_R4_2.md</code>（7932 B · 6 段 · 阻斷詳情 + 下次核驗 7 步協議）</li>
-    <li><code>yishui/sources/index.html</code>（19703 B · 中文公開頁 · 誠實展示 ACCESS_BLOCKED 狀態）</li>
-  </ul>
-  <div class="wc-disclosure verified" style="margin-top: 0.75rem;">
-    <strong>R4.3 狀態披露 ·</strong> 本輪用 R4.3 spec §A 提供的 3 個更正 URL 成功訪問, 寫入 18 條 records (CORROBORATES=8, VARIANTS=8, INCONCLUSIVE=2); Claim 011 方向性誤讀修正 (R4.3 overlay 建議「易京在易水之北」, 暫列 INCONCLUSIVE 待紙本景印校驗); Claim 012 四組 VERSION_VARIANT_CANDIDATES 已登記, 不作最終裁判. PRIMARY_SCAN_CHECKED=0 (本地無內閣文庫掃描). R4 frozen / R4.1 / R4.2 數據結構未被覆寫. 詳見 <a href="./sources/">R4.3 公開頁</a>.
-
-    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px dashed var(--wc-line);">
-
-    <h3 class="wc-h3">R4.4 中文研究文章 (research-article)</h3>
-    <p class="wc-meta"><strong>任務 ID：</strong><span class="wc-cite">WATER_CLASSIC_R4_4_YISHUI_RESEARCH_ARTICLE</span></p>
-    <p><strong>目標：</strong>完成第一篇真正面向中文讀者的《水經注》易水專題研究文章, 並提供可以線上閱讀的網頁. 整合 R4 / R4.1 / R4.2 / R4.3 / R4.3A 五層成果, 以內閣文庫藏明吳琯校《水經注》卷之十一底本影像為核心證據.</p>
-    <p><strong>R4.4 限定性證據勘誤 (Stage A):</strong></p>
-    <ol style="margin-left: 1.2rem;">
-      <li><span class="wc-art-tag-superseded">[SUPERSEDED / 已撤回 by R4.4A R4.4 勘誤 A1 撒銷]</span> <strong>A1 受封地點校正：</strong>R4 image review 將「封趙將夜於容城」誤判為「深澤」受封. Cabinet Library pid1661 字面 = 「封趙將夜於<strong>容城</strong>皆為侯國王莽更名深澤」. 受封地點 = 容城, 深澤為王莽更名. <strong>不得混為一談</strong>.<br><small class="wc-meta-r44a"><strong>R4.4A 修正 (2026-10-10):</strong> Cabinet Library pid1661 受封地點處字跡模糊；4 個獨立可達文本源 (Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw) 一致讀作「封趙將夜／夕於深澤」(高帝事件，受封地 = 深澤侯國)；R4.4 A1 為 AI 視覺單源誤讀，已撤回。三事件必須分離記錄：(a) 高帝六年封趙將夜／夕於深澤；(b) 景帝中三／中元三年以匈奴降王唯徐盧／攜徐盧於容城；(c) 王莽將容城改名為深澤。詳見 <code>data/yishui_article_critical_corrections_r4_4a.json</code>。</small><br><small class="wc-meta-r44b"><strong>R4.4B 標識 (2026-10-11):</strong> 本行 R4.4 A1 表述歷史保留作 audit 紀錄，<strong>不再作為當前有效研究結論</strong>。</small></li>
-      <li><strong>A2 範陽 vs 容城分離：</strong>兩個封侯事件須分開記錄, 不得將容城段紀年誤歸於範陽, 亦不得將王莽更名「深澤」誤認為受封地點.</li>
-      <li><strong>A3 分組統計重計：</strong>R4.3 records[] 按 passage group 重新聚合, 6 個 group (p01/p02/p03/p04a/p04b/p04c) 總計 CORROBORATES=10 + VARIANT=5 + INCONCLUSIVE_DIRECTION=3 = 18.</li>
-      <li><strong>A4 獨立研究線索 (OPEN_VARIANT_NOT_VERIFIED):</strong>《水經注疏》記載趙將夜受封於「高帝八年」vs 主流版本「六年」之差異, <strong>未取得可核驗原文前不得標記為 VERIFIED_VARIANT</strong>.</li>
-    </ol>
-    <p><strong>R4.4 文章交付 (Stage B-D):</strong></p>
-    <ul style="margin-left: 1.2rem;">
-      <li><a href="./article/">R4.4 中文研究文章首頁</a> · 43308 B · 9 h2 sections · 19 h3 subsections · 5811 漢字</li>
-      <li>20 條 canonical citations (<span class="wc-cite">[CITE-1]</span> 至 <span class="wc-cite">[CITE-20]</span>) · 4 層歸因 (古籍直接記載 / 研究者文本推論 / 版本校勘結果 / 尚待獨立確認的歷史事實)</li>
-      <li>1 張內嵌 SVG 簡化空間關係圖 (圖 1: 易水流域範陽—容城—故安文本空間) — 所有邊均指向真實底本影像 (pid1655/pid1657/pid1659/pid1661)</li>
-      <li>1 個版本異文彙總表 (V01-V04: 中二年/中元三年, 代/信, 夜/夕/某, 唯/攜/撅徐盧)</li>
-      <li>1 個證據附錄子目錄: <a href="./article/evidence/"><code>./article/evidence/</code></a> (含 R4.4 勘誤 JSON 9095 B)</li>
-      <li><a href="./article/data/yishui_article_errata_r4_4.json"><code>data/yishui_article_errata_r4_4.json</code></a> (9095 B · schema <span class="wc-cite">r4.4-yishui-article-errata/1.0</span>) · <strong>R4–R4.3A 全部原始檔案未覆寫</strong></li>
-    </ul>
-    <p><strong>R4.4 完成回執 (Stage E):</strong></p>
-    <ul style="margin-left: 1.2rem;">
-      <li>ARTICLE_WORD_COUNT = 5811 漢字 (body 5770 漢字)</li>
-      <li>ARTICLE_SECTIONS = 9 (摘要 + 一, 研究問題 + 二, 易水文本空間 + 三, 範陽容城故安空間 + 四, 易京武陽大利亭 + 五, 漢代封侯版本異文 + 六, 文本空間界限 + 七, 研究結論 + 引文)</li>
-      <li>CITATIONS_RESOLVED = 20</li>
-      <li>SUPPORTED_CLAIMS_USED = 7 (R4-YSH-001, 002, 005, 007, 008, 009, 010)</li>
-      <li>PARTIAL_CLAIMS_DISCLOSED = 5 (R4-YSH-003, 004, 006, 011 [R4.3A 方向修正 overlay], 012 [4 組候選 overlay])</li>
-      <li>UNSUPPORTED_CLAIMS = 0</li>
-      <li>OPEN_VARIANTS = 5 (V01 中二/中元三 + V02 代/信 + V03 夜/夕/某 + V04 唯/攜/撅 + A4 高帝八/六年)</li>
-      <li>ARTICLE_URL = <a href="./article/">https://conanxin.github.io/projects/shuge/research/water-classic/yishui/article/</a></li>
-      <li>GIT_COMMIT = R4.4 (TBD)</li>
-      <li>HTTP_STATUS = (待驗證)</li>
-    </ul>
-    <p><strong>R4.4 邊界遵守：</strong>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4–R4.3A 凍結 preserved · AI 視覺明確披露 · 文章狀態 DRAFT_REVIEW (不作為正式學術發表). <strong>完成 R4.4 後停止, 不進入 R5.</strong></p>
-
-    <hr style="margin: 1.5rem 0; border: 0; border-top: 1px dashed var(--wc-line);">
-
-    <h3 class="wc-h3">R4.4A 中文文章關鍵勘誤 (publication-critical-corrections)</h3>
-    <p class="wc-meta"><strong>任務 ID：</strong><span class="wc-cite">WATER_CLASSIC_R4_4A_PUBLICATION_CRITICAL_CORRECTIONS</span></p>
-    <p><strong>目標：</strong>針對 R4.4 中文研究文章已發現的關鍵史料誤讀、空間方向錯誤和引用定位問題進行定點修訂. <strong>不重做研究系統, 不覆寫 R4.4 文章主體, 僅在原文基礎上訂正已知錯誤</strong>.</p>
-    <p><strong>R4.4A 勘誤 (Stage A):</strong></p>
-    <ol style="margin-left: 1.2rem;">
-      <li><strong>CE-01 / A1 撒銷：</strong>R4.4 A1 斷言「趙將夜受封於<strong>容城</strong>, 深澤為王莽更名」錯誤. R4.4A 交叉核對 Wikisource 整理版 / Wikisource 四部叢刊本 / 山水二經合刻 / arteducation.com.tw 四個獨立可達文本源 + Cabinet Library pid1655/pid1656/pid1661 三張底本影像 AI 視覺複核, <strong>四源一致讀作「封趙將夜/夕於深澤」</strong>. Cabinet Library pid1661 受封地點處字跡模糊, <strong>無法從單一掃描確證「於容城」或「於深澤」</strong>; R4.3A AI 視覺「於容城」讀作屬單源誤讀, 本文撒銷該結論. <strong>三項歷史事件必須分開記錄：</strong> (a) 高帝六年(或八年)封趙將夜/夕<strong>於深澤</strong> (高帝事件); (b) 景帝中三/中元三年以匈奴降王唯徐盧/攜徐盧<strong>於容城</strong> (景帝事件); (c) 王莽<strong>將容城</strong>改名為<strong>深澤</strong> (王莽改名事件).</li>
-      <li><strong>CE-02 / CITE-15 修正：</strong>Cabinet Library 武陽段實際位於 <strong>pid1656</strong>, 不是 pid1661. R4.4 初稿誤指 pid1661. pid1655 = 序文 + 易水起源 + 五大夫城; pid1656 = 武陽段; pid1657 = 範陽容城雙行標題; pid1659 = 大利亭互攝通稱; pid1661 = 容城封侯 + 易京方位.</li>
-      <li><strong>CE-03 / 版本身份修正：</strong>Wikisource 四部叢刊本「明抄本」標記無實證, R4.4A 撒銷. 該頁校勘記 (〈案近刻訛作〉) 似清乾隆武英殿聚珍版/叢書集成簡編系列, <strong>需紙本校驗確認底本</strong>.</li>
-      <li><strong>CE-04 / A2 callout 重寫：</strong>R4.4 A2 callout 中「容城段記錄『漢高帝六年封趙將夜於容城』」錯誤 (應為「於深澤」). R4.4A 已重寫為「三項事件」描述.</li>
-      <li><strong>CE-05 / 結論 #3 重寫：</strong>R4.4 結論 #3 「不得將王莽更名『深澤』誤認為受封地點」與 R4.4 自身 A1 邏輯自相矛盾. R4.4A 重寫為「三事件分離」.</li>
-    </ol>
-    <p><strong>R4.4A 文章定點修訂 (Stage B-E):</strong></p>
-    <ul style="margin-left: 1.2rem;">
-      <li>8 處 article 直接修訂 (不覆寫, 不重新生成): 頂部 R4.4A 重要修訂披露塊 + §1.6 對照版本 (明抄本 → 版本來源待核驗) + §3.2 A2 callout + §5.2 blockquote + §5.2 V03 + §5.2 A1 callout (撒銷重寫) + §5.3 A4 callout + §5.4 異文彙總表 (新增 V05 受封地 + V06 紀年) + §7 結論 #3 + CITE-3/CITE-15/CITE-17/CITE-18/CITE-19</li>
-      <li>21 條 canonical citations (CITE-1 至 CITE-21): R4.4 原有 20 條 + R4.4A 新增 CITE-21 (ab.newdu.com 國學典籍網 現代標點完整版)</li>
-      <li><a href="./article/">R4.4A 修改後的中文研究文章</a> · 52297 B (從 43308 B 增加) · 470 行 (從 444 行增加) · 7331 漢字 (從 5811 增加)</li>
-      <li><a href="./article/evidence/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (evidence/)</a> · 11133 B · schema <span class="wc-cite">r4.4a-yishui-publication-critical-corrections/1.0</span></li>
-      <li><a href="../../../../../research/water-classic/data/yishui_article_critical_corrections_r4_4a.json">R4.4A 勘誤 JSON (data/)</a> · 11133 B · 與 evidence/ 同步</li>
-    </ul>
-    <p><strong>R4.4A 完成回執 (Stage E):</strong></p>
-    <ul style="margin-left: 1.2rem;">
-      <li>CRITICAL_ERRORS_FOUND = 5 (CE-01 至 CE-05)</li>
-      <li>CRITICAL_ERRORS_CORRECTED = 5 (全部 5 處 article 直接修訂)</li>
-      <li>CLAIM_012_STATUS = RECHECKED_3_EVENTS_SEPARATED (高帝深澤事件 + 景帝容城事件 + 王莽改名事件, 三項必須分開記錄)</li>
-      <li>SPATIAL_DIRECTION_CORRECTED = ALREADY_CORRECT (R4.4 §2.2 + §4.1 + SVG 圖均已正確區分水流相對城邑方位與城邑相對水流方位, 無需修改)</li>
-      <li>CANONICAL_CITATIONS_MAPPED = 21 (R4.4 原有 20 + R4.4A 新增 1)</li>
-      <li>EDITION_IDENTITY_STATUS = WIKISOURCE_SIBU_CONGKAN_REVISIONED (Wikisource 四部叢刊本 版本來源待核驗, 不預設為明抄本; ab.newdu.com 已新增為第 5 個獨立對照版本)</li>
-      <li>ARTICLE_STATUS = DRAFT_REVIEW (不作為正式學術發表)</li>
-      <li>A4 線索狀態升級 = OPEN_VARIANT_NOT_VERIFIED → <strong>PARTIALLY_VERIFIED</strong> (ab.newdu.com 國學典籍網 獨立驗證「漢高帝八年」讀法)</li>
-    </ul>
-    <p><strong>R4.4A 邊界遵守：</strong>NEW_OCR=0 · DB_WRITES=0 · EMBEDDINGS=0 · FORCE_PUSH=0 · GIT_RESET=0 · R5_ENTERED=0 · R4–R4.4 凍結 preserved · AI 視覺明確披露 (R4.4A 重新聲明) · 文章狀態 DRAFT_REVIEW (不作為正式學術發表). <strong>完成 R4.4A 後停止, 不進入 R5.</strong></p>
-  </div>
-  <div class="wc-disclosure blocked" style="margin-top: 0.75rem;">
-    <strong>R4.2 狀態披露 ·</strong> 本輪 3 個 real-URL 來源（Wikisource 卷11 / ctext 600306 / 楊守敬 res 644196）在 web_fetch 階段全部 ACCESS_BLOCKED；PASSAGE_VERIFIED_SOURCES = 0，PASSAGES_COMPARED = 0，CORROBORATES / VARIANTS / CONTRADICTIONS = 0，未對 R4.1 任何 claim 做修訂。R4 frozen 與 R4.1 數據結構未被覆寫。詳見 <a href="./sources/#sec-r42-blocked">R4.2 歷史阻斷記錄</a>。
-  </div>
-</section>
-
-<section class="wc-section" id="sec-secondary">
-  <h2 class="wc-h2">二級細節 (Secondary Details · 摺疊)</h2>
-
-  <details class="wc-details">
-    <summary>FULL_TOPOLOGY（72 節點 / 29 邊）原始資料</summary>
-    <p style="margin-top: 0.5rem;">R4 FULL_TOPOLOGY 完整保留於 <code>data/yishui_textual_topology_r4.json</code>（19257 B）。<br>
-    節點類型：historical_place / lake / mountain / river / tributary（5 種）；<br>
-    邊關係類型：origin_from / flow_east / flows_into / passes_south_of / passes_north_of / historical_relation / south_of_city_east_flow / confluences_with / enters_into / passes_east_of / location_in（11 種）。</p>
-  </details>
-
-  <details class="wc-details">
-    <summary>Spatial Relations（96 條）統計</summary>
-    <p style="margin-top: 0.5rem;">96 條 spatial_relations 分布於 7 個 core pages：<br>
-    pid1655 = 6 條 / pid1656 = 24 條 / pid1657 = 10 條 / pid1659 = 19 條 / pid1660 = 16 條 / pid1661 = 11 條 / pid1682 = 10 條。<br>
-    空間動詞：出 / 東流 / 西流 / 南流 / 北流 / 東過 / 西過 / 南過 / 北過 / 經 / 注 / 合 / 會 / 入 / 城南 / 城北 / 城東 / 城西 / 入于 / 東入（20 種）。</p>
-  </details>
-
-  <details class="wc-details">
-    <summary>Controlled Transcription 三層（7 cores）</summary>
-    <p style="margin-top: 0.5rem;">每頁 3 層：raw_ocr_layer（DB OCR） / image_checked_transcription_layer（AI vision） / normalized_research_reading_layer（正規化）。<br>
-    不確定字符總計：40 個；OCR 校正總計：30 條。</p>
-  </details>
-
-  <details class="wc-details">
-    <summary>R4 → R4.1 版本日誌</summary>
-    <ul style="margin-top: 0.5rem;">
-      <li><strong>R4 (582c852)</strong> · 首輪歷史研究成果 · 12 claims all "SUPPORTED" · 96 relations / 72 nodes</li>
-      <li><strong>R4.1 (audit overlay)</strong> · 學術審計層 · 7 SUPPORTED + 5 PARTIALLY_SUPPORTED · CLAIM_011_REVISED + CLAIM_012_CORRECTED · CORE_TOPOLOGY 9/15 + FULL 72/29 preserved · 3 sources ACCESSED + 3 IDENTIFIED + 1 PRIMARY</li>
-    </ul>
-  </details>
-</section>
-
-<section class="wc-section" id="sec-completion">
-  <h2 class="wc-h2">研究結論 (Conclusions)</h2>
-
-  <h3 class="wc-h3">RQ1 · 空間語言結構</h3>
-  <p>《水經注》易水章之空間語言可分為兩層：(1) <strong>直接引文層</strong>（TEXT_REPORTS）—— pid1657 大字標題、pid1655 正文首段、pid1659 易水-諸水互攝、pid1661 應劭解釋等，皆由原書文字直接支持；(2) <strong>研究者歸納層</strong>（TEXTUAL_INFERENCE）—— 三型分類、四水分類、「範陽以東、容城以西」等推論，需讀者自行做文本順序推論。</p>
-
-  <h3 class="wc-h3">RQ2 · 文本空間拓撲</h3>
-  <p>9 個 CORE 節點 + 15 條 CORE 邊構成易水-諸水-范陽-容城-故安-武陽-易京的精簡拓撲；FULL_TOPOLOGY 72 節點 / 29 邊保留為次級資料。每條 CORE 邊皆已綁定對應 R4 claim 與 SHUGE citation。</p>
-
-  <h3 class="wc-h3">RQ3 · 證據等級與外部校核</h3>
-  <p>R4.1 將 12 條 claims 重新分類為四層（文本可以直接支持 7 條 / 文本推論 5 條 / 外部資料已校核 0 條 / 仍待考證 3 項修正）。R4-YSH-012 修正為三項獨立 enfeoffment（範陽 / 容城 / 深澤）；R4-YSH-011 修正為部分文本推論（僅「易水之南」為直接引文）。</p>
-
-  <h3 class="wc-h3">結論</h3>
-  <div class="wc-card support">
-    <p><strong>R4 從「12/12 SUPPORTED」修正為「7 SUPPORTED + 5 PARTIALLY_SUPPORTED」</strong>，但並非證據失效，而是<strong>證據類型的精細化</strong>（TEXT_REPORTS vs TEXTUAL_INFERENCE）與<strong>frame 修正</strong>（酈道元記錄 vs 現代獨立事實）。<br>
-    R4 frozen JSON 完整保留；R4.1 為審計 overlay，可隨未來外部校核（如 EXT-CHEN-2007 URL 修復）再行更新。</p>
-  </div>
-</section>
-
-<footer class="wc-footer">
-  <p><strong>WATER_CLASSIC_R4_1_SCHOLARLY_AUDIT</strong> · publication-level scholarly audit of R4 (582c852)</p>
-  <p>硬邊界：<code>NEW_OCR=0 · NEW_PRIMARY_ACQUISITION=0 · DB_WRITES=0 · EMBEDDINGS=0</code></p>
-  <p>R4_BASELINE_PRESERVED=true · FULL_TOPOLOGY_PRESERVED=true · REAL_WORLD_LOCATION=UNRESOLVED</p>
-  <p><a href="../../../">/projects/shuge/</a> · <a href="../">/projects/shuge/research/water-classic/</a> · <a href="../corpus/">corpus/</a> · <a href="../evidence/">evidence/</a></p>
-  <p style="margin-top: 1rem; color: #888;">生成時間: 2026-09-28 18:05 GMT+8 · 用戶授權: 17:52:45 · 完成後停止 · 不進入 R5</p>
-</footer>
-
+    <figcaption class="caption">易水章节的部分文本顺序示意 · 不按比例绘制 · 非现代地图或遗址定位图</figcaption>
+   </figure>
+   <p class="prose">《水经注》沿水道串联故城、聚落、汇流与地方传说。古籍中的“径某地南”表达的是水流经过某地南侧；“易京城在易城西四五里”则表达两个城邑之间的东西关系。这两类信息不能互相替代，更不能直接转换为现代经纬度。关于南易水、北易水以及古河道的变迁，仍需要历史地图与考古、水文资料作独立检验。</p>
+  </section>
+  <section class="section" id="variants">
+   <div class="section-heading"><p class="label">版本考辨</p><h2>几处仍需认真校核的文字</h2><p>不同传本、在线整理与机器识读可能产生不同读法，其证据等级并不相同。</p></div>
+   <div class="vtable">
+    <table>
+      <thead><tr><th style="width:25%">研究问题</th><th style="width:30%">已见读法</th><th>当前判断</th></tr></thead>
+      <tbody>
+       <tr><td>范阳封侯纪年</td><td>“中二年”／“中元三年”等</td><td>须确认同一段落及版本，不能以容城段纪年代替范阳段。</td></tr>
+       <tr><td>范阳降王姓名</td><td>“代”／早期识读“信”</td><td>多种文本与图像辅助辨读支持“代”，“信”可能是识字误差。</td></tr>
+       <tr><td>赵将姓名与封侯年份</td><td>“夜”／“夕”；“六年”／“八年”</td><td>深泽受封的文字存在异读，纪年有不同在线见证，尚待核定版本来源。</td></tr>
+       <tr><td>容城受封降王姓名</td><td>“唯徐盧”／“攜徐盧”</td><td>两种读法见于在线文本；另有未经直接核实的第三种说法。</td></tr>
+      </tbody>
+    </table>
+   </div>
+   <p class="table-note">表中列出待校核的文字见证，并非已经由纸本古籍完成终校的版本结论。其他“容城／容成”等差异见详细对照资料。</p>
+  </section>
+  <section class="section" id="materials">
+   <div class="section-heading"><p class="label">进一步阅读</p><h2>史料、证据与研究资料</h2><p>正文之外的研究材料保留独立入口，便于从解释返回原文。</p></div>
+   <div class="sources">
+    <article class="source"><span class="icon">01 / 原文与校勘</span><h3>版本对照</h3><p>查看卷十一关键句段在不同在线文本中的读法、字形分歧及尚未解决的校勘问题。</p><a href="./sources/">浏览版本对照 →</a></article>
+    <article class="source"><span class="icon">02 / 引文与图像</span><h3>核心证据</h3><p>依据扫描页的唯一标识追溯研究所使用的原始文字，了解证据的来源和限制。</p><a href="../evidence/">查看证据档案 →</a></article>
+    <article class="source"><span class="icon">03 / 文本与检索</span><h3>完整数字语料</h3><p>按页浏览《水经注》数字化语料。自动识读的文字仍可能含有错误，不等同于人工校订本。</p><a href="../corpus/">进入语料库 →</a></article>
+   </div>
+  </section>
+  <section class="section" id="method">
+   <div class="section-heading"><p class="label">研究说明</p><h2>文献可以说明什么，尚不能说明什么</h2></div>
+   <div class="boundary"><span class="mark" aria-hidden="true">※</span><p>本专题首先研究《水经注》所描述的文本空间，而不是已经复原的现代地图。部分扫描文字采用 AI 视觉辅助辨读，未经过古文献学者人眼终校；部分对照网页的底本身份也未确定。凡涉及古城真实坐标、河道历史变化和传本异文最终取舍，仍需更多独立证据。</p></div>
+   <details class="archive">
+     <summary>研究档案、完整论断与历史版本</summary>
+     <p>下列材料供需要复核研究过程的读者使用。早期结论可能已被后续证据修订，请以目前的研究文章及最新校勘说明为准。</p>
+     <div class="archive-links">
+      <a href="../">《水经注》研究总览</a>
+      <a href="../appendix/">研究方法与技术附录</a>
+      <a href="../data/yishui_claims_r4_1.json">历史论断审计数据</a>
+      <a href="../data/yishui_core_topology_r4_1.json">文本空间拓扑数据</a>
+      <a href="../data/yishui_article_citation_mapping_r4_4c.json">文章引文映射</a>
+      <a href="https://github.com/conanxin/conanxin.github.io/blob/fe472c77db489e4633e7241251a46daaf7ebf663/projects/shuge/research/water-classic/yishui/index.html" target="_blank" rel="noopener">旧版完整页面存档</a>
+     </div>
+   </details>
+  </section>
+ </div>
+</main>
+<footer><div class="footer-inner"><span>SHUGE · 数字人文研究</span><span><a href="/projects/shuge/">返回研究首页</a>　·　<a href="./article/">阅读专题文章</a></span></div></footer>
 </body>
 </html>

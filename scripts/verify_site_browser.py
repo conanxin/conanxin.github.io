@@ -38,7 +38,15 @@ try:
     assert 'hello@xin-conan.me' not in page.locator('body').inner_text(),(path,'old contact')
     assert page.locator('.site-footer a[href="mailto:conanxin@gmail.com"]').count()==1,(path,'footer contact')
     if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/'):
-     assert metrics['scroll']<=width+5,(path,width,'horizontal overflow',metrics)
+     if metrics['scroll']>width+5:
+      offenders=page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
+       .map(el=>({el,rect:el.getBoundingClientRect()}))
+       .filter(({rect})=>rect.width>0 && rect.right>innerWidth+5 && rect.left>=-5)
+       .sort((a,b)=>b.rect.right-a.rect.right).slice(0,18)
+       .map(({el,rect})=>({tag:el.tagName,cls:typeof el.className==='string'?el.className.slice(0,60):'svg',
+         right:Math.round(rect.right),width:Math.round(rect.width),
+         text:(el.innerText||'').slice(0,65)}))""")
+      raise AssertionError((path,width,'horizontal overflow',metrics,offenders))
     interaction=None
     if path=='/':
      nav_link=page.locator('.site-nav a[href="/about.html"]').first

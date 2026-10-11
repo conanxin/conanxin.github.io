@@ -122,8 +122,10 @@ def apply(root: Path) -> dict:
         from build_site import section_for
         group = '预览与创作档案' if path.startswith('drafts/') else section_for(path)[0]
         groups[group].append(row)
+    from content_index import publish_index
+    catalog = publish_index(root, manifest)
     from build_site import transform, route
-    sitemap = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>站点目录 | Conan Xin</title></head><body><main class="site-home"><section class="home-hero"><h1>站点目录</h1><p>从文章、项目与研究专题进入。旧展览集中保留版本入口；源代码副本、构建报告和中间文件不再混入阅读目录。</p></section>'
+    sitemap = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>站点目录 | Conan Xin</title></head><body><main class="site-home"><section class="home-hero"><h1>站点目录</h1><p>从文章、项目与研究专题进入。旧展览集中保留版本入口；源代码副本、构建报告和中间文件不再混入阅读目录。</p><p><a class="site-button" href="/content-index/">浏览自动内容索引 →</a></p></section>'
     for group, rows in sorted(groups.items()):
         sitemap += '<details class="archive"><summary>'+escape(group)+' · '+str(len(rows))+' 个入口</summary><div class="site-local__links">'
         for row in sorted(rows, key=lambda r:r['path']):
@@ -146,9 +148,10 @@ def apply(root: Path) -> dict:
     manifest['identity'] = IDENTITY
     manifest['profile'] = {'name': NAME, 'email': EMAIL}
     manifest['reader_directory_entries'] = sum(map(len, groups.values()))
+    manifest['content_index'] = catalog
     manifest['identity_html_changed'] = changed
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
-    summary = {'identity': IDENTITY, 'html_updated': changed, 'directory_entries': manifest['reader_directory_entries'], 'internal_targets_checked': len(checked), 'missing_internal_targets': sorted(missing), 'research_data_rewritten': False}
+    summary = {'identity': IDENTITY, 'html_updated': changed, 'directory_entries': manifest['reader_directory_entries'], 'internal_targets_checked': len(checked), 'missing_internal_targets': sorted(missing), 'research_data_rewritten': False, 'content_index_total': catalog['total']}
     print(json.dumps(summary, ensure_ascii=False), flush=True)
     if missing: raise AssertionError('Broken reader navigation: '+', '.join(sorted(missing)))
     return summary

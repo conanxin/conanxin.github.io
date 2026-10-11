@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.2 (2026-10-11，Stage 2C 真实模板落地)
+> **版本**: 1.3 (2026-10-11，Stage 2D 展览／文献试点及自动内容索引)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -208,3 +208,19 @@
 3. 新页只使用 `assets/site/design.css` 现有 token、共享导航与已批准的模板局部样式，不重写原有研究文章。
 4. 真实页需验证桌面和移动端的布局、证据折叠区、引用链接及 `data-site-identity`；公开发布后的 HTTP 响应由 Pages workflow 单独核验。
 5. `exhibition` 与 `reference` 模板目前只完成结构修复，**尚未落地新的真实内容页面**；待有可核实展品、文献、出处时进入 Stage 2D，不虚构研究材料。
+
+
+---
+
+## 12. Stage 2D · 展览、文献真实页面与自动内容索引
+
+> 本节记录独立 PR 实施方案；**是否正式发布必须以 Stage 2D PR 合并和 GitHub Pages 生产部署回执为准**。原 SHUGE 展览数据及研究档案保持不变。
+
+- `projects/site-design-lab/shuge-evidence-exhibition/index.html` 使用已有的 `exhibition` 模板，导览 SHUGE 既有第 2 展厅的数字研究对象。它链接原展厅、`room_intros.json`、`water_classic_pages.json` 及原始审计文档，并强调 Citation ID 不代表学术论断获得支持。
+- `projects/site-design-lab/shuge-source-register/index.html` 使用已有 `reference` 模板，只收录 v0.7 `bibliography.json` 真实存在的三个 `work_id`；临时题名、未知作者/年份、引文解析缺口明确标示，**不把临时题名升级为正式古籍版本信息**。
+- 两页在完整 HTML 的 `<head>` 内声明 `<meta name="site-index-kind" content="exhibition">` 或 `reference`。该标记只控制发现索引分组，不是对文献可靠性或发表状态的证明。
+- `scripts/content_index.py` 在 `scripts/build_site.py` 与 `scripts/personalize_site.py` 的现有发布流程中，根据 **build manifest 中成功构建且有公开路由的 HTML 页面** 生成 `/content-index/` 与 `/assets/site/content-index.json`。只自动纳入根级公开文章 `posts/*.html`、一级项目入口 `projects/*/index.html` 及显式标记的展览、文献页；`src/`、`source/`、未填充模板和历史展览 v0.* 不进入该精选索引。
+- 索引只提供标题和简介的浏览器本地搜索、类型筛选与真实计数，不声称全文搜索、不制造发表日期、不修改 `posts/index.html` 或 `projects/index.html` 中的旧条目。
+- 站点目录、旧文章/项目列表的共享外壳与全站页脚提供自动索引入口；不需要重写历史研究正文。
+
+**验收条件**：四类模板全部有真实应用，标签无占位泄漏；自动索引 HTML/JSON 一致且幂等；1440px 与 390px 双视口交互通过；正式发布后新三条公网路由及 JSON 检查通过。学术史实仍须另行证据校读。

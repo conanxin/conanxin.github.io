@@ -132,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/']
           result=[]
           for path in paths:
               error=None
@@ -152,6 +152,21 @@ jobs:
                           if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
                               assert 'TEMPLATE_' not in body,'template placeholder published'
                               assert 'id="evidence"' in body and 'id="citation"' in body,'evidence structure missing'
+                          if path in ('/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/'):
+                              expected='exhibition' if 'exhibition' in path else 'reference'
+                              assert 'class="template-'+expected+'"' in body,'SHUGE template not used'
+                              assert 'site-index-kind' in body,'SHUGE index metadata missing'
+                              assert 'TEMPLATE_' not in body,'SHUGE template placeholders leaked'
+                              assert 'CLAIM_SUPPORT_AUDIT.md' in body,'SHUGE source audit link missing'
+                          if path=='/content-index/':
+                              assert 'id="index-search"' in body and 'id="index-kind"' in body,'catalog filter missing'
+                              assert '/projects/site-design-lab/shuge-evidence-exhibition/' in body,'exhibition not indexed'
+                              assert '/projects/site-design-lab/shuge-source-register/' in body,'reference not indexed'
+                              with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
+                                  catalog=json.loads(data_response.read().decode('utf-8'))
+                                  assert catalog['total']>15,'empty content index'
+                                  assert catalog['counts']['exhibition']>=1 and catalog['counts']['reference']>=1,'missing catalog categories'
+                                  assert not any('/source/' in item['url'] for item in catalog['items']),'source paths leaked to catalog'
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

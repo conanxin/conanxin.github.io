@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="设计样板：展示 Conan Xin 数字花园使用的全站视觉 token 与公共组件, 标题层级、正文、按钮、链接、卡片、引文、数据表格与折叠内容的呈现参考。">
-<title>设计样板 · Xin Conan</title>
+<title>设计样板 · Conan Xin</title>
 <style>
 /* 局部样式: 仅作用于本页 site-guide 元素, 不影响其他页面。 */
 main.site-guide > section { margin-block: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--site-line); }
@@ -88,7 +88,7 @@ main.site-guide .focus-test a { margin-right: 12px; }
 <h2 id="quote-heading">引文</h2>
 <blockquote class="quote-block" cite="https://example.org">
 <p>"这是一种用于强调关键论述的呈现方式, 左侧边线为深绿色, 背景为浅米色。"</p>
-<footer>— 作者, 《书名》</footer>
+<footer>— 示例作者, 《示例书名》(演示内容, 非真实引用)</footer>
 </blockquote>
 </section>
 
@@ -97,14 +97,14 @@ main.site-guide .focus-test a { margin-right: 12px; }
 <p>表格会自动被 <code>build_site.py</code> 用 <code>.site-table-scroll</code> 包装以支持横向滚动。</p>
 <div class="site-table-scroll">
 <table class="demo-table">
-<caption>2026 年研究项目样例</caption>
+<caption>研究项目展示 (示例数据, 用于呈现表格样式, 非真实研究记录)</caption>
 <thead>
-<tr><th scope="col">项目</th><th scope="col">类型</th><th scope="col">状态</th><th scope="col">开始</th></tr>
+<tr><th scope="col">项目</th><th scope="col">类型</th><th scope="col">状态 (示例)</th><th scope="col">开始 (示例)</th></tr>
 </thead>
 <tbody>
-<tr><td>《水经注》易水研究</td><td>数字人文</td><td>已发表</td><td>2026-01</td></tr>
-<tr><td>SpaceX 火星殖民长文翻译</td><td>科技翻译</td><td>已发表</td><td>2026-06</td></tr>
-<tr><td>Yarvin Moldbug 系列评论</td><td>评论</td><td>草稿</td><td>2026-08</td></tr>
+<tr><td>示例项目甲</td><td>示例类型</td><td>示例状态 A</td><td>20XX-01</td></tr>
+<tr><td>示例项目乙</td><td>示例类型</td><td>示例状态 B</td><td>20XX-06</td></tr>
+<tr><td>示例项目丙</td><td>示例类型</td><td>示例状态 C</td><td>20XX-08</td></tr>
 </tbody>
 </table>
 </div>
@@ -118,8 +118,15 @@ main.site-guide .focus-test a { margin-right: 12px; }
 <pre><code>&lt;body class="site-unified" data-site-theme="unified-v1" data-site-kind="content"&gt;</code></pre>
 </details>
 <details>
-<summary>显示无障碍声明</summary>
-<p>本站遵循 WCAG 2.1 AA 标准。所有交互元素具备 <code>:focus-visible</code> 焦点轮廓, 链接具备 <code>:hover</code> 状态, 图像具备 <code>alt</code> 属性。</p>
+<summary>显示无障碍设计目标与已落实项</summary>
+<p>无障碍是本站设计的<strong>持续目标</strong>, 并非已通过完整第三方审计的合规声明。已落实的具体实践包括:</p>
+<ul>
+<li>所有可交互元素 (链接、按钮、可折叠控件) 在 <code>:focus-visible</code> 状态下显示 <code>2px solid var(--site-accent)</code> 焦点轮廓, 配合 <code>outline-offset: 4px</code>, 对应 WCAG 2.4.7 的可见焦点要求。</li>
+<li>链接默认具备可读的 <code>:hover</code> 与 <code>:focus</code> 状态, 颜色对比满足正文 ≥ 4.5:1 (WCAG 1.4.3)。</li>
+<li>图像 <code>&lt;img&gt;</code> 在源代码中需要 <code>alt</code> 属性; 当前 <code>assets/site/design.css</code> 提供 <code>.visually-hidden</code> 工具类供装饰性背景图像使用。</li>
+<li>页面结构遵循 <code>&lt;main&gt;</code> + <code>&lt;article&gt;</code> / <code>&lt;section&gt;</code> 的语义层级, 便于屏幕阅读器导航。</li>
+</ul>
+<p>本节内容为设计<strong>目标与已落实项</strong>, 不是已通过 WCAG 2.1 AA 第三方合规审计的认证声明。需要完整无障碍评估 (含辅助技术实测) 时, 应另行委托独立审计。</p>
 </details>
 </section>
 

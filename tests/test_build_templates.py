@@ -11,11 +11,11 @@ Tests therefore compute unique non-existent paths inside the repo. Each test
 relies on `addCleanup` to remove the directory after the test completes.
 """
 from pathlib import Path
-import os
 import shutil
 import subprocess
 import sys
 import unittest
+import uuid
 
 BUILDER = Path(__file__).resolve().parents[1] / 'scripts' / 'build_site.py'
 REPO = Path(__file__).resolve().parents[1]
@@ -29,10 +29,25 @@ PLACEHOLDERS = (
     'TEMPLATE_REFERENCE_PLACEHOLDER_TITLE',
 )
 
+# Monotonic counter so each call within one process gets a fresh suffix.
+# Previous test_id values used `os.getpid()` + `id(_unique_output_path)`,
+# both of which were identical for every call in the same process —
+# the function was not actually unique, which caused races between
+# setUp / cleanup / parallel-style test ordering.
+_CALL_COUNTER = [0]
+
 
 def _unique_output_path() -> Path:
-    """Return a non-existent path inside REPO that build_site.py can create itself."""
-    return REPO / f'.test-build-{os.getpid()}-{id(_unique_output_path)}'
+    """Return a non-existent path inside REPO that build_site.py can create itself.
+
+    Truly unique across calls within one process and across CI runs because:
+      - uuid.uuid4() is globally unique per invocation
+      - The call counter guarantees two calls in the same line of code still differ
+      - The path stays under REPO because build_site.py enforces that its output
+        be a child of the source root.
+    """
+    _CALL_COUNTER[0] += 1
+    return REPO / f'.test-build-{uuid.uuid4().hex[:8]}-{_CALL_COUNTER[0]}'
 
 
 def _run_build(output: Path) -> None:
@@ -59,10 +74,26 @@ class TemplateExclusionTests(unittest.TestCase):
 
     def setUp(self):
         self.output = _unique_output_path()
-        # Defensive cleanup in case a previous interrupted run left a leftover.
+        # Defensive cleanup of any pre-existing path with this exact name
+        # (extremely unlikely now that names are uuid-based, but cheap insurance).
         if self.output.exists():
             shutil.rmtree(self.output, ignore_errors=True)
+        # Defensive sweep: remove any leftover .test-build-* from previous
+        # interrupted runs in the SAME test process — these are real,
+        # separate outputs that may otherwise collide with subsequent builds
+        # when the next test sees the old directory still on disk and
+        # build_site.py refuses to overwrite it.
+        for stale in REPO.glob('.test-build-*'):
+            if stale == self.output:
+                continue
+            shutil.rmtree(stale, ignore_errors=True)
         self.addCleanup(shutil.rmtree, str(self.output), True)
+        # Also register a final sweep to remove any *new* .test-build-*
+        # directories this test created, even if the cleanup() above bailed.
+        def _final_sweep():
+            for leftover in REPO.glob('.test-build-*'):
+                shutil.rmtree(leftover, ignore_errors=True)
+        self.addCleanup(_final_sweep)
 
     def test_templates_in_excludes_set_in_builder(self):
         """scripts/build_site.py must reference 'templates' in its excludes set."""

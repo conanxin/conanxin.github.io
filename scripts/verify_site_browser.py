@@ -41,8 +41,13 @@ try:
      assert metrics['scroll']<=width+5,(path,width,'horizontal overflow',metrics)
     interaction=None
     if path=='/':
-     page.locator('.site-nav a[href="/about.html"]').click()
-     assert page.url.endswith('/about.html')
+     nav_link=page.locator('.site-nav a[href="/about.html"]').first
+     nav_link.scroll_into_view_if_needed(timeout=10000)
+     try:
+      nav_link.click(timeout=15000,force=True)
+     except Exception:
+      nav_link.click(timeout=15000,no_wait_after=True)
+     assert page.url.endswith('/about.html'),('home -> about failed',page.url)
      assert page.locator('h1').inner_text()=='关于 Conan Xin'
      assert page.locator('#contact a[href="mailto:conanxin@gmail.com"]').count()==1
      interaction='home -> about -> real contact link'

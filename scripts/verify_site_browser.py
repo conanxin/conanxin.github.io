@@ -91,7 +91,7 @@ try:
           id:el.id, left:Math.round(rect.left), right:Math.round(rect.right),
           width:Math.round(rect.width), scroll:el.scrollWidth,
           text:(el.innerText||'').slice(0,40)}))""")
-      print('MARS_MOBILE_OVERFLOW_DIAG='+json.dumps(offenders,ensure_ascii=False),flush=True)
+      raise AssertionError((path,'mobile horizontal overflow',width,metrics['scroll'],offenders))
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
      page.locator('button.tool-btn[data-theme="mars-sand"]').click()
      assert page.evaluate("document.documentElement.dataset.theme")=='mars-sand'

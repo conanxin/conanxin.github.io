@@ -57,7 +57,8 @@ def is_catalog_safe_path(path: str) -> bool:
         return False
     if parts[0] in {"drafts", "future", "src", "connections", "research-terminal"}:
         return False
-    if any(part in {"source", "sources", "work", "works", "reports",
+    if any(part in {"drafts", "future", "src", "connections", "research-terminal",
+                    "source", "sources", "work", "works", "reports",
                     "backups", "tests", "scripts", "templates"} for part in parts[:-1]):
         return False
     if path.startswith("projects/shuge-exhibition-v0."):

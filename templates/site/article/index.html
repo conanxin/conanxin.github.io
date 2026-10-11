@@ -7,6 +7,7 @@
 <meta name="description" content="TEMPLATE_ARTICLE_PLACEHOLDER_DESCRIPTION">
 <style>
 /* 局部样式：仅作用于本页 article 元素, 不影响全局。*/
+main article.template-article { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
 main article.template-article > section { margin-block: 28px; }
 main article.template-article .evidence-list { background: #f1f0e9; border: 1px solid var(--site-line); padding: 14px 20px; border-radius: 4px; }
 main article.template-article .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
@@ -16,7 +17,7 @@ main article.template-article .tech-log summary { color: var(--site-muted); }
 </style>
 </head>
 <body>
-<main>
+<main class="site-home">
 <article class="template-article">
 <h1>TEMPLATE_ARTICLE_PLACEHOLDER_H1</h1>
 <p class="site-heading-lead">TEMPLATE_ARTICLE_PLACEHOLDER_LEAD</p>
@@ -62,7 +63,7 @@ TEMPLATE_ARTICLE_PLACEHOLDER_QUOTE_TEXT
 <li>TEMPLATE_ARTICLE_PLACEHOLDER_TECH_NOTE_DRAFT</li>
 </ul>
 </details>
-</main>
 </article>
+</main>
 </body>
 </html>

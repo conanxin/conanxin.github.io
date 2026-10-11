@@ -122,6 +122,9 @@ try:
      d.locator('summary').click();assert d.get_attribute('open') is not None
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
+    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
+     page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
+     page.wait_for_timeout(100)
     if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/'):
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
     results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors})

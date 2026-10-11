@@ -134,10 +134,18 @@ def nav_header(path):
     return '<a class="site-skip" href="#site-main-start">跳到正文</a><header class="site-header"><div class="site-header__inner"><a class="site-brand" href="/">'+BRAND+'<small>研究 · 文章 · 技术实践</small></a><nav class="site-nav" aria-label="全站导航">'+''.join(items)+'</nav></div></header>'
 
 def transform(html, path):
-    if 'data-site-theme="unified-v1"' in html: return html, {'path':path,'status':'already'}
     parser=Structure(html)
     body=next((n for n in parser.nodes if n.tag=='body'),None)
     head=next((n for n in parser.nodes if n.tag=='head'),None)
+    # Already-themed check: only the REAL body element's data-site-theme
+    # attribute counts. A raw substring scan would falsely match the literal
+    # text inside a <pre><code> code example (site-guide/index.html contains
+    # exactly such an example, which is why a previous version of this check
+    # silently skipped /site-guide/ for three consecutive CI runs).
+    if body is not None and 'data-site-theme' in body.attrs:
+        titles=[text(n) for n in parser.nodes if n.tag=='title']
+        title=clean_title(titles[0] if titles else Path(path).stem)
+        return html, {'path':path,'status':'already','title':title}
     if body is None or head is None or head.close_start is None:
         return html, {'path':path,'status':'fragment-unmodified'}
     kind=classify(path)
@@ -240,9 +248,11 @@ def build(root,output):
     records=[];assets=0
     for p in files:
         rel=p.relative_to(root)
-        if p.is_symlink() or any(x in {'.git','.github','.cursor','.site-build','node_modules','__pycache__'} for x in rel.parts) or output in p.parents:continue
+        if p.is_symlink() or any(x in {'.git','.github','.cursor','.site-build','node_modules','__pycache__','templates'} for x in rel.parts) or output in p.parents:continue
         if rel.as_posix() in {'scripts/build_site.py','scripts/verify_site_browser.py'}:continue
-        dest=output/rel;dest.parent.mkdir(parents=True,exist_ok=True)
+        dest=output/rel
+        if not output.exists(): output.mkdir(parents=True, exist_ok=True)
+        dest.parent.mkdir(parents=True, exist_ok=True)
         if p.suffix.lower() in {'.html','.htm'} and not any(x.startswith('_') for x in rel.parts):
             html=p.read_text(encoding='utf-8')
             content,record=transform(html,rel.as_posix())

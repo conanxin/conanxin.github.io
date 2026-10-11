@@ -1,55 +1,130 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
+# PR checks and production deployment use DIFFERENT concurrency groups so that
+# a stuck or slow PR check never cancels a real production deploy, and vice versa.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && 'deploy' || 'check' }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
+  # ------------------------------------------------------------------
+  # PR checks: run on pull_request and workflow_dispatch from non-main refs.
+  # Does NOT publish to Pages, does NOT deploy, does NOT write to github-pages
+  # environment. Uploads Playwright artifacts for review.
+  # ------------------------------------------------------------------
+  pr-checks:
+    if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run unit tests (test_*.py)
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Build site
+        run: |
+          python3 scripts/build_site.py --output .site-build
+          python3 scripts/personalize_site.py .site-build
+
+      - name: Install Playwright + Chromium
+        run: |
+          python3 -m pip install --quiet playwright==1.57.0
+          python3 -m playwright install --with-deps chromium
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Browser checks — desktop (1440x900)
+        run: |
+          python3 scripts/verify_site_browser.py .site-build
+
+      - name: Upload Playwright artifacts (screenshots + JSON)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-check-screenshots
+          path: ${{ runner.temp }}/site-ui-check
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # ------------------------------------------------------------------
+  # Production deploy: only runs on push to main (or manual dispatch on main).
+  # Pull requests are EXPLICITLY excluded — never publish a PR branch.
+  # ------------------------------------------------------------------
   deploy:
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    needs: []
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run unit tests
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+
       - name: Build unified reading interface
         run: |
-          python3 -m unittest discover -s tests -p test_site_identity.py -v
           python3 scripts/build_site.py --output .site-build
           python3 scripts/personalize_site.py .site-build
-      - name: Browser checks for site-wide changes
-        if: contains(github.event.head_commit.message, 'site-wide') || github.event_name == 'workflow_dispatch'
+
+      - name: Install Playwright + Chromium
         run: |
           python3 -m pip install --quiet playwright==1.57.0
-          if ! command -v google-chrome && ! command -v chromium; then
-            python3 -m playwright install --with-deps chromium
-          fi
+          python3 -m playwright install --with-deps chromium
           sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Browser checks for site-wide changes
+        run: |
           python3 scripts/verify_site_browser.py .site-build
-      - name: Keep browser check evidence
-        if: always() && (contains(github.event.head_commit.message, 'site-wide') || github.event_name == 'workflow_dispatch')
+
+      - name: Upload Playwright artifacts (screenshots + JSON)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: site-ui-check
+          name: deploy-screenshots
           path: ${{ runner.temp }}/site-ui-check
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 14
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .site-build
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
       - name: Verify public reader pages
         env:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
@@ -57,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/']
           result=[]
           for path in paths:
               error=None

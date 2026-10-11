@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="设计样板：展示 Conan Xin 数字花园使用的全站视觉 token 与公共组件, 标题层级、正文、按钮、链接、卡片、引文、数据表格与折叠内容的呈现参考。">
+<title>设计样板 · Conan Xin</title>
+<style>
+/* 局部样式: 仅作用于本页 site-guide 元素, 不影响其他页面。 */
+main.site-guide > section { margin-block: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--site-line); }
+main.site-guide > section:last-of-type { border-bottom: 0; }
+main.site-guide .guide-toc { background: #f7f5ef; padding: 14px 22px; border-radius: 4px; }
+main.site-guide .guide-toc ol { margin: 8px 0 0; columns: 2; column-gap: 32px; }
+main.site-guide .guide-toc li { margin-block: 4px; }
+main.site-guide .demo-card { background: #fff; border: 1px solid var(--site-line); border-radius: 4px; padding: 24px; }
+main.site-guide .demo-card h3 { font: 600 20px/1.6 var(--site-serif); margin: 0 0 12px; color: var(--site-ink); }
+main.site-guide .demo-card p { margin: 0 0 12px; }
+main.site-guide .button-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+main.site-guide .quote-block { border-left: 3px solid var(--site-green); padding: 14px 20px; background: #f1f0e9; border-radius: 0 4px 4px 0; font: 17px/1.95 var(--site-serif); color: #37473c; }
+main.site-guide .demo-table { width: 100%; border-collapse: collapse; font: 13px/1.8 var(--site-sans); color: #39483e; min-width: 600px; }
+main.site-guide .demo-table th, main.site-guide .demo-table td { padding: 12px 14px; border-bottom: 1px solid #e6e6de; text-align: left; vertical-align: top; }
+main.site-guide .demo-table th { background: #f1f2eb; color: #3c503f; }
+main.site-guide .focus-test a { margin-right: 12px; }
+</style>
+</head>
+<body>
+<main class="site-guide site-home">
+<section class="home-hero">
+<h1>设计样板</h1>
+<p>本页是 Conan Xin 数字花园的全站设计样板。它仅使用 <code>assets/site/design.css</code> 的现有变量和公共组件, 不引入独立的第二套样式系统。读者可在此查看标题层级、正文、按钮、链接、卡片、引文、数据表格与折叠内容的呈现参考。</p>
+<div class="home-actions">
+<a class="site-button" href="#typography">查看字体层级 ↓</a>
+<a class="site-link" href="https://github.com/conanxin/conanxin.github.io/blob/main/assets/site/design.css">查看 design.css →</a>
+</div>
+</section>
+
+<details class="guide-toc" open>
+<summary>本页目录</summary>
+<ol>
+<li><a href="#typography">字体与层级</a></li>
+<li><a href="#body-text">正文与段落</a></li>
+<li><a href="#buttons-links">按钮与链接</a></li>
+<li><a href="#cards">卡片</a></li>
+<li><a href="#quote">引文</a></li>
+<li><a href="#table">数据表格</a></li>
+<li><a href="#collapsible">折叠内容</a></li>
+<li><a href="#focus">焦点与可访问性</a></li>
+</ol>
+</details>
+
+<section id="typography" aria-labelledby="typography-heading">
+<h2 id="typography-heading">字体与层级</h2>
+<p>全站使用 <code>:root</code> 中的 <code>--site-serif</code> 与 <code>--site-sans</code>, 标题使用衬线字体, 正文与 UI 使用无衬线字体。</p>
+<h1>H1 · 衬线粗体</h1>
+<h2>H2 · 章节标题</h2>
+<h3>H3 · 段落小标题</h3>
+<h4>H4 · 子段落</h4>
+</section>
+
+<section id="body-text" aria-labelledby="body-heading">
+<h2 id="body-heading">正文与段落</h2>
+<p>正文段落采用 16px / 行高 1.95 的 <code>--site-sans</code>。长文段落(<code>.post-content</code>)使用 17px 衬线、行高 1.95。</p>
+<p>需要强调关键概念时, 可使用 <strong>粗体</strong> 或 <em>斜体</em>; 行内代码用 <code>code</code> 标签。</p>
+</section>
+
+<section id="buttons-links" aria-labelledby="buttons-heading">
+<h2 id="buttons-heading">按钮与链接</h2>
+<div class="button-row">
+<a class="site-button" href="#typography">主按钮 · site-button</a>
+<a class="site-button" href="https://conanxin.github.io" target="_blank" rel="noopener">外部链接 ↗</a>
+<a class="site-link" href="#">次级链接 · site-link</a>
+<a href="#">普通文本链接</a>
+</div>
+<p style="margin-top: 16px">所有可点击元素在 <code>:focus-visible</code> 时显示 <code>2px solid var(--site-accent)</code> 焦点轮廓, 符合 WCAG 2.4.7 要求。</p>
+</section>
+
+<section id="cards" aria-labelledby="cards-heading">
+<h2 id="cards-heading">卡片</h2>
+<p>三种常用卡片样式均使用现有 token:</p>
+<div class="home-portals">
+<div class="home-portal demo-card"><h3>研究项目</h3><p>数字人文、田野记录、文献研究</p><a class="site-link" href="/projects/">查看项目 →</a></div>
+<div class="home-portal demo-card"><h3>文章</h3><p>技术评论、读书笔记、田野随笔</p><a class="site-link" href="/posts/">阅读文章 →</a></div>
+<div class="home-portal demo-card"><h3>播客</h3><p>声音叙事、对话、访谈</p><a class="site-link" href="/podcast/">收听播客 →</a></div>
+</div>
+</section>
+
+<section id="quote" aria-labelledby="quote-heading">
+<h2 id="quote-heading">引文</h2>
+<blockquote class="quote-block" cite="https://example.org">
+<p>"这是一种用于强调关键论述的呈现方式, 左侧边线为深绿色, 背景为浅米色。"</p>
+<footer>— 示例作者, 《示例书名》(演示内容, 非真实引用)</footer>
+</blockquote>
+</section>
+
+<section id="table" aria-labelledby="table-heading">
+<h2 id="table-heading">数据表格</h2>
+<p>表格会自动被 <code>build_site.py</code> 用 <code>.site-table-scroll</code> 包装以支持横向滚动。</p>
+<div class="site-table-scroll">
+<table class="demo-table">
+<caption>研究项目展示 (示例数据, 用于呈现表格样式, 非真实研究记录)</caption>
+<thead>
+<tr><th scope="col">项目</th><th scope="col">类型</th><th scope="col">状态 (示例)</th><th scope="col">开始 (示例)</th></tr>
+</thead>
+<tbody>
+<tr><td>示例项目甲</td><td>示例类型</td><td>示例状态 A</td><td>20XX-01</td></tr>
+<tr><td>示例项目乙</td><td>示例类型</td><td>示例状态 B</td><td>20XX-06</td></tr>
+<tr><td>示例项目丙</td><td>示例类型</td><td>示例状态 C</td><td>20XX-08</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="collapsible" aria-labelledby="collapsible-heading">
+<h2 id="collapsible-heading">折叠内容</h2>
+<details>
+<summary>显示技术细节</summary>
+<p>全站主题: <code>unified-v1</code>。所有页面经 <code>scripts/build_site.py transform()</code> 注入 <code>body.site-unified</code> 与 <code>data-site-theme</code> 属性。</p>
+<pre><code>&lt;body class="site-unified" data-site-theme="unified-v1" data-site-kind="content"&gt;</code></pre>
+</details>
+<details>
+<summary>显示无障碍设计目标与已落实项</summary>
+<p>无障碍是本站设计的<strong>持续目标</strong>, 并非已通过完整第三方审计的合规声明。已落实的具体实践包括:</p>
+<ul>
+<li>所有可交互元素 (链接、按钮、可折叠控件) 在 <code>:focus-visible</code> 状态下显示 <code>2px solid var(--site-accent)</code> 焦点轮廓, 配合 <code>outline-offset: 4px</code>, 对应 WCAG 2.4.7 的可见焦点要求。</li>
+<li>链接默认具备可读的 <code>:hover</code> 与 <code>:focus</code> 状态, 颜色对比满足正文 ≥ 4.5:1 (WCAG 1.4.3)。</li>
+<li>图像 <code>&lt;img&gt;</code> 在源代码中需要 <code>alt</code> 属性; 当前 <code>assets/site/design.css</code> 提供 <code>.visually-hidden</code> 工具类供装饰性背景图像使用。</li>
+<li>页面结构遵循 <code>&lt;main&gt;</code> + <code>&lt;article&gt;</code> / <code>&lt;section&gt;</code> 的语义层级, 便于屏幕阅读器导航。</li>
+</ul>
+<p>本节内容为设计<strong>目标与已落实项</strong>, 不是已通过 WCAG 2.1 AA 第三方合规审计的认证声明。需要完整无障碍评估 (含辅助技术实测) 时, 应另行委托独立审计。</p>
+</details>
+</section>
+
+<section id="focus" aria-labelledby="focus-heading">
+<h2 id="focus-heading">焦点与可访问性</h2>
+<p>使用 Tab 键浏览以下链接, 可见焦点环:</p>
+<div class="focus-test">
+<a href="#typography">字体</a>
+<a href="#body-text">正文</a>
+<a href="#buttons-links">按钮</a>
+<a href="#cards">卡片</a>
+<a href="#quote">引文</a>
+<a href="#table">表格</a>
+<a href="#collapsible">折叠</a>
+</div>
+</section>
+</main>
+</body>
+</html>

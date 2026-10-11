@@ -23,7 +23,7 @@ alwaysApply: true
 
 1. **复用 `:root` token,不改名** — 颜色 / 字体只用 `assets/site/design.css` 的 `--site-bg` `--site-paper` `--site-ink` `--site-muted` `--site-line` `--site-green` `--site-accent` `--site-sans` `--site-serif`;新 token 写进同一个 `:root`。
 2. **复用 `.site-*` 组件类** — 全站导航、页脚、面包屑、跳过链接、按钮、链接、表头等都有现成的 `.site-header` `.site-nav` `.site-brand` `.site-breadcrumb` `.site-footer` `.site-skip` `.site-button` `.site-link` `.site-table-scroll` `.site-section-label` `.site-heading` `.home-hero` `.home-feature` `.home-rows` `.home-portals` `.archive`;**不要手写**等价的 HTML + CSS。
-3. **走 `body.site-unified`** — 由 `scripts/build_site.py transform()` 自动加到 `<body>` 上;同时注入 `data-site-theme="unified-v1"` `data-site-kind="<kind>"`。不要试图在源码里 `body` 写这套属性。
+3. **默认走 `body.site-unified`** — 由 `scripts/build_site.py transform()` 为常规完整 HTML 加入 `data-site-theme="unified-v1"` 和 `data-site-kind="<kind>"`。仅火星专题入口 `projects/wbw-spacex-mars-cn/index.html` 已批准使用 `project-native` / `special`，由专题自身 CSS 管理背景与阅读模式；新页面不得自行声明这些构建属性。
 4. **完整 HTML** — 新增正式网页是包含 `<head>` 与 `<body>` 的完整 HTML 文档。`transform()` 在缺失时返回 `status: 'fragment-unmodified'`,页面不会获得 `body.site-unified` 与共享 chrome;**当前不存在自动包装内容片段的构建流程**。
 5. **不要手写全站 chrome,但也不要写假占位身份** — `<link rel="stylesheet" href="/assets/site/design.css">` / `<a class="site-skip">` / `<header class="site-header">` / `<div class="site-breadcrumb">` / `<footer class="site-footer">` 由构建器注入。新页面的源码应**直接使用现行的 `Conan Xin` / `conanxin@gmail.com` / `https://github.com/conanxin`**;不要主动写入 `Xin Conan` / `hello@xin-conan.me` / `https://github.com/xin-conan` 等旧值作为占位。`scripts/personalize_site.py` 仅承担**历史页面兼容**,不负责新页面身份规范化。
 6. **不要创建第二套样式系统** — 不新建 `/design-system/`、`/styles/site.css`、`/theme/`、独立 `:root` 块;不引入 `sd-*` `theme-*` `custom-*` 类前缀。
@@ -57,7 +57,7 @@ alwaysApply: true
 - ❌ 提交内容片段作为公开页
 - ❌ 改动已有研究数据 / 引文 / 文章正文 / 专业交互 / 图像
 - ❌ 引入 web 字体(Google Fonts / 自托管)
-- ❌ 独立主题 / 装饰性渐变 / 玻璃效果 / 霓虹色 / 终端式首页
+- ❌ 常规页面自行增加第二套独立主题 / 装饰性渐变 / 玻璃效果 / 霓虹色 / 终端式首页；已批准的火星专题例外不受此条限制
 - ❌ `git add .` / `git add -A`(per-file)
 - ❌ 直接 push `main` / force push(除非用户明确同意)
 - ❌ `outline: none` / `outline: 0`(除非有同等替代)
@@ -78,9 +78,9 @@ alwaysApply: true
 > **不假定** Cursor / 其他 Agent 加载器对规则的优先级保证。本节只是声明意图与冲突处理流程。
 
 - **本规则**(`alwaysApply: true`,`globs` 覆盖 `**/*.html` `**/*.md` `**/*.css` `**/*.scss` `scripts/**/*.py` `tests/**/*.py`)作为**全站默认**,适用于**全站身份 / 基本无障碍 / 引用与数据保护 / 共享样式来源**。
-- **项目级专题规则**(如 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`,`globs` 限定 `projects/wbw-spacex-mars-cn/**`)允许保留**独立主题、排版和阅读模式**;其适用范围由其自身 `globs` 字段声明。**专题规则描述"设计允许",并不等同于"实际渲染已验证"**:`body.site-unified` 由 `scripts/build_site.py` 自动注入到每个被处理的 HTML 的 `<body>` 上,其全局规则可能覆盖专题期望的深色背景与标题样式。这是 Stage 2 需要验证的视觉兼容问题;本 Stage 1 不修改 CSS、不调整注入优先级。
+- **专题例外**：`.cursor/rules/wbw-spacex-mars-cn-taste.mdc` 的 `globs` 固定为 `projects/wbw-spacex-mars-cn/**`，保留原设计意图；Stage 2B 对**唯一确切入口** `projects/wbw-spacex-mars-cn/index.html` 实施 `project-native` 隔离，保留深空/火星沙配色与沉浸/注释模式，不再接受 `body.site-unified` 的强制浅色覆盖。验证来源：Stage 2B PR #12 的 1440/390 Playwright 与正式部署检查。
 - **冲突处理**:不同 Agent 同时加载本规则与项目级专题规则时,必须**先识别适用路径**;
-  - 在 `projects/wbw-spacex-mars-cn/**` 内,项目级规则**允许**覆盖本规则的视觉细节(深色 + 玻璃效果 + 字体大标题);但实际渲染是否如预期呈现,需在 Stage 2 视觉兼容验证后再确认。
+  - 在已批准的火星专题中，项目级规则允许自主控制深色、玻璃效果及大标题，不应将该视觉例外推广至其他页面；Chrome/身份/无障碍仍由全站实现保证。
   - 但**站点品牌身份**(`Conan Xin` `conanxin@gmail.com` `data-site-identity="conan-xin-v1"`)、**基本无障碍**(`:focus-visible` `.site-skip`)、**引用与数据保护**(`scripts/personalize_site.py` + `tests/test_site_identity.py`)在任何路径都生效,不能被项目级规则绕过;
   - 发生冲突,**报告并请求用户裁决**,不擅自覆盖已有设计。
 
@@ -88,20 +88,20 @@ alwaysApply: true
 
 ## 6. 模板(`templates/site/<kind>/`)
 
-> ⚠ **当前不存在自动包装内容片段的构建流程**。`scripts/build_site.py` 不识别内容片段,只处理完整 HTML;`templates/` 目录不会被自动排除(`build_site.py:243` 的 excludes 只有 `{.git, .github, .cursor, .site-build, node_modules, __pycache__}`)。**在构建器具备可靠的非发布目录排除机制之前, 不允许提交可直接访问的未填充模板文件** — 占位 HTML 也会被 `transform()` 处理并复制到 `.site-build/` 公开。
+> Stage 2A 已提供四类**完整 HTML** 模板 `templates/site/{article,project,exhibition,reference}/index.html`，`build_site.py` 已排除 `templates` 路径段（`tests/test_build_templates.py` 保护其不公开）。仍**没有自动包装内容片段的构建流程**；新增页面要从模板复制为完整文件，不能把未完成 HTML 片段直接放到其他公开路径。
 
-若未来加入 `templates/site/article/`, `templates/site/project/`, `templates/site/exhibition/`, `templates/site/data/`,每个模板**必须是完整 HTML 文档**(包含 `<head>` 与 `<body>`),不要只放 `<h1>` + 内容片段;build_site.py 会处理它们,身份 / 导航 / 页脚 / CSS 都自动注入。
+模板已存在并受发布排除保护。复制到正式公开路径并填入真实资料后，`build_site.py` 才会对该**新页面**注入共享导航、页脚和样式。模板目录中的文件不会由发布构建处理。
 
 `scripts/build_site.py` 的 `transform()` 步骤(摘要,详见 `build_site.py:115-227`):
 
 1. 解析 `<head>` 与 `<body>`;若缺失 → `fragment-unmodified`
-2. `classify(path)` → `data-site-kind`(`home` `listing` `article` `content` `utility`)
+2. `classify(path)` → `data-site-kind`(`home` `listing` `article` `content` `utility`，已批准的火星专题入口为 `special`)
 3. 折叠遗留 chrome(`<header>` `<nav>` `<footer>` `<div>` 含 `CHROME_CLASSES`)
 4. `</head>` 前注入 `<link rel="stylesheet" href="/assets/site/design.css">`
 5. `<body>` 后注入 `<a class="site-skip">` + `<header class="site-header">` + `<nav class="site-nav">`
 6. 第一个 `<main>` / `<article>` 之后注入 `<div class="site-breadcrumb">`
 7. `</body>` 前注入 `<footer class="site-footer">`
-8. 给 `<body>` 加 `class="site-unified"` + `data-site-theme="unified-v1"` + `data-site-kind="<kind>"`
+8. 常规页面 `<body>` 注入 `class="site-unified"` + `data-site-theme="unified-v1"`；火星专题入口使用 `data-site-theme="project-native"` 且不加入 `site-unified`（其内容样式独立，品牌与无障碍仍共享）。
 
 `scripts/personalize_site.py personalize_html(source + path)` 步骤(详见 `personalize_site.py:41-90`):
 
@@ -122,4 +122,4 @@ alwaysApply: true
 - `.cursor/rules/wbw-spacex-mars-cn-taste.mdc`(项目级专题,globs 限定 `projects/wbw-spacex-mars-cn/**`,**不**作全站默认)
 - `styles/main.css` `styles/post.css`(过渡期旧主题)
 - `assets/site/design.css` 的 `:root` token 名(只允许追加工具类)
-- `scripts/build_site.py` `scripts/personalize_site.py` `scripts/verify_site_browser.py` `tests/test_site_identity.py` `.github/workflows/pages.yml`(本阶段不改)
+- 构建脚本、浏览器测试和 CI 流水线是可维护的工程入口：修改时通过独立分支、PR 全量单元测试与 Playwright 验证；不可为便利而破坏研究资产。

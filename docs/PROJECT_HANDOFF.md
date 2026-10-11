@@ -45,3 +45,20 @@ Stage 2C 正式部署：[Run 38143831596](https://github.com/conanxin/conanxin.g
 - Stage 2B 首轮测试虽通过，却遗漏火星手机端 724px 横向溢出；现为该专题加入溢出阻断条件及原生主题交互。
 - Stage 2C 曾因部署后的内联 Python 断言少一个引号而被 Codex P1 审查拦截。现已修正，并以 `tests/test_stage2c_pages.py` 在 PR 阶段编译主分支专用公网验证脚本。
 - 对话可以结束，**但代码决策、未完成事项与证据应持久化**在 PR、测试和这份交接文件中。
+
+
+## 6. Stage 2D · 正在独立 PR 实施（并非已上线）
+
+**TASK_ID=CONANXIN_SITE_DESIGN_STAGE2D_CONTINUATION**。
+
+- 工作分支：`review/stage2d-shuge-exhibition-reference-index`，直接建立在已经生产验收的 `main`（`d8b0445`）上；Stage 1 至 2C 已合并，不重做。
+- 展览真实试点：`projects/site-design-lab/shuge-evidence-exhibition/index.html`。连接 SHUGE 现有第 2 展厅、页目样本与 `CLAIM_SUPPORT_AUDIT.md`，不改变原件或研究资料。
+- 文献真实试点：`projects/site-design-lab/shuge-source-register/index.html`。保留 v0.7 `bibliography.json` 的三个 `work_id`、post_id 临时题名及未核字段；缺失的作者、原刊年份与 Citation ID 解析均保持未证状态。
+- 自动内容索引：`scripts/content_index.py` 读取发布 manifest，生成 `/content-index/` 和 `/assets/site/content-index.json`；搜索仅针对公开页面标题/简介，按文章、项目、展览、文献分类，不修改原有人工目录。
+- 入口：生成的 `/site-map/`、旧 `/posts/` / `/projects/` 页面共享外壳、全站页脚。无新字体、无第二套设计 token。
+- 测试：`tests/test_stage2d_content_index.py` 的真实性／幂等／路径排除断言、Playwright 双视口交互与产线的公网路由/JSON 验证。
+- **当前状态**：上述内容仍在独立分支，不代表生产部署。必须先 PR 绿灯、审查、合并，再分别核查 GitHub Pages 生产 Run 与公网身份/内容响应。未来交接要更新本文件的真实 SHA、PR 和运行号。
+
+### 本阶段特别保留的证据限制
+
+`projects/shuge-exhibition-v1.0/data/bibliography.json` v0.7 仅包含 3 条临时 work_id 书目标签，尚非经版本学核实的作品目录。`CLAIM_SUPPORT_AUDIT.md` 对候选研究引文区分了已解析、未解析和语义支持程度。Stage 2D 不自行推断真实古籍身份，更不将 `REVIEW` 文章标记为 `PUBLISHED`。

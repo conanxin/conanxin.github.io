@@ -69,9 +69,9 @@
 
 此阶段基于已经验收的 `main`（`43e2f12`）建立 `review/stage2e-shuge-source-reconciliation`，不再重新开发 Stage 1—2D。
 
-- 新增 `projects/site-design-lab/shuge-source-crosswalk/crosswalk.json` 与同目录 `index.html`，供读者查看三个原 `work_id` 的冻结字段、三个可查阅书格作品页面、各候选版本描述及尚未确认的 ID / 馆藏扫描对应关系。
-- 外部对照页 **VERIFIED** 指的是“书格页面存在并陈述了该版本信息”，并非书格 numeric post ID 与冻结 work_id 已经吻合；三个 numeric 映射一律 **UNVERIFIED**；直接 ID 关联证据的 **NOT_FOUND** 严格限定为本轮查询范围，不能推断对象不存在。
-- `work-shuge-211203` 的冻结 `dynasty=Song` 与候选《天工开物》页面列为明代存在冲突，不能通过作者姓氏“宋”自行修正；需要原始 numeric post-id 页面及所藏机构目录编号才可升级映射状态。
+- 新增 `projects/site-design-lab/shuge-source-crosswalk/crosswalk.json` 与同目录 `index.html`，供读者查看冻结的三个 `work_id`、同仓库 `works.json` 中已保存的 post_id/title/shuge_url 一对一对照、三个可查阅书格作品页面以及仍待核的原藏机构目录号和扫描页。
+- **重要纠错**：现存 `projects/shuge-exhibition-v1.0/data/works.json` 的 `featured[]` 已直接保存三条 `post_id → title / shuge_url`：P168491 = **《园冶》**、P211203 = **《天工开物》**、P44159 = **《工程做法》**；另 P124575 才是**《水经注》**。因此内部归档 ID 映射可标为 **VERIFIED**；三个书格候选网页也已核对。但 **0/3** 得到原藏机构稳定馆藏号 + 扫描书影的独立验证，此层仍 **UNVERIFIED**；在线额外 numeric permalink 的 **NOT_FOUND** 仅限本轮查询，不能否认原档已有映射。
+- v0.7 中 `work-shuge-168491` 的 `dynasty=Northern Wei` 与 `works.json` 所载《园冶》明代相冲突；P211203 的 `dynasty=Song` 与《天工开物》明代相冲突。这是冻结书目元数据质量问题，须在**新增审计**中说明，不回写原始 v0.7 数据。作品身份的内部归档映射已核，下一步缺的是原藏机构目录和真实扫描页版本比对。
 - `docs/STAGE2E_SOURCE_RECONCILIATION.md` 记录查询方法、外部候选链接和下一步所需原始版本/馆藏号证据。保持 `projects/shuge-exhibition-v1.0/data/*` 和所有旧版 SHUGE 研究正文只读。
 - 在 `scripts/content_index.py` 增加显式拒绝 `drafts/`、`future/`、`src/`、`source/`、`work/`、`reports/`、历史展览 v0.* 的路径保护，即使误加了分类 meta，也不能被公开精选索引收录。**Stage 2E 没有扩大自动索引的收录范围**。
 - 增加 `tests/test_stage2e_source_reconciliation.py`、1440/390 浏览器验证和部署后公网 JSON 校验。

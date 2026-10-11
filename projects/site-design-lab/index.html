@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数字花园设计工程与证据记录 · Conan Xin</title>
+<meta name="description" content="Conan Xin 数字花园的真实设计工程档案：规范、模板、专题隔离、测试与 GitHub Pages 发布证据。">
+<style>
+/* 局部样式：仅作用于本页 project 元素, 不影响全局。*/
+main article.template-project { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-project > section { margin-block: 28px; }
+main article.template-project .tech-stack { display: flex; flex-wrap: wrap; gap: 8px 12px; }
+main article.template-project .tech-stack span { background: #f0f3ec; color: #426448; border-radius: 3px; padding: 4px 10px; font: 11px/1.7 var(--site-sans); }
+main article.template-project .work-log { background: #fff; border: 1px solid var(--site-line); padding: 14px 20px; border-radius: 4px; }
+main article.template-project .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+main article.template-project .citation-list li { margin-block: 6px; }
+main article.template-project .resource-list { font: 14px/1.85 var(--site-sans); }
+main article.template-project .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-project">
+<h1>数字花园设计工程与证据记录</h1>
+<p class="site-heading-lead">研究网站的统一阅读界面与特殊专题兼容：从约束、实现到可以复核的证据。</p>
+
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">项目简介</h2>
+<p>这是本站实际进行中的设计与构建工程，而非概念方案。它的目标是在不同 Agent 维护网页时共享一个视觉与无障碍基础，同时保持历史研究资料、既有互动页面和有独立阅读模式的专题不被重写。项目保留公开的代码审阅、测试与发布记录。</p>
+<div class="home-actions">
+<a class="site-button" href="/site-guide/">查看演示 <span aria-hidden="true">↗</span></a>
+<a class="site-link" href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/SITE_DESIGN.md">源代码 →</a>
+</div>
+</section>
+
+<section id="work-log" aria-labelledby="work-log-heading">
+<h2 id="work-log-heading">工作日志</h2>
+<details class="work-log">
+<summary>2026-10-11 · Stage 1 / Stage 2A</summary>
+<p><a href="https://github.com/conanxin/conanxin.github.io/pull/10">PR #10</a> 建立统一设计规范；<a href="https://github.com/conanxin/conanxin.github.io/pull/11">PR #11</a> 提交 article / project / exhibition / reference 四类完整模板、模板发布排除、设计样板与 PR 自动检查。</p>
+</details>
+<details class="work-log">
+<summary>2026-10-11 · Stage 2B</summary>
+<p><a href="https://github.com/conanxin/conanxin.github.io/pull/12">PR #12</a> 对 SpaceX 火星专题采用精确路径的原生主题例外，保留背景、两种配色和阅读交互；新增手机端长网址换行与浏览器回归。GitHub Actions <a href="https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340">正式部署记录</a>显示相关测试通过。</p>
+</details>
+</section>
+
+<section id="evidence" aria-labelledby="evidence-heading">
+<h2 id="evidence-heading">证据</h2>
+<p>可从以下独立入口核查设计决策与实现结果；视觉测试只证明预期界面行为，不证明研究引用内容本身正确。</p>
+<ul>
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/assets/site/design.css">共享 CSS</a> 定义颜色、字体和组件；<a href="https://github.com/conanxin/conanxin.github.io/blob/main/scripts/build_site.py">构建脚本</a> 负责完整 HTML 的共享外壳。</li>
+<li><a href="https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340">部署 Run 38142644340</a> 通过 19 项 Python 测试与 32 项 Playwright 检查；9 个公开路径的发布后身份与样式验收通过。</li>
+</ul>
+</section>
+
+<section id="tech-stack" aria-labelledby="tech-heading">
+<h2 id="tech-heading">技术栈</h2>
+<div class="tech-stack">
+<span>Python · HTML</span>
+<span>CSS · 浏览器渲染</span>
+<span>GitHub Pages · Playwright</span>
+</div>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/SITE_DESIGN.md">SITE_DESIGN.md</a>：设计规则和禁改边界。</li>
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/SPACEX_BROWSER_AUDIT.md">SPACEX_BROWSER_AUDIT.md</a>：专题兼容基线与后续验收。</li>
+</ol>
+</section>
+
+<section id="resources" aria-labelledby="resources-heading">
+<h2 id="resources-heading">资源</h2>
+<ul class="resource-list">
+<li><a href="/posts/site-design-evidence-layers.html">方法文章：正文、证据与技术日志的分层</a></li>
+<li><a href="/site-guide/">实际设计样板：标题、表格、交互与响应式</a></li>
+</ul>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 1 / 2A / 2B 对应 PR #10、#11、#12；Stage 2C 在独立分支采用模板发布本文。</li>
+<li>保留仓库原有文章、展览和研究数据；仅新增工程档案与方法文章，任何未经独立核实的学术事实不得由 CI 状态推定。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

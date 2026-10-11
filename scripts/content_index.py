@@ -50,6 +50,22 @@ def inferred_kind(path: str) -> str | None:
     return None
 
 
+def is_catalog_safe_path(path: str) -> bool:
+    """Do not promote work copies, drafts or historical snapshots via metadata."""
+    parts = Path(path).parts
+    if not parts:
+        return False
+    if parts[0] in {"drafts", "future", "src", "connections", "research-terminal"}:
+        return False
+    if any(part in {"drafts", "future", "src", "connections", "research-terminal",
+                    "source", "sources", "work", "works", "reports",
+                    "backups", "tests", "scripts", "templates"} for part in parts[:-1]):
+        return False
+    if path.startswith("projects/shuge-exhibition-v0."):
+        return False
+    return True
+
+
 def collect_items(root: Path, manifest: dict) -> list[dict]:
     # Imported inside the function to avoid circular imports with personalize_site.
     from personalize_site import public_route, normalize_text
@@ -58,7 +74,7 @@ def collect_items(root: Path, manifest: dict) -> list[dict]:
     indexed: dict[str, dict] = {}
     for record in manifest["pages"]:
         path = record["path"]
-        if record.get("status") != "themed" or not public_route(path):
+        if record.get("status") != "themed" or not public_route(path) or not is_catalog_safe_path(path):
             continue
         file = root / path
         if not file.is_file():

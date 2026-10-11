@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="site-index-kind" content="reference">
+<title>SHUGE 来源核对：冻结 ID、真实作品与待核馆藏 · Conan Xin</title>
+<meta name="description" content="SHUGE 三条冻结书目的 ID 纠错：依据既有 works.json 和书格作品页核对《园冶》《天工开物》《工程做法》，原馆藏扫描仍待验。">
+<style>
+/* 局部样式：仅作用于本页 reference 元素, 不影响全局。*/
+main article.template-reference { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-reference > section { margin-block: 28px; }
+main article.template-reference .source-table { width: 100%; border-collapse: collapse; font: 13px/1.8 var(--site-sans); color: #39483e; }
+main article.template-reference .source-table th, main article.template-reference .source-table td { padding: 12px 14px; border-bottom: 1px solid #e6e6de; text-align: left; vertical-align: top; }
+main article.template-reference .source-table th { background: #f1f2eb; color: #3c503f; }
+main article.template-reference .citation-format { background: #222f29; color: #e5ede7; padding: 18px 22px; border-radius: 4px; font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-x: auto; }
+main article.template-reference .citation-list { font: 14px/1.85 var(--site-sans); color: #4a5950; }
+main article.template-reference .citation-list li { margin-block: 6px; }
+main article.template-reference .tech-log { font: 13px/1.8 var(--site-sans); color: #6b7570; border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+
+main article.template-reference .work-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+main article.template-reference .work-card{border:1px solid var(--site-line);background:var(--site-paper);padding:17px 20px;border-radius:4px;min-width:0;overflow-wrap:anywhere}
+main article.template-reference .work-card h3{margin:0 0 12px;font:600 21px/1.6 var(--site-serif)}
+main article.template-reference .work-card p{margin:10px 0;line-height:1.85}
+main article.template-reference .work-card .status-line{background:var(--site-bg);border-left:3px solid var(--site-green);padding:11px 13px}
+main article.template-reference .work-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+main article.template-reference .work-card dt{color:var(--site-muted);font-size:13px}
+main article.template-reference .work-card dd{margin:4px 0 0;overflow-wrap:anywhere}
+main article.template-reference .work-card .caution{border-left:3px solid var(--site-accent);padding-left:12px}
+main article.template-reference .work-card a{overflow-wrap:anywhere}
+main article.template-reference .stage2e-summary{border-left:3px solid var(--site-green);background:var(--site-paper);padding:16px 21px}
+@media(max-width:560px){main article.template-reference .work-card{padding:14px}main article.template-reference .work-card dl{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-reference">
+<h1>SHUGE 来源核对：找到作品 ID，不等于核实原件</h1>
+<p class="site-heading-lead">以已归档的 post_id／作品 URL 映射纠正冻结书目错配；独立馆藏号与具体扫描页仍需核验。</p>
+
+<section id="overview" class="stage2e-summary" aria-labelledby="stage2e-heading">
+<h2 id="stage2e-heading">纠错要点</h2>
+<p>归档作品 ID 与书格 URL：<strong>3/3 已核</strong>；独立原藏机构实物/扫描比对：<strong>0/3 已核</strong>。<strong>P168491 = 《园冶》；P124575 = 《水经注》</strong>。这些结论来自已存在的作品映射表，不是新发明的古籍版本信息。</p>
+<p><a href="/content-index/">回到自动内容索引</a> · <a href="./crosswalk.json">下载机器可读对照 JSON</a></p>
+</section>
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">文献来源</h2>
+<p>本轮在另一份既有档案 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json">works.json</a> 中找到了 <code>post_id/title/shuge_url</code> 直接对应，且三个书格作品页可查阅。<strong>3/3</strong> 个归档 ID 与作品页面已有直接映射；<strong>0/3</strong> 完成原藏机构目录 ID 和具体扫描书影逐页比对。冻结 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">bibliography.json</a> 只保留临时书名及有争议的年代字段，原始文件不改。</p>
+</section>
+
+<section id="source" aria-labelledby="source-heading">
+<h2 id="source-heading">来源</h2>
+<table class="source-table">
+<thead>
+<tr><th scope="col">作者</th><th scope="col">标题</th><th scope="col">年份</th><th scope="col">出处</th></tr>
+</thead>
+<tbody>
+<tr><td>明代计成（works.json 字段）</td><td>园冶；P168491（原冻结：书海出版社文献 P168491）</td><td>1634（书格页描述）</td><td>archive: post_id 168491；日本内阁文库藏（书格网站称）</td></tr>
+<tr><td>明代宋应星（works.json 字段）</td><td>天工开物；P211203（原冻结：书海出版社文献 P211203）</td><td>1637（书格页描述）</td><td>archive: post_id 211203；法国国家图书馆藏（书格网站称）</td></tr>
+<tr><td>清代工部允礼等（works.json 字段）</td><td>工程做法；P44159（原冻结：书海出版社文献 P44159）</td><td>1734（书格页描述）</td><td>archive: post_id 44159；日本内阁文库藏（书格网站称）</td></tr>
+</tbody>
+</table>
+<div class="work-grid" id="archived-work-mapping"><section class="work-card" id="post-168491" aria-labelledby="work-168491">
+<h3 id="work-168491">园冶 · <code>work-shuge-168491</code></h3>
+<p>冻结临时题名：书海出版社文献 P168491；旧年代：<code>Northern Wei</code>。</p>
+<p class="status-line"><strong>归档 ID→作品 URL：VERIFIED</strong> · <strong>书格公开页面：VERIFIED</strong> · <strong>原藏机构馆藏号和扫描：UNVERIFIED</strong></p>
+<dl>
+<div><dt>归档 ID / URL</dt><dd><code>p168491</code> → <a href="https://www.shuge.org/view/yuan_ye/" target="_blank" rel="noopener">园冶 ↗</a></dd></div>
+<div><dt>刊本（网站记载）</dt><dd>明崇祯七年（甲戌 1634）刊本</dd></div>
+<div><dt>责任人（网站记载）</dt><dd>计成 著</dd></div>
+<div><dt>馆藏（网站记载）</dt><dd>日本内阁文库藏（书格公开《园冶》页面陈述）</dd></div>
+</dl>
+<p class="caution">冻结 bibliography.json 年代为 Northern Wei，但同仓库 works.json 的相同 post_id=168491 作品为园冶（明代）。不能以冻结年代字段替代书格作品元数据。</p>
+<details><summary>展开：尚需核实的馆藏、书影与引用</summary>
+<p>额外 numeric permalink 本轮查找为 <code>NOT_FOUND</code>，仅限该查询；仓库已有的作品 ID/URL 对照保持 VERIFIED。</p>
+<ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol></details>
+</section>
+<section class="work-card" id="post-211203" aria-labelledby="work-211203">
+<h3 id="work-211203">天工开物 · <code>work-shuge-211203</code></h3>
+<p>冻结临时题名：书海出版社文献 P211203；旧年代：<code>Song</code>。</p>
+<p class="status-line"><strong>归档 ID→作品 URL：VERIFIED</strong> · <strong>书格公开页面：VERIFIED</strong> · <strong>原藏机构馆藏号和扫描：UNVERIFIED</strong></p>
+<dl>
+<div><dt>归档 ID / URL</dt><dd><code>p211203</code> → <a href="https://www.shuge.org/view/tian_gong_kai_wu/" target="_blank" rel="noopener">天工开物 ↗</a></dd></div>
+<div><dt>刊本（网站记载）</dt><dd>明崇祯十年（丁丑 1637）涂绍煃刊本</dd></div>
+<div><dt>责任人（网站记载）</dt><dd>宋应星 著</dd></div>
+<div><dt>馆藏（网站记载）</dt><dd>法国国家图书馆藏（书格公开《天工开物》页面陈述）</dd></div>
+</dl>
+<p class="caution">冻结 bibliography.json 年代为 Song，但同仓库 works.json 的相同 post_id=211203 作品为天工开物（明代）。不能以冻结年代字段替代书格作品元数据。</p>
+<details><summary>展开：尚需核实的馆藏、书影与引用</summary>
+<p>额外 numeric permalink 本轮查找为 <code>NOT_FOUND</code>，仅限该查询；仓库已有的作品 ID/URL 对照保持 VERIFIED。</p>
+<ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol></details>
+</section>
+<section class="work-card" id="post-44159" aria-labelledby="work-44159">
+<h3 id="work-44159">工程做法 · <code>work-shuge-44159</code></h3>
+<p>冻结临时题名：书海出版社文献 P44159；旧年代：<code>Qing</code>。</p>
+<p class="status-line"><strong>归档 ID→作品 URL：VERIFIED</strong> · <strong>书格公开页面：VERIFIED</strong> · <strong>原藏机构馆藏号和扫描：UNVERIFIED</strong></p>
+<dl>
+<div><dt>归档 ID / URL</dt><dd><code>p44159</code> → <a href="https://www.shuge.org/view/gong_cheng_zuo_fa/" target="_blank" rel="noopener">工程做法 ↗</a></dd></div>
+<div><dt>刊本（网站记载）</dt><dd>清雍正十二年（甲寅 1734）武英殿刊本</dd></div>
+<div><dt>责任人（网站记载）</dt><dd>工部 允礼等纂修</dd></div>
+<div><dt>馆藏（网站记载）</dt><dd>日本内阁文库藏（书格公开《工程做法》页面陈述）</dd></div>
+</dl>
+<p class="caution">冻结 bibliography.json 只有临时题名；年代字段 Qing 与 works.json 的时代 清代 大体相容，但仍不等于刊本/馆藏目录已审核。</p>
+<details><summary>展开：尚需核实的馆藏、书影与引用</summary>
+<p>额外 numeric permalink 本轮查找为 <code>NOT_FOUND</code>，仅限该查询；仓库已有的作品 ID/URL 对照保持 VERIFIED。</p>
+<ol><li>馆藏机构（法国国家图书馆/日本内阁文库）原始目录条目及稳定 ID</li><li>扫描件书影中题名、刊记、卷册及页序与 works.json 元数据逐项对应</li><li>从 work_id 对应页面的扫描/OCR 回溯至具体 Citation ID 并核实语义支持</li></ol></details>
+</section></div>
+</section>
+
+<section id="format" aria-labelledby="format-heading">
+<h2 id="format-heading">引用格式</h2>
+<pre class="citation-format"><code>@misc{shuge_archive_post_168491,
+  title = {Yuan Ye (archived post metadata; not a verified physical copy)},
+  note = {post_id=168491; work_id=work-shuge-168491; see crosswalk.json}
+}</code></pre>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/works.json">SHUGE DH v1.0 既存 works.json</a>：保存 post_id、title、shuge_url 与 editions 的对应。</li>
+<li><a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/bibliography.json">SHUGE DH v0.7 冻结 bibliography.json</a>；<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">CLAIM_SUPPORT_AUDIT.md</a>：旧版临时题名、年代错配与引用语义支持边界。</li>
+</ol>
+</section>
+
+<section id="note" aria-labelledby="note-heading">
+<h2 id="note-heading">备注</h2>
+<p><strong>关键更正：</strong>既有 works.json 的 <code>P168491 = 《园冶》</code>，不是《水经注》；<code>P124575 = 《水经注》</code>。v0.7 的 P168491 年代 Northern Wei 与《园冶》明代冲突，P211203 的 Song 与《天工开物》明代冲突。<strong>VERIFIED</strong> 只适用于归档 ID→URL 对照与书格公开页描述，<strong>UNVERIFIED</strong> 保留在原藏机构目录号、书影、版本以及 Citation ID 的实证层；额外 numeric permalink 的 <strong>NOT_FOUND</strong> 仅表示本轮查询未找到，不能否认 works.json 的历史记录。参见 <a href="/projects/site-design-lab/shuge-source-register/">Stage 2D 冻结书目索引</a>。</p>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 2E · 独立 reference 模板页面，保留完整引用、数据表和折叠区；既有 SHUGE 研究正文、冻结 JSON、OCR、图像均只读。</li>
+<li>核对记录：<a href="/projects/site-design-lab/shuge-source-crosswalk/crosswalk.json">crosswalk.json</a> 与 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/STAGE2E_SOURCE_RECONCILIATION.md">研究方法文档</a>。本阶段没有取得原藏机构的稳定条目号。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

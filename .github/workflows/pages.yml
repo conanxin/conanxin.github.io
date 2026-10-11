@@ -132,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/']
           result=[]
           for path in paths:
               error=None
@@ -162,11 +162,24 @@ jobs:
                               assert 'id="index-search"' in body and 'id="index-kind"' in body,'catalog filter missing'
                               assert '/projects/site-design-lab/shuge-evidence-exhibition/' in body,'exhibition not indexed'
                               assert '/projects/site-design-lab/shuge-source-register/' in body,'reference not indexed'
+                              assert '/projects/site-design-lab/shuge-source-crosswalk/' in body,'stage2e source crosswalk not indexed'
                               with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
                                   catalog=json.loads(data_response.read().decode('utf-8'))
                                   assert catalog['total']>15,'empty content index'
                                   assert catalog['counts']['exhibition']>=1 and catalog['counts']['reference']>=1,'missing catalog categories'
                                   assert not any('/source/' in item['url'] for item in catalog['items']),'source paths leaked to catalog'
+                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2e reader not uniquely indexed'
+                          if path=='/projects/site-design-lab/shuge-source-crosswalk/':
+                              assert 'work-shuge-168491' in body and 'work-shuge-211203' in body and 'work-shuge-44159' in body,'crosswalk rows missing'
+                              assert 'UNVERIFIED' in body and 'NOT_FOUND' in body,'crosswalk status labels missing'
+                              assert 'site-index-kind' in body,'crosswalk not classified'
+                              with urllib.request.urlopen(base+path+'crosswalk.json?build='+os.environ['GITHUB_SHA'],timeout=25) as source_response:
+                                  data=json.loads(source_response.read().decode('utf-8'))
+                                  assert len(data['rows'])==3,'crosswalk must contain three frozen records'
+                                  assert all(r['archived_post_record']['status']=='VERIFIED' for r in data['rows']),'archive ID-to-URL evidence missing'
+                                  assert all(r['external_page_observation']['status']=='VERIFIED' for r in data['rows']),'public Shuge works not checked'
+                                  assert all(r['institution_catalog_item']['status']=='UNVERIFIED' for r in data['rows']),'unverified archive holder promoted to verified'
+                                  assert data['corrected_prior_inference']['related_post_id']==124575,'Water Classic numeric ID correction missing'
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

@@ -8,7 +8,7 @@ out=Path(os.environ.get('RUNNER_TEMP',tempfile.gettempdir()))/'site-ui-check'
 out.mkdir(parents=True,exist_ok=True)
 server=subprocess.Popen([sys.executable,'-m','http.server','8765','--directory',str(root)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 base='http://127.0.0.1:8765'
-paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/']
+paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/']
 results=[]
 try:
  time.sleep(.6)
@@ -37,7 +37,7 @@ try:
     assert metrics['text']>100,(path,'empty content')
     assert 'hello@xin-conan.me' not in page.locator('body').inner_text(),(path,'old contact')
     assert page.locator('.site-footer a[href="mailto:conanxin@gmail.com"]').count()==1,(path,'footer contact')
-    if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/'):
+    if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/'):
      if metrics['scroll']>width+5:
       offenders=page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
        .map(el=>({el,rect:el.getBoundingClientRect()}))
@@ -125,7 +125,8 @@ try:
      assert count>15,(path,'too few discovered records',count)
      for href in ('/posts/site-design-evidence-layers.html',
                   '/projects/site-design-lab/shuge-evidence-exhibition/',
-                  '/projects/site-design-lab/shuge-source-register/'):
+                  '/projects/site-design-lab/shuge-source-register/',
+                  '/projects/site-design-lab/shuge-source-crosswalk/'):
       assert page.locator(f'[data-index-card] a[href="{href}"]').count()==1,(path,'missing indexed URL',href)
      page.locator('#index-kind').select_option('exhibition')
      assert page.locator('[data-index-card]:not([hidden])').count()>=1
@@ -140,7 +141,8 @@ try:
      assert page.locator('[data-index-card]:not([hidden])').count()==count
      interaction='auto-index kinds -> search zero -> restored'
     if path in ('/projects/site-design-lab/shuge-evidence-exhibition/',
-                '/projects/site-design-lab/shuge-source-register/'):
+                '/projects/site-design-lab/shuge-source-register/',
+                '/projects/site-design-lab/shuge-source-crosswalk/'):
      kind='exhibition' if 'exhibition' in path else 'reference'
      assert page.locator(f'article.template-{kind}').count()==1,(path,'missing real template')
      sections=('intro','evidence','citation') if kind=='exhibition' else ('intro','source','citation')
@@ -152,6 +154,21 @@ try:
      details.locator('summary').click()
      assert details.get_attribute('open') is not None,(path,'evidence disclosure')
      interaction='real SHUGE template -> source link -> detail expanded'
+    if path=='/projects/site-design-lab/shuge-source-crosswalk/':
+     assert page.locator('main .work-card').count()==3,(path,'source cards missing')
+     assert page.locator('main a[href^="https://www.shuge.org/view/"]').count()==3
+     assert page.locator('main .status-line').count()==3
+     assert 'UNVERIFIED' in page.locator('main .status-line').first.inner_text()
+     assert page.locator('main .work-card details').first.get_attribute('open') is not None,(path,'standard template detail interaction did not open')
+     response_json=page.request.get(base+path+'crosswalk.json')
+     assert response_json.status==200,(path,'crosswalk json unreachable')
+     crosswalk=response_json.json()
+     assert len(crosswalk['rows'])==3
+     assert all(r['archived_post_record']['status']=='VERIFIED' for r in crosswalk['rows'])
+     assert all(r['external_page_observation']['status']=='VERIFIED' for r in crosswalk['rows'])
+     assert all(r['institution_catalog_item']['status']=='UNVERIFIED' for r in crosswalk['rows'])
+     assert crosswalk['corrected_prior_inference']['related_post_id']==124575
+     interaction='three archived ID-to-URL matches -> archive holder unverified -> evidence expanded'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None
@@ -163,10 +180,10 @@ try:
      d.locator('summary').click();assert d.get_attribute('open') is not None
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
-    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/'):
+    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/'):
      page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
      page.wait_for_timeout(100)
-    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/'):
+    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/'):
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
     results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors})
     page.close()

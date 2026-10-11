@@ -1,6 +1,6 @@
 # Conan Xin 数字花园 — 项目交接入口
 
-> 更新：2026-10-11（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION`  
+> 更新：2026-10-12（UTC+8） · 当前进行：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2E_CONTINUATION`  
 > 先核对 GitHub `main` 当前 SHA、PR 和 Pages Actions，不能把本交接文件中记录的历史 SHA 当作永远最新的主分支状态。
 
 ## 1. 项目目标与边界
@@ -63,3 +63,17 @@
 - CI 全绿不一定代表手机无横向溢出；Stage 2B 和 2D 都在浏览器检查中增加了滚动宽度断言，并修复来源 URL、索引网格溢出。
 - Stage 2C 曾在部署后内联 Python 中漏引号，现由 PR 单元测试先编译生产专用脚本。
 - Stage 2D 的 Codex P2 建议要求共享 `.visually-hidden` 样式与真正换行的 BibTeX 示例，已修复并验收。代码、PR 讨论、Actions 和本文件应共同成为下一轮 Agent 的恢复入口。
+
+
+## 7. Stage 2E · 候选作品外部对照（独立 PR，尚未生产发布）
+
+此阶段基于已经验收的 `main`（`43e2f12`）建立 `review/stage2e-shuge-source-reconciliation`，不再重新开发 Stage 1—2D。
+
+- 新增 `projects/site-design-lab/shuge-source-crosswalk/crosswalk.json` 与同目录 `index.html`，供读者查看三个原 `work_id` 的冻结字段、三个可查阅书格作品页面、各候选版本描述及尚未确认的 ID / 馆藏扫描对应关系。
+- 外部对照页 **VERIFIED** 指的是“书格页面存在并陈述了该版本信息”，并非书格 numeric post ID 与冻结 work_id 已经吻合；三个 numeric 映射一律 **UNVERIFIED**；直接 ID 关联证据的 **NOT_FOUND** 严格限定为本轮查询范围，不能推断对象不存在。
+- `work-shuge-211203` 的冻结 `dynasty=Song` 与候选《天工开物》页面列为明代存在冲突，不能通过作者姓氏“宋”自行修正；需要原始 numeric post-id 页面及所藏机构目录编号才可升级映射状态。
+- `docs/STAGE2E_SOURCE_RECONCILIATION.md` 记录查询方法、外部候选链接和下一步所需原始版本/馆藏号证据。保持 `projects/shuge-exhibition-v1.0/data/*` 和所有旧版 SHUGE 研究正文只读。
+- 在 `scripts/content_index.py` 增加显式拒绝 `drafts/`、`future/`、`src/`、`source/`、`work/`、`reports/`、历史展览 v0.* 的路径保护，即使误加了分类 meta，也不能被公开精选索引收录。**Stage 2E 没有扩大自动索引的收录范围**。
+- 增加 `tests/test_stage2e_source_reconciliation.py`、1440/390 浏览器验证和部署后公网 JSON 校验。
+
+**当前 Gate**：独立 PR、完整单元/浏览器测试、自动审查、主分支正式部署及公网页面检查；在 PR 合并与 Pages Run Success 之前，不能将本阶段写为已上线。完成后更新本条 Gate 与下一阶段标识。

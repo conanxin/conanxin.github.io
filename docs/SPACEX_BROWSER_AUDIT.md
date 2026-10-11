@@ -111,3 +111,18 @@ projects/wbw-spacex-mars-cn/
 ## 八、当前实际状态
 
 由于本审计为纯静态分析 (无 Playwright 实际渲染), 上述冲突仅为**设计意图层面的可能冲突**, 实际浏览器渲染表现需在 Stage 2B 通过浏览器测试验证。`projects/wbw-spacex-mars-cn/` 当前在 GitHub Pages 公开站点中可能存在已被全站规则覆盖的渲染, 需 Stage 2B 通过 PR 检查(浏览器测试)确认实际表现。
+---
+
+## 九、Stage 2B 后续实施记录（2026-10-11）
+
+本文件的前八节是 **Stage 2A 只读静态基线**，并不表示 Stage 2B 修复已在生产发布。后续实现位于独立分支 `review/stage2b-mars-theme-isolation`，须经 PR 检查后再决定是否合并。
+
+- **根因处理**：`scripts/build_site.py` 对精确路径 `projects/wbw-spacex-mars-cn/index.html` 返回 `special`，只为该专题使用 `data-site-theme="project-native"`；不再给其加 `site-unified` 类，避免强制暖白背景/衬线标题/字体颜色污染。其他路径仍为 `unified-v1`。
+- **保留统一外壳**：继续注入品牌导航、面包屑、页脚、公共 CSS 与身份规范化。专题的跳转正文链接直达源文件自有的 `<main id="main">`。全站 CSS 仅对专题外围导航增加适配色和可见焦点样式。
+- **保留专题资产**：不改 `projects/wbw-spacex-mars-cn/` 下的任何文件，包括 `index.html`、`styles.css`、`app.js`、图像、正文与翻译数据；不改 `.cursor/rules/wbw-spacex-mars-cn-taste.mdc` 的 `globs`。专题现有表格不再被统一表格容器包裹。
+- **单元回归**：`tests/test_spacex_theme.py` 核对精确路由、原生主题、原始脚本与控件、共享导航、其他页面的统一主题与幂等。
+- **浏览器回归与真实修复**：`scripts/verify_site_browser.py` 将火星专题纳入 1440px / 390px 两视口测试，核对深空背景、Starfield/Hero、深空↔火星沙与沉浸↔注释交互，并将横向溢出超过 5px 列为阻断条件。第一轮检测出手机文档滚动宽度 724px（视口 390px），一部分来自脚注 `footnote-body`，另一部分是直接嵌在译文 HTML 中的长网址裸 `<a>`（个别外部链接右边界超过 700px）；修复仅在共享 CSS 的 `project-native` 作用域为 `.footnote-body` 和专题正文 `.main a[href^="http://"]` / `.main a[href^="https://"]` 增加自动断行，**完全不改原文、引文或链接 href**。代码修复在 PR #12 的 GitHub Actions Run `38141749146` 验证：**19/19 unittest、32/32 Playwright、脚本错误 0；手机滚动宽度 395px（390px 视口，允许偏差 5px）**。
+
+**验收状态**：源代码已提交独立分支，浏览器验收以 Stage 2B PR 的 GitHub Actions `pr-checks` 真实结果为准；在合并前不得称此项已在正式生产生效。此前主分支的部署成功只证明 Stage 2A 页面通过，并未覆盖火星专题。
+
+后续建议：Stage 2B 专题兼容稳定后，再开展四类模板在真实页面上的低风险落地（复制模板制作新页面，不改写原研究文章），并扩大页面级视觉回归样本。

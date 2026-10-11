@@ -95,3 +95,24 @@ body.site-unified[data-site-kind="utility"] .site-nav a:not(:first-child){displa
 @media(max-width:560px){html body.site-unified{font-size:15px!important}body.site-unified :is(.terminal-container,.page,.body,main.body,main.container,main.methods-grid,main.article-grid){width:calc(100% - 36px)!important;padding-top:6px!important}.site-heading{width:calc(100% - 36px)}.site-heading h1{font-size:29px!important}.site-brand{font-size:23px!important}.site-brand small{display:block;margin-left:0}.site-nav{gap:8px 19px}.site-nav a{font-size:13px!important}.home-hero{padding:45px 0 40px}.home-hero h1{font-size:31px!important}.home-hero p{font-size:15px}.home-section{padding:39px 0}.home-feature__main,.home-feature__aside{padding:25px 23px}.home-feature__main h3{font-size:23px!important}.home-section-head h2{font-size:24px!important}.home-row{grid-template-columns:minmax(0,1fr) 20px;gap:2px 15px}.home-row time{grid-column:1/-1}.home-row h3{font-size:17px!important}.home-row span{grid-column:2;grid-row:2}body.site-unified .post-article{padding:26px 22px!important}body.site-unified .post-content{font-size:16px!important}.site-footer__inner{display:block}.site-footer__links{margin-top:13px}.site-local__links{gap:9px 16px}body.site-unified .project-grid,body.site-unified .featured-grid{grid-template-columns:1fr!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body.site-unified *,body.site-unified *::before,body.site-unified *::after{animation:none!important;transition:none!important}}
 @media print{.site-header,.site-breadcrumb,.site-footer,.site-local,.site-skip{display:none!important}html body.site-unified{background:#fff!important}body.site-unified .post-article{border:0!important;padding:0!important}}
+
+/* Stage 2B: shared chrome stays accessible around the native SpaceX reader.
+   Project content is styled only by its own styles.css; no token overrides. */
+body[data-site-theme="project-native"] > .site-breadcrumb{color:var(--text-dim)}
+body[data-site-theme="project-native"] > .site-breadcrumb a{color:var(--link)}
+body[data-site-theme="project-native"] > .site-breadcrumb summary{color:var(--text-dim)}
+body[data-site-theme="project-native"] :is(.site-header,.site-breadcrumb,.site-footer) a:focus-visible,
+body[data-site-theme="project-native"] > .site-skip:focus-visible{outline:2px solid var(--site-accent);outline-offset:4px}
+
+/* Native SpaceX footnotes contain long source URLs; wrap without editing links. */
+body[data-site-theme="project-native"] .footnote-body,
+body[data-site-theme="project-native"] .footnote-body a{overflow-wrap:anywhere;word-break:break-word}
+
+/* Some source URLs are bare anchors in the translated article (not footnote-body).
+   Keep their href/text byte-for-byte; allow them to wrap at narrow viewports. */
+body[data-site-theme="project-native"] .main a[href^="http://"],
+body[data-site-theme="project-native"] .main a[href^="https://"]{
+  overflow-wrap:anywhere;
+  word-break:break-all;
+  white-space:normal;
+}

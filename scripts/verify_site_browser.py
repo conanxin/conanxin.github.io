@@ -8,7 +8,7 @@ out=Path(os.environ.get('RUNNER_TEMP',tempfile.gettempdir()))/'site-ui-check'
 out.mkdir(parents=True,exist_ok=True)
 server=subprocess.Popen([sys.executable,'-m','http.server','8765','--directory',str(root)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 base='http://127.0.0.1:8765'
-paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/']
+paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/']
 results=[]
 try:
  time.sleep(.6)
@@ -30,7 +30,7 @@ try:
     brand:document.querySelector('.site-brand')?.innerText,
     visibleNav:Array.from(document.querySelectorAll('.site-nav a')).filter(n=>n.offsetWidth>0).length})''')
     assert response and response.status==200,(path,'HTTP',response.status if response else None)
-    assert metrics['themed']=='unified-v1',(path,'no theme')
+    assert metrics['themed']==('project-native' if path=='/projects/wbw-spacex-mars-cn/' else 'unified-v1'),(path,'wrong theme',metrics)
     assert metrics['identity']=='conan-xin-v1',(path,'old identity')
     assert metrics['brand'].startswith('Conan Xin'),(path,'wrong brand',metrics)
     assert metrics['headers']==1,(path,'header count',metrics['headers'])
@@ -67,6 +67,42 @@ try:
      page.locator('#project-search').fill('');page.wait_for_timeout(350)
      assert page.locator('.project-card').count()==before
      interaction='search -> no results -> restored'
+    if path=='/projects/wbw-spacex-mars-cn/':
+     native=page.evaluate("""() => ({
+       rootTheme:document.documentElement.dataset.theme,
+       readingMode:document.documentElement.dataset.readingMode,
+       background:getComputedStyle(document.body).backgroundImage,
+       textColor:getComputedStyle(document.body).color
+     })""")
+     assert native['rootTheme']=='deep-space',(path,'default theme',native)
+     assert native['readingMode']=='immersive',(path,'default reading mode',native)
+     assert 'rgb(10, 14, 26)' in native['background'],(path,'native dark gradient overridden',native)
+     assert native['textColor']=='rgb(230, 237, 243)',(path,'native light text overridden',native)
+     assert page.locator('header.hero').count()==1,(path,'hero missing')
+     assert page.locator('#starfield').count()==1,(path,'starfield missing')
+     assert page.locator('body.site-unified').count()==0,(path,'global overrides leaked')
+     if width==390 and metrics['scroll']>width+5:
+      offenders=page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
+        .map(el => ({el, rect:el.getBoundingClientRect()}))
+        .filter(({rect}) => rect.width>0 && rect.right>innerWidth+8 && rect.left>=-5)
+        .sort((a,b) => b.rect.right-a.rect.right)
+        .slice(0,24)
+        .map(({el,rect}) => ({tag:el.tagName, cls:String(el.className).slice(0,70),
+          id:el.id, left:Math.round(rect.left), right:Math.round(rect.right),
+          width:Math.round(rect.width), scroll:el.scrollWidth,
+          text:(el.innerText||'').slice(0,40)}))""")
+      raise AssertionError((path,'mobile horizontal overflow',width,metrics['scroll'],offenders))
+     page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
+     page.locator('button.tool-btn[data-theme="mars-sand"]').click()
+     assert page.evaluate("document.documentElement.dataset.theme")=='mars-sand'
+     assert 'rgb(244, 232, 212)' in page.evaluate("getComputedStyle(document.body).backgroundImage"),(path,'sand palette broken')
+     page.locator('button.tool-btn[data-theme="deep-space"]').click()
+     assert page.evaluate("document.documentElement.dataset.theme")=='deep-space'
+     page.locator('button.tool-btn[data-reading-mode="annotated"]').click()
+     assert page.evaluate("document.documentElement.dataset.readingMode")=='annotated'
+     page.locator('button.tool-btn[data-reading-mode="immersive"]').click()
+     assert page.evaluate("document.documentElement.dataset.readingMode")=='immersive'
+     interaction='native deep-space -> mars-sand -> deep-space; immersive -> annotated -> immersive'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None

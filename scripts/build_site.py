@@ -30,6 +30,8 @@ LABELS = {'HOME':'首页','POSTS':'文章','PROJECTS':'项目','PODCAST':'播客
  'Articles':'文章','Publications':'发表流程','Portfolio':'成果档案','Review':'模拟评审',
  'Export':'导出','Field Notes':'田野笔记','Timeline':'时间线','Evidence Explorer':'证据浏览',
  'Places':'地点','Fieldwork':'田野','Research Writing':'写作','Archive':'档案'}
+SPECIAL_PROJECT_PATH = 'projects/wbw-spacex-mars-cn/index.html'
+
 CHROME_CLASSES = {'terminal-header','terminal-nav','masthead','topnav','reader-global',
  'reader-site-header','reader-footer','reader-site-nav','site-header','site-nav',
  'terminal-footer','site-footer','top','site-header-bar','header-inner','nav-inner','top-inner'}
@@ -100,6 +102,7 @@ def attribute(raw, name, value):
     return raw[:-1]+' '+new+'>'
 
 def classify(path):
+    if path == SPECIAL_PROJECT_PATH: return 'special'
     if '/oauth/' in '/'+path or path.startswith('connections/'): return 'utility'
     if path=='index.html': return 'home'
     if path in {'posts/index.html','projects/index.html','podcast/index.html','about.html'}: return 'listing'
@@ -131,7 +134,8 @@ def nav_header(path):
             (path=='about.html' and href=='/about.html') or
             ('/'+path).startswith(href) and not (href=='/projects/' and path.startswith('projects/shuge/')))
         items.append('<a href="'+href+'"'+(' aria-current="page"' if active else '')+'>'+label+'</a>')
-    return '<a class="site-skip" href="#site-main-start">跳到正文</a><header class="site-header"><div class="site-header__inner"><a class="site-brand" href="/">'+BRAND+'<small>研究 · 文章 · 技术实践</small></a><nav class="site-nav" aria-label="全站导航">'+''.join(items)+'</nav></div></header>'
+    skip_target = '#main' if path == SPECIAL_PROJECT_PATH else '#site-main-start'
+    return '<a class="site-skip" href="'+skip_target+'">跳到正文</a><header class="site-header"><div class="site-header__inner"><a class="site-brand" href="/">'+BRAND+'<small>研究 · 文章 · 技术实践</small></a><nav class="site-nav" aria-label="全站导航">'+''.join(items)+'</nav></div></header>'
 
 def transform(html, path):
     parser=Structure(html)
@@ -205,20 +209,26 @@ def transform(html, path):
     history=''
     if re.match(r'projects/shuge-exhibition-v0\.',path):
         history='<p class="site-snapshot-note">历史展览版本：保留原阶段内容与数据。<a href="/projects/shuge-exhibition-v1.0/">查看当前展览</a></p>'
-    top=nav_header(path)+crumbs+'<div id="site-main-start" tabindex="-1"></div>'+heading+history
+    anchor='' if kind=='special' else '<div id="site-main-start" tabindex="-1"></div>'
+    top=nav_header(path)+crumbs+anchor+heading+history
     if kind=='utility':top+='<div class="site-utility-body">'
     footer=('<div class="site-footer"><div class="site-footer__inner"><span>Xin Conan · 记录思考与实验</span><div class="site-footer__links">'
       '<a href="/site-map/">站点目录</a><a href="/feed.xml">RSS 订阅</a><a href="mailto:hello@xin-conan.me">联系</a><a href="https://github.com/conanxin/conanxin.github.io">GitHub</a></div></div></div>')
     if kind=='utility':footer='</div>'+footer
-    raw=attribute(body.raw,'class',((body.attrs.get('class') or '')+' site-unified').strip())
+    # The SpaceX long-form reader owns its theme, layout and reading modes.
+    # Keep the shared brand chrome and identity, but avoid site-unified's
+    # !important overrides of the project's dark/light CSS variables.
+    raw=body.raw
+    if kind!='special':
+        raw=attribute(raw,'class',((body.attrs.get('class') or '')+' site-unified').strip())
     raw=attribute(raw,'data-site-kind',kind)
-    raw=attribute(raw,'data-site-theme','unified-v1')
+    raw=attribute(raw,'data-site-theme','project-native' if kind=='special' else 'unified-v1')
     patched[body.start]=raw
     extras='<link rel="stylesheet" href="/assets/site/design.css">'
     if not any(n.tag=='meta' and n.attrs.get('name')=='viewport' for n in parser.nodes):extras+='<meta name="viewport" content="width=device-width,initial-scale=1">'
     additions.extend([(head.close_start,extras),(body.open_end,top),(bodyend,footer)])
     for n in parser.nodes:
-        if n.tag!='table' or n.end is None:continue
+        if kind=='special' or n.tag!='table' or n.end is None:continue
         if any(a.tag=='table' for a in parser.ancestors(n)):continue
         ancestors=list(parser.ancestors(n))
         if any('overflow' in (a.attrs.get('style') or '') or classes(a)&{'table-wrap','tablebox','data-table-wrapper','site-table-scroll'} for a in ancestors):continue

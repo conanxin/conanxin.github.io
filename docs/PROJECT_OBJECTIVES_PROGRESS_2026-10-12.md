@@ -1,7 +1,7 @@
 # Conan Xin 数字花园 × SHUGE — 最初目标、阶段进展与下一步
 
 > 复核日期：2026-10-12 · TASK_ID=`CONANXIN_SITE_DESIGN_STAGE2G_P2_CONTINUATION`  
-> 初稿验证的 `main` 基线：`a2776363e3b6f408ac6e2aa28032e8c0d20d01a0`（PR #22 合并）；后续更新至 **`1833b3d31f31fec78dbc768372717b760ff8c241`**（PR #25 合并，详见第 8 节）。  
+> 初稿验证的 `main` 基线：`a2776363e3b6f408ac6e2aa28032e8c0d20d01a0`（PR #22 合并）；P2 更新为 `1833b3d31f31fec78dbc768372717b760ff8c241`（PR #25），当前已验部署 **`93044be7e2bf17e5b93bb0bf5ff75153eec079a5`**（PR #26，详见第 9 节）。  
 > 本报告是**项目状态审查**，不修改任何冻结古籍元数据、OCR、图像、论文或引用记录。
 
 ## 1. 两条最初目标与合并后的长期愿景
@@ -30,6 +30,7 @@
 | Stage 2F | #19、#20 | 原馆目录元数据旁路、新原馆核验页、六条引文审计 | 已发布研究记录 |
 | Stage 2G-P1 | #21、#22 | 原馆阅览器图像定位编号、页号冲突记录、只读 SQLite 探针 | 已发布工具与研究记录 |
 | Stage 2G-P2 | #23—#25 | 项目目标梳理、真实 SQLite 六页对象与 6 个本地 JPEG 哈希核验 | 已交付；OCR 字符级/历史论断仍待核 |
+| Stage 2G-P3 | #26 | 两页 OCR 局部目视纠错、8 项引用问题初筛、Gallica 双 ARK 继续分离 | 已发布局部证据，全文审核未完成 |
 
 **此段属于最初 PR #23 时点的历史基线**：当时 `main=a2776363`，Pages Run 38203523959 为最后成功构建。**当前已验部署状态**：`main=1833b3d`，PR #25 的 [Pages Run 38207956741](https://github.com/conanxin/conanxin.github.io/actions/runs/38207956741) 通过 **64/64 Python 单元测试、48/48 Playwright 浏览器检查、18/18 公网路径检查**，JavaScript 错误 0。**这 18 条是验收抽样的公网路径，不是整个网站的页面总数。**
 
@@ -131,3 +132,8 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 - **新的未决难题**：图像来源 Gallica `btv1b525104776` 与 Stage 2F 引文的 `btv1b52505781g` 两个 ARK 是否对应同一物理册/扫描；五条 OCR `NOT_CHECKED`（另一页 QA PASS 也不是本轮完整逐字复校）；研究 claim 语义未全面核验。
 
 新证据请以 [Stage 2G-P2 实库与图像报告](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md) 和 [机器记录](../projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json) 为准。**网站工程目标仍然完成，学术证据链已推进至真实页对象、历史采集信息及本地 JPEG 字节，未到完整 OCR 与历史命题验收。** 本阶段 [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 已合并、[生产 Run 38207442742](https://github.com/conanxin/conanxin.github.io/actions/runs/38207442742) Success。
+
+
+## 9. Stage 2G-P3 生产回执（2026-10-12）
+
+最新 [PR #26](https://github.com/conanxin/conanxin.github.io/pull/26) 与 [Pages Run 38209895849](https://github.com/conanxin/conanxin.github.io/actions/runs/38209895849) 已生产验收：**70/70 单元测试、48/48 浏览器检查、18/18 公网页面**。新选段审计记录《园冶》和《天工开物》两页的 4 处 OCR 错识以及 8 项研究查询与引文的初步主题匹配筛查（[机器证据](../projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json)）。正式历史命题与整册馆藏同一性仍 **UNVERIFIED**。下阶段请从 P4 的官方 Gallica 双 ARK 元数据与全文 OCR 复校推进，不再把 P2 时点的“原库未访问”作为现状。

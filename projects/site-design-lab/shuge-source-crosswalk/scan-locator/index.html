@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="site-index-kind" content="reference">
+<title>原藏图像定位与引文页序审计 · Conan Xin</title>
+<meta name="description" content="Stage 2G：日本国立公文书馆 JP2 阅览器图像标识、BnF Gallica ARK/f274，以及六条 SHUGE 引文 ID 与本地页码冲突的未证状态。">
+<style>
+/* 局部样式：仅作用于本页 reference 元素, 不影响全局。*/
+main article.template-reference { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-reference > section { margin-block: 28px; }
+main article.template-reference .source-table { width: 100%; border-collapse: collapse; font: 13px/1.8 var(--site-sans); color: var(--site-ink); }
+main article.template-reference .source-table th, main article.template-reference .source-table td { padding: 12px 14px; border-bottom: 1px solid var(--site-line); text-align: left; vertical-align: top; }
+main article.template-reference .source-table th { background: var(--site-bg); color: var(--site-green); }
+main article.template-reference .citation-format { background: var(--site-ink); color: var(--site-paper); padding: 18px 22px; border-radius: 4px; font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-x: auto; }
+main article.template-reference .citation-list { font: 14px/1.85 var(--site-sans); color: var(--site-muted); }
+main article.template-reference .citation-list li { margin-block: 6px; }
+main article.template-reference .tech-log { font: 13px/1.8 var(--site-sans); color: var(--site-muted); border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+
+main article.template-reference .scan-overview{background:var(--site-paper);border-left:3px solid var(--site-green);padding:15px 20px;margin:24px 0}
+main article.template-reference .scan-card{background:var(--site-paper);border:1px solid var(--site-line);border-radius:4px;padding:18px 22px;margin:16px 0;min-width:0;overflow-wrap:anywhere}
+main article.template-reference .scan-card h3{font:600 20px/1.6 var(--site-serif);margin:0 0 8px}
+main article.template-reference .scan-card ul{padding-left:22px;margin:9px 0}
+main article.template-reference .scan-card li{margin:7px 0}
+main article.template-reference .scan-card details{border-top:1px solid var(--site-line);padding-top:11px;margin-top:11px}
+main article.template-reference .scan-card summary{cursor:pointer;color:var(--site-green)}
+main article.template-reference .scan-card .scan-caution{border-left:3px solid var(--site-accent);padding-left:12px}
+main article.template-reference .scan-table{border-collapse:collapse;width:100%;font:13px/1.7 var(--site-sans)}
+main article.template-reference .scan-table th,main article.template-reference .scan-table td{padding:10px 13px;border-bottom:1px solid var(--site-line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+main article.template-reference a{overflow-wrap:anywhere}
+@media(max-width:560px){main article.template-reference .scan-card{padding:14px}}
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-reference">
+<h1>馆方图像在哪里？引用页号是否可信？</h1>
+<p class="site-heading-lead">Stage 2G · 原藏图像定位入口及六条 Citation ID 的证据门槛</p>
+
+<section id="scan-summary" class="scan-overview" aria-labelledby="scan-summary-title">
+<h2 id="scan-summary-title">定位成果与未完成项</h2>
+<p><strong>3</strong> 部书的官方馆藏线索、<strong>4</strong> 个日本馆方图像阅览器/册次定位、<strong>6</strong> 个索引可见图像编号示例，以及一个 Gallica ARK/f274。<strong>下载原图 0 张，同一扫描确认 0 组，学术引文原图审定 0/6。</strong></p>
+<p><a href="../scan-locator-audit.json">查看逐条可复核 JSON →</a></p></section>
+<section id="scan-holdings" aria-labelledby="scan-holdings-title"><h2 id="scan-holdings-title">馆方图像定位</h2><section class="scan-card" data-scan-work="168491" aria-labelledby="scan-168491">
+<h3 id="scan-168491">P168491 · 园冶</h3>
+<p>国立公文書館 子076-0004 · <strong>图像页文件 UNVERIFIED</strong></p>
+<ul><li><a href="https://www.digital.archives.go.jp/file/1079110">子076-0004</a>：馆方已列出的三卷三册（0001、0002、0003），尚未取得每页图像。</li></ul>
+<p class="scan-caution"><strong>0 张</strong> 原图像完成下载验收；<strong>0 对</strong> 图像完成与书格同页视觉校核。</p>
+<details><summary>查看这条作品还缺什么证据</summary><p>需要独立的实际原图字节或 IIIF canvas 清单，再与书格 PDF 的题名页、序、版心、版刻、钤印逐张对照；缺少相同视觉特征与页对象连接时不能更新 VERIFIED 状态。</p></details>
+</section>
+<section class="scan-card" data-scan-work="211203" aria-labelledby="scan-211203">
+<h3 id="scan-211203">P211203 · 天工开物</h3>
+<p>BnF Chinois 5563 · <strong>图像页文件 UNVERIFIED</strong></p>
+<ul><li><a href="https://gallica.bnf.fr/ark:/12148/btv1b52505781g">ark:/12148/btv1b52505781g</a>：馆方关联的数字对象标识。</li><li><a href="https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f274.item">f274</a>: 研究论文有图注说明，但未从 Gallica 直接获取图像。</li></ul>
+<p class="scan-caution"><strong>0 张</strong> 原图像完成下载验收；<strong>0 对</strong> 图像完成与书格同页视觉校核。</p>
+<details><summary>查看这条作品还缺什么证据</summary><p>需要独立的实际原图字节或 IIIF canvas 清单，再与书格 PDF 的题名页、序、版心、版刻、钤印逐张对照；缺少相同视觉特征与页对象连接时不能更新 VERIFIED 状态。</p></details>
+</section>
+<section class="scan-card" data-scan-work="44159" aria-labelledby="scan-44159">
+<h3 id="scan-44159">P44159 · 工程做法</h3>
+<p>国立公文書館 史112-0007 / 297-0020 · <strong>图像页文件 UNVERIFIED</strong></p>
+<ul><li><a href="https://www.digital.archives.go.jp/img/4754316">史112-0007 · 工程做法２３</a>：可索引的图像 ID C103160581800, C103160581900, C103160582000，非已下载图像</li><li><a href="https://www.digital.archives.go.jp/img/4754325">史112-0007 · 工程做法３２</a>：可索引的图像 ID C103160611900, C103160612000, C103160612100，非已下载图像</li><li><a href="https://www.digital.archives.go.jp/img/4754366">史112-0007 · 工程做法７３</a>：仅馆方件目/册次，非已下载图像</li><li><a href="https://www.digital.archives.go.jp/item/4912863">297-0020 · 工程做法６</a>：仅馆方件目/册次，非已下载图像</li></ul>
+<p class="scan-caution"><strong>0 张</strong> 原图像完成下载验收；<strong>0 对</strong> 图像完成与书格同页视觉校核。</p>
+<details><summary>查看这条作品还缺什么证据</summary><p>需要独立的实际原图字节或 IIIF canvas 清单，再与书格 PDF 的题名页、序、版心、版刻、钤印逐张对照；缺少相同视觉特征与页对象连接时不能更新 VERIFIED 状态。</p></details>
+</section></section>
+<section id="page-id-audit" aria-labelledby="page-id-title">
+<h2 id="page-id-title">引用后缀与局部页号冲突</h2>
+<p>下表只展示冻结证据卡中的页号标签和简单差值，不形成经过验证的图像链接或 PDF 页码。所有行的实际 <code>page_object_id</code>、<code>page_index</code>、原馆 canvas 仍为 <strong>UNVERIFIED</strong>。</p>
+<table class="scan-table"><thead><tr><th scope="col">Citation ID</th><th scope="col">卡片页号</th><th scope="col">差值（后缀 − 标签）</th><th scope="col">原图绑定</th></tr></thead><tbody><tr data-scan-citation="SHUGE:p168491:68"><td><code>SHUGE:p168491:68</code></td><td>8</td><td>60</td><td>UNVERIFIED</td></tr><tr data-scan-citation="SHUGE:p211203:1096"><td><code>SHUGE:p211203:1096</code></td><td>137</td><td>959</td><td>UNVERIFIED</td></tr><tr data-scan-citation="SHUGE:p211203:1178"><td><code>SHUGE:p211203:1178</code></td><td>220</td><td>958</td><td>UNVERIFIED</td></tr><tr data-scan-citation="SHUGE:p211203:1320"><td><code>SHUGE:p211203:1320</code></td><td>362</td><td>958</td><td>UNVERIFIED</td></tr><tr data-scan-citation="SHUGE:p211203:1338"><td><code>SHUGE:p211203:1338</code></td><td>137 / 362 / 380</td><td>1201 / 976 / 958</td><td>UNVERIFIED</td></tr><tr data-scan-citation="SHUGE:p44159:552"><td><code>SHUGE:p44159:552</code></td><td>1</td><td>551</td><td>UNVERIFIED</td></tr></tbody></table>
+<p><strong>冲突焦点：</strong><code>SHUGE:p211203:1338</code> 对应 137、362、380 三个不同标签；不能把“约958偏移”自动应用到所有旧 Citation ID。</p>
+</section>
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">文献来源</h2>
+<p>本轮并<strong>未</strong>完成原图下载：原始扫描图像字节 <strong>0</strong> 份、书格与馆方同图确认 <strong>0</strong> 组、经原图与页对象验证的历史引文 <strong>0/6</strong>。但已发现可追查的日本馆方阅览器目录、部分 JP2 下载标识和 Gallica ARK 图像入口。所有未核部分保留 <a href="../scan-locator-audit.json">结构化机器台账</a>，书格冻结数据保持只读。</p>
+</section>
+
+<section id="source" aria-labelledby="source-heading">
+<h2 id="source-heading">来源</h2>
+<table class="source-table">
+<thead>
+<tr><th scope="col">作者</th><th scope="col">标题</th><th scope="col">年份</th><th scope="col">出处</th></tr>
+</thead>
+<tbody>
+<tr><td>日本国立公文书馆・内阁文库</td><td>《园冶》子076-0004 · 三册</td><td>明崇祯七年目录记载</td><td><a href="https://www.digital.archives.go.jp/file/1079110">原馆馆藏目录</a> · 图像字节 UNVERIFIED</td></tr>
+<tr><td>Bibliothèque nationale de France</td><td>《天工开物》Chinois 5563</td><td>序年 1637</td><td><a href="https://gallica.bnf.fr/ark:/12148/btv1b52505781g">Gallica ARK</a> · <a href="https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f274.item">f274 原图入口</a></td></tr>
+<tr><td>日本国立公文書館</td><td>《工程做法》两套候选，史112-0007 与297-0020</td><td>清代</td><td><a href="https://www.digital.archives.go.jp/img/4754316">第23册图像阅览器</a>；<a href="https://www.digital.archives.go.jp/item/4912863">另一馆号第6册</a></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="format" aria-labelledby="format-heading">
+<h2 id="format-heading">引用格式</h2>
+<pre class="citation-format"><code>@misc{stage2g_scan_locator,
+  title = {SHUGE scan locator sidecar audit},
+  note = {Original image bytes=0; scan/citation mappings remain UNVERIFIED},
+  url = {https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/scan-locator/}
+}</code></pre>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li><a href="https://www.digital.archives.go.jp/img/4754316">日本国立公文书馆：《工程做法23》图像阅览器</a> 与 <a href="https://www.digital.archives.go.jp/img/4754325">《工程做法32》阅览器</a>：可定位部分 JP2 下载标识，不等于已取得文件。</li>
+<li><a href="https://books.whpress.co.uk/10.3197/63800040695086.book.pdf">Brian Lander、Thomas David DuBois 对《天工开物》Gallica f274 的引用</a>；<a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/data/evidence_cards.json">冻结证据卡</a>。</li>
+</ol>
+</section>
+
+<section id="note" aria-labelledby="note-heading">
+<h2 id="note-heading">备注</h2>
+<p>六条 Citation ID 都尚未与原馆图像、SHUGE 真实 page_object_id 及历史论断建立完整映射。 参见 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md">冻结 Claim Support Audit</a>，其中的检索命中不能替代扫描逐字校核。特别是 <code>SHUGE:p211203:1338</code> 在不同证据卡中对应局部页 137、362、380，不能把后缀“1338”当 PDF 页码。部分后缀减去局部页号约等于 958 的观察只是数学假设，**UNVERIFIED**，不能生成任何已证图像索引。</p>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 2G 新的 source-locator sidecar；采用已批准的完整 reference 模板与全站色彩 token；冻结 SHUGE 研究资产均未修改。</li>
+<li>核验日期：2026-10-12；<a href="../scan-locator-audit.json">完整 JSON</a> 和 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/docs/STAGE2G_SCAN_ALIGNMENT_AUDIT.md">方法报告</a>。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

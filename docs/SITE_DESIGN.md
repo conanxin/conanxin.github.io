@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.8 (2026-10-12，Stage 2F 原馆目录/引文核验已发布)
+> **版本**: 1.9 (2026-10-12，Stage 2G 原图定位与页对象读库 Gate 试点)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -278,3 +278,14 @@ Stage 2F 首先检索**持有机构自己的**目录/IIIF/数字藏品号，对�
 - 冻结 `citations.json` 里的 6 条候选引文，目前只 1/6 可在这份 23 次 run 中解析；`SHUGE:p168491:68` 对应《园冶》run #5，不得用于《水经注》论证。其他五条仅在该**特定运行文件**中 NOT_FOUND，不代表全项目无此字符串。新的 `reference` 旁路可展示逐页核对进展，但**不得因为检索模型输出 SUPPORTED 或 OCR reliability HIGH 就认为学术论断已经完成逐字核实**。
 - UI 继续使用唯一的 `assets/site/design.css` 的 `--site-*` 色彩变量，不新增固定颜色的第二套参考文献主题。新的 reference 模板页面应正确链接其旁置 JSON 的父目录，相对链接须加入测试。
 - 本轮仍保持 `/content-index/` 的“已发布页面标题与简介”搜索范围，历史 SHUGE 冻结数据、原论文、扫描件及引文不改写。
+
+
+---
+
+## 18. Stage 2G 图像定位与页对象 Gate 的展示规则（PR 开发中）
+
+- `/projects/site-design-lab/shuge-source-crosswalk/scan-locator/` 是从统一完整 `reference` 模板生成的新读者页，元标签 `site-index-kind=reference` 仅用于导航分类，不改变证据等级；旁路 `../scan-locator-audit.json` 指向机器审计。
+- 严格区分原馆目录/阅览器中可见的 image/download checkbox ID（可标注为 **VERIFIED as viewer metadata**）、真正下载的原图字节与 hash（本轮 **UNVERIFIED**）、书格图像同一性（**UNVERIFIED**）、原数据库 Citation ID/page_object_id（**UNVERIFIED**）、OCR 原文和历史 claim 的语义支持（**UNVERIFIED**）。
+- 临时计算的 Citation 后缀 − 证据卡局部页号 ≈ 958 不属于可靠图像 URI 或页号；`SHUGE:p211203:1338` 同时关联三个页标签，任何自动投票或偏移换算都不得生成 VERIFIED 页面。
+- 原研究 SQLite `/home/conanxin/shuge-research-db/data/shuge.db` 的新探针只读连接（`mode=ro`、`PRAGMA query_only=ON`），需实际查出 `page_objects` 主键与作品 ID 一致才能标记数据库层 VERIFIED；这不自动证明所返回 image URI 的文件已下载或馆方原图已比对。
+- 本轮原图下载 0；原藏扫描视觉对照 0；6 条 Citation ID 原图语义审校 0。发布测试仅核验这一真实状态和页面表现，不能伪造扫描、改写 SHUGE 原数据或升级学术论断。

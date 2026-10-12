@@ -62,3 +62,10 @@ Stage 2G-P2 [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 和
 - 冻结 `projects/shuge-exhibition-v1.0/data/*`、研究正文、OCR、原图和 Citation ID 全部只读，仅新增审计文件并修正交接文档的时间状态。
 
 下阶段应取得 BnF 两个 ARK 的独立官方记录，并优先继续《园冶》页 8／《天工开物》页 380 的逐列细校，而不是再增加一套重复网页模板。
+
+## 六、Stage 2G-P3 正式验收及下一阶段
+
+- [PR #26](https://github.com/conanxin/conanxin.github.io/pull/26) 已合并，SHA **`93044be7e2bf17e5b93bb0bf5ff75153eec079a5`**。
+- [GitHub Pages Run 38209895849](https://github.com/conanxin/conanxin.github.io/actions/runs/38209895849) **Success**：70/70 单元测试、48/48 浏览器检查、18/18 公网路径、JS 错误 0。
+- 已通过公网读取 [ocr-semantic-spotcheck.json](../projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json)，其中包含两页 OCR 选段、4 处局部错识和 8 项选定的自动论断语义筛查。**不等于两页全文、六条引用的人工审校均已完成**。
+- 下一步 `TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P4_CONTINUATION`：独立核对两个 Gallica ARK 的馆藏/manifest/图像顺序与同本关系；扩大真实扫描图像逐列 OCR 复核，并对研究论断由人工或可追溯原图证据逐条定性。原 SHUGE 冻结资料不改。

@@ -1,6 +1,6 @@
 # Conan Xin 数字花园 — 项目交接入口
 
-> 更新：2026-10-12（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2F_CONTINUATION`  
+> 更新：2026-10-12（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_CONTINUATION`  
 > 先核对 GitHub `main` 当前 SHA、PR 和 Pages Actions，不能把本交接文件中记录的历史 SHA 当作永远最新的主分支状态。
 
 ## 1. 项目目标与边界
@@ -22,12 +22,14 @@
 | Stage 2C 文档 | [#14](https://github.com/conanxin/conanxin.github.io/pull/14) | `d8b0445` | 持久交接与设计规范 v1.2 |
 | **Stage 2D** | [#15](https://github.com/conanxin/conanxin.github.io/pull/15) | **`671c31270aecdea3aee0930c260f29078b9c0bf4`** | SHUGE 展览/文献实页、自动内容索引、可验证来源边界 |
 | **Stage 2E** | [#17](https://github.com/conanxin/conanxin.github.io/pull/17) | **`17ba656e3c1695624058ce00750b0cb1f7650734`** | 从旧 works.json 找到正确 ID/题名/URL；新独立审计与 reference 导览；收紧自动索引准入 |
+| **Stage 2F** | [#19](https://github.com/conanxin/conanxin.github.io/pull/19) | **`da196453ddec219aebb13f5372a6caad00def772`** | 日本/BnF原藏机构目录号、四个候选馆藏记录、六条 Citation ID 完整性审计及新 reference 页面 |
 
 生产验收证据：
 - Stage 2B [Run 38142644340](https://github.com/conanxin/conanxin.github.io/actions/runs/38142644340)：19 Python 测试、32 浏览器检查、9 公网路径。
 - Stage 2C [Run 38143831596](https://github.com/conanxin/conanxin.github.io/actions/runs/38143831596)：24 Python 测试、36 浏览器检查、12 公网路径。
 - **Stage 2D [Run 38146608834](https://github.com/conanxin/conanxin.github.io/actions/runs/38146608834)：31/31 Python 测试、42/42 Playwright、15/15 真实公网路径（HTTP 200），JS 错误 0；自动索引 JSON 核验通过。**
 - **Stage 2E [Run 38184465542](https://github.com/conanxin/conanxin.github.io/actions/runs/38184465542)：38/38 Python 测试、44/44 Playwright、16/16 公网路径（含来源对照页）、JS 错误 0；对照 JSON 状态检查通过。**
+- **Stage 2F [Run 38188833394](https://github.com/conanxin/conanxin.github.io/actions/runs/38188833394)：45/45 Python 测试、46/46 Playwright、17/17 公网路径、JavaScript 错误 0；新增核验页与六条 Citation ID JSON 状态检查通过。**
 
 ## 3. 已发布真实内容与索引
 
@@ -47,6 +49,11 @@
 
 - [SHUGE 三条作品 ID 来源核对](/projects/site-design-lab/shuge-source-crosswalk/) — 仍使用完整 **reference** 模板，通过旧 `works.json` 找到 P168491=《园冶》、P211203=《天工开物》、P44159=《工程做法》，另 P124575 才是《水经注》。[机器可读证据](../projects/site-design-lab/shuge-source-crosswalk/crosswalk.json) 保存 VERIFIED（内部映射与公开书格页面）、UNVERIFIED（原藏机构目录与扫描）及限定范围的 NOT_FOUND（额外 numeric permalink 检索）。
 
+### Stage 2F
+
+- [原藏机构目录及 Citation ID 证据台账](/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/)：完整 `reference` 模板；[机器数据](../projects/site-design-lab/shuge-source-crosswalk/primary-catalog-audit.json) 记载《园冶》子076-0004、《天工开物》BnF Chinois 5563／Gallica ARK、《工程做法》史112-0007 与 297-0020 两套候选馆藏记录。**3 部作品各有原馆目录候选，共 4 条馆藏记录；0/3 份书格扫描已与原馆原图逐页比对。**
+- 六条旧 Citation ID 仅 1/6 出现在冻结 `citations.json` 运行中，且 P168491:68 的 run #5 是《园冶》，纠正了旧审计“梦粱录运行”的错误；**0/6 完成原图和论断语义审定**。请阅读 [Stage 2F 研究报告](../docs/STAGE2F_PRIMARY_CATALOG_AUDIT.md)。
+
 四种模板位于 `templates/site/{article,project,exhibition,reference}/index.html`，均为完整 HTML、不会进入公开构建；真实页面各有应用。唯一原生主题例外仍是 `projects/wbw-spacex-mars-cn/index.html`（`project-native`），其余完整页面默认 `unified-v1`。
 
 ## 4. SHUGE 史料状态与纠错边界
@@ -56,12 +63,12 @@
 - 不把 `REVIEW` 文章记为 `PUBLISHED`，不将 SHUGE OCR/索引状态等同于原件核验；
 - 继续保留原版数据、引文、图像和项目级脚本，不静默修改研究资产。
 
-## 5. Stage 2F 下一步（尚未执行）
+## 5. Stage 2G 下一步（尚未执行）
 
-1. 先读取 Stage 2E [来源核验方法](../docs/STAGE2E_SOURCE_RECONCILIATION.md) 与 `crosswalk.json`，以仓库已确认的 P168491/P211203/P44159 映射为检索起点，取得日本内阁文库与法国国家图书馆等原藏机构自身的**稳定馆藏条目 ID、目录 URL、卷册和扫描图像**，逐条记录证据；尚无一对一对应时不能把物理版本标为 VERIFIED。
-2. 评估内容索引更大范围的准入标准：Stage 2E 已明确拒绝 `source`、`work`、`drafts`、`src`、历史展览快照等路径，但尚未扩大发现范围。新增长尾研究内容应先明确允许列表和去重策略。
-3. 如果确需替代旧 `posts/index.html` 和 `projects/index.html` 的手工计数，先规划兼容旧功能和搜索交互的迁移方式，再在独立 PR 实施；**Stage 2D—2E 均没有改写旧目录源内容**。
-4. 保持 CI 的移动端横向溢出、全文未修改断言、站点目录和生产公网校验。重要决策更新本文件，避免聊天达到长度上限时丢失项目上下文。
+1. 先读取 [Stage 2F 原馆目录与引文审计](../docs/STAGE2F_PRIMARY_CATALOG_AUDIT.md) 及 `primary-catalog-audit.json`；从官方 `子076-0004`、BnF `Chinois 5563`（Gallica ARK）、`史112-0007` 和 `297-0020` 的扫描/IIIF 或馆藏阅览器取得可以**逐张比对**的图像。对同名《工程做法》两个馆号保持独立，不得预先归为同一藏本。
+2. 结合书格扫描、藏印、题签、序跋、刊记、书口与版式，通过独立的逐卷/逐页映射确认**原藏机构数字对象 = 书格所用图像**；馆方网页或年份吻合只是候选，不得升级为同一扫描 `VERIFIED`。
+3. 从本地研究数据库明确导出 `page_object_id → page_index → source_image_uri/canvas → OCR QA → Citation ID`，先查 `SHUGE:p211203:1338` 多页标签（137/362/380）和 `SHUGE:p168491:68` 错误论断，再逐条人工审核全部六个 ID。**不得直接把 Citation ID 后缀视作 PDF 页码**。
+4. 只新增独立的审计/纠错旁路，不改冻结 `bibliography.json`、`citations.json`、OCR、图像和既有研究正文。项目的自动内容索引保持保守边界，不为了展示史料而公开草稿或临时 source 文件。
 
 ## 6. 实际经验
 
@@ -85,9 +92,9 @@
 **验收结果**：PR [#17](https://github.com/conanxin/conanxin.github.io/pull/17) 已合并，SHA `17ba656e3c1695624058ce00750b0cb1f7650734`。GitHub Pages [Run 38184465542](https://github.com/conanxin/conanxin.github.io/actions/runs/38184465542) **Success**：38/38 单元测试、44/44 浏览器检查、16/16 公网路径；新 `crosswalk.json` 的内部映射 VERIFIED／原藏机构 UNVERIFIED 状态经过上线校验。网页原生视觉 1440/390 已核查，390px 无横向溢出。**下一阶段仍需馆藏实物与扫描页的独立验证；不要重做 PR #10—#17。**
 
 
-## 8. Stage 2F · 原藏机构目录与 Citation ID 双轨审计（开发中，尚未正式发布）
+## 8. Stage 2F · 原藏机构目录与 Citation ID 双轨审计（已合并并正式发布）
 
-- 基线：Stage 2E 已完成生产验收的 `main` SHA `f88101d`。此阶段独立分支 `review/stage2f-primary-catalog-citation-audit`；在 PR 合并及 Pages 正式成功前不得宣称上线。
+- 历史基线：Stage 2E 的 `main=f88101d`，本阶段曾在独立分支 `review/stage2f-primary-catalog-citation-audit` 实施。**PR #19 已合并，正式部署 Run 38188833394 Success**；当前研究者可直接阅读已发布的页面。
 - 新数据 `projects/site-design-lab/shuge-source-crosswalk/primary-catalog-audit.json`：查得《园冶》日本内阁文库 `子076-0004`／馆方记录 `1079110`；《天工开物》BnF `Chinois 5563`／Gallica `ark:/12148/btv1b52505781g`；《工程做法》原馆两条不同索书号 `史112-0007`／`297-0020`，仍不能唯一确定哪条来自书格的同一扫描。
 - BnF 同时藏 `Chinois 5564` 另一版，不能套用 5563 的 ARK。研究论文所标 Gallica `f274` 是可追踪的图像页线索，但此轮尚未直接目视核验该图。
 - 六个冻结 Citation ID 只 **1/6** 出现在 `citations.json` 的 `runs[].claims[]`；`SHUGE:p168491:68` 实际归属 **run #5《园冶》**，原 `CLAIM_SUPPORT_AUDIT.md` 称《梦粱录》运行有误。其他五个在这份运行 JSON 是 NOT_FOUND，虽出现在证据卡和段落，并不意味着支持某历史论断。
@@ -95,4 +102,4 @@
 - 新公开页面采用完整 `reference` 模板：`projects/site-design-lab/shuge-source-crosswalk/primary-catalog/index.html`；详情见 `docs/STAGE2F_PRIMARY_CATALOG_AUDIT.md`。代码增加 `tests/test_stage2f_primary_catalog.py`、1440/390 浏览器断言及生产后 JSON 检查。
 - **保留边界**：原 SHUGE `projects/shuge-exhibition-v1.0/data/*`、旧 `CLAIM_SUPPORT_AUDIT.md`、图像与 OCR 均完全不改。
 
-**下一阶段 Stage 2G 前置 Gate**：等待本轮 PR 全绿、审核并正式部署；然后以原藏扫描和本地数据库明细建立逐页影像映射，再逐字复校六条 Citation ID，不能因本轮找到书名/馆号而升级引文语义状态。
+**验收与下一阶段**：[PR #19](https://github.com/conanxin/conanxin.github.io/pull/19) 已合并 SHA `da196453ddec219aebb13f5372a6caad00def772`，生产 [Run 38188833394](https://github.com/conanxin/conanxin.github.io/actions/runs/38188833394) 45/45 unittest、46/46 Playwright、17/17 HTTP 200。Stage 2G 应以原藏扫描和本地数据库明细建立逐页影像映射，再逐字复校六条 Citation ID；不因本轮找到馆号而升级引文语义状态。

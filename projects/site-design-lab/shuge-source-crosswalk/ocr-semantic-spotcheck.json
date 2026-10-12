@@ -58,7 +58,9 @@
       "full_page_transcription": {
         "status": "UNVERIFIED",
         "notes": "未逐列全面校订右页正文、目录全栏目、藏印；存档 OCR 阅读顺序也未重排。"
-      }
+      },
+      "db_ocr_row_id": 232,
+      "stored_ocr_excerpt_from_readonly_db": "國治目錄卷之\n世口崇祯辛未之枞否道人暇于启冶堂中题\n一\n典造\n堂基\n立其\n傍宅地\n村庄地\n山林地\n相地\n卷\n楼阁基\n江湖地\n郊野地\n城市地\n国立公文書館\nArchives\nofJa"
     },
     {
       "page_object_id": 1338,
@@ -93,18 +95,14 @@
           "stored_ocr": "著之中經歷句日",
           "assessment": "OCR_MISMATCH",
           "detail": "暑/著、旬/句等识别差异；不得据此认定整段 OCR 可以直接引用。"
-        },
-        {
-          "observed_on_image": "卷下",
-          "stored_ocr": "卷下",
-          "assessment": "SELECTED_GLYPHS_MATCH",
-          "detail": "标明章节卷次，不等于数据库实际页面印刷页码。"
         }
       ],
       "full_page_transcription": {
         "status": "UNVERIFIED",
         "notes": "尚未对完整纵排文字与OCR的断句、漏字和印刷页号逐字人工复校。"
-      }
+      },
+      "db_ocr_row_id": 1018,
+      "stored_ocr_excerpt_from_readonly_db": "天工開物\n入马蓼自然汁三升明磨水和化無魏饭一石人信\n精大推拌信凡翘信必用隹红酒糟禽料無糟\n金中以冷水一沃氣冷再蒸则令極熟矣熟后数石共\n芬甚几蒸此米成饭初一蒸半生即止不及其熟出雕\n可者月\n无造法用私稻米不狗早晚春极其精水浸一元\n著之中經歷句日塑蝇不敢远色味不雕初盖奇藥也\n世間魚肉最朽腐物而此物薄施塗林"
     }
   ],
   "targeted_research_question_triage": [
@@ -204,5 +202,6 @@
     "Manually align full vertical text of pages 68 and 1338 (and other 4 pages) to OCR, recording uncertainty and photograph crop/line coordinates.",
     "For each historic claim, retain exact citation_id, research_run_id, claimed proposition and supporting visually-checked passage; require qualified human review before promotion.",
     "All frozen data, claims status, OCR and images remain untouched; only research sidecars may be updated."
-  ]
+  ],
+  "provenance_note": "OCR excerpts copied directly from the previously committed real-SQLite P2 sidecar; selected observed glyphs are limited AI-assisted visual findings and not full manual transcription."
 }

@@ -132,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/']
           result=[]
           for path in paths:
               error=None
@@ -164,6 +164,8 @@ jobs:
                               assert '/projects/site-design-lab/shuge-source-register/' in body,'reference not indexed'
                               assert '/projects/site-design-lab/shuge-source-crosswalk/' in body,'stage2e source crosswalk not indexed'
                               assert '/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/' in body,'stage2f primary catalog not indexed'
+                              assert '/projects/site-design-lab/shuge-source-crosswalk/scan-locator/' in body,'stage2g scan locator not indexed'
+                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/scan-locator/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2g scan locator not uniquely indexed'
                               with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
                                   catalog=json.loads(data_response.read().decode('utf-8'))
                                   assert catalog['total']>15,'empty content index'
@@ -196,6 +198,21 @@ jobs:
                                   assert audit['summary']['matching_shuge_to_exact_holder_scans_verified']==0
                                   assert len(audit['citation_audit'])==6
                                   assert all(c['claim_semantics']['status']=='UNVERIFIED' for c in audit['citation_audit'])
+                          if path=='/projects/site-design-lab/shuge-source-crosswalk/scan-locator/':
+                              assert 'class="template-reference"' in body,'Stage2G not using shared reference template'
+                              for key in ('C103160581800','C103160611900','SHUGE:p211203:1338','f274','UNVERIFIED'):
+                                  assert key in body,'Stage2G evidence locator missing: '+key
+                              assert 'TEMPLATE_' not in body,'Stage2G template placeholder leaked'
+                              probe=urllib.request.Request(base+'/projects/site-design-lab/shuge-source-crosswalk/scan-locator-audit.json?build='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache'})
+                              with urllib.request.urlopen(probe,timeout=25) as scan_response:
+                                  scan=json.loads(scan_response.read().decode('utf-8'))
+                                  assert scan['summary']['archived_works']==3
+                                  assert scan['summary']['japan_observed_image_locator_ids']==6
+                                  assert scan['summary']['downloaded_original_image_binaries']==0
+                                  assert scan['summary']['verified_image_pair_alignments']==0
+                                  assert scan['summary']['verified_citation_claim_semantics']==0
+                                  assert len(scan['citation_rows'])==6
+                                  assert scan['locator_hypothesis']['projection_is_forbidden'
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

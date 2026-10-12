@@ -1,6 +1,6 @@
 # Conan Xin 数字花园 — 项目交接入口
 
-> 更新：2026-10-12（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P2_CONTINUATION`  
+> 更新：2026-10-12（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P4_CONTINUATION`  
 > 先核对 GitHub `main` 当前 SHA、PR 和 Pages Actions，不能把本交接文件中记录的历史 SHA 当作永远最新的主分支状态。
 
 ## 1. 项目目标与边界
@@ -139,12 +139,12 @@
 - 本轮未修改任何冻结 SHUGE v0.7/v1.0 JSON、原图、OCR、引文、历史论文。下一阶段先裁决 OCR 字符与错误语义匹配，不再误把自动 `SUPPORTED` 当成历史论断已证实。
 
 
-## 12. Stage 2G-P3 · 选段 OCR 字形与证据语义筛查（独立 PR，尚未发布）
+## 12. Stage 2G-P3 · 选段 OCR 字形与证据语义筛查（已部署，全文校勘尚未完成）
 
 - P2 [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 的六个真实 SQLite 主键与本地图像 SHA 证据已保留；[PR #25](https://github.com/conanxin/conanxin.github.io/pull/25) 的文档收尾已合并，最新历史生产回执为 [Run 38207956741](https://github.com/conanxin/conanxin.github.io/actions/runs/38207956741)（64/64 Python、48/48 浏览器、18/18 公网路径）。
 - 新的 [Stage 2G-P3 选段审计](./STAGE2G_P3_OCR_SPOTCHECK.md) 与 `projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json`：从真实 `page_ocr` 的页 68/1338 文本与已 SHA 核的 JPEG 图像对照少量易认字串，发现 4 个局部 OCR 错识。**这是 AI 辅助选段复核，不是两页全文人工校勘，也没有改写 OCR 库。**
 - 另外抽查 8 个 `research_run_id × citation_id` 组合：目录标题存在的狭义事实可有局部图像证据，但盐井图不能回答黄河河防、`p211203:1338` 的鱼肉加工不能证实《水经注》区块链应用、《工程做法》封面不能证明“柱径玖寸”等技术细节。历史 `SUPPORTED` 原状态未改。
 - **双 Gallica ARK 仍未消歧**：真实 SQLite 保存 `btv1b525104776`，BnF 官方《天工开物》1637 年 Chinois 5563 专文则链接 `btv1b52505781g`。两者不能直接交叉套用 f274 或其他 canvas，当前 `UNVERIFIED`。
-- 本阶段尚未合并，CI 和审查结果须以 PR／Run 为准。研究的整册馆藏同一性与 **6/6 完整 OCR/历史论断**仍保持未完成；后续应直接取 BnF 两个对象的馆方 manifest/canvas，并进行逐字 OCR 校订与人审。
+- **Stage 2G-P3 已发布**：[PR #26](https://github.com/conanxin/conanxin.github.io/pull/26) 合并 SHA `93044be7e2bf17e5b93bb0bf5ff75153eec079a5`；正式 [Pages Run 38209895849](https://github.com/conanxin/conanxin.github.io/actions/runs/38209895849) **70/70 Python、48/48 浏览器、18/18 公网路径、JS 错误 0**。新 [OCR/语义 sidecar](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json) 已通过公网实际读取。**完整 OCR/历史论断 0/6 和整册原馆版次未证**，下一阶段 P4 聚焦两个 Gallica ARK 的官方 manifest/canvas、更多逐页 OCR 校勘与正式命题证据。
 
 **范围**：只增加新研究 sidecar、审计文档与测试，并纠正旧交接中的时点措辞；冻结 SHUGE v0.7/v1.0 JSON、影像、原研究论断和 OCR 一律未动。

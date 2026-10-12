@@ -98,3 +98,10 @@
 - **再运行工具**：`scripts/stage2g_sqlite_probe.py` 的 `source_image_url` 字段已补齐，能够对真实表结构做只读验证和本地文件 SHA 检查。测试夹具继续检查不存在正确 work ID 时不能自动报 VERIFIED。
 
 **阶段结论：原始数据库页对象和六张本地归档图像完整性已闭合；六条 OCR 字符级准确性、历史研究主张与整套馆藏扫描完全对应仍没有达到正式学术 Gate。**
+
+## 8. Stage 2G-P2 正式发布回执与下一阶段
+
+- [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 已合并，SHA **`27f0ebc30a7584590537f118ecaaadbe84483001`**。
+- [Pages Run 38207442742](https://github.com/conanxin/conanxin.github.io/actions/runs/38207442742) **Success**：64/64 单元测试、48/48 浏览器检查、18/18 公开阅读路径、JS 错误 0。`real-db-page-links.json` 已通过公网实际读取确认存在，并保留六张图像的记录哈希、真实页对象 ID、采集来源及每层未核状态。
+- **下一步仍属研究审核工作**：Stage 2G-P3 优先比对两个 Gallica ARK 的原始馆藏关系、逐字复校《园冶》目录及《天工开物》页 380，再针对历史 claim 把自动检索 `SUPPORTED` 与真正史料支持严格区分。不得将 6/6 文件字节完整性当作 6/6 学术引文验证。
+

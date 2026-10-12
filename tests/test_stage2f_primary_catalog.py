@@ -42,7 +42,7 @@ class Stage2FPrimaryEvidenceTests(unittest.TestCase):
                 row = by_id[n]
                 self.assertEqual(row["title"], title)
                 self.assertEqual(row["archived_url"], self.works[n]["shuge_url"])
-                self.assertEqual(row["archived_work_page_count"], self.works[n]["page_count"])
+                self.assertEqual(row["archived_page_count"], self.works[n]["page_count"])
                 self.assertEqual(row["archived_identity"]["status"], "VERIFIED")
                 self.assertEqual(row["primary_repository_catalog"]["status"], "VERIFIED")
                 self.assertEqual(row["same_scanned_physical_object"]["status"], "UNVERIFIED")

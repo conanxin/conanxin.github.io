@@ -103,3 +103,16 @@
 - **保留边界**：原 SHUGE `projects/shuge-exhibition-v1.0/data/*`、旧 `CLAIM_SUPPORT_AUDIT.md`、图像与 OCR 均完全不改。
 
 **验收与下一阶段**：[PR #19](https://github.com/conanxin/conanxin.github.io/pull/19) 已合并 SHA `da196453ddec219aebb13f5372a6caad00def772`，生产 [Run 38188833394](https://github.com/conanxin/conanxin.github.io/actions/runs/38188833394) 45/45 unittest、46/46 Playwright、17/17 HTTP 200。Stage 2G 应以原藏扫描和本地数据库明细建立逐页影像映射，再逐字复校六条 Citation ID；不因本轮找到馆号而升级引文语义状态。
+
+
+## 9. Stage 2G 第一轮：馆方图像定位与页对象 Gate（独立 PR 开发中）
+
+- 分支：`review/stage2g-image-locators-citation-gates`，基于已完成 Stage 2F 的 `main=4756d56`。**本轮还没有真正完成全图下载及原图逐页比对，不得宣称 Stage 2G 最终学术 Gate 已关闭**。
+- `projects/site-design-lab/shuge-source-crosswalk/scan-locator-audit.json`：分层保存《园冶》子076-0004 三册目录、《天工开物》BnF Gallica ARK/f274、两套《工程做法》馆号及 NAA 第23册/第32册各三条可索引 JP2 下载控件编号。原始图像下载 0，完成同图核验 0。
+- `docs/STAGE2G_SCAN_ALIGNMENT_AUDIT.md` 与 `scan-locator/index.html`：说明官方站点自动访问遇到 403、图像字节未取得、馆方“公開”目录与“館内限定閲覧”图像访问的区别。
+- 六条 Citation ID 的证据卡局部页号经过原 JSON 重算：特别 `SHUGE:p211203:1338` 被关联到 **137/362/380** 三个不同页号；一些差值约 958，但只是数字观察，禁止推断 PDF 页、馆方 canvas 或历史主张已证实。
+- 已从先前项目记录恢复真实 SHUGE SQLite 的 WSL 路径 `/home/conanxin/shuge-research-db/data/shuge.db`；新增 `scripts/stage2g_sqlite_probe.py`，使用 `mode=ro` + `PRAGMA query_only=ON` 按六条 Citation ID 查 `page_objects` 里的主键与作品关系。**尚未在原 SQLite 上成功执行**：授权桌面设备在线，但命令执行接口返回 `Failed to get process ID`。CI 仅在临时 SQLite fixture 上验证无写入和错误映射拒绝，并不作为真实库查询回执。
+- 自动索引继续只收录真正已构建的公开页面，仍沿用 Stage 2E 的草稿/源文件过滤规则。
+- 参考文献页采用完整 `template-reference` 和全站 `--site-*` 变量，不修改 `projects/shuge-exhibition-v1.0/data/*`、旧审计、原图/OCR/论文。
+
+**待验收 Gate**：本分支完整单元+浏览器+生产 HTTP/JSON 检查；完成后只能标记“图像定位资料与只读核查工具已发布”，不能把 0 张下载和 0/6 语义核验写成研究完成。后续仍需连接原数据库并取得实际图像字节逐页比对。

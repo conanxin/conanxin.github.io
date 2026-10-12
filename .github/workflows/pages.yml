@@ -165,7 +165,6 @@ jobs:
                               assert '/projects/site-design-lab/shuge-source-crosswalk/' in body,'stage2e source crosswalk not indexed'
                               assert '/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/' in body,'stage2f primary catalog not indexed'
                               assert '/projects/site-design-lab/shuge-source-crosswalk/scan-locator/' in body,'stage2g scan locator not indexed'
-                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/scan-locator/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2g scan locator not uniquely indexed'
                               with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
                                   catalog=json.loads(data_response.read().decode('utf-8'))
                                   assert catalog['total']>15,'empty content index'
@@ -173,6 +172,7 @@ jobs:
                                   assert not any('/source/' in item['url'] for item in catalog['items']),'source paths leaked to catalog'
                                   assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2e reader not uniquely indexed'
                                   assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2f primary catalog not uniquely indexed'
+                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/scan-locator/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2g scan locator not uniquely indexed'
                           if path=='/projects/site-design-lab/shuge-source-crosswalk/':
                               assert 'work-shuge-168491' in body and 'work-shuge-211203' in body and 'work-shuge-44159' in body,'crosswalk rows missing'
                               assert 'UNVERIFIED' in body and 'NOT_FOUND' in body,'crosswalk status labels missing'

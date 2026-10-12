@@ -1,0 +1,677 @@
+{
+  "schema": "stage2g-scan-locator-and-citation-gates-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_CONTINUATION",
+  "checked_on": "2026-10-12",
+  "source_baseline": {
+    "main_sha": "4756d56fa9867793fae2926888d10dc6ef8e5f6e",
+    "prior_sidecar": "projects/site-design-lab/shuge-source-crosswalk/primary-catalog-audit.json",
+    "prior_catalog_status": "3 works/4 candidate catalog records; exact physical scanned copy not established",
+    "immutable_source_files": [
+      "projects/shuge-exhibition-v1.0/data/works.json",
+      "projects/shuge-exhibition-v1.0/data/bibliography.json",
+      "projects/shuge-exhibition-v1.0/data/citations.json",
+      "projects/shuge-exhibition-v1.0/data/evidence_cards.json",
+      "projects/shuge-exhibition-v1.0/data/evidence_paragraphs.json",
+      "projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md"
+    ]
+  },
+  "status_semantics": {
+    "VERIFIED": "仅在明确注明的馆藏元数据、网页索引或冻结证据卡记录层面核实；不可传递到图像二进制或实际扫描页同一性。",
+    "UNVERIFIED": "缺少必要图像二进制/manifest/canvas、原扫描页对照或数据库 page_object_id 连接，禁止推断。",
+    "NOT_FOUND": "本轮限定检索或冻结子文件中没有直接关系，不表示全馆、全数据库不存在。"
+  },
+  "acquisition_attempts": [
+    {
+      "endpoint": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52505781g/manifest.json",
+      "method": "web open and authorized connected desktop URL read",
+      "outcome": "web URL not accessible, connected desktop HTTP 403",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    },
+    {
+      "endpoint": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52505781g/f274/info.json",
+      "method": "web open",
+      "outcome": "not accessible via web fetch",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    },
+    {
+      "endpoint": "https://www.digital.archives.go.jp/file/1079110",
+      "method": "web open + search-indexed document",
+      "outcome": "web direct request HTTP403; search-indexed official catalog confirms 3 volumes",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    },
+    {
+      "endpoint": "https://www.digital.archives.go.jp/img/4754316",
+      "method": "search-indexed official viewer",
+      "outcome": "viewer public text includes download-list JPG/JP2 labels; full raster not obtained",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    },
+    {
+      "endpoint": "https://www.digital.archives.go.jp/img/4754325",
+      "method": "search-indexed official viewer",
+      "outcome": "viewer public text includes JP2-associated image identifiers; full raster not obtained",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    },
+    {
+      "endpoint": "https://www.digital.archives.go.jp/img/4912863",
+      "method": "web open",
+      "outcome": "not accessible via web fetch",
+      "status": "UNVERIFIED",
+      "bytes_acquired": false
+    }
+  ],
+  "holdings": [
+    {
+      "post_id": 168491,
+      "title": "园冶",
+      "repository": "国立公文書館・内閣文庫",
+      "call_number": "子076-0004",
+      "catalog_url": "https://www.digital.archives.go.jp/file/1079110",
+      "catalog_status": "VERIFIED",
+      "volume_count": 3,
+      "index_level_volume_records": {
+        "status": "VERIFIED",
+        "ordinals": [
+          "0001",
+          "0002",
+          "0003"
+        ],
+        "scope": "馆方检索文本中可见的卷册列表；缺少每册可抓取的具体图像清单/图像校核"
+      },
+      "exact_downloadable_iiif_manifest": {
+        "status": "UNVERIFIED",
+        "url": null,
+        "canvas_count": null
+      },
+      "image_binary_verification": {
+        "status": "UNVERIFIED",
+        "sampled_images": 0
+      },
+      "shuge_matching": {
+        "status": "UNVERIFIED",
+        "matched_image_pairs": 0
+      }
+    },
+    {
+      "post_id": 211203,
+      "title": "天工开物",
+      "repository": "BnF / Gallica",
+      "call_number": "Chinois 5563",
+      "catalog_url": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+      "catalog_status": "VERIFIED",
+      "digital_object": {
+        "status": "VERIFIED",
+        "ark": "ark:/12148/btv1b52505781g",
+        "url": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g",
+        "scope": "馆方文字与数字资源入口相联，不是已下载 manifest"
+      },
+      "viewer_frame_reference": {
+        "status": "VERIFIED",
+        "frame_token": "f274",
+        "frame_url": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f274.item",
+        "source": "https://books.whpress.co.uk/10.3197/63800040695086.book.pdf",
+        "source_claim": "公开论文脚注称 f274 为《天工开物》中卷第68页油榨图，仅验证引图出处，不代表本站重新目视确认 f274 图像"
+      },
+      "downloadable_manifest": {
+        "status": "UNVERIFIED",
+        "url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52505781g/manifest.json",
+        "canvases_observed": 0,
+        "http_access": "403 via connected desktop"
+      },
+      "image_binary_verification": {
+        "status": "UNVERIFIED",
+        "sampled_images": 0
+      },
+      "shuge_matching": {
+        "status": "UNVERIFIED",
+        "matched_image_pairs": 0
+      },
+      "different_editions": {
+        "status": "VERIFIED",
+        "other_call_number": "Chinois 5564",
+        "scope": "馆方明确存在另一版本，不能用 Chinois 5563 的 ARK 关联"
+      }
+    },
+    {
+      "post_id": 44159,
+      "title": "工程做法",
+      "repository": "国立公文書館・内閣文庫",
+      "catalog_candidates": [
+        {
+          "call_number": "史112-0007",
+          "viewer_item": "https://www.digital.archives.go.jp/img/4754316",
+          "volume_ordinal": 23,
+          "viewer_metadata": {
+            "status": "VERIFIED",
+            "viewer_title": "工程做法２３",
+            "viewer_declared_items": 76,
+            "viewer_image_count": 22,
+            "download_displayed_ids": [
+              "C103160581800",
+              "C103160581900",
+              "C103160582000"
+            ],
+            "scope": "搜索索引中的馆方阅览器文本/下载复选框 ID，并非已获取 JP2 文件或图像内容"
+          },
+          "actual_jp2_uri": {
+            "status": "UNVERIFIED",
+            "uri": null
+          },
+          "image_bytes": {
+            "status": "UNVERIFIED",
+            "downloaded": false
+          }
+        },
+        {
+          "call_number": "史112-0007",
+          "viewer_item": "https://www.digital.archives.go.jp/img/4754325",
+          "volume_ordinal": 32,
+          "viewer_metadata": {
+            "status": "VERIFIED",
+            "viewer_title": "工程做法３２",
+            "viewer_declared_items": 76,
+            "viewer_image_count": 37,
+            "download_displayed_ids": [
+              "C103160611900",
+              "C103160612000",
+              "C103160612100"
+            ],
+            "scope": "搜索索引中的馆方阅览器文本/下载复选框 ID，并非真实图像二进制"
+          },
+          "actual_jp2_uri": {
+            "status": "UNVERIFIED",
+            "uri": null
+          },
+          "image_bytes": {
+            "status": "UNVERIFIED",
+            "downloaded": false
+          }
+        },
+        {
+          "call_number": "史112-0007",
+          "viewer_item": "https://www.digital.archives.go.jp/img/4754366",
+          "volume_ordinal": 73,
+          "viewer_metadata": {
+            "status": "VERIFIED",
+            "viewer_title": "工程做法７３",
+            "viewer_declared_items": 76,
+            "viewer_image_count": null,
+            "download_displayed_ids": [],
+            "scope": "官方目录显示卷次与在线阅览器入口；自动抓取图像清单不足"
+          },
+          "actual_jp2_uri": {
+            "status": "UNVERIFIED",
+            "uri": null
+          }
+        },
+        {
+          "call_number": "297-0020",
+          "viewer_item": "https://www.digital.archives.go.jp/item/4912863",
+          "volume_ordinal": 6,
+          "viewer_metadata": {
+            "status": "VERIFIED",
+            "viewer_title": "工程做法６",
+            "viewer_image_count": null,
+            "download_displayed_ids": [],
+            "scope": "官方目录件名与册次；没有取得逐页图像标识"
+          },
+          "actual_jp2_uri": {
+            "status": "UNVERIFIED",
+            "uri": null
+          }
+        }
+      ],
+      "copy_disambiguation": {
+        "status": "UNVERIFIED",
+        "ambiguity": "史112-0007 和297-0020 的书影及所对应书格扫描尚未完成同一性核验"
+      },
+      "image_binary_verification": {
+        "status": "UNVERIFIED",
+        "sampled_images": 0
+      },
+      "shuge_matching": {
+        "status": "UNVERIFIED",
+        "matched_image_pairs": 0
+      }
+    }
+  ],
+  "citation_rows": [
+    {
+      "citation_id": "SHUGE:p168491:68",
+      "post_id": 168491,
+      "claim_run_presence": "VERIFIED",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 227,
+            "question": "园冶相地",
+            "card_local_page_label": 8,
+            "text_reliability": "HIGH",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 226,
+            "question": "园冶相地",
+            "card_local_page_label": 8,
+            "text_reliability": "HIGH",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          8
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 68,
+          "candidate_card_local_page_label": 8,
+          "difference": 60,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "UNALIGNED"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1096",
+      "post_id": 211203,
+      "claim_run_presence": "NOT_FOUND",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 233,
+            "question": "河防一览黄河",
+            "card_local_page_label": 137,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          137
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 1096,
+          "candidate_card_local_page_label": 137,
+          "difference": 959,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "NUMERIC_SUFFIX_EXCEEDS_ARCHIVED_SCAN_COUNT"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1178",
+      "post_id": 211203,
+      "claim_run_presence": "NOT_FOUND",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 222,
+            "question": "水经注江水",
+            "card_local_page_label": 220,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          220
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 1178,
+          "candidate_card_local_page_label": 220,
+          "difference": 958,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "NUMERIC_SUFFIX_EXCEEDS_ARCHIVED_SCAN_COUNT"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1320",
+      "post_id": 211203,
+      "claim_run_presence": "NOT_FOUND",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 229,
+            "question": "天工开物砖瓦",
+            "card_local_page_label": 362,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 228,
+            "question": "天工开物砖瓦",
+            "card_local_page_label": 362,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          362
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 1320,
+          "candidate_card_local_page_label": 362,
+          "difference": 958,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "NUMERIC_SUFFIX_EXCEEDS_ARCHIVED_SCAN_COUNT"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1338",
+      "post_id": 211203,
+      "claim_run_presence": "NOT_FOUND",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 234,
+            "question": "区块链技术在水经注中的应用",
+            "card_local_page_label": 380,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 233,
+            "question": "河防一览黄河",
+            "card_local_page_label": 137,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 230,
+            "question": "水经注太平洋",
+            "card_local_page_label": 380,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 229,
+            "question": "天工开物砖瓦",
+            "card_local_page_label": 362,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 228,
+            "question": "天工开物砖瓦",
+            "card_local_page_label": 362,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 224,
+            "question": "天工开物水利",
+            "card_local_page_label": 380,
+            "text_reliability": "UNKNOWN",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          137,
+          362,
+          380
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 1338,
+          "candidate_card_local_page_label": 137,
+          "difference": 1201,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        },
+        {
+          "numeric_id_suffix": 1338,
+          "candidate_card_local_page_label": 362,
+          "difference": 976,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        },
+        {
+          "numeric_id_suffix": 1338,
+          "candidate_card_local_page_label": 380,
+          "difference": 958,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "CONFLICTING_CARD_LABELS"
+    },
+    {
+      "citation_id": "SHUGE:p44159:552",
+      "post_id": 44159,
+      "claim_run_presence": "NOT_FOUND",
+      "candidate_page_observations": {
+        "status": "VERIFIED",
+        "meaning": "仅验证冻结 evidence_cards.json 记录了如下页标签/检索信息，不确认标签属于原扫描图像",
+        "observations": [
+          {
+            "research_run_id": 232,
+            "question": "工程做法纳米材料",
+            "card_local_page_label": 1,
+            "text_reliability": "HIGH",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 231,
+            "question": "工程做法大木",
+            "card_local_page_label": 1,
+            "text_reliability": "HIGH",
+            "review_status": "no"
+          },
+          {
+            "research_run_id": 225,
+            "question": "工程做法正心",
+            "card_local_page_label": 1,
+            "text_reliability": "HIGH",
+            "review_status": "no"
+          }
+        ],
+        "distinct_labels": [
+          1
+        ]
+      },
+      "numeric_difference_hypotheses": [
+        {
+          "numeric_id_suffix": 552,
+          "candidate_card_local_page_label": 1,
+          "difference": 551,
+          "status": "UNVERIFIED",
+          "meaning": "观察值差值，未经 page_object_id 键映射，不可用于生成已核扫描 URL"
+        }
+      ],
+      "page_object_id": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "original_scan_canvas_or_image": {
+        "status": "UNVERIFIED",
+        "uri": null,
+        "canvas_index": null,
+        "image_sha256": null
+      },
+      "shuge_scan_page_index": {
+        "status": "UNVERIFIED",
+        "value": null
+      },
+      "historical_claim_semantic_support": {
+        "status": "UNVERIFIED",
+        "meaning": "没有完成原图/OCR段落与历史主张逐字对应"
+      },
+      "consistency_flag": "UNALIGNED"
+    }
+  ],
+  "locator_hypothesis": {
+    "status": "UNVERIFIED",
+    "hypothesis": "P211203 的 citation numeric suffix 可能为全局数据库 page ID；部分 card-local page label 与其差约 958，但没有主键或扫描影像证明。",
+    "non_conflicted_examples": [
+      {
+        "citation_id": "SHUGE:p211203:1096",
+        "local_page": 137,
+        "difference": 959
+      },
+      {
+        "citation_id": "SHUGE:p211203:1178",
+        "local_page": 220,
+        "difference": 958
+      },
+      {
+        "citation_id": "SHUGE:p211203:1320",
+        "local_page": 362,
+        "difference": 958
+      },
+      {
+        "citation_id": "SHUGE:p211203:1338",
+        "local_page": 380,
+        "difference": 958
+      }
+    ],
+    "failure_case": {
+      "citation_id": "SHUGE:p211203:1338",
+      "card_local_page_labels": [
+        137,
+        362,
+        380
+      ],
+      "differences": [
+        1201,
+        976,
+        958
+      ],
+      "status": "UNVERIFIED",
+      "meaning": "同一 ID 的三个不同页标签说明不能使用固定差值回填 page_index。"
+    },
+    "projection_is_forbidden": true
+  },
+  "summary": {
+    "archived_works": 3,
+    "holder_record_candidates": 4,
+    "primary_digital_objects_with_identifiers": 1,
+    "official_japan_viewer_volume_locators": 4,
+    "japan_observed_image_locator_ids": 6,
+    "downloaded_original_image_binaries": 0,
+    "verified_image_pair_alignments": 0,
+    "candidate_citation_ids": 6,
+    "verified_image_to_citation_links": 0,
+    "verified_citation_claim_semantics": 0
+  },
+  "needed_for_promotion": [
+    "实际 IIIF manifest 或原馆数字图像字节（含稳定 ID 和哈希）",
+    "原图 page/canvas 的馆方索引与 SHUGE 具体 PDF/image 相同视觉特征对照",
+    "原数据库 page_object_id 与 post_id/page_index/OCR 字段的显式 join",
+    "冻结 Citation ID 到页对象、图像、可复现 OCR 片段、研究 claim 的逐层证据"
+  ]
+}

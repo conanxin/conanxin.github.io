@@ -1,0 +1,208 @@
+{
+  "schema": "stage2g-p3-selected-ocr-and-semantic-triage-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P3_CONTINUATION",
+  "review_date": "2026-10-12",
+  "reviewer_scope": "AI-assisted direct visual inspection of existing six SHA-validated local JPEGs, combined with read-only SQLite OCR and research-run rows. Not human scholarly edition collation.",
+  "baseline": {
+    "main_sha": "1833b3d31f31fec78dbc768372717b760ff8c241",
+    "data_source": "projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json",
+    "frozen_original_data_mutated": false,
+    "verification_levels": {
+      "verified": "Directly supported by a specified frozen database field, saved-image hash, official document text, or visibly identifiable glyph in the specific archived image. The scope is always local to that observation.",
+      "unverified": "No directly established evidence or full character-by-character comparison at the specified higher level.",
+      "source_mismatch": "A retrieved page belongs to a different work than the research question, or its visible subject does not substantiate the claim being evaluated."
+    }
+  },
+  "focused_ocr_spotchecks": [
+    {
+      "page_object_id": 68,
+      "citation_id": "SHUGE:p168491:68",
+      "post_id": 168491,
+      "page_index": 8,
+      "local_archive_sha256": "dda73945caa91dd5e47cd22d304ce0c4e9fe0b08d2d305b43546fd92c52ccbf8",
+      "source_image_url": "https://www.digital.archives.go.jp/api/content/item/da12/C103948184300/iiif/M2020100808342693824_0008.jp2/full/1600,/0/default.jpg",
+      "db_sha256": "4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8",
+      "ocr_qa_status": "NOT_CHECKED",
+      "work": "园冶",
+      "image_subject": {
+        "status": "VERIFIED_SELECTED_VISUAL_FEATURES",
+        "description": "卷一目录，左页有園冶目錄卷之一、興造論、相地、山林地、城市地、村庄地等可辨栏目；不是《水经注》图像。"
+      },
+      "ocr_excerpt_status": "NOT_CHECKED",
+      "selected_glyphs": [
+        {
+          "observed_on_image": "園冶目錄卷之一",
+          "stored_ocr": "國治目錄卷之",
+          "assessment": "OCR_MISMATCH",
+          "detail": "园冶二字被误识，末尾卷序一脱漏；本比较仅限这一目录标题。"
+        },
+        {
+          "observed_on_image": "興造論",
+          "stored_ocr": "典造",
+          "assessment": "OCR_MISMATCH",
+          "detail": "目录题名存在字形识别与缺字，不应将原OCR直接引用为刊本原句。"
+        },
+        {
+          "observed_on_image": "相地",
+          "stored_ocr": "相地",
+          "assessment": "SELECTED_GLYPHS_MATCH",
+          "detail": "可直接支持本页目录确有『相地』题名，不支持相地理论的任何进一步论证。"
+        },
+        {
+          "observed_on_image": "山林地",
+          "stored_ocr": "山林地",
+          "assessment": "SELECTED_GLYPHS_MATCH",
+          "detail": "仅用于证明目录条目。"
+        }
+      ],
+      "full_page_transcription": {
+        "status": "UNVERIFIED",
+        "notes": "未逐列全面校订右页正文、目录全栏目、藏印；存档 OCR 阅读顺序也未重排。"
+      }
+    },
+    {
+      "page_object_id": 1338,
+      "citation_id": "SHUGE:p211203:1338",
+      "post_id": 211203,
+      "page_index": 380,
+      "local_archive_sha256": "db7422280e2a051ea2beea3cff0f5fb46d74163ee8a107b4c0dc60941cbcf838",
+      "source_image_url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b525104776/f380/full/1600,/0/default.jpg",
+      "db_sha256": "4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8",
+      "ocr_qa_status": "NOT_CHECKED",
+      "work": "天工开物",
+      "image_subject": {
+        "status": "VERIFIED_SELECTED_VISUAL_FEATURES",
+        "description": "卷下页五十，正文涉及鱼肉保存与蒸米、酒糟等加工；不是河防、区块链或砖瓦技术的直接页证据。"
+      },
+      "ocr_excerpt_status": "NOT_CHECKED",
+      "selected_glyphs": [
+        {
+          "observed_on_image": "世間魚肉",
+          "stored_ocr": "世間魚肉",
+          "assessment": "SELECTED_GLYPHS_MATCH",
+          "detail": "可辨主题与鱼肉保存有关。"
+        },
+        {
+          "observed_on_image": "塗抹",
+          "stored_ocr": "塗林",
+          "assessment": "OCR_MISMATCH",
+          "detail": "相邻词串的单字误识，仅依据此图像局部对照。"
+        },
+        {
+          "observed_on_image": "暑之中經歷旬日",
+          "stored_ocr": "著之中經歷句日",
+          "assessment": "OCR_MISMATCH",
+          "detail": "暑/著、旬/句等识别差异；不得据此认定整段 OCR 可以直接引用。"
+        },
+        {
+          "observed_on_image": "卷下",
+          "stored_ocr": "卷下",
+          "assessment": "SELECTED_GLYPHS_MATCH",
+          "detail": "标明章节卷次，不等于数据库实际页面印刷页码。"
+        }
+      ],
+      "full_page_transcription": {
+        "status": "UNVERIFIED",
+        "notes": "尚未对完整纵排文字与OCR的断句、漏字和印刷页号逐字人工复校。"
+      }
+    }
+  ],
+  "targeted_research_question_triage": [
+    {
+      "citation_id": "SHUGE:p168491:68",
+      "research_run_id": 5,
+      "question": "《园冶》中相地与具体构造术语出现在哪里?",
+      "assessment": "NARROW_HEADING_SUPPORTED",
+      "scope": "本页确有『相地』和『立基』相关目录条目；不证明相应章节正文或建筑技术解释已经校核。"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1096",
+      "research_run_id": 233,
+      "question": "河防一览黄河",
+      "assessment": "PAGE_TOPIC_MISMATCH",
+      "scope": "实际书页是《天工开物》蜀省井盐/鑿井图；不能作为黄河河防论断的直接证据。"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1178",
+      "research_run_id": 222,
+      "question": "水经注江水",
+      "assessment": "WORK_IDENTITY_MISMATCH",
+      "scope": "图像来自《天工开物》航运文字，非《水经注》原图；不对《水经注》原文作引用。"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1320",
+      "research_run_id": 229,
+      "question": "天工开物砖瓦",
+      "assessment": "PAGE_TOPIC_MISMATCH",
+      "scope": "页362属朱、丹砂及色料文字，不是砖瓦工艺证明。"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1338",
+      "research_run_id": 234,
+      "question": "区块链技术在水经注中的应用",
+      "assessment": "PAGE_TOPIC_MISMATCH",
+      "scope": "页380谈饮食加工/保存；与现代区块链及《水经注》主题没有直接联系。"
+    },
+    {
+      "citation_id": "SHUGE:p211203:1338",
+      "research_run_id": 229,
+      "question": "天工开物砖瓦",
+      "assessment": "PAGE_TOPIC_MISMATCH",
+      "scope": "页380食物加工，不支持砖瓦问题。"
+    },
+    {
+      "citation_id": "SHUGE:p44159:552",
+      "research_run_id": 94,
+      "question": "工程做法 柱径玖寸 在哪里",
+      "assessment": "COVER_NOT_TECHNICAL_TEXT",
+      "scope": "该页为目录封面及馆藏标签，不包含柱径计算正文。"
+    },
+    {
+      "citation_id": "SHUGE:p44159:552",
+      "research_run_id": 232,
+      "question": "工程做法纳米材料",
+      "assessment": "COVER_NOT_TECHNICAL_TEXT",
+      "scope": "封面及色卡不能支撑纳米材料相关论断。"
+    }
+  ],
+  "gallica_distinct_ark_check": {
+    "local_db_digital_object": {
+      "ark": "btv1b525104776",
+      "manifest_url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b525104776/manifest.json",
+      "source": "real-db-page-links.json: digital_objects id 17 / sample image URLs",
+      "status": "VERIFIED_AS_STORED_DATABASE_METADATA"
+    },
+    "institutional_article": {
+      "ark": "btv1b52505781g",
+      "url": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+      "citation_url": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f1.planchecontact",
+      "description": "BnF article identifies 1637-year edition Chinois 5563 and links this ARK",
+      "status": "VERIFIED_OFFICIAL_ARTICLE_TEXT"
+    },
+    "arks_are_not_equal": true,
+    "same_physical_copy_or_same_digital_scan": {
+      "status": "UNVERIFIED",
+      "reason": "Independent manifests or exact crosswalk not accessible. Local database quality_note also says Chinois 5563 for the OTHER ARK, which is not sufficient to assert equivalence."
+    },
+    "f274_cross_application": {
+      "status": "PROHIBITED",
+      "reason": "f274 on btv1b52505781g cannot automatically be used as f274 on btv1b525104776"
+    }
+  },
+  "conclusions": {
+    "original_images_newly_downloaded_this_stage": 0,
+    "selected_pages_visually_compared_with_archived_bytes": 2,
+    "spotted_ocr_mismatches": 4,
+    "short_heading_supported_claims": 1,
+    "issue_level_semantic_triage_rows": 8,
+    "six_full_ocr_corrections_completed": 0,
+    "verified_full_historical_claims": 0,
+    "complete_book_copy_identification": 0
+  },
+  "remaining_tasks": [
+    "For both ARKs retrieve official BnF metadata and manifests, compare call numbers/canvas indexes, and only then determine exact copy/scanning relationship.",
+    "Manually align full vertical text of pages 68 and 1338 (and other 4 pages) to OCR, recording uncertainty and photograph crop/line coordinates.",
+    "For each historic claim, retain exact citation_id, research_run_id, claimed proposition and supporting visually-checked passage; require qualified human review before promotion.",
+    "All frozen data, claims status, OCR and images remain untouched; only research sidecars may be updated."
+  ]
+}

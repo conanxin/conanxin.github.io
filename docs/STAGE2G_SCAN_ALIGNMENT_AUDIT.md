@@ -59,3 +59,20 @@
 5. **维持不可变基线**：`projects/shuge-exhibition-v1.0/data/*`、旧 `CLAIM_SUPPORT_AUDIT.md`、原论文和扫描图片仍只读；研究结论仅写入新旁路 JSON 和报告。
 
 **阶段评价：** Stage 2G 完成图像检索入口和编号异常调查，但没有通过“原图下载/书格图像逐张等同/引用原图语义”三个最终学术 Gate，不能称之为扫描核验已经完成。
+
+
+## 6. 本地 SQLite 的最短只读核查路径
+
+此前项目记录表明原研究库位于 `/home/conanxin/shuge-research-db/data/shuge.db`。**本轮尚未成功连接到这份真实数据库**：授权桌面设备在线，但命令执行接口返回 `Failed to get process ID`，因此没有读取任何 SQLite 行，也没有产生可以标为 VERIFIED 的原库页对象映射。
+
+已提交可复用的 `scripts/stage2g_sqlite_probe.py`，仅执行 `SQLite mode=ro` 和 `PRAGMA query_only=ON` 的 `SELECT` 查询；从实际 `page_objects` 表辨认原字段及 `page_object_id / work_id / page_index / source_image_uri`，对六条 Citation ID 同时确认页对象主键和 `post_id` 所属关系（不因数字后缀接近局部页号就匹配）。**该探针不会编辑数据库、扫描图像、OCR 或论文。**
+
+在可访问研究库的 WSL 环境执行一条命令：
+
+```bash
+python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/shuge.db
+```
+
+输出结构包括 `page_object_lookup`、`page_index`、`source_image_uri` 与一组仍是 `UNVERIFIED` 的原馆同图/历史论断字段。如果真实表结构缺少 ID 或 work key，就明确输出 `UNVERIFIED` 及观察到的列，不伪造映射。其结构和禁止写入的行为由 `tests/test_stage2g_sqlite_probe.py` 使用临时 SQLite 测试库覆盖；**这些测试通过也不等于已经读取原研究库**。
+
+拿到真实只读查询结果后，在新旁路文件中审阅 `p211203:1338` 与其他五条的主键、页索引、图像 URI 是否一致，并逐张比较馆方/书格扫描。只要没有原图像字节或直接视觉对照，原扫描同一性仍为 UNVERIFIED。

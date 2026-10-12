@@ -116,3 +116,13 @@
 - 参考文献页采用完整 `template-reference` 和全站 `--site-*` 变量，不修改 `projects/shuge-exhibition-v1.0/data/*`、旧审计、原图/OCR/论文。
 
 **Stage 2G-P1 交付状态**：图像定位页、JSON 与只读 SQLite 探针已经通过 PR/生产部署；**未完成 Gate**仍是原图下载 0、实际原 SQLite 查询 0、书格/原馆逐张同图验证 0/3、引文原图语义审核 0/6。下一轮仍属于 Stage 2G-P2，不自行升级为 Stage 2H 或声明研究完成。
+
+## 10. 最初目标、全项目进度与 Stage 2G-P2 的实际 Gate
+
+> **2026-10-12 项目整体评估**：[最初目标、完成情况与证据链阻断报告](./PROJECT_OBJECTIVES_PROGRESS_2026-10-12.md)。
+
+本项目实际上有**两条不可混淆的目标线**：跨 Agent 的 Conan Xin 数字花园网站工程（核心设计/模板/构建/发布主线已交付）；以及 SHUGE 古籍数字人文研究（已具备作品目录、OCR/检索快照、叙事展览、来源核验旁路，但尚未打通原馆扫描、真实 `page_object_id`、OCR 与历史论断的可靠引用链）。网站 CI 全绿只说明工程层达到验收，不意味着研究的学术证据 Gate 完成。
+
+**Stage 2G-P2 当前事实**：尝试连接授权 Desktop Commander，设备在线且 ping 可用，但本轮远程命令启动失败（`Failed to get process ID`），WSL UNC 文件路径也无法解析；未读取真实 `shuge.db`。Gallica/NAJDA 的原图字节也未取得；**下载原图 0、书格与原馆同图核验 0/3、六条 Citation ID 原图语义审核 0/6**。应优先使用已发布的 `scripts/stage2g_sqlite_probe.py` 在原 WSL 中做**真实只读查询**，而非继续新增只显示旧 JSON 的网页。
+
+本报告为状态评估；与 Stage 2G-P1 成功部署的研究记录不同，**不声称本轮已经完成图像同一性或历史论文复核**。新研究数据依旧写入独立 sidecar，原 SHUGE v0.7/v1.0 数据/OCR/影像/文章保持只读。

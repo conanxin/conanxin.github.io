@@ -129,4 +129,4 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 - 六张书页得到初步目视确认：《园冶》目录页、《工程做法》目录封面及其 112/7 号、《天工开物》井盐／航运／朱色／鱼肉保存等内容。旧研究系统的若干 `SUPPORTED` 检索问题明显与实际书页主题不符。
 - **新的未决难题**：图像来源 Gallica `btv1b525104776` 与 Stage 2F 引文的 `btv1b52505781g` 两个 ARK 是否对应同一物理册/扫描；五条 OCR `NOT_CHECKED`（另一页 QA PASS 也不是本轮完整逐字复校）；研究 claim 语义未全面核验。
 
-新证据请以 [Stage 2G-P2 实库与图像报告](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md) 和 [机器记录](../projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json) 为准。**网站工程目标仍然完成，学术证据链目前推进至真实页对象、历史采集信息及本地 JPEG 字节，未到完整 OCR 与历史命题验收。**
+新证据请以 [Stage 2G-P2 实库与图像报告](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md) 和 [机器记录](../projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json) 为准。**网站工程目标仍然完成，学术证据链已推进至真实页对象、历史采集信息及本地 JPEG 字节，未到完整 OCR 与历史命题验收。** 本阶段 [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 已合并、[生产 Run 38207442742](https://github.com/conanxin/conanxin.github.io/actions/runs/38207442742) Success。

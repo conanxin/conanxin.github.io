@@ -130,12 +130,11 @@ class Stage2FPrimaryEvidenceTests(unittest.TestCase):
         self.assertIn('<article class="template-reference">', raw)
         self.assertIn("</article>\n</main>", raw)
         self.assertNotIn("TEMPLATE_", raw)
-        style = re.search(r"<style>([\\s\\S]*?)</style>", raw)
-        self.assertIsNotNone(style)
-        self.assertIsNone(re.search(r"#[0-9A-Fa-f]{3,8}\\b", style.group(1)),
+        style = raw.split("<style>", 1)[1].split("</style>", 1)[0]
+        self.assertIsNone(re.search(r"#[0-9A-Fa-f]{3,8}", style),
                           "Page styles must use shared --site-* color tokens")
-        self.assertIn("var(--site-ink)", style.group(1))
-        self.assertIn("var(--site-line)", style.group(1))
+        self.assertIn("var(--site-ink)", style)
+        self.assertIn("var(--site-line)", style)
 
         parser = Structure(raw)
         main = next(n for n in parser.nodes if n.tag == "main")

@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.7 (2026-10-12，Stage 2F 原馆目录/引文核验试点)
+> **版本**: 1.8 (2026-10-12，Stage 2F 原馆目录/引文核验已发布)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -248,7 +248,7 @@
 
 ---
 
-## 15. Stage 2F · 原藏机构身份与书影核验（未执行）
+## 15. Stage 2F 接续前的设计边界（Stage 2E 基线）
 
 Stage 2E 取得的是同仓库既有 `works.json` **post_id→title→shuge_url** 映射，以及公开书格作品页的可查描述。不得用它们冒充原馆自有的 stable catalog ID、原始版本同一性或逐页 Citation ID/OCR 比对。
 
@@ -259,11 +259,22 @@ Stage 2F 首先检索**持有机构自己的**目录/IIIF/数字藏品号，对�
 
 ---
 
-## 16. Stage 2F · 原藏机构目录与六个 Citation ID 审计（PR 开发中）
+## 16. Stage 2F · 原藏机构目录与六个 Citation ID 审计（已生产验收）
 
-> 阶段实施位于独立分支，**未合并前不算生产发布**；此处记录规范与范围，不标记最终验收。
+> **已正式发布**：[PR #19](https://github.com/conanxin/conanxin.github.io/pull/19) 已合并 SHA `da196453ddec219aebb13f5372a6caad00def772`，[Pages Run 38188833394](https://github.com/conanxin/conanxin.github.io/actions/runs/38188833394) 通过 45/45 单元测试、46/46 Playwright、17/17 公网路径（包括馆藏页与其 JSON），JavaScript 错误 0。
 
 - 新 `reference` 试点采用完整 `<main class="site-home"><article class="template-reference">…</article></main>`，读者页为 `projects/site-design-lab/shuge-source-crosswalk/primary-catalog/index.html`，旁置 `primary-catalog-audit.json`，继续由 `site-index-kind=reference` 进入自动目录。
 - 验证状态严格分层：`VERIFIED` 只说明日本或法国原藏机构可回溯的馆方目录号或研究说明；具体馆藏书影与书格扫描是否同一数字对象、原版的卷册序列和 Citation ID/OCR 语义都必须另行核验。不同索书号 `史112-0007` 与 `297-0020` 不得自行合并。
 - Stage 2F 的六个 Citation ID 来源于冻结 `bibliography.json`；是否出现在 `citations.json` 某个 `run`，以及是否出现在 `evidence_cards.json` 只是独立字段。**不得使用检索 `SUPPORTED`、OCR reliability HIGH 或存在字符串替代原图逐字校对。**
 - 本轮仅新增 sidecar、单元测试、浏览器与公网路径验证；不修改原 SHUGE v0.7/v1.0 JSON、研究正文、刊本图像、Citation ID、原来的站点项目交互及四个模板源文件。
+
+
+---
+
+## 17. Stage 2G · 原藏扫描对应与 Citation ID 语义验证（尚未执行）
+
+- Stage 2F 的 `VERIFIED` 只说明**馆方目录或自有研究页**提供了可靠的馆号/数字资源候选，不等于确认书格那份扫描来自同一物理册。日本内阁文库《园冶》`子076-0004` 的三册、BnF 《天工开物》`Chinois 5563` 和 Gallica ARK、以及《工程做法》`史112-0007` / `297-0020` 两套馆号必须继续分层。
+- 若正式发布检索结果、原图和页序对照表，先明确定义 `work/post_id`、`edition/catalog_id`、`digital_object/canvas`、`page_object_id/page_index` 与 `citation_id`，并要求每个 `VERIFIED` 结论有支持该**精确层级**的 URL、扫描片段或可复现数据库证据。
+- 冻结 `citations.json` 里的 6 条候选引文，目前只 1/6 可在这份 23 次 run 中解析；`SHUGE:p168491:68` 对应《园冶》run #5，不得用于《水经注》论证。其他五条仅在该**特定运行文件**中 NOT_FOUND，不代表全项目无此字符串。新的 `reference` 旁路可展示逐页核对进展，但**不得因为检索模型输出 SUPPORTED 或 OCR reliability HIGH 就认为学术论断已经完成逐字核实**。
+- UI 继续使用唯一的 `assets/site/design.css` 的 `--site-*` 色彩变量，不新增固定颜色的第二套参考文献主题。新的 reference 模板页面应正确链接其旁置 JSON 的父目录，相对链接须加入测试。
+- 本轮仍保持 `/content-index/` 的“已发布页面标题与简介”搜索范围，历史 SHUGE 冻结数据、原论文、扫描件及引文不改写。

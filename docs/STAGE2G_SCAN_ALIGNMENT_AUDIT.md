@@ -50,7 +50,7 @@
 
 说明：`p211203:1338` 的后缀 1338 大于 `works.json` 记载的《天工开物》419 张扫描页；`p44159:552` 也不能因 `552` 小于全书 1456 页就直接等同物理页序。因此目前仍是：**0/6 条引文已完成原图、OCR、页对象和历史论断的完整核验。**
 
-## 5. 下一步可执行的取证方法（Stage 2H）
+## 5. 下一步可执行的取证方法（Stage 2G-P2，原任务未完成）
 
 1. **图像获取**：用馆方可用图像阅览器/正式复制接口，分别取得《园冶》卷 1／2／3 一张关键封面/刊记图、《工程做法》史112-0007 和 297-0020 的题签与钤印图、《天工开物》Chinois 5563 Gallica f274 及 manifest；记录原下载 URL、实际文件 SHA-256、图像尺寸、文件序号，并核对是馆方原始来源。
 2. **图像同一性**：将下载原图与书格扫描页做肉眼关键点对照（版心、藏印、缺页、破损、墨迹、行款），只有足够直接的单页或同卷比对才改变本层 `status`；部分页验证不得自动升级整册或全书。
@@ -76,3 +76,11 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 输出结构包括 `page_object_lookup`、`page_index`、`source_image_uri` 与一组仍是 `UNVERIFIED` 的原馆同图/历史论断字段。如果真实表结构缺少 ID 或 work key，就明确输出 `UNVERIFIED` 及观察到的列，不伪造映射。其结构和禁止写入的行为由 `tests/test_stage2g_sqlite_probe.py` 使用临时 SQLite 测试库覆盖；**这些测试通过也不等于已经读取原研究库**。
 
 拿到真实只读查询结果后，在新旁路文件中审阅 `p211203:1338` 与其他五条的主键、页索引、图像 URI 是否一致，并逐张比较馆方/书格扫描。只要没有原图像字节或直接视觉对照，原扫描同一性仍为 UNVERIFIED。
+
+
+## 7. Stage 2G-P1 正式部署回执
+
+- **PR #21**：[审查与合并记录](https://github.com/conanxin/conanxin.github.io/pull/21)，合并 SHA `369abb5018f052551cbe222307fd7760d535bf4e`。
+- **Pages Run**：[38203071850](https://github.com/conanxin/conanxin.github.io/actions/runs/38203071850) · Success；**58/58** Python 测试、**48/48** Playwright（1440px／390px）、**18/18** HTTP 200 公网页面、JavaScript 错误 0。
+- 已公开 [图像定位读者页](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/scan-locator/) 和 [scan-locator-audit.json](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/scan-locator-audit.json)。原 SHUGE data/OCR/图像不改。
+- 这仅确认检索与程序证据已持续保存和公开；**原始馆方图像字节仍 0、真实 SQLite 页对象查询仍未执行成功、六个 Citation ID 的原图语义 Gate 仍未完成**。下一阶段继续 `TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P2_CONTINUATION`，而不是另起不相关研究。

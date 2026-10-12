@@ -83,3 +83,16 @@
 - 增加 `tests/test_stage2e_source_reconciliation.py`、1440/390 浏览器验证和部署后公网 JSON 校验。
 
 **验收结果**：PR [#17](https://github.com/conanxin/conanxin.github.io/pull/17) 已合并，SHA `17ba656e3c1695624058ce00750b0cb1f7650734`。GitHub Pages [Run 38184465542](https://github.com/conanxin/conanxin.github.io/actions/runs/38184465542) **Success**：38/38 单元测试、44/44 浏览器检查、16/16 公网路径；新 `crosswalk.json` 的内部映射 VERIFIED／原藏机构 UNVERIFIED 状态经过上线校验。网页原生视觉 1440/390 已核查，390px 无横向溢出。**下一阶段仍需馆藏实物与扫描页的独立验证；不要重做 PR #10—#17。**
+
+
+## 8. Stage 2F · 原藏机构目录与 Citation ID 双轨审计（开发中，尚未正式发布）
+
+- 基线：Stage 2E 已完成生产验收的 `main` SHA `f88101d`。此阶段独立分支 `review/stage2f-primary-catalog-citation-audit`；在 PR 合并及 Pages 正式成功前不得宣称上线。
+- 新数据 `projects/site-design-lab/shuge-source-crosswalk/primary-catalog-audit.json`：查得《园冶》日本内阁文库 `子076-0004`／馆方记录 `1079110`；《天工开物》BnF `Chinois 5563`／Gallica `ark:/12148/btv1b52505781g`；《工程做法》原馆两条不同索书号 `史112-0007`／`297-0020`，仍不能唯一确定哪条来自书格的同一扫描。
+- BnF 同时藏 `Chinois 5564` 另一版，不能套用 5563 的 ARK。研究论文所标 Gallica `f274` 是可追踪的图像页线索，但此轮尚未直接目视核验该图。
+- 六个冻结 Citation ID 只 **1/6** 出现在 `citations.json` 的 `runs[].claims[]`；`SHUGE:p168491:68` 实际归属 **run #5《园冶》**，原 `CLAIM_SUPPORT_AUDIT.md` 称《梦粱录》运行有误。其他五个在这份运行 JSON 是 NOT_FOUND，虽出现在证据卡和段落，并不意味着支持某历史论断。
+- 旧 `SHUGE:p211203:1338` 在不同证据卡中出现局部页码 137/362/380，而 `works.json` 称《天工开物》只有 419 扫描页；**不能把 ID 后缀直接当 PDF 页号**。原数据库 `page_object_id`→`page_index`→原馆扫描还未建立，六条引文的原图语义审核均保持 UNVERIFIED。
+- 新公开页面采用完整 `reference` 模板：`projects/site-design-lab/shuge-source-crosswalk/primary-catalog/index.html`；详情见 `docs/STAGE2F_PRIMARY_CATALOG_AUDIT.md`。代码增加 `tests/test_stage2f_primary_catalog.py`、1440/390 浏览器断言及生产后 JSON 检查。
+- **保留边界**：原 SHUGE `projects/shuge-exhibition-v1.0/data/*`、旧 `CLAIM_SUPPORT_AUDIT.md`、图像与 OCR 均完全不改。
+
+**下一阶段 Stage 2G 前置 Gate**：等待本轮 PR 全绿、审核并正式部署；然后以原藏扫描和本地数据库明细建立逐页影像映射，再逐字复校六条 Citation ID，不能因本轮找到书名/馆号而升级引文语义状态。

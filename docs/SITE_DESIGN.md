@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.9 (2026-10-12，Stage 2G 原图定位与页对象读库 Gate 试点)
+> **版本**: 1.9.1 (2026-10-12，Stage 2G-P1 导航与证据边界已生产验收)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -282,10 +282,10 @@ Stage 2F 首先检索**持有机构自己的**目录/IIIF/数字藏品号，对�
 
 ---
 
-## 18. Stage 2G 图像定位与页对象 Gate 的展示规则（PR 开发中）
+## 18. Stage 2G-P1 图像定位与页对象 Gate 的展示规则（已发布，扫描验证未完成）
 
 - `/projects/site-design-lab/shuge-source-crosswalk/scan-locator/` 是从统一完整 `reference` 模板生成的新读者页，元标签 `site-index-kind=reference` 仅用于导航分类，不改变证据等级；旁路 `../scan-locator-audit.json` 指向机器审计。
 - 严格区分原馆目录/阅览器中可见的 image/download checkbox ID（可标注为 **VERIFIED as viewer metadata**）、真正下载的原图字节与 hash（本轮 **UNVERIFIED**）、书格图像同一性（**UNVERIFIED**）、原数据库 Citation ID/page_object_id（**UNVERIFIED**）、OCR 原文和历史 claim 的语义支持（**UNVERIFIED**）。
 - 临时计算的 Citation 后缀 − 证据卡局部页号 ≈ 958 不属于可靠图像 URI 或页号；`SHUGE:p211203:1338` 同时关联三个页标签，任何自动投票或偏移换算都不得生成 VERIFIED 页面。
 - 原研究 SQLite `/home/conanxin/shuge-research-db/data/shuge.db` 的新探针只读连接（`mode=ro`、`PRAGMA query_only=ON`），需实际查出 `page_objects` 主键与作品 ID 一致才能标记数据库层 VERIFIED；这不自动证明所返回 image URI 的文件已下载或馆方原图已比对。
-- 本轮原图下载 0；原藏扫描视觉对照 0；6 条 Citation ID 原图语义审校 0。发布测试仅核验这一真实状态和页面表现，不能伪造扫描、改写 SHUGE 原数据或升级学术论断。
+- **生产状态**：[PR #21](https://github.com/conanxin/conanxin.github.io/pull/21) 已合并 SHA `369abb5018f052551cbe222307fd7760d535bf4e`，[Pages Run 38203071850](https://github.com/conanxin/conanxin.github.io/actions/runs/38203071850) 通过 **58/58 unittest、48/48 Playwright、18/18 公网路径**。本轮原图下载 **0**；原藏扫描视觉对照 **0**；六条 Citation ID 原图语义审校 **0/6**；真实 SQLite 尚未由本轮执行成功。发布验收只核对诚实呈现这一状态，**Stage 2G 原始学术 Gate 未完成**，后续 Stage 2G-P2 仍要获取图像字节并进行只读原库查询。

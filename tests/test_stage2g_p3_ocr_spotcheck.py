@@ -75,7 +75,7 @@ class P3SelectedOCRAuditTests(unittest.TestCase):
         self.assertFalse(self.audit["baseline"]["frozen_original_data_mutated"])
         self.assertEqual(self.audit["conclusions"]["original_images_newly_downloaded_this_stage"], 0)
         self.assertEqual(self.audit["conclusions"]["six_full_ocr_corrections_completed"], 0)
-        self.assertIn("research_claims", "research_claims")
+        self.assertEqual(self.p2["summary"]["verified_historical_claim_semantics"], 0)
         self.assertIn("UNVERIFIED", self.audit["baseline"]["verification_levels"]["unverified"].upper())
 
 

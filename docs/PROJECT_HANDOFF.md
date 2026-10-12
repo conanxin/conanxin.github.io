@@ -126,3 +126,14 @@
 **Stage 2G-P2 当前事实**：尝试连接授权 Desktop Commander，设备在线且 ping 可用，但本轮远程命令启动失败（`Failed to get process ID`），WSL UNC 文件路径也无法解析；未读取真实 `shuge.db`。Gallica/NAJDA 的原图字节也未取得；**下载原图 0、书格与原馆同图核验 0/3、六条 Citation ID 原图语义审核 0/6**。应优先使用已发布的 `scripts/stage2g_sqlite_probe.py` 在原 WSL 中做**真实只读查询**，而非继续新增只显示旧 JSON 的网页。
 
 本报告为状态评估；与 Stage 2G-P1 成功部署的研究记录不同，**不声称本轮已经完成图像同一性或历史论文复核**。新研究数据依旧写入独立 sidecar，原 SHUGE v0.7/v1.0 数据/OCR/影像/文章保持只读。
+
+
+## 11. Stage 2G-P2 · 真实 SQLite 页对象和归档图像证据（独立 PR 开发中）
+
+- 本轮解决了 Desktop Commander 默认 PowerShell `Failed to get process ID`：改用 **`cmd.exe`** 启动 WSL，真实只读打开 `/home/conanxin/shuge-research-db/data/shuge.db`。该库 45,989,888 字节，SHA-256 `4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8`；`page_objects` 3,791 条，`page_ocr` 3,586 条。
+- 真正的 **6/6 Citation ID→页对象 ID→作品→page_index** 已由原库直接核实，页索引依次为 8、137、220、362、380、1。旧证据卡中 `p211203:1338` 的 137/362/380 混用确认不能自动等同为同一页：其真正数据库页索引为 380。
+- 原库 `local_object_path` 中六个 JPEG 实际存在且重算 SHA 与采集记录相同（**6/6 VERIFIED archived bytes**），采集日志均为旧批次 `SUCCESS HTTP 200`。6 张均已目视初检；《工程做法》页 1 封面内阁文库编号可见 112、7，《园冶》页 8 是卷一目录，《天工开物》137 为井盐图。
+- `page_ocr` 六条均在库中：5 个 `qa_status=NOT_CHECKED`、1 个《工程做法》封面 `qa_status=PASS`。这些 QA 标记不是本次逐字人工校勘，**0/6 条完整文本及历史论断获学术 VERIFIED**。
+- **BnF 数字对象差异未决**：库内 Gallica 影像均来自 `btv1b525104776`，而此前 Stage 2F 论文引图使用 `btv1b52505781g`；`digital_objects` 的前者虽标注 Chinois 5563，尚不能直接宣称两个 ARK 是同一扫描。
+- 证据页与原数据分开保存：`projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json`、[Stage 2G-P2 真实 SQLite 审计](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md)、修订的 `scripts/stage2g_sqlite_probe.py` 及其测试。**在 PR 检查并合并之前，以上内容不算 main 正式发布。**
+- 本轮未修改任何冻结 SHUGE v0.7/v1.0 JSON、原图、OCR、引文、历史论文。下一阶段先裁决 OCR 字符与错误语义匹配，不再误把自动 `SUPPORTED` 当成历史论断已证实。

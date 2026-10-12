@@ -7,6 +7,7 @@ Usage:
 The original database is opened mode=ro + query_only. Output is research evidence
 for review, not a write-back to bibliography.json, citations.json or page_ocr.
 """
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -46,11 +47,17 @@ def probe(connection, ids=IDS):
     key = first_matching(cols, ("page_object_id", "id"))
     owner = first_matching(cols, ("work_id", "post_id", "work_key"))
     index = first_matching(cols, ("page_index", "page_seq", "page_number", "seq"))
-    source = first_matching(cols, ("source_image_uri", "image_uri", "source_url"))
+    source = first_matching(cols, ("source_image_url", "source_image_uri", "image_uri", "source_url"))
+    local = first_matching(cols, ("local_object_path",))
+    digest = first_matching(cols, ("sha256",))
+    size = first_matching(cols, ("file_size",))
     if not key or not owner:
         return {"status": "UNVERIFIED", "blocker": "missing page-object ID or work key",
                 "observed_columns": cols, "rows": []}
-    fields = [key, owner] + [x for x in (index, source) if x and x not in {key, owner}]
+    fields = [key, owner]
+    for column in (index, source, local, digest, size):
+        if column and column not in fields:
+            fields.append(column)
     query = "SELECT " + ", ".join(quote_identifier(x) for x in fields)
     query += " FROM page_objects WHERE " + quote_identifier(key) + "=?"
     rows = []
@@ -68,6 +75,27 @@ def probe(connection, ids=IDS):
                          "explanation": "Exact key/work match not established; no inferred page URL"})
             continue
         row = matches[0]
+        archived = {"status": "UNVERIFIED", "note": "No readable local image or checksum"}
+        if local and digest and row[local] and row[digest]:
+            file = Path(row[local])
+            if file.is_file():
+                actual_hash = hashlib.sha256(file.read_bytes()).hexdigest()
+                actual_size = file.stat().st_size
+                integrity = actual_hash == row[digest] and (
+                    not size or row[size] is None or actual_size == row[size])
+                archived = {"status": "VERIFIED_ARCHIVED_BYTES" if integrity else "UNVERIFIED",
+                            "recorded_sha256": row[digest], "actual_sha256": actual_hash,
+                            "file_size": actual_size,
+                            "recorded_size": row[size] if size else None}
+        ocr = {"status": "UNVERIFIED", "qa_status": None}
+        if "page_ocr" in found:
+            q = connection.execute(
+                "SELECT engine,status,qa_status,char_count FROM page_ocr "
+                "WHERE page_object_id=? ORDER BY id DESC LIMIT 1", (page_id,)).fetchone()
+            if q:
+                ocr = {"status": "VERIFIED_DATABASE_ROW", "engine": q[0],
+                       "ocr_status": q[1], "qa_status": q[2], "char_count": q[3],
+                       "full_human_text_validation": "UNVERIFIED"}
         rows.append({
             "citation_id": citation,
             "page_object_lookup": "VERIFIED",
@@ -80,7 +108,9 @@ def probe(connection, ids=IDS):
             "source_image_uri": {"status": "VERIFIED" if source and row[source] else "UNVERIFIED",
                                  "db_column": source, "value": row[source] if source else None,
                                  "scope": "URI exactly as stored in DB; image bytes not downloaded or visually verified"},
-            "original_image_bytes": "UNVERIFIED",
+            "archived_local_image": archived,
+            "ocr_metadata": ocr,
+            "original_image_bytes": archived["status"] if archived["status"] == "VERIFIED_ARCHIVED_BYTES" else "UNVERIFIED",
             "holder_scan_identity": "UNVERIFIED",
             "ocr_text_validation": "UNVERIFIED",
             "historical_claim_support": "UNVERIFIED",
@@ -88,9 +118,10 @@ def probe(connection, ids=IDS):
     return {"schema": "stage2g-sqlite-page-object-probe-v1",
             "connection": "SQLite mode=ro; PRAGMA query_only=ON",
             "status": "VERIFIED" if all(r["page_object_lookup"]=="VERIFIED" for r in rows) else "UNVERIFIED",
-            "status_scope": "Only database key/work association; no official image identity or historical claim verification",
+            "status_scope": "Database key/work association and optional local-byte checksum; no complete original-holder edition or historical claim verification",
             "table": "page_objects",
-            "field_mapping": {"id": key, "work": owner, "index": index, "image": source},
+            "field_mapping": {"id": key, "work": owner, "index": index, "image": source,
+                              "local_object": local, "sha256": digest, "size": size},
             "rows": rows}
 
 

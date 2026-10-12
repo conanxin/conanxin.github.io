@@ -212,7 +212,7 @@ jobs:
                                   assert scan['summary']['verified_image_pair_alignments']==0
                                   assert scan['summary']['verified_citation_claim_semantics']==0
                                   assert len(scan['citation_rows'])==6
-                                  assert scan['locator_hypothesis']['projection_is_forbidden'
+                                  assert scan['locator_hypothesis']['projection_is_forbidden']
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

@@ -1,6 +1,7 @@
 """Stage 2F: primary catalog identifiers and six frozen citation IDs, without altering research assets."""
 from pathlib import Path
 import json
+import re
 import sys
 import unittest
 
@@ -129,6 +130,13 @@ class Stage2FPrimaryEvidenceTests(unittest.TestCase):
         self.assertIn('<article class="template-reference">', raw)
         self.assertIn("</article>\n</main>", raw)
         self.assertNotIn("TEMPLATE_", raw)
+        style = re.search(r"<style>([\\s\\S]*?)</style>", raw)
+        self.assertIsNotNone(style)
+        self.assertIsNone(re.search(r"#[0-9A-Fa-f]{3,8}\\b", style.group(1)),
+                          "Page styles must use shared --site-* color tokens")
+        self.assertIn("var(--site-ink)", style.group(1))
+        self.assertIn("var(--site-line)", style.group(1))
+
         parser = Structure(raw)
         main = next(n for n in parser.nodes if n.tag == "main")
         article = next(n for n in parser.nodes if n.tag == "article")

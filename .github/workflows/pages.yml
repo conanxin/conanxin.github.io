@@ -132,7 +132,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re, time, urllib.request
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/']
           result=[]
           for path in paths:
               error=None
@@ -163,12 +163,14 @@ jobs:
                               assert '/projects/site-design-lab/shuge-evidence-exhibition/' in body,'exhibition not indexed'
                               assert '/projects/site-design-lab/shuge-source-register/' in body,'reference not indexed'
                               assert '/projects/site-design-lab/shuge-source-crosswalk/' in body,'stage2e source crosswalk not indexed'
+                              assert '/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/' in body,'stage2f primary catalog not indexed'
                               with urllib.request.urlopen(base+'/assets/site/content-index.json?build='+os.environ['GITHUB_SHA'],timeout=25) as data_response:
                                   catalog=json.loads(data_response.read().decode('utf-8'))
                                   assert catalog['total']>15,'empty content index'
                                   assert catalog['counts']['exhibition']>=1 and catalog['counts']['reference']>=1,'missing catalog categories'
                                   assert not any('/source/' in item['url'] for item in catalog['items']),'source paths leaked to catalog'
                                   assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2e reader not uniquely indexed'
+                                  assert sum(item['url']=='/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/' and item['kind']=='reference' for item in catalog['items'])==1,'stage2f primary catalog not uniquely indexed'
                           if path=='/projects/site-design-lab/shuge-source-crosswalk/':
                               assert 'work-shuge-168491' in body and 'work-shuge-211203' in body and 'work-shuge-44159' in body,'crosswalk rows missing'
                               assert 'UNVERIFIED' in body and 'NOT_FOUND' in body,'crosswalk status labels missing'
@@ -180,6 +182,20 @@ jobs:
                                   assert all(r['external_page_observation']['status']=='VERIFIED' for r in data['rows']),'public Shuge works not checked'
                                   assert all(r['institution_catalog_item']['status']=='UNVERIFIED' for r in data['rows']),'unverified archive holder promoted to verified'
                                   assert data['corrected_prior_inference']['related_post_id']==124575,'Water Classic numeric ID correction missing'
+                          if path=='/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/':
+                              assert 'class="template-reference"' in body,'Stage2F not using reference template'
+                              for name in ('子076-0004','Chinois 5563','史112-0007','297-0020','SHUGE:p211203:1338'):
+                                  assert name in body,'primary catalog identity/citation missing: '+name
+                              assert 'TEMPLATE_' not in body,'Stage2F template placeholders leaked'
+                              request_json=urllib.request.Request(base+'/projects/site-design-lab/shuge-source-crosswalk/primary-catalog-audit.json?build='+os.environ['GITHUB_SHA'],headers={'Cache-Control':'no-cache'})
+                              with urllib.request.urlopen(request_json,timeout=25) as cat_response:
+                                  audit=json.loads(cat_response.read().decode('utf-8'))
+                                  assert audit['summary']['books_with_primary_catalog_record_found']==3
+                                  assert audit['summary']['primary_repository_catalog_candidate_count']==4
+                                  assert audit['summary']['citation_ids_occurring_in_citations_json_runs']==1
+                                  assert audit['summary']['matching_shuge_to_exact_holder_scans_verified']==0
+                                  assert len(audit['citation_audit'])==6
+                                  assert all(c['claim_semantics']['status']=='UNVERIFIED' for c in audit['citation_audit'])
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

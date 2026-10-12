@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="site-index-kind" content="reference">
+<title>SHUGE 原藏目录与 Citation ID 核验台账 · Conan Xin</title>
+<meta name="description" content="Stage 2F 从 BnF Chinois 5563、Gallica ARK、日本内阁文库馆号出发，核对三套古籍的馆藏记录、扫描限制与六条候选 Citation ID。">
+<style>
+/* 局部样式：仅作用于本页 reference 元素, 不影响全局。*/
+main article.template-reference { max-width: 880px; margin: 36px auto 64px; padding-inline: 8px; }
+main article.template-reference > section { margin-block: 28px; }
+main article.template-reference .source-table { width: 100%; border-collapse: collapse; font: 13px/1.8 var(--site-sans); color: var(--site-ink); }
+main article.template-reference .source-table th, main article.template-reference .source-table td { padding: 12px 14px; border-bottom: 1px solid var(--site-line); text-align: left; vertical-align: top; }
+main article.template-reference .source-table th { background: var(--site-bg); color: var(--site-green); }
+main article.template-reference .citation-format { background: var(--site-ink); color: var(--site-paper); padding: 18px 22px; border-radius: 4px; font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-x: auto; }
+main article.template-reference .citation-list { font: 14px/1.85 var(--site-sans); color: var(--site-muted); }
+main article.template-reference .citation-list li { margin-block: 6px; }
+main article.template-reference .tech-log { font: 13px/1.8 var(--site-sans); color: var(--site-muted); border-top: 1px solid var(--site-line); padding-top: 16px; margin-top: 32px; }
+
+main article.template-reference .evidence-summary{border-left:3px solid var(--site-green);background:var(--site-paper);padding:15px 20px;margin:25px 0;min-width:0}
+main article.template-reference .audit-work{border:1px solid var(--site-line);border-radius:4px;background:var(--site-paper);padding:18px 22px;margin:16px 0;min-width:0;overflow-wrap:anywhere}
+main article.template-reference .audit-work h3{margin:0 0 8px;font:600 21px/1.6 var(--site-serif)}
+main article.template-reference .audit-work ul{margin:11px 0;padding-left:23px}
+main article.template-reference .audit-work li{margin:9px 0}
+main article.template-reference .audit-work summary{cursor:pointer;color:var(--site-green);font-weight:600}
+main article.template-reference .audit-work .caution{border-left:3px solid var(--site-accent);padding-left:11px}
+main article.template-reference .audit-table th,main article.template-reference .audit-table td{white-space:normal;overflow-wrap:anywhere}
+main article.template-reference .audit-table{width:100%;border-collapse:collapse;font:13px/1.8 var(--site-sans)}
+main article.template-reference .audit-table th,main article.template-reference .audit-table td{padding:9px 11px;border-bottom:1px solid var(--site-line);text-align:left;vertical-align:top}
+main article.template-reference a{overflow-wrap:anywhere}
+main article.template-reference small{font:12px/1.6 var(--site-sans);color:var(--site-muted)}
+@media(max-width:560px){main article.template-reference .audit-work{padding:14px}}
+</style>
+</head>
+<body>
+<main class="site-home">
+<article class="template-reference">
+<h1>原藏机构目录已找到，逐页引文仍待证实</h1>
+<p class="site-heading-lead">Stage 2F · 三部古籍的原馆目录与数字对象 · 六条 Citation ID 的证据完整性审计</p>
+
+<section class="evidence-summary" id="overview" aria-labelledby="overview-title">
+<h2 id="overview-title">本轮证据统计</h2>
+<p><strong>3/3</strong> 部作品有至少一条原机构馆藏目录候选；<strong>4</strong> 个馆藏候选记录；<strong>0/3</strong> 完成书格扫描与原馆扫描的完整图像同一性核验。</p>
+<p>六条候选引文中，只有 <strong>1/6</strong> 出现在冻结 <code>citations.json</code> 的检索运行中；没有任何一条完成独立原图与论断语义审核。<a href="../primary-catalog-audit.json">查看完整 JSON →</a></p>
+</section>
+<section id="institution-records" aria-labelledby="institution-records-heading"><h2 id="institution-records-heading">原藏机构目录候选</h2><section class="audit-work" data-audit-work="44159" aria-labelledby="work-44159">
+<h3 id="work-44159">P44159 · 工程做法</h3>
+<p>书格资料：清雍正十二年（甲寅 1734）武英殿刊本；归档扫描页数 1456。</p>
+<ul><li><a href="https://www.digital.archives.go.jp/item/4754366">史112-0007</a> · 工程做法73 · <strong>VERIFIED</strong>（只限馆方目录记录）</li><li><a href="https://www.digital.archives.go.jp/item/4912863">297-0020</a> · 工程做法6 · <strong>VERIFIED</strong>（只限馆方目录记录）</li></ul>
+<p class="caution"><strong>UNVERIFIED</strong>：尚无书格 PDF/本地 OCR 与所列原藏机构具体扫描的逐页同一性核验。</p>
+<details><summary>查看尚未完成的对照要求</summary>
+<p>书格称武英殿1734刊本与76册；馆方史112-0007 76件值得优先核对，但尚未比较书口钤印和图像序列。</p>
+<p>尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对</p></details>
+</section><section class="audit-work" data-audit-work="211203" aria-labelledby="work-211203">
+<h3 id="work-211203">P211203 · 天工开物</h3>
+<p>书格资料：明崇祯十年（丁丑 1637）涂绍煃刊本；归档扫描页数 419。</p>
+<ul><li><a href="https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu">Chinois 5563</a> · 天工開物 / Tiangong kaiwu · <strong>VERIFIED</strong>（只限馆方目录记录）</li></ul>
+<p class="caution"><strong>UNVERIFIED</strong>：尚无书格 PDF/本地 OCR 与所列原藏机构具体扫描的逐页同一性核验。</p>
+<details><summary>查看尚未完成的对照要求</summary>
+<p>书格称 1637 涂绍煃刊本并在 2026 年更换补五张图；没有逐图校验书格重组 PDF 与 Chinois 5563 Gallica 影像。</p>
+<p>尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对</p></details>
+</section><section class="audit-work" data-audit-work="168491" aria-labelledby="work-168491">
+<h3 id="work-168491">P168491 · 园冶</h3>
+<p>书格资料：明崇祯七年（甲戌 1634）刊本；归档扫描页数 200。</p>
+<ul><li><a href="https://www.digital.archives.go.jp/file/1079110">子076-0004</a> · 園冶 · <strong>VERIFIED</strong>（只限馆方目录记录）</li></ul>
+<p class="caution"><strong>UNVERIFIED</strong>：尚无书格 PDF/本地 OCR 与所列原藏机构具体扫描的逐页同一性核验。</p>
+<details><summary>查看尚未完成的对照要求</summary>
+<p>元数据中三卷三册和明崇祯七年与书格描述一致；未逐页比对版心、图版、序和数字图像。</p>
+<p>尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对</p></details>
+</section></section>
+<section id="citation-audit" aria-labelledby="citation-audit-heading">
+<h2 id="citation-audit-heading">六条候选 Citation ID</h2>
+<p>旧记录中的 ID 数字后缀不能直接充当原版扫描页码；下面的“检索命中”只统计冻结 <code>citations.json</code> 里的 run claim 引用，不能推导实际历史论断已获支持。</p>
+<table class="audit-table"><thead><tr><th scope="col">Citation ID</th><th scope="col">冻结运行</th><th scope="col">证据卡</th><th scope="col">原图与语义</th></tr></thead><tbody><tr data-citation-id="SHUGE:p168491:68"><td><code>SHUGE:p168491:68</code></td><td><strong>1 条</strong>（run #5）</td><td>2 张卡片<br><small>8</small></td><td>UNVERIFIED</td></tr>
+<tr data-citation-id="SHUGE:p211203:1096"><td><code>SHUGE:p211203:1096</code></td><td><strong>0 条</strong></td><td>1 张卡片<br><small>137</small></td><td>UNVERIFIED</td></tr>
+<tr data-citation-id="SHUGE:p211203:1178"><td><code>SHUGE:p211203:1178</code></td><td><strong>0 条</strong></td><td>1 张卡片<br><small>220</small></td><td>UNVERIFIED</td></tr>
+<tr data-citation-id="SHUGE:p211203:1320"><td><code>SHUGE:p211203:1320</code></td><td><strong>0 条</strong></td><td>2 张卡片<br><small>362</small></td><td>UNVERIFIED</td></tr>
+<tr data-citation-id="SHUGE:p211203:1338"><td><code>SHUGE:p211203:1338</code></td><td><strong>0 条</strong></td><td>6 张卡片<br><small>137 / 362 / 380</small></td><td>UNVERIFIED</td></tr>
+<tr data-citation-id="SHUGE:p44159:552"><td><code>SHUGE:p44159:552</code></td><td><strong>0 条</strong></td><td>3 张卡片<br><small>1</small></td><td>UNVERIFIED</td></tr></tbody></table>
+<p><strong>值得优先追查：</strong><code>SHUGE:p211203:1338</code> 在不同证据卡中对应局部页标签 137、362、380；<code>SHUGE:p168491:68</code> 实际关联《园冶》，原研究却把它用于《水经注》背景。这两项是数据库与学术主张之间的主要断链。</p>
+</section>
+<section id="intro" aria-labelledby="intro-heading">
+<h2 id="intro-heading">文献来源</h2>
+<p>本轮新增的是<strong>独立的证据台账</strong>：日本国立公文书馆与 BnF 的部分馆藏索书号或数字对象标识可直接引用，但尚未证明其图像与书格重组 PDF 逐页对应。原来的 <a href="/projects/site-design-lab/shuge-source-crosswalk/">Stage 2E ID 对照</a> 仍有效；只改变我们能精确陈述的证据层级。全部发现保存在 <a href="../primary-catalog-audit.json">机器可读审计 JSON</a>，不写回冻结书目、OCR 或 Citation ID。</p>
+</section>
+
+<section id="source" aria-labelledby="source-heading">
+<h2 id="source-heading">来源</h2>
+<table class="source-table">
+<thead>
+<tr><th scope="col">作者</th><th scope="col">标题</th><th scope="col">年份</th><th scope="col">出处</th></tr>
+</thead>
+<tbody>
+<tr><td>计成（明） · 日本内阁文库</td><td>《园冶》：子076-0004</td><td>明崇祯七年（馆目录）</td><td><a href="https://www.digital.archives.go.jp/file/1079110">国立公文書館目录 1079110</a> · 三卷三册（0001–0003）</td></tr>
+<tr><td>宋应星（明） · BnF</td><td>《天工开物》：Chinois 5563</td><td>1637（序年）</td><td><a href="https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu">BnF 专题页</a> · <a href="https://gallica.bnf.fr/ark:/12148/btv1b52505781g">Gallica ARK</a></td></tr>
+<tr><td>清工部允礼等（网页记载）</td><td>《工程做法》：史112-0007、297-0020（关系未证）</td><td>1734（书格版本说明，馆方件目尚未独立对年）</td><td><a href="https://www.digital.archives.go.jp/item/4754366">史112-0007 第73件</a>；<a href="https://www.digital.archives.go.jp/item/4912863">297-0020 第6件</a></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="format" aria-labelledby="format-heading">
+<h2 id="format-heading">引用格式</h2>
+<pre class="citation-format"><code>@misc{bnf_tiangong_5563,
+  title = {Tiangong kaiwu / 天工開物},
+  howpublished = {BnF, Département des manuscrits, Chinois 5563},
+  note = {Gallica ark:/12148/btv1b52505781g; not yet scan-aligned to SHUGE}
+}</code></pre>
+</section>
+
+<section id="citation" aria-labelledby="citation-heading">
+<h2 id="citation-heading">引用</h2>
+<ol class="citation-list">
+<li><a href="https://www.digital.archives.go.jp/file/1079110">日本国立公文書館：《園冶》簿册</a>（子076-0004）；<a href="https://www.archives.go.jp/news/pdf/20210719.pdf">馆方2021清单</a>列出《工程做法》史112-0007。</li>
+<li><a href="https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu">BnF：《天工开物》两种馆藏版本</a> 与 <a href="https://www.digital.archives.go.jp/item/4912863">日本国立公文書館：《工程做法６》297-0020</a>；另见 <a href="https://www.digital.archives.go.jp/item/4754366">《工程做法７３》史112-0007</a>。</li>
+</ol>
+</section>
+
+<section id="note" aria-labelledby="note-heading">
+<h2 id="note-heading">备注</h2>
+<p><strong>关键分界：</strong>找到馆号≠确认书格采用同一扫描件，ID 出现在自动检索≠完成原书逐字核验。原 v1.0 <a href="https://github.com/conanxin/conanxin.github.io/blob/main/projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md"><code>CLAIM_SUPPORT_AUDIT.md</code></a> 曾把 <code>SHUGE:p168491:68</code> 错标为《梦粱录》检索，实际 <code>citations.json</code> 中是 <strong>《园冶》run #5</strong>，不能作为《水经注》的证据。<code>SHUGE:p211203:1338</code> 在不同证据卡中关联多个局部页码，数字后缀不可直接当 PDF 页序。</p>
+</section>
+
+<details class="tech-log">
+<summary>技术记录</summary>
+<ul>
+<li>Stage 2F 只添加新证据 JSON、reference 页面与对应回归测试；历史 SHUGE data/ 下文件全部只读。</li>
+<li>2026-10-12。<a href="../primary-catalog-audit.json">机器数据</a>保留 3 书、4 条馆藏候选目录、6 Citation ID 的独立状态。Gallica 与日本档案图像未完成自动视觉比对。</li>
+</ul>
+</details>
+</article>
+</main>
+</body>
+</html>

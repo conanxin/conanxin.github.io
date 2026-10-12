@@ -1,0 +1,486 @@
+{
+  "schema": "stage2f-primary-catalog-and-citation-audit-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2F_CONTINUATION",
+  "checked_on": "2026-10-12",
+  "status_definitions": {
+    "VERIFIED": "所述特定来源层级已经在同仓库冻结记录、原藏机构官方目录、或机构自有研究说明中取得可回溯证据；不向物理实物/扫描同一性自动传递。",
+    "UNVERIFIED": "尚需原始扫描、馆藏控制号及具体页对象映射；单有同名/同年/部分图像引用不足以证实同一扫描或引文正确。",
+    "NOT_FOUND": "仅在指定局部冻结数据或本轮可访问网页中未找到绑定；不能推断其他数据、机构中不存在。"
+  },
+  "corpus_baselines": {
+    "immutable_files": [
+      "projects/shuge-exhibition-v1.0/data/works.json",
+      "projects/shuge-exhibition-v1.0/data/bibliography.json",
+      "projects/shuge-exhibition-v1.0/data/citations.json",
+      "projects/shuge-exhibition-v1.0/data/evidence_cards.json",
+      "projects/shuge-exhibition-v1.0/data/evidence_paragraphs.json",
+      "projects/shuge-exhibition-v1.0/CLAIM_SUPPORT_AUDIT.md"
+    ],
+    "citation_test_scope": "只检查冻结 v1.0/data/citations.json 的 23 个 runs 的 claims、evidence_cards.json、evidence_paragraphs.json；来源字符串不是目视校对证据。"
+  },
+  "summary": {
+    "archived_work_post_ids_verified": 3,
+    "primary_repository_catalog_candidate_count": 4,
+    "books_with_primary_catalog_record_found": 3,
+    "matching_shuge_to_exact_holder_scans_verified": 0,
+    "independently_visual_compared_image_sequences": 0,
+    "target_citation_ids": 6,
+    "citation_ids_occurring_in_citations_json_runs": 1,
+    "citation_ids_absent_in_citations_json_runs": 5,
+    "citation_ids_proven_to_support_historical_claims": 0,
+    "critical_correction": "P168491:68 is in run #5 of 《园冶》, not a 《梦粱录》 run; older CLAIM_SUPPORT_AUDIT.md's description of this one citation run is factually wrong. ID cannot support 《水经注》."
+  },
+  "works": [
+    {
+      "post_id": 44159,
+      "title": "工程做法",
+      "archived_url": "https://www.shuge.org/view/gong_cheng_zuo_fa/",
+      "archived_page_count": 1456,
+      "shuge_edition_as_stated": "清雍正十二年（甲寅 1734）武英殿刊本",
+      "legacy_bibliography_label": "书海出版社文献 P44159",
+      "archived_identity": {
+        "status": "VERIFIED",
+        "source": "projects/shuge-exhibition-v1.0/data/works.json",
+        "scope": "已保存 post_id、书名、URL 的对照"
+      },
+      "primary_repository_catalog": {
+        "status": "VERIFIED",
+        "candidates": [
+          {
+            "repository": "国立公文書館デジタルアーカイブ / 内閣文庫",
+            "catalog_url": "https://www.digital.archives.go.jp/item/4754366",
+            "stable_record_id": "4754366",
+            "shelfmark": "史112-0007",
+            "status": "VERIFIED",
+            "identity_scope": "馆方第73件记录；同浏览器中显示全76件，并由国立公文書館2021年目录列出簿冊编号史112-0007，但未证明此为书格的同一具体扫描。",
+            "title_on_catalog": "工程做法73",
+            "item_ordinal": "0073",
+            "quantity": "查看器标注全76件",
+            "catalog_crosscheck": "https://www.archives.go.jp/news/pdf/20210719.pdf"
+          },
+          {
+            "repository": "国立公文書館デジタルアーカイブ / 内閣文庫",
+            "catalog_url": "https://www.digital.archives.go.jp/item/4912863",
+            "stable_record_id": "4912863",
+            "shelfmark": "297-0020",
+            "status": "VERIFIED",
+            "identity_scope": "馆方第6件记录，馆方2022年目录单列簿冊号297-0020。与史112-0007 同题名而不同索书号；二者关系及哪一份对应书格原图不能推断。",
+            "title_on_catalog": "工程做法6",
+            "item_ordinal": "0006",
+            "catalog_crosscheck": "https://www.archives.go.jp/news/pdf/20220713.pdf"
+          }
+        ],
+        "scope": "可在原藏机构官方目录或其官方馆藏研究站核对相应元数据"
+      },
+      "same_scanned_physical_object": {
+        "status": "UNVERIFIED",
+        "note": "书格称武英殿1734刊本与76册；馆方史112-0007 76件值得优先核对，但尚未比较书口钤印和图像序列。"
+      },
+      "page_by_page_image_alignment": {
+        "status": "UNVERIFIED",
+        "note": "尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对"
+      },
+      "details": {
+        "competing_catalog_relation": {
+          "status": "UNVERIFIED",
+          "note": "同题名的史112-0007 与297-0020可能是不同藏本或其他目录组织；不能仅凭册数/题名判断哪一个对应书格。"
+        }
+      },
+      "citations": [
+        "SHUGE:p44159:552"
+      ]
+    },
+    {
+      "post_id": 211203,
+      "title": "天工开物",
+      "archived_url": "https://www.shuge.org/view/tian_gong_kai_wu/",
+      "archived_page_count": 419,
+      "shuge_edition_as_stated": "明崇祯十年（丁丑 1637）涂绍煃刊本",
+      "legacy_bibliography_label": "书海出版社文献 P211203",
+      "archived_identity": {
+        "status": "VERIFIED",
+        "source": "projects/shuge-exhibition-v1.0/data/works.json",
+        "scope": "已保存 post_id、书名、URL 的对照"
+      },
+      "primary_repository_catalog": {
+        "status": "VERIFIED",
+        "candidates": [
+          {
+            "repository": "Bibliothèque nationale de France, Département des manuscrits",
+            "catalog_url": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+            "stable_record_id": "Chinois 5563",
+            "digital_object_url": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g",
+            "ark": "ark:/12148/btv1b52505781g",
+            "status": "VERIFIED",
+            "identity_scope": "BnF 自有馆藏研究文字明确 Chinois 5563 为带1637序年的早期版本，且 BnF 页面直达 Gallica ARK。确认图书馆目录层与数字资源标识，不表示与书格特定 PDF 已逐页比对。",
+            "title_on_catalog": "天工開物 / Tiangong kaiwu",
+            "author_on_catalog": "宋應星 / Song Yingxing",
+            "edition_on_catalog": "Chinois 5563：序文署1637年；BnF 另藏 Chinois 5564（另一版）",
+            "quantity": "书格称三册在法国本合装一册；该合册物理结构未由本轮直接查证"
+          }
+        ],
+        "scope": "可在原藏机构官方目录或其官方馆藏研究站核对相应元数据"
+      },
+      "same_scanned_physical_object": {
+        "status": "UNVERIFIED",
+        "note": "书格称 1637 涂绍煃刊本并在 2026 年更换补五张图；没有逐图校验书格重组 PDF 与 Chinois 5563 Gallica 影像。"
+      },
+      "page_by_page_image_alignment": {
+        "status": "UNVERIFIED",
+        "note": "尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对"
+      },
+      "details": {
+        "cited_specific_image": {
+          "status": "VERIFIED",
+          "meaning": "仅核实学术出版物曾引用此数字图像页标识；尚未直接加载并目视核验该页。",
+          "url": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f274.item",
+          "source": "https://books.whpress.co.uk/10.3197/63800040695086.book.pdf",
+          "description": "公开研究论文注释将 f274 标记为中卷第68页油榨图引用",
+          "visual_inspection": {
+            "status": "UNVERIFIED",
+            "blocker": "Gallica 对自动访问返回 HTTP 403；本轮未直接检查原图"
+          }
+        },
+        "competing_edition": {
+          "status": "VERIFIED",
+          "identity": "Chinois 5564",
+          "source": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+          "warning": "BnF 明确存在另一版本，5563 的 ARK 不可自动套用于 5564。"
+        }
+      },
+      "citations": [
+        "SHUGE:p211203:1096",
+        "SHUGE:p211203:1178",
+        "SHUGE:p211203:1320",
+        "SHUGE:p211203:1338"
+      ]
+    },
+    {
+      "post_id": 168491,
+      "title": "园冶",
+      "archived_url": "https://www.shuge.org/view/yuan_ye/",
+      "archived_page_count": 200,
+      "shuge_edition_as_stated": "明崇祯七年（甲戌 1634）刊本",
+      "legacy_bibliography_label": "书海出版社文献 P168491",
+      "archived_identity": {
+        "status": "VERIFIED",
+        "source": "projects/shuge-exhibition-v1.0/data/works.json",
+        "scope": "已保存 post_id、书名、URL 的对照"
+      },
+      "primary_repository_catalog": {
+        "status": "VERIFIED",
+        "candidates": [
+          {
+            "repository": "国立公文書館デジタルアーカイブ / 内閣文庫",
+            "catalog_url": "https://www.digital.archives.go.jp/file/1079110",
+            "stable_record_id": "1079110",
+            "shelfmark": "子076-0004",
+            "status": "VERIFIED",
+            "identity_scope": "馆方目录存在此《園冶》三卷三册明崇祯七年刊本；不能推出就是书格 PDF 中完全相同扫描序列。",
+            "title_on_catalog": "園冶",
+            "author_on_catalog": "計成（明）",
+            "edition_on_catalog": "刊本（序刊）::明崇禎:070000:",
+            "quantity": "三卷・3冊",
+            "listed_volume_ordinals": [
+              "0001",
+              "0002",
+              "0003"
+            ],
+            "provenance_old_owner": "紅葉山文庫"
+          }
+        ],
+        "scope": "可在原藏机构官方目录或其官方馆藏研究站核对相应元数据"
+      },
+      "same_scanned_physical_object": {
+        "status": "UNVERIFIED",
+        "note": "元数据中三卷三册和明崇祯七年与书格描述一致；未逐页比对版心、图版、序和数字图像。"
+      },
+      "page_by_page_image_alignment": {
+        "status": "UNVERIFIED",
+        "note": "尚未将书格的具体扫描文件 page_index/canvas/页签与馆藏 IIIF 或原馆图像逐页比对"
+      },
+      "details": {
+        "caution": "另有日本图书页面收录《園冶》中册的寛政七年写本（Wikimedia PDF accession 308-0023）。它不是明崇祯七年刊本，应作为异本，不能与子076-0004 混同。",
+        "competing_copy_url": "https://commons.wikimedia.org/wiki/File:NAJDA-308-0023_%E5%9C%92%E5%86%B6_%E4%B8%AD.pdf",
+        "digitized_image_entry": "https://www.digital.archives.go.jp/file/1079110"
+      },
+      "citations": [
+        "SHUGE:p168491:68"
+      ]
+    }
+  ],
+  "citation_audit": [
+    {
+      "citation_id": "SHUGE:p168491:68",
+      "post_id": 168491,
+      "stored_suffix": 68,
+      "archive_work_title": "园冶",
+      "archive_work_page_count": 200,
+      "in_frozen_citations_runs": {
+        "status": "VERIFIED",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [
+          {
+            "run_id": 5,
+            "question": "《园冶》中相地与具体构造术语出现在哪里?",
+            "claim_id": "F2",
+            "generated_status": "SUPPORTED"
+          }
+        ],
+        "count": 1
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 2,
+        "run_ids": [
+          226,
+          227
+        ],
+        "shown_local_page_labels": [
+          8
+        ],
+        "matched_preview_count": 2,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 6,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "证据卡显示局部页标签 8，与 ID 数字后缀 68 不一致，故后缀不能在没有映射表时充当物理页序。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    },
+    {
+      "citation_id": "SHUGE:p211203:1096",
+      "post_id": 211203,
+      "stored_suffix": 1096,
+      "archive_work_title": "天工开物",
+      "archive_work_page_count": 419,
+      "in_frozen_citations_runs": {
+        "status": "NOT_FOUND",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [],
+        "count": 0
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 1,
+        "run_ids": [
+          233
+        ],
+        "shown_local_page_labels": [
+          137
+        ],
+        "matched_preview_count": 1,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 6,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "旧引用 ID 数字后缀 1096 大于 works.json 记录的 419 个图像页；不能直接视为 PDF 页码，须找原数据库 page_object_id→page_index 映射。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    },
+    {
+      "citation_id": "SHUGE:p211203:1178",
+      "post_id": 211203,
+      "stored_suffix": 1178,
+      "archive_work_title": "天工开物",
+      "archive_work_page_count": 419,
+      "in_frozen_citations_runs": {
+        "status": "NOT_FOUND",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [],
+        "count": 0
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 1,
+        "run_ids": [
+          222
+        ],
+        "shown_local_page_labels": [
+          220
+        ],
+        "matched_preview_count": 1,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 9,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "旧引用 ID 数字后缀 1178 大于 works.json 记录的 419 个图像页；不能直接视为 PDF 页码，须找原数据库 page_object_id→page_index 映射。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    },
+    {
+      "citation_id": "SHUGE:p211203:1320",
+      "post_id": 211203,
+      "stored_suffix": 1320,
+      "archive_work_title": "天工开物",
+      "archive_work_page_count": 419,
+      "in_frozen_citations_runs": {
+        "status": "NOT_FOUND",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [],
+        "count": 0
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 2,
+        "run_ids": [
+          228,
+          229
+        ],
+        "shown_local_page_labels": [
+          362
+        ],
+        "matched_preview_count": 2,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 12,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "旧引用 ID 数字后缀 1320 大于 works.json 记录的 419 个图像页；不能直接视为 PDF 页码，须找原数据库 page_object_id→page_index 映射。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    },
+    {
+      "citation_id": "SHUGE:p211203:1338",
+      "post_id": 211203,
+      "stored_suffix": 1338,
+      "archive_work_title": "天工开物",
+      "archive_work_page_count": 419,
+      "in_frozen_citations_runs": {
+        "status": "NOT_FOUND",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [],
+        "count": 0
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 6,
+        "run_ids": [
+          224,
+          228,
+          229,
+          230,
+          233,
+          234
+        ],
+        "shown_local_page_labels": [
+          137,
+          362,
+          380
+        ],
+        "matched_preview_count": 6,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 12,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "旧引用 ID 数字后缀 1338 大于 works.json 记录的 419 个图像页；不能直接视为 PDF 页码，须找原数据库 page_object_id→page_index 映射。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    },
+    {
+      "citation_id": "SHUGE:p44159:552",
+      "post_id": 44159,
+      "stored_suffix": 552,
+      "archive_work_title": "工程做法",
+      "archive_work_page_count": 1456,
+      "in_frozen_citations_runs": {
+        "status": "NOT_FOUND",
+        "scope": "仅比较 projects/shuge-exhibition-v1.0/data/citations.json 的 runs[].claims[].citation_ids",
+        "hits": [],
+        "count": 0
+      },
+      "evidence_card_presence": {
+        "status": "VERIFIED",
+        "card_count": 3,
+        "run_ids": [
+          225,
+          231,
+          232
+        ],
+        "shown_local_page_labels": [
+          1
+        ],
+        "matched_preview_count": 3,
+        "all_matched_previews_marked_unreviewed": true,
+        "note": "证据卡可能只是推荐/自动生成，且 F1 claim_id 在多次运行中重复，不足以支持学术论证。"
+      },
+      "paragraph_reference_presence": {
+        "status": "VERIFIED",
+        "paragraph_count": 3,
+        "note": "段落绑定或引文字符串出现不等于真实 OCR 与扫描页直接核对。"
+      },
+      "page_sequence_mapping": {
+        "status": "UNVERIFIED",
+        "numeric_suffix_is_actual_scanned_page": false,
+        "reason": "证据卡显示局部页标签 1，与 ID 数字后缀 552 不一致，故后缀不能在没有映射表时充当物理页序。"
+      },
+      "claim_semantics": {
+        "status": "UNVERIFIED",
+        "note": "未在原藏扫描图像上逐字检查该 Citation ID 的 OCR，也未确认它支持对应论文论断。"
+      }
+    }
+  ],
+  "shared_warnings": [
+    "BnF 的 Chinois 5563（1637年）与 Chinois 5564（其他版本）不可混用。",
+    "工程做法存在 史112-0007 与297-0020 不同索书号；目前无法将书格的七十六册扫描绑定到唯一馆藏记录。",
+    "SHUGE:p211203:1096/1178/1320/1338 后缀不能解释为原版 PDF 页码，因 works.json 总扫描页数419，且证据卡所示局部页序不同。",
+    "旧 Claim Support Audit 将 P168491:68 误标为梦粱录检索，而实际 citations.json run#5 检索问题属于《园冶》；旧状态 SUPPORTED 不能沿袭到《水经注》论断。",
+    "证据卡的 review_status=no，且部分 Citation ID 在不同证据卡中与多处文本/局部页数挂钩；不应把 retrieval score 或 HIGH OCR reliability 等同于图像人工校勘。"
+  ],
+  "not_performed": [
+    "未从日本国立公文書館完成 PDF/图像页的直接视觉比对（馆方网站对自动抓取返回403）",
+    "未直接目视加载 Gallica f274 因平台阻挡自动访问，记录的 f274 来自研究文献中的引图标注",
+    "未从本地数据库重建 page_object_id → work/post_id → source image/canvas → OCR → Citation ID 完整映射",
+    "未将来源候选值覆写任何冻结 SHUGE 研究资产或把 REVIEW 研究文章升级 PUBLISHED"
+  ],
+  "next_gate": "Stage2G 优先逐册核对 NAJDA 子076-0004/史112-0007/297-0020 与书格重组图像；BnF Chinois 5563 的 ARK与书格PDF对照；导出真实 page_object_id/scan locator 映射，再逐条审核六个 Citation ID 和学术论断。"
+}

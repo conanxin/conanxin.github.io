@@ -1,6 +1,6 @@
 # SITE_DESIGN.md — Conan Xin · 数字花园
 
-> **版本**: 1.6 (2026-10-12，Stage 2E 来源对照已生产验收)
+> **版本**: 1.7 (2026-10-12，Stage 2F 原馆目录/引文核验试点)
 > **状态**: 全站设计规范 — 跨 Agent / 跨模型的唯一权威
 > **视觉权威源**: [`assets/site/design.css`](../assets/site/design.css)(本文件是其规范说明)
 > **作用**: 任何在本仓库新增页面、调整共享组件、修复样式偏差时,**必须**先读本文件 + 引用 `assets/site/design.css` 的现有 token。
@@ -255,3 +255,15 @@ Stage 2E 取得的是同仓库既有 `works.json` **post_id→title→shuge_url*
 Stage 2F 首先检索**持有机构自己的**目录/IIIF/数字藏品号，对《园冶》（P168491）、《天工开物》（P211203）、《工程做法》（P44159）逐条建立：原馆藏条目 URL/ID、作品版次及扫描位置、馆藏责任机构、影像书口和刊记证据、未决冲突。每一层可独立为 VERIFIED / UNVERIFIED / NOT_FOUND，未取得的层级绝不因上一层已核而自动升级。冻结的 SHUGE v0.7 数据和全部原研究资产继续只读。
 
 现有 `/content-index/` 只支持已发布页面标题/简介的发现、分类过滤；Stage 2E 仅收紧了敏感/历史路径的收录，不是新的学术事实核验服务或全文搜索。
+
+
+---
+
+## 16. Stage 2F · 原藏机构目录与六个 Citation ID 审计（PR 开发中）
+
+> 阶段实施位于独立分支，**未合并前不算生产发布**；此处记录规范与范围，不标记最终验收。
+
+- 新 `reference` 试点采用完整 `<main class="site-home"><article class="template-reference">…</article></main>`，读者页为 `projects/site-design-lab/shuge-source-crosswalk/primary-catalog/index.html`，旁置 `primary-catalog-audit.json`，继续由 `site-index-kind=reference` 进入自动目录。
+- 验证状态严格分层：`VERIFIED` 只说明日本或法国原藏机构可回溯的馆方目录号或研究说明；具体馆藏书影与书格扫描是否同一数字对象、原版的卷册序列和 Citation ID/OCR 语义都必须另行核验。不同索书号 `史112-0007` 与 `297-0020` 不得自行合并。
+- Stage 2F 的六个 Citation ID 来源于冻结 `bibliography.json`；是否出现在 `citations.json` 某个 `run`，以及是否出现在 `evidence_cards.json` 只是独立字段。**不得使用检索 `SUPPORTED`、OCR reliability HIGH 或存在字符串替代原图逐字校对。**
+- 本轮仅新增 sidecar、单元测试、浏览器与公网路径验证；不修改原 SHUGE v0.7/v1.0 JSON、研究正文、刊本图像、Citation ID、原来的站点项目交互及四个模板源文件。

@@ -115,3 +115,18 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 下阶段推进是否有效，不取决于又新增了几个 PR 或几页界面，而取决于是否取得**真实数据库主键、真实图像字节、可重复的一页映射和逐字核验结论**。
 
 参考资料：`docs/PROJECT_HANDOFF.md`、`docs/SITE_DESIGN.md`、`projects/shuge-exhibition-v1.0/IA.md`、`projects/shuge-exhibition-v1.0/data/manifest.json`、`PROVENANCE_AUDIT_v1.0.md`、`docs/STAGE2F_PRIMARY_CATALOG_AUDIT.md`、`docs/STAGE2G_SCAN_ALIGNMENT_AUDIT.md`、`scan-locator-audit.json` 与 PR #10—#22。
+
+
+---
+
+## 8. Stage 2G-P2 后续关键进展（2026-10-12 当日补充）
+
+本报告第 4—6 节记载的是 **PR #23 写入时刻** 的状态：当时确未读到真实数据库，也未拿到图像字节。其后使用授权 Desktop Commander 的 `cmd.exe` 命令通道执行 WSL，情况发生实质变化。
+
+- **真实数据库已访问**：只读 `/home/conanxin/shuge-research-db/data/shuge.db`，SHA-256 `4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8`。
+- **六个 CID 全部完成真实 SQLite 主键及作品归属核验**，`page_index` 分别为 8、137、220、362、380、1。
+- **六张历史归档 JPEG 已从源库实际读取，6/6 文件大小与重算 SHA-256 完全一致**；`acquisitions` 的旧日志存在 HTTP 200 记录。不能把“已保存并校验的本地归档”误描述为“2026-10-12 重新从原馆下载成功”。
+- 六张书页得到初步目视确认：《园冶》目录页、《工程做法》目录封面及其 112/7 号、《天工开物》井盐／航运／朱色／鱼肉保存等内容。旧研究系统的若干 `SUPPORTED` 检索问题明显与实际书页主题不符。
+- **新的未决难题**：图像来源 Gallica `btv1b525104776` 与 Stage 2F 引文的 `btv1b52505781g` 两个 ARK 是否对应同一物理册/扫描；五条 OCR `NOT_CHECKED`（另一页 QA PASS 也不是本轮完整逐字复校）；研究 claim 语义未全面核验。
+
+新证据请以 [Stage 2G-P2 实库与图像报告](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md) 和 [机器记录](../projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json) 为准。**网站工程目标仍然完成，学术证据链目前推进至真实页对象、历史采集信息及本地 JPEG 字节，未到完整 OCR 与历史命题验收。**

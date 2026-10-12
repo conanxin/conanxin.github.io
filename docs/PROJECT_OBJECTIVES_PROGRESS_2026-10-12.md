@@ -1,7 +1,7 @@
 # Conan Xin 数字花园 × SHUGE — 最初目标、阶段进展与下一步
 
 > 复核日期：2026-10-12 · TASK_ID=`CONANXIN_SITE_DESIGN_STAGE2G_P2_CONTINUATION`  
-> 当前验证的 `main` 基线：`a2776363e3b6f408ac6e2aa28032e8c0d20d01a0`（PR #22 合并）。  
+> 初稿验证的 `main` 基线：`a2776363e3b6f408ac6e2aa28032e8c0d20d01a0`（PR #22 合并）；后续更新至 **`1833b3d31f31fec78dbc768372717b760ff8c241`**（PR #25 合并，详见第 8 节）。  
 > 本报告是**项目状态审查**，不修改任何冻结古籍元数据、OCR、图像、论文或引用记录。
 
 ## 1. 两条最初目标与合并后的长期愿景
@@ -29,8 +29,9 @@
 | Stage 2E | #17、#18 | 作品 ID／URL 身份纠错、分类索引安全边界 | 已完成 |
 | Stage 2F | #19、#20 | 原馆目录元数据旁路、新原馆核验页、六条引文审计 | 已发布研究记录 |
 | Stage 2G-P1 | #21、#22 | 原馆阅览器图像定位编号、页号冲突记录、只读 SQLite 探针 | 已发布工具与研究记录 |
+| Stage 2G-P2 | #23—#25 | 项目目标梳理、真实 SQLite 六页对象与 6 个本地 JPEG 哈希核验 | 已交付；OCR 字符级/历史论断仍待核 |
 
-最新 `main` 为 `a2776363`。最后一次 [GitHub Pages 生产 Run 38203523959](https://github.com/conanxin/conanxin.github.io/actions/runs/38203523959) 通过 **58/58 Python 单元测试、48/48 Playwright 浏览器检查、18/18 公网路径检查**，JavaScript 错误 0。**这 18 条是验收抽样的公网路径，不是整个网站的页面总数。**
+**此段属于最初 PR #23 时点的历史基线**：当时 `main=a2776363`，Pages Run 38203523959 为最后成功构建。**当前已验部署状态**：`main=1833b3d`，PR #25 的 [Pages Run 38207956741](https://github.com/conanxin/conanxin.github.io/actions/runs/38207956741) 通过 **64/64 Python 单元测试、48/48 Playwright 浏览器检查、18/18 公网路径检查**，JavaScript 错误 0。**这 18 条是验收抽样的公网路径，不是整个网站的页面总数。**
 
 四类模板 article/project/exhibition/reference 均有真实发布示例；自动精选内容索引在 Stage 2D 首次有 113 条条目（72 文章、39 项目、1 展览、1 文献），之后会随新增的 `reference` 导览自动增长，**不要把历史的 113 当作此刻实时数字**。自动索引是标题与简介发现功能，不是历史资料全文检索，也不自动证明引文可信。
 
@@ -121,7 +122,7 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 
 ## 8. Stage 2G-P2 后续关键进展（2026-10-12 当日补充）
 
-本报告第 4—6 节记载的是 **PR #23 写入时刻** 的状态：当时确未读到真实数据库，也未拿到图像字节。其后使用授权 Desktop Commander 的 `cmd.exe` 命令通道执行 WSL，情况发生实质变化。
+本报告第 4—6 节保留的是 **PR #23 写入时刻** 的历史状态（包括过时的“未访问真实 SQLite”与“图像字节 0”）；当前进展以第 8 节及 PR #24 的机器证据为准。其后使用授权 Desktop Commander 的 `cmd.exe` 命令通道执行 WSL，情况发生实质变化。
 
 - **真实数据库已访问**：只读 `/home/conanxin/shuge-research-db/data/shuge.db`，SHA-256 `4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8`。
 - **六个 CID 全部完成真实 SQLite 主键及作品归属核验**，`page_index` 分别为 8、137、220、362、380、1。

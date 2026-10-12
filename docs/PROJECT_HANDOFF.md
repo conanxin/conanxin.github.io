@@ -123,9 +123,9 @@
 
 本项目实际上有**两条不可混淆的目标线**：跨 Agent 的 Conan Xin 数字花园网站工程（核心设计/模板/构建/发布主线已交付）；以及 SHUGE 古籍数字人文研究（已具备作品目录、OCR/检索快照、叙事展览、来源核验旁路，但尚未打通原馆扫描、真实 `page_object_id`、OCR 与历史论断的可靠引用链）。网站 CI 全绿只说明工程层达到验收，不意味着研究的学术证据 Gate 完成。
 
-**Stage 2G-P2 当前事实**：尝试连接授权 Desktop Commander，设备在线且 ping 可用，但本轮远程命令启动失败（`Failed to get process ID`），WSL UNC 文件路径也无法解析；未读取真实 `shuge.db`。Gallica/NAJDA 的原图字节也未取得；**下载原图 0、书格与原馆同图核验 0/3、六条 Citation ID 原图语义审核 0/6**。应优先使用已发布的 `scripts/stage2g_sqlite_probe.py` 在原 WSL 中做**真实只读查询**，而非继续新增只显示旧 JSON 的网页。
+**历史快照（PR #23 写入时，已被第 11 节的新证据更新）**：当时授权 Desktop Commander 设备在线但默认 PowerShell 无法启动（`Failed to get process ID`），尚未读取真实 `shuge.db`、没有访问到当地存档图像字节。后来改用 `cmd.exe → wsl.exe`，已完成第 11 节的 **6/6 真实 SQLite 页对象匹配与本地 JPEG 哈希校验**。原馆整册同一性 0/3、六条 Citation ID 的完整 OCR/历史命题核验 0/6 依然开放。
 
-本报告为状态评估；与 Stage 2G-P1 成功部署的研究记录不同，**不声称本轮已经完成图像同一性或历史论文复核**。新研究数据依旧写入独立 sidecar，原 SHUGE v0.7/v1.0 数据/OCR/影像/文章保持只读。
+本节是 PR #23 时点的状态评估，不代表当前最后一道数据库进度；**图像完整性在第 11 节已取得新进展，但整本藏版同一性或历史论文复核仍未完成**。新研究数据依旧写入独立 sidecar，原 SHUGE v0.7/v1.0 数据/OCR/影像/文章保持只读。
 
 
 ## 11. Stage 2G-P2 · 真实 SQLite 页对象和归档图像证据（已正式部署）
@@ -137,3 +137,14 @@
 - **BnF 数字对象差异未决**：库内 Gallica 影像均来自 `btv1b525104776`，而此前 Stage 2F 论文引图使用 `btv1b52505781g`；`digital_objects` 的前者虽标注 Chinois 5563，尚不能直接宣称两个 ARK 是同一扫描。
 - 证据页与原数据分开保存：[已发布 real-db-page-links.json](../projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json)、[Stage 2G-P2 真实 SQLite 审计](./STAGE2G_P2_REAL_SQLITE_EVIDENCE.md)、修订的 `scripts/stage2g_sqlite_probe.py` 及其测试。**PR #24 已合并（`27f0ebc30a7584590537f118ecaaadbe84483001`）且 GitHub Pages Run 38207442742 Success**：64/64 单元测试、48/48 Playwright、18/18 公网路径、0 JS 错误；新 JSON 已从公网直接读取。
 - 本轮未修改任何冻结 SHUGE v0.7/v1.0 JSON、原图、OCR、引文、历史论文。下一阶段先裁决 OCR 字符与错误语义匹配，不再误把自动 `SUPPORTED` 当成历史论断已证实。
+
+
+## 12. Stage 2G-P3 · 选段 OCR 字形与证据语义筛查（独立 PR，尚未发布）
+
+- P2 [PR #24](https://github.com/conanxin/conanxin.github.io/pull/24) 的六个真实 SQLite 主键与本地图像 SHA 证据已保留；[PR #25](https://github.com/conanxin/conanxin.github.io/pull/25) 的文档收尾已合并，最新历史生产回执为 [Run 38207956741](https://github.com/conanxin/conanxin.github.io/actions/runs/38207956741)（64/64 Python、48/48 浏览器、18/18 公网路径）。
+- 新的 [Stage 2G-P3 选段审计](./STAGE2G_P3_OCR_SPOTCHECK.md) 与 `projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json`：从真实 `page_ocr` 的页 68/1338 文本与已 SHA 核的 JPEG 图像对照少量易认字串，发现 4 个局部 OCR 错识。**这是 AI 辅助选段复核，不是两页全文人工校勘，也没有改写 OCR 库。**
+- 另外抽查 8 个 `research_run_id × citation_id` 组合：目录标题存在的狭义事实可有局部图像证据，但盐井图不能回答黄河河防、`p211203:1338` 的鱼肉加工不能证实《水经注》区块链应用、《工程做法》封面不能证明“柱径玖寸”等技术细节。历史 `SUPPORTED` 原状态未改。
+- **双 Gallica ARK 仍未消歧**：真实 SQLite 保存 `btv1b525104776`，BnF 官方《天工开物》1637 年 Chinois 5563 专文则链接 `btv1b52505781g`。两者不能直接交叉套用 f274 或其他 canvas，当前 `UNVERIFIED`。
+- 本阶段尚未合并，CI 和审查结果须以 PR／Run 为准。研究的整册馆藏同一性与 **6/6 完整 OCR/历史论断**仍保持未完成；后续应直接取 BnF 两个对象的馆方 manifest/canvas，并进行逐字 OCR 校订与人审。
+
+**范围**：只增加新研究 sidecar、审计文档与测试，并纠正旧交接中的时点措辞；冻结 SHUGE v0.7/v1.0 JSON、影像、原研究论断和 OCR 一律未动。

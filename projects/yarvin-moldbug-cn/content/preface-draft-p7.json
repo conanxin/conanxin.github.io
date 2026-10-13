@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "project": "yarvin-moldbug-cn",
+  "stage": "P7_PREFACE_AND_EDITORIAL_PROPOSALS",
+  "created_at": "2026-10-13",
+  "source": {
+    "type": "author_original_spanish",
+    "url": "https://www.421.news/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/",
+    "title": "Curtis Yarvin: el pueblo nunca tiene razón",
+    "author": "Juan Ruocco",
+    "published": "2026-06-24",
+    "language": "es-AR",
+    "retrieval_method": "Exa full-text fetch on 2026-10-13",
+    "source_segment": "Four narrative paragraphs before heading 'Moldbug como contraseña del foro', plus a duplicate pullquote repeating part of the second paragraph.",
+    "original_heading": "Moldbug como contraseña del foro"
+  },
+  "editorial_policy": "The Chinese paragraphs and decisions below are a working draft. They are NOT inserted into the frozen article. A separate, explicitly approved content-edit PR is required for publication into the article.",
+  "audit": {
+    "source_intro_narrative_paragraphs": 4,
+    "source_repeated_pullquotes": 1,
+    "chinese_preface_draft_paragraphs": 4,
+    "draft_paragraphs_human_approved": 0,
+    "editorial_decisions_total": 4,
+    "editorial_decisions_approved": 0,
+    "frozen_article_edits_applied": 0,
+    "whole_article_translation_reviewed": false,
+    "political_historical_claims_verified": 0
+  },
+  "preface_paragraphs": [
+    {
+      "paragraph_id": "YP7-INTRO-01",
+      "position": 1,
+      "source_spanish_opening": "Llevo unos cinco años postergando este artículo",
+      "source_spanish_closing": "son muy obvios.",
+      "translation_zh": "这篇文章，我差不多拖了五年才动笔。个中缘由，对我自己而言不言自明，对你们却未必如此。幸好，你们不住在我的脑子里。这些理由与本文有一个共同点：都显而易见。",
+      "translator_notes": "保留作者对“显而易见”的重复与略带自嘲的口吻；“五年”是作者约数，不推断具体构思日期。",
+      "draft_status": "DRAFT_PENDING_REVIEW",
+      "editorial_approval": "PENDING",
+      "published_into_frozen_article": false
+    },
+    {
+      "paragraph_id": "YP7-INTRO-02",
+      "position": 2,
+      "source_spanish_opening": "Todo el tiempo que pasó desde la primera vez que leí Unqualified Reservations",
+      "source_spanish_closing": "¿but who’s buying?",
+      "translation_zh": "从第一次读《Unqualified Reservations》到今天，我始终更愿意采用间接引用的方式。我总觉得解释笑话有点别扭，解释笑话的作者本人就更是如此。可要论阅读量，对我最有效的偏偏就是把笑话解释清楚。我的职业写作经历此前颇为平淡——不过是在一家全国性报纸的副刊上发表过几篇文章——直到2019年那篇谈4chan模因语言的文章，才出现指数级跃升，并最终促成我在2023年出版《民主正处于危险之中吗？》（¿La democracia en peligro?）。解释笑话能卖得动（sells）——但究竟是谁在买单（but who’s buying）？",
+      "translator_notes": "保留原文的西班牙语/英语语码切换（sells / but who’s buying），《¿La democracia en peligro?》中文书名为本稿暂译，非已核实正式中译书名。“作者”指被讨论的创作者，而非让读者去向作者解释笑话。",
+      "draft_status": "DRAFT_PENDING_REVIEW",
+      "editorial_approval": "PENDING",
+      "published_into_frozen_article": false
+    },
+    {
+      "paragraph_id": "YP7-INTRO-03",
+      "position": 3,
+      "source_spanish_opening": "En definitiva, trataré de explicar algunos conceptos que habitan Internet",
+      "source_spanish_closing": "todas estas apreciaciones sean ciertas.",
+      "translation_zh": "说到底，我想试着解释一些流行于互联网的概念：对我而言它们不言自明，对很多人却不是这样（而且他们也没有理由非得知道这些）。有些读者也许乐于读到自己早已熟悉的东西，只是换了一种讲述角度；另外一些人则可能觉得，我只是个姗姗来迟、还在阅读早已消亡的网络现象的人。就像一位天文学家，观察着由一片早已熄灭的恒星所发出的光。也许归根结底，这些看法全都成立。",
+      "translator_notes": "保留“迟来的读者”和“已经熄灭的恒星发出的光”的比喻，不把修辞当作有关互联网历史的事实判断。",
+      "draft_status": "DRAFT_PENDING_REVIEW",
+      "editorial_approval": "PENDING",
+      "published_into_frozen_article": false
+    },
+    {
+      "paragraph_id": "YP7-INTRO-04",
+      "position": 4,
+      "source_spanish_opening": "Hablar de Curtis Yarvin en pleno año 2026",
+      "source_spanish_closing": "Pero allá vamos.",
+      "translation_zh": "在2026年谈论 Curtis Yarvin，几乎就像在谈一件互联网博物馆里的展品。不过，我们还是开始吧。",
+      "translator_notes": "保留“互联网博物馆”的比喻，作者在此为接下来第一章作转场。",
+      "draft_status": "DRAFT_PENDING_REVIEW",
+      "editorial_approval": "PENDING",
+      "published_into_frozen_article": false
+    }
+  ],
+  "source_pullquote": {
+    "id": "YP7-PULLQUOTE-01",
+    "source_spanish_opening": "Todo el tiempo que pasó desde la primera vez que leí Unqualified Reservations",
+    "repeats_from_paragraph_id": "YP7-INTRO-02",
+    "independent_narrative_paragraph": false,
+    "publication_optional": true,
+    "translation_zh_draft": "从第一次读《Unqualified Reservations》到今天，我始终更愿意采用间接引用的方式。我总觉得解释笑话有点别扭，解释笑话的作者本人就更是如此。",
+    "status": "PENDING_EDITORIAL_APPROVAL"
+  },
+  "editorial_decisions": [
+    {
+      "id": "YP7-DECISION-01",
+      "type": "INSERT_PREFACE",
+      "scope": "Before first h2#mencius-moldbug in #article",
+      "current": "中文正文元信息之后直接进入第一章，缺少西语原稿四段正文引言及一条重复引文框。",
+      "proposed": "审核通过后按 4 个独立段落插入补译，引文框作为第二段重复摘录另行排版，不计新增第五段。",
+      "decision_required": "是否接受四段补译草案，并选择是否恢复原稿的重复引文框。",
+      "status": "PENDING_EDITORIAL_APPROVAL",
+      "applied_to_article": false,
+      "approved_at": null
+    },
+    {
+      "id": "YP7-DECISION-02",
+      "type": "REPLACE_HEADING",
+      "scope": "h2#mencius-moldbug",
+      "current": "孟德斯鸠的\"虫\"：Mencius Moldbug",
+      "proposed": "Moldbug：论坛里的接头暗号",
+      "decision_required": "是否将第一章标题改为贴近原文的版本，同时纠正“孟子”（Mencius）与“孟德斯鸠”的混淆。",
+      "status": "PENDING_EDITORIAL_APPROVAL",
+      "applied_to_article": false,
+      "approved_at": null
+    },
+    {
+      "id": "YP7-DECISION-03",
+      "type": "REFINE_QUOTE",
+      "scope": "Chapter 7, first .article-quote (Patchwork)",
+      "current": "每一个小国都由自己的那家公司治理",
+      "proposed": "每一个小国都由各自的股份公司治理",
+      "decision_required": "是否将 joint-stock corporation / sociedad anónima 的企业形式明确为股份公司，保留其余引文不动。",
+      "status": "PENDING_EDITORIAL_APPROVAL",
+      "applied_to_article": false,
+      "approved_at": null
+    },
+    {
+      "id": "YP7-DECISION-04",
+      "type": "ADD_EDITOR_NOTE",
+      "scope": "Chapter 9, quotation of An Open Letter chapter 5",
+      "current": "那是另一回事了。",
+      "proposed": "编者注（候选）：Yarvin 英文原著用“Other grain.”呼应此前贵格会把火药采购经费委婉记为“其他谷物”的轶事；Ruocco 西语转引使用“Harina de otro costal”（另一回事）的习语，中文沿用了西语意思，因此未直接再现英文的典故。该轶事本身仍须另行史料核对。",
+      "decision_required": "是否保留原中文末句，另以编者注解释原著与西语转引的不同，而不在原有引文中硬插补译。",
+      "status": "PENDING_EDITORIAL_APPROVAL",
+      "applied_to_article": false,
+      "approved_at": null
+    }
+  ],
+  "recommended_publication_gate": "Approve each paragraph/decision individually; check Spanish anchors again; then create a narrow PR that modifies only the explicitly approved Chinese article segments. Keep all other article paragraphs byte-for-byte identical.",
+  "history_links": {
+    "p6_sidecar": "three-layer-review.json",
+    "p5_sidecar": "passage-alignments.json",
+    "p4_sidecar": "source-ledger.json"
+  },
+  "open_questions": [
+    "P7 引言四段和原稿重复摘录是否逐项得到人工批准？",
+    "是否需要统一原文《Unqualified Reservations》及《¿La democracia en peligro?》中文书名呈现？",
+    "首章标题应以西语原题而非“名字词源”为标题主线吗？",
+    "股份公司的制度形式及“Other grain.”典故拟用正文还是译注处理？"
+  ]
+}

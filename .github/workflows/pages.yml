@@ -225,6 +225,9 @@ jobs:
                               assert len(re.findall(r'class="passage-review__card"',body))==3,'P5 three quote cards missing'
                               assert 'id="tri-layer-section"' in body,'P6 source comparison section missing'
                               assert len(re.findall(r'class="tri-layer__case"',body))==3,'P6 3 static cards missing'
+                              assert 'id="preface-draft-section"' in body,'P7 approval workspace missing'
+                              assert len(re.findall(r'class="preface-editorial__paragraph"',body))==4,'P7 four preface drafts missing'
+                              assert len(re.findall(r'class="preface-editorial__decision"',body))==4,'P7 editorial choices missing'
                               css_match=re.search(r'href="([^"]*styles[.]css[?][^"]+)"',body)
                               js_match=re.search(r'src="([^"]*app[.]js[?][^"]+)"',body)
                               assert css_match and js_match,'Yarvin versioned CSS/JS links missing'
@@ -238,6 +241,7 @@ jobs:
                                   ('ledger','content/source-ledger.json'),
                                   ('passages','content/passage-alignments.json'),
                                   ('p6','content/three-layer-review.json'),
+                                  ('p7','content/preface-draft-p7.json'),
                               ):
                                   asset_url=urllib.parse.urljoin(base+path,relative)
                                   separator='&' if '?' in asset_url else '?'
@@ -302,12 +306,33 @@ jobs:
                                       assert audit['spanish_preface_present'] and not audit['chinese_preface_present_in_article'],'P6 missing-intro gap'
                                       assert audit['three_layer_clause_cases']==3,'P6 quote triplets missing'
                                       assert audit['human_approved_cases']==0,'P6 human approval invented'
+                                      assert audit['p7_preface_draft_paragraphs']==4,'P7 not linked to P6 gap'
+                                      assert audit['p7_editorial_decisions_approved']==0,'P7 P6-side approval gate violated'
+                                      assert audit['p7_preface_paragraphs_published_to_article']==0,'P7 introduction prematurely inserted'
                                       assert audit['full_zh_translation_paragraphs_verified']==0,'P6 full translation certified without review'
                                       assert audit['independent_historical_political_facts_verified']==0,'P6 political facts invented'
                                       assert len(original['heading_map'])==9 and len(original['triplets'])==3
                                       assert all(c['human_approval']=='PENDING' for c in original['triplets'])
                                       assert all('data-p6-id="'+c['id']+'"' in body for c in original['triplets'])
                                       assert '/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/' in body,'Spanish source URL missing'
+                                  elif kind=='p7':
+                                      draft=json.loads(asset_body)
+                                      audit=draft['audit']
+                                      assert draft['stage']=='P7_PREFACE_AND_EDITORIAL_PROPOSALS','P7 wrong phase state'
+                                      assert audit['source_intro_narrative_paragraphs']==4,'source preface count drift'
+                                      assert audit['source_repeated_pullquotes']==1,'duplicate pullquote conflated with narrative paragraph'
+                                      assert audit['chinese_preface_draft_paragraphs']==4,'P7 preface draft incomplete'
+                                      assert audit['draft_paragraphs_human_approved']==0,'P7 preface implicitly approved'
+                                      assert audit['editorial_decisions_total']==4,'P7 editorial decisions incomplete'
+                                      assert audit['editorial_decisions_approved']==0,'P7 approval not granted'
+                                      assert audit['frozen_article_edits_applied']==0,'P7 frozen translation changed'
+                                      assert not audit['whole_article_translation_reviewed'],'full translation audit falsely claimed'
+                                      assert len(draft['preface_paragraphs'])==4 and len(draft['editorial_decisions'])==4
+                                      assert all(p['editorial_approval']=='PENDING' for p in draft['preface_paragraphs'])
+                                      assert all(x['status']=='PENDING_EDITORIAL_APPROVAL' for x in draft['editorial_decisions'])
+                                      assert all('data-p7-paragraph-id="'+p['paragraph_id']+'"' in body for p in draft['preface_paragraphs'])
+                                      assert all('data-p7-decision-id="'+d['id']+'"' in body for d in draft['editorial_decisions'])
+                                      assert 'href="content/preface-draft-p7.json"' in body
                                   else:
                                       data=json.loads(asset_body)
                                       assert data['project']=='yarvin-moldbug-cn','wrong public JSON project'

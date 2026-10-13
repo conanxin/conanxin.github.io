@@ -169,37 +169,70 @@
     onScroll();
   }
 
-  // ---------- Mobile TOC drawer ----------
+  // ---------- Mobile TOC drawer + longform floating entry ----------
   function initTocDrawer() {
     const drawer = document.getElementById('tocDrawer');
     const btnOpen = document.getElementById('btnToc');
     const btnClose = document.getElementById('btnTocClose');
+    const floating = document.getElementById('floatingToc');
+    const toolbar = document.querySelector('.toolbar');
     const list = document.getElementById('tocListDrawer');
     const tocList = document.getElementById('tocList');
     if (!drawer || !btnOpen) return;
     if (list && tocList) list.innerHTML = tocList.innerHTML;
+    let lastTrigger = btnOpen;
 
-    function open() {
-      drawer.hidden = false;
-      btnOpen.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function close() {
-      drawer.hidden = true;
-      btnOpen.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    btnOpen.addEventListener('click', open);
-    if (btnClose) btnClose.addEventListener('click', close);
-    drawer.addEventListener('click', e => { if (e.target === drawer) close(); });
-    if (list) {
-      list.addEventListener('click', e => {
-        if (e.target.tagName === 'A') setTimeout(close, 50);
+    function updateTriggers(expanded) {
+      [btnOpen, floating].filter(Boolean).forEach(button => {
+        button.setAttribute('aria-expanded', String(expanded));
       });
     }
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !drawer.hidden) close();
+    function updateFloating() {
+      if (!floating) return;
+      const narrow = window.matchMedia('(max-width: 600px)').matches;
+      const toolbarPassed = toolbar && toolbar.getBoundingClientRect().bottom < 0;
+      floating.hidden = !narrow || !toolbarPassed;
+    }
+    function open(trigger) {
+      lastTrigger = trigger || btnOpen;
+      drawer.hidden = false;
+      updateTriggers(true);
+      document.body.style.overflow = 'hidden';
+      if (btnClose) btnClose.focus({ preventScroll: true });
+    }
+    function close(restoreFocus = true) {
+      drawer.hidden = true;
+      updateTriggers(false);
+      document.body.style.overflow = '';
+      if (restoreFocus && lastTrigger) lastTrigger.focus({ preventScroll: true });
+    }
+    btnOpen.addEventListener('click', () => open(btnOpen));
+    if (floating) floating.addEventListener('click', () => open(floating));
+    if (btnClose) btnClose.addEventListener('click', () => close());
+    drawer.addEventListener('click', event => {
+      if (event.target === drawer) close();
     });
+    if (list) list.addEventListener('click', event => {
+      if (event.target.closest('a[href^="#"]')) close(false);
+    });
+    drawer.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const focusables = [btnClose, ...drawer.querySelectorAll('a[href]')].filter(Boolean);
+      if (!focusables.length) return;
+      if (event.shiftKey && document.activeElement === focusables[0]) {
+        event.preventDefault();
+        focusables[focusables.length - 1].focus();
+      } else if (!event.shiftKey && document.activeElement === focusables[focusables.length - 1]) {
+        event.preventDefault();
+        focusables[0].focus();
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !drawer.hidden) close();
+    });
+    document.addEventListener('scroll', updateFloating, { passive: true });
+    window.addEventListener('resize', updateFloating);
+    updateFloating();
   }
 
   // ---------- Back to top ----------
@@ -215,90 +248,118 @@
     });
   }
 
-  // ---------- Search overlay ----------
+  // ---------- Search overlay with real keyboard navigation ----------
   function initSearch(corpus) {
     const overlay = document.getElementById('searchOverlay');
     const btn = document.getElementById('btnSearch');
     const input = document.getElementById('searchInput');
     const results = document.getElementById('searchResults');
-    if (!overlay || !input || !results) return;
+    if (!overlay || !btn || !input || !results) return;
 
     function open() {
       overlay.hidden = false;
       btn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-      setTimeout(() => input.focus(), 30);
+      input.focus({ preventScroll: true });
     }
-    function close() {
+    function close(restoreFocus = true) {
       overlay.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       input.value = '';
       results.innerHTML = '';
+      if (restoreFocus) btn.focus({ preventScroll: true });
     }
     btn.addEventListener('click', open);
-    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', e => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); open(); }
-      if (e.key === 'Escape' && !overlay.hidden) close();
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay) close();
+    });
+    document.addEventListener('keydown', event => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        open();
+      }
+      if (event.key === 'Escape' && !overlay.hidden) close();
     });
 
-    function highlight(text, q) {
-      if (!q) return text;
-      const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return text.replace(new RegExp(safe, 'gi'), m => '<mark>' + m + '</mark>');
+    function escapeMarkup(value) {
+      return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
-
+    function highlight(text, query) {
+      const at = text.toLowerCase().indexOf(query.toLowerCase());
+      if (at < 0) return escapeMarkup(text);
+      return escapeMarkup(text.slice(0, at)) + '<mark>' +
+        escapeMarkup(text.slice(at, at + query.length)) + '</mark>' +
+        escapeMarkup(text.slice(at + query.length));
+    }
     function snippetAround(text, idx, len) {
       const start = Math.max(0, idx - 40);
       const end = Math.min(text.length, idx + len + 40);
       return (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
     }
-
-    function doSearch(q) {
-      if (!q || q.length < 2) {
-        results.innerHTML = '<p style="color: var(--fg-3); font-size: 0.9em; text-align: center; padding: 1.5rem;">输入至少 2 个字符开始搜索</p>';
+    function selectResult(element) {
+      const href = element.getAttribute('data-href');
+      if (!href || !document.getElementById(href)) return;
+      close(false);
+      window.location.hash = href;
+    }
+    function focusResult(key) {
+      const items = Array.from(results.querySelectorAll('.search-result'));
+      if (!items.length) return false;
+      const active = items.indexOf(document.activeElement);
+      const next = key === 'ArrowDown'
+        ? (active + 1) % items.length
+        : (active <= 0 ? items.length - 1 : active - 1);
+      items[next].focus();
+      return true;
+    }
+    function doSearch(query) {
+      if (!query || query.length < 2) {
+        results.innerHTML = '<p class="search-empty">输入至少 2 个字符开始搜索</p>';
         return;
       }
-      const lower = q.toLowerCase();
+      const lower = query.toLowerCase();
       const hits = [];
       corpus.forEach(doc => {
         const lowerText = doc.text.toLowerCase();
         let idx = lowerText.indexOf(lower);
         while (idx !== -1 && hits.length < 50) {
-          hits.push({
-            title: doc.title,
-            href: doc.href,
-            anchor: doc.anchor,
-            text: doc.text,
-            matchIdx: idx,
-            matchLen: q.length
-          });
-          idx = lowerText.indexOf(lower, idx + q.length);
+          hits.push({ title: doc.title, href: doc.href, text: doc.text, matchIdx: idx, matchLen: query.length });
+          idx = lowerText.indexOf(lower, idx + query.length);
         }
       });
       if (!hits.length) {
-        results.innerHTML = '<p style="color: var(--fg-3); font-size: 0.9em; text-align: center; padding: 1.5rem;">未找到匹配项</p>';
+        results.innerHTML = '<p class="search-empty">未找到匹配项</p>';
         return;
       }
-      results.innerHTML = hits.slice(0, 20).map((h, i) => {
-        const snip = snippetAround(h.text, h.matchIdx, h.matchLen);
-        return '<div class="search-result" data-href="' + h.href + '" data-idx="' + i + '">' +
-          '<div class="search-result__title">' + h.title + '</div>' +
-          '<div class="search-result__snippet">' + highlight(snip, q) + '</div>' +
-          '</div>';
+      results.innerHTML = hits.slice(0, 20).map(h => {
+        const snippet = snippetAround(h.text, h.matchIdx, h.matchLen);
+        return '<button type="button" class="search-result" data-href="' + escapeMarkup(h.href) + '">' +
+          '<span class="search-result__title">' + escapeMarkup(h.title) + '</span>' +
+          '<span class="search-result__snippet">' + highlight(snippet, query) + '</span></button>';
       }).join('');
-      results.querySelectorAll('.search-result').forEach(el => {
-        el.addEventListener('click', () => {
-          const href = el.getAttribute('data-href');
-          if (href) {
-            window.location.hash = href;
-            close();
-          }
-        });
-      });
     }
-
+    results.addEventListener('click', event => {
+      const target = event.target.closest('.search-result');
+      if (target) selectResult(target);
+    });
+    results.addEventListener('keydown', event => {
+      if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && focusResult(event.key)) {
+        event.preventDefault();
+      }
+    });
+    input.addEventListener('keydown', event => {
+      if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && focusResult(event.key)) {
+        event.preventDefault();
+      } else if (event.key === 'Enter') {
+        const first = results.querySelector('.search-result');
+        if (first) {
+          event.preventDefault();
+          selectResult(first);
+        }
+      }
+    });
     let debounce;
     input.addEventListener('input', () => {
       clearTimeout(debounce);
@@ -431,7 +492,7 @@
       '<div class="source-block">' +
       '<h3 class="source-block__title">' + escapeHtml(b.title) + '</h3>' +
       '<ul>' + b.items.map(item => {
-        const t = escapeHtml(item);
+        const t = escapeHtml(item).replace(/\*([^*]+)\*/g, '<em>$1</em>');
         // Auto-link Yarvin texts
         if (item.includes('Patchwork')) {
           return '<li><a href="https://www.unqualified-reservations.org/2008/09/patchwork-a-positive-vision/" target="_blank" rel="noopener">Patchwork: A Positive Vision</a></li>';

@@ -214,6 +214,18 @@ try:
      assert metrics['bg']=='rgb(248, 247, 244)',(path,'warm site background missing',metrics['bg'])
      assert page.locator('.hero').is_visible(),(path,'hero not rendered')
      assert page.locator('.hero').evaluate("(el)=>el.getBoundingClientRect().height")<650,(path,'hero consumes full viewport')
+     assert page.locator('.hero__cta .btn--primary').get_attribute('href')=='#mencius-moldbug',(path,'start reading points to missing section')
+     assert page.locator('.reader-transition').count()==1,(path,'translation-to-research boundary missing')
+     assert page.locator('.diagram-caption').count()>=3,(path,'diagram caveats missing')
+     assert page.locator('.cathedral-diagram__arrows').is_hidden(),(path,'diagram arrows still overlap nodes')
+     core_box=page.locator('.cathedral-diagram__core').bounding_box()
+     node_box=page.locator('.cathedral-diagram__node--right').bounding_box()
+     assert core_box and node_box and core_box['y'] >= node_box['y'] + node_box['height'] - 2,(path,'diagram core overlaps node',core_box,node_box)
+     assert page.locator('#sourcesGrid .source-block li em').count()>=4,(path,'source-title italics not rendered')
+     chapter_counter=page.locator('.article > h2.article-h2').first.evaluate("(el)=>getComputedStyle(el,'::before').content")
+     assert 'CHAPTER ' in chapter_counter and 'counter(yarvin-chapter' in chapter_counter,(path,'chapter hierarchy missing',chapter_counter)
+     assert page.locator('.compare-table[tabindex="0"]').count()==1,(path,'comparison horizontal reading region missing')
+     assert page.locator('.article-figure:has(img[src=""])').first.is_hidden(),(path,'empty image placeholder showing')
      page.locator('#btnSearch').click()
      assert page.locator('#searchOverlay').is_visible(),(path,'search did not open',page.evaluate("""() => ({
        aria:document.getElementById('btnSearch').getAttribute('aria-expanded'),
@@ -227,6 +239,16 @@ try:
      page.keyboard.press('Escape')
      assert page.locator('#searchOverlay').is_hidden(),(path,'search did not close')
      assert page.locator('#btnSearch').get_attribute('aria-expanded')=='false'
+     # The reader promises arrows and Enter; exercise them as real keyboard actions.
+     page.locator('#btnSearch').click()
+     page.locator('#searchInput').fill('Patchwork')
+     page.wait_for_function("document.querySelectorAll('#searchResults .search-result').length > 0",timeout=6000)
+     first_href=page.locator('#searchResults .search-result').first.get_attribute('data-href')
+     page.locator('#searchInput').press('ArrowDown')
+     assert page.evaluate("document.activeElement.classList.contains('search-result')"),(path,'ArrowDown did not focus search result')
+     page.keyboard.press('Enter')
+     assert page.locator('#searchOverlay').is_hidden(),(path,'Enter did not close search')
+     assert page.evaluate('window.location.hash')=='#'+first_href,(path,'Enter did not navigate to result')
      page.locator('#btnToc').click()
      assert page.locator('#tocDrawer').is_visible(),(path,'TOC did not open')
      page.locator('#btnTocClose').click()
@@ -237,7 +259,21 @@ try:
      assert page.evaluate("document.documentElement.dataset.theme")=='patchwork',(path,'theme control broken')
      page.locator('button.toolbar__btn[data-theme="cathedral"]').click()
      page.locator('button.toolbar__btn[data-reading-mode="annotated"]').click()
-     interaction='paper theme -> hidden overlays -> search + TOC -> compact mode + theme toggles'
+     if width==390:
+      page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,document.getElementById('glossary-section').offsetTop)")
+      page.wait_for_timeout(170)
+      assert page.locator('#floatingToc').is_visible(),(path,'floating mobile TOC missing while reading')
+      page.locator('#floatingToc').click()
+      assert page.locator('#tocDrawer').is_visible(),(path,'floating TOC did not open drawer')
+      assert page.locator('#floatingToc').get_attribute('aria-expanded')=='true'
+      page.keyboard.press('Escape')
+      assert page.locator('#tocDrawer').is_hidden(),(path,'floating TOC Escape failed')
+      assert page.locator('#floatingToc').get_attribute('aria-expanded')=='false'
+     else:
+      assert page.locator('#floatingToc').is_hidden(),(path,'mobile button exposed on desktop')
+     page.locator('.hero__cta .btn--primary').click()
+     assert page.evaluate('window.location.hash')=='#mencius-moldbug',(path,'start reading navigation failed')
+     interaction='chapter rhythm + citations -> keyboard search -> mobile TOC -> start-reading anchor'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None
@@ -249,7 +285,12 @@ try:
      d.locator('summary').click();assert d.get_attribute('open') is not None
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
-    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/'):
+    if path=='/projects/yarvin-moldbug-cn/':
+     page.locator('#cathedral-section').scroll_into_view_if_needed()
+     page.screenshot(path=str(out/f'yarvin-diagram-{width}.png'),full_page=False)
+     page.locator('#sources-section').scroll_into_view_if_needed()
+     page.screenshot(path=str(out/f'yarvin-sources-{width}.png'),full_page=False)
+    if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):
      page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
      page.wait_for_timeout(100)
     if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):

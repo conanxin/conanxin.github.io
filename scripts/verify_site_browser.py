@@ -203,6 +203,10 @@ try:
     if path=='/projects/yarvin-moldbug-cn/':
      # Content and interactive controls must coexist with the shared paper theme.
      page.wait_for_function("document.querySelector('#contextGrid')?.children.length > 0",timeout=10000)
+     # Same source must drive the hero summary and rendered glossary.
+     shown=int(page.locator('#statGlossary').inner_text().strip())
+     glossary_count=page.locator('#glossaryGrid .glossary-card').count()
+     assert shown==glossary_count and shown>0,(path,'glossary count drift',shown,glossary_count)
      assert page.locator('#searchOverlay').is_hidden(),(path,'search overlay visible on load')
      assert page.locator('#tocDrawer').is_hidden(),(path,'TOC drawer visible on load')
      assert page.locator('#heroStars').count()==0,(path,'old starfield survived')

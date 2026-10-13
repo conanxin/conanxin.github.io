@@ -130,9 +130,9 @@ jobs:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           python3 - <<'PY'
-          import json, os, re, time, urllib.request
+          import json, os, re, time, urllib.request, urllib.parse
           base=os.environ['SITE_URL'].rstrip('/')
-          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/']
+          paths=['/','/about.html','/posts/','/projects/','/podcast/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge/research/water-classic/yishui/article/','/site-map/','/site-guide/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/']
           result=[]
           for path in paths:
               error=None
@@ -213,6 +213,46 @@ jobs:
                                   assert scan['summary']['verified_citation_claim_semantics']==0
                                   assert len(scan['citation_rows'])==6
                                   assert scan['locator_hypothesis']['projection_is_forbidden']
+                          if path=='/projects/yarvin-moldbug-cn/':
+                              # This gate fetches the LIVE GitHub Pages output, not .site-build files.
+                              assert 'Curtis Yarvin 思想导读' in body and 'Conan Xin 数字花园' in body,'Yarvin public title missing'
+                              assert 'id="article"' in body and 'id="glossaryGrid"' in body,'Yarvin article or glossary missing'
+                              assert 'id="searchOverlay"' in body and 'id="tocDrawer"' in body,'Yarvin reader controls missing'
+                              assert 'data-reading-mode="annotated"' in body,'Yarvin reading defaults missing'
+                              css_match=re.search(r'href="([^"]*styles[.]css[?][^"]+)"',body)
+                              js_match=re.search(r'src="([^"]*app[.]js[?][^"]+)"',body)
+                              assert css_match and js_match,'Yarvin versioned CSS/JS links missing'
+                              for kind,relative in (
+                                  ('css',css_match.group(1)),
+                                  ('js',js_match.group(1)),
+                                  ('json','content/background.json'),
+                              ):
+                                  asset_url=urllib.parse.urljoin(base+path,relative)
+                                  separator='&' if '?' in asset_url else '?'
+                                  asset_request=urllib.request.Request(
+                                      asset_url+separator+'build='+os.environ['GITHUB_SHA'],
+                                      headers={'Cache-Control':'no-cache','User-Agent':'Conan-Xin-Yarvin-Public-Gate'})
+                                  with urllib.request.urlopen(asset_request,timeout=25) as asset_response:
+                                      assert asset_response.status==200,'Yarvin '+kind+' missing on public site'
+                                      asset_body=asset_response.read().decode('utf-8')
+                                      assert len(asset_body)>100,'Yarvin '+kind+' unexpectedly empty'
+                                  if kind=='css':
+                                      assert '.search-overlay[hidden]' in asset_body,'hidden search-overlay fix absent from public CSS'
+                                      assert 'body.site-unified .hero' in asset_body,'unified hero absent from public CSS'
+                                      assert 'var(--site-green)' in asset_body,'shared site token absent from public CSS'
+                                  elif kind=='js':
+                                      assert 'content/background.json' in asset_body,'data URL missing from public JS'
+                                      assert 'initSearch(corpus)' in asset_body,'search initialization missing from public JS'
+                                  else:
+                                      data=json.loads(asset_body)
+                                      assert data['project']=='yarvin-moldbug-cn','wrong public JSON project'
+                                      assert len(data['timeline'])>0 and len(data['reading_paths'])==4,'Yarvin data incomplete'
+                                      count_match=re.search(r'id="statGlossary">([0-9]+)</div>',body)
+                                      assert count_match,'public glossary count element missing'
+                                      shown=int(count_match.group(1))
+                                      prerendered=len(re.findall(r'class="glossary-card"',body))
+                                      assert shown==prerendered==len(data['glossary']),('glossary count drift',shown,prerendered,len(data['glossary']))
+                                  print(json.dumps({'public_asset':asset_url,'http':200,'kind':kind},ensure_ascii=False),flush=True)
                           assert 'data-site-identity="conan-xin-v1"' in body,'public identity not updated'
                           assert re.search(r'class="site-brand"[^>]*>Conan Xin',body),'public brand not updated'
                           assert 'mailto:conanxin@gmail.com' in body,'public contact missing'

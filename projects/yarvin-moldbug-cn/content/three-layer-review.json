@@ -42,7 +42,11 @@
     "human_approved_cases": 0,
     "full_zh_translation_paragraphs_verified": 0,
     "independent_historical_political_facts_verified": 0,
-    "translation_issues_needing_human_decision": 2
+    "translation_issues_needing_human_decision": 2,
+    "p7_preface_draft_paragraphs": 4,
+    "p7_editorial_decisions_pending": 4,
+    "p7_editorial_decisions_approved": 0,
+    "p7_preface_paragraphs_published_to_article": 0
   },
   "heading_map": [
     {
@@ -145,7 +149,9 @@
     "state": "PREFACE_MISSING_IN_CHINESE_ARTICLE",
     "scope": "西班牙语原作者导言包含数段介绍写作动机及其互联网模因研究；当前中文 article 在 meta 后直入第一章，尚未附这段导言。",
     "proposal": "保留现有译文正文，先单独建立中文译稿补遗草案与双语段落编号；人工核准后才补写。网站“不遗漏”或“全文翻译”字样需按完整性证据调整。",
-    "human_approval": "PENDING"
+    "human_approval": "PENDING",
+    "p7_draft_sidecar": "preface-draft-p7.json",
+    "p7_draft_prepared": true
   },
   "first_heading_gap": {
     "id": "YP6-GAP-HEADING01",
@@ -228,5 +234,6 @@
     "确认第一章标题及前言补译计划，不在 P6 未经批准修改冻结的九章正文。",
     "第七章“股份公司”译词需要人工裁定；第九章增加典故注释的措辞需人工确认。",
     "如以后取得 421.news 英文翻译版，应建立 ES→421.EN→ZH 的额外对照，不以原著 Yarvin.EN 替代 421.EN。"
-  ]
+  ],
+  "p7_sidecar": "preface-draft-p7.json"
 }

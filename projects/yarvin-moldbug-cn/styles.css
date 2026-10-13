@@ -1641,3 +1641,120 @@ body.site-unified .source-ledger__export a { color: var(--site-green); }
   body.site-unified .source-ledger__card h3 { font-size: 18px !important; }
   body.site-unified .source-ledger__method { padding: 12px 14px; }
 }
+
+/* P5: original short passages vs. published Chinese quotes.
+   Use canonical research-site tokens; comparison state is never "verified". */
+body.site-unified .passage-review__scope {
+  font: 14px/1.85 var(--site-sans);
+  color: var(--site-muted);
+  padding: 14px 18px;
+  background: var(--site-paper);
+  border-left: 2px solid var(--site-accent);
+  margin: 0 0 14px;
+}
+body.site-unified .passage-review__scope strong { color: var(--site-ink); }
+body.site-unified .passage-review__counts {
+  margin: 0 0 25px;
+  font: 12px/1.7 var(--site-sans);
+  color: var(--site-muted);
+}
+body.site-unified .passage-review__list { display: grid; gap: 32px; }
+body.site-unified .passage-review__card {
+  border-top: 1px solid var(--site-line);
+  padding-top: 22px;
+}
+body.site-unified .passage-review__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  color: var(--site-muted);
+  font: 11px/1.6 var(--site-sans);
+  letter-spacing: .025em;
+}
+body.site-unified .passage-review__status { color: var(--site-accent); }
+body.site-unified .passage-review__card h3 {
+  font-size: 21px !important;
+  margin: 7px 0 8px !important;
+}
+body.site-unified .passage-review__ref {
+  color: var(--site-muted);
+  font: 13px/1.8 var(--site-sans);
+  margin: 0 0 16px;
+  overflow-wrap: anywhere;
+}
+body.site-unified .passage-review__ref a { color: var(--site-green); }
+body.site-unified .passage-review__compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+body.site-unified .passage-review__compare > div {
+  min-width: 0;
+  background: var(--site-paper);
+  border: 1px solid var(--site-line);
+  padding: 15px;
+}
+body.site-unified .passage-review__compare h4 {
+  color: var(--site-muted) !important;
+  font: 600 12px/1.7 var(--site-sans) !important;
+  margin: 0 0 11px;
+}
+body.site-unified .passage-review__compare blockquote {
+  font: 15px/1.8 var(--site-serif);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  overflow-wrap: anywhere;
+}
+body.site-unified .passage-review__compare blockquote[lang="en"] {
+  font-family: Georgia, "Times New Roman", serif;
+}
+body.site-unified .passage-review__finding,
+body.site-unified .passage-review__difference {
+  font: 14px/1.85 var(--site-sans);
+  margin: 13px 0 0;
+  color: var(--site-ink);
+}
+body.site-unified .passage-review__difference { color: var(--site-muted); }
+body.site-unified .passage-review__details {
+  border-top: 1px dashed var(--site-line);
+  margin: 17px 0 0;
+  padding-top: 12px;
+  color: var(--site-muted);
+  font: 13px/1.9 var(--site-sans);
+}
+body.site-unified .passage-review__details summary {
+  cursor: pointer;
+  color: var(--site-green);
+  font-weight: 600;
+}
+body.site-unified .passage-review__details blockquote {
+  margin: 14px 0;
+  border-left: 2px solid var(--site-line);
+  padding: 8px 12px;
+  background: var(--site-paper);
+  color: var(--site-ink);
+  font: 14px/1.95 var(--site-serif);
+}
+body.site-unified .passage-review__export,
+body.site-unified .source-ledger__passage-link {
+  color: var(--site-muted);
+  font: 12px/1.8 var(--site-sans);
+  margin: 14px 0 0;
+}
+body.site-unified .passage-review__export a,
+body.site-unified .source-ledger__passage-link a {
+  color: var(--site-green);
+}
+@media (max-width: 600px) {
+  body.site-unified .passage-review__compare {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  body.site-unified .passage-review__compare > div { padding: 13px; }
+  body.site-unified .passage-review__scope { padding: 12px 14px; }
+  body.site-unified .passage-review__card { padding-top: 17px; }
+}

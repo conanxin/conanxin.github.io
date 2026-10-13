@@ -2003,3 +2003,6 @@ body.site-unified .preface-editorial__export {
   body.site-unified .preface-editorial__decision dl { grid-template-columns: minmax(0,1fr); gap: 2px; }
   body.site-unified .preface-editorial__decision dd { margin-bottom: 9px; }
 }
+
+/* P7 browser regression: leave explicit clearance beneath the Cathedral cards. */
+body.site-unified .cathedral-diagram__core { margin-top: 14px; }

@@ -317,6 +317,10 @@
 (function () {
   'use strict';
 
+  // The first IIFE's DATA_URL is lexical/private; declare this dependency
+  // here so background data, search and filters initialize correctly.
+  const DATA_URL = 'content/background.json';
+
   // ---------- Helpers ----------
   function escapeHtml(s) {
     return String(s)

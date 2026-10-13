@@ -32,7 +32,9 @@ class YarvinPassageAlignmentsTests(unittest.TestCase):
         self.assertEqual(audit["human_approved_pairs"], 0)
         self.assertEqual(audit["full_translation_paragraphs_verified"], 0)
         self.assertEqual(audit["political_historical_claims_verified"], 0)
-        self.assertFalse(audit["editorial_421_article_retrieved"])
+        self.assertTrue(audit["editorial_421_article_retrieved"])
+        self.assertFalse(audit["english_421_translation_retrieved"])
+        self.assertTrue(self.p5["editorial_reference"]["full_spanish_421_article_available"])
 
     def test_provenance_matches_p4_sources(self):
         sources = {s["id"]: s for s in self.p4["sources"]}

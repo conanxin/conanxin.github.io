@@ -216,6 +216,24 @@ try:
      assert ledger['audit']['translation_paragraphs_verified']==0
      assert ledger['audit']['historical_political_claims_independently_verified']==0
      assert page.locator('#sourceLedgerGrid .source-ledger__card').count()==9,(path,'missing no-JS provenance cards')
+     # P5: source-quote excerpts are AI-preliminary, never a finished translation/claim verification.
+     p5_res=page.request.get(base+path+'content/passage-alignments.json')
+     assert p5_res.status==200,(path,'P5 passage sidecar missing')
+     p5=p5_res.json()
+     assert p5['audit']['candidate_pairs']==3,(path,'P5 pair count')
+     assert p5['audit']['human_approved_pairs']==0,(path,'P5 human gate prematurely passed')
+     assert p5['audit']['full_translation_paragraphs_verified']==0
+     assert p5['audit']['political_historical_claims_verified']==0
+     assert [x['chapter'] for x in p5['pairs']]==[5,7,9],(path,'P5 chapter identities changed')
+     assert page.locator('#passageReviewList .passage-review__card').count()==3,(path,'P5 static cards missing')
+     assert page.locator('#passage-review-ch9 a[href*="/2008/05/ol5-shortest-way-to-world-peace/"]').count()==1
+     assert page.locator('#passage-review-ch7 a[href*="/2008/11/patchwork-positive-vision-part-1/"]').count()==1
+     first_pair=page.locator('#passage-review-ch5')
+     assert first_pair.locator('blockquote[lang="en"]').is_visible(),(path,'English quote unavailable')
+     assert first_pair.locator('blockquote[lang="zh-CN"]').is_visible(),(path,'Chinese quote unavailable')
+     first_pair.locator('details summary').click()
+     assert first_pair.locator('details').get_attribute('open') is not None,(path,'Chinese full quote not expandable')
+     first_pair.locator('details summary').click()
      assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==9
      page.locator('#ledgerState').select_option('PASSAGE_LOCATED')
      assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==3,(path,'passage-only filter incorrect')
@@ -307,6 +325,13 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
+     page.evaluate("""offset => {
+       document.documentElement.style.scrollBehavior='auto';
+       const section=document.getElementById('passage-review-section');
+       window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY - offset);
+     }""",95 if width==1440 else 18)
+     page.wait_for_timeout(90)
+     page.screenshot(path=str(out/f'yarvin-p5-passage-review-{width}.png'),full_page=False)
      page.evaluate("""offset => {
        document.documentElement.style.scrollBehavior='auto';
        const section=document.getElementById('source-ledger-section');

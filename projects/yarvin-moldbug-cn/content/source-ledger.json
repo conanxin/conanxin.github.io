@@ -23,7 +23,9 @@
     "chapters_topic_only": 4,
     "chapters_editorial_only": 2,
     "translation_paragraphs_verified": 0,
-    "historical_political_claims_independently_verified": 0
+    "historical_political_claims_independently_verified": 0,
+    "p5_ai_preliminary_clause_pairs": 3,
+    "p5_human_approved_pairs": 0
   },
   "sources": [
     {
@@ -208,7 +210,8 @@
           "label": "Red Pill 原文",
           "role": "段落已定位"
         }
-      ]
+      ],
+      "p5_review_id": "YP5-001"
     },
     {
       "chapter_no": 6,
@@ -247,7 +250,8 @@
           "label": "Profit Strategies",
           "role": "延伸上下文"
         }
-      ]
+      ],
+      "p5_review_id": "YP5-002"
     },
     {
       "chapter_no": 8,
@@ -291,7 +295,9 @@
           "label": "You can only lose the culture war",
           "role": "原文已找到"
         }
-      ]
+      ],
+      "p5_review_id": "YP5-003"
     }
-  ]
+  ],
+  "p5_passage_review_sidecar": "passage-alignments.json"
 }

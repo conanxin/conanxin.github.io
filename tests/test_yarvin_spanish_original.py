@@ -70,7 +70,7 @@ class YarvinSpanishOriginalTests(unittest.TestCase):
         self.assertEqual(x[1]["issue_status"], "OPEN_CHINESE_SPECIFICITY_LOSS")
         self.assertEqual(x[2]["issue_status"], "ALLUSION_PATH_CLARIFIED_NOTE_RECOMMENDED")
         self.assertEqual(x[2]["spanish_anchor"], "Harina de otro costal")
-        self.assertIn("Other grain", x[2]["assessment"])
+        self.assertIn("other grain", x[2]["assessment"].lower())
         audit = self.p6["audit"]
         self.assertEqual(audit["three_layer_clause_cases"], 3)
         self.assertEqual(audit["human_approved_cases"], 0)

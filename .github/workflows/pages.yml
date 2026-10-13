@@ -219,8 +219,8 @@ jobs:
                               assert 'id="article"' in body and 'id="glossaryGrid"' in body,'Yarvin article or glossary missing'
                               assert 'id="searchOverlay"' in body and 'id="tocDrawer"' in body,'Yarvin reader controls missing'
                               assert 'data-reading-mode="annotated"' in body,'Yarvin reading defaults missing'
-                              css_match=re.search(r'href="([^"]*styles\\.css\\?[^"]+)"',body)
-                              js_match=re.search(r'src="([^"]*app\\.js\\?[^"]+)"',body)
+                              css_match=re.search(r'href="([^"]*styles[.]css[?][^"]+)"',body)
+                              js_match=re.search(r'src="([^"]*app[.]js[?][^"]+)"',body)
                               assert css_match and js_match,'Yarvin versioned CSS/JS links missing'
                               for kind,relative in (
                                   ('css',css_match.group(1)),
@@ -247,7 +247,7 @@ jobs:
                                       data=json.loads(asset_body)
                                       assert data['project']=='yarvin-moldbug-cn','wrong public JSON project'
                                       assert len(data['timeline'])>0 and len(data['reading_paths'])==4,'Yarvin data incomplete'
-                                      count_match=re.search(r'id="statGlossary">(\\d+)</div>',body)
+                                      count_match=re.search(r'id="statGlossary">([0-9]+)</div>',body)
                                       assert count_match,'public glossary count element missing'
                                       shown=int(count_match.group(1))
                                       prerendered=len(re.findall(r'class="glossary-card"',body))

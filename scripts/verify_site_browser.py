@@ -307,7 +307,12 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
-     page.locator('#source-ledger-section').scroll_into_view_if_needed()
+     page.evaluate("""offset => {
+       document.documentElement.style.scrollBehavior='auto';
+       const section=document.getElementById('source-ledger-section');
+       window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY - offset);
+     }""",100 if width==1440 else 22)
+     page.wait_for_timeout(90)
      page.screenshot(path=str(out/f'yarvin-source-ledger-{width}.png'),full_page=False)
      page.locator('#cathedral-section').scroll_into_view_if_needed()
      page.screenshot(path=str(out/f'yarvin-diagram-{width}.png'),full_page=False)

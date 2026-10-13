@@ -224,6 +224,9 @@ try:
      assert p6['audit']['chinese_headings_mapped']==9,(path,'P6 9 title pairs missing')
      assert p6['audit']['three_layer_clause_cases']==3,(path,'P6 three quote paths missing')
      assert p6['audit']['human_approved_cases']==0,(path,'P6 human approval prematurely marked')
+     assert p6['audit']['p7_preface_draft_paragraphs']==4
+     assert p6['audit']['p7_editorial_decisions_approved']==0
+     assert p6['audit']['p7_preface_paragraphs_published_to_article']==0
      assert p6['audit']['full_zh_translation_paragraphs_verified']==0
      assert p6['audit']['spanish_preface_present']
      assert not p6['audit']['chinese_preface_present_in_article']
@@ -235,6 +238,27 @@ try:
      assert page.locator('#triLayerHeadings').get_attribute('open') is not None,(path,'P6 chapter crosswalk not expandable')
      assert page.locator('#triLayerHeadings tbody tr').count()==9,(path,'P6 all heading rows missing')
      page.locator('#triLayerHeadings summary').click()
+     # P7: candidate introduction and four decisions remain unapproved and outside the article.
+     p7_res=page.request.get(base+path+'content/preface-draft-p7.json')
+     assert p7_res.status==200,(path,'P7 draft sidecar missing')
+     p7=p7_res.json()
+     p7_audit=p7['audit']
+     assert p7_audit['source_intro_narrative_paragraphs']==4
+     assert p7_audit['source_repeated_pullquotes']==1
+     assert p7_audit['chinese_preface_draft_paragraphs']==4
+     assert p7_audit['draft_paragraphs_human_approved']==0
+     assert p7_audit['editorial_decisions_approved']==0
+     assert p7_audit['frozen_article_edits_applied']==0
+     assert page.locator('#prefaceDraftParagraphs .preface-editorial__paragraph').count()==4,(path,'P7 cards missing')
+     assert page.locator('#prefaceEditorialDecisions .preface-editorial__decision').count()==4,(path,'P7 decisions missing')
+     first_preface=page.locator('#p7-preface-1')
+     assert not first_preface.locator('.preface-editorial__zh-draft').is_visible(),(path,'P7 draft unexpectedly open')
+     first_preface.locator('summary').click()
+     assert first_preface.locator('.preface-editorial__zh-draft').is_visible(),(path,'P7 reviewer draft unavailable')
+     assert '五年' in first_preface.locator('.preface-editorial__zh-draft').inner_text()
+     assert not page.locator('#article').evaluate("(el)=>el.textContent.includes('这篇文章，我差不多拖了五年才动笔')"),(path,'P7 candidate silently published')
+     first_preface.locator('summary').click()
+     assert page.locator('#prefaceEditorialDecisions [data-approval="PENDING"]').count()==4
      assert page.locator('#sourceLedgerGrid .source-ledger__card').count()==9,(path,'missing no-JS provenance cards')
      # P5: source-quote excerpts are AI-preliminary, never a finished translation/claim verification.
      p5_res=page.request.get(base+path+'content/passage-alignments.json')
@@ -345,6 +369,13 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
+     page.evaluate("""offset => {
+       document.documentElement.style.scrollBehavior='auto';
+       const section=document.getElementById('preface-draft-section');
+       window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY - offset);
+     }""",90 if width==1440 else 16)
+     page.wait_for_timeout(95)
+     page.screenshot(path=str(out/f'yarvin-p7-preface-editorial-{width}.png'),full_page=False)
      page.evaluate("""offset => {
        document.documentElement.style.scrollBehavior='auto';
        const section=document.getElementById('tri-layer-section');

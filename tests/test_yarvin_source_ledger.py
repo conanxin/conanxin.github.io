@@ -22,19 +22,23 @@ class YarvinSourceLedgerTests(unittest.TestCase):
         self.assertEqual(len(self.ledger["sources"]), 10)
         self.assertEqual(self.ledger["audit"]["chapter_total"], 9)
         self.assertEqual(self.ledger["audit"]["source_total"], 10)
-        self.assertEqual(self.ledger["audit"]["located_source_pages"], 9)
+        self.assertEqual(self.ledger["audit"]["located_source_pages"], 10)
 
     def test_statuses_restrict_claims(self):
         states = [c["alignment_state"] for c in self.ledger["chapters"]]
         self.assertEqual(states.count("PASSAGE_LOCATED"), 3)
         self.assertEqual(states.count("TOPIC_ONLY"), 4)
         self.assertEqual(states.count("ORIGINAL_ONLY"), 2)
-        self.assertFalse(self.ledger["audit"]["original_editorial_fulltext_retrieved"])
+        self.assertTrue(self.ledger["audit"]["original_editorial_fulltext_retrieved"])
+        self.assertFalse(self.ledger["audit"]["english_421_version_retrieved"])
         self.assertEqual(self.ledger["audit"]["translation_paragraphs_verified"], 0)
         self.assertEqual(self.ledger["audit"]["historical_political_claims_independently_verified"], 0)
         self.assertTrue(all(c["claim_semantics"] == "NOT_EVALUATED" for c in self.ledger["chapters"]))
         editorial = next(s for s in self.ledger["sources"] if s["id"] == "S01")
-        self.assertEqual(editorial["access"], "URL_ONLY")
+        self.assertEqual(editorial["access"], "SOURCE_LOCATED")
+        self.assertEqual(editorial["language"], "es-AR")
+        self.assertIn("/es/curtis-yarvin-", editorial["url"])
+        self.assertIn("/en/curtis-yarvin-", editorial["english_421_version_url"])
         self.assertNotIn("CLAIM_VERIFIED", str(self.ledger))
 
     def test_chapter_and_source_references_resolve(self):

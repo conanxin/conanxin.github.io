@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="theme-color" content="#f8f7f4" />
   <meta name="description" content="Curtis Yarvin（Mencius Moldbug）思想体系中文导读：红丸、大教堂、Patchwork、新议事主义。来自 421.news 长文的完整中文翻译与背景资料。" />
-  <title>Curtis Yarvin 思想导读：人民从来不会正确 | Xin Conan 知识库</title>
-  <link rel="stylesheet" href="styles.css?v=20260625-v1" />
+  <title>Curtis Yarvin 思想导读：人民从来不会正确 | Conan Xin 数字花园</title>
+  <link rel="stylesheet" href="styles.css?v=20261013-unified" />
 </head>
 <body>
   <!-- 顶部阅读进度条 -->
@@ -14,8 +14,6 @@
 
   <!-- Hero 区 -->
   <header class="hero" id="hero">
-    <canvas class="hero__stars" id="heroStars" aria-hidden="true"></canvas>
-    <div class="hero__overlay"></div>
     <div class="hero__content">
       <p class="hero__eyebrow">421.news · 长文翻译 · 思想者坐标</p>
       <h1 class="hero__title">Curtis Yarvin</h1>
@@ -23,7 +21,7 @@
       <p class="hero__byline">
         原作：<a href="https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/" target="_blank" rel="noopener">Juan Ruocco 🧙‍♂️</a>
         · 2026 年 6 月 24 日
-        · 中文长文翻译：<a href="https://conanxin.github.io/" target="_blank" rel="noopener">Xin Conan</a>
+        · 中文长文翻译：<a href="https://conanxin.github.io/" target="_blank" rel="noopener">Conan Xin</a>
       </p>
       <div class="hero__stats" id="heroStats">
         <div class="stat-card">
@@ -66,13 +64,13 @@
       <button class="toolbar__btn" data-theme="ink" type="button">墨色</button>
     </div>
     <div class="toolbar__group toolbar__group--right">
-      <button class="toolbar__btn" id="btnSearch" type="button">🔍 搜索</button>
-      <button class="toolbar__btn" id="btnToc" type="button">≡ 目录</button>
+      <button class="toolbar__btn" id="btnSearch" type="button" aria-controls="searchOverlay" aria-expanded="false">🔍 搜索</button>
+      <button class="toolbar__btn" id="btnToc" type="button" aria-controls="tocDrawer" aria-expanded="false">≡ 目录</button>
     </div>
   </nav>
 
   <!-- 搜索浮层 -->
-  <div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="搜索译文与研究资料" hidden>
     <div class="search-overlay__panel">
       <input class="search-overlay__input" id="searchInput" type="search" placeholder="搜索译文、术语、时间线…" autocomplete="off" />
       <div class="search-overlay__results" id="searchResults"></div>
@@ -81,7 +79,7 @@
   </div>
 
   <!-- 移动端目录抽屉 -->
-  <aside class="toc-drawer" id="tocDrawer" aria-label="目录" hidden>
+  <aside class="toc-drawer" id="tocDrawer" role="dialog" aria-modal="true" aria-label="章节目录" hidden>
     <div class="toc-drawer__panel">
       <div class="toc-drawer__header">
         <span>目录</span>
@@ -470,6 +468,6 @@
 
   <button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部">↑</button>
 
-  <script src="app.js?v=20260625-v1" defer></script>
+  <script src="app.js?v=20261013-unified" defer></script>
 </body>
 </html>

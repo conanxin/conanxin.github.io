@@ -17,26 +17,33 @@
   "audit": {
     "chapter_total": 9,
     "source_total": 10,
-    "located_source_pages": 9,
-    "original_editorial_fulltext_retrieved": false,
+    "located_source_pages": 10,
+    "original_editorial_fulltext_retrieved": true,
     "chapters_with_passage_locator": 3,
     "chapters_topic_only": 4,
     "chapters_editorial_only": 2,
     "translation_paragraphs_verified": 0,
     "historical_political_claims_independently_verified": 0,
     "p5_ai_preliminary_clause_pairs": 3,
-    "p5_human_approved_pairs": 0
+    "p5_human_approved_pairs": 0,
+    "original_editorial_language": "es-AR",
+    "english_421_version_retrieved": false,
+    "p6_spanish_original_located": true,
+    "p6_three_layer_cases": 3,
+    "p6_human_approved_cases": 0
   },
   "sources": [
     {
       "id": "S01",
-      "title": "Curtis Yarvin: The People Are Never Right",
+      "title": "Curtis Yarvin: el pueblo nunca tiene razón",
       "author": "Juan Ruocco",
       "year": 2026,
-      "url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+      "url": "https://www.421.news/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/",
       "kind": "original_commentary",
-      "access": "URL_ONLY",
-      "note": "译文原资料记录的 URL；本阶段未成功取得该原文全文，不能宣称英中九章逐段对齐。"
+      "access": "SOURCE_LOCATED",
+      "note": "2026-10-13 P6 已取得 Juan Ruocco 2026-06-24 西班牙语原稿正文及九章结构。此前存档英文 URL 仍无法读取；尚未完成西班牙语全篇与中文逐段校勘。",
+      "english_421_version_url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+      "language": "es-AR"
     },
     {
       "id": "S02",
@@ -299,5 +306,6 @@
       "p5_review_id": "YP5-003"
     }
   ],
-  "p5_passage_review_sidecar": "passage-alignments.json"
+  "p5_passage_review_sidecar": "passage-alignments.json",
+  "p6_three_layer_sidecar": "three-layer-review.json"
 }

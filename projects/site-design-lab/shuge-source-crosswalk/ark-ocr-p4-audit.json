@@ -1,0 +1,209 @@
+{
+  "schema": "stage2g-p4-double-ark-and-two-page-ocr-check-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P4_CONTINUATION",
+  "checked_date": "2026-10-13",
+  "immutable_baselines": [
+    "projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json",
+    "projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json",
+    "projects/shuge-exhibition-v1.0/data/page_ocr.json (not known; never write to frozen SHUGE files)"
+  ],
+  "status_definitions": {
+    "VERIFIED": "Specified local database-record or explicit official-page field, not an inference of physical-copy identity.",
+    "UNVERIFIED": "Cannot determine whether two different Gallica ARKs are identical scans or copies; full OCR and claim support also remain open.",
+    "NOT_FOUND": "Only no rows matched this exact ARK in four explicitly named, read-only tables; not proof that BnF has no such item."
+  },
+  "ark_reconciliation": {
+    "bn_f_heritage_page": {
+      "url": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+      "ark": "btv1b52505781g",
+      "catalog_call_number_as_described": "Chinois 5563",
+      "status": "VERIFIED_FROM_BNF_PUBLISHED_ARTICLE_TEXT",
+      "edition_scope": "Institution's page describes a 1637 preface in Chinois 5563; not independent canvas mapping"
+    },
+    "shuge_local_database": {
+      "ark": "btv1b525104776",
+      "record_id": 17,
+      "source_id": 304,
+      "local_recorded_manifest_url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b525104776/manifest.json",
+      "stored_catalog_label": "BnF. Département des Manuscrits. Chinois 5563",
+      "manifest_page_count_as_recorded": 422,
+      "status": "VERIFIED_AS_LOCAL_DB_METADATA"
+    },
+    "local_sqlite_ark_counts": {
+      "status": "VERIFIED_FROM_READ_ONLY_SQLITE",
+      "count_query_scope": "Exact ark LIKE match against source URLs and manifest fields in four named tables. No book-wide or BnF completeness claim.",
+      "tables": [
+        "digital_objects",
+        "sources",
+        "source_normalizations",
+        "acquisitions"
+      ],
+      "rows": [
+        {
+          "ark": "btv1b525104776",
+          "counts": {
+            "digital_objects": 1,
+            "sources": 1,
+            "source_normalizations": 1,
+            "acquisitions": 419
+          }
+        },
+        {
+          "ark": "btv1b52505781g",
+          "counts": {
+            "digital_objects": 0,
+            "sources": 0,
+            "source_normalizations": 0,
+            "acquisitions": 0
+          }
+        }
+      ]
+    },
+    "public_api_attempts": {
+      "status": "HTTP_403_ACCESS_BLOCKED",
+      "access_method": "Authorized user's WSL Ubuntu-24.04 Python urllib; no credential bypass or alternate identity",
+      "urls_tested": [
+        "https://gallica.bnf.fr/iiif/ark:/12148/{ark}/manifest.json",
+        "https://gallica.bnf.fr/services/OAIRecord?ark={ark}",
+        "https://gallica.bnf.fr/services/Pagination?ark={ark}"
+      ],
+      "ark_ids": [
+        "btv1b525104776",
+        "btv1b52505781g"
+      ],
+      "attempt_count": 6,
+      "http_403_count": 6,
+      "manifest_json_bytes_obtained": 0,
+      "source": "https://api.bnf.fr/fr/api-document-de-gallica"
+    },
+    "evidence_gate": {
+      "same_physical_copy": "UNVERIFIED",
+      "same_digitization": "UNVERIFIED",
+      "canvas_index_equivalence": "UNVERIFIED",
+      "cannot_transfer_f274_across_arks": true,
+      "next_required": "Separate BnF OAI/manifest/canvas or dated institutional catalog crosswalk for both ARKs; no invented mapping."
+    }
+  },
+  "ocr_selected_pages": [
+    {
+      "page_object_id": 1178,
+      "citation_id": "SHUGE:p211203:1178",
+      "post_id": 211203,
+      "page_index": 220,
+      "local_archived_jpeg_sha256": "54c6556fb97c7ba838639ad87dce95c3aa7f2a896ecc49ebe5f4486f2be19d57",
+      "live_sqlite_ocr_row_id": 858,
+      "qa_status_at_query": "NOT_CHECKED",
+      "original_normalized_text": {
+        "status": "VERIFIED_FROM_READ_ONLY_SQLITE",
+        "value": "220\n福建情流销篷脏其红自光学崇安雨小河越逹于福\n千状下此亦未然其費似俊于席燃不可院\n通他道故此舟自常山开化遂安等小河起塘而止\n东浙西安和浙东自常山至塘八百里水人海不\n走或特童至于風篷刚小席如掌所不特也\n而不經也浪行力在稍后巨槽全枝两三人推前\n百里则人开河安穗路矣至長江上流风浪则淀世游\n镇汇一横渡侯風静淡词又渡青江浦进黄河浅水\n丈許绵索張带初马布帆者原因盛塘有潮急特易\n更無他涉舟制箸蓬如捲觀為上盖布為帆高可",
+        "sha256_recomputed": "840746110c90ab4f4f51312420d7290f5404323a54f94f4762194519d4bad8ca"
+      },
+      "selected_visual_glyphs": {
+        "status": "AI_ASSISTED_SELECTED_IMAGE_OBSERVATION",
+        "pairs": [
+          {
+            "image_reading": "鎮江",
+            "stored_ocr": "镇汇",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "Traditional/Simplified character variants are not counted as misreads; 江 became 汇.",
+            "location_hint": "rightmost vertical column, opening two characters"
+          },
+          {
+            "image_reading": "候風靜涉過",
+            "stored_ocr": "侯風静淡词",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "候→侯, 涉→淡, 過→词 in the OCR chunk; verify against the printed original before adopting as a citation.",
+            "location_hint": "rightmost vertical column, following 横渡"
+          },
+          {
+            "image_reading": "至錢塘",
+            "stored_ocr": "至塘",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "錢 omitted in OCR; line concerns navigation toward 钱塘.",
+            "location_hint": "middle vertical column near references to 常山"
+          },
+          {
+            "image_reading": "而不經也",
+            "stored_ocr": "而不經也",
+            "assessment": "SELECTED_GLYPHS_MATCH",
+            "detail": "Short visible phrase matches OCR; this is not full-page transcription.",
+            "location_hint": "right half"
+          }
+        ],
+        "whole_page_human_approval": "UNVERIFIED",
+        "character_level_full_review": "UNVERIFIED"
+      },
+      "source_question_relevance": "This is Tian Gong Kai Wu waterborne navigation text, not Shuijing Zhu original wording.",
+      "scope_note": "Page JPEG integrity verified by Stage2G-P2; this is only a selected glyph-level visual comparison. No original OCR replacement."
+    },
+    {
+      "page_object_id": 1320,
+      "citation_id": "SHUGE:p211203:1320",
+      "post_id": 211203,
+      "page_index": 362,
+      "local_archived_jpeg_sha256": "88a64d76300f8277dd6eb2371600617806d4d3d36d37c5aef49499f8bec1a048",
+      "live_sqlite_ocr_row_id": 1000,
+      "qa_status_at_query": "NOT_CHECKED",
+      "original_normalized_text": {
+        "status": "VERIFIED_FROM_READ_ONLY_SQLITE",
+        "value": "380\n聲而共呈五行熊非至神就能典于斯哉\n萬物或亚本姿或配合而色色成佛焉夫亦依坎附\n凡朱砂水銀銀朱原同一物所以具名者由精粗老嫩\n披墨得朱而天章焕文房寶珠玉何马至书工月象\n鐘思何所容也五章遥降朱墨而大號彰萬卷横\n静火紅而至黑孕其中水銀白而至紅呈其造化\n宗子同斯文千古之不也注玄尚白其功貌興京哉\n天工开物\n朱\n册青第十六卷\n卷下",
+        "sha256_recomputed": "6cea5673ad307bfe96d031420026a75bc7a9718a9d954916f13cee41950a8ee0"
+      },
+      "selected_visual_glyphs": {
+        "status": "AI_ASSISTED_SELECTED_IMAGE_OBSERVATION",
+        "pairs": [
+          {
+            "image_reading": "丹青第十六卷",
+            "stored_ocr": "册青第十六卷",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "卷章名 丹 OCR→册.",
+            "location_hint": "rightmost vertical column"
+          },
+          {
+            "image_reading": "離火紅而至黑",
+            "stored_ocr": "静火紅而至黑",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "離 OCR→静 at the beginning of the phrase.",
+            "location_hint": "third vertical column from right"
+          },
+          {
+            "image_reading": "宗子曰斯文千古之不墜也",
+            "stored_ocr": "宗子同斯文千古之不也",
+            "assessment": "SELECTED_GLYPH_MISMATCH",
+            "detail": "曰→同 and 墜 omitted; local selected text, not scholarly proof of the whole passage.",
+            "location_hint": "second vertical column from right"
+          },
+          {
+            "image_reading": "朱砂水銀銀朱原同一物",
+            "stored_ocr": "朱砂水銀銀朱原同一物",
+            "assessment": "SELECTED_GLYPHS_MATCH",
+            "detail": "Short passage corresponds to pigments/minerals, not brick production.",
+            "location_hint": "near left margin"
+          }
+        ],
+        "whole_page_human_approval": "UNVERIFIED",
+        "character_level_full_review": "UNVERIFIED"
+      },
+      "source_question_relevance": "This page concerns pigments/minerals and historical text of Tian Gong Kai Wu, not evidence for a brick/seed-grain technical claim.",
+      "scope_note": "Page JPEG integrity verified by Stage2G-P2; this is only a selected glyph-level visual comparison. No original OCR replacement."
+    }
+  ],
+  "summary": {
+    "db_catalog_source_batches": 2,
+    "gallica_arks_count": 2,
+    "locally_sampled_ark_acquisitions": 419,
+    "official_gallica_api_requests": 6,
+    "official_gallica_requests_http403": 6,
+    "verified_ark_equivalence": 0,
+    "selected_pages_new": 2,
+    "selected_ocr_phrase_pairs": 8,
+    "selected_ocr_phrase_mismatches": 6,
+    "fully_collated_ocr_pages": 0,
+    "scholarly_claims_verified": 0
+  },
+  "next_steps": [
+    "Obtain two official BnF bibliographic/IIIF records by authorized accessible institutional channel and determine exact volume/canvas relation.",
+    "Human collate entire pages 1178 and 1320 if scholarly use requires precise passages.",
+    "Maintain independent OCR observations and continue peer-review gate; do not overwrite original research."
+  ]
+}

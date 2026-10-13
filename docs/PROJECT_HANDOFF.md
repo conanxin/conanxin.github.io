@@ -1,6 +1,6 @@
 # Conan Xin 数字花园 — 项目交接入口
 
-> 更新：2026-10-12（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P4_CONTINUATION`  
+> 更新：2026-10-13（UTC+8） · 下一阶段：`TASK_ID=CONANXIN_SITE_DESIGN_STAGE2G_P5_CONTINUATION`  
 > 先核对 GitHub `main` 当前 SHA、PR 和 Pages Actions，不能把本交接文件中记录的历史 SHA 当作永远最新的主分支状态。
 
 ## 1. 项目目标与边界
@@ -150,10 +150,10 @@
 **范围**：只增加新研究 sidecar、审计文档与测试，并纠正旧交接中的时点措辞；冻结 SHUGE v0.7/v1.0 JSON、影像、原研究论断和 OCR 一律未动。
 
 
-## 13. Stage 2G-P4 · Gallica 双 ARK 与新选段 OCR 核对（独立 PR，尚未发布）
+## 13. Stage 2G-P4 · Gallica 双 ARK 与新选段 OCR 核对（已合并并完成生产验收）
 
 - **继续 Stage 2G-P3 后的实际证据目标**：原本保存的《天工开物》Gallica `btv1b525104776`，与 BnF 专题 `btv1b52505781g` 不得凭相同“Chinois 5563”标题合并。官方文献 [BnF《天工开物》专题](https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu) 仍可核，两个 ARK 的官方 IIIF manifest、OAIRecord、Pagination 经用户授权 WSL 访问六次均为 **HTTP 403**，没有取得可直接比对的两个对象。
 - **真实本地 SHUGE SQLite 的范围检查**：`digital_objects`／`sources`／`source_normalizations`／`acquisitions` 中，本地 ARK `btv1b525104776` 依次有 **1、1、1、419** 条，另 `btv1b52505781g` 在上述检查字段内依次有 **0、0、0、0** 条。只说明本地采集实际采用哪一个 ARK，不代表官方另一个不存在。
 - 另外从真实 `page_ocr` 只读提取两个完整 `normalized_text` 行（`page_object_id=1178/1320`），存入新增 [Stage 2G-P4 独立审计](./STAGE2G_P4_DUAL_ARK_OCR_AUDIT.md) 和 `projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json`，并记录 **8 组选段 AI 辅助视觉比对，其中 6 组疑似 OCR 错识**。已有原图 SHA 使用 Stage 2G-P2 已核结果，无图像或 OCR 源数据重写。
 - **未完成 Gate**：Gallica 双 ARK 官方画布与馆号一一关系 UNVERIFIED；两页全文 OCR 校勘 0/2，六条历史论断完整语义审核 0/6。
-- **当前状态**：本轮侧写和测试在独立分支中，未合并前不可称为已发布；工程 CI 和审核通过后才能入 `main`。不得将此处 AI 字形观察提升为经研究者正式校勘或原始馆藏版本鉴定。
+- **正式验收**：[PR #35](https://github.com/conanxin/conanxin.github.io/pull/35) 已合并，SHA `b517c613cbde9a6a829659d7a0d319ab43008dfe`；[Pages Run 38396870349](https://github.com/conanxin/conanxin.github.io/actions/runs/38396870349) Success：**99/99** 单元测试、**50/50** 浏览器检查、**19/19** 公网路径、0 JS 错误。[ark-ocr-p4-audit.json](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json) 已直接从公网读取。下一阶段 P5 仍要独立核实 BnF 两个 ARK 的馆藏/数字对象关系，扩展有定位证据的 OCR 人工校勘与逐条历史论断审核；不得将局部 AI 字形观察提升为正式学术校勘。

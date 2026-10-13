@@ -137,3 +137,8 @@ python3 scripts/stage2g_sqlite_probe.py /home/conanxin/shuge-research-db/data/sh
 ## 9. Stage 2G-P3 生产回执（2026-10-12）
 
 最新 [PR #26](https://github.com/conanxin/conanxin.github.io/pull/26) 与 [Pages Run 38209895849](https://github.com/conanxin/conanxin.github.io/actions/runs/38209895849) 已生产验收：**70/70 单元测试、48/48 浏览器检查、18/18 公网页面**。新选段审计记录《园冶》和《天工开物》两页的 4 处 OCR 错识以及 8 项研究查询与引文的初步主题匹配筛查（[机器证据](../projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json)）。正式历史命题与整册馆藏同一性仍 **UNVERIFIED**。下阶段请从 P4 的官方 Gallica 双 ARK 元数据与全文 OCR 复校推进，不再把 P2 时点的“原库未访问”作为现状。
+
+
+## 10. Stage 2G-P4 追加进度（2026-10-13）
+
+基于当日成功发布的 [PR #35](https://github.com/conanxin/conanxin.github.io/pull/35)（SHA `b517c613cbde9a6a829659d7a0d319ab43008dfe`）与 [Pages Run 38396870349](https://github.com/conanxin/conanxin.github.io/actions/runs/38396870349)，SHUGE 真实 SQLite 来源表证明本地《天工开物》图像批次采用 Gallica ARK `btv1b525104776`（419 条 acquisitions），BnF 专题链接另一个 `btv1b52505781g`；两份 ARK 是否为同一物理册/数字化对象仍未能通过官方 manifest 核实（6 次请求均 HTTP 403），**状态继续 UNVERIFIED**。另外两张原库 JPEG 选段中新增六组 AI 辅助 OCR 错识观察，已存入 [独立 sidecar](../projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json)，不改写原 OCR。整体研究仍距离“六条历史论断逐张原图、逐字可验证”有差距；下一步以 BnF 版本核验和 OCR 全文校勘为先。

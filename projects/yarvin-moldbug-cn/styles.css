@@ -1758,3 +1758,120 @@ body.site-unified .source-ledger__passage-link a {
   body.site-unified .passage-review__scope { padding: 12px 14px; }
   body.site-unified .passage-review__card { padding-top: 17px; }
 }
+
+/* P6 — Spanish author original / English primary / Chinese translation.
+   Current status: preliminary collation, not an approved translated corpus. */
+body.site-unified .tri-layer__intro {
+  padding: 14px 18px;
+  background: var(--site-paper);
+  border-left: 2px solid var(--site-green);
+  color: var(--site-muted);
+  font: 14px/1.85 var(--site-sans);
+  margin: 0 0 12px;
+}
+body.site-unified .tri-layer__intro strong { color: var(--site-ink); }
+body.site-unified .tri-layer a { color: var(--site-green); }
+body.site-unified .tri-layer__numbers {
+  color: var(--site-muted);
+  font: 12px/1.8 var(--site-sans);
+  margin: 0 0 18px;
+}
+body.site-unified .tri-layer__cases { display: grid; gap: 28px; }
+body.site-unified .tri-layer__case { border-top: 1px solid var(--site-line); padding: 20px 0 0; }
+body.site-unified .tri-layer__eyebrow {
+  color: var(--site-muted);
+  font: 11px/1.7 var(--site-sans);
+  letter-spacing: .02em;
+  margin: 0 0 6px;
+}
+body.site-unified .tri-layer__case h3 {
+  margin: 5px 0 16px !important;
+  font: 600 20px/1.5 var(--site-serif) !important;
+}
+body.site-unified .tri-layer__columns {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 8px;
+  min-width: 0;
+}
+body.site-unified .tri-layer__columns > div {
+  min-width: 0;
+  padding: 13px 12px;
+  background: var(--site-paper);
+  border: 1px solid var(--site-line);
+  overflow-wrap: anywhere;
+}
+body.site-unified .tri-layer__caption {
+  font: 600 11px/1.6 var(--site-sans);
+  color: var(--site-muted);
+  margin: 0 0 8px;
+}
+body.site-unified .tri-layer__excerpt {
+  font: 14px/1.75 var(--site-serif);
+  color: var(--site-ink);
+  margin: 0 0 12px;
+}
+body.site-unified .tri-layer__excerpt[lang="en"],
+body.site-unified .tri-layer__excerpt[lang="es"] {
+  font-family: Georgia, "Times New Roman", serif;
+}
+body.site-unified .tri-layer__columns a {
+  font: 12px/1.6 var(--site-sans);
+  text-decoration: underline;
+  text-decoration-color: var(--site-line);
+  text-underline-offset: 3px;
+}
+body.site-unified .tri-layer__finding,
+body.site-unified .tri-layer__next {
+  color: var(--site-ink);
+  font: 14px/1.85 var(--site-sans);
+  margin: 12px 0 0;
+}
+body.site-unified .tri-layer__next { color: var(--site-muted); }
+body.site-unified .tri-layer__headings,
+body.site-unified .tri-layer__gaps {
+  margin-top: 30px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--site-line);
+  font: 14px/1.8 var(--site-sans);
+  color: var(--site-ink);
+}
+body.site-unified .tri-layer__headings summary {
+  cursor: pointer;
+  color: var(--site-green);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+body.site-unified .tri-layer__table { overflow-x: auto; }
+body.site-unified .tri-layer__table table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background: var(--site-paper);
+  font: 13px/1.7 var(--site-sans);
+}
+body.site-unified .tri-layer__table th,
+body.site-unified .tri-layer__table td {
+  border-bottom: 1px solid var(--site-line);
+  text-align: left;
+  vertical-align: top;
+  padding: 9px;
+}
+body.site-unified .tri-layer__table th {
+  background: var(--site-bg);
+  font-weight: 600;
+}
+body.site-unified .tri-layer__table:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 2px; }
+body.site-unified .tri-layer__gaps h3 { margin: 0 0 14px !important; font-size: 19px !important; }
+body.site-unified .tri-layer__gaps p { margin: 0 0 12px; }
+body.site-unified .tri-layer__export {
+  color: var(--site-muted);
+  margin-top: 18px;
+  font: 12px/1.8 var(--site-sans);
+}
+@media (max-width: 720px) {
+  body.site-unified .tri-layer__columns { grid-template-columns: minmax(0,1fr); }
+  body.site-unified .tri-layer__columns > div { padding: 12px 14px; }
+  body.site-unified .tri-layer__intro { padding: 12px 14px; }
+  body.site-unified .tri-layer__case h3 { font-size: 18px !important; }
+}

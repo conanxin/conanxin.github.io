@@ -1475,3 +1475,56 @@ body.site-unified .floating-toc[hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
   body.site-unified .floating-toc { transition: none; }
 }
+
+/* P3 screenshot review: diagram labels and reading bibliography must not overlap. */
+body.site-unified .cathedral-diagram__arrows { display: none; }
+body.site-unified .cathedral-diagram__core {
+  position: static;
+  inset: auto;
+  grid-column: 1 / -1;
+  grid-row: 3;
+  width: min(100%, 420px);
+  justify-self: center;
+  transform: none;
+  margin: 0;
+  padding: 12px 19px;
+  border-radius: 4px;
+  text-align: center;
+  background: var(--site-green);
+  color: var(--site-paper);
+}
+body.site-unified .cathedral-diagram__core strong {
+  font: 600 16px/1.5 var(--site-serif);
+  color: var(--site-paper);
+}
+body.site-unified .cathedral-diagram__core span {
+  color: var(--site-paper);
+  opacity: .92;
+  font: 12px/1.6 var(--site-sans);
+}
+body.site-unified .source-block li {
+  padding-left: 1.25em;
+  margin-bottom: .68em;
+  line-height: 1.7;
+}
+body.site-unified .source-block li::before {
+  content: "•";
+  top: .12em;
+  left: .15em;
+  color: var(--site-muted);
+  font-size: 11px;
+}
+body.site-unified .source-block li a {
+  color: var(--site-green);
+  border-bottom: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--site-line);
+  text-underline-offset: 4px;
+}
+body.site-unified .source-block li em {
+  color: var(--site-ink);
+  font-family: var(--site-serif);
+}
+@media (max-width: 900px) {
+  body.site-unified .cathedral-diagram__core { grid-row: 4; }
+}

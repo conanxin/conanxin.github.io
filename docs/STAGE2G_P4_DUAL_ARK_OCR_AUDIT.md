@@ -67,3 +67,11 @@ Stage 2G-P2 已从真实 WSL SQLite 直接核验六个 Citation ID 的主键、�
 Stage 2G-P5 应从 BnF 可以授权查阅的不同官方记录渠道取得两个 ARK 的书目主键、原馆卷册/页序、数字图像首页或序页，优先确认 `104776` 与 `05781g` 的真实关系。若官方源暂仍无法访问，应继续对已存档的六张页图进行有坐标的 OCR 修订建议，并针对特定论断做狭义原文审核，而不是继续把自动 `SUPPORTED` 作为历史结论。
 
 **保护边界**：本阶段只新增旁路研究 JSON、审计文档及测试，保留既有 SHUGE `data/`、原始数据库、图像、OCR、引用与研究正文全部原样。
+
+
+## 四、正式部署回执与 Stage 2G-P5 起点
+
+- [PR #35](https://github.com/conanxin/conanxin.github.io/pull/35) 已合并，SHA `b517c613cbde9a6a829659d7a0d319ab43008dfe`。
+- [GitHub Pages Run 38396870349](https://github.com/conanxin/conanxin.github.io/actions/runs/38396870349) **Success**：99/99 Python 单元测试、50/50 Playwright 浏览器检查、19/19 公网路径、JavaScript 错误 0。
+- 正式公开的 [机器审计 JSON](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json) 已通过授权设备读取并核对：两个 ARK 未核同本、6/6 BnF 接口 HTTP 403、本地来源记录 `1/1/1/419` 对比 `0/0/0/0`、两页 8 组选段其中 6 组疑似错字、全文 OCR 与论文语义均保持 UNVERIFIED。
+- **下一步 Stage 2G-P5**：争取 BnF 两份 ARK 的独立官方书目 ID/manifest/canvas 与图像样本；如仍有访问限制，集中处理已存档影像的逐列带位置文本校勘，确保每条学术论断能够回溯到经过验证的原文，而不是自动 `SUPPORTED` 标签。不得覆盖冻结 SHUGE 原库和历史侧写。

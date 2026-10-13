@@ -5,9 +5,11 @@
   "as_of": "2026-10-13",
   "editorial_reference": {
     "id": "S01",
-    "url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+    "url": "https://www.421.news/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/",
     "full_english_421_article_available": false,
-    "note": "421.news 原导读未成功读取：不能确认导读引用的原文与 Yarvin 原著或现有中文译文完全一致。"
+    "note": "P6 已找到、读取作者于 2026-06-24 发表的西班牙语原稿；未取得 421.news 英语翻译版，也尚未完成九章逐段校勘。",
+    "english_421_url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+    "full_spanish_421_article_available": true
   },
   "method": "将本站现存中文引文逐字取自冻结 HTML 的指定章节 blockquote，与三处 Yarvin 原著网页中所见的英文定位短句做人工辅助/AI 初核。只对比摘录范围，保留原文定位与具体疑点；不得上升为完整译文核验或历史论断认证。",
   "state_definitions": {
@@ -21,9 +23,13 @@
     "ai_preliminary_clause_comparisons": 3,
     "human_approved_pairs": 0,
     "full_translation_paragraphs_verified": 0,
-    "editorial_421_article_retrieved": false,
+    "editorial_421_article_retrieved": true,
     "political_historical_claims_verified": 0,
-    "open_translation_issues": 3
+    "open_translation_issues": 3,
+    "editorial_original_language": "es-AR",
+    "english_421_translation_retrieved": false,
+    "p6_three_layer_clause_comparisons": 3,
+    "p6_human_approved_cases": 0
   },
   "pairs": [
     {
@@ -57,7 +63,8 @@
       "comparison_status": "AI_PRELIMINARY_REVIEW",
       "human_approval": "PENDING",
       "verified_translation": false,
-      "historical_claim_verified": false
+      "historical_claim_verified": false,
+      "p6_review_id": "YP6-001"
     },
     {
       "id": "YP5-002",
@@ -90,7 +97,8 @@
       "comparison_status": "AI_PRELIMINARY_REVIEW",
       "human_approval": "PENDING",
       "verified_translation": false,
-      "historical_claim_verified": false
+      "historical_claim_verified": false,
+      "p6_review_id": "YP6-002"
     },
     {
       "id": "YP5-003",
@@ -125,7 +133,9 @@
       "comparison_status": "AI_PRELIMINARY_REVIEW",
       "human_approval": "PENDING",
       "verified_translation": false,
-      "historical_claim_verified": false
+      "historical_claim_verified": false,
+      "p6_review_id": "YP6-003"
     }
-  ]
+  ],
+  "p6_review_sidecar": "three-layer-review.json"
 }

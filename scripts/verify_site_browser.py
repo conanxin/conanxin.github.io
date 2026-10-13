@@ -218,7 +218,7 @@ try:
      assert page.locator('.reader-transition').count()==1,(path,'translation-to-research boundary missing')
      assert page.locator('.diagram-caption').count()>=3,(path,'diagram caveats missing')
      chapter_counter=page.locator('.article > h2.article-h2').first.evaluate("(el)=>getComputedStyle(el,'::before').content")
-     assert 'CHAPTER 01' in chapter_counter,(path,'chapter hierarchy missing',chapter_counter)
+     assert 'CHAPTER ' in chapter_counter and 'counter(yarvin-chapter' in chapter_counter,(path,'chapter hierarchy missing',chapter_counter)
      assert page.locator('.compare-table[tabindex="0"]').count()==1,(path,'comparison horizontal reading region missing')
      assert page.locator('.article-figure:has(img[src=""])').first.is_hidden(),(path,'empty image placeholder showing')
      page.locator('#btnSearch').click()

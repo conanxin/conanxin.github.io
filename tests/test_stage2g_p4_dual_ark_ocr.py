@@ -96,7 +96,7 @@ class P4ARKAndOCRAuditTests(unittest.TestCase):
         for term in ("btv1b52505781g", "btv1b525104776", "419", "HTTP 403",
                      "鎮江", "丹青第十六卷", "UNVERIFIED", "六组", "OCR"):
             self.assertIn(term, doc)
-        self.assertIn("source", self.audit["immutable_baselines"][1])
+        self.assertIn("projects/shuge-exhibition-v1.0/data/", self.audit["immutable_baselines"][1])
 
 
 if __name__ == "__main__":

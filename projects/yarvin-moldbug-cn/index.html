@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f7f4" />
   <meta name="description" content="Curtis Yarvin（Mencius Moldbug）思想体系中文导读：红丸、大教堂、Patchwork、新议事主义。来自 421.news 长文的完整中文翻译与背景资料。" />
   <title>Curtis Yarvin 思想导读：人民从来不会正确 | Conan Xin 数字花园</title>
-  <link rel="stylesheet" href="styles.css?v=20261013-unified" />
+  <link rel="stylesheet" href="styles.css?v=20261013-p3" />
 </head>
 <body>
   <!-- 顶部阅读进度条 -->
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="hero__cta">
-        <a href="#sec-1" class="btn btn--primary">开始阅读</a>
+        <a href="#mencius-moldbug" class="btn btn--primary">开始阅读</a>
         <a href="#context-section" class="btn btn--ghost">背景资料</a>
         <a href="#glossary-section" class="btn btn--ghost">术语表</a>
       </div>
@@ -73,7 +73,7 @@
   <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="搜索译文与研究资料" hidden>
     <div class="search-overlay__panel">
       <input class="search-overlay__input" id="searchInput" type="search" placeholder="搜索译文、术语、时间线…" autocomplete="off" />
-      <div class="search-overlay__results" id="searchResults"></div>
+      <div class="search-overlay__results" id="searchResults" role="region" aria-live="polite" aria-label="搜索匹配结果"></div>
       <p class="search-overlay__hint">按 <kbd>Esc</kbd> 关闭 · <kbd>↑</kbd>/<kbd>↓</kbd> 导航 · <kbd>Enter</kbd> 跳转</p>
     </div>
   </div>
@@ -83,7 +83,7 @@
     <div class="toc-drawer__panel">
       <div class="toc-drawer__header">
         <span>目录</span>
-        <button class="toc-drawer__close" id="btnTocClose" type="button">×</button>
+        <button class="toc-drawer__close" id="btnTocClose" type="button" aria-label="关闭章节目录">×</button>
       </div>
       <ul class="toc-list" id="tocListDrawer"></ul>
     </div>
@@ -210,6 +210,18 @@
 <p>一切，都是 <em>从头到尾</em> 由一个胖子 <em>说</em> 出来的。</p>
       </article>
 
+      <!-- Editorial bridge: explicitly separate translated article from our reading aids. -->
+      <section class="reader-transition" aria-label="译文与延伸阅读的分界">
+        <p class="reader-transition__label">译文正文结束 · 以下为辅助阅读资料</p>
+        <p>以下背景、概念图解与术语表用于理解原文的思想脉络；政治模型与制度判断属于文中讨论的观点，并不等于经过独立核实的现实描述。</p>
+        <nav class="reader-transition__nav" aria-label="延伸资料入口">
+          <a href="#context-section">背景资料</a>
+          <a href="#cathedral-section">概念图解</a>
+          <a href="#glossary-section">术语表</a>
+          <a href="#sources-section">参考资料</a>
+        </nav>
+      </section>
+
       <!-- 上下文背景区 -->
       <section class="module" id="context-section" aria-label="背景资料">
         <header class="module__head">
@@ -266,6 +278,7 @@
             <span>无中央控制者的去中心化神权</span>
           </div>
         </div>
+        <p class="diagram-caption">图示为 Yarvin 所提出「大教堂」概念的整理示意，并非对现实机构之间存在统一控制关系的实证判断。</p>
         <p class="module__note">大教堂不是阴谋 — 它是一种激励结构。每一个参与者（学者、记者、演员）都在为自己谋生，但他们合力产出的是一种自我强化的"进步"共识。任何偏离这种共识的人，都会被这个系统性地排除在外。</p>
       </section>
 
@@ -275,7 +288,7 @@
           <h2>新议事主义（Neocameralism）</h2>
           <p>Yarvin 提出的"国家即公司"政体模型</p>
         </header>
-        <div class="compare-table">
+        <div class="compare-table" role="region" aria-label="两种制度模型对照表，可横向滚动" tabindex="0">
           <table>
             <thead>
               <tr>
@@ -318,6 +331,7 @@
             </tbody>
           </table>
         </div>
+        <p class="diagram-caption">表格归纳 Yarvin 的概念性制度对比；不同民主国家的实际制度安排并不完全相同。</p>
       </section>
 
       <!-- Patchwork 全球秩序 -->
@@ -326,7 +340,8 @@
           <h2>Patchwork：千国之网</h2>
           <p>Yarvin 想要的全球秩序 — 大国拆成城市国家，市场化竞争治理质量</p>
         </header>
-        <div class="patchwork-viz" id="patchworkViz"></div>
+        <div class="patchwork-viz" id="patchworkViz" role="img" aria-label="Patchwork 概念格网：象征分散的微型政治单元，不代表真实地理地图"></div>
+        <p class="diagram-caption">格网是概念示意：位置、数量和面积不是现实中的行政区划或地理数据。</p>
         <p class="module__note">"好政府" 的标准：房价昂贵而治安良好（Yarvin 的核心论点）。如果某个微型国家治理糟糕，资本和居民会流向别处。Patchwork 在理念上接近 David Friedman 的《Legal Systems Very Different from Ours》与 James Scott 的《Seeing Like a State》的反面。</p>
       </section>
 
@@ -466,8 +481,9 @@
     </main>
   </div>
 
+  <button class="floating-toc" id="floatingToc" type="button" aria-label="打开章节目录" aria-controls="tocDrawer" aria-expanded="false" hidden>≡ 目录</button>
   <button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部">↑</button>
 
-  <script src="app.js?v=20261013-unified" defer></script>
+  <script src="app.js?v=20261013-p3" defer></script>
 </body>
 </html>

@@ -181,10 +181,12 @@
 
     function open() {
       drawer.hidden = false;
+      btnOpen.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
     function close() {
       drawer.hidden = true;
+      btnOpen.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
     btnOpen.addEventListener('click', open);
@@ -223,11 +225,13 @@
 
     function open() {
       overlay.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       setTimeout(() => input.focus(), 30);
     }
     function close() {
       overlay.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       input.value = '';
       results.innerHTML = '';
@@ -312,6 +316,10 @@
    ==================================================================== */
 (function () {
   'use strict';
+
+  // The first IIFE's DATA_URL is lexical/private; declare this dependency
+  // here so background data, search and filters initialize correctly.
+  const DATA_URL = 'content/background.json';
 
   // ---------- Helpers ----------
   function escapeHtml(s) {

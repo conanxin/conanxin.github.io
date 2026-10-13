@@ -8,7 +8,7 @@ out=Path(os.environ.get('RUNNER_TEMP',tempfile.gettempdir()))/'site-ui-check'
 out.mkdir(parents=True,exist_ok=True)
 server=subprocess.Popen([sys.executable,'-m','http.server','8765','--directory',str(root)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 base='http://127.0.0.1:8765'
-paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/']
+paths=['/','/posts/','/projects/','/podcast/','/about.html','/projects/shuge/','/projects/shuge-exhibition-v1.0/','/projects/shuge-exhibition-v1.0/rooms/room2/','/projects/shuge-exhibition-v1.0/cases/case2/','/projects/shuge/research/water-classic/yishui/article/','/posts/chinese-ai-silicon-valley-power.html','/research-terminal/','/site-map/','/site-guide/','/podcast/education-broligarchy/','/projects/wbw-spacex-mars-cn/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/']
 results=[]
 try:
  time.sleep(.6)
@@ -37,7 +37,7 @@ try:
     assert metrics['text']>100,(path,'empty content')
     assert 'hello@xin-conan.me' not in page.locator('body').inner_text(),(path,'old contact')
     assert page.locator('.site-footer a[href="mailto:conanxin@gmail.com"]').count()==1,(path,'footer contact')
-    if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/'):
+    if path in ('/','/projects/','/posts/','/about.html','/site-map/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):
      if metrics['scroll']>width+5:
       offenders=page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
        .map(el=>({el,rect:el.getBoundingClientRect()}))
@@ -200,6 +200,40 @@ try:
      assert ledger['summary']['candidate_citation_ids']==6
      assert ledger['locator_hypothesis']['projection_is_forbidden']
      interaction='official viewer locators -> numeric offset hypothesis -> scan mapping remains unverified'
+    if path=='/projects/yarvin-moldbug-cn/':
+     # Content and interactive controls must coexist with the shared paper theme.
+     page.wait_for_function("document.querySelector('#contextGrid')?.children.length > 0",timeout=10000)
+     assert page.locator('#searchOverlay').is_hidden(),(path,'search overlay visible on load')
+     assert page.locator('#tocDrawer').is_hidden(),(path,'TOC drawer visible on load')
+     assert page.locator('#heroStars').count()==0,(path,'old starfield survived')
+     assert page.locator('.article .article-h2').count()>=9,(path,'article chapters missing')
+     assert metrics['bg']=='rgb(248, 247, 244)',(path,'warm site background missing',metrics['bg'])
+     assert page.locator('.hero').is_visible(),(path,'hero not rendered')
+     assert page.locator('.hero').evaluate("(el)=>el.getBoundingClientRect().height")<650,(path,'hero consumes full viewport')
+     page.locator('#btnSearch').click()
+     assert page.locator('#searchOverlay').is_visible(),(path,'search did not open',page.evaluate("""() => ({
+       aria:document.getElementById('btnSearch').getAttribute('aria-expanded'),
+       overlayHidden:document.getElementById('searchOverlay').hidden,
+       display:getComputedStyle(document.getElementById('searchOverlay')).display,
+       context:document.getElementById('contextGrid').textContent.slice(0,180),
+       appInitialized:!!window.__yarvinApp, searchButtonListeners:'see aria expansion',
+       src:document.querySelector('script[src*="app.js"]')?.src
+     })"""),errors)
+     assert page.locator('#btnSearch').get_attribute('aria-expanded')=='true'
+     page.keyboard.press('Escape')
+     assert page.locator('#searchOverlay').is_hidden(),(path,'search did not close')
+     assert page.locator('#btnSearch').get_attribute('aria-expanded')=='false'
+     page.locator('#btnToc').click()
+     assert page.locator('#tocDrawer').is_visible(),(path,'TOC did not open')
+     page.locator('#btnTocClose').click()
+     assert page.locator('#tocDrawer').is_hidden(),(path,'TOC did not close')
+     page.locator('button.toolbar__btn[data-reading-mode="compact"]').click()
+     assert page.evaluate("document.documentElement.dataset.readingMode")=='compact',(path,'reading mode broken')
+     page.locator('button.toolbar__btn[data-theme="patchwork"]').click()
+     assert page.evaluate("document.documentElement.dataset.theme")=='patchwork',(path,'theme control broken')
+     page.locator('button.toolbar__btn[data-theme="cathedral"]').click()
+     page.locator('button.toolbar__btn[data-reading-mode="annotated"]').click()
+     interaction='paper theme -> hidden overlays -> search + TOC -> compact mode + theme toggles'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None
@@ -214,7 +248,7 @@ try:
     if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/'):
      page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
      page.wait_for_timeout(100)
-    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/'):
+    if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
     results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors})
     page.close()

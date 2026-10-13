@@ -1528,3 +1528,116 @@ body.site-unified .source-block li em {
 @media (max-width: 900px) {
   body.site-unified .cathedral-diagram__core { grid-row: 4; }
 }
+
+/* P4 provenance reader — canonical Conan Xin editorial tokens. */
+body.site-unified .source-ledger__method,
+body.site-unified .source-ledger__original {
+  color: var(--site-muted);
+  font: 14px/1.85 var(--site-sans);
+  margin: 0 0 16px;
+}
+body.site-unified .source-ledger__method {
+  background: var(--site-paper);
+  border-left: 2px solid var(--site-green);
+  padding: 14px 18px;
+}
+body.site-unified .source-ledger__method strong { color: var(--site-ink); }
+body.site-unified .source-ledger__original a { color: var(--site-green); }
+body.site-unified .source-ledger__toolbar {
+  display: grid;
+  grid-template-columns: minmax(160px, 230px) minmax(220px, 1fr);
+  gap: 12px 18px;
+  margin: 24px 0 10px;
+}
+body.site-unified .source-ledger__toolbar label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--site-muted);
+  font: 12px/1.5 var(--site-sans);
+}
+body.site-unified .source-ledger__toolbar select,
+body.site-unified .source-ledger__toolbar input {
+  width: 100%;
+  max-width: 100%;
+  background: var(--site-paper);
+  border: 1px solid var(--site-line);
+  border-radius: 4px;
+  color: var(--site-ink);
+  font: 14px/1.6 var(--site-sans);
+  padding: 10px 12px;
+}
+body.site-unified .source-ledger__count {
+  color: var(--site-muted);
+  margin: 0 0 14px;
+  font: 12px/1.7 var(--site-sans);
+}
+body.site-unified .source-ledger__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+body.site-unified .source-ledger__card {
+  border-top: 1px solid var(--site-line);
+  padding: 19px 4px 21px;
+  min-width: 0;
+}
+body.site-unified .source-ledger__card[hidden] { display: none !important; }
+body.site-unified .source-ledger__card:last-child { border-bottom: 1px solid var(--site-line); }
+body.site-unified .source-ledger__card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 3px 16px;
+}
+body.site-unified .source-ledger__number,
+body.site-unified .source-ledger__state {
+  margin: 0 0 7px;
+  color: var(--site-muted);
+  font: 11px/1.65 var(--site-sans);
+  letter-spacing: .02em;
+}
+body.site-unified .source-ledger__state { letter-spacing: 0; }
+body.site-unified .source-ledger__card h3 {
+  margin: 2px 0 9px !important;
+  font-size: 20px !important;
+  line-height: 1.5;
+}
+body.site-unified .source-ledger__card h3 a {
+  color: var(--site-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--site-line);
+}
+body.site-unified .source-ledger__card h3 a:hover { color: var(--site-green); }
+body.site-unified .source-ledger__note,
+body.site-unified .source-ledger__empty {
+  margin: 0;
+  color: var(--site-muted);
+  font: 14px/1.85 var(--site-sans);
+}
+body.site-unified .source-ledger__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  margin-top: 10px;
+}
+body.site-unified .source-ledger__source-link {
+  font: 12px/1.8 var(--site-sans);
+  color: var(--site-green);
+  text-decoration: underline;
+  text-decoration-color: var(--site-line);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+body.site-unified .source-ledger__export {
+  margin: 17px 0 0;
+  color: var(--site-muted);
+  font: 12px/1.8 var(--site-sans);
+}
+body.site-unified .source-ledger__export a { color: var(--site-green); }
+@media (max-width: 600px) {
+  body.site-unified .source-ledger__toolbar { grid-template-columns: minmax(0, 1fr); }
+  body.site-unified .source-ledger__card { padding: 16px 0 17px; }
+  body.site-unified .source-ledger__card h3 { font-size: 18px !important; }
+  body.site-unified .source-ledger__method { padding: 12px 14px; }
+}

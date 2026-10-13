@@ -495,13 +495,13 @@
         const t = escapeHtml(item).replace(/\*([^*]+)\*/g, '<em>$1</em>');
         // Auto-link Yarvin texts
         if (item.includes('Patchwork')) {
-          return '<li><a href="https://www.unqualified-reservations.org/2008/09/patchwork-a-positive-vision/" target="_blank" rel="noopener">Patchwork: A Positive Vision</a></li>';
+          return '<li><a href="https://www.unqualified-reservations.org/2008/11/patchwork-positive-vision-part-1/" target="_blank" rel="noopener">Patchwork: A Positive Vision</a></li>';
         }
         if (item.includes('A Gentle Introduction')) {
-          return '<li><a href="https://www.unqualified-reservations.org/2009/01/a-gentle-introduction-to-unqualified/" target="_blank" rel="noopener">A Gentle Introduction to Unqualified Reservations</a></li>';
+          return '<li><a href="https://www.unqualified-reservations.org/2009/01/gentle-introduction-to-unqualified/" target="_blank" rel="noopener">A Gentle Introduction to Unqualified Reservations</a></li>';
         }
         if (item.includes('Open Letter')) {
-          return '<li><a href="https://www.unqualified-reservations.org/2008/04/open-letter-to-open-minded-prog/" target="_blank" rel="noopener">An Open Letter to Open-Minded Progressives</a></li>';
+          return '<li><a href="https://www.unqualified-reservations.org/2008/04/open-letter-to-open-minded-progressives/" target="_blank" rel="noopener">An Open Letter to Open-Minded Progressives</a></li>';
         }
         if (item.includes('Gray Mirror Substack')) {
           return '<li><a href="https://graymirror.substack.com" target="_blank" rel="noopener">Gray Mirror Substack</a></li>';

@@ -3,9 +3,10 @@
   "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P4_CONTINUATION",
   "checked_date": "2026-10-13",
   "immutable_baselines": [
-    "projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json",
-    "projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json",
-    "projects/shuge-exhibition-v1.0/data/page_ocr.json (not known; never write to frozen SHUGE files)"
+    "WSL /home/conanxin/shuge-research-db/data/shuge.db (read-only)",
+    "projects/shuge-exhibition-v1.0/data/* (frozen original research)",
+    "projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json (P2 historical sidecar)",
+    "projects/site-design-lab/shuge-source-crosswalk/ocr-semantic-spotcheck.json (P3 historical sidecar)"
   ],
   "status_definitions": {
     "VERIFIED": "Specified local database-record or explicit official-page field, not an inference of physical-copy identity.",

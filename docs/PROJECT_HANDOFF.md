@@ -157,3 +157,13 @@
 - 另外从真实 `page_ocr` 只读提取两个完整 `normalized_text` 行（`page_object_id=1178/1320`），存入新增 [Stage 2G-P4 独立审计](./STAGE2G_P4_DUAL_ARK_OCR_AUDIT.md) 和 `projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json`，并记录 **8 组选段 AI 辅助视觉比对，其中 6 组疑似 OCR 错识**。已有原图 SHA 使用 Stage 2G-P2 已核结果，无图像或 OCR 源数据重写。
 - **未完成 Gate**：Gallica 双 ARK 官方画布与馆号一一关系 UNVERIFIED；两页全文 OCR 校勘 0/2，六条历史论断完整语义审核 0/6。
 - **正式验收**：[PR #35](https://github.com/conanxin/conanxin.github.io/pull/35) 已合并，SHA `b517c613cbde9a6a829659d7a0d319ab43008dfe`；[Pages Run 38396870349](https://github.com/conanxin/conanxin.github.io/actions/runs/38396870349) Success：**99/99** 单元测试、**50/50** 浏览器检查、**19/19** 公网路径、0 JS 错误。[ark-ocr-p4-audit.json](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json) 已直接从公网读取。下一阶段 P5 仍要独立核实 BnF 两个 ARK 的馆藏/数字对象关系，扩展有定位证据的 OCR 人工校勘与逐条历史论断审核；不得将局部 AI 字形观察提升为正式学术校勘。
+
+
+## 14. Stage 2G-P5A · 竖排古籍 OCR 锚点顺序独立检查（独立分支，待 PR 验收）
+
+- 当前 Stage 2G-P4 [PR #35](https://github.com/conanxin/conanxin.github.io/pull/35) 已正式部署，P5A 是后续**新增的有限研究子阶段**，不能提前称 Stage 2G-P5 整体完成。
+- 新的 [P5A 阅读顺序审计](./STAGE2G_P5A_OCR_READING_ORDER.md) 与 `projects/site-design-lab/shuge-source-crosswalk/reading-order-p5a-audit.json`：真实 P2 SQLite 导出的 `p211203:1338` 第 380 页 OCR 摘录，取三个明确锚点，与固定版本维基文库《丹曲》对照，发现顺序**恰好完全倒置**。真实 OCR 摘录偏移为 `汁三升` 10、`初一蒸半生即止` 75、`世間魚肉` 135；对照文本顺序相反。
+- 新增只读、无第三方依赖的 `scripts/stage2g_p5_anchor_order.py` 与 `tests/test_stage2g_p5_anchor_order.py`，检查原始摘录中三个关键词各仅出现一次、偏移和序列可复算、原始图像哈希/数据库 ID 保持一致、文学版本身份 Gate 不误升格。
+- **研究定性**：3 个文字锚点的次序反转为 `REVERSED_ANCHOR_ORDER_OBSERVED`；“整页从左向右读取竖列”仍是**待图像坐标复核的假说**，官方双 ARK 同本关系、全文 OCR 和 6 条历史论断学术审核仍全部 `UNVERIFIED`。
+- 本次没有重新下载或查看原始图片、未读取真实 WSL SQLite；授权远程桌面离线。维基文库是独立文本参照而非 BnF 的确切同版扫描，不能转用来认证 `btv1b525104776` 与 `btv1b52505781g`。
+- **未合并**：本节在独立分支 `research/stage2g-p5a-ocr-reading-order` 供审核，只有 PR 检查及合并后才能把 P5A 认定为正式交付。原 SHUGE data/、OCR、图片、引文和研究正文全部冻结。

@@ -207,6 +207,27 @@ try:
      shown=int(page.locator('#statGlossary').inner_text().strip())
      glossary_count=page.locator('#glossaryGrid .glossary-card').count()
      assert shown==glossary_count and shown>0,(path,'glossary count drift',shown,glossary_count)
+     # P4: a source page/anchor is not equivalent to a verified translation or claim.
+     ledger_res=page.request.get(base+path+'content/source-ledger.json')
+     assert ledger_res.status==200,(path,'source ledger JSON not served')
+     ledger=ledger_res.json()
+     assert ledger['audit']['chapter_total']==9
+     assert ledger['audit']['located_source_pages']==9
+     assert ledger['audit']['translation_paragraphs_verified']==0
+     assert ledger['audit']['historical_political_claims_independently_verified']==0
+     assert page.locator('#sourceLedgerGrid .source-ledger__card').count()==9,(path,'missing no-JS provenance cards')
+     assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==9
+     page.locator('#ledgerState').select_option('PASSAGE_LOCATED')
+     assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==3,(path,'passage-only filter incorrect')
+     page.locator('#ledgerQuery').fill('国际法')
+     assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==1,(path,'chapter keyword filter incorrect')
+     page.locator('#ledgerQuery').fill('no-such-item-20261013')
+     assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==0,(path,'empty source filter incorrect')
+     page.locator('#ledgerState').select_option('all')
+     page.locator('#ledgerQuery').fill('')
+     assert page.locator('#sourceLedgerGrid .source-ledger__card:not([hidden])').count()==9,(path,'source filter restore failed')
+     assert page.locator('#source-ledger-ch9 [data-source-id="S06"]').count()==1,(path,'world peace source not mapped')
+     assert page.locator('#source-ledger-ch7 [data-source-id="S08"]').count()==1,(path,'Patchwork source not mapped')
      assert page.locator('#searchOverlay').is_hidden(),(path,'search overlay visible on load')
      assert page.locator('#tocDrawer').is_hidden(),(path,'TOC drawer visible on load')
      assert page.locator('#heroStars').count()==0,(path,'old starfield survived')
@@ -286,6 +307,8 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
+     page.locator('#source-ledger-section').scroll_into_view_if_needed()
+     page.screenshot(path=str(out/f'yarvin-source-ledger-{width}.png'),full_page=False)
      page.locator('#cathedral-section').scroll_into_view_if_needed()
      page.screenshot(path=str(out/f'yarvin-diagram-{width}.png'),full_page=False)
      page.locator('#sources-section').scroll_into_view_if_needed()

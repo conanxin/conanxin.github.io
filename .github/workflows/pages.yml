@@ -223,6 +223,8 @@ jobs:
                               assert len(re.findall(r'class="source-ledger__card"',body))==9,'P4 nine static cards missing'
                               assert 'id="passage-review-section"' in body,'P5 review section missing'
                               assert len(re.findall(r'class="passage-review__card"',body))==3,'P5 three quote cards missing'
+                              assert 'id="tri-layer-section"' in body,'P6 source comparison section missing'
+                              assert len(re.findall(r'class="tri-layer__case"',body))==3,'P6 3 static cards missing'
                               css_match=re.search(r'href="([^"]*styles[.]css[?][^"]+)"',body)
                               js_match=re.search(r'src="([^"]*app[.]js[?][^"]+)"',body)
                               assert css_match and js_match,'Yarvin versioned CSS/JS links missing'
@@ -235,6 +237,7 @@ jobs:
                                   ('ledgerjs',ledger_js.group(1)),
                                   ('ledger','content/source-ledger.json'),
                                   ('passages','content/passage-alignments.json'),
+                                  ('p6','content/three-layer-review.json'),
                               ):
                                   asset_url=urllib.parse.urljoin(base+path,relative)
                                   separator='&' if '?' in asset_url else '?'
@@ -259,7 +262,9 @@ jobs:
                                       evidence=json.loads(asset_body)
                                       audit=evidence['audit']
                                       assert audit['chapter_total']==9 and audit['source_total']==10,'P4 source rows incomplete'
-                                      assert audit['located_source_pages']==9,'P4 source pages incomplete'
+                                      assert audit['located_source_pages']==10,'P4 source pages incomplete'
+                                      assert audit['original_editorial_fulltext_retrieved'],'Spanish editorial original not marked retrieved'
+                                      assert not audit['english_421_version_retrieved'],'421 English version falsely marked available'
                                       assert audit['translation_paragraphs_verified']==0,'P4 false translation verification'
                                       assert audit['p5_ai_preliminary_clause_pairs']==3,'P5 unlinked to P4 audit'
                                       assert audit['p5_human_approved_pairs']==0,'P5 P4-side human gate incorrectly passed'
@@ -279,13 +284,30 @@ jobs:
                                       assert audit['human_approved_pairs']==0,'P5 human approval invented'
                                       assert audit['full_translation_paragraphs_verified']==0,'false full translation certification'
                                       assert audit['political_historical_claims_verified']==0,'false political claim certification'
-                                      assert not audit['editorial_421_article_retrieved'],'editorial retrieval falsely asserted'
+                                      assert audit['editorial_421_article_retrieved'],'Spanish publisher original not marked retrieved'
+                                      assert not audit['english_421_translation_retrieved'],'publisher English version falsely retrieved'
                                       assert [p['chapter'] for p in comparison['pairs']]==[5,7,9],'P5 chapter mapping changed'
                                       assert all(p['comparison_status']=='AI_PRELIMINARY_REVIEW' for p in comparison['pairs'])
                                       assert all(p['human_approval']=='PENDING' for p in comparison['pairs'])
                                       for review in comparison['pairs']:
                                           assert 'data-pair-id="'+review['id']+'"' in body,'P5 public review missing'
                                           assert 'id="passage-review-ch'+str(review['chapter'])+'"' in body,'P5 review anchor missing'
+                                  elif kind=='p6':
+                                      original=json.loads(asset_body)
+                                      audit=original['audit']
+                                      assert original['stage']=='P6_ES_ORIGINAL_THREE_LAYER_PRELIMINARY','unexpected P6 stage'
+                                      assert audit['spanish_original_article_retrieved'],'Spanish original not retrieved'
+                                      assert not audit['english_421_version_retrieved'],'English 421 translation falsely retrieved'
+                                      assert audit['spanish_headings_located']==9 and audit['chinese_headings_mapped']==9,'P6 chapter map missing'
+                                      assert audit['spanish_preface_present'] and not audit['chinese_preface_present_in_article'],'P6 missing-intro gap'
+                                      assert audit['three_layer_clause_cases']==3,'P6 quote triplets missing'
+                                      assert audit['human_approved_cases']==0,'P6 human approval invented'
+                                      assert audit['full_zh_translation_paragraphs_verified']==0,'P6 full translation certified without review'
+                                      assert audit['independent_historical_political_facts_verified']==0,'P6 political facts invented'
+                                      assert len(original['heading_map'])==9 and len(original['triplets'])==3
+                                      assert all(c['human_approval']=='PENDING' for c in original['triplets'])
+                                      assert all('data-p6-id="'+c['id']+'"' in body for c in original['triplets'])
+                                      assert '/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/' in body,'Spanish source URL missing'
                                   else:
                                       data=json.loads(asset_body)
                                       assert data['project']=='yarvin-moldbug-cn','wrong public JSON project'

@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "project": "yarvin-moldbug-cn",
+  "stage": "P6_ES_ORIGINAL_THREE_LAYER_PRELIMINARY",
+  "as_of": "2026-10-13",
+  "method": "以 421.news 原作者 2026-06-24 的可读取西班牙语页面为导读原稿，比较其三处引文与 Yarvin 英文原著及本站冻结的中文引文；只审选句与结构，不声称整篇逐段审毕。只记录原文网页与短引锚点，不采集未授权源站账户。",
+  "sources": {
+    "ruocco_spanish": {
+      "url": "https://www.421.news/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/",
+      "title": "Curtis Yarvin: el pueblo nunca tiene razón",
+      "author": "Juan Ruocco",
+      "published": "2026-06-24",
+      "language": "es-AR",
+      "source_status": "ARTICLE_TEXT_READABLE",
+      "article_structure_lines": [
+        23,
+        193
+      ]
+    },
+    "old_english_421_reference": {
+      "url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+      "source_status": "URL_IN_REPOSITORY_NOT_RETRIEVED",
+      "note": "不能将此链接与已读西语原稿等同；当前主证据是原作者西语原文。"
+    },
+    "yarvin_english": "Unqualified Reservations 三处原著网页，经由 P5 记录及本轮复核。"
+  },
+  "status_definitions": {
+    "SPANISH_TEXT_LOCATED": "原作者西班牙语网页正文与对应短句可定位，仍不意味着翻译全部核验完成。",
+    "THREE_LAYER_CLAUSE_ALIGNED": "三层文本中选中的相关短句可匹配；不代表整个段落、全部著作或历史论点成立。",
+    "HUMAN_APPROVED": "对比结果经授权人校对定稿，本阶段为 0。",
+    "SOURCE_DISAGREEMENT": "不同层级之间出现译法或典故转移；须记录发生的层级，不简单归责最后一层。"
+  },
+  "audit": {
+    "spanish_original_article_retrieved": true,
+    "english_421_version_retrieved": false,
+    "original_publisher_metadata_verified": true,
+    "spanish_headings_located": 9,
+    "chinese_headings_mapped": 9,
+    "spanish_preface_present": true,
+    "chinese_preface_present_in_article": false,
+    "three_layer_clause_cases": 3,
+    "human_approved_cases": 0,
+    "full_zh_translation_paragraphs_verified": 0,
+    "independent_historical_political_facts_verified": 0,
+    "translation_issues_needing_human_decision": 2
+  },
+  "heading_map": [
+    {
+      "chapter_no": 1,
+      "zh_anchor": "mencius-moldbug",
+      "zh_current_heading": "孟德斯鸠的\"虫\"：Mencius Moldbug",
+      "spanish_heading": "Moldbug como contraseña del foro",
+      "spanish_source_line_hint": 30,
+      "semantic_state": "DIVERGENT_TRANSLATION",
+      "reviewed_automatically": false,
+      "proposed_heading": "Moldbug：论坛里的接头暗号"
+    },
+    {
+      "chapter_no": 2,
+      "zh_anchor": "blogger-from-cradle-to-grave",
+      "zh_current_heading": "从生到死都是 blogger",
+      "spanish_heading": "Bloguero de la cuna al cajón",
+      "spanish_source_line_hint": 43,
+      "semantic_state": "CLOSE_PARAPHRASE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 3,
+      "zh_anchor": "land-sloterdijk-yarvin",
+      "zh_current_heading": "Land、Sloterdijk，与 Yarvin",
+      "spanish_heading": "Land, Sloterdijk y Yarvin",
+      "spanish_source_line_hint": 55,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 4,
+      "zh_anchor": "yarvin-for-beginners",
+      "zh_current_heading": "Yarvin 入门",
+      "spanish_heading": "Yarvin a través de sus textos",
+      "spanish_source_line_hint": 78,
+      "semantic_state": "GENERALIZED_HEADING",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 5,
+      "zh_anchor": "a-gentle-introduction",
+      "zh_current_heading": "《温和入门》",
+      "spanish_heading": "Una introducción gentil",
+      "spanish_source_line_hint": 87,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 6,
+      "zh_anchor": "american-history-whig",
+      "zh_current_heading": "美国史就是辉格史",
+      "spanish_heading": "La historia norteamericana es historia Whig",
+      "spanish_source_line_hint": 112,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 7,
+      "zh_anchor": "patchwork-final-solution",
+      "zh_current_heading": "Patchwork：政治的\"最终方案\"",
+      "spanish_heading": "Patchwork: una solución final para la política",
+      "spanish_source_line_hint": 147,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 8,
+      "zh_anchor": "cathedral-overuse",
+      "zh_current_heading": "\"大教堂\"概念的过度使用",
+      "spanish_heading": "La saturación del concepto de \"Catedral\"",
+      "spanish_source_line_hint": 169,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    },
+    {
+      "chapter_no": 9,
+      "zh_anchor": "closing-remarks",
+      "zh_current_heading": "写在最后",
+      "spanish_heading": "Algo sobre el final",
+      "spanish_source_line_hint": 176,
+      "semantic_state": "CLOSE",
+      "reviewed_automatically": false,
+      "proposed_heading": null
+    }
+  ],
+  "opening_gap": {
+    "id": "YP6-GAP-INTRO",
+    "source_url": "https://www.421.news/es/curtis-yarvin-democracia-monarquia-neorreaccion-neocameralismo/",
+    "source_spanish_locator": "Before 'Moldbug como contraseña del foro', original article lines 23–29",
+    "spanish_start_anchor": "Llevo unos cinco años postergando este artículo",
+    "zh_article_first_heading": "孟德斯鸠的\"虫\"：Mencius Moldbug",
+    "state": "PREFACE_MISSING_IN_CHINESE_ARTICLE",
+    "scope": "西班牙语原作者导言包含数段介绍写作动机及其互联网模因研究；当前中文 article 在 meta 后直入第一章，尚未附这段导言。",
+    "proposal": "保留现有译文正文，先单独建立中文译稿补遗草案与双语段落编号；人工核准后才补写。网站“不遗漏”或“全文翻译”字样需按完整性证据调整。",
+    "human_approval": "PENDING"
+  },
+  "first_heading_gap": {
+    "id": "YP6-GAP-HEADING01",
+    "spanish_original": "Moldbug como contraseña del foro",
+    "chinese_current": "孟德斯鸠的\"虫\"：Mencius Moldbug",
+    "issue": "标题主题偏离原文，且将 Mencius（孟子）误写成孟德斯鸠；原西语标题含义是 Moldbug 作为论坛接头暗号。",
+    "proposed_chinese": "Moldbug：论坛里的接头暗号",
+    "human_approval": "PENDING"
+  },
+  "triplets": [
+    {
+      "id": "YP6-001",
+      "p5_id": "YP5-001",
+      "spanish_line_hint": 90,
+      "spanish_anchor": "que comprometa de raíz dicho sistema de engaño",
+      "alignment": [
+        "YARVIN_EN_TO_RUOCCO_ES_CONCEPT_PRESERVED",
+        "RUOCCO_ES_TO_CHINESE_SEMANTIC_PARAPHRASE"
+      ],
+      "assessment": "作者西班牙语“comprometa de raíz”语义为从根本上危及／动摇；本站“撼动”与西班牙语段落更接近。P5 仅按英文 compromises 提出的修词建议需要回收，不宜未经人工审核直接替换。",
+      "suggestion": "维持原正文；如加注释，可区分“原文 compromises”与“西语 comprometa de raíz”的翻译路径。",
+      "issue_status": "EXPLAINED_BY_SPANISH_INTERMEDIARY",
+      "chapter_no": 5,
+      "zh_anchor": "a-gentle-introduction",
+      "english_yarvin_source_url": "https://www.unqualified-reservations.org/2009/01/gentle-introduction-to-unqualified/",
+      "english_yarvin_excerpt": "Thus the red pill: any stimulus or stimulant, pharmaceutical or literary, that fundamentally compromises said system of deception.",
+      "zh_existing_focus": "凡是能从根本上撼动那整套欺骗系统的，都算",
+      "zh_existing_quote_audit_id": "YP5-001",
+      "human_approval": "PENDING",
+      "full_translation_verified": false,
+      "political_historical_claim_verified": false
+    },
+    {
+      "id": "YP6-002",
+      "p5_id": "YP5-002",
+      "spanish_line_hint": 150,
+      "spanish_anchor": "su propia sociedad anónima",
+      "alignment": [
+        "YARVIN_EN_TO_RUOCCO_ES_LEGAL_FORM_PRESERVED",
+        "RUOCCO_ES_TO_CHINESE_CORPORATE_DETAIL_REDUCED"
+      ],
+      "assessment": "原著 joint-stock corporation 对应西语 sociedad anónima（股份公司/股份有限公司）；现中文“那家公司”丢失治理主体的公司形式。译文的信息缩减发生于西语→中文这一步。",
+      "suggestion": "人工确认后可考虑改为“每个小国由各自的股份公司治理”；冻结原文在批准前不动。",
+      "issue_status": "OPEN_CHINESE_SPECIFICITY_LOSS",
+      "chapter_no": 7,
+      "zh_anchor": "patchwork-final-solution",
+      "english_yarvin_source_url": "https://www.unqualified-reservations.org/2008/11/patchwork-positive-vision-part-1/",
+      "english_yarvin_excerpt": "sovereign and independent mini-countries, each governed by its own joint-stock corporation without regard to the residents’ opinions.",
+      "zh_existing_focus": "每一个小国都由自己的那家公司治理，居民的意见根本不在考量之内",
+      "zh_existing_quote_audit_id": "YP5-002",
+      "human_approval": "PENDING",
+      "full_translation_verified": false,
+      "political_historical_claim_verified": false
+    },
+    {
+      "id": "YP6-003",
+      "p5_id": "YP5-003",
+      "spanish_line_hint": 180,
+      "spanish_anchor": "Harina de otro costal",
+      "alignment": [
+        "YARVIN_EN_TO_RUOCCO_ES_ALLUSION_RECAST_AS_IDIOM",
+        "RUOCCO_ES_TO_CHINESE_IDIOM_MEANING_PRESERVED"
+      ],
+      "assessment": "西语 Harina de otro costal 字面是“另一袋面粉”，惯用义为“另一回事”。中文“那是另一回事了”跟随 Ruocco 的习语含义，但没有还原 Yarvin 先前将 other grain 暗指火药的贵格会轶事。语义路径澄清后不能归咎于中文单独误译。",
+      "suggestion": "保留原中文引文；在 P6 编者注中补上贵格会／富兰克林“其他谷物”暗指火药的上下文，明确这是 Yarvin 自己的引申。",
+      "issue_status": "ALLUSION_PATH_CLARIFIED_NOTE_RECOMMENDED",
+      "chapter_no": 9,
+      "zh_anchor": "closing-remarks",
+      "english_yarvin_source_url": "https://www.unqualified-reservations.org/2008/05/ol5-shortest-way-to-world-peace/",
+      "english_yarvin_excerpt": "You might call it a peer-to-peer architecture for world peace. I’m afraid what we have now is more a client–server approach.",
+      "zh_existing_focus": "你可以把这件事叫做世界和平的'点对点架构'（peer-to-peer architecture）",
+      "zh_existing_quote_audit_id": "YP5-003",
+      "human_approval": "PENDING",
+      "full_translation_verified": false,
+      "political_historical_claim_verified": false
+    }
+  ],
+  "open_items": [
+    "复核 421.news 西文原稿中的其他章节与中文逐段映射，尤其原作者的前言与插入内容。",
+    "确认第一章标题及前言补译计划，不在 P6 未经批准修改冻结的九章正文。",
+    "第七章“股份公司”译词需要人工裁定；第九章增加典故注释的措辞需人工确认。",
+    "如以后取得 421.news 英文翻译版，应建立 ES→421.EN→ZH 的额外对照，不以原著 Yarvin.EN 替代 421.EN。"
+  ]
+}

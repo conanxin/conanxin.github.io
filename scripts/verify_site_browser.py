@@ -212,9 +212,29 @@ try:
      assert ledger_res.status==200,(path,'source ledger JSON not served')
      ledger=ledger_res.json()
      assert ledger['audit']['chapter_total']==9
-     assert ledger['audit']['located_source_pages']==9
+     assert ledger['audit']['located_source_pages']==10
      assert ledger['audit']['translation_paragraphs_verified']==0
      assert ledger['audit']['historical_political_claims_independently_verified']==0
+     # P6: Spanish editorial original recovered, English publisher translation remains unavailable.
+     p6_response=page.request.get(base+path+'content/three-layer-review.json')
+     assert p6_response.status==200,(path,'P6 tri-layer sidecar not served')
+     p6=p6_response.json()
+     assert p6['audit']['spanish_original_article_retrieved'],(path,'P6 Spanish source not marked')
+     assert not p6['audit']['english_421_version_retrieved'],(path,'P6 English edition asserted')
+     assert p6['audit']['chinese_headings_mapped']==9,(path,'P6 9 title pairs missing')
+     assert p6['audit']['three_layer_clause_cases']==3,(path,'P6 three quote paths missing')
+     assert p6['audit']['human_approved_cases']==0,(path,'P6 human approval prematurely marked')
+     assert p6['audit']['full_zh_translation_paragraphs_verified']==0
+     assert p6['audit']['spanish_preface_present']
+     assert not p6['audit']['chinese_preface_present_in_article']
+     assert page.locator('#triLayerCases .tri-layer__case').count()==3,(path,'P6 no-JS cards missing')
+     assert page.locator('#triLayerCases .tri-layer__case[data-human-approval="PENDING"]').count()==3
+     for language in ('en','es','zh-CN'):
+      assert page.locator(f'#triLayerCases .tri-layer__excerpt[lang="{language}"]').count()==3,(path,'P6 language lane missing',language)
+     page.locator('#triLayerHeadings summary').click()
+     assert page.locator('#triLayerHeadings').get_attribute('open') is not None,(path,'P6 chapter crosswalk not expandable')
+     assert page.locator('#triLayerHeadings tbody tr').count()==9,(path,'P6 all heading rows missing')
+     page.locator('#triLayerHeadings summary').click()
      assert page.locator('#sourceLedgerGrid .source-ledger__card').count()==9,(path,'missing no-JS provenance cards')
      # P5: source-quote excerpts are AI-preliminary, never a finished translation/claim verification.
      p5_res=page.request.get(base+path+'content/passage-alignments.json')
@@ -325,6 +345,13 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
+     page.evaluate("""offset => {
+       document.documentElement.style.scrollBehavior='auto';
+       const section=document.getElementById('tri-layer-section');
+       window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY - offset);
+     }""",95 if width==1440 else 18)
+     page.wait_for_timeout(90)
+     page.screenshot(path=str(out/f'yarvin-p6-three-layer-{width}.png'),full_page=False)
      page.evaluate("""offset => {
        document.documentElement.style.scrollBehavior='auto';
        const section=document.getElementById('passage-review-section');

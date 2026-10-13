@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0",
+  "project": "yarvin-moldbug-cn",
+  "updated_at": "2026-10-13",
+  "status": "P4_SOURCE_LOCATOR_PILOT",
+  "methodology": "Links locate document pages and sometimes a distinctive passage. They do not establish translation equivalence, historical truth or political-claim validity. Original 421.news page not retrieved during this pass.",
+  "source_access_levels": {
+    "SOURCE_LOCATED": "Source webpage title or content retrieved via public search; does not independently verify its claims.",
+    "URL_ONLY": "URL exists in current repository record; current full content not retrieved."
+  },
+  "chapter_alignment_levels": {
+    "PASSAGE_LOCATED": "Distinctive related primary-source passage located; full Chinese translation and wider claims not independently checked.",
+    "TOPIC_ONLY": "Related primary text located at topic level; no exact paragraph pairing confirmed.",
+    "ORIGINAL_ONLY": "Only the original editorial article URL is recorded for this chapter; full source not obtained."
+  },
+  "claim_semantics": "NOT_EVALUATED",
+  "audit": {
+    "chapter_total": 9,
+    "source_total": 10,
+    "located_source_pages": 9,
+    "original_editorial_fulltext_retrieved": false,
+    "chapters_with_passage_locator": 3,
+    "chapters_topic_only": 4,
+    "chapters_editorial_only": 2,
+    "translation_paragraphs_verified": 0,
+    "historical_political_claims_independently_verified": 0
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Curtis Yarvin: The People Are Never Right",
+      "author": "Juan Ruocco",
+      "year": 2026,
+      "url": "https://www.421.news/en/curtis-yarvin-democracy-monarchy-neoreaction-neocameralism-en/",
+      "kind": "original_commentary",
+      "access": "URL_ONLY",
+      "note": "译文原资料记录的 URL；本阶段未成功取得该原文全文，不能宣称英中九章逐段对齐。"
+    },
+    {
+      "id": "S02",
+      "title": "Unqualified Reservations — archive",
+      "author": "Mencius Moldbug",
+      "url": "https://www.unqualified-reservations.org/",
+      "kind": "primary_index",
+      "access": "SOURCE_LOCATED",
+      "note": "已核对公开档案主页；只证明博客与著作入口，不支持个人传播史断言。"
+    },
+    {
+      "id": "S03",
+      "title": "A Gentle Introduction, Ch. 1: The Red Pill",
+      "author": "Mencius Moldbug",
+      "year": 2009,
+      "url": "https://www.unqualified-reservations.org/2009/01/gentle-introduction-to-unqualified/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "已核对页面标题和 Red Pill 讨论；不意味着整段中文译文校准完成。"
+    },
+    {
+      "id": "S04",
+      "title": "An Open Letter, Ch. 1: A Horizon Made of Canvas",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/04/open-letter-to-open-minded-progressives/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "原始系列的第一章入口。"
+    },
+    {
+      "id": "S05",
+      "title": "An Open Letter, Ch. 3: The Jacobite History of the World",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/05/ol3-jacobite-history-of-world/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "政治历史叙述背景；当前为主题对应，未核验译文每项历史主张。"
+    },
+    {
+      "id": "S06",
+      "title": "An Open Letter, Ch. 5: The Shortest Way to World Peace",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/05/ol5-shortest-way-to-world-peace/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "定位到 peer-to-peer / client-server 的国际法类比；尚未逐字校对整个中文引文。"
+    },
+    {
+      "id": "S07",
+      "title": "An Open Letter, Ch. 8: A Reset Is Not a Revolution",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/06/ol8-reset-is-not-revolution/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "定位到 Cathedral 的大学与媒体论述；不代表独立证明现实权力结构。"
+    },
+    {
+      "id": "S08",
+      "title": "Patchwork, Ch. 1: A Positive Vision",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/11/patchwork-positive-vision-part-1/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "定位到主权微型国家网络的原文段落；不等于制度模型实际可行。"
+    },
+    {
+      "id": "S09",
+      "title": "Patchwork, Ch. 2: Profit Strategies for Our New Corporate Overlords",
+      "author": "Mencius Moldbug",
+      "year": 2008,
+      "url": "https://www.unqualified-reservations.org/2008/11/patchwork-2-profit-strategies-for-our/",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "已找到 Patchwork 系列第二部分，关联企业治理叙述。"
+    },
+    {
+      "id": "S10",
+      "title": "You can only lose the culture war",
+      "author": "Curtis Yarvin",
+      "year": 2022,
+      "url": "https://graymirror.substack.com/p/you-can-only-lose-the-culture-war",
+      "kind": "primary_text",
+      "access": "SOURCE_LOCATED",
+      "note": "Gray Mirror 关于精灵与霍比特人的原文，可替代旧转载/机器翻译跳转链接。"
+    }
+  ],
+  "chapters": [
+    {
+      "chapter_no": 1,
+      "chapter_anchor": "mencius-moldbug",
+      "chapter_title": "Mencius Moldbug",
+      "topic": "初次阅读与博客入口",
+      "alignment_state": "TOPIC_ONLY",
+      "english_locator": null,
+      "note": "博客档案入口已找到；作者在阿根廷读者圈的个人回忆尚无独立逐项核验。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S02",
+          "label": "博客档案入口",
+          "role": "背景"
+        }
+      ]
+    },
+    {
+      "chapter_no": 2,
+      "chapter_anchor": "blogger-from-cradle-to-grave",
+      "chapter_title": "从生到死都是 blogger",
+      "topic": "传播轨迹与新反动主义讨论",
+      "alignment_state": "ORIGINAL_ONLY",
+      "english_locator": null,
+      "note": "本章主要是 Ruocco 的传播史解读及媒体观察；未为具体影响力主张找到可直接对应的第一手材料。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": []
+    },
+    {
+      "chapter_no": 3,
+      "chapter_anchor": "land-sloterdijk-yarvin",
+      "chapter_title": "Land、Sloterdijk，与 Yarvin",
+      "topic": "网络文化与思想者比较",
+      "alignment_state": "ORIGINAL_ONLY",
+      "english_locator": null,
+      "note": "本章涉及多个人物和作者的比较判断；暂不将 Yarvin 原著当作他人思想的验证来源。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": []
+    },
+    {
+      "chapter_no": 4,
+      "chapter_anchor": "yarvin-for-beginners",
+      "chapter_title": "Yarvin 入门",
+      "topic": "三组作品的阅读入口",
+      "alignment_state": "TOPIC_ONLY",
+      "english_locator": null,
+      "note": "所列三套作品的原始入口已分别定位；并未宣称作者对其概括全部忠实。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S03",
+          "label": "《温和入门》第一章",
+          "role": "相关原著"
+        },
+        {
+          "source_id": "S04",
+          "label": "《公开信》第一章",
+          "role": "相关原著"
+        },
+        {
+          "source_id": "S08",
+          "label": "《Patchwork》第一章",
+          "role": "相关原著"
+        }
+      ]
+    },
+    {
+      "chapter_no": 5,
+      "chapter_anchor": "a-gentle-introduction",
+      "chapter_title": "《温和入门》",
+      "topic": "红丸与意识形态认知",
+      "alignment_state": "PASSAGE_LOCATED",
+      "english_locator": "red pill / stimulus or stimulant",
+      "note": "已找到“红丸”解释的英文段落；中文引文的逐字语义、其他政治判断仍待校勘。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S03",
+          "label": "Red Pill 原文",
+          "role": "段落已定位"
+        }
+      ]
+    },
+    {
+      "chapter_no": 6,
+      "chapter_anchor": "american-history-whig",
+      "chapter_title": "美国史就是辉格史",
+      "topic": "辉格叙事与雅各宾主义史观",
+      "alignment_state": "TOPIC_ONLY",
+      "english_locator": null,
+      "note": "关联《公开信》第三章的雅各比主义历史解释；罗斯福等具体历史论断尚未独立核查。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S05",
+          "label": "The Jacobite History of the World",
+          "role": "主题对应"
+        }
+      ]
+    },
+    {
+      "chapter_no": 7,
+      "chapter_anchor": "patchwork-final-solution",
+      "chapter_title": "Patchwork：政治的“最终方案”",
+      "topic": "主权微型国家与企业式治理",
+      "alignment_state": "PASSAGE_LOCATED",
+      "english_locator": "global spiderweb ... sovereign and independent mini-countries",
+      "note": "定位到微型主权国家网络的英文原文；制度可行性和全文译法均不属于本阶段已核论断。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S08",
+          "label": "A Positive Vision",
+          "role": "段落已定位"
+        },
+        {
+          "source_id": "S09",
+          "label": "Profit Strategies",
+          "role": "延伸上下文"
+        }
+      ]
+    },
+    {
+      "chapter_no": 8,
+      "chapter_anchor": "cathedral-overuse",
+      "chapter_title": "“大教堂”概念的过度使用",
+      "topic": "大教堂的解释范围及争议",
+      "alignment_state": "TOPIC_ONLY",
+      "english_locator": null,
+      "note": "找到了 Yarvin 对媒体与大学的概念论述；不把其政治描述判定为经验事实。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S07",
+          "label": "A Reset Is Not a Revolution",
+          "role": "主题对应"
+        },
+        {
+          "source_id": "S03",
+          "label": "The Red Pill",
+          "role": "相关阅读"
+        }
+      ]
+    },
+    {
+      "chapter_no": 9,
+      "chapter_anchor": "closing-remarks",
+      "chapter_title": "写在最后",
+      "topic": "国际法架构比喻与推荐阅读",
+      "alignment_state": "PASSAGE_LOCATED",
+      "english_locator": "peer-to-peer architecture / client-server approach",
+      "note": "英文比喻对应《公开信》第五章；另找到精灵与霍比特人 Gray Mirror 原文。长引文整段仍未逐字核对。",
+      "claim_semantics": "NOT_EVALUATED",
+      "relations": [
+        {
+          "source_id": "S06",
+          "label": "The Shortest Way to World Peace",
+          "role": "段落已定位"
+        },
+        {
+          "source_id": "S10",
+          "label": "You can only lose the culture war",
+          "role": "原文已找到"
+        }
+      ]
+    }
+  ]
+}

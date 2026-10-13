@@ -211,7 +211,14 @@ try:
      assert page.locator('.hero').is_visible(),(path,'hero not rendered')
      assert page.locator('.hero').evaluate("(el)=>el.getBoundingClientRect().height")<650,(path,'hero consumes full viewport')
      page.locator('#btnSearch').click()
-     assert page.locator('#searchOverlay').is_visible(),(path,'search did not open')
+     assert page.locator('#searchOverlay').is_visible(),(path,'search did not open',page.evaluate("""() => ({
+       aria:document.getElementById('btnSearch').getAttribute('aria-expanded'),
+       overlayHidden:document.getElementById('searchOverlay').hidden,
+       display:getComputedStyle(document.getElementById('searchOverlay')).display,
+       context:document.getElementById('contextGrid').textContent.slice(0,180),
+       appInitialized:!!window.__yarvinApp, searchButtonListeners:'see aria expansion',
+       src:document.querySelector('script[src*="app.js"]')?.src
+     })"""),errors)
      assert page.locator('#btnSearch').get_attribute('aria-expanded')=='true'
      page.keyboard.press('Escape')
      assert page.locator('#searchOverlay').is_hidden(),(path,'search did not close')

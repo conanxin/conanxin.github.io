@@ -492,7 +492,7 @@
       '<div class="source-block">' +
       '<h3 class="source-block__title">' + escapeHtml(b.title) + '</h3>' +
       '<ul>' + b.items.map(item => {
-        const t = escapeHtml(item);
+        const t = escapeHtml(item).replace(/\*([^*]+)\*/g, '<em>$1</em>');
         // Auto-link Yarvin texts
         if (item.includes('Patchwork')) {
           return '<li><a href="https://www.unqualified-reservations.org/2008/09/patchwork-a-positive-vision/" target="_blank" rel="noopener">Patchwork: A Positive Vision</a></li>';

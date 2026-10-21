@@ -1069,7 +1069,8 @@ body.site-unified .hero__title {
   -webkit-text-fill-color: var(--site-ink);
 }
 body.site-unified .hero__eyebrow {
-  color: var(--site-green);
+  /* The eyebrow is page content, so its emphasis follows the selected reader theme. */
+  color: var(--accent);
   font: 600 12px/1.6 var(--site-sans);
   letter-spacing: .12em;
   margin-bottom: 18px;
@@ -1206,13 +1207,15 @@ body.site-unified .article-meta {
   color: var(--site-muted);
   background: var(--site-paper);
   border-color: var(--site-line);
-  border-left-color: var(--site-green);
+  /* Keep the brand chrome fixed; let the local theme tint the editorial marker. */
+  border-left-color: var(--accent);
   border-radius: 0;
   font: 13px/1.9 var(--site-sans);
 }
 body.site-unified .article-quote {
-  background: var(--site-paper);
-  border-color: var(--site-accent);
+  /* Preserve the shared paper palette while honoring the selected reading theme. */
+  background: var(--quote-bg);
+  border-color: var(--quote-border);
   color: var(--site-ink);
   border-radius: 0;
   font-style: normal;
@@ -1330,10 +1333,10 @@ body.site-unified .article > h2.article-h2::before {
 body.site-unified .article > h2.article-h2:first-of-type { border-top: none; padding-top: 0; }
 body.site-unified .article p { orphans: 2; widows: 2; }
 body.site-unified .article-quote {
-  border-left: 2px solid var(--site-accent);
+  border-left: 2px solid var(--quote-border);
   padding: 1rem 1.3rem;
   line-height: 1.95;
-  background: var(--site-paper);
+  background: var(--quote-bg);
 }
 body.site-unified .article-figure:has(img[src=""]) { display: none; }
 body.site-unified .reader-transition {

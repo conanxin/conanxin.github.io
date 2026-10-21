@@ -86,7 +86,7 @@ class YarvinPassageAlignmentsTests(unittest.TestCase):
             self.assertIn('href="#passage-review-ch' + str(pair["chapter"]) + '"', self.site)
             self.assertIn(pair["source_url"], self.site)
             self.assertIn(html.escape(pair["english_excerpt"], quote=True).replace("&#x27;", "&#39;"), self.site)
-        self.assertIn('href="styles.css?v=20261013-p7"', self.site)
+        self.assertIn('href="styles.css?v=20261021-p8"', self.site)
 
     def test_zh_quote_remains_within_original_article_only(self):
         self.assertEqual(len(re.findall(r'<h2 id="([^"]+)" class="article-h2">', self.article)), 9)

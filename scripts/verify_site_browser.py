@@ -336,12 +336,72 @@ try:
      assert page.locator('#tocDrawer').is_visible(),(path,'TOC did not open')
      page.locator('#btnTocClose').click()
      assert page.locator('#tocDrawer').is_hidden(),(path,'TOC did not close')
-     page.locator('button.toolbar__btn[data-reading-mode="compact"]').click()
-     assert page.evaluate("document.documentElement.dataset.readingMode")=='compact',(path,'reading mode broken')
+     # P8 mainline design contract: all themes must visibly affect content, while the
+     # unified site chrome and its green active controls remain stable.
+     def reader_visual_state():
+      return page.evaluate("""() => {
+       const eyebrow=document.querySelector('.hero__eyebrow');
+       const quote=document.querySelector('.article .article-quote');
+       const meta=document.querySelector('.article .article-meta');
+       const article=document.querySelector('.article');
+       const style=e=>getComputedStyle(e);
+       return {
+        theme:document.documentElement.dataset.theme,
+        mode:document.documentElement.dataset.readingMode,
+        eyebrow:style(eyebrow).color,
+        quoteBg:style(quote).backgroundColor,
+        quoteBorder:style(quote).borderLeftColor,
+        metaBorder:style(meta).borderLeftColor,
+        fontSize:style(article).fontSize,
+        lineHeight:parseFloat(style(article).lineHeight),
+        activeThemeButtons:document.querySelectorAll('.toolbar__btn[data-theme].is-active').length,
+        activeModeButtons:document.querySelectorAll('.toolbar__btn[data-reading-mode].is-active').length
+       };
+      }""")
+     baseline=reader_visual_state()
+     assert baseline['theme']=='cathedral' and baseline['mode']=='annotated',(path,'unexpected reader defaults',baseline)
+     assert baseline['eyebrow']=='rgb(41, 75, 64)',(path,'cathedral emphasis drift',baseline)
+     assert baseline['quoteBg']=='rgb(248, 247, 244)',(path,'cathedral paper surface drift',baseline)
+     assert baseline['quoteBorder']=='rgb(153, 91, 63)',(path,'cathedral quote border drift',baseline)
+     assert baseline['metaBorder']=='rgb(41, 75, 64)',(path,'cathedral metadata marker drift',baseline)
+     assert baseline['fontSize']=='17px' and abs(baseline['lineHeight']-33.15)<0.2,(path,'annotated reading rhythm drift',baseline)
+     assert baseline['activeThemeButtons']==1 and baseline['activeModeButtons']==1,(path,'default toolbar state',baseline)
+
      page.locator('button.toolbar__btn[data-theme="patchwork"]').click()
-     assert page.evaluate("document.documentElement.dataset.theme")=='patchwork',(path,'theme control broken')
+     patchwork=reader_visual_state()
+     assert patchwork['theme']=='patchwork',(path,'Patchwork theme state missing',patchwork)
+     assert patchwork['eyebrow']=='rgb(153, 91, 63)',(path,'Patchwork content accent ignored',patchwork)
+     assert patchwork['quoteBg']=='rgb(255, 255, 255)',(path,'Patchwork paper surface ignored',patchwork)
+     assert patchwork['quoteBorder']=='rgb(153, 91, 63)',(path,'Patchwork quote border drift',patchwork)
+     assert patchwork['activeThemeButtons']==1 and patchwork['activeModeButtons']==1,(path,'Patchwork toolbar state',patchwork)
+
+     page.locator('button.toolbar__btn[data-theme="ink"]').click()
+     ink=reader_visual_state()
+     assert ink['theme']=='ink',(path,'Ink theme state missing',ink)
+     assert ink['eyebrow']=='rgb(41, 50, 46)',(path,'Ink content accent ignored',ink)
+     assert ink['quoteBg']=='rgb(248, 247, 244)',(path,'Ink paper surface drift',ink)
+     assert ink['quoteBorder']=='rgb(41, 50, 46)',(path,'Ink quote border ignored',ink)
+     assert ink['metaBorder']=='rgb(41, 50, 46)',(path,'Ink metadata marker ignored',ink)
+     assert ink['activeThemeButtons']==1 and ink['activeModeButtons']==1,(path,'Ink toolbar state',ink)
+
      page.locator('button.toolbar__btn[data-theme="cathedral"]').click()
+     page.locator('button.toolbar__btn[data-reading-mode="immersive"]').click()
+     immersive=reader_visual_state()
+     assert immersive['mode']=='immersive' and immersive['fontSize']=='19px',(path,'immersive font size ignored',immersive)
+     assert abs(immersive['lineHeight']-38.95)<0.2,(path,'immersive line height ignored',immersive)
+     assert immersive['activeModeButtons']==1,(path,'immersive toolbar state',immersive)
+
+     page.locator('button.toolbar__btn[data-reading-mode="compact"]').click()
+     compact=reader_visual_state()
+     assert compact['mode']=='compact' and compact['fontSize']=='16px',(path,'compact font size ignored',compact)
+     assert abs(compact['lineHeight']-26.4)<0.2,(path,'compact line height ignored',compact)
+     assert compact['activeModeButtons']==1,(path,'compact toolbar state',compact)
+
      page.locator('button.toolbar__btn[data-reading-mode="annotated"]').click()
+     restored=reader_visual_state()
+     assert restored['theme']=='cathedral' and restored['mode']=='annotated',(path,'reader controls did not restore defaults',restored)
+     assert restored['fontSize']=='17px' and abs(restored['lineHeight']-33.15)<0.2,(path,'annotated mode did not restore',restored)
+     interaction='P8 visual theme states: cathedral -> patchwork -> ink -> cathedral; annotated -> immersive -> compact -> annotated; computed tokens and active controls verified'
      if width==390:
       page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,document.getElementById('glossary-section').offsetTop)")
       page.wait_for_timeout(170)

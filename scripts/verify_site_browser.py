@@ -3,6 +3,7 @@
 import json, os, shutil, subprocess, sys, tempfile, time
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from verify_yarvin_focus_p10 import check_reader_focus
 root=Path(sys.argv[1] if len(sys.argv)>1 else '.site-build').resolve()
 out=Path(os.environ.get('RUNNER_TEMP',tempfile.gettempdir()))/'site-ui-check'
 out.mkdir(parents=True,exist_ok=True)
@@ -524,7 +525,12 @@ try:
      page.wait_for_timeout(100)
     if path in ('/','/about.html','/projects/','/projects/shuge-exhibition-v1.0/rooms/room2/','/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):
      page.screenshot(path=str(out/f'{i}-{width}.png'),full_page=False)
-    results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors})
+    focus_checks=None
+    if path=='/projects/yarvin-moldbug-cn/':
+     focus_checks=check_reader_focus(browser,base,width,out,collect_failures=True)
+     (out/f'yarvin-p10-focus-{width}.json').write_text(json.dumps(focus_checks,ensure_ascii=False,indent=2))
+     assert all(c['status']=='PASS' for c in focus_checks),(path,width,'P10 focus regressions',focus_checks)
+    results.append({'path':path,'viewport':width,'http':response.status,'title':page.title(),'metrics':metrics,'interaction':interaction,'script_errors':errors,'focus_checks':focus_checks})
     page.close()
   browser.close()
 finally:server.terminate()

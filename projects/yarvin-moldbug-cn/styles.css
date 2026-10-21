@@ -2009,3 +2009,104 @@ body.site-unified .preface-editorial__export {
 
 /* P7 browser regression: leave explicit clearance beneath the Cathedral cards. */
 body.site-unified .cathedral-diagram__core { margin-top: 14px; }
+
+/* ====================================================================
+   P9 / 2026-10-21 — longform information architecture.
+   All styling remains local and follows SITE_DESIGN v1.9.1 tokens.
+   ==================================================================== */
+body.site-unified .toc-sidebar__position {
+  color: var(--site-muted);
+  border-left: 2px solid var(--site-green);
+  background: var(--site-paper);
+  font: 12px/1.65 var(--site-sans);
+  padding: 8px 10px;
+  margin: 0 0 14px;
+  overflow-wrap: anywhere;
+}
+body.site-unified .toc-list__group-label {
+  border-top: 1px solid var(--site-line);
+  color: var(--site-ink);
+  margin: 17px 0 5px;
+  padding: 12px 7px 3px;
+  font: 600 12px/1.5 var(--site-sans);
+  letter-spacing: .02em;
+}
+body.site-unified .toc-list__group-label:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+body.site-unified .toc-list__group-label span {
+  color: var(--site-muted);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-left: 5px;
+}
+body.site-unified .toc-list a[aria-current="location"] {
+  color: var(--site-green);
+  background: var(--site-paper);
+  border-left-color: var(--site-green);
+  font-weight: 600;
+}
+body.site-unified .toc-drawer__intro {
+  color: var(--site-muted);
+  border-bottom: 1px solid var(--site-line);
+  padding-bottom: 11px;
+  margin: 0 0 15px;
+  font: 12px/1.6 var(--site-sans);
+}
+body.site-unified .reader-transition__nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+  margin-top: 17px;
+}
+body.site-unified .reader-transition__path {
+  border: 1px solid var(--site-line);
+  background: var(--site-paper);
+  padding: 16px 17px;
+  min-width: 0;
+}
+body.site-unified .reader-transition__path:last-child {
+  grid-column: 1 / -1;
+}
+body.site-unified .reader-transition__path h3 {
+  color: var(--site-ink) !important;
+  font: 600 17px/1.5 var(--site-serif) !important;
+  margin: 0 0 6px;
+}
+body.site-unified .reader-transition__path p {
+  color: var(--site-muted);
+  font: 12px/1.7 var(--site-sans);
+  margin: 0 0 10px;
+}
+body.site-unified .reader-transition__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 18px;
+}
+body.site-unified .reader-transition__links a {
+  color: var(--site-green);
+  font: 13px/1.9 var(--site-sans);
+  text-decoration: underline;
+  text-decoration-color: var(--site-line);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  body.site-unified .reader-transition__nav {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  body.site-unified .reader-transition__path:last-child { grid-column: auto; }
+  body.site-unified .reader-transition__path { padding: 13px 14px; }
+  body.site-unified .toc-drawer__panel { padding: 18px; }
+  body.site-unified .floating-toc:not([hidden]) {
+    max-width: min(62vw, 245px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -211,6 +211,15 @@ try:
      assert page.locator('#tocListDrawer a[href^="#"]').count()==21,(path,'P9 mobile TOC content missing')
      assert page.locator('.reader-transition__path').count()==3,(path,'P9 reading pathways missing')
      assert page.locator('.reader-transition__links a[href^="#"]').count()==12,(path,'P9 auxiliary links incomplete')
+     bridge_gap=page.evaluate("""() => {
+       const bridge=document.querySelector('.reader-transition');
+       const context=document.getElementById('context-section');
+       return Math.round(context.getBoundingClientRect().top-bridge.getBoundingClientRect().bottom);
+     }""")
+     if width==390:
+      assert 20<=bridge_gap<=60,(path,'P9 excessive mobile bridge gap',bridge_gap)
+     else:
+      assert 20<=bridge_gap<=100,(path,'P9 desktop bridge gap',bridge_gap)
      targets=page.locator('#tocList a[href^="#"]').evaluate_all("(els)=>els.map(a=>a.getAttribute('href').slice(1))")
      assert len(set(targets))==21,(path,'P9 TOC duplicates',targets)
      missing=page.evaluate("(ids)=>ids.filter(id=>!document.getElementById(id))",targets)

@@ -26,7 +26,7 @@ class YarvinDesignContractP8Tests(unittest.TestCase):
         self.assertEqual(set(themes), {"cathedral", "patchwork", "ink"})
         self.assertEqual(set(modes), {"annotated", "immersive", "compact"})
         self.assertIn('<html lang="zh-CN" data-theme="cathedral" data-reading-mode="annotated">', HTML)
-        self.assertIn('href="styles.css?v=20261021-p8"', HTML)
+        self.assertIn('href="styles.css?v=20261021-p9"', HTML)
 
     def test_local_palette_aliases_use_global_design_tokens(self):
         roots = re.findall(r"(?m)^:root\s*\{([^}]*)\}", CSS)

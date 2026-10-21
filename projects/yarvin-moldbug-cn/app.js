@@ -143,30 +143,75 @@
     if (btn) btn.classList.add('is-active');
   }
 
-  // ---------- TOC scroll-spy ----------
+  // ---------- Grouped reading-location tracker (desktop + mobile TOC) ----------
   function initTocScrollSpy() {
-    const tocLinks = document.querySelectorAll('.toc-sidebar a[href^="#"]');
-    if (!tocLinks.length) return;
-    const map = new Map();
-    tocLinks.forEach(a => {
-      const id = a.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      if (el) map.set(id, a);
+    const root = document.getElementById('tocList');
+    const position = document.getElementById('tocPosition');
+    const drawerList = document.getElementById('tocListDrawer');
+    const floating = document.getElementById('floatingToc');
+    if (!root) return;
+
+    const targets = [];
+    let group = 'chapters';
+    root.querySelectorAll(':scope > li').forEach(item => {
+      if (item.classList.contains('toc-list__group-label')) {
+        group = item.dataset.tocGroup;
+        return;
+      }
+      const link = item.querySelector('a[href^="#"]');
+      if (!link) return;
+      const id = link.getAttribute('href').slice(1);
+      const element = document.getElementById(id);
+      if (!element) return;
+      targets.push({ id, element, group, label: link.textContent.trim() });
     });
-    const onScroll = () => {
-      const top = window.scrollY + 120;
-      let currentId = null;
-      for (const [id] of map) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= top) currentId = id;
-      }
-      map.forEach(a => a.classList.remove('is-active'));
-      if (currentId && map.has(currentId)) {
-        map.get(currentId).classList.add('is-active');
-      }
+    if (!targets.length) return;
+
+    const headings = {
+      chapters: '正文',
+      concepts: '背景与概念',
+      evidence: '证据与延伸'
     };
-    document.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    const chapterCount = targets.filter(item => item.group === 'chapters').length;
+
+    function update() {
+      const offset = window.matchMedia('(max-width: 600px)').matches ? 78 : 125;
+      let active = targets[0];
+      // Targets are in document order; compare viewport coordinates rather
+      // than offsetTop, which can change when a nested offsetParent is added.
+      targets.forEach(target => {
+        if (target.element.getBoundingClientRect().top <= offset) {
+          active = target;
+        }
+      });
+      [root, drawerList].filter(Boolean).forEach(list => {
+        list.querySelectorAll('a[href^="#"]').forEach(link => {
+          const selected = link.getAttribute('href') === '#' + active.id;
+          link.classList.toggle('is-active', selected);
+          if (selected) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+
+      const chapterNumber = active.group === 'chapters'
+        ? targets.filter(item => item.group === 'chapters').findIndex(item => item.id === active.id) + 1
+        : null;
+      const concise = chapterNumber
+        ? '第 ' + chapterNumber + ' 章'
+        : active.label;
+      const location = headings[active.group] + ' · ' + concise;
+      if (position) position.textContent = '当前位置：' + location;
+      if (floating) {
+        floating.textContent = chapterNumber
+          ? '≡ 目录 · ' + chapterNumber + '/' + chapterCount
+          : '≡ 目录 · ' + concise;
+        floating.setAttribute('aria-label', '打开内容导航，当前位置：' + location);
+      }
+    }
+    document.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    window.addEventListener('hashchange', update);
+    update();
   }
 
   // ---------- Mobile TOC drawer + longform floating entry ----------

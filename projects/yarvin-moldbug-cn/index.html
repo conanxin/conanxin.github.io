@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f7f4" />
   <meta name="description" content="Curtis Yarvin 中文长文导读及研究校勘：Yarvin 英文原著、Ruocco 西语原稿与本站中文引文逐层追溯。" />
   <title>Curtis Yarvin 思想导读：人民从来不会正确 | Conan Xin 数字花园</title>
-  <link rel="stylesheet" href="styles.css?v=20261021-p8" />
+  <link rel="stylesheet" href="styles.css?v=20261021-p9" />
 </head>
 <body>
   <!-- 顶部阅读进度条 -->
@@ -82,9 +82,10 @@
   <aside class="toc-drawer" id="tocDrawer" role="dialog" aria-modal="true" aria-label="章节目录" hidden>
     <div class="toc-drawer__panel">
       <div class="toc-drawer__header">
-        <span>目录</span>
+        <span>内容导航</span>
         <button class="toc-drawer__close" id="btnTocClose" type="button" aria-label="关闭章节目录">×</button>
       </div>
+      <p class="toc-drawer__intro">正文 9 章 · 辅助资料 12 项</p>
       <ul class="toc-list" id="tocListDrawer"></ul>
     </div>
   </aside>
@@ -92,8 +93,11 @@
   <!-- 主布局: TOC + 正文 + 边栏 -->
   <div class="layout">
     <aside class="toc-sidebar" aria-label="目录">
-      <p class="toc-sidebar__title">目 录</p>
+      <p class="toc-sidebar__title">内容导航</p>
+      <p class="toc-sidebar__position" id="tocPosition" aria-live="off">当前位置：正文 · 第 1 章</p>
       <ul class="toc-list" id="tocList">
+        <li class="toc-list__group-label" data-toc-group="chapters">正文阅读 <span>9 章</span></li>
+
         <li><a href="#mencius-moldbug">1 · Mencius Moldbug</a></li>
         <li><a href="#blogger-from-cradle-to-grave">2 · 从生到死都是 blogger</a></li>
         <li><a href="#land-sloterdijk-yarvin">3 · Land、Sloterdijk，与 Yarvin</a></li>
@@ -103,15 +107,19 @@
         <li><a href="#patchwork-final-solution">7 · Patchwork：政治的「最终方案」</a></li>
         <li><a href="#cathedral-overuse">8 · 「大教堂」概念的过度使用</a></li>
         <li><a href="#closing-remarks">9 · 写在最后</a></li>
-        <li class="toc-list__sep"></li>
+        <li class="toc-list__group-label" data-toc-group="concepts">背景与概念 <span>7 项</span></li>
         <li><a href="#context-section">背景资料</a></li>
+        <li><a href="#cathedral-section">大教堂图解</a></li>
+        <li><a href="#neocameralism-section">新议事主义</a></li>
+        <li><a href="#patchwork-section">Patchwork 模型</a></li>
         <li><a href="#glossary-section">术语表</a></li>
         <li><a href="#timeline-section">时间线</a></li>
         <li><a href="#sources-section">参考资料</a></li>
+        <li class="toc-list__group-label" data-toc-group="evidence">证据与延伸 <span>5 项</span></li>
         <li><a href="#source-ledger-section">来源核对台账</a></li>
-        <li><a href="#passage-review-section">引文校勘</a></li>
+        <li><a href="#passage-review-section">引文初步校勘</a></li>
         <li><a href="#tri-layer-section">三层原稿追溯</a></li>
-        <li><a href="#preface-draft-section">引言补译草案</a></li>
+        <li><a href="#preface-draft-section">补译草案 · 待审</a></li>
         <li><a href="#reading-paths">阅读路径</a></li>
       </ul>
     </aside>
@@ -218,15 +226,37 @@
       <section class="reader-transition" aria-label="译文与延伸阅读的分界">
         <p class="reader-transition__label">译文正文结束 · 以下为辅助阅读资料</p>
         <p>以下背景、概念图解与术语表用于理解原文的思想脉络；政治模型与制度判断属于文中讨论的观点，并不等于经过独立核实的现实描述。</p>
-        <nav class="reader-transition__nav" aria-label="延伸资料入口">
-          <a href="#context-section">背景资料</a>
-          <a href="#cathedral-section">概念图解</a>
-          <a href="#glossary-section">术语表</a>
-          <a href="#sources-section">参考资料</a>
-          <a href="#source-ledger-section">来源台账</a>
-          <a href="#passage-review-section">引文校勘</a>
-          <a href="#tri-layer-section">西语原稿</a>
-          <a href="#preface-draft-section">补译草案</a>
+        <nav class="reader-transition__nav" aria-label="辅助阅读导航">
+          <div class="reader-transition__path" data-reading-path="concepts">
+            <h3>背景与概念</h3>
+            <p>先理解术语、思想模型与事件脉络。</p>
+            <div class="reader-transition__links">
+              <a href="#context-section">背景资料</a>
+              <a href="#cathedral-section">大教堂图解</a>
+              <a href="#neocameralism-section">新议事主义</a>
+              <a href="#patchwork-section">Patchwork 模型</a>
+              <a href="#glossary-section">术语表</a>
+              <a href="#timeline-section">时间线</a>
+              <a href="#sources-section">参考资料</a>
+            </div>
+          </div>
+          <div class="reader-transition__path" data-reading-path="evidence">
+            <h3>证据与校勘</h3>
+            <p>从来源记录走向原著对照；译稿建议仍待审。</p>
+            <div class="reader-transition__links">
+              <a href="#source-ledger-section">来源核对台账</a>
+              <a href="#passage-review-section">引文初步校勘</a>
+              <a href="#tri-layer-section">三层原稿追溯</a>
+              <a href="#preface-draft-section">补译草案 · 待审</a>
+            </div>
+          </div>
+          <div class="reader-transition__path" data-reading-path="reading">
+            <h3>延伸阅读</h3>
+            <p>按阅读目的选取进一步研究路径。</p>
+            <div class="reader-transition__links">
+              <a href="#reading-paths">阅读路径</a>
+            </div>
+          </div>
         </nav>
       </section>
 

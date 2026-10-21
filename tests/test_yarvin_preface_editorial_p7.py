@@ -85,7 +85,7 @@ class YarvinP7EditorialDraftTests(unittest.TestCase):
     def test_no_js_review_workspace_and_readable_sidecar(self):
         self.assertIn('id="preface-draft-section"', self.site)
         self.assertIn('href="content/preface-draft-p7.json"', self.site)
-        self.assertIn('href="styles.css?v=20261021-p8"', self.site)
+        self.assertIn('href="styles.css?v=20261021-p9"', self.site)
         self.assertEqual(self.site.count('class="preface-editorial__paragraph"'), 4)
         self.assertEqual(self.site.count('class="preface-editorial__decision"'), 4)
         self.assertIn('重复摘录第二段', self.site)

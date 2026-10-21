@@ -203,6 +203,51 @@ try:
     if path=='/projects/yarvin-moldbug-cn/':
      # Content and interactive controls must coexist with the shared paper theme.
      page.wait_for_function("document.querySelector('#contextGrid')?.children.length > 0",timeout=10000)
+     # P9: the 9 chapters and all 12 auxiliary sections must be reachable
+     # from one grouped navigation in both desktop and mobile layouts.
+     assert page.locator('#tocList .toc-list__group-label').count()==3,(path,'P9 grouped TOC headings missing')
+     assert page.locator('#tocList a[href^="#"]').count()==21,(path,'P9 desktop TOC missing content')
+     assert page.locator('#tocListDrawer .toc-list__group-label').count()==3,(path,'P9 mobile TOC headings missing')
+     assert page.locator('#tocListDrawer a[href^="#"]').count()==21,(path,'P9 mobile TOC content missing')
+     assert page.locator('.reader-transition__path').count()==3,(path,'P9 reading pathways missing')
+     assert page.locator('.reader-transition__links a[href^="#"]').count()==12,(path,'P9 auxiliary links incomplete')
+     bridge_gap=page.evaluate("""() => {
+       const bridge=document.querySelector('.reader-transition');
+       const context=document.getElementById('context-section');
+       return Math.round(context.getBoundingClientRect().top-bridge.getBoundingClientRect().bottom);
+     }""")
+     if width==390:
+      assert 20<=bridge_gap<=60,(path,'P9 excessive mobile bridge gap',bridge_gap)
+     else:
+      assert 20<=bridge_gap<=100,(path,'P9 desktop bridge gap',bridge_gap)
+     targets=page.locator('#tocList a[href^="#"]').evaluate_all("(els)=>els.map(a=>a.getAttribute('href').slice(1))")
+     assert len(set(targets))==21,(path,'P9 TOC duplicates',targets)
+     missing=page.evaluate("(ids)=>ids.filter(id=>!document.getElementById(id))",targets)
+     assert not missing,(path,'P9 dead anchor targets',missing)
+     for section,context in (
+       ('cathedral-section','背景与概念'),
+       ('neocameralism-section','背景与概念'),
+       ('source-ledger-section','证据与延伸'),
+       ('tri-layer-section','证据与延伸'),
+     ):
+      page.evaluate("""id => {
+        document.documentElement.style.scrollBehavior='auto';
+        const target=document.getElementById(id);
+        window.scrollTo(0,window.scrollY + target.getBoundingClientRect().top - 30);
+      }""",section)
+      page.wait_for_timeout(115)
+      assert page.locator(f'#tocList a[href="#{section}"]').get_attribute('aria-current')=='location',(path,'P9 sidebar current section',section)
+      assert page.locator(f'#tocListDrawer a[href="#{section}"]').get_attribute('aria-current')=='location',(path,'P9 drawer current section',section)
+      assert page.locator('#tocList a[aria-current="location"]').count()==1,(path,'P9 ambiguous active TOC section',section)
+      assert context in page.locator('#tocPosition').inner_text(),(path,'P9 location group not shown',section)
+     if width==390:
+      assert '三层原稿追溯' in page.locator('#floatingToc').get_attribute('aria-label'),(path,'P9 mobile location missing')
+     page.locator('#btnToc').click()
+     assert page.locator('#tocDrawer').is_visible(),(path,'P9 grouped TOC drawer did not open')
+     assert page.locator('#tocListDrawer a[aria-current="location"]').count()==1,(path,'P9 drawer active row missing')
+     page.locator('#btnTocClose').click()
+     page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo(0,0)")
+     page.wait_for_timeout(110)
      # Same source must drive the hero summary and rendered glossary.
      shown=int(page.locator('#statGlossary').inner_text().strip())
      glossary_count=page.locator('#glossaryGrid .glossary-card').count()
@@ -429,6 +474,19 @@ try:
      d.locator('summary').click()
     assert not errors,(path,width,'script errors',errors)
     if path=='/projects/yarvin-moldbug-cn/':
+     page.evaluate("""offset => {
+       document.documentElement.style.scrollBehavior='auto';
+       const section=document.querySelector('.reader-transition');
+       window.scrollTo(0,section.getBoundingClientRect().top + window.scrollY - offset);
+     }""",92 if width==1440 else 16)
+     page.wait_for_timeout(100)
+     page.screenshot(path=str(out/f'yarvin-p9-reading-bridge-{width}.png'),full_page=False)
+     if width==390:
+      assert page.locator('#floatingToc').is_visible(),(path,'P9 mobile TOC not reachable after article')
+      page.locator('#floatingToc').click()
+      assert page.locator('#tocDrawer').is_visible()
+      page.screenshot(path=str(out/'yarvin-p9-mobile-grouped-toc-390.png'),full_page=False)
+      page.locator('#btnTocClose').click()
      page.evaluate("""offset => {
        document.documentElement.style.scrollBehavior='auto';
        const section=document.getElementById('preface-draft-section');

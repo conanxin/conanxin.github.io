@@ -68,8 +68,12 @@ class YarvinDesignContractP8Tests(unittest.TestCase):
         self.assertIn("--quote-border: var(--site-ink);", CSS)
 
     def test_reading_mode_values_are_preserved(self):
-        self.assertRegex(CSS, r'\[data-reading-mode="immersive"\]\s*\{[^}]*--font-size:\s*19px;[^}]*--line-height:\s*2\.05;')
-        self.assertRegex(CSS, r'\[data-reading-mode="compact"\]\s*\{[^}]*--font-size:\s*16px;[^}]*--line-height:\s*1\.65;')
+        immersive = css_blocks(CSS, '[data-reading-mode="immersive"]')[0]
+        compact = css_blocks(CSS, '[data-reading-mode="compact"]')[0]
+        self.assertIn("--font-size: 19px;", immersive)
+        self.assertIn("--line-height: 2.05;", immersive)
+        self.assertIn("--font-size: 16px;", compact)
+        self.assertIn("--line-height: 1.65;", compact)
         self.assertIn("var(--font-size)/var(--line-height) var(--site-serif)", CSS)
 
     def test_p7_translation_and_editorial_draft_are_outside_scope(self):

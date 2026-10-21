@@ -2102,6 +2102,11 @@ body.site-unified .reader-transition__links a {
   }
   body.site-unified .reader-transition__path:last-child { grid-column: auto; }
   body.site-unified .reader-transition__path { padding: 13px 14px; }
+  /* Do not leave a large empty band between the reading bridge and context. */
+  body.site-unified .reader-transition + .module {
+    margin-top: 38px;
+    padding-top: 25px;
+  }
   body.site-unified .toc-drawer__panel { padding: 18px; }
   body.site-unified .floating-toc:not([hidden]) {
     max-width: min(62vw, 245px);

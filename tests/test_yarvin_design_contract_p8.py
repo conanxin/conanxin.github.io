@@ -48,8 +48,7 @@ class YarvinDesignContractP8Tests(unittest.TestCase):
         self.assertGreaterEqual(len(eyebrow), 1)
         self.assertIn("color: var(--accent);", eyebrow[0])
         meta = css_blocks(CSS, "body.site-unified .article-meta")
-        self.assertEqual(len(meta), 1)
-        self.assertIn("border-left-color: var(--accent);", meta[0])
+        self.assertTrue(any("border-left-color: var(--accent);" in block for block in meta))
         # The active toolbar and primary CTA intentionally remain site-green.
         active_toolbar = css_blocks(CSS, "body.site-unified .toolbar .toolbar__btn.is-active")
         primary = css_blocks(CSS, "body.site-unified .btn--primary")

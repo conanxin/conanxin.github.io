@@ -405,10 +405,38 @@ try:
      page.wait_for_function("document.getElementById('searchResultCount').textContent.includes('没有匹配项')",timeout=5000)
      page.locator('#btnSearchClose').click()
      assert page.evaluate("document.activeElement.id==='btnSearch'"),(path,'P11 close button did not restore trigger')
+     # P12: TOC is a true modal, with a labelled focus boundary and restored state.
      page.locator('#btnToc').click()
      assert page.locator('#tocDrawer').is_visible(),(path,'TOC did not open')
-     page.locator('#btnTocClose').click()
-     assert page.locator('#tocDrawer').is_hidden(),(path,'TOC did not close')
+     assert page.locator('#tocDrawer').get_attribute('aria-labelledby')=='tocDrawerLabel'
+     assert page.locator('#tocDrawer').get_attribute('aria-describedby')=='tocDrawerIntro'
+     assert page.evaluate("document.activeElement.id==='btnTocClose'"),(path,'P12 TOC initial focus missing')
+     assert page.evaluate("document.querySelector('.layout').inert"),(path,'P12 TOC background not inert')
+     assert page.evaluate("document.getElementById('searchOverlay').inert"),(path,'P12 search is not isolated behind TOC')
+     page.keyboard.press('Shift+Tab')
+     assert page.evaluate("document.activeElement.getAttribute('href')==='#reading-paths'"),(path,'P12 drawer reverse tab escaped')
+     page.keyboard.press('Tab')
+     assert page.evaluate("document.activeElement.id==='btnTocClose'"),(path,'P12 drawer tab did not wrap')
+     page.keyboard.press('Control+k')
+     assert page.locator('#searchOverlay').is_hidden(),(path,'P12 nested search dialog opened behind TOC')
+     assert page.locator('#tocDrawer').is_visible()
+     page.keyboard.press('Escape')
+     assert page.locator('#tocDrawer').is_hidden(),(path,'P12 TOC Escape did not close')
+     assert not page.evaluate("document.querySelector('.layout').inert"),(path,'P12 TOC inert state not restored')
+     assert not page.evaluate("document.getElementById('searchOverlay').inert"),(path,'P12 search inert state not restored')
+     assert page.evaluate("document.activeElement.id==='btnToc'"),(path,'P12 TOC Escape did not restore trigger')
+     page.locator('#btnToc').click()
+     page.locator('#tocListDrawer a[href="#cathedral-section"]').click()
+     assert page.locator('#tocDrawer').is_hidden(),(path,'P12 TOC link did not close')
+     page.wait_for_function("document.activeElement.closest('#cathedral-section')!==null",timeout=5000)
+     assert page.evaluate("location.hash")=='#cathedral-section',(path,'P12 TOC link did not navigate')
+     assert not page.evaluate("document.querySelector('.layout').inert"),(path,'P12 TOC link left page inert')
+     assert page.locator('.compare-table caption').count()==1,(path,'P12 comparison table caption missing')
+     assert page.locator('.tri-layer__table caption').count()==1,(path,'P12 heading table caption missing')
+     assert page.locator('.compare-table th[scope="col"]').count()==3
+     assert page.locator('.tri-layer__table th[scope="col"]').count()==4
+     assert page.locator('.compare-table th[scope="row"]').count()==6
+     assert page.locator('.tri-layer__table th[scope="row"]').count()==9
      # P8 mainline design contract: all themes must visibly affect content, while the
      # unified site chrome and its green active controls remain stable.
      def reader_visual_state():
@@ -524,6 +552,26 @@ try:
       assert bounds['bottom']<=720+2 and bounds['closeRight']<=320+1,(path,'P11 zoomed dialog close not accessible',bounds)
       page.screenshot(path=str(out/'yarvin-p11-search-320-reduced-motion.png'),full_page=False)
       page.locator('#btnSearchClose').click()
+      # The 21-link TOC remains reachable and scrollable at 320 CSS pixels.
+      page.locator('#btnToc').click()
+      toc_bounds=page.evaluate("""() => {
+       const panel=document.querySelector('.toc-drawer__panel');
+       const r=panel.getBoundingClientRect();
+       const close=document.querySelector('#btnTocClose').getBoundingClientRect();
+       return {screen:innerWidth,doc:document.documentElement.scrollWidth,
+        left:r.left,right:r.right,top:r.top,bottom:r.bottom,
+        closeRight:close.right,scroll:panel.scrollHeight,client:panel.clientHeight};
+      }""")
+      assert toc_bounds['doc']<=325,(path,'P12 narrow TOC page overflow',toc_bounds)
+      assert toc_bounds['left']>=0 and toc_bounds['right']<=321,(path,'P12 narrow TOC clipped horizontally',toc_bounds)
+      assert toc_bounds['bottom']<=722 and toc_bounds['closeRight']<=321,(path,'P12 narrow TOC close inaccessible',toc_bounds)
+      assert toc_bounds['scroll']>toc_bounds['client'],(path,'P12 long TOC not independently scrollable',toc_bounds)
+      page.locator('#tocListDrawer a[href="#reading-paths"]').scroll_into_view_if_needed()
+      assert page.evaluate("document.querySelector('.toc-drawer__panel').scrollTop")>0,(path,'P12 TOC could not scroll to final item')
+      page.screenshot(path=str(out/'yarvin-p12-toc-320-reduced-motion.png'),full_page=False)
+      page.keyboard.press('Escape')
+      assert page.locator('#tocDrawer').is_hidden()
+      assert page.evaluate("document.activeElement.id==='btnToc'"),(path,'P12 narrow TOC lost focus on close')
       page.emulate_media(reduced_motion='no-preference')
       page.set_viewport_size(old_viewport)
     if path=='/site-map/':

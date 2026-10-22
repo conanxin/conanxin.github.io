@@ -255,7 +255,7 @@
     update();
   }
 
-  // ---------- Mobile TOC drawer + longform floating entry ----------
+  // ---------- Accessible grouped TOC dialog + longform floating entry ----------
   function initTocDrawer() {
     const drawer = document.getElementById('tocDrawer');
     const btnOpen = document.getElementById('btnToc');
@@ -264,14 +264,28 @@
     const toolbar = document.querySelector('.toolbar');
     const list = document.getElementById('tocListDrawer');
     const tocList = document.getElementById('tocList');
-    if (!drawer || !btnOpen) return;
+    if (!drawer || !btnOpen || !btnClose) return;
     if (list && tocList) list.innerHTML = tocList.innerHTML;
     let lastTrigger = btnOpen;
+    let priorOverflow = '';
+    const siblingInert = new Map();
 
     function updateTriggers(expanded) {
       [btnOpen, floating].filter(Boolean).forEach(button => {
         button.setAttribute('aria-expanded', String(expanded));
       });
+    }
+    function setBackgroundInert(enable) {
+      if (enable) {
+        for (const child of document.body.children) {
+          if (child === drawer) continue;
+          siblingInert.set(child, child.inert);
+          child.inert = true;
+        }
+      } else {
+        siblingInert.forEach((wasInert, element) => { element.inert = wasInert; });
+        siblingInert.clear();
+      }
     }
     function updateFloating() {
       if (!floating) return;
@@ -280,21 +294,32 @@
       floating.hidden = !narrow || !toolbarPassed;
     }
     function open(trigger) {
+      if (!drawer.hidden) {
+        btnClose.focus({ preventScroll: true });
+        return;
+      }
       lastTrigger = trigger || btnOpen;
+      priorOverflow = document.body.style.overflow;
       drawer.hidden = false;
       updateTriggers(true);
       document.body.style.overflow = 'hidden';
-      if (btnClose) btnClose.focus({ preventScroll: true });
+      setBackgroundInert(true);
+      btnClose.focus({ preventScroll: true });
     }
     function close(restoreFocus = true) {
+      if (drawer.hidden) return;
       drawer.hidden = true;
       updateTriggers(false);
-      document.body.style.overflow = '';
-      if (restoreFocus && lastTrigger) lastTrigger.focus({ preventScroll: true });
+      document.body.style.overflow = priorOverflow;
+      setBackgroundInert(false);
+      if (restoreFocus) {
+        const trigger = lastTrigger && lastTrigger.isConnected && !lastTrigger.hidden ? lastTrigger : btnOpen;
+        trigger.focus({ preventScroll: true });
+      }
     }
     btnOpen.addEventListener('click', () => open(btnOpen));
     if (floating) floating.addEventListener('click', () => open(floating));
-    if (btnClose) btnClose.addEventListener('click', () => close());
+    btnClose.addEventListener('click', () => close());
     drawer.addEventListener('click', event => {
       if (event.target === drawer) close();
     });
@@ -303,18 +328,29 @@
     });
     drawer.addEventListener('keydown', event => {
       if (event.key !== 'Tab') return;
-      const focusables = [btnClose, ...drawer.querySelectorAll('a[href]')].filter(Boolean);
+      // aria-modal requires an actual focus boundary, not just a visual backdrop.
+      const focusables = [btnClose, ...drawer.querySelectorAll('a[href]')]
+        .filter(element => element.getClientRects().length > 0);
       if (!focusables.length) return;
-      if (event.shiftKey && document.activeElement === focusables[0]) {
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) {
         event.preventDefault();
-        focusables[focusables.length - 1].focus();
-      } else if (!event.shiftKey && document.activeElement === focusables[focusables.length - 1]) {
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !drawer.contains(document.activeElement))) {
         event.preventDefault();
-        focusables[0].focus();
+        first.focus();
       }
     });
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !drawer.hidden) close();
+      if (drawer.hidden) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+      } else if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        // The TOC owns the modal boundary; do not open another dialog behind it.
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }
     });
     document.addEventListener('scroll', updateFloating, { passive: true });
     window.addEventListener('resize', updateFloating);

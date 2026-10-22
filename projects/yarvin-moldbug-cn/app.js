@@ -143,12 +143,36 @@
     if (btn) btn.classList.add('is-active');
   }
 
+  // ---------- Keyboard focus for in-page navigation and deep links ----------
+  function initAnchorFocus() {
+    const focusAnchor = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      const focusTarget = target.matches('section') ? (target.querySelector('h2') || target) : target;
+      if (!focusTarget.hasAttribute('tabindex')) focusTarget.setAttribute('tabindex', '-1');
+      focusTarget.classList.add('reader-anchor-focus');
+      focusTarget.focus({ preventScroll: true });
+    };
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link || !document.getElementById(link.getAttribute('href').slice(1))) return;
+      // Hashchange does not fire when the user clicks the same link twice.
+      window.requestAnimationFrame(focusAnchor);
+    });
+    window.addEventListener('hashchange', () => window.requestAnimationFrame(focusAnchor));
+    if (window.location.hash) window.requestAnimationFrame(focusAnchor);
+  }
+
   // ---------- Grouped reading-location tracker (desktop + mobile TOC) ----------
   function initTocScrollSpy() {
     const root = document.getElementById('tocList');
     const position = document.getElementById('tocPosition');
     const drawerList = document.getElementById('tocListDrawer');
     const floating = document.getElementById('floatingToc');
+    const resumeLink = document.getElementById('resumeReading');
+    const locationKey = 'yarvin-last-location-p10';
     if (!root) return;
 
     const targets = [];
@@ -173,7 +197,18 @@
       evidence: '证据与延伸'
     };
     const chapterCount = targets.filter(item => item.group === 'chapters').length;
-
+    // Offer an opt-in resume action. Never override an explicit #deep-link.
+    if (resumeLink) {
+      let last = null;
+      try { last = window.localStorage.getItem(locationKey); } catch (_) { /* storage unavailable */ }
+      const found = targets.find(t => t.id === last);
+      if (found && found.id !== targets[0].id) {
+        resumeLink.href = '#' + found.id;
+        resumeLink.textContent = '继续上次阅读：' + found.label;
+        resumeLink.hidden = false;
+      }
+    }
+    let persisted = null;
     function update() {
       const offset = window.matchMedia('(max-width: 600px)').matches ? 78 : 125;
       let active = targets[0];
@@ -201,6 +236,12 @@
         : active.label;
       const location = headings[active.group] + ' · ' + concise;
       if (position) position.textContent = '当前位置：' + location;
+      if (window.scrollY > 350 && active.id !== persisted) {
+        try {
+          window.localStorage.setItem(locationKey, active.id);
+          persisted = active.id;
+        } catch (_) { /* private mode or storage disabled */ }
+      }
       if (floating) {
         floating.textContent = chapterNumber
           ? '≡ 目录 · ' + chapterNumber + '/' + chapterCount
@@ -413,7 +454,7 @@
   }
 
   // Expose for next part
-  window.__yarvinApp = { initStarfield, initProgressBar, initTheme, initReadingMode, initTocScrollSpy, initTocDrawer, initBackToTop, initSearch };
+  window.__yarvinApp = { initStarfield, initProgressBar, initTheme, initReadingMode, initAnchorFocus, initTocScrollSpy, initTocDrawer, initBackToTop, initSearch };
 })();
 
 /* ====================================================================
@@ -636,6 +677,7 @@
     window.__yarvinApp.initProgressBar();
     window.__yarvinApp.initTheme();
     window.__yarvinApp.initReadingMode();
+    window.__yarvinApp.initAnchorFocus();
     window.__yarvinApp.initTocScrollSpy();
     window.__yarvinApp.initTocDrawer();
     window.__yarvinApp.initBackToTop();

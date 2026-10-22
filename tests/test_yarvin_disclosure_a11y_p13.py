@@ -33,6 +33,10 @@ class YarvinP13DisclosureTests(unittest.TestCase):
         self.assertIn("focusTarget.scrollIntoView({ block: 'start', behavior: 'auto' })", JS)
         self.assertIn("focusTarget.focus({ preventScroll: true })", JS)
         self.assertIn("window.addEventListener('hashchange'", JS)
+        self.assertIn("function initResearchTableKeyboard()", JS)
+        self.assertIn("event.target !== region", JS)
+        self.assertIn("region.scrollWidth - region.clientWidth", JS)
+        self.assertIn("window.__yarvinApp.initResearchTableKeyboard()", JS)
 
     def test_both_tables_explain_keyboard_overflow(self):
         self.assertEqual(HTML.count('class="reader-table-hint"'), 2)

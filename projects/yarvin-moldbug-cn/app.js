@@ -330,42 +330,96 @@
     };
     document.addEventListener('scroll', onScroll, { passive: true });
     btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
   }
 
-  // ---------- Search overlay with real keyboard navigation ----------
+  // ---------- Keyboard and screen-reader accessible search dialog ----------
   function initSearch(corpus) {
     const overlay = document.getElementById('searchOverlay');
     const btn = document.getElementById('btnSearch');
+    const btnClose = document.getElementById('btnSearchClose');
     const input = document.getElementById('searchInput');
+    const count = document.getElementById('searchResultCount');
     const results = document.getElementById('searchResults');
-    if (!overlay || !btn || !input || !results) return;
+    if (!overlay || !btn || !btnClose || !input || !count || !results) return;
+    let returnFocus = btn;
+    let priorOverflow = '';
+    let debounce;
+    const siblingInert = new Map();
+
+    function setBackgroundInert(enable) {
+      if (enable) {
+        for (const child of document.body.children) {
+          if (child === overlay) continue;
+          siblingInert.set(child, child.inert);
+          child.inert = true;
+        }
+      } else {
+        siblingInert.forEach((wasInert, element) => { element.inert = wasInert; });
+        siblingInert.clear();
+      }
+    }
 
     function open() {
+      if (!overlay.hidden) {
+        input.focus({ preventScroll: true });
+        return;
+      }
+      returnFocus = document.activeElement || btn;
+      priorOverflow = document.body.style.overflow;
       overlay.hidden = false;
       btn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      setBackgroundInert(true);
+      count.textContent = '输入至少 2 个字符开始搜索';
       input.focus({ preventScroll: true });
     }
+
     function close(restoreFocus = true) {
+      if (overlay.hidden) return;
+      clearTimeout(debounce);
       overlay.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+      document.body.style.overflow = priorOverflow;
+      setBackgroundInert(false);
       input.value = '';
       results.innerHTML = '';
-      if (restoreFocus) btn.focus({ preventScroll: true });
+      count.textContent = '输入至少 2 个字符开始搜索';
+      if (restoreFocus && returnFocus && returnFocus.isConnected) {
+        returnFocus.focus({ preventScroll: true });
+      }
     }
+
     btn.addEventListener('click', open);
+    btnClose.addEventListener('click', () => close());
     overlay.addEventListener('click', event => {
       if (event.target === overlay) close();
+    });
+    overlay.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      // role=dialog + aria-modal requires actual focus containment.
+      const items = Array.from(overlay.querySelectorAll('button:not([disabled]), input:not([disabled]), a[href]'))
+        .filter(element => element.getClientRects().length > 0);
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !overlay.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
     });
     document.addEventListener('keydown', event => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
         event.preventDefault();
         open();
       }
-      if (event.key === 'Escape' && !overlay.hidden) close();
+      if (event.key === 'Escape' && !overlay.hidden) {
+        event.preventDefault();
+        close();
+      }
     });
 
     function escapeMarkup(value) {
@@ -386,23 +440,38 @@
     }
     function selectResult(element) {
       const href = element.getAttribute('data-href');
-      if (!href || !document.getElementById(href)) return;
+      const target = href && document.getElementById(href);
+      if (!target) return;
+      const sameHash = window.location.hash === '#' + href;
       close(false);
       window.location.hash = href;
+      if (sameHash) {
+        // hashchange does not fire when navigating to the same chapter.
+        target.scrollIntoView({ block: 'start' });
+        window.requestAnimationFrame(() => {
+          const heading = target.matches('section') ? (target.querySelector('h2') || target) : target;
+          if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
+          heading.classList.add('reader-anchor-focus');
+          heading.focus({ preventScroll: true });
+        });
+      }
     }
     function focusResult(key) {
       const items = Array.from(results.querySelectorAll('.search-result'));
       if (!items.length) return false;
       const active = items.indexOf(document.activeElement);
-      const next = key === 'ArrowDown'
-        ? (active + 1) % items.length
-        : (active <= 0 ? items.length - 1 : active - 1);
+      let next;
+      if (key === 'Home') next = 0;
+      else if (key === 'End') next = items.length - 1;
+      else if (key === 'ArrowDown') next = (active + 1) % items.length;
+      else next = active <= 0 ? items.length - 1 : active - 1;
       items[next].focus();
       return true;
     }
     function doSearch(query) {
       if (!query || query.length < 2) {
-        results.innerHTML = '<p class="search-empty">输入至少 2 个字符开始搜索</p>';
+        count.textContent = '输入至少 2 个字符开始搜索';
+        results.innerHTML = '';
         return;
       }
       const lower = query.toLowerCase();
@@ -416,10 +485,14 @@
         }
       });
       if (!hits.length) {
-        results.innerHTML = '<p class="search-empty">未找到匹配项</p>';
+        count.textContent = '没有匹配项';
+        results.innerHTML = '<p class="search-empty">没有匹配项，请更换关键词</p>';
         return;
       }
-      results.innerHTML = hits.slice(0, 20).map(h => {
+      const shown = hits.slice(0, 20);
+      count.textContent = '找到' + (hits.length === 50 ? '至少 ' : ' ') + hits.length +
+        ' 处匹配，显示前 ' + shown.length + ' 条；使用方向键选择结果';
+      results.innerHTML = shown.map(h => {
         const snippet = snippetAround(h.text, h.matchIdx, h.matchLen);
         return '<button type="button" class="search-result" data-href="' + escapeMarkup(h.href) + '">' +
           '<span class="search-result__title">' + escapeMarkup(h.title) + '</span>' +
@@ -431,12 +504,12 @@
       if (target) selectResult(target);
     });
     results.addEventListener('keydown', event => {
-      if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && focusResult(event.key)) {
+      if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key) && focusResult(event.key)) {
         event.preventDefault();
       }
     });
     input.addEventListener('keydown', event => {
-      if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && focusResult(event.key)) {
+      if (['ArrowDown', 'ArrowUp'].includes(event.key) && focusResult(event.key)) {
         event.preventDefault();
       } else if (event.key === 'Enter') {
         const first = results.querySelector('.search-result');
@@ -446,7 +519,6 @@
         }
       }
     });
-    let debounce;
     input.addEventListener('input', () => {
       clearTimeout(debounce);
       debounce = setTimeout(() => doSearch(input.value.trim()), 150);

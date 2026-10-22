@@ -2132,3 +2132,77 @@ body.site-unified #resumeReading:not([hidden]) {
     text-align: center;
   }
 }
+
+/* P11 — keyboard and screen reader search UX under the shared site system. */
+body.site-unified .search-overlay {
+  padding: min(8vh, 72px) 12px 12px;
+  overflow-y: auto;
+}
+body.site-unified .search-overlay__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  max-height: calc(100dvh - 8vh - 24px);
+  overflow-y: auto;
+}
+body.site-unified .search-overlay__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+body.site-unified .search-overlay__label {
+  color: var(--site-ink);
+  font: 600 17px/1.5 var(--site-serif);
+}
+body.site-unified .search-overlay__close {
+  background: var(--site-paper);
+  color: var(--site-green);
+  border: 1px solid var(--site-line);
+  padding: 6px 12px;
+  font: 13px/1.5 var(--site-sans);
+}
+body.site-unified .search-overlay__close:hover {
+  color: var(--site-accent);
+  border-color: var(--site-accent);
+}
+body.site-unified .search-overlay__count {
+  color: var(--site-muted);
+  font: 12px/1.7 var(--site-sans);
+  margin: 0;
+}
+body.site-unified .search-overlay__results {
+  min-height: 0;
+  max-height: min(44dvh, 410px);
+  flex: 0 1 auto;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+body.site-unified .search-overlay__hint {
+  text-align: left;
+  overflow-wrap: anywhere;
+  margin: 0;
+  font: 12px/1.85 var(--site-sans);
+}
+@media (max-width: 600px) {
+  body.site-unified .search-overlay {
+    padding: max(12px, env(safe-area-inset-top, 0px)) 12px 12px;
+  }
+  body.site-unified .search-overlay__panel {
+    max-height: calc(100dvh - 28px);
+    padding: 14px;
+    border-radius: 4px;
+  }
+  body.site-unified .search-overlay__label { font-size: 16px; }
+  body.site-unified .search-overlay__results { max-height: 45dvh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* The global stylesheet defaults to smooth scrolling; override for this preference. */
+  html { scroll-behavior: auto !important; }
+  body.site-unified .search-result,
+  body.site-unified .back-to-top,
+  body.site-unified .toc-list a { transition: none !important; }
+}

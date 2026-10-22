@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f7f4" />
   <meta name="description" content="Curtis Yarvin 中文长文导读及研究校勘：Yarvin 英文原著、Ruocco 西语原稿与本站中文引文逐层追溯。" />
   <title>Curtis Yarvin 思想导读：人民从来不会正确 | Conan Xin 数字花园</title>
-  <link rel="stylesheet" href="styles.css?v=20261022-p10" />
+  <link rel="stylesheet" href="styles.css?v=20261022-p11" />
 </head>
 <body>
   <!-- 顶部阅读进度条 -->
@@ -71,11 +71,16 @@
   </nav>
 
   <!-- 搜索浮层 -->
-  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="搜索译文与研究资料" hidden>
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-labelledby="searchLabel" hidden>
     <div class="search-overlay__panel">
-      <input class="search-overlay__input" id="searchInput" type="search" placeholder="搜索译文、术语、时间线…" autocomplete="off" />
-      <div class="search-overlay__results" id="searchResults" role="region" aria-live="polite" aria-label="搜索匹配结果"></div>
-      <p class="search-overlay__hint">按 <kbd>Esc</kbd> 关闭 · <kbd>↑</kbd>/<kbd>↓</kbd> 导航 · <kbd>Enter</kbd> 跳转</p>
+      <div class="search-overlay__header">
+        <label class="search-overlay__label" id="searchLabel" for="searchInput">搜索译文与研究资料</label>
+        <button type="button" class="search-overlay__close" id="btnSearchClose" aria-label="关闭搜索">关闭</button>
+      </div>
+      <input class="search-overlay__input" id="searchInput" type="search" placeholder="搜索译文、术语、时间线…" autocomplete="off" aria-controls="searchResults" aria-describedby="searchResultCount searchHint" />
+      <p class="search-overlay__count" id="searchResultCount" role="status" aria-live="polite" aria-atomic="true">输入至少 2 个字符开始搜索</p>
+      <div class="search-overlay__results" id="searchResults" role="region" aria-label="搜索匹配结果"></div>
+      <p class="search-overlay__hint" id="searchHint">按 <kbd>Esc</kbd> 关闭 · <kbd>↑</kbd>/<kbd>↓</kbd> 导航 · <kbd>Enter</kbd> 跳转</p>
     </div>
   </div>
 
@@ -788,7 +793,7 @@
   <button class="floating-toc" id="floatingToc" type="button" aria-label="打开章节目录" aria-controls="tocDrawer" aria-expanded="false" hidden>≡ 目录</button>
   <button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部">↑</button>
 
-  <script src="app.js?v=20261022-p10" defer></script>
+  <script src="app.js?v=20261022-p11" defer></script>
   <script src="source-ledger.js?v=20261013-p4" defer></script>
 </body>
 </html>

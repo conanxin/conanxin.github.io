@@ -80,7 +80,7 @@ class YarvinSpanishOriginalTests(unittest.TestCase):
     def test_no_js_static_ux_and_provenance_links(self):
         self.assertIn('id="tri-layer-section"', self.html)
         self.assertIn('href="content/three-layer-review.json"', self.html)
-        self.assertIn('href="styles.css?v=20261022-p10"', self.html)
+        self.assertIn('href="styles.css?v=20261022-p11"', self.html)
         self.assertEqual(self.html.count('class="tri-layer__case"'), 3)
         self.assertIn('id="triLayerHeadings"', self.html)
         self.assertEqual(self.html.count('data-human-approval="PENDING"'), 3)

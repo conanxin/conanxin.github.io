@@ -564,7 +564,9 @@ try:
        table.focus()
        page.keyboard.press('ArrowRight')
        page.wait_for_timeout(260)
-       geometry=table.evaluate("(el)=>({left:el.scrollLeft,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth})")
+       geometry=table.evaluate("""el=>({left:el.scrollLeft,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth,
+        tableWidth:Math.round(el.querySelector('table').getBoundingClientRect().width),
+        tableMinWidth:getComputedStyle(el.querySelector('table')).minWidth})""")
        assert geometry['scrollWidth']>geometry['clientWidth'],(path,'P13 table not overflowed despite guidance',region,geometry)
        assert geometry['left']>0,(path,'P13 ArrowRight did not scroll focused table',region,geometry)
        page.keyboard.press('End')

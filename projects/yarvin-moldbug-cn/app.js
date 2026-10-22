@@ -150,9 +150,16 @@
       if (!id) return;
       const target = document.getElementById(id);
       if (!target) return;
-      const focusTarget = target.matches('section') ? (target.querySelector('h2') || target) : target;
+      // A deep link into an unexpanded review must reveal its actual content.
+      const disclosure = target.closest('details');
+      const wasClosed = Boolean(disclosure && !disclosure.open);
+      if (wasClosed) disclosure.open = true;
+      const focusTarget = target.matches('details')
+        ? (target.querySelector(':scope > summary') || target)
+        : target.matches('section') ? (target.querySelector('h2') || target) : target;
       if (!focusTarget.hasAttribute('tabindex')) focusTarget.setAttribute('tabindex', '-1');
       focusTarget.classList.add('reader-anchor-focus');
+      if (wasClosed) focusTarget.scrollIntoView({ block: 'start', behavior: 'auto' });
       focusTarget.focus({ preventScroll: true });
     };
     document.addEventListener('click', event => {

@@ -50,8 +50,8 @@ class YarvinTocDialogP12Tests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'<h2 id="([^"]+)" class="article-h2">', article)), 9)
         self.assertNotIn("这篇文章，我差不多拖了五年才动笔", article)
         self.assertIn('id="preface-draft-section"', HTML)
-        self.assertIn('href="styles.css?v=20261022-p12"', HTML)
-        self.assertIn('src="app.js?v=20261022-p12"', HTML)
+        self.assertIn('href="styles.css?v=20261022-p13"', HTML)
+        self.assertIn('src="app.js?v=20261022-p13"', HTML)
 
 
 if __name__ == "__main__":

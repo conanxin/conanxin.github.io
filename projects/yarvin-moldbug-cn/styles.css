@@ -2243,3 +2243,64 @@ body.site-unified .tri-layer__table th[scope="row"] {
     min-width: 0;
   }
 }
+
+/* P13: disclose exact evidence content when linked, and expose table navigation. */
+body.site-unified .passage-review__details > summary:focus-visible,
+body.site-unified .preface-editorial__paragraph > summary:focus-visible,
+body.site-unified .tri-layer__headings > summary:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+body.site-unified .reader-table-hint {
+  color: var(--site-muted);
+  font: 12px/1.8 var(--site-sans);
+  margin: 10px 0 9px;
+  overflow-wrap: anywhere;
+}
+body.site-unified .compare-table[aria-describedby]:focus-visible,
+body.site-unified .tri-layer__table[aria-describedby]:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  body.site-unified .reader-table-hint {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+}
+
+/* P13 browser finding: 390px CSS table had scrollWidth===clientWidth.
+   Enforce a genuine horizontally scrollable table instead of an inert hint. */
+@media (max-width: 720px) {
+  body.site-unified .compare-table,
+  body.site-unified .tri-layer__table {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  body.site-unified .compare-table > table {
+    width: 620px !important;
+    min-width: 620px !important;
+  }
+  body.site-unified .tri-layer__table > table {
+    width: 600px !important;
+    min-width: 600px !important;
+  }
+}
+
+/* P13 exact layout repair: an in-flow block establishes scrollable width.
+   The parent is the keyboard-focusable scroll region; table contents stay intact. */
+body.site-unified .compare-table > .reader-table-inner,
+body.site-unified .tri-layer__table > .reader-table-inner {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+}
+body.site-unified .compare-table > .reader-table-inner { min-width: 620px; }
+body.site-unified .tri-layer__table > .reader-table-inner { min-width: 600px; }
+body.site-unified .reader-table-inner > table { width: 100%; }

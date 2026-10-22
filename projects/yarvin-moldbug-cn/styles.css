@@ -2269,3 +2269,25 @@ body.site-unified .tri-layer__table[aria-describedby]:focus-visible {
     margin-top: 8px;
   }
 }
+
+/* P13 browser finding: 390px CSS table had scrollWidth===clientWidth.
+   Enforce a genuine horizontally scrollable table instead of an inert hint. */
+@media (max-width: 720px) {
+  body.site-unified .compare-table,
+  body.site-unified .tri-layer__table {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  body.site-unified .compare-table > table {
+    width: 620px !important;
+    min-width: 620px !important;
+  }
+  body.site-unified .tri-layer__table > table {
+    width: 600px !important;
+    min-width: 600px !important;
+  }
+}

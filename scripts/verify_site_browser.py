@@ -531,6 +531,42 @@ try:
      resume.click()
      page.wait_for_function("document.activeElement.closest('#source-ledger-section')!==null",timeout=5000)
      assert page.evaluate('location.hash')=='#source-ledger-section',(path,'resume did not navigate')
+     # P13: direct deep links open their native disclosure, focus summary and
+     # make original Chinese/Spanish text available to keyboard readers.
+     assert page.locator('#passageReviewList .passage-review__details').count()==3
+     labels=page.locator('#passageReviewList .passage-review__details summary').all_inner_texts()
+     assert len(set(labels))==3,(path,'P13 indistinguishable quote disclosure labels',labels)
+     for region,hint in (('.compare-table','neocameralismTableHint'),('.tri-layer__table','triLayerTableHint')):
+      assert page.locator(region).get_attribute('aria-describedby')==hint,(path,'P13 table hint disconnected',region)
+      assert page.locator('#'+hint).is_visible() if region=='.compare-table' else page.locator('#'+hint).count()==1
+     page.goto(base+path+'#passage-details-ch7',wait_until='domcontentloaded')
+     page.wait_for_function("""() => {
+       const el=document.getElementById('passage-details-ch7');
+       return el?.open && document.activeElement===el.querySelector(':scope > summary');
+     }""",timeout=5000)
+     assert page.locator('#passage-details-ch7 blockquote').is_visible(),(path,'P13 deep-linked quotation remained collapsed')
+     page.evaluate("location.hash='#p7-preface-3'")
+     page.wait_for_function("""() => {
+       const el=document.getElementById('p7-preface-3');
+       return el?.open && document.activeElement===el.querySelector(':scope > summary');
+     }""",timeout=5000)
+     assert page.locator('#p7-preface-3 .preface-editorial__zh-draft').is_visible(),(path,'P13 pending preface deep link remained hidden')
+     page.evaluate("location.hash='#triLayerHeadings'")
+     page.wait_for_function("""() => {
+       const el=document.getElementById('triLayerHeadings');
+       return el?.open && document.activeElement===el.querySelector(':scope > summary');
+     }""",timeout=5000)
+     if width==390:
+      for region in ('.tri-layer__table','.compare-table'):
+       table=page.locator(region)
+       table.scroll_into_view_if_needed()
+       table.evaluate("(el)=>el.scrollLeft=0")
+       table.focus()
+       page.keyboard.press('ArrowRight')
+       page.wait_for_timeout(260)
+       left=table.evaluate("(el)=>el.scrollLeft")
+       assert left>0,(path,'P13 keyboard did not horizontally scroll the table',region,left)
+     interaction='P13 unique disclosure labels + 3 direct hash expansions + scrollable research tables'
      interaction='P11 search modal focus, live result counts, repeated deep links + P10 opt-in resume'
      if width==390:
       # 320 CSS px is equivalent to a 400%-zoomed 1280px browser layout.
@@ -629,6 +665,9 @@ try:
      page.screenshot(path=str(out/f'yarvin-source-ledger-{width}.png'),full_page=False)
      page.locator('#cathedral-section').scroll_into_view_if_needed()
      page.screenshot(path=str(out/f'yarvin-diagram-{width}.png'),full_page=False)
+     page.locator('#passage-details-ch7').evaluate("(el)=>el.open=true")
+     page.locator('#passage-details-ch7').scroll_into_view_if_needed()
+     page.screenshot(path=str(out/f'yarvin-p13-expanded-source-{width}.png'),full_page=False)
      page.locator('#sources-section').scroll_into_view_if_needed()
      page.screenshot(path=str(out/f'yarvin-sources-{width}.png'),full_page=False)
     if path in ('/posts/site-design-evidence-layers.html','/projects/site-design-lab/','/content-index/','/projects/site-design-lab/shuge-evidence-exhibition/','/projects/site-design-lab/shuge-source-register/','/projects/site-design-lab/shuge-source-crosswalk/','/projects/site-design-lab/shuge-source-crosswalk/primary-catalog/','/projects/site-design-lab/shuge-source-crosswalk/scan-locator/','/projects/yarvin-moldbug-cn/'):

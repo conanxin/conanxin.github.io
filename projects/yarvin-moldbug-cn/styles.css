@@ -2115,3 +2115,20 @@ body.site-unified .reader-transition__links a {
     text-overflow: ellipsis;
   }
 }
+
+/* P10: deep-linked heading focus and an opt-in reading resume action. */
+body.site-unified .reader-anchor-focus:focus {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 6px;
+}
+body.site-unified #resumeReading[hidden] { display: none !important; }
+body.site-unified #resumeReading:not([hidden]) {
+  max-width: min(100%, 370px);
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  body.site-unified #resumeReading:not([hidden]) {
+    white-space: normal;
+    text-align: center;
+  }
+}

@@ -86,7 +86,7 @@ class YarvinNavigationP9Tests(unittest.TestCase):
         self.assertIn('toc-list a[aria-current="location"]', CSS)
 
     def test_navigation_respects_canonical_site_design(self):
-        self.assertIn('href="styles.css?v=20261022-p11"', HTML)
+        self.assertIn('href="styles.css?v=20261022-p12"', HTML)
         self.assertIn('var(--site-green)', CSS)
         self.assertIn('var(--site-line)', CSS)
         self.assertIn('var(--site-serif)', CSS)

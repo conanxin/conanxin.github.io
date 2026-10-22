@@ -56,8 +56,8 @@ class YarvinSearchA11yP11Tests(unittest.TestCase):
         self.assertIn('id="preface-draft-section"', HTML)
         self.assertEqual(HTML.count('class="preface-editorial__paragraph"'), 4)
         self.assertEqual(HTML.count('class="preface-editorial__decision"'), 4)
-        self.assertIn('href="styles.css?v=20261022-p12"', HTML)
-        self.assertIn('src="app.js?v=20261022-p12"', HTML)
+        self.assertIn('href="styles.css?v=20261022-p13"', HTML)
+        self.assertIn('src="app.js?v=20261022-p13"', HTML)
 
 
 if __name__ == "__main__":

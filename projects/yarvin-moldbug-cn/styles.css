@@ -2291,3 +2291,16 @@ body.site-unified .tri-layer__table[aria-describedby]:focus-visible {
     min-width: 600px !important;
   }
 }
+
+/* P13 exact layout repair: an in-flow block establishes scrollable width.
+   The parent is the keyboard-focusable scroll region; table contents stay intact. */
+body.site-unified .compare-table > .reader-table-inner,
+body.site-unified .tri-layer__table > .reader-table-inner {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+}
+body.site-unified .compare-table > .reader-table-inner { min-width: 620px; }
+body.site-unified .tri-layer__table > .reader-table-inner { min-width: 600px; }
+body.site-unified .reader-table-inner > table { width: 100%; }

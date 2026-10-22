@@ -143,6 +143,26 @@
     if (btn) btn.classList.add('is-active');
   }
 
+  // ---------- Keyboard scrolling of horizontally overflowed research tables ----------
+  function initResearchTableKeyboard() {
+    document.querySelectorAll('.compare-table[tabindex], .tri-layer__table[tabindex]').forEach(region => {
+      region.addEventListener('keydown', event => {
+        // Only intercept keys while the scrollable region itself holds focus.
+        // Descendant links and text editing must keep their native shortcuts.
+        if (event.target !== region || event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        const maxScroll = region.scrollWidth - region.clientWidth;
+        if (maxScroll <= 0) return;
+        event.preventDefault();
+        const step = Math.max(55, Math.round(region.clientWidth / 3));
+        if (event.key === 'ArrowLeft') region.scrollLeft = Math.max(0, region.scrollLeft - step);
+        else if (event.key === 'ArrowRight') region.scrollLeft = Math.min(maxScroll, region.scrollLeft + step);
+        else if (event.key === 'Home') region.scrollLeft = 0;
+        else region.scrollLeft = maxScroll;
+      });
+    });
+  }
+
   // ---------- Keyboard focus for in-page navigation and deep links ----------
   function initAnchorFocus() {
     const focusAnchor = () => {
@@ -569,7 +589,7 @@
   }
 
   // Expose for next part
-  window.__yarvinApp = { initStarfield, initProgressBar, initTheme, initReadingMode, initAnchorFocus, initTocScrollSpy, initTocDrawer, initBackToTop, initSearch };
+  window.__yarvinApp = { initStarfield, initProgressBar, initTheme, initReadingMode, initResearchTableKeyboard, initAnchorFocus, initTocScrollSpy, initTocDrawer, initBackToTop, initSearch };
 })();
 
 /* ====================================================================
@@ -792,6 +812,7 @@
     window.__yarvinApp.initProgressBar();
     window.__yarvinApp.initTheme();
     window.__yarvinApp.initReadingMode();
+    window.__yarvinApp.initResearchTableKeyboard();
     window.__yarvinApp.initAnchorFocus();
     window.__yarvinApp.initTocScrollSpy();
     window.__yarvinApp.initTocDrawer();

@@ -461,7 +461,21 @@ try:
       assert page.locator('#floatingToc').is_hidden(),(path,'mobile button exposed on desktop')
      page.locator('.hero__cta .btn--primary').click()
      assert page.evaluate('window.location.hash')=='#mencius-moldbug',(path,'start reading navigation failed')
-     interaction='chapter rhythm + citations -> keyboard search -> mobile TOC -> start-reading anchor'
+     page.wait_for_function("document.activeElement.id==='mencius-moldbug'",timeout=5000)
+     # An explicit deep link and keyboard focus must survive a fresh page load.
+     page.goto(base+path+'#source-ledger-section',wait_until='domcontentloaded')
+     page.wait_for_function("document.activeElement.closest('#source-ledger-section')!==null",timeout=5000)
+     assert page.locator('#source-ledger-section h2').get_attribute('tabindex')=='-1',(path,'section heading not keyboard focusable')
+     assert page.evaluate('location.hash')=='#source-ledger-section'
+     page.evaluate("localStorage.setItem('yarvin-last-location-p10','source-ledger-section')")
+     page.goto(base+path,wait_until='domcontentloaded')
+     resume=page.locator('#resumeReading')
+     assert resume.is_visible(),(path,'P10 resume link missing')
+     assert resume.get_attribute('href')=='#source-ledger-section'
+     resume.click()
+     page.wait_for_function("document.activeElement.closest('#source-ledger-section')!==null",timeout=5000)
+     assert page.evaluate('location.hash')=='#source-ledger-section',(path,'resume did not navigate')
+     interaction='P10 chapter focus -> deep-link heading focus -> opt-in resume -> exact source section'
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None

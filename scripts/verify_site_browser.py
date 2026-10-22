@@ -364,19 +364,47 @@ try:
        src:document.querySelector('script[src*="app.js"]')?.src
      })"""),errors)
      assert page.locator('#btnSearch').get_attribute('aria-expanded')=='true'
+     assert page.locator('#btnSearchClose').is_visible(),(path,'P11 explicit search close missing')
+     assert page.locator('#searchInput').get_attribute('aria-controls')=='searchResults'
+     assert page.evaluate("document.querySelector('.layout').inert"),(path,'P11 dialog background not inert')
+     assert page.evaluate("document.activeElement.id==='searchInput'"),(path,'P11 search initial focus')
      page.keyboard.press('Escape')
      assert page.locator('#searchOverlay').is_hidden(),(path,'search did not close')
+     assert not page.evaluate("document.querySelector('.layout').inert"),(path,'P11 inert state not restored')
      assert page.locator('#btnSearch').get_attribute('aria-expanded')=='false'
+     assert page.evaluate("document.activeElement.id==='btnSearch'"),(path,'P11 Escape did not restore focus')
      # The reader promises arrows and Enter; exercise them as real keyboard actions.
      page.locator('#btnSearch').click()
      page.locator('#searchInput').fill('Patchwork')
      page.wait_for_function("document.querySelectorAll('#searchResults .search-result').length > 0",timeout=6000)
      first_href=page.locator('#searchResults .search-result').first.get_attribute('data-href')
+     assert '匹配' in page.locator('#searchResultCount').inner_text(),(path,'P11 result status not announced')
+     assert page.locator('#searchResultCount').get_attribute('aria-live')=='polite'
+     page.keyboard.press('Shift+Tab')
+     assert page.evaluate("document.activeElement.id==='btnSearchClose'"),(path,'P11 Shift+Tab missed close')
+     page.keyboard.press('Shift+Tab')
+     assert page.evaluate("document.activeElement.classList.contains('search-result')"),(path,'P11 modal focus escaped before last result')
+     page.keyboard.press('Tab')
+     assert page.evaluate("document.activeElement.id==='btnSearchClose'"),(path,'P11 dialog Tab wrap failed')
+     page.locator('#searchInput').focus()
      page.locator('#searchInput').press('ArrowDown')
      assert page.evaluate("document.activeElement.classList.contains('search-result')"),(path,'ArrowDown did not focus search result')
      page.keyboard.press('Enter')
      assert page.locator('#searchOverlay').is_hidden(),(path,'Enter did not close search')
      assert page.evaluate('window.location.hash')=='#'+first_href,(path,'Enter did not navigate to result')
+     page.wait_for_function("(id)=>document.activeElement.id===id || document.activeElement.closest('#'+id)!==null",first_href,timeout=5000)
+     # The same result must still focus the chapter when hashchange cannot fire.
+     page.locator('#btnSearch').click()
+     page.locator('#searchInput').fill('Patchwork')
+     page.wait_for_function("document.querySelectorAll('#searchResults .search-result').length > 0",timeout=6000)
+     page.locator(f'#searchResults .search-result[data-href="{first_href}"]').first.click()
+     page.wait_for_function("(id)=>document.activeElement.id===id || document.activeElement.closest('#'+id)!==null",first_href,timeout=5000)
+     assert page.locator('#searchOverlay').is_hidden(),(path,'P11 same-hash result failed to close')
+     page.locator('#btnSearch').click()
+     page.locator('#searchInput').fill('this-phrase-will-not-match-xyzzq')
+     page.wait_for_function("document.getElementById('searchResultCount').textContent.includes('没有匹配项')",timeout=5000)
+     page.locator('#btnSearchClose').click()
+     assert page.evaluate("document.activeElement.id==='btnSearch'"),(path,'P11 close button did not restore trigger')
      page.locator('#btnToc').click()
      assert page.locator('#tocDrawer').is_visible(),(path,'TOC did not open')
      page.locator('#btnTocClose').click()
@@ -475,7 +503,29 @@ try:
      resume.click()
      page.wait_for_function("document.activeElement.closest('#source-ledger-section')!==null",timeout=5000)
      assert page.evaluate('location.hash')=='#source-ledger-section',(path,'resume did not navigate')
-     interaction='P10 chapter focus -> deep-link heading focus -> opt-in resume -> exact source section'
+     interaction='P11 search modal focus, live result counts, repeated deep links + P10 opt-in resume'
+     if width==390:
+      # 320 CSS px is equivalent to a 400%-zoomed 1280px browser layout.
+      old_viewport=page.viewport_size.copy()
+      page.set_viewport_size({'width':320,'height':720})
+      page.emulate_media(reduced_motion='reduce')
+      assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior")=='auto',(path,'P11 reduced-motion smooth scroll persisted')
+      page.locator('#btnSearch').click()
+      page.locator('#searchInput').fill('Patchwork')
+      page.wait_for_function("document.querySelectorAll('#searchResults .search-result').length > 0",timeout=6000)
+      bounds=page.evaluate("""() => {
+       const r=document.querySelector('.search-overlay__panel').getBoundingClientRect();
+       const x=document.querySelector('#btnSearchClose').getBoundingClientRect();
+       return {screen:innerWidth,doc:document.documentElement.scrollWidth,
+        left:r.left,right:r.right,top:r.top,bottom:r.bottom,closeRight:x.right};
+      }""")
+      assert bounds['doc']<=320+5,(path,'P11 zoomed page horizontal overflow',bounds)
+      assert bounds['left']>=0 and bounds['right']<=320+1,(path,'P11 zoomed search panel clipped',bounds)
+      assert bounds['bottom']<=720+2 and bounds['closeRight']<=320+1,(path,'P11 zoomed dialog close not accessible',bounds)
+      page.screenshot(path=str(out/'yarvin-p11-search-320-reduced-motion.png'),full_page=False)
+      page.locator('#btnSearchClose').click()
+      page.emulate_media(reduced_motion='no-preference')
+      page.set_viewport_size(old_viewport)
     if path=='/site-map/':
      page.locator('details.archive').first.locator('summary').click()
      assert page.locator('details.archive').first.get_attribute('open') is not None

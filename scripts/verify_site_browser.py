@@ -564,8 +564,16 @@ try:
        table.focus()
        page.keyboard.press('ArrowRight')
        page.wait_for_timeout(260)
-       left=table.evaluate("(el)=>el.scrollLeft")
-       assert left>0,(path,'P13 keyboard did not horizontally scroll the table',region,left)
+       geometry=table.evaluate("(el)=>({left:el.scrollLeft,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth})")
+       assert geometry['scrollWidth']>geometry['clientWidth'],(path,'P13 table not overflowed despite guidance',region,geometry)
+       assert geometry['left']>0,(path,'P13 ArrowRight did not scroll focused table',region,geometry)
+       page.keyboard.press('End')
+       page.wait_for_timeout(60)
+       final=table.evaluate("(el)=>el.scrollLeft")
+       assert final>=geometry['left'],(path,'P13 End did not advance table',region,geometry,final)
+       page.keyboard.press('Home')
+       page.wait_for_timeout(60)
+       assert table.evaluate("(el)=>el.scrollLeft")==0,(path,'P13 Home failed to reset table',region)
      interaction='P13 unique disclosure labels + 3 direct hash expansions + scrollable research tables'
      interaction='P11 search modal focus, live result counts, repeated deep links + P10 opt-in resume'
      if width==390:

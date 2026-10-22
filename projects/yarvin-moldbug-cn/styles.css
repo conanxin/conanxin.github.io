@@ -2243,3 +2243,29 @@ body.site-unified .tri-layer__table th[scope="row"] {
     min-width: 0;
   }
 }
+
+/* P13: disclose exact evidence content when linked, and expose table navigation. */
+body.site-unified .passage-review__details > summary:focus-visible,
+body.site-unified .preface-editorial__paragraph > summary:focus-visible,
+body.site-unified .tri-layer__headings > summary:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+body.site-unified .reader-table-hint {
+  color: var(--site-muted);
+  font: 12px/1.8 var(--site-sans);
+  margin: 10px 0 9px;
+  overflow-wrap: anywhere;
+}
+body.site-unified .compare-table[aria-describedby]:focus-visible,
+body.site-unified .tri-layer__table[aria-describedby]:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  body.site-unified .reader-table-hint {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+}

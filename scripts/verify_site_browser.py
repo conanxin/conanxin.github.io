@@ -429,7 +429,7 @@ try:
      page.locator('#tocListDrawer a[href="#cathedral-section"]').click()
      assert page.locator('#tocDrawer').is_hidden(),(path,'P12 TOC link did not close')
      page.wait_for_function("document.activeElement.closest('#cathedral-section')!==null",timeout=5000)
-     assert page.evaluate("location.hash")==='#cathedral-section',(path,'P12 TOC link did not navigate')
+     assert page.evaluate("location.hash")=='#cathedral-section',(path,'P12 TOC link did not navigate')
      assert not page.evaluate("document.querySelector('.layout').inert"),(path,'P12 TOC link left page inert')
      assert page.locator('.compare-table caption').count()==1,(path,'P12 comparison table caption missing')
      assert page.locator('.tri-layer__table caption').count()==1,(path,'P12 heading table caption missing')

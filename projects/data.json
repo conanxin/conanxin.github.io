@@ -1,5 +1,28 @@
 [
   {
+    "title": "Conan Xin Archive｜从一件档案发现下一件",
+    "subtitle": "五件历史资料 · 三条策展路线 · 持续更新的证据边界",
+    "slug": "conan-xin-archive",
+    "category": "research",
+    "type": "CURATED RESEARCH ARCHIVE",
+    "status": "公开试行 v0.1",
+    "status_color": "#426a5a",
+    "updated": "2026-11-01",
+    "summary": "一份持续生长的个人历史文献策展导览。从北京地图、建筑研究期刊和《人民画报》，进入 Hedda Morrison 相册与 LIFE 老照片。以五件有限样本展示三条阅读路线、可核查来源及待证问题。仅公开低清图片与编辑摘要，私人扫描母版不开放。",
+    "entry_url": "/projects/conan-xin-archive/",
+    "source_kind": "static-site",
+    "featured": true,
+    "tags": [
+      "历史档案",
+      "知识策展",
+      "地图",
+      "老照片",
+      "Provenance",
+      "数字人文",
+      "证据"
+    ]
+  },
+  {
     "title": "Research-to-Drama Engine｜史料到受控戏剧生成引擎",
     "subtitle": "让每一段戏剧，都有证据来路",
     "slug": "research-to-drama-engine",

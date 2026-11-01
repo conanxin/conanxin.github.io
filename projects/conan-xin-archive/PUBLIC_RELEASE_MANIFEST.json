@@ -1,0 +1,75 @@
+{
+  "release": "0.1.0",
+  "date": "2026-11-01",
+  "objects": 5,
+  "routes": 3,
+  "published_image_count": 7,
+  "assets": {
+    "CXA-000026": {
+      "file": "./assets/cxa-000026.jpg",
+      "bytes": 88550,
+      "dimensions": [
+        669,
+        950
+      ],
+      "sha256": "bf07fcafd5c6819424dc7e8a55111dbf3ee93cc1256c0d44774a55f176198bf9"
+    },
+    "CXA-000011": {
+      "file": "./assets/cxa-000011.jpg",
+      "bytes": 49439,
+      "dimensions": [
+        581,
+        780
+      ],
+      "sha256": "2a2d8789d71119841adffb24eec0d824355eda7d2a54ba872df9b4baf5a8648c"
+    },
+    "CXA-000012": {
+      "file": "./assets/cxa-000012.jpg",
+      "bytes": 58777,
+      "dimensions": [
+        541,
+        760
+      ],
+      "sha256": "39c51b59fa5d42f78264af2f17da09ea92db7faccdfe25bcba0ea812a24c9a11"
+    },
+    "CXA-000016": {
+      "file": "./assets/cxa-000016.jpg",
+      "bytes": 42385,
+      "dimensions": [
+        760,
+        593
+      ],
+      "sha256": "39a8b922c1de638b720b74e634f51e38cd942f1dc0451ca561ac27e05e264405"
+    },
+    "CXA-000023": {
+      "file": "./assets/cxa-000023.jpg",
+      "bytes": 45707,
+      "dimensions": [
+        492,
+        600
+      ],
+      "sha256": "a38039960c20106fd45c275d26a77dd4d606994fb371145029ec5544a2b7ccbc"
+    },
+    "CXA-000011-p152": {
+      "file": "./assets/cxa-000011-p152.jpg",
+      "bytes": 70146,
+      "dimensions": [
+        745,
+        1000
+      ],
+      "sha256": "03f1474abb09f5f9ad3f4158b95c95fa2039a1a265f2c943c4312fce73410066"
+    },
+    "CXA-000012-p3": {
+      "file": "./assets/cxa-000012-p3.jpg",
+      "bytes": 163200,
+      "dimensions": [
+        672,
+        950
+      ],
+      "sha256": "72ce50d3df5df90ca3cbf18a67e7a4b9b3600680523f0fe2c8acccf2507245a0"
+    }
+  },
+  "canonical_sqlite_copied": false,
+  "private_master_files_copied": false,
+  "public_path": "/projects/conan-xin-archive/"
+}

@@ -3,6 +3,8 @@
 > TASK_ID=`CONANXIN_SITE_DESIGN_STAGE2G_P5B_CONTINUATION` · 2026-11-03  
 > 基线：当前 `main=796506c78101e810d510b6d8138f74bcf10b5143`。本阶段在独立分支实施；不合并、不部署。
 
+> **与旧 P5A PR 的关系**：PR [#37](https://github.com/conanxin/conanxin.github.io/pull/37) 仍未合并，且以旧 main `d93e55d` 为基线。本 P5B 分支从当前 main `796506c` 独立建立，不继承旧分支提交；P5B 直接读取原图，对 P5A 的三个锚点倒序假说作了新的原图坐标核验。不要把 PR #37 当作已合并或把其旧基线覆盖当前主线。
+
 ## 1. 这次真正重新读取了什么
 
 通过本地 WSL CXRE 连接，直接以 SQLite `mode=ro` 和 `PRAGMA query_only=ON` 读取原库 `shuge.db`：

@@ -1,0 +1,423 @@
+{
+  "schema": "stage2g-p5b-visual-collation-and-edition-fingerprint-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P5B_CONTINUATION",
+  "checked_date": "2026-11-03",
+  "base_main_sha": "796506c78101e810d510b6d8138f74bcf10b5143",
+  "method": {
+    "original_source": "Local WSL shuge.db opened with SQLite URI mode=ro and PRAGMA query_only=ON; existing archived JPEGs read without modification.",
+    "image_review": "Original JPEGs were visually inspected; crops were generated in memory only. Coordinates below refer to original image pixels, origin at top-left.",
+    "limits": "Selected glyph/phrase collation only; not a complete scholarly transcription."
+  },
+  "database_sha256": "4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8",
+  "page_1338_reading_order": {
+    "citation_id": "SHUGE:p211203:1338",
+    "page_object_id": 1338,
+    "page_index": 380,
+    "image_sha256": "db7422280e2a051ea2beea3cff0f5fb46d74163ee8a107b4c0dc60941cbcf838",
+    "image_dimensions": [
+      1600,
+      2570
+    ],
+    "ocr_row_id": 1018,
+    "ocr_qa_status": "NOT_CHECKED",
+    "reading_direction_in_print": "RIGHT_TO_LEFT_VERTICAL_COLUMNS",
+    "anchors": [
+      {
+        "id": "fish",
+        "image_reading": "世間魚肉",
+        "ocr_phrase": "世間魚肉",
+        "ocr_codepoint_offset": 135,
+        "ocr_line": 9,
+        "image_region": {
+          "x": [
+            1380,
+            1560
+          ],
+          "y": [
+            250,
+            2350
+          ]
+        }
+      },
+      {
+        "id": "steaming",
+        "image_reading": "初一蒸半生即止",
+        "ocr_phrase": "初一蒸半生即止",
+        "ocr_codepoint_offset": 75,
+        "ocr_line": 5,
+        "image_region": {
+          "x": [
+            600,
+            790
+          ],
+          "y": [
+            800,
+            1600
+          ]
+        }
+      },
+      {
+        "id": "juice",
+        "image_reading": "自然汁三升",
+        "ocr_phrase": "自然汁三升",
+        "ocr_codepoint_offset": 7,
+        "ocr_line": 2,
+        "image_region": {
+          "x": [
+            200,
+            390
+          ],
+          "y": [
+            250,
+            2200
+          ]
+        }
+      }
+    ],
+    "measured_order": {
+      "ocr_string_order": [
+        "juice",
+        "steaming",
+        "fish"
+      ],
+      "original_image_reading_order": [
+        "fish",
+        "steaming",
+        "juice"
+      ],
+      "result": "CONFIRMED_REVERSED_FOR_THREE_SELECTED_ANCHORS",
+      "full_page_column_order": "NOT_FULLY_COLLATED"
+    },
+    "selected_glyph_collation": [
+      {
+        "image_reading": "明礬水",
+        "ocr_reading": "明磨水",
+        "ocr_line": 2,
+        "image_region": {
+          "x": [
+            200,
+            390
+          ],
+          "y": [
+            700,
+            1500
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "薄施塗抹",
+        "ocr_reading": "薄施塗林",
+        "ocr_line": 9,
+        "image_region": {
+          "x": [
+            1380,
+            1560
+          ],
+          "y": [
+            850,
+            1750
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "medium"
+      },
+      {
+        "image_reading": "凡造法",
+        "ocr_reading": "无造法",
+        "ocr_line": 7,
+        "image_region": {
+          "x": [
+            1060,
+            1240
+          ],
+          "y": [
+            250,
+            1300
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "不拘",
+        "ocr_reading": "不狗",
+        "ocr_line": 7,
+        "image_region": {
+          "x": [
+            1060,
+            1240
+          ],
+          "y": [
+            700,
+            1500
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "旬日",
+        "ocr_reading": "句日",
+        "ocr_line": 8,
+        "image_region": {
+          "x": [
+            1220,
+            1390
+          ],
+          "y": [
+            350,
+            1250
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "不敢近",
+        "ocr_reading": "不敢远",
+        "ocr_line": 8,
+        "image_region": {
+          "x": [
+            1220,
+            1390
+          ],
+          "y": [
+            800,
+            1700
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      }
+    ],
+    "scope_note": "Three anchor coordinates establish the reversed extraction order. Selected character readings add local mismatch evidence. The 202-codepoint normalized_text is not yet fully transcribed against every column."
+  },
+  "page_1178": {
+    "citation_id": "SHUGE:p211203:1178",
+    "page_object_id": 1178,
+    "page_index": 220,
+    "image_sha256": "54c6556fb97c7ba838639ad87dce95c3aa7f2a896ecc49ebe5f4486f2be19d57",
+    "image_dimensions": [
+      1600,
+      2597
+    ],
+    "ocr_row_id": 858,
+    "ocr_qa_status": "NOT_CHECKED",
+    "selected_glyph_collation": [
+      {
+        "image_reading": "候風",
+        "ocr_reading": "侯風",
+        "ocr_line": 9,
+        "ocr_offset": 150,
+        "image_region": {
+          "x": [
+            1200,
+            1580
+          ],
+          "y": [
+            200,
+            1900
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "靜涉過",
+        "ocr_reading": "静淡词",
+        "ocr_line": 9,
+        "ocr_offset": 152,
+        "image_region": {
+          "x": [
+            1200,
+            1580
+          ],
+          "y": [
+            200,
+            1900
+          ]
+        },
+        "assessment": "MULTI_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "鎮江",
+        "ocr_reading": "镇汇",
+        "ocr_line": 9,
+        "ocr_offset": 145,
+        "image_region": {
+          "x": [
+            1200,
+            1580
+          ],
+          "y": [
+            200,
+            1900
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "medium"
+      },
+      {
+        "image_reading": "至錢塘",
+        "ocr_reading": "至塘",
+        "ocr_line": 5,
+        "ocr_offset": 75,
+        "image_region": {
+          "x": [
+            250,
+            650
+          ],
+          "y": [
+            250,
+            1900
+          ]
+        },
+        "assessment": "OMITTED_GLYPH_CANDIDATE",
+        "confidence": "medium"
+      }
+    ],
+    "scope_note": "Direct visual comparison is restricted to selected water-transport phrases; no full page transcript is approved."
+  },
+  "page_1320": {
+    "citation_id": "SHUGE:p211203:1320",
+    "page_object_id": 1320,
+    "page_index": 362,
+    "image_sha256": "88a64d76300f8277dd6eb2371600617806d4d3d36d37c5aef49499f8bec1a048",
+    "image_dimensions": [
+      1600,
+      2570
+    ],
+    "ocr_row_id": 1000,
+    "ocr_qa_status": "NOT_CHECKED",
+    "selected_glyph_collation": [
+      {
+        "image_reading": "丹青第十六卷",
+        "ocr_reading": "册青第十六卷",
+        "ocr_line": 11,
+        "ocr_offset": 153,
+        "image_region": {
+          "x": [
+            1180,
+            1580
+          ],
+          "y": [
+            200,
+            1800
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "離火紅而至黑",
+        "ocr_reading": "静火紅而至黑",
+        "ocr_line": 7,
+        "ocr_offset": 105,
+        "image_region": {
+          "x": [
+            900,
+            1300
+          ],
+          "y": [
+            200,
+            1800
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "宗子曰斯文千古之不墜也",
+        "ocr_reading": "宗子同斯文千古之不也",
+        "ocr_line": 8,
+        "ocr_offset": 125,
+        "image_region": {
+          "x": [
+            1180,
+            1580
+          ],
+          "y": [
+            200,
+            1800
+          ]
+        },
+        "assessment": "SELECTED_GLYPH_MISMATCH_AND_OMISSION",
+        "confidence": "high"
+      },
+      {
+        "image_reading": "朱砂水銀銀朱原同一物",
+        "ocr_reading": "朱砂水銀銀朱原同一物",
+        "ocr_line": 4,
+        "ocr_offset": 43,
+        "image_region": {
+          "x": [
+            900,
+            1300
+          ],
+          "y": [
+            200,
+            1800
+          ]
+        },
+        "assessment": "SELECTED_GLYPHS_MATCH",
+        "confidence": "high"
+      }
+    ],
+    "scope_note": "Selected title and prose glyphs only. Full page 162-codepoint collation remains open."
+  },
+  "edition_fingerprint": {
+    "local_record": {
+      "ark": "btv1b525104776",
+      "digital_object_id": 17,
+      "source_id": 304,
+      "stored_catalog_label": "BnF. Département des Manuscrits. Chinois 5563"
+    },
+    "bnf_official_reference": {
+      "url": "https://heritage.bnf.fr/france-chine/tiangong-kaiwu",
+      "linked_ark": "btv1b52505781g",
+      "call_number": "Chinois 5563"
+    },
+    "bnf_edition_facts": {
+      "chinois_5563": "BnF identifies this as the earliest known edition and notes a dated preface (1637).",
+      "chinois_5564": "BnF describes a second, undated copy, with punctuation added and illustrations redrawn/reduced.",
+      "anchor_illustration_fingerprint": "BnF says the later Chinois 5564 anchor illustration loses a flowering branch present in the other edition."
+    },
+    "local_anchor_image": {
+      "page_object_id": 1200,
+      "page_index": 242,
+      "source_url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b525104776/f242/full/1600,/0/default.jpg",
+      "image_sha256": "884595213476f1b33ea60040b3e82e70af7a2ac66efc69a087c434e337702c11",
+      "image_dimensions": [
+        1600,
+        1401
+      ],
+      "visual_observation": "A flowering branch is visibly present along the outer right margin of the local anchor-making illustration.",
+      "adjacent_anchor_text_page": {
+        "page_object_id": 1198,
+        "page_index": 240,
+        "ocr_row_id": 878,
+        "source_url": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b525104776/f240/full/1600,/0/default.jpg",
+        "observation": "The adjacent page OCR concerns anchor construction and its four-pronged form."
+      }
+    },
+    "bnf_anchor_link": "https://gallica.bnf.fr/ark:/12148/btv1b52505781g/f240.item",
+    "edition_assessment": "PROVISIONALLY_CONSISTENT_WITH_CHINOIS_5563",
+    "same_physical_copy_as_bnf_05781g": "UNVERIFIED",
+    "same_digitization_as_bnf_05781g": "UNVERIFIED",
+    "direct_pixel_comparison_to_bnf_05781g": "NOT_AVAILABLE_HTTP_403",
+    "note": "The matching call-number metadata plus the branch fingerprint narrow the edition hypothesis. They do not prove the local ARK and the official BnF ARK are the same physical copy or same scan. The local f242 versus BnF-linked f240 is only a candidate sequence alignment, not a verified mapping."
+  },
+  "gates": {
+    "six_image_hashes_rechecked": true,
+    "six_full_ocr_rows_recovered": true,
+    "page_1338_three_anchor_order": "CONFIRMED_REVERSED",
+    "selected_visual_glyph_reviews": 14,
+    "full_page_ocr_reviews": 0,
+    "scholarly_claims_verified": 0,
+    "same_physical_copy_verified": false,
+    "original_database_or_ocr_mutated": false
+  }
+}

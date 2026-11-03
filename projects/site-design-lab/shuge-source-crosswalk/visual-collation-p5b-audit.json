@@ -60,7 +60,7 @@
         "id": "juice",
         "image_reading": "自然汁三升",
         "ocr_phrase": "自然汁三升",
-        "ocr_codepoint_offset": 7,
+        "ocr_codepoint_offset": 8,
         "ocr_line": 2,
         "image_region": {
           "x": [

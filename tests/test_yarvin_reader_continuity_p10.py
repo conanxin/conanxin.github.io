@@ -26,8 +26,8 @@ class ReaderContinuityP10Tests(unittest.TestCase):
         self.assertIn("body.site-unified .reader-anchor-focus:focus",CSS)
 
     def test_navigation_sources_preserved(self):
-        self.assertIn('href="styles.css?v=20261022-p12"',HTML)
-        self.assertIn('src="app.js?v=20261022-p12"',HTML)
+        self.assertIn('href="styles.css?v=20261022-p13"',HTML)
+        self.assertIn('src="app.js?v=20261022-p13"',HTML)
         self.assertEqual(HTML.count('class="preface-editorial__paragraph"'),4)
         self.assertEqual(HTML.count('class="preface-editorial__decision"'),4)
         article=HTML.split('<article class="article" id="article">',1)[1].split("</article>",1)[0]

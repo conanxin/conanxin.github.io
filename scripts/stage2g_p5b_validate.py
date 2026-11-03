@@ -57,7 +57,7 @@ def validate(full: dict, visual: dict, p2: dict) -> dict:
         assert raw.count(phrase) == 1
         offset = raw.index(phrase)
         assert offset == anchor["ocr_codepoint_offset"]
-        assert raw[:offset].count("\\n") + 1 == anchor["ocr_line"]
+        assert raw[:offset].count("\n") + 1 == anchor["ocr_line"]
         located.append((offset, anchor["id"]))
     ocr_order = [key for _, key in sorted(located)]
     assert ocr_order == order["measured_order"]["ocr_string_order"]

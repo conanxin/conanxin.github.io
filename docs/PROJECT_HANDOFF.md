@@ -157,3 +157,17 @@
 - 另外从真实 `page_ocr` 只读提取两个完整 `normalized_text` 行（`page_object_id=1178/1320`），存入新增 [Stage 2G-P4 独立审计](./STAGE2G_P4_DUAL_ARK_OCR_AUDIT.md) 和 `projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json`，并记录 **8 组选段 AI 辅助视觉比对，其中 6 组疑似 OCR 错识**。已有原图 SHA 使用 Stage 2G-P2 已核结果，无图像或 OCR 源数据重写。
 - **未完成 Gate**：Gallica 双 ARK 官方画布与馆号一一关系 UNVERIFIED；两页全文 OCR 校勘 0/2，六条历史论断完整语义审核 0/6。
 - **正式验收**：[PR #35](https://github.com/conanxin/conanxin.github.io/pull/35) 已合并，SHA `b517c613cbde9a6a829659d7a0d319ab43008dfe`；[Pages Run 38396870349](https://github.com/conanxin/conanxin.github.io/actions/runs/38396870349) Success：**99/99** 单元测试、**50/50** 浏览器检查、**19/19** 公网路径、0 JS 错误。[ark-ocr-p4-audit.json](https://conanxin.github.io/projects/site-design-lab/shuge-source-crosswalk/ark-ocr-p4-audit.json) 已直接从公网读取。下一阶段 P5 仍要独立核实 BnF 两个 ARK 的馆藏/数字对象关系，扩展有定位证据的 OCR 人工校勘与逐条历史论断审核；不得将局部 AI 字形观察提升为正式学术校勘。
+
+
+## 14. Stage 2G-P5B · 原图坐标核验、六页完整 OCR 快照与 BnF 版次指纹（独立 PR 待验收）
+
+- **基线**：当前主线 `main=796506c78101e810d510b6d8138f74bcf10b5143`。P5B 使用独立分支 `research/stage2g-p5b-visual-collation`，不从旧 P5A 分支继承提交，不改站点公共 reader 页面。
+- 本地真实 SQLite 重新以 `mode=ro` + `PRAGMA query_only=ON` 打开，DB SHA-256 与 P2 相同；六条原图均重新计算 SHA 并与数据库记录匹配 **6/6**。六条完整 `normalized_text`、OCR 行 ID/QA、全文 SHA、codepoint/UTF-8 长度写入 [full-ocr-p5b-audit.json](../projects/site-design-lab/shuge-source-crosswalk/full-ocr-p5b-audit.json)。
+- 旧 P2 `real-db-page-links.json` 中 page object **1178/1320/1338** 的 OCR 摘录各只保留 150 字符；完整长度分别为 **206/162/202**。本轮没有覆盖旧 sidecar，而是新增完整旁路。
+- page 380 `SHUGE:p211203:1338` 原图 1600 × 2570 直接核对三个锚点：图像从右向左为“世間魚肉 → 初一蒸半生即止 → 自然汁三升”，数据库 OCR 字串顺序为反向。三个锚点的栏序倒置已由原图坐标直接确认；整页全文栏序仍未校完。
+- page 220 `p211203:1178` 和 page 362 `p211203:1320` 各新增选段图文比对；合计 14 项 selected visual collation（包含匹配项），不是 14 页/14 段全文校勘。详见 [visual-collation-p5b-audit.json](../projects/site-design-lab/shuge-source-crosswalk/visual-collation-p5b-audit.json) 与 [P5B 报告](./STAGE2G_P5B_VISUAL_COLLATION.md)。
+- **BnF 版次线索更新**：BnF 官方专题说明 Chinois 5563 为带 1637 年序文日期的较早版本；Chinois 5564 为另一份较晚、未标日期的版本，插图有重绘，锚具图的花枝被删。官方专题的 Chinois 5563 链接 ARK 为 `btv1b52505781g`。本地 `btv1b525104776` 的数据库标签为 Chinois 5563，且本地锚具图 `page_index=242` 右边缘可见花枝，**版次特征暂时吻合 Chinois 5563**；这仍不能证明两个 ARK 是同一实体册或同一次数字化。BnF 直接图像比较仍 HTTP 403 / UNVERIFIED。
+- 新增只读校验程序 `scripts/stage2g_p5b_validate.py` 和回归测试 `tests/test_stage2g_p5b_visual_collation.py`，用于检查完整 OCR SHA、P2 摘录前缀、六图哈希、三锚点偏移/顺序、14 条 OCR-图像观察与版次 Gate 不误升级。
+- 旧 [PR #37](https://github.com/conanxin/conanxin.github.io/pull/37) 仍为未合并状态、基于旧 main `d93e55d`；本 P5B 分支独立基于当前 main，不自动合并或重写 PR #37。
+- **未完成 Gate**：整页 OCR 人工校勘 0 页；六条历史论断学术核验 0/6；两 Gallica ARK 同一实体册/同一扫描仍 UNVERIFIED。原 SHUGE SQLite、OCR、图像、引文、研究正文和 v0.7/v1.0 冻结数据未修改。
+- 本分支完成 GitHub PR CI 后再进入下一轮；不因工程测试通过而宣称史料学术审核完成。

@@ -1,0 +1,94 @@
+{
+  "schema": "stage2g-p5a-cross-source-anchor-order-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P5A_CONTINUATION",
+  "checked_date": "2026-10-13",
+  "scope": "Three exact phrase anchors in previously verified local OCR excerpt versus ordered paragraphs of an independently edited, edition-unmatched Wikisource text. This is NOT original-edition character collation.",
+  "evidence_sources": {
+    "archived_original": {
+      "source_path": "projects/site-design-lab/shuge-source-crosswalk/real-db-page-links.json",
+      "citation_id": "SHUGE:p211203:1338",
+      "page_object_id": 1338,
+      "page_index": 380,
+      "ocr_row_id": 1018,
+      "qa_status": "NOT_CHECKED",
+      "archived_jpeg_sha256": "db7422280e2a051ea2beea3cff0f5fb46d74163ee8a107b4c0dc60941cbcf838",
+      "ocr_field": "rows[].ocr.excerpt",
+      "status": "VERIFIED_LOCAL_ARCHIVE_RECORDS_ONLY"
+    },
+    "parallel_transcription": {
+      "title": "天工開物/丹曲",
+      "url": "https://zh.wikisource.org/w/index.php?title=天工開物/丹曲&oldid=460300",
+      "html_url": "https://zh.wikisource.org/zh-hant/天工開物/丹曲",
+      "paragraph_anchor_order_basis": "A in first paragraph, B in next, C in third; Wikisource oldid is not linked to exact BnF scan.",
+      "status": "INDEPENDENT_TEXT_PARALLEL_ONLY",
+      "same_edition_as_archived_page": "UNVERIFIED",
+      "same_printed_copy": "UNVERIFIED"
+    },
+    "official_bnf_article": {
+      "url": "https://heritage.bnf.fr/france-chine/zh-hans/tiangongkaiwu",
+      "scope": "Official discussion distinguishes Chinois 5563 and 5564; does NOT identify local 104776 as equivalent to 05781g",
+      "two_arks_equivalent": "UNVERIFIED"
+    }
+  },
+  "anchors": [
+    {
+      "id": "fish",
+      "phrase": "世間魚肉",
+      "reference_rank": 1,
+      "reference_line": "2016 Wikisource oldid 460300, paragraph 1",
+      "raw_ocr_codepoint_offset": 135,
+      "raw_ocr_occurrences": 1
+    },
+    {
+      "id": "steaming",
+      "phrase": "初一蒸半生即止",
+      "reference_rank": 2,
+      "reference_line": "2016 Wikisource oldid 460300, paragraph 2",
+      "raw_ocr_codepoint_offset": 75,
+      "raw_ocr_occurrences": 1
+    },
+    {
+      "id": "juice",
+      "phrase": "汁三升",
+      "reference_rank": 3,
+      "reference_line": "2016 Wikisource oldid 460300, paragraph 3",
+      "raw_ocr_codepoint_offset": 10,
+      "raw_ocr_occurrences": 1
+    }
+  ],
+  "measured_anchor_orders": {
+    "archived_ocr": [
+      "juice",
+      "steaming",
+      "fish"
+    ],
+    "parallel_transcription": [
+      "fish",
+      "steaming",
+      "juice"
+    ],
+    "three_anchors_exactly_reversed": true,
+    "assessment": "REVERSED_ANCHOR_ORDER_OBSERVED",
+    "whole_page_reading_order": "UNVERIFIED",
+    "root_cause": "HYPOTHESIS_LEFT_TO_RIGHT_VERTICAL_COLUMN_EXTRACTION"
+  },
+  "limitations": [
+    "Source page 380 archival JPEG SHA was verified in P2, but no new visual coordinate inspection is possible in this pass because the authorized desktop is offline.",
+    "Wikisource is independent volunteer-maintained text and may differ by printing or punctuation; it does not prove an edition identity.",
+    "Three anchored substrings are not a sentence-by-sentence full OCR correction and cannot establish all columns are reversed.",
+    "Do not modify original page_ocr normalized_text, source image, citations.json, works.json, bibliography.json, or historical research claims."
+  ],
+  "gates": {
+    "ark_btv1b525104776_vs_btv1b52505781g": "UNVERIFIED",
+    "ocr_full_page": "UNVERIFIED",
+    "claims_full_semantics": "UNVERIFIED",
+    "scholarly_claims_verified": 0,
+    "archived_primary_mutated": false
+  },
+  "next_actions": [
+    "Retrieve authorized BnF catalogs/IIIF manifestations for each ARK as separate objects.",
+    "Reinspect saved page 380 image with column coordinates when the desktop is online, then verify the observed anchor order directly against columns.",
+    "Extend to other pages using independently versioned parallel text, tracking unlocated and repeated anchors as non-result.",
+    "Treat source-topic mismatches as NOT_SUPPORTED_FOR_QUERY, without rewriting frozen original claim records."
+  ]
+}

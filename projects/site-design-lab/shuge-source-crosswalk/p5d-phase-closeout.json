@@ -1,0 +1,183 @@
+{
+  "schema": "stage2g-p5d-final-visual-review-and-closeout-v1",
+  "task_id": "CONANXIN_SITE_DESIGN_STAGE2G_P5D_CLOSEOUT",
+  "review_date": "2026-11-05",
+  "status": "PHASE_CLOSED_WITH_OPEN_SCHOLARLY_GATES",
+  "base_main_sha": "796506c78101e810d510b6d8138f74bcf10b5143",
+  "prior_prs": [
+    {
+      "number": 37,
+      "status_at_review": "OPEN_UNMERGED",
+      "scope": "P5A OCR anchor-order comparison"
+    },
+    {
+      "number": 47,
+      "status_at_review": "OPEN_UNMERGED",
+      "scope": "P5B full OCR and image-coordinate review",
+      "ci_success_run": 41624692522
+    },
+    {
+      "number": 48,
+      "status_at_review": "OPEN_UNMERGED",
+      "scope": "P5C page380 full-structure draft",
+      "ci_success_run": 41736208683
+    }
+  ],
+  "primary_source": {
+    "citation_id": "SHUGE:p211203:1338",
+    "page_object_id": 1338,
+    "page_index": 380,
+    "ocr_row_id": 1018,
+    "qa_status": "NOT_CHECKED",
+    "original_image_sha256": "db7422280e2a051ea2beea3cff0f5fb46d74163ee8a107b4c0dc60941cbcf838",
+    "db_sha256": "4e28174734737d902ba70b83f901e44e9e8f094ce6d43521b3bb4ec7c65052a8",
+    "p5c_source_path": "projects/site-design-lab/shuge-source-crosswalk/page380-p5c-transcription.json",
+    "p5c_pr": "https://github.com/conanxin/conanxin.github.io/pull/48"
+  },
+  "uncertainty_review": [
+    {
+      "id": "U1",
+      "column": "C01",
+      "p5c_draft": "塗抹",
+      "current_best_reading": "塗抹",
+      "alternative": "塗抺",
+      "result": "REMAINS_UNRESOLVED_VARIANT",
+      "visual_observation": "Printed column displays 塗 followed by a hand-radical glyph; stroke distinction 抹/抺 not conclusively established from reviewed crop.",
+      "source_original_region_xyxy": [
+        1335,
+        1320,
+        1480,
+        1920
+      ],
+      "human_approved": false
+    },
+    {
+      "id": "U2",
+      "column": "C02",
+      "p5c_draft": "蛆蠅",
+      "current_best_reading": "蛆蠅",
+      "alternative": null,
+      "result": "AI_VISUAL_SUPPORT_FOR_DRAFT",
+      "visual_observation": "The two insect-radical glyphs appear consistent with 蛆蠅 in a zoomed crop; the reading remains AI-assisted rather than human-certified.",
+      "source_original_region_xyxy": [
+        1170,
+        450,
+        1360,
+        1570
+      ],
+      "human_approved": false
+    },
+    {
+      "id": "U3",
+      "column": "C06",
+      "p5c_draft": "出離",
+      "current_best_reading": "出離",
+      "alternative": "出甑",
+      "result": "AI_VISUAL_SUPPORT_FOR_DRAFT",
+      "visual_observation": "Lower part of original column visibly reads 出離; the prior 出甑 guess is not supported by the inspected crop.",
+      "source_original_region_xyxy": [
+        590,
+        2000,
+        790,
+        2410
+      ],
+      "human_approved": false
+    },
+    {
+      "id": "U4",
+      "column": "N01",
+      "p5c_draft": "必用山河流水大江者不可用",
+      "current_best_reading": "必用山河流水大江者不可用",
+      "alternative": null,
+      "result": "REMAINS_UNRESOLVED_CROSS_COLUMN_JOIN",
+      "visual_observation": "Two inspected regions expose 流水 / 必用山河 and 者不可用, but exact placement, small annotation joining, and line flow are not yet human-confirmed.",
+      "source_original_regions_xyxy": [
+        [
+          895,
+          1690,
+          1060,
+          2410
+        ],
+        [
+          740,
+          270,
+          920,
+          820
+        ]
+      ],
+      "human_approved": false
+    }
+  ],
+  "other_page_review": [
+    {
+      "page_object_id": 1178,
+      "citation_id": "SHUGE:p211203:1178",
+      "page_index": 220,
+      "image_sha256": "54c6556fb97c7ba838639ad87dce95c3aa7f2a896ecc49ebe5f4486f2be19d57",
+      "review_scope": "PR #47 image-coordinate selected phrase collation and source-question relevance reviewed; not a full column transcription.",
+      "ocr_examples": [
+        {
+          "ocr": "镇汇",
+          "image_candidate": "鎮江",
+          "assessment": "SELECTED_GLYPH_MISMATCH"
+        },
+        {
+          "ocr": "侯風静淡词",
+          "image_candidate": "候風靜涉過",
+          "assessment": "SELECTED_GLYPH_MISMATCH"
+        }
+      ],
+      "historical_claim_scope": "Book identity is 天工開物 waterborne navigation, NOT 水經注 original text.",
+      "full_page_human_approved": false
+    },
+    {
+      "page_object_id": 1320,
+      "citation_id": "SHUGE:p211203:1320",
+      "page_index": 362,
+      "image_sha256": "88a64d76300f8277dd6eb2371600617806d4d3d36d37c5aef49499f8bec1a048",
+      "review_scope": "PR #47 image-coordinate selected phrase collation and source-question relevance reviewed; not a full column transcription.",
+      "ocr_examples": [
+        {
+          "ocr": "册青第十六卷",
+          "image_candidate": "丹青第十六卷",
+          "assessment": "SELECTED_GLYPH_MISMATCH"
+        },
+        {
+          "ocr": "静火紅而至黑",
+          "image_candidate": "離火紅而至黑",
+          "assessment": "SELECTED_GLYPH_MISMATCH"
+        }
+      ],
+      "historical_claim_scope": "The leaf discusses pigments and minerals, not the automated brick-production question.",
+      "full_page_human_approved": false
+    }
+  ],
+  "gates": {
+    "archived_source_modified": false,
+    "ocr_source_modified": false,
+    "frozen_research_modified": false,
+    "source_image_modified": false,
+    "p5c_one_page_structure_draft": true,
+    "page380_human_approved": false,
+    "additional_pages_full_transcribed": 0,
+    "six_historical_claims_scholarly_verified": 0,
+    "bnf_two_arks_same_scan": "UNVERIFIED",
+    "publication": "NOT_MERGED_NOT_DEPLOYED",
+    "phase_workflow": "STOP_AFTER_ARCHIVING"
+  },
+  "lessons": [
+    "Citation ID suffix is page_object_id, not a leaf number.",
+    "Distinguish original image pixel coordinates from OCR rescaled layout coordinates.",
+    "P2 excerpt may be 150 characters even when real normalized_text is longer.",
+    "OCR char_count excludes whitespace: 188 and 202 are different count conventions, not lost text.",
+    "Do not reverse all OCR blocks: column body, cross-column inline annotations, and running title are mixed.",
+    "Never convert AI visual readings or CI PASS into human scholarly approval.",
+    "Use issue-limited review sidecars; keep raw SQLite, JPEG, OCR, frozen citations and prior PRs immutable."
+  ],
+  "recovery": {
+    "repository": "https://github.com/conanxin/conanxin.github.io",
+    "p5d_branch": "research/stage2g-p5d-closeout-20261105",
+    "notion_hub": "https://app.notion.com/p/3e834a28189a81358231f7135becb886",
+    "next_only_if_resumed": "Use P5C coordinate/layout data to obtain human glyph signoff for U1/U4 and page220/362 column drafts; compare two Gallica manifests before deciding same scan."
+  }
+}
